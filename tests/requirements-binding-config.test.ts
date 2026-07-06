@@ -10,6 +10,11 @@ import {
   loadRequirementsBindingConfig,
   parseRequirementsBindingConfigText,
 } from "../src/config/requirements-binding";
+import {
+  REQUIREMENTS_BINDING_L1_L2_VIEWPOINTS,
+  REQUIREMENTS_BINDING_POLICY_TERMS,
+  REQUIREMENTS_BINDING_REFACTOR_THRESHOLDS,
+} from "../src/config/requirements-binding-policy";
 import type { L1L2ConsistencyInput } from "../src/lint/l1-l2-consistency";
 import { buildL1L2GapCheckPacket } from "../src/lint/l1-l2-gap-check";
 import { projectRefactorCandidateSignals } from "../src/state-db/feedback-projections";
@@ -37,6 +42,18 @@ describe("requirements-binding config", () => {
     expect(parsed.config.schemaVersion).toBe(HELIX_REQUIREMENTS_BINDING_SCHEMA_VERSION);
     expect(parsed.config.refactorCandidates.thresholds.splitModuleLines).toBe(700);
     expect(parsed.config.l1L2GapCheck.viewpoints).toHaveLength(8);
+  });
+
+  it("keeps requirements-binding defaults bound to the policy catalog", () => {
+    expect(HELIX_REQUIREMENTS_BINDING_DEFAULTS.refactorCandidates.thresholds).toEqual(
+      REQUIREMENTS_BINDING_REFACTOR_THRESHOLDS,
+    );
+    expect(HELIX_REQUIREMENTS_BINDING_DEFAULTS.refactorCandidates.policyTerms).toEqual([
+      ...REQUIREMENTS_BINDING_POLICY_TERMS,
+    ]);
+    expect(HELIX_REQUIREMENTS_BINDING_DEFAULTS.l1L2GapCheck.viewpoints).toEqual(
+      REQUIREMENTS_BINDING_L1_L2_VIEWPOINTS.map((viewpoint) => ({ ...viewpoint })),
+    );
   });
 
   it("fails closed for invalid config shape", () => {

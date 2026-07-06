@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -56,6 +57,15 @@ function mockDeps(
 const codeownersPath = join("/repo", ".github", "CODEOWNERS");
 const statePath = join("/repo", ".helix", "state", "setup.json");
 const projectSetupStatePath = join("/repo", ".helix", "state", "project-setup.json");
+
+function templateDigestManifest(templates: TemplateSet): string {
+  return (
+    Object.entries(templates)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([path, content]) => `${createHash("sha256").update(content).digest("hex")}  ${path}`)
+      .join("\n") + "\n"
+  );
+}
 
 /** org + 4 collaborators + protection あり + admin を返す gh mock。 */
 const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
@@ -3299,6 +3309,25 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         /This project uses|Use repository-local|Act as a|Required baseline|Run `helix|Do not put secrets|Project-owned instructions|Target: \$ARGUMENTS|Status: `helix|Doctor: `helix|Codex delegation:|Claude delegation:|Team run dry-run:|Session evidence:|Health check:|Review separation:|consumer-owned/,
       );
     }
+  });
+
+  it("U-SETUP-026: distribution template byte manifest stays stable", () => {
+    const repoTemplates = loadTemplates(process.cwd());
+    const manifest = templateDigestManifest(repoTemplates);
+
+    expect(Object.keys(repoTemplates)).toHaveLength(50);
+    expect(createHash("sha256").update(manifest).digest("hex")).toBe(
+      "d96cd383574639148525231b4b9b1df4a0f18fc783462189542be151be2f9a1b",
+    );
+    expect(manifest).toContain(
+      "61beb2e0a281fa655666e82c197e4d6ebbdc5b40551d1671d10a2b210bc672e9  adapter/AGENTS.md",
+    );
+    expect(manifest).toContain(
+      "ff280e9812d758fe346d56728092b295462e56c25e03c89c1b3c3127e31703d8  adapter/.claude/settings.json",
+    );
+    expect(manifest).toContain(
+      "65b9904b19d7402937d8bf701f89319555dd9ba698be11ab46cdea05b3ee38d6  adapter/.codex/hooks.json",
+    );
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {

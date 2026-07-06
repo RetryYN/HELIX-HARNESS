@@ -2,6 +2,13 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { z } from "zod";
+import {
+  REQUIREMENTS_BINDING_L1_L2_MAX_ROUNDS,
+  REQUIREMENTS_BINDING_L1_L2_VIEWPOINTS,
+  REQUIREMENTS_BINDING_POLICY_TERMS,
+  REQUIREMENTS_BINDING_REFACTOR_SCAN_ROOTS,
+  REQUIREMENTS_BINDING_REFACTOR_THRESHOLDS,
+} from "./requirements-binding-policy";
 
 export const HELIX_REQUIREMENTS_BINDING_CONFIG_PATH = ".helix/config/requirements-binding.yaml";
 export const HELIX_REQUIREMENTS_BINDING_SCHEMA_VERSION = "helix-requirements-binding.v1";
@@ -54,85 +61,13 @@ export type L1L2GapCheckPolicy = RequirementsBindingConfig["l1L2GapCheck"];
 export const HELIX_REQUIREMENTS_BINDING_DEFAULTS: RequirementsBindingConfig = {
   schemaVersion: HELIX_REQUIREMENTS_BINDING_SCHEMA_VERSION,
   refactorCandidates: {
-    scanRoots: ["src"],
-    thresholds: {
-      splitModuleLines: 700,
-      splitModuleExports: 24,
-      extractHelperLines: 120,
-      dedupeFunctionMinLines: 10,
-      externalizeLiteralMinRepeats: 6,
-      externalizeLiteralMinLength: 12,
-      externalizePolicy: 5,
-      externalizePolicyMaxBranchPoints: 40,
-    },
-    policyTerms: [
-      "stage",
-      "phase",
-      "route",
-      "approval",
-      "policy",
-      "model",
-      "tier",
-      "profile",
-      "skill",
-      "inject",
-      "injection",
-      "subagent",
-      "agent",
-    ],
+    scanRoots: [...REQUIREMENTS_BINDING_REFACTOR_SCAN_ROOTS],
+    thresholds: { ...REQUIREMENTS_BINDING_REFACTOR_THRESHOLDS },
+    policyTerms: [...REQUIREMENTS_BINDING_POLICY_TERMS],
   },
   l1L2GapCheck: {
-    maxRounds: 3,
-    viewpoints: [
-      {
-        id: "input",
-        label: "入力",
-        check: "画面の入力要素ごとに validation、必須/任意、型、上限の要求があるか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "output_display",
-        label: "出力/表示",
-        check: "表示データごとに出所となる FR またはデータ要件が L1 側に存在するか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "error_empty",
-        label: "異常系",
-        check: "エラー表示、空状態、タイムアウト、二重操作の要求があるか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "authority_safety",
-        label: "権限/安全境界",
-        check: "誰が操作できるか、action-binding approval 対象操作かが明示されているか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "state_transition",
-        label: "状態遷移",
-        check: "正常系以外を含む画面間遷移が screen-flow と L1 要求の双方に存在するか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "data_lifecycle",
-        label: "データライフサイクル",
-        check: "生成、更新、削除、保持期限の要求があるか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "nfr",
-        label: "NFR",
-        check: "応答時間、可用性などの数値要求が該当 NFR グレードに接地しているか。",
-        authority: "human_decides_ai_surfaces",
-      },
-      {
-        id: "external_dependency",
-        label: "外部依存",
-        check: "画面が前提とする外部 API、runtime 前提、ライブラリ依存が明示されているか。",
-        authority: "human_decides_ai_surfaces",
-      },
-    ],
+    maxRounds: REQUIREMENTS_BINDING_L1_L2_MAX_ROUNDS,
+    viewpoints: REQUIREMENTS_BINDING_L1_L2_VIEWPOINTS.map((viewpoint) => ({ ...viewpoint })),
   },
 };
 

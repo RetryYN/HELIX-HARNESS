@@ -4,7 +4,7 @@ title: "PLAN-L7-351 (refactor): externalize-literal/policy 解消 slice — temp
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-06
 updated: 2026-07-06
 backprop_decision: not_required
@@ -20,11 +20,67 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-351-literal-policy-externalization.md
     artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md
+    artifact_type: markdown_doc
+  - artifact_path: src/setup/template-markers.ts
+    artifact_type: source_module
+  - artifact_path: src/setup/templates.ts
+    artifact_type: source_module
+  - artifact_path: src/config/requirements-binding-policy.ts
+    artifact_type: source_module
+  - artifact_path: src/config/requirements-binding.ts
+    artifact_type: source_module
+  - artifact_path: tests/setup.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/requirements-binding-config.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md
   references:
     - docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md
     - docs/plans/PLAN-L7-166-setup-template-catalog-split.md
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T16:03:00+09:00"
+    tests_green_at: "2026-07-06T16:03:00+09:00"
+    verdict: approve_with_external_blockers_noted
+    scope: "managed-block / hook JSON literal の定数化、requirements-binding policy catalog 抽出、template byte manifest fence、起点 refactor feedback 3 件の actionable 解消。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/setup.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T16:00:22+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:c90354be8b471aab663eabc1a3f633d550a4657cddaa3f54d8b810e698f7e45e"
+      - kind: unit_test
+        command: "bun run vitest run tests/requirements-binding-config.test.ts tests/projection-writer.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T16:00:50+09:00"
+        evidence_path: tests/requirements-binding-config.test.ts
+        output_digest: "sha256:ef2e9299001c630ccc195510d39828671fcba8a7069e8e5301476553853b6a55"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T16:01:34+09:00"
+        evidence_path: src/config/requirements-binding.ts
+        output_digest: "sha256:9c0b1515efef406881aeebdcea6c65af22d4ea6568b059d9e76628733ba4fbb4"
+      - kind: smoke
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T16:02:02+09:00"
+        evidence_path: src/setup/templates.ts
+        output_digest: "sha256:68417e3c510ba0b7ba4040c05b160c79b5492b46326401a1f4d01b05272cfb10"
 ---
 
 # PLAN-L7-351 (refactor): externalize-literal/policy 解消 slice
@@ -89,3 +145,28 @@ dependencies:
 ## 5. carry（持ち越し）
 
 - 他 module の literal 重複の横展開（detector の次回検出に委ねる）。
+
+## 6. 実装記録（2026-07-06）
+
+- Step 1: `src/setup/template-markers.ts` を新設し、managed block start/end、adapter 共通説明文、
+  hook JSON の `"type": "command"` / `"timeout": 5` 行を定数化した。`src/setup/templates.ts` の配布
+  template 生成内容は不変。
+- Step 2: `src/config/requirements-binding.ts` は schema / parse / load の SSoT として残し、運用可変の
+  policy/default catalog だけを `src/config/requirements-binding-policy.ts` へ分離した。これにより
+  detector の `*-policy.ts` 既存 exemption と整合し、detector rule 自体は変更していない。
+- Step 3: `PLAN-L7-150` 台帳の起点 3 件を `resolved` として `PLAN-L7-351` に接続した。
+
+## 7. 検証証跡（2026-07-06）
+
+- 配布 template manifest: `loadTemplates(process.cwd())` 50 件。before / after とも
+  `sha256:d96cd383574639148525231b4b9b1df4a0f18fc783462189542be151be2f9a1b` で一致。
+- 代表 template digest:
+  - `adapter/AGENTS.md`: `sha256:61beb2e0a281fa655666e82c197e4d6ebbdc5b40551d1671d10a2b210bc672e9`
+  - `adapter/.claude/settings.json`: `sha256:ff280e9812d758fe346d56728092b295462e56c25e03c89c1b3c3127e31703d8`
+  - `adapter/.codex/hooks.json`: `sha256:65b9904b19d7402937d8bf701f89319555dd9ba698be11ab46cdea05b3ee38d6`
+- `bun run src/cli.ts db rebuild`: exit 0、projection ok、rows 54194。
+- `bun src/cli.ts feedback list --emit`: 起点 3 件
+  `refactor_candidate:externalize-literal`（`src/setup/templates.ts` high 2 件）と
+  `refactor_candidate:externalize-policy`（`src/config/requirements-binding.ts` high 1 件）は actionable から消失。
+  残存 actionable は `split-module` と、並行 PLAN の `src/lint/plan-entry-routing.ts` 由来
+  `missing-test-coverage` であり、本 PLAN の対象外。
