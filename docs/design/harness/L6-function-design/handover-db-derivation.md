@@ -40,7 +40,7 @@ feedback_events の正本地位（PLAN-L7-110）は変更しない。
 ## §4 Test oracle 設計
 
 後続 L7 実装 PLAN で test 新設と同時に pair test-design（L7-unit-test-design.md）へ oracle 行を宣言する
-（oracle-test-trace gate: 宣言 oracle は test citation 必須のため、宣言は実装スライスと同時に行う）。Covered by `tests/handover-db-derivation.test.ts`:
+（oracle-test-trace gate: 宣言 oracle は test citation 必須のため、宣言は実装スライスと同時に行う）。予定 oracle（実装時に `tests/handover-db-derivation.test.ts` を新設して cover する。本 doc 起草時点で当該テストは未存在）:
 
 - U-HDRV-001: fixture db（非終端 PLAN 2 件 + blocker）から `deriveHandoverSnapshot` が
   active PLAN / blocker 集計 / HEAD sha を deterministic に返す（同一入力 → deep equal）。
