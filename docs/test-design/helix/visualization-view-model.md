@@ -20,7 +20,9 @@ pair 正本 = `docs/design/helix/L6-function-design/visualization-view-model.md`
    warnings/error へ分離（成功へ混ぜない）。
 3. **graph IR**: Mermaid 互換 IR が deterministic に生成され、node/edge 数一致・cycle 標識を持つ。
 4. **空状態**: 空 snapshot で全 view 0 表示 + 共有 banner（捏造値なし）。
-5. **growth 時系列**: 履歴の無い期間は補間せず「記録なし」を明示（HAT-VIS-07 の L6 具体化）。
-6. **drill-down**: 各 row から `drilldowns` pointer への deterministic 経路。
+5. **growth 時系列**（予定 oracle 6 / HAC-VIS-07）: 履歴の無い期間は補間せず「記録なし」を明示
+   （HAT-VIS-07 の L6 具体化）。
+6. **drill-down**（予定 oracle 7 / HAC-VIS-06、全 view 対象）: 各 row から `drilldowns` pointer への
+   deterministic 経路。pointer が無い row は `drilldown: null` を明示し、絶対 path・LLM 要約を根拠にしない。
 
 acceptance の親 trace は HAT-VIS 系（`docs/test-design/helix/L3-pillar-acceptance-test-design.md`）。

@@ -4,7 +4,7 @@ title: "PLAN-L4-52 (add-design): 可視化 view の L4 基本設計 — VSCode e
 kind: add-design
 layer: L4
 drive: fe
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-07 PLAN-L3-12 PO 承認（L3 confirmed）に伴う forward route L4 降下"
@@ -33,7 +33,24 @@ dependencies:
   references:
     - docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md
     - src/state-db/visualization-read-model.ts
-review_evidence: []
+review_evidence:
+  - reviewer: code-reviewer (claude-sonnet-5)
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-07T07:20:00+09:00"
+    tests_green_at: "2026-07-07T07:12:00+09:00"
+    verdict: approve_after_fixes
+    worker_model: claude-opus (fe-lead)
+    reviewer_model: claude-sonnet-5
+    scope: "5 軸レビュー verdict=approve-with-notes（Critical 0 / Important 2 / Minor 1）。Important: (1) 生 node/edge リスト非提供の gap を §2 該当行へ直接明記（honest degrade + snapshot 拡張 escalation 待ち）、(2) U-VVM-006 の growth/drill-down 混在を U-VVM-007 分離で是正。Minor: graph.latest_snapshot_* 省略表記を実 field 4 種の列挙へ置換（L3/L4/L6 横断）。全所見 fe-lead が反映済み、CSP・read-only・secret 非保持は L3/L4/L6 で一貫。"
+    green_commands:
+      - kind: lint
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L4-52-visualization-surface-boundary.md && bun run src/cli.ts plan lint docs/plans/PLAN-L6-58-visualization-view-model.md"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-07T07:12:00+09:00"
+        evidence_path: docs/design/helix/L6-function-design/visualization-view-model.md
+        output_digest: "sha256:66da77bd5c7ea369c2f25c34e6bf67fd4fce592b88e903e60b1b3b54d276edfb"
 ---
 
 # PLAN-L4-52 (add-design): 可視化 view の L4 基本設計

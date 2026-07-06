@@ -1,13 +1,13 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 freeze_blocking: false
 pair_artifact: docs/test-design/helix/visualization-view-model.md
 plan: docs/plans/PLAN-L6-58-visualization-view-model.md
 ---
 
-> **L6 contract marker**: `buildVisualizationViewModel(snapshot: VisualizationSnapshot) => VisualizationViewModel` は unit-test 粒度の contract。pre: 入力は `buildVisualizationSnapshot(db)` が返した schema `visualization-snapshot.v1` の deterministic JSON（不正 schema は fail-close で error）。post: U-VVM-001..006 の oracle が全て green のときだけ合格。invariant: view-model の全 field は入力 snapshot から純関数的に導出され（副作用・DB 再クエリ・LLM 生成・現在時刻依存なし）、同一 snapshot → deep equal。描画数は snapshot の対応 count と一致し、乖離・空状態・projection-only は成功へ混ぜず warnings/error として分離される。
+> **L6 contract marker**: `buildVisualizationViewModel(snapshot: VisualizationSnapshot) => VisualizationViewModel` は unit-test 粒度の contract。pre: 入力は `buildVisualizationSnapshot(db)` が返した schema `visualization-snapshot.v1` の deterministic JSON（不正 schema は fail-close で error）。post: U-VVM-001..007 の oracle が全て green のときだけ合格。invariant: view-model の全 field は入力 snapshot から純関数的に導出され（副作用・DB 再クエリ・LLM 生成・現在時刻依存なし）、同一 snapshot → deep equal。描画数は snapshot の対応 count と一致し、乖離・空状態・projection-only は成功へ混ぜず warnings/error として分離される。
 
 # 可視化 view-model の L6 機能設計
 
@@ -34,8 +34,8 @@ escalate）。本 view-model は snapshot の再クエリを行わず、snapshot
 |---|---|
 | `buildVisualizationViewModel(snapshot)` | 6 view 分の ViewModel と共有 warnings banner を含む `VisualizationViewModel` を返す。全 field は snapshot から純関数導出。root 間で同一 field は同一値。 |
 | `buildLayerProgressView(snapshot)` | `progress.artifacts/plans/gates` を bucket→row の 2 段へ整形。metric 数は snapshot 値と一致。空は 0 + 共有 warning 参照。各 row に `drilldowns.artifact_progress_command` pointer を付す。 |
-| `buildDesignTestPairView(snapshot)` | `graph.*` から pair edge に絞った **フィルタ済み count**（`pair_edges` / `orphan_nodes`）を算出。現行 `graph.nodes/edges` は全種別総数のため、pair 集計は本 view-model が定義する専用 field で表す。orphan は 0 か明示表示。 |
-| `buildRelationGraphView(snapshot)` | `graph.nodes` / `graph.edges` / `graph.latest_snapshot_*` を Mermaid 互換 graph IR（§3）へ変換。描画 node/edge 数は snapshot（または latest snapshot count）と一致。 |
+| `buildDesignTestPairView(snapshot)` | `graph.*` から pair edge に絞った **フィルタ済み count**（`pair_edges` / `orphan_nodes`）を算出。現行 `graph.nodes/edges` は全種別総数のため、pair 集計は本 view-model が定義する専用 field で表す。orphan は 0 か明示表示。**現行 snapshot は集計 count のみで生 node/edge リストを持たないため、生リスト依存の pair 判定描画は snapshot 拡張（escalation、後続 PLAN）待ち。それまでは count と warnings による honest degrade（0 捏造・生リスト捏造をしない）。** |
+| `buildRelationGraphView(snapshot)` | `graph.nodes` / `graph.edges` / `graph.latest_snapshot_id` / `graph.latest_snapshot_hash` / `graph.latest_node_count` / `graph.latest_edge_count` を Mermaid 互換 graph IR（§3）へ変換。描画 node/edge 数は snapshot（または latest snapshot count）と一致。**現行 snapshot は集計 count のみで生 node/edge リストを持たないため、生リスト依存の graph 描画は snapshot 拡張（escalation、後続 PLAN）待ち。それまでは count と warnings による honest degrade。** |
 | `buildRuntimeEvidenceView(snapshot)` | `evidence.test_runs` / `runtime_verification` / `guardrail_decisions` を verification class 別に整形。`runtime_verified` と `projection_only_unverified` / `missing_runtime_provenance` を分離し、後者を accepted へ昇格しない。 |
 | `buildSkillAgentTelemetryView(snapshot)` | `evidence.skill_invocations` / `model_runs` を metric row へ整形。各 row は `drilldowns` pointer へ戻れる。 |
 | `buildHarnessGrowthView(snapshot)` | `progress.*` 現在値 ＋ 時系列 series（§4 の `growth_series`）を整形。履歴の無い期間は補間せず `recorded: false` 点で表す。Layer progress と同一 surface 前提で数値定義を共有。 |
@@ -121,5 +121,5 @@ L3 は下記を「L6 view-model 契約で新設」と送った（HR-FR-VIS-02/04
   view がそれらを `runtime_verified` / accepted へ昇格せず分離し、対応 warning を surface する（HAC-VIS-03）。
 - U-VVM-006: Harness growth の `growth_series` が snapshot 履歴を持たないとき補間せず「記録なし」を表現し
   （空 series + warning）、履歴があるときは各点が snapshot / evidence timestamp から再現可能（HAC-VIS-07）。
-  drill-down pointer は全 view で `drilldowns` 由来か `null` のいずれかであり、絶対 path・LLM 要約を持たない
-  （HAC-VIS-06）。
+- U-VVM-007: drill-down pointer は全 view で `drilldowns` 由来か `null` のいずれかであり、絶対 path・LLM 要約を
+  持たない（HAC-VIS-06、全 view 対象）。pointer が無い row は `drilldown: null` を明示し、推測 path で埋めない。
