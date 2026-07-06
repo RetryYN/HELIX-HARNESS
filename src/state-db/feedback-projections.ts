@@ -91,6 +91,9 @@ export function projectRefactorCandidateSignals(
 export function projectFeedbackEvents(db: HarnessDb, deps: FeedbackProjectionDeps): void {
   const createdAt = deps.nowIso();
   for (const finding of db.prepare("SELECT * FROM findings WHERE status = 'open'").all()) {
+    // info 級 catalog findings (missing-test-oracle-id 等、2026-07-07 実測 1253 件) は
+    // findings table に残し feedback_events へは流さない (open 堆積ノイズの最適化、PLAN-L7-353)。
+    if (String(finding.severity ?? "warn") === "info") continue;
     const findingId = String(finding.finding_id ?? "");
     const subject = String(finding.subject_id ?? findingId);
     const id = deps.stableId("feedback:finding", findingId || subject);
@@ -154,7 +157,7 @@ export function projectFeedbackEvents(db: HarnessDb, deps: FeedbackProjectionDep
     const id = deps.stableId("feedback:artifact-progress", `${artifactPath}:${color}:${state}`);
     const action =
       color === "red"
-        ? `trigger dependency/reverse recovery for ${artifactPath}: ${reason}`
+        ? `start reverse R0 for ${artifactPath} (helix feedback reverse-candidates --json): ${reason}`
         : recoveryPlanIds
           ? `continue recovery workflow for ${artifactPath}: ${recoveryPlanIds}`
           : `run linked tests or add test evidence for ${artifactPath}: ${reason}`;

@@ -1189,3 +1189,10 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-RELDEC-001 | `planReleaseAutomationDecision` | ADR-008 accepted、Conventional Commits、PR gate、dry-run 要求が揃う場合、Release Please を plan-only 既定として返し、`applyAuthorized=false` を維持する。 |
 | U-RELDEC-002 | `planReleaseAutomationDecision` | PR gate 必須時に semantic-release を選ぶと fail-close。 |
 | U-RELDEC-003 | `planReleaseAutomationDecision` | ADR 未確定、Conventional Commits 不使用、dry-run 不要求は release automation decision を blocked にする。 |
+| U-APDOC-001 | `deriveArtifactProgressDecision` | confirmed/completed/archived の doc 系 artifact は test evidence なしで green `verified`（reason に review/pair gates 明記）。 |
+| U-APDOC-002 | `deriveArtifactProgressDecision` | draft/status 不明の doc は yellow のまま（捏造 green を出さない）。 |
+| U-APDOC-003 | `deriveArtifactProgressDecision` | doc でも open dependency impact は red が最優先（fail-close 維持）。 |
+| U-APDOC-004 | `deriveArtifactProgressDecision` | source/test artifact は従来の test-run oracle（doc 規則を適用しない）。 |
+| U-RVC-001 | `collectReverseCandidates` | recovery 未紐付けの red artifact は reverse 候補となり、type 割当は `REVERSE_TYPE_BY_ARTIFACT` に従う。紐付き済み・green は候補外。 |
+| U-RVC-002 | `collectReverseCandidates` | open warn finding は候補、info finding と resolved は候補外。 |
+| U-RVC-003 | `collectReverseCandidates` | 対象なしは空配列（0 件を 0 件として返す、query-only）。 |

@@ -226,6 +226,13 @@ import {
   runSetup,
   type SetupArgs,
 } from "./setup/index";
+import {
+  checkForUpdate,
+  nodeUpdateCheckDeps,
+  renderUpdateLine,
+  updateCheckDisabled,
+  UPDATE_CHECK_DISABLE_ENV,
+} from "./setup/update-check";
 import { scaffoldSkill } from "./skill-engine/scaffold";
 import {
   bucketRecommendations,
@@ -243,6 +250,7 @@ import {
   projectTokenUsage,
   rebuildHarnessDb,
 } from "./state-db/projection-writer";
+import { collectReverseCandidates } from "./state-db/reverse-candidates";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
 import { buildVisualizationSnapshot } from "./state-db/visualization-read-model";
 import { classifyProposalDocumentCoverage, classifyTask } from "./task/classify";
@@ -913,6 +921,12 @@ program
     const workflowNextAction = workflowNextActionForOutstanding(outstanding);
     const completionNextAction = workflowNextAction;
     const workflowNextActions = workflowNextActionsForOutstanding(outstanding);
+    const update =
+      process.env[UPDATE_CHECK_DISABLE_ENV] === "1" || process.env.VITEST_WORKER_ID
+        ? updateCheckDisabled(
+            process.env.VITEST_WORKER_ID ? "VITEST_WORKER_ID" : UPDATE_CHECK_DISABLE_ENV,
+          )
+        : checkForUpdate(nodeUpdateCheckDeps());
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
       sourceCommand: "helix status --json",
     });
@@ -922,7 +936,7 @@ program
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, update, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
@@ -959,6 +973,7 @@ program
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
       process.stdout.write(`${semanticMeaningSummaryLine(outstanding)}\n`);
+      process.stdout.write(`${renderUpdateLine(update)}\n`);
       if (objectiveProgress) {
         process.stdout.write(
           `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed}; evidence=${objectiveProgress.progressEvidenceTrusted ? "trusted" : "invalid"}; audit-ok=${objectiveProgress.auditOk}; violations=${objectiveProgress.auditViolationCount})\n`,
@@ -4651,6 +4666,32 @@ github
 const feedback = program
   .command("feedback")
   .description("強制停止フィードバック (forced-stop-feedback, PLAN-L7-02)");
+
+feedback
+  .command("reverse-candidates")
+  .description("DB の赤/warn から Reverse 起票候補を導出 (未対応の red artifact / warn finding)")
+  .option("--json", "JSON で出力")
+  .action((opts: { json?: boolean }) => {
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()));
+    const candidates = collectReverseCandidates(db);
+    if (opts.json) {
+      process.stdout.write(
+        `${JSON.stringify({ count: candidates.length, candidates }, null, 2)}\n`,
+      );
+      return;
+    }
+    if (candidates.length === 0) {
+      process.stdout.write(
+        "Reverse 起票候補なし (red artifact / warn finding は全て対応 PLAN 紐付き済み)\n",
+      );
+      return;
+    }
+    for (const c of candidates) {
+      process.stdout.write(
+        `[${c.source}] ${c.subject} reverse=${c.reverseType} — ${c.reason}\n  → ${c.suggestedRoute}\n`,
+      );
+    }
+  });
 
 feedback
   .command("list")

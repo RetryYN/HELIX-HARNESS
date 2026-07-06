@@ -2882,7 +2882,41 @@ function nodeRecoveryPlanIds(
   return direct.length > 0 ? direct : activePlans;
 }
 
-function projectArtifactProgress(db: HarnessDb, graph: RelationGraphProjection | undefined): void {
+/** plan_id/path から doc status を引く（plan は plan_registry、その他 doc は frontmatter status）。 */
+function loadDocStatusIndex(db: HarnessDb): Map<string, string> {
+  const index = new Map<string, string>();
+  for (const row of db.prepare("SELECT plan_id, status FROM plan_registry").all()) {
+    const planId = String(row.plan_id ?? "");
+    if (!planId) continue;
+    index.set(`docs/plans/${planId}.md`, String(row.status ?? ""));
+  }
+  return index;
+}
+
+function docStatusForPath(
+  repoRoot: string,
+  index: Map<string, string>,
+  artifactPath: string,
+): string | null {
+  const known = index.get(artifactPath);
+  if (known) return known;
+  if (!artifactPath.endsWith(".md")) return null;
+  try {
+    const head = readFileSync(join(repoRoot, artifactPath), "utf8").slice(0, 2000);
+    const match = head.match(/^status:\s*([^\n#]+)/m);
+    const status = match ? match[1].trim() : null;
+    if (status) index.set(artifactPath, status);
+    return status;
+  } catch {
+    return null;
+  }
+}
+
+function projectArtifactProgress(
+  repoRoot: string,
+  db: HarnessDb,
+  graph: RelationGraphProjection | undefined,
+): void {
   if (!graph) return;
   const indexedAt = nowIso();
   const dependencyCheckRunId = stableId(
@@ -2912,6 +2946,7 @@ function projectArtifactProgress(db: HarnessDb, graph: RelationGraphProjection |
   const activeRecoveries = activeRecoveryPlanIds(db);
   const passedTestRunIndex = loadPassedTestRunIndex(db);
   const dependencyImpactCounts = openDependencyImpactCounts(db);
+  const docStatusIndex = loadDocStatusIndex(db);
   for (const node of progressNodes) {
     const artifactPath = node.path ?? node.id.replace(/^[^:]+:/, "");
     const linkedTestIds = (coveredByEdges.get(node.id) ?? [])
@@ -2934,6 +2969,7 @@ function projectArtifactProgress(db: HarnessDb, graph: RelationGraphProjection |
       openDependencyImpacts,
       artifactPath,
     );
+    const artifactType = artifactProgressType(node.kind);
     const decision = deriveArtifactProgressDecision({
       linkedTestCount: linkedIds.length,
       passedLinkedTestRunCount: passedTestRunIds.length,
@@ -2942,6 +2978,8 @@ function projectArtifactProgress(db: HarnessDb, graph: RelationGraphProjection |
       dependencyCheckedAt: indexedAt,
       openDependencyImpacts,
       recoveryPlanIds,
+      artifactType,
+      docStatus: docStatusForPath(repoRoot, docStatusIndex, artifactPath),
     });
     const artifactHash = stableHash(
       JSON.stringify({
@@ -4216,7 +4254,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
         projectCurrentImpactResults(repoRoot, db, relationGraph),
       );
       profiled("projectArtifactProgress", input.onProfile, () =>
-        projectArtifactProgress(db, relationGraph),
+        projectArtifactProgress(repoRoot, db, relationGraph),
       );
       profiled("projectVerificationCatalogs", input.onProfile, () =>
         projectVerificationCatalogs(repoRoot, db),
