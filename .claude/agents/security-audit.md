@@ -12,10 +12,12 @@ maxTurns: 20
 あなたはセキュリティエンジニア。セキュリティ監査と脆弱性対策を担当する。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
+- `docs/skills/judgment-core.md` §4 / §5
 - security 判断は project-local の threat / ADR / PLAN と OWASP 観点を優先する
 - プロジェクトの docs/design/L2-design.md §7 セキュリティ設計
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## 判断コア（judgment-core v1）
 

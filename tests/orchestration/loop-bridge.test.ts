@@ -144,6 +144,10 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
       ["verifier", "claude", "claude"],
     ]);
     expect(calls[0]?.plan.args).toContain("exec");
+    expect(calls[0]?.plan.effort).toBe("high");
+    expect(calls[0]?.plan.args).toEqual(
+      expect.arrayContaining(["-c", "model_reasoning_effort=high"]),
+    );
     expect(calls[1]?.plan.stdin).toContain("VERDICT: pass|fail|error|pending");
     expect(records).toEqual([
       {

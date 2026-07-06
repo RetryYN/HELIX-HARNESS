@@ -18,11 +18,12 @@ maxTurns: 30
 - スコープ規律（SSoT §1-7）: 要求に無い抽象化・レイヤ追加・将来対応の先取りをしない。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §構成境界 / §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - 実装判断時は project-local の該当設計 doc / PLAN / tests を優先する
 - プロジェクトの docs/design/L2-design.md §3 機能設計
 - プロジェクトの docs/design/L3-detailed-design.md §4 処理フロー
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## レイヤードアーキテクチャ
 

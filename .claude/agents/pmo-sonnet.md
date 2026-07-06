@@ -32,9 +32,11 @@ maxTurns: 20
 
 ## 作業前必須 Read
 
-- `CLAUDE.md`
-- `.claude/CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
+- `docs/skills/judgment-core.md` §4 / §5
+- 委譲ブリーフで指定された PLAN / design / governance 正本
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## HELIX フェーズ理解（L0-L14 + R0-R4 + S0-S4）
 

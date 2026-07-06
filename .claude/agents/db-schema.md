@@ -18,11 +18,12 @@ maxTurns: 25
 - destructive data operation（drop / truncate / 型縮小）は必ず escalate する。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §構成境界 / §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - DB 設計時は project-local の ADR / design doc / PLAN を優先する
 - プロジェクトの docs/design/L3-detailed-design.md §2 DB スキーマ詳細
 - プロジェクトの docs/design/L2-design.md §4 データモデル
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## テーブル設計原則
 - PK: UUID or BIGSERIAL（UUID 推奨 — 分散対応）

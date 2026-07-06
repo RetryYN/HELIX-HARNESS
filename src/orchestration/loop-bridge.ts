@@ -9,6 +9,9 @@ import {
 } from "../runtime/adapter";
 import type { ExecutionMode } from "../runtime/detect";
 import { detectMode } from "../runtime/detect";
+import { adaptReasoningEffort, standardEffortForModel } from "../team/model-effort";
+import { MODEL_IDS } from "../team/model-policy";
+import { deriveEffortObservation } from "./loop-effort-budget";
 import type { TickDeps } from "./loop-runner";
 import type { LoopState, Provider, Verdict } from "./loop-state";
 import type { LoopStore } from "./loop-store";
@@ -65,19 +68,34 @@ function verifierTask(s: LoopState): string {
   ].join("\n");
 }
 
+function loopAdapterModel(provider: Provider, purpose: ExecAdapterInput["purpose"]): string {
+  if (provider === "codex") {
+    return purpose === "worker" ? MODEL_IDS.codex.worker : MODEL_IDS.codex.frontier;
+  }
+  return purpose === "worker" ? MODEL_IDS.claude.sonnet : MODEL_IDS.claude.opus;
+}
+
 function buildLoopAdapterPlan(input: {
   provider: Provider;
+  purpose: ExecAdapterInput["purpose"];
   role: string;
   task: string;
   state: LoopState;
   mode: ExecutionMode;
 }): AdapterPlan {
+  const model = loopAdapterModel(input.provider, input.purpose);
+  const effort = adaptReasoningEffort(
+    standardEffortForModel(model),
+    deriveEffortObservation({ verdictFail: input.state.lastVerdict === "fail" }),
+  );
   return buildAdapterPlan(
     {
       provider: input.provider as AdapterProvider,
       role: input.role,
       task: input.task,
       planId: input.state.planId,
+      model,
+      effort,
       execute: true,
     },
     input.mode,
@@ -162,6 +180,7 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
       const role = adapterRole(provider, "worker", input);
       const plan = buildLoopAdapterPlan({
         provider,
+        purpose: "worker",
         role,
         task: workerTask(state),
         state,
@@ -180,6 +199,7 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
       const role = adapterRole(provider, "verifier", input);
       const plan = buildLoopAdapterPlan({
         provider,
+        purpose: "verifier",
         role,
         task: verifierTask(state),
         state,

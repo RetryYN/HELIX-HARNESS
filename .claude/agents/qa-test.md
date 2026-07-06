@@ -12,10 +12,12 @@ maxTurns: 25
 あなたは QA エンジニア。テスト設計と品質保証を担当する。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
+- `docs/skills/judgment-core.md` §4 / §5
 - test-design / verification は project-local の V-model pair docs と PLAN を優先する
 - プロジェクトの docs/design/L3-detailed-design.md §5 テスト設計
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## 判断コア（judgment-core v1）
 

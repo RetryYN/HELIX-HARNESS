@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-07-06
 owner: AIM + TL
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 review_evidence:
@@ -68,6 +68,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/memory/index.ts
     artifact_type: source_module
+  - artifact_path: tests/memory/memory.test.ts
+    artifact_type: test_code
 dependencies:
   parent: PLAN-L6-50-helix-orchestration-memory
   requires:
@@ -81,6 +83,8 @@ dependencies:
 ---
 
 # PLAN-L7-175 (add-impl): P2/P7 純粋契約コア実装
+
+2026-07-06 追記: PLAN-L7-346 により `tests/memory/memory.test.ts` の `test_code` generates を追記した。confirmed claim 本体は変更せず、silent overwrite ではない機械的登録補完として扱う。
 
 ## §0 役割 / 実行モード (mode)
 

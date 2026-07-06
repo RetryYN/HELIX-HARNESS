@@ -1,3 +1,4 @@
+import type { EffortObservation } from "../team/model-effort";
 import type {
   LoopEffortBudgetState,
   LoopEffortLimits,
@@ -9,6 +10,15 @@ import type {
 } from "./loop-state";
 
 export type LoopEffortBudgetStage = "before_worker" | "after_verifier";
+export const SHALLOW_OUTPUT_CHARS_MIN = 400;
+export const TOO_SLOW_ELAPSED_MS = 600_000;
+
+export interface EffortObservationInput {
+  verdictFail?: boolean;
+  outputChars?: number;
+  truncated?: boolean;
+  elapsedMs?: number;
+}
 
 export interface LoopEffortBudgetInput {
   state: LoopState;
@@ -36,6 +46,20 @@ const CONTINUE_DECISION: LoopEffortBudgetDecision = {
   usage: null,
   limits: null,
 };
+
+export function deriveEffortObservation(input: EffortObservationInput): EffortObservation {
+  const shallow =
+    input.verdictFail === true ||
+    (positiveNumber(input.outputChars) && input.outputChars < SHALLOW_OUTPUT_CHARS_MIN);
+  const tooSlow =
+    input.truncated !== true &&
+    positiveNumber(input.elapsedMs) &&
+    input.elapsedMs > TOO_SLOW_ELAPSED_MS;
+  return {
+    ...(shallow ? { shallow: true } : {}),
+    ...(tooSlow ? { tooSlow: true } : {}),
+  };
+}
 
 const PLAN_SIZE_LIMITS: Record<LoopPlanSize, LoopEffortLimits> = {
   S: { maxIterations: 2, maxToolCalls: 16, maxCostUsd: 0.75, maxElapsedMs: 10 * 60 * 1000 },

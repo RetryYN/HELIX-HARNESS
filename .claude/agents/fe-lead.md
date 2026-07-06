@@ -13,9 +13,11 @@ maxTurns: 30
 本エージェントが設計・分割・レビューを主導し、実装の反復は fe-ui (Sonnet worker) に割り付ける。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md` / `docs/governance/README.md`
+- `CLAUDE.md` §構成境界 / §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - 該当する L2 画面設計 (`docs/design/helix/L2-screen/`) と L10 UX (`docs/design/helix/L10-ux/`)
 - project-local の該当 FR / screen 要件
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## 判断コア（judgment-core v1）
 

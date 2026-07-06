@@ -2,6 +2,8 @@ import type { AdapterProvider } from "./adapter";
 
 export const CODEX_STDIN_ARGS = ["exec", "-"] as const;
 export const CODEX_MODEL_FLAG = "-m";
+export const CODEX_EFFORT_FLAG = "-c";
+export const CODEX_EFFORT_CONFIG_KEY = "model_reasoning_effort";
 
 export const CLAUDE_STDIN_ARGS = ["--print", "--input-format", "text"] as const;
 export const CLAUDE_MODEL_FLAG = "--model";

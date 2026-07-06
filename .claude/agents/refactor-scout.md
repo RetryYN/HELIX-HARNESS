@@ -25,10 +25,11 @@ code は rewrite しない。SE/TL が Refactor PLAN を開始または継続す
 
 ## Required Reads（必読）
 
-- `CLAUDE.md`
-- `.claude/CLAUDE.md`
+- `CLAUDE.md` §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - `docs/process/modes/refactor.md`
 - `docs/skills/refactoring.md`
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## Candidate Kinds（候補種別）
 

@@ -14,6 +14,7 @@
 import {
   AGENT_GUARD_BYPASS_HINT,
   AGENT_TOOL_NAMES,
+  BRIEF_MARKER_MIN_SUBSTANCE_CHARS,
   CODEX_AGENT_TYPE_ALLOWLIST,
   CODEX_BULK_SPAWN_AGENT_TOOL_NAME,
   CODEX_SPAWN_AGENT_TOOL_NAME,
@@ -200,6 +201,17 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
     );
   }
 
+  const thinBrief = thinBriefMarkers(ti.prompt);
+  if (thinBrief.length > 0) {
+    return {
+      code: 0,
+      message:
+        `[helix-guard] WARN: subagent_type=${subagentType} prompt has thin delegation-brief sections: ${thinBrief.join(", ")}.\n` +
+        `Each present marker should carry at least ${BRIEF_MARKER_MIN_SUBSTANCE_CHARS} non-whitespace characters. ` +
+        "This is advisory only; the Agent call was allowed.",
+    };
+  }
+
   return { code: 0 };
 }
 
@@ -212,4 +224,46 @@ export function missingDelegationBriefMarkers(prompt: string | null | undefined)
   return DELEGATION_BRIEF_MARKERS.filter(
     (marker) => !marker.labels.some((label) => text.includes(label)),
   ).map((marker) => marker.key);
+}
+
+interface BriefMarkerOccurrence {
+  key: string;
+  label: string;
+  index: number;
+}
+
+function findBriefMarkerOccurrences(text: string): BriefMarkerOccurrence[] {
+  return DELEGATION_BRIEF_MARKERS.flatMap((marker) =>
+    marker.labels
+      .map((label) => ({ key: marker.key, label, index: text.indexOf(label) }))
+      .filter((occurrence) => occurrence.index >= 0),
+  ).sort((a, b) => a.index - b.index || b.label.length - a.label.length);
+}
+
+function substanceLength(text: string): number {
+  return Array.from(text.replace(/\s/g, "")).length;
+}
+
+/**
+ * 委譲ブリーフ marker が存在する区間だけを対象に、本文が薄い marker key を返す。
+ * marker 欠落は missingDelegationBriefMarkers の責務なので、ここでは二重報告しない。
+ */
+export function thinBriefMarkers(prompt: string | null | undefined): string[] {
+  const text = prompt ?? "";
+  const occurrences = findBriefMarkerOccurrences(text);
+  const thin: string[] = [];
+
+  for (const marker of DELEGATION_BRIEF_MARKERS) {
+    const current = occurrences.find((occurrence) => occurrence.key === marker.key);
+    if (!current) continue;
+
+    const start = current.index + current.label.length;
+    const next = occurrences.find((occurrence) => occurrence.index > current.index);
+    const end = next?.index ?? text.length;
+    if (substanceLength(text.slice(start, end)) < BRIEF_MARKER_MIN_SUBSTANCE_CHARS) {
+      thin.push(marker.key);
+    }
+  }
+
+  return thin;
 }

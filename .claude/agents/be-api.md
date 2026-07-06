@@ -18,10 +18,11 @@ maxTurns: 30
 - auth / payments / PII / 外部 API 前提の変更（SSoT §1-3 境界）は自己判断せず escalate する。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §構成境界 / §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - API 設計時は project-local の該当設計 doc / PLAN を優先する
 - プロジェクトの docs/design/L3-detailed-design.md §1 API 詳細仕様
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## RESTful 設計原則
 - リソース指向 URL: `/api/v1/{resource}`（複数形）

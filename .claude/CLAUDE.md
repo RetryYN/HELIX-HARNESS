@@ -48,6 +48,7 @@ PLAN requirements:
 - Schedule step は parallel / serial mode を示す。
 - `kind=add-impl` は required Reverse pairing を持つ。
 - design / implementation / add-* change は、必要に応じて terminology と L0 glossary を更新する。
+- テスト新設・移動時は、対応 PLAN の `generates:` に `artifact_type: test_code` を同時登録する。
 - confirmation gate を依頼する前に review evidence を記録する。
 
 PLAN claim discipline（errata 対策、PLAN-L7-89）:

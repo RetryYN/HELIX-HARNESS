@@ -13,9 +13,11 @@ maxTurns: 30
 fe-lead が確定した設計・コンポーネント分割・状態管理方針に従って実装する。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md` / `docs/governance/README.md`
+- `CLAUDE.md` §構成境界 / §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - fe-lead が示した設計・タスク割り付け
 - 該当する L2 画面設計 / L10 UX 成果物
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## 判断コア（judgment-core v1）
 

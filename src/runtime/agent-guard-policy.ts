@@ -1,4 +1,8 @@
-/** Allowed subagent_type values for Claude Code Agent calls. */
+/**
+ * Allowed subagent_type values for Claude Code Agent calls.
+ * be-api / be-logic / db-schema / devops-deploy は意図的に対象外 (Codex delegation-only)。
+ * 追加する場合は .claude/CLAUDE.md の roster 設計と PLAN を更新してから登録する。
+ */
 export const SUBAGENT_ALLOWLIST: ReadonlySet<string> = new Set([
   "advisor-fable",
   "fe-lead",
@@ -21,6 +25,8 @@ export const SUBAGENT_ALLOWLIST: ReadonlySet<string> = new Set([
 
 export const AGENT_GUARD_BYPASS_HINT =
   "Set HELIX_ALLOW_RAW_AGENT=1 only with an explicit reason recorded in the final report.";
+
+export const BRIEF_MARKER_MIN_SUBSTANCE_CHARS = 20;
 
 /**
  * 委譲ブリーフ 4 点セット (judgment-core §5、PLAN-L7-337)。

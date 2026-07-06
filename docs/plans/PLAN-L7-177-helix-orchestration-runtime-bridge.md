@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-06-28
-updated: 2026-07-01
+updated: 2026-07-06
 owner: AIM + TL
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 review_evidence:
@@ -312,6 +312,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/projection-writer.test.ts
     artifact_type: test_code
+  - artifact_path: tests/orchestration/loop-bridge.test.ts
+    artifact_type: test_code
 dependencies:
   parent: PLAN-L6-50-helix-orchestration-memory
   requires:
@@ -323,6 +325,8 @@ dependencies:
 ---
 
 # PLAN-L7-177 (add-impl): P2 runtime bridge 実ランタイム接続
+
+2026-07-06 追記: PLAN-L7-346 により `tests/orchestration/loop-bridge.test.ts` の `test_code` generates を追記した。confirmed claim 本体は変更せず、silent overwrite ではない機械的登録補完として扱う。
 
 ## §0 役割 / なぜ必要か（補足 errata）
 

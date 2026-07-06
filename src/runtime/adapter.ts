@@ -9,6 +9,8 @@ import {
   CLAUDE_EFFORT_FLAG,
   CLAUDE_MODEL_FLAG,
   CLAUDE_STDIN_ARGS,
+  CODEX_EFFORT_CONFIG_KEY,
+  CODEX_EFFORT_FLAG,
   CODEX_MODEL_FLAG,
   CODEX_STDIN_ARGS,
   OPTIONAL_SKILL_LABEL,
@@ -399,6 +401,7 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
         // prompts. .codex/hooks.json work-guard still governs foreign edits.)
         ...(intent.execute ? ["--sandbox", "workspace-write"] : []),
         ...(intent.model ? [CODEX_MODEL_FLAG, intent.model] : []),
+        ...(effort ? [CODEX_EFFORT_FLAG, `${CODEX_EFFORT_CONFIG_KEY}=${effort}`] : []),
         CODEX_STDIN_ARGS[1],
       ]
     : [

@@ -1,6 +1,8 @@
 import { type AdapterPlan, buildAdapterPlan, type InvokeErrorClass } from "../runtime/adapter";
 import type { ExecutionMode, RuntimeDetection } from "../runtime/detect";
+import type { ReasoningEffort } from "../schema/team";
 import { assignCross, type CrossAssign, type Provider, type RouterRole } from "../task/tier-router";
+import { standardEffortForModel } from "../team/model-effort";
 import { inferTaskDifficulty, MODEL_IDS, type TaskDifficulty } from "../team/model-policy";
 
 export type PairAgentPhaseName = "smart_test_author" | "light_implementation" | "smart_review";
@@ -19,6 +21,7 @@ export interface PairAgentIdentity {
   role: RouterRole;
   tier: "T0" | "T2";
   model: string;
+  effort: ReasoningEffort;
   closingAuthority: boolean;
   responsibilities: string[];
 }
@@ -244,6 +247,7 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
     role: "qa",
     tier: "T0",
     model: smartModel(cross.judgement),
+    effort: standardEffortForModel(smartModel(cross.judgement)),
     closingAuthority: true,
     responsibilities: ["test_authoring", "instruction", "test_execution", "review_verdict"],
   };
@@ -253,6 +257,7 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
     role: "se",
     tier: "T2",
     model: lightModel(cross.execution),
+    effort: standardEffortForModel(lightModel(cross.execution)),
     closingAuthority: false,
     responsibilities: ["implementation", "consultation", "fix_iteration"],
   };
@@ -347,6 +352,7 @@ export function buildPairAgentAdapterPlans(input: {
         task: phase.prompt,
         planId: input.plan.planId,
         model: agent.model,
+        effort: agent.effort,
         execute: input.execute,
       },
       input.mode,
@@ -494,6 +500,7 @@ export async function runPairAgentTddPlan(input: {
         task: promptWithTranscript(phase, transcript),
         planId: input.plan.planId,
         model: agent.model,
+        effort: agent.effort,
         execute: input.execute,
       },
       input.mode,

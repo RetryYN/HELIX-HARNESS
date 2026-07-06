@@ -1,6 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 import {
+  deriveEffortObservation,
+  type EffortObservationInput,
+} from "../orchestration/loop-effort-budget";
+import {
   type AdapterContextInjection,
   type AdapterPlan,
   type AdapterProvider,
@@ -295,6 +299,7 @@ export function buildTeamRunPlan(
     planId?: string;
     placements?: (MemberPlacement | null)[];
     contextInjection?: AdapterContextInjection;
+    observations?: Record<string, EffortObservationInput>;
   } = {},
 ): TeamRunPlan {
   const validation = validateTeamRun(team, mode, input.placements);
@@ -313,6 +318,7 @@ export function buildTeamRunPlan(
     const placement = input.placements?.[index] ?? null;
     const blocked = placement?.blockedReason;
     const provider = memberProvider(member, placement);
+    const observationInput = input.observations?.[member.role];
     const modelSelection = selectTeamModel({
       provider,
       role: member.role,
@@ -322,6 +328,7 @@ export function buildTeamRunPlan(
       // placement (tier-router) のモデルを engine 既定より優先。空文字 (blocked) は無視。
       model: placement?.model || member.model,
       effort: member.effort,
+      observation: observationInput ? deriveEffortObservation(observationInput) : undefined,
     });
     const prompt = buildMemberPrompt({ team, member, selection: modelSelection, provider });
     const adapter =

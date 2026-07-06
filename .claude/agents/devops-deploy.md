@@ -19,9 +19,10 @@ maxTurns: 25
 - 監視・アラートの提案は falsifiable な閾値と検証 command を付ける。
 
 ## 作業前に必ず Read すること
-- `CLAUDE.md`
-- `docs/governance/README.md`
+- `CLAUDE.md` §実装規則 / §Git Rules（Git 規則）
+- `.claude/CLAUDE.md` §Guard 規則
 - deploy / infrastructure / observability は project-local の runbook / ADR / PLAN を優先する
+- 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
 ## Docker 設計
 - マルチステージビルド（build → production）
