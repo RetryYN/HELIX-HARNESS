@@ -6,7 +6,8 @@ export const KIND_PATTERNS: { kind: TaskKind; pattern: RegExp }[] = [
   { kind: "poc", pattern: /\b(poc|spike|prototype|hypothesis|experiment|proof of concept)\b/i },
   {
     kind: "refactor",
-    pattern: /\b(refactor|simplify|clean ?up|rename|extract|dedupe|deduplicate)\b/i,
+    pattern:
+      /\b(refactor|simplify|clean ?up|rename|extract|dedupe|deduplicate|latency|slow|performance|perf|speed ?up|optimi[sz]e)\b|遅い|性能|パフォーマンス|高速化/i,
   },
   {
     kind: "troubleshoot",

@@ -256,6 +256,12 @@ import {
   loadPlanDescentDocs,
   planDescentMessages,
 } from "../lint/plan-descent";
+import {
+  analyzePlanEntryRouting,
+  loadPlanEntryRoutingBaseline,
+  loadPlanEntryRoutingDocs,
+  planEntryRoutingMessages,
+} from "../lint/plan-entry-routing";
 import { analyzePlanDod, loadPlanDodDocs, planDodMessages } from "../lint/plan-dod";
 import {
   analyzePlanSupersession,
@@ -1264,6 +1270,24 @@ export function checkPlanDescent(repoRoot: string): { messages: string[]; ok: bo
     return { messages: planDescentMessages(result), ok: result.ok };
   } catch {
     return { messages: ["plan-descent - violation: plan descent lint could not run"], ok: false };
+  }
+}
+
+export function checkPlanEntryRouting(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return { messages: ["plan-entry-routing - violation: repo root could not be read"], ok: false };
+  }
+  try {
+    const result = analyzePlanEntryRouting(
+      loadPlanEntryRoutingDocs(repoRoot),
+      loadPlanEntryRoutingBaseline(repoRoot),
+    );
+    return { messages: planEntryRoutingMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["plan-entry-routing - violation: plan entry routing lint could not run"],
+      ok: false,
+    };
   }
 }
 
@@ -3382,6 +3406,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const gateConfirm = checkGateConfirm(deps.repoRoot);
   const planSchedule = checkPlanSchedule(deps.repoRoot);
   const planDescent = checkPlanDescent(deps.repoRoot);
+  const planEntryRouting = checkPlanEntryRouting(deps.repoRoot);
   const planGovernance = checkPlanGovernance(deps.repoRoot);
   const planDod = checkPlanDod(deps.repoRoot);
   const placeholderDeps = checkPlaceholderDeps(deps.repoRoot);
@@ -3505,6 +3530,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       gateConfirm.ok &&
       planSchedule.ok &&
       planDescent.ok &&
+      planEntryRouting.ok &&
       planGovernance.ok &&
       planDod.ok &&
       placeholderDeps.ok &&
@@ -3603,6 +3629,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
       ...planSchedule.messages.map((m) => `doctor: ${m}`),
       ...planDescent.messages.map((m) => `doctor: ${m}`),
+      ...planEntryRouting.messages.map((m) => `doctor: ${m}`),
       ...planGovernance.messages.map((m) => `doctor: ${m}`),
       ...planDod.messages.map((m) => `doctor: ${m}`),
       ...placeholderDeps.messages.map((m) => `doctor: ${m}`),

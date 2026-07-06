@@ -1,6 +1,12 @@
 import { parse as parseYaml } from "yaml";
 import { z } from "zod";
 import { type RecommendedCommandV1, recommendedCommandV1Schema } from "../schema/index";
+import {
+  ROUTE_COMMAND_PAIR_AGENT_PLAN,
+  ROUTE_COMMAND_TASK_CLASSIFY,
+  ROUTE_SIGNAL_MAP,
+  type RouteSignalMapEntry,
+} from "../schema/route-map";
 import type { ContractResult, Finding, Severity } from "./contracts";
 
 function finding(
@@ -74,13 +80,7 @@ export interface RouteApprovalResult {
   missing_approvers: string[];
 }
 
-export interface RouteSignalEntry {
-  tokens: string[];
-  mode: string;
-  command: string;
-  preflight: boolean;
-  requiresApproval: boolean;
-}
+export type RouteSignalEntry = RouteSignalMapEntry;
 
 export interface RouteConfigViolation {
   code: "legacy-db-dependency" | "personal-absolute-path";
@@ -129,9 +129,7 @@ const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
   pattern: new RegExp(`\\b${term}s?\\b`, "i"),
 }));
 
-const ROUTE_COMMAND_TASK_CLASSIFY = "helix task classify";
 const ROUTE_COMMAND_DOCTOR = "helix doctor";
-const ROUTE_COMMAND_PAIR_AGENT_PLAN = "helix pair-agent plan";
 const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/routing-contracts.ts";
 
 export const D_CONTRACT_MODES = [
@@ -430,133 +428,6 @@ function resolveApproval(params: {
     missing_approvers: missing,
   };
 }
-
-const ROUTE_SIGNAL_MAP: RouteSignalEntry[] = [
-  {
-    tokens: ["failure", "doctor"],
-    mode: "reverse",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["drift", "reverse", "gap", "design_gap"],
-    mode: "reverse",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["agent_runaway", "runaway", "context_exhaustion", "forced_stop", "regression_dev"],
-    mode: "recovery",
-    command: ROUTE_COMMAND_DOCTOR,
-    preflight: true,
-    requiresApproval: true,
-  },
-  {
-    tokens: ["dependency_outdated", "upgrade", "config_drift"],
-    mode: "retrofit",
-    command: ROUTE_COMMAND_DOCTOR,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["debt_degradation", "code_smell", "structural", "debt"],
-    mode: "refactor",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: [
-      "requirement_undefined",
-      "feasibility_unknown",
-      "success_condition_unclear",
-      "design_uncertain",
-    ],
-    mode: "discovery",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["poc", "discovery"],
-    mode: "discovery",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    // 画面後付け駆動の入口 (backend 主軸 system に UI を足す)。出口は Discovery 合成 → Forward L3-L6。
-    tokens: [
-      "screen_addition_to_backend",
-      "design_bottomup",
-      "backend_derived_screen",
-      "add_ui_to_backend",
-    ],
-    mode: "design-bottomup",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["user_feedback_iteration", "requirement_continuous_refinement", "scrum"],
-    mode: "scrum",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["version_deferral", "version-up", "version_up"],
-    mode: "version-up",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["production_incident", "hotfix_required", "regression_prod", "incident", "stop"],
-    mode: "incident",
-    command: ROUTE_COMMAND_DOCTOR,
-    preflight: true,
-    requiresApproval: true,
-  },
-  {
-    tokens: ["feature_addition", "scope_extension", "new_requirement", "po_change", "add-feature"],
-    mode: "add-feature",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: [
-      "pair_agent_tdd",
-      "pair-agent-tdd",
-      "pair-agent tdd route",
-      "pair-agent tdd",
-      "pair programming",
-      "lightweight worker",
-      "smart reviewer",
-    ],
-    mode: "add-feature",
-    command: ROUTE_COMMAND_PAIR_AGENT_PLAN,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["tech_decision_required", "option_comparison_needed", "adr_required", "research"],
-    mode: "research",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-  {
-    tokens: ["interrupt", "constraint"],
-    mode: "forward",
-    command: ROUTE_COMMAND_TASK_CLASSIFY,
-    preflight: true,
-    requiresApproval: false,
-  },
-];
 
 function routeMatchLength(entry: RouteSignalEntry, normalizedSignal: string): number {
   return Math.max(

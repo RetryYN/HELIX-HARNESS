@@ -4,7 +4,10 @@ title: "PLAN-L7-352 (impl): plan-entry routing gate 実装 — entry_signals 必
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
+route_mode: forward
+entry_signals:
+  - "po_directive:2026-07-06 Issue 起点が欠落し駆動モデルが正しく選ばれない穴を塞ぐ"
 created: 2026-07-06
 updated: 2026-07-06
 backprop_decision: not_required
@@ -21,14 +24,74 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-352-plan-entry-routing-impl.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/plan-entry-routing-baseline.json
+    artifact_type: json_config
+  - artifact_path: src/schema/frontmatter.ts
+    artifact_type: source_module
   - artifact_path: src/schema/mode-catalog.ts
     artifact_type: source_module
   - artifact_path: src/schema/route-map.ts
     artifact_type: source_module
   - artifact_path: src/lint/plan-entry-routing.ts
     artifact_type: source_module
+  - artifact_path: src/workflow/routing-contracts.ts
+    artifact_type: source_module
+  - artifact_path: src/plan/lint.ts
+    artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
+  - artifact_path: src/task/classify-policy.ts
+    artifact_type: source_module
   - artifact_path: tests/plan-entry-routing.test.ts
     artifact_type: test_code
+review_evidence:
+  - reviewer: codex
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T16:12:00+09:00"
+    tests_green_at: "2026-07-06T16:12:00+09:00"
+    verdict: approve
+    scope: "PLAN-L7-352 plan-entry-routing gate 実装。U-PROUTE-001..012、baseline 機械生成、plan lint 配線、doctor gate 表示、性能語彙 classify を実測確認。"
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-entry-routing.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T16:05:38+09:00"
+        evidence_path: tests/plan-entry-routing.test.ts
+        output_digest: "sha256:62fa6ca5e02f3ed4604f6fbbf0c0e2235c84532ab68baca7afab7662af30020f"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T16:05:59+09:00"
+        evidence_path: src/lint/plan-entry-routing.ts
+        output_digest: "sha256:a925af5073bc1707aa4f0775334a8cf1cbbc81adf3793f22196e137301094058"
+      - kind: lint
+        command: "bun run src/cli.ts plan lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T16:05:59+09:00"
+        evidence_path: docs/governance/plan-entry-routing-baseline.json
+        output_digest: "sha256:c823fce1991435160b544c751c8985eeb181a71ea0318b76ed913f2de18a83e0"
+      - kind: doctor
+        command: "bash -lc 'bun run src/cli.ts doctor | rg \"doctor: plan-entry-routing - OK\"'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-06T16:14:00+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:bc617bf39e4fa9f4b5e6a3cc6d0477afc7ca61b7d75f3c7c1e94395bd525f256"
+      - kind: smoke
+        command: "bun run src/cli.ts task classify --text \"テストと doctor が遅いので性能改善したい\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T16:05:59+09:00"
+        evidence_path: src/task/classify-policy.ts
+        output_digest: "sha256:518ce89971305dd6fdee732ad2c5e9a3dc6b66de69a9278c5f831da6e8bc3058"
 dependencies:
   parent: docs/plans/PLAN-L6-55-plan-entry-routing.md
   references:

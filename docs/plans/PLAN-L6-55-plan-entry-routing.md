@@ -14,6 +14,15 @@ review_evidence:
     tests_green_at: "2026-07-06T15:55:00+09:00"
     verdict: approve
     scope: "2 巡レビュー。初回 reject（signal→kind 整合経路欠落 / reason enum 不整合 / スコープ未定義 / test-design 逆参照欠落）→ 全所見反映（signal 種別確定アルゴリズム、MODE_ALLOWED_KINDS SSoT、reason 5 種、U-PROUTE-001..012、除外スコープ、refactor_candidate token 追加、SIGNAL_KIND_ROUTING 二重表削除）→ 再判定 approve-with-notes、残 notes 2 件も反映済み。実装は PLAN-L7-352 へ降下する。"
+    green_commands:
+      - kind: lint
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-55-plan-entry-routing.md"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T16:15:45+09:00"
+        evidence_path: docs/design/harness/L6-function-design/plan-entry-routing.md
+        output_digest: "sha256:3accdb1af91074191877cf88ce3a6c1590e18822589f1a283b2fe92eae4d4c68"
 backprop_decision: not_required
 backprop_decision_reason: "modes README §4 の signal→mode routing（機械化目標）と requirements §6.8 の signal→Issue→PLAN 一本道を PLAN 起票経路へ降下させる L6 機能設計。routing 表・kind 体系そのものは変更しない。"
 owner: Claude (Fable)

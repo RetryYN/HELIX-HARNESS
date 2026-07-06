@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
@@ -10,6 +10,14 @@ import {
   loadPlanDescentDocs,
   planDescentMessages,
 } from "../lint/plan-descent";
+import {
+  analyzePlanEntryRouting,
+  buildPlanEntryRoutingBaseline,
+  loadPlanEntryRoutingBaseline,
+  loadPlanEntryRoutingDocs,
+  PLAN_ENTRY_ROUTING_BASELINE_PATH,
+  planEntryRoutingMessages,
+} from "../lint/plan-entry-routing";
 import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
 import {
   DB_PROJECTION_BACKPROP_REQUIRED_GENERATES,
@@ -811,22 +819,71 @@ export function lintPlanDescent(path?: string, repoRoot: string = process.cwd())
   return { ok: result.ok, messages: planDescentMessages(result) };
 }
 
-export function lintPlanGate(
-  gate: string | undefined,
+export function lintPlanEntryRouting(
   path?: string,
   repoRoot: string = process.cwd(),
 ): LintResult {
-  // 既定 (gate 未指定) は schedule + descent の合成 (PLAN-L6-54: L6 設計降下の起票時 fail-close)
+  const result = analyzePlanEntryRouting(
+    loadPlanEntryRoutingDocs(repoRoot, path),
+    loadPlanEntryRoutingBaseline(repoRoot),
+  );
+  return { ok: result.ok, messages: planEntryRoutingMessages(result) };
+}
+
+interface LintPlanGateInput {
+  gate?: string;
+  path?: string;
+  repoRoot?: string;
+  writeBaseline?: boolean;
+}
+
+export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
+  const gate = input.gate;
+  const path = input.path;
+  const repoRoot = input.repoRoot ?? process.cwd();
+  if (input.writeBaseline) {
+    if (gate !== "entry-routing") {
+      return {
+        ok: false,
+        messages: ["plan-lint - violation: --write-baseline requires --gate entry-routing"],
+      };
+    }
+    if (path) {
+      return {
+        ok: false,
+        messages: ["plan-lint - violation: --write-baseline is repository-level only"],
+      };
+    }
+    const baseline = buildPlanEntryRoutingBaseline(
+      loadPlanEntryRoutingDocs(repoRoot),
+      new Date().toISOString(),
+    );
+    writeFileSync(
+      join(repoRoot, PLAN_ENTRY_ROUTING_BASELINE_PATH),
+      `${JSON.stringify(baseline, null, 2)}\n`,
+      "utf8",
+    );
+    return {
+      ok: true,
+      messages: [
+        `plan-entry-routing - baseline written ${PLAN_ENTRY_ROUTING_BASELINE_PATH} (${baseline.grandfathered.length} grandfathered PLAN)`,
+      ],
+    };
+  }
+
+  // 既定 (gate 未指定) は schedule + descent + entry-routing の合成。
   if (!gate) {
     const schedule = lintPlan(path, repoRoot);
     const descent = lintPlanDescent(path, repoRoot);
+    const entryRouting = lintPlanEntryRouting(path, repoRoot);
     return {
-      ok: schedule.ok && descent.ok,
-      messages: [...schedule.messages, ...descent.messages],
+      ok: schedule.ok && descent.ok && entryRouting.ok,
+      messages: [...schedule.messages, ...descent.messages, ...entryRouting.messages],
     };
   }
   if (gate === "schedule") return lintPlan(path, repoRoot);
   if (gate === "descent") return lintPlanDescent(path, repoRoot);
+  if (gate === "entry-routing") return lintPlanEntryRouting(path, repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {
     const result = analyzePlanGovernance(loadPlanGovernanceDocs(repoRoot, path), repoRoot);
@@ -874,5 +931,9 @@ export function lintPlanWithGate(
   repoRoot: string = process.cwd(),
   gate?: string,
 ): LintResult {
-  return lintPlanGate(gate, path, repoRoot);
+  return lintPlanGate({ gate, path, repoRoot });
+}
+
+export function lintPlanWithGateOptions(input: LintPlanGateInput): LintResult {
+  return lintPlanGate(input);
 }

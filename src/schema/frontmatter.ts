@@ -112,6 +112,8 @@ const frontmatterBaseSchema = z.object({
   confirmed_reverse_type: reverseTypeSchema.optional(),
   scrum_type: scrumTypeSchema.nullable().optional(),
   forward_routing: forwardRoutingSchema.nullable().optional(),
+  route_mode: z.string().min(1).optional(),
+  entry_signals: z.array(z.string().min(1)).optional(),
   promotion_strategy: promotionStrategySchema.nullable().optional(),
   agent_slots: z.array(agentSlotSchema).min(1, "agent_slots は 1 件以上 (§1.8)"),
   generates: z.array(generatesEntrySchema).default([]),
