@@ -16,17 +16,7 @@ function auditText(): string {
 describe("HELIX objective evidence audit", () => {
   it("tracks active objective requirements and allows completion only when readiness is true", () => {
     const text = auditText();
-    const provedIds = [
-      "G-01",
-      "G-02",
-      "G-03",
-      "G-04",
-      "G-05",
-      "G-06",
-      "G-07",
-      "G-08",
-      "G-09",
-    ];
+    const provedIds = ["G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09"];
 
     for (const id of provedIds) {
       const row = text.split("\n").find((line) => line.startsWith(`| ${id} |`));

@@ -330,12 +330,12 @@ describe("L7 CLI surface closure", () => {
     expect(direct.status, direct.stderr || direct.stdout).toBe(0);
     const directPacket = JSON.parse(direct.stdout);
     expect(completionPacket.decisionCount).toBe(directPacket.decisionCount);
-    expect(completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId)).toEqual(
-      directPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId),
-    );
-    expect(completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId)).toContain(
-      "PLAN-M-02-helix-identifier-rename",
-    );
+    expect(
+      completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId),
+    ).toEqual(directPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId));
+    expect(
+      completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId),
+    ).toContain("PLAN-M-02-helix-identifier-rename");
   }, 40_000);
 
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
@@ -1534,7 +1534,9 @@ describe("L7 CLI surface closure", () => {
       expect(readFileSync(join(root, "activation-packet.json"), "utf8")).toContain(
         '"activationAllowed": false',
       );
-      expect(JSON.parse(readFileSync(join(root, "readonly-share-manifest.json"), "utf8"))).toMatchObject({
+      expect(
+        JSON.parse(readFileSync(join(root, "readonly-share-manifest.json"), "utf8")),
+      ).toMatchObject({
         planOnly: true,
         mustNotDeploy: true,
         readOnly: true,

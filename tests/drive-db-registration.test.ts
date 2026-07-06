@@ -248,7 +248,8 @@ describe("drive DB registration lint", () => {
 
       expect(refreshed).not.toBeNull();
       expect(loaded).not.toBeNull();
-      expect(driveDbStatsMatchCurrentPlanRegistry(refreshed!)).toBe(true);
+      if (!refreshed) throw new Error("refreshed drive db stats must not be null");
+      expect(driveDbStatsMatchCurrentPlanRegistry(refreshed)).toBe(true);
       expect(loaded).toEqual(refreshed);
     } finally {
       rmSync(repoRoot, { force: true, recursive: true });

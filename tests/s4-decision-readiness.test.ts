@@ -1380,16 +1380,14 @@ describe("S4 decision readiness", () => {
         ]),
       );
       expect(packet.decisionRecord.forward_route).not.toBe("");
-      expect(packet.decisionEvidenceChecklist.map((row: { field: string }) => row.field)).toEqual(
-      [
+      expect(packet.decisionEvidenceChecklist.map((row: { field: string }) => row.field)).toEqual([
         "verified_evidence",
         "stakeholder_review_or_proxy",
         "acceptance_gap",
         "unresolved_risk",
         "external_source_basis",
         "route_impact",
-      ],
-    );
+      ]);
       expect(packet.outcomeRouteMatrix.map((row: { outcome: string }) => row.outcome)).toEqual([
         "confirmed",
         "rejected",

@@ -64,9 +64,9 @@ describe("component-derived web UI registry (PLAN-L7-141)", () => {
         (component) => component.source === "L2-screen-specific",
       ),
     ).toBe(true);
-    expect(SPECIFIC_COMPONENTS.find((component) => component.name === "SeverityBadge")?.source).toBe(
-      "L4-alias",
-    );
+    expect(
+      SPECIFIC_COMPONENTS.find((component) => component.name === "SeverityBadge")?.source,
+    ).toBe("L4-alias");
   });
 
   it("loads L4 tokens.yaml as the renderer token source", () => {
@@ -176,10 +176,7 @@ describe("component-derived web UI registry (PLAN-L7-141)", () => {
         accessControlApproved: false,
       },
     });
-    expect(bundle.files.map((entry) => entry.path)).toEqual([
-      "index.html",
-      "share-manifest.json",
-    ]);
+    expect(bundle.files.map((entry) => entry.path)).toEqual(["index.html", "share-manifest.json"]);
     expect(bundle.files.map((entry) => entry.content).join("\n")).not.toMatch(
       /secret-[a-z0-9]|BEGIN PRIVATE KEY|password=/i,
     );

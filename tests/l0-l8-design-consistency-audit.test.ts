@@ -64,7 +64,9 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     }
 
     expect(auditRow("C-13")).toContain("| warning |");
-    expect(auditText()).toContain("完了率は `objective-evidence-audit` と `completion-decision-packet` の live 結果に従う");
+    expect(auditText()).toContain(
+      "完了率は `objective-evidence-audit` と `completion-decision-packet` の live 結果に従う",
+    );
     expect(auditText()).toContain("追加 PLAN と S4/cutover 判断が残る");
     expect(auditText()).toContain("G-L7PACK.C");
     expect(auditText()).toContain("PLAN-L7-141-web-dashboard-component-derived");
@@ -144,9 +146,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("asset/progress visualization request は記録済み");
     expect(normalized).toContain("revised request fully descended と扱わない");
     expect(text).toContain("46-item overlay");
-    expect(text).toContain(
-      "visualization amendment、`PLAN-DISCOVERY-07`、`PLAN-DISCOVERY-10`",
-    );
+    expect(text).toContain("visualization amendment、`PLAN-DISCOVERY-07`、`PLAN-DISCOVERY-10`");
     expect(text).toContain("archive では閉じない");
   });
 
@@ -253,8 +253,12 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(l3).toContain("version-up-activation-packet.v1");
     expect(l3).toContain("plan-only activation packet");
     expect(l3).toContain("apply surface を持たない");
-    expect(l4).toContain("deferred 済み PLAN や live draft backlog を L4 confirmed boundary と混同しない");
-    expect(l5).toContain("deferred 済み PLAN や live draft backlog を L5 confirmed contract と混同しない");
+    expect(l4).toContain(
+      "deferred 済み PLAN や live draft backlog を L4 confirmed boundary と混同しない",
+    );
+    expect(l5).toContain(
+      "deferred 済み PLAN や live draft backlog を L5 confirmed contract と混同しない",
+    );
     expect(l6).toContain("実装済み path の存在だけでは `completion_claim_allowed=true` にならない");
     expect(l12).toContain("G-SF oracle");
     expect(l9System).toContain("selected HST green");

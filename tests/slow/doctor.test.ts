@@ -621,7 +621,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "set -euo pipefail",
       'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
       "gh auth status >/dev/null",
-      'ADMIN="$(gh api "repos/${REPO}" -q \'.permissions.admin\')"',
+      'ADMIN="$(gh api "repos/$' + "{REPO}\" -q '.permissions.admin')\"",
       'if [[ "$' + '{ADMIN}" != "true" ]]; then',
       '  echo "repository admin permission is required before branch protection apply" >&2',
       "  exit 2",
