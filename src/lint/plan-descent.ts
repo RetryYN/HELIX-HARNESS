@@ -177,11 +177,7 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
       detail: `${doc.parentDesign} status=${doc.parentDesignStatus ?? "-"}`,
     });
   }
-  if (
-    !doc.pairArtifact ||
-    !doc.pairArtifact.startsWith(TEST_DESIGN_PREFIX) ||
-    !doc.pairArtifactExists
-  ) {
+  if (!doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) || !doc.pairArtifactExists) {
     violations.push({
       planId: doc.planId,
       file: doc.file,

@@ -10,8 +10,8 @@ updated: 2026-07-06
 review_evidence:
   - reviewer: code-reviewer (claude-sonnet-5)
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-06T15:55:00+09:00"
-    tests_green_at: "2026-07-06T15:55:00+09:00"
+    reviewed_at: "2026-07-06T16:16:00+09:00"
+    tests_green_at: "2026-07-06T16:15:45+09:00"
     verdict: approve
     scope: "2 巡レビュー。初回 reject（signal→kind 整合経路欠落 / reason enum 不整合 / スコープ未定義 / test-design 逆参照欠落）→ 全所見反映（signal 種別確定アルゴリズム、MODE_ALLOWED_KINDS SSoT、reason 5 種、U-PROUTE-001..012、除外スコープ、refactor_candidate token 追加、SIGNAL_KIND_ROUTING 二重表削除）→ 再判定 approve-with-notes、残 notes 2 件も反映済み。実装は PLAN-L7-352 へ降下する。"
     green_commands:

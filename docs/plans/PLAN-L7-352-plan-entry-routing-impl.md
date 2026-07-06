@@ -47,8 +47,8 @@ generates:
 review_evidence:
   - reviewer: codex
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-06T16:12:00+09:00"
-    tests_green_at: "2026-07-06T16:12:00+09:00"
+    reviewed_at: "2026-07-06T16:14:30+09:00"
+    tests_green_at: "2026-07-06T16:14:00+09:00"
     verdict: approve
     scope: "PLAN-L7-352 plan-entry-routing gate 実装。U-PROUTE-001..012、baseline 機械生成、plan lint 配線、doctor gate 表示、性能語彙 classify を実測確認。"
     green_commands:

@@ -256,13 +256,13 @@ import {
   loadPlanDescentDocs,
   planDescentMessages,
 } from "../lint/plan-descent";
+import { analyzePlanDod, loadPlanDodDocs, planDodMessages } from "../lint/plan-dod";
 import {
   analyzePlanEntryRouting,
   loadPlanEntryRoutingBaseline,
   loadPlanEntryRoutingDocs,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
-import { analyzePlanDod, loadPlanDodDocs, planDodMessages } from "../lint/plan-dod";
 import {
   analyzePlanSupersession,
   loadSupersedePlans,

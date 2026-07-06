@@ -819,10 +819,7 @@ export function lintPlanDescent(path?: string, repoRoot: string = process.cwd())
   return { ok: result.ok, messages: planDescentMessages(result) };
 }
 
-export function lintPlanEntryRouting(
-  path?: string,
-  repoRoot: string = process.cwd(),
-): LintResult {
+export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
   const result = analyzePlanEntryRouting(
     loadPlanEntryRoutingDocs(repoRoot, path),
     loadPlanEntryRoutingBaseline(repoRoot),

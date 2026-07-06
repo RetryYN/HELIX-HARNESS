@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import {
@@ -6,11 +6,10 @@ import {
   normalizeRouteMode,
   workflowModeForPlan,
 } from "../schema/mode-catalog";
-import { defaultHarnessDbPath, openHarnessDb, type HarnessDb } from "../state-db/index";
+import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db/index";
 import { routeSignalToMode } from "../workflow/routing-contracts";
 
-export const PLAN_ENTRY_ROUTING_BASELINE_PATH =
-  "docs/governance/plan-entry-routing-baseline.json";
+export const PLAN_ENTRY_ROUTING_BASELINE_PATH = "docs/governance/plan-entry-routing-baseline.json";
 
 const EXCLUDED_PLAN_PREFIXES = ["PLAN-DISCOVERY-", "PLAN-M-"];
 
