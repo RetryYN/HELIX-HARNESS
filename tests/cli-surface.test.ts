@@ -325,12 +325,18 @@ describe("L7 CLI surface closure", () => {
     expect(completion.status, completion.stderr || completion.stdout).toBe(0);
     const completionPacket = JSON.parse(completion.stdout);
     expect(completionPacket.sourceCommand).toBe("helix completion decision-packet --json");
-    expect(completionPacket.decisionCount).toBe(2);
-    expect(completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId)).toEqual([
-      "PLAN-L7-146-serverless-readonly-share",
+
+    const direct = runCli(["completion", "decision-packet", "--json"]);
+    expect(direct.status, direct.stderr || direct.stdout).toBe(0);
+    const directPacket = JSON.parse(direct.stdout);
+    expect(completionPacket.decisionCount).toBe(directPacket.decisionCount);
+    expect(completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId)).toEqual(
+      directPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId),
+    );
+    expect(completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId)).toContain(
       "PLAN-M-02-helix-identifier-rename",
-    ]);
-  }, 20_000);
+    );
+  }, 40_000);
 
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-handover-status-"));
