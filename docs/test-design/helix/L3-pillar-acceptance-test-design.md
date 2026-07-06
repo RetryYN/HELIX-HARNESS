@@ -134,6 +134,23 @@ L7 実装済み oracle を通じて trace する。
 | HAT-ORB-13R | HR-BR-13R | `nodeTickDeps` が tick の provider 選定を再実装せず、既存 adapter 実行面と verdict 解釈へ接続する | U-ORCH-BRIDGE-01 |
 | HAT-ORB-14R | HR-BR-14R | `helix loop run` が loop-store から state を読み、`--once` / `--dry-run` / iteration 永続を正しく扱う | U-ORCH-BRIDGE-02 |
 
+## §1.2 Visualization frontier acceptance（受入、PLAN-L3-12）
+
+`docs/design/helix/L3-requirements/visualization-requirements.md`（`HR-FR-VIS-01..06`）の pair。
+§0.1 amendment frontier oracle に従い、これらは **confirmed 46 件へ混ぜない別枠の visualization frontier
+acceptance** であり、量閉じ 46 件を増やさない。正本 source は `VisualizationSnapshot`
+（`src/state-db/visualization-read-model.ts`、`PLAN-L7-206`）で、UI 実装完了ではなく view 要件の受入観測を固定する。
+PO 承認前は `draft` frontier として扱い、read-model first response を VSCode View/Webview 実装完了と読み替えない。
+
+| HAT-ID | 対応 L3 | 対応 AC | 受入観測 | 機械検証候補 |
+|--------|---------|---------|----------|--------------|
+| HAT-VIS-01 | HR-FR-VIS-01 | HAC-VIS-01a/b | 5 view が Tree View / Webview panel に割り付き、各 view の正本 source が `VisualizationSnapshot` の実在 field を指し、LLM 生成を正本にしない | `tests/visualization-read-model.test.ts` / view-source マッピング検査 |
+| HAT-VIS-02 | HR-FR-VIS-02 | HAC-VIS-02a/b | graph/progress/evidence view の node/edge/metric 数が「その view の定義済み集計（全体 count または L6 契約で明示するフィルタ済み count）」と一致し、乖離は成功に混ぜず warning/error 化する | `tests/visualization-read-model.test.ts` / node-edge 一致 oracle |
+| HAT-VIS-03 | HR-FR-VIS-03 | HAC-VIS-03a/b | `runtime_verified` と `projection_only_unverified` / `missing_runtime_provenance` を分離表示し、projection-only を accepted へ昇格表示しない | `tests/visualization-read-model.test.ts` projection-only guard |
+| HAT-VIS-04 | HR-FR-VIS-04 | HAC-VIS-04a/b | 空 DB で全 view が 0 を表示し、`warnings` は全 view 共通の共有 banner として表示される（view 別 warning は要求しない。現行は `artifact_progress is empty` 1 件、拡張は L5/L6）。成功・mock を捏造しない | `tests/visualization-read-model.test.ts` / `tests/cli-surface.test.ts` cold start |
+| HAT-VIS-05 | HR-FR-VIS-05 | HAC-VIS-05a/b | view は read-only 描画 + CLI copy までで、command 実行/外部 API/config/branch-ruleset mutation は action-binding approval なしに実行しない。secret/transcript/絶対 path を state に持たない | approval-boundary tests / read-only surface 検査 |
+| HAT-VIS-06 | HR-FR-VIS-06 | HAC-VIS-06a/b | 各表示要素が `drilldowns` の CLI/table pointer で DB row / docs / CLI へ deterministic に戻れ、LLM 要約を drill-down 根拠にしない | drill-down 契約 tests / `drilldowns` pointer 検査 |
+
 ## §2 trace 対応
 
 | L1 | L3 | L12 | 備考 |
@@ -157,6 +174,14 @@ L7 実装済み oracle を通じて trace する。
 | orchestration-memory.md | HR-BR-07 / HR-BR-12 / HR-NFR-03 | HAT-ORB-07 / HAT-ORB-12 / HAT-ONFR-03 | 対応関係 |
 | orchestration-memory-runtime.md | HR-BR-07R / HR-BR-12R / HR-NFR-03R | HAT-ORB-07R / HAT-ORB-12R / HAT-ONFR-03R | 対応関係 |
 | orchestration-runtime-bridge.md | HR-BR-13R / HR-BR-14R | HAT-ORB-13R / HAT-ORB-14R | 対応関係 |
+
+## §2.2 Visualization frontier trace 対応（PLAN-L3-12）
+
+confirmed 46 件の trace とは別枠。`visualization-requirements.md` の `HR-FR-VIS-*` と 1:1。
+
+| L1 | L3 | L12 | 備考 |
+|----|----|-----|------|
+| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 | visualization frontier（confirmed 46 件外）。孤児 0 |
 
 ## §3 G-REQ.L3
 
