@@ -18,8 +18,10 @@
     "typecheck": "tsc --noEmit",
     "lint": "biome check src tests",
     "format": "biome check --write src tests",
-    "test": "vitest run",
-    "test:local": "vitest run --exclude tests/distribution-acceptance.test.ts",
+    "test": "sh -c 'if [ \"${CI:-}\" = \"true\" ]; then vitest run --project fast --project slow; else vitest run --project fast; fi'",
+    "test:fast": "vitest run --project fast",
+    "test:slow": "vitest run --project slow",
+    "test:local": "vitest run --project fast --exclude tests/distribution-acceptance.test.ts",
     "test:node-fallback": "vitest run tests/state-db.test.ts tests/runtime-portability.test.ts",
     "test:watch": "vitest"
   },

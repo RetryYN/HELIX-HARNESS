@@ -4,9 +4,12 @@ title: "PLAN-L7-349 (refactor): cli.ts 段階分割 — PLAN-L7-150 accepted deb
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-06
 updated: 2026-07-06
+route_mode: refactor
+entry_signals:
+  - "po_directive:2026-07-06:cli-split-slice"
 backprop_decision: not_required
 backprop_decision_reason: "src/cli.ts の behavior-invariant な module 分割（PLAN-L7-150 accepted debt 台帳の attached slice）。コマンド surface・exit code・出力仕様は変更しない。"
 owner: Claude (Fable)
@@ -20,6 +23,80 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-349-cli-split-slice.md
     artifact_type: markdown_doc
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
+  - artifact_path: src/cli/helpers.ts
+    artifact_type: source_module
+  - artifact_path: src/cli/commands/rename.ts
+    artifact_type: source_module
+  - artifact_path: src/cli/commands/route.ts
+    artifact_type: source_module
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T17:58:05+09:00"
+    tests_green_at: "2026-07-06T17:57:40+09:00"
+    verdict: approve
+    scope: "Step 1 rename/route command group extraction の挙動不変検収。残グループ分割は後続 slice。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "/usr/bin/time -p bun run vitest run"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T17:53:38+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:c58005e3b2bb5ef07a6f63e148c1db3181a21ea38b67ee5b96dac68e66bd166e"
+      - kind: unit_test
+        command: "/usr/bin/time -p bun run vitest run --project fast tests/cli-surface.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T17:49:39+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:fee6984f78bc3f5a9956073fbd23bf591122eaf2d4b7114952972bb29ee377e1"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T17:27:59+09:00"
+        evidence_path: package.json
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bunx biome check src"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T17:29:24+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:ad327730485797f034e29a8f6173e5b2dabfdf526247610c1d63472c9fc9a036"
+      - kind: smoke
+        command: "bun run src/cli.ts --help"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T17:29:24+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:329a9994bad76dfa183a0a038bb2c204ab78aa686bed49051d451fd1150a8887"
+      - kind: smoke
+        command: "bun run src/cli.ts route eval --format json --signal 'pair-agent TDD route'"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T17:29:24+09:00"
+        evidence_path: src/cli/commands/route.ts
+        output_digest: "sha256:1b7a5c18cc4013c1545f1195f610d3f349126fe510c0795494093092d54f7ae6"
+      - kind: doctor
+        command: "bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T17:57:40+09:00"
+        evidence_path: docs/plans/PLAN-L7-349-cli-split-slice.md
+        output_digest: "sha256:e086725e57af1b20adf9ee954944ca5858b5b315ca84c2cbae96aec0fc8046e6"
 dependencies:
   parent: docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md
   references:
@@ -66,6 +143,16 @@ dependencies:
 3. `src/cli/commands/web.ts` ← `web`。
 4. fence: `bun run typecheck` / `bun run src/cli.ts --help` の subcommand 一覧が分割前と一致 /
    `bun run vitest run tests/cli-surface.test.ts` の pass 集合が分割前と同一。
+
+#### Step 1 実施記録（2026-07-06）
+
+- 直近 working tree に `rename` / `route` 抽出の in-flight 差分があったため、二重実装せず検収対象として扱った。
+- `rename` は `src/cli/commands/rename.ts` の `registerRenameCommands(program)` へ移動し、
+  `packetFreshnessLine` / `verificationSourceLines` / `writeRecordTemplates` は `src/cli/helpers.ts` へ先出しした。
+- `route` は `src/cli/commands/route.ts` の `registerRouteCommands(program)` へ移動した。
+  `loadRouteApprovalPolicy` / `appendRouteApprovalAudit` / `loadRouteMap` は route module 内に閉じた。
+- `src/cli.ts` は `registerRenameCommands(program)` / `registerRouteCommands(program)` を呼ぶ薄い登録に変え、
+  command 名・option・出力文字列は変更していない。
 
 ### Step 2: 大物 2 グループ
 

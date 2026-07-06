@@ -1519,6 +1519,8 @@ describe("L7 CLI surface closure", () => {
         "activation-rehearsal.json",
         "security-checklist.json",
         "version-dry-run-evidence.json",
+        "readonly-share-index.html",
+        "readonly-share-manifest.json",
         "activation-review-manifest.json",
       ]);
       const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
@@ -1532,6 +1534,13 @@ describe("L7 CLI surface closure", () => {
       expect(readFileSync(join(root, "activation-packet.json"), "utf8")).toContain(
         '"activationAllowed": false',
       );
+      expect(JSON.parse(readFileSync(join(root, "readonly-share-manifest.json"), "utf8"))).toMatchObject({
+        planOnly: true,
+        mustNotDeploy: true,
+        readOnly: true,
+        noSecretOrPiiProjection: true,
+        noProdWrite: true,
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

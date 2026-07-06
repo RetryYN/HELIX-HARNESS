@@ -1,14 +1,93 @@
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  checkActionBindingApprovalReadiness,
   checkAgentSlots,
+  checkAllowlistSync,
+  checkAssetDrift,
+  checkBackfillResult,
+  checkChangeImpact,
+  checkChangeSetIntegrity,
+  checkCodexWrapperParity,
+  checkCodingRules,
+  checkCompletionDecisionPacket,
+  checkCompletionReviewBundle,
+  checkCutoverReadiness,
+  checkCycleP4Verification,
+  checkDbProjectionCoverage,
+  checkDbProjectionIngestion,
+  checkDddTddRules,
+  checkDependencyDrift,
+  checkDescentObligation,
+  checkDesignLanguage,
+  checkDriveDbRegistration,
+  checkDriveModelPassage,
+  checkFrRoadmapCoverage,
+  checkGateConfirm,
+  checkGuardrailInvariants,
   checkHandover,
   checkHandoverDisciplineMessages,
+  checkImplPlanTrace,
+  checkJudgmentCoreCoverage,
+  checkL6Completion,
+  checkL6FrCoverage,
+  checkL7Completion,
+  checkL14CloseAudit,
+  checkMergedPlanStatus,
+  checkModuleDrift,
+  checkObjectiveEvidenceAudit,
+  checkOracleTestTrace,
+  checkPairFreeze,
+  checkPlaceholderDeps,
+  checkPlanDod,
+  checkPlanGovernance,
+  checkPlanTraceGate,
+  checkProjectHooks,
+  checkPropagation,
+  checkReadability,
+  checkRefactorCandidateTriage,
+  checkRegressionExpansion,
+  checkRequirementsBindingConfig,
+  checkReviewEvidence,
+  checkRightArmVerificationStrategy,
+  checkRoadmap,
+  checkRuleAutomationClosure,
+  checkRuleDrift,
+  checkRuntimePortability,
+  checkRuntimeReadability,
+  checkS4DecisionReadiness,
+  checkScrumReverse,
+  checkSemanticFrontierConsistency,
+  checkSkillAssignment,
+  checkTelemetryClosure,
+  checkToolContractRegistry,
+  checkTrackedCanonical,
+  checkVerificationGroupsResult,
+  checkVerificationProfile,
+  checkVerifierProviderMismatch,
+  checkVersionUpReadiness,
+  completionDedicatedPacketBridgeViolations,
   type DoctorDeps,
+  projectRuntimeModelTelemetryForDoctor,
   runConsumerDoctor,
   runDoctor,
-} from "../src/doctor/index";
-import type { AgentSlotsDeps, Slot } from "../src/runtime/agent-slots";
+} from "../../src/doctor/index";
+import { checkGreenCommandDigests } from "../../src/lint/green-command-digest";
+import {
+  analyzeOutstandingWork,
+  completionDecisionPacketForOutstanding,
+  completionReviewBundleForOutstanding,
+  computeOutstandingWork,
+} from "../../src/lint/outstanding";
+import {
+  buildS4DecisionPackets,
+  loadS4DecisionReadinessInput,
+} from "../../src/lint/s4-decision-readiness";
+import type { AgentSlotsDeps, Slot } from "../../src/runtime/agent-slots";
+import { openHarnessDb } from "../../src/state-db/index";
+import { migrate } from "../../src/state-db/migration";
 
 const NOW = "2026-06-04T00:00:00.000Z";
 const pointerPath = join("/repo", ".helix", "handover", "CURRENT.json");
@@ -16,7 +95,7 @@ const slotStatePath = join("/repo", ".helix", "state", "agent-slots.json");
 const currentPlanPath = join("/repo", ".helix", "state", "current-plan");
 const digestDir = join("/repo", ".helix", "logs", "plan");
 
-function _codexWrapperParityFiles(root: string, overrides: Record<string, string> = {}) {
+function codexWrapperParityFiles(root: string, overrides: Record<string, string> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
   return new Map<string, string>(
     Object.entries({
@@ -2023,5 +2102,885 @@ describe("checkAgentSlots (doctor agent-slots surface, IMP-050)", () => {
     );
     expect(msg).toContain("OK");
     expect(msg).toContain("peak_parallel");
+  });
+});
+
+describe("runDoctor", () => {
+  let liveDoctorResult: ReturnType<typeof runDoctor> | null = null;
+  const liveDoctor = (): ReturnType<typeof runDoctor> => {
+    liveDoctorResult ??= runDoctor();
+    return liveDoctorResult;
+  };
+
+  it("U-OUTSTANDING-003: completion decision doctor bridge accepts the current live dedicated packets", () => {
+    const result = checkCompletionDecisionPacket(process.cwd());
+
+    expect(result.ok).toBe(true);
+    expect(result.messages).toContainEqual(
+      expect.stringContaining("completion-decision-packet - OK"),
+    );
+  });
+
+  it("U-OUTSTANDING-003/U-OUTSTANDING-018: completion review-bundle doctor bridge accepts the current live scoped packet bundle", () => {
+    const result = checkCompletionReviewBundle(process.cwd());
+    const expectedBundle = completionReviewBundleForOutstanding(
+      computeOutstandingWork(process.cwd()),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.messages).toContainEqual(
+      expect.stringContaining("completion-review-bundle - OK"),
+    );
+    expect(result.messages).toContainEqual(
+      expect.stringContaining(`decisions=${expectedBundle.decisionCount}`),
+    );
+    expect(result.messages).toContainEqual(
+      expect.stringContaining(`reviewPackets=${expectedBundle.reviewPacketCount}`),
+    );
+    expect(result.messages).toContainEqual(expect.stringContaining("semanticDigest=sha256:"));
+  });
+
+  it("U-OUTSTANDING-003: completion decision doctor bridge fails when a referenced S4 packet is not live", () => {
+    const packet = completionDecisionPacketForOutstanding(
+      analyzeOutstandingWork(
+        [
+          {
+            planId: "PLAN-NO-SUCH-S3",
+            layer: "cross",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            versionTarget: null,
+          },
+        ],
+        0,
+      ),
+      {
+        generatedAt: "2026-07-02T00:00:00.000Z",
+        now: "2026-07-02T00:00:00.000Z",
+      },
+    );
+
+    expect(completionDedicatedPacketBridgeViolations(process.cwd(), packet)).toContain(
+      "missing live S4 decision packet for PLAN-NO-SUCH-S3",
+    );
+  });
+
+  it("U-OUTSTANDING-011: completion decision doctor bridge has no scoped packet drift for live decisions", () => {
+    const livePacket = completionDecisionPacketForOutstanding(
+      computeOutstandingWork(process.cwd()),
+    );
+
+    expect(livePacket.decisionCount).toBe(livePacket.decisions.length);
+    expect(completionDedicatedPacketBridgeViolations(process.cwd(), livePacket)).toEqual([]);
+  });
+
+  it("U-OUTSTANDING-014: completion review-bundle doctor bridge accepts current live review packets", () => {
+    const liveS4Packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(process.cwd()));
+    const expectedBundle = completionReviewBundleForOutstanding(
+      computeOutstandingWork(process.cwd()),
+    );
+
+    const result = checkCompletionReviewBundle(process.cwd(), { s4Packets: liveS4Packets });
+    expect(liveS4Packets).toEqual([]);
+    expect(result.ok).toBe(true);
+    expect(result.messages).toContainEqual(
+      expect.stringContaining(`reviewPackets=${expectedBundle.reviewPacketCount}`),
+    );
+  });
+
+  it("ok=true includes handover and agent-slots surfaces as warnings", () => {
+    const r = runDoctor(deps());
+    expect(r.ok).toBe(false);
+    expect(r.messages.some((m) => m.includes("handover"))).toBe(true);
+    expect(r.messages.some((m) => m.includes("agent-slots"))).toBe(true);
+    expect(
+      r.messages.some((m) => m.includes("verification") && m.includes("design doc なし")),
+    ).toBe(true);
+    // Keep warning-only surfaces from masking hard-fail lint coverage.
+    expect(r.messages.some((m) => m.includes("scrum-reverse"))).toBe(true);
+    expect(r.messages.some((m) => m.includes("propagation"))).toBe(true);
+    expect(r.messages.some((m) => m.includes("coding-rules"))).toBe(true);
+  });
+
+  it("includes asset-drift hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: asset-drift", "OK")).toBe(true);
+  });
+
+  it("includes allowlist-sync hard gate in doctor output", () => {
+    const sync = checkAllowlistSync(process.cwd());
+    const r = liveDoctor();
+
+    expect(sync.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: allowlist-sync - OK")).toBe(true);
+  });
+
+  it("includes judgment-core-coverage hard gate in doctor output", () => {
+    const coverage = checkJudgmentCoreCoverage(process.cwd());
+    const r = liveDoctor();
+
+    expect(coverage.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: judgment-core-coverage - OK")).toBe(true);
+  });
+
+  it("includes skill-assignment hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: skill-assignment - OK")).toBe(true);
+  });
+
+  // PLAN-L7-95: the 4 previously-inert lint audits + the lint-wiring meta-gate must be
+  // invoked by runDoctor (invocation fence — guards against re-introducing the absence-blindness
+  // where a lint module is reachable/tested but its audit never runs in a runtime path).
+  it("invokes the 4 newly-wired lint audits + lint-wiring meta-gate in doctor output", () => {
+    const r = liveDoctor();
+    for (const gate of [
+      "doctor: doc-consistency — OK",
+      "doctor: entity-coverage — OK",
+      "doctor: fr-registry-audit — OK",
+      "doctor: improvement-backlog — OK",
+      "doctor: design-language - OK",
+      "doctor: lint-wiring — OK",
+    ]) {
+      expect(r.messages.some((m) => m.includes(gate))).toBe(true);
+    }
+  });
+
+  it("includes branch-kind-check in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(true);
+  });
+
+  it("includes right-arm verification strategy hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: right-arm-verification-strategy - OK")).toBe(true);
+  });
+
+  it("includes L14 close audit hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: l14-close-audit - OK")).toBe(true);
+  });
+
+  it("includes version-up readiness hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
+  });
+
+  it("includes action-binding approval readiness hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: action-binding-approval-readiness - OK")).toBe(
+      true,
+    );
+  });
+
+  it("includes S4 decision readiness hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: s4-decision-readiness - OK")).toBe(true);
+  });
+
+  it("includes cutover readiness hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: cutover-readiness - OK")).toBe(true);
+  });
+
+  it("includes objective evidence audit hard gate in doctor output", () => {
+    const audit = checkObjectiveEvidenceAudit(process.cwd());
+    const r = liveDoctor();
+
+    expect(audit.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: objective-evidence-audit - OK")).toBe(true);
+    for (const message of audit.messages) {
+      expect(hasDoctorMessage(r.messages, `doctor: ${message}`)).toBe(true);
+    }
+  });
+
+  it("includes repository name path hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: repository-name-paths - OK")).toBe(true);
+  });
+
+  it("includes semantic frontier consistency hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: semantic-frontier-consistency - OK")).toBe(true);
+  });
+
+  it("includes G1/G3 trace gates in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: g1-trace - OK")).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: g3-trace - OK")).toBe(true);
+  });
+
+  it("includes requirements-binding config hard gate in doctor output", () => {
+    const config = checkRequirementsBindingConfig(process.cwd());
+    const r = liveDoctor();
+
+    expect(config.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: requirements-binding-config - OK")).toBe(true);
+  });
+
+  it("includes refactor-candidate-triage warning surface in doctor output", () => {
+    const triage = checkRefactorCandidateTriage(process.cwd());
+    const r = liveDoctor();
+
+    expect(triage.ok).toBe(true);
+    expect(hasDoctorMessageWith(r.messages, "doctor: refactor-candidate-triage", "")).toBe(true);
+  });
+
+  it("hard-gates PLAN governance once repo frontmatter debt is closed", () => {
+    const governance = checkPlanGovernance(process.cwd());
+    const r = liveDoctor();
+
+    expect(governance.ok).toBe(true);
+    expect(governance.messages[0]).toContain("plan-governance - OK");
+    expect(hasDoctorMessageWith(r.messages, "doctor: plan-schedule", "OK")).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: plan-governance - OK")).toBe(true);
+  });
+
+  it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: dependency-drift")).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: regression-expansion")).toBe(true);
+    expect(r.messages.some((m) => m.includes("scaffold stub"))).toBe(false);
+  });
+
+  it("surfaces roadmap-rollup as a hard gate summary line", () => {
+    const r = liveDoctor();
+    const rollupLines = r.messages.filter((m) => m.startsWith("doctor: roadmap-rollup"));
+
+    expect(rollupLines).toHaveLength(1);
+    expect(rollupLines[0]).toContain("bands ");
+    expect(rollupLines[0]).toContain("gates ");
+    expect(rollupLines[0]).toContain("spans ");
+    expect(rollupLines[0]).toContain("frontier:");
+  });
+
+  it("surfaces Cycle P4 closure audit as a hard gate", () => {
+    const r = liveDoctor();
+
+    expect(hasDoctorMessage(r.messages, "doctor: cycle-p4-verification - OK")).toBe(true);
+  });
+
+  it("fails descent-obligation when a trace chain has no required downstream landing", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-descent-"));
+    try {
+      const docDir = join(root, "docs", "design", "harness", "L6-function-design");
+      mkdirSync(docDir, { recursive: true });
+      writeFileSync(
+        join(docDir, "bad.md"),
+        "---\nlayer: L6\nstatus: confirmed\n---\nFR-L1-99\n",
+        "utf8",
+      );
+
+      const result = checkDescentObligation(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("descent-obligation - unmet");
+      expect(result.messages.join("\n")).toContain("FR-L1-99");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // Guardrail invariant helper for review evidence fixtures.
+  function planWithReview(
+    planId: string,
+    reviewKind: string,
+    reviewer: string,
+    worker: string,
+  ): string {
+    return [
+      "---",
+      `plan_id: ${planId}`,
+      "status: confirmed",
+      "kind: impl",
+      "review_evidence:",
+      "  - reviewer: code-reviewer",
+      `    review_kind: ${reviewKind}`,
+      `    worker_model: ${worker}`,
+      `    reviewer_model: ${reviewer}`,
+      '    tests_green_at: "2026-06-15"',
+      '    reviewed_at: "2026-06-15"',
+      "    verdict: pass",
+      "---",
+      "",
+      "## body",
+      "",
+    ].join("\n");
+  }
+
+  it("passes guardrail-invariants when cross_agent review uses distinct models", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-guardrail-ok-"));
+    try {
+      const planDir = join(root, "docs", "plans");
+      mkdirSync(planDir, { recursive: true });
+      writeFileSync(
+        join(planDir, "PLAN-TEST-01-crossmodel.md"),
+        planWithReview("PLAN-TEST-01-crossmodel", "cross_agent", "gpt-5.4", "claude-opus-4-8"),
+        "utf8",
+      );
+
+      const result = checkGuardrailInvariants(root);
+
+      expect(result.ok).toBe(true);
+      expect(result.messages.join("\n")).toContain("guardrail-invariants");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails guardrail-invariants on cross_agent same-model self-review (reviewer == worker)", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-guardrail-same-"));
+    try {
+      const planDir = join(root, "docs", "plans");
+      mkdirSync(planDir, { recursive: true });
+      writeFileSync(
+        join(planDir, "PLAN-TEST-02-selfreview.md"),
+        planWithReview(
+          "PLAN-TEST-02-selfreview",
+          "cross_agent",
+          "claude-opus-4-8",
+          "claude-opus-4-8",
+        ),
+        "utf8",
+      );
+
+      const result = checkGuardrailInvariants(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("guardrail-invariants - violation");
+      expect(result.messages.join("\n")).toContain("same-model-self-review");
+      expect(result.messages.join("\n")).toContain("PLAN-TEST-02-selfreview");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("permits intra_runtime_subagent same-model review in single-runtime fallback", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-guardrail-intra-"));
+    try {
+      const planDir = join(root, "docs", "plans");
+      mkdirSync(planDir, { recursive: true });
+      writeFileSync(
+        join(planDir, "PLAN-TEST-04-intra.md"),
+        planWithReview("PLAN-TEST-04-intra", "intra_runtime_subagent", "gpt-5.4", "gpt-5.4"),
+        "utf8",
+      );
+
+      const result = checkGuardrailInvariants(root);
+
+      expect(result.ok).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("does not false-positive guardrail-invariants when one model is omitted", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-guardrail-partial-"));
+    try {
+      const planDir = join(root, "docs", "plans");
+      mkdirSync(planDir, { recursive: true });
+      // Missing worker_model should not trigger a same-model violation.
+      writeFileSync(
+        join(planDir, "PLAN-TEST-03-partial.md"),
+        [
+          "---",
+          "plan_id: PLAN-TEST-03-partial",
+          "status: confirmed",
+          "kind: impl",
+          "review_evidence:",
+          "  - reviewer: code-reviewer",
+          "    review_kind: intra_runtime_subagent",
+          "    reviewer_model: claude-sonnet-4-6",
+          '    tests_green_at: "2026-06-15"',
+          '    reviewed_at: "2026-06-15"',
+          "    verdict: pass",
+          "---",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const result = checkGuardrailInvariants(root);
+
+      expect(result.ok).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails closed when guardrail-invariants repo root cannot be read", () => {
+    const missingRoot = join(tmpdir(), `helix-doctor-guardrail-missing-${NOW}-nope`);
+    const result = checkGuardrailInvariants(missingRoot);
+    expect(result.ok).toBe(false);
+  });
+
+  it("fails confirmed L7 PLANs with unchecked DoD items", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-plan-dod-"));
+    try {
+      const planDir = join(root, "docs", "plans");
+      mkdirSync(planDir, { recursive: true });
+      writeFileSync(
+        join(planDir, "PLAN-L7-99-unchecked.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-99-unchecked",
+          "status: confirmed",
+          "kind: impl",
+          "---",
+          "",
+          "## L4 DoD",
+          "",
+          "- [ ] verification evidence is not closed",
+          "",
+          "## L5 Notes",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const result = checkPlanDod(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("plan-dod - violation");
+      expect(result.messages.join("\n")).toContain("PLAN-L7-99-unchecked:9");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails active design/test-design docs with unresolved L7 placeholder_deps", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-placeholder-deps-"));
+    try {
+      const docDir = join(root, "docs", "design", "harness", "L5-detailed-design");
+      mkdirSync(docDir, { recursive: true });
+      writeFileSync(
+        join(docDir, "physical-data.md"),
+        [
+          "---",
+          "layer: L5",
+          "status: confirmed",
+          "---",
+          "",
+          "- placeholder_deps: {waiting_layer:L7, waiting_spec: stale implementation bridge}",
+          "- Current status: dedicated `placeholder_deps` doctor rule is not implemented yet.",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const result = checkPlaceholderDeps(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("placeholder-deps - violation");
+      expect(result.messages.join("\n")).toContain("physical-data.md:6");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails active L4-L6 design docs with stale L7 completion blockers", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-l7-completion-"));
+    try {
+      const docDir = join(root, "docs", "design", "harness", "L4-basic-design");
+      mkdirSync(docDir, { recursive: true });
+      writeFileSync(
+        join(docDir, "function.md"),
+        [
+          "---",
+          "layer: L4",
+          "status: confirmed",
+          "---",
+          "",
+          "> Current implementation only covers C2; remaining items are L7 carry.",
+          "| `helix review --uncommitted` | FR-45 | pending | doc-reviewer |",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const result = checkL7Completion(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("l7-completion - violation");
+      expect(result.messages.join("\n")).toContain("function.md:6");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-ADAPTER-009: surfaces Claude hook / Codex wrapper parity as a doctor hard gate", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-codex-parity-"));
+    try {
+      const result = checkCodexWrapperParity(
+        deps({ repoRoot: root, files: codexWrapperParityFiles(root) }),
+      );
+
+      expect(result.ok).toBe(true);
+      expect(result.messages.join("\n")).toContain("codex-wrapper-parity - OK");
+      expect(result.messages.join("\n")).toContain("codex=helix-wrapper-lifecycle");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-ADAPTER-009: fails closed when Codex wrapper lifecycle evidence is missing", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-codex-parity-missing-"));
+    try {
+      const result = checkCodexWrapperParity(
+        deps({
+          repoRoot: root,
+          files: codexWrapperParityFiles(root, {
+            "tests/runtime-hook-entrypoints.test.ts": "Claude settings only",
+          }),
+        }),
+      );
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("Codex wrapper lifecycle test missing");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails closed when hard-gate checker inputs cannot be read", () => {
+    const missingRoot = join(tmpdir(), `helix-doctor-missing-${Date.now()}-nope`);
+    const checks = [
+      ["backfill", checkBackfillResult(missingRoot)],
+      ["scrum-reverse", checkScrumReverse(missingRoot)],
+      ["propagation", checkPropagation(missingRoot)],
+      ["pair-freeze", checkPairFreeze(missingRoot)],
+      ["module-drift", checkModuleDrift(missingRoot)],
+      ["merged-plan-status", checkMergedPlanStatus(missingRoot)],
+      ["review-evidence", checkReviewEvidence(missingRoot)],
+      ["guardrail-invariants", checkGuardrailInvariants(missingRoot)],
+      ["asset-drift", checkAssetDrift(missingRoot)],
+      ["completion-decision-packet", checkCompletionDecisionPacket(missingRoot)],
+      ["completion-review-bundle", checkCompletionReviewBundle(missingRoot)],
+      ["green-command-digest", checkGreenCommandDigests(missingRoot)],
+      ["skill-assignment", checkSkillAssignment(missingRoot)],
+      ["descent-obligation", checkDescentObligation(missingRoot)],
+      ["change-impact", checkChangeImpact(missingRoot)],
+      ["change-set-integrity", checkChangeSetIntegrity(missingRoot)],
+      ["verification-profile", checkVerificationProfile(missingRoot)],
+      ["coding-rules", checkCodingRules(missingRoot)],
+      ["ddd-tdd-rules", checkDddTddRules(missingRoot)],
+      ["design-language", checkDesignLanguage(missingRoot)],
+      ["runtime-portability", checkRuntimePortability(missingRoot)],
+      ["db-projection-coverage", checkDbProjectionCoverage(missingRoot)],
+      ["db-projection-ingestion", checkDbProjectionIngestion(missingRoot)],
+      ["rule-drift", checkRuleDrift(missingRoot)],
+      ["gate-confirm", checkGateConfirm(missingRoot)],
+      ["plan-dod", checkPlanDod(missingRoot)],
+      ["placeholder-deps", checkPlaceholderDeps(missingRoot)],
+      ["g1-trace", checkPlanTraceGate(missingRoot, "G1-trace")],
+      ["g3-trace", checkPlanTraceGate(missingRoot, "G3-trace")],
+      ["rule-automation-closure", checkRuleAutomationClosure(missingRoot)],
+      ["drive-model-passage", checkDriveModelPassage(missingRoot)],
+      ["drive-db-registration", checkDriveDbRegistration(missingRoot)],
+      ["fr-roadmap-coverage", checkFrRoadmapCoverage(missingRoot)],
+      ["telemetry-closure", checkTelemetryClosure(missingRoot)],
+      ["cycle-p4-verification", checkCycleP4Verification(missingRoot)],
+      ["l6-fr-coverage", checkL6FrCoverage(missingRoot)],
+      ["readability", checkReadability(missingRoot)],
+      ["runtime-readability", checkRuntimeReadability(missingRoot)],
+      ["project-hook", checkProjectHooks(missingRoot)],
+      ["tool-contract-registry", checkToolContractRegistry(missingRoot)],
+      ["codex-wrapper-parity", checkCodexWrapperParity(deps({ repoRoot: missingRoot }))],
+      ["l6-completion", checkL6Completion(missingRoot)],
+      ["l7-completion", checkL7Completion(missingRoot)],
+      ["verification-groups", checkVerificationGroupsResult(missingRoot)],
+      ["roadmap", checkRoadmap(missingRoot)],
+      ["impl-plan-trace", checkImplPlanTrace(missingRoot)],
+      ["oracle-test-trace", checkOracleTestTrace(missingRoot)],
+      ["tracked-canonical", checkTrackedCanonical(missingRoot)],
+      ["dependency-drift", checkDependencyDrift(missingRoot)],
+      ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
+      ["l14-close-audit", checkL14CloseAudit(missingRoot)],
+      ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
+      ["action-binding-approval-readiness", checkActionBindingApprovalReadiness(missingRoot)],
+      ["s4-decision-readiness", checkS4DecisionReadiness(missingRoot)],
+      ["cutover-readiness", checkCutoverReadiness(missingRoot)],
+      ["objective-evidence-audit", checkObjectiveEvidenceAudit(missingRoot)],
+      ["semantic-frontier-consistency", checkSemanticFrontierConsistency(missingRoot)],
+      ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
+    ] as const;
+
+    expect(checks.filter(([, result]) => result.ok).map(([name]) => name)).toEqual([]);
+    for (const [name, result] of checks) {
+      const messages = result.messages.join("\n");
+      if (name === "verification-groups") {
+        expect(messages).toContain("design doc なし");
+      } else {
+        expect(messages).toMatch(/violation/i);
+      }
+    }
+  });
+
+  it("fails db projection ingestion when pair-agent evidence gates are blocked", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-pair-agent-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, ".helix", "evidence", "pair-agent"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-177-helix-orchestration-runtime-bridge",
+          "title: pair-agent evidence doctor fixture",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "created: 2026-07-01",
+          "updated: 2026-07-01",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, ".helix", "evidence", "pair-agent", "20260701034800-PLAN-L7-177.json"),
+        `${JSON.stringify(
+          {
+            schema_version: "pair-agent-run-evidence.v1",
+            recorded_at: "2026-07-01T03:48:00.000Z",
+            run_id: "pair-agent:PLAN-L7-177:20260701034800",
+            mode: "hybrid",
+            execute: true,
+            trace: {
+              plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+              span_id: "pair-agent:PLAN-L7-177:20260701034800:run",
+              tool_contract_id: "HC-P2.runPairAgentTddPlan",
+              guardrail_decision: {
+                guardrail: "frontier-approval",
+                decision: "allow",
+                human_signoff_required: false,
+              },
+              eval_outcome: { ok: true, status: "passed", final_verdict: "pass" },
+              completed_at: "2026-07-01T03:48:00.000Z",
+              phase_spans: [
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034800:phase:1",
+                  phase: "smart_test_author",
+                  cycle: 0,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  eval_outcome: { status: "passed", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034800:phase:2",
+                  phase: "light_implementation",
+                  cycle: 1,
+                  agent_key: "light-implementation-agent",
+                  provider: "codex",
+                  model: "gpt-5.3-codex-spark",
+                  eval_outcome: { status: "passed", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034800:phase:3",
+                  phase: "smart_review",
+                  cycle: 1,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  eval_outcome: { status: "passed", verdict: "pass", exit_code: 0 },
+                },
+              ],
+            },
+            result: {
+              findings: [
+                {
+                  code: "light-agent-closure-claim",
+                  severity: "error",
+                  message: "light agent attempted to close the pair-agent loop",
+                },
+              ],
+            },
+          },
+          null,
+          2,
+        )}\n`,
+      );
+
+      const result = checkDbProjectionIngestion(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("pair-agent-run-evidence gate blocked");
+      expect(result.messages.join("\n")).toContain(
+        "open pair-agent evidence finding pair-agent-evidence-light-agent-closure-claim",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBPROJ-PROV-03: overlays runtime session token usage into model_runs for doctor", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-runtime-model-runs-"));
+    const oldClaudeDir = process.env.HELIX_CLAUDE_SESSIONS_DIR;
+    const oldCodexDir = process.env.HELIX_CODEX_SESSIONS_DIR;
+    try {
+      const claudeDir = join(root, "claude-sessions");
+      const codexDir = join(root, "codex-sessions");
+      mkdirSync(claudeDir, { recursive: true });
+      mkdirSync(codexDir, { recursive: true });
+      process.env.HELIX_CLAUDE_SESSIONS_DIR = claudeDir;
+      process.env.HELIX_CODEX_SESSIONS_DIR = codexDir;
+      writeFileSync(
+        join(claudeDir, "session.jsonl"),
+        `${JSON.stringify({
+          type: "assistant",
+          sessionId: "doctor-session-1",
+          message: {
+            model: "claude-opus-4-8",
+            usage: {
+              input_tokens: 1000,
+              output_tokens: 500,
+              cache_creation_input_tokens: 0,
+              cache_read_input_tokens: 2000,
+            },
+          },
+        })}\n`,
+      );
+      const db = openHarnessDb(":memory:", { repoRoot: root });
+      try {
+        migrate(db);
+        projectRuntimeModelTelemetryForDoctor(root, db);
+        const row = db
+          .prepare(
+            "SELECT runtime, model, role, input_tokens, output_tokens, cached_input_tokens, cost_usd FROM model_runs WHERE role = ?",
+          )
+          .get("session") as
+          | {
+              runtime: string;
+              model: string;
+              role: string;
+              input_tokens: number;
+              output_tokens: number;
+              cached_input_tokens: number;
+              cost_usd: number;
+            }
+          | undefined;
+
+        expect(row).toMatchObject({
+          runtime: "claude",
+          model: "claude-opus-4-8",
+          role: "session",
+          input_tokens: 1000,
+          output_tokens: 500,
+          cached_input_tokens: 2000,
+        });
+        expect(row?.cost_usd).toBeCloseTo(0.0185, 6);
+      } finally {
+        db.close();
+      }
+    } finally {
+      if (oldClaudeDir === undefined) delete process.env.HELIX_CLAUDE_SESSIONS_DIR;
+      else process.env.HELIX_CLAUDE_SESSIONS_DIR = oldClaudeDir;
+      if (oldCodexDir === undefined) delete process.env.HELIX_CODEX_SESSIONS_DIR;
+      else process.env.HELIX_CODEX_SESSIONS_DIR = oldCodexDir;
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("skips change-impact / change-set-integrity in a non-git directory instead of failing closed", () => {
+    // ZIP 展開のみ (非 git) の利用環境: git status が引けないだけで doctor を落とさない。
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-nongit-"));
+    try {
+      const impact = checkChangeImpact(root);
+      const integrity = checkChangeSetIntegrity(root);
+      expect(impact.ok).toBe(true);
+      expect(impact.messages.join("\n")).toMatch(/skipped \(not a git repository\)/);
+      expect(integrity.ok).toBe(true);
+      expect(integrity.messages.join("\n")).toMatch(/skipped \(not a git repository\)/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-GREENCMD-003: keeps all hard gates wired into runDoctor hard-gate aggregation", () => {
+    const source = readFileSync(join(process.cwd(), "src", "doctor", "index.ts"), "utf8");
+    const okExpression = source.match(/return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/)?.[1] ?? "";
+    const expectedHardGates = [
+      "backfill",
+      "scrumRev",
+      "propagation",
+      "pairFreeze",
+      "moduleDrift",
+      "mergedPlanStatus",
+      "reviewEvidence",
+      "guardrailInvariants",
+      "assetDrift",
+      "skillAssignment",
+      "descentObligation",
+      "changeImpact",
+      "changeSetIntegrity",
+      "verificationProfile",
+      "codingRules",
+      "dddTddRules",
+      "designLanguage",
+      "runtimePortability",
+      "dbProjectionCoverage",
+      "dbProjectionIngestion",
+      "verifierProviderMismatch",
+      "ruleDrift",
+      "gateConfirm",
+      "planSchedule",
+      "planGovernance",
+      "planDod",
+      "placeholderDeps",
+      "g1Trace",
+      "g3Trace",
+      "ruleAutomationClosure",
+      "driveModelPassage",
+      "driveDbRegistration",
+      "frRoadmapCoverage",
+      "telemetryClosure",
+      "cycleP4Verification",
+      "l6FrCoverage",
+      "readability",
+      "runtimeReadability",
+      "projectHooks",
+      "toolContractRegistry",
+      "codexWrapperParity",
+      "l6Completion",
+      "l7Completion",
+      "verificationGroups",
+      "roadmap",
+      "implPlanTrace",
+      "oracleTestTrace",
+      "trackedCanonical",
+      "greenCommandDigest",
+      "dependencyDrift",
+      "rightArmVerificationStrategy",
+      "versionUpReadiness",
+      "completionDecisionPacket",
+      "handoverDecisionPacket",
+      "objectiveEvidenceAudit",
+      "regressionExpansion",
+    ];
+
+    expect(expectedHardGates.filter((name) => !okExpression.includes(`${name}.ok`))).toEqual([]);
+  });
+
+  it("verifier-provider-mismatch doctor check blocks self-evaluation evidence", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-verifier-mismatch-"));
+    try {
+      const loopDir = join(root, ".helix", "state", "loop");
+      mkdirSync(loopDir, { recursive: true });
+      writeFileSync(
+        join(loopDir, "PLAN-X.iterations.jsonl"),
+        JSON.stringify({
+          planId: "PLAN-X",
+          iteration: 1,
+          workerProvider: "codex",
+          verifierProvider: "codex",
+        }),
+      );
+
+      const result = checkVerifierProviderMismatch(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("hybrid self-evaluation rows=1");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
