@@ -60,14 +60,23 @@ export interface WebhookSignatureVerificationInput {
 export interface WebhookSignatureVerificationResult {
   ok: boolean;
   algorithm: "sha256";
-  reason?: "missing_secret" | "missing_signature" | "unsupported_algorithm" | "length_mismatch" | "digest_mismatch";
+  reason?:
+    | "missing_secret"
+    | "missing_signature"
+    | "unsupported_algorithm"
+    | "length_mismatch"
+    | "digest_mismatch";
 }
 
 function sha256(value: string): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
-function file(path: ReadOnlyShareBundleFile["path"], mediaType: ReadOnlyShareBundleFile["mediaType"], content: string): ReadOnlyShareBundleFile {
+function file(
+  path: ReadOnlyShareBundleFile["path"],
+  mediaType: ReadOnlyShareBundleFile["mediaType"],
+  content: string,
+): ReadOnlyShareBundleFile {
   return {
     path,
     mediaType,
@@ -77,7 +86,9 @@ function file(path: ReadOnlyShareBundleFile["path"], mediaType: ReadOnlyShareBun
   };
 }
 
-export function buildReadOnlyShareBundle(input: BuildReadOnlyShareBundleInput): ReadOnlyShareBundle {
+export function buildReadOnlyShareBundle(
+  input: BuildReadOnlyShareBundleInput,
+): ReadOnlyShareBundle {
   if (!input.readOnly) throw new Error("read-only share bundle requires readOnly=true");
   if (input.pollIntervalSec < 30) {
     throw new Error("read-only share bundle must keep polling at 30 seconds or slower");

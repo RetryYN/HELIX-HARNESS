@@ -43,7 +43,12 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     states: ["ok", "warn", "error"],
   },
   { name: "CarryList", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok", "empty"] },
-  { name: "ScrumStateRow", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok", "empty"] },
+  {
+    name: "ScrumStateRow",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ["ok", "empty"],
+  },
   {
     name: "GateResultPanel",
     source: L2_SCREEN_SPECIFIC_SOURCE,
@@ -51,14 +56,24 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     states: ["ok", "warn", "error"],
   },
   { name: "TroubleTable", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
-  { name: "InterruptCopyButton", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok"] },
+  {
+    name: "InterruptCopyButton",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ["ok"],
+  },
   {
     name: "TraceGraph",
     source: L2_SCREEN_SPECIFIC_SOURCE,
     readOnly: true,
     states: ["ok", "warn", "error"],
   },
-  { name: "VPairStatusTable", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
+  {
+    name: "VPairStatusTable",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ALL_STATES,
+  },
   {
     name: "HandoverPanel",
     source: L2_SCREEN_SPECIFIC_SOURCE,
@@ -86,7 +101,12 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
   },
   { name: "DocToc", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok", "empty"] },
   { name: "FrStatusTable", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
-  { name: "CoverageHeatmap", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
+  {
+    name: "CoverageHeatmap",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ALL_STATES,
+  },
   { name: "AxisSelector", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok"] },
   {
     name: "WiringDiagram",
@@ -113,7 +133,12 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     readOnly: true,
     states: ["ok", "warn", "error"],
   },
-  { name: "InvocationLogTable", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
+  {
+    name: "InvocationLogTable",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ALL_STATES,
+  },
   {
     name: "SkillInjectionTab",
     source: L2_SCREEN_SPECIFIC_SOURCE,
@@ -132,7 +157,12 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     readOnly: true,
     states: ["ok", "warn", "error"],
   },
-  { name: "RecoveryLogTable", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
+  {
+    name: "RecoveryLogTable",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ALL_STATES,
+  },
   {
     name: "ResumePointList",
     source: L2_SCREEN_SPECIFIC_SOURCE,
@@ -140,7 +170,12 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     states: ["ok", "empty"],
   },
   { name: "RollbackCopyButton", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok"] },
-  { name: "DoctorResultTree", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ALL_STATES },
+  {
+    name: "DoctorResultTree",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ALL_STATES,
+  },
   { name: "SeverityBadge", source: "L4-alias", readOnly: true, states: ["ok", "warn", "error"] },
   {
     name: "DetectionCountSummary",
@@ -154,7 +189,12 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     readOnly: true,
     states: ["ok", "warn", "error", "empty"],
   },
-  { name: "RecipeList", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok", "empty"] },
+  {
+    name: "RecipeList",
+    source: L2_SCREEN_SPECIFIC_SOURCE,
+    readOnly: true,
+    states: ["ok", "empty"],
+  },
   { name: "SideNav", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok"] },
   { name: "SearchBox", source: L2_SCREEN_SPECIFIC_SOURCE, readOnly: true, states: ["ok", "empty"] },
 ];

@@ -6,11 +6,6 @@ export {
   SPECIFIC_COMPONENTS,
 } from "./catalog";
 export { componentCoverageSummary, renderAllScreens, renderAppShell, renderScreen } from "./render";
-export {
-  buildReadOnlyShareBundle,
-  READ_ONLY_SHARE_PLAN_ID,
-  verifyGithubWebhookSignature,
-} from "./share";
 export type {
   BuildReadOnlyShareBundleInput,
   ReadOnlyShareBundle,
@@ -18,6 +13,11 @@ export type {
   ReadOnlyShareManifest,
   WebhookSignatureVerificationInput,
   WebhookSignatureVerificationResult,
+} from "./share";
+export {
+  buildReadOnlyShareBundle,
+  READ_ONLY_SHARE_PLAN_ID,
+  verifyGithubWebhookSignature,
 } from "./share";
 export { defaultTokenPath, loadUiTokens } from "./tokens";
 export type {

@@ -62,6 +62,10 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
   これは `PLAN-L7-141` の static read-only HTML から `index.html` と `share-manifest.json` をローカル生成するだけの
   no-write / no-deploy surface であり、Cloudflare deploy、GitHub webhook 登録、secret binding、access control 設定は
   実行しない。
+- `helix version-up activation-bundle --plan PLAN-L7-146-serverless-readonly-share --out <dir> --json` は
+  `readonly-share-index.html` と `readonly-share-manifest.json` も同梱する。activation packet の
+  `activationVerificationCommandMatrix` も `readonly-share-bundle` phase を持ち、share-bundle 証跡を
+  completion review から見落とさない。
 - `share-manifest.json` は `planOnly=true`、`mustNotDeploy=true`、`readOnly=true`、
   `hmacRequired=true`、`accessControlRequired=true`、`noSecretOrPiiProjection=true`、`noProdWrite=true` を明示し、
   `activation.*Approved=false` を固定する。これは action-binding approval の代替ではなく、承認前の review packet を厚くする証跡である。
