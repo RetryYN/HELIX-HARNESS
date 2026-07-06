@@ -3,7 +3,7 @@ plan_id: PLAN-L6-56-harness-memory-compaction
 title: "PLAN-L6-56 (add-design): ハーネスメモリ compaction の機能設計 — superseded entry の物理整理と surface 品質の維持"
 kind: add-design
 layer: L6
-drive: harness
+drive: be
 status: draft
 route_mode: add-feature
 entry_signals:
