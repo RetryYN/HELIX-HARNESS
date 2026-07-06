@@ -193,6 +193,12 @@ export interface RebuildHarnessDbInput {
   relationGraph?: RelationGraphProjection;
   documentExports?: DocumentExportProjectionRows;
   verificationEvidence?: VerificationEvidenceProjection;
+  onProfile?: (entry: RebuildHarnessDbProfileEntry) => void;
+}
+
+export interface RebuildHarnessDbProfileEntry {
+  name: string;
+  durationMs: number;
 }
 
 export interface RebuildHarnessDbResult {
@@ -1126,6 +1132,10 @@ function projectRoadmapRollup(repoRoot: string, db: HarnessDb): void {
 
 function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
   const indexedAt = nowIso();
+  const greenCommandEvidenceCache = new Map<
+    string,
+    ReturnType<typeof parseGreenCommandEvidence> | null
+  >();
   for (const plan of loadReviewPlans(repoRoot)) {
     const firstEntry = plan.crossEntries[0];
     const id = stableId("review-evidence", plan.plan_id);
@@ -1183,6 +1193,7 @@ function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
           fallbackPlanId: plan.plan_id,
           testRunId,
           command,
+          evidenceCache: greenCommandEvidenceCache,
         });
       }
     }
@@ -1195,15 +1206,20 @@ function projectStructuredGreenCommandCaseEvidence(input: {
   fallbackPlanId: string;
   testRunId: string;
   command: GreenCommandProjectionInput;
+  evidenceCache: Map<string, ReturnType<typeof parseGreenCommandEvidence> | null>;
 }): void {
-  const { repoRoot, db, fallbackPlanId, testRunId, command } = input;
+  const { repoRoot, db, fallbackPlanId, testRunId, command, evidenceCache } = input;
   if (!command.evidence_path || isAbsolute(command.evidence_path)) return;
   const fullPath = join(repoRoot, command.evidence_path);
   const relPath = normalizePath(relative(repoRoot, fullPath));
   if (relPath.startsWith("..") || isAbsolute(relPath) || !existsSync(fullPath)) return;
   try {
-    const content = readFileSync(fullPath, "utf8");
-    const parsed = parseGreenCommandEvidence(command.evidence_path, content);
+    let parsed = evidenceCache.get(relPath);
+    if (!evidenceCache.has(relPath)) {
+      const content = readFileSync(fullPath, "utf8");
+      parsed = parseGreenCommandEvidence(command.evidence_path, content);
+      evidenceCache.set(relPath, parsed);
+    }
     const cases = parsed?.cases ?? [];
     if (cases.length === 0) return;
     const recordedAt = parsed?.recorded_at ?? command.completed_at ?? nowIso();
@@ -2782,20 +2798,39 @@ function artifactProgressType(kind: string): string {
   return kind === "source" ? "source" : kind;
 }
 
-function passedTestRunsForPaths(db: HarnessDb, testPaths: string[]): string[] {
+interface PassedTestRunIndexEntry {
+  id: string;
+  evidencePath: string;
+  command: string;
+}
+
+function loadPassedTestRunIndex(db: HarnessDb): PassedTestRunIndexEntry[] {
+  return db
+    .prepare(
+      `SELECT test_run_id, evidence_path, command
+       FROM test_runs
+       WHERE exit_code = 0
+       ORDER BY completed_at, test_run_id`,
+    )
+    .all()
+    .map((row) => ({
+      id: String(row.test_run_id ?? ""),
+      evidencePath: String(row.evidence_path ?? ""),
+      command: String(row.command ?? ""),
+    }))
+    .filter((row) => row.id);
+}
+
+function passedTestRunsForPaths(
+  testRuns: readonly PassedTestRunIndexEntry[],
+  testPaths: string[],
+): string[] {
   const ids = new Set<string>();
   for (const path of testPaths) {
-    const like = `%${path.replace(/\\/g, "/")}%`;
-    const rows = db
-      .prepare(
-        `SELECT test_run_id
-         FROM test_runs
-         WHERE exit_code = 0
-           AND (evidence_path = ? OR command LIKE ?)
-         ORDER BY completed_at, test_run_id`,
-      )
-      .all(path, like);
-    for (const row of rows) ids.add(String(row.test_run_id ?? ""));
+    const normalized = path.replace(/\\/g, "/");
+    for (const run of testRuns) {
+      if (run.evidencePath === path || run.command.includes(normalized)) ids.add(run.id);
+    }
   }
   return [...ids].filter(Boolean).sort();
 }
@@ -2811,6 +2846,25 @@ function activeRecoveryPlanIds(db: HarnessDb): string[] {
     )
     .all();
   return rows.map((row) => String(row.plan_id ?? "")).filter(Boolean);
+}
+
+function openDependencyImpactCounts(db: HarnessDb): Map<string, number> {
+  const counts = new Map<string, number>();
+  const rows = db
+    .prepare(
+      `SELECT root_node_id, impacted_node_id
+       FROM impact_results
+       WHERE status = 'open'`,
+    )
+    .all();
+  for (const row of rows) {
+    const rowIds = new Set([String(row.root_node_id ?? ""), String(row.impacted_node_id ?? "")]);
+    for (const id of rowIds) {
+      if (!id) continue;
+      counts.set(id, (counts.get(id) ?? 0) + 1);
+    }
+  }
+  return counts;
 }
 
 function nodeRecoveryPlanIds(
@@ -2840,6 +2894,7 @@ function projectArtifactProgress(db: HarnessDb, graph: RelationGraphProjection |
     .sort((a, b) => String(a.path).localeCompare(String(b.path)));
   const coveredByEdges = new Map<string, typeof graph.edges>();
   const pairedEdges = new Map<string, typeof graph.edges>();
+  const nodesById = new Map(graph.nodes.map((node) => [node.id, node]));
   for (const edge of graph.edges) {
     if (edge.kind === "covered-by") {
       const list = coveredByEdges.get(edge.from) ?? [];
@@ -2855,27 +2910,25 @@ function projectArtifactProgress(db: HarnessDb, graph: RelationGraphProjection |
     }
   }
   const activeRecoveries = activeRecoveryPlanIds(db);
+  const passedTestRunIndex = loadPassedTestRunIndex(db);
+  const dependencyImpactCounts = openDependencyImpactCounts(db);
   for (const node of progressNodes) {
     const artifactPath = node.path ?? node.id.replace(/^[^:]+:/, "");
     const linkedTestIds = (coveredByEdges.get(node.id) ?? [])
       .map((edge) => edge.to)
-      .filter((id) => graph.nodes.some((candidate) => candidate.id === id))
+      .filter((id) => nodesById.has(id))
       .sort();
     const pairedTestDesignIds = (pairedEdges.get(node.id) ?? [])
       .map((edge) => (edge.from === node.id ? edge.to : edge.from))
-      .filter((id) => graph.nodes.some((candidate) => candidate.id === id))
+      .filter((id) => nodesById.has(id))
       .sort();
     const linkedIds = [...new Set([...linkedTestIds, ...pairedTestDesignIds])].sort();
     const linkedTestPaths = linkedIds
-      .map((id) => graph.nodes.find((candidate) => candidate.id === id)?.path ?? id)
+      .map((id) => nodesById.get(id)?.path ?? id)
       .filter((path) => path)
       .sort();
-    const openDependencyImpacts = scalarNumber(
-      db,
-      "SELECT COUNT(*) AS value FROM impact_results WHERE status = 'open' AND (root_node_id = ? OR impacted_node_id = ?)",
-      [node.id, node.id],
-    );
-    const passedTestRunIds = passedTestRunsForPaths(db, linkedTestPaths);
+    const openDependencyImpacts = dependencyImpactCounts.get(node.id) ?? 0;
+    const passedTestRunIds = passedTestRunsForPaths(passedTestRunIndex, linkedTestPaths);
     const recoveryPlanIds = nodeRecoveryPlanIds(
       activeRecoveries,
       openDependencyImpacts,
@@ -4076,60 +4129,130 @@ function projectScreens(repoRoot: string, db: HarnessDb): void {
   }
 }
 
+function profiled<T>(
+  name: string,
+  onProfile: RebuildHarnessDbInput["onProfile"],
+  fn: () => T,
+): T {
+  if (!onProfile) return fn();
+  const started = performance.now();
+  try {
+    return fn();
+  } finally {
+    onProfile({ name, durationMs: performance.now() - started });
+  }
+}
+
 export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarnessDbResult {
   const repoRoot = input.repoRoot ?? process.cwd();
   const ownsDb = input.db === undefined;
   const db = input.db ?? openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
   try {
-    const relationGraph = input.relationGraph ?? defaultRelationGraphProjection(repoRoot);
-    const documentExports = input.documentExports ?? defaultDocumentExportProjection(repoRoot);
+    const relationGraph =
+      input.relationGraph ??
+      profiled("defaultRelationGraphProjection", input.onProfile, () =>
+        defaultRelationGraphProjection(repoRoot),
+      );
+    const documentExports =
+      input.documentExports ??
+      profiled("defaultDocumentExportProjection", input.onProfile, () =>
+        defaultDocumentExportProjection(repoRoot),
+      );
     // Atomic rebuild: schema migration + truncate + re-project run inside a single
     // transaction so concurrent doctor/status probes never see a half-migrated or
     // half-populated DB state.
     db.exec("BEGIN IMMEDIATE");
     try {
-      migrate(db);
-      truncateProjectionTables(db);
-      const plans = projectPlans(repoRoot, db);
-      projectDriveRuns(repoRoot, db, plans);
-      projectHookEvents(repoRoot, db, plans);
-      projectReviewModelRuns(repoRoot, db, plans);
-      projectRoadmapRollup(repoRoot, db);
-      projectReviewEvidenceRegistry(repoRoot, db);
-      projectRuntimeVerificationEvents(repoRoot, db);
-      projectPairAgentRunEvidence(repoRoot, db, plans);
-      projectLoopIterations(repoRoot, db);
-      projectGuardrailInvariantAdvisories(db);
-      projectDescentObligations(repoRoot, db);
-      projectVerificationBandExecution(db);
-      projectAutomationAssets(repoRoot, db);
-      projectSkillTelemetry(db, plans);
-      projectSkillMetrics(db);
-      projectSkillEvaluations(db);
-      projectPocEvaluations(db);
-      projectModelEvaluations(db, repoRoot);
-      projectOperationalMetrics(db);
+      profiled("migrate", input.onProfile, () => migrate(db));
+      profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
+      const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
+      profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
+      profiled("projectHookEvents", input.onProfile, () => projectHookEvents(repoRoot, db, plans));
+      profiled("projectReviewModelRuns", input.onProfile, () =>
+        projectReviewModelRuns(repoRoot, db, plans),
+      );
+      profiled("projectRoadmapRollup", input.onProfile, () => projectRoadmapRollup(repoRoot, db));
+      profiled("projectReviewEvidenceRegistry", input.onProfile, () =>
+        projectReviewEvidenceRegistry(repoRoot, db),
+      );
+      profiled("projectRuntimeVerificationEvents", input.onProfile, () =>
+        projectRuntimeVerificationEvents(repoRoot, db),
+      );
+      profiled("projectPairAgentRunEvidence", input.onProfile, () =>
+        projectPairAgentRunEvidence(repoRoot, db, plans),
+      );
+      profiled("projectLoopIterations", input.onProfile, () => projectLoopIterations(repoRoot, db));
+      profiled("projectGuardrailInvariantAdvisories", input.onProfile, () =>
+        projectGuardrailInvariantAdvisories(db),
+      );
+      profiled("projectDescentObligations", input.onProfile, () =>
+        projectDescentObligations(repoRoot, db),
+      );
+      profiled("projectVerificationBandExecution", input.onProfile, () =>
+        projectVerificationBandExecution(db),
+      );
+      profiled("projectAutomationAssets", input.onProfile, () =>
+        projectAutomationAssets(repoRoot, db),
+      );
+      profiled("projectSkillTelemetry", input.onProfile, () => projectSkillTelemetry(db, plans));
+      profiled("projectSkillMetrics", input.onProfile, () => projectSkillMetrics(db));
+      profiled("projectSkillEvaluations", input.onProfile, () => projectSkillEvaluations(db));
+      profiled("projectPocEvaluations", input.onProfile, () => projectPocEvaluations(db));
+      profiled("projectModelEvaluations", input.onProfile, () =>
+        projectModelEvaluations(db, repoRoot),
+      );
+      profiled("projectOperationalMetrics", input.onProfile, () => projectOperationalMetrics(db));
       const projectionDeps = { nowIso, stableId, recordProjectionEvent };
-      projectRefactorCandidateSignals(repoRoot, db, projectionDeps);
-      projectRelationGraph(db, relationGraph);
-      const graphSnapshotId = projectGraphSnapshot(db, relationGraph);
-      projectRelationDiagramArtifacts(db, relationGraph, graphSnapshotId);
-      projectImpactRules(db);
-      projectCurrentImpactResults(repoRoot, db, relationGraph);
-      projectArtifactProgress(db, relationGraph);
-      projectVerificationCatalogs(repoRoot, db);
-      projectDocumentExportCatalogs(db);
-      projectDocumentExports(db, documentExports);
-      projectVerificationEvidence(db, input.verificationEvidence);
-      projectTestCaseCatalog(repoRoot, db);
-      projectUtHistorySignalsFromProjectedRuns(db);
-      projectFeedbackEvents(db, projectionDeps);
-      projectTroubleEvents(db, projectionDeps);
-      projectRetryEvents(db, projectionDeps);
-      projectIssueQueue(db, projectionDeps);
-      projectIssueApprovalGuardrails(db, projectionDeps);
-      projectImprovementLog(db, projectionDeps);
-      projectScreens(repoRoot, db);
+      profiled("projectRefactorCandidateSignals", input.onProfile, () =>
+        projectRefactorCandidateSignals(repoRoot, db, projectionDeps),
+      );
+      profiled("projectRelationGraph", input.onProfile, () => projectRelationGraph(db, relationGraph));
+      const graphSnapshotId = profiled("projectGraphSnapshot", input.onProfile, () =>
+        projectGraphSnapshot(db, relationGraph),
+      );
+      profiled("projectRelationDiagramArtifacts", input.onProfile, () =>
+        projectRelationDiagramArtifacts(db, relationGraph, graphSnapshotId),
+      );
+      profiled("projectImpactRules", input.onProfile, () => projectImpactRules(db));
+      profiled("projectCurrentImpactResults", input.onProfile, () =>
+        projectCurrentImpactResults(repoRoot, db, relationGraph),
+      );
+      profiled("projectArtifactProgress", input.onProfile, () =>
+        projectArtifactProgress(db, relationGraph),
+      );
+      profiled("projectVerificationCatalogs", input.onProfile, () =>
+        projectVerificationCatalogs(repoRoot, db),
+      );
+      profiled("projectDocumentExportCatalogs", input.onProfile, () =>
+        projectDocumentExportCatalogs(db),
+      );
+      profiled("projectDocumentExports", input.onProfile, () =>
+        projectDocumentExports(db, documentExports),
+      );
+      profiled("projectVerificationEvidence", input.onProfile, () =>
+        projectVerificationEvidence(db, input.verificationEvidence),
+      );
+      profiled("projectTestCaseCatalog", input.onProfile, () =>
+        projectTestCaseCatalog(repoRoot, db),
+      );
+      profiled("projectUtHistorySignalsFromProjectedRuns", input.onProfile, () =>
+        projectUtHistorySignalsFromProjectedRuns(db),
+      );
+      profiled("projectFeedbackEvents", input.onProfile, () =>
+        projectFeedbackEvents(db, projectionDeps),
+      );
+      profiled("projectTroubleEvents", input.onProfile, () =>
+        projectTroubleEvents(db, projectionDeps),
+      );
+      profiled("projectRetryEvents", input.onProfile, () => projectRetryEvents(db, projectionDeps));
+      profiled("projectIssueQueue", input.onProfile, () => projectIssueQueue(db, projectionDeps));
+      profiled("projectIssueApprovalGuardrails", input.onProfile, () =>
+        projectIssueApprovalGuardrails(db, projectionDeps),
+      );
+      profiled("projectImprovementLog", input.onProfile, () =>
+        projectImprovementLog(db, projectionDeps),
+      );
+      profiled("projectScreens", input.onProfile, () => projectScreens(repoRoot, db));
       db.exec("COMMIT");
     } catch (error) {
       db.exec("ROLLBACK");

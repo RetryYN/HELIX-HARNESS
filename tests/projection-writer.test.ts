@@ -678,6 +678,59 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("profiles rebuild projection families without changing projected rows", () => {
+    const repoRoot = join(tmpdir(), `helix-rebuild-profile-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-350-profile-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-350-profile-fixture",
+          "title: profile fixture",
+          "kind: refactor",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-06",
+          "---",
+          "",
+          "fixture",
+        ].join("\n"),
+      );
+
+      const plainDb = openHarnessDb(":memory:", { repoRoot });
+      const profiledDb = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const plain = rebuildHarnessDb({ repoRoot, db: plainDb });
+        const profileEntries: Array<{ name: string; durationMs: number }> = [];
+        const profiled = rebuildHarnessDb({
+          repoRoot,
+          db: profiledDb,
+          onProfile: (entry) => profileEntries.push(entry),
+        });
+
+        expect(profileEntries.length).toBeGreaterThan(5);
+        expect(profileEntries.map((entry) => entry.name)).toEqual(
+          expect.arrayContaining([
+            "defaultRelationGraphProjection",
+            "defaultDocumentExportProjection",
+            "projectPlans",
+            "projectDriveRuns",
+            "projectRefactorCandidateSignals",
+          ]),
+        );
+        expect(profileEntries.every((entry) => entry.durationMs >= 0)).toBe(true);
+        expect(profiled.rowCounts).toEqual(plain.rowCounts);
+      } finally {
+        plainDb.close();
+        profiledDb.close();
+      }
+    } finally {
+      rmSync(repoRoot, { force: true, recursive: true });
+    }
+  });
+
   it("auto-populates relation, profile, document export, and test catalog projections on rebuild", () => {
     const db = openHarnessDb(":memory:");
     try {

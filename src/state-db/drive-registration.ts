@@ -144,6 +144,29 @@ export function loadDriveDbRegistrationStats(
   }
 }
 
+export function refreshPersistedDriveDbRegistrationStats(
+  repoRoot: string = process.cwd(),
+  prebuiltDb?: HarnessDb,
+): DriveDbRegistrationStats | null {
+  const db = prebuiltDb ?? openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+  try {
+    migrate(db);
+    const stats = {
+      ...collectDriveDbRegistrationStats(db),
+      expectedPlanCount: loadReviewPlans(repoRoot).length,
+      expectedPlanRegistryFingerprint: collectCurrentPlanRegistryFingerprint(repoRoot),
+    };
+    if (!prebuiltDb && db.path !== ":memory:") {
+      db.exec("PRAGMA wal_checkpoint(PASSIVE)");
+    }
+    return stats;
+  } catch {
+    return null;
+  } finally {
+    if (!prebuiltDb) db.close();
+  }
+}
+
 export function driveDbStatsMatchCurrentPlanRegistry(stats: DriveDbRegistrationStats): boolean {
   return (
     stats.expectedPlanCount !== undefined &&

@@ -143,7 +143,7 @@ import {
   type PairAgentTddPlan,
   runPairAgentTddPlan,
 } from "./orchestration/pair-agent";
-import { lintPlanWithGate } from "./plan/lint";
+import { lintPlanWithGateOptions } from "./plan/lint";
 import {
   type AdapterContextInjection,
   type AdapterProvider,
@@ -242,6 +242,7 @@ import {
   recommendSkillsForText,
   recordSkillRecommendations,
 } from "./skills/recommend";
+import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
@@ -2919,10 +2920,16 @@ plan
   .description("PLAN lint")
   .option(
     "--gate <id>",
-    "run a named PLAN gate lint (schedule, governance/frontmatter, G1-trace, G3-trace)",
+    "run a named PLAN gate lint (schedule, descent, entry-routing, governance/frontmatter, G1-trace, G3-trace)",
   )
-  .action((path?: string, opts?: { gate?: string }) => {
-    const r = lintPlanWithGate(path, process.cwd(), opts?.gate);
+  .option("--write-baseline", "write a machine-generated baseline for the selected gate")
+  .action((path?: string, opts?: { gate?: string; writeBaseline?: boolean }) => {
+    const r = lintPlanWithGateOptions({
+      path,
+      repoRoot: process.cwd(),
+      gate: opts?.gate,
+      writeBaseline: Boolean(opts?.writeBaseline),
+    });
     for (const m of r.messages) process.stdout.write(`${m}\n`);
     process.exitCode = r.ok ? 0 : 1;
   });
@@ -3302,6 +3309,7 @@ db.command("rebuild")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const r = rebuildHarnessDb({ repoRoot: process.cwd() });
+    refreshPersistedDriveDbRegistrationStats(process.cwd());
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
       return;
@@ -3663,21 +3671,18 @@ web
   .option("--json", "JSON output with manifest summary")
   .action(async (opts: { out: string; json?: boolean }) => {
     try {
-      const {
-        buildReadOnlyShareBundle,
-        componentCoverageSummary,
-        loadUiTokens,
-        renderAppShell,
-      } = await loadOptionalWebUi();
+      const { buildReadOnlyShareBundle, componentCoverageSummary, loadUiTokens, renderAppShell } =
+        await loadOptionalWebUi();
       const tokens = loadUiTokens(defaultTokenPathFromCwd());
       const html = renderAppShell(tokens);
       const summary = componentCoverageSummary();
       const bundle = buildReadOnlyShareBundle({
         html,
         generatedAt: new Date().toISOString(),
-        pollIntervalSec: typeof tokens === "object" && tokens !== null && "motion" in tokens
-          ? (tokens as { motion: { pollIntervalSec: number } }).motion.pollIntervalSec
-          : 30,
+        pollIntervalSec:
+          typeof tokens === "object" && tokens !== null && "motion" in tokens
+            ? (tokens as { motion: { pollIntervalSec: number } }).motion.pollIntervalSec
+            : 30,
         screenCount: Number(summary.screenCount),
         commonCount: Number(summary.commonCount),
         specificCount: Number(summary.specificCount),

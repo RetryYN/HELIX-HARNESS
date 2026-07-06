@@ -1,3 +1,7 @@
+import { randomUUID } from "node:crypto";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeDriveDbRegistration,
@@ -10,6 +14,8 @@ import {
   collectCurrentPlanRegistryFingerprint,
   collectDriveDbRegistrationStats,
   driveDbStatsMatchCurrentPlanRegistry,
+  loadOrBuildDriveDbRegistrationStats,
+  refreshPersistedDriveDbRegistrationStats,
 } from "../src/state-db/drive-registration";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
@@ -213,6 +219,39 @@ describe("drive DB registration lint", () => {
       expect(stats.modes).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
     } finally {
       db.close();
+    }
+  });
+
+  it("PLAN-L7-350: refreshed persisted stats make the next drive registration read a fast-path hit", () => {
+    const repoRoot = join(tmpdir(), `helix-drive-fast-path-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-350-drive-fast-path.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-350-drive-fast-path",
+          "title: drive fast path fixture",
+          "kind: refactor",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-06",
+          "---",
+          "",
+          "fixture",
+        ].join("\n"),
+      );
+      rebuildHarnessDb({ repoRoot });
+      const refreshed = refreshPersistedDriveDbRegistrationStats(repoRoot);
+      const loaded = loadOrBuildDriveDbRegistrationStats(repoRoot);
+
+      expect(refreshed).not.toBeNull();
+      expect(loaded).not.toBeNull();
+      expect(driveDbStatsMatchCurrentPlanRegistry(refreshed!)).toBe(true);
+      expect(loaded).toEqual(refreshed);
+    } finally {
+      rmSync(repoRoot, { force: true, recursive: true });
     }
   });
 });
