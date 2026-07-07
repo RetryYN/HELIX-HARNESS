@@ -4,7 +4,7 @@ title: "PLAN-L7-359: doctor check registry / timing / setup-smoke extraction"
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-07
 updated: 2026-07-07
 route_mode: refactor
@@ -39,6 +39,40 @@ dependencies:
     - PLAN-L7-349-cli-split-slice
   references:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-08T01:30:00+09:00"
+    tests_green_at: "2026-07-08T01:30:00+09:00"
+    verdict: approve
+    scope: "PLAN-L7-359 doctor registry / timing / setup-smoke extraction。full doctor の判定意味を変えず、registry collector と lightweight scope を追加した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "CI=true bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: tests/doctor.test.ts
+        output_digest: "sha256:ccd95547fc1dd132b06cf68d38e241485a023159af73daae5690b0ccec4c87d6"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: src/doctor/check-registry.ts
+        output_digest: "sha256:a064c5ca6f271f8e407856676e678001ff2d1d6e387aca212a2cda27aea05140"
+      - kind: lint
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md
+        output_digest: "sha256:dd21c5fe1cebda9e48277036bde16ca73a2e1ad68154f997bcbdfc00c14918ce"
 ---
 
 # PLAN-L7-359: doctor check registry / timing / setup-smoke 抽出

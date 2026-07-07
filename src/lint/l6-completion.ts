@@ -37,8 +37,12 @@ const STATUS_RE = /^status:\s*([^\s#]+)/m;
 const PLAN_ID_RE = /^plan_id:\s*([^\s#]+)/m;
 const DOC_PLAN_RE = /^plan:\s*([^\s#]+)/m;
 const PAIR_ARTIFACT_RE =
-  /^pair_artifact:\s*docs\/test-design\/harness\/L7-unit-test-design\.md\s*$/m;
+  /^pair_artifact:\s*docs\/test-design\/harness\/L[78]-unit-test-design\.md\s*$/m;
 const DESIGN_KIND_RE = /^kind:\s*design$/m;
+const UNIT_TEST_DESIGN_PATHS = [
+  join("docs", "test-design", "harness", "L8-unit-test-design.md"),
+  join("docs", "test-design", "harness", "L7-unit-test-design.md"),
+];
 
 function statusOf(text: string): string | null {
   return text.match(STATUS_RE)?.[1] ?? null;
@@ -184,9 +188,8 @@ export function loadL6CompletionInputs(repoRoot: string): L6CompletionInputs {
   return {
     l6Docs,
     l6Plans,
-    l7Text: readFileSync(
-      join(repoRoot, "docs", "test-design", "harness", "L7-unit-test-design.md"),
-      "utf8",
+    l7Text: UNIT_TEST_DESIGN_PATHS.map((path) => readFileSync(join(repoRoot, path), "utf8")).join(
+      "\n",
     ),
     gateText: readFileSync(join(repoRoot, "docs", "governance", "gate-design.md"), "utf8"),
   };
@@ -196,17 +199,19 @@ export function canLoadL6CompletionInputs(repoRoot: string): boolean {
   return (
     existsSync(join(repoRoot, "docs", "design", "harness", "L6-function-design")) &&
     existsSync(join(repoRoot, "docs", "plans")) &&
-    existsSync(join(repoRoot, "docs", "test-design", "harness", "L7-unit-test-design.md")) &&
+    UNIT_TEST_DESIGN_PATHS.every((path) => existsSync(join(repoRoot, path))) &&
     existsSync(join(repoRoot, "docs", "governance", "gate-design.md"))
   );
 }
 
 export function l6CompletionMessages(result: L6CompletionResult): string[] {
   if (result.ready) {
-    return [`l6-completion — OK (L6 docs ${result.totalDocs}件、L7 confirmed、G6 PASS)`];
+    return [
+      `l6-completion — OK (L6 docs ${result.totalDocs}件、L8 unit design confirmed、G6 PASS)`,
+    ];
   }
   const messages = [
-    `l6-completion — not ready (docs=${result.totalDocs}, draft_docs=${result.draftDocs.length}, draft_plans=${result.draftPlans.length}, l7=${result.l7Status ?? "missing"}, g6=${result.g6Status ?? "missing"})`,
+    `l6-completion — not ready (docs=${result.totalDocs}, draft_docs=${result.draftDocs.length}, draft_plans=${result.draftPlans.length}, unit_test_design=${result.l7Status ?? "missing"}, g6=${result.g6Status ?? "missing"})`,
   ];
   messages.push(
     `l6-completion — freeze-inputs ${result.freezeInputReady ? "OK" : "not ready"} (trace/substance before status flip)`,
@@ -227,12 +232,12 @@ export function l6CompletionMessages(result: L6CompletionResult): string[] {
   }
   if (result.missingDocPairArtifacts.length > 0) {
     messages.push(
-      `l6-completion — L6 docs without L7 pair_artifact: ${result.missingDocPairArtifacts.join(", ")}`,
+      `l6-completion — L6 docs without unit test design pair_artifact: ${result.missingDocPairArtifacts.join(", ")}`,
     );
   }
   if (result.missingL7DocRefs.length > 0) {
     messages.push(
-      `l6-completion — L6 docs not referenced by L7: ${result.missingL7DocRefs.join(", ")}`,
+      `l6-completion — L6 docs not referenced by unit test design: ${result.missingL7DocRefs.join(", ")}`,
     );
   }
   if (result.weakContractDocs.length > 0) {

@@ -4,7 +4,7 @@ title: "PLAN-L7-357: clean distribution sync / package commands"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-07
 updated: 2026-07-07
 route_mode: forward
@@ -37,6 +37,40 @@ dependencies:
     - PLAN-L7-303-distribution-package-surface-readiness
   references:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-08T01:30:00+09:00"
+    tests_green_at: "2026-07-08T01:30:00+09:00"
+    verdict: approve
+    scope: "PLAN-L7-357 clean distribution sync/package surfaces。remote mutation は行わず、sync-plan / sync-stage / sync-pack / package / release-plan を local-only または dry-run packet として追加した。L8 単体テスト設計 pair と L9 結合テスト設計境界は維持する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "CI=true bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: tests/distribution-acceptance.test.ts
+        output_digest: "sha256:ccd95547fc1dd132b06cf68d38e241485a023159af73daae5690b0ccec4c87d6"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:a064c5ca6f271f8e407856676e678001ff2d1d6e387aca212a2cda27aea05140"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:c5933701d3df4320610987bd3393f51ab870224162b8b5d915497128991b6da0"
 ---
 
 # PLAN-L7-357: clean distribution 同期 / package command

@@ -862,16 +862,16 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 
 ### 2026-06-09 L6 Completion Readiness 追補
 
-- U-L6COMP-001: `analyzeL6Completion` は、任意の L6 design doc が draft、owning `plan:` reference 欠落、L7 `pair_artifact` 欠落、L7 から filename で参照されていない、最小 unit-contract substance (contract/signature + DbC/oracle + U-* family) 欠落、base L6 `kind=design` PLAN のいずれかが draft、L7 が draft、または G6 が PASS でない場合に not-ready を報告する。
-- U-L6COMP-002: `analyzeL6Completion` は、全 L6 docs が confirmed、全 L6 docs が owning L6 PLAN と L7 reverse reference へ解決可能、全 L6 docs が unit-test-granularity contract substance を公開、全 base L6 `kind=design` PLANs が review evidence 付き confirmed、L7 が confirmed、かつ G6 が PASS の場合だけ ready を報告する。
+- U-L6COMP-001: `analyzeL6Completion` は、任意の L6 design doc が draft、owning `plan:` reference 欠落、L8 単体テスト設計 `pair_artifact` 欠落、単体テスト設計から filename で参照されていない、最小 unit-contract substance (contract/signature + DbC/oracle + U-* family) 欠落、base L6 `kind=design` PLAN のいずれかが draft、単体テスト設計が draft、または G6 が PASS でない場合に not-ready を報告する。既存 L7 unit design は旧 shim として過渡互換に限り受理する。
+- U-L6COMP-002: `analyzeL6Completion` は、全 L6 docs が confirmed、全 L6 docs が owning L6 PLAN と単体テスト設計 reverse reference へ解決可能、全 L6 docs が unit-test-granularity contract substance を公開、全 base L6 `kind=design` PLANs が review evidence 付き confirmed、単体テスト設計が confirmed、かつ G6 が PASS の場合だけ ready を報告する。
 - U-L6COMP-003: `checkL6Completion` は G6 freeze audit が hardening 可能になるまで、readiness を `doctor` で warn-only として表示する。
 - U-L6COMP-004: `analyzeL6Completion` は、G6 audit 前で docs/plans/L7/G6 がまだ draft でも、L6 trace/substance input が complete なら `freezeInputReady=true` を報告する。
 - U-L6COMP-005: post-G6 `kind=add-design` PLAN draft は base L6 completion を再 open しない。add-feature completeness は backfill/pair/review evidence で扱う。
 
 ### 2026-07-06 L6 追加設計 reverse reference 追補
 
-`l6-completion` の L7 reverse reference は、L6 設計 doc の filename が本テスト設計へ現れることを
-凍結入力とする。以下の追加 L6 設計は既存の L7 unit oracle へ接続し、各実装 PLAN の tests で
+`l6-completion` の reverse reference は、L6 設計 doc の filename が L8 単体テスト設計または旧 shim へ現れることを
+凍結入力とする。以下の追加 L6 設計は既存の unit oracle へ接続し、各実装 PLAN の tests で
 詳細 oracle を保持する。
 
 | L6 doc | L7 oracle |

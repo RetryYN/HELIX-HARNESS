@@ -4,7 +4,7 @@ title: "PLAN-L7-358: distribution update-check advisory"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-07
 updated: 2026-07-07
 route_mode: forward
@@ -37,6 +37,40 @@ dependencies:
     - PLAN-L7-303-distribution-package-surface-readiness
   references:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-08T01:30:00+09:00"
+    tests_green_at: "2026-07-08T01:30:00+09:00"
+    verdict: approve
+    scope: "PLAN-L7-358 update-check advisory。status surface に fail-open update advisory を追加し、test subprocess と CI では network 非依存の disabled path を固定した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "CI=true bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: tests/update-check.test.ts
+        output_digest: "sha256:ccd95547fc1dd132b06cf68d38e241485a023159af73daae5690b0ccec4c87d6"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-08T01:08:24+09:00"
+        evidence_path: src/setup/update-check.ts
+        output_digest: "sha256:a064c5ca6f271f8e407856676e678001ff2d1d6e387aca212a2cda27aea05140"
+      - kind: unit_test
+        command: "CI=true bun test tests/cli-surface.test.ts --timeout 180000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-08T01:31:00+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:47bc303409179c7161990aa01052ab5d9b1cf2e99497ebd35193749fc5b10f1d"
 ---
 
 # PLAN-L7-358: distribution update-check 助言
