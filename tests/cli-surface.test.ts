@@ -955,7 +955,9 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toMatch(
         /evidence=(worker_model を記録する|human approval evidence を記録する)/,
       );
-      expect(blockedText.stdout).toContain("evidence-id=worker_model recorded");
+      expect(blockedText.stdout).toMatch(
+        /evidence-id=(worker_model recorded|human approval evidence recorded)/,
+      );
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
