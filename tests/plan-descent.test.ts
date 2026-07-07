@@ -35,6 +35,10 @@ function makeRepo(): string {
     join(root, "docs", "test-design", "harness", "L7-unit-test-design.md"),
     "# unit test design\n",
   );
+  writeFileSync(
+    join(root, "docs", "test-design", "harness", "L8-unit-test-design.md"),
+    "# L8 unit test design\n",
+  );
   return root;
 }
 
@@ -45,6 +49,7 @@ interface PlanSpec {
   parentDesign?: string | null;
   pairArtifact?: string | null;
   generatesTestCode?: boolean;
+  created?: string;
 }
 
 function writePlan(root: string, spec: PlanSpec): void {
@@ -54,6 +59,7 @@ function writePlan(root: string, spec: PlanSpec): void {
     `kind: ${spec.kind ?? "impl"}`,
     "layer: L7",
     `status: ${spec.status ?? "draft"}`,
+    `created: ${spec.created ?? "2026-07-08"}`,
   ];
   if (spec.parentDesign !== null) {
     lines.push(
@@ -62,7 +68,7 @@ function writePlan(root: string, spec: PlanSpec): void {
   }
   if (spec.pairArtifact !== null) {
     lines.push(
-      `pair_artifact: ${spec.pairArtifact ?? "docs/test-design/harness/L7-unit-test-design.md"}`,
+      `pair_artifact: ${spec.pairArtifact ?? "docs/test-design/harness/L8-unit-test-design.md"}`,
     );
   }
   lines.push("generates:");
@@ -161,6 +167,30 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     const result = analyze(root);
     const bad = result.newViolations.filter((v) => v.planId === "PLAN-L7-908-badpair");
     expect(bad.map((v) => v.reason)).toContain("pair_artifact_not_test_design");
+  });
+
+  it("U-PDESC-007a: 2026-07-08 以降の L7 impl は L8 unit test design pair を必須にする", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-908-l7-pair",
+      pairArtifact: "docs/test-design/harness/L7-unit-test-design.md",
+      created: "2026-07-08",
+    });
+    const result = analyze(root);
+    const bad = result.newViolations.filter((v) => v.planId === "PLAN-L7-908-l7-pair");
+    expect(bad.map((v) => v.reason)).toContain("pair_artifact_not_l8_unit_test_design");
+  });
+
+  it("U-PDESC-007b: 2026-07-08 より前の legacy L7 unit pair は date grandfather する", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-908-legacy-l7-pair",
+      pairArtifact: "docs/test-design/harness/L7-unit-test-design.md",
+      created: "2026-07-07",
+    });
+    const result = analyze(root);
+    expect(result.newViolations).toEqual([]);
+    expect(result.ok).toBe(true);
   });
 
   it("U-PDESC-008: kind=add-impl も impl と同一検査", () => {

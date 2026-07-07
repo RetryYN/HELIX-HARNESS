@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "doctor の挙動不変な構造分割と lightweight scope 追加。既存 gate の pass/fail 意味を変更しない。"
 owner: Codex
 parent_design: docs/process/modes/refactor.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - doctor check definition registry と timing collector 抽出"

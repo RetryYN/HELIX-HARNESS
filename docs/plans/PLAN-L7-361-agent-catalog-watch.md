@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "外部 catalog を HELIX capability ledger へ投影する L7 追加。外部 tool 導入や provider/API activation は行わない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - external catalog ledger / diff / freshness"

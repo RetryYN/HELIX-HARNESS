@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "本 PLAN は extension/preset/bundle lifecycle の L7 採用候補を起票する。setup/distribution surface の L6 / distribution policy 昇格は後続 add-design/backprop PLAN で扱う。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - extension/preset/bundle registry"

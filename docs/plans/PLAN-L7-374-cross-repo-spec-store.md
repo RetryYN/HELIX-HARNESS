@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "本 PLAN は cross-repo requirements store の L7 採用候補を起票する。repository boundary と distribution/source separation の L6 昇格は後続 add-design/backprop PLAN で扱い、書き込み有効化はしない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - read-only cross-repo spec store"

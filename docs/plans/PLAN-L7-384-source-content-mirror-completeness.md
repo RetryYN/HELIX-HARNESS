@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "大量外部 source の all-ref/full-content mirror を安全に検証する L7 監査 protocol。外部 source の code import や credential activation はしない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - chunked full-content source mirror ledger"

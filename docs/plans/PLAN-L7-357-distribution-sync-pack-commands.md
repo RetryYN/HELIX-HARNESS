@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存 distribution plan surface の L7 拡張。配布先 remote への push / release 作成 / tag publish は実行せず、plan-only evidence と local staging までに限定する。"
 owner: Codex
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - clean artifact sync / staging / package surface の HELIX 化"

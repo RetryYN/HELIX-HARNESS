@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "agent 間通信と競合検知を state DB に追加する L7 contract。外部 daemon / network relay は導入しない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - mailbox / heartbeat / file-symbol lock schema"

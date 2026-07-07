@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "Spec Kit の clarify/analyze/checklist/converge pattern を HELIX の既存 lint / outstanding へ接続する L7 追加。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: qa
     slot_label: "QA - cross-artifact gap analyzer"

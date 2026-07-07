@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "status への fail-open advisory 追加であり、version-up activation や外部 release 操作を実行しない。"
 owner: Codex
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - update-check cache / remote resolution / status surface"

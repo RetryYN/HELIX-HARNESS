@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存 loop / effort / handover を run receipt へ束ねる L7 追加。無制限自動実行は行わない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - loop receipt / restart / retry evidence"

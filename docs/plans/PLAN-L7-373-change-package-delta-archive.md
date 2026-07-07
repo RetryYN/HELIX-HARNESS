@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "OpenSpec の change package / archive pattern を HELIX PLAN と trace freeze の L7 validator へ変換する。外部 runtime は導入しない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - change package / delta / archive validator"

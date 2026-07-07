@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存 skill / memory 機構の hygiene 追加。外部 skill marketplace の自動 install は行わない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - skill firing / reaper / memory retention"

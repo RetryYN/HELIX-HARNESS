@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "worker/verifier 分離の L7 拡張。merge/apply は plan-only で、人間承認境界と既存 gate を維持する。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - candidate run packet / neutral verifier"

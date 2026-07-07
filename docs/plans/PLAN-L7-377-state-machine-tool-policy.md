@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "本 PLAN は Statewright の per-state allowed tools / model / approval を L7 採用候補として起票する。workflow gate と adapter enforcement の L6 昇格は後続 add-design/backprop PLAN で扱う。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - state policy schema"

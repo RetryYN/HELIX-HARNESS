@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存 GitHub packet surface への小さな運用 guard 追加。branch protection / release publication の実 apply は行わない。"
 owner: Codex
 parent_design: docs/design/harness/L6-function-design/function-spec.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - branch-type guard / release publication dry-run plan"

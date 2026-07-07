@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "oh-my-openagent の with/without skill eval pattern を HELIX skill hygiene の L7 evidence へ追加する。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: qa
     slot_label: "QA - skill efficacy fixture / grading"

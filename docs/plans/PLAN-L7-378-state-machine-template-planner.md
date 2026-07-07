@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "Statewright の gen_sm / template library pattern を HELIX の role/lens selection へ追加する L7 planning helper。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - workflow template planner"

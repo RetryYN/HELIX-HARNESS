@@ -5,9 +5,9 @@ import { parse as parseYaml } from "yaml";
 /**
  * plan-descent gate (PLAN-L6-54 / PLAN-L7-347)。
  *
- * PO 規則 (2026-07-06): L6 機能設計 + test-design pair ⇒ L7 実装は必須。kind=impl / add-impl の
- * PLAN は L6 設計 doc への parent_design と docs/test-design/ への pair_artifact を持たない限り
- * 起票できない。bottom-up の正規入口は PLAN-DISCOVERY-* / reverse 系のみ。既存違反は
+ * PO 規則 (2026-07-06/2026-07-08): L6 機能設計 + L8 単体テスト設計 pair ⇒ L7 実装は必須。
+ * kind=impl / add-impl の PLAN は L6 設計 doc への parent_design と L8 unit test design への
+ * pair_artifact を持たない限り起票できない。bottom-up の正規入口は PLAN-DISCOVERY-* / reverse 系のみ。既存違反は
  * grandfather baseline に固定し ratchet (増加禁止・減少可) で段階是正する。
  * 設計正本: docs/design/harness/L6-function-design/plan-descent-gate.md (U-PDESC-001..010)。
  */
@@ -15,6 +15,8 @@ import { parse as parseYaml } from "yaml";
 export const DESIGN_PARENT_PREFIX = "docs/design/";
 export const L6_DESIGN_SEGMENT = "L6-";
 export const TEST_DESIGN_PREFIX = "docs/test-design/";
+export const L8_UNIT_TEST_DESIGN_SEGMENT = "L8-unit-test-design";
+export const L8_PAIR_ENFORCEMENT_DATE = "2026-07-08";
 export const PLAN_DESCENT_BASELINE_PATH = "docs/governance/plan-descent-baseline.json";
 
 const TARGET_KINDS = new Set(["impl", "add-impl"]);
@@ -25,6 +27,7 @@ export type PlanDescentReason =
   | "parent_design_absent"
   | "parent_design_not_l6_design_doc"
   | "pair_artifact_not_test_design"
+  | "pair_artifact_not_l8_unit_test_design"
   | "parent_design_not_confirmed"
   | "generates_missing_test_code";
 
@@ -33,6 +36,7 @@ export interface PlanDescentDoc {
   planId: string;
   kind: string | null;
   status: string | null;
+  created: string | null;
   parentDesign: string | null;
   parentDesignExists: boolean;
   parentDesignStatus: string | null;
@@ -112,6 +116,7 @@ export function loadPlanDescentDocs(
       planId: stringField(raw.plan_id) ?? rel,
       kind: stringField(raw.kind),
       status: stringField(raw.status),
+      created: stringField(raw.created),
       parentDesign,
       parentDesignExists: parentDesign ? existsSync(join(repoRoot, parentDesign)) : false,
       parentDesignStatus: parentDesign ? docStatus(repoRoot, parentDesign) : null,
@@ -149,6 +154,14 @@ function isL6DesignDoc(path: string): boolean {
   return path.startsWith(DESIGN_PARENT_PREFIX) && path.includes(`/${L6_DESIGN_SEGMENT}`);
 }
 
+function isL8PairEnforced(doc: PlanDescentDoc): boolean {
+  return !doc.created || doc.created >= L8_PAIR_ENFORCEMENT_DATE;
+}
+
+function isL8UnitTestDesign(path: string): boolean {
+  return path.includes(L8_UNIT_TEST_DESIGN_SEGMENT);
+}
+
 function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
   const violations: PlanDescentViolation[] = [];
   if (!doc.parentDesign) {
@@ -183,6 +196,13 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
       file: doc.file,
       reason: "pair_artifact_not_test_design",
       detail: doc.pairArtifact ?? undefined,
+    });
+  } else if (isL8PairEnforced(doc) && !isL8UnitTestDesign(doc.pairArtifact)) {
+    violations.push({
+      planId: doc.planId,
+      file: doc.file,
+      reason: "pair_artifact_not_l8_unit_test_design",
+      detail: doc.pairArtifact,
     });
   }
   if (!doc.generatesArtifactTypes.includes("test_code")) {
@@ -247,7 +267,7 @@ export function planDescentMessages(result: PlanDescentResult): string[] {
     .map((v) => `${v.planId}:${v.reason}${v.detail ? `(${v.detail})` : ""}`)
     .join(", ");
   return [
-    `plan-descent - violation ${result.newViolations.length} 件 (checked=${result.checked}, grandfathered=${grandfatheredIds}/${result.baselineCount})。L6 設計 doc への parent_design と docs/test-design/ への pair_artifact、generates の test_code を確認 (PLAN-L6-54)`,
+    `plan-descent - violation ${result.newViolations.length} 件 (checked=${result.checked}, grandfathered=${grandfatheredIds}/${result.baselineCount})。L6 設計 doc への parent_design、L8 単体テスト設計への pair_artifact、generates の test_code を確認 (PLAN-L6-54/PLAN-L6-60)`,
     `plan-descent - sample: ${sample}`,
   ];
 }

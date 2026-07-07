@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存 adapter / role routing の L7 hardening。外部 runtime 実行や provider activation は含めない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - runtime capability schema / routing evidence"
