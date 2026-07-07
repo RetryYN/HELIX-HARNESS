@@ -99,10 +99,11 @@ G-10 追加 outstanding note（2026-07-07 agent/spec/harness 追突）:
   `docs/governance/helix-agent-harness-topic-all-ref-content-ledger-2026-07-07.tsv` に固定した。
   topic all-ref blob content は `ok=437`、`pending=0` である。外部 source 取得は read-only clone / refs 列挙 /
   blob hash に限定し、外部 code 実行、dependency install、credential 使用、secret / PII 保存、外部 write を行わない。
-  source mirror 監査成果は commit `da83c8c1a8048fe881ca16509ac28cb123bd7196` として
-  `origin/codex/helix-l3-pillar-descent` へ push 済みである。draft PR 作成は local `gh` 未ログインと
-  GitHub connector `403 Resource not accessible by integration` により未完了。main merge は review / approval 境界が
-  未成立のため直接実施しない。
+  source mirror 監査成果は commit `da83c8c1a8048fe881ca16509ac28cb123bd7196` と publish-status commit
+  `9d181c10ca7ea26f8647df942c2efbdfcc658a4e` として `origin/codex/helix-l3-pillar-descent` へ push 済みである。
+  draft PR は <https://github.com/RetryYN/HELIX-HARNESS/pull/1> として起票済みである。PR #1 は 2026-07-08 時点で
+  `OPEN` / `MERGEABLE` だが、`harness-check` が `FAILURE` であり、review / approval 境界も未成立である。
+  main merge は review / approval / CI gate が未成立のため直接実施しない。
 
 G-10 required actions:
 

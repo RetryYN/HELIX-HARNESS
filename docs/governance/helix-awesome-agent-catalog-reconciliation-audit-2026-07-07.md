@@ -347,10 +347,12 @@ Conventional Commit `docs: audit agent harness source catalogs` として commit
 
 - branch: `codex/helix-l3-pillar-descent`
 - commit: `da83c8c1a8048fe881ca16509ac28cb123bd7196`
+- publish-status commit: `9d181c10ca7ea26f8647df942c2efbdfcc658a4e`
 - remote branch: `origin/codex/helix-l3-pillar-descent`
 - push: `git push origin codex/helix-l3-pillar-descent` 成功
 - base branch at push verification: `origin/main` = `7014aff62041dc9d7808c8986990a68611c85b2c`
+- draft PR: <https://github.com/RetryYN/HELIX-HARNESS/pull/1>
 
-PR 作成は GitHub 運用ルールどおり draft PR を優先したが、local `gh auth status` は未ログインであり、
-GitHub connector の `_create_pull_request` も `Resource not accessible by integration` (`403`) で拒否された。
-このため PR 作成と main merge は未実施である。main への直接 merge は review / approval 境界を越えるため実施しない。
+PR 作成は GitHub 運用ルールどおり draft PR として完了した。PR #1 は 2026-07-08 時点で `OPEN` / `MERGEABLE`
+だが、`harness-check` が `FAILURE` であり、review / approval 境界も未成立である。このため main merge は未実施である。
+main への直接 merge は review / approval / CI gate を越えるため実施しない。
