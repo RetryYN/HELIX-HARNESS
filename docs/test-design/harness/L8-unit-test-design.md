@@ -1,8 +1,9 @@
 ---
 layer: L8
 artifact_type: test_design
-status: draft
+status: confirmed
 legacy_source: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/design/harness/L6-function-design/
 created: 2026-07-08
 updated: 2026-07-08
 ---

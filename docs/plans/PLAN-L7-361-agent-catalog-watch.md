@@ -36,7 +36,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-361: external agent catalog watch
+# PLAN-L7-361: 外部 agent catalog 監視
 
 ## 目的
 

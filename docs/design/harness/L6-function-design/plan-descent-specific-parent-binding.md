@@ -1,13 +1,13 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 plan: docs/plans/PLAN-L6-60-specific-parent-design-binding.md
 ---
 
 > **L6 contract marker**: `analyzeSpecificParentDesignBinding(docs, parentDocs, baseline) => SpecificParentDesignBindingResult` は
-> unit-test 粒度の contract。pre: 対象は `kind=impl/add-impl` の PLAN。post: L7 PLAN が汎用 parent design だけで
+> 単体テスト粒度の contract。pre: 対象は `kind=impl/add-impl` の PLAN。post: L7 PLAN が汎用 parent design だけで
 > 新機能・新 capability の設計判断を保持する場合、baseline 外では ok=false。invariant: L7 は実装/テスト slice であり、
 > 採用候補の要件・境界・契約は L3-L6 の design/add-design PLAN へ降下させる。
 
@@ -16,7 +16,7 @@ plan: docs/plans/PLAN-L6-60-specific-parent-design-binding.md
 ## §1 範囲
 
 `PLAN-L6-54-plan-descent-gate` / `PLAN-L7-347-plan-descent-gate-impl` は、L7 PLAN に L6 parent design と
-L8 unit-test design pair を要求する。しかし今回の外部 agent catalog 監査で、`docs/design/helix/L6-function-design/pillar-function-design.md`
+L8 単体テスト設計 pair を要求する。しかし今回の外部 agent catalog 監査で、`docs/design/helix/L6-function-design/pillar-function-design.md`
 のような汎用 L6 doc を親にして、実質的には新 capability の採用判断・境界・受入条件を L7 PLAN 本文へ置く経路が残った。
 
 これは V-model の左腕を使わず、L7 を設計棚卸し doc として使う穴である。本設計はこの穴を追加 gate として塞ぐ。
@@ -40,9 +40,9 @@ L8 unit-test design pair を要求する。しかし今回の外部 agent catalo
 - `missing_source_generate`: L7 impl PLAN の `generates` が markdown/test_code だけで、実装 surface が無い。
 - `missing_forward_descent_debt_record`: 採用候補棚卸しを L7 に一時置きする理由・降下先・実装禁止条件が無い。
 
-## §4 Test oracle
+## §4 テスト oracle
 
-Covered by future `tests/plan-descent-specific-parent-binding.test.ts`:
+将来の `tests/plan-descent-specific-parent-binding.test.ts` で被覆する:
 
 | ID | oracle |
 |---|---|

@@ -64,6 +64,41 @@ function hasDoctorMessage(messages: string[], fragment: string): boolean {
   return messages.some((m) => m.includes(fragment));
 }
 
+describe("doctor registry / timing scope", () => {
+  it("runs the toolchain scope through the registry and returns timing evidence", () => {
+    const result = runDoctor(deps(), { scope: "toolchain", timing: true });
+
+    expect(result.scope).toBe("toolchain");
+    expect(result.timings).toEqual([
+      expect.objectContaining({
+        id: "toolchain-pin",
+        ok: expect.any(Boolean),
+        duration_ms: expect.any(Number),
+        message_count: expect.any(Number),
+      }),
+    ]);
+    expect(result.messages.every((message) => message.startsWith("doctor: "))).toBe(true);
+    expect(result.messages.some((message) => message.includes("toolchain-pin"))).toBe(true);
+  });
+
+  it("keeps setup-smoke separate from full product doctor", () => {
+    const result = runDoctor(deps({ files: consumerDoctorFiles() }), {
+      setupSmoke: true,
+      timing: true,
+    });
+
+    expect(result.setupSmoke).toBe(true);
+    expect(result.timings).toEqual([
+      expect.objectContaining({
+        id: "setup-smoke",
+        ok: true,
+      }),
+    ]);
+    expect(result.messages).toContain("doctor: profile=consumer");
+    expect(result.messages.some((message) => message.includes("backfill"))).toBe(false);
+  });
+});
+
 const consumerClaudeAgentNames = [
   "be-api",
   "be-logic",

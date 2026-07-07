@@ -41,7 +41,7 @@ dependencies:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-360: GitHub ops branch-type / release guard parity
+# PLAN-L7-360: GitHub ops branch-type / release guard parity 整備
 
 ## 目的
 

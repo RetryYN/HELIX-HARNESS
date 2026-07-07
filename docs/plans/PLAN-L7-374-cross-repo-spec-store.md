@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-374: cross-repo spec store
+# PLAN-L7-374: cross-repo spec store 整備
 
 ## 目的
 

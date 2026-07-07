@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-375: spec-driven constitution template stack
+# PLAN-L7-375: spec-driven constitution template stack 整備
 
 ## 目的
 

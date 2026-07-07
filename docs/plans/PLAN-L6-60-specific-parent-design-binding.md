@@ -35,7 +35,7 @@ dependencies:
     - docs/plans/PLAN-L7-347-plan-descent-gate-impl.md
 ---
 
-# PLAN-L6-60 (add-design): specific parent design binding
+# PLAN-L6-60 (add-design): 機能固有 parent design binding
 
 ## 0. 目的
 

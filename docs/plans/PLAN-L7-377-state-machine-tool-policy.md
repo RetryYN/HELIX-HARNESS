@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-377: state-machine tool policy
+# PLAN-L7-377: state-machine tool policy 整備
 
 ## 目的
 

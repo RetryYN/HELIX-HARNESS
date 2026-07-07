@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-384: source content mirror completeness
+# PLAN-L7-384: source content mirror completeness 整備
 
 ## 目的
 

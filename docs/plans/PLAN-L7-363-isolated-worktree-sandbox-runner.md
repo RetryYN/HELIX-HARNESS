@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-363: isolated worktree sandbox runner
+# PLAN-L7-363: isolated worktree sandbox runner 整備
 
 ## 目的
 

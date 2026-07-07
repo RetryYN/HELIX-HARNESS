@@ -39,7 +39,7 @@ dependencies:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-358: distribution update-check advisory
+# PLAN-L7-358: distribution update-check 助言
 
 ## 目的
 

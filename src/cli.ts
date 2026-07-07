@@ -8,16 +8,18 @@ import { execFileSync, spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
   appendFileSync,
+  cpSync,
   existsSync,
   mkdirSync,
+  mkdtempSync,
   readdirSync,
   readFileSync,
   rmSync,
   statSync,
   writeFileSync,
 } from "node:fs";
-import { homedir } from "node:os";
-import { dirname, join } from "node:path";
+import { homedir, tmpdir } from "node:os";
+import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
@@ -29,6 +31,12 @@ import {
   renderGithubMergeReadiness,
   runGithubPrCreate,
 } from "./audit/github-merge-readiness";
+import {
+  buildReleasePublicationPlan,
+  evaluateGithubOpsGuard,
+  renderGithubOpsGuard,
+  renderReleasePublicationPlan,
+} from "./audit/github-ops-guard";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
@@ -219,6 +227,9 @@ import { findReference } from "./search/index";
 import {
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
+  buildPackSyncPlan,
+  cleanDistributionSourcePath,
+  gitAddPathspecCommands,
   LOCAL_DISTRIBUTION_PACKAGE_VERSION,
   nodeSetupDeps,
   packageJsonDeclaresHelixScript,
@@ -226,7 +237,15 @@ import {
   runHelixProjectSetup,
   runSetup,
   type SetupArgs,
+  transformCleanDistributionArtifact,
 } from "./setup/index";
+import {
+  checkForUpdate,
+  nodeUpdateCheckDeps,
+  renderUpdateLine,
+  UPDATE_CHECK_DISABLE_ENV,
+  updateCheckDisabled,
+} from "./setup/update-check";
 import { scaffoldSkill } from "./skill-engine/scaffold";
 import {
   bucketRecommendations,
@@ -328,6 +347,26 @@ function collectDistributionCandidatePaths(repoRoot: string): string[] {
   };
   walk(repoRoot);
   return out.sort();
+}
+
+function copyCleanDistributionArtifact(input: {
+  sourceRoot: string;
+  sourcePath: string;
+  targetRoot: string;
+  artifactPath: string;
+}): void {
+  const from = join(input.sourceRoot, ...input.sourcePath.split("/"));
+  const to = join(input.targetRoot, ...input.artifactPath.split("/"));
+  mkdirSync(dirname(to), { recursive: true });
+  if (input.artifactPath === "package.json") {
+    writeFileSync(
+      to,
+      transformCleanDistributionArtifact(input.artifactPath, readFileSync(from, "utf8")),
+      "utf8",
+    );
+    return;
+  }
+  cpSync(from, to, { recursive: true });
 }
 
 function optionFromCommandChain<T>(cmd: Command, key: string): T | undefined {
@@ -915,6 +954,12 @@ program
     const workflowNextAction = workflowNextActionForOutstanding(outstanding);
     const completionNextAction = workflowNextAction;
     const workflowNextActions = workflowNextActionsForOutstanding(outstanding);
+    const update =
+      process.env[UPDATE_CHECK_DISABLE_ENV] === "1" || process.env.VITEST_WORKER_ID
+        ? updateCheckDisabled(
+            process.env.VITEST_WORKER_ID ? "VITEST_WORKER_ID" : UPDATE_CHECK_DISABLE_ENV,
+          )
+        : checkForUpdate(nodeUpdateCheckDeps());
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
       sourceCommand: "helix status --json",
     });
@@ -924,7 +969,7 @@ program
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, update, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
@@ -961,6 +1006,7 @@ program
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
       process.stdout.write(`${semanticMeaningSummaryLine(outstanding)}\n`);
+      process.stdout.write(`${renderUpdateLine(update)}\n`);
       if (objectiveProgress) {
         process.stdout.write(
           `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed}; evidence=${objectiveProgress.progressEvidenceTrusted ? "trusted" : "invalid"}; audit-ok=${objectiveProgress.auditOk}; violations=${objectiveProgress.auditViolationCount})\n`,
@@ -1122,25 +1168,59 @@ program
   .command("doctor")
   .description("統合検証 (doctor / gate / trace / drift / roadmap)")
   .option("--profile <name>", "doctor profile (consumer)")
+  .option("--scope <scope>", "doctor scope: full or toolchain", "full")
+  .option("--setup-smoke", "run the consumer setup smoke subset instead of full product doctor")
+  .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
-  .action((opts: { profile?: string; json?: boolean }) => {
-    const r =
-      opts.profile === "consumer"
-        ? runConsumerDoctor()
-        : opts.profile
-          ? {
-              ok: false,
-              messages: [`doctor: profile - violation unknown profile ${opts.profile}`],
-            }
-          : runDoctor();
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+  .action(
+    (opts: {
+      profile?: string;
+      scope?: string;
+      setupSmoke?: boolean;
+      timing?: boolean;
+      json?: boolean;
+    }) => {
+      if (opts.scope !== undefined && opts.scope !== "full" && opts.scope !== "toolchain") {
+        const r = {
+          ok: false,
+          messages: [`doctor: scope - violation unknown scope ${opts.scope}`],
+        };
+        if (opts.json) process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+        else for (const m of r.messages) process.stdout.write(`${m}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      const r =
+        opts.profile === "consumer"
+          ? runConsumerDoctor()
+          : opts.profile
+            ? {
+                ok: false,
+                messages: [`doctor: profile - violation unknown profile ${opts.profile}`],
+              }
+            : runDoctor(undefined, {
+                scope: opts.scope as "full" | "toolchain",
+                setupSmoke: opts.setupSmoke === true,
+                timing: opts.timing === true,
+              });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+        process.exitCode = r.ok ? 0 : 1;
+        return;
+      }
+      for (const m of r.messages) process.stdout.write(`${m}\n`);
+      if ("timings" in r && Array.isArray(r.timings) && r.timings.length > 0) {
+        for (const timing of [...r.timings]
+          .sort((a, b) => b.duration_ms - a.duration_ms)
+          .slice(0, 5)) {
+          process.stdout.write(
+            `doctor timing: ${timing.id} duration_ms=${timing.duration_ms} ok=${timing.ok} messages=${timing.message_count}\n`,
+          );
+        }
+      }
       process.exitCode = r.ok ? 0 : 1;
-      return;
-    }
-    for (const m of r.messages) process.stdout.write(`${m}\n`);
-    process.exitCode = r.ok ? 0 : 1;
-  });
+    },
+  );
 
 // `web` command は PLAN-L7-102 prototype (table-dumper) 破棄に伴い撤去 (2026-06-24)。
 // component-derived な中央UI 再実装は PLAN-L7-141 で再配線する。
@@ -4598,6 +4678,55 @@ const github = program
   .description("GitHub operation readiness and PR automation");
 
 github
+  .command("guard")
+  .description("evaluate branch-type and commit subject guards without GitHub writes")
+  .requiredOption("--head <ref>", "head branch/ref")
+  .option("--base <ref>", "base branch/ref", "main")
+  .option("--title <title>", "PR title used for hotfix postmortem detection")
+  .option("--body <body>", "PR body used for hotfix postmortem detection")
+  .option("--commit-subject <subject...>", "commit subject(s) to validate")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      head: string;
+      base?: string;
+      title?: string;
+      body?: string;
+      commitSubject?: string[];
+      json?: boolean;
+    }) => {
+      const result = evaluateGithubOpsGuard({
+        headRef: opts.head,
+        baseRef: opts.base ?? "main",
+        prTitle: opts.title,
+        prBody: opts.body,
+        commitSubjects: opts.commitSubject,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(renderGithubOpsGuard(result));
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
+
+github
+  .command("release-plan")
+  .description("emit a dry-run GitHub Release publication plan without creating tags or releases")
+  .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
+  .requiredOption("--repo <owner/repo>", "GitHub repository")
+  .option("--apply", "mark dryRun=false in the packet; does not execute commands")
+  .option("--json", "JSON output")
+  .action((opts: { tag: string; repo: string; apply?: boolean; json?: boolean }) => {
+    const result = buildReleasePublicationPlan({
+      tag: opts.tag,
+      repo: opts.repo,
+      dryRun: opts.apply !== true,
+    });
+    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    else process.stdout.write(renderReleasePublicationPlan(result));
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+github
   .command("merge-readiness")
   .description("emit a local main-merge readiness packet without requiring GitHub write permission")
   .option("--base <branch>", "base branch for the pull request", "main")
@@ -5047,6 +5176,410 @@ distribution
       `  readiness: ${readiness.ok ? "ok" : "blocked"} mode=${readiness.mode}\n`,
     );
     process.stdout.write("  actual-cut: requires PO approval\n");
+  });
+
+distribution
+  .command("sync-plan")
+  .description("emit a non-destructive clean distribution repository sync plan")
+  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--branch <name>", "distribution repository target branch", "main")
+  .option("--staging-dir <path>", "local distribution staging clone path")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      tag?: string;
+      cleanRepo?: string;
+      branch?: string;
+      stagingDir?: string;
+      json?: boolean;
+    }) => {
+      const repoRoot = process.cwd();
+      const sourcePaths = collectDistributionCandidatePaths(repoRoot);
+      const exportPlan = buildCleanDistributionPlan({
+        paths: sourcePaths,
+        sourceTag: opts.tag,
+        cleanRepo: opts.cleanRepo,
+      });
+      const stagingDir = opts.stagingDir
+        ? isAbsolute(opts.stagingDir)
+          ? opts.stagingDir
+          : join(repoRoot, opts.stagingDir)
+        : join(repoRoot, ".helix", "pack-sync", exportPlan.sourceTag);
+      const sync = buildPackSyncPlan({
+        exportPlan,
+        sourcePaths,
+        stagingDir,
+        branch: opts.branch,
+      });
+      const output = {
+        ok: sync.ok,
+        export: exportPlan,
+        sync,
+        actualRemoteMutationRequiresPoApproval: true,
+      };
+      process.exitCode = sync.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `distribution sync-plan: ${sync.ok ? "ok" : "blocked"} tag=${sync.sourceTag}\n`,
+      );
+      process.stdout.write(`  clean-repo: ${sync.cleanRepo}\n`);
+      process.stdout.write(`  staging-dir: ${sync.stagingDir}\n`);
+      process.stdout.write(`  copy-plan: ${sync.copyPlan.length} files\n`);
+      process.stdout.write("  remote mutation: requires PO approval; commands were not executed\n");
+    },
+  );
+
+distribution
+  .command("sync-stage")
+  .description("materialize clean distribution artifacts into a local staging directory")
+  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--branch <name>", "distribution repository target branch", "main")
+  .option("--out <dir>", "local staging directory", ".helix/pack-stage")
+  .option("--json", "JSON output")
+  .action(
+    (opts: { tag?: string; cleanRepo?: string; branch?: string; out?: string; json?: boolean }) => {
+      const repoRoot = process.cwd();
+      const sourcePaths = collectDistributionCandidatePaths(repoRoot);
+      const exportPlan = buildCleanDistributionPlan({
+        paths: sourcePaths,
+        sourceTag: opts.tag,
+        cleanRepo: opts.cleanRepo,
+      });
+      const outDir = opts.out
+        ? isAbsolute(opts.out)
+          ? opts.out
+          : join(repoRoot, opts.out)
+        : join(repoRoot, ".helix", "pack-stage");
+      const sync = buildPackSyncPlan({
+        exportPlan,
+        sourcePaths,
+        stagingDir: outDir,
+        branch: opts.branch,
+      });
+      mkdirSync(outDir, { recursive: true });
+      const plannedArtifacts = new Set(exportPlan.artifactPaths);
+      const unmanagedExistingPaths = collectDistributionCandidatePaths(outDir).filter(
+        (path) => !plannedArtifacts.has(path) && !path.startsWith(".git/"),
+      );
+      let copyError: string | null = null;
+      if (exportPlan.ok) {
+        try {
+          for (const rel of exportPlan.artifactPaths) {
+            const sourceRel = cleanDistributionSourcePath(rel, sourcePaths);
+            copyCleanDistributionArtifact({
+              sourceRoot: repoRoot,
+              sourcePath: sourceRel,
+              targetRoot: outDir,
+              artifactPath: rel,
+            });
+          }
+        } catch (error) {
+          copyError = error instanceof Error ? error.message : String(error);
+        }
+      }
+      const manifest = join(outDir, ".helix-pack-sync-manifest.json");
+      const output = {
+        ok: exportPlan.ok && copyError === null && unmanagedExistingPaths.length === 0,
+        export: exportPlan,
+        sync,
+        stage: {
+          outDir,
+          manifest,
+          copiedArtifacts:
+            copyError === null && exportPlan.ok ? exportPlan.artifactPaths.length : 0,
+          unmanagedExistingPaths,
+          copyError,
+          destructiveRemoteMutation: false,
+          actualRemoteMutationRequiresPoApproval: true,
+        },
+      };
+      writeFileSync(manifest, `${JSON.stringify(output, null, 2)}\n`, "utf8");
+      process.exitCode = output.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `distribution sync-stage: ${output.ok ? "ok" : "blocked"} tag=${exportPlan.sourceTag}\n`,
+      );
+      process.stdout.write(`  out: ${outDir}\n`);
+      process.stdout.write(`  copied-artifacts: ${output.stage.copiedArtifacts}\n`);
+      process.stdout.write(`  unmanaged-existing: ${unmanagedExistingPaths.length}\n`);
+      process.stdout.write(
+        "  remote mutation: requires PO approval; no push/release was executed\n",
+      );
+    },
+  );
+
+distribution
+  .command("sync-pack")
+  .description("update a local distribution checkout with clean artifacts; never commits or pushes")
+  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--branch <name>", "distribution repository target branch", "main")
+  .requiredOption("--repo-dir <dir>", "local distribution repository checkout to update")
+  .option("--prune-local", "remove local files in repo-dir that are not part of the clean set")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      tag?: string;
+      cleanRepo?: string;
+      branch?: string;
+      repoDir: string;
+      pruneLocal?: boolean;
+      json?: boolean;
+    }) => {
+      const repoRoot = process.cwd();
+      const repoDir = isAbsolute(opts.repoDir) ? opts.repoDir : join(repoRoot, opts.repoDir);
+      const repoExists = existsSync(repoDir);
+      const sourcePaths = collectDistributionCandidatePaths(repoRoot);
+      const exportPlan = buildCleanDistributionPlan({
+        paths: sourcePaths,
+        sourceTag: opts.tag,
+        cleanRepo: opts.cleanRepo,
+      });
+      const sync = buildPackSyncPlan({
+        exportPlan,
+        sourcePaths,
+        stagingDir: repoDir,
+        branch: opts.branch,
+      });
+      const plannedArtifacts = new Set(exportPlan.artifactPaths);
+      const existingBefore = repoExists
+        ? collectDistributionCandidatePaths(repoDir).filter((path) => !plannedArtifacts.has(path))
+        : [];
+      const prunedPaths: string[] = [];
+      let copyError: string | null = null;
+      let pruneError: string | null = null;
+
+      if (repoExists && opts.pruneLocal) {
+        try {
+          for (const rel of existingBefore) {
+            rmSync(join(repoDir, ...rel.split("/")), { force: true });
+            prunedPaths.push(rel);
+          }
+        } catch (error) {
+          pruneError = error instanceof Error ? error.message : String(error);
+        }
+      }
+
+      if (repoExists && exportPlan.ok && pruneError === null) {
+        try {
+          for (const rel of exportPlan.artifactPaths) {
+            const sourceRel = cleanDistributionSourcePath(rel, sourcePaths);
+            copyCleanDistributionArtifact({
+              sourceRoot: repoRoot,
+              sourcePath: sourceRel,
+              targetRoot: repoDir,
+              artifactPath: rel,
+            });
+          }
+        } catch (error) {
+          copyError = error instanceof Error ? error.message : String(error);
+        }
+      }
+
+      const unmanagedExistingPaths =
+        repoExists && pruneError === null
+          ? collectDistributionCandidatePaths(repoDir).filter((path) => !plannedArtifacts.has(path))
+          : existingBefore;
+      const manifestDir = join(repoRoot, ".helix", "pack-sync");
+      mkdirSync(manifestDir, { recursive: true });
+      const manifest = join(
+        manifestDir,
+        `${exportPlan.sourceTag.replace(/[^A-Za-z0-9._-]+/g, "-")}.sync-pack.json`,
+      );
+      const output = {
+        ok:
+          repoExists &&
+          exportPlan.ok &&
+          pruneError === null &&
+          copyError === null &&
+          unmanagedExistingPaths.length === 0,
+        export: exportPlan,
+        sync,
+        pack: {
+          repoDir,
+          repoExists,
+          manifest,
+          copiedArtifacts:
+            repoExists && exportPlan.ok && pruneError === null && copyError === null
+              ? exportPlan.artifactPaths.length
+              : 0,
+          pruneLocal: Boolean(opts.pruneLocal),
+          prunedPaths,
+          unmanagedExistingPaths,
+          pruneError,
+          copyError,
+          localGitMutationExecuted: false,
+          destructiveRemoteMutation: false,
+          actualRemoteMutationRequiresPoApproval: true,
+          nextCommands: [
+            `git -C ${repoDir} status --short`,
+            ...gitAddPathspecCommands(repoDir, exportPlan.artifactPaths),
+            `git -C ${repoDir} commit -m "chore: sync clean distribution ${exportPlan.sourceTag}"`,
+            `git -C ${repoDir} push origin ${opts.branch ?? "main"}`,
+          ],
+        },
+      };
+      writeFileSync(manifest, `${JSON.stringify(output, null, 2)}\n`, "utf8");
+      process.exitCode = output.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `distribution sync-pack: ${output.ok ? "ok" : "blocked"} tag=${exportPlan.sourceTag}\n`,
+      );
+      process.stdout.write(`  repo-dir: ${repoDir}\n`);
+      process.stdout.write(`  copied-artifacts: ${output.pack.copiedArtifacts}\n`);
+      process.stdout.write(`  unmanaged-existing: ${unmanagedExistingPaths.length}\n`);
+      process.stdout.write(`  pruned-local: ${prunedPaths.length}\n`);
+      process.stdout.write(
+        "  git commit/push: requires explicit human approval; commands were not executed\n",
+      );
+    },
+  );
+
+distribution
+  .command("release-plan")
+  .description("emit non-destructive git tag and gh release commands for approved publishing")
+  .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
+  .option("--repo <name>", "GitHub repository for release publication", "RetryYN/HELIX-HARNESS-OS")
+  .option("--json", "JSON output")
+  .action((opts: { tag: string; repo?: string; json?: boolean }) => {
+    const plan = buildReleasePublicationPlan({
+      tag: opts.tag,
+      repo: opts.repo ?? "RetryYN/HELIX-HARNESS-OS",
+      dryRun: true,
+    });
+    process.exitCode = plan.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `distribution release-plan: ${plan.ok ? "ok" : "blocked"} tag=${plan.tag} repo=${plan.repo}\n`,
+    );
+    for (const command of plan.commands) process.stdout.write(`  ${command}\n`);
+    process.stdout.write("  publish: requires PO approval; commands were not executed\n");
+  });
+
+distribution
+  .command("package")
+  .description("create a local clean tarball and sha256 checksum without publishing")
+  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
+  .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
+  .option("--json", "JSON output")
+  .action((opts: { tag?: string; cleanRepo?: string; out?: string; json?: boolean }) => {
+    const repoRoot = process.cwd();
+    const exportPlan = buildCleanDistributionPlan({
+      paths: collectDistributionCandidatePaths(repoRoot),
+      sourceTag: opts.tag,
+      cleanRepo: opts.cleanRepo,
+    });
+    const outDir = opts.out
+      ? isAbsolute(opts.out)
+        ? opts.out
+        : join(repoRoot, opts.out)
+      : join(repoRoot, ".helix", "release");
+    const artifactStem = exportPlan.sourceTag.replace(/[^A-Za-z0-9._-]+/g, "-");
+    const tarball = join(outDir, `${artifactStem}.tar.gz`);
+    const checksum = `${tarball}.sha256`;
+    const manifest = join(outDir, `${artifactStem}.manifest.json`);
+    const signature = `${tarball}.sig`;
+    const stage = mkdtempSync(join(tmpdir(), "helix-clean-package-"));
+    let tarResult: ReturnType<typeof spawnSync> | null = null;
+    try {
+      mkdirSync(outDir, { recursive: true });
+      const sourcePaths = collectDistributionCandidatePaths(repoRoot);
+      for (const rel of exportPlan.artifactPaths) {
+        const sourceRel = cleanDistributionSourcePath(rel, sourcePaths);
+        copyCleanDistributionArtifact({
+          sourceRoot: repoRoot,
+          sourcePath: sourceRel,
+          targetRoot: stage,
+          artifactPath: rel,
+        });
+      }
+      tarResult = spawnSync("tar", ["-czf", basename(tarball), "-C", stage, "."], {
+        cwd: outDir,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+      if (tarResult.status === 0) {
+        const digest = createHash("sha256").update(readFileSync(tarball)).digest("hex");
+        writeFileSync(checksum, `${digest}  ${basename(tarball)}\n`, "utf8");
+        writeFileSync(
+          manifest,
+          `${JSON.stringify(
+            {
+              ok: exportPlan.ok,
+              sourceTag: exportPlan.sourceTag,
+              cleanRepo: exportPlan.cleanRepo,
+              tarball,
+              checksum,
+              signature,
+              signatureRequired: true,
+              signatureCreated: false,
+              artifactCount: exportPlan.artifactPaths.length,
+              missingRequired: exportPlan.missingRequired,
+              denylistViolations: exportPlan.denylistViolations,
+            },
+            null,
+            2,
+          )}\n`,
+          "utf8",
+        );
+      }
+    } finally {
+      rmSync(stage, { recursive: true, force: true });
+    }
+    const ok =
+      exportPlan.ok && tarResult?.status === 0 && existsSync(tarball) && existsSync(checksum);
+    const output = {
+      ok,
+      export: exportPlan,
+      artifacts: {
+        tarball,
+        checksum,
+        manifest,
+        signature,
+        signatureRequired: true,
+        signatureCreated: false,
+      },
+      tar: {
+        exitCode: tarResult?.status ?? null,
+        stderr: tarResult?.stderr ?? "",
+      },
+      actualPublishRequiresPoApproval: true,
+    };
+    process.exitCode = ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `distribution package: ${ok ? "ok" : "blocked"} tag=${exportPlan.sourceTag}\n`,
+    );
+    if (!ok && tarResult !== null && tarResult.status !== 0) {
+      const stderrHead = String(tarResult.stderr ?? "")
+        .split(/\r?\n/, 1)[0]
+        .trim();
+      process.stdout.write(
+        `  tar: error exit=${tarResult.status ?? "null"}${stderrHead ? ` (${stderrHead})` : ""} - artifacts not created\n`,
+      );
+    }
+    process.stdout.write(`  tarball: ${tarball}\n`);
+    process.stdout.write(`  checksum: ${checksum}\n`);
+    process.stdout.write("  signature: required but not created (external signing boundary)\n");
+    process.stdout.write("  publish: requires PO approval\n");
   });
 
 program.parseAsync(process.argv).catch((e: unknown) => {

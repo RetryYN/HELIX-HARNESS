@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-368: agent observability and provenance
+# PLAN-L7-368: agent observability と provenance
 
 ## 目的
 
@@ -51,7 +51,7 @@ cross-runtime session を後から検索・比較・監査できる read model �
 ## 対象外
 
 - eBPF collector の導入。
-- third-party telemetry SaaS。
+- third-party telemetry SaaS は対象外。
 - secret を含む raw transcript 保存。
 
 ## 受入条件

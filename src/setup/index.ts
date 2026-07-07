@@ -856,6 +856,24 @@ export interface CleanDistributionPlan {
   };
 }
 
+export interface PackSyncPlan {
+  ok: boolean;
+  mode: "non-destructive-sync-plan";
+  cleanRepo: string;
+  sourceTag: string;
+  branch: string;
+  stagingDir: string;
+  artifactCount: number;
+  excludedCount: number;
+  missingRequired: string[];
+  denylistViolations: string[];
+  copyPlan: { sourcePath: string; artifactPath: string }[];
+  commands: string[];
+  checks: string[];
+  publishRequiresPoApproval: true;
+  destructiveRemoteMutation: false;
+}
+
 export interface ConsumerReadinessPlan {
   ok: boolean;
   checks: { name: string; ok: boolean; message: string }[];
@@ -1444,6 +1462,66 @@ function isAllowedCleanPath(path: string): boolean {
   return CLEAN_ALLOW_PREFIXES.some((prefix) => p.startsWith(prefix));
 }
 
+export function cleanDistributionArtifactPath(path: string): string {
+  const p = normalizeDistributionPath(path);
+  if (p.startsWith("docs/skills/")) return `skills/${p.slice("docs/skills/".length)}`;
+  return p;
+}
+
+export function cleanDistributionSourcePath(
+  artifactPath: string,
+  sourcePaths: Iterable<string>,
+): string {
+  const artifact = normalizeDistributionPath(artifactPath);
+  if (artifact === ".github/workflows/harness-check.yml") {
+    return "docs/templates/github/common/pack-harness-check.yml";
+  }
+  const sources = new Set([...sourcePaths].map(normalizeDistributionPath));
+  if (sources.has(artifact)) return artifact;
+  if (artifact.startsWith("skills/")) {
+    const legacy = `docs/skills/${artifact.slice("skills/".length)}`;
+    if (sources.has(legacy)) return legacy;
+  }
+  return artifact;
+}
+
+export const PACK_SAFE_TEST_SCRIPT =
+  "vitest run tests/setup.test.ts tests/distribution-acceptance.test.ts tests/skill-recommend.test.ts tests/skill-scaffold.test.ts tests/dependency-drift.test.ts tests/readability.test.ts tests/toolchain-pin.test.ts --reporter=dot";
+
+export function transformCleanDistributionArtifact(artifactPath: string, content: string): string {
+  const artifact = normalizeDistributionPath(artifactPath);
+  if (artifact !== "package.json") return content;
+  const parsed = JSON.parse(content) as {
+    scripts?: Record<string, string>;
+    [key: string]: unknown;
+  };
+  const scripts = { ...(parsed.scripts ?? {}) };
+  scripts["test:source"] ??= scripts.test ?? "vitest run";
+  scripts["test:pack"] = PACK_SAFE_TEST_SCRIPT;
+  scripts.test = PACK_SAFE_TEST_SCRIPT;
+  return `${JSON.stringify({ ...parsed, scripts }, null, 2)}\n`;
+}
+
+function shellQuotePath(path: string): string {
+  return `"${path.replace(/(["\\$`])/g, "\\$1")}"`;
+}
+
+export function gitAddPathspecCommands(
+  repoDir: string,
+  artifactPaths: readonly string[],
+): string[] {
+  const commands: string[] = [];
+  const chunkSize = 80;
+  for (let i = 0; i < artifactPaths.length; i += chunkSize) {
+    const chunk = artifactPaths
+      .slice(i, i + chunkSize)
+      .map(shellQuotePath)
+      .join(" ");
+    commands.push(`git -C ${repoDir} add -- ${chunk}`);
+  }
+  return commands;
+}
+
 function hasMinimumBun(version: string, minimum = "1.3.0"): boolean {
   const parse = (v: string): number[] => {
     const match = v.match(/\d+(?:\.\d+){0,2}/)?.[0] ?? "0";
@@ -1467,13 +1545,15 @@ export function buildCleanDistributionPlan(input: {
   const sourceTag = input.sourceTag ?? "unreleased";
   const cleanRepo = input.cleanRepo ?? "RetryYN/HELIX-HARNESS-OS";
   const normalized = [...new Set(input.paths.map(normalizeDistributionPath))].sort();
-  const artifactPaths = normalized.filter(
+  const includedSourcePaths = normalized.filter(
     (path) => isAllowedCleanPath(path) && !isDeniedCleanPath(path),
   );
+  const artifactPaths = [...new Set(includedSourcePaths.map(cleanDistributionArtifactPath))].sort();
   const artifactSet = new Set(artifactPaths);
   const missingRequired = CLEAN_REQUIRED_PATHS.filter((path) => !artifactSet.has(path));
   const denylistViolations = artifactPaths.filter(isDeniedCleanPath);
-  const excludedPaths = normalized.filter((path) => !artifactSet.has(path));
+  const includedSourceSet = new Set(includedSourcePaths);
+  const excludedPaths = normalized.filter((path) => !includedSourceSet.has(path));
   return {
     ok: missingRequired.length === 0 && denylistViolations.length === 0,
     channel: "clean-repo-plus-signed-tarball",
@@ -1487,6 +1567,52 @@ export function buildCleanDistributionPlan(input: {
       required: true,
       artifacts: [`${sourceTag}.tar.gz`, `${sourceTag}.tar.gz.sha256`, `${sourceTag}.tar.gz.sig`],
     },
+  };
+}
+
+export function buildPackSyncPlan(input: {
+  exportPlan: CleanDistributionPlan;
+  sourcePaths: string[];
+  stagingDir: string;
+  branch?: string;
+}): PackSyncPlan {
+  const branch = input.branch ?? "main";
+  const sourcePathSet = new Set(input.sourcePaths.map(normalizeDistributionPath));
+  const copyPlan = input.exportPlan.artifactPaths.map((artifactPath) => ({
+    sourcePath: cleanDistributionSourcePath(artifactPath, sourcePathSet),
+    artifactPath,
+  }));
+  return {
+    ok: input.exportPlan.ok,
+    mode: "non-destructive-sync-plan",
+    cleanRepo: input.exportPlan.cleanRepo,
+    sourceTag: input.exportPlan.sourceTag,
+    branch,
+    stagingDir: input.stagingDir,
+    artifactCount: input.exportPlan.artifactPaths.length,
+    excludedCount: input.exportPlan.excludedPaths.length,
+    missingRequired: input.exportPlan.missingRequired,
+    denylistViolations: input.exportPlan.denylistViolations,
+    copyPlan,
+    commands: [
+      `git clone https://github.com/${input.exportPlan.cleanRepo}.git ${input.stagingDir}`,
+      `git -C ${input.stagingDir} switch ${branch}`,
+      "copy only copyPlan.sourcePath files from source repo to copyPlan.artifactPath in the staging repo",
+      `git -C ${input.stagingDir} status --short`,
+      ...gitAddPathspecCommands(input.stagingDir, input.exportPlan.artifactPaths),
+      `git -C ${input.stagingDir} commit -m "chore: sync clean pack ${input.exportPlan.sourceTag}"`,
+      `git -C ${input.stagingDir} tag -a ${input.exportPlan.sourceTag} -m "${input.exportPlan.sourceTag}"`,
+      `git -C ${input.stagingDir} push origin ${branch} --follow-tags`,
+    ],
+    checks: [
+      "denylistViolations.length === 0",
+      "missingRequired.length === 0",
+      "git status --short shows only intended clean Pack files",
+      "Pack CI passes before release publication",
+      "signature tarball and GitHub release publication remain separate human-approved operations",
+    ],
+    publishRequiresPoApproval: true,
+    destructiveRemoteMutation: false,
   };
 }
 

@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-364: agent session command center
+# PLAN-L7-364: agent session command center 整備
 
 ## 目的
 

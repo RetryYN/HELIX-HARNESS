@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-381: agent SSoT runtime projection
+# PLAN-L7-381: agent SSoT runtime projection 整備
 
 ## 目的
 
@@ -52,7 +52,7 @@ agent、skill、rule、hook pack を HELIX の正本 manifest から Claude / Co
 
 - `.agents/` を HELIX 正本にすること。
 - runtime native config の無条件上書き。
-- external package manager install。
+- external package manager install は対象外。
 
 ## 受入条件
 

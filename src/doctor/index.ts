@@ -463,6 +463,8 @@ import {
   verificationGroupMessages,
   verificationGroupsOk,
 } from "../vmodel/lint";
+import { collectDoctorCheckRun } from "./check-registry";
+import type { DoctorOptions, DoctorResult } from "./result";
 
 /** I/O・clock 注入 (test 可能、handover staleness 検査用)。 */
 export interface DoctorDeps {
@@ -3375,7 +3377,7 @@ export function checkG10UxWorkflow(repoRoot: string): {
   }
 }
 
-export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
+function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
   // handover / agent-slots are warning surfaces. Verification profile is a hard gate.
   const backfill = checkBackfillResult(deps.repoRoot);
@@ -3701,4 +3703,32 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],
   };
+}
+
+export function runDoctor(
+  deps: DoctorDeps = nodeDoctorDeps(process.cwd()),
+  options: DoctorOptions = {},
+): DoctorResult {
+  const run = collectDoctorCheckRun(
+    {
+      deps,
+      fullDoctor: () => runFullDoctor(deps),
+      toolchain: () => checkToolchainPin(deps.repoRoot),
+      setupSmoke: () => runConsumerDoctor(deps),
+    },
+    options,
+  );
+  const messages = run.checks.flatMap(({ result }) =>
+    result.messages.map((message) =>
+      message.startsWith("doctor:") ? message : `doctor: ${message}`,
+    ),
+  );
+  const result: DoctorResult = {
+    ok: run.checks.every(({ result }) => result.ok),
+    messages,
+  };
+  if (options.scope || options.setupSmoke === true) result.scope = run.scope;
+  if (options.setupSmoke === true) result.setupSmoke = true;
+  if (options.timing === true) result.timings = run.timings;
+  return result;
 }

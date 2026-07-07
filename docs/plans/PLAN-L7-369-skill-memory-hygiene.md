@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-369: skill and memory hygiene
+# PLAN-L7-369: skill と memory hygiene
 
 ## 目的
 

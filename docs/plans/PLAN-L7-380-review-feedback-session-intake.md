@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-380: review feedback session intake
+# PLAN-L7-380: review feedback session intake 整備
 
 ## 目的
 
@@ -50,7 +50,7 @@ feedback intake を追加する。
 ## 対象外
 
 - GitHub comment への自動返信。
-- auto merge / auto rebase。
+- auto merge / auto rebase は対象外。
 - credential activation。
 
 ## 受入条件

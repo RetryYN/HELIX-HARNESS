@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-373: change package delta archive
+# PLAN-L7-373: change package delta archive 整備
 
 ## 目的
 

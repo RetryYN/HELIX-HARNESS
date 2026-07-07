@@ -41,7 +41,7 @@ dependencies:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-359: doctor check registry / timing / setup-smoke extraction
+# PLAN-L7-359: doctor check registry / timing / setup-smoke 抽出
 
 ## 目的
 

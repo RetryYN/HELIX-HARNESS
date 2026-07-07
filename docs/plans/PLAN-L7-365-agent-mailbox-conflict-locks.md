@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-365: agent mailbox and conflict locks
+# PLAN-L7-365: agent mailbox と conflict lock
 
 ## 目的
 
@@ -49,7 +49,7 @@ message bus / shared room / file lock / symbol lock 系の知見を HELIX に取
 
 ## 対象外
 
-- network relay / mobile relay。
+- network relay / mobile relay は対象外。
 - AST parser の全言語実装。
 - lock を使った destructive checkout / merge。
 

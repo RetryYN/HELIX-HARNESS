@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-371: tool augmentation registry
+# PLAN-L7-371: tool augmentation registry 整備
 
 ## 目的
 
@@ -51,7 +51,7 @@ HELIX の task lens と MCP profile safety に従う tool augmentation registry 
 ## 対象外
 
 - Playwright browser の本番利用。
-- external issue tracker write。
+- external issue tracker write は対象外。
 - MCP server の自動 install。
 
 ## 受入条件

@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-367: parallel candidate verifier council
+# PLAN-L7-367: parallel candidate verifier council 整備
 
 ## 目的
 

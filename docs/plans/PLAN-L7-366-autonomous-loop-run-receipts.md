@@ -34,7 +34,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-366: autonomous loop run receipts
+# PLAN-L7-366: autonomous loop run receipt 整備
 
 ## 目的
 

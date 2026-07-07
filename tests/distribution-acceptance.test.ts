@@ -17,6 +17,7 @@ import {
   CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
   CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
+  cleanDistributionSourcePath,
   extractWorkflowRunCommands,
 } from "../src/setup/index";
 
@@ -181,8 +182,9 @@ describe("clean distribution local acceptance smoke", () => {
 
     const cleanRoot = mkdtempSync(join(tmpdir(), "helix-clean-acceptance-"));
     try {
+      const sourcePaths = walkCandidatePaths(repoRoot);
       for (const rel of plan.artifactPaths) {
-        const from = join(repoRoot, rel);
+        const from = join(repoRoot, cleanDistributionSourcePath(rel, sourcePaths));
         const to = join(cleanRoot, rel);
         mkdirSync(dirname(to), { recursive: true });
         cpSync(from, to, { recursive: true });

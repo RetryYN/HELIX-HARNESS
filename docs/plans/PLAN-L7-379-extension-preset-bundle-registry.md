@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-379: extension preset bundle registry
+# PLAN-L7-379: extension preset bundle registry 整備
 
 ## 目的
 

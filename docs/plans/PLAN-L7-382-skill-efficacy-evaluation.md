@@ -33,7 +33,7 @@ dependencies:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-382: skill efficacy evaluation
+# PLAN-L7-382: skill efficacy evaluation 整備
 
 ## 目的
 

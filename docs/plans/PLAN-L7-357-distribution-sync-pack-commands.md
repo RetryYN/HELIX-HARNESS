@@ -39,7 +39,7 @@ dependencies:
     - docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md
 ---
 
-# PLAN-L7-357: clean distribution sync / package commands
+# PLAN-L7-357: clean distribution 同期 / package command
 
 ## 目的
 
