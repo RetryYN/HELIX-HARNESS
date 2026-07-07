@@ -131,7 +131,7 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T08:21:00+09:00"
-        evidence_path: docs/handover/session-handover-2026-07-05.md
+        evidence_path: docs/plans/PLAN-L7-225-approval-snapshot-binding.md
         output_digest: "sha256:5d94fcffeabd1b15046a6e35b734dc71aae8e45b87fc015ab2533b0a98e72a75"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent

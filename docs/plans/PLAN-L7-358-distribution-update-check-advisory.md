@@ -40,8 +40,8 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-08T01:30:00+09:00"
-    tests_green_at: "2026-07-08T01:30:00+09:00"
+    reviewed_at: "2026-07-08T01:32:00+09:00"
+    tests_green_at: "2026-07-08T01:32:00+09:00"
     verdict: approve
     scope: "PLAN-L7-358 update-check advisory。status surface に fail-open update advisory を追加し、test subprocess と CI では network 非依存の disabled path を固定した。"
     worker_model: codex
