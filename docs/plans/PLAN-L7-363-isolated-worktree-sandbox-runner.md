@@ -29,8 +29,8 @@ dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
   requires:
     - PLAN-L7-230-destructive-git-command-guard
-    - PLAN-L7-370-security-credential-egress-guard
   references:
+    - PLAN-L7-370-security-credential-egress-guard
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 

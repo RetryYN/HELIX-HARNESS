@@ -27,9 +27,9 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
-  requires:
-    - PLAN-L7-363-isolated-worktree-sandbox-runner
+  requires: []
   references:
+    - PLAN-L7-363-isolated-worktree-sandbox-runner
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 

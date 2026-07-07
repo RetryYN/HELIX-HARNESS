@@ -10,15 +10,15 @@ updated: 2026-07-07
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07:agent-spec-orchestrator-reconciliation"
-backprop_decision: required
-backprop_decision_reason: "extension/preset/bundle lifecycle は setup/distribution surface に関わるため L6 と distribution policy へ戻す。"
+backprop_decision: not_required
+backprop_decision_reason: "本 PLAN は extension/preset/bundle lifecycle の L7 採用候補を起票する。setup/distribution surface の L6 / distribution policy 昇格は後続 add-design/backprop PLAN で扱う。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE - extension/preset/bundle registry"
-  - role: security
+  - role: tl
     slot_label: "Security - install policy / hash manifest"
 generates:
   - artifact_path: docs/plans/PLAN-L7-379-extension-preset-bundle-registry.md

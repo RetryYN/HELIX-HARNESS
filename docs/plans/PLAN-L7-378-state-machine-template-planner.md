@@ -29,8 +29,8 @@ dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
   requires:
     - PLAN-L7-338-task-lens-injection
-    - PLAN-L7-377-state-machine-tool-policy
   references:
+    - PLAN-L7-377-state-machine-tool-policy
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 

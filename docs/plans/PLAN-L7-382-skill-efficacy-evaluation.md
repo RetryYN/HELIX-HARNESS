@@ -27,9 +27,9 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/orchestration-memory.md
-  requires:
-    - PLAN-L7-369-skill-memory-hygiene
+  requires: []
   references:
+    - PLAN-L7-369-skill-memory-hygiene
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 

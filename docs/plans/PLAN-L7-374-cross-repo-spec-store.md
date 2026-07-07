@@ -10,8 +10,8 @@ updated: 2026-07-07
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07:agent-spec-orchestrator-reconciliation"
-backprop_decision: required
-backprop_decision_reason: "cross-repo requirements store は repository boundary と distribution/source separation に関わるため L6 contract へ戻す。書き込み有効化はしない。"
+backprop_decision: not_required
+backprop_decision_reason: "本 PLAN は cross-repo requirements store の L7 採用候補を起票する。repository boundary と distribution/source separation の L6 昇格は後続 add-design/backprop PLAN で扱い、書き込み有効化はしない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md

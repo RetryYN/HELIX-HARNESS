@@ -27,10 +27,10 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
-  requires:
+  requires: []
+  references:
     - PLAN-L7-360-github-ops-guard-parity
     - PLAN-L7-364-agent-session-command-center
-  references:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 

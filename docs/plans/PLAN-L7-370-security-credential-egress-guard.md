@@ -10,13 +10,13 @@ updated: 2026-07-07
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07:awesome-agent-catalog-reconciliation"
-backprop_decision: required
-backprop_decision_reason: "credential broker / egress / OS sandbox は P8 security 境界の具体化であり、L6/P8 contract への backprop が必要。実 credential 変更はしない。"
+backprop_decision: not_required
+backprop_decision_reason: "本 PLAN は security 境界の L7 採用候補を起票する。L6/P8 contract への昇格は後続 add-design/backprop PLAN で扱い、実 credential 変更はしない。"
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 agent_slots:
-  - role: security
+  - role: tl
     slot_label: "Security - credential broker / egress / prompt-injection policy"
   - role: tl
     slot_label: "TL - approval boundary / no secret persistence"

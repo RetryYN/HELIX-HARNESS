@@ -27,10 +27,10 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
-  requires:
+  requires: []
+  references:
     - PLAN-L7-362-runtime-capability-matrix
     - PLAN-L7-379-extension-preset-bundle-registry
-  references:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
 ---
 
