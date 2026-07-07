@@ -71,6 +71,7 @@ G-10 追加 outstanding note（2026-07-07 agent/spec/harness 追突）:
 - source 追突 evidence は `docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md`、
   `docs/governance/helix-agent-harness-explicit-repo-refs-2026-07-07.tsv`、
   `docs/governance/helix-agent-harness-explicit-repo-pr-diff-digest-2026-07-07.tsv`、
+  `docs/governance/helix-agent-harness-explicit-repo-all-ref-content-ledger-2026-07-08.tsv`、
   `docs/governance/helix-agent-harness-topic-ref-readme-digest-2026-07-07.tsv`、
   `docs/governance/helix-agent-harness-topic-tree-digest-2026-07-07.tsv`、
   `docs/governance/helix-agent-harness-topic-full-content-digest-2026-07-07.tsv`、
@@ -97,7 +98,11 @@ G-10 追加 outstanding note（2026-07-07 agent/spec/harness 追突）:
   `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0021-2026-07-07.tsv`、
   `docs/governance/helix-agent-harness-topic-all-ref-content-chunk-0022-2026-07-07.tsv`、
   `docs/governance/helix-agent-harness-topic-all-ref-content-ledger-2026-07-07.tsv` に固定した。
-  topic all-ref blob content は `ok=437`、`pending=0` である。外部 source 取得は read-only clone / refs 列挙 /
+  topic all-ref blob content は `ok=437`、`pending=0` である。2026-07-08 追補 ledger では明示 11 repo のうち
+  9 repo が all-ref content evidence `ok`、`AgentWrapper/agent-orchestrator` と
+  `code-yeongyu/oh-my-openagent` は current refs count の再取得までで all-ref object graph / blob body digest が
+  `pending_large_repo` である。したがってこの objective はまだ完了ではなく、
+  `PLAN-L7-384-source-content-mirror-completeness` の retry ledger 対象として継続する。外部 source 取得は read-only clone / refs 列挙 /
   blob hash に限定し、外部 code 実行、dependency install、credential 使用、secret / PII 保存、外部 write を行わない。
   source mirror 監査成果は commit `da83c8c1a8048fe881ca16509ac28cb123bd7196` と publish-status commit
   `9d181c10ca7ea26f8647df942c2efbdfcc658a4e` として `origin/codex/helix-l3-pillar-descent` へ push 済みである。

@@ -23,6 +23,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-384-source-content-mirror-completeness.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/helix-agent-harness-explicit-repo-all-ref-content-ledger-2026-07-08.tsv
+    artifact_type: markdown_doc
   - artifact_path: tests/source-content-mirror-completeness.test.ts
     artifact_type: test_code
 dependencies:
