@@ -1,0 +1,40 @@
+---
+layer: L9
+artifact_type: test_design
+status: confirmed
+legacy_source: docs/test-design/harness/L8-integration-test-design.md
+pair_artifact: docs/design/harness/L5-detailed-design/
+created: 2026-07-08
+updated: 2026-07-08
+---
+
+# HELIX — L9 結合テスト設計
+
+## §0 位置付け
+
+PO 指示（2026-07-08）により、結合テスト設計の正本 path を
+`docs/test-design/harness/L9-integration-test-design.md` とする。
+
+既存 `docs/test-design/harness/L8-integration-test-design.md` は legacy shim として残し、詳細 oracle は段階移行する。
+
+## §1 結合テスト oracle
+
+L9 結合テスト設計は、L5 詳細設計の module boundary、adapter boundary、state boundary、DB projection、
+search / feedback / automation / guardrail / asset catalog boundary を、IT-* の Given / When / Then 粒度で検証する。
+
+初期移行では、既存 `L8-integration-test-design.md` の IT-* 行を legacy oracle として参照する。
+新規 PLAN では、L8 を単体テスト設計、L9 を結合テスト設計として扱い、L7 起票 gate の unit pair と混同しない。
+
+| 結合 family | trace | oracle route |
+|---|---|---|
+| module / adapter boundary | FR-L1-01..FR-L1-51 | legacy `L8-integration-test-design.md` の IT-* 行を L9 結合 oracle として段階移行する |
+| DB / state projection（DB / state 投影） | FR-L1-03 / FR-L1-07 / FR-L1-47 | IT-DB / IT-STATE / IT-FEEDBACK family（系列） |
+| automation / guardrail / asset catalog（自動化 / 防護 / 資産 catalog） | FR-L1-09 / FR-L1-46..FR-L1-49 | IT-AUTOMATION / IT-GUARDRAIL / IT-ASSET family（系列） |
+
+## §2 確定済み IT case design
+
+| IT-ID（識別子） | Given（前提） | When（操作） | Then（期待結果） | Fixture / Boundary（fixture / 境界） | Assertions（検証） | Negative / Edge（異常・境界） |
+|---|---|---|---|---|---|---|
+| IT-MODULE-01 | L5 module contract と L6 function contract が confirmed で、対象 trace が L7 実装 PLAN に接続されている | module boundary をまたぐ CLI / runtime / lint function を実行する | public behavior は L5 contract の入出力・error policy・state transition と一致する | harness module boundary、adapter boundary、state projection | exit code / normalized finding / DB projection row が期待値と一致する | downstream design が欠ける場合は L9 pass ではなく L5/L6 reverse または plan-descent violation へ route する |
+| IT-DB-01 | harness.db projection 対象の event / state / feedback source が fixture として存在する | projection writer と read model を同一 slice で実行する | persisted row と query result が trace key、PLAN ID、evidence path を失わず join できる | DB/state boundary | row count、primary key、foreign key 相当 join、timestamp provenance | stale handover / missing evidence は green にしない |
+| IT-GUARDRAIL-01 | L7 実装 PLAN が L6 parent design と L8 unit pair を持つ | plan lint / doctor を実行する | L8 unit pair を欠く L7 impl は起票不可、L9 integration pair と unit pair の混同も不可 | plan frontmatter、test-design path boundary | `pair_artifact_not_l8_unit_test_design` または no violation のどちらかが deterministic | L9 integration を pair に置いて L7 impl を通す regression を fail-close する |

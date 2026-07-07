@@ -7,6 +7,9 @@ import {
   applyBranchProtection,
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
+  buildPackSyncPlan,
+  cleanDistributionArtifactPath,
+  cleanDistributionSourcePath,
   consumerCodexConfigEnablesHooks,
   detectProjectScale,
   emitSetup,
@@ -21,6 +24,7 @@ import {
   runSetup,
   type SetupDeps,
   type SetupState,
+  transformCleanDistributionArtifact,
 } from "../src/setup/index";
 import type { TemplateSet } from "../src/setup/templates";
 import { BUILTIN_GITHUB_TEMPLATES, COMMON_FILES } from "../src/setup/templates";
@@ -754,6 +758,79 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "v0.1.0.tar.gz.sha256",
       "v0.1.0.tar.gz.sig",
     ]);
+  });
+
+  it("PLAN-L7-357: maps skills and emits explicit non-destructive sync pathspecs", () => {
+    const paths = [
+      "README.md",
+      "LICENSE",
+      "package.json",
+      "src/cli.ts",
+      "src/setup/index.ts",
+      "docs/templates/project/.helix/teams/default-hybrid.yaml",
+      "docs/skills/judgment-core.md",
+      "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md",
+      ".helix/handover/CURRENT.json",
+      ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
+        (entry) => `docs/templates/${entry.template}`,
+      ),
+    ];
+    const plan = buildCleanDistributionPlan({
+      sourceTag: "v0.1.0",
+      cleanRepo: "RetryYN/HELIX-HARNESS-OS",
+      paths,
+    });
+
+    expect(cleanDistributionArtifactPath("docs/skills/judgment-core.md")).toBe(
+      "skills/judgment-core.md",
+    );
+    expect(plan.artifactPaths).toContain("skills/judgment-core.md");
+    expect(plan.artifactPaths).not.toContain("docs/skills/judgment-core.md");
+    expect(plan.excludedPaths).toContain(
+      "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md",
+    );
+    expect(plan.excludedPaths).toContain(".helix/handover/CURRENT.json");
+    expect(cleanDistributionSourcePath("skills/judgment-core.md", paths)).toBe(
+      "docs/skills/judgment-core.md",
+    );
+
+    const sync = buildPackSyncPlan({
+      exportPlan: plan,
+      sourcePaths: paths,
+      stagingDir: "/tmp/helix-pack",
+      branch: "main",
+    });
+    expect(sync).toMatchObject({
+      ok: true,
+      mode: "non-destructive-sync-plan",
+      cleanRepo: "RetryYN/HELIX-HARNESS-OS",
+      publishRequiresPoApproval: true,
+      destructiveRemoteMutation: false,
+    });
+    expect(sync.copyPlan).toContainEqual({
+      sourcePath: "docs/skills/judgment-core.md",
+      artifactPath: "skills/judgment-core.md",
+    });
+    expect(sync.commands).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("git -C /tmp/helix-pack add --"),
+        expect.stringContaining("skills/judgment-core.md"),
+      ]),
+    );
+  });
+
+  it("PLAN-L7-357: rewrites clean package.json test script to pack-safe tests", () => {
+    const transformed = JSON.parse(
+      transformCleanDistributionArtifact(
+        "package.json",
+        JSON.stringify({ scripts: { test: "vitest run", typecheck: "tsc --noEmit" } }),
+      ),
+    ) as { scripts: Record<string, string> };
+
+    expect(transformed.scripts.test).toContain("tests/distribution-acceptance.test.ts");
+    expect(transformed.scripts["test:pack"]).toBe(transformed.scripts.test);
+    expect(transformed.scripts["test:source"]).toBe("vitest run");
+    expect(transformed.scripts.typecheck).toBe("tsc --noEmit");
   });
 
   it("U-SETUP-012/U-SETUP-032/U-SETUP-039: consumer readiness covers preflight, setup project rollback, distribution package surface, contracts, CI, and monorepo root", () => {

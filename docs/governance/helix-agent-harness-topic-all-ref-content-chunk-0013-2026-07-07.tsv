@@ -1,0 +1,11 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+premsai-pendela/NexusIQ-AI	main	15449	181	2	0	1	3	363	222	d44e6c6bb3981f31c3d50e5da4be7634243d5f02395b6b40a6adba244d089582	ok	
+Intelligent-Internet/zenith	main	15483	84	4	0	13	17	1618	304	e6463fd174b8296e24b5e268dd00cc4f12b9f4dfbfc29b594a54f625d9f3489d	ok	
+WhitzardAgent/qitos	main	15529	1051	3	2	10	15	14407	2048	239ff5a699b8ede10a21e79a18fb5e7b35e1cbd96074e96b6a8fc715608a6f48	ok	
+DDS-Solutions/Autonomous-Agentic-Tadpole	main	15695	1121	1	0	0	1	1121	1100	15da098bcc7f9b5f5fff8e0f4827793d8211fac535d26f8fc2aa86f5b09a77ee	ok	
+omnirexflora-labs/omnicoreagent	main	15876	374	3	34	214	251	60166	3440	8ec35326ed89d3b1e282d6c092ad05aa300a2912f0b7b27d693e9e592461b8d5	ok	
+frankxai/agentic-ops-hub	main	17264	71	6	0	8	14	688	94	e8a5c6070d04a5f0a8f22e7c464bd0f47588208b12eed513ae3839413723730f	ok	
+xiaonancs/claude-code-source-analysis	main	17325	38	1	0	0	1	38	38	da89d6b7f39ed37713c59eb2afa7d69f7f44dcbcd30923eae593ee98775f5122	ok	
+NFJones/mezzanine	main	17523	453	1	0	0	1	453	452	f500184a724bbd9f92180211b6282e751c54b21b13cf9ee377042d70e179b6d0	ok	
+lk19940215/claude-coder	main	17993	2365	1	0	1	2	2448	2411	b28b8427aa394ec367a192b5a7b726341760cbaa5db48bf3f39de1826f062bac	ok	
+memtomem/memtomem	main	18184	876	30	76	1200	1306	761461	6459	9b508f9b87436ba199859cdab551ec217b017dadc4e3db4ed3a7c94070354d67	ok	

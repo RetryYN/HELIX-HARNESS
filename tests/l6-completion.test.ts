@@ -14,7 +14,7 @@ const gateNotReached = `
 `;
 
 describe("L6 completion readiness", () => {
-  it("requires confirmed L6 docs, owning PLAN refs, L7 doc refs, confirmed PLANs, confirmed L7, and G6 PASS", () => {
+  it("requires confirmed L6 docs, owning PLAN refs, unit-test-design doc refs, confirmed PLANs, confirmed unit design, and G6 PASS", () => {
     const result = analyzeL6Completion({
       l6Docs: [
         {
@@ -68,7 +68,7 @@ describe("L6 completion readiness", () => {
           path: "docs/design/harness/L6-function-design/function-spec.md",
           text: [
             "status: confirmed",
-            "pair_artifact: docs/test-design/harness/L7-unit-test-design.md",
+            "pair_artifact: docs/test-design/harness/L8-unit-test-design.md",
             "plan: docs/plans/PLAN-L6-01-function-spec.md",
             "L6 contract marker: planDraft(input: PlanDraftInput) => PlanDraftResult. DbC pre/post. L7 oracle family: U-FUNC-001.",
           ].join("\n"),
@@ -102,7 +102,7 @@ describe("L6 completion readiness", () => {
           path: "docs/design/harness/L6-function-design/function-spec.md",
           text: [
             "status: draft",
-            "pair_artifact: docs/test-design/harness/L7-unit-test-design.md",
+            "pair_artifact: docs/test-design/harness/L8-unit-test-design.md",
             "plan: docs/plans/PLAN-L6-01-function-spec.md",
             "L6 contract marker: planDraft(input: PlanDraftInput) => PlanDraftResult. DbC pre/post. L7 oracle family: U-FUNC-001.",
           ].join("\n"),
@@ -132,7 +132,7 @@ describe("L6 completion readiness", () => {
           path: "docs/design/harness/L6-function-design/function-spec.md",
           text: [
             "status: confirmed",
-            "pair_artifact: docs/test-design/harness/L7-unit-test-design.md",
+            "pair_artifact: docs/test-design/harness/L8-unit-test-design.md",
             "plan: docs/plans/PLAN-L6-01-function-spec.md",
             "L6 contract marker: planDraft(input: PlanDraftInput) => PlanDraftResult. DbC pre/post. L7 oracle family: U-FUNC-001.",
           ].join("\n"),

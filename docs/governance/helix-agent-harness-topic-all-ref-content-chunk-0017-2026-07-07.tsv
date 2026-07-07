@@ -1,0 +1,11 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+IgorGanapolsky/mac-yolo-safeguards	main	41941	739	6	7	49	62	33928	1592	3fdb44ad0c7e9045c43d965992d59e164488164fca5fee36dce9d9e54518a6f8	ok	
+secondorderai/ouroboros	main	45041	623	24	15	28	67	28791	1470	91bcc762431147b04fb9805d3faaa566a9ef61cb3f1454e814da5145a3d401be	ok	
+FutronPrime/verity-harness	main	45963	228	2	0	2	4	987	253	6f716a42d5ff38eda41c759cfd2ccddec8ddc601ed3c6a7adb890262a32c41d7	ok	
+BA-CalderonMorales/agent-harness	main	46293	275	2	84	3	89	12904	898	29b6cad03e574cff697abecfb2265f1b9e59e618e89d05212752d0400258e64e	ok	
+joyehuang/Learn-Open-Harness	main	47171	97	2	0	6	8	541	157	51bc37f5e7215137ccf6609182039f445d79c4355bf30fc566b29fbdf6808551	ok	
+Team-Commonly/commonly	main	52057	1279	260	3	569	832	994020	10830	66b948253031bb1cdcc09a78c9fce62d308a7018844233ddd11c1dfa229ddeae	ok	
+holaboss-ai/holaOS	main	58410	1455	37	1	374	412	306746	6614	3b1ad9aa275a5807d719b6c5a4dc348a6f3e66072a8fac5e9720c4e579050926	ok	
+samartomar/ai-harness	main	58518	541	4	12	190	217	113782	9125	d533cae446b4f035dd129cc124f61329da4f69d1721adac7f4cdf44fd1ecd8a6	ok	
+first-fluke/oh-my-agent	main	66961	2530	7	492	566	1065	1394018	13501	05c6bb920f97a7664d198a720fa5c486c9237d8b0a6bf1a78aad35fb15c861e4	ok	
+MendCode/MendCode	main	72673	2951	5	20	176	201	629137	5634	9f4bfc3cbff098be078abed73002d4ee1d7f0e382e4f00b36f74dac37251c6e1	ok	

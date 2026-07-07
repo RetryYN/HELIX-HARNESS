@@ -24,8 +24,6 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-396-handover-derivation-wiring.md
     artifact_type: markdown_doc
-  - artifact_path: src/handover/index.ts
-    artifact_type: source_module
   - artifact_path: tests/handover-derivation-wiring.test.ts
     artifact_type: test_code
 dependencies:
@@ -44,6 +42,8 @@ PLAN-L7-355 で実装済みの `deriveHandoverSnapshot` / `renderCurrentPointer`
 CURRENT.json を自動生成 snapshot + takeover note 1 欄へ縮小する（PLAN-L6-57 §2/§3）。
 derived field の手書き編集は drift warning として surface する。着手条件: Codex チャット側の
 cli.ts in-flight 作業（PLAN-L7-357 系）が commit 済みであること（同 file 競合の回避）。
+対象実装ファイルは既存 `src/handover/index.ts` であり、本 PLAN の draft 段階では生成済み deliverable として
+`generates` に載せない。着手時に変更対象と新設テストを実体化してから generated artifact を追加する。
 
 ## 1. 受入条件
 

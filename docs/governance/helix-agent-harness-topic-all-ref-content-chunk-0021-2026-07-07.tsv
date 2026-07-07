@@ -1,0 +1,2 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+lobehub/lobehub	canary	800265	12769	722	2949	9441	13115	82163840	150236	d6c6237df9bb2477a58574b1ff7617a6db94b55de10e7143b065bcc5cc4607b0	ok	

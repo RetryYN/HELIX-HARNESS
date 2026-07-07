@@ -12,7 +12,11 @@ function runCli(args: string[]) {
   return runCliIn(repoRoot, args);
 }
 
-function runCliIn(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
+function runCliIn(
+  cwd: string,
+  args: string[],
+  env: NodeJS.ProcessEnv = { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
     return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
@@ -262,6 +266,74 @@ describe("L7 CLI surface closure", () => {
     ]);
     expect(hotfix.status, hotfix.stderr || hotfix.stdout).toBe(0);
     expect(JSON.parse(hotfix.stdout)).toMatchObject({ ok: true });
+  });
+
+  it("exposes GitHub ops guard and release publication plan as non-destructive packets", () => {
+    const blocked = runCli([
+      "github",
+      "guard",
+      "--head",
+      "refs/heads/poc/demo",
+      "--base",
+      "refs/heads/main",
+      "--commit-subject",
+      "feat: try demo",
+      "--json",
+    ]);
+    expect(blocked.status).toBe(1);
+    expect(JSON.parse(blocked.stdout)).toMatchObject({
+      schemaVersion: "helix-github-ops-guard.v1",
+      ok: false,
+      normalizedHeadRef: "poc/demo",
+      normalizedBaseRef: "main",
+      findings: [expect.objectContaining({ code: "poc-no-main-merge" })],
+    });
+
+    const releasePlan = runCli([
+      "github",
+      "release-plan",
+      "--tag",
+      "v0.1.0",
+      "--repo",
+      "RetryYN/HELIX-HARNESS-OS",
+      "--json",
+    ]);
+    expect(releasePlan.status, releasePlan.stderr || releasePlan.stdout).toBe(0);
+    expect(JSON.parse(releasePlan.stdout)).toMatchObject({
+      schemaVersion: "helix-github-release-publication-plan.v1",
+      ok: true,
+      dryRun: true,
+      externalPublishRequiresApproval: true,
+      mustNotApplyWithoutApproval: true,
+      commands: expect.arrayContaining([
+        expect.stringContaining("git tag -a v0.1.0"),
+        expect.stringContaining("gh release create v0.1.0"),
+      ]),
+    });
+  });
+
+  it("PLAN-L7-359: exposes doctor scope and timing as a lightweight diagnostic surface", () => {
+    const timed = runCli(["doctor", "--scope", "toolchain", "--timing", "--json"]);
+    expect(timed.status, timed.stderr || timed.stdout).toBe(0);
+    expect(JSON.parse(timed.stdout)).toMatchObject({
+      ok: true,
+      scope: "toolchain",
+      timings: [
+        expect.objectContaining({
+          id: "toolchain-pin",
+          duration_ms: expect.any(Number),
+          ok: true,
+          message_count: expect.any(Number),
+        }),
+      ],
+    });
+
+    const invalid = runCli(["doctor", "--scope", "unknown", "--json"]);
+    expect(invalid.status).toBe(1);
+    expect(JSON.parse(invalid.stdout)).toMatchObject({
+      ok: false,
+      messages: ["doctor: scope - violation unknown scope unknown"],
+    });
   });
 
   it("exposes GitHub merge readiness as a read-only HELIX operation packet", () => {
@@ -624,6 +696,13 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         status: "ready",
       });
+      expect(readyPayload.update).toMatchObject({
+        checked: false,
+        updateAvailable: false,
+      });
+      expect(["disabled by HELIX_SKIP_UPDATE_CHECK", "disabled by VITEST_WORKER_ID"]).toContain(
+        readyPayload.update.detail,
+      );
 
       mkdirSync(join(blockedRoot, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -670,9 +749,15 @@ describe("L7 CLI surface closure", () => {
         gateCommandTemplate: expect.stringContaining("helix gate <gate-id>"),
       });
       expect(blockedPayload.judgmentReview.requiredEvidence.length).toBeGreaterThan(0);
-      expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
-        expect.arrayContaining(["worker_model を記録する", "reviewer_model を記録する"]),
-      );
+      if (blockedPayload.judgmentReview.requiredReviewKind === "human") {
+        expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
+          expect.arrayContaining(["human approval evidence を記録する"]),
+        );
+      } else {
+        expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
+          expect.arrayContaining(["worker_model を記録する", "reviewer_model を記録する"]),
+        );
+      }
       expect(blockedPayload.judgmentReview.requiredEvidenceJa).toHaveLength(
         blockedPayload.judgmentReview.requiredEvidence.length,
       );
@@ -867,8 +952,12 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("runtime-next:");
       expect(blockedText.stdout).toContain("completion-next: completion-blocked:");
       expect(blockedText.stdout).not.toContain("\nnext:");
-      expect(blockedText.stdout).toContain("evidence=worker_model を記録する");
-      expect(blockedText.stdout).toContain("evidence-id=worker_model recorded");
+      expect(blockedText.stdout).toMatch(
+        /evidence=(worker_model を記録する|human approval evidence を記録する)/,
+      );
+      expect(blockedText.stdout).toMatch(
+        /evidence-id=(worker_model recorded|human approval evidence recorded)/,
+      );
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
@@ -902,6 +991,9 @@ describe("L7 CLI surface closure", () => {
         "packet-summary: 2 helix action-binding approval-packet --json runnable=bun run helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=11",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
+      expect(blockedText.stdout).toMatch(
+        /update: check skipped \(disabled by (HELIX_SKIP_UPDATE_CHECK|VITEST_WORKER_ID)\)/,
+      );
       expect(blockedText.stdout).toContain("authority-blockers=human:");
       expect(blockedText.stdout).toContain(
         "workflow-state:non_terminal_plans automation:semantic_frontier_blocked",
@@ -2331,6 +2423,80 @@ describe("L7 CLI surface closure", () => {
       rmSync(binDir, { recursive: true, force: true });
     }
   }, 20_000);
+
+  it("PLAN-L7-357: exposes distribution sync/package/release surfaces without remote mutation", () => {
+    const outDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-package-"));
+    try {
+      const syncPlan = runCli([
+        "distribution",
+        "sync-plan",
+        "--tag",
+        "v0.1.0",
+        "--staging-dir",
+        outDir,
+        "--json",
+      ]);
+      expect(syncPlan.status, syncPlan.stderr || syncPlan.stdout).toBe(0);
+      const syncPayload = JSON.parse(syncPlan.stdout);
+      expect(syncPayload).toMatchObject({
+        ok: true,
+        actualRemoteMutationRequiresPoApproval: true,
+        sync: {
+          mode: "non-destructive-sync-plan",
+          destructiveRemoteMutation: false,
+          publishRequiresPoApproval: true,
+        },
+      });
+      expect(syncPayload.sync.commands).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("git -C "),
+          expect.stringContaining("add --"),
+        ]),
+      );
+
+      const releasePlan = runCli([
+        "distribution",
+        "release-plan",
+        "--tag",
+        "v0.1.0",
+        "--repo",
+        "RetryYN/HELIX-HARNESS-OS",
+        "--json",
+      ]);
+      expect(releasePlan.status, releasePlan.stderr || releasePlan.stdout).toBe(0);
+      expect(JSON.parse(releasePlan.stdout)).toMatchObject({
+        schemaVersion: "helix-github-release-publication-plan.v1",
+        ok: true,
+        dryRun: true,
+        externalPublishRequiresApproval: true,
+        mustNotApplyWithoutApproval: true,
+      });
+
+      const packaged = runCli([
+        "distribution",
+        "package",
+        "--tag",
+        "v0.1.0",
+        "--out",
+        outDir,
+        "--json",
+      ]);
+      expect(packaged.status, packaged.stderr || packaged.stdout).toBe(0);
+      const packagePayload = JSON.parse(packaged.stdout);
+      expect(packagePayload).toMatchObject({
+        ok: true,
+        actualPublishRequiresPoApproval: true,
+        artifacts: {
+          signatureRequired: true,
+          signatureCreated: false,
+        },
+      });
+      expect(packagePayload.artifacts.tarball).toContain(outDir);
+      expect(packagePayload.artifacts.checksum).toContain(outDir);
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  }, 30_000);
 
   it("blocks distribution planning when the requested tag is not bound to package version", () => {
     const binDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-version-drift-"));

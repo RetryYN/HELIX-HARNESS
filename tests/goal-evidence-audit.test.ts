@@ -114,7 +114,9 @@ describe("HELIX objective evidence audit", () => {
       "docs/test-design/helix/L5-pillar-integration-test-design.md",
       "docs/test-design/helix/L6-pillar-unit-test-design.md",
       "docs/test-design/harness/L7-unit-test-design.md",
+      "docs/test-design/harness/L8-unit-test-design.md",
       "docs/test-design/harness/L8-integration-test-design.md",
+      "docs/test-design/harness/L9-integration-test-design.md",
       "docs/test-design/harness/L9-system-test-design.md",
       "docs/test-design/harness/proposal-document-coverage-routing.md",
       "CLAUDE.md",
@@ -325,8 +327,8 @@ describe("HELIX objective evidence audit", () => {
         "docs/test-design/helix/L5-pillar-integration-test-design-removed.md",
       )
       .replaceAll(
-        "docs/test-design/harness/L7-unit-test-design.md",
-        "docs/test-design/harness/L7-unit-test-design-removed.md",
+        "docs/test-design/harness/L8-unit-test-design.md",
+        "docs/test-design/harness/L8-unit-test-design-removed.md",
       );
 
     const result = analyzeObjectiveEvidenceAudit({
@@ -343,7 +345,7 @@ describe("HELIX objective evidence audit", () => {
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L14-operations/operations-feedback-boundary.md",
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L2-screen-ux-test-design.md",
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L5-pillar-integration-test-design.md",
-        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/harness/L7-unit-test-design.md",
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/harness/L8-unit-test-design.md",
       ]),
     );
   });

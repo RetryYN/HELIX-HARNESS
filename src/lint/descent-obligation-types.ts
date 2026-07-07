@@ -127,24 +127,17 @@ export const DEFAULT_DESCENT_ADJACENCY: DescentAdjacency = {
     },
     {
       from: "L6",
-      to: "L7",
+      to: "L8",
       kind: "pair",
       condition: "active",
-      note: "function design to unit test design",
+      note: "function design to L8 unit test design",
     },
     {
       from: "L5",
-      to: "L8",
-      kind: "pair",
-      condition: "impl-present",
-      note: "implementation needs integration test design",
-    },
-    {
-      from: "L4",
       to: "L9",
       kind: "pair",
       condition: "impl-present",
-      note: "implementation needs system test design",
+      note: "implementation needs L9 integration test design",
     },
     {
       from: "L3",
@@ -176,10 +169,10 @@ export const DEFAULT_DESCENT_ADJACENCY: DescentAdjacency = {
     },
     {
       from: "*",
-      to: "L7",
+      to: "L8",
       kind: "impl-guard",
       condition: "impl-present",
-      note: "implementation cannot bypass unit test design",
+      note: "implementation cannot bypass L8 unit test design",
     },
   ],
 };

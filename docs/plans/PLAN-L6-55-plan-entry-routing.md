@@ -60,7 +60,7 @@ PO 指摘: 「（refactor は）kind=refactor で正しいが Issue 起点が欠
 `routeSignalToMode`（`src/workflow/routing-contracts.ts`）は PLAN lint に未配線で、
 signal 起点なしの直接起票が素通りする。
 
-上流見本（UT-TDD_AGENT-HARNESS-Pack、2026-07-06 調査）の **route certificate 様式**を採用する:
+HELIX upstream 追突（2026-07-06 調査）で確認した **route certificate 様式**を採用する:
 `route_mode` frontmatter 宣言正本 + `workflowModeForPlan` フォールバック連鎖
 （`src/schema/mode-catalog.ts`）+ `ROUTE_SIGNAL_MAP`（`src/schema/route-map.ts`）。
 これは HELIX 既存 backlog `PLAN-L7-322`（route certificate、confirmed・未着手）の実行設計を兼ねる。

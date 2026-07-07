@@ -1,0 +1,11 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+ProblemFactory/vibespace	master	23703	146	2	41	16	59	5557	891	59fe1ae979768b8814583224ca76f76650b6a01bf0b42638240c279a21be7c05	ok	
+ruvnet/metaharness	main	24165	3761	48	3	92	158	452930	4423	f3b6756c3ac1cc5431aaafe56074652abec60460146618153562c57e5b980ba2	ok	
+mturac/everything-openai-codex	main	24372	2821	6	1	22	29	81693	3409	c699d86484850c01017d732fa50ee07573bf82d09026939546b398415e0add51	ok	
+mirasoth/soothe	main	24864	1898	6	91	4	101	121414	12920	11e4662a67d83d4c508431c94edfd815c184d74195b1dffc8991ee717c99e8b3	ok	
+katipally/friday-code	main	25722	254	4	17	21	42	9802	641	ab0842e1f258d9e42d496337ee35e1c2c17713bbbf26b7d4a1d583ce2fcc151c	ok	
+LAHacks2026/Obi_Laptop	main	25846	96	5	0	2	7	648	188	fa9c81b79f0eb624931f307dfe50be6dcbcade9846227813cdaa2bb5dad2b74a	ok	
+andykswong/mithic	main	26080	635	4	0	1	5	2138	1603	19883963292cbb888aeaaa3a5842fa1424bc971e64acbc7688fb3f77b22d544a	ok	
+deonmenezes/mantishack	main	27356	5393	11	0	105	119	143432	10025	de813535e881d538df8e0371170c9a79aa479d774bd7e2febd0a5672e09a00df	ok	
+peteromallet/desloppify	main	27722	1691	4	10	293	307	383886	7324	738f44a6a1d6c2c79d3ac3543247143ac195b84fe24fbf110a88ba92666fb37a	ok	
+dotoricode/tink-harness	main	28444	268	2	50	71	123	27648	969	5f2eaae742fc40c17a75c3c7fb2c138e5cc54140a88962c3d60bfe26012730a1	ok	

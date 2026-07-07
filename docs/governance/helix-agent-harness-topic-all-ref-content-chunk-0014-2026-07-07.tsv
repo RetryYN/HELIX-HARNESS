@@ -1,0 +1,11 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+ourostack/ouroboros	main	18856	1233	2	2	840	846	668976	11623	39d9bd819d086f15e7a9299e8191911c3422689156d20e927df9ff92eb9839a5	ok	
+SponsioLabs/Sponsio	main	19403	567	6	8	100	114	59554	2034	bcc45315dd5db6dd07127090756ec4e19092e019d12ad4ea033c56746870054f	ok	
+spoke-sh/paddles	main	20300	2603	1	0	0	1	2603	2587	9250e0d42ed61f1c484b4daa54e7ff353f99882cbe627bcab06ad210632784a8	ok	
+Gloriaameng/Awesome-Agent-Harness	main	21133	11	1	0	5	6	66	15	f80af3e8dbef4b4f12fefd27359ca53fef306bf77e69030a5c32d400a90e6849	ok	
+AAO-SH/fable-harness	main	21636	28	2	4	4	10	213	93	2f92b54ae622f7402ec2575c1e1f26b1cebf328c885c9ea35a195b2b8d6c4bc3	ok	
+aitrace-dev/granclaw	main	21828	254	9	109	8	126	28024	1020	8851450d2fbf58bb4484cf65fce7ed6a98cb92e0268926503786a87e43eddb49	ok	
+agenticenv/agent-sdk-go	main	22574	405	1	19	21	41	9277	1285	b6860ed9ea9a46a03ec0a4f35f834aeafec49dad59e6781c63ef9e5a603cff23	ok	
+jity16/MiNerva	main	22913	336	1	0	0	1	336	320	cc5d5b3b63a9129968699eefa7a626695a6bd26585affc0ac427329088bb29a4	ok	
+ar27111994/agent-harness-demo-video	main	23056	35	2	0	2	4	140	35	11b754f0519c7b02077275fb87e266c0182ad241e1c96ab4ae868555a7bc2dfc	ok	
+clawdotnet/openclaw.net	main	23635	1498	50	4	148	202	170912	3870	59352c622a52ad6fb7c4faba671557e3a1688fc50c77d80f24273a7d61a3538d	ok	

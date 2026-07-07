@@ -1,7 +1,7 @@
 ---
 status: confirmed
 layer: L6
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 ---
 
 # DDD/TDD ルール SSoT
@@ -31,11 +31,11 @@ ddd_tdd_rules:
   - id: integration-gwt
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: L8 IT-* 行は Given/When/Then 粒度を持たなければならない。
+    intent: L9 IT-* 行は Given/When/Then 粒度を持たなければならない。
   - id: unit-oracle-substance
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: L7 unit test-design の U-*-NNN 行は、link/citation だけでなく実質的な expected behavior (non-skeleton) を記述しなければならない (IMP-083 residual)。
+    intent: L8 unit test-design の U-*-NNN 行は、link/citation だけでなく実質的な expected behavior (non-skeleton) を記述しなければならない (IMP-083 residual)。
   - id: mutation-oracle
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
@@ -66,13 +66,13 @@ Boundary check は意図的に保守的である。2 つの area 間で shared t
 - Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。
 - Add-feature `add-design`: domain boundary、invariant、workflow evidence、または test granularity を変更するすべての feature は、この SSoT を更新するか、影響なしを明示しなければならない。
 - L7 Red: TDD を要求する `add-impl` plan は、review evidence を freeze-ready と扱う前に Red-first evidence と mutation oracle evidence を記録しなければならない。
-- L8 integration: すべての IT-* 行は Given/When/Then を使わなければならない。placeholder integration 行は carry のみであり、confirmable として数えてはならない。
+- L9 integration: すべての IT-* 行は Given/When/Then を使わなければならない。placeholder integration 行は carry のみであり、confirmable として数えてはならない。
 - Quantitative vs qualitative split: mechanical check (`vitest`、`doctor`、lint) は qualitative review より先に実行しなければならない。critical DDD/TDD point は quantitative evidence と agent/human review evidence の両方を持たなければならない。
 - Doctor/CI: `checkDddTddRules` は `helix doctor` と、doctor command 経由の shared harness check pipeline で実行される。
 
 ## Machine Check Contract / 機械検査契約
 
-`src/lint/ddd-tdd-rules.ts` は、この文書、workflow docs、`src/**/*.ts`、`tests/**/*.ts`、PLAN docs、L7/L8 test-design docs を load する。rule drift、workflow anchor drift、boundary drift、invariant oracle gap、Red-first evidence 欠落、mutation oracle evidence 欠落、weak test oracle、GWT integration granularity 欠落に対して deterministic violation を返す。
+`src/lint/ddd-tdd-rules.ts` は、この文書、workflow docs、`src/**/*.ts`、`tests/**/*.ts`、PLAN docs、L8/L9 test-design docs を load する。rule drift、workflow anchor drift、boundary drift、invariant oracle gap、Red-first evidence 欠落、mutation oracle evidence 欠落、weak test oracle、GWT integration granularity 欠落に対して deterministic violation を返す。
 
 ## Baseline Debt / ベースライン debt
 

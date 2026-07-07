@@ -1,0 +1,11 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+genai-io/san	main	29554	708	2	112	257	371	199029	6375	32a09786b4a55883bbff6ae75e67e6e5ff860b2c51d25ea70253ed064edb15ee	ok	
+knewstimek/gorchera	master	30974	79	1	11	0	12	876	198	461b23a618442ac320dddc8cebdf6d706e1eae2e167197a2f79cbdddc10d68c5	ok	
+acoyfellow/terrarium	main	31390	323	5	0	8	13	901	397	1e43801ce86ed218ae9e8803165e594ca030299f6813aae1909e03472ea7845b	ok	
+tmgthb/Autonomous-Agents	main	31988	15	1	0	2	3	39	24	afa9df37c9c08d7ee732508ac0deaffb3565a992c0a22946432aabff41179e8c	ok	
+mateaix/mateclaw	dev	32736	3169	2	13	158	173	442413	6666	7de233930907fdc97091827995b3920a4e77a27787d10356d07f1aa6ad49b0be	ok	
+binary16labs/prime-silo	main	33250	2250	25	52	29	106	247728	4156	a43834984b4490f55f986457808cb136a42fca9c3596236f2cbb8fb8d9152f32	ok	
+Mintplex-Labs/anythingllm-mobile	main	35758	399	1	0	24	25	13645	1065	dbaea3723f73d94479b20d658e0978251769977b177cc469980c20c600219cb8	ok	
+ReinaMacCredy/maestro	main	36597	626	5	55	76	136	95908	8064	6020ca22a8817df55fb51056c9605d26c07303a5c438eead73f8b50393bca219	ok	
+zosmaai/dhara	main	38938	258	6	40	139	185	41110	917	a0a96fd9e2393fc2de3f894d713b0a3f19c052d717e21cbf89661c31fb026302	ok	
+thClaws/thClaws	main	39466	638	13	141	88	242	93640	2924	522eda1454e304eba1b66113d862c02031bbbc06eddd2bbc9138e7cdc35b8581	ok	
