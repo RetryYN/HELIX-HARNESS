@@ -449,9 +449,7 @@ function violationKey(violation: DddTddViolation): string {
 }
 
 function integrationGwtViolations(l9Text: string): DddTddViolation[] {
-  const headerMatch = l9Text.match(
-    /\|\s*IT-ID[^|]*\|\s*Given[^|]*\|\s*When[^|]*\|\s*Then[^|]*\|/i,
-  );
+  const headerMatch = l9Text.match(/\|\s*IT-ID[^|]*\|\s*Given[^|]*\|\s*When[^|]*\|\s*Then[^|]*\|/i);
   if (!headerMatch) {
     return [
       {
