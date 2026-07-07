@@ -749,9 +749,15 @@ describe("L7 CLI surface closure", () => {
         gateCommandTemplate: expect.stringContaining("helix gate <gate-id>"),
       });
       expect(blockedPayload.judgmentReview.requiredEvidence.length).toBeGreaterThan(0);
-      expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
-        expect.arrayContaining(["worker_model を記録する", "reviewer_model を記録する"]),
-      );
+      if (blockedPayload.judgmentReview.requiredReviewKind === "human") {
+        expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
+          expect.arrayContaining(["human approval evidence を記録する"]),
+        );
+      } else {
+        expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
+          expect.arrayContaining(["worker_model を記録する", "reviewer_model を記録する"]),
+        );
+      }
       expect(blockedPayload.judgmentReview.requiredEvidenceJa).toHaveLength(
         blockedPayload.judgmentReview.requiredEvidence.length,
       );
@@ -946,7 +952,9 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("runtime-next:");
       expect(blockedText.stdout).toContain("completion-next: completion-blocked:");
       expect(blockedText.stdout).not.toContain("\nnext:");
-      expect(blockedText.stdout).toContain("evidence=worker_model を記録する");
+      expect(blockedText.stdout).toMatch(
+        /evidence=(worker_model を記録する|human approval evidence を記録する)/,
+      );
       expect(blockedText.stdout).toContain("evidence-id=worker_model recorded");
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
