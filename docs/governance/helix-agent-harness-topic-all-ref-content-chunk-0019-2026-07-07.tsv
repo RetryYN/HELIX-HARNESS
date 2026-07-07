@@ -1,0 +1,11 @@
+source	default_branch	size_kb	default_file_count	head_count	tag_count	pr_ref_count	refs_considered	content_entry_count	unique_blob_count	all_ref_content_sha256	status	failure
+meetsoma/website	main	78265	544	2	0	2	4	1211	618	e1cf193c30aa7c07f369115966632f3093069b43f7beb0c328176d8a4c3a4d86	ok	
+Muulor/AgentVis	main	79124	1176	1	2	0	3	3526	1128	a7e22fe9c108ecd0d8ef193bd3e39eae66d2423d6a2a41e421a1c3c8ece2ceba	ok	
+Mintplex-Labs/anything-llm	master	85179	5564	114	33	2119	2267	1997863	24983	372eac422c9fca0f5a4fdf34cf722cc5f6e869258f8b48959e3fd16860c698e6	ok	
+AtharshKrishnamoorthy/ARIVU	main	87032	536	1	3	0	4	1767	597	c017a0f51a295551e7dc862d979c57682ad6da67c44ca71d0be3d07d0fb68e37	ok	
+lancekrogers/guild-core	main	88214	2086	4	0	5	9	14701	3455	d4edc108a8514e278e5a484057ae21bf22b7e40ea676c37ce3d52b0735d2ccc3	ok	
+agentscope-ai/QwenPaw	main	88727	2608	4	87	2936	3027	4090888	20894	a7d2a9ee78f6604dfce529265d250b69b6a54f97b26807daf28d812f1b9a5b4f	ok	
+trustgraph-ai/trustgraph	master	101860	1849	81	560	914	1555	1424750	10722	6897d49a33a1d9dd9e7db1681b77dc3aa5d937d8cc559d7a4c42ae045eaa0195	ok	
+3xcaffeine/frontier-swe-openenv	main	102382	182	9	0	12	21	2598	266	3ad6e2a24170411c5de965914d08414e89cfe77db533ea8a5de5cfcb4e0d1321	ok	
+HKUDS/AutoMemory	main	107090	25963	1	0	0	1	25982	18356	622e9754b0a6c0b855cc99ef0bcb01caee12d5a5a8e5ef9c078f88475407ae4a	ok	
+mupozg823/codelens-mcp-plugin	main	109898	1098	302	107	290	699	507970	5540	e6f6f142f1fe71b2b1a86505b6226952c5112849ba88118fcf14855e1e3c63d5	ok	
