@@ -18,6 +18,7 @@ updated: 2026-06-09
 
 # HELIX-HARNESS — L8 結合テスト設計 (④ / IT-*)
 
+> **legacy shim（2026-07-08）**: 現行 HELIX では L8 は単体テスト設計、L9 が結合テスト設計である。本書は過去の L5↔L8 freeze 証跡と IT-* 詳細 oracle を保持する migration source であり、新規 PLAN の結合テスト設計正本は `docs/test-design/harness/L9-integration-test-design.md` とする。
 > **layer（作成層 = V-pair key）**: L5 (詳細設計) / **executed_at_layer（実施層）**: L8 (結合テスト) / **artifact（成果物）**: ④ テスト設計 (V-model 右、② L5 詳細設計 全 sub-doc と対)
 > **pair（V-model L5↔L8）**: `docs/design/harness/L5-detailed-design/{physical-data,module-decomposition,internal-processing,if-detail}.md` 4 sub-doc 全体 ↔ 本書 1 doc
 > **status（状態）**: confirmed (L5↔L8 pair freeze。§5 が全 IT-* に GWT 粒度の confirmed IT case 設計を提供)

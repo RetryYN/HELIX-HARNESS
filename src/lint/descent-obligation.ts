@@ -25,7 +25,7 @@ const U_FR_TRACE_RE = /\bU-FR-L1-(\d+)(?:(?:[〜～]|\.\.)(?:U-FR-L1-)?(\d+))?/g
 const EXPLICIT_IMPLEMENTATION_TRACE_RE = /@helix-trace\s+(FR-L1-\d+)/g;
 const ACTIVE_STATUSES = new Set<ArtifactStatus>(["active"]);
 const IMPL_ROLES = new Set<ArtifactRole>(["source", "test"]);
-const OPEN_DEFER_LAYERS = new Set<Layer>(["L4", "L5", "L6", "L7"]);
+const OPEN_DEFER_LAYERS = new Set<Layer>(["L4", "L5", "L6", "L8"]);
 
 function layerRank(layer: Layer): number {
   return DESCENT_LAYERS.indexOf(layer);
@@ -453,33 +453,33 @@ export function analyzeDescentObligations(
     })
     .sort((a, b) => a.traceKey.localeCompare(b.traceKey));
 
-  // thin-coverage advisory (warn-first、ok に算入しない): L7 で satisfied と判定されたが、
-  // L7 unit-test-design 側の被覆が blanket FR レンジ展開のみ (focused oracle 不在) の trace key を
+  // thin-coverage advisory (warn-first、ok に算入しない): L8 で satisfied と判定されたが、
+  // L8 unit-test-design 側の被覆が blanket FR レンジ展開のみ (focused oracle 不在) の trace key を
   // 可視化する。descent-obligation 機構自身の false-confidence (coverage≠substance) を surface する。
   // descent-obligation の scope は design⇔test-design pairing (loader は tests/ を走査しない —
-  // 実 test 引用の検査は oracle-test-trace の領分)。L7 で satisfied だが unit-test-design 側の被覆が
+  // 実 test 引用の検査は oracle-test-trace の領分)。L8 で satisfied だが unit-test-design 側の被覆が
   // blanket FR レンジ展開のみ由来 (focused oracle 行が無く、fr-unit-coverage.md への redirect に依存)
   // の trace key を thin-coverage advisory として surface する。oracle 正本 (fr-unit-coverage.md)
   // による substance 検証は `filterSubstanceVerifiedAdvisories` で後段合成する (3 引数を保つため)。
   const advisories: ThinCoverageAdvisory[] = [];
   const advisorySeen = new Set<string>();
   for (const obligation of graded) {
-    if (obligation.status !== "satisfied" || obligation.requiredLayer !== "L7") continue;
+    if (obligation.status !== "satisfied" || obligation.requiredLayer !== "L8") continue;
     if (advisorySeen.has(obligation.traceKey)) continue;
-    const testDesignL7 = (byTrace.get(obligation.traceKey) ?? []).filter(
+    const testDesignL8 = (byTrace.get(obligation.traceKey) ?? []).filter(
       (artifact) =>
-        isActiveArtifact(artifact) && artifact.layer === "L7" && artifact.role === "test-design",
+        isActiveArtifact(artifact) && artifact.layer === "L8" && artifact.role === "test-design",
     );
     if (
-      testDesignL7.length > 0 &&
-      testDesignL7.every((artifact) => artifact.traceKeyFromRange === true)
+      testDesignL8.length > 0 &&
+      testDesignL8.every((artifact) => artifact.traceKeyFromRange === true)
     ) {
       advisorySeen.add(obligation.traceKey);
       advisories.push({
         traceKey: obligation.traceKey,
-        requiredLayer: "L7",
+        requiredLayer: "L8",
         detail:
-          "L7 coverage is a blanket-range redirect and the FR has no U-FR oracle in fr-unit-coverage.md (the l6-fr-coverage SSoT); confirm this is a documented defer (e.g. P2 forward-carry) vs a genuine substance gap",
+          "L8 unit coverage is a blanket-range redirect and the FR has no U-FR oracle in fr-unit-coverage.md (the l6-fr-coverage SSoT); confirm this is a documented defer (e.g. P2 forward-carry) vs a genuine substance gap",
       });
     }
   }
@@ -521,7 +521,7 @@ function advisoryLines(advisories: ThinCoverageAdvisory[]): string[] {
         `descent-obligation - advisory (thin-coverage): ${advisory.traceKey} ${advisory.requiredLayer}: ${advisory.detail}`,
     );
   lines.push(
-    `descent-obligation - advisory: ${advisories.length} trace key(s) satisfied only by blanket-range L7 coverage (warn-first, ok invariant preserved; hard-gate promotion + oracle back-fill = PLAN-L7-52 C-2/C-4)`,
+    `descent-obligation - advisory: ${advisories.length} trace key(s) satisfied only by blanket-range L8 unit coverage (warn-first, ok invariant preserved; hard-gate promotion + oracle back-fill = PLAN-L7-52 C-2/C-4)`,
   );
   return lines;
 }

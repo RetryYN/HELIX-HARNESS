@@ -24,6 +24,7 @@ updated: 2026-05-29
 
 # HELIX — L7 単体テスト設計 (④ / U-*)
 
+> **legacy shim（2026-07-08）**: 現行 HELIX では L8 が単体テスト設計の正本である。本書は既存 U-* oracle の移行元として保持し、新規 L7 impl PLAN の `pair_artifact` には `docs/test-design/harness/L8-unit-test-design.md` を使う。
 > **layer (作成層 = V-pair key)**: L6 (機能設計) / **executed_at_layer (実施層)**: L7 (単体テスト — 実装スプリント内で TDD Red 先行) / **artifact**: ④ テスト設計 (V-model 右、② L6 機能設計 と対)
 > **pair (V-model L6↔L7)**: `docs/design/harness/L6-function-design/{function-spec,edge-case}.md` 2 sub-doc ↔ 本書 1 doc
 > **status correction (2026-06-09 / A-118)**: frontmatter status は `confirmed`。下部の歴史的な "draft / placeholder skeleton" 表現は、上記 L6 pair-scope 追補と現行 L6 design docs 全件へ追加した U-* oracle family により置き換え済みである。残る実装詳細の展開は L7 carry であり、Phase 2 pair の未完成ではない。

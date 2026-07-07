@@ -264,7 +264,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.baselineDebt).toBe(1);
   });
 
-  it("detects L8 integration cases without Given/When/Then", () => {
+  it("detects L9 integration cases without Given/When/Then", () => {
     const result = analyzeDddTddRules(
       baseInputs({
         l8Text: "| IT-ID | Given | When | Then |\n| IT-DDD-01 | Given fixture | | Then result |",
@@ -274,7 +274,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.map((v) => v.rule)).toContain("integration-gwt");
   });
 
-  it("accepts Japanese annotations on L8 GWT table headers", () => {
+  it("accepts Japanese annotations on L9 GWT table headers", () => {
     const result = analyzeDddTddRules(
       baseInputs({
         l8Text:

@@ -59,17 +59,17 @@ rows は header 含め 7、sha256 は
 2026-07-08 追補として、明示 11 repo 全体に対する all-ref content ledger を
 `docs/governance/helix-agent-harness-explicit-repo-all-ref-content-ledger-2026-07-08.tsv` に固定した。
 rows は header 含め 12、sha256 は
-`c50dcbc4be3dd25b1fb0b518f514dad3d3e0cb51f1173b952836810e1a2d0c34`。
+`d0764ef734b3e9516e67be2d6b11aeeb4e0220958ddce89653d243f66327c1e0`。
 この ledger は、全 refs から到達可能な object graph digest と、取得可能な repo では unique blob body digest を記録する。
 外部 code 実行、依存 install、credential 使用、secret / PII 保存、外部 API write は行っていない。
 `bradAGI/awesome-cli-coding-agents`、`andyrewlee/awesome-agent-orchestrators`、`Fission-AI/OpenSpec`、
-`statewright/statewright`、`github/spec-kit`、`first-fluke/oh-my-agent`、
+`statewright/statewright`、`github/spec-kit`、`AgentWrapper/agent-orchestrator`、`first-fluke/oh-my-agent`、
+`code-yeongyu/oh-my-openagent`、
 `ai-boost/awesome-harness-engineering`、`Picrew/awesome-agent-harness`、
 `AutoJunjie/awesome-agent-harness` は all-ref content evidence `ok`。
-`AgentWrapper/agent-orchestrator` と `code-yeongyu/oh-my-openagent` は 2026-07-08 時点の refs count を再取得したが、
-large repo の all-ref object graph / blob body digest はまだ `pending_large_repo` として残す。
-したがって、本 objective の「明示 repo 全件の全 refs/内容」完了 claim はまだ不可であり、
-`PLAN-L7-384-source-content-mirror-completeness` の retry ledger 対象として継続する。
+`AgentWrapper/agent-orchestrator` と `code-yeongyu/oh-my-openagent` は巨大 refs のため raw blob body digest ではなく、
+各 ref を commit へ peel した root tree digest を固定した。Git root tree SHA はその ref の全ファイル内容ツリーを表すため、
+all-ref content identity evidence として扱う。`pending_large_repo=0`。
 
 GitHub topic `agent-harness` は git repo ではないため refs を持たない。GitHub Search API の
 `topic:agent-harness` 結果を 2026-07-07 時点で全 437 件取得し、

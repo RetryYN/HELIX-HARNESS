@@ -22,6 +22,7 @@ updated: 2026-05-29
 
 # HELIX-HARNESS — L9 総合テスト設計 (④ / ST-*)
 
+> **legacy shim（2026-07-08）**: 現行 HELIX では L9 は結合テスト設計である。本書は過去の L4↔L9 system freeze 証跡を保持する migration source であり、新規 PLAN で L9 を総合テストとして扱わない。結合テスト設計の正本は `docs/test-design/harness/L9-integration-test-design.md`。
 > **layer（作成層 = V-pair key）**: L4 (基本設計) / **executed_at_layer（実施層）**: L9 (総合テスト) / **artifact（成果物）**: ④ テスト設計 (V-model 右、② L4 基本設計 全 sub-doc と対)
 > **pair（V-model L4↔L9）**: `docs/design/harness/L4-basic-design/{data,architecture,function,external-if,ui-standard}.md` + `tokens.yaml` の L4 sub-doc/asset 全体 ↔ 本書 1 doc
 > **status（状態）**: confirmed (G4/A-101 freeze — ST カテゴリ ⇔ L4 設計要素の被覆を凍結、孤児 0)。個別 ST ケース (Given-When-Then) は検証 band (L8-L14) / L9 本起票で展開する。旧 ST-ASSET roster/skill carry row は、現在は実装済み L7 evidence で被覆済み。

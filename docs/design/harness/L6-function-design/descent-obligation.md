@@ -2,9 +2,9 @@
 layer: L6
 artifact_type: design_doc
 status: confirmed
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
-next_pair_freeze: L7
+next_pair_freeze: L8
 created: 2026-06-12
 plan: docs/plans/PLAN-L6-35-descent-obligation.md
 traces: FR-L1-03
@@ -12,7 +12,7 @@ traces: FR-L1-03
 
 # descent-obligation ledger — 機能設計 (① / PLAN-L6-35、FR-L1-03 抜け漏れ検出)
 
-> **V-pair**: `pair_artifact = L7-unit-test-design.md §1.22 (U-DESC-001〜008)` (L6↔L7)。DbC 契約から単体テスト oracle (U-DESC-*) を導出。
+> **V-pair**: `pair_artifact = L8-unit-test-design.md` (L6↔L8)。DbC 契約から単体テスト oracle (U-DESC-*) を導出する。旧 `L7-unit-test-design.md` は legacy shim として段階移行対象。
 > **trace key**: `FR-L1-03` (V字双方向 trace、設計⇔テスト設計ペア確認、抜け漏れ検出, P0)。新 FR 採番せず既存 FR の降下不足を埋める。
 
 ## §0 スコープ — なぜ pair-freeze だけでは落ちるか
@@ -21,7 +21,7 @@ traces: FR-L1-03
 
 A-136 後の skill 片肺 (`src/skills/recommend.ts` + テストコード着地済だが L6 単体テスト設計が不在) は、この absence-blindness ゆえに `pair-freeze` / `impl-plan-trace` (src→PLAN ID 被覆) / `oracle-test-trace` (oracle→test コード citation) を全て素通りした。
 
-本 lint は検査の向きを反転する: **上流 (要件 FR registry) + 層隣接 obligation matrix から「存在すべき下流/pair 成果物の集合」を生成し、不在を fail-close** する。降下鎖 `要求 L1 → 要件 L3 → 基本 L4 → 詳細 L5 → 機能 L6 → 実装 L7 ⇔ 単体テスト設計` の各ホップで「上流が在るなら下流が在るべき」を機械生成し、`document-system-map.md §重要(4)` の「pair 未充足を DB 側で fail-close 検知する」意図を実体化する。
+本 lint は検査の向きを反転する: **上流 (要件 FR registry) + 層隣接 obligation matrix から「存在すべき下流/pair 成果物の集合」を生成し、不在を fail-close** する。降下鎖 `要求 L1 → 要件 L3 → 基本 L4 → 詳細 L5 → 機能 L6 → 実装 L7 → 単体テスト設計 L8` の各ホップで「上流が在るなら下流が在るべき」を機械生成し、`document-system-map.md §重要(4)` の「pair 未充足を DB 側で fail-close 検知する」意図を実体化する。
 
 **スコープ外**: G7 の 4 artifact 12 directed edge trace (`traceCheck`、function-spec §2.3) と change-impact 波及 (`relation-graph.ts analyzeRelationImpact`)。本 lint は **freeze 時点の降下完全性** (各 trace key の鎖が層を取りこぼさず揃っているか) のみを見る。lint 実装 / harness.db `descent_obligations` projection / doctor 配線は L7 (別 add-impl PLAN)。
 
@@ -93,11 +93,10 @@ type DescentResult = {
 | L3 | L4 | descent | active | 要件が active なら基本設計が在るべき |
 | L4 | L5 | descent | active | 基本設計→詳細設計 |
 | L5 | L6 | descent | active | 詳細設計→機能設計 (関数仕様) |
-| L6 | L7 | pair | active | **機能設計⇔単体テスト設計の V-pair (必然)**。pair-freeze と同義だが生成は上流駆動 |
-| L5 | L8 | pair | impl-present | 詳細設計⇔結合テスト設計 (impl 着地時に必須化) |
-| L4 | L9 | pair | impl-present | 基本設計⇔総合テスト設計 |
+| L6 | L8 | pair | active | **機能設計⇔L8 単体テスト設計の V-pair (必然)**。pair-freeze と同義だが生成は上流駆動 |
+| L5 | L9 | pair | impl-present | 詳細設計⇔L9 結合テスト設計 (impl 着地時に必須化) |
 | L3 | L12 | pair | impl-present | 要件⇔受入テスト設計 |
-| `*` (src/test) | L4..L7 | impl-guard | impl-present | **impl-ahead**: src が在るなら L4/L5/L6 設計 + L7 テスト設計が全て discharge 済であるべき。`from:"*"` sentinel = 起点が特定 Layer でなく impl 着地そのもの (M-1)。検出は §3 経路② |
+| `*` (src/test) | L4/L5/L6/L8 | impl-guard | impl-present | **impl-ahead**: src が在るなら L4/L5/L6 設計 + L8 単体テスト設計が全て discharge 済であるべき。`from:"*"` sentinel = 起点が特定 Layer でなく impl 着地そのもの (M-1)。検出は §3 経路② |
 
 > `condition: active` = 上流成果物が `active` (park/defer/placeholder でない) のとき obligation 生成。`condition: impl-present` = その trace key の source/test が存在するとき生成 (impl-ahead ガードの土台)。matrix は **単一正本** (現状 6 lint に暗黙分散している層隣接規則を集約)。
 
@@ -138,7 +137,7 @@ function analyzeDescentObligations(artifacts, adjacency, defers):
     # E5: impl-ahead (経路② = obligation 非依存の全 defer scan)。obligation を emit しなかった層
     #     (例 condition 未充足) の取り残し defer も捕捉する。I-3: graded.unmet と排他にする。
     if hasImpl:
-      for d in openDefers(defers, key) where d.waitingLayer in {L4,L5,L6,L7}:
+      for d in openDefers(defers, key) where d.waitingLayer in {L4,L5,L6,L8}:
         if d.waitingLayer not in unmetLayers:              # 二重登録防止 (exclusive)
           implAhead.push({key, landedAt = lowest src layer, undischarged = d})
     chains.push(summarizeChain(key, present, obligations))  # firstGap = 最初の unmet 層

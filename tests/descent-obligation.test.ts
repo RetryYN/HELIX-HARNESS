@@ -50,7 +50,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
       expect.arrayContaining([
         expect.objectContaining({ traceKey: "FR-L1-03", fromLayer: "L3", requiredLayer: "L4" }),
         expect.objectContaining({ traceKey: "FR-L1-03", fromLayer: "L4", requiredLayer: "L5" }),
-        expect.objectContaining({ traceKey: "FR-L1-03", requiredLayer: "L7", kind: "impl-guard" }),
+        expect.objectContaining({ traceKey: "FR-L1-03", requiredLayer: "L8", kind: "impl-guard" }),
       ]),
     );
     expect(obligations.some((row) => row.requiredLayer === "L2")).toBe(false);
@@ -80,7 +80,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
       a({ traceKey: "FR-L1-03", layer: "L4", role: "design" }),
       a({ traceKey: "FR-L1-03", layer: "L5", role: "design" }),
       a({ traceKey: "FR-L1-03", layer: "L6", role: "design" }),
-      a({ traceKey: "FR-L1-03", layer: "L7", role: "test-design" }),
+      a({ traceKey: "FR-L1-03", layer: "L8", role: "test-design" }),
     ];
 
     const result = analyzeDescentObligations(artifacts, DEFAULT_DESCENT_ADJACENCY, []);
@@ -92,8 +92,8 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
     );
   });
 
-  it("U-DESC-013: surfaces blanket-range-only L7 coverage as a thin-coverage advisory without failing ok (warn-first, PLAN-L7-52 C-2)", () => {
-    // impl 無し (L8/L9/L12 の impl-present 義務を発火させない) で L6→L7 pair が満たされる鎖。
+  it("U-DESC-013: surfaces blanket-range-only L8 coverage as a thin-coverage advisory without failing ok (warn-first, PLAN-L7-52 C-2)", () => {
+    // impl 無し (L9/L12 の impl-present 義務を発火させない) で L6→L8 unit pair が満たされる鎖。
     const base: TraceKeyedArtifact[] = [
       a({ traceKey: "FR-L1-47", layer: "L1", role: "requirement" }),
       a({ traceKey: "FR-L1-47", layer: "L3", role: "requirement" }),
@@ -102,26 +102,26 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
       a({ traceKey: "FR-L1-47", layer: "L6", role: "design" }),
     ];
 
-    // L7 unit-test-design coverage が blanket レンジ展開のみ由来 → advisory、ただし ok は不変
+    // L8 unit-test-design coverage が blanket レンジ展開のみ由来 → advisory、ただし ok は不変
     const rangeOnly = analyzeDescentObligations(
       [
         ...base,
-        a({ traceKey: "FR-L1-47", layer: "L7", role: "test-design", traceKeyFromRange: true }),
+        a({ traceKey: "FR-L1-47", layer: "L8", role: "test-design", traceKeyFromRange: true }),
       ],
       DEFAULT_DESCENT_ADJACENCY,
       [],
     );
     expect(rangeOnly.ok).toBe(true);
     expect(rangeOnly.advisories).toContainEqual(
-      expect.objectContaining({ traceKey: "FR-L1-47", requiredLayer: "L7" }),
+      expect.objectContaining({ traceKey: "FR-L1-47", requiredLayer: "L8" }),
     );
     expect(descentObligationMessages(rangeOnly).join("\n")).toContain("thin-coverage");
 
-    // focused (非レンジ) な L7 test-design oracle があれば advisory は出ない
+    // focused (非レンジ) な L8 test-design oracle があれば advisory は出ない
     const focused = analyzeDescentObligations(
       [
         ...base,
-        a({ traceKey: "FR-L1-47", layer: "L7", role: "test-design", traceKeyFromRange: false }),
+        a({ traceKey: "FR-L1-47", layer: "L8", role: "test-design", traceKeyFromRange: false }),
       ],
       DEFAULT_DESCENT_ADJACENCY,
       [],
@@ -133,10 +133,10 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
     const mixed = analyzeDescentObligations(
       [
         ...base,
-        a({ traceKey: "FR-L1-47", layer: "L7", role: "test-design", traceKeyFromRange: true }),
+        a({ traceKey: "FR-L1-47", layer: "L8", role: "test-design", traceKeyFromRange: true }),
         a({
           traceKey: "FR-L1-47",
-          layer: "L7",
+          layer: "L8",
           role: "test-design",
           path: "docs/test-design/harness/focused.md",
           traceKeyFromRange: false,
@@ -190,7 +190,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
         a({ traceKey: "FR-L1-47", layer: "L6", role: "design" }),
         a({
           traceKey: "FR-L1-47",
-          layer: "L7",
+          layer: "L8",
           role: "test-design",
           status: "placeholder",
         }),
@@ -203,32 +203,32 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
     expect(result.obligations).toContainEqual(
       expect.objectContaining({
         traceKey: "FR-L1-47",
-        requiredLayer: "L7",
+        requiredLayer: "L8",
         status: "unmet",
       }),
     );
     expect(result.chains).toContainEqual(
-      expect.objectContaining({ traceKey: "FR-L1-47", complete: false, firstGap: "L7" }),
+      expect.objectContaining({ traceKey: "FR-L1-47", complete: false, firstGap: "L8" }),
     );
   });
 
   it("U-DESC-005: honors valid defers before implementation and rejects hollow defers", () => {
     const artifacts = [a({ traceKey: "FR-L1-03", layer: "L6", role: "design" })];
     const deferred = analyzeDescentObligations(artifacts, DEFAULT_DESCENT_ADJACENCY, [
-      defer({ traceKey: "FR-L1-03", waitingLayer: "L7" }),
+      defer({ traceKey: "FR-L1-03", waitingLayer: "L8" }),
     ]);
     const invalid = analyzeDescentObligations(artifacts, DEFAULT_DESCENT_ADJACENCY, [
-      defer({ traceKey: "FR-L1-03", waitingLayer: "L7", owner: "" }),
+      defer({ traceKey: "FR-L1-03", waitingLayer: "L8", owner: "" }),
     ]);
 
     expect(deferred.ok).toBe(true);
     expect(deferred.obligations).toContainEqual(
-      expect.objectContaining({ requiredLayer: "L7", status: "deferred" }),
+      expect.objectContaining({ requiredLayer: "L8", status: "deferred" }),
     );
     expect(invalid.ok).toBe(false);
     expect(invalid.findings).toContainEqual(expect.objectContaining({ code: "invalid-defer" }));
     expect(invalid.obligations).toContainEqual(
-      expect.objectContaining({ requiredLayer: "L7", status: "unmet" }),
+      expect.objectContaining({ requiredLayer: "L8", status: "unmet" }),
     );
   });
 
@@ -237,7 +237,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
       [
         a({ traceKey: "FR-L1-47", layer: "L6", role: "design" }),
         a({ traceKey: "FR-L1-47", layer: "L7", role: "source", path: "src/skills/recommend.ts" }),
-        a({ traceKey: "FR-L1-47", layer: "L7", role: "test-design" }),
+        a({ traceKey: "FR-L1-47", layer: "L8", role: "test-design" }),
       ],
       DEFAULT_DESCENT_ADJACENCY,
       [defer({ traceKey: "FR-L1-47", waitingLayer: "L6" })],
@@ -281,7 +281,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
     const messages = descentObligationMessages(result);
 
     expect(messages.join("\n")).toContain("FR-L1-47");
-    expect(messages.join("\n")).toContain("L7");
+    expect(messages.join("\n")).toContain("L8");
     expect(messages.join("\n")).toMatch(/unmet|impl-ahead/);
 
     const repoResult = analyzeDescentObligations(

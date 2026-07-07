@@ -183,7 +183,7 @@ export function loadDddTddInputs(repoRoot: string = process.cwd()): DddTddInputs
     ),
     l8Text: maybeRead(
       repoRoot,
-      normalizePath(join("docs", "test-design", "harness", "L8-integration-test-design.md")),
+      normalizePath(join("docs", "test-design", "harness", "L9-integration-test-design.md")),
     ),
     plans: collectPlanDocs(repoRoot),
   };
@@ -448,29 +448,31 @@ function violationKey(violation: DddTddViolation): string {
   return `${normalizePath(violation.path)}:${violation.line}:${violation.rule}`;
 }
 
-function integrationGwtViolations(l8Text: string): DddTddViolation[] {
-  const headerMatch = l8Text.match(/\|\s*IT-ID\s*\|\s*Given[^|]*\|\s*When[^|]*\|\s*Then[^|]*\|/i);
+function integrationGwtViolations(l9Text: string): DddTddViolation[] {
+  const headerMatch = l9Text.match(
+    /\|\s*IT-ID[^|]*\|\s*Given[^|]*\|\s*When[^|]*\|\s*Then[^|]*\|/i,
+  );
   if (!headerMatch) {
     return [
       {
         path: normalizePath(
-          join("docs", "test-design", "harness", "L8-integration-test-design.md"),
+          join("docs", "test-design", "harness", "L9-integration-test-design.md"),
         ),
         line: 1,
         rule: "integration-gwt",
-        message: "L8 integration test design must define an IT-ID/Given/When/Then table.",
+        message: "L9 integration test design must define an IT-ID/Given/When/Then table.",
       },
     ];
   }
-  const section = l8Text.slice(headerMatch.index);
+  const section = l9Text.slice(headerMatch.index);
   const rows = section.split(/\r?\n/).filter((line) => /^\|\s*IT-[A-Z0-9-]+\s*\|/.test(line));
   const violations: DddTddViolation[] = [];
   if (rows.length === 0) {
     violations.push({
-      path: normalizePath(join("docs", "test-design", "harness", "L8-integration-test-design.md")),
-      line: l8Text.slice(0, headerMatch.index).split(/\r?\n/).length,
+      path: normalizePath(join("docs", "test-design", "harness", "L9-integration-test-design.md")),
+      line: l9Text.slice(0, headerMatch.index).split(/\r?\n/).length,
       rule: "integration-gwt",
-      message: "L8 GWT table has no IT-* rows.",
+      message: "L9 GWT table has no IT-* rows.",
     });
   }
   for (const row of rows) {
@@ -480,8 +482,8 @@ function integrationGwtViolations(l8Text: string): DddTddViolation[] {
       .map((cell) => cell.trim());
     if (cells[1] && cells[2] && cells[3]) continue;
     violations.push({
-      path: normalizePath(join("docs", "test-design", "harness", "L8-integration-test-design.md")),
-      line: l8Text.slice(0, l8Text.indexOf(row)).split(/\r?\n/).length,
+      path: normalizePath(join("docs", "test-design", "harness", "L9-integration-test-design.md")),
+      line: l9Text.slice(0, l9Text.indexOf(row)).split(/\r?\n/).length,
       rule: "integration-gwt",
       message: `${cells[0] ?? "IT row"} must have non-empty Given, When, and Then cells.`,
     });
