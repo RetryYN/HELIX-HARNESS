@@ -5904,6 +5904,7 @@ closure
   .option("--approval-record <path>", "approval record containing decision_id/outcome")
   .option("--limit <n>", "maximum patch candidates to include", "20")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
   .action(
     (opts: {
@@ -5912,6 +5913,7 @@ closure
       approvalRecord?: string;
       limit?: string;
       json?: boolean;
+      summaryJson?: boolean;
       fromDb?: boolean;
     }) => {
       if (opts.dryRun === opts.execute) {
@@ -5942,11 +5944,54 @@ closure
           approvalRecordText,
           limit,
         });
+        const summarizeApplyPlan = (
+          appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }>,
+        ) => ({
+          schema_version: "project-closure-apply-plan-summary.v1",
+          source_clock: plan.source_clock,
+          dry_run: opts.dryRun === true,
+          executed: opts.execute === true,
+          action: plan.action,
+          approval: {
+            required: plan.approval.required,
+            record_path: plan.approval.record_path,
+            valid: plan.approval.valid,
+            decision_id: plan.approval.decision_id,
+            outcome: plan.approval.outcome,
+            approval_scope_digest: plan.approval.approval_scope_digest,
+            reason_count: plan.approval.reasons.length,
+            reasons: plan.approval.reasons.slice(0, 20),
+          },
+          allowed_to_apply: plan.allowed_to_apply,
+          blocked_reasons: plan.blocked_reasons,
+          patch_candidate_count: plan.patch_candidates.length,
+          patch_candidates: plan.patch_candidates.slice(0, 20).map((patch) => ({
+            plan_id: patch.plan_id,
+            source_path: patch.source_path,
+            current_status: patch.current_status,
+            next_status: patch.next_status,
+            operation: patch.operation,
+            artifact_count: patch.evidence_summary.artifact_paths.length,
+            evidence_count: patch.evidence_summary.evidence_paths.length,
+            test_runs: patch.evidence_summary.test_runs,
+            gate_runs: patch.evidence_summary.gate_runs,
+            runtime_verification: patch.evidence_summary.runtime_verification,
+          })),
+          applied_patch_count: appliedPatches.length,
+          applied_patches: appliedPatches,
+          postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
+          write_policy: plan.write_policy,
+          source_command: "helix closure apply --summary-json",
+          full_source_command: plan.source_command,
+          view_command: plan.view_command,
+        });
         const appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }> =
           [];
         if (opts.execute) {
           if (!plan.allowed_to_apply) {
-            if (opts.json) {
+            if (opts.summaryJson) {
+              process.stdout.write(`${JSON.stringify(summarizeApplyPlan([]), null, 2)}\n`);
+            } else if (opts.json) {
               process.stdout.write(
                 `${JSON.stringify({ ...plan, executed: false, applied_patches: [] }, null, 2)}\n`,
               );
@@ -5968,6 +6013,10 @@ closure
               next_status: patch.next_status,
             });
           }
+        }
+        if (opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(summarizeApplyPlan(appliedPatches), null, 2)}\n`);
+          return;
         }
         if (opts.json) {
           process.stdout.write(

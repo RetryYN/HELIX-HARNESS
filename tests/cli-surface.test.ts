@@ -4597,6 +4597,34 @@ describe("L7 CLI surface closure", () => {
         patch_candidates: [],
         write_policy: "read-only",
       });
+      const applyBlockedSummary = runCliIn(root, [
+        "closure",
+        "apply",
+        "--dry-run",
+        "--summary-json",
+      ]);
+      expect(applyBlockedSummary.status).toBe(0);
+      expect(JSON.parse(applyBlockedSummary.stdout)).toMatchObject({
+        schema_version: "project-closure-apply-plan-summary.v1",
+        dry_run: true,
+        executed: false,
+        action: "close_ready",
+        allowed_to_apply: false,
+        approval: {
+          required: true,
+          valid: false,
+          reasons: ["approval record が指定されていない"],
+        },
+        blocked_reasons: expect.arrayContaining([
+          "対象 candidate が 0 件",
+          "approval record が指定されていない",
+        ]),
+        patch_candidate_count: 0,
+        applied_patch_count: 0,
+        source_command: "helix closure apply --summary-json",
+        full_source_command: "helix closure apply --dry-run --limit 20 --json",
+        write_policy: "read-only",
+      });
 
       const closeReadyReviewForApproval = runCliIn(root, [
         "closure",
