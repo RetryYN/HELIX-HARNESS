@@ -284,6 +284,7 @@ import {
   type ProjectClosureOverview,
   type ProjectClosureReviewBundle,
   type ProjectClosureTransitionPlan,
+  type ProjectCurrentLocationSnapshot,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
@@ -3281,12 +3282,124 @@ db.command("rebuild")
     );
   });
 
+function summarizeProjectCurrentLocation(snapshot: ProjectCurrentLocationSnapshot) {
+  return {
+    schema_version: "project-current-location-summary.v1",
+    source_clock: snapshot.source_clock,
+    current: snapshot.current,
+    counts: snapshot.counts,
+    drive_recommendation: {
+      model: snapshot.drive_recommendation.model,
+      reason: snapshot.drive_recommendation.reason,
+      reverse_targets: snapshot.drive_recommendation.reverseTargets,
+    },
+    drive_route: {
+      route_id: snapshot.drive_route.routeId,
+      status: snapshot.drive_route.status,
+      selected_model: snapshot.drive_route.selectedModel,
+      default_model: snapshot.drive_route.defaultModel,
+      must_return_to_design: snapshot.drive_route.mustReturnToDesign,
+      forward: {
+        allowed: snapshot.drive_route.forward.allowed,
+        roadmap_status: snapshot.drive_route.forward.roadmapStatus,
+        frontier: snapshot.drive_route.forward.frontier,
+        coverage_ids: snapshot.drive_route.forward.coverageIds,
+      },
+      reverse: {
+        required: snapshot.drive_route.reverse.required,
+        targets: snapshot.drive_route.reverse.targets,
+        l12_layers: snapshot.drive_route.reverse.l12Layers,
+        queue_actions: snapshot.drive_route.reverse.queueActions,
+        ledger_count: snapshot.drive_route.reverse.ledgerIds.length,
+      },
+    },
+    gates: {
+      design_coverage: snapshot.design_coverage_gate.status,
+      acceptance_traceability: snapshot.acceptance_traceability.status,
+      zip_adoption: snapshot.zip_adoption.status,
+      tailoring: snapshot.tailoring_gate.status,
+      roadmap_position: snapshot.roadmap_position.status,
+    },
+    coverage: {
+      done: snapshot.coverage.done,
+      missing: snapshot.coverage.missing,
+      reverify: snapshot.coverage.reverify,
+    },
+    operation_scope: {
+      designed: snapshot.operation_scope.designed,
+      observed: snapshot.operation_scope.observed,
+      observed_gap: snapshot.operation_scope.observed_gap,
+      missing: snapshot.operation_scope.missing,
+      reverify: snapshot.operation_scope.reverify,
+    },
+    artifact_remap: {
+      done: snapshot.artifact_remap.done,
+      missing: snapshot.artifact_remap.missing,
+      reverify: snapshot.artifact_remap.reverify,
+    },
+    closure: {
+      status: snapshot.closure.status,
+      open_l7: snapshot.closure.l7_open_plan_ids.length,
+      l14_claims: snapshot.closure.terminal_l14_plan_ids.length,
+      closure_evidence: snapshot.closure.closure_evidence_ids.length,
+      queue_total: snapshot.closure.queue.total,
+      route_counts: snapshot.closure.queue.route_counts,
+      ledger_status_counts: snapshot.closure.next_action_ledger.status_counts,
+      packet_count: snapshot.closure.packets.total,
+    },
+    recovery: snapshot.recovery
+      ? {
+          status: snapshot.recovery.status,
+          selected_closure_action: snapshot.recovery.selected_closure_action,
+          exit_status: snapshot.recovery.exit_forecast.status,
+          remaining_queue_items: snapshot.recovery.exit_forecast.remaining_queue_items,
+          automation_status: snapshot.recovery.automation_runway.status,
+          machine_actionable_count: snapshot.recovery.automation_runway.machine_actionable_count,
+          human_approval_count: snapshot.recovery.automation_runway.human_approval_count,
+          design_reverse_count: snapshot.recovery.automation_runway.design_reverse_count,
+          remaining_after_machine_lanes:
+            snapshot.recovery.automation_runway.remaining_after_machine_lanes,
+          next_machine_command: snapshot.recovery.automation_runway.next_machine_command,
+          next_machine_probe_command:
+            snapshot.recovery.automation_runway.next_machine_probe_command,
+          next_machine_materialize_command:
+            snapshot.recovery.automation_runway.next_machine_materialize_command,
+          next_machine_approval_draft_command:
+            snapshot.recovery.automation_runway.next_machine_approval_draft_command,
+          reentry_status: snapshot.recovery.reentry_forecast.status,
+          reentry_next_gate: snapshot.recovery.reentry_forecast.next_gate,
+        }
+      : null,
+    skill_binding: snapshot.skill_binding
+      ? {
+          status: snapshot.skill_binding.status,
+          selected_model: snapshot.skill_binding.selectedModel,
+          workflow_modes: snapshot.skill_binding.workflowModes,
+          l12_layers: snapshot.skill_binding.l12Layers,
+          required_skills: snapshot.skill_binding.requiredSkills,
+          recommended_skills: snapshot.skill_binding.recommendedSkills,
+          optional_skills: snapshot.skill_binding.optionalSkills,
+        }
+      : null,
+    finding_count: snapshot.findings.length,
+    findings: snapshot.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+    write_policy: "read-only",
+    source_command: "helix current-location --summary-json",
+    view_command: "helix progress tree-view --json",
+  };
+}
+
 program
   .command("current-location")
   .description("Project view current location and drive-model recommendation from DB projection")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and handoff surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
     const db = openHarnessDb(dbPath, { repoRoot });
@@ -3294,6 +3407,10 @@ program
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeProjectCurrentLocation(snapshot), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
         return;

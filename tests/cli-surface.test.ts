@@ -2504,6 +2504,60 @@ describe("L7 CLI surface closure", () => {
         "unresolved_design_reference",
       );
 
+      const summaryJson = runCliIn(root, ["current-location", "--summary-json"]);
+      const summaryPayload = JSON.parse(summaryJson.stdout);
+      expect(summaryJson.status).toBe(0);
+      expect(summaryPayload).toMatchObject({
+        schema_version: "project-current-location-summary.v1",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+          completion_boundary: "contradicted",
+        },
+        drive_recommendation: {
+          model: "Recovery",
+          reverse_targets: ["docs/design/**", "docs/test-design/**"],
+        },
+        drive_route: {
+          route_id: "drive:Recovery:recover-current-location",
+          status: "recovery_required",
+          selected_model: "Recovery",
+          must_return_to_design: true,
+          reverse: {
+            required: true,
+            queue_actions: ["collect_evidence"],
+            ledger_count: 1,
+          },
+        },
+        closure: {
+          status: "contradicted",
+          open_l7: 1,
+          l14_claims: 1,
+          queue_total: 1,
+          route_counts: {
+            collect_evidence: 1,
+          },
+        },
+        recovery: {
+          status: "active",
+          selected_closure_action: "collect_evidence",
+          automation_status: "machine_work_available",
+          machine_actionable_count: 1,
+          human_approval_count: 0,
+          next_machine_command: "helix closure batch --action collect_evidence --json",
+        },
+        finding_count: expect.any(Number),
+        source_command: "helix current-location --summary-json",
+      });
+      expect(summaryPayload.finding_count).toBeGreaterThanOrEqual(1);
+      expect(summaryPayload.findings.map((finding: { code: string }) => finding.code)).toContain(
+        "unresolved_design_reference",
+      );
+      expect(summaryPayload.closure.l7_open_plan_ids).toBeUndefined();
+      expect(summaryPayload.closure.queue).toBeUndefined();
+      expect(summaryPayload.closure.packets).toBeUndefined();
+
       const text = runCliIn(root, ["current-location"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("current-location: layer=L14 l12=L12 status=needs_recovery");
