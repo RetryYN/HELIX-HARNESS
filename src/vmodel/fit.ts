@@ -8,17 +8,17 @@ import {
   buildProjectDriveModelReport,
   buildProjectRecoveryPlan,
   buildProjectRoadmapCurrentReport,
-  closureEvidenceApprovalDraftCommand,
   closureEvidenceApplyDryRunCommand,
   closureEvidenceApplyExecuteCommand,
+  closureEvidenceApprovalDraftCommand,
   closureEvidenceHandoffArtifacts,
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
   isProjectClosureQueueNextAction,
   type ProjectClosureEvidenceProbeExecution,
   type ProjectClosureOutcomeRoute,
-  type ProjectCurrentLocationSnapshot,
   type ProjectClosureQueueNextAction,
+  type ProjectCurrentLocationSnapshot,
 } from "../state-db/current-location";
 import {
   buildVmodelZipSourceBindings,
@@ -91,26 +91,26 @@ export interface VmodelCurrentLocationGate {
     machine_actionable_count: number;
     human_approval_count: number;
     design_reverse_count: number;
-	    remaining_after_machine_lanes: number;
-	    next_machine_action: string | null;
-	    next_machine_command: string | null;
-	    next_machine_probe_command: string | null;
-	    next_machine_materialize_command: string | null;
-	    next_machine_approval_draft_command: string | null;
-	    next_machine_apply_dry_run_command: string | null;
-	    phases: VmodelRecoveryRunwayPhase[];
-	  };
+    remaining_after_machine_lanes: number;
+    next_machine_action: string | null;
+    next_machine_command: string | null;
+    next_machine_probe_command: string | null;
+    next_machine_materialize_command: string | null;
+    next_machine_approval_draft_command: string | null;
+    next_machine_apply_dry_run_command: string | null;
+    phases: VmodelRecoveryRunwayPhase[];
+  };
   reentry_forecast: {
     status: string;
     current_blocking_count: number;
     blocking_after_machine_lanes: number;
     required_phase_count: number;
     next_phase_action: string | null;
-	    next_phase_type: string | null;
-	    next_gate: string;
-	    next_command: string;
-	    next_execution_command: string;
-	  };
+    next_phase_type: string | null;
+    next_gate: string;
+    next_command: string;
+    next_execution_command: string;
+  };
 }
 
 export interface VmodelFunctionDesignAbsorptionGate {
@@ -297,11 +297,7 @@ export interface VmodelHandoffArtifactStatus {
   kind: "probe_record" | "approval_draft";
   path: string;
   status: "present" | "missing" | "unchecked";
-  generation_status:
-    | "present"
-    | "ready_to_generate"
-    | "waiting_for_probe"
-    | "unchecked";
+  generation_status: "present" | "ready_to_generate" | "waiting_for_probe" | "unchecked";
   generation_command: string;
   bytes: number | null;
   sha256: string | null;
@@ -319,9 +315,13 @@ export interface VmodelHandoffNextStep {
     | "approval_required"
     | "unchecked"
     | "unavailable";
+  approval_state: VmodelApprovalRecordStatus["status"] | "not_required";
+  scope_status: VmodelApprovalRecordStatus["scope_status"] | null;
+  valid_for_apply: boolean;
   command: string;
   label: string;
   required_action: string;
+  reason_codes: string[];
   reasons: string[];
 }
 
@@ -375,6 +375,8 @@ export interface VmodelRecoveryHandoffGate {
   materialize_status: string | null;
   reviewed_candidate_count: number | null;
   valid_for_apply: boolean;
+  approval_state: VmodelHandoffNextStep["approval_state"];
+  reason_codes: string[];
   reasons: string[];
 }
 
@@ -533,19 +535,18 @@ function zipManifestView(zipManifest?: VmodelZipManifestResult): VmodelZipManife
     root_prefix: zipManifest?.rootPrefix ?? null,
     entries_total: zipManifest?.entriesTotal ?? 0,
     by_extension: { ...(zipManifest?.byExtension ?? {}) },
-    inventory_signature:
-      zipManifest?.inventorySignature ?? {
-        status: "advisory_missing",
-        expected_root_prefix: expectedSignature.rootPrefix,
-        actual_root_prefix: null,
-        expected_entries_total: expectedSignature.entriesTotal,
-        actual_entries_total: 0,
-        expected_by_extension: { ...expectedSignature.byExtension },
-        actual_by_extension: Object.fromEntries(
-          Object.keys(expectedSignature.byExtension).map((extension) => [extension, 0]),
-        ),
-        mismatches: [],
-      },
+    inventory_signature: zipManifest?.inventorySignature ?? {
+      status: "advisory_missing",
+      expected_root_prefix: expectedSignature.rootPrefix,
+      actual_root_prefix: null,
+      expected_entries_total: expectedSignature.entriesTotal,
+      actual_entries_total: 0,
+      expected_by_extension: { ...expectedSignature.byExtension },
+      actual_by_extension: Object.fromEntries(
+        Object.keys(expectedSignature.byExtension).map((extension) => [extension, 0]),
+      ),
+      mismatches: [],
+    },
     required_present: zipManifest?.required.filter((entry) => entry.present).length ?? 0,
     required_total: zipManifest?.required.length ?? 0,
     required:
@@ -625,65 +626,63 @@ function currentLocationGate(snapshot: ProjectCurrentLocationSnapshot): VmodelCu
       machine_actionable_count: recoveryPlan.automation_runway.machine_actionable_count,
       human_approval_count: recoveryPlan.automation_runway.human_approval_count,
       design_reverse_count: recoveryPlan.automation_runway.design_reverse_count,
-	      remaining_after_machine_lanes:
-	        recoveryPlan.automation_runway.remaining_after_machine_lanes,
-	      next_machine_action: recoveryPlan.automation_runway.next_machine_action,
-	      next_machine_command: recoveryPlan.automation_runway.next_machine_command,
-	      next_machine_probe_command: recoveryPlan.automation_runway.next_machine_probe_command,
-	      next_machine_materialize_command: recoveryPlan.automation_runway.next_machine_materialize_command,
-	      next_machine_approval_draft_command:
-	        recoveryPlan.automation_runway.next_machine_approval_draft_command,
-	      next_machine_apply_dry_run_command:
-	        recoveryPlan.automation_runway.next_machine_apply_dry_run_command,
-	      phases: recoveryPlan.automation_runway.phases.map((phase) => {
-	        const batch = buildProjectClosureBatchReport(snapshot, {
-	          action: phase.action,
-	          limit: 3,
-	        });
-	        const bucket = batch.work_buckets[0] ?? null;
-	        return {
-	          sequence: phase.sequence,
-	          action: phase.action,
-	          phase_type: phase.phase_type,
-	          count: phase.count,
-	          listed: batch.listed,
-	          omitted: batch.omitted,
-	          selected: phase.selected,
-	          status: phase.status,
-	          human_required: phase.human_required,
-	          command: phase.command,
-	          evidence_signature: bucket?.evidence_signature ?? null,
-	          evidence_components: bucket ? [...bucket.evidence_components] : [],
-	          evidence_statuses: bucket ? [...bucket.evidence_statuses] : [],
-	          sample_plan_ids: bucket ? [...bucket.sample_plan_ids] : [],
-	          sample_source_paths: batch.queue_items
-	            .slice(0, 3)
-	            .map((item) => item.sourcePath),
-	          evidence_probe_command: phase.evidence_probe_command,
-	          evidence_materialize_command: phase.evidence_materialize_command,
-	          evidence_approval_draft_command: phase.evidence_approval_draft_command,
-	          evidence_apply_dry_run_command: phase.evidence_apply_dry_run_command,
-	          evidence_apply_execute_command: phase.evidence_apply_execute_command,
-	          evidence_apply_write_policy: phase.evidence_apply_write_policy,
-	          target_tables: [...phase.target_tables],
-	          postcheck_commands: [...phase.postcheck_commands],
-	          remaining_after_phase: phase.remaining_after_phase,
-	          next_gate: phase.next_gate,
-	          expected_transition: phase.expected_transition,
-	        };
-	      }),
-	    },
+      remaining_after_machine_lanes: recoveryPlan.automation_runway.remaining_after_machine_lanes,
+      next_machine_action: recoveryPlan.automation_runway.next_machine_action,
+      next_machine_command: recoveryPlan.automation_runway.next_machine_command,
+      next_machine_probe_command: recoveryPlan.automation_runway.next_machine_probe_command,
+      next_machine_materialize_command:
+        recoveryPlan.automation_runway.next_machine_materialize_command,
+      next_machine_approval_draft_command:
+        recoveryPlan.automation_runway.next_machine_approval_draft_command,
+      next_machine_apply_dry_run_command:
+        recoveryPlan.automation_runway.next_machine_apply_dry_run_command,
+      phases: recoveryPlan.automation_runway.phases.map((phase) => {
+        const batch = buildProjectClosureBatchReport(snapshot, {
+          action: phase.action,
+          limit: 3,
+        });
+        const bucket = batch.work_buckets[0] ?? null;
+        return {
+          sequence: phase.sequence,
+          action: phase.action,
+          phase_type: phase.phase_type,
+          count: phase.count,
+          listed: batch.listed,
+          omitted: batch.omitted,
+          selected: phase.selected,
+          status: phase.status,
+          human_required: phase.human_required,
+          command: phase.command,
+          evidence_signature: bucket?.evidence_signature ?? null,
+          evidence_components: bucket ? [...bucket.evidence_components] : [],
+          evidence_statuses: bucket ? [...bucket.evidence_statuses] : [],
+          sample_plan_ids: bucket ? [...bucket.sample_plan_ids] : [],
+          sample_source_paths: batch.queue_items.slice(0, 3).map((item) => item.sourcePath),
+          evidence_probe_command: phase.evidence_probe_command,
+          evidence_materialize_command: phase.evidence_materialize_command,
+          evidence_approval_draft_command: phase.evidence_approval_draft_command,
+          evidence_apply_dry_run_command: phase.evidence_apply_dry_run_command,
+          evidence_apply_execute_command: phase.evidence_apply_execute_command,
+          evidence_apply_write_policy: phase.evidence_apply_write_policy,
+          target_tables: [...phase.target_tables],
+          postcheck_commands: [...phase.postcheck_commands],
+          remaining_after_phase: phase.remaining_after_phase,
+          next_gate: phase.next_gate,
+          expected_transition: phase.expected_transition,
+        };
+      }),
+    },
     reentry_forecast: {
       status: recoveryPlan.reentry_forecast.status,
       current_blocking_count: recoveryPlan.reentry_forecast.current_blocking_count,
       blocking_after_machine_lanes: recoveryPlan.reentry_forecast.blocking_after_machine_lanes,
       required_phase_count: recoveryPlan.reentry_forecast.required_phase_count,
       next_phase_action: recoveryPlan.reentry_forecast.next_phase_action,
-	      next_phase_type: recoveryPlan.reentry_forecast.next_phase_type,
-	      next_gate: recoveryPlan.reentry_forecast.next_gate,
-	      next_command: recoveryPlan.reentry_forecast.next_command,
-	      next_execution_command: recoveryPlan.reentry_forecast.next_execution_command,
-	    },
+      next_phase_type: recoveryPlan.reentry_forecast.next_phase_type,
+      next_gate: recoveryPlan.reentry_forecast.next_gate,
+      next_command: recoveryPlan.reentry_forecast.next_command,
+      next_execution_command: recoveryPlan.reentry_forecast.next_execution_command,
+    },
   };
 }
 
@@ -1059,7 +1058,8 @@ function buildVmodelFitBlockers(input: {
       status: snapshot.tailoring_gate.status,
       count: snapshot.tailoring_gate.missing_required,
       command: "helix current-location --json",
-      required_action: "required tailoring item を typed declaration で満たす。na は missing と扱わない",
+      required_action:
+        "required tailoring item を typed declaration で満たす。na は missing と扱わない",
       doc_dependencies: [...snapshot.tailoring_gate.docDependencies],
       implementation_dependencies: [...snapshot.tailoring_gate.implementationDependencies],
     });
@@ -1124,7 +1124,10 @@ function buildVmodelSynthesisReport(input: {
 }): VmodelSynthesisReport {
   const declared = input.snapshot.zip_adoption.items.filter((item) => item.status === "declared");
   const byCategory = (category: "adopt" | "complement" | "reject"): string[] =>
-    declared.filter((item) => item.category === category).map((item) => item.adoptionId).sort();
+    declared
+      .filter((item) => item.category === category)
+      .map((item) => item.adoptionId)
+      .sort();
   const adoptedIds = byCategory("adopt");
   const complementedIds = byCategory("complement");
   const rejectedIds = byCategory("reject");
@@ -1286,8 +1289,7 @@ function parseVmodelApprovalRecord(text: string | null): VmodelApprovalRecordSta
   }
   const decisionId = /^decision_id:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const outcome = /^outcome:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
-  const approvalScopeDigest =
-    /^approval_scope_digest:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
+  const approvalScopeDigest = /^approval_scope_digest:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const reviewedCandidateCountRaw =
     /^reviewed_candidate_count:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const reviewedCandidateCount =
@@ -1371,7 +1373,9 @@ function parseVmodelApprovalRecord(text: string | null): VmodelApprovalRecordSta
     expected_approval_scope_digest: null,
     scope_status: approvalScopeDigest === null ? "missing" : "not_checked",
     materialize_status: null,
-    reviewed_candidate_count: Number.isFinite(reviewedCandidateCount) ? reviewedCandidateCount : null,
+    reviewed_candidate_count: Number.isFinite(reviewedCandidateCount)
+      ? reviewedCandidateCount
+      : null,
     valid_for_apply: false,
     reasons: [`unknown approval outcome: ${outcome}`],
   };
@@ -1502,6 +1506,27 @@ function buildVmodelHandoffStatus(input: {
   };
 }
 
+function vmodelApprovalState(
+  approval: VmodelApprovalRecordStatus | null | undefined,
+): VmodelHandoffNextStep["approval_state"] {
+  return approval?.status ?? "not_required";
+}
+
+function vmodelHandoffReasonCodes(input: {
+  status: VmodelHandoffNextStep["status"];
+  approval?: VmodelApprovalRecordStatus | null;
+  extras?: string[];
+}): string[] {
+  const approval = input.approval ?? null;
+  return [
+    `handoff.status.${input.status}`,
+    `approval.${vmodelApprovalState(approval)}`,
+    `approval.scope.${approval?.scope_status ?? "none"}`,
+    `approval.valid_for_apply.${approval?.valid_for_apply ?? false}`,
+    ...(input.extras ?? []),
+  ];
+}
+
 function buildVmodelHandoffNextStep(input: {
   status: VmodelHandoffStatus | null;
   evidenceProbeCommand: string;
@@ -1516,9 +1541,17 @@ function buildVmodelHandoffNextStep(input: {
   if (probe?.status === "unchecked" || draft?.status === "unchecked") {
     return {
       status: "unchecked",
+      approval_state: vmodelApprovalState(input.status.approval_record),
+      scope_status: input.status.approval_record?.scope_status ?? null,
+      valid_for_apply: input.status.approval_record?.valid_for_apply ?? false,
       command: input.evidenceProbeCommand,
       label: "handoff unchecked",
       required_action: "repoRoot 付き fit gate で handoff artifact の実在を再検査する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "unchecked",
+        approval: input.status.approval_record,
+        extras: ["handoff.artifact.unchecked"],
+      }),
       reasons: [
         `present=${input.status.present}`,
         `missing=${input.status.missing}`,
@@ -1529,18 +1562,34 @@ function buildVmodelHandoffNextStep(input: {
   if (probe?.status !== "present") {
     return {
       status: "generate_probe",
+      approval_state: vmodelApprovalState(input.status.approval_record),
+      scope_status: input.status.approval_record?.scope_status ?? null,
+      valid_for_apply: input.status.approval_record?.valid_for_apply ?? false,
       command: probe?.generation_command ?? input.evidenceProbeCommand,
       label: "generate probe record",
       required_action: "verification command を実行し、probe record artifact を生成する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "generate_probe",
+        approval: input.status.approval_record,
+        extras: ["handoff.probe_record.missing"],
+      }),
       reasons: probe?.reasons ?? ["probe_record is not present"],
     };
   }
   if (draft?.status !== "present") {
     return {
       status: "generate_approval_draft",
+      approval_state: vmodelApprovalState(input.status.approval_record),
+      scope_status: input.status.approval_record?.scope_status ?? null,
+      valid_for_apply: input.status.approval_record?.valid_for_apply ?? false,
       command: draft?.generation_command ?? input.evidenceApprovalDraftCommand,
       label: "generate approval draft",
       required_action: "probe record から non-authorizing approval draft を生成する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "generate_approval_draft",
+        approval: input.status.approval_record,
+        extras: ["handoff.approval_draft.missing"],
+      }),
       reasons: draft?.reasons ?? ["approval_draft is not present"],
     };
   }
@@ -1548,6 +1597,9 @@ function buildVmodelHandoffNextStep(input: {
   if (approval?.status === "approved" && approval.valid_for_apply) {
     return {
       status: "apply_dry_run",
+      approval_state: vmodelApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.evidenceApplyDryRunCommand.replace(
         "<approved-approval-record-path>",
         input.approvalRecordPath,
@@ -1555,43 +1607,84 @@ function buildVmodelHandoffNextStep(input: {
       label: "apply dry-run approved evidence",
       required_action:
         "承認済み record を使って apply dry-run を実行し、digest/approval scope と patch candidate を照合する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "apply_dry_run",
+        approval,
+        extras: ["handoff.apply.dry_run_ready", "approval.record.approved"],
+      }),
       reasons: [...approval.reasons, "execute remains separate approval-required surface"],
     };
   }
   if (approval?.status === "pending_human_review") {
     return {
       status: "approval_pending",
+      approval_state: vmodelApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.evidenceMaterializeCommand,
       label: "approval pending",
       required_action:
         "materialized preview と approval_scope_digest を確認し、人間判断で outcome を approve/reject に更新する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "approval_pending",
+        approval,
+        extras: ["approval.waiting_for_human_review"],
+      }),
       reasons: approval.reasons,
     };
   }
   if (approval?.status === "rejected") {
     return {
       status: "approval_rejected",
+      approval_state: vmodelApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.evidenceMaterializeCommand,
       label: "approval rejected",
       required_action: "reject 理由に従って evidence projection または設計/テスト設計へ戻す",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "approval_rejected",
+        approval,
+        extras: ["approval.record.rejected"],
+      }),
       reasons: approval.reasons,
     };
   }
   if (approval?.status === "invalid") {
     return {
       status: "approval_required",
+      approval_state: vmodelApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.evidenceApprovalDraftCommand,
       label: "approval record invalid",
       required_action: "approval record の必須 field/outcome を修正してから dry-run する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "approval_required",
+        approval,
+        extras: ["approval.record.invalid"],
+      }),
       reasons: approval.reasons,
     };
   }
   return {
     status: "approval_required",
+    approval_state: vmodelApprovalState(approval),
+    scope_status: approval?.scope_status ?? null,
+    valid_for_apply: approval?.valid_for_apply ?? false,
     command: input.evidenceMaterializeCommand,
     label: "review materialized evidence",
     required_action:
       "materialized preview と approval_scope_digest を確認し、人間承認後に apply dry-run/execute を扱う",
+    reason_codes: vmodelHandoffReasonCodes({
+      status: "approval_required",
+      approval,
+      extras: [
+        "handoff.probe_record.present",
+        "handoff.approval_draft.present",
+        "approval.apply_requires_human",
+      ],
+    }),
     reasons: ["probe_record=present", "approval_draft=present", "apply remains approval-required"],
   };
 }
@@ -1784,8 +1877,7 @@ function buildVmodelRegressionGuards(input: {
     (item) => item.scope === "runtime_verification",
   );
   const unobservedRuntimeVerification =
-    runtimeVerificationScope?.status === "designed" &&
-    runtimeVerificationScope.observedCount === 0;
+    runtimeVerificationScope?.status === "designed" && runtimeVerificationScope.observedCount === 0;
   const guards: VmodelRegressionGuard[] = [
     {
       guard_id: "zip-source-integrity",
@@ -1829,8 +1921,10 @@ function buildVmodelRegressionGuards(input: {
       scope: "L12 design coverage",
       command: "helix current-location --json",
       protected_surface: ["design_coverage_gate", "design_declarations"],
-      count: input.snapshot.design_coverage_gate.missing + input.snapshot.design_coverage_gate.reverify,
-      required_action: "missing/reverify coverage を typed declaration と設計・テスト設計へ戻して補う",
+      count:
+        input.snapshot.design_coverage_gate.missing + input.snapshot.design_coverage_gate.reverify,
+      required_action:
+        "missing/reverify coverage を typed declaration と設計・テスト設計へ戻して補う",
       reasons: [`status=${input.snapshot.design_coverage_gate.status}`],
     },
     {
@@ -1896,15 +1990,16 @@ function buildVmodelRegressionGuards(input: {
       ],
     },
     {
-	      guard_id: "current-location-reentry",
-	      status: input.currentGate.status === "pass" ? "pass" : "watch",
-	      scope: "DB current-location and drive reentry",
-	      command:
-	        input.currentLocationReentryCommand ??
-	        input.currentGate.reentry_forecast.next_execution_command,
+      guard_id: "current-location-reentry",
+      status: input.currentGate.status === "pass" ? "pass" : "watch",
+      scope: "DB current-location and drive reentry",
+      command:
+        input.currentLocationReentryCommand ??
+        input.currentGate.reentry_forecast.next_execution_command,
       protected_surface: ["current_location", "recovery_runway", "drive_model"],
       count: input.currentGate.reentry_forecast.current_blocking_count,
-      required_action: "Recovery reentry forecast の next phase を処理して drive model を再計算する",
+      required_action:
+        "Recovery reentry forecast の next phase を処理して drive model を再計算する",
       reasons: [
         `current=${input.currentGate.current_status}/${input.currentGate.completion_boundary}`,
         `reentry=${input.currentGate.reentry_forecast.status}`,
@@ -2027,6 +2122,8 @@ function buildVmodelRecoveryHandoffGate(
       materialize_status: handoffStatus?.approval_record?.materialize_status ?? null,
       reviewed_candidate_count: handoffStatus?.approval_record?.reviewed_candidate_count ?? null,
       valid_for_apply: handoffStatus?.approval_record?.valid_for_apply ?? false,
+      approval_state: vmodelApprovalState(handoffStatus?.approval_record),
+      reason_codes: ["handoff.status.none", "handoff.next.missing"],
       reasons: ["current_location next action に handoff_next が無い"],
     };
   }
@@ -2055,6 +2152,13 @@ function buildVmodelRecoveryHandoffGate(
     materialize_status: handoffStatus?.approval_record?.materialize_status ?? null,
     reviewed_candidate_count: handoffStatus?.approval_record?.reviewed_candidate_count ?? null,
     valid_for_apply: handoffStatus?.approval_record?.valid_for_apply ?? false,
+    approval_state: handoffNext.approval_state,
+    reason_codes: [
+      ...handoffNext.reason_codes,
+      `handoff.phase.${effectivePhase}`,
+      `action.${action.action_id}`,
+      `automation.${action.automation_class}`,
+    ],
     reasons: [
       `action=${action.action_id}`,
       `automation=${action.automation_class}`,
@@ -2128,7 +2232,7 @@ export function buildVmodelFitReport(
       ? "roadmap current gate passed"
       : roadmapGate.recovery_correlation === "current_location_recovery"
         ? "roadmap current contradiction is correlated with current-location recovery"
-      : `roadmap current gate is ${roadmapGate.status}`,
+        : `roadmap current gate is ${roadmapGate.status}`,
     driveGate.status === "pass"
       ? `drive model gate passed selected=${driveGate.selected_model}`
       : `drive model gate is ${driveGate.status}`,

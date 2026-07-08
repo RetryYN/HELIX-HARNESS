@@ -1137,7 +1137,9 @@ describe("visualization Tree View adapter", () => {
       label: "View boundary",
       contextValue: "view-boundary.harness",
     });
-    expect(harnessBoundary?.tooltip).toContain("source=progress,graph,evidence.skill_invocations,evidence.model_runs");
+    expect(harnessBoundary?.tooltip).toContain(
+      "source=progress,graph,evidence.skill_invocations,evidence.model_runs",
+    );
     expect(harnessBoundary?.tooltip).toContain("excluded=project_current_location.vmodel_fit");
 
     const current = project?.children.find((child) => child.id === "project/current-location");
@@ -1165,29 +1167,31 @@ describe("visualization Tree View adapter", () => {
     expect(drive?.children[3]?.tooltip).toContain(
       "coverage=L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
     );
-    expect(drive?.children[3]?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/drive/reverse/doc-dependencies:3",
-      "project/current-location/drive/reverse/implementation-dependencies:2",
-      "project/current-location/drive/reverse/closure-links:1/1",
-    ]);
+    expect(drive?.children[3]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+      [
+        "project/current-location/drive/reverse/doc-dependencies:3",
+        "project/current-location/drive/reverse/implementation-dependencies:2",
+        "project/current-location/drive/reverse/closure-links:1/1",
+      ],
+    );
     expect(drive?.children[3]?.children[0]?.tooltip).toContain("docs/design/**");
     expect(drive?.children[3]?.children[1]?.tooltip).toContain("design_declarations");
-    expect(drive?.children[3]?.children[2]?.tooltip).toContain(
-      "action=repair_failed_evidence",
-    );
+    expect(drive?.children[3]?.children[2]?.tooltip).toContain("action=repair_failed_evidence");
     expect(drive?.children[0]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix drive model --json"],
     });
-    expect(drive?.children[0]?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/drive/model-candidates/1-Recovery:selected L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
-      "project/current-location/drive/model-candidates/2-Reverse:blocked L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
-      "project/current-location/drive/model-candidates/3-OperationVerification:blocked L12-operation-observability",
-      "project/current-location/drive/model-candidates/4-Forward:blocked L6-implementation-binding,L7-tdd-closure",
-      "project/current-location/drive/model-candidates/5-Additive:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
-      "project/current-location/drive/model-candidates/6-Refactor:blocked L5-detailed-contract",
-    ]);
+    expect(drive?.children[0]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+      [
+        "project/current-location/drive/model-candidates/1-Recovery:selected L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
+        "project/current-location/drive/model-candidates/2-Reverse:blocked L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
+        "project/current-location/drive/model-candidates/3-OperationVerification:blocked L12-operation-observability",
+        "project/current-location/drive/model-candidates/4-Forward:blocked L6-implementation-binding,L7-tdd-closure",
+        "project/current-location/drive/model-candidates/5-Additive:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
+        "project/current-location/drive/model-candidates/6-Refactor:blocked L5-detailed-contract",
+      ],
+    );
     expect(drive?.children[0]?.children[0]?.tooltip).toContain(
       "trigger=L14 claim と L7/open evidence の矛盾",
     );
@@ -1199,13 +1203,15 @@ describe("visualization Tree View adapter", () => {
       command: "helix.copyPointer",
       arguments: ["helix recovery plan --json"],
     });
-    expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/drive/recovery-plan/exit-forecast:blocked remaining=1 lanes=repair_failed_evidence",
-      "project/current-location/drive/recovery-plan/reentry-forecast:machine_phase_pending blocking=1",
-      "project/current-location/drive/recovery-plan/automation-runway:machine_work_available machine=1 approval=0",
-      "project/current-location/drive/recovery-plan/automation-boundaries:evidence_required:1",
-      "project/current-location/drive/recovery-plan/repair_failed_evidence:1 needs_repair human=false",
-    ]);
+    expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+      [
+        "project/current-location/drive/recovery-plan/exit-forecast:blocked remaining=1 lanes=repair_failed_evidence",
+        "project/current-location/drive/recovery-plan/reentry-forecast:machine_phase_pending blocking=1",
+        "project/current-location/drive/recovery-plan/automation-runway:machine_work_available machine=1 approval=0",
+        "project/current-location/drive/recovery-plan/automation-boundaries:evidence_required:1",
+        "project/current-location/drive/recovery-plan/repair_failed_evidence:1 needs_repair human=false",
+      ],
+    );
     const automationRunway = drive?.children[1]?.children.find(
       (child) => child.id === "project/current-location/drive/recovery-plan/automation-runway",
     );
@@ -1311,7 +1317,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/drive-model:Recovery/pass L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
       "project/current-location/vmodel-fit/current-location:needs_recovery/contradicted",
       "project/current-location/vmodel-fit/recovery-runway:machine_work_available machine=1 approval=0",
-      "project/current-location/vmodel-fit/recovery-handoff:generate_approval_draft phase=machine",
+      "project/current-location/vmodel-fit/recovery-handoff:generate_approval_draft phase=machine approval=missing scope=missing valid=false",
       "project/current-location/vmodel-fit/approval-review:none count=0 listed=0",
       "project/current-location/vmodel-fit/design-integrity:unresolved=0 drift=0",
       "project/current-location/vmodel-fit/blockers:6",
@@ -1348,34 +1354,41 @@ describe("visualization Tree View adapter", () => {
       (child) => child.id === "project/current-location/vmodel-fit/next-actions",
     );
     const currentLocationNextAction = vmodelNextActions?.children.find(
-      (child) => child.id === "project/current-location/vmodel-fit/next-actions/20-current_location",
+      (child) =>
+        child.id === "project/current-location/vmodel-fit/next-actions/20-current_location",
     );
     expect(currentLocationNextAction?.children[0]).toMatchObject({
       id: "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket",
       label: "work bucket",
       contextValue: "vmodel-fit.next-action.work-bucket.needs_evidence",
-	      command: {
-	        title: "Copy pointer",
-	        command: "helix.copyPointer",
-	        arguments: [
-	          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
-	        ],
-	      },
-	    });
-		    expect(currentLocationNextAction?.children[0]?.children?.map((child) => `${child.id}:${child.description}`)).toEqual([
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/handoff-next:generate_approval_draft",
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/probe-record:present present 20164B",
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft-artifact:missing ready_to_generate -B",
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
-		      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
-		    ]);
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: [
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+        ],
+      },
+    });
+    expect(
+      currentLocationNextAction?.children[0]?.children?.map(
+        (child) => `${child.id}:${child.description}`,
+      ),
+    ).toEqual([
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/handoff-next:generate_approval_draft approval=missing scope=missing valid=false",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/probe-record:present present 20164B",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft-artifact:missing ready_to_generate -B",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+    ]);
     const vmodelRegressionGuards = vmodelFit?.children.find(
       (child) => child.id === "project/current-location/vmodel-fit/regression-guards",
     );
     expect(vmodelRegressionGuards?.tooltip).toContain("db=project_vmodel_regression_guards");
-    expect(vmodelRegressionGuards?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
+    expect(
+      vmodelRegressionGuards?.children.map((child) => `${child.id}:${child.description}`),
+    ).toEqual([
       "project/current-location/vmodel-fit/regression-guards/zip-source-integrity:watch count=0",
       "project/current-location/vmodel-fit/regression-guards/acceptance-traceability:fail count=2",
       "project/current-location/vmodel-fit/regression-guards/design-coverage:fail count=1",
@@ -1460,9 +1473,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/scrum-operation/scrum:product-backlog:backlog/observed",
       "project/current-location/scrum-operation/scrum:active-plan:plan/observed",
     ]);
-    expect(scrumOperation?.children[0]?.tooltip).toContain(
-      "docs/112_プロダクトバックログ.yaml",
-    );
+    expect(scrumOperation?.children[0]?.tooltip).toContain("docs/112_プロダクトバックログ.yaml");
     const zipManifest = current?.children.find(
       (child) => child.id === "project/current-location/zip-manifest",
     );
@@ -1604,13 +1615,13 @@ describe("visualization Tree View adapter", () => {
     const repairEvidencePlan = evidencePlan?.children.find(
       (child) => child.id === "project/current-location/closure/evidence-plan/repair",
     );
-    expect(
-      repairEvidencePlan?.children.map((child) => `${child.id}:${child.description}`),
-	    ).toEqual([
-	      "project/current-location/closure/evidence-plan/repair/gate_runs:passed",
-	      "project/current-location/closure/evidence-plan/repair/runtime_verification_events:accepted",
-	      "project/current-location/closure/evidence-plan/repair/test_runs:passed",
-	    ]);
+    expect(repairEvidencePlan?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+      [
+        "project/current-location/closure/evidence-plan/repair/gate_runs:passed",
+        "project/current-location/closure/evidence-plan/repair/runtime_verification_events:accepted",
+        "project/current-location/closure/evidence-plan/repair/test_runs:passed",
+      ],
+    );
     const evidenceMaterialize = closure?.children.find(
       (child) => child.id === "project/current-location/closure/evidence-materialize",
     );
@@ -1626,7 +1637,9 @@ describe("visualization Tree View adapter", () => {
         "helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
       ],
     });
-    expect(evidenceMaterialize?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
+    expect(
+      evidenceMaterialize?.children.map((child) => `${child.id}:${child.description}`),
+    ).toEqual([
       "project/current-location/closure/evidence-materialize/probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
       "project/current-location/closure/evidence-materialize/preview:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
     ]);
@@ -1663,30 +1676,32 @@ describe("visualization Tree View adapter", () => {
     expect(workBuckets?.children[0]?.tooltip).toContain(
       "templates=test_runs:passed,gate_runs:passed,runtime_verification_events:accepted",
     );
-	    expect(workBuckets?.children[0]?.command).toEqual({
-	      title: "Copy pointer",
-	      command: "helix.copyPointer",
-	      arguments: [
-	        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-	      ],
-	    });
-		    expect(workBuckets?.children[0]?.children?.map((child) => `${child.id}:${child.description}`)).toEqual([
-		      "project/current-location/closure/overview/work-buckets/1/evidence-probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-		      "project/current-location/closure/overview/work-buckets/1/probe-record:.helix/tmp/closure/repair_failed_evidence-probe-record.json",
-		      "project/current-location/closure/overview/work-buckets/1/approval-draft-artifact:.helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
-		      "project/current-location/closure/overview/work-buckets/1/evidence-materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-		      "project/current-location/closure/overview/work-buckets/1/evidence-approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
-		      "project/current-location/closure/overview/work-buckets/1/evidence-apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
-	      "project/current-location/closure/overview/work-buckets/1/evidence-patch:approval-required candidates=3",
-	      "project/current-location/closure/overview/work-buckets/1/PLAN-L7-open:failed=0 patches=3",
-	    ]);
-	    expect(workBuckets?.children[0]?.children?.[0]?.command).toEqual({
-	      title: "Copy pointer",
-	      command: "helix.copyPointer",
-	      arguments: [
-	        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-	      ],
-	    });
+    expect(workBuckets?.children[0]?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: [
+        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      ],
+    });
+    expect(
+      workBuckets?.children[0]?.children?.map((child) => `${child.id}:${child.description}`),
+    ).toEqual([
+      "project/current-location/closure/overview/work-buckets/1/evidence-probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      "project/current-location/closure/overview/work-buckets/1/probe-record:.helix/tmp/closure/repair_failed_evidence-probe-record.json",
+      "project/current-location/closure/overview/work-buckets/1/approval-draft-artifact:.helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
+      "project/current-location/closure/overview/work-buckets/1/evidence-materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      "project/current-location/closure/overview/work-buckets/1/evidence-approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+      "project/current-location/closure/overview/work-buckets/1/evidence-apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+      "project/current-location/closure/overview/work-buckets/1/evidence-patch:approval-required candidates=3",
+      "project/current-location/closure/overview/work-buckets/1/PLAN-L7-open:failed=0 patches=3",
+    ]);
+    expect(workBuckets?.children[0]?.children?.[0]?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: [
+        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      ],
+    });
     const packets = closure?.children.find(
       (child) => child.id === "project/current-location/closure/packets",
     );
@@ -1756,8 +1771,7 @@ describe("visualization Tree View adapter", () => {
     expect(queue?.children[0]).toMatchObject({
       id: "project/current-location/closure/queue/30/PLAN-L7-open",
       label: "PLAN-L7-open",
-      description:
-        "repair_failed_evidence reverify/partial add-impl @L6 L6-implementation-binding",
+      description: "repair_failed_evidence reverify/partial add-impl @L6 L6-implementation-binding",
       contextValue: "closure-queue.repair_failed_evidence.reverify.partial",
     });
     expect(queue?.children[0]?.tooltip).toContain(
@@ -1782,7 +1796,9 @@ describe("visualization Tree View adapter", () => {
     expect(operationScope?.children[0]?.tooltip).toContain(
       "coverage=L12-operation-observability 運用テスト/ログ/KPI/runtime",
     );
-    expect(operationScope?.children[0]?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
+    expect(
+      operationScope?.children[0]?.children.map((child) => `${child.id}:${child.description}`),
+    ).toEqual([
       "project/current-location/operation-scope/log_design/design:1",
       "project/current-location/operation-scope/log_design/observed:0",
       "project/current-location/operation-scope/log_design/observation-gap:watch",
@@ -1968,9 +1984,12 @@ describe("visualization Tree View adapter", () => {
       },
     });
     expect(handoffNext).toMatchObject({
-      description: "approval_pending",
-      contextValue: "vmodel-fit.work-bucket.handoff-next.approval_pending",
+      description: "approval_pending approval=pending_human_review scope=match valid=false",
+      contextValue:
+        "vmodel-fit.work-bucket.handoff-next.approval_pending.approval-pending_human_review.scope-match.valid-false",
     });
+    expect(handoffNext?.tooltip).toContain("approval.waiting_for_human_review");
+    expect(handoffNext?.tooltip).toContain("approval.scope.match");
     expect(approvalDraftArtifact).toMatchObject({
       description: "present present 253B",
       contextValue: "vmodel-fit.work-bucket.handoff.approval-draft",
@@ -1979,11 +1998,15 @@ describe("visualization Tree View adapter", () => {
     expect(approvalDraftArtifact?.tooltip).toContain("approval_scope_digest=sha256:test");
     expect(approvalDraftArtifact?.tooltip).toContain("expected=sha256:test");
     expect(recoveryHandoff).toMatchObject({
-      description: "approval_pending phase=approval",
-      contextValue: "vmodel-fit.recovery-handoff.approval.approval_pending",
+      description:
+        "approval_pending phase=approval approval=pending_human_review scope=match valid=false",
+      contextValue:
+        "vmodel-fit.recovery-handoff.approval.approval_pending.approval-pending_human_review.scope-match.valid-false",
     });
+    expect(recoveryHandoff?.tooltip).toContain("approval_state=pending_human_review");
     expect(recoveryHandoff?.tooltip).toContain("approval=pending_human_review");
     expect(recoveryHandoff?.tooltip).toContain("scope=match");
+    expect(recoveryHandoff?.tooltip).toContain("handoff.phase.approval");
     expect(recoveryHandoff?.tooltip).toContain(
       "decision=closure-evidence-materialize:repair_failed_evidence",
     );

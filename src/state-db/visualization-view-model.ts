@@ -8,15 +8,15 @@ import {
   buildProjectClosureOverview,
   buildProjectDriveModelReport,
   buildProjectRecoveryPlan,
-  closureEvidenceApprovalDraftCommand,
   closureEvidenceApplyDryRunCommand,
   closureEvidenceApplyExecuteCommand,
+  closureEvidenceApprovalDraftCommand,
+  closureEvidenceHandoffArtifacts,
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
-  closureEvidenceHandoffArtifacts,
   isProjectClosureQueueNextAction,
-  type ProjectSkillBinding,
   type ProjectScrumOperation,
+  type ProjectSkillBinding,
 } from "./current-location";
 import type { VisualizationSnapshot } from "./visualization-read-model";
 
@@ -237,10 +237,10 @@ export interface ProjectCurrentLocationView {
       required_phase_count: number;
       next_phase_action: string | null;
       next_phase_type: string | null;
-	      next_gate: string;
-	      next_command: string;
-	      next_execution_command: string;
-	      recompute_commands: string[];
+      next_gate: string;
+      next_command: string;
+      next_execution_command: string;
+      recompute_commands: string[];
       expected_transition: string;
       reasons: string[];
     };
@@ -249,14 +249,14 @@ export interface ProjectCurrentLocationView {
       machine_actionable_count: number;
       human_approval_count: number;
       design_reverse_count: number;
-	      remaining_after_machine_lanes: number;
-	      next_machine_action: string | null;
-	      next_machine_command: string | null;
-	      next_machine_probe_command: string | null;
-	      next_machine_materialize_command: string | null;
-	      next_machine_approval_draft_command: string | null;
-	      next_machine_apply_dry_run_command: string | null;
-	      approval_actions: string[];
+      remaining_after_machine_lanes: number;
+      next_machine_action: string | null;
+      next_machine_command: string | null;
+      next_machine_probe_command: string | null;
+      next_machine_materialize_command: string | null;
+      next_machine_approval_draft_command: string | null;
+      next_machine_apply_dry_run_command: string | null;
+      approval_actions: string[];
       phases: Array<{
         sequence: number;
         action: string;
@@ -264,20 +264,20 @@ export interface ProjectCurrentLocationView {
         count: number;
         selected: boolean;
         status: string;
-	        human_required: boolean;
-	        command: string;
-	        evidence_probe_command: string | null;
-	        evidence_materialize_command: string | null;
-	        evidence_approval_draft_command: string | null;
-		        evidence_apply_dry_run_command: string | null;
-		        evidence_apply_execute_command: string | null;
-		        evidence_apply_write_policy: string | null;
-		        evidence_handoff_artifacts: {
-		          probe_record_path: string;
-		          approval_draft_path: string;
-		          write_policy: string;
-		        } | null;
-		        target_tables: string[];
+        human_required: boolean;
+        command: string;
+        evidence_probe_command: string | null;
+        evidence_materialize_command: string | null;
+        evidence_approval_draft_command: string | null;
+        evidence_apply_dry_run_command: string | null;
+        evidence_apply_execute_command: string | null;
+        evidence_apply_write_policy: string | null;
+        evidence_handoff_artifacts: {
+          probe_record_path: string;
+          approval_draft_path: string;
+          write_policy: string;
+        } | null;
+        target_tables: string[];
         postcheck_commands: string[];
         remaining_after_phase: number;
         next_gate: string;
@@ -300,22 +300,22 @@ export interface ProjectCurrentLocationView {
       dry_run_command: string;
       review_command: string;
       batch_command: string;
-	      evidence_plan_command: string;
-	      evidence_patch_command: string | null;
-	      evidence_patch_write_policy: string | null;
-	      evidence_probe_command: string | null;
-	      evidence_materialize_command: string | null;
-	      evidence_approval_draft_command: string | null;
-		      evidence_apply_dry_run_command: string | null;
-		      evidence_apply_execute_command: string | null;
-		      evidence_apply_write_policy: string | null;
-		      evidence_handoff_artifacts: {
-		        probe_record_path: string;
-		        approval_draft_path: string;
-		        write_policy: string;
-		      } | null;
-		      execute_command: string | null;
-	      required_record: string | null;
+      evidence_plan_command: string;
+      evidence_patch_command: string | null;
+      evidence_patch_write_policy: string | null;
+      evidence_probe_command: string | null;
+      evidence_materialize_command: string | null;
+      evidence_approval_draft_command: string | null;
+      evidence_apply_dry_run_command: string | null;
+      evidence_apply_execute_command: string | null;
+      evidence_apply_write_policy: string | null;
+      evidence_handoff_artifacts: {
+        probe_record_path: string;
+        approval_draft_path: string;
+        write_policy: string;
+      } | null;
+      execute_command: string | null;
+      required_record: string | null;
       safety_policy: string;
     }>;
   };
@@ -337,13 +337,13 @@ export interface ProjectCurrentLocationView {
         status: string;
         decision_id: string | null;
         outcome: string | null;
-			              approval_scope_digest: string | null;
-			              expected_approval_scope_digest: string | null;
-			              scope_status: string;
-			              materialize_status: string | null;
-			              reviewed_candidate_count: number | null;
-			              valid_for_apply: boolean;
-			              reasons: string[];
+        approval_scope_digest: string | null;
+        expected_approval_scope_digest: string | null;
+        scope_status: string;
+        materialize_status: string | null;
+        reviewed_candidate_count: number | null;
+        valid_for_apply: boolean;
+        reasons: string[];
       } | null;
       reasons: string[];
     }>;
@@ -390,69 +390,73 @@ export interface ProjectCurrentLocationView {
         action: string;
         evidence_signature: string;
         count: number;
-	        listed: number;
-	        omitted: number;
-	        target_tables: string[];
-	        primary_command: string;
-	        evidence_patch_command: string;
-	        evidence_patch_write_policy: string;
-	        evidence_patch_candidate_count: number;
-	        evidence_probe_command: string;
-	        evidence_materialize_command: string;
-		        evidence_approval_draft_command: string;
-		        evidence_apply_dry_run_command: string;
-		        evidence_apply_execute_command: string;
-		        evidence_apply_write_policy: string;
-		        evidence_handoff_artifacts: {
-		          probe_record_path: string;
-		          approval_draft_path: string;
-		          write_policy: string;
-		        } | null;
-		        evidence_handoff_status: {
-		          present: number;
-		          missing: number;
-		          unchecked: number;
-		          items: Array<{
-		            kind: string;
-		            path: string;
-		            status: string;
-		            generation_status: string;
-		            generation_command: string | null;
-		            bytes: number | null;
-		            sha256: string | null;
-		            write_policy: string;
-		            approval_record: {
-		              status: string;
-		              decision_id: string | null;
-		              outcome: string | null;
-			              approval_scope_digest: string | null;
-			              expected_approval_scope_digest: string | null;
-			              scope_status: string;
-			              materialize_status: string | null;
-			              reviewed_candidate_count: number | null;
-		              valid_for_apply: boolean;
-		              reasons: string[];
-		            } | null;
-		            reasons: string[];
-		          }>;
-		        } | null;
-		        evidence_handoff_next: {
-		          status:
-		            | "generate_probe"
-		            | "generate_approval_draft"
-		            | "approval_pending"
-		            | "approval_rejected"
-		            | "apply_dry_run"
-		            | "approval_required"
-		            | "unchecked"
-		            | "unavailable";
-		          command: string;
-		          label: string;
-		          required_action: string;
-		          reasons: string[];
-		        } | null;
-		        repair_status: string;
-	        repair_automation_status: string;
+        listed: number;
+        omitted: number;
+        target_tables: string[];
+        primary_command: string;
+        evidence_patch_command: string;
+        evidence_patch_write_policy: string;
+        evidence_patch_candidate_count: number;
+        evidence_probe_command: string;
+        evidence_materialize_command: string;
+        evidence_approval_draft_command: string;
+        evidence_apply_dry_run_command: string;
+        evidence_apply_execute_command: string;
+        evidence_apply_write_policy: string;
+        evidence_handoff_artifacts: {
+          probe_record_path: string;
+          approval_draft_path: string;
+          write_policy: string;
+        } | null;
+        evidence_handoff_status: {
+          present: number;
+          missing: number;
+          unchecked: number;
+          items: Array<{
+            kind: string;
+            path: string;
+            status: string;
+            generation_status: string;
+            generation_command: string | null;
+            bytes: number | null;
+            sha256: string | null;
+            write_policy: string;
+            approval_record: {
+              status: string;
+              decision_id: string | null;
+              outcome: string | null;
+              approval_scope_digest: string | null;
+              expected_approval_scope_digest: string | null;
+              scope_status: string;
+              materialize_status: string | null;
+              reviewed_candidate_count: number | null;
+              valid_for_apply: boolean;
+              reasons: string[];
+            } | null;
+            reasons: string[];
+          }>;
+        } | null;
+        evidence_handoff_next: {
+          status:
+            | "generate_probe"
+            | "generate_approval_draft"
+            | "approval_pending"
+            | "approval_rejected"
+            | "apply_dry_run"
+            | "approval_required"
+            | "unchecked"
+            | "unavailable";
+          approval_state: string;
+          scope_status: string | null;
+          valid_for_apply: boolean;
+          command: string;
+          label: string;
+          required_action: string;
+          reason_codes: string[];
+          reasons: string[];
+        } | null;
+        repair_status: string;
+        repair_automation_status: string;
         repair_primary_next_command: string | null;
         failed_evidence_count: number;
         projection_item_count: number;
@@ -503,6 +507,8 @@ export interface ProjectCurrentLocationView {
       materialize_status: string | null;
       reviewed_candidate_count: number | null;
       valid_for_apply: boolean;
+      approval_state: string;
+      reason_codes: string[];
       reasons: string[];
     };
     approval_review_gate: {
@@ -684,25 +690,25 @@ export interface ProjectCurrentLocationView {
       machine_actionable_count: number;
       human_approval_count: number;
       design_reverse_count: number;
-	      remaining_after_machine_lanes: number;
-	      next_machine_action: string | null;
-	      next_machine_command: string | null;
-	      next_machine_probe_command: string | null;
-	      next_machine_materialize_command: string | null;
-	      next_machine_approval_draft_command: string | null;
-	      next_machine_apply_dry_run_command: string | null;
-	    };
+      remaining_after_machine_lanes: number;
+      next_machine_action: string | null;
+      next_machine_command: string | null;
+      next_machine_probe_command: string | null;
+      next_machine_materialize_command: string | null;
+      next_machine_approval_draft_command: string | null;
+      next_machine_apply_dry_run_command: string | null;
+    };
     reentry_forecast: {
       status: string;
       current_blocking_count: number;
       blocking_after_machine_lanes: number;
       required_phase_count: number;
       next_phase_action: string | null;
-	      next_phase_type: string | null;
-	      next_gate: string;
-	      next_command: string;
-	      next_execution_command: string;
-	    };
+      next_phase_type: string | null;
+      next_gate: string;
+      next_command: string;
+      next_execution_command: string;
+    };
     unresolved_design_references: number;
     design_declaration_drifts: number;
     blockers: Array<{
@@ -971,23 +977,23 @@ export interface ProjectCurrentLocationView {
       evidence_signature: string;
       evidence_components: string[];
       evidence_statuses: string[];
-	      target_tables: string[];
-	      primary_command: string;
-	      evidence_plan_command: string;
-	      evidence_patch_command: string;
-	      evidence_probe_command: string;
-	      evidence_materialize_command: string;
-	      evidence_approval_draft_command: string;
-	      evidence_apply_dry_run_command: string;
-	      evidence_apply_execute_command: string;
-	      evidence_apply_write_policy: string;
-	      evidence_handoff_artifacts: {
-	        probe_record_path: string;
-	        approval_draft_path: string;
-	        write_policy: string;
-	      } | null;
-	      postcheck_commands: string[];
-	      repair_plan: {
+      target_tables: string[];
+      primary_command: string;
+      evidence_plan_command: string;
+      evidence_patch_command: string;
+      evidence_probe_command: string;
+      evidence_materialize_command: string;
+      evidence_approval_draft_command: string;
+      evidence_apply_dry_run_command: string;
+      evidence_apply_execute_command: string;
+      evidence_apply_write_policy: string;
+      evidence_handoff_artifacts: {
+        probe_record_path: string;
+        approval_draft_path: string;
+        write_policy: string;
+      } | null;
+      postcheck_commands: string[];
+      repair_plan: {
         status: string;
         failed_evidence_count: number;
         latest_failed_at: string | null;
@@ -1815,11 +1821,9 @@ export function buildProjectCurrentLocationView(
   const zipManifest = snapshot.vmodel_zip_manifest;
   const vmodelFit = buildVmodelFitReport(current, zipManifest);
   const recoveryHandoffGate = recoveryHandoffGateForView(snapshot, vmodelFit);
-  const closureEvidenceTemplates = ([
-    "collect_evidence",
-    "repair_failed_evidence",
-    "reverse_design",
-  ] as const).map((action) => {
+  const closureEvidenceTemplates = (
+    ["collect_evidence", "repair_failed_evidence", "reverse_design"] as const
+  ).map((action) => {
     const plan = buildProjectClosureEvidencePlan(current, { action, limit: 1 });
     return {
       action,
@@ -1929,15 +1933,14 @@ export function buildProjectCurrentLocationView(
       reentry_forecast: {
         status: recoveryPlan.reentry_forecast.status,
         current_blocking_count: recoveryPlan.reentry_forecast.current_blocking_count,
-        blocking_after_machine_lanes:
-          recoveryPlan.reentry_forecast.blocking_after_machine_lanes,
+        blocking_after_machine_lanes: recoveryPlan.reentry_forecast.blocking_after_machine_lanes,
         required_phase_count: recoveryPlan.reentry_forecast.required_phase_count,
         next_phase_action: recoveryPlan.reentry_forecast.next_phase_action,
-	        next_phase_type: recoveryPlan.reentry_forecast.next_phase_type,
-	        next_gate: recoveryPlan.reentry_forecast.next_gate,
-	        next_command: recoveryPlan.reentry_forecast.next_command,
-	        next_execution_command: recoveryPlan.reentry_forecast.next_execution_command,
-	        recompute_commands: [...recoveryPlan.reentry_forecast.recompute_commands],
+        next_phase_type: recoveryPlan.reentry_forecast.next_phase_type,
+        next_gate: recoveryPlan.reentry_forecast.next_gate,
+        next_command: recoveryPlan.reentry_forecast.next_command,
+        next_execution_command: recoveryPlan.reentry_forecast.next_execution_command,
+        recompute_commands: [...recoveryPlan.reentry_forecast.recompute_commands],
         expected_transition: recoveryPlan.reentry_forecast.expected_transition,
         reasons: [...recoveryPlan.reentry_forecast.reasons],
       },
@@ -1946,18 +1949,17 @@ export function buildProjectCurrentLocationView(
         machine_actionable_count: recoveryPlan.automation_runway.machine_actionable_count,
         human_approval_count: recoveryPlan.automation_runway.human_approval_count,
         design_reverse_count: recoveryPlan.automation_runway.design_reverse_count,
-        remaining_after_machine_lanes:
-          recoveryPlan.automation_runway.remaining_after_machine_lanes,
-	        next_machine_action: recoveryPlan.automation_runway.next_machine_action,
-	        next_machine_command: recoveryPlan.automation_runway.next_machine_command,
-	        next_machine_probe_command: recoveryPlan.automation_runway.next_machine_probe_command,
-	        next_machine_materialize_command:
-	          recoveryPlan.automation_runway.next_machine_materialize_command,
-	        next_machine_approval_draft_command:
-	          recoveryPlan.automation_runway.next_machine_approval_draft_command,
-	        next_machine_apply_dry_run_command:
-	          recoveryPlan.automation_runway.next_machine_apply_dry_run_command,
-	        approval_actions: [...recoveryPlan.automation_runway.approval_actions],
+        remaining_after_machine_lanes: recoveryPlan.automation_runway.remaining_after_machine_lanes,
+        next_machine_action: recoveryPlan.automation_runway.next_machine_action,
+        next_machine_command: recoveryPlan.automation_runway.next_machine_command,
+        next_machine_probe_command: recoveryPlan.automation_runway.next_machine_probe_command,
+        next_machine_materialize_command:
+          recoveryPlan.automation_runway.next_machine_materialize_command,
+        next_machine_approval_draft_command:
+          recoveryPlan.automation_runway.next_machine_approval_draft_command,
+        next_machine_apply_dry_run_command:
+          recoveryPlan.automation_runway.next_machine_apply_dry_run_command,
+        approval_actions: [...recoveryPlan.automation_runway.approval_actions],
         phases: recoveryPlan.automation_runway.phases.map((phase) => ({
           sequence: phase.sequence,
           action: phase.action,
@@ -1965,16 +1967,16 @@ export function buildProjectCurrentLocationView(
           count: phase.count,
           selected: phase.selected,
           status: phase.status,
-	          human_required: phase.human_required,
-	          command: phase.command,
-	          evidence_probe_command: phase.evidence_probe_command,
-	          evidence_materialize_command: phase.evidence_materialize_command,
-	          evidence_approval_draft_command: phase.evidence_approval_draft_command,
-		          evidence_apply_dry_run_command: phase.evidence_apply_dry_run_command,
-		          evidence_apply_execute_command: phase.evidence_apply_execute_command,
-		          evidence_apply_write_policy: phase.evidence_apply_write_policy,
-		          evidence_handoff_artifacts: phase.evidence_handoff_artifacts,
-		          target_tables: [...phase.target_tables],
+          human_required: phase.human_required,
+          command: phase.command,
+          evidence_probe_command: phase.evidence_probe_command,
+          evidence_materialize_command: phase.evidence_materialize_command,
+          evidence_approval_draft_command: phase.evidence_approval_draft_command,
+          evidence_apply_dry_run_command: phase.evidence_apply_dry_run_command,
+          evidence_apply_execute_command: phase.evidence_apply_execute_command,
+          evidence_apply_write_policy: phase.evidence_apply_write_policy,
+          evidence_handoff_artifacts: phase.evidence_handoff_artifacts,
+          target_tables: [...phase.target_tables],
           postcheck_commands: [...phase.postcheck_commands],
           remaining_after_phase: phase.remaining_after_phase,
           next_gate: phase.next_gate,
@@ -1997,17 +1999,17 @@ export function buildProjectCurrentLocationView(
         dry_run_command: boundary.dry_run_command,
         review_command: boundary.review_command,
         batch_command: boundary.batch_command,
-	        evidence_plan_command: boundary.evidence_plan_command,
-	        evidence_patch_command: boundary.evidence_patch_command,
-	        evidence_patch_write_policy: boundary.evidence_patch_write_policy,
-	        evidence_probe_command: boundary.evidence_probe_command,
-	        evidence_materialize_command: boundary.evidence_materialize_command,
-	        evidence_approval_draft_command: boundary.evidence_approval_draft_command,
-	        evidence_apply_dry_run_command: boundary.evidence_apply_dry_run_command,
-	        evidence_apply_execute_command: boundary.evidence_apply_execute_command,
-	        evidence_apply_write_policy: boundary.evidence_apply_write_policy,
-	        evidence_handoff_artifacts: boundary.evidence_handoff_artifacts,
-	        execute_command: boundary.execute_command,
+        evidence_plan_command: boundary.evidence_plan_command,
+        evidence_patch_command: boundary.evidence_patch_command,
+        evidence_patch_write_policy: boundary.evidence_patch_write_policy,
+        evidence_probe_command: boundary.evidence_probe_command,
+        evidence_materialize_command: boundary.evidence_materialize_command,
+        evidence_approval_draft_command: boundary.evidence_approval_draft_command,
+        evidence_apply_dry_run_command: boundary.evidence_apply_dry_run_command,
+        evidence_apply_execute_command: boundary.evidence_apply_execute_command,
+        evidence_apply_write_policy: boundary.evidence_apply_write_policy,
+        evidence_handoff_artifacts: boundary.evidence_handoff_artifacts,
+        execute_command: boundary.execute_command,
         required_record: boundary.required_record,
         safety_policy: boundary.safety_policy,
       })),
@@ -2032,12 +2034,11 @@ export function buildProjectCurrentLocationView(
               decision_id: item.approval_record.decision_id,
               outcome: item.approval_record.outcome,
               approval_scope_digest: item.approval_record.approval_scope_digest,
-	            expected_approval_scope_digest:
-	              item.approval_record.expected_approval_scope_digest,
-	            scope_status: item.approval_record.scope_status,
-	            materialize_status: item.approval_record.materialize_status,
-	            reviewed_candidate_count: item.approval_record.reviewed_candidate_count,
-	            valid_for_apply: item.approval_record.valid_for_apply,
+              expected_approval_scope_digest: item.approval_record.expected_approval_scope_digest,
+              scope_status: item.approval_record.scope_status,
+              materialize_status: item.approval_record.materialize_status,
+              reviewed_candidate_count: item.approval_record.reviewed_candidate_count,
+              valid_for_apply: item.approval_record.valid_for_apply,
               reasons: [...item.approval_record.reasons],
             }
           : null,
@@ -2071,25 +2072,24 @@ export function buildProjectCurrentLocationView(
       next_actions: vmodelFit.next_actions.map((action) => ({
         priority: action.priority,
         action_id: action.action_id,
-	        blocker_code: action.blocker_code,
-	        status: action.status,
-	        command:
-	          action.work_bucket?.evidence_handoff_artifacts
-	            ? (evidenceHandoffNextStep({
-	                bucket: action.work_bucket,
-	                status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
-	              })?.command ?? action.command)
-	            : action.command,
-	        gate: action.gate,
-	        automation_class: handoffAwareAutomationClass(
-	          action.automation_class,
-	          action.work_bucket?.evidence_handoff_artifacts
-	            ? evidenceHandoffNextStep({
-	                bucket: action.work_bucket,
-	                status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
-	              })
-	            : null,
-	        ),
+        blocker_code: action.blocker_code,
+        status: action.status,
+        command: action.work_bucket?.evidence_handoff_artifacts
+          ? (evidenceHandoffNextStep({
+              bucket: action.work_bucket,
+              status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
+            })?.command ?? action.command)
+          : action.command,
+        gate: action.gate,
+        automation_class: handoffAwareAutomationClass(
+          action.automation_class,
+          action.work_bucket?.evidence_handoff_artifacts
+            ? evidenceHandoffNextStep({
+                bucket: action.work_bucket,
+                status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
+              })
+            : null,
+        ),
         count: action.count,
         required_action: action.required_action,
         doc_dependencies: [...action.doc_dependencies],
@@ -2104,27 +2104,27 @@ export function buildProjectCurrentLocationView(
               listed: action.work_bucket.listed,
               omitted: action.work_bucket.omitted,
               target_tables: [...action.work_bucket.target_tables],
-	              primary_command: action.work_bucket.primary_command,
-	              evidence_patch_command: action.work_bucket.evidence_patch_command,
-	              evidence_patch_write_policy: action.work_bucket.evidence_patch_write_policy,
-	              evidence_patch_candidate_count: action.work_bucket.evidence_patch_candidate_count,
-	              evidence_probe_command: action.work_bucket.evidence_probe_command,
-	              evidence_materialize_command: action.work_bucket.evidence_materialize_command,
-	              evidence_approval_draft_command: action.work_bucket.evidence_approval_draft_command,
-		              evidence_apply_dry_run_command: action.work_bucket.evidence_apply_dry_run_command,
-		              evidence_apply_execute_command: action.work_bucket.evidence_apply_execute_command,
-		              evidence_apply_write_policy: action.work_bucket.evidence_apply_write_policy,
-		              evidence_handoff_artifacts: action.work_bucket.evidence_handoff_artifacts,
-		              evidence_handoff_status: action.work_bucket.evidence_handoff_artifacts
-		                ? evidenceHandoffStatusForAction(snapshot, action.work_bucket.action)
-		                : null,
-		              evidence_handoff_next: action.work_bucket.evidence_handoff_artifacts
-		                ? evidenceHandoffNextStep({
-		                    bucket: action.work_bucket,
-		                    status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
-		                  })
-		                : null,
-		              repair_status: action.work_bucket.repair_status,
+              primary_command: action.work_bucket.primary_command,
+              evidence_patch_command: action.work_bucket.evidence_patch_command,
+              evidence_patch_write_policy: action.work_bucket.evidence_patch_write_policy,
+              evidence_patch_candidate_count: action.work_bucket.evidence_patch_candidate_count,
+              evidence_probe_command: action.work_bucket.evidence_probe_command,
+              evidence_materialize_command: action.work_bucket.evidence_materialize_command,
+              evidence_approval_draft_command: action.work_bucket.evidence_approval_draft_command,
+              evidence_apply_dry_run_command: action.work_bucket.evidence_apply_dry_run_command,
+              evidence_apply_execute_command: action.work_bucket.evidence_apply_execute_command,
+              evidence_apply_write_policy: action.work_bucket.evidence_apply_write_policy,
+              evidence_handoff_artifacts: action.work_bucket.evidence_handoff_artifacts,
+              evidence_handoff_status: action.work_bucket.evidence_handoff_artifacts
+                ? evidenceHandoffStatusForAction(snapshot, action.work_bucket.action)
+                : null,
+              evidence_handoff_next: action.work_bucket.evidence_handoff_artifacts
+                ? evidenceHandoffNextStep({
+                    bucket: action.work_bucket,
+                    status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
+                  })
+                : null,
+              repair_status: action.work_bucket.repair_status,
               repair_automation_status: action.work_bucket.repair_automation_status,
               repair_primary_next_command: action.work_bucket.repair_primary_next_command,
               failed_evidence_count: action.work_bucket.failed_evidence_count,
@@ -2136,21 +2136,21 @@ export function buildProjectCurrentLocationView(
                 command_verb: candidate.command_verb,
                 runnable_command: candidate.runnable_command,
                 resolution_candidates: candidate.resolution_candidates.map((resolution) => ({
-                command: resolution.command,
-                source: resolution.source,
-                confidence: resolution.confidence,
-                safe_to_run: resolution.safe_to_run,
-                projection_binding: {
-                  target_tables: [...resolution.projection_binding.target_tables],
-                  source_surfaces: [...resolution.projection_binding.source_surfaces],
-                  required_fields: [...resolution.projection_binding.required_fields],
-                  success_status: resolution.projection_binding.success_status,
-                  write_policy: resolution.projection_binding.write_policy,
-                  postcheck_commands: [...resolution.projection_binding.postcheck_commands],
-                  required_action: resolution.projection_binding.required_action,
-                },
-                required_action: resolution.required_action,
-              })),
+                  command: resolution.command,
+                  source: resolution.source,
+                  confidence: resolution.confidence,
+                  safe_to_run: resolution.safe_to_run,
+                  projection_binding: {
+                    target_tables: [...resolution.projection_binding.target_tables],
+                    source_surfaces: [...resolution.projection_binding.source_surfaces],
+                    required_fields: [...resolution.projection_binding.required_fields],
+                    success_status: resolution.projection_binding.success_status,
+                    write_policy: resolution.projection_binding.write_policy,
+                    postcheck_commands: [...resolution.projection_binding.postcheck_commands],
+                    required_action: resolution.projection_binding.required_action,
+                  },
+                  required_action: resolution.required_action,
+                })),
                 count: candidate.count,
                 latest_observed_at: candidate.latest_observed_at,
               })),
@@ -2177,6 +2177,8 @@ export function buildProjectCurrentLocationView(
         materialize_status: recoveryHandoffGate.materialize_status,
         reviewed_candidate_count: recoveryHandoffGate.reviewed_candidate_count,
         valid_for_apply: recoveryHandoffGate.valid_for_apply,
+        approval_state: recoveryHandoffGate.approval_state,
+        reason_codes: [...recoveryHandoffGate.reason_codes],
         reasons: [...recoveryHandoffGate.reasons],
       },
       approval_review_gate: {
@@ -2203,7 +2205,8 @@ export function buildProjectCurrentLocationView(
         transition_window_command: vmodelFit.approval_review_gate.transition_window_command,
         previous_transition_window_command:
           vmodelFit.approval_review_gate.previous_transition_window_command,
-        next_transition_window_command: vmodelFit.approval_review_gate.next_transition_window_command,
+        next_transition_window_command:
+          vmodelFit.approval_review_gate.next_transition_window_command,
         outcome_routes: vmodelFit.approval_review_gate.outcome_routes.map((route) => ({
           outcome: route.outcome,
           projection_type: route.projection_type,
@@ -2229,8 +2232,7 @@ export function buildProjectCurrentLocationView(
         machine_actionable_count: vmodelFit.recovery_runway_gate.machine_actionable_count,
         human_approval_count: vmodelFit.recovery_runway_gate.human_approval_count,
         design_reverse_count: vmodelFit.recovery_runway_gate.design_reverse_count,
-        remaining_after_machine_lanes:
-          vmodelFit.recovery_runway_gate.remaining_after_machine_lanes,
+        remaining_after_machine_lanes: vmodelFit.recovery_runway_gate.remaining_after_machine_lanes,
         required_phase_count: vmodelFit.recovery_runway_gate.required_phase_count,
         next_phase_action: vmodelFit.recovery_runway_gate.next_phase_action,
         next_phase_type: vmodelFit.recovery_runway_gate.next_phase_type,
@@ -2313,9 +2315,7 @@ export function buildProjectCurrentLocationView(
         aligned: vmodelFit.roadmap_current_gate.aligned,
         recovery_correlation: vmodelFit.roadmap_current_gate.recovery_correlation,
         db_current_l12_layer: vmodelFit.roadmap_current_gate.db_current_l12_layer,
-        roadmap_current_l12_layers: [
-          ...vmodelFit.roadmap_current_gate.roadmap_current_l12_layers,
-        ],
+        roadmap_current_l12_layers: [...vmodelFit.roadmap_current_gate.roadmap_current_l12_layers],
         roadmap_projected_l12_layers: [
           ...vmodelFit.roadmap_current_gate.roadmap_projected_l12_layers,
         ],
@@ -2351,39 +2351,35 @@ export function buildProjectCurrentLocationView(
         status: vmodelFit.current_location_gate.recovery_runway.status,
         machine_actionable_count:
           vmodelFit.current_location_gate.recovery_runway.machine_actionable_count,
-        human_approval_count:
-          vmodelFit.current_location_gate.recovery_runway.human_approval_count,
-        design_reverse_count:
-          vmodelFit.current_location_gate.recovery_runway.design_reverse_count,
+        human_approval_count: vmodelFit.current_location_gate.recovery_runway.human_approval_count,
+        design_reverse_count: vmodelFit.current_location_gate.recovery_runway.design_reverse_count,
         remaining_after_machine_lanes:
           vmodelFit.current_location_gate.recovery_runway.remaining_after_machine_lanes,
-	        next_machine_action: vmodelFit.current_location_gate.recovery_runway.next_machine_action,
-	        next_machine_command:
-	          vmodelFit.current_location_gate.recovery_runway.next_machine_command,
-	        next_machine_probe_command:
-	          vmodelFit.current_location_gate.recovery_runway.next_machine_probe_command,
-	        next_machine_materialize_command:
-	          vmodelFit.current_location_gate.recovery_runway.next_machine_materialize_command,
-	        next_machine_approval_draft_command:
-	          vmodelFit.current_location_gate.recovery_runway.next_machine_approval_draft_command,
-	        next_machine_apply_dry_run_command:
-	          vmodelFit.current_location_gate.recovery_runway.next_machine_apply_dry_run_command,
-	      },
+        next_machine_action: vmodelFit.current_location_gate.recovery_runway.next_machine_action,
+        next_machine_command: vmodelFit.current_location_gate.recovery_runway.next_machine_command,
+        next_machine_probe_command:
+          vmodelFit.current_location_gate.recovery_runway.next_machine_probe_command,
+        next_machine_materialize_command:
+          vmodelFit.current_location_gate.recovery_runway.next_machine_materialize_command,
+        next_machine_approval_draft_command:
+          vmodelFit.current_location_gate.recovery_runway.next_machine_approval_draft_command,
+        next_machine_apply_dry_run_command:
+          vmodelFit.current_location_gate.recovery_runway.next_machine_apply_dry_run_command,
+      },
       reentry_forecast: {
         status: vmodelFit.current_location_gate.reentry_forecast.status,
         current_blocking_count:
           vmodelFit.current_location_gate.reentry_forecast.current_blocking_count,
         blocking_after_machine_lanes:
           vmodelFit.current_location_gate.reentry_forecast.blocking_after_machine_lanes,
-        required_phase_count:
-          vmodelFit.current_location_gate.reentry_forecast.required_phase_count,
+        required_phase_count: vmodelFit.current_location_gate.reentry_forecast.required_phase_count,
         next_phase_action: vmodelFit.current_location_gate.reentry_forecast.next_phase_action,
-	        next_phase_type: vmodelFit.current_location_gate.reentry_forecast.next_phase_type,
-	        next_gate: vmodelFit.current_location_gate.reentry_forecast.next_gate,
-	        next_command: vmodelFit.current_location_gate.reentry_forecast.next_command,
-	        next_execution_command:
-	          vmodelFit.current_location_gate.reentry_forecast.next_execution_command,
-	      },
+        next_phase_type: vmodelFit.current_location_gate.reentry_forecast.next_phase_type,
+        next_gate: vmodelFit.current_location_gate.reentry_forecast.next_gate,
+        next_command: vmodelFit.current_location_gate.reentry_forecast.next_command,
+        next_execution_command:
+          vmodelFit.current_location_gate.reentry_forecast.next_execution_command,
+      },
       unresolved_design_references: vmodelFit.design_integrity.unresolved_references,
       design_declaration_drifts: vmodelFit.design_integrity.declaration_drifts,
       blockers: vmodelFit.blockers.map((blocker) => ({
@@ -2485,8 +2481,7 @@ export function buildProjectCurrentLocationView(
         status: vmodelFit.zip_manifest.inventory_signature.status,
         expected_root_prefix: vmodelFit.zip_manifest.inventory_signature.expected_root_prefix,
         actual_root_prefix: vmodelFit.zip_manifest.inventory_signature.actual_root_prefix,
-        expected_entries_total:
-          vmodelFit.zip_manifest.inventory_signature.expected_entries_total,
+        expected_entries_total: vmodelFit.zip_manifest.inventory_signature.expected_entries_total,
         actual_entries_total: vmodelFit.zip_manifest.inventory_signature.actual_entries_total,
         expected_by_extension: {
           ...vmodelFit.zip_manifest.inventory_signature.expected_by_extension,
@@ -2629,7 +2624,8 @@ export function buildProjectCurrentLocationView(
         transition_plan_command: closureOverview.closure.apply_readiness.transition_plan_command,
         decision_draft_command: closureOverview.closure.apply_readiness.decision_draft_command,
         review_window_command: closureOverview.closure.apply_readiness.review_window_command,
-        transition_window_command: closureOverview.closure.apply_readiness.transition_window_command,
+        transition_window_command:
+          closureOverview.closure.apply_readiness.transition_window_command,
         write_policy: closureOverview.closure.apply_readiness.write_policy,
       },
       actions: closureOverview.actions.map((action) => ({
@@ -2657,18 +2653,18 @@ export function buildProjectCurrentLocationView(
         evidence_signature: bucket.evidence_signature,
         evidence_components: [...bucket.evidence_components],
         evidence_statuses: [...bucket.evidence_statuses],
-		        target_tables: [...bucket.target_tables],
-		        primary_command: bucket.primary_command,
-		        evidence_plan_command: bucket.evidence_plan_command,
-		        evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --json`,
-		        evidence_probe_command: closureEvidenceProbeCommand(bucket.action),
-		        evidence_materialize_command: closureEvidenceMaterializeCommand(bucket.action),
-		        evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(bucket.action),
-		        evidence_apply_dry_run_command: closureEvidenceApplyDryRunCommand(bucket.action),
-		        evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(bucket.action),
-		        evidence_apply_write_policy: "approval-required",
-		        evidence_handoff_artifacts: closureEvidenceHandoffArtifacts(bucket.action),
-		        postcheck_commands: [...bucket.postcheck_commands],
+        target_tables: [...bucket.target_tables],
+        primary_command: bucket.primary_command,
+        evidence_plan_command: bucket.evidence_plan_command,
+        evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --json`,
+        evidence_probe_command: closureEvidenceProbeCommand(bucket.action),
+        evidence_materialize_command: closureEvidenceMaterializeCommand(bucket.action),
+        evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(bucket.action),
+        evidence_apply_dry_run_command: closureEvidenceApplyDryRunCommand(bucket.action),
+        evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(bucket.action),
+        evidence_apply_write_policy: "approval-required",
+        evidence_handoff_artifacts: closureEvidenceHandoffArtifacts(bucket.action),
+        postcheck_commands: [...bucket.postcheck_commands],
         repair_plan: {
           status: bucket.repair_plan.status,
           failed_evidence_count: bucket.repair_plan.failed_evidence_count,
@@ -3030,7 +3026,8 @@ export function buildProjectCurrentLocationView(
         transition_plan_command: "helix closure transition-plan --action close_ready --json",
         decision_draft_command:
           "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json",
-        review_window_command: "helix closure review-bundle --action close_ready --limit 20 --offset 0 --json",
+        review_window_command:
+          "helix closure review-bundle --action close_ready --limit 20 --offset 0 --json",
         transition_window_command:
           "helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
         write_policy: "approval-required",
@@ -3215,11 +3212,45 @@ function buildSharedWarnings(snapshot: VisualizationSnapshot): string[] {
   return warnings;
 }
 
+type ProjectCurrentLocationWorkBucket = NonNullable<
+  ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]
+>;
+type ProjectEvidenceHandoffStatus = NonNullable<
+  ProjectCurrentLocationWorkBucket["evidence_handoff_status"]
+>;
+type ProjectEvidenceApprovalRecord = NonNullable<
+  ProjectEvidenceHandoffStatus["items"][number]["approval_record"]
+>;
+type ProjectEvidenceHandoffNext = NonNullable<
+  ProjectCurrentLocationWorkBucket["evidence_handoff_next"]
+>;
+
+function projectApprovalState(approval: ProjectEvidenceApprovalRecord | null | undefined): string {
+  return approval?.status ?? "not_required";
+}
+
+function projectHandoffReasonCodes(input: {
+  status: ProjectEvidenceHandoffNext["status"];
+  approval?: ProjectEvidenceApprovalRecord | null;
+  extras?: string[];
+}): string[] {
+  const approval = input.approval ?? null;
+  return [
+    `handoff.status.${input.status}`,
+    `approval.${projectApprovalState(approval)}`,
+    `approval.scope.${approval?.scope_status ?? "none"}`,
+    `approval.valid_for_apply.${approval?.valid_for_apply ?? false}`,
+    ...(input.extras ?? []),
+  ];
+}
+
 function evidenceHandoffStatusForAction(
   snapshot: VisualizationSnapshot,
   action: string,
 ): NonNullable<
-  NonNullable<ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]>["evidence_handoff_status"]
+  NonNullable<
+    ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]
+  >["evidence_handoff_status"]
 > | null {
   const items = snapshot.recovery_handoff_artifacts.items
     .filter((item) => item.action === action)
@@ -3238,11 +3269,10 @@ function evidenceHandoffStatusForAction(
             decision_id: item.approval_record.decision_id,
             outcome: item.approval_record.outcome,
             approval_scope_digest: item.approval_record.approval_scope_digest,
-	            expected_approval_scope_digest:
-	              item.approval_record.expected_approval_scope_digest,
-	            scope_status: item.approval_record.scope_status,
-	            materialize_status: item.approval_record.materialize_status,
-	            reviewed_candidate_count: item.approval_record.reviewed_candidate_count,
+            expected_approval_scope_digest: item.approval_record.expected_approval_scope_digest,
+            scope_status: item.approval_record.scope_status,
+            materialize_status: item.approval_record.materialize_status,
+            reviewed_candidate_count: item.approval_record.reviewed_candidate_count,
             valid_for_apply: item.approval_record.valid_for_apply,
             reasons: [...item.approval_record.reasons],
           }
@@ -3268,18 +3298,29 @@ function evidenceHandoffNextStep(input: {
     | "evidence_apply_dry_run_command"
   >;
   status: NonNullable<
-    NonNullable<ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]>["evidence_handoff_status"]
+    NonNullable<
+      ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]
+    >["evidence_handoff_status"]
   > | null;
 }): NonNullable<
-  NonNullable<ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]>["evidence_handoff_next"]
+  NonNullable<
+    ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]
+  >["evidence_handoff_next"]
 > | null {
   if (!input.bucket.evidence_handoff_artifacts) return null;
   if (!input.status) {
     return {
       status: "unavailable",
+      approval_state: "not_required",
+      scope_status: null,
+      valid_for_apply: false,
       command: input.bucket.evidence_probe_command,
       label: "handoff unavailable",
       required_action: "handoff artifact の実在状態を取得できないため probe 生成から確認する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "unavailable",
+        extras: ["handoff.status.missing"],
+      }),
       reasons: ["handoff_status=missing"],
     };
   }
@@ -3288,27 +3329,73 @@ function evidenceHandoffNextStep(input: {
   if (probe?.status === "unchecked" || draft?.status === "unchecked") {
     return {
       status: "unchecked",
+      approval_state: projectApprovalState(
+        input.status.items.find((item) => item.approval_record)?.approval_record,
+      ),
+      scope_status:
+        input.status.items.find((item) => item.approval_record)?.approval_record?.scope_status ??
+        null,
+      valid_for_apply:
+        input.status.items.find((item) => item.approval_record)?.approval_record?.valid_for_apply ??
+        false,
       command: input.bucket.evidence_probe_command,
       label: "handoff unchecked",
       required_action: "repoRoot 付き view で handoff artifact の実在を再検査する",
-      reasons: [`present=${input.status.present}`, `missing=${input.status.missing}`, `unchecked=${input.status.unchecked}`],
+      reason_codes: projectHandoffReasonCodes({
+        status: "unchecked",
+        approval: input.status.items.find((item) => item.approval_record)?.approval_record,
+        extras: ["handoff.artifact.unchecked"],
+      }),
+      reasons: [
+        `present=${input.status.present}`,
+        `missing=${input.status.missing}`,
+        `unchecked=${input.status.unchecked}`,
+      ],
     };
   }
   if (probe?.status !== "present") {
     return {
       status: "generate_probe",
+      approval_state: projectApprovalState(
+        input.status.items.find((item) => item.approval_record)?.approval_record,
+      ),
+      scope_status:
+        input.status.items.find((item) => item.approval_record)?.approval_record?.scope_status ??
+        null,
+      valid_for_apply:
+        input.status.items.find((item) => item.approval_record)?.approval_record?.valid_for_apply ??
+        false,
       command: probe?.generation_command ?? input.bucket.evidence_probe_command,
       label: "generate probe record",
       required_action: "verification command を実行し、probe record artifact を生成する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "generate_probe",
+        approval: input.status.items.find((item) => item.approval_record)?.approval_record,
+        extras: ["handoff.probe_record.missing"],
+      }),
       reasons: probe?.reasons ?? ["probe_record is not present"],
     };
   }
   if (draft?.status !== "present") {
     return {
       status: "generate_approval_draft",
+      approval_state: projectApprovalState(
+        input.status.items.find((item) => item.approval_record)?.approval_record,
+      ),
+      scope_status:
+        input.status.items.find((item) => item.approval_record)?.approval_record?.scope_status ??
+        null,
+      valid_for_apply:
+        input.status.items.find((item) => item.approval_record)?.approval_record?.valid_for_apply ??
+        false,
       command: draft?.generation_command ?? input.bucket.evidence_approval_draft_command,
       label: "generate approval draft",
       required_action: "probe record から non-authorizing approval draft を生成する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "generate_approval_draft",
+        approval: input.status.items.find((item) => item.approval_record)?.approval_record,
+        extras: ["handoff.approval_draft.missing"],
+      }),
       reasons: draft?.reasons ?? ["approval_draft is not present"],
     };
   }
@@ -3316,6 +3403,9 @@ function evidenceHandoffNextStep(input: {
   if (approval?.status === "approved" && approval.valid_for_apply) {
     return {
       status: "apply_dry_run",
+      approval_state: projectApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.bucket.evidence_apply_dry_run_command.replace(
         "<approved-approval-record-path>",
         input.bucket.evidence_handoff_artifacts.approval_draft_path,
@@ -3323,48 +3413,85 @@ function evidenceHandoffNextStep(input: {
       label: "apply dry-run approved evidence",
       required_action:
         "承認済み record を使って apply dry-run を実行し、digest/approval scope と patch candidate を照合する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "apply_dry_run",
+        approval,
+        extras: ["handoff.apply.dry_run_ready", "approval.record.approved"],
+      }),
       reasons: [...approval.reasons, "execute remains separate approval-required surface"],
     };
   }
   if (approval?.status === "pending_human_review") {
     return {
       status: "approval_pending",
+      approval_state: projectApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.bucket.evidence_materialize_command,
       label: "approval pending",
       required_action:
         "materialized preview と approval_scope_digest を確認し、人間判断で outcome を approve/reject に更新する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "approval_pending",
+        approval,
+        extras: ["approval.waiting_for_human_review"],
+      }),
       reasons: approval.reasons,
     };
   }
   if (approval?.status === "rejected") {
     return {
       status: "approval_rejected",
+      approval_state: projectApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.bucket.evidence_materialize_command,
       label: "approval rejected",
       required_action: "reject 理由に従って evidence projection または設計/テスト設計へ戻す",
+      reason_codes: projectHandoffReasonCodes({
+        status: "approval_rejected",
+        approval,
+        extras: ["approval.record.rejected"],
+      }),
       reasons: approval.reasons,
     };
   }
   if (approval?.status === "invalid") {
     return {
       status: "approval_required",
+      approval_state: projectApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: approval.valid_for_apply,
       command: input.bucket.evidence_approval_draft_command,
       label: "approval record invalid",
       required_action: "approval record の必須 field/outcome を修正してから dry-run する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "approval_required",
+        approval,
+        extras: ["approval.record.invalid"],
+      }),
       reasons: approval.reasons,
     };
   }
   return {
     status: "approval_required",
+    approval_state: projectApprovalState(approval),
+    scope_status: approval?.scope_status ?? null,
+    valid_for_apply: approval?.valid_for_apply ?? false,
     command: input.bucket.evidence_materialize_command,
     label: "review materialized evidence",
     required_action:
       "materialized preview と approval_scope_digest を確認し、人間承認後に apply dry-run/execute を扱う",
-    reasons: [
-      "probe_record=present",
-      "approval_draft=present",
-      "apply remains approval-required",
-    ],
+    reason_codes: projectHandoffReasonCodes({
+      status: "approval_required",
+      approval,
+      extras: [
+        "handoff.probe_record.present",
+        "handoff.approval_draft.present",
+        "approval.apply_requires_human",
+      ],
+    }),
+    reasons: ["probe_record=present", "approval_draft=present", "apply remains approval-required"],
   };
 }
 
@@ -3419,6 +3546,8 @@ function recoveryHandoffGateForView(
       materialize_status: vmodelFit.recovery_handoff_gate.materialize_status,
       reviewed_candidate_count: vmodelFit.recovery_handoff_gate.reviewed_candidate_count,
       valid_for_apply: vmodelFit.recovery_handoff_gate.valid_for_apply,
+      approval_state: vmodelFit.recovery_handoff_gate.approval_state,
+      reason_codes: [...vmodelFit.recovery_handoff_gate.reason_codes],
       reasons: [...vmodelFit.recovery_handoff_gate.reasons],
     };
   }
@@ -3434,11 +3563,11 @@ function recoveryHandoffGateForView(
       required_action: "current-location recovery handoff は未検出",
       handoff_present: handoffStatus?.present ?? 0,
       handoff_missing: handoffStatus?.missing ?? 0,
-      approval_status: handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-        ?.status ?? null,
+      approval_status:
+        handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.status ?? null,
       scope_status:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-          ?.scope_status ?? null,
+        handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.scope_status ??
+        null,
       decision_id:
         handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.decision_id ??
         vmodelFit.recovery_handoff_gate.decision_id,
@@ -3461,6 +3590,10 @@ function recoveryHandoffGateForView(
       valid_for_apply:
         handoffStatus?.items.find((item) => item.approval_record)?.approval_record
           ?.valid_for_apply ?? vmodelFit.recovery_handoff_gate.valid_for_apply,
+      approval_state: projectApprovalState(
+        handoffStatus?.items.find((item) => item.approval_record)?.approval_record,
+      ),
+      reason_codes: ["handoff.status.none", "handoff.next.missing"],
       reasons: ["current_location next action に handoff_next が無い"],
     };
   }
@@ -3491,6 +3624,13 @@ function recoveryHandoffGateForView(
       vmodelFit.recovery_handoff_gate.reviewed_candidate_count,
     valid_for_apply:
       approvalRecord?.valid_for_apply ?? vmodelFit.recovery_handoff_gate.valid_for_apply,
+    approval_state: handoffNext.approval_state,
+    reason_codes: [
+      ...handoffNext.reason_codes,
+      `handoff.phase.${effectiveHandoffPhase(handoffNext.status)}`,
+      `action.${action.action_id}`,
+      `automation.${handoffAwareAutomationClass(action.automation_class, handoffNext)}`,
+    ],
     reasons: [
       `action=${action.action_id}`,
       `automation=${handoffAwareAutomationClass(action.automation_class, handoffNext)}`,

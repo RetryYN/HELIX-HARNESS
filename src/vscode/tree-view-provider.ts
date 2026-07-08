@@ -30,7 +30,9 @@ export interface VisualizationTreeViewModel {
 type VmodelWorkBucket = NonNullable<
   VisualizationViewModel["project"]["current_location"]["vmodel_fit"]["next_actions"][number]["work_bucket"]
 >;
-type VmodelHandoffArtifactStatus = NonNullable<VmodelWorkBucket["evidence_handoff_status"]>["items"][number];
+type VmodelHandoffArtifactStatus = NonNullable<
+  VmodelWorkBucket["evidence_handoff_status"]
+>["items"][number];
 
 const TOOLTIP_LINE_LIMIT = 24;
 
@@ -69,7 +71,9 @@ function tooltipLines(
   options: { limit?: number; omittedHint?: string } = {},
 ): string {
   const limit = options.limit ?? TOOLTIP_LINE_LIMIT;
-  const cleaned = lines.filter((line): line is string => typeof line === "string" && line.length > 0);
+  const cleaned = lines.filter(
+    (line): line is string => typeof line === "string" && line.length > 0,
+  );
   if (cleaned.length <= limit) return cleaned.join("\n");
   const omitted = cleaned.length - limit;
   return [
@@ -78,7 +82,10 @@ function tooltipLines(
   ].join("\n");
 }
 
-function artifactStatusDescription(item: VmodelHandoffArtifactStatus | undefined, fallbackPath: string): string {
+function artifactStatusDescription(
+  item: VmodelHandoffArtifactStatus | undefined,
+  fallbackPath: string,
+): string {
   if (!item) return fallbackPath;
   return `${item.status} ${item.generation_status} ${item.bytes === null ? "-" : item.bytes}B`;
 }
@@ -242,50 +249,50 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               id: "project/current-location/drive/recovery-plan/reentry-forecast",
               label: "reentry forecast",
               description: `${current.recovery_exit.reentry_forecast.status} blocking=${current.recovery_exit.reentry_forecast.current_blocking_count}`,
-	              tooltip: `${current.recovery_exit.reentry_forecast.expected_transition}\nafter_machine=${current.recovery_exit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.recovery_exit.reentry_forecast.required_phase_count}\nnext=${current.recovery_exit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.recovery_exit.reentry_forecast.next_gate}\ncommand=${current.recovery_exit.reentry_forecast.next_command}\nexecute=${current.recovery_exit.reentry_forecast.next_execution_command}\nrecompute=${current.recovery_exit.reentry_forecast.recompute_commands.join(" && ")}\n${current.recovery_exit.reentry_forecast.reasons.join("\n")}`,
-	              contextValue: `recovery-plan.reentry.${current.recovery_exit.reentry_forecast.status}`,
-	              commandPointer: current.recovery_exit.reentry_forecast.next_execution_command,
-	            }),
+              tooltip: `${current.recovery_exit.reentry_forecast.expected_transition}\nafter_machine=${current.recovery_exit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.recovery_exit.reentry_forecast.required_phase_count}\nnext=${current.recovery_exit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.recovery_exit.reentry_forecast.next_gate}\ncommand=${current.recovery_exit.reentry_forecast.next_command}\nexecute=${current.recovery_exit.reentry_forecast.next_execution_command}\nrecompute=${current.recovery_exit.reentry_forecast.recompute_commands.join(" && ")}\n${current.recovery_exit.reentry_forecast.reasons.join("\n")}`,
+              contextValue: `recovery-plan.reentry.${current.recovery_exit.reentry_forecast.status}`,
+              commandPointer: current.recovery_exit.reentry_forecast.next_execution_command,
+            }),
             node({
               id: "project/current-location/drive/recovery-plan/automation-runway",
               label: "automation runway",
               description: `${current.recovery_exit.automation_runway.status} machine=${current.recovery_exit.automation_runway.machine_actionable_count} approval=${current.recovery_exit.automation_runway.human_approval_count}`,
-	              tooltip: `${current.recovery_exit.automation_runway.expected_transition}\nnext=${current.recovery_exit.automation_runway.next_machine_command ?? "-"}\nnext_probe=${current.recovery_exit.automation_runway.next_machine_probe_command ?? "-"}\nmaterialize=${current.recovery_exit.automation_runway.next_machine_materialize_command ?? "-"}\napproval_draft=${current.recovery_exit.automation_runway.next_machine_approval_draft_command ?? "-"}\napply_dry_run=${current.recovery_exit.automation_runway.next_machine_apply_dry_run_command ?? "-"}\nafter_machine=${current.recovery_exit.automation_runway.remaining_after_machine_lanes}\ntables=${current.recovery_exit.automation_runway.target_tables.join(",") || "-"}\n${current.recovery_exit.automation_runway.reasons.join("\n")}`,
-	              contextValue: `recovery-plan.automation-runway.${current.recovery_exit.automation_runway.status}`,
-	              commandPointer:
-	                current.recovery_exit.automation_runway.next_machine_probe_command ??
-	                current.recovery_exit.automation_runway.next_machine_command ??
-	                "helix recovery plan --json",
+              tooltip: `${current.recovery_exit.automation_runway.expected_transition}\nnext=${current.recovery_exit.automation_runway.next_machine_command ?? "-"}\nnext_probe=${current.recovery_exit.automation_runway.next_machine_probe_command ?? "-"}\nmaterialize=${current.recovery_exit.automation_runway.next_machine_materialize_command ?? "-"}\napproval_draft=${current.recovery_exit.automation_runway.next_machine_approval_draft_command ?? "-"}\napply_dry_run=${current.recovery_exit.automation_runway.next_machine_apply_dry_run_command ?? "-"}\nafter_machine=${current.recovery_exit.automation_runway.remaining_after_machine_lanes}\ntables=${current.recovery_exit.automation_runway.target_tables.join(",") || "-"}\n${current.recovery_exit.automation_runway.reasons.join("\n")}`,
+              contextValue: `recovery-plan.automation-runway.${current.recovery_exit.automation_runway.status}`,
+              commandPointer:
+                current.recovery_exit.automation_runway.next_machine_probe_command ??
+                current.recovery_exit.automation_runway.next_machine_command ??
+                "helix recovery plan --json",
               children: current.recovery_exit.automation_runway.phases.map((phase) =>
                 node({
                   id: `project/current-location/drive/recovery-plan/automation-runway/${phase.sequence}-${phase.action}`,
                   label: `${phase.sequence}. ${phase.action}`,
                   description: `${phase.phase_type} count=${phase.count} remaining=${phase.remaining_after_phase}`,
-	                  tooltip: `${phase.expected_transition}\nhuman=${phase.human_required}\nnext_gate=${phase.next_gate}\ncommand=${phase.command}\nprobe=${phase.evidence_probe_command ?? "-"}\nmaterialize=${phase.evidence_materialize_command ?? "-"}\napproval_draft=${phase.evidence_approval_draft_command ?? "-"}\napply_dry_run=${phase.evidence_apply_dry_run_command ?? "-"}\ntables=${phase.target_tables.join(",") || "-"}\npostcheck=${phase.postcheck_commands.join(" && ") || "-"}`,
-	                  contextValue: `recovery-plan.automation-runway.phase.${phase.phase_type}`,
-	                  commandPointer: phase.evidence_probe_command ?? phase.command,
-	                  children: phase.evidence_handoff_artifacts
-	                    ? [
-	                        node({
-	                          id: `project/current-location/drive/recovery-plan/automation-runway/${phase.sequence}-${phase.action}/probe-record`,
-	                          label: "probe record",
-	                          description: phase.evidence_handoff_artifacts.probe_record_path,
-	                          tooltip: `evidence-probe --out が生成する工程間 artifact\nwrite=${phase.evidence_handoff_artifacts.write_policy}`,
-	                          contextValue: "recovery-plan.handoff.probe-record",
-	                          commandPointer: phase.evidence_handoff_artifacts.probe_record_path,
-	                        }),
-	                        node({
-	                          id: `project/current-location/drive/recovery-plan/automation-runway/${phase.sequence}-${phase.action}/approval-draft`,
-	                          label: "approval draft",
-	                          description: phase.evidence_handoff_artifacts.approval_draft_path,
-	                          tooltip: `evidence-approval-draft --out が生成する non-authorizing draft\nwrite=${phase.evidence_handoff_artifacts.write_policy}`,
-	                          contextValue: "recovery-plan.handoff.approval-draft",
-	                          commandPointer: phase.evidence_handoff_artifacts.approval_draft_path,
-	                        }),
-	                      ]
-	                    : [],
-	                }),
-	              ),
+                  tooltip: `${phase.expected_transition}\nhuman=${phase.human_required}\nnext_gate=${phase.next_gate}\ncommand=${phase.command}\nprobe=${phase.evidence_probe_command ?? "-"}\nmaterialize=${phase.evidence_materialize_command ?? "-"}\napproval_draft=${phase.evidence_approval_draft_command ?? "-"}\napply_dry_run=${phase.evidence_apply_dry_run_command ?? "-"}\ntables=${phase.target_tables.join(",") || "-"}\npostcheck=${phase.postcheck_commands.join(" && ") || "-"}`,
+                  contextValue: `recovery-plan.automation-runway.phase.${phase.phase_type}`,
+                  commandPointer: phase.evidence_probe_command ?? phase.command,
+                  children: phase.evidence_handoff_artifacts
+                    ? [
+                        node({
+                          id: `project/current-location/drive/recovery-plan/automation-runway/${phase.sequence}-${phase.action}/probe-record`,
+                          label: "probe record",
+                          description: phase.evidence_handoff_artifacts.probe_record_path,
+                          tooltip: `evidence-probe --out が生成する工程間 artifact\nwrite=${phase.evidence_handoff_artifacts.write_policy}`,
+                          contextValue: "recovery-plan.handoff.probe-record",
+                          commandPointer: phase.evidence_handoff_artifacts.probe_record_path,
+                        }),
+                        node({
+                          id: `project/current-location/drive/recovery-plan/automation-runway/${phase.sequence}-${phase.action}/approval-draft`,
+                          label: "approval draft",
+                          description: phase.evidence_handoff_artifacts.approval_draft_path,
+                          tooltip: `evidence-approval-draft --out が生成する non-authorizing draft\nwrite=${phase.evidence_handoff_artifacts.write_policy}`,
+                          contextValue: "recovery-plan.handoff.approval-draft",
+                          commandPointer: phase.evidence_handoff_artifacts.approval_draft_path,
+                        }),
+                      ]
+                    : [],
+                }),
+              ),
             }),
             node({
               id: "project/current-location/drive/recovery-plan/automation-boundaries",
@@ -293,10 +300,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               description:
                 current.recovery_exit.automation_boundaries
                   .filter((boundary) => boundary.count > 0)
-                  .map(
-                    (boundary) =>
-                      `${boundary.automation_class}:${boundary.count}`,
-                  )
+                  .map((boundary) => `${boundary.automation_class}:${boundary.count}`)
                   .join(",") || "not-required",
               tooltip: current.recovery_exit.automation_boundaries
                 .filter((boundary) => boundary.count > 0)
@@ -316,24 +320,25 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                     description: `${boundary.automation_class} mutation=${boundary.mutation_allowed} approval=${boundary.approval_required} patch=${boundary.evidence_patch_write_policy ?? "-"}`,
                     tooltip: `${boundary.safety_policy}\nrecord=${boundary.required_record ?? "-"}\ndry-run=${boundary.dry_run_command}\nreview=${boundary.review_command}\nevidence-patch=${boundary.evidence_patch_command ?? "-"}\nexecute=${boundary.execute_command ?? "-"}`,
                     contextValue: `recovery-plan.automation.${boundary.automation_class}`,
-                    commandPointer: boundary.evidence_patch_command ?? boundary.evidence_plan_command,
+                    commandPointer:
+                      boundary.evidence_patch_command ?? boundary.evidence_plan_command,
                   }),
                 ),
             }),
             ...current.closure_overview.actions
               .filter((action) => action.count > 0)
               .map((action) =>
-              node({
-                id: `project/current-location/drive/recovery-plan/${action.action}`,
-                label: action.action,
-                description: `${action.count} ${action.ledger_status ?? "untracked"} human=${action.human_required}`,
-                tooltip: `${action.required_action ?? "-"}\n${action.action === "close_ready" ? action.review_command : `helix closure batch --action ${action.action} --json`}\n${action.transition_command}`,
-                contextValue: `recovery-plan.lane.${action.ledger_status ?? "untracked"}`,
-                commandPointer:
-                  action.action === "close_ready"
-                    ? action.review_command
-                    : `helix closure batch --action ${action.action} --json`,
-              }),
+                node({
+                  id: `project/current-location/drive/recovery-plan/${action.action}`,
+                  label: action.action,
+                  description: `${action.count} ${action.ledger_status ?? "untracked"} human=${action.human_required}`,
+                  tooltip: `${action.required_action ?? "-"}\n${action.action === "close_ready" ? action.review_command : `helix closure batch --action ${action.action} --json`}\n${action.transition_command}`,
+                  contextValue: `recovery-plan.lane.${action.ledger_status ?? "untracked"}`,
+                  commandPointer:
+                    action.action === "close_ready"
+                      ? action.review_command
+                      : `helix closure batch --action ${action.action} --json`,
+                }),
               ),
           ],
         }),
@@ -356,9 +361,13 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           tooltip: tooltipLines(
             [
               `coverage=${current.drive_route.reverse.coverage_ids.join(",") || "-"}`,
-              ...current.drive_route.reverse.coverage_labels.map((label) => `coverage_label=${label}`),
+              ...current.drive_route.reverse.coverage_labels.map(
+                (label) => `coverage_label=${label}`,
+              ),
               ...current.drive_route.reverse.targets.map((target) => `target=${target}`),
-              ...current.drive_route.reverse.doc_dependencies.map((dependency) => `doc=${dependency}`),
+              ...current.drive_route.reverse.doc_dependencies.map(
+                (dependency) => `doc=${dependency}`,
+              ),
               ...current.drive_route.reverse.implementation_dependencies.map(
                 (dependency) => `impl=${dependency}`,
               ),
@@ -418,7 +427,9 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             : "blocked",
           tooltip: [
             `coverage=${current.drive_route.forward.coverage_ids.join(",") || "-"}`,
-            ...current.drive_route.forward.coverage_labels.map((label) => `coverage_label=${label}`),
+            ...current.drive_route.forward.coverage_labels.map(
+              (label) => `coverage_label=${label}`,
+            ),
             ...current.drive_route.forward.frontier,
             ...current.drive_route.forward.current_band_ids,
             ...current.drive_route.forward.current_gate_ids,
@@ -506,8 +517,8 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
       description: `present=${current.recovery_handoff_artifacts.present} missing=${current.recovery_handoff_artifacts.missing} unchecked=${current.recovery_handoff_artifacts.unchecked}`,
       tooltip:
         "closure evidence-probe / approval-draft が生成する local handoff artifact の実在検出",
-          contextValue: "current-location.recovery-handoff-artifacts",
-          children: current.recovery_handoff_artifacts.items.map((item) =>
+      contextValue: "current-location.recovery-handoff-artifacts",
+      children: current.recovery_handoff_artifacts.items.map((item) =>
         node({
           id: `project/current-location/recovery-handoff-artifacts/${item.action}/${item.kind}`,
           label: `${item.action} ${item.kind}`,
@@ -529,14 +540,15 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             ...item.reasons,
           ]),
           contextValue: `recovery-handoff-artifact.${item.status}`,
-          commandPointer: item.status === "present" ? item.path : item.generation_command ?? item.path,
+          commandPointer:
+            item.status === "present" ? item.path : (item.generation_command ?? item.path),
         }),
       ),
     }),
     node({
       id: "project/current-location/design-coverage-gate",
-          label: "Design coverage gate",
-          description: `${current.design_coverage_gate.status} covered=${current.design_coverage_gate.covered} missing=${current.design_coverage_gate.missing} reverify=${current.design_coverage_gate.reverify}`,
+      label: "Design coverage gate",
+      description: `${current.design_coverage_gate.status} covered=${current.design_coverage_gate.covered} missing=${current.design_coverage_gate.missing} reverify=${current.design_coverage_gate.reverify}`,
       tooltip: tooltipLines(current.design_coverage_gate.doc_dependencies, {
         omittedHint: "helix current-location --json",
       }),
@@ -662,7 +674,8 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             current.vmodel_fit.next_actions.length > 0
               ? "vmodel-fit.next-actions.present"
               : "vmodel-fit.next-actions.none",
-          commandPointer: current.vmodel_fit.next_actions[0]?.command ?? current.vmodel_fit.source_command,
+          commandPointer:
+            current.vmodel_fit.next_actions[0]?.command ?? current.vmodel_fit.source_command,
           children: current.vmodel_fit.next_actions.slice(0, 5).map((action) =>
             node({
               id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}`,
@@ -675,100 +688,99 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                 ? [
                     node({
                       id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket`,
-	                      label: "work bucket",
-	                      description: `${action.work_bucket.evidence_signature} failed=${action.work_bucket.failed_evidence_count} patches=${action.work_bucket.evidence_patch_candidate_count}`,
-	                      tooltip: `action=${action.work_bucket.action}\ncount=${action.work_bucket.count}\nrepair=${action.work_bucket.repair_status}\nhandoff_next=${action.work_bucket.evidence_handoff_next?.status ?? "none"}\nprobe=${action.work_bucket.evidence_probe_command}\nmaterialize=${action.work_bucket.evidence_materialize_command}\napproval_draft=${action.work_bucket.evidence_approval_draft_command}\napply_dry_run=${action.work_bucket.evidence_apply_dry_run_command}\napply_execute=${action.work_bucket.evidence_apply_execute_command}\napply_write=${action.work_bucket.evidence_apply_write_policy}\npatch=${action.work_bucket.evidence_patch_command}\npatch_write=${action.work_bucket.evidence_patch_write_policy}\ntables=${action.work_bucket.target_tables.join(",") || "-"}\nplans=${action.work_bucket.sample_plan_ids.join(",") || "-"}`,
-	                      contextValue: `vmodel-fit.next-action.work-bucket.${action.work_bucket.repair_status}`,
-	                      commandPointer: handoffNextCommand(action.work_bucket),
-	                      children: [
-		                        ...(action.work_bucket.evidence_handoff_next
-		                          ? [
-		                              node({
-		                                id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/handoff-next`,
-		                                label: "handoff next",
-		                                description: action.work_bucket.evidence_handoff_next.status,
-		                                tooltip: `${action.work_bucket.evidence_handoff_next.label}\n${action.work_bucket.evidence_handoff_next.required_action}\n${action.work_bucket.evidence_handoff_next.reasons.join("\n")}`,
-		                                contextValue: `vmodel-fit.work-bucket.handoff-next.${action.work_bucket.evidence_handoff_next.status}`,
-		                                commandPointer: action.work_bucket.evidence_handoff_next.command,
-		                              }),
-		                            ]
-		                          : []),
-		                        node({
-		                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/probe`,
-		                          label: "evidence probe",
-	                          description: action.work_bucket.evidence_probe_command,
-	                          tooltip: "安全な verification command を実行し、probe record を生成する",
-		                          contextValue: "vmodel-fit.work-bucket.probe",
-		                          commandPointer: action.work_bucket.evidence_probe_command,
-		                        }),
-		                        ...(action.work_bucket.evidence_handoff_artifacts
-		                          ? [
-		                              node({
-		                                id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/probe-record`,
-		                                label: "probe record",
-		                                description:
-		                                  artifactStatusDescription(
-		                                    handoffArtifactStatus(action.work_bucket, "probe_record"),
-		                                    action.work_bucket.evidence_handoff_artifacts.probe_record_path,
-		                                  ),
-		                                tooltip: artifactStatusTooltip(
-		                                  handoffArtifactStatus(action.work_bucket, "probe_record"),
-		                                  action.work_bucket.evidence_handoff_artifacts.probe_record_path,
-		                                  action.work_bucket.evidence_handoff_artifacts.write_policy,
-		                                ),
-		                                contextValue: "vmodel-fit.work-bucket.handoff.probe-record",
-		                                commandPointer:
-		                                  handoffArtifactStatus(action.work_bucket, "probe_record")?.path ??
-		                                  action.work_bucket.evidence_handoff_artifacts.probe_record_path,
-		                              }),
-		                              node({
-		                                id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/approval-draft-artifact`,
-		                                label: "approval draft artifact",
-		                                description:
-		                                  artifactStatusDescription(
-		                                    handoffArtifactStatus(action.work_bucket, "approval_draft"),
-		                                    action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
-		                                  ),
-		                                tooltip: artifactStatusTooltip(
-		                                  handoffArtifactStatus(action.work_bucket, "approval_draft"),
-		                                  action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
-		                                  action.work_bucket.evidence_handoff_artifacts.write_policy,
-		                                ),
-		                                contextValue:
-		                                  "vmodel-fit.work-bucket.handoff.approval-draft",
-		                                commandPointer:
-		                                  handoffArtifactStatus(action.work_bucket, "approval_draft")?.path ??
-		                                  action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
-		                              }),
-		                            ]
-		                          : []),
-		                        node({
-		                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/materialize`,
-	                          label: "materialize",
-	                          description: action.work_bucket.evidence_materialize_command,
-	                          tooltip: "probe record から placeholder を埋め、承認対象 preview を生成する",
-	                          contextValue: "vmodel-fit.work-bucket.materialize",
-	                          commandPointer: action.work_bucket.evidence_materialize_command,
-	                        }),
-	                        node({
-	                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/approval-draft`,
-	                          label: "approval draft",
-	                          description: action.work_bucket.evidence_approval_draft_command,
-	                          tooltip: "非承認 pending_human_review record を生成する",
-	                          contextValue: "vmodel-fit.work-bucket.approval-draft",
-	                          commandPointer: action.work_bucket.evidence_approval_draft_command,
-	                        }),
-	                        node({
-	                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/apply-dry-run`,
-	                          label: "apply dry-run",
-	                          description: action.work_bucket.evidence_apply_dry_run_command,
-	                          tooltip: "人間承認 record と materialized evidence の照合だけを確認する",
-	                          contextValue: "vmodel-fit.work-bucket.apply-dry-run",
-	                          commandPointer: action.work_bucket.evidence_apply_dry_run_command,
-	                        }),
-	                      ],
-	                    }),
-	                  ]
+                      label: "work bucket",
+                      description: `${action.work_bucket.evidence_signature} failed=${action.work_bucket.failed_evidence_count} patches=${action.work_bucket.evidence_patch_candidate_count}`,
+                      tooltip: `action=${action.work_bucket.action}\ncount=${action.work_bucket.count}\nrepair=${action.work_bucket.repair_status}\nhandoff_next=${action.work_bucket.evidence_handoff_next?.status ?? "none"}\nprobe=${action.work_bucket.evidence_probe_command}\nmaterialize=${action.work_bucket.evidence_materialize_command}\napproval_draft=${action.work_bucket.evidence_approval_draft_command}\napply_dry_run=${action.work_bucket.evidence_apply_dry_run_command}\napply_execute=${action.work_bucket.evidence_apply_execute_command}\napply_write=${action.work_bucket.evidence_apply_write_policy}\npatch=${action.work_bucket.evidence_patch_command}\npatch_write=${action.work_bucket.evidence_patch_write_policy}\ntables=${action.work_bucket.target_tables.join(",") || "-"}\nplans=${action.work_bucket.sample_plan_ids.join(",") || "-"}`,
+                      contextValue: `vmodel-fit.next-action.work-bucket.${action.work_bucket.repair_status}`,
+                      commandPointer: handoffNextCommand(action.work_bucket),
+                      children: [
+                        ...(action.work_bucket.evidence_handoff_next
+                          ? [
+                              node({
+                                id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/handoff-next`,
+                                label: "handoff next",
+                                description: `${action.work_bucket.evidence_handoff_next.status} approval=${action.work_bucket.evidence_handoff_next.approval_state} scope=${action.work_bucket.evidence_handoff_next.scope_status ?? "-"} valid=${action.work_bucket.evidence_handoff_next.valid_for_apply}`,
+                                tooltip: `${action.work_bucket.evidence_handoff_next.label}\n${action.work_bucket.evidence_handoff_next.required_action}\napproval=${action.work_bucket.evidence_handoff_next.approval_state}\nscope=${action.work_bucket.evidence_handoff_next.scope_status ?? "-"}\nvalid_for_apply=${action.work_bucket.evidence_handoff_next.valid_for_apply}\n${action.work_bucket.evidence_handoff_next.reason_codes.join("\n")}\n${action.work_bucket.evidence_handoff_next.reasons.join("\n")}`,
+                                contextValue: `vmodel-fit.work-bucket.handoff-next.${action.work_bucket.evidence_handoff_next.status}.approval-${action.work_bucket.evidence_handoff_next.approval_state}.scope-${action.work_bucket.evidence_handoff_next.scope_status ?? "none"}.valid-${action.work_bucket.evidence_handoff_next.valid_for_apply}`,
+                                commandPointer: action.work_bucket.evidence_handoff_next.command,
+                              }),
+                            ]
+                          : []),
+                        node({
+                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/probe`,
+                          label: "evidence probe",
+                          description: action.work_bucket.evidence_probe_command,
+                          tooltip: "安全な verification command を実行し、probe record を生成する",
+                          contextValue: "vmodel-fit.work-bucket.probe",
+                          commandPointer: action.work_bucket.evidence_probe_command,
+                        }),
+                        ...(action.work_bucket.evidence_handoff_artifacts
+                          ? [
+                              node({
+                                id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/probe-record`,
+                                label: "probe record",
+                                description: artifactStatusDescription(
+                                  handoffArtifactStatus(action.work_bucket, "probe_record"),
+                                  action.work_bucket.evidence_handoff_artifacts.probe_record_path,
+                                ),
+                                tooltip: artifactStatusTooltip(
+                                  handoffArtifactStatus(action.work_bucket, "probe_record"),
+                                  action.work_bucket.evidence_handoff_artifacts.probe_record_path,
+                                  action.work_bucket.evidence_handoff_artifacts.write_policy,
+                                ),
+                                contextValue: "vmodel-fit.work-bucket.handoff.probe-record",
+                                commandPointer:
+                                  handoffArtifactStatus(action.work_bucket, "probe_record")?.path ??
+                                  action.work_bucket.evidence_handoff_artifacts.probe_record_path,
+                              }),
+                              node({
+                                id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/approval-draft-artifact`,
+                                label: "approval draft artifact",
+                                description: artifactStatusDescription(
+                                  handoffArtifactStatus(action.work_bucket, "approval_draft"),
+                                  action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
+                                ),
+                                tooltip: artifactStatusTooltip(
+                                  handoffArtifactStatus(action.work_bucket, "approval_draft"),
+                                  action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
+                                  action.work_bucket.evidence_handoff_artifacts.write_policy,
+                                ),
+                                contextValue: "vmodel-fit.work-bucket.handoff.approval-draft",
+                                commandPointer:
+                                  handoffArtifactStatus(action.work_bucket, "approval_draft")
+                                    ?.path ??
+                                  action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
+                              }),
+                            ]
+                          : []),
+                        node({
+                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/materialize`,
+                          label: "materialize",
+                          description: action.work_bucket.evidence_materialize_command,
+                          tooltip:
+                            "probe record から placeholder を埋め、承認対象 preview を生成する",
+                          contextValue: "vmodel-fit.work-bucket.materialize",
+                          commandPointer: action.work_bucket.evidence_materialize_command,
+                        }),
+                        node({
+                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/approval-draft`,
+                          label: "approval draft",
+                          description: action.work_bucket.evidence_approval_draft_command,
+                          tooltip: "非承認 pending_human_review record を生成する",
+                          contextValue: "vmodel-fit.work-bucket.approval-draft",
+                          commandPointer: action.work_bucket.evidence_approval_draft_command,
+                        }),
+                        node({
+                          id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/apply-dry-run`,
+                          label: "apply dry-run",
+                          description: action.work_bucket.evidence_apply_dry_run_command,
+                          tooltip: "人間承認 record と materialized evidence の照合だけを確認する",
+                          contextValue: "vmodel-fit.work-bucket.apply-dry-run",
+                          commandPointer: action.work_bucket.evidence_apply_dry_run_command,
+                        }),
+                      ],
+                    }),
+                  ]
                 : [],
             }),
           ),
@@ -858,10 +870,10 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           id: "project/current-location/vmodel-fit/current-location",
           label: "current-location",
           description: `${current.vmodel_fit.current_location_status}/${current.vmodel_fit.completion_boundary}`,
-	          tooltip: `runway=${current.vmodel_fit.recovery_runway.status}\nreentry=${current.vmodel_fit.reentry_forecast.status}\nmachine=${current.vmodel_fit.recovery_runway.machine_actionable_count}\napproval=${current.vmodel_fit.recovery_runway.human_approval_count}\nreverse=${current.vmodel_fit.recovery_runway.design_reverse_count}\nafter_machine=${current.vmodel_fit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.vmodel_fit.reentry_forecast.required_phase_count}\nnext=${current.vmodel_fit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.vmodel_fit.reentry_forecast.next_gate}\ncommand=${current.vmodel_fit.reentry_forecast.next_command}\nexecute=${current.vmodel_fit.reentry_forecast.next_execution_command}\nnext_probe=${current.vmodel_fit.recovery_runway.next_machine_probe_command ?? "-"}\nmaterialize=${current.vmodel_fit.recovery_runway.next_machine_materialize_command ?? "-"}`,
-	          contextValue: `vmodel-fit.current-location.${current.vmodel_fit.current_location_status}`,
-	          commandPointer: current.vmodel_fit.reentry_forecast.next_execution_command,
-	        }),
+          tooltip: `runway=${current.vmodel_fit.recovery_runway.status}\nreentry=${current.vmodel_fit.reentry_forecast.status}\nmachine=${current.vmodel_fit.recovery_runway.machine_actionable_count}\napproval=${current.vmodel_fit.recovery_runway.human_approval_count}\nreverse=${current.vmodel_fit.recovery_runway.design_reverse_count}\nafter_machine=${current.vmodel_fit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.vmodel_fit.reentry_forecast.required_phase_count}\nnext=${current.vmodel_fit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.vmodel_fit.reentry_forecast.next_gate}\ncommand=${current.vmodel_fit.reentry_forecast.next_command}\nexecute=${current.vmodel_fit.reentry_forecast.next_execution_command}\nnext_probe=${current.vmodel_fit.recovery_runway.next_machine_probe_command ?? "-"}\nmaterialize=${current.vmodel_fit.recovery_runway.next_machine_materialize_command ?? "-"}`,
+          contextValue: `vmodel-fit.current-location.${current.vmodel_fit.current_location_status}`,
+          commandPointer: current.vmodel_fit.reentry_forecast.next_execution_command,
+        }),
         node({
           id: "project/current-location/vmodel-fit/recovery-runway",
           label: "recovery runway",
@@ -928,9 +940,10 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
         node({
           id: "project/current-location/vmodel-fit/recovery-handoff",
           label: "recovery handoff",
-          description: `${current.vmodel_fit.recovery_handoff_gate.status} phase=${current.vmodel_fit.recovery_handoff_gate.effective_phase}`,
+          description: `${current.vmodel_fit.recovery_handoff_gate.status} phase=${current.vmodel_fit.recovery_handoff_gate.effective_phase} approval=${current.vmodel_fit.recovery_handoff_gate.approval_state} scope=${current.vmodel_fit.recovery_handoff_gate.scope_status ?? "-"} valid=${current.vmodel_fit.recovery_handoff_gate.valid_for_apply}`,
           tooltip: tooltipLines([
             current.vmodel_fit.recovery_handoff_gate.required_action,
+            `approval_state=${current.vmodel_fit.recovery_handoff_gate.approval_state}`,
             `approval=${current.vmodel_fit.recovery_handoff_gate.approval_status ?? "-"}`,
             `scope=${current.vmodel_fit.recovery_handoff_gate.scope_status ?? "-"}`,
             `decision=${current.vmodel_fit.recovery_handoff_gate.decision_id ?? "-"}`,
@@ -942,9 +955,10 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             `valid_for_apply=${current.vmodel_fit.recovery_handoff_gate.valid_for_apply}`,
             `present=${current.vmodel_fit.recovery_handoff_gate.handoff_present}`,
             `missing=${current.vmodel_fit.recovery_handoff_gate.handoff_missing}`,
+            ...current.vmodel_fit.recovery_handoff_gate.reason_codes,
             ...current.vmodel_fit.recovery_handoff_gate.reasons,
           ]),
-          contextValue: `vmodel-fit.recovery-handoff.${current.vmodel_fit.recovery_handoff_gate.effective_phase}.${current.vmodel_fit.recovery_handoff_gate.status}`,
+          contextValue: `vmodel-fit.recovery-handoff.${current.vmodel_fit.recovery_handoff_gate.effective_phase}.${current.vmodel_fit.recovery_handoff_gate.status}.approval-${current.vmodel_fit.recovery_handoff_gate.approval_state}.scope-${current.vmodel_fit.recovery_handoff_gate.scope_status ?? "none"}.valid-${current.vmodel_fit.recovery_handoff_gate.valid_for_apply}`,
           commandPointer: current.vmodel_fit.recovery_handoff_gate.command,
         }),
         node({
@@ -1018,9 +1032,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                   "db=project_vmodel_fit_blockers",
                   blocker.required_action,
                   ...blocker.doc_dependencies.map((dependency) => `doc=${dependency}`),
-                  ...blocker.implementation_dependencies.map(
-                    (dependency) => `impl=${dependency}`,
-                  ),
+                  ...blocker.implementation_dependencies.map((dependency) => `impl=${dependency}`),
                 ],
                 { omittedHint: blocker.command },
               ),
@@ -1341,79 +1353,78 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                 )
                 .join("\n\n"),
               contextValue: "closure-overview.work-buckets",
-	              commandPointer:
-	                current.closure_overview.work_buckets[0]
-	                  ? current.closure_overview.work_buckets[0].evidence_probe_command
-	                  : current.closure_overview.recommended_next_action.command,
+              commandPointer: current.closure_overview.work_buckets[0]
+                ? current.closure_overview.work_buckets[0].evidence_probe_command
+                : current.closure_overview.recommended_next_action.command,
               children: current.closure_overview.work_buckets.map((bucket) =>
                 node({
                   id: `project/current-location/closure/overview/work-buckets/${bucket.rank}`,
                   label: `${bucket.rank}. ${bucket.evidence_signature}`,
                   description: `count=${bucket.count} automation=${bucket.repair_plan.automation.status}`,
-	                  tooltip: `${bucket.required_action}\nrepair=${bucket.repair_plan.status}\nautomation=${bucket.repair_plan.automation.status}\nnext=${bucket.repair_plan.automation.primary_next_command ?? "-"}\nevidence-probe=${bucket.evidence_probe_command}\nevidence-materialize=${bucket.evidence_materialize_command}\nevidence-approval-draft=${bucket.evidence_approval_draft_command}\nevidence-apply-dry-run=${bucket.evidence_apply_dry_run_command}\nevidence-apply-execute=${bucket.evidence_apply_execute_command}\nevidence-apply-write=${bucket.evidence_apply_write_policy}\nevidence-patch=${bucket.evidence_patch_command}\nlatest=${bucket.repair_plan.latest_failed_at ?? "-"}\ngreen=${bucket.repair_plan.required_green_tables.join(",") || "-"}\ntemplates=${bucket.repair_plan.projection_templates.map((template) => `${template.table}:${template.example_status}`).join(",") || "-"}\ntables=${bucket.target_tables.join(",") || "-"}\npostcheck=${bucket.postcheck_commands.join(" && ")}\n${bucket.repair_plan.command_candidates.map((candidate) => `${candidate.command_label} verb=${candidate.command_verb ?? "-"} runnable=${candidate.runnable_command ?? "-"} resolution=${candidate.resolution_candidates.map((resolution) => `${resolution.command}->${resolution.projection_binding.target_tables.join(",")}`).join("|") || "-"} count=${candidate.count}`).join("\n")}\n${bucket.repair_plan.projection_items.map((item) => `${item.plan_id} failed=${item.failed_evidence_count}`).join("\n")}`,
-	                  contextValue: `closure-work-bucket.${bucket.action}.${bucket.repair_plan.automation.status}`,
-	                  commandPointer: bucket.evidence_probe_command,
-	                  children: [
-		                    node({
-		                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-probe`,
-		                      label: "evidence probe",
-	                      description: bucket.evidence_probe_command,
-	                      tooltip: "安全な verification command を実行し、probe record を生成する",
-		                      contextValue: `closure-work-bucket.evidence-probe.${bucket.action}`,
-		                      commandPointer: bucket.evidence_probe_command,
-		                    }),
-		                    ...(bucket.evidence_handoff_artifacts
-		                      ? [
-		                          node({
-		                            id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/probe-record`,
-		                            label: "probe record",
-		                            description: bucket.evidence_handoff_artifacts.probe_record_path,
-		                            tooltip: `evidence-probe --out が生成する工程間 artifact\nwrite=${bucket.evidence_handoff_artifacts.write_policy}`,
-		                            contextValue: `closure-work-bucket.handoff.probe-record.${bucket.action}`,
-		                            commandPointer: bucket.evidence_handoff_artifacts.probe_record_path,
-		                          }),
-		                          node({
-		                            id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/approval-draft-artifact`,
-		                            label: "approval draft artifact",
-		                            description: bucket.evidence_handoff_artifacts.approval_draft_path,
-		                            tooltip: `evidence-approval-draft --out が生成する non-authorizing draft\nwrite=${bucket.evidence_handoff_artifacts.write_policy}`,
-		                            contextValue: `closure-work-bucket.handoff.approval-draft.${bucket.action}`,
-		                            commandPointer: bucket.evidence_handoff_artifacts.approval_draft_path,
-		                          }),
-		                        ]
-		                      : []),
-		                    node({
-		                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-materialize`,
-	                      label: "evidence materialize",
-	                      description: bucket.evidence_materialize_command,
-	                      tooltip: "probe record から materialized evidence preview を生成する",
-	                      contextValue: `closure-work-bucket.evidence-materialize.${bucket.action}`,
-	                      commandPointer: bucket.evidence_materialize_command,
-	                    }),
-	                    node({
-	                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-approval-draft`,
-	                      label: "approval draft",
-	                      description: bucket.evidence_approval_draft_command,
-	                      tooltip: "pending_human_review の非承認 draft を生成する",
-	                      contextValue: `closure-work-bucket.evidence-approval-draft.${bucket.action}`,
-	                      commandPointer: bucket.evidence_approval_draft_command,
-	                    }),
-	                    node({
-	                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-apply-dry-run`,
-	                      label: "evidence apply dry-run",
-	                      description: bucket.evidence_apply_dry_run_command,
-	                      tooltip: `approval record が一致する場合だけ適用可能になることを確認する\nexecute=${bucket.evidence_apply_execute_command}\nwrite=${bucket.evidence_apply_write_policy}`,
-	                      contextValue: `closure-work-bucket.evidence-apply-dry-run.${bucket.action}`,
-	                      commandPointer: bucket.evidence_apply_dry_run_command,
-	                    }),
-	                    node({
-	                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-patch`,
-	                      label: "evidence patch packet",
-	                      description: `approval-required candidates=${bucket.repair_plan.projection_items.reduce((sum, item) => sum + item.evidence_patch_plan.patch_candidates.length, 0)}`,
-	                      tooltip: `approval_scope_digest 付きの read-only packet を確認する\nfailed evidence は削除せず green evidence を追加投影する\nplaceholders=${bucket.repair_plan.projection_items.reduce((sum, item) => sum + item.evidence_patch_plan.patch_candidates.reduce((inner, candidate) => inner + candidate.placeholder_count, 0), 0)}\nprobe=${bucket.evidence_probe_command}\n${bucket.evidence_patch_command}`,
-	                      contextValue: `closure-work-bucket.evidence-patch.${bucket.action}`,
-	                      commandPointer: bucket.evidence_patch_command,
-	                    }),
+                  tooltip: `${bucket.required_action}\nrepair=${bucket.repair_plan.status}\nautomation=${bucket.repair_plan.automation.status}\nnext=${bucket.repair_plan.automation.primary_next_command ?? "-"}\nevidence-probe=${bucket.evidence_probe_command}\nevidence-materialize=${bucket.evidence_materialize_command}\nevidence-approval-draft=${bucket.evidence_approval_draft_command}\nevidence-apply-dry-run=${bucket.evidence_apply_dry_run_command}\nevidence-apply-execute=${bucket.evidence_apply_execute_command}\nevidence-apply-write=${bucket.evidence_apply_write_policy}\nevidence-patch=${bucket.evidence_patch_command}\nlatest=${bucket.repair_plan.latest_failed_at ?? "-"}\ngreen=${bucket.repair_plan.required_green_tables.join(",") || "-"}\ntemplates=${bucket.repair_plan.projection_templates.map((template) => `${template.table}:${template.example_status}`).join(",") || "-"}\ntables=${bucket.target_tables.join(",") || "-"}\npostcheck=${bucket.postcheck_commands.join(" && ")}\n${bucket.repair_plan.command_candidates.map((candidate) => `${candidate.command_label} verb=${candidate.command_verb ?? "-"} runnable=${candidate.runnable_command ?? "-"} resolution=${candidate.resolution_candidates.map((resolution) => `${resolution.command}->${resolution.projection_binding.target_tables.join(",")}`).join("|") || "-"} count=${candidate.count}`).join("\n")}\n${bucket.repair_plan.projection_items.map((item) => `${item.plan_id} failed=${item.failed_evidence_count}`).join("\n")}`,
+                  contextValue: `closure-work-bucket.${bucket.action}.${bucket.repair_plan.automation.status}`,
+                  commandPointer: bucket.evidence_probe_command,
+                  children: [
+                    node({
+                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-probe`,
+                      label: "evidence probe",
+                      description: bucket.evidence_probe_command,
+                      tooltip: "安全な verification command を実行し、probe record を生成する",
+                      contextValue: `closure-work-bucket.evidence-probe.${bucket.action}`,
+                      commandPointer: bucket.evidence_probe_command,
+                    }),
+                    ...(bucket.evidence_handoff_artifacts
+                      ? [
+                          node({
+                            id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/probe-record`,
+                            label: "probe record",
+                            description: bucket.evidence_handoff_artifacts.probe_record_path,
+                            tooltip: `evidence-probe --out が生成する工程間 artifact\nwrite=${bucket.evidence_handoff_artifacts.write_policy}`,
+                            contextValue: `closure-work-bucket.handoff.probe-record.${bucket.action}`,
+                            commandPointer: bucket.evidence_handoff_artifacts.probe_record_path,
+                          }),
+                          node({
+                            id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/approval-draft-artifact`,
+                            label: "approval draft artifact",
+                            description: bucket.evidence_handoff_artifacts.approval_draft_path,
+                            tooltip: `evidence-approval-draft --out が生成する non-authorizing draft\nwrite=${bucket.evidence_handoff_artifacts.write_policy}`,
+                            contextValue: `closure-work-bucket.handoff.approval-draft.${bucket.action}`,
+                            commandPointer: bucket.evidence_handoff_artifacts.approval_draft_path,
+                          }),
+                        ]
+                      : []),
+                    node({
+                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-materialize`,
+                      label: "evidence materialize",
+                      description: bucket.evidence_materialize_command,
+                      tooltip: "probe record から materialized evidence preview を生成する",
+                      contextValue: `closure-work-bucket.evidence-materialize.${bucket.action}`,
+                      commandPointer: bucket.evidence_materialize_command,
+                    }),
+                    node({
+                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-approval-draft`,
+                      label: "approval draft",
+                      description: bucket.evidence_approval_draft_command,
+                      tooltip: "pending_human_review の非承認 draft を生成する",
+                      contextValue: `closure-work-bucket.evidence-approval-draft.${bucket.action}`,
+                      commandPointer: bucket.evidence_approval_draft_command,
+                    }),
+                    node({
+                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-apply-dry-run`,
+                      label: "evidence apply dry-run",
+                      description: bucket.evidence_apply_dry_run_command,
+                      tooltip: `approval record が一致する場合だけ適用可能になることを確認する\nexecute=${bucket.evidence_apply_execute_command}\nwrite=${bucket.evidence_apply_write_policy}`,
+                      contextValue: `closure-work-bucket.evidence-apply-dry-run.${bucket.action}`,
+                      commandPointer: bucket.evidence_apply_dry_run_command,
+                    }),
+                    node({
+                      id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/evidence-patch`,
+                      label: "evidence patch packet",
+                      description: `approval-required candidates=${bucket.repair_plan.projection_items.reduce((sum, item) => sum + item.evidence_patch_plan.patch_candidates.length, 0)}`,
+                      tooltip: `approval_scope_digest 付きの read-only packet を確認する\nfailed evidence は削除せず green evidence を追加投影する\nplaceholders=${bucket.repair_plan.projection_items.reduce((sum, item) => sum + item.evidence_patch_plan.patch_candidates.reduce((inner, candidate) => inner + candidate.placeholder_count, 0), 0)}\nprobe=${bucket.evidence_probe_command}\n${bucket.evidence_patch_command}`,
+                      contextValue: `closure-work-bucket.evidence-patch.${bucket.action}`,
+                      commandPointer: bucket.evidence_patch_command,
+                    }),
                     ...bucket.repair_plan.projection_items.map((item) =>
                       node({
                         id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/${item.plan_id}`,
@@ -1469,7 +1480,8 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                       description: template.example_status,
                       tooltip: `${template.status_after_projection}\n${template.required_action}\n${template.required_fields.join(",")}`,
                       contextValue: "closure-evidence-template",
-                      commandPointer: "helix closure evidence-plan --action collect_evidence --json",
+                      commandPointer:
+                        "helix closure evidence-plan --action collect_evidence --json",
                     }),
                   ) ?? [],
             }),
@@ -1478,8 +1490,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               label: "repair evidence",
               description: "helix closure evidence-plan --action repair_failed_evidence --json",
               contextValue: "closure-evidence-plan.repair",
-              commandPointer:
-                "helix closure evidence-plan --action repair_failed_evidence --json",
+              commandPointer: "helix closure evidence-plan --action repair_failed_evidence --json",
               children:
                 current.closure.evidence_templates
                   .find((template) => template.action === "repair_failed_evidence")
@@ -1538,8 +1549,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               id: "project/current-location/closure/evidence-materialize/preview",
               label: "materialize preview",
               description: current.closure.evidence_materialize.materialize_command,
-              tooltip:
-                "probe record から preview を実値化する。ファイルや DB は変更しない",
+              tooltip: "probe record から preview を実値化する。ファイルや DB は変更しない",
               contextValue: "closure-evidence-materialize.preview",
               commandPointer: current.closure.evidence_materialize.materialize_command,
             }),
@@ -1557,8 +1567,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               id: "project/current-location/closure/evidence-apply/dry-run",
               label: "dry-run",
               description: current.closure.evidence_apply.dry_run_command,
-              tooltip:
-                "materialized evidence と approval record を照合し、適用可否だけを確認する",
+              tooltip: "materialized evidence と approval record を照合し、適用可否だけを確認する",
               contextValue: "closure-evidence-apply.dry-run",
               commandPointer: current.closure.evidence_apply.dry_run_command,
             }),
@@ -1646,21 +1655,21 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               contextValue: "closure-apply.review-bundle",
               commandPointer: current.closure.apply_readiness.review_window_command,
             }),
-	            node({
-	              id: "project/current-location/closure/apply-readiness/transition-plan",
-	              label: "transition plan",
-	              description: current.closure.apply_readiness.transition_window_command,
-	              contextValue: "closure-apply.transition-plan",
-	              commandPointer: current.closure.apply_readiness.transition_window_command,
-	            }),
-	            node({
-	              id: "project/current-location/closure/apply-readiness/decision-draft",
-	              label: "decision draft",
-	              description: current.closure.apply_readiness.decision_draft_command,
-	              contextValue: "closure-apply.decision-draft",
-	              commandPointer: current.closure.apply_readiness.decision_draft_command,
-	            }),
-	            node({
+            node({
+              id: "project/current-location/closure/apply-readiness/transition-plan",
+              label: "transition plan",
+              description: current.closure.apply_readiness.transition_window_command,
+              contextValue: "closure-apply.transition-plan",
+              commandPointer: current.closure.apply_readiness.transition_window_command,
+            }),
+            node({
+              id: "project/current-location/closure/apply-readiness/decision-draft",
+              label: "decision draft",
+              description: current.closure.apply_readiness.decision_draft_command,
+              contextValue: "closure-apply.decision-draft",
+              commandPointer: current.closure.apply_readiness.decision_draft_command,
+            }),
+            node({
               id: "project/current-location/closure/apply-readiness/dry-run",
               label: "apply dry-run",
               description: current.closure.apply_readiness.dry_run_command,
