@@ -1341,8 +1341,8 @@ describe("buildVisualizationViewModel", () => {
             command: "helix current-location --json",
           }),
         ],
-        source_command: "helix vmodel fit --json",
-        current_location_command: "helix current-location --json",
+        source_command: "helix vmodel fit --summary-json",
+        current_location_command: "helix current-location --summary-json",
         view_command: "helix progress tree-view --json",
         reasons: [
           "design coverage gate is needs_design",

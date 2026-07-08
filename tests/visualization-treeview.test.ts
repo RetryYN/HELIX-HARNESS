@@ -1301,7 +1301,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix vmodel fit --json"],
+        arguments: ["helix vmodel fit --summary-json"],
       },
     });
     expect(vmodelFit?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
@@ -1498,7 +1498,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix vmodel fit --json"],
+        arguments: ["helix vmodel fit --summary-json"],
       },
     });
     const tailoring = current?.children.find(

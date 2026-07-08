@@ -2433,8 +2433,8 @@ export function buildProjectCurrentLocationView(
         implementation_dependencies: [...blocker.implementation_dependencies],
       })),
       reasons: [...vmodelFit.reasons],
-      source_command: vmodelFit.source_command,
-      current_location_command: vmodelFit.current_location_command,
+      source_command: "helix vmodel fit --summary-json",
+      current_location_command: "helix current-location --summary-json",
       view_command: vmodelFit.view_command,
     },
     zip_adoption: {

@@ -1183,17 +1183,17 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           description: `${current.zip_manifest.inventory_signature.status} entries=${current.zip_manifest.inventory_signature.actual_entries_total}/${current.zip_manifest.inventory_signature.expected_entries_total}`,
           tooltip: `root=${current.zip_manifest.inventory_signature.actual_root_prefix ?? "-"}/${current.zip_manifest.inventory_signature.expected_root_prefix}\nyaml=${current.zip_manifest.inventory_signature.actual_by_extension.yaml ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.yaml ?? 0} md=${current.zip_manifest.inventory_signature.actual_by_extension.md ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.md ?? 0} xlsx=${current.zip_manifest.inventory_signature.actual_by_extension.xlsx ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.xlsx ?? 0} png=${current.zip_manifest.inventory_signature.actual_by_extension.png ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.png ?? 0} py=${current.zip_manifest.inventory_signature.actual_by_extension.py ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.py ?? 0} json=${current.zip_manifest.inventory_signature.actual_by_extension.json ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.json ?? 0} feature=${current.zip_manifest.inventory_signature.actual_by_extension.feature ?? 0}/${current.zip_manifest.inventory_signature.expected_by_extension.feature ?? 0}\n${current.zip_manifest.inventory_signature.mismatches.map((mismatch) => `${mismatch.field}: ${mismatch.actual} != ${mismatch.expected}`).join("\n")}`,
           contextValue: `zip-manifest.inventory-signature.${current.zip_manifest.inventory_signature.status}`,
-          commandPointer: "helix vmodel fit --json",
+          commandPointer: "helix vmodel fit --summary-json",
         }),
         node({
           id: "project/current-location/zip-manifest/source-bindings",
           label: "source bindings",
           description: `${current.zip_manifest.source_bindings.status} bound=${current.zip_manifest.source_bindings.bound} missing=${current.zip_manifest.source_bindings.missing}`,
           tooltip: tooltipLines(current.zip_manifest.source_bindings.evidence_tables, {
-            omittedHint: "helix vmodel fit --json",
+            omittedHint: "helix vmodel fit --summary-json",
           }),
           contextValue: `zip-manifest.source-bindings.${current.zip_manifest.source_bindings.status}`,
-          commandPointer: "helix vmodel fit --json",
+          commandPointer: "helix vmodel fit --summary-json",
           children: current.zip_manifest.source_bindings.bindings.map((binding) =>
             node({
               id: `project/current-location/zip-manifest/source-bindings/${binding.binding_id}`,
