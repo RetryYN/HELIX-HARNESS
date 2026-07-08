@@ -4757,6 +4757,30 @@ describe("L7 CLI surface closure", () => {
           pointers: [],
           unexpected_pointers: [],
         },
+        summary_surface_command_audit: {
+          status: "pass",
+          checked_surface_count: 12,
+          unexpected_count: 0,
+          allowed_fields: ["full_source_command", "full_view_command"],
+          unexpected_commands: [],
+          surfaces: expect.arrayContaining([
+            expect.objectContaining({
+              surface: "current-location",
+              source_command: "helix current-location --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
+              surface: "vmodel-fit",
+              source_command: "helix vmodel fit --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
+              surface: "closure-evidence-probe",
+              source_command: "helix closure evidence-probe --summary-json",
+              unexpected_count: 0,
+            }),
+          ]),
+        },
         write_policy: "read-only",
         source_command: "helix progress tree-view --summary-json",
         full_source_command: "helix progress tree-view --json",

@@ -4084,6 +4084,141 @@ function summaryJsonCommandOrNull(command: string | null): string | null {
   return command === null ? null : summaryJsonCommand(command);
 }
 
+type SummarySurfaceRawJsonHit = {
+  path: string;
+  command: string;
+};
+
+function collectSummarySurfaceRawJsonHits(
+  value: unknown,
+  path: string[] = [],
+): SummarySurfaceRawJsonHit[] {
+  if (typeof value === "string") {
+    const fieldName = path[path.length - 1] ?? "";
+    const intentionallyFull =
+      fieldName === "full_source_command" || fieldName === "full_view_command";
+    return value.includes(" --json") && !value.includes(" --summary-json") && !intentionallyFull
+      ? [{ path: path.join("."), command: value }]
+      : [];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) =>
+      collectSummarySurfaceRawJsonHits(item, [...path, String(index)]),
+    );
+  }
+  if (value !== null && typeof value === "object") {
+    return Object.entries(value).flatMap(([key, item]) =>
+      collectSummarySurfaceRawJsonHits(item, [...path, key]),
+    );
+  }
+  return [];
+}
+
+function buildSummarySurfaceCommandAudit(
+  repoRoot: string,
+  snapshot: ProjectCurrentLocationSnapshot,
+) {
+  const probeRecordOutput: ProbeRecordOutput = {
+    requested: false,
+    path: null,
+    written: false,
+    bytes: 0,
+    sha256: null,
+  };
+  const surfaces = [
+    {
+      surface: "current-location",
+      payload: summarizeProjectCurrentLocation(snapshot),
+    },
+    {
+      surface: "drive-model",
+      payload: summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot)),
+    },
+    {
+      surface: "recovery-plan",
+      payload: summarizeProjectRecoveryPlan(buildProjectRecoveryPlan(snapshot, { limit: 1 })),
+    },
+    {
+      surface: "roadmap-current",
+      payload: summarizeProjectRoadmapCurrentReport(buildProjectRoadmapCurrentReport(snapshot)),
+    },
+    {
+      surface: "artifact-remap-batch",
+      payload: summarizeProjectArtifactRemapBatchReport(
+        buildProjectArtifactRemapBatchReport(snapshot, { limit: 10 }),
+      ),
+    },
+    {
+      surface: "closure-overview",
+      payload: summarizeClosureOverview(buildProjectClosureOverview(snapshot, { limit: 1 })),
+    },
+    {
+      surface: "closure-batch",
+      payload: summarizeClosureBatchReport(buildProjectClosureBatchReport(snapshot, { limit: 1 })),
+    },
+    {
+      surface: "closure-evidence-plan",
+      payload: summarizeClosureEvidencePlan(
+        buildProjectClosureEvidencePlan(snapshot, { limit: 1 }),
+      ),
+    },
+    {
+      surface: "closure-evidence-patch",
+      payload: summarizeClosureEvidencePatchPacket(
+        buildProjectClosureEvidencePatchPacket(snapshot, { limit: 1 }),
+      ),
+    },
+    {
+      surface: "closure-evidence-probe",
+      payload: summarizeClosureEvidenceProbePacket(
+        buildProjectClosureEvidenceProbePacket(snapshot, { limit: 1 }),
+        probeRecordOutput,
+      ),
+    },
+    {
+      surface: "closure-evidence-materialize",
+      payload: summarizeClosureMaterializePacket(
+        buildProjectClosureEvidenceMaterializePacket(snapshot, { limit: 1 }),
+      ),
+    },
+    {
+      surface: "vmodel-fit",
+      payload: summarizeVmodelFitReport(
+        buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
+      ),
+    },
+  ].map((surface) => {
+    const unexpectedCommands = collectSummarySurfaceRawJsonHits(surface.payload);
+    const sourceCommand =
+      typeof surface.payload === "object" &&
+      surface.payload !== null &&
+      "source_command" in surface.payload &&
+      typeof surface.payload.source_command === "string"
+        ? surface.payload.source_command
+        : null;
+    return {
+      surface: surface.surface,
+      source_command: sourceCommand,
+      unexpected_count: unexpectedCommands.length,
+      sample_unexpected_commands: unexpectedCommands.slice(0, 10),
+    };
+  });
+  const unexpectedCommands = surfaces.flatMap((surface) =>
+    surface.sample_unexpected_commands.map((hit) => ({
+      surface: surface.surface,
+      ...hit,
+    })),
+  );
+  return {
+    status: unexpectedCommands.length === 0 ? "pass" : "unexpected_raw_json_command",
+    checked_surface_count: surfaces.length,
+    unexpected_count: unexpectedCommands.length,
+    allowed_fields: ["full_source_command", "full_view_command"],
+    surfaces,
+    unexpected_commands: unexpectedCommands.slice(0, 20),
+  };
+}
+
 type ProbeRecordOutput = {
   requested: boolean;
   path: string | null;
@@ -6381,6 +6516,11 @@ progress
             reason: "view pointer should use an available --summary-json surface",
           }));
         const unexpectedFullJsonPointers = fullJsonPointers.filter((pointer) => !pointer.allowed);
+        const currentLocationSnapshot = buildProjectCurrentLocationSnapshot(db);
+        const summarySurfaceCommandAudit = buildSummarySurfaceCommandAudit(
+          repoRoot,
+          currentLocationSnapshot,
+        );
         process.stdout.write(
           `${JSON.stringify(
             {
@@ -6420,6 +6560,7 @@ progress
                 pointers: fullJsonPointers,
                 unexpected_pointers: unexpectedFullJsonPointers,
               },
+              summary_surface_command_audit: summarySurfaceCommandAudit,
               write_policy: "read-only",
               source_command: "helix progress tree-view --summary-json",
               full_source_command: "helix progress tree-view --json",
