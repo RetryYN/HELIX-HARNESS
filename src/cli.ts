@@ -6195,6 +6195,7 @@ progress
       if (opts.summaryJson) {
         const contexts: Record<string, number> = {};
         const commandCounts: Record<string, number> = {};
+        const fullJsonPointerCounts: Record<string, number> = {};
         let nodeCount = 0;
         let commandCount = 0;
         const visit = (node: (typeof tree.roots)[number]) => {
@@ -6204,10 +6205,30 @@ progress
           if (command) {
             commandCount += 1;
             commandCounts[command] = (commandCounts[command] ?? 0) + 1;
+            if (command.includes(" --json") && !command.includes(" --summary-json")) {
+              fullJsonPointerCounts[command] = (fullJsonPointerCounts[command] ?? 0) + 1;
+            }
           }
           for (const child of node.children) visit(child);
         };
         for (const root of tree.roots) visit(root);
+        const fullJsonPointers = Object.entries(fullJsonPointerCounts)
+          .sort((a, b) => b[1] - a[1])
+          .map(([command, count]) => ({
+            command,
+            count,
+            allowed:
+              command.startsWith("helix closure evidence-probe ") &&
+              command.includes(" --execute ") &&
+              command.endsWith(" --json"),
+            reason:
+              command.startsWith("helix closure evidence-probe ") &&
+              command.includes(" --execute ") &&
+              command.endsWith(" --json")
+                ? "probe record generation requires the executable JSON surface"
+                : "view pointer should use an available --summary-json surface",
+          }));
+        const unexpectedFullJsonPointers = fullJsonPointers.filter((pointer) => !pointer.allowed);
         process.stdout.write(
           `${JSON.stringify(
             {
@@ -6232,6 +6253,23 @@ progress
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 20)
                 .map(([command, count]) => ({ command, count })),
+              full_json_pointer_audit: {
+                status:
+                  unexpectedFullJsonPointers.length === 0 ? "pass" : "unexpected_full_json",
+                total_count: fullJsonPointers.reduce((sum, pointer) => sum + pointer.count, 0),
+                allowed_count: fullJsonPointers
+                  .filter((pointer) => pointer.allowed)
+                  .reduce((sum, pointer) => sum + pointer.count, 0),
+                unexpected_count: unexpectedFullJsonPointers.reduce(
+                  (sum, pointer) => sum + pointer.count,
+                  0,
+                ),
+                allowed_patterns: [
+                  "helix closure evidence-probe <args> --execute <args> --json",
+                ],
+                pointers: fullJsonPointers,
+                unexpected_pointers: unexpectedFullJsonPointers,
+              },
               write_policy: "read-only",
               source_command: "helix progress tree-view --summary-json",
               full_source_command: "helix progress tree-view --json",

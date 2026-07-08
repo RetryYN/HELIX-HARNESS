@@ -4700,6 +4700,14 @@ describe("L7 CLI surface closure", () => {
         node_count: expect.any(Number),
         command_count: expect.any(Number),
         warning_count: expect.any(Number),
+        full_json_pointer_audit: {
+          status: "pass",
+          unexpected_count: 0,
+          allowed_patterns: [
+            "helix closure evidence-probe <args> --execute <args> --json",
+          ],
+          unexpected_pointers: [],
+        },
         write_policy: "read-only",
         source_command: "helix progress tree-view --summary-json",
         full_source_command: "helix progress tree-view --json",
