@@ -286,6 +286,7 @@ import {
   type ProjectClosureReviewBundle,
   type ProjectClosureTransitionPlan,
   type ProjectCurrentLocationSnapshot,
+  type ProjectDriveModelReport,
   type ProjectRecoveryPlan,
   type ProjectRoadmapCurrentReport,
 } from "./state-db/current-location";
@@ -3555,12 +3556,59 @@ program
 
 const drive = program.command("drive").description("Project drive-model read-only surfaces");
 
+function summarizeProjectDriveModelReport(report: ProjectDriveModelReport) {
+  return {
+    schema_version: "project-drive-model-summary.v1",
+    source_clock: report.source_clock,
+    selected_model: report.selected_model,
+    default_model: report.default_model,
+    selection_status: report.selection_status,
+    current: report.current,
+    selected_candidate: {
+      model: report.selected_candidate.model,
+      rank: report.selected_candidate.rank,
+      status: report.selected_candidate.status,
+      route_id: report.selected_candidate.route_id,
+      trigger: report.selected_candidate.trigger,
+      required_action: report.selected_candidate.required_action,
+      command: summaryJsonCommand(report.selected_candidate.command),
+      coverage_ids: report.selected_candidate.coverage_ids,
+      doc_dependency_count: report.selected_candidate.doc_dependencies.length,
+      implementation_dependency_count:
+        report.selected_candidate.implementation_dependencies.length,
+      reason_count: report.selected_candidate.reasons.length,
+    },
+    blocked_models: report.blocked_models,
+    available_models: report.available_models,
+    candidate_count: report.candidates.length,
+    candidates: report.candidates.map((candidate) => ({
+      model: candidate.model,
+      rank: candidate.rank,
+      status: candidate.status,
+      route_id: candidate.route_id,
+      trigger: candidate.trigger,
+      required_action: candidate.required_action,
+      command: summaryJsonCommand(candidate.command),
+      coverage_ids: candidate.coverage_ids,
+      doc_dependency_count: candidate.doc_dependencies.length,
+      implementation_dependency_count: candidate.implementation_dependencies.length,
+      reason_count: candidate.reasons.length,
+    })),
+    postcheck_commands: report.postcheck_commands.map(summaryJsonCommand),
+    write_policy: report.write_policy,
+    source_command: "helix drive model --summary-json",
+    full_source_command: report.source_command,
+    view_command: report.view_command,
+  };
+}
+
 drive
   .command("model")
   .description("emit selected drive model and candidate routes from current-location projection")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
     const db = openHarnessDb(dbPath, { repoRoot });
@@ -3569,6 +3617,10 @@ drive
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const report = buildProjectDriveModelReport(snapshot);
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeProjectDriveModelReport(report), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
         return;

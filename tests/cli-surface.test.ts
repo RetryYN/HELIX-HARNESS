@@ -2644,6 +2644,47 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
+      const driveModelSummaryJson = runCliIn(root, ["drive", "model", "--summary-json"]);
+      expect(driveModelSummaryJson.status).toBe(0);
+      const driveModelSummary = JSON.parse(driveModelSummaryJson.stdout);
+      expect(driveModelSummary).toMatchObject({
+        schema_version: "project-drive-model-summary.v1",
+        selected_model: "Recovery",
+        default_model: "Forward",
+        selection_status: "recovery_required",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+        },
+        selected_candidate: {
+          model: "Recovery",
+          route_id: "drive:Recovery:recover-current-location",
+          command: "helix closure evidence-plan --summary-json",
+          coverage_ids: expect.arrayContaining([
+            "L12-operation-observability",
+            "L5-detailed-contract",
+            "L6-implementation-binding",
+            "L7-tdd-closure",
+          ]),
+          doc_dependency_count: expect.any(Number),
+        },
+        blocked_models: expect.arrayContaining(["Reverse", "Forward"]),
+        available_models: expect.arrayContaining(["Recovery"]),
+        candidate_count: 6,
+        source_command: "helix drive model --summary-json",
+        full_source_command: "helix drive model --json",
+      });
+      expect(driveModelSummary.candidates).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            model: "Additive",
+            route_id: "drive:Additive:add-design-then-impl",
+            command: "helix artifact-remap batch --status reverify --summary-json",
+          }),
+        ]),
+      );
+      expect(driveModelSummary.candidates[0].doc_dependencies).toBeUndefined();
       const driveModelText = runCliIn(root, ["drive", "model"]);
       expect(driveModelText.status).toBe(0);
       expect(driveModelText.stdout).toContain(

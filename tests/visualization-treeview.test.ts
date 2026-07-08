@@ -1180,7 +1180,7 @@ describe("visualization Tree View adapter", () => {
     expect(drive?.children[0]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
-      arguments: ["helix drive model --json"],
+      arguments: ["helix drive model --summary-json"],
     });
     expect(drive?.children[0]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
@@ -1201,7 +1201,7 @@ describe("visualization Tree View adapter", () => {
     expect(drive?.children[1]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
-      arguments: ["helix recovery plan --json"],
+      arguments: ["helix recovery plan --summary-json"],
     });
     expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
@@ -1221,7 +1221,7 @@ describe("visualization Tree View adapter", () => {
     expect(drive?.children[2]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
-      arguments: ["helix current-location --json"],
+      arguments: ["helix current-location --summary-json"],
     });
     expect(drive?.children[4]?.command).toEqual({
       title: "Copy pointer",
@@ -1817,7 +1817,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix current-location --json"],
+        arguments: ["helix current-location --summary-json"],
       },
     });
     expect(l12Compatibility?.children.map((child) => `${child.id}:${child.description}`)).toEqual([

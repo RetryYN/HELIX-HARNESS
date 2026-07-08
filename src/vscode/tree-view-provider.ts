@@ -35,6 +35,33 @@ type VmodelHandoffArtifactStatus = NonNullable<
 >["items"][number];
 
 const TOOLTIP_LINE_LIMIT = 24;
+const SUMMARY_CAPABLE_HELIX_PREFIXES = [
+  "helix current-location",
+  "helix drive model",
+  "helix recovery plan",
+  "helix roadmap current",
+  "helix vmodel fit",
+  "helix artifact-remap batch",
+  "helix closure batch",
+  "helix closure evidence-plan",
+  "helix closure evidence-patch",
+  "helix closure evidence-materialize",
+  "helix closure evidence-approval-draft",
+  "helix closure evidence-apply",
+  "helix closure overview",
+  "helix closure review-bundle",
+  "helix closure transition-plan",
+  "helix closure decision-draft",
+] as const;
+
+function readOnlySummaryPointer(command: string): string {
+  if (command.includes(" --summary-json") || !command.endsWith(" --json")) return command;
+  return SUMMARY_CAPABLE_HELIX_PREFIXES.some(
+    (prefix) => command === `${prefix} --json` || command.startsWith(`${prefix} `),
+  )
+    ? command.replace(/ --json$/, " --summary-json")
+    : command;
+}
 
 function node(input: {
   id: string;
@@ -59,7 +86,7 @@ function node(input: {
       ? {
           title: "Copy pointer",
           command: HELIX_COPY_POINTER_COMMAND,
-          arguments: [input.commandPointer],
+          arguments: [readOnlySummaryPointer(input.commandPointer)],
         }
       : undefined,
     children,
@@ -83,7 +110,7 @@ function tooltipLines(
 }
 
 function summaryJsonPointer(command: string): string {
-  return command.replace(/ --json$/, " --summary-json");
+  return readOnlySummaryPointer(command);
 }
 
 function artifactStatusDescription(
