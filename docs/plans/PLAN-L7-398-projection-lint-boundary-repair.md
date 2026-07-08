@@ -13,6 +13,9 @@ updated: 2026-07-09
 backprop_decision: not_required
 backprop_decision_reason: "既存 module-drift / coding-rules の境界違反を L7 で補修するだけで、L3/L12 要件や DB schema の意味変更は追加しない。"
 owner: Codex / TL
+agent_slots:
+  - role: aim
+    slot_label: "AIM - 境界修正"
 parent_design: docs/design/harness/L6-function-design/module-drift.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -22,12 +25,16 @@ generates:
   - artifact_path: docs/design/harness/L6-function-design/module-drift.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
-    artifact_type: test_design_doc
+    artifact_type: test_design
   - artifact_path: src/lint/db-projection-ingestion.ts
     artifact_type: source_module
   - artifact_path: src/state-db/current-location.ts
     artifact_type: source_module
+  - artifact_path: src/lint/tracked-canonical.ts
+    artifact_type: source_module
   - artifact_path: tests/coding-rules.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/tracked-canonical.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
@@ -36,10 +43,12 @@ dependencies:
     - docs/test-design/harness/L7-unit-test-design.md
     - src/lint/db-projection-ingestion.ts
     - src/state-db/current-location.ts
+    - src/lint/tracked-canonical.ts
     - tests/coding-rules.test.ts
+    - tests/tracked-canonical.test.ts
 review_evidence:
   - reviewer: codex-tl
-    review_kind: intra_runtime_self_check
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T04:21:25+09:00"
     tests_green_at: "2026-07-09T04:21:25+09:00"
     verdict: approve
@@ -61,7 +70,15 @@ review_evidence:
         completed_at: "2026-07-09T04:21:25+09:00"
         evidence_path: tests/coding-rules.test.ts
         output_digest: "sha256:6fdc72b74e5ab0b8f957c2eb596d5495e8b6d4df083f26a2f87e58de51e67e73"
-    note: "doctor --json は coding-rules / ddd-tdd-rules / db-projection-ingestion / change-impact / plan-entry-routing / recovery-handoff-binding が OK。既存の stale handover と project-current-location l14_claim_with_l7_work は残る。"
+      - kind: unit_test
+        command: "bun run vitest run tests/tracked-canonical.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T04:39:12+09:00"
+        evidence_path: tests/tracked-canonical.test.ts
+        output_digest: "sha256:c025fcc963b8c97b4e54f35512bb589e572fac96343f5c605896409fad36e3bc"
+    note: "doctor --json は coding-rules / ddd-tdd-rules / db-projection-ingestion / change-impact / change-set-integrity / plan-governance / tracked-canonical / zip-adoption-binding / handover が OK。既存の project-current-location l14_claim_with_l7_work は Recovery lane として残る。"
 ---
 
 # PLAN-L7-398: DB projection lint 境界と current-location helper arity 修正
@@ -79,6 +96,7 @@ review_evidence:
 - Vモデル ZIP の実ファイル名・binding 実体は `vmodel` / `state-db` の projection 側に閉じ、`lint` は projection 結果の有無だけを判定する。
 - Scrum operation helper は input object 化し、current-location の検出ロジックを引数順へ依存させない。
 - U-CODE-011 に `src/lint/* -> src/vmodel/*` 禁止 import の回帰 oracle を追加する。
+- 完成版 ZIP を top-level reference package として残すため、`tracked-canonical` は Git の quoted path ではなく UTF-8 path で canonical tree と照合する。
 
 ## 完了条件
 

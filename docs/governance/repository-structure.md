@@ -25,6 +25,7 @@ HELIX-HARNESS/
 ├── .gitattributes                # 改行正規化 (eol=lf、*.ps1 は crlf)
 ├── .editorconfig                 # editor/agent shared whitespace and newline defaults
 ├── .gitignore
+├── ハイブリッド設計ドキュメントv1-fixed.zip # ZIP/L12 採用の参照パッケージ (reference-only、PLAN-L3-13)
 │
 ├── src/                          # ★ harness TS core (実装 = ② 実装コード)
 │   ├── cli.ts                    #   エントリ (commander)
