@@ -4660,6 +4660,22 @@ describe("L7 CLI surface closure", () => {
       });
       expect(JSON.stringify(treePayload)).toContain("project/current-location/coverage/L6");
       expect(JSON.stringify(treePayload)).toContain("project/current-location/roadmap-position");
+      const treeSummary = runCliIn(root, ["progress", "tree-view", "--summary-json"]);
+      expect(treeSummary.status).toBe(0);
+      expect(JSON.parse(treeSummary.stdout)).toMatchObject({
+        schema_version: "visualization-tree-view-summary.v1",
+        root_count: 2,
+        roots: [
+          expect.objectContaining({ id: "project", label: "Project" }),
+          expect.objectContaining({ id: "harness", label: "HARNESS" }),
+        ],
+        node_count: expect.any(Number),
+        command_count: expect.any(Number),
+        warning_count: expect.any(Number),
+        write_policy: "read-only",
+        source_command: "helix progress tree-view --summary-json",
+        full_source_command: "helix progress tree-view --json",
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

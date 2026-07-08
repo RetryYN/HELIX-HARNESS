@@ -6131,8 +6131,9 @@ progress
   .command("tree-view")
   .description("emit VSCode Tree View model from visualization read model")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
     const db = openHarnessDb(dbPath, { repoRoot });
@@ -6142,6 +6143,56 @@ progress
       const snapshot = buildVisualizationSnapshot(db, { repoRoot });
       const viewModel = buildVisualizationViewModel(snapshot);
       const tree = buildVisualizationTreeView(viewModel);
+      if (opts.summaryJson) {
+        const contexts: Record<string, number> = {};
+        const commandCounts: Record<string, number> = {};
+        let nodeCount = 0;
+        let commandCount = 0;
+        const visit = (node: (typeof tree.roots)[number]) => {
+          nodeCount += 1;
+          contexts[node.contextValue] = (contexts[node.contextValue] ?? 0) + 1;
+          const command = node.command?.arguments[0];
+          if (command) {
+            commandCount += 1;
+            commandCounts[command] = (commandCounts[command] ?? 0) + 1;
+          }
+          for (const child of node.children) visit(child);
+        };
+        for (const root of tree.roots) visit(root);
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              schema_version: "visualization-tree-view-summary.v1",
+              source_clock: tree.source_clock,
+              root_count: tree.roots.length,
+              roots: tree.roots.map((root) => ({
+                id: root.id,
+                label: root.label,
+                description: root.description,
+                child_count: root.children.length,
+              })),
+              node_count: nodeCount,
+              command_count: commandCount,
+              warning_count: tree.warnings.length,
+              warnings: tree.warnings.slice(0, 20),
+              top_contexts: Object.entries(contexts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 20)
+                .map(([context_value, count]) => ({ context_value, count })),
+              top_commands: Object.entries(commandCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 20)
+                .map(([command, count]) => ({ command, count })),
+              write_policy: "read-only",
+              source_command: "helix progress tree-view --summary-json",
+              full_source_command: "helix progress tree-view --json",
+            },
+            null,
+            2,
+          )}\n`,
+        );
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(tree, null, 2)}\n`);
         return;

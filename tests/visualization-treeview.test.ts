@@ -1125,7 +1125,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix progress tree-view --json"],
+        arguments: ["helix progress tree-view --summary-json"],
       },
     });
     expect(projectBoundary?.tooltip).toContain("source=project_current_location");
@@ -1226,7 +1226,7 @@ describe("visualization Tree View adapter", () => {
     expect(drive?.children[4]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
-      arguments: ["helix progress tree-view --json"],
+      arguments: ["helix progress tree-view --summary-json"],
     });
 
     const coverage = current?.children.find(
