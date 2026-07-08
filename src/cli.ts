@@ -3413,13 +3413,19 @@ function summarizeProjectCurrentLocation(snapshot: ProjectCurrentLocationSnapsho
           design_reverse_count: snapshot.recovery.automation_runway.design_reverse_count,
           remaining_after_machine_lanes:
             snapshot.recovery.automation_runway.remaining_after_machine_lanes,
-          next_machine_command: snapshot.recovery.automation_runway.next_machine_command,
+          next_machine_command: summaryJsonCommandOrNull(
+            snapshot.recovery.automation_runway.next_machine_command,
+          ),
           next_machine_probe_command:
-            snapshot.recovery.automation_runway.next_machine_probe_command,
+            summaryJsonCommandOrNull(snapshot.recovery.automation_runway.next_machine_probe_command),
           next_machine_materialize_command:
-            snapshot.recovery.automation_runway.next_machine_materialize_command,
+            summaryJsonCommandOrNull(
+              snapshot.recovery.automation_runway.next_machine_materialize_command,
+            ),
           next_machine_approval_draft_command:
-            snapshot.recovery.automation_runway.next_machine_approval_draft_command,
+            summaryJsonCommandOrNull(
+              snapshot.recovery.automation_runway.next_machine_approval_draft_command,
+            ),
           reentry_status: snapshot.recovery.reentry_forecast.status,
           reentry_next_gate: snapshot.recovery.reentry_forecast.next_gate,
         }
@@ -3443,7 +3449,8 @@ function summarizeProjectCurrentLocation(snapshot: ProjectCurrentLocationSnapsho
     })),
     write_policy: "read-only",
     source_command: "helix current-location --summary-json",
-    view_command: "helix progress tree-view --json",
+    view_command: "helix progress tree-view --summary-json",
+    full_view_command: "helix progress tree-view --json",
   };
 }
 
@@ -3648,7 +3655,8 @@ function summarizeProjectDriveModelReport(report: ProjectDriveModelReport) {
     write_policy: report.write_policy,
     source_command: "helix drive model --summary-json",
     full_source_command: report.source_command,
-    view_command: report.view_command,
+    view_command: summaryJsonCommand(report.view_command),
+    full_view_command: report.view_command,
   };
 }
 
@@ -3738,14 +3746,18 @@ function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
       lane_type: lane.lane_type,
       status: lane.status,
       human_required: lane.human_required,
-      primary_command: lane.primary_command,
-      evidence_plan_command: lane.evidence_plan_command,
-      batch_command: lane.batch_command,
-      review_command: lane.review_command,
-      evidence_probe_command: lane.evidence_probe_command,
-      evidence_materialize_command: lane.evidence_materialize_command,
-      evidence_approval_draft_command: lane.evidence_approval_draft_command,
-      evidence_apply_dry_run_command: lane.evidence_apply_dry_run_command,
+      primary_command: summaryJsonCommand(lane.primary_command),
+      evidence_plan_command: summaryJsonCommand(lane.evidence_plan_command),
+      batch_command: summaryJsonCommand(lane.batch_command),
+      review_command: summaryJsonCommand(lane.review_command),
+      evidence_probe_command: summaryJsonCommandOrNull(lane.evidence_probe_command),
+      evidence_materialize_command: summaryJsonCommandOrNull(lane.evidence_materialize_command),
+      evidence_approval_draft_command: summaryJsonCommandOrNull(
+        lane.evidence_approval_draft_command,
+      ),
+      evidence_apply_dry_run_command: summaryJsonCommandOrNull(
+        lane.evidence_apply_dry_run_command,
+      ),
       target_tables: lane.target_tables,
       sample_plan_ids: lane.sample_plan_ids,
       expected_transition: lane.expected_transition,
@@ -3756,14 +3768,22 @@ function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
       automation_class: boundary.automation_class,
       mutation_allowed: boundary.mutation_allowed,
       approval_required: boundary.approval_required,
-      dry_run_command: boundary.dry_run_command,
-      execute_command: boundary.execute_command,
-      evidence_patch_command: boundary.evidence_patch_command,
-      evidence_probe_command: boundary.evidence_probe_command,
-      evidence_materialize_command: boundary.evidence_materialize_command,
-      evidence_approval_draft_command: boundary.evidence_approval_draft_command,
-      evidence_apply_dry_run_command: boundary.evidence_apply_dry_run_command,
-      evidence_apply_execute_command: boundary.evidence_apply_execute_command,
+      dry_run_command: summaryJsonCommand(boundary.dry_run_command),
+      execute_command: summaryJsonCommandOrNull(boundary.execute_command),
+      evidence_patch_command: summaryJsonCommandOrNull(boundary.evidence_patch_command),
+      evidence_probe_command: summaryJsonCommandOrNull(boundary.evidence_probe_command),
+      evidence_materialize_command: summaryJsonCommandOrNull(
+        boundary.evidence_materialize_command,
+      ),
+      evidence_approval_draft_command: summaryJsonCommandOrNull(
+        boundary.evidence_approval_draft_command,
+      ),
+      evidence_apply_dry_run_command: summaryJsonCommandOrNull(
+        boundary.evidence_apply_dry_run_command,
+      ),
+      evidence_apply_execute_command: summaryJsonCommandOrNull(
+        boundary.evidence_apply_execute_command,
+      ),
       evidence_apply_write_policy: boundary.evidence_apply_write_policy,
       required_record: boundary.required_record,
     })),
@@ -3774,11 +3794,19 @@ function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
       design_reverse_count: plan.automation_runway.design_reverse_count,
       remaining_after_machine_lanes: plan.automation_runway.remaining_after_machine_lanes,
       next_machine_action: plan.automation_runway.next_machine_action,
-      next_machine_command: plan.automation_runway.next_machine_command,
-      next_machine_probe_command: plan.automation_runway.next_machine_probe_command,
-      next_machine_materialize_command: plan.automation_runway.next_machine_materialize_command,
-      next_machine_approval_draft_command: plan.automation_runway.next_machine_approval_draft_command,
-      next_machine_apply_dry_run_command: plan.automation_runway.next_machine_apply_dry_run_command,
+      next_machine_command: summaryJsonCommandOrNull(plan.automation_runway.next_machine_command),
+      next_machine_probe_command: summaryJsonCommandOrNull(
+        plan.automation_runway.next_machine_probe_command,
+      ),
+      next_machine_materialize_command: summaryJsonCommandOrNull(
+        plan.automation_runway.next_machine_materialize_command,
+      ),
+      next_machine_approval_draft_command: summaryJsonCommandOrNull(
+        plan.automation_runway.next_machine_approval_draft_command,
+      ),
+      next_machine_apply_dry_run_command: summaryJsonCommandOrNull(
+        plan.automation_runway.next_machine_apply_dry_run_command,
+      ),
       phases: plan.automation_runway.phases.map((phase) => ({
         sequence: phase.sequence,
         action: phase.action,
@@ -3788,17 +3816,21 @@ function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
         human_required: phase.human_required,
         remaining_after_phase: phase.remaining_after_phase,
         next_gate: phase.next_gate,
-        command: phase.command,
-        evidence_probe_command: phase.evidence_probe_command,
-        evidence_materialize_command: phase.evidence_materialize_command,
-        evidence_approval_draft_command: phase.evidence_approval_draft_command,
+        command: summaryJsonCommand(phase.command),
+        evidence_probe_command: summaryJsonCommandOrNull(phase.evidence_probe_command),
+        evidence_materialize_command: summaryJsonCommandOrNull(
+          phase.evidence_materialize_command,
+        ),
+        evidence_approval_draft_command: summaryJsonCommandOrNull(
+          phase.evidence_approval_draft_command,
+        ),
       })),
     },
     exit_forecast: {
       status: plan.exit_forecast.status,
       remaining_queue_items: plan.exit_forecast.remaining_queue_items,
       blocker_count: plan.exit_forecast.blockers.length,
-      next_command: plan.exit_forecast.next_command,
+      next_command: summaryJsonCommand(plan.exit_forecast.next_command),
     },
     reentry_forecast: {
       status: plan.reentry_forecast.status,
@@ -3808,23 +3840,24 @@ function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
       next_phase_action: plan.reentry_forecast.next_phase_action,
       next_phase_type: plan.reentry_forecast.next_phase_type,
       next_gate: plan.reentry_forecast.next_gate,
-      next_command: plan.reentry_forecast.next_command,
-      next_execution_command: plan.reentry_forecast.next_execution_command,
-      recompute_commands: plan.reentry_forecast.recompute_commands,
+      next_command: summaryJsonCommand(plan.reentry_forecast.next_command),
+      next_execution_command: summaryJsonCommand(plan.reentry_forecast.next_execution_command),
+      recompute_commands: plan.reentry_forecast.recompute_commands.map(summaryJsonCommand),
     },
     steps: plan.steps.map((step) => ({
       step_id: step.step_id,
       sequence: step.sequence,
       status: step.status,
-      command: step.command,
+      command: summaryJsonCommand(step.command),
       required_action: step.required_action,
       expected_transition: step.expected_transition,
     })),
     exit_criteria: plan.exit_criteria,
-    postcheck_commands: plan.postcheck_commands,
+    postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
     write_policy: plan.write_policy,
     source_command: "helix recovery plan --summary-json",
-    view_command: plan.view_command,
+    view_command: summaryJsonCommand(plan.view_command),
+    full_view_command: plan.view_command,
   };
 }
 
@@ -3948,26 +3981,33 @@ function summarizeProjectRoadmapCurrentReport(report: ProjectRoadmapCurrentRepor
       phase_action: action.phase_action,
       l12_layers: action.l12_layers,
       coverage_ids: action.coverage_ids,
-      command: action.command,
-      batch_command: action.batch_command,
-      review_command: action.review_command,
-      evidence_patch_command: action.evidence_patch_command,
-      evidence_probe_command: action.evidence_probe_command,
-      evidence_materialize_command: action.evidence_materialize_command,
-      evidence_approval_draft_command: action.evidence_approval_draft_command,
-      evidence_apply_dry_run_command: action.evidence_apply_dry_run_command,
-      evidence_apply_execute_command: action.evidence_apply_execute_command,
+      command: summaryJsonCommand(action.command),
+      batch_command: summaryJsonCommandOrNull(action.batch_command),
+      review_command: summaryJsonCommandOrNull(action.review_command),
+      evidence_patch_command: summaryJsonCommandOrNull(action.evidence_patch_command),
+      evidence_probe_command: summaryJsonCommandOrNull(action.evidence_probe_command),
+      evidence_materialize_command: summaryJsonCommandOrNull(action.evidence_materialize_command),
+      evidence_approval_draft_command: summaryJsonCommandOrNull(
+        action.evidence_approval_draft_command,
+      ),
+      evidence_apply_dry_run_command: summaryJsonCommandOrNull(
+        action.evidence_apply_dry_run_command,
+      ),
+      evidence_apply_execute_command: summaryJsonCommandOrNull(
+        action.evidence_apply_execute_command,
+      ),
       evidence_apply_write_policy: action.evidence_apply_write_policy,
       required_action: action.required_action,
       doc_dependency_count: action.doc_dependencies.length,
       implementation_dependency_count: action.implementation_dependencies.length,
       reason_count: action.reasons.length,
     })),
-    postcheck_commands: report.postcheck_commands,
+    postcheck_commands: report.postcheck_commands.map(summaryJsonCommand),
     write_policy: report.write_policy,
     source_command: "helix roadmap current --summary-json",
     full_source_command: report.source_command,
-    view_command: report.view_command,
+    view_command: summaryJsonCommand(report.view_command),
+    full_view_command: report.view_command,
   };
 }
 
@@ -4038,6 +4078,10 @@ const artifactRemap = program
 
 function summaryJsonCommand(command: string): string {
   return command.replace(/ --json$/, " --summary-json");
+}
+
+function summaryJsonCommandOrNull(command: string | null): string | null {
+  return command === null ? null : summaryJsonCommand(command);
 }
 
 type ProbeRecordOutput = {
@@ -4117,7 +4161,8 @@ function summarizeProjectArtifactRemapBatchReport(report: ProjectArtifactRemapBa
     write_policy: report.write_policy,
     source_command: "helix artifact-remap batch --summary-json",
     full_source_command: report.source_command,
-    view_command: report.view_command,
+    view_command: summaryJsonCommand(report.view_command),
+    full_view_command: report.view_command,
   };
 }
 
@@ -4297,7 +4342,8 @@ function summarizeClosureEvidenceProbePacket(
     write_policy: packet.write_policy,
     source_command: "helix closure evidence-probe --summary-json",
     full_source_command: packet.source_command,
-    view_command: packet.view_command,
+    view_command: summaryJsonCommand(packet.view_command),
+    full_view_command: packet.view_command,
   };
 }
 
@@ -4334,10 +4380,11 @@ function summarizeClosureMaterializePacket(packet: ProjectClosureEvidenceMateria
         remaining_placeholder_count: candidate.remaining_placeholder_count,
         ready_for_approval: candidate.ready_for_approval,
       })),
-    postcheck_commands: packet.postcheck_commands,
+    postcheck_commands: packet.postcheck_commands.map(summaryJsonCommand),
     write_policy: packet.write_policy,
     source_command: "helix closure evidence-materialize --summary-json",
-    view_command: packet.view_command,
+    view_command: summaryJsonCommand(packet.view_command),
+    full_view_command: packet.view_command,
     findings: packet.findings.map((finding) => ({
       code: finding.code,
       severity: finding.severity,
@@ -4372,11 +4419,12 @@ function summarizeClosureEvidencePlan(plan: ProjectClosureEvidencePlan) {
       required_action: item.required_action,
     })),
     acceptance_criteria: plan.acceptance_criteria,
-    postcheck_commands: plan.postcheck_commands,
+    postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
     expected_transition: plan.expected_transition,
     write_policy: plan.write_policy,
     source_command: "helix closure evidence-plan --summary-json",
-    view_command: plan.view_command,
+    view_command: summaryJsonCommand(plan.view_command),
+    full_view_command: plan.view_command,
     findings: plan.findings.map((finding) => ({
       code: finding.code,
       severity: finding.severity,
@@ -4440,8 +4488,8 @@ function summarizeClosureBatchReport(report: ProjectClosureBatchReport) {
         evidence_signature: bucket.evidence_signature,
         evidence_statuses: bucket.evidence_statuses,
         target_tables: bucket.target_tables,
-        primary_command: bucket.primary_command,
-        evidence_plan_command: bucket.evidence_plan_command,
+        primary_command: summaryJsonCommand(bucket.primary_command),
+        evidence_plan_command: summaryJsonCommand(bucket.evidence_plan_command),
         repair_plan: {
           status: bucket.repair_plan.status,
           failed_evidence_count: bucket.repair_plan.failed_evidence_count,
@@ -4451,7 +4499,9 @@ function summarizeClosureBatchReport(report: ProjectClosureBatchReport) {
           safe_resolution_command_count:
             bucket.repair_plan.automation.safe_resolution_command_count,
           projection_item_count: bucket.repair_plan.automation.projection_item_count,
-          primary_next_command: bucket.repair_plan.automation.primary_next_command,
+          primary_next_command: summaryJsonCommandOrNull(
+            bucket.repair_plan.automation.primary_next_command,
+          ),
         },
         sample_plan_ids: bucket.sample_plan_ids,
         required_action: bucket.required_action,
@@ -4473,7 +4523,8 @@ function summarizeClosureBatchReport(report: ProjectClosureBatchReport) {
       })),
     write_policy: report.write_policy,
     source_command: "helix closure batch --summary-json",
-    view_command: report.view_command,
+    view_command: summaryJsonCommand(report.view_command),
+    full_view_command: report.view_command,
     findings: report.findings.map((finding) => ({
       code: finding.code,
       severity: finding.severity,
@@ -4502,7 +4553,10 @@ function summarizeClosureEvidencePatchPacket(packet: ProjectClosureEvidencePatch
     patch_candidate_count: packet.patch_candidate_count,
     apply_readiness: packet.apply_readiness,
     approval: packet.approval,
-    safety_policy: packet.safety_policy,
+    safety_policy: {
+      ...packet.safety_policy,
+      dry_run_command: summaryJsonCommand(packet.safety_policy.dry_run_command),
+    },
     sample_patch_candidates: packet.patch_candidates
       .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
       .map((candidate) => ({
@@ -4519,10 +4573,11 @@ function summarizeClosureEvidencePatchPacket(packet: ProjectClosureEvidencePatch
         real_evidence_required: candidate.real_evidence_required,
         required_action: candidate.required_action,
       })),
-    postcheck_commands: packet.postcheck_commands,
+    postcheck_commands: packet.postcheck_commands.map(summaryJsonCommand),
     write_policy: packet.write_policy,
     source_command: "helix closure evidence-patch --summary-json",
-    view_command: packet.view_command,
+    view_command: summaryJsonCommand(packet.view_command),
+    full_view_command: packet.view_command,
     findings: packet.findings.map((finding) => ({
       code: finding.code,
       severity: finding.severity,
@@ -4552,7 +4607,26 @@ function summarizeClosureOverview(overview: ProjectClosureOverview) {
       queue_total: overview.closure.queue_total,
       route_counts: overview.closure.route_counts,
       ledger_status_counts: overview.closure.ledger_status_counts,
-      apply_readiness: overview.closure.apply_readiness,
+      apply_readiness: {
+        ...overview.closure.apply_readiness,
+        dry_run_command: summaryJsonCommand(overview.closure.apply_readiness.dry_run_command),
+        execute_command: summaryJsonCommand(overview.closure.apply_readiness.execute_command),
+        review_bundle_command: summaryJsonCommand(
+          overview.closure.apply_readiness.review_bundle_command,
+        ),
+        transition_plan_command: summaryJsonCommand(
+          overview.closure.apply_readiness.transition_plan_command,
+        ),
+        review_window_command: summaryJsonCommand(
+          overview.closure.apply_readiness.review_window_command,
+        ),
+        transition_window_command: summaryJsonCommand(
+          overview.closure.apply_readiness.transition_window_command,
+        ),
+        decision_draft_command: summaryJsonCommand(
+          overview.closure.apply_readiness.decision_draft_command,
+        ),
+      },
     },
     action_count: overview.actions.length,
     actions: overview.actions.map((action) => ({
@@ -4562,13 +4636,18 @@ function summarizeClosureOverview(overview: ProjectClosureOverview) {
       omitted: action.omitted,
       ledger_status: action.ledger_status,
       human_required: action.human_required,
-      review_command: action.review_command,
-      transition_command: action.transition_command,
+      review_command: summaryJsonCommand(action.review_command),
+      transition_command: summaryJsonCommand(action.transition_command),
       sample_plan_ids: action.sample_plan_ids,
       required_action: action.required_action,
       promotion_gate: action.promotion_gate,
     })),
-    recommended_next_action: overview.recommended_next_action,
+    recommended_next_action: overview.recommended_next_action
+      ? {
+          ...overview.recommended_next_action,
+          command: summaryJsonCommand(overview.recommended_next_action.command),
+        }
+      : null,
     finding_count: overview.findings.length,
     sample_findings: overview.findings.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((finding) => ({
       code: finding.code,
@@ -4577,7 +4656,8 @@ function summarizeClosureOverview(overview: ProjectClosureOverview) {
     })),
     write_policy: overview.write_policy,
     source_command: "helix closure overview --summary-json",
-    view_command: overview.view_command,
+    view_command: summaryJsonCommand(overview.view_command),
+    full_view_command: overview.view_command,
   };
 }
 
@@ -4616,10 +4696,11 @@ function summarizeClosureApprovalDraftPacket(
       })),
     approval_record_template: packet.approval_record_template,
     approval_record_output: approvalRecordOutput,
-    postcheck_commands: packet.postcheck_commands,
+    postcheck_commands: packet.postcheck_commands.map(summaryJsonCommand),
     write_policy: packet.write_policy,
     source_command: "helix closure evidence-approval-draft --summary-json",
-    view_command: packet.view_command,
+    view_command: summaryJsonCommand(packet.view_command),
+    full_view_command: packet.view_command,
     findings: packet.findings.map((finding) => ({
       code: finding.code,
       severity: finding.severity,
@@ -4660,10 +4741,11 @@ function summarizeClosureEvidenceApplyPlan(
       })),
     executed: execution.executed,
     applied_artifacts: execution.applied_artifacts,
-    postcheck_commands: plan.postcheck_commands,
+    postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
     write_policy: plan.write_policy,
     source_command: "helix closure evidence-apply --summary-json",
-    view_command: plan.view_command,
+    view_command: summaryJsonCommand(plan.view_command),
+    full_view_command: plan.view_command,
   };
 }
 
@@ -4701,11 +4783,12 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
         test_runs: candidate.evidence.testRuns,
         gate_runs: candidate.evidence.gateRuns,
         runtime_verification: candidate.evidence.runtimeVerification,
-      })),
+    })),
     safeguards: bundle.safeguards,
     write_policy: bundle.write_policy,
     source_command: "helix closure review-bundle --summary-json",
-    view_command: bundle.view_command,
+    view_command: summaryJsonCommand(bundle.view_command),
+    full_view_command: bundle.view_command,
   };
 }
 
@@ -4732,8 +4815,8 @@ function summarizeClosureTransitionPlan(plan: ProjectClosureTransitionPlan) {
       target_action: plan.outcome_projection.target_action,
       drive_model: plan.outcome_projection.drive_model,
       human_required: plan.outcome_projection.human_required,
-      command: plan.outcome_projection.command,
-      transition_command: plan.outcome_projection.transition_command,
+      command: summaryJsonCommand(plan.outcome_projection.command),
+      transition_command: summaryJsonCommand(plan.outcome_projection.transition_command),
       expected_transition: plan.outcome_projection.expected_transition,
       required_action: plan.outcome_projection.required_action,
     },
@@ -4746,11 +4829,12 @@ function summarizeClosureTransitionPlan(plan: ProjectClosureTransitionPlan) {
         operation: step.operation,
         expected_effect: step.expected_effect,
       })),
-    postcheck_commands: plan.postcheck_commands,
+    postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
     rollback_notes: plan.rollback_notes,
     write_policy: plan.write_policy,
     source_command: "helix closure transition-plan --summary-json",
-    view_command: plan.view_command,
+    view_command: summaryJsonCommand(plan.view_command),
+    full_view_command: plan.view_command,
   };
 }
 
@@ -4785,8 +4869,8 @@ function summarizeClosureDecisionDraftPacket(
         target_action: route.target_action,
         drive_model: route.drive_model,
         human_required: route.human_required,
-        command: route.command,
-        transition_command: route.transition_command,
+        command: summaryJsonCommand(route.command),
+        transition_command: summaryJsonCommand(route.transition_command),
       })),
       non_authorizing: packet.decision.non_authorizing,
       required_action: packet.decision.required_action,
@@ -4804,10 +4888,11 @@ function summarizeClosureDecisionDraftPacket(
       })),
     approval_record_template: packet.approval_record_template,
     decision_record_output: decisionRecordOutput,
-    postcheck_commands: packet.postcheck_commands,
+    postcheck_commands: packet.postcheck_commands.map(summaryJsonCommand),
     write_policy: packet.write_policy,
     source_command: "helix closure decision-draft --summary-json",
-    view_command: packet.view_command,
+    view_command: summaryJsonCommand(packet.view_command),
+    full_view_command: packet.view_command,
     findings: packet.findings.map((finding) => ({
       code: finding.code,
       severity: finding.severity,
@@ -6057,7 +6142,8 @@ closure
           write_policy: plan.write_policy,
           source_command: "helix closure apply --summary-json",
           full_source_command: plan.source_command,
-          view_command: plan.view_command,
+          view_command: summaryJsonCommand(plan.view_command),
+          full_view_command: plan.view_command,
         });
         const appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }> =
           [];
@@ -7189,13 +7275,21 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
         remaining_after_machine_lanes:
           payload.current_location_gate.recovery_runway.remaining_after_machine_lanes,
         next_machine_action: payload.current_location_gate.recovery_runway.next_machine_action,
-        next_machine_command: payload.current_location_gate.recovery_runway.next_machine_command,
+        next_machine_command: summaryJsonCommandOrNull(
+          payload.current_location_gate.recovery_runway.next_machine_command,
+        ),
         next_machine_probe_command:
-          payload.current_location_gate.recovery_runway.next_machine_probe_command,
+          summaryJsonCommandOrNull(
+            payload.current_location_gate.recovery_runway.next_machine_probe_command,
+          ),
         next_machine_materialize_command:
-          payload.current_location_gate.recovery_runway.next_machine_materialize_command,
+          summaryJsonCommandOrNull(
+            payload.current_location_gate.recovery_runway.next_machine_materialize_command,
+          ),
         next_machine_approval_draft_command:
-          payload.current_location_gate.recovery_runway.next_machine_approval_draft_command,
+          summaryJsonCommandOrNull(
+            payload.current_location_gate.recovery_runway.next_machine_approval_draft_command,
+          ),
       },
       reentry_forecast: {
         status: payload.current_location_gate.reentry_forecast.status,
@@ -7206,9 +7300,9 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
         required_phase_count: payload.current_location_gate.reentry_forecast.required_phase_count,
         next_phase_action: payload.current_location_gate.reentry_forecast.next_phase_action,
         next_gate: payload.current_location_gate.reentry_forecast.next_gate,
-        next_command: payload.current_location_gate.reentry_forecast.next_command,
+        next_command: summaryJsonCommand(payload.current_location_gate.reentry_forecast.next_command),
         next_execution_command:
-          payload.current_location_gate.reentry_forecast.next_execution_command,
+          summaryJsonCommand(payload.current_location_gate.reentry_forecast.next_execution_command),
       },
     },
     recovery_runway_gate: {
@@ -7222,8 +7316,8 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       next_phase_action: payload.recovery_runway_gate.next_phase_action,
       next_phase_type: payload.recovery_runway_gate.next_phase_type,
       next_gate: payload.recovery_runway_gate.next_gate,
-      next_command: payload.recovery_runway_gate.next_command,
-      next_execution_command: payload.recovery_runway_gate.next_execution_command,
+      next_command: summaryJsonCommand(payload.recovery_runway_gate.next_command),
+      next_execution_command: summaryJsonCommand(payload.recovery_runway_gate.next_execution_command),
       phases: payload.recovery_runway_gate.phases.map((phase) => ({
         sequence: phase.sequence,
         action: phase.action,
@@ -7237,10 +7331,14 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
         sample_plan_ids: phase.sample_plan_ids,
         remaining_after_phase: phase.remaining_after_phase,
         next_gate: phase.next_gate,
-        command: phase.command,
-        evidence_probe_command: phase.evidence_probe_command,
-        evidence_materialize_command: phase.evidence_materialize_command,
-        evidence_approval_draft_command: phase.evidence_approval_draft_command,
+        command: summaryJsonCommand(phase.command),
+        evidence_probe_command: summaryJsonCommandOrNull(phase.evidence_probe_command),
+        evidence_materialize_command: summaryJsonCommandOrNull(
+          phase.evidence_materialize_command,
+        ),
+        evidence_approval_draft_command: summaryJsonCommandOrNull(
+          phase.evidence_approval_draft_command,
+        ),
       })),
     },
     recovery_handoff_gate: {
@@ -7248,7 +7346,7 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       effective_phase: payload.recovery_handoff_gate.effective_phase,
       action_id: payload.recovery_handoff_gate.action_id,
       blocker_code: payload.recovery_handoff_gate.blocker_code,
-      command: payload.recovery_handoff_gate.command,
+      command: summaryJsonCommand(payload.recovery_handoff_gate.command),
       handoff_present: payload.recovery_handoff_gate.handoff_present,
       handoff_missing: payload.recovery_handoff_gate.handoff_missing,
       approval_status: payload.recovery_handoff_gate.approval_status,
@@ -7273,9 +7371,11 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       sample_plan_ids: payload.approval_review_gate.sample_plan_ids,
       evidence_totals: payload.approval_review_gate.evidence_totals,
       blocked_by_findings: payload.approval_review_gate.blocked_by_findings,
-      current_window_command: payload.approval_review_gate.current_window_command,
-      next_window_command: payload.approval_review_gate.next_window_command,
-      transition_window_command: payload.approval_review_gate.transition_window_command,
+      current_window_command: summaryJsonCommand(payload.approval_review_gate.current_window_command),
+      next_window_command: summaryJsonCommandOrNull(payload.approval_review_gate.next_window_command),
+      transition_window_command: summaryJsonCommand(
+        payload.approval_review_gate.transition_window_command,
+      ),
     },
     regression_guards: {
       status: payload.regression_guards.status,
@@ -7286,7 +7386,7 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
         guard_id: guard.guard_id,
         status: guard.status,
         scope: guard.scope,
-        command: guard.command,
+        command: summaryJsonCommand(guard.command),
         count: guard.count,
       })),
     },
@@ -7299,7 +7399,7 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       automation_class: action.automation_class,
       count: action.count,
       gate: action.gate,
-      command: action.command,
+      command: summaryJsonCommand(action.command),
       work_bucket: action.work_bucket
         ? {
             bucket_id: action.work_bucket.bucket_id,
@@ -7309,15 +7409,17 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
             failed_evidence_count: action.work_bucket.failed_evidence_count,
             projection_item_count: action.work_bucket.projection_item_count,
             repair_automation_status: action.work_bucket.repair_automation_status,
-            repair_primary_next_command: action.work_bucket.repair_primary_next_command,
+            repair_primary_next_command: summaryJsonCommandOrNull(
+              action.work_bucket.repair_primary_next_command,
+            ),
             evidence_patch_candidate_count:
               action.work_bucket.evidence_patch_candidate_count,
             evidence_handoff_next_status:
               action.work_bucket.evidence_handoff_next?.status ?? null,
             evidence_handoff_next_command:
-              action.work_bucket.evidence_handoff_next?.command ?? null,
+              summaryJsonCommandOrNull(action.work_bucket.evidence_handoff_next?.command ?? null),
             evidence_approval_draft_command:
-              action.work_bucket.evidence_approval_draft_command,
+              summaryJsonCommand(action.work_bucket.evidence_approval_draft_command),
           }
         : null,
     })),
@@ -7326,10 +7428,7 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       code: blocker.code,
       status: blocker.status,
       count: blocker.count,
-      command:
-        blocker.command === "helix recovery plan --json"
-          ? "helix recovery plan --summary-json"
-          : blocker.command,
+      command: summaryJsonCommand(blocker.command),
       required_action: blocker.required_action,
     })),
     design_integrity: payload.design_integrity,
@@ -7343,7 +7442,8 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
     write_policy: payload.write_policy,
     source_command: "helix vmodel fit --summary-json",
     current_location_command: "helix current-location --summary-json",
-    view_command: payload.view_command,
+    view_command: summaryJsonCommand(payload.view_command),
+    full_view_command: payload.view_command,
   };
 }
 

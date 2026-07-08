@@ -2584,10 +2584,12 @@ describe("L7 CLI surface closure", () => {
           automation_status: "machine_work_available",
           machine_actionable_count: 1,
           human_approval_count: 0,
-          next_machine_command: "helix closure batch --action collect_evidence --json",
+          next_machine_command: "helix closure batch --action collect_evidence --summary-json",
         },
         finding_count: expect.any(Number),
         source_command: "helix current-location --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
       });
       expect(summaryPayload.finding_count).toBeGreaterThanOrEqual(1);
       expect(summaryPayload.findings.map((finding: { code: string }) => finding.code)).toContain(
@@ -2842,16 +2844,18 @@ describe("L7 CLI surface closure", () => {
           status: "machine_work_available",
           machine_actionable_count: 1,
           human_approval_count: 0,
-          next_machine_command: "helix closure batch --action collect_evidence --json",
+          next_machine_command: "helix closure batch --action collect_evidence --summary-json",
         },
         reentry_forecast: {
           status: "machine_phase_pending",
           next_phase_action: "collect_evidence",
-          next_command: "helix closure batch --action collect_evidence --json",
+          next_command: "helix closure batch --action collect_evidence --summary-json",
           next_execution_command:
-            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
         },
         source_command: "helix recovery plan --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
       });
       expect(recoveryPlanSummary.action_lanes).toEqual(
         expect.arrayContaining([
@@ -3325,6 +3329,8 @@ describe("L7 CLI surface closure", () => {
         blocker_count: expect.any(Number),
         source_command: "helix vmodel fit --summary-json",
         current_location_command: "helix current-location --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
       });
       expect(fitSummaryPayload.next_action_count).toBeGreaterThanOrEqual(1);
       expect(fitSummaryPayload.blocker_count).toBeGreaterThanOrEqual(1);
@@ -3334,7 +3340,7 @@ describe("L7 CLI surface closure", () => {
             blocker_code: "current_location",
             automation_class: "machine",
             command:
-              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
           }),
         ]),
       );
@@ -3916,7 +3922,8 @@ describe("L7 CLI surface closure", () => {
         write_policy: "read-only",
         source_command: "helix closure evidence-probe --summary-json",
         full_source_command: "helix closure evidence-probe --json",
-        view_command: "helix progress tree-view --json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
       });
 
       const evidenceProbeText = runCliIn(root, [
@@ -4585,11 +4592,13 @@ describe("L7 CLI surface closure", () => {
           target_action: "collect_evidence",
           drive_model: "Recovery",
           command:
-            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
           transition_command: "helix closure review-bundle --action collect_evidence --summary-json",
         },
         planned_step_count: 4,
         source_command: "helix closure transition-plan --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
         write_policy: "read-only",
       });
       expect(transitionSummaryPayload).not.toHaveProperty("target_plan_ids");
