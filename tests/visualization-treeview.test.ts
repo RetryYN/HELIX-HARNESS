@@ -1759,7 +1759,7 @@ describe("visualization Tree View adapter", () => {
     expect(applyReadiness?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/closure/apply-readiness/review-bundle:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
       "project/current-location/closure/apply-readiness/transition-plan:helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
-      "project/current-location/closure/apply-readiness/decision-draft:helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json",
+      "project/current-location/closure/apply-readiness/decision-draft:helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
       "project/current-location/closure/apply-readiness/dry-run:helix closure apply --dry-run --json",
     ]);
     const queue = closure?.children.find(

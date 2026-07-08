@@ -7217,7 +7217,7 @@ export function buildProjectClosureOverview(
   const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
   const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --json`;
-  const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${limit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json`;
+  const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${limit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json`;
   const actions = PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => {
     const batch = buildProjectClosureBatchReport(snapshot, { action, limit });
     return {

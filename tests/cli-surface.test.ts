@@ -3967,6 +3967,45 @@ describe("L7 CLI surface closure", () => {
       );
       expect(decisionDraftPayload.approval_record_text).toContain("coverage_ids: none");
       expect(decisionDraftPayload.approval_record_text).toContain("l12_layers: none");
+      const closeReadyDecisionDraftSummary = runCliIn(root, [
+        "closure",
+        "decision-draft",
+        "--action",
+        "close_ready",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(closeReadyDecisionDraftSummary.status).toBe(0);
+      const decisionDraftSummaryPayload = JSON.parse(closeReadyDecisionDraftSummary.stdout);
+      expect(decisionDraftSummaryPayload).toMatchObject({
+        schema_version: "project-closure-decision-draft-summary.v1",
+        action: "close_ready",
+        plan_only: true,
+        must_not_apply: true,
+        approval_allowed: false,
+        apply_authorized: false,
+        review: {
+          total: 0,
+          listed: 0,
+          omitted: 0,
+          limit: 1,
+          offset: 0,
+        },
+        decision: {
+          decision_id: "closure-review:close_ready",
+          draft_outcome: "pending_human_review",
+          non_authorizing: true,
+        },
+        candidate_digest_count: 0,
+        decision_record_output: {
+          requested: false,
+          written: false,
+          non_authorizing: true,
+        },
+      });
+      expect(decisionDraftSummaryPayload.candidate_digests).toBeUndefined();
+      expect(decisionDraftSummaryPayload.approval_record_text).toBeUndefined();
       const decisionDraftPath = join(root, "tmp", "closure-decision-draft.yml");
       const closeReadyDecisionDraftOut = runCliIn(root, [
         "closure",

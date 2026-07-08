@@ -277,6 +277,7 @@ import {
   type ProjectClosureEvidenceApprovalDraftPacket,
   type ProjectClosureEvidenceApplyPlan,
   type ProjectClosureEvidenceMaterializePacket,
+  type ProjectClosureDecisionDraftPacket,
   type ProjectClosureReviewBundle,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
@@ -3898,6 +3899,68 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
   };
 }
 
+function summarizeClosureDecisionDraftPacket(
+  packet: ProjectClosureDecisionDraftPacket,
+  decisionRecordOutput: {
+    requested: boolean;
+    path: string | null;
+    written: boolean;
+    bytes: number;
+    sha256: string | null;
+    non_authorizing: true;
+  },
+) {
+  return {
+    schema_version: "project-closure-decision-draft-summary.v1",
+    source_clock: packet.source_clock,
+    action: packet.action,
+    plan_only: packet.plan_only,
+    must_not_apply: packet.must_not_apply,
+    approval_allowed: packet.approval_allowed,
+    apply_authorized: packet.apply_authorized,
+    review: packet.review,
+    decision: {
+      decision_id: packet.decision.decision_id,
+      approval_scope_digest: packet.decision.approval_scope_digest,
+      draft_outcome: packet.decision.draft_outcome,
+      allowed_outcomes: packet.decision.allowed_outcomes,
+      outcome_routes: packet.decision.outcome_routes.map((route) => ({
+        outcome: route.outcome,
+        projection_type: route.projection_type,
+        target_action: route.target_action,
+        drive_model: route.drive_model,
+        human_required: route.human_required,
+        command: route.command,
+        transition_command: route.transition_command,
+      })),
+      non_authorizing: packet.decision.non_authorizing,
+      required_action: packet.decision.required_action,
+    },
+    candidate_digest_count: packet.candidate_digests.length,
+    sample_candidate_digests: packet.candidate_digests
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((candidate) => ({
+        plan_id: candidate.plan_id,
+        source_path: candidate.source_path,
+        l12_layer: candidate.l12_layer,
+        coverage_id: candidate.coverage_id,
+        evidence_status: candidate.evidence_status,
+        ready_for_approval: candidate.ready_for_approval,
+      })),
+    approval_record_template: packet.approval_record_template,
+    decision_record_output: decisionRecordOutput,
+    postcheck_commands: packet.postcheck_commands,
+    write_policy: packet.write_policy,
+    source_command: "helix closure decision-draft --summary-json",
+    view_command: packet.view_command,
+    findings: packet.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+  };
+}
+
 closure
   .command("overview")
   .description("emit a read-only overview of all current-location closure queues")
@@ -4823,6 +4886,7 @@ closure
 	  .option("--offset <n>", "zero-based candidate offset", "0")
 	  .option("--out <path>", "write the non-authorizing pending decision draft to a new local file")
 	  .option("--json", "JSON output")
+	  .option("--summary-json", "compact JSON output for approval and view surfaces")
 	  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
 	  .action(
 	    (opts: {
@@ -4831,6 +4895,7 @@ closure
 	      offset?: string;
 	      out?: string;
 	      json?: boolean;
+	      summaryJson?: boolean;
 	      fromDb?: boolean;
 	    }) => {
 	      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
@@ -4898,6 +4963,12 @@ closure
 	            sha256: `sha256:${createHash("sha256").update(content).digest("hex")}`,
 	            non_authorizing: true,
 	          };
+	        }
+	        if (opts.summaryJson) {
+	          process.stdout.write(
+	            `${JSON.stringify(summarizeClosureDecisionDraftPacket(packet, decisionRecordOutput), null, 2)}\n`,
+	          );
+	          return;
 	        }
 	        if (opts.json) {
 	          process.stdout.write(
