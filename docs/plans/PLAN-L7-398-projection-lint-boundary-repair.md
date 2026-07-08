@@ -4,7 +4,7 @@ title: "PLAN-L7-398 (troubleshoot): DB projection lint 境界と current-locatio
 kind: troubleshoot
 layer: L7
 drive: be
-status: confirmed
+status: completed
 route_mode: incident
 entry_signals:
   - "po_directive:2026-07-09 doctor coding-rules / ddd-tdd-rules が src/lint/db-projection-ingestion.ts の module-boundary/domain-boundary と src/state-db/current-location.ts の max-source-params を検出したため、ZIP/L12 projection 境界を修正する"
@@ -40,8 +40,8 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_self_check
-    reviewed_at: "2026-07-09T04:11:16+09:00"
-    tests_green_at: "2026-07-09T04:11:16+09:00"
+    reviewed_at: "2026-07-09T04:21:25+09:00"
+    tests_green_at: "2026-07-09T04:21:25+09:00"
     verdict: approve
     scope: "DB projection ingestion lint が Vモデル ZIP manifest 実装 constant を直接 import しないようにし、current-location の Scrum operation helper を input object 化して source max params を解消した。U-CODE-011 に lint -> vmodel 禁止 import の oracle を追加した。"
     green_commands:
@@ -50,23 +50,18 @@ review_evidence:
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-09T04:11:16+09:00"
+        completed_at: "2026-07-09T04:21:25+09:00"
         evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
         command: "bun run vitest run tests/change-impact.test.ts tests/plan-entry-routing.test.ts tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/db-projection-ingestion.test.ts tests/current-location.test.ts"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-09T04:11:16+09:00"
+        completed_at: "2026-07-09T04:21:25+09:00"
         evidence_path: tests/coding-rules.test.ts
-      - kind: doctor
-        command: "bun src/cli.ts doctor --json"
-        runner: bun
-        scope: full
-        exit_code: 1
-        completed_at: "2026-07-09T04:11:16+09:00"
-        evidence_path: src/lint/db-projection-ingestion.ts
-        note: "coding-rules / ddd-tdd-rules / db-projection-ingestion / change-impact は OK。既存の stale handover と project-current-location l14_claim_with_l7_work は残る。"
+        output_digest: "sha256:6fdc72b74e5ab0b8f957c2eb596d5495e8b6d4df083f26a2f87e58de51e67e73"
+    note: "doctor --json は coding-rules / ddd-tdd-rules / db-projection-ingestion / change-impact / plan-entry-routing / recovery-handoff-binding が OK。既存の stale handover と project-current-location l14_claim_with_l7_work は残る。"
 ---
 
 # PLAN-L7-398: DB projection lint 境界と current-location helper arity 修正
