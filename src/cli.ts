@@ -316,7 +316,7 @@ import {
   loadTeamDefinition,
   type MemberPlacement,
 } from "./team/run";
-import { buildVmodelFitReport } from "./vmodel/fit";
+import { buildVmodelFitReport, type VmodelFitReport } from "./vmodel/fit";
 import { formatVmodelInjection, resolveVmodelInjection } from "./vmodel/injection";
 import { lintVmodel } from "./vmodel/lint";
 import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
@@ -6490,12 +6490,237 @@ builder
   });
 
 const vmodel = program.command("vmodel").description("V-model trace");
+
+function summarizeVmodelFitReport(payload: VmodelFitReport) {
+  return {
+    schema_version: "vmodel-fit-summary.v1",
+    status: payload.status,
+    source_clock: payload.source_clock,
+    current: payload.current,
+    gates: {
+      design_coverage: payload.design_coverage_gate.status,
+      acceptance_traceability: payload.acceptance_traceability_gate.status,
+      zip_adoption: payload.zip_adoption.status,
+      zip_manifest: payload.zip_manifest.status,
+      zip_source_bindings: payload.zip_source_bindings.status,
+      tailoring: payload.tailoring_gate.status,
+      function_design_absorption: payload.function_design_absorption.status,
+      roadmap_current: payload.roadmap_current_gate.status,
+      drive_model: payload.drive_model_gate.status,
+      current_location: payload.current_location_gate.status,
+      recovery_runway: payload.recovery_runway_gate.status,
+      recovery_handoff: payload.recovery_handoff_gate.status,
+      approval_review: payload.approval_review_gate.status,
+      regression_guards: payload.regression_guards.status,
+    },
+    synthesis: {
+      status: payload.synthesis.status,
+      source_package: payload.synthesis.source_package,
+      source_document: payload.synthesis.source_document,
+      common_adopted: payload.synthesis.common_adopted,
+      helix_complemented: payload.synthesis.helix_complemented,
+      rejected: payload.synthesis.rejected,
+      missing_decisions: payload.synthesis.missing_decisions,
+      tailoring_status: payload.synthesis.tailoring_status,
+      function_design_policy: payload.synthesis.function_design_policy,
+      current_reentry_status: payload.synthesis.current_reentry_status,
+      next_command: payload.synthesis.next_command,
+    },
+    zip_manifest: {
+      present: payload.zip_manifest.present,
+      root_prefix: payload.zip_manifest.root_prefix,
+      entries_total: payload.zip_manifest.entries_total,
+      required_present: payload.zip_manifest.required_present,
+      required_total: payload.zip_manifest.required_total,
+      inventory_signature_status: payload.zip_manifest.inventory_signature.status,
+      inventory_mismatch_count: payload.zip_manifest.inventory_signature.mismatches.length,
+    },
+    drive_model_gate: {
+      status: payload.drive_model_gate.status,
+      selected_model: payload.drive_model_gate.selected_model,
+      selected_route_id: payload.drive_model_gate.selected_route_id,
+      default_model: payload.drive_model_gate.default_model,
+      candidate_count: payload.drive_model_gate.candidate_count,
+      blocked_models: payload.drive_model_gate.blocked_models,
+      available_models: payload.drive_model_gate.available_models,
+    },
+    current_location_gate: {
+      status: payload.current_location_gate.status,
+      current_status: payload.current_location_gate.current_status,
+      completion_boundary: payload.current_location_gate.completion_boundary,
+      route_id: payload.current_location_gate.route_id,
+      recommended_model: payload.current_location_gate.recommended_model,
+      recovery_runway: {
+        status: payload.current_location_gate.recovery_runway.status,
+        machine_actionable_count:
+          payload.current_location_gate.recovery_runway.machine_actionable_count,
+        human_approval_count: payload.current_location_gate.recovery_runway.human_approval_count,
+        design_reverse_count: payload.current_location_gate.recovery_runway.design_reverse_count,
+        remaining_after_machine_lanes:
+          payload.current_location_gate.recovery_runway.remaining_after_machine_lanes,
+        next_machine_action: payload.current_location_gate.recovery_runway.next_machine_action,
+        next_machine_command: payload.current_location_gate.recovery_runway.next_machine_command,
+        next_machine_probe_command:
+          payload.current_location_gate.recovery_runway.next_machine_probe_command,
+        next_machine_materialize_command:
+          payload.current_location_gate.recovery_runway.next_machine_materialize_command,
+        next_machine_approval_draft_command:
+          payload.current_location_gate.recovery_runway.next_machine_approval_draft_command,
+      },
+      reentry_forecast: {
+        status: payload.current_location_gate.reentry_forecast.status,
+        current_blocking_count:
+          payload.current_location_gate.reentry_forecast.current_blocking_count,
+        blocking_after_machine_lanes:
+          payload.current_location_gate.reentry_forecast.blocking_after_machine_lanes,
+        required_phase_count: payload.current_location_gate.reentry_forecast.required_phase_count,
+        next_phase_action: payload.current_location_gate.reentry_forecast.next_phase_action,
+        next_gate: payload.current_location_gate.reentry_forecast.next_gate,
+        next_command: payload.current_location_gate.reentry_forecast.next_command,
+        next_execution_command:
+          payload.current_location_gate.reentry_forecast.next_execution_command,
+      },
+    },
+    recovery_runway_gate: {
+      status: payload.recovery_runway_gate.status,
+      current_blocking_count: payload.recovery_runway_gate.current_blocking_count,
+      machine_actionable_count: payload.recovery_runway_gate.machine_actionable_count,
+      human_approval_count: payload.recovery_runway_gate.human_approval_count,
+      design_reverse_count: payload.recovery_runway_gate.design_reverse_count,
+      remaining_after_machine_lanes: payload.recovery_runway_gate.remaining_after_machine_lanes,
+      required_phase_count: payload.recovery_runway_gate.required_phase_count,
+      next_phase_action: payload.recovery_runway_gate.next_phase_action,
+      next_phase_type: payload.recovery_runway_gate.next_phase_type,
+      next_gate: payload.recovery_runway_gate.next_gate,
+      next_command: payload.recovery_runway_gate.next_command,
+      next_execution_command: payload.recovery_runway_gate.next_execution_command,
+      phases: payload.recovery_runway_gate.phases.map((phase) => ({
+        sequence: phase.sequence,
+        action: phase.action,
+        phase_type: phase.phase_type,
+        count: phase.count,
+        listed: phase.listed,
+        omitted: phase.omitted,
+        selected: phase.selected,
+        human_required: phase.human_required,
+        evidence_signature: phase.evidence_signature,
+        sample_plan_ids: phase.sample_plan_ids,
+        remaining_after_phase: phase.remaining_after_phase,
+        next_gate: phase.next_gate,
+        command: phase.command,
+        evidence_probe_command: phase.evidence_probe_command,
+        evidence_materialize_command: phase.evidence_materialize_command,
+        evidence_approval_draft_command: phase.evidence_approval_draft_command,
+      })),
+    },
+    recovery_handoff_gate: {
+      status: payload.recovery_handoff_gate.status,
+      effective_phase: payload.recovery_handoff_gate.effective_phase,
+      action_id: payload.recovery_handoff_gate.action_id,
+      blocker_code: payload.recovery_handoff_gate.blocker_code,
+      command: payload.recovery_handoff_gate.command,
+      handoff_present: payload.recovery_handoff_gate.handoff_present,
+      handoff_missing: payload.recovery_handoff_gate.handoff_missing,
+      approval_status: payload.recovery_handoff_gate.approval_status,
+      scope_status: payload.recovery_handoff_gate.scope_status,
+      decision_id: payload.recovery_handoff_gate.decision_id,
+      approval_scope_digest: payload.recovery_handoff_gate.approval_scope_digest,
+      expected_approval_scope_digest:
+        payload.recovery_handoff_gate.expected_approval_scope_digest,
+      materialize_status: payload.recovery_handoff_gate.materialize_status,
+      valid_for_apply: payload.recovery_handoff_gate.valid_for_apply,
+      approval_state: payload.recovery_handoff_gate.approval_state,
+    },
+    approval_review_gate: {
+      status: payload.approval_review_gate.status,
+      action: payload.approval_review_gate.action,
+      count: payload.approval_review_gate.count,
+      listed: payload.approval_review_gate.listed,
+      omitted: payload.approval_review_gate.omitted,
+      window: payload.approval_review_gate.window,
+      decision_id: payload.approval_review_gate.decision_id,
+      approval_scope_digest: payload.approval_review_gate.approval_scope_digest,
+      sample_plan_ids: payload.approval_review_gate.sample_plan_ids,
+      evidence_totals: payload.approval_review_gate.evidence_totals,
+      blocked_by_findings: payload.approval_review_gate.blocked_by_findings,
+      current_window_command: payload.approval_review_gate.current_window_command,
+      next_window_command: payload.approval_review_gate.next_window_command,
+      transition_window_command: payload.approval_review_gate.transition_window_command,
+    },
+    regression_guards: {
+      status: payload.regression_guards.status,
+      pass: payload.regression_guards.pass,
+      watch: payload.regression_guards.watch,
+      fail: payload.regression_guards.fail,
+      sample_guards: payload.regression_guards.guards.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((guard) => ({
+        guard_id: guard.guard_id,
+        status: guard.status,
+        scope: guard.scope,
+        command: guard.command,
+        count: guard.count,
+      })),
+    },
+    next_action_count: payload.next_actions.length,
+    sample_next_actions: payload.next_actions.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((action) => ({
+      priority: action.priority,
+      action_id: action.action_id,
+      blocker_code: action.blocker_code,
+      status: action.status,
+      automation_class: action.automation_class,
+      count: action.count,
+      gate: action.gate,
+      command: action.command,
+      work_bucket: action.work_bucket
+        ? {
+            bucket_id: action.work_bucket.bucket_id,
+            action: action.work_bucket.action,
+            evidence_signature: action.work_bucket.evidence_signature,
+            count: action.work_bucket.count,
+            failed_evidence_count: action.work_bucket.failed_evidence_count,
+            projection_item_count: action.work_bucket.projection_item_count,
+            repair_automation_status: action.work_bucket.repair_automation_status,
+            repair_primary_next_command: action.work_bucket.repair_primary_next_command,
+            evidence_patch_candidate_count:
+              action.work_bucket.evidence_patch_candidate_count,
+            evidence_handoff_next_status:
+              action.work_bucket.evidence_handoff_next?.status ?? null,
+            evidence_handoff_next_command:
+              action.work_bucket.evidence_handoff_next?.command ?? null,
+            evidence_approval_draft_command:
+              action.work_bucket.evidence_approval_draft_command,
+          }
+        : null,
+    })),
+    blocker_count: payload.blockers.length,
+    blockers: payload.blockers.map((blocker) => ({
+      code: blocker.code,
+      status: blocker.status,
+      count: blocker.count,
+      command: blocker.command,
+      required_action: blocker.required_action,
+    })),
+    design_integrity: payload.design_integrity,
+    operation_scope: {
+      designed: payload.operation_scope.designed,
+      observed: payload.operation_scope.observed,
+      observed_gap: payload.operation_scope.observed_gap,
+      missing: payload.operation_scope.missing,
+      reverify: payload.operation_scope.reverify,
+    },
+    write_policy: payload.write_policy,
+    source_command: "helix vmodel fit --summary-json",
+    current_location_command: "helix current-location --summary-json",
+    view_command: payload.view_command,
+  };
+}
+
 vmodel
   .command("fit")
   .description("ZIP-based L12 V-model fit gate from current-location projection")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and handoff surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
     const db = openHarnessDb(dbPath, { repoRoot });
@@ -6505,6 +6730,10 @@ vmodel
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const payload = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeVmodelFitReport(payload), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
         return;

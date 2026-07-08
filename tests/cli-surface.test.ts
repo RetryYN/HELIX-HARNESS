@@ -3045,6 +3045,81 @@ describe("L7 CLI surface closure", () => {
           unresolved_references: 1,
         },
       });
+      const fitSummaryJson = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
+      expect(fitSummaryJson.status).toBe(0);
+      const fitSummaryPayload = JSON.parse(fitSummaryJson.stdout);
+      expect(fitSummaryPayload).toMatchObject({
+        schema_version: "vmodel-fit-summary.v1",
+        status: "needs_fit",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+          completion_boundary: "contradicted",
+        },
+        gates: {
+          design_coverage: "needs_design",
+          zip_adoption: "missing",
+          zip_manifest: "advisory_missing",
+          tailoring: "needs_tailoring",
+          current_location: "needs_recovery",
+          recovery_runway: "machine_work_available",
+        },
+        synthesis: {
+          status: "needs_fit",
+          missing_decisions: 9,
+          function_design_policy: "abolished",
+          current_reentry_status: "machine_phase_pending",
+          next_command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+        },
+        current_location_gate: {
+          status: "needs_recovery",
+          current_status: "needs_recovery",
+          completion_boundary: "contradicted",
+          recommended_model: "Recovery",
+          recovery_runway: {
+            status: "machine_work_available",
+            machine_actionable_count: 1,
+            human_approval_count: 0,
+            next_machine_action: "collect_evidence",
+          },
+        },
+        recovery_runway_gate: {
+          status: "machine_work_available",
+          current_blocking_count: 1,
+          machine_actionable_count: 1,
+          human_approval_count: 0,
+          next_phase_action: "collect_evidence",
+          next_phase_type: "machine",
+          phases: [
+            expect.objectContaining({
+              sequence: 1,
+              action: "collect_evidence",
+              phase_type: "machine",
+              sample_plan_ids: ["PLAN-L7-999-new-impl"],
+            }),
+          ],
+        },
+        next_action_count: expect.any(Number),
+        blocker_count: expect.any(Number),
+        source_command: "helix vmodel fit --summary-json",
+        current_location_command: "helix current-location --summary-json",
+      });
+      expect(fitSummaryPayload.next_action_count).toBeGreaterThanOrEqual(1);
+      expect(fitSummaryPayload.blocker_count).toBeGreaterThanOrEqual(1);
+      expect(fitSummaryPayload.sample_next_actions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            blocker_code: "current_location",
+            automation_class: "machine",
+            command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          }),
+        ]),
+      );
+      expect(fitSummaryPayload.zip_manifest.required).toBeUndefined();
+      expect(fitSummaryPayload.next_actions).toBeUndefined();
       const fitText = runCliIn(root, ["vmodel", "fit"]);
       expect(fitText.status).toBe(0);
       expect(fitText.stdout).toContain("vmodel fit: status=needs_fit");
