@@ -4275,24 +4275,24 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
   const activePlanRows = planRows.filter((row) =>
     ACTIVE_STATUSES.has(String(row.status ?? "").toLowerCase()),
   );
-  const itemFromDeclarations = (
-    operationId: string,
-    category: "backlog" | "sprint" | "acceptance",
-    rows: Array<Record<string, unknown>>,
-    missingDoc: string,
-  ): ProjectScrumOperationItem => {
-    const sourcePaths = unique(rows.map((row) => String(row.source_path ?? "")));
+  const itemFromDeclarations = (input: {
+    operationId: string;
+    category: "backlog" | "sprint" | "acceptance";
+    rows: Array<Record<string, unknown>>;
+    missingDoc: string;
+  }): ProjectScrumOperationItem => {
+    const sourcePaths = unique(input.rows.map((row) => String(row.source_path ?? "")));
     return {
-      operationId,
-      category,
-      status: rows.length > 0 ? "observed" : "missing",
-      declarationIds: unique(rows.map((row) => String(row.defined_id ?? ""))),
+      operationId: input.operationId,
+      category: input.category,
+      status: input.rows.length > 0 ? "observed" : "missing",
+      declarationIds: unique(input.rows.map((row) => String(row.defined_id ?? ""))),
       planIds: [],
       sourcePaths,
-      docDependencies: sourcePaths.length > 0 ? sourcePaths : [missingDoc],
+      docDependencies: sourcePaths.length > 0 ? sourcePaths : [input.missingDoc],
       implementationDependencies: ["design_declarations"],
       reasons:
-        rows.length > 0
+        input.rows.length > 0
           ? ["Scrum 運営層の typed declaration を DB から検出した"]
           : ["ハイブリッド版の Scrum 運営層に対応する typed declaration が未検出"],
     };
@@ -4301,24 +4301,24 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     (row) => `docs/plans/${String(row.plan_id ?? "")}.md`,
   );
   const items: ProjectScrumOperationItem[] = [
-    itemFromDeclarations(
-      "scrum:product-backlog",
-      "backlog",
-      rowsByCategory.backlog,
-      "docs/112_プロダクトバックログ.yaml",
-    ),
-    itemFromDeclarations(
-      "scrum:sprint-plan",
-      "sprint",
-      rowsByCategory.sprint,
-      "docs/116_スプリント計画.yaml",
-    ),
-    itemFromDeclarations(
-      "scrum:acceptance",
-      "acceptance",
-      rowsByCategory.acceptance,
-      "docs/29_受入基準・BDDシナリオ.yaml",
-    ),
+    itemFromDeclarations({
+      operationId: "scrum:product-backlog",
+      category: "backlog",
+      rows: rowsByCategory.backlog,
+      missingDoc: "docs/112_プロダクトバックログ.yaml",
+    }),
+    itemFromDeclarations({
+      operationId: "scrum:sprint-plan",
+      category: "sprint",
+      rows: rowsByCategory.sprint,
+      missingDoc: "docs/116_スプリント計画.yaml",
+    }),
+    itemFromDeclarations({
+      operationId: "scrum:acceptance",
+      category: "acceptance",
+      rows: rowsByCategory.acceptance,
+      missingDoc: "docs/29_受入基準・BDDシナリオ.yaml",
+    }),
     {
       operationId: "scrum:active-plan",
       category: "plan",

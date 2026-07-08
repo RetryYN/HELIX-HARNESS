@@ -1,5 +1,3 @@
-import { VMODEL_ZIP_FILENAME } from "../vmodel/zip-manifest";
-
 export interface DbProjectionIngestionRequirement {
   table: string;
   reason: string;
@@ -109,11 +107,11 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
   },
   {
     table: "vmodel_zip_manifest",
-    reason: `${VMODEL_ZIP_FILENAME} manifest is inspected during DB rebuild`,
+    reason: "V-model ZIP manifest is inspected during DB rebuild",
   },
   {
     table: "vmodel_zip_source_bindings",
-    reason: `${VMODEL_ZIP_FILENAME} source bindings are projected for L12/database coverage checks`,
+    reason: "V-model ZIP source bindings are projected for L12/database coverage checks",
   },
   {
     table: "visualization_view_model",

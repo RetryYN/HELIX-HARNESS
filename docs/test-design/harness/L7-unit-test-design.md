@@ -598,6 +598,8 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-CODE-010 | machine surface language | machine-facing CLI/doctor/lint/gate message line が日本語だけの decision word で、ASCII token (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) を持たない場合 -> `machine-surface-language` violation。ASCII token 後の日本語説明文は許可する |
 | U-CODE-011 | canonical source-boundary matrix | `src/lint/*` importing `../gate/*` など、共有 matrix 上の禁止 import は `module-boundary` violation になる |
 
+補足: U-CODE-002 はローカル helper にも適用する。`current-location` の Scrum operation item 生成は input object 化し、4 引数 helper を許可しない。U-CODE-011 は `src/lint/*` から `src/vmodel/*` への直接 import も同じ matrix で禁止し、DB projection ingestion gate は Vモデル ZIP の実装 constant ではなく projection table 契約だけを検査する。
+
 ### U-DESLANG 追補 (design-language)
 
 > Pair = `module-drift.md` design-language addendum. HELIX の「人間向け docs は日本語」要求を、設計 /
