@@ -285,6 +285,7 @@ import {
   type ProjectClosureReviewBundle,
   type ProjectClosureTransitionPlan,
   type ProjectCurrentLocationSnapshot,
+  type ProjectRecoveryPlan,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
@@ -3596,13 +3597,141 @@ drive
 
 const recovery = program.command("recovery").description("Project recovery read-only surfaces");
 
+function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
+  return {
+    schema_version: "project-recovery-plan-summary.v1",
+    source_clock: plan.source_clock,
+    status: plan.status,
+    current: plan.current,
+    drive_model: {
+      selected_model: plan.drive_model.selected_model,
+      selected_route_id: plan.drive_model.selected_candidate.route_id,
+      default_model: plan.drive_model.default_model,
+      candidate_count: plan.drive_model.candidates.length,
+      blocked_models: plan.drive_model.blocked_models,
+      available_models: plan.drive_model.available_models,
+    },
+    selected_closure_action: plan.selected_closure_action,
+    closure_evidence_plan: plan.closure_evidence_plan
+      ? {
+          selected_action: plan.closure_evidence_plan.selected_action,
+          total: plan.closure_evidence_plan.total,
+          listed: plan.closure_evidence_plan.listed,
+          omitted: plan.closure_evidence_plan.omitted,
+          limit: plan.closure_evidence_plan.limit,
+          target_tables: plan.closure_evidence_plan.target_tables,
+          evidence_gap_counts: plan.closure_evidence_plan.evidence_gap_counts,
+          expected_transition: plan.closure_evidence_plan.expected_transition,
+        }
+      : null,
+    action_lanes: plan.action_lanes.map((lane) => ({
+      action: lane.action,
+      rank: lane.rank,
+      count: lane.count,
+      listed: lane.listed,
+      omitted: lane.omitted,
+      selected: lane.selected,
+      lane_type: lane.lane_type,
+      status: lane.status,
+      human_required: lane.human_required,
+      primary_command: lane.primary_command,
+      evidence_plan_command: lane.evidence_plan_command,
+      batch_command: lane.batch_command,
+      review_command: lane.review_command,
+      evidence_probe_command: lane.evidence_probe_command,
+      evidence_materialize_command: lane.evidence_materialize_command,
+      evidence_approval_draft_command: lane.evidence_approval_draft_command,
+      evidence_apply_dry_run_command: lane.evidence_apply_dry_run_command,
+      target_tables: lane.target_tables,
+      sample_plan_ids: lane.sample_plan_ids,
+      expected_transition: lane.expected_transition,
+    })),
+    automation_boundaries: plan.automation_boundaries.map((boundary) => ({
+      action: boundary.action,
+      count: boundary.count,
+      automation_class: boundary.automation_class,
+      mutation_allowed: boundary.mutation_allowed,
+      approval_required: boundary.approval_required,
+      dry_run_command: boundary.dry_run_command,
+      execute_command: boundary.execute_command,
+      evidence_patch_command: boundary.evidence_patch_command,
+      evidence_probe_command: boundary.evidence_probe_command,
+      evidence_materialize_command: boundary.evidence_materialize_command,
+      evidence_approval_draft_command: boundary.evidence_approval_draft_command,
+      evidence_apply_dry_run_command: boundary.evidence_apply_dry_run_command,
+      evidence_apply_execute_command: boundary.evidence_apply_execute_command,
+      evidence_apply_write_policy: boundary.evidence_apply_write_policy,
+      required_record: boundary.required_record,
+    })),
+    automation_runway: {
+      status: plan.automation_runway.status,
+      machine_actionable_count: plan.automation_runway.machine_actionable_count,
+      human_approval_count: plan.automation_runway.human_approval_count,
+      design_reverse_count: plan.automation_runway.design_reverse_count,
+      remaining_after_machine_lanes: plan.automation_runway.remaining_after_machine_lanes,
+      next_machine_action: plan.automation_runway.next_machine_action,
+      next_machine_command: plan.automation_runway.next_machine_command,
+      next_machine_probe_command: plan.automation_runway.next_machine_probe_command,
+      next_machine_materialize_command: plan.automation_runway.next_machine_materialize_command,
+      next_machine_approval_draft_command: plan.automation_runway.next_machine_approval_draft_command,
+      next_machine_apply_dry_run_command: plan.automation_runway.next_machine_apply_dry_run_command,
+      phases: plan.automation_runway.phases.map((phase) => ({
+        sequence: phase.sequence,
+        action: phase.action,
+        phase_type: phase.phase_type,
+        count: phase.count,
+        selected: phase.selected,
+        human_required: phase.human_required,
+        remaining_after_phase: phase.remaining_after_phase,
+        next_gate: phase.next_gate,
+        command: phase.command,
+        evidence_probe_command: phase.evidence_probe_command,
+        evidence_materialize_command: phase.evidence_materialize_command,
+        evidence_approval_draft_command: phase.evidence_approval_draft_command,
+      })),
+    },
+    exit_forecast: {
+      status: plan.exit_forecast.status,
+      remaining_queue_items: plan.exit_forecast.remaining_queue_items,
+      blocker_count: plan.exit_forecast.blockers.length,
+      next_command: plan.exit_forecast.next_command,
+    },
+    reentry_forecast: {
+      status: plan.reentry_forecast.status,
+      current_blocking_count: plan.reentry_forecast.current_blocking_count,
+      blocking_after_machine_lanes: plan.reentry_forecast.blocking_after_machine_lanes,
+      required_phase_count: plan.reentry_forecast.required_phase_count,
+      next_phase_action: plan.reentry_forecast.next_phase_action,
+      next_phase_type: plan.reentry_forecast.next_phase_type,
+      next_gate: plan.reentry_forecast.next_gate,
+      next_command: plan.reentry_forecast.next_command,
+      next_execution_command: plan.reentry_forecast.next_execution_command,
+      recompute_commands: plan.reentry_forecast.recompute_commands,
+    },
+    steps: plan.steps.map((step) => ({
+      step_id: step.step_id,
+      sequence: step.sequence,
+      status: step.status,
+      command: step.command,
+      required_action: step.required_action,
+      expected_transition: step.expected_transition,
+    })),
+    exit_criteria: plan.exit_criteria,
+    postcheck_commands: plan.postcheck_commands,
+    write_policy: plan.write_policy,
+    source_command: "helix recovery plan --summary-json",
+    view_command: plan.view_command,
+  };
+}
+
 recovery
   .command("plan")
   .description("emit recovery plan from selected drive model and closure evidence queue")
   .option("--limit <n>", "maximum evidence-plan items to include", "20")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and handoff surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { limit?: string; json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { limit?: string; json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const limit = Number.parseInt(opts.limit ?? "20", 10);
     if (!Number.isFinite(limit) || limit < 0) {
       process.stderr.write(`recovery plan: invalid limit=${opts.limit ?? ""}\n`);
@@ -3618,6 +3747,10 @@ recovery
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeProjectRecoveryPlan(plan), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
         return;
@@ -6696,7 +6829,10 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       code: blocker.code,
       status: blocker.status,
       count: blocker.count,
-      command: blocker.command,
+      command:
+        blocker.command === "helix recovery plan --json"
+          ? "helix recovery plan --summary-json"
+          : blocker.command,
       required_action: blocker.required_action,
     })),
     design_integrity: payload.design_integrity,

@@ -2740,6 +2740,50 @@ describe("L7 CLI surface closure", () => {
         "recompute-drive-model",
         "verify-vmodel-fit",
       ]);
+      const recoveryPlanSummaryJson = runCliIn(root, [
+        "recovery",
+        "plan",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(recoveryPlanSummaryJson.status).toBe(0);
+      const recoveryPlanSummary = JSON.parse(recoveryPlanSummaryJson.stdout);
+      expect(recoveryPlanSummary).toMatchObject({
+        schema_version: "project-recovery-plan-summary.v1",
+        status: "active",
+        selected_closure_action: "collect_evidence",
+        closure_evidence_plan: {
+          selected_action: "collect_evidence",
+          total: 1,
+          listed: 1,
+        },
+        automation_runway: {
+          status: "machine_work_available",
+          machine_actionable_count: 1,
+          human_approval_count: 0,
+          next_machine_command: "helix closure batch --action collect_evidence --json",
+        },
+        reentry_forecast: {
+          status: "machine_phase_pending",
+          next_phase_action: "collect_evidence",
+          next_command: "helix closure batch --action collect_evidence --json",
+          next_execution_command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+        },
+        source_command: "helix recovery plan --summary-json",
+      });
+      expect(recoveryPlanSummary.action_lanes).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action: "collect_evidence",
+            count: 1,
+            selected: true,
+            evidence_materialize_command:
+              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+          }),
+        ]),
+      );
       const recoveryPlanText = runCliIn(root, ["recovery", "plan", "--limit", "1"]);
       expect(recoveryPlanText.status).toBe(0);
       expect(recoveryPlanText.stdout).toContain(
@@ -3115,6 +3159,14 @@ describe("L7 CLI surface closure", () => {
             automation_class: "machine",
             command:
               "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          }),
+        ]),
+      );
+      expect(fitSummaryPayload.blockers).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            code: "current_location",
+            command: "helix recovery plan --summary-json",
           }),
         ]),
       );
