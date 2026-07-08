@@ -2558,7 +2558,7 @@ describe("L7 CLI surface closure", () => {
         selected_candidate: {
           model: "Recovery",
           route_id: "drive:Recovery:recover-current-location",
-          command: "helix closure evidence-plan --json",
+          command: "helix closure evidence-plan --summary-json",
           coverage_ids: expect.arrayContaining([
             "L12-operation-observability",
             "L5-detailed-contract",
@@ -2596,7 +2596,7 @@ describe("L7 CLI surface closure", () => {
         "drive model: selected=Recovery status=recovery_required default=Forward current=L14->L12 write=read-only",
       );
       expect(driveModelText.stdout).toContain(
-        "selected-route=drive:Recovery:recover-current-location command=helix closure evidence-plan --json",
+        "selected-route=drive:Recovery:recover-current-location command=helix closure evidence-plan --summary-json",
       );
       expect(driveModelText.stdout).toMatch(/selected-coverage=.*L12-operation-observability/);
       expect(driveModelText.stdout).toMatch(/selected-coverage=.*L5-detailed-contract/);
@@ -3310,6 +3310,46 @@ describe("L7 CLI surface closure", () => {
           }),
         ],
       });
+
+      const evidencePlanSummary = runCliIn(root, [
+        "closure",
+        "evidence-plan",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(evidencePlanSummary.status).toBe(0);
+      const evidencePlanSummaryPayload = JSON.parse(evidencePlanSummary.stdout);
+      expect(evidencePlanSummaryPayload).toMatchObject({
+        schema_version: "project-closure-evidence-plan-summary.v1",
+        selected_action: "collect_evidence",
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        item_count: 1,
+        target_tables: expect.arrayContaining([
+          "test_runs",
+          "gate_runs",
+          "runtime_verification_events",
+        ]),
+        sample_items: [
+          expect.objectContaining({
+            plan_id: "PLAN-L7-999-new-impl",
+            next_action: "collect_evidence",
+            evidence_status: "partial",
+            template_tables: expect.arrayContaining([
+              "test_runs",
+              "gate_runs",
+              "runtime_verification_events",
+            ]),
+          }),
+        ],
+        source_command: "helix closure evidence-plan --summary-json",
+        write_policy: "read-only",
+      });
+      expect(evidencePlanSummaryPayload).not.toHaveProperty("items");
 
       const evidencePlanText = runCliIn(root, [
         "closure",

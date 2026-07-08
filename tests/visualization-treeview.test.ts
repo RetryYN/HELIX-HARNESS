@@ -1609,9 +1609,9 @@ describe("visualization Tree View adapter", () => {
       contextValue: "current-location.closure.evidence-plan",
     });
     expect(evidencePlan?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/closure/evidence-plan/collect:helix closure evidence-plan --action collect_evidence --json",
-      "project/current-location/closure/evidence-plan/repair:helix closure evidence-plan --action repair_failed_evidence --json",
-      "project/current-location/closure/evidence-plan/reverse:helix closure evidence-plan --action reverse_design --json",
+      "project/current-location/closure/evidence-plan/collect:helix closure evidence-plan --action collect_evidence --summary-json",
+      "project/current-location/closure/evidence-plan/repair:helix closure evidence-plan --action repair_failed_evidence --summary-json",
+      "project/current-location/closure/evidence-plan/reverse:helix closure evidence-plan --action reverse_design --summary-json",
     ]);
     const repairEvidencePlan = evidencePlan?.children.find(
       (child) => child.id === "project/current-location/closure/evidence-plan/repair",

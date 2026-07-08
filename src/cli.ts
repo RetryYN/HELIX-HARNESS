@@ -278,6 +278,7 @@ import {
   type ProjectClosureEvidenceApplyPlan,
   type ProjectClosureEvidenceMaterializePacket,
   type ProjectClosureDecisionDraftPacket,
+  type ProjectClosureEvidencePlan,
   type ProjectClosureReviewBundle,
   type ProjectClosureTransitionPlan,
 } from "./state-db/current-location";
@@ -3772,6 +3773,45 @@ function summarizeClosureMaterializePacket(packet: ProjectClosureEvidenceMateria
   };
 }
 
+function summarizeClosureEvidencePlan(plan: ProjectClosureEvidencePlan) {
+  return {
+    schema_version: "project-closure-evidence-plan-summary.v1",
+    source_clock: plan.source_clock,
+    selected_action: plan.selected_action,
+    current: plan.current,
+    total: plan.total,
+    listed: plan.listed,
+    omitted: plan.omitted,
+    limit: plan.limit,
+    evidence_gap_counts: plan.evidence_gap_counts,
+    target_tables: plan.target_tables,
+    item_count: plan.items.length,
+    sample_items: plan.items.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((item) => ({
+      plan_id: item.plan_id,
+      source_path: item.source_path,
+      next_action: item.next_action,
+      evidence_status: item.evidence_status,
+      target_tables: item.target_tables,
+      gap_count: item.evidence_gaps.length,
+      repair_target_count: item.repair_targets.length,
+      template_tables: item.evidence_templates.map((template) => template.table),
+      expected_transition: item.expected_transition,
+      required_action: item.required_action,
+    })),
+    acceptance_criteria: plan.acceptance_criteria,
+    postcheck_commands: plan.postcheck_commands,
+    expected_transition: plan.expected_transition,
+    write_policy: plan.write_policy,
+    source_command: "helix closure evidence-plan --summary-json",
+    view_command: plan.view_command,
+    findings: plan.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+  };
+}
+
 function summarizeClosureApprovalDraftPacket(
   packet: ProjectClosureEvidenceApprovalDraftPacket,
   approvalRecordOutput: {
@@ -4194,8 +4234,9 @@ closure
   )
   .option("--limit <n>", "maximum plan items to include", "20")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { action?: string; limit?: string; json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { action?: string; limit?: string; json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
       process.stderr.write(
         `closure evidence-plan: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
@@ -4221,6 +4262,10 @@ closure
         action: opts.action,
         limit,
       });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeClosureEvidencePlan(plan), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
         return;

@@ -2532,9 +2532,9 @@ function roadmapClosureCommand(action: ProjectClosureQueueNextAction | null): st
     return "helix closure review-bundle --action close_ready --summary-json";
   }
   if (action === "reverse_design") {
-    return "helix closure evidence-plan --action reverse_design --json";
+    return "helix closure evidence-plan --action reverse_design --summary-json";
   }
-  return "helix closure evidence-plan --json";
+  return "helix closure evidence-plan --summary-json";
 }
 
 function roadmapClosureRequiredAction(action: ProjectClosureQueueNextAction | null): string {
@@ -2953,7 +2953,7 @@ export function buildProjectDriveModelReport(
       trigger: "L14 claim と L7/open evidence の矛盾、または current-location recovery_required",
       required_action:
         "closure evidence-plan / review-bundle で L7 closure と L12 claim を再照合し、現在地矛盾を解消する",
-      command: "helix closure evidence-plan --json",
+      command: "helix closure evidence-plan --summary-json",
       ...driveModelCandidateCoverage({ model: "Recovery", snapshot }),
       doc_dependencies: recoveryDeps,
       implementation_dependencies: recoveryImplDeps,
@@ -3212,7 +3212,7 @@ function buildProjectRecoveryActionLanes(
       status,
       human_required: humanRequired,
 	      primary_command: recoveryLanePrimaryCommand(action),
-	      evidence_plan_command: `helix closure evidence-plan --action ${action} --json`,
+	      evidence_plan_command: `helix closure evidence-plan --action ${action} --summary-json`,
 	      batch_command: `helix closure batch --action ${action} --json`,
 	      review_command: `helix closure review-bundle --action ${action} --summary-json`,
 	      evidence_probe_command: evidenceChain.evidence_probe_command,
@@ -3660,8 +3660,8 @@ export function buildProjectRecoveryPlan(
         blocked: selectedAction === null,
       }),
       command: selectedAction
-        ? `helix closure evidence-plan --action ${selectedAction} --json`
-        : "helix closure evidence-plan --json",
+        ? `helix closure evidence-plan --action ${selectedAction} --summary-json`
+        : "helix closure evidence-plan --summary-json",
       required_action:
         "L7 closure queue の evidence gap を target table と postcheck command へ展開する",
       expected_transition: selectedAction
@@ -3758,7 +3758,7 @@ export function buildProjectRecoveryPlan(
     ],
     postcheck_commands: [
       "helix current-location --json",
-      "helix closure evidence-plan --json",
+      "helix closure evidence-plan --summary-json",
       "helix drive model --json",
       "helix roadmap current --json",
       "helix vmodel fit",
@@ -7692,7 +7692,7 @@ function closureDecisionOutcomeRoute(input: {
   const command =
     targetAction === "collect_evidence" || targetAction === "repair_failed_evidence"
       ? (evidenceChain.evidence_probe_command ?? `helix closure batch --action ${targetAction} --json`)
-      : `helix closure evidence-plan --action ${targetAction} --json`;
+      : `helix closure evidence-plan --action ${targetAction} --summary-json`;
   return {
     outcome: input.decisionOutcome,
     projection_type: "reroute_closure_lane",

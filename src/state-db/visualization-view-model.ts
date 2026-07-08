@@ -1850,7 +1850,7 @@ export function buildProjectCurrentLocationView(
     return {
       action,
       count: plan.total,
-      command: `helix closure evidence-plan --action ${action} --json`,
+      command: `helix closure evidence-plan --action ${action} --summary-json`,
       target_tables: [...plan.target_tables],
       sample_plan_id: plan.items[0]?.plan_id ?? null,
       templates:

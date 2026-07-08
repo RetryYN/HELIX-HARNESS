@@ -1548,7 +1548,7 @@ describe("buildVisualizationViewModel", () => {
           expect.objectContaining({
             action: "repair_failed_evidence",
             count: 1,
-            command: "helix closure evidence-plan --action repair_failed_evidence --json",
+            command: "helix closure evidence-plan --action repair_failed_evidence --summary-json",
             target_tables: expect.arrayContaining(["test_runs", "gate_runs"]),
             sample_plan_id: "PLAN-L7-fixture",
             templates: expect.arrayContaining([
