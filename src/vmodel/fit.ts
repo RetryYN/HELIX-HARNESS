@@ -469,7 +469,7 @@ export interface VmodelApprovalReviewGate {
     runtime_verification_accepted: number;
   };
   blocked_by_findings: string[];
-  review_command: "helix closure review-bundle --action close_ready --json";
+  review_command: "helix closure review-bundle --action close_ready --summary-json";
   current_window_command: string;
   previous_window_command: string | null;
   next_window_command: string | null;
@@ -2054,16 +2054,16 @@ function buildVmodelApprovalReviewGate(
     sample_source_paths: bundle.review_scope.source_paths.slice(0, 5),
     evidence_totals: { ...bundle.review_scope.evidence_totals },
     blocked_by_findings: [...bundle.review_scope.blocked_by_findings],
-    review_command: "helix closure review-bundle --action close_ready --json",
-    current_window_command: `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.offset} --json`,
+    review_command: "helix closure review-bundle --action close_ready --summary-json",
+    current_window_command: `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`,
     previous_window_command:
       bundle.window.previous_offset === null
         ? null
-        : `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.window.previous_offset} --json`,
+        : `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.window.previous_offset} --summary-json`,
     next_window_command:
       bundle.window.next_offset === null
         ? null
-        : `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.window.next_offset} --json`,
+        : `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.window.next_offset} --summary-json`,
     transition_command: "helix closure transition-plan --action close_ready --json",
     transition_window_command: `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.offset} --json`,
     previous_transition_window_command:
