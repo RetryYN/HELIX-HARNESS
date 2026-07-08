@@ -1059,7 +1059,7 @@ function snapshot(): VisualizationSnapshot {
           status: "missing",
           generation_status: "ready_to_generate",
           generation_command:
-            "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+            "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
           bytes: null,
           sha256: null,
           write_policy: "local-artifact-new-file",
@@ -1366,7 +1366,7 @@ describe("visualization Tree View adapter", () => {
         title: "Copy pointer",
         command: "helix.copyPointer",
         arguments: [
-          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
         ],
       },
     });
@@ -1379,9 +1379,9 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
       "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/probe-record:present present 20164B",
       "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft-artifact:missing ready_to_generate -B",
-      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
-      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
     ]);
     const vmodelRegressionGuards = vmodelFit?.children.find(
       (child) => child.id === "project/current-location/vmodel-fit/regression-guards",
@@ -1635,14 +1635,14 @@ describe("visualization Tree View adapter", () => {
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: [
-        "helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+        "helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
       ],
     });
     expect(
       evidenceMaterialize?.children.map((child) => `${child.id}:${child.description}`),
     ).toEqual([
       "project/current-location/closure/evidence-materialize/probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-      "project/current-location/closure/evidence-materialize/preview:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      "project/current-location/closure/evidence-materialize/preview:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
     ]);
     const closureOverview = closure?.children.find(
       (child) => child.id === "project/current-location/closure/overview",
@@ -1690,9 +1690,9 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/closure/overview/work-buckets/1/evidence-probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
       "project/current-location/closure/overview/work-buckets/1/probe-record:.helix/tmp/closure/repair_failed_evidence-probe-record.json",
       "project/current-location/closure/overview/work-buckets/1/approval-draft-artifact:.helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
-      "project/current-location/closure/overview/work-buckets/1/evidence-materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
-      "project/current-location/closure/overview/work-buckets/1/evidence-approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
-      "project/current-location/closure/overview/work-buckets/1/evidence-apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+      "project/current-location/closure/overview/work-buckets/1/evidence-materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
+      "project/current-location/closure/overview/work-buckets/1/evidence-approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
+      "project/current-location/closure/overview/work-buckets/1/evidence-apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
       "project/current-location/closure/overview/work-buckets/1/evidence-patch:approval-required candidates=3",
       "project/current-location/closure/overview/work-buckets/1/PLAN-L7-open:failed=0 patches=3",
     ]);
@@ -1743,10 +1743,10 @@ describe("visualization Tree View adapter", () => {
       contextValue: "current-location.closure.evidence-apply.blocked",
     });
     expect(evidenceApply?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/closure/evidence-apply/dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
-      "project/current-location/closure/evidence-apply/execute:helix closure evidence-apply --execute --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+      "project/current-location/closure/evidence-apply/dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+      "project/current-location/closure/evidence-apply/execute:helix closure evidence-apply --execute --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
       "project/current-location/closure/evidence-apply/approval:decision_id: closure-evidence-materialize:repair_failed_evidence, outcome: <approve_materialized_evidence | reject_materialized_evidence>, approval_scope_digest: sha256:6125218508883c82bcf433f3cb7ebbeb6f5f6d258443f7f4f4bc9e4c8d5af749, reason: <日本語で判断理由>",
-      "project/current-location/closure/evidence-apply/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+      "project/current-location/closure/evidence-apply/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
     ]);
     const applyReadiness = closure?.children.find(
       (child) => child.id === "project/current-location/closure/apply-readiness",
@@ -1757,7 +1757,7 @@ describe("visualization Tree View adapter", () => {
       contextValue: "current-location.closure.apply.no_close_ready_candidates",
     });
     expect(applyReadiness?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/closure/apply-readiness/review-bundle:helix closure review-bundle --action close_ready --limit 20 --offset 0 --json",
+      "project/current-location/closure/apply-readiness/review-bundle:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
       "project/current-location/closure/apply-readiness/transition-plan:helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
       "project/current-location/closure/apply-readiness/decision-draft:helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json",
       "project/current-location/closure/apply-readiness/dry-run:helix closure apply --dry-run --json",
@@ -1984,7 +1984,7 @@ describe("visualization Tree View adapter", () => {
         title: "Copy pointer",
         command: "helix.copyPointer",
         arguments: [
-          "helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+          "helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
         ],
       },
     });
@@ -2140,7 +2140,7 @@ describe("visualization Tree View adapter", () => {
         title: "Copy pointer",
         command: "helix.copyPointer",
         arguments: [
-          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
         ],
       },
     });
@@ -2213,7 +2213,7 @@ describe("visualization Tree View adapter", () => {
         title: "Copy pointer",
         command: "helix.copyPointer",
         arguments: [
-          "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+          "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
         ],
       },
     });

@@ -863,7 +863,7 @@ describe("project current-location read model", () => {
           remaining_queue_items: 1,
           blocking_lanes: ["close_ready"],
           blockers: ["completion_boundary=contradicted", "close_ready:1:human"],
-          next_command: "helix closure review-bundle --action close_ready --json",
+          next_command: "helix closure review-bundle --action close_ready --summary-json",
           expected_transition:
             "blocking lanes を 0 件へ減らし、current-location を再計算する",
           lanes: [
@@ -872,7 +872,7 @@ describe("project current-location read model", () => {
               count: 1,
               blocking: true,
               human_required: true,
-              command: "helix closure review-bundle --action close_ready --json",
+              command: "helix closure review-bundle --action close_ready --summary-json",
               required_action:
                 "ready queue を closure claim に昇格できるか確認し、L14 claim との整合を閉じる",
             },
@@ -886,7 +886,7 @@ describe("project current-location read model", () => {
             lane_type: "approval",
             status: "blocked",
             human_required: true,
-            primary_command: "helix closure review-bundle --action close_ready --json",
+            primary_command: "helix closure review-bundle --action close_ready --summary-json",
             evidence_plan_command: "helix closure evidence-plan --action close_ready --json",
             target_tables: [],
             sample_plan_ids: ["PLAN-L7-999-new-impl"],
@@ -955,7 +955,7 @@ describe("project current-location read model", () => {
               selected: true,
               status: "blocked",
               human_required: true,
-              command: "helix closure review-bundle --action close_ready --json",
+              command: "helix closure review-bundle --action close_ready --summary-json",
               target_tables: [],
               postcheck_commands: [
                 "helix db rebuild",
@@ -989,7 +989,7 @@ describe("project current-location read model", () => {
           next_phase_action: "close_ready",
           next_phase_type: "approval",
           next_gate: "recompute_drive_model",
-          next_command: "helix closure review-bundle --action close_ready --json",
+          next_command: "helix closure review-bundle --action close_ready --summary-json",
           recompute_commands: [
             "helix current-location --json",
             "helix drive model --json",
@@ -1011,7 +1011,7 @@ describe("project current-location read model", () => {
           expect.objectContaining({
             step_id: "review-or-repair-closure",
             status: "blocked",
-            command: "helix closure review-bundle --action close_ready --json",
+            command: "helix closure review-bundle --action close_ready --summary-json",
           }),
           expect.objectContaining({
             step_id: "recompute-drive-model",
@@ -1171,7 +1171,7 @@ describe("project current-location read model", () => {
         },
         recommended_next_action: {
           action: "close_ready",
-          command: "helix closure review-bundle --action close_ready --json",
+          command: "helix closure review-bundle --action close_ready --summary-json",
           human_required: true,
         },
         write_policy: "read-only",
@@ -1526,7 +1526,7 @@ describe("project current-location read model", () => {
           drive_model: "Reverse",
           human_required: true,
           command: "helix closure evidence-plan --action reverse_design --json",
-          transition_command: "helix closure review-bundle --action reverse_design --json",
+          transition_command: "helix closure review-bundle --action reverse_design --summary-json",
           expected_transition: expect.stringContaining("設計"),
           required_action: expect.stringContaining("設計"),
           postcheck_commands: [
@@ -1790,7 +1790,7 @@ describe("project current-location read model", () => {
               nextAction: "close_ready",
               evidenceStatus: "ready",
               batchCommand: "helix closure batch --action close_ready --json",
-              reviewCommand: "helix closure review-bundle --action close_ready --json",
+              reviewCommand: "helix closure review-bundle --action close_ready --summary-json",
             }),
           }),
         ],
@@ -1928,7 +1928,7 @@ describe("project current-location read model", () => {
       expect(overview).toMatchObject({
         recommended_next_action: {
           action: "repair_failed_evidence",
-          command: "helix closure review-bundle --action repair_failed_evidence --json",
+          command: "helix closure review-bundle --action repair_failed_evidence --summary-json",
           human_required: false,
         },
       });

@@ -1480,7 +1480,7 @@ describe("buildVisualizationViewModel", () => {
         recommended_next_action: {
           action: "repair_failed_evidence",
           reason: "失敗 test/gate evidence を修正し、再実行した green evidence を DB へ投影する",
-          command: "helix closure review-bundle --action repair_failed_evidence --json",
+          command: "helix closure review-bundle --action repair_failed_evidence --summary-json",
           human_required: false,
         },
         work_buckets: [
@@ -1569,11 +1569,11 @@ describe("buildVisualizationViewModel", () => {
           approval_valid: false,
           patch_candidate_count: 0,
           dry_run_command:
-            "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+            "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
           execute_command:
-            "helix closure evidence-apply --execute --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+            "helix closure evidence-apply --execute --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
           approval_draft_command:
-            "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+            "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
           write_policy: "approval-required",
         }),
         remediation: expect.objectContaining({
@@ -1655,12 +1655,12 @@ describe("buildVisualizationViewModel", () => {
           approval_required: false,
           dry_run_command: "helix closure apply --dry-run --json",
           execute_command: "helix closure apply --execute --approval-record <path> --json",
-          review_bundle_command: "helix closure review-bundle --action close_ready --json",
+          review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
           transition_plan_command: "helix closure transition-plan --action close_ready --json",
           decision_draft_command:
             "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json",
           review_window_command:
-            "helix closure review-bundle --action close_ready --limit 20 --offset 0 --json",
+            "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
           transition_window_command:
             "helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
           write_policy: "approval-required",

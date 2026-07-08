@@ -2864,7 +2864,7 @@ export function buildProjectCurrentLocationView(
           : "helix closure evidence-probe --json",
         materialize_command: closureBucketAction
           ? closureEvidenceMaterializeCommand(closureBucketAction)
-          : "helix closure evidence-materialize --json",
+          : "helix closure evidence-materialize --summary-json",
         materialized_candidate_count: evidenceMaterializePacket?.materialized_candidate_count ?? 0,
         remaining_placeholder_count:
           evidenceMaterializePacket?.materialize_readiness.remaining_placeholder_count ?? 0,
@@ -2897,13 +2897,13 @@ export function buildProjectCurrentLocationView(
         ],
         dry_run_command: closureBucketAction
           ? closureEvidenceApplyDryRunCommand(closureBucketAction)
-          : "helix closure evidence-apply --dry-run --json",
+          : "helix closure evidence-apply --dry-run --summary-json",
         execute_command: closureBucketAction
           ? closureEvidenceApplyExecuteCommand(closureBucketAction)
-          : "helix closure evidence-apply --execute --json",
+          : "helix closure evidence-apply --execute --summary-json",
         approval_draft_command: closureBucketAction
           ? closureEvidenceApprovalDraftCommand(closureBucketAction)
-          : "helix closure evidence-approval-draft --json",
+          : "helix closure evidence-approval-draft --summary-json",
         approval_record_fields: [
           ...(evidenceMaterializePacket?.approval.required_record_fields ?? [
             "decision_id: closure-evidence-materialize:<action>",
@@ -3063,12 +3063,12 @@ export function buildProjectCurrentLocationView(
         approval_required: current.closure.queue.route_counts.close_ready > 0,
         dry_run_command: "helix closure apply --dry-run --json",
         execute_command: "helix closure apply --execute --approval-record <path> --json",
-        review_bundle_command: "helix closure review-bundle --action close_ready --json",
+        review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
         transition_plan_command: "helix closure transition-plan --action close_ready --json",
         decision_draft_command:
           "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json",
         review_window_command:
-          "helix closure review-bundle --action close_ready --limit 20 --offset 0 --json",
+          "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
         transition_window_command:
           "helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
         write_policy: "approval-required",

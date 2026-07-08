@@ -1211,7 +1211,7 @@ export interface ProjectClosureOverview {
       status: "approval_required" | "no_close_ready_candidates";
       dry_run_command: "helix closure apply --dry-run --json";
       execute_command: "helix closure apply --execute --approval-record <path> --json";
-      review_bundle_command: "helix closure review-bundle --action close_ready --json";
+      review_bundle_command: "helix closure review-bundle --action close_ready --summary-json";
       transition_plan_command: "helix closure transition-plan --action close_ready --json";
       review_window_command: string;
       transition_window_command: string;
@@ -2492,19 +2492,19 @@ export function closureEvidenceProbeCommand(action: ProjectClosureQueueNextActio
 }
 
 export function closureEvidenceMaterializeCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-materialize --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --json`;
+  return `helix closure evidence-materialize --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --summary-json`;
 }
 
 export function closureEvidenceApprovalDraftCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-approval-draft --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --out ${closureEvidenceApprovalDraftPath(action)} --json`;
+  return `helix closure evidence-approval-draft --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --out ${closureEvidenceApprovalDraftPath(action)} --summary-json`;
 }
 
 export function closureEvidenceApplyDryRunCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-apply --dry-run --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --json`;
+  return `helix closure evidence-apply --dry-run --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --summary-json`;
 }
 
 export function closureEvidenceApplyExecuteCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-apply --execute --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --json`;
+  return `helix closure evidence-apply --execute --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --summary-json`;
 }
 
 export interface ProjectClosureEvidenceHandoffArtifacts {
@@ -2529,7 +2529,7 @@ function roadmapClosureCommand(action: ProjectClosureQueueNextAction | null): st
     return closureEvidenceProbeCommand(action);
   }
   if (action === "close_ready") {
-    return "helix closure review-bundle --action close_ready --json";
+    return "helix closure review-bundle --action close_ready --summary-json";
   }
   if (action === "reverse_design") {
     return "helix closure evidence-plan --action reverse_design --json";
@@ -2714,7 +2714,7 @@ export function buildProjectRoadmapCurrentReport(
               ? `helix closure batch --action ${closurePhaseAction} --json`
               : "helix closure batch --json",
             review_command: closurePhaseAction
-              ? `helix closure review-bundle --action ${closurePhaseAction} --json`
+              ? `helix closure review-bundle --action ${closurePhaseAction} --summary-json`
               : "helix closure review-bundle --json",
             evidence_patch_command: closureEvidenceAction
               ? `helix closure evidence-patch --action ${closureEvidenceAction} --json`
@@ -3143,7 +3143,7 @@ function recoveryLaneType(
 function recoveryLanePrimaryCommand(action: ProjectClosureQueueNextAction): string {
   switch (action) {
     case "close_ready":
-      return "helix closure review-bundle --action close_ready --json";
+      return "helix closure review-bundle --action close_ready --summary-json";
     case "collect_evidence":
     case "repair_failed_evidence":
     case "reverse_design":
@@ -3214,7 +3214,7 @@ function buildProjectRecoveryActionLanes(
 	      primary_command: recoveryLanePrimaryCommand(action),
 	      evidence_plan_command: `helix closure evidence-plan --action ${action} --json`,
 	      batch_command: `helix closure batch --action ${action} --json`,
-	      review_command: `helix closure review-bundle --action ${action} --json`,
+	      review_command: `helix closure review-bundle --action ${action} --summary-json`,
 	      evidence_probe_command: evidenceChain.evidence_probe_command,
 	      evidence_materialize_command: evidenceChain.evidence_materialize_command,
 	      evidence_approval_draft_command: evidenceChain.evidence_approval_draft_command,
@@ -3684,7 +3684,7 @@ export function buildProjectRecoveryPlan(
       }),
       command: selectedAction
         ? selectedAction === "close_ready"
-          ? "helix closure review-bundle --action close_ready --json"
+          ? "helix closure review-bundle --action close_ready --summary-json"
           : `helix closure batch --action ${selectedAction} --json`
         : "helix closure overview --json",
       required_action:
@@ -5689,7 +5689,7 @@ function buildClosureBatchWorkBuckets(input: {
         target_tables: unique(gaps.flatMap((gap) => gap.evidenceTables)),
         primary_command:
           input.action === "close_ready"
-            ? "helix closure review-bundle --action close_ready --json"
+            ? "helix closure review-bundle --action close_ready --summary-json"
             : `helix closure batch --action ${input.action} --json`,
         evidence_plan_command: `helix closure evidence-plan --action ${input.action} --json`,
         postcheck_commands: closureEvidencePlanPostcheckCommands(input.action),
@@ -7105,7 +7105,7 @@ function buildProjectArtifactRemapBatchItem(
           evidenceStatus: closureItem.evidence.status,
           remediationStatus: closureItem.remediationStatus,
           batchCommand: `helix closure batch --action ${closureItem.nextAction} --json`,
-          reviewCommand: `helix closure review-bundle --action ${closureItem.nextAction} --json`,
+          reviewCommand: `helix closure review-bundle --action ${closureItem.nextAction} --summary-json`,
           transitionCommand: `helix closure transition-plan --action ${closureItem.nextAction} --json`,
           priority: closureItem.priority,
         }
@@ -7215,7 +7215,7 @@ export function buildProjectClosureOverview(
 ): ProjectClosureOverview {
 	const limit = Math.max(0, input.limit ?? 5);
   const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
-  const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --json`;
+  const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --json`;
   const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${limit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --json`;
   const actions = PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => {
@@ -7229,7 +7229,7 @@ export function buildProjectClosureOverview(
       ledger_status: batch.ledger?.status ?? null,
       human_required: batch.ledger?.humanRequired ?? false,
       evidence_policy: batch.ledger?.evidencePolicy ?? null,
-      review_command: `helix closure review-bundle --action ${action} --json`,
+      review_command: `helix closure review-bundle --action ${action} --summary-json`,
       transition_command: `helix closure transition-plan --action ${action} --json`,
       sample_plan_ids: batch.queue_items.map((item) => item.planId),
       required_action: batch.packet?.requiredAction ?? null,
@@ -7265,7 +7265,7 @@ export function buildProjectClosureOverview(
         status: closeReadyCount > 0 ? "approval_required" : "no_close_ready_candidates",
         dry_run_command: "helix closure apply --dry-run --json",
         execute_command: "helix closure apply --execute --approval-record <path> --json",
-        review_bundle_command: "helix closure review-bundle --action close_ready --json",
+        review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
         transition_plan_command: "helix closure transition-plan --action close_ready --json",
         review_window_command: closeReadyReviewWindowCommand,
         transition_window_command: closeReadyTransitionWindowCommand,
@@ -7616,7 +7616,7 @@ function closureDecisionOutcomeRoute(input: {
         targetAction === "collect_evidence" || targetAction === "repair_failed_evidence"
           ? closureEvidenceProbeCommand(targetAction)
           : `helix closure evidence-plan --action ${targetAction} --json`,
-      transition_command: `helix closure review-bundle --action ${targetAction} --json`,
+      transition_command: `helix closure review-bundle --action ${targetAction} --summary-json`,
       expected_transition: closurePacketExpectedTransition(targetAction),
       required_action: closurePacketRequiredAction(targetAction),
       doc_dependencies: commonDocDependencies,
@@ -7671,7 +7671,7 @@ function closureDecisionOutcomeRoute(input: {
       target_action: null,
       drive_model: input.driveRoute.selectedModel,
       human_required: true,
-      command: "helix closure review-bundle --action close_ready --json",
+      command: "helix closure review-bundle --action close_ready --summary-json",
       transition_command: "helix closure transition-plan --action close_ready --json",
       expected_transition: "未対応 outcome のため current-location は変更しない",
       required_action: "allowed_outcomes に含まれる outcome を指定する",
@@ -7695,7 +7695,7 @@ function closureDecisionOutcomeRoute(input: {
     drive_model: driveModel,
     human_required: true,
     command,
-    transition_command: `helix closure review-bundle --action ${targetAction} --json`,
+    transition_command: `helix closure review-bundle --action ${targetAction} --summary-json`,
     expected_transition: closurePacketExpectedTransition(targetAction),
     required_action: closurePacketRequiredAction(targetAction),
     doc_dependencies:

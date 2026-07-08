@@ -312,7 +312,7 @@ describe("visualization read model", () => {
         status: "missing",
         generation_status: "ready_to_generate",
         generation_command:
-          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
         bytes: null,
         sha256: null,
       });
