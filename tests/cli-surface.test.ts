@@ -4759,14 +4759,30 @@ describe("L7 CLI surface closure", () => {
         },
         summary_surface_command_audit: {
           status: "pass",
-          checked_surface_count: 18,
+          checked_surface_count: 19,
+          excluded_surface_count: 2,
           unexpected_count: 0,
           allowed_fields: ["full_source_command", "full_view_command"],
           unexpected_commands: [],
+          excluded_surfaces: expect.arrayContaining([
+            expect.objectContaining({
+              surface: "doctor-summary",
+              source_command: "helix doctor --summary-json",
+            }),
+            expect.objectContaining({
+              surface: "progress-tree-view",
+              source_command: "helix progress tree-view --summary-json",
+            }),
+          ]),
           surfaces: expect.arrayContaining([
             expect.objectContaining({
               surface: "current-location",
               source_command: "helix current-location --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
+              surface: "progress-artifacts",
+              source_command: "helix progress artifacts --summary-json",
               unexpected_count: 0,
             }),
             expect.objectContaining({

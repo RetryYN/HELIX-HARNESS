@@ -293,7 +293,7 @@ import {
   type ProjectRoadmapCurrentReport,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
-import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
+import { defaultHarnessDbPath, openHarnessDb, type HarnessDb } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
 import {
@@ -4085,6 +4085,23 @@ function summaryJsonCommandOrNull(command: string | null): string | null {
   return command === null ? null : summaryJsonCommand(command);
 }
 
+function loadArtifactProgressRows(
+  db: HarnessDb,
+  color: string | null,
+): Array<Record<string, unknown>> {
+  return color != null && color.length > 0
+    ? db
+        .prepare(
+          "SELECT artifact_path, artifact_type, state, color, linked_test_count, passed_test_run_count, dependency_checked, dependency_check_run_id, open_dependency_impacts, linked_test_paths, passed_test_run_ids, recovery_plan_ids, reason, indexed_at FROM artifact_progress WHERE color = ? ORDER BY artifact_path",
+        )
+        .all(color)
+    : db
+        .prepare(
+          "SELECT artifact_path, artifact_type, state, color, linked_test_count, passed_test_run_count, dependency_checked, dependency_check_run_id, open_dependency_impacts, linked_test_paths, passed_test_run_ids, recovery_plan_ids, reason, indexed_at FROM artifact_progress ORDER BY CASE color WHEN 'red' THEN 0 WHEN 'yellow' THEN 1 ELSE 2 END, artifact_path",
+        )
+        .all();
+}
+
 type SummarySurfaceRawJsonHit = {
   path: string;
   command: string;
@@ -4118,6 +4135,7 @@ function collectSummarySurfaceRawJsonHits(
 function buildSummarySurfaceCommandAudit(
   repoRoot: string,
   snapshot: ProjectCurrentLocationSnapshot,
+  db: HarnessDb,
 ) {
   const probeRecordOutput: ProbeRecordOutput = {
     requested: false,
@@ -4165,6 +4183,10 @@ function buildSummarySurfaceCommandAudit(
       payload: summarizeProjectArtifactRemapBatchReport(
         buildProjectArtifactRemapBatchReport(snapshot, { limit: 10 }),
       ),
+    },
+    {
+      surface: "progress-artifacts",
+      payload: summarizeArtifactProgressRows(loadArtifactProgressRows(db, null), null),
     },
     {
       surface: "closure-overview",
@@ -4274,8 +4296,21 @@ function buildSummarySurfaceCommandAudit(
   return {
     status: unexpectedCommands.length === 0 ? "pass" : "unexpected_raw_json_command",
     checked_surface_count: surfaces.length,
+    excluded_surface_count: 2,
     unexpected_count: unexpectedCommands.length,
     allowed_fields: ["full_source_command", "full_view_command"],
+    excluded_surfaces: [
+      {
+        surface: "doctor-summary",
+        source_command: "helix doctor --summary-json",
+        reason: "doctor is a meta-diagnostic surface and would recursively invoke broad checks from the tree-view summary audit",
+      },
+      {
+        surface: "progress-tree-view",
+        source_command: "helix progress tree-view --summary-json",
+        reason: "progress tree-view is the host surface for this audit, so self-inclusion would be recursive",
+      },
+    ],
     surfaces,
     unexpected_commands: unexpectedCommands.slice(0, 20),
   };
@@ -6473,18 +6508,7 @@ progress
     try {
       migrate(db);
       const color = opts.color?.trim().toLowerCase();
-      const rows =
-        color != null && color.length > 0
-          ? db
-              .prepare(
-                "SELECT artifact_path, artifact_type, state, color, linked_test_count, passed_test_run_count, dependency_checked, dependency_check_run_id, open_dependency_impacts, linked_test_paths, passed_test_run_ids, recovery_plan_ids, reason, indexed_at FROM artifact_progress WHERE color = ? ORDER BY artifact_path",
-              )
-              .all(color)
-          : db
-              .prepare(
-                "SELECT artifact_path, artifact_type, state, color, linked_test_count, passed_test_run_count, dependency_checked, dependency_check_run_id, open_dependency_impacts, linked_test_paths, passed_test_run_ids, recovery_plan_ids, reason, indexed_at FROM artifact_progress ORDER BY CASE color WHEN 'red' THEN 0 WHEN 'yellow' THEN 1 ELSE 2 END, artifact_path",
-              )
-              .all();
+      const rows = loadArtifactProgressRows(db, color ?? null);
       if (opts.summaryJson) {
         process.stdout.write(
           `${JSON.stringify(summarizeArtifactProgressRows(rows as Array<Record<string, unknown>>, color ?? null), null, 2)}\n`,
@@ -6603,6 +6627,7 @@ progress
         const summarySurfaceCommandAudit = buildSummarySurfaceCommandAudit(
           repoRoot,
           currentLocationSnapshot,
+          db,
         );
         process.stdout.write(
           `${JSON.stringify(
