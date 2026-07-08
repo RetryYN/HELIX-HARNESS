@@ -1476,6 +1476,18 @@ export function checkVisualizationTreeViewBoundary(
         }
         return ids;
       };
+      const collectCommands = (root: TreeViewNode): string[] => {
+        const commands: string[] = [];
+        const queue: TreeViewNode[] = [root];
+        while (queue.length > 0) {
+          const current = queue.shift();
+          if (!current) continue;
+          const command = current.command?.arguments[0];
+          if (command) commands.push(command);
+          queue.push(...current.children);
+        }
+        return commands;
+      };
       if (tree.schema_version !== "visualization-tree-view.v1") {
         violations.push(`schema_version=${tree.schema_version}`);
       }
@@ -1529,11 +1541,35 @@ export function checkVisualizationTreeViewBoundary(
       const harnessBoundary = harness?.children.find(
         (child) => child.id === "harness/view-boundary",
       );
-      if (projectBoundary?.command?.arguments[0] !== "helix progress tree-view --json") {
-        violations.push("project.view_boundary.command must be helix progress tree-view --json");
+      if (projectBoundary?.command?.arguments[0] !== "helix progress tree-view --summary-json") {
+        violations.push(
+          "project.view_boundary.command must be helix progress tree-view --summary-json",
+        );
       }
-      if (harnessBoundary?.command?.arguments[0] !== "helix progress tree-view --json") {
-        violations.push("harness.view_boundary.command must be helix progress tree-view --json");
+      if (harnessBoundary?.command?.arguments[0] !== "helix progress tree-view --summary-json") {
+        violations.push(
+          "harness.view_boundary.command must be helix progress tree-view --summary-json",
+        );
+      }
+      const allCommands = [
+        ...(project ? collectCommands(project) : []),
+        ...(harness ? collectCommands(harness) : []),
+      ];
+      const fullJsonCommands = allCommands.filter(
+        (command) => command.includes(" --json") && !command.includes(" --summary-json"),
+      );
+      const unexpectedFullJsonCommands = fullJsonCommands.filter(
+        (command) =>
+          !(
+            command.startsWith("helix closure evidence-probe ") &&
+            command.includes(" --execute ") &&
+            command.endsWith(" --json")
+          ),
+      );
+      if (unexpectedFullJsonCommands.length > 0) {
+        violations.push(
+          `unexpected_full_json=${[...new Set(unexpectedFullJsonCommands)].slice(0, 5).join("|")}`,
+        );
       }
       const prefix =
         violations.length === 0
@@ -1542,7 +1578,8 @@ export function checkVisualizationTreeViewBoundary(
       return {
         ok: violations.length === 0,
         messages: [
-          `${prefix}: roots=${roots.join(",") || "-"} project_nodes=${projectIds.length} harness_nodes=${harnessIds.length} policy=project-view-current-location harness-view-telemetry command=helix progress tree-view --json`,
+          `${prefix}: roots=${roots.join(",") || "-"} project_nodes=${projectIds.length} harness_nodes=${harnessIds.length} policy=project-view-current-location harness-view-telemetry command=helix progress tree-view --summary-json full=helix progress tree-view --json`,
+          `visualization-tree-view-boundary - full-json-audit total=${fullJsonCommands.length} unexpected=${unexpectedFullJsonCommands.length} allowed=closure-evidence-probe-execute`,
           `visualization-tree-view-boundary - project-required=${requiredProjectIds.join(",")}`,
           `visualization-tree-view-boundary - harness-required=${requiredHarnessIds.join(",")}`,
           ...violations.map(

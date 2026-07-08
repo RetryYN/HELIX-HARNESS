@@ -2498,7 +2498,7 @@ describe("runDoctor", () => {
       );
       expect(check.messages.join("\n")).toContain("project-current-location - design-impact:");
       expect(check.messages.join("\n")).toContain(
-        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=no_close_ready_candidates recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --json",
+        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=no_close_ready_candidates recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --summary-json",
       );
       expect(check.messages.join("\n")).toContain(
         "project-current-location - next-action-ledger: total=1",
@@ -2542,6 +2542,9 @@ describe("runDoctor", () => {
       expect(treeBoundaryCheck.ok).toBe(true);
       expect(treeBoundaryCheck.messages.join("\n")).toContain(
         "visualization-tree-view-boundary - OK: roots=project,harness",
+      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "visualization-tree-view-boundary - full-json-audit",
       );
       expect(treeBoundaryCheck.messages.join("\n")).toContain(
         "policy=project-view-current-location harness-view-telemetry",
@@ -2813,6 +2816,13 @@ describe("runDoctor", () => {
     expect(hasDoctorMessageWith(r.messages, "doctor: visualization-tree-view-boundary", "OK")).toBe(
       true,
     );
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: visualization-tree-view-boundary",
+        "full-json-audit",
+      ),
+    ).toBe(true);
     expect(hasDoctorMessageWith(r.messages, "doctor: vscode-extension-dynamic-binding", "OK")).toBe(
       true,
     );
