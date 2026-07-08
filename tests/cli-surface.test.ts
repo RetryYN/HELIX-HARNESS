@@ -2275,6 +2275,23 @@ describe("L7 CLI surface closure", () => {
           runtime_verification_table: "runtime_verification_events",
         },
       });
+      const artifactsSummary = runCliIn(root, ["progress", "artifacts", "--summary-json"]);
+      expect(artifactsSummary.status).toBe(0);
+      expect(JSON.parse(artifactsSummary.stdout)).toMatchObject({
+        schema_version: "progress-artifacts-summary.v1",
+        selected_color: null,
+        total: 0,
+        counts: {
+          by_color: {},
+          by_type: {},
+          by_state: {},
+        },
+        sample_count: 0,
+        sample_items: [],
+        write_policy: "read-only",
+        source_command: "helix progress artifacts --summary-json",
+        full_source_command: "helix progress artifacts --json",
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

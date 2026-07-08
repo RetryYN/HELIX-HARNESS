@@ -5951,12 +5951,48 @@ closure
   );
 
 const progress = program.command("progress").description("artifact progress read model");
+
+function summarizeArtifactProgressRows(rows: Array<Record<string, unknown>>, color: string | null) {
+  const countBy = (key: string) =>
+    rows.reduce<Record<string, number>>((acc, row) => {
+      const value = typeof row[key] === "string" && row[key].length > 0 ? row[key] : "unknown";
+      acc[value] = (acc[value] ?? 0) + 1;
+      return acc;
+    }, {});
+  return {
+    schema_version: "progress-artifacts-summary.v1",
+    selected_color: color,
+    total: rows.length,
+    counts: {
+      by_color: countBy("color"),
+      by_type: countBy("artifact_type"),
+      by_state: countBy("state"),
+    },
+    sample_count: Math.min(rows.length, 20),
+    sample_items: rows.slice(0, 20).map((row) => ({
+      artifact_path: row.artifact_path,
+      artifact_type: row.artifact_type,
+      state: row.state,
+      color: row.color,
+      linked_test_count: row.linked_test_count,
+      passed_test_run_count: row.passed_test_run_count,
+      dependency_checked: row.dependency_checked,
+      open_dependency_impacts: row.open_dependency_impacts,
+      reason: row.reason,
+    })),
+    write_policy: "read-only",
+    source_command: "helix progress artifacts --summary-json",
+    full_source_command: "helix progress artifacts --json",
+  };
+}
+
 progress
   .command("artifacts")
   .description("list DB-backed artifact progress colors")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and view surfaces")
   .option("--color <color>", "filter by color: red, yellow, or green")
-  .action((opts: { json?: boolean; color?: string }) => {
+  .action((opts: { json?: boolean; summaryJson?: boolean; color?: string }) => {
     const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
     try {
       migrate(db);
@@ -5973,6 +6009,12 @@ progress
                 "SELECT artifact_path, artifact_type, state, color, linked_test_count, passed_test_run_count, dependency_checked, dependency_check_run_id, open_dependency_impacts, linked_test_paths, passed_test_run_ids, recovery_plan_ids, reason, indexed_at FROM artifact_progress ORDER BY CASE color WHEN 'red' THEN 0 WHEN 'yellow' THEN 1 ELSE 2 END, artifact_path",
               )
               .all();
+      if (opts.summaryJson) {
+        process.stdout.write(
+          `${JSON.stringify(summarizeArtifactProgressRows(rows as Array<Record<string, unknown>>, color ?? null), null, 2)}\n`,
+        );
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(rows, null, 2)}\n`);
         return;

@@ -1916,7 +1916,7 @@ describe("visualization Tree View adapter", () => {
     expect(artifactTotal?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
-      arguments: ["helix progress artifacts --json"],
+      arguments: ["helix progress artifacts --summary-json"],
     });
     expect(JSON.stringify(tree)).not.toContain("/home/");
     expect(JSON.stringify(tree)).not.toContain("C:\\Users\\");

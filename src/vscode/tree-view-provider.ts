@@ -52,6 +52,7 @@ const SUMMARY_CAPABLE_HELIX_PREFIXES = [
   "helix closure review-bundle",
   "helix closure transition-plan",
   "helix closure decision-draft",
+  "helix progress artifacts",
 ] as const;
 
 function readOnlySummaryPointer(command: string): string {
