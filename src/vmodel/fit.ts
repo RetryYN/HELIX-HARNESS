@@ -1816,7 +1816,7 @@ function buildVmodelNextActionWorkBucket(input: {
     omitted: bucket.omitted,
     target_tables: [...bucket.target_tables],
     primary_command: bucket.primary_command,
-    evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --json`,
+    evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --summary-json`,
     evidence_patch_write_policy: "approval-required",
     evidence_patch_candidate_count: evidencePatchCandidateCount,
     evidence_probe_command: evidenceProbeCommand,

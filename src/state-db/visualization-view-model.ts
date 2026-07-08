@@ -2697,7 +2697,7 @@ export function buildProjectCurrentLocationView(
         target_tables: [...bucket.target_tables],
         primary_command: bucket.primary_command,
         evidence_plan_command: bucket.evidence_plan_command,
-        evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --json`,
+        evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --summary-json`,
         evidence_probe_command: closureEvidenceProbeCommand(bucket.action),
         evidence_materialize_command: closureEvidenceMaterializeCommand(bucket.action),
         evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(bucket.action),

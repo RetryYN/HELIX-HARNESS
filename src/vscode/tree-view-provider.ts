@@ -332,12 +332,12 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                   id: `project/current-location/drive/recovery-plan/${action.action}`,
                   label: action.action,
                   description: `${action.count} ${action.ledger_status ?? "untracked"} human=${action.human_required}`,
-                  tooltip: `${action.required_action ?? "-"}\n${action.action === "close_ready" ? action.review_command : `helix closure batch --action ${action.action} --json`}\n${action.transition_command}`,
+                  tooltip: `${action.required_action ?? "-"}\n${action.action === "close_ready" ? action.review_command : `helix closure batch --action ${action.action} --summary-json`}\n${action.transition_command}`,
                   contextValue: `recovery-plan.lane.${action.ledger_status ?? "untracked"}`,
                   commandPointer:
                     action.action === "close_ready"
                       ? action.review_command
-                      : `helix closure batch --action ${action.action} --json`,
+                      : `helix closure batch --action ${action.action} --summary-json`,
                 }),
               ),
           ],
@@ -1457,7 +1457,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                         description: `failed=${item.failed_evidence_count} patches=${item.evidence_patch_plan.patch_candidates.length}`,
                         tooltip: `${item.required_action}\nlatest=${item.latest_failed_at ?? "-"}\ntables=${item.required_green_tables.join(",") || "-"}\ncommands=${item.command_labels.join(",") || "-"}\nsource=${item.source_path}\nartifacts=${item.evidence_artifact_templates.map((template) => `${template.artifact_kind}:${template.artifact_path}`).join(",") || "-"}\npatches=${item.evidence_patch_plan.patch_candidates.map((candidate) => `${candidate.operation}:${candidate.preview_digest}:placeholders=${candidate.placeholder_count}`).join(",") || "-"}`,
                         contextValue: `closure-work-bucket.item.${bucket.action}`,
-                        commandPointer: `helix closure evidence-patch --action ${bucket.action} --json`,
+                        commandPointer: `helix closure evidence-patch --action ${bucket.action} --summary-json`,
                       }),
                     ),
                   ],

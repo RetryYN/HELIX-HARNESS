@@ -2755,9 +2755,9 @@ describe("L7 CLI surface closure", () => {
             phase_action: "collect_evidence",
             command:
               "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-            batch_command: "helix closure batch --action collect_evidence --json",
+            batch_command: "helix closure batch --action collect_evidence --summary-json",
             review_command: "helix closure review-bundle --action collect_evidence --summary-json",
-            evidence_patch_command: "helix closure evidence-patch --action collect_evidence --json",
+            evidence_patch_command: "helix closure evidence-patch --action collect_evidence --summary-json",
             evidence_probe_command:
               "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
             evidence_materialize_command:
@@ -2792,7 +2792,7 @@ describe("L7 CLI surface closure", () => {
         "command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
       );
       expect(roadmapCurrentText.stdout).toContain(
-        "surfaces=batch:helix closure batch --action collect_evidence --json review:helix closure review-bundle --action collect_evidence --summary-json patch:helix closure evidence-patch --action collect_evidence --json probe:helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize:helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json approval_draft:helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json apply_dry_run:helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_execute:helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_write:approval-required",
+        "surfaces=batch:helix closure batch --action collect_evidence --summary-json review:helix closure review-bundle --action collect_evidence --summary-json patch:helix closure evidence-patch --action collect_evidence --summary-json probe:helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize:helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json approval_draft:helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json apply_dry_run:helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_execute:helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_write:approval-required",
       );
 
       const remapBatchJson = runCliIn(root, [
@@ -2908,7 +2908,7 @@ describe("L7 CLI surface closure", () => {
 	            gate: "recompute_drive_model",
 	            command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
 	            work_bucket: expect.objectContaining({
-              evidence_patch_command: "helix closure evidence-patch --action collect_evidence --json",
+              evidence_patch_command: "helix closure evidence-patch --action collect_evidence --summary-json",
               evidence_patch_write_policy: "approval-required",
               evidence_patch_candidate_count: 3,
               evidence_approval_draft_command:
@@ -3017,7 +3017,7 @@ describe("L7 CLI surface closure", () => {
       expect(fitText.stdout).toContain("next-work-bucket: 20.current_location");
       expect(fitText.stdout).toContain("command=helix closure batch --action collect_evidence --json");
       expect(fitText.stdout).toContain(
-        "patch=helix closure evidence-patch --action collect_evidence --json patch_candidates=3 patch_write=approval-required",
+        "patch=helix closure evidence-patch --action collect_evidence --summary-json patch_candidates=3 patch_write=approval-required",
       );
       expect(fitText.stdout).toContain(
         "approval_draft=helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json",

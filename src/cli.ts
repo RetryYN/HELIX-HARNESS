@@ -274,10 +274,12 @@ import {
   buildProjectRoadmapCurrentReport,
   isProjectArtifactRemapStatus,
   isProjectClosureQueueNextAction,
+  type ProjectClosureBatchReport,
   type ProjectClosureEvidenceApprovalDraftPacket,
   type ProjectClosureEvidenceApplyPlan,
   type ProjectClosureEvidenceMaterializePacket,
   type ProjectClosureDecisionDraftPacket,
+  type ProjectClosureEvidencePatchPacket,
   type ProjectClosureEvidencePlan,
   type ProjectClosureOverview,
   type ProjectClosureReviewBundle,
@@ -3813,6 +3815,152 @@ function summarizeClosureEvidencePlan(plan: ProjectClosureEvidencePlan) {
   };
 }
 
+function summarizeClosureBatchReport(report: ProjectClosureBatchReport) {
+  return {
+    schema_version: "project-closure-batch-summary.v1",
+    source_clock: report.source_clock,
+    selected_action: report.selected_action,
+    available_actions: report.available_actions,
+    current: report.current,
+    drive_route: {
+      route_id: report.drive_route.routeId,
+      status: report.drive_route.status,
+      selected_model: report.drive_route.selectedModel,
+      default_model: report.drive_route.defaultModel,
+      must_return_to_design: report.drive_route.mustReturnToDesign,
+    },
+    packet: report.packet
+      ? {
+          packet_id: report.packet.packetId,
+          next_action: report.packet.nextAction,
+          count: report.packet.count,
+          drive_model: report.packet.driveModel,
+          l12_layer: report.packet.l12Layer,
+          required_action: report.packet.requiredAction,
+          expected_transition: report.packet.automation.expectedTransition,
+          promotion_gate: report.packet.automation.promotionGate,
+          review_command: `helix closure batch --action ${report.packet.nextAction} --summary-json`,
+        }
+      : null,
+    ledger: report.ledger
+      ? {
+          ledger_id: report.ledger.ledgerId,
+          status: report.ledger.status,
+          human_required: report.ledger.humanRequired,
+          evidence_policy: report.ledger.evidencePolicy,
+          count: report.ledger.count,
+        }
+      : null,
+    total: report.total,
+    listed: report.listed,
+    omitted: report.omitted,
+    limit: report.limit,
+    offset: report.offset,
+    window: report.window,
+    work_bucket_count: report.work_buckets.length,
+    sample_work_buckets: report.work_buckets
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((bucket) => ({
+        bucket_id: bucket.bucket_id,
+        action: bucket.action,
+        rank: bucket.rank,
+        count: bucket.count,
+        listed: bucket.listed,
+        omitted: bucket.omitted,
+        evidence_signature: bucket.evidence_signature,
+        evidence_statuses: bucket.evidence_statuses,
+        target_tables: bucket.target_tables,
+        primary_command: bucket.primary_command,
+        evidence_plan_command: bucket.evidence_plan_command,
+        repair_plan: {
+          status: bucket.repair_plan.status,
+          failed_evidence_count: bucket.repair_plan.failed_evidence_count,
+          latest_failed_at: bucket.repair_plan.latest_failed_at,
+          automation_status: bucket.repair_plan.automation.status,
+          runnable_command_count: bucket.repair_plan.automation.runnable_command_count,
+          safe_resolution_command_count:
+            bucket.repair_plan.automation.safe_resolution_command_count,
+          projection_item_count: bucket.repair_plan.automation.projection_item_count,
+          primary_next_command: bucket.repair_plan.automation.primary_next_command,
+        },
+        sample_plan_ids: bucket.sample_plan_ids,
+        required_action: bucket.required_action,
+        expected_transition: bucket.expected_transition,
+      })),
+    queue_item_count: report.queue_items.length,
+    sample_queue_items: report.queue_items
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((item) => ({
+        plan_id: item.planId,
+        source_path: item.sourcePath,
+        next_action: item.nextAction,
+        evidence_status: item.evidence.status,
+        evidence_action: item.evidenceAction,
+        evidence_gaps: item.evidenceGaps.map((gap) => ({
+          component: gap.component,
+          status: gap.status,
+        })),
+      })),
+    write_policy: report.write_policy,
+    source_command: "helix closure batch --summary-json",
+    view_command: report.view_command,
+    findings: report.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+  };
+}
+
+function summarizeClosureEvidencePatchPacket(packet: ProjectClosureEvidencePatchPacket) {
+  return {
+    schema_version: "project-closure-evidence-patch-summary.v1",
+    source_clock: packet.source_clock,
+    selected_action: packet.selected_action,
+    current: packet.current,
+    drive_route: {
+      route_id: packet.drive_route.routeId,
+      status: packet.drive_route.status,
+      selected_model: packet.drive_route.selectedModel,
+      default_model: packet.drive_route.defaultModel,
+      must_return_to_design: packet.drive_route.mustReturnToDesign,
+    },
+    queue_total: packet.queue_total,
+    queue_listed: packet.queue_listed,
+    queue_omitted: packet.queue_omitted,
+    limit: packet.limit,
+    patch_candidate_count: packet.patch_candidate_count,
+    apply_readiness: packet.apply_readiness,
+    approval: packet.approval,
+    safety_policy: packet.safety_policy,
+    sample_patch_candidates: packet.patch_candidates
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((candidate) => ({
+        candidate_id: candidate.candidate_id,
+        plan_id: candidate.plan_id,
+        source_path: candidate.source_path,
+        artifact_kind: candidate.artifact_kind,
+        artifact_path: candidate.artifact_path,
+        operation: candidate.operation,
+        projection_target_tables: candidate.projection_target_tables,
+        preview_digest: candidate.preview_digest,
+        placeholder_count: candidate.placeholder_count,
+        unresolved_placeholders: candidate.unresolved_placeholders,
+        real_evidence_required: candidate.real_evidence_required,
+        required_action: candidate.required_action,
+      })),
+    postcheck_commands: packet.postcheck_commands,
+    write_policy: packet.write_policy,
+    source_command: "helix closure evidence-patch --summary-json",
+    view_command: packet.view_command,
+    findings: packet.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+  };
+}
+
 function summarizeClosureOverview(overview: ProjectClosureOverview) {
   return {
     schema_version: "project-closure-overview-summary.v1",
@@ -4158,8 +4306,9 @@ closure
   .option("--limit <n>", "maximum queue items to include", "20")
   .option("--offset <n>", "zero-based queue item offset", "0")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { action?: string; limit?: string; offset?: string; json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { action?: string; limit?: string; offset?: string; json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
       process.stderr.write(
         `closure batch: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
@@ -4192,6 +4341,10 @@ closure
         limit,
         offset,
       });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeClosureBatchReport(report), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
         return;
@@ -4367,8 +4520,9 @@ closure
   )
   .option("--limit <n>", "maximum queue items to include", "20")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { action?: string; limit?: string; json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { action?: string; limit?: string; json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
       process.stderr.write(
         `closure evidence-patch: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
@@ -4394,6 +4548,10 @@ closure
         action: opts.action,
         limit,
       });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeClosureEvidencePatchPacket(packet), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
         return;

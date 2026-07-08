@@ -2711,13 +2711,13 @@ export function buildProjectRoadmapCurrentReport(
             ),
             command: roadmapClosureCommand(closurePhaseAction),
             batch_command: closurePhaseAction
-              ? `helix closure batch --action ${closurePhaseAction} --json`
-              : "helix closure batch --json",
+              ? `helix closure batch --action ${closurePhaseAction} --summary-json`
+              : "helix closure batch --summary-json",
             review_command: closurePhaseAction
               ? `helix closure review-bundle --action ${closurePhaseAction} --summary-json`
               : "helix closure review-bundle --json",
             evidence_patch_command: closureEvidenceAction
-              ? `helix closure evidence-patch --action ${closureEvidenceAction} --json`
+              ? `helix closure evidence-patch --action ${closureEvidenceAction} --summary-json`
               : null,
             evidence_probe_command: closureEvidenceAction
               ? closureEvidenceProbeCommand(closureEvidenceAction)
@@ -3332,7 +3332,7 @@ function buildProjectRecoveryAutomationBoundaries(
     const approvalRequired = automationClass === "approval_required";
 	    const evidencePatchCommand =
 	      lane.action === "collect_evidence" || lane.action === "repair_failed_evidence"
-	        ? `helix closure evidence-patch --action ${lane.action} --json`
+	        ? `helix closure evidence-patch --action ${lane.action} --summary-json`
 	        : null;
     const closureApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
     const closureApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
