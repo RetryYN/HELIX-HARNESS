@@ -3880,6 +3880,45 @@ describe("L7 CLI surface closure", () => {
         write_policy: "read-only",
       });
 
+      const evidenceProbeSummaryJson = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(evidenceProbeSummaryJson.status).toBe(0);
+      expect(JSON.parse(evidenceProbeSummaryJson.stdout)).toMatchObject({
+        schema_version: "project-closure-evidence-probe-summary.v1",
+        selected_action: "collect_evidence",
+        dry_run: true,
+        can_execute: true,
+        command: "bun run test:fast",
+        target_plan_ids: ["PLAN-L7-999-new-impl"],
+        execution: null,
+        probe_record_output: {
+          requested: false,
+          path: null,
+          written: false,
+          sha256: null,
+        },
+        placeholder_resolution: {
+          fillable_count: 0,
+          remaining_count: 3,
+          remaining_placeholders: ["<green command>", "<iso8601>", "<output>"],
+        },
+        apply_readiness: {
+          status: "dry_run",
+          allowed_to_materialize: false,
+        },
+        write_policy: "read-only",
+        source_command: "helix closure evidence-probe --summary-json",
+        full_source_command: "helix closure evidence-probe --json",
+        view_command: "helix progress tree-view --json",
+      });
+
       const evidenceProbeText = runCliIn(root, [
         "closure",
         "evidence-probe",
@@ -4702,10 +4741,11 @@ describe("L7 CLI surface closure", () => {
         warning_count: expect.any(Number),
         full_json_pointer_audit: {
           status: "pass",
+          total_count: 0,
+          allowed_count: 0,
           unexpected_count: 0,
-          allowed_patterns: [
-            "helix closure evidence-probe <args> --execute <args> --json",
-          ],
+          allowed_patterns: [],
+          pointers: [],
           unexpected_pointers: [],
         },
         write_policy: "read-only",
@@ -5009,6 +5049,53 @@ describe("L7 CLI surface closure", () => {
       });
       const record = JSON.parse(readFileSync(probePath, "utf8"));
       expect(record).toMatchObject({
+        schema_version: "project-closure-evidence-probe.v1",
+        execution: {
+          status: "passed",
+          command: "bun run test:fast",
+        },
+      });
+
+      const summaryProbePath = join(root, "tmp", "probe-record-summary.json");
+      const summaryProbe = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        summaryProbePath,
+        "--summary-json",
+      ]);
+      expect(summaryProbe.status).toBe(0);
+      const summaryPayload = JSON.parse(summaryProbe.stdout);
+      expect(summaryPayload).toMatchObject({
+        schema_version: "project-closure-evidence-probe-summary.v1",
+        selected_action: "repair_failed_evidence",
+        dry_run: false,
+        command: "bun run test:fast",
+        can_execute: true,
+        execution: {
+          status: "passed",
+          exit_code: 0,
+          command: "bun run test:fast",
+          session_id: expect.stringMatching(/^closure-probe:/),
+          correlation_id: expect.stringMatching(/^closure-correlation:/),
+          output_digest: expect.stringMatching(/^sha256:/),
+        },
+        probe_record_output: {
+          requested: true,
+          path: summaryProbePath,
+          written: true,
+          sha256: expect.stringMatching(/^sha256:/),
+        },
+        source_command: "helix closure evidence-probe --summary-json",
+        full_source_command: "helix closure evidence-probe --json",
+      });
+      const summaryRecord = JSON.parse(readFileSync(summaryProbePath, "utf8"));
+      expect(summaryRecord).toMatchObject({
         schema_version: "project-closure-evidence-probe.v1",
         execution: {
           status: "passed",

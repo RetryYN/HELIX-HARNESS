@@ -282,6 +282,7 @@ import {
   type ProjectClosureDecisionDraftPacket,
   type ProjectClosureEvidencePatchPacket,
   type ProjectClosureEvidencePlan,
+  type ProjectClosureEvidenceProbePacket,
   type ProjectClosureOverview,
   type ProjectClosureReviewBundle,
   type ProjectClosureTransitionPlan,
@@ -4039,6 +4040,14 @@ function summaryJsonCommand(command: string): string {
   return command.replace(/ --json$/, " --summary-json");
 }
 
+type ProbeRecordOutput = {
+  requested: boolean;
+  path: string | null;
+  written: boolean;
+  bytes: number;
+  sha256: string | null;
+};
+
 function summarizeProjectArtifactRemapBatchReport(report: ProjectArtifactRemapBatchReport) {
   return {
     schema_version: "project-artifact-remap-batch-summary.v1",
@@ -4232,6 +4241,64 @@ function appendMaterializedFrontmatterBlock(content: string, lines: string[]): s
   }
   const tail = content.slice(end);
   return `${head}\n${lines.join("\n")}${tail}`;
+}
+
+function summarizeClosureEvidenceProbePacket(
+  packet: ProjectClosureEvidenceProbePacket,
+  probeRecordOutput: ProbeRecordOutput,
+) {
+  return {
+    schema_version: "project-closure-evidence-probe-summary.v1",
+    source_clock: packet.source_clock,
+    selected_action: packet.selected_action,
+    dry_run: packet.dry_run,
+    command: packet.command,
+    can_execute: packet.can_execute,
+    command_source: packet.command_source,
+    confidence: packet.confidence,
+    target_plan_ids: packet.target_plan_ids,
+    projection_binding: packet.projection_binding
+      ? {
+          target_tables: packet.projection_binding.target_tables,
+          source_surfaces: packet.projection_binding.source_surfaces,
+          required_fields: packet.projection_binding.required_fields,
+          postcheck_commands: packet.projection_binding.postcheck_commands.map(summaryJsonCommand),
+        }
+      : null,
+    execution: packet.execution
+      ? {
+          command: packet.execution.command,
+          session_id: packet.execution.session_id ?? null,
+          correlation_id: packet.execution.correlation_id ?? null,
+          completed_at: packet.execution.completed_at,
+          exit_code: packet.execution.exit_code,
+          status: packet.execution.status,
+          output_digest: packet.execution.output_digest,
+          stdout_bytes: packet.execution.stdout_bytes,
+          stderr_bytes: packet.execution.stderr_bytes,
+        }
+      : null,
+    probe_record_output: probeRecordOutput,
+    placeholder_resolution: {
+      fillable_count: packet.placeholder_resolution.fillable_placeholders.length,
+      remaining_count: packet.placeholder_resolution.remaining_placeholders.length,
+      required_action: packet.placeholder_resolution.required_action,
+      fillable_placeholders: packet.placeholder_resolution.fillable_placeholders,
+      remaining_placeholders: packet.placeholder_resolution.remaining_placeholders,
+    },
+    apply_readiness: packet.apply_readiness,
+    postcheck_commands: packet.postcheck_commands.map(summaryJsonCommand),
+    finding_count: packet.findings.length,
+    sample_findings: packet.findings.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((finding) => ({
+      severity: finding.severity,
+      code: finding.code,
+      detail: finding.detail,
+    })),
+    write_policy: packet.write_policy,
+    source_command: "helix closure evidence-probe --summary-json",
+    full_source_command: packet.source_command,
+    view_command: packet.view_command,
+  };
 }
 
 function summarizeClosureMaterializePacket(packet: ProjectClosureEvidenceMaterializePacket) {
@@ -5095,6 +5162,7 @@ closure
   .option("--execute", "execute the safe command and return digest-only probe evidence")
   .option("--out <path>", "write the executed probe JSON record to a new local file")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
   .action(
     (opts: {
@@ -5103,6 +5171,7 @@ closure
       execute?: boolean;
       out?: string;
       json?: boolean;
+      summaryJson?: boolean;
       fromDb?: boolean;
     }) => {
       if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
@@ -5126,6 +5195,13 @@ closure
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
         const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const initialProbeRecordOutput: ProbeRecordOutput = {
+          requested: opts.out !== undefined,
+          path: opts.out ?? null,
+          written: false,
+          bytes: 0,
+          sha256: null,
+        };
         const dryRunPacket = buildProjectClosureEvidenceProbePacket(snapshot, {
           action: opts.action,
           limit,
@@ -5137,7 +5213,11 @@ closure
             limit,
             dryRun: false,
           });
-          if (opts.json) {
+          if (opts.summaryJson) {
+            process.stdout.write(
+              `${JSON.stringify(summarizeClosureEvidenceProbePacket(blockedPacket, initialProbeRecordOutput), null, 2)}\n`,
+            );
+          } else if (opts.json) {
             process.stdout.write(`${JSON.stringify(blockedPacket, null, 2)}\n`);
           } else {
             process.stdout.write(
@@ -5157,19 +5237,7 @@ closure
           dryRun: opts.execute !== true,
           execution,
         });
-        let probeRecordOutput: {
-          requested: boolean;
-          path: string | null;
-          written: boolean;
-          bytes: number;
-          sha256: string | null;
-        } = {
-          requested: opts.out !== undefined,
-          path: opts.out ?? null,
-          written: false,
-          bytes: 0,
-          sha256: null,
-        };
+        let probeRecordOutput = initialProbeRecordOutput;
         if (opts.out !== undefined) {
           if (opts.execute !== true || packet.execution === null) {
             process.stderr.write("closure evidence-probe: --out requires --execute with probe execution\n");
@@ -5195,6 +5263,12 @@ closure
         }
         if (opts.json) {
           process.stdout.write(`${JSON.stringify({ ...packet, probe_record_output: probeRecordOutput }, null, 2)}\n`);
+          return;
+        }
+        if (opts.summaryJson) {
+          process.stdout.write(
+            `${JSON.stringify(summarizeClosureEvidenceProbePacket(packet, probeRecordOutput), null, 2)}\n`,
+          );
           return;
         }
         process.stdout.write(
@@ -6217,16 +6291,8 @@ progress
           .map(([command, count]) => ({
             command,
             count,
-            allowed:
-              command.startsWith("helix closure evidence-probe ") &&
-              command.includes(" --execute ") &&
-              command.endsWith(" --json"),
-            reason:
-              command.startsWith("helix closure evidence-probe ") &&
-              command.includes(" --execute ") &&
-              command.endsWith(" --json")
-                ? "probe record generation requires the executable JSON surface"
-                : "view pointer should use an available --summary-json surface",
+            allowed: false,
+            reason: "view pointer should use an available --summary-json surface",
           }));
         const unexpectedFullJsonPointers = fullJsonPointers.filter((pointer) => !pointer.allowed);
         process.stdout.write(
@@ -6264,9 +6330,7 @@ progress
                   (sum, pointer) => sum + pointer.count,
                   0,
                 ),
-                allowed_patterns: [
-                  "helix closure evidence-probe <args> --execute <args> --json",
-                ],
+                allowed_patterns: [],
                 pointers: fullJsonPointers,
                 unexpected_pointers: unexpectedFullJsonPointers,
               },

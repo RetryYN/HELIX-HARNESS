@@ -46,6 +46,7 @@ const SUMMARY_CAPABLE_HELIX_PREFIXES = [
   "helix closure batch",
   "helix closure evidence-plan",
   "helix closure evidence-patch",
+  "helix closure evidence-probe",
   "helix closure evidence-materialize",
   "helix closure evidence-approval-draft",
   "helix closure evidence-apply",

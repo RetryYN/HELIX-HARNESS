@@ -1681,7 +1681,7 @@ describe("visualization Tree View adapter", () => {
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: [
-        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
       ],
     });
     expect(
@@ -1700,7 +1700,7 @@ describe("visualization Tree View adapter", () => {
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: [
-        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+        "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
       ],
     });
     const packets = closure?.children.find(

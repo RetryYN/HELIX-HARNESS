@@ -1558,14 +1558,7 @@ export function checkVisualizationTreeViewBoundary(
       const fullJsonCommands = allCommands.filter(
         (command) => command.includes(" --json") && !command.includes(" --summary-json"),
       );
-      const unexpectedFullJsonCommands = fullJsonCommands.filter(
-        (command) =>
-          !(
-            command.startsWith("helix closure evidence-probe ") &&
-            command.includes(" --execute ") &&
-            command.endsWith(" --json")
-          ),
-      );
+      const unexpectedFullJsonCommands = fullJsonCommands;
       if (unexpectedFullJsonCommands.length > 0) {
         violations.push(
           `unexpected_full_json=${[...new Set(unexpectedFullJsonCommands)].slice(0, 5).join("|")}`,
@@ -1579,7 +1572,7 @@ export function checkVisualizationTreeViewBoundary(
         ok: violations.length === 0,
         messages: [
           `${prefix}: roots=${roots.join(",") || "-"} project_nodes=${projectIds.length} harness_nodes=${harnessIds.length} policy=project-view-current-location harness-view-telemetry command=helix progress tree-view --summary-json full=helix progress tree-view --json`,
-          `visualization-tree-view-boundary - full-json-audit total=${fullJsonCommands.length} unexpected=${unexpectedFullJsonCommands.length} allowed=closure-evidence-probe-execute`,
+          `visualization-tree-view-boundary - full-json-audit total=${fullJsonCommands.length} unexpected=${unexpectedFullJsonCommands.length} allowed=none`,
           `visualization-tree-view-boundary - project-required=${requiredProjectIds.join(",")}`,
           `visualization-tree-view-boundary - harness-required=${requiredHarnessIds.join(",")}`,
           ...violations.map(
