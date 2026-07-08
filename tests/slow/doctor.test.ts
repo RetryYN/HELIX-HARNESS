@@ -2569,6 +2569,9 @@ describe("runDoctor", () => {
         "source=helix progress tree-view --summary-json",
       );
       expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
+        "visualization-tree-view-summary-surface - catalog=pass expected=19 missing=0 unexpected_surfaces=0 source_mismatches=0",
+      );
+      expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
         "closure-evidence-probe:helix closure evidence-probe --summary-json",
       );
       expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(

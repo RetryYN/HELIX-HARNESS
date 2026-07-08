@@ -3,6 +3,7 @@ import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, wr
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -4759,10 +4760,15 @@ describe("L7 CLI surface closure", () => {
         },
         summary_surface_command_audit: {
           status: "pass",
-          checked_surface_count: 19,
+          catalog_status: "pass",
+          checked_surface_count: SUMMARY_SURFACE_CONTRACTS.length,
           excluded_surface_count: 2,
           unexpected_count: 0,
           allowed_fields: ["full_source_command", "full_view_command"],
+          expected_surfaces: SUMMARY_SURFACE_CONTRACTS.map((contract) => contract.surface),
+          missing_surfaces: [],
+          unexpected_surfaces: [],
+          source_command_mismatches: [],
           unexpected_commands: [],
           excluded_surfaces: expect.arrayContaining([
             expect.objectContaining({
@@ -4811,6 +4817,20 @@ describe("L7 CLI surface closure", () => {
         source_command: "helix progress tree-view --summary-json",
         full_source_command: "helix progress tree-view --json",
       });
+      const parsedTreeSummary = JSON.parse(treeSummary.stdout);
+      expect(
+        parsedTreeSummary.summary_surface_command_audit.surfaces.map(
+          (surface: { surface: string; source_command: string }) => ({
+            surface: surface.surface,
+            source_command: surface.source_command,
+          }),
+        ),
+      ).toEqual(
+        SUMMARY_SURFACE_CONTRACTS.map((contract) => ({
+          surface: contract.surface,
+          source_command: contract.source_command,
+        })),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
