@@ -2670,6 +2670,78 @@ describe("runDoctor", () => {
       expect(recoveryHandoff.messages.join("\n")).toContain("status=none");
       expect(recoveryHandoff.messages.join("\n")).toContain("db: status=none");
 
+      const restoreRecoveryHandoffSummary = (): void => {
+        upsertRow(db, {
+          table: "project_vmodel_handoff_summary",
+          primaryKey: "summary_id",
+          row: {
+            summary_id: "recovery_handoff",
+            snapshot_id: "project-current-location:latest",
+            status: "none",
+            handoff_total: 0,
+            machine_pending: 0,
+            approval_pending: 0,
+            approval_required: 0,
+            approval_rejected: 0,
+            apply_ready: 0,
+            scope_match: 0,
+            scope_mismatch: 0,
+            scope_missing: 0,
+            valid_for_apply: 0,
+            invalid_for_apply: 0,
+            recovery_gate_status: "none",
+            effective_phase: "none",
+            approval_state: "not_required",
+            approval_status: null,
+            scope_status: null,
+            decision_id: null,
+            materialize_status: null,
+            reviewed_candidate_count: null,
+            command: "helix vmodel fit --json",
+            reason_codes: "handoff.next.missing,handoff.status.none",
+            reasons: "total=0",
+            indexed_at: "2026-07-08T00:04:00.000Z",
+          },
+        });
+      };
+
+      db.prepare(
+        `UPDATE project_vmodel_handoff_summary
+         SET recovery_gate_status = ?, reason_codes = ?
+         WHERE summary_id = ?`,
+      ).run("approval_pending", "handoff.status.approval_pending", "recovery_handoff");
+      const driftedRecoveryHandoff = checkRecoveryHandoffBinding(root, db);
+      expect(driftedRecoveryHandoff.ok).toBe(false);
+      expect(driftedRecoveryHandoff.messages.join("\n")).toContain(
+        "recovery-handoff-binding - violation: db.recovery_gate_status=approval_pending",
+      );
+      expect(driftedRecoveryHandoff.messages.join("\n")).toContain(
+        "recovery-handoff-binding - violation: db.reason_code_missing=handoff.next.missing",
+      );
+      restoreRecoveryHandoffSummary();
+
+      db.prepare(
+        `UPDATE project_vmodel_handoff_summary
+         SET approval_state = ?
+         WHERE summary_id = ?`,
+      ).run("pending_human_review", "recovery_handoff");
+      const approvalStateDrift = checkRecoveryHandoffBinding(root, db);
+      expect(approvalStateDrift.ok).toBe(false);
+      expect(approvalStateDrift.messages.join("\n")).toContain(
+        "recovery-handoff-binding - violation: db.approval_state=pending_human_review",
+      );
+      restoreRecoveryHandoffSummary();
+
+      db.prepare("DELETE FROM project_vmodel_handoff_summary WHERE summary_id = ?").run(
+        "recovery_handoff",
+      );
+      const missingRecoveryHandoff = checkRecoveryHandoffBinding(root, db);
+      expect(missingRecoveryHandoff.ok).toBe(false);
+      expect(missingRecoveryHandoff.messages.join("\n")).toContain(
+        "recovery-handoff-binding - violation: db_row=missing",
+      );
+      restoreRecoveryHandoffSummary();
+
       const recoveryExit = checkRecoveryExitBinding(root, db);
       expect(recoveryExit.ok).toBe(true);
       expect(recoveryExit.messages.join("\n")).toContain("recovery-exit-binding - OK");
