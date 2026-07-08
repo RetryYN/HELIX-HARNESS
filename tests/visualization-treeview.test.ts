@@ -1859,12 +1859,27 @@ describe("visualization Tree View adapter", () => {
       id: "project/current-location/artifact-remap/batch/reverify",
       label: "reverify batch",
       description: "count=1",
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: ["helix artifact-remap batch --status reverify --summary-json"],
+      },
     });
     expect(artifactRemap?.children[2]).toMatchObject({
       id: "project/current-location/artifact-remap/batch/missing",
       label: "missing batch",
       description: "count=1",
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: ["helix artifact-remap batch --status missing --summary-json"],
+      },
     });
+    expect(
+      artifactRemapLayers?.children
+        .filter((child) => child.id === "project/current-location/artifact-remap/layers/L6")
+        .map((child) => child.command?.arguments[0]),
+    ).toEqual(["helix artifact-remap batch --status reverify --layer L6 --summary-json"]);
     expect(
       artifactRemap?.children.slice(3).map((child) => `${child.id}:${child.description}`),
     ).toEqual([

@@ -274,6 +274,7 @@ import {
   buildProjectRoadmapCurrentReport,
   isProjectArtifactRemapStatus,
   isProjectClosureQueueNextAction,
+  type ProjectArtifactRemapBatchReport,
   type ProjectClosureBatchReport,
   type ProjectClosureEvidenceApprovalDraftPacket,
   type ProjectClosureEvidenceApplyPlan,
@@ -3933,6 +3934,83 @@ const artifactRemap = program
   .command("artifact-remap")
   .description("Project artifact remap read-only automation surfaces");
 
+function summaryJsonCommand(command: string): string {
+  return command.replace(/ --json$/, " --summary-json");
+}
+
+function summarizeProjectArtifactRemapBatchReport(report: ProjectArtifactRemapBatchReport) {
+  return {
+    schema_version: "project-artifact-remap-batch-summary.v1",
+    source_clock: report.source_clock,
+    selected_layer: report.selected_layer,
+    selected_status: report.selected_status,
+    current: report.current,
+    drive_route: {
+      route_id: report.drive_route.routeId,
+      status: report.drive_route.status,
+      selected_model: report.drive_route.selectedModel,
+      must_return_to_design: report.drive_route.mustReturnToDesign,
+    },
+    layers: report.layers.map((layer) => ({
+      layer: layer.layer,
+      label: layer.label,
+      status: layer.status,
+      drive_model: layer.driveModel,
+      total: layer.total,
+      done: layer.done,
+      missing: layer.missing,
+      reverify: layer.reverify,
+      command: summaryJsonCommand(layer.batchCommand),
+    })),
+    total: report.total,
+    listed: report.listed,
+    omitted: report.omitted,
+    limit: report.limit,
+    counts: report.counts,
+    recommended_next_action: {
+      model: report.recommended_next_action.model,
+      command: summaryJsonCommand(report.recommended_next_action.command),
+      human_required: report.recommended_next_action.human_required,
+      reason: report.recommended_next_action.reason,
+    },
+    item_count: report.items.length,
+    sample_item_count: Math.min(report.items.length, 10),
+    sample_items: report.items.slice(0, 10).map((item) => ({
+      kind: item.kind,
+      artifact_id: item.artifactId,
+      source_path: item.sourcePath,
+      legacy_layer: item.legacyLayer,
+      l12_layer: item.l12Layer,
+      coverage_id: item.coverageId,
+      status: item.status,
+      drive_model: item.driveModel,
+      required_action: item.requiredAction,
+      zip_source_binding_ids: item.zipSourceBindingIds,
+      tailoring_rule_ids: item.tailoringRuleIds,
+      tailoring_detail_levels: item.tailoringDetailLevels,
+      closure_link: item.closureLink
+        ? {
+            plan_id: item.closureLink.planId,
+            next_action: item.closureLink.nextAction,
+            evidence_status: item.closureLink.evidenceStatus,
+            remediation_status: item.closureLink.remediationStatus,
+            batch_command: summaryJsonCommand(item.closureLink.batchCommand),
+            review_command: summaryJsonCommand(item.closureLink.reviewCommand),
+            transition_command: summaryJsonCommand(item.closureLink.transitionCommand),
+            priority: item.closureLink.priority,
+          }
+        : null,
+      doc_dependency_count: item.docDependencies.length,
+      implementation_dependency_count: item.implementationDependencies.length,
+      reason_count: item.reasons.length,
+    })),
+    write_policy: report.write_policy,
+    source_command: "helix artifact-remap batch --summary-json",
+    full_source_command: report.source_command,
+    view_command: report.view_command,
+  };
+}
+
 artifactRemap
   .command("batch")
   .description("emit a machine-readable L12 artifact remap batch")
@@ -3940,6 +4018,7 @@ artifactRemap
   .option("--status <status>", "done | missing | reverify")
   .option("--limit <n>", "maximum remap items to include", "20")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
   .action(
     (opts: {
@@ -3947,6 +4026,7 @@ artifactRemap
       status?: string;
       limit?: string;
       json?: boolean;
+      summaryJson?: boolean;
       fromDb?: boolean;
     }) => {
       if (opts.status !== undefined && !isProjectArtifactRemapStatus(opts.status)) {
@@ -3982,6 +4062,12 @@ artifactRemap
           status: opts.status,
           limit,
         });
+        if (opts.summaryJson) {
+          process.stdout.write(
+            `${JSON.stringify(summarizeProjectArtifactRemapBatchReport(report), null, 2)}\n`,
+          );
+          return;
+        }
         if (opts.json) {
           process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
           return;

@@ -82,6 +82,10 @@ function tooltipLines(
   ].join("\n");
 }
 
+function summaryJsonPointer(command: string): string {
+  return command.replace(/ --json$/, " --summary-json");
+}
+
 function artifactStatusDescription(
   item: VmodelHandoffArtifactStatus | undefined,
   fallbackPath: string,
@@ -1790,9 +1794,9 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               id: `project/current-location/artifact-remap/layers/${layer.layer}`,
               label: `${layer.layer} ${layer.label}`,
               description: `${layer.status} ${layer.drive_model} total=${layer.total} done=${layer.done} missing=${layer.missing} reverify=${layer.reverify}`,
-              tooltip: `${layer.required_action}\n${layer.batch_command}\n${layer.reasons.join("; ")}`,
+              tooltip: `${layer.required_action}\n${summaryJsonPointer(layer.batch_command)}\n${layer.reasons.join("; ")}`,
               contextValue: `artifact-remap.layer.${layer.status}`,
-              commandPointer: layer.batch_command,
+              commandPointer: summaryJsonPointer(layer.batch_command),
             }),
           ),
         }),
@@ -1800,17 +1804,17 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           id: "project/current-location/artifact-remap/batch/reverify",
           label: "reverify batch",
           description: `count=${current.artifact_remap.reverify}`,
-          tooltip: "helix artifact-remap batch --status reverify --json",
+          tooltip: "helix artifact-remap batch --status reverify --summary-json",
           contextValue: "artifact-remap.batch.reverify",
-          commandPointer: "helix artifact-remap batch --status reverify --json",
+          commandPointer: "helix artifact-remap batch --status reverify --summary-json",
         }),
         node({
           id: "project/current-location/artifact-remap/batch/missing",
           label: "missing batch",
           description: `count=${current.artifact_remap.missing}`,
-          tooltip: "helix artifact-remap batch --status missing --json",
+          tooltip: "helix artifact-remap batch --status missing --summary-json",
           contextValue: "artifact-remap.batch.missing",
-          commandPointer: "helix artifact-remap batch --status missing --json",
+          commandPointer: "helix artifact-remap batch --status missing --summary-json",
         }),
         ...current.artifact_remap.items.slice(0, 80).map((item) =>
           node({

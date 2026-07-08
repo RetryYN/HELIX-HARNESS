@@ -2987,6 +2987,51 @@ describe("L7 CLI surface closure", () => {
           }),
         ],
       });
+      const remapBatchSummaryJson = runCliIn(root, [
+        "artifact-remap",
+        "batch",
+        "--layer",
+        "L6",
+        "--status",
+        "reverify",
+        "--summary-json",
+      ]);
+      expect(remapBatchSummaryJson.status).toBe(0);
+      const remapBatchSummary = JSON.parse(remapBatchSummaryJson.stdout);
+      expect(remapBatchSummary).toMatchObject({
+        schema_version: "project-artifact-remap-batch-summary.v1",
+        selected_layer: "L6",
+        selected_status: "reverify",
+        total: 1,
+        listed: 1,
+        counts: {
+          reverify: 1,
+        },
+        recommended_next_action: {
+          model: "Reverse",
+          command: "helix closure batch --action collect_evidence --summary-json",
+        },
+        source_command: "helix artifact-remap batch --summary-json",
+        full_source_command: "helix artifact-remap batch --json",
+        sample_items: [
+          expect.objectContaining({
+            artifact_id: "PLAN-L7-999-new-impl",
+            status: "reverify",
+            drive_model: "Reverse",
+            zip_source_binding_ids: expect.arrayContaining([
+              "zip-source:l12-level-definition",
+              "zip-source:catalog",
+            ]),
+            tailoring_rule_ids: ["HVM-TAILOR-DETAIL-CONTRACT"],
+            tailoring_detail_levels: ["詳細"],
+            closure_link: expect.objectContaining({
+              next_action: "collect_evidence",
+              evidence_status: "partial",
+              batch_command: "helix closure batch --action collect_evidence --summary-json",
+            }),
+          }),
+        ],
+      });
       const remapBatchText = runCliIn(root, [
         "artifact-remap",
         "batch",
