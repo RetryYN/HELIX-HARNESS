@@ -162,4 +162,30 @@ describe("design-language lint", () => {
 
     expect(missing).toEqual([]);
   });
+
+  it("U-DESLANG-010: ignores generated session handover markdown while keeping hand-authored handover docs", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-design-language-handover-"));
+    try {
+      mkdirSync(join(root, "docs", "handover"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "handover", "session-handover-2026-07-08.md"),
+        "# Generated Handover\n\nThis generated packet contains machine field names only.\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "handover", "SESSION-2026-07-08-handover.md"),
+        "# 引き継ぎ\n\n本文は日本語で記録する。\n",
+        "utf8",
+      );
+
+      const docs = loadDesignLanguageDocs(root);
+
+      expect(docs.map((doc) => doc.path)).toEqual([
+        "docs/handover/SESSION-2026-07-08-handover.md",
+      ]);
+      expect(analyzeDesignLanguage(docs, { baselineViolations: 0 }).ok).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

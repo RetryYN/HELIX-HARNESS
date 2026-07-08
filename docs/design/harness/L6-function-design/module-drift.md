@@ -115,6 +115,10 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 - **対象**: `docs/adr/`、`docs/design/`、`docs/governance/`、`docs/test-design/`、`docs/process/`、
   `docs/plans/`、`docs/handover/` と adapter ルール markdown。inline code、URL、frontmatter、開発用語、
   コマンド、識別子は除外し、見出し / 説明文が英語 prose のまま増えた場合を検出する。
+- **生成 handover 境界**: `docs/handover/session-handover-YYYY-MM-DD.md` は通常 handover の正本ではなく、
+  セッション再開用に出力される機械生成 packet であり、`.gitignore` 済み runtime artifact として扱う。
+  `loadDesignLanguageDocs` はこの pattern だけを除外する。`docs/handover/SESSION-...` など手書きまたは正本の
+  handover docs は引き続き検査対象に残すため、handover 配下の日本語 prose 規律は維持する。
 - **baseline**: 2026-07-02 の拡張監査で残存する既存英語 prose debt を確認する。現時点では既存 debt を
   一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS` と `DESIGN_LANGUAGE_BASELINE_FINGERPRINT` を固定する。
   件数増加だけでなく、同件数の英語 prose 差し替えも fingerprint drift として fail-close する。純粋な日本語化で

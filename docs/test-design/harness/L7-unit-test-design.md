@@ -612,6 +612,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-DESLANG-003 | baseline ratchet | 既存 debt 件数以内は OK、baseline を超えた英語 prose 増加は violation |
 | U-DESLANG-004 | real repo guard | `loadDesignLanguageDocs(process.cwd())` + `analyzeDesignLanguage` は PLAN / 設計 / テスト設計 / process / governance / handover / adapter ルールを含む現 baseline を超えず、`doctor` に `design-language` を surface して `runDoctor.ok` に連動する |
 | U-DESLANG-005 | fingerprint ratchet | 既存英語 prose debt と同件数のまま別の英語 prose へ差し替えた場合、`DESIGN_LANGUAGE_BASELINE_FINGERPRINT` との drift として violation |
+| U-DESLANG-010 | `loadDesignLanguageDocs` handover 境界 | `docs/handover/session-handover-YYYY-MM-DD.md` は機械生成 session packet として除外するが、`docs/handover/SESSION-...` など手書き handover docs は検査対象に残す |
 
 ### U-DDDTDD 追補 (DDD/TDD strictness)
 
@@ -775,7 +776,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 - **module-drift.md asset-drift alias (loadAssetDriftInput/analyzeAssetDrift/assetDriftMessages/checkAssetDrift) → U-ASSETDRIFT-001〜006** (内部資産 + prompt template cutover 差分、FR-L1-49。legacy source path residue / legacy command residue / docs-skills vacancy / guard allowlist missing を doctor hard guard。孤児 0)
 - **module-drift.md change-impact addendum (analyzeChangeImpact/analyzeChangeSetIntegrity/parseGitPorcelain/loadChangedFiles/changeImpactMessages) → U-CHGIMPACT-001〜007** (コード変更に対する設計・テスト更新漏れ検出と、未承認 L7 実装着手の PLAN 契約検出。doctor hard guard。孤児 0)
 - **module-drift.md coding-rules addendum (analyzeCodingRules/loadCodingRuleDocs/loadCodingWorkflowDocs/codingRulesMessages/checkCodingRules) → U-CODE-001〜011** (requirements-level coding rule SSoT + workflow placement + error/module-boundary + machine-surface-language + canonical source-boundary matrix の機械検出。doctor hard guard。孤児 0)
-- **module-drift.md design-language addendum (analyzeDesignLanguage/loadDesignLanguageDocs/designLanguageMessages/checkDesignLanguage) → U-DESLANG-001〜005** (PLAN / 設計 / テスト設計 / process / governance / handover / adapter ルールの日本語 prose baseline + fingerprint ratchet。doctor hard guard。孤児 0)
+- **module-drift.md design-language addendum (analyzeDesignLanguage/loadDesignLanguageDocs/designLanguageMessages/checkDesignLanguage) → U-DESLANG-001〜005 / U-DESLANG-010** (PLAN / 設計 / テスト設計 / process / governance / handover / adapter ルールの日本語 prose baseline + fingerprint ratchet。生成 session handover だけを除外し、手書き handover docs は対象に残す。doctor hard guard。孤児 0)
 - **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜010** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT + canonical source-boundary matrix の機械検出。doctor hard guard。孤児 0)
 - **team.ts §2.2 schema / 関数 (teamDefinitionSchema/mustSerialize) + team/launch-policy.ts → U-TEAM-001〜003** (add-feature 差分、IMP-050。孤児 0)
 - **backfill-pairing.md §2.3 関数 (parseRequires/parseGlossaryTerms/normalizeTerm/parsePlan/analyzeBackfill/loadBackfillDocs/backfillMessages/checkBackfill) → U-BACKFILL-001〜006** (add-feature 差分、IMP-051。normalizeTerm は parseGlossaryTerms/analyzeBackfill の内部パス経由で被覆。checkBackfill は doctor/index.ts の try-catch ラッパーで U-BACKFILL-006 実 repo ガードに内包。孤児 0)

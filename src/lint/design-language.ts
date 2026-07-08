@@ -116,6 +116,11 @@ function isReadmeLike(path: string): boolean {
   return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
 }
 
+function isGeneratedDoc(path: string): boolean {
+  const normalized = normalizeRel(path);
+  return /^docs\/handover\/session-handover-\d{4}-\d{2}-\d{2}\.md$/.test(normalized);
+}
+
 function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]): void {
   for (const entry of readdirSync(absDir, { withFileTypes: true })) {
     const abs = join(absDir, entry.name);
@@ -125,7 +130,9 @@ function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]
     }
     if (!entry.isFile() || !entry.name.endsWith(".md") || isReadmeLike(entry.name)) continue;
     if (!statSync(abs).isFile()) continue;
-    acc.push({ path: normalizeRel(relative(repoRoot, abs)), text: readFileSync(abs, "utf8") });
+    const rel = normalizeRel(relative(repoRoot, abs));
+    if (isGeneratedDoc(rel)) continue;
+    acc.push({ path: rel, text: readFileSync(abs, "utf8") });
   }
 }
 
