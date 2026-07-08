@@ -1485,7 +1485,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix doctor --json"],
+        arguments: ["helix doctor --summary-json"],
       },
     });
     const zipSourceBindings = zipManifest?.children.find(

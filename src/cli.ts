@@ -1410,6 +1410,7 @@ program
   .option("--setup-smoke", "run the consumer setup smoke subset instead of full product doctor")
   .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and view surfaces")
   .action(
     (opts: {
       profile?: string;
@@ -1417,14 +1418,57 @@ program
       setupSmoke?: boolean;
       timing?: boolean;
       json?: boolean;
+      summaryJson?: boolean;
     }) => {
+      const doctorSummary = (report: {
+        ok?: boolean;
+        messages?: string[];
+        scope?: string;
+        timings?: Array<Record<string, unknown>>;
+      }) => {
+        const messages = Array.isArray(report.messages) ? report.messages : [];
+        const violations = messages.filter((message) => /violation|failed|error/i.test(message));
+        return {
+          schema_version: "doctor-summary.v1",
+          ok: report.ok === true,
+          profile: opts.profile ?? null,
+          scope: report.scope ?? opts.scope ?? "full",
+          setup_smoke: opts.setupSmoke === true,
+          timing_enabled: opts.timing === true,
+          message_count: messages.length,
+          violation_count: violations.length,
+          timing_count: Array.isArray(report.timings) ? report.timings.length : 0,
+          slow_timings: Array.isArray(report.timings)
+            ? report.timings
+                .slice()
+                .sort((a, b) => Number(b.duration_ms ?? 0) - Number(a.duration_ms ?? 0))
+                .slice(0, 10)
+                .map((timing) => ({
+                  id: timing.id,
+                  ok: timing.ok,
+                  duration_ms: timing.duration_ms,
+                  message_count: timing.message_count,
+                }))
+            : [],
+          sample_messages: messages.slice(0, 20),
+          violations: violations.slice(0, 20),
+          write_policy: "read-only",
+          source_command: "helix doctor --summary-json",
+          full_source_command: "helix doctor --json",
+        };
+      };
       if (opts.scope !== undefined && opts.scope !== "full" && opts.scope !== "toolchain") {
         const r = {
           ok: false,
           messages: [`doctor: scope - violation unknown scope ${opts.scope}`],
         };
-        if (opts.json) process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
-        else for (const m of r.messages) process.stdout.write(`${m}\n`);
+        if (opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(doctorSummary(r), null, 2)}\n`);
+        } else if (opts.json) {
+          process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+        } else {
+          for (const m of r.messages) process.stdout.write(`${m}\n`);
+        }
         process.exitCode = 1;
         return;
       }
@@ -1441,6 +1485,11 @@ program
                 setupSmoke: opts.setupSmoke === true,
                 timing: opts.timing === true,
               });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(doctorSummary(r), null, 2)}\n`);
+        process.exitCode = r.ok ? 0 : 1;
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
         process.exitCode = r.ok ? 0 : 1;

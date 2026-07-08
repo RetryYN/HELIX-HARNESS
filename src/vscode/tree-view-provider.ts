@@ -41,6 +41,7 @@ const SUMMARY_CAPABLE_HELIX_PREFIXES = [
   "helix recovery plan",
   "helix roadmap current",
   "helix vmodel fit",
+  "helix doctor",
   "helix artifact-remap batch",
   "helix closure batch",
   "helix closure evidence-plan",

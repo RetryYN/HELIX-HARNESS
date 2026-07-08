@@ -327,12 +327,34 @@ describe("L7 CLI surface closure", () => {
         }),
       ],
     });
+    const summary = runCli(["doctor", "--scope", "toolchain", "--timing", "--summary-json"]);
+    expect(summary.status, summary.stderr || summary.stdout).toBe(0);
+    expect(JSON.parse(summary.stdout)).toMatchObject({
+      schema_version: "doctor-summary.v1",
+      ok: true,
+      profile: null,
+      scope: "toolchain",
+      timing_enabled: true,
+      timing_count: expect.any(Number),
+      write_policy: "read-only",
+      source_command: "helix doctor --summary-json",
+      full_source_command: "helix doctor --json",
+    });
 
     const invalid = runCli(["doctor", "--scope", "unknown", "--json"]);
     expect(invalid.status).toBe(1);
     expect(JSON.parse(invalid.stdout)).toMatchObject({
       ok: false,
       messages: ["doctor: scope - violation unknown scope unknown"],
+    });
+    const invalidSummary = runCli(["doctor", "--scope", "unknown", "--summary-json"]);
+    expect(invalidSummary.status).toBe(1);
+    expect(JSON.parse(invalidSummary.stdout)).toMatchObject({
+      schema_version: "doctor-summary.v1",
+      ok: false,
+      scope: "unknown",
+      violation_count: 1,
+      violations: ["doctor: scope - violation unknown scope unknown"],
     });
   });
 
