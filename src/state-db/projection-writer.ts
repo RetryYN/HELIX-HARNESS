@@ -4531,6 +4531,10 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
 
   const handoffSummary = viewModel.project.current_location.vmodel_fit.handoff_summary;
   const recoveryHandoffGate = viewModel.project.current_location.vmodel_fit.recovery_handoff_gate;
+  const handoffReasonCodes = uniqueStrings([
+    ...handoffSummary.reason_codes,
+    ...recoveryHandoffGate.reason_codes,
+  ]);
   recordProjectionEvent(db, {
     table: "project_vmodel_handoff_summary",
     id: "recovery_handoff",
@@ -4558,7 +4562,7 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
       materialize_status: recoveryHandoffGate.materialize_status,
       reviewed_candidate_count: recoveryHandoffGate.reviewed_candidate_count,
       command: recoveryHandoffGate.command,
-      reason_codes: csv(handoffSummary.reason_codes),
+      reason_codes: csv(handoffReasonCodes),
       reasons: csv(handoffSummary.reasons),
       indexed_at: indexedAt,
     },

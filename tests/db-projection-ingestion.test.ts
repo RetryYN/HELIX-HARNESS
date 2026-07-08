@@ -291,6 +291,9 @@ describe("db projection ingestion detector", () => {
       });
       expect(handoffSummary?.reason_codes).toContain("approval.pending_human_review");
       expect(handoffSummary?.reason_codes).toContain("approval.scope.match");
+      expect(handoffSummary?.reason_codes).toContain("handoff.phase.approval");
+      expect(handoffSummary?.reason_codes).toContain("action.vmodel-fit:current_location");
+      expect(handoffSummary?.reason_codes).toContain("automation.approval");
       const operationScopes = db
         .prepare(
           `SELECT scope, status, observed_gap, design_ids, evidence_tables
