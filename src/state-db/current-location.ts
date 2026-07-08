@@ -1709,7 +1709,7 @@ const OPERATION_SCOPES = [
   {
     scope: "log_design",
     label: "ログ設計",
-    patterns: [/ログ/, /\blog\b/i, /\blogging\b/i],
+    patterns: [/(?<!バック)ログ/, /\blog\b/i, /\blogging\b/i],
     tables: ["design_declarations", "runtime_verification_events"],
   },
   {

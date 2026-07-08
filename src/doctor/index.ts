@@ -2282,6 +2282,127 @@ export function checkDriveModelBinding(
   }
 }
 
+export function checkProjectSkillBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["project-skill-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const report = buildProjectDriveModelReport(snapshot);
+      const binding = snapshot.skill_binding;
+      const violations: string[] = [];
+      if (!binding) {
+        violations.push("skill_binding=missing");
+      } else {
+        if (binding.status !== "ready") {
+          violations.push(`status=${binding.status}`);
+        }
+        if (binding.sourcePackage !== "ハイブリッド設計ドキュメントv1-fixed.zip") {
+          violations.push(`source_package=${binding.sourcePackage}`);
+        }
+        if (binding.command !== "helix skill suggest --plan <active-plan-path>") {
+          violations.push(`command=${binding.command}`);
+        }
+        if (binding.selectedModel !== report.selected_model) {
+          violations.push(
+            `selected_model=${binding.selectedModel} drive_model=${report.selected_model}`,
+          );
+        }
+        if (!binding.workflowModes.includes(report.selected_model)) {
+          violations.push(`workflow_modes missing selected_model=${report.selected_model}`);
+        }
+        if (
+          (snapshot.scrum_operation?.status === "active" ||
+            snapshot.scrum_operation?.status === "planned") &&
+          !binding.workflowModes.includes("Scrum")
+        ) {
+          violations.push("workflow_modes missing Scrum while scrum operation is active/planned");
+        }
+        if (
+          (snapshot.current.l12_layer ?? "").length > 0 &&
+          !binding.l12Layers.includes(snapshot.current.l12_layer ?? "")
+        ) {
+          violations.push(`l12_layers missing current=${snapshot.current.l12_layer}`);
+        }
+        for (const dependency of ["docs/skills/SKILL_MAP.md"]) {
+          if (!binding.docDependencies.includes(dependency)) {
+            violations.push(`doc_dependencies missing ${dependency}`);
+          }
+        }
+        for (const dependency of ["automation_assets", "skill_recommendations"]) {
+          if (!binding.implementationDependencies.includes(dependency)) {
+            violations.push(`implementation_dependencies missing ${dependency}`);
+          }
+        }
+        for (const sourceBinding of snapshot.scrum_operation?.sourceBindings ?? []) {
+          if (!binding.sourceBindings.includes(sourceBinding)) {
+            violations.push(`source_bindings missing ${sourceBinding}`);
+          }
+        }
+        if (binding.items.length === 0) {
+          violations.push("items=empty");
+        }
+        if (binding.requiredSkills === 0) {
+          violations.push("required_skills=0");
+        }
+        const rankIssues = binding.items.filter((item, index) => item.rank !== index + 1);
+        if (rankIssues.length > 0) {
+          violations.push(`rank_sequence=${rankIssues.map((item) => item.skillId).join(",")}`);
+        }
+        const missingBeforeWork = binding.items.filter(
+          (item) => item.tier === "required" && item.injectAt !== "before_work",
+        );
+        if (missingBeforeWork.length > 0) {
+          violations.push(
+            `required_inject_at=${missingBeforeWork.map((item) => `${item.skillId}:${item.injectAt}`).join(",")}`,
+          );
+        }
+        const unmatchedItems = binding.items.filter(
+          (item) => item.matchedDriveModels.length === 0 && item.matchedLayers.length === 0,
+        );
+        if (unmatchedItems.length > 0) {
+          violations.push(
+            `unmatched_items=${unmatchedItems.map((item) => item.skillId).join(",")}`,
+          );
+        }
+        const missingSkillPaths = binding.items.filter((item) => item.skillPath.length === 0);
+        if (missingSkillPaths.length > 0) {
+          violations.push(
+            `skill_path_missing=${missingSkillPaths.map((item) => item.skillId).join(",")}`,
+          );
+        }
+      }
+      const prefix =
+        violations.length === 0 ? "project-skill-binding - OK" : "project-skill-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${binding?.status ?? "missing"} selected=${binding?.selectedModel ?? "-"} workflow=${binding?.workflowModes.join(",") || "-"} layers=${binding?.l12Layers.join(",") || "-"} required=${binding?.requiredSkills ?? 0} recommended=${binding?.recommendedSkills ?? 0} optional=${binding?.optionalSkills ?? 0} command=${binding?.command ?? "-"}`,
+          `project-skill-binding - source=${binding?.sourcePackage ?? "-"} bindings=${binding?.sourceBindings.join(",") || "-"} doc=${binding?.docDependencies.join(",") || "-"} impl=${binding?.implementationDependencies.join(",") || "-"}`,
+          `project-skill-binding - items=${binding?.items.map((item) => `${item.rank}:${item.skillId}:${item.tier}:${item.score}:${item.injectAt}:drive=${item.matchedDriveModels.join("+") || "-"}:layers=${item.matchedLayers.join("+") || "-"}`).join(" | ") || "-"}`,
+          ...violations.map((violation) => `project-skill-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["project-skill-binding - violation: skill binding projection could not run"],
+      ok: false,
+    };
+  }
+}
+
 export function checkRecoveryRunwayBinding(
   repoRoot: string,
   prebuiltDb?: HarnessDb,
@@ -5966,6 +6087,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const l12CompatibilityBinding = checkL12CompatibilityBinding(deps.repoRoot, sharedProjectionDb);
   const roadmapCurrentBinding = checkRoadmapCurrentBinding(deps.repoRoot, sharedProjectionDb);
   const driveModelBinding = checkDriveModelBinding(deps.repoRoot, sharedProjectionDb);
+  const projectSkillBinding = checkProjectSkillBinding(deps.repoRoot, sharedProjectionDb);
   const recoveryRunwayBinding = checkRecoveryRunwayBinding(deps.repoRoot, sharedProjectionDb);
   const recoveryHandoffBinding = checkRecoveryHandoffBinding(deps.repoRoot, sharedProjectionDb);
   const recoveryExitBinding = checkRecoveryExitBinding(deps.repoRoot, sharedProjectionDb);
@@ -6094,6 +6216,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       l12CompatibilityBinding.ok &&
       roadmapCurrentBinding.ok &&
       driveModelBinding.ok &&
+      projectSkillBinding.ok &&
       recoveryRunwayBinding.ok &&
       recoveryHandoffBinding.ok &&
       recoveryExitBinding.ok &&
@@ -6216,6 +6339,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...l12CompatibilityBinding.messages.map((m) => `doctor: ${m}`),
       ...roadmapCurrentBinding.messages.map((m) => `doctor: ${m}`),
       ...driveModelBinding.messages.map((m) => `doctor: ${m}`),
+      ...projectSkillBinding.messages.map((m) => `doctor: ${m}`),
       ...recoveryRunwayBinding.messages.map((m) => `doctor: ${m}`),
       ...recoveryHandoffBinding.messages.map((m) => `doctor: ${m}`),
       ...recoveryExitBinding.messages.map((m) => `doctor: ${m}`),

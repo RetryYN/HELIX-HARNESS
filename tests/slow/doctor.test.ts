@@ -51,6 +51,7 @@ import {
   checkPlanGovernance,
   checkPlanTraceGate,
   checkProjectCurrentLocation,
+  checkProjectSkillBinding,
   checkProjectHooks,
   checkPropagation,
   checkReadability,
@@ -2408,6 +2409,44 @@ describe("runDoctor", () => {
           indexed_at: "2026-07-08T00:02:00.000Z",
         },
       });
+      for (const row of [
+        {
+          declaration_id: "decl:US-03",
+          defined_id: "US-03",
+          declaration_kind: "ストーリー",
+          title: "通知設定 Story",
+          layer: "L3",
+          source_path: "docs/112_プロダクトバックログ.yaml",
+        },
+        {
+          declaration_id: "decl:SP-2",
+          defined_id: "SP-2",
+          declaration_kind: "スプリント計画",
+          title: "通知スプリント",
+          layer: "L7",
+          source_path: "docs/116_スプリント計画.yaml",
+        },
+        {
+          declaration_id: "decl:AC-03-1",
+          defined_id: "AC-03-1",
+          declaration_kind: "受入基準",
+          title: "通知設定 BDD",
+          layer: "L11",
+          source_path: "docs/29_受入基準・BDDシナリオ.yaml",
+        },
+      ]) {
+        upsertRow(db, {
+          table: "design_declarations",
+          primaryKey: "declaration_id",
+          row: {
+            ...row,
+            owner: "TL",
+            status: "draft",
+            source: "test-fixture",
+            indexed_at: "2026-07-08T00:02:30.000Z",
+          },
+        });
+      }
       upsertRow(db, {
         table: "roadmap_rollups",
         primaryKey: "rollup_id",
@@ -2474,6 +2513,40 @@ describe("runDoctor", () => {
           reason_codes: "handoff.next.missing,handoff.status.none",
           reasons: "total=0",
           indexed_at: "2026-07-08T00:04:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "automation_assets",
+        primaryKey: "asset_id",
+        row: {
+          asset_id: "skill:planning-and-task-breakdown",
+          asset_type: "skill",
+          path: "docs/skills/planning-and-task-breakdown.md",
+          trigger: "Scrum sprint planning and task breakdown",
+          role: "",
+          capability: "scrum sprint backlog planning task breakdown",
+          skill_type: "orchestration",
+          applies_layers: "L3,L7",
+          applies_drive_models: "Forward,Scrum,Discovery",
+          drift_status: "ok",
+          indexed_at: "2026-07-08T00:05:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "automation_assets",
+        primaryKey: "asset_id",
+        row: {
+          asset_id: "skill:harness-observability",
+          asset_type: "skill",
+          path: "docs/skills/harness-observability.md",
+          trigger: "runtime verification and harness db observability",
+          role: "",
+          capability: "runtime verification harness db observability",
+          skill_type: "verification",
+          applies_layers: "L12",
+          applies_drive_models: "Recovery,Forward",
+          drift_status: "ok",
+          indexed_at: "2026-07-08T00:05:00.000Z",
         },
       });
 
@@ -2673,6 +2746,21 @@ describe("runDoctor", () => {
       expect(driveBinding.messages.join("\n")).toContain("4:Forward:blocked");
       expect(driveBinding.messages.join("\n")).toContain(
         "postcheck=helix drive model --json && helix current-location --json && helix roadmap current --json && helix vmodel fit",
+      );
+
+      const projectSkillBinding = checkProjectSkillBinding(root, db);
+      expect(projectSkillBinding.ok).toBe(true);
+      expect(projectSkillBinding.messages.join("\n")).toContain(
+        "project-skill-binding - OK: status=ready selected=Recovery",
+      );
+      expect(projectSkillBinding.messages.join("\n")).toContain("workflow=Recovery,Scrum");
+      expect(projectSkillBinding.messages.join("\n")).toContain(
+        "command=helix skill suggest --plan <active-plan-path>",
+      );
+      expect(projectSkillBinding.messages.join("\n")).toContain("automation_assets");
+      expect(projectSkillBinding.messages.join("\n")).toContain("skill_recommendations");
+      expect(projectSkillBinding.messages.join("\n")).toContain(
+        "skill:planning-and-task-breakdown:required",
       );
 
       const recoveryRunway = checkRecoveryRunwayBinding(root, db);
@@ -2901,6 +2989,19 @@ describe("runDoctor", () => {
         r.messages,
         "doctor: drive-model-binding",
         "runtime_verification_events",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "status=ready"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "workflow=Recovery,Scrum"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: project-skill-binding",
+        "helix skill suggest --plan <active-plan-path>",
       ),
     ).toBe(true);
     expect(
@@ -3430,6 +3531,7 @@ describe("runDoctor", () => {
       ["l12-compatibility-binding", checkL12CompatibilityBinding(missingRoot)],
       ["roadmap-current-binding", checkRoadmapCurrentBinding(missingRoot)],
       ["drive-model-binding", checkDriveModelBinding(missingRoot)],
+      ["project-skill-binding", checkProjectSkillBinding(missingRoot)],
       ["recovery-runway-binding", checkRecoveryRunwayBinding(missingRoot)],
       ["recovery-handoff-binding", checkRecoveryHandoffBinding(missingRoot)],
       ["recovery-exit-binding", checkRecoveryExitBinding(missingRoot)],

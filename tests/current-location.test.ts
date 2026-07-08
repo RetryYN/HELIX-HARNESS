@@ -485,6 +485,9 @@ describe("project current-location read model", () => {
         matchedDriveModels: expect.arrayContaining(["Scrum"]),
         matchedLayers: expect.arrayContaining(["L3", "L7"]),
       });
+      expect(
+        snapshot.operation_scope.items.find((item) => item.scope === "log_design")?.designIds,
+      ).not.toContain("US-03");
     }));
 
   it("typed design declaration drift を current-location の Reverse 要因にする", () =>
