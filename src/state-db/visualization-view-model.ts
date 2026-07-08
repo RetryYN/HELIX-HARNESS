@@ -489,6 +489,25 @@ export interface ProjectCurrentLocationView {
         postcheck_commands: string[];
       } | null;
     }>;
+    handoff_summary: {
+      status: "none" | "machine_pending" | "approval_pending" | "approval_blocked" | "apply_ready";
+      total: number;
+      machine_pending: number;
+      approval_pending: number;
+      approval_required: number;
+      approval_rejected: number;
+      apply_ready: number;
+      unchecked: number;
+      unavailable: number;
+      scope_match: number;
+      scope_mismatch: number;
+      scope_missing: number;
+      valid_for_apply: number;
+      invalid_for_apply: number;
+      commands: string[];
+      reason_codes: string[];
+      reasons: string[];
+    };
     recovery_handoff_gate: {
       status: string;
       effective_phase: string;
@@ -1535,6 +1554,7 @@ const VIEW_BOUNDARIES: VisualizationViewModel["view_boundaries"] = {
       "project_tailoring_decisions",
       "project_vmodel_regression_guards",
       "project_vmodel_fit_blockers",
+      "project_vmodel_handoff_summary",
     ],
     excluded_fields: ["evidence.skill_invocations", "evidence.model_runs", "harness_growth"],
     view_command: "helix progress tree-view --json",
@@ -1556,6 +1576,7 @@ const VIEW_BOUNDARIES: VisualizationViewModel["view_boundaries"] = {
       "project_tailoring_decisions",
       "project_vmodel_regression_guards",
       "project_vmodel_fit_blockers",
+      "project_vmodel_handoff_summary",
     ],
     view_command: "helix progress tree-view --json",
   },
@@ -1821,6 +1842,7 @@ export function buildProjectCurrentLocationView(
   const zipManifest = snapshot.vmodel_zip_manifest;
   const vmodelFit = buildVmodelFitReport(current, zipManifest);
   const recoveryHandoffGate = recoveryHandoffGateForView(snapshot, vmodelFit);
+  const vmodelHandoffSummary = vmodelHandoffSummaryForView(snapshot, vmodelFit.next_actions);
   const closureEvidenceTemplates = (
     ["collect_evidence", "repair_failed_evidence", "reverse_design"] as const
   ).map((action) => {
@@ -2159,6 +2181,25 @@ export function buildProjectCurrentLocationView(
             }
           : null,
       })),
+      handoff_summary: {
+        status: vmodelHandoffSummary.status,
+        total: vmodelHandoffSummary.total,
+        machine_pending: vmodelHandoffSummary.machine_pending,
+        approval_pending: vmodelHandoffSummary.approval_pending,
+        approval_required: vmodelHandoffSummary.approval_required,
+        approval_rejected: vmodelHandoffSummary.approval_rejected,
+        apply_ready: vmodelHandoffSummary.apply_ready,
+        unchecked: vmodelHandoffSummary.unchecked,
+        unavailable: vmodelHandoffSummary.unavailable,
+        scope_match: vmodelHandoffSummary.scope_match,
+        scope_mismatch: vmodelHandoffSummary.scope_mismatch,
+        scope_missing: vmodelHandoffSummary.scope_missing,
+        valid_for_apply: vmodelHandoffSummary.valid_for_apply,
+        invalid_for_apply: vmodelHandoffSummary.invalid_for_apply,
+        commands: [...vmodelHandoffSummary.commands],
+        reason_codes: [...vmodelHandoffSummary.reason_codes],
+        reasons: [...vmodelHandoffSummary.reasons],
+      },
       recovery_handoff_gate: {
         status: recoveryHandoffGate.status,
         effective_phase: recoveryHandoffGate.effective_phase,
@@ -3242,6 +3283,73 @@ function projectHandoffReasonCodes(input: {
     `approval.valid_for_apply.${approval?.valid_for_apply ?? false}`,
     ...(input.extras ?? []),
   ];
+}
+
+function vmodelHandoffSummaryForView(
+  snapshot: VisualizationSnapshot,
+  nextActions: ReturnType<typeof buildVmodelFitReport>["next_actions"],
+): ProjectCurrentLocationView["vmodel_fit"]["handoff_summary"] {
+  const steps = nextActions
+    .map((action) => {
+      const bucket = action.work_bucket;
+      if (!bucket?.evidence_handoff_artifacts) return null;
+      return evidenceHandoffNextStep({
+        bucket,
+        status: evidenceHandoffStatusForAction(snapshot, bucket.action),
+      });
+    })
+    .filter((step): step is ProjectEvidenceHandoffNext => step !== null);
+  const machinePendingStatuses = new Set<ProjectEvidenceHandoffNext["status"]>([
+    "generate_probe",
+    "generate_approval_draft",
+    "unchecked",
+    "unavailable",
+  ]);
+  const approvalPending = steps.filter((step) => step.status === "approval_pending").length;
+  const approvalRequired = steps.filter((step) => step.status === "approval_required").length;
+  const approvalRejected = steps.filter((step) => step.status === "approval_rejected").length;
+  const applyReady = steps.filter((step) => step.status === "apply_dry_run").length;
+  const scopeMismatch = steps.filter((step) => step.scope_status === "mismatch").length;
+  const scopeMissing = steps.filter((step) => step.scope_status === "missing").length;
+  const machinePending = steps.filter((step) => machinePendingStatuses.has(step.status)).length;
+  const status: ProjectCurrentLocationView["vmodel_fit"]["handoff_summary"]["status"] =
+    approvalRejected > 0 || scopeMismatch > 0
+      ? "approval_blocked"
+      : approvalPending > 0 || approvalRequired > 0
+        ? "approval_pending"
+        : applyReady > 0
+          ? "apply_ready"
+          : machinePending > 0
+            ? "machine_pending"
+            : "none";
+  return {
+    status,
+    total: steps.length,
+    machine_pending: machinePending,
+    approval_pending: approvalPending,
+    approval_required: approvalRequired,
+    approval_rejected: approvalRejected,
+    apply_ready: applyReady,
+    unchecked: steps.filter((step) => step.status === "unchecked").length,
+    unavailable: steps.filter((step) => step.status === "unavailable").length,
+    scope_match: steps.filter((step) => step.scope_status === "match").length,
+    scope_mismatch: scopeMismatch,
+    scope_missing: scopeMissing,
+    valid_for_apply: steps.filter((step) => step.valid_for_apply).length,
+    invalid_for_apply: steps.filter((step) => !step.valid_for_apply).length,
+    commands: [...new Set(steps.map((step) => step.command))],
+    reason_codes: [...new Set(steps.flatMap((step) => step.reason_codes))],
+    reasons: [
+      `total=${steps.length}`,
+      `machine_pending=${machinePending}`,
+      `approval_pending=${approvalPending}`,
+      `approval_required=${approvalRequired}`,
+      `approval_rejected=${approvalRejected}`,
+      `apply_ready=${applyReady}`,
+      `scope_mismatch=${scopeMismatch}`,
+      `scope_missing=${scopeMissing}`,
+    ],
+  };
 }
 
 function evidenceHandoffStatusForAction(

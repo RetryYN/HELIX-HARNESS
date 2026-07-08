@@ -4529,6 +4529,41 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
     });
   }
 
+  const handoffSummary = viewModel.project.current_location.vmodel_fit.handoff_summary;
+  const recoveryHandoffGate = viewModel.project.current_location.vmodel_fit.recovery_handoff_gate;
+  recordProjectionEvent(db, {
+    table: "project_vmodel_handoff_summary",
+    id: "recovery_handoff",
+    row: {
+      summary_id: "recovery_handoff",
+      snapshot_id: snapshotId,
+      status: handoffSummary.status,
+      handoff_total: handoffSummary.total,
+      machine_pending: handoffSummary.machine_pending,
+      approval_pending: handoffSummary.approval_pending,
+      approval_required: handoffSummary.approval_required,
+      approval_rejected: handoffSummary.approval_rejected,
+      apply_ready: handoffSummary.apply_ready,
+      scope_match: handoffSummary.scope_match,
+      scope_mismatch: handoffSummary.scope_mismatch,
+      scope_missing: handoffSummary.scope_missing,
+      valid_for_apply: handoffSummary.valid_for_apply,
+      invalid_for_apply: handoffSummary.invalid_for_apply,
+      recovery_gate_status: recoveryHandoffGate.status,
+      effective_phase: recoveryHandoffGate.effective_phase,
+      approval_state: recoveryHandoffGate.approval_state,
+      approval_status: recoveryHandoffGate.approval_status,
+      scope_status: recoveryHandoffGate.scope_status,
+      decision_id: recoveryHandoffGate.decision_id,
+      materialize_status: recoveryHandoffGate.materialize_status,
+      reviewed_candidate_count: recoveryHandoffGate.reviewed_candidate_count,
+      command: recoveryHandoffGate.command,
+      reason_codes: csv(handoffSummary.reason_codes),
+      reasons: csv(handoffSummary.reasons),
+      indexed_at: indexedAt,
+    },
+  });
+
   for (const layer of snapshot.coverage.l12_layers) {
     const coverageRowId = stableId("l12-layer-coverage", layer.layer);
     recordProjectionEvent(db, {
@@ -4649,7 +4684,8 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
         required_sources_total: zipManifest.required.length,
         by_extension: JSON.stringify(zipManifest.byExtension),
         findings: csv(zipManifest.findings.map((finding) => finding.code)),
-        evidence_tables: "design_declarations,design_references,design_impact,artifact_registry,plan_registry",
+        evidence_tables:
+          "design_declarations,design_references,design_impact,artifact_registry,plan_registry",
         snapshot_hash: stableJsonHash(zipManifest),
         indexed_at: indexedAt,
       },

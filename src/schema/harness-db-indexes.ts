@@ -105,6 +105,11 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["snapshot_id", "status", "blocker_count"],
   },
   {
+    name: "idx_project_vmodel_handoff_summary_status",
+    table: "project_vmodel_handoff_summary",
+    columns: ["snapshot_id", "status", "effective_phase"],
+  },
+  {
     name: "idx_project_l12_layer_coverage_status",
     table: "project_l12_layer_coverage",
     columns: ["snapshot_id", "layer", "status"],

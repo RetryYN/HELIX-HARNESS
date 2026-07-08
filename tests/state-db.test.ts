@@ -222,6 +222,22 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
         "implementation_dependencies",
       ]),
     );
+    const vmodelHandoffColumns = db
+      .prepare("PRAGMA table_info(project_vmodel_handoff_summary)")
+      .all()
+      .map((row) => String(row.name));
+    expect(vmodelHandoffColumns).toEqual(
+      expect.arrayContaining([
+        "summary_id",
+        "status",
+        "approval_pending",
+        "scope_mismatch",
+        "recovery_gate_status",
+        "approval_state",
+        "scope_status",
+        "reason_codes",
+      ]),
+    );
     const vmodelReadModelTables = [
       "project_current_location",
       "project_drive_model_candidates",
@@ -230,6 +246,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       "project_tailoring_decisions",
       "project_vmodel_regression_guards",
       "project_vmodel_fit_blockers",
+      "project_vmodel_handoff_summary",
       "project_l12_layer_coverage",
       "design_coverage_gate",
       "project_operation_scopes",

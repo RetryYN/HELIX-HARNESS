@@ -163,7 +163,8 @@ function acceptanceTraceability(
       requirementId: "HR-FR-VMFIT-03",
       status: status === "pass" ? "linked" : "missing",
       declarationIds: status === "pass" ? ["decl:HAC-VMFIT-03a"] : [],
-      sourcePaths: status === "pass" ? ["docs/test-design/helix/vmodel-docgen-fit-acceptance.md"] : [],
+      sourcePaths:
+        status === "pass" ? ["docs/test-design/helix/vmodel-docgen-fit-acceptance.md"] : [],
       referenceIds: status === "pass" ? ["ref:HAC-VMFIT-03a:HR-FR-VMFIT-03"] : [],
       referenceStatuses: status === "pass" ? ["resolved"] : [],
       docDependencies: ["docs/test-design/helix/vmodel-docgen-fit-acceptance.md"],
@@ -609,7 +610,12 @@ function forwardCurrentLocation(): ProjectCurrentLocationSnapshot {
           designIds: [],
           observedCount: 0,
           observationSources: [],
-          evidenceTables: ["design_declarations", "test_runs", "gate_runs", "runtime_verification_events"],
+          evidenceTables: [
+            "design_declarations",
+            "test_runs",
+            "gate_runs",
+            "runtime_verification_events",
+          ],
           reasons: ["typed declaration から検出できないため L12 運用後検証の gap とする"],
         },
         {
@@ -1095,6 +1101,7 @@ describe("buildVisualizationViewModel", () => {
         "project_tailoring_decisions",
         "project_vmodel_regression_guards",
         "project_vmodel_fit_blockers",
+        "project_vmodel_handoff_summary",
       ]),
       excluded_fields: expect.arrayContaining(["evidence.skill_invocations"]),
     });
@@ -1109,6 +1116,7 @@ describe("buildVisualizationViewModel", () => {
         "project_tailoring_decisions",
         "project_vmodel_regression_guards",
         "project_vmodel_fit_blockers",
+        "project_vmodel_handoff_summary",
       ]),
     });
     expect(Array.isArray(first.shared_warnings)).toBe(true);
@@ -1169,14 +1177,16 @@ describe("buildVisualizationViewModel", () => {
         expect.objectContaining({
           model: "OperationVerification",
           status: "selected",
-          trigger: "ログ設計、runtime verification、class/method contract など L12 運用 scope の不足",
+          trigger:
+            "ログ設計、runtime verification、class/method contract など L12 運用 scope の不足",
           command: "helix current-location --json",
           coverage_ids: ["L12-operation-observability"],
         }),
         expect.objectContaining({
           model: "Forward",
           trigger: "原則駆動モデル。blocker が無ければ工程表 frontier を前進させる",
-          required_action: "roadmap current と design coverage が一致している範囲を Forward で進める",
+          required_action:
+            "roadmap current と design coverage が一致している範囲を Forward で進める",
           command: "helix roadmap current --json",
         }),
       ]),
@@ -1295,6 +1305,15 @@ describe("buildVisualizationViewModel", () => {
               command: "helix current-location --json",
             }),
           ]),
+        }),
+        handoff_summary: expect.objectContaining({
+          status: "none",
+          total: 0,
+          machine_pending: 0,
+          approval_pending: 0,
+          scope_mismatch: 0,
+          apply_ready: 0,
+          reason_codes: [],
         }),
         blockers: [
           expect.objectContaining({
@@ -1465,17 +1484,17 @@ describe("buildVisualizationViewModel", () => {
           human_required: false,
         },
         work_buckets: [
-	          expect.objectContaining({
-	            action: "repair_failed_evidence",
-	            evidence_signature: "execution:missing+test:failed",
-	            count: 1,
-	            primary_command: "helix closure batch --action repair_failed_evidence --json",
-	            evidence_handoff_artifacts: {
-	              probe_record_path: ".helix/tmp/closure/repair_failed_evidence-probe-record.json",
-	              approval_draft_path: ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
-	              write_policy: "local-artifact-new-file",
-	            },
-	            repair_plan: expect.objectContaining({
+          expect.objectContaining({
+            action: "repair_failed_evidence",
+            evidence_signature: "execution:missing+test:failed",
+            count: 1,
+            primary_command: "helix closure batch --action repair_failed_evidence --json",
+            evidence_handoff_artifacts: {
+              probe_record_path: ".helix/tmp/closure/repair_failed_evidence-probe-record.json",
+              approval_draft_path: ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
+              write_policy: "local-artifact-new-file",
+            },
+            repair_plan: expect.objectContaining({
               status: "needs_evidence",
               failed_evidence_count: 0,
               command_candidates: [],

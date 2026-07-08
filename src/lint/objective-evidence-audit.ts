@@ -195,6 +195,7 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "project_tailoring_decisions",
       "project_vmodel_regression_guards",
       "project_vmodel_fit_blockers",
+      "project_vmodel_handoff_summary",
       "function-design-absorption-binding",
       "roadmap-current-binding",
       "project_roadmap_current_actions",

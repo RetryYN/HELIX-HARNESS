@@ -5,8 +5,8 @@ import { describe, expect, it } from "vitest";
 import {
   checkActionBindingApprovalReadiness,
   checkAgentSlots,
-  checkApprovalReviewBinding,
   checkAllowlistSync,
+  checkApprovalReviewBinding,
   checkAssetDrift,
   checkBackfillResult,
   checkChangeImpact,
@@ -24,8 +24,8 @@ import {
   checkDependencyDrift,
   checkDescentObligation,
   checkDesignLanguage,
-  checkDriveModelBinding,
   checkDriveDbRegistration,
+  checkDriveModelBinding,
   checkDriveModelPassage,
   checkFrRoadmapCoverage,
   checkFunctionDesignAbsorptionBinding,
@@ -35,16 +35,16 @@ import {
   checkHandoverDisciplineMessages,
   checkImplPlanTrace,
   checkJudgmentCoreCoverage,
-  checkL12CompatibilityBinding,
   checkL6Completion,
   checkL6FrCoverage,
   checkL7Completion,
+  checkL12CompatibilityBinding,
   checkL14CloseAudit,
   checkMergedPlanStatus,
   checkModuleDrift,
   checkObjectiveEvidenceAudit,
-  checkOracleTestTrace,
   checkOperationScopeBinding,
+  checkOracleTestTrace,
   checkPairFreeze,
   checkPlaceholderDeps,
   checkPlanDod,
@@ -54,16 +54,16 @@ import {
   checkProjectHooks,
   checkPropagation,
   checkReadability,
-  checkRefactorCandidateTriage,
-  checkRegressionExpansion,
-  checkRequirementsBindingConfig,
   checkRecoveryExitBinding,
   checkRecoveryHandoffBinding,
   checkRecoveryRunwayBinding,
+  checkRefactorCandidateTriage,
+  checkRegressionExpansion,
+  checkRequirementsBindingConfig,
   checkReviewEvidence,
   checkRightArmVerificationStrategy,
-  checkRoadmapCurrentBinding,
   checkRoadmap,
+  checkRoadmapCurrentBinding,
   checkRuleAutomationClosure,
   checkRuleDrift,
   checkRuntimePortability,
@@ -79,11 +79,11 @@ import {
   checkVerificationProfile,
   checkVerifierProviderMismatch,
   checkVersionUpReadiness,
-  checkVisualizationViewModelBoundary,
   checkVisualizationTreeViewBoundary,
-  checkVscodeExtensionDynamicBinding,
+  checkVisualizationViewModelBoundary,
   checkVmodelFit,
   checkVmodelZipManifest,
+  checkVscodeExtensionDynamicBinding,
   checkZipAdoptionBinding,
   checkZipReferenceRuntimeBoundary,
   checkZipSourceBinding,
@@ -2503,7 +2503,7 @@ describe("runDoctor", () => {
         "project-excluded=evidence.skill_invocations,evidence.model_runs,harness_growth",
       );
       expect(boundaryCheck.messages.join("\n")).toContain(
-        "harness-excluded=project_current_location.vmodel_fit,project_current_location.drive_route,project_current_location.closure,vmodel_zip_manifest,vmodel_zip_source_bindings,project_zip_adoption_decisions,project_tailoring_decisions,project_vmodel_regression_guards,project_vmodel_fit_blockers",
+        "harness-excluded=project_current_location.vmodel_fit,project_current_location.drive_route,project_current_location.closure,vmodel_zip_manifest,vmodel_zip_source_bindings,project_zip_adoption_decisions,project_tailoring_decisions,project_vmodel_regression_guards,project_vmodel_fit_blockers,project_vmodel_handoff_summary",
       );
 
       const treeBoundaryCheck = checkVisualizationTreeViewBoundary(root, db);
@@ -2569,9 +2569,7 @@ describe("runDoctor", () => {
       expect(roadmapBinding.messages.join("\n")).toContain(
         "drive_action=drive:Recovery:recover-current-location",
       );
-      expect(roadmapBinding.messages.join("\n")).toContain(
-        "command=helix roadmap current --json",
-      );
+      expect(roadmapBinding.messages.join("\n")).toContain("command=helix roadmap current --json");
       expect(roadmapBinding.messages.join("\n")).toContain(
         "postcheck=helix db rebuild && helix roadmap current --json && helix current-location --json && helix vmodel fit",
       );
@@ -2591,9 +2589,7 @@ describe("runDoctor", () => {
       expect(driveBinding.messages.join("\n")).toContain(
         "drive-model-binding - reverse-dependency-closure:",
       );
-      expect(driveBinding.messages.join("\n")).toContain(
-        "docs=docs/design/**,docs/test-design/**",
-      );
+      expect(driveBinding.messages.join("\n")).toContain("docs=docs/design/**,docs/test-design/**");
       expect(driveBinding.messages.join("\n")).toContain(
         "drive-model-binding - candidate-dependency-closure: Recovery:docs=docs/design/**+docs/test-design/**",
       );
@@ -2678,9 +2674,7 @@ describe("runDoctor", () => {
       expect(operationScope.messages.join("\n")).toContain(
         "required=log_design,kpi_metric,runtime_verification,operation_test,class_method_contract,incident_recovery_route",
       );
-      expect(operationScope.messages.join("\n")).toContain(
-        "runtime_verification_events",
-      );
+      expect(operationScope.messages.join("\n")).toContain("runtime_verification_events");
       expect(operationScope.messages.join("\n")).toContain("operation-scope-binding - design=");
       expect(operationScope.messages.join("\n")).toContain(
         "operation-scope-binding - traces=HAT-VMFIT-07:",
@@ -2711,12 +2705,12 @@ describe("runDoctor", () => {
     expect(
       hasDoctorMessageWith(r.messages, "doctor: visualization-view-model-boundary", "OK"),
     ).toBe(true);
-    expect(
-      hasDoctorMessageWith(r.messages, "doctor: visualization-tree-view-boundary", "OK"),
-    ).toBe(true);
-    expect(
-      hasDoctorMessageWith(r.messages, "doctor: vscode-extension-dynamic-binding", "OK"),
-    ).toBe(true);
+    expect(hasDoctorMessageWith(r.messages, "doctor: visualization-tree-view-boundary", "OK")).toBe(
+      true,
+    );
+    expect(hasDoctorMessageWith(r.messages, "doctor: vscode-extension-dynamic-binding", "OK")).toBe(
+      true,
+    );
     expect(
       hasDoctorMessageWith(
         r.messages,
@@ -2732,11 +2726,7 @@ describe("runDoctor", () => {
       ),
     ).toBe(true);
     expect(
-      hasDoctorMessageWith(
-        r.messages,
-        "doctor: l12-compatibility-binding",
-        "current=L14->L12",
-      ),
+      hasDoctorMessageWith(r.messages, "doctor: l12-compatibility-binding", "current=L14->L12"),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(r.messages, "doctor: l12-compatibility-binding", "l0_slide=L1"),
@@ -2810,34 +2800,30 @@ describe("runDoctor", () => {
         "coverage=L12-operation-observability",
       ),
     ).toBe(true);
-      expect(
-        hasDoctorMessageWith(
-          r.messages,
-          "doctor: operation-scope-binding",
-          "observed_gap=",
-        ),
-      ).toBe(true);
-      expect(
-        hasDoctorMessageWith(
-          r.messages,
-          "doctor: operation-scope-binding",
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: operation-scope-binding", "observed_gap="),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: operation-scope-binding",
         "observed-gap: status=watch",
       ),
     ).toBe(true);
-      expect(
-        hasDoctorMessageWith(
-          r.messages,
-          "doctor: operation-scope-binding",
-          "view-nodes=observation-gap:6/6",
-        ),
-      ).toBe(true);
-      expect(
-        hasDoctorMessageWith(
-          r.messages,
-          "doctor: operation-scope-binding",
-          "class_method_contract:HAC-VMFIT-02b+HOPS-VMFIT-CONTRACT-01+HVC-L6-IMPLEMENTATION-BINDING+HVM-TAILOR-DETAIL-CONTRACT",
-        ),
-      ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: operation-scope-binding",
+        "view-nodes=observation-gap:6/6",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: operation-scope-binding",
+        "class_method_contract:HAC-VMFIT-02b+HOPS-VMFIT-CONTRACT-01+HVC-L6-IMPLEMENTATION-BINDING+HVM-TAILOR-DETAIL-CONTRACT",
+      ),
+    ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
@@ -3523,8 +3509,9 @@ describe("runDoctor", () => {
   it("U-GREENCMD-003: keeps all hard gates wired into runDoctor hard-gate aggregation", () => {
     const source = readFileSync(join(process.cwd(), "src", "doctor", "index.ts"), "utf8");
     const runFullDoctorBody =
-      source.match(/function runFullDoctor[\s\S]*?return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/)
-        ?.[1] ?? "";
+      source.match(
+        /function runFullDoctor[\s\S]*?return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/,
+      )?.[1] ?? "";
     const expectedHardGates = [
       "backfill",
       "scrumRev",

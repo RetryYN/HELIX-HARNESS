@@ -32,6 +32,7 @@ describe("db projection ingestion detector", () => {
       expect(result.rowCounts.project_tailoring_decisions).toBe(8);
       expect(result.rowCounts.project_vmodel_regression_guards).toBe(7);
       expect(result.rowCounts.project_vmodel_fit_blockers).toBeGreaterThan(0);
+      expect(result.rowCounts.project_vmodel_handoff_summary).toBe(1);
       expect(result.rowCounts.project_l12_layer_coverage).toBeGreaterThan(0);
       expect(result.rowCounts.design_coverage_gate).toBeGreaterThan(0);
       expect(result.rowCounts.project_operation_scopes).toBeGreaterThan(0);
@@ -146,12 +147,15 @@ describe("db projection ingestion detector", () => {
       expect(zipAdoptionDecisions.filter((row) => row.category === "complement")).toHaveLength(3);
       expect(zipAdoptionDecisions.filter((row) => row.category === "reject")).toHaveLength(1);
       expect(zipAdoptionDecisions.every((row) => row.status === "declared")).toBe(true);
-      expect(zipAdoptionDecisions.every((row) => row.source_package === "ハイブリッド設計ドキュメントv1-fixed.zip")).toBe(
-        true,
-      );
       expect(
         zipAdoptionDecisions.every(
-          (row) => row.source_document === "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+          (row) => row.source_package === "ハイブリッド設計ドキュメントv1-fixed.zip",
+        ),
+      ).toBe(true);
+      expect(
+        zipAdoptionDecisions.every(
+          (row) =>
+            row.source_document === "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
         ),
       ).toBe(true);
       expect(
@@ -184,10 +188,13 @@ describe("db projection ingestion detector", () => {
       expect(tailoringDecisions.every((row) => row.profile === "solo")).toBe(true);
       expect(
         tailoringDecisions.every(
-          (row) => row.source_document === "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+          (row) =>
+            row.source_document === "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
         ),
       ).toBe(true);
-      expect(tailoringDecisions.find((row) => row.tailoring_id === "HVM-TAILOR-DETAIL-CONTRACT")).toMatchObject({
+      expect(
+        tailoringDecisions.find((row) => row.tailoring_id === "HVM-TAILOR-DETAIL-CONTRACT"),
+      ).toMatchObject({
         category: "required",
         detail_level: "詳細",
         status: "declared",
@@ -217,7 +224,9 @@ describe("db projection ingestion detector", () => {
         guard_count: number;
       }>;
       expect(vmodelRegressionGuards).toHaveLength(7);
-      expect(vmodelRegressionGuards.find((row) => row.guard_id === "zip-source-integrity")).toMatchObject({
+      expect(
+        vmodelRegressionGuards.find((row) => row.guard_id === "zip-source-integrity"),
+      ).toMatchObject({
         command: "helix doctor",
       });
       expect(
@@ -248,6 +257,40 @@ describe("db projection ingestion detector", () => {
       expect(currentLocationBlocker?.doc_dependencies).toContain("docs/design/**");
       expect(currentLocationBlocker?.implementation_dependencies).toContain("plan_registry");
       expect(currentLocationBlocker?.implementation_dependencies).toContain("trace_edges");
+      const handoffSummary = db
+        .prepare(
+          `SELECT status, approval_pending, scope_mismatch, recovery_gate_status, effective_phase,
+                  approval_state, approval_status, scope_status, valid_for_apply, reason_codes
+           FROM project_vmodel_handoff_summary
+           WHERE summary_id = ?`,
+        )
+        .get("recovery_handoff") as
+        | {
+            status: string;
+            approval_pending: number;
+            scope_mismatch: number;
+            recovery_gate_status: string;
+            effective_phase: string;
+            approval_state: string;
+            approval_status: string | null;
+            scope_status: string | null;
+            valid_for_apply: number;
+            reason_codes: string;
+          }
+        | undefined;
+      expect(handoffSummary).toMatchObject({
+        status: "approval_pending",
+        approval_pending: 1,
+        scope_mismatch: 0,
+        recovery_gate_status: "approval_pending",
+        effective_phase: "approval",
+        approval_state: "pending_human_review",
+        approval_status: "pending_human_review",
+        scope_status: "match",
+        valid_for_apply: 0,
+      });
+      expect(handoffSummary?.reason_codes).toContain("approval.pending_human_review");
+      expect(handoffSummary?.reason_codes).toContain("approval.scope.match");
       const operationScopes = db
         .prepare(
           `SELECT scope, status, observed_gap, design_ids, evidence_tables
@@ -269,15 +312,15 @@ describe("db projection ingestion detector", () => {
         "operation_test",
         "runtime_verification",
       ]);
-      expect(operationScopes.every((row) => row.evidence_tables.includes("design_declarations"))).toBe(
-        true,
-      );
-      expect(operationScopes.filter((row) => row.status === "designed").every((row) => row.observed_gap === 1)).toBe(
-        true,
-      );
-      const incidentScope = operationScopes.find(
-        (row) => row.scope === "incident_recovery_route",
-      );
+      expect(
+        operationScopes.every((row) => row.evidence_tables.includes("design_declarations")),
+      ).toBe(true);
+      expect(
+        operationScopes
+          .filter((row) => row.status === "designed")
+          .every((row) => row.observed_gap === 1),
+      ).toBe(true);
+      const incidentScope = operationScopes.find((row) => row.scope === "incident_recovery_route");
       expect(incidentScope?.design_ids).toContain("HOPS-VMFIT-INCIDENT-ROUTE-01");
       expect(incidentScope?.evidence_tables).toContain("closure_next_action_ledger");
       expect(incidentScope?.evidence_tables).toContain("runtime_verification_events");
@@ -333,6 +376,7 @@ describe("db projection ingestion detector", () => {
       project_tailoring_decisions: 1,
       project_vmodel_regression_guards: 1,
       project_vmodel_fit_blockers: 1,
+      project_vmodel_handoff_summary: 1,
       project_l12_layer_coverage: 1,
       design_coverage_gate: 1,
       project_operation_scopes: 1,
@@ -377,6 +421,9 @@ describe("db projection ingestion detector", () => {
       "project_vmodel_fit_blockers",
     );
     expect(AUTOMATIC_DB_PROJECTION_REQUIREMENTS.map((item) => item.table)).toContain(
+      "project_vmodel_handoff_summary",
+    );
+    expect(AUTOMATIC_DB_PROJECTION_REQUIREMENTS.map((item) => item.table)).toContain(
       "visualization_tree_view",
     );
     expect(AUTOMATIC_DB_PROJECTION_REQUIREMENTS.map((item) => item.table)).toContain(
@@ -415,6 +462,7 @@ describe("db projection ingestion detector", () => {
       project_tailoring_decisions: 1,
       project_vmodel_regression_guards: 1,
       project_vmodel_fit_blockers: 1,
+      project_vmodel_handoff_summary: 1,
       project_l12_layer_coverage: 1,
       design_coverage_gate: 1,
       project_operation_scopes: 1,

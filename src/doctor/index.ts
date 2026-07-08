@@ -1363,6 +1363,7 @@ export function checkVisualizationViewModelBoundary(
         "project_tailoring_decisions",
         "project_vmodel_regression_guards",
         "project_vmodel_fit_blockers",
+        "project_vmodel_handoff_summary",
       ]);
       requireIncludes("project.excluded_fields", project.excluded_fields, [
         "evidence.skill_invocations",
@@ -1386,6 +1387,7 @@ export function checkVisualizationViewModelBoundary(
         "project_tailoring_decisions",
         "project_vmodel_regression_guards",
         "project_vmodel_fit_blockers",
+        "project_vmodel_handoff_summary",
       ]);
       if (
         project.view_command !== "helix progress tree-view --json" ||
@@ -1424,7 +1426,9 @@ export function checkVisualizationViewModelBoundary(
           `visualization-view-model-boundary - l12-compatibility=${compatibility.status} layers=${compatibility.layers}/${compatibility.expected_layers} pairs=${compatibility.pairs.map((pair) => `${pair.label}:${pair.status}:${pair.legacy_layer}->${pair.l12_layer}`).join(",")}`,
           `visualization-view-model-boundary - project-source=${project.source_fields.join(",")} project-excluded=${project.excluded_fields.join(",") || "-"}`,
           `visualization-view-model-boundary - harness-source=${harness.source_fields.join(",")} harness-excluded=${harness.excluded_fields.join(",") || "-"}`,
-          ...violations.map((violation) => `visualization-view-model-boundary - violation: ${violation}`),
+          ...violations.map(
+            (violation) => `visualization-view-model-boundary - violation: ${violation}`,
+          ),
         ],
       };
     } finally {
@@ -1519,8 +1523,12 @@ export function checkVisualizationTreeViewBoundary(
       if (projectHarnessLeaks.length > 0) {
         violations.push(`project.harness_leak=${projectHarnessLeaks.slice(0, 3).join(",")}`);
       }
-      const projectBoundary = project?.children.find((child) => child.id === "project/view-boundary");
-      const harnessBoundary = harness?.children.find((child) => child.id === "harness/view-boundary");
+      const projectBoundary = project?.children.find(
+        (child) => child.id === "project/view-boundary",
+      );
+      const harnessBoundary = harness?.children.find(
+        (child) => child.id === "harness/view-boundary",
+      );
       if (projectBoundary?.command?.arguments[0] !== "helix progress tree-view --json") {
         violations.push("project.view_boundary.command must be helix progress tree-view --json");
       }
@@ -1537,7 +1545,9 @@ export function checkVisualizationTreeViewBoundary(
           `${prefix}: roots=${roots.join(",") || "-"} project_nodes=${projectIds.length} harness_nodes=${harnessIds.length} policy=project-view-current-location harness-view-telemetry command=helix progress tree-view --json`,
           `visualization-tree-view-boundary - project-required=${requiredProjectIds.join(",")}`,
           `visualization-tree-view-boundary - harness-required=${requiredHarnessIds.join(",")}`,
-          ...violations.map((violation) => `visualization-tree-view-boundary - violation: ${violation}`),
+          ...violations.map(
+            (violation) => `visualization-tree-view-boundary - violation: ${violation}`,
+          ),
         ],
       };
     } finally {
@@ -1578,10 +1588,7 @@ export function checkVscodeExtensionDynamicBinding(
       if (validated.roots.map((root) => root.id).join(",") !== "project,harness") {
         violations.push(`roots=${validated.roots.map((root) => root.id).join(",") || "-"}`);
       }
-      for (const event of [
-        `onView:${HELIX_PROJECT_VIEW_ID}`,
-        `onView:${HELIX_HARNESS_VIEW_ID}`,
-      ]) {
+      for (const event of [`onView:${HELIX_PROJECT_VIEW_ID}`, `onView:${HELIX_HARNESS_VIEW_ID}`]) {
         if (!manifest.activationEvents.includes(event)) {
           violations.push(`activation.missing=${event}`);
         }
@@ -1597,8 +1604,7 @@ export function checkVscodeExtensionDynamicBinding(
       }
       const extraCommands = commandIds.filter(
         (command) =>
-          command !== HELIX_REFRESH_VISUALIZATION_COMMAND &&
-          command !== HELIX_COPY_POINTER_COMMAND,
+          command !== HELIX_REFRESH_VISUALIZATION_COMMAND && command !== HELIX_COPY_POINTER_COMMAND,
       );
       if (extraCommands.length > 0) {
         violations.push(`command.extra=${extraCommands.join(",")}`);
@@ -1611,7 +1617,9 @@ export function checkVscodeExtensionDynamicBinding(
         ok: violations.length === 0,
         messages: [
           `${prefix}: roots=${validated.roots.map((root) => root.id).join(",")} views=${viewIds.join(",")} commands=${commandIds.join(",")} read_only=${manifest.readOnlyCommands.join(",")} source=helix progress tree-view --json`,
-          ...violations.map((violation) => `vscode-extension-dynamic-binding - violation: ${violation}`),
+          ...violations.map(
+            (violation) => `vscode-extension-dynamic-binding - violation: ${violation}`,
+          ),
         ],
       };
     } finally {
@@ -1665,8 +1673,7 @@ export function checkL12CompatibilityBinding(
       const expectedTailoringForLayer = (layer: string): string[] => {
         if (["L1", "L2", "L3", "L4"].includes(layer)) return ["HVM-TAILOR-CORE-DESIGN"];
         if (["L5", "L6"].includes(layer)) return ["HVM-TAILOR-DETAIL-CONTRACT"];
-        if (["L7", "L8", "L9", "L10", "L11"].includes(layer))
-          return ["HVM-TAILOR-TEST-ORACLE"];
+        if (["L7", "L8", "L9", "L10", "L11"].includes(layer)) return ["HVM-TAILOR-TEST-ORACLE"];
         if (layer === "L12") return ["HVM-TAILOR-OPERATION"];
         return [];
       };
@@ -1680,7 +1687,9 @@ export function checkL12CompatibilityBinding(
         violations.push(`layer_count=${layers.length}/${requiredLayers.length}`);
       }
       const projectionStatus = (legacyLayer: string, l12Layer: string) => {
-        const items = snapshot.artifact_remap.items.filter((item) => item.legacyLayer === legacyLayer);
+        const items = snapshot.artifact_remap.items.filter(
+          (item) => item.legacyLayer === legacyLayer,
+        );
         if (items.length === 0) return "not_observed";
         const matched = items.filter((item) => item.l12Layer === l12Layer);
         return matched.length > 0 ? l12Layer : `mismatch:0/${items.length}`;
@@ -1716,8 +1725,7 @@ export function checkL12CompatibilityBinding(
           violations.push(`l0_slide.declaration_layer=${l0SlideDeclaration.layer}`);
         }
         if (
-          l0SlideDeclaration.source_path !==
-          "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md"
+          l0SlideDeclaration.source_path !== "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md"
         ) {
           violations.push(`l0_slide.declaration_source=${l0SlideDeclaration.source_path}`);
         }
@@ -1743,7 +1751,9 @@ export function checkL12CompatibilityBinding(
           `artifact_remap_layers=${snapshot.artifact_remap.layers.length}/${requiredLayers.length}`,
         );
       }
-      const unmapped = snapshot.findings.filter((finding) => finding.code === "artifact_remap_unmapped");
+      const unmapped = snapshot.findings.filter(
+        (finding) => finding.code === "artifact_remap_unmapped",
+      );
       if (unmapped.length > 0) violations.push(`artifact_remap_unmapped=${unmapped.length}`);
       const missingRemapLayers = requiredLayers.filter(
         (layer) => !snapshot.artifact_remap.layers.some((item) => item.layer === layer),
@@ -1758,14 +1768,18 @@ export function checkL12CompatibilityBinding(
         const actualZipBindings = layer.zipSourceBindingIds ?? [];
         const actualTailoring = layer.tailoringRuleIds ?? [];
         const actualDetails = layer.tailoringDetailLevels ?? [];
-        const missingZipBindings = expectedZipBindings.filter((id) => !actualZipBindings.includes(id));
+        const missingZipBindings = expectedZipBindings.filter(
+          (id) => !actualZipBindings.includes(id),
+        );
         const unknownZipBindings = actualZipBindings.filter((id) => !zipBindingIds.has(id));
         const missingTailoring = expectedTailoring.filter((id) => !actualTailoring.includes(id));
         if (missingZipBindings.length > 0) {
           metadataLayerViolations.push(`${layer.layer}.zip=${missingZipBindings.join("+")}`);
         }
         if (unknownZipBindings.length > 0) {
-          metadataLayerViolations.push(`${layer.layer}.zip_unknown=${unknownZipBindings.join("+")}`);
+          metadataLayerViolations.push(
+            `${layer.layer}.zip_unknown=${unknownZipBindings.join("+")}`,
+          );
         }
         if (missingTailoring.length > 0) {
           metadataLayerViolations.push(`${layer.layer}.tailoring=${missingTailoring.join("+")}`);
@@ -1835,7 +1849,9 @@ export function checkL12CompatibilityBinding(
     }
   } catch {
     return {
-      messages: ["l12-compatibility-binding - violation: L12 compatibility projection could not run"],
+      messages: [
+        "l12-compatibility-binding - violation: L12 compatibility projection could not run",
+      ],
       ok: false,
     };
   }
@@ -1972,7 +1988,9 @@ export function checkRoadmapCurrentBinding(
     }
   } catch {
     return {
-      messages: ["roadmap-current-binding - violation: roadmap current binding projection could not run"],
+      messages: [
+        "roadmap-current-binding - violation: roadmap current binding projection could not run",
+      ],
       ok: false,
     };
   }
@@ -2039,7 +2057,9 @@ export function checkDriveModelBinding(
         );
       }
       const reverseCandidate = report.candidates.find((candidate) => candidate.model === "Reverse");
-      const recoveryCandidate = report.candidates.find((candidate) => candidate.model === "Recovery");
+      const recoveryCandidate = report.candidates.find(
+        (candidate) => candidate.model === "Recovery",
+      );
       const forwardCandidate = report.candidates.find((candidate) => candidate.model === "Forward");
       const operationCandidate = report.candidates.find(
         (candidate) => candidate.model === "OperationVerification",
@@ -2051,7 +2071,9 @@ export function checkDriveModelBinding(
         violations.push("selected_candidate.required_action=empty");
       }
       if (report.selected_model !== "Forward" && forwardCandidate?.status !== "blocked") {
-        violations.push(`Forward.status=${forwardCandidate?.status ?? "missing"} while selected=${report.selected_model}`);
+        violations.push(
+          `Forward.status=${forwardCandidate?.status ?? "missing"} while selected=${report.selected_model}`,
+        );
       }
       for (const candidate of [reverseCandidate, recoveryCandidate]) {
         if (!candidate) continue;
@@ -2100,7 +2122,9 @@ export function checkDriveModelBinding(
           "closure_next_action_ledger",
         ]) {
           if (!operationCandidate.implementation_dependencies.includes(dependency)) {
-            violations.push(`OperationVerification.implementation_dependencies missing ${dependency}`);
+            violations.push(
+              `OperationVerification.implementation_dependencies missing ${dependency}`,
+            );
           }
         }
       }
@@ -2130,7 +2154,8 @@ export function checkDriveModelBinding(
           ...priority,
           ...uniqueValues.filter((value) => !priority.includes(value)).slice(0, 6),
         ].slice(0, 8);
-        const suffix = uniqueValues.length > shown.length ? ` (+${uniqueValues.length - shown.length})` : "";
+        const suffix =
+          uniqueValues.length > shown.length ? ` (+${uniqueValues.length - shown.length})` : "";
         return `${shown.join(separator) || "-"}${suffix}`;
       };
       for (const command of [
@@ -2153,13 +2178,17 @@ export function checkDriveModelBinding(
           `drive-model-binding - forward-gate: status=${forwardCandidate?.status ?? "-"} trigger=${forwardCandidate?.trigger ?? "-"} action=${forwardCandidate?.required_action ?? "-"} reasons=${forwardCandidate?.reasons.join(" | ") || "-"}`,
           `drive-model-binding - dependency-closure: selected_doc=${selectedDeps.doc.length} selected_impl=${selectedDeps.impl.length} reverse_doc=${snapshot.drive_route.reverse.docDependencies.length} reverse_impl=${snapshot.drive_route.reverse.implementationDependencies.length} reverse_targets=${snapshot.drive_route.reverse.targets.join(",") || "-"} must_return=${snapshot.drive_route.mustReturnToDesign}`,
           `drive-model-binding - reverse-dependency-closure: coverage=${snapshot.drive_route.reverse.coverageIds.join(",") || "-"} docs=${summarizeDependencies(snapshot.drive_route.reverse.docDependencies)} impl=${summarizeDependencies(snapshot.drive_route.reverse.implementationDependencies)} actions=${snapshot.drive_route.reverse.queueActions.join(",") || "-"} ledgers=${snapshot.drive_route.reverse.ledgerIds.join(",") || "-"}`,
-          `drive-model-binding - candidate-dependency-closure: ${[recoveryCandidate, reverseCandidate]
-            .filter((candidate): candidate is NonNullable<typeof candidate> => candidate !== undefined)
-            .map(
-              (candidate) =>
-                `${candidate.model}:docs=${summarizeDependencies(candidate.doc_dependencies, "+")}:impl=${summarizeDependencies(candidate.implementation_dependencies, "+")}`,
-            )
-            .join(" | ") || "-"}`,
+          `drive-model-binding - candidate-dependency-closure: ${
+            [recoveryCandidate, reverseCandidate]
+              .filter(
+                (candidate): candidate is NonNullable<typeof candidate> => candidate !== undefined,
+              )
+              .map(
+                (candidate) =>
+                  `${candidate.model}:docs=${summarizeDependencies(candidate.doc_dependencies, "+")}:impl=${summarizeDependencies(candidate.implementation_dependencies, "+")}`,
+              )
+              .join(" | ") || "-"
+          }`,
           `drive-model-binding - operation-verification: coverage=${operationCandidate?.coverage_ids.join(",") || "-"} doc=${operationCandidate?.doc_dependencies.join(",") || "-"} impl=${operationCandidate?.implementation_dependencies.join(",") || "-"}`,
           `drive-model-binding - candidates=${report.candidates.map((candidate) => `${candidate.rank}:${candidate.model}:${candidate.status}:${candidate.coverage_ids.join("+") || "-"}`).join(" | ")}`,
           `drive-model-binding - postcheck=${report.postcheck_commands.join(" && ")} view=${report.view_command} write=${report.write_policy}`,
@@ -2202,7 +2231,9 @@ export function checkRecoveryRunwayBinding(
         violations.push("phases=empty");
       }
       if (runway.required_phase_count !== runway.phases.length) {
-        violations.push(`required_phase_count=${runway.required_phase_count}/${runway.phases.length}`);
+        violations.push(
+          `required_phase_count=${runway.required_phase_count}/${runway.phases.length}`,
+        );
       }
       if (blocking > 0 && !runway.next_phase_action) {
         violations.push("next_phase_action=missing");
@@ -2225,9 +2256,12 @@ export function checkRecoveryRunwayBinding(
         if (sequence !== index + 1) violations.push(`phase_sequence=${phaseSequences.join(",")}`);
       }
       for (const phase of runway.phases) {
-        if (phase.count <= 0) violations.push(`${phase.sequence}.${phase.action}.count=${phase.count}`);
+        if (phase.count <= 0)
+          violations.push(`${phase.sequence}.${phase.action}.count=${phase.count}`);
         if (phase.remaining_after_phase < 0) {
-          violations.push(`${phase.sequence}.${phase.action}.remaining=${phase.remaining_after_phase}`);
+          violations.push(
+            `${phase.sequence}.${phase.action}.remaining=${phase.remaining_after_phase}`,
+          );
         }
         if (phase.command.length === 0) {
           violations.push(`${phase.sequence}.${phase.action}.command=missing`);
@@ -2800,7 +2834,10 @@ export function checkOperationScopeBinding(
         }
       }
       const runtimeVerification = scope.items.find((item) => item.scope === "runtime_verification");
-      if (runtimeVerification && !runtimeVerification.evidenceTables.includes("runtime_verification_events")) {
+      if (
+        runtimeVerification &&
+        !runtimeVerification.evidenceTables.includes("runtime_verification_events")
+      ) {
         violations.push("runtime_verification.missing_table=runtime_verification_events");
       }
       const incidentRoute = scope.items.find((item) => item.scope === "incident_recovery_route");
@@ -2904,11 +2941,7 @@ export function checkZipAdoptionBinding(
       const requiredComplement = ["HVM-COMP-01", "HVM-COMP-02", "HVM-COMP-03"];
       const requiredReject = ["HVM-REJECT-01"];
       const expectedReceivers: Record<string, string[]> = {
-        "HVM-ADOPT-01": [
-          "design_declarations",
-          "design_references",
-          "vmodel_zip_source_bindings",
-        ],
+        "HVM-ADOPT-01": ["design_declarations", "design_references", "vmodel_zip_source_bindings"],
         "HVM-ADOPT-02": ["artifact_registry", "design_coverage_gate"],
         "HVM-ADOPT-03": ["design_impact", "relation_graph"],
         "HVM-ADOPT-04": ["roadmap_rollups", "roadmap_band_coverage"],
@@ -2964,9 +2997,7 @@ export function checkZipAdoptionBinding(
         status: string;
         implementation_dependencies: string;
       }>;
-      const decisionRowsById = new Map(
-        adoptionDecisionRows.map((row) => [row.adoption_id, row]),
-      );
+      const decisionRowsById = new Map(adoptionDecisionRows.map((row) => [row.adoption_id, row]));
       const adoptionMatrixPath = join(repoRoot, adoption.sourceDocument);
       const adoptionMatrixText = existsSync(adoptionMatrixPath)
         ? readFileSync(adoptionMatrixPath, "utf8")
@@ -2979,13 +3010,21 @@ export function checkZipAdoptionBinding(
       requireIds("adopt", adoptedIds, requiredAdopt);
       requireIds("complement", complementedIds, requiredComplement);
       requireIds("reject", rejectedIds, requiredReject);
-      if (adoption.sourceDocument !== "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md") {
+      if (
+        adoption.sourceDocument !== "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md"
+      ) {
         violations.push(`source_document=${adoption.sourceDocument}`);
       }
       if (adoptionMatrixText.length === 0) {
         violations.push("adoption_matrix_text=missing");
       }
-      for (const marker of ["## §2 共通点", "## §3 差異", "## §4 採用するもの", "## §5 HELIX が補うもの", "## §6 採用しないもの"]) {
+      for (const marker of [
+        "## §2 共通点",
+        "## §3 差異",
+        "## §4 採用するもの",
+        "## §5 HELIX が補うもの",
+        "## §6 採用しないもの",
+      ]) {
         if (!adoptionMatrixText.includes(marker)) {
           violations.push(`adoption_matrix_marker_missing=${marker}`);
         }
@@ -3071,8 +3110,16 @@ export function checkZipAdoptionBinding(
           `zip-adoption-binding - adopted=${adoptedIds.join(",") || "-"} complemented=${complementedIds.join(",") || "-"} rejected=${rejectedIds.join(",") || "-"}`,
           `zip-adoption-binding - decision-db: rows=${adoptionDecisionRows.length}/${requiredAdopt.length + requiredComplement.length + requiredReject.length} table=project_zip_adoption_decisions categories=adopt:${adoptedIds.length},complement:${complementedIds.length},reject:${rejectedIds.length}`,
           `zip-adoption-binding - references=${adoptionReferences.filter((reference) => reference.status === "resolved").length}/${requiredAdopt.length + requiredComplement.length + requiredReject.length} kinds=${[...new Set(adoptionReferences.map((reference) => reference.reference_kind))].join(",") || "-"}`,
-          `zip-adoption-binding - receivers=${Object.entries(expectedReceivers).map(([id, dependencies]) => `${id}:${dependencies.join("+")}`).join(" | ")}`,
-          `zip-adoption-binding - matrix-signature: entries=${expectedSignature.entriesTotal} extensions=${Object.entries(expectedSignature.byExtension).map(([extension, count]) => `${extension}:${count}`).join(",")} required_sources=${VMODEL_ZIP_REQUIRED_PATHS.length}/${VMODEL_ZIP_REQUIRED_PATHS.length}`,
+          `zip-adoption-binding - receivers=${Object.entries(expectedReceivers)
+            .map(([id, dependencies]) => `${id}:${dependencies.join("+")}`)
+            .join(" | ")}`,
+          `zip-adoption-binding - matrix-signature: entries=${expectedSignature.entriesTotal} extensions=${Object.entries(
+            expectedSignature.byExtension,
+          )
+            .map(([extension, count]) => `${extension}:${count}`)
+            .join(
+              ",",
+            )} required_sources=${VMODEL_ZIP_REQUIRED_PATHS.length}/${VMODEL_ZIP_REQUIRED_PATHS.length}`,
           `zip-adoption-binding - deps=${adoption.implementationDependencies.join(",") || "-"} doc=${adoption.docDependencies.join(",") || "-"}`,
           ...violations.map((violation) => `zip-adoption-binding - violation: ${violation}`),
         ],
@@ -3213,11 +3260,10 @@ export function checkZipReferenceRuntimeBoundary(repoRoot: string): {
       }
     };
     for (const root of scanRoots) collect(root);
-    const textFiles = files.filter((path) =>
-      /\.(ts|tsx|js|mjs|cjs|json|ya?ml|sh|ps1)$/.test(path),
-    );
+    const textFiles = files.filter((path) => /\.(ts|tsx|js|mjs|cjs|json|ya?ml|sh|ps1)$/.test(path));
     const violations: string[] = [];
-    const referenceToolPattern = /tools\/(?:build|spec_check|spec_types|assign|schedule)\.py|hybrid-docgen\/tools\/(?:build|spec_check|spec_types|assign|schedule)\.py/g;
+    const referenceToolPattern =
+      /tools\/(?:build|spec_check|spec_types|assign|schedule)\.py|hybrid-docgen\/tools\/(?:build|spec_check|spec_types|assign|schedule)\.py/g;
     const xlsxPattern = /\.xlsx\b/g;
     const externalExecutionPattern =
       /\bBun\.(?:spawn|spawnSync)\b|\b(?:node:)?child_process\b|\bpython(?:3)?\b|(?:^|[^\w.])(?:spawn|spawnSync|exec|execSync|execFile|execFileSync)\s*\(/g;
@@ -3253,7 +3299,9 @@ export function checkZipReferenceRuntimeBoundary(repoRoot: string): {
         `${prefix}: scanned=${textFiles.length} references=${referenceMentions} xlsx=${xlsxMentions} policy=reference-only command=helix doctor`,
         "zip-reference-runtime-boundary - allowed=src/vmodel/zip-manifest.ts,src/vmodel/fit.ts,src/vscode/tree-view-provider.ts,src/doctor/index.ts",
         "zip-reference-runtime-boundary - forbidden=runtime execution/import of tools/build.py,tools/spec_check.py,tools/spec_types.py or xlsx builder output",
-        ...violations.map((violation) => `zip-reference-runtime-boundary - violation: ${violation}`),
+        ...violations.map(
+          (violation) => `zip-reference-runtime-boundary - violation: ${violation}`,
+        ),
       ],
     };
   } catch {
@@ -3316,10 +3364,7 @@ export function checkFunctionDesignAbsorptionBinding(
         "gate_runs",
         "runtime_verification_events",
       ];
-      const requiredDetailDeclarationIds = [
-        "HOPS-VMFIT-CONTRACT-01",
-        "HVM-TAILOR-DETAIL-CONTRACT",
-      ];
+      const requiredDetailDeclarationIds = ["HOPS-VMFIT-CONTRACT-01", "HVM-TAILOR-DETAIL-CONTRACT"];
       if (absorption.independent_layer_policy !== "abolished") {
         violations.push(`policy=${absorption.independent_layer_policy}`);
       }

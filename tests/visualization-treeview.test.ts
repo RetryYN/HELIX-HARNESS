@@ -1296,7 +1296,7 @@ describe("visualization Tree View adapter", () => {
     expect(vmodelFit).toMatchObject({
       label: "V-model fit",
       description:
-        "needs_fit design=needs_design ac=needs_trace zip=complete manifest=advisory_missing tailoring=pass function=needs_absorption roadmap=needs_sync drive=Recovery current=needs_recovery",
+        "needs_fit design=needs_design ac=needs_trace zip=complete manifest=advisory_missing tailoring=pass function=needs_absorption roadmap=needs_sync drive=Recovery current=needs_recovery handoff=machine_pending",
       contextValue: "current-location.vmodel-fit.needs_fit",
       command: {
         title: "Copy pointer",
@@ -1307,6 +1307,7 @@ describe("visualization Tree View adapter", () => {
     expect(vmodelFit?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/vmodel-fit/synthesis:needs_fit common=1 complement=1 reject=1",
       "project/current-location/vmodel-fit/next-actions:6",
+      "project/current-location/vmodel-fit/handoff-summary:machine_pending total=1 approval=0 mismatch=0 apply=0",
       "project/current-location/vmodel-fit/regression-guards:needs_attention pass=1 watch=2 fail=4",
       "project/current-location/vmodel-fit/design-coverage:needs_design",
       "project/current-location/vmodel-fit/zip-adoption:complete",
@@ -1971,6 +1972,10 @@ describe("visualization Tree View adapter", () => {
       tree,
       "project/current-location/vmodel-fit/recovery-handoff",
     );
+    const handoffSummary = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/handoff-summary",
+    );
 
     expect(nextAction).toMatchObject({
       description: "approval count=1",
@@ -1990,6 +1995,12 @@ describe("visualization Tree View adapter", () => {
     });
     expect(handoffNext?.tooltip).toContain("approval.waiting_for_human_review");
     expect(handoffNext?.tooltip).toContain("approval.scope.match");
+    expect(handoffSummary).toMatchObject({
+      description: "approval_pending total=1 approval=1 mismatch=0 apply=0",
+      contextValue: "vmodel-fit.handoff-summary.approval_pending.mismatch-0.apply-0",
+    });
+    expect(handoffSummary?.tooltip).toContain("approval_pending=1");
+    expect(handoffSummary?.tooltip).toContain("approval.scope.match");
     expect(approvalDraftArtifact).toMatchObject({
       description: "present present 253B",
       contextValue: "vmodel-fit.work-bucket.handoff.approval-draft",

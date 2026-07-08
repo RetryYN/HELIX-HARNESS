@@ -59,7 +59,8 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
   },
   {
     table: "project_current_location",
-    reason: "L12 current location is derived from roadmap, design declarations, and evidence tables",
+    reason:
+      "L12 current location is derived from roadmap, design declarations, and evidence tables",
   },
   {
     table: "project_drive_model_candidates",
@@ -75,7 +76,8 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
   },
   {
     table: "project_tailoring_decisions",
-    reason: "solo tailoring required/optional/na decisions are derived from typed design declarations",
+    reason:
+      "solo tailoring required/optional/na decisions are derived from typed design declarations",
   },
   {
     table: "project_vmodel_regression_guards",
@@ -84,6 +86,10 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
   {
     table: "project_vmodel_fit_blockers",
     reason: "V-model fit blockers are derived from the V-model fit read model",
+  },
+  {
+    table: "project_vmodel_handoff_summary",
+    reason: "V-model recovery handoff approval state is derived from the Project view model",
   },
   {
     table: "project_l12_layer_coverage",
@@ -107,8 +113,7 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
   },
   {
     table: "vmodel_zip_source_bindings",
-    reason:
-      `${VMODEL_ZIP_FILENAME} source bindings are projected for L12/database coverage checks`,
+    reason: `${VMODEL_ZIP_FILENAME} source bindings are projected for L12/database coverage checks`,
   },
   {
     table: "visualization_view_model",

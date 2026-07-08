@@ -394,16 +394,14 @@ describe("HELIX objective evidence audit", () => {
         "src/lint/db-projection-ingestion-removed.ts",
       )
       .replaceAll("src/state-db/current-location.ts", "src/state-db/current-location-removed.ts")
-      .replaceAll(
-        "src/vscode/extension-adapter.ts",
-        "src/vscode/extension-adapter-removed.ts",
-      )
+      .replaceAll("src/vscode/extension-adapter.ts", "src/vscode/extension-adapter-removed.ts")
       .replaceAll("zip-source-integrity", "zip source integrity removed")
       .replaceAll("zip-adoption-binding", "zip adoption binding removed")
       .replaceAll("project_zip_adoption_decisions", "project zip adoption decisions removed")
       .replaceAll("project_tailoring_decisions", "project tailoring decisions removed")
       .replaceAll("project_vmodel_regression_guards", "project vmodel regression guards removed")
       .replaceAll("project_vmodel_fit_blockers", "project vmodel fit blockers removed")
+      .replaceAll("project_vmodel_handoff_summary", "project vmodel handoff summary removed")
       .replaceAll("vmodel-zip-source-bindings", "vmodel zip source bindings removed")
       .replaceAll(
         "function-design-absorption-binding",
@@ -414,10 +412,7 @@ describe("HELIX objective evidence audit", () => {
       .replaceAll("drive-model-binding", "drive model binding removed")
       .replaceAll("reverse-dependency-closure", "reverse dependency closure removed")
       .replaceAll("candidate-dependency-closure", "candidate dependency closure removed")
-      .replaceAll(
-        "vscode-extension-dynamic-binding",
-        "vscode extension dynamic binding removed",
-      )
+      .replaceAll("vscode-extension-dynamic-binding", "vscode extension dynamic binding removed")
       .replaceAll("operation-scope-binding", "operation scope binding removed")
       .replaceAll("vmodel_zip_source_bindings", "vmodel zip source binding table removed")
       .replaceAll("view-nodes=observation-gap:6/6", "operation observation gap view nodes removed")
@@ -448,6 +443,7 @@ describe("HELIX objective evidence audit", () => {
         "G-09: missing V-model ZIP/L12 objective hard-gate marker project_tailoring_decisions",
         "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_regression_guards",
         "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_fit_blockers",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_handoff_summary",
         "G-09: missing V-model ZIP/L12 objective hard-gate marker vmodel-zip-source-bindings",
         "G-09: missing V-model ZIP/L12 objective hard-gate marker function-design-absorption-binding",
         "G-09: missing V-model ZIP/L12 objective hard-gate marker roadmap-current-binding",
