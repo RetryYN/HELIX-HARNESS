@@ -50,11 +50,21 @@ escalate）。本 view-model は snapshot の再クエリを行わず、snapshot
 {
   generated_from: "visualization-snapshot.v1";   // 入力 schema_version をそのまま反映
   source_clock: string | null;                    // snapshot.source_clock を透過
+  view_boundaries: {
+    project: { owned_views; source_fields; excluded_fields; view_command };
+    harness: { owned_views; source_fields; excluded_fields; view_command };
+  };
   project: { layer_progress; design_test_pair; relation_graph; runtime_evidence };
   harness: { harness_growth; skill_agent_telemetry };
   shared_warnings: string[];                        // snapshot.warnings を全 view 共通 banner として保持
 }
 ```
+
+`view_boundaries` は Project/HARNESS root の機械検出用 boundary table である。Project は
+`project_current_location` / L12 coverage / drive model / closure / runtime evidence を所有し、Harness は
+`harness_growth` / `skill_agent_telemetry` を所有する。各 boundary は `excluded_fields` を持ち、ZIP/L12 fit
+や `project_current_location.*` が Harness view に主 surface として混入する、または skill/model telemetry が
+Project の現在地判断に混入する場合にテストで検出できるようにする。
 
 各 view row は `{ label; value; drilldown: { kind: "cli" | "table" | "docs"; pointer: string } | null }`
 を基本形とし、pointer は snapshot の `drilldowns`（CLI command 文字列 / table 名）に限定する。絶対 path・
@@ -97,6 +107,9 @@ L3 は下記を「L6 view-model 契約で新設」と送った（HR-FR-VIS-02/04
    明示する（HAC-VIS-07b）。現行 snapshot は履歴系列を保持しないため、series が空のときは
    「時系列の記録なし」warning を立て、成長を捏造しない。時系列 source の snapshot 保持は後続の read-model
    拡張タスク（要 escalate 対象、schema 変更を伴う場合）。
+   Tree View は `harness_growth.current_sections.artifacts/plans/gates` を参照し、Project root の
+   `layer_progress` namespace を直接読まない。数値定義は同一でも、描画元 namespace を分けることで
+   Project/HARNESS 境界を機械的に検査できる。
 
 ## §5 drill-down 契約（HR-FR-VIS-06）
 

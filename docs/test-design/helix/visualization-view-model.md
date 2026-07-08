@@ -14,7 +14,9 @@ pair 正本 = `docs/design/helix/L6-function-design/visualization-view-model.md`
 ## 検証観点（宣言済み oracle。`tests/visualization-view-model.test.ts` で cover 済み）
 
 1. **純関数性** → `U-VVM-001`: 同一 snapshot 入力 → view-model deep equal（副作用・DB 再クエリ・
-   現在時刻依存なし。入力 snapshot が呼び出し後も不変であることも確認）。
+   現在時刻依存なし。入力 snapshot が呼び出し後も不変であることも確認）。Project/HARNESS の
+   `view_boundaries` が `owned_views` / `source_fields` / `excluded_fields` を持ち、Project view と
+   HARNESS view の混入検出が可能であることも確認する。
 2. **count 一致** → `U-VVM-002`（層別 count 一致）/ `U-VVM-005`（runtime evidence の verification
    class 分離が非昇格であることを含む）: 各 view の描画 count が snapshot の対応 field と一致し、
    乖離は warnings/error へ分離（成功へ混ぜない）。design/test pair のフィルタ済み count は現行
@@ -25,9 +27,20 @@ pair 正本 = `docs/design/helix/L6-function-design/visualization-view-model.md`
 4. **空状態** → `U-VVM-004`: 空 snapshot で全 view 0 表示 + 共有 banner（既存 warnings を保持した
    まま graph/evidence/skill 系 banner を追記、捏造値なし）。
 5. **growth 時系列** → `U-VVM-006`（HAC-VIS-07）: 履歴の無い期間は補間せず「記録なし」を明示し
-   （空 `growth_series` + warning）、current 値は snapshot から再現可能。
+   （空 `growth_series` + warning）、current 値は snapshot から再現可能。HARNESS Tree View は
+   `harness_growth.current_sections` を描画元とし、Project root の `layer_progress` namespace を直接読まない。
 6. **drill-down** → `U-VVM-007`（HAC-VIS-06、全 view 対象）: 各 row から `drilldowns` pointer への
    deterministic 経路。pointer が無い row は `drilldown: null` を明示し、絶対 path・LLM 要約を
    根拠にしない。
+7. **VSCode Tree View adapter** → `U-VTREE-001` / `U-VTREE-002`: `VisualizationViewModel` から
+   Project / HARNESS 2 root の TreeItem 相当 payload を純関数で生成する。Project root は
+   Current location / L12 coverage / findings / layer progress / runtime evidence を含み、L12 coverage の
+   `done / missing / reverify` と各層 detail を描画可能にする。各 root は `View boundary` node を持ち、
+   `source_fields` / `excluded_fields` から Project/HARNESS の責務境界を機械検出できる。Tree action は
+   read-only copy pointer のみで、command 実行・絶対 path・LLM 要約を持たない。
+8. **VSCode API adapter / manifest** → `U-VEXT-001` / `U-VEXT-002` / `U-VEXT-003` / `U-VEXT-004`:
+   fake VSCode API で `helix.projectView` / `helix.harnessView` の TreeDataProvider 登録、refresh による
+   動的再読込、`helix.copyPointer` の clipboard copy 限定、`onView:*` activation と command contribution
+   の整合、workspace folder から CLI repo root を解決することを検証する。VSIX packaging は対象外。
 
 acceptance の親 trace は HAT-VIS 系（`docs/test-design/helix/L3-pillar-acceptance-test-design.md`）。

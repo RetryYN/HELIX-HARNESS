@@ -276,6 +276,7 @@ export const SOURCE_BOUNDARY_MODULES = [
   "task",
   "team",
   "vmodel",
+  "vscode",
   "web",
   "workflow",
 ] as const;
@@ -338,6 +339,7 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlyS
   task: EMPTY_BOUNDARY,
   team: EMPTY_BOUNDARY,
   vmodel: EMPTY_BOUNDARY,
+  vscode: EMPTY_BOUNDARY,
   web: EMPTY_BOUNDARY,
   workflow: EMPTY_BOUNDARY,
 };

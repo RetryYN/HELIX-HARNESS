@@ -1,4 +1,4 @@
-import type { IndexDef } from "./harness-db";
+import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
@@ -49,6 +49,101 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["status", "created_at"],
   },
   { name: "idx_search_subject", table: "search_index", columns: ["subject_type", "subject_id"] },
+  {
+    name: "idx_design_declarations_defined",
+    table: "design_declarations",
+    columns: ["defined_id", "declaration_kind"],
+  },
+  {
+    name: "idx_design_references_from_to",
+    table: "design_references",
+    columns: ["from_id", "to_id", "reference_kind"],
+  },
+  {
+    name: "idx_design_impact_root",
+    table: "design_impact",
+    columns: ["root_id", "direction", "status"],
+  },
+  {
+    name: "idx_design_impact_impacted",
+    table: "design_impact",
+    columns: ["impacted_id", "impact_kind", "status"],
+  },
+  {
+    name: "idx_project_current_location_status",
+    table: "project_current_location",
+    columns: ["current_status", "selected_drive_model", "drive_route_status"],
+  },
+  {
+    name: "idx_project_drive_model_candidates_status",
+    table: "project_drive_model_candidates",
+    columns: ["snapshot_id", "status", "rank"],
+  },
+  {
+    name: "idx_project_roadmap_current_actions_status",
+    table: "project_roadmap_current_actions",
+    columns: ["snapshot_id", "status", "category"],
+  },
+  {
+    name: "idx_project_zip_adoption_decisions_status",
+    table: "project_zip_adoption_decisions",
+    columns: ["snapshot_id", "category", "status"],
+  },
+  {
+    name: "idx_project_tailoring_decisions_status",
+    table: "project_tailoring_decisions",
+    columns: ["snapshot_id", "category", "status"],
+  },
+  {
+    name: "idx_project_vmodel_regression_guards_status",
+    table: "project_vmodel_regression_guards",
+    columns: ["snapshot_id", "status", "guard_count"],
+  },
+  {
+    name: "idx_project_vmodel_fit_blockers_status",
+    table: "project_vmodel_fit_blockers",
+    columns: ["snapshot_id", "status", "blocker_count"],
+  },
+  {
+    name: "idx_project_l12_layer_coverage_status",
+    table: "project_l12_layer_coverage",
+    columns: ["snapshot_id", "layer", "status"],
+  },
+  {
+    name: "idx_design_coverage_gate_status",
+    table: "design_coverage_gate",
+    columns: ["snapshot_id", "l12_layer", "status"],
+  },
+  {
+    name: "idx_project_operation_scopes_status",
+    table: "project_operation_scopes",
+    columns: ["snapshot_id", "scope", "status"],
+  },
+  {
+    name: "idx_project_artifact_remap_status",
+    table: "project_artifact_remap",
+    columns: ["snapshot_id", "status", "l12_layer"],
+  },
+  {
+    name: "idx_vmodel_zip_manifest_status",
+    table: "vmodel_zip_manifest",
+    columns: ["source_package", "inventory_status", "ok"],
+  },
+  {
+    name: "idx_vmodel_zip_source_bindings_status",
+    table: "vmodel_zip_source_bindings",
+    columns: ["status", "source_category", "source_present"],
+  },
+  {
+    name: "idx_visualization_view_model_schema",
+    table: "visualization_view_model",
+    columns: ["schema_version", "generated_from"],
+  },
+  {
+    name: "idx_visualization_tree_view_schema",
+    table: "visualization_tree_view",
+    columns: ["schema_version", "root_count"],
+  },
   {
     name: "idx_graph_node_type_subject",
     table: "graph_nodes",

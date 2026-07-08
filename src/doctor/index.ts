@@ -438,6 +438,15 @@ import {
   CONSUMER_CLAUDE_COMMAND_NAMES,
   CONSUMER_TEAM_DEFINITION_PATH,
 } from "../setup/templates";
+import {
+  buildProjectClosureApplyPlan,
+  buildProjectClosureEvidencePlan,
+  buildProjectClosureOverview,
+  buildProjectCurrentLocationSnapshot,
+  buildProjectDriveModelReport,
+  buildProjectRecoveryPlan,
+  buildProjectRoadmapCurrentReport,
+} from "../state-db/current-location";
 import { loadOrBuildDriveDbRegistrationStats } from "../state-db/drive-registration";
 import {
   type GuardrailDecisionInput,
@@ -452,8 +461,11 @@ import {
   loadRefactorCandidateInputs,
 } from "../state-db/refactor-candidates";
 import { loadRuntimeSessionUsage } from "../state-db/token-tracker";
+import { buildVisualizationSnapshot } from "../state-db/visualization-read-model";
+import { buildVisualizationViewModel } from "../state-db/visualization-view-model";
 import { classifyProposalDocumentCoverage } from "../task/classify";
 import { buildTeamRunPlan } from "../team/run";
+import { buildVmodelFitReport } from "../vmodel/fit";
 import {
   analyzePairFreeze,
   analyzeVerificationGroups,
@@ -463,6 +475,22 @@ import {
   verificationGroupMessages,
   verificationGroupsOk,
 } from "../vmodel/lint";
+import {
+  analyzeVmodelZipManifest,
+  VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE,
+  VMODEL_ZIP_REQUIRED_PATHS,
+  VMODEL_ZIP_SOURCE_BINDINGS,
+  vmodelZipManifestMessages,
+} from "../vmodel/zip-manifest";
+import { validateVisualizationTreeViewModel } from "../vscode/extension-adapter";
+import {
+  HELIX_COPY_POINTER_COMMAND,
+  HELIX_HARNESS_VIEW_ID,
+  HELIX_PROJECT_VIEW_ID,
+  HELIX_REFRESH_VISUALIZATION_COMMAND,
+  helixVscodeContributionManifest,
+} from "../vscode/extension-manifest";
+import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { collectDoctorCheckRun } from "./check-registry";
 import type { DoctorOptions, DoctorResult } from "./result";
 
@@ -1199,6 +1227,2285 @@ export function checkDbProjectionIngestion(
       messages: [
         "db-projection-ingestion - violation: automatic projection ingestion could not run",
       ],
+      ok: false,
+    };
+  }
+}
+
+export function checkProjectCurrentLocation(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["project-current-location - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const closureOverview = buildProjectClosureOverview(snapshot, { limit: 0 });
+      const collectEvidencePlan = buildProjectClosureEvidencePlan(snapshot, {
+        action: "collect_evidence",
+        limit: 0,
+      });
+      const repairEvidencePlan = buildProjectClosureEvidencePlan(snapshot, {
+        action: "repair_failed_evidence",
+        limit: 0,
+      });
+      const roadmapCurrent = buildProjectRoadmapCurrentReport(snapshot);
+      const driveModel = buildProjectDriveModelReport(snapshot);
+      const recoveryPlan = buildProjectRecoveryPlan(snapshot, { limit: 0 });
+      const recoveryAutomation = recoveryPlan.automation_boundaries
+        .filter((boundary) => boundary.count > 0)
+        .map(
+          (boundary) =>
+            `${boundary.automation_class}:${boundary.action}:${boundary.count}:approval=${boundary.approval_required}`,
+        )
+        .join(",");
+      const recoveryRunwayPhases = recoveryPlan.automation_runway.phases
+        .map(
+          (phase) =>
+            `${phase.sequence}:${phase.phase_type}:${phase.action}:${phase.count}:remaining=${phase.remaining_after_phase}:next=${phase.next_gate}`,
+        )
+        .join(",");
+      const current = snapshot.current;
+      const route = snapshot.drive_route;
+      const prefix =
+        current.status === "forward"
+          ? "project-current-location - OK"
+          : "project-current-location - advisory";
+      const messages = [
+        `${prefix} (layer=${current.layer ?? "unknown"}, l12=${current.l12_layer ?? "unknown"}, status=${current.status}, boundary=${current.completion_boundary}, drive=${snapshot.drive_recommendation.model}, route=${route.routeId}, route_status=${route.status}, coverage done/missing/reverify=${snapshot.coverage.done}/${snapshot.coverage.missing}/${snapshot.coverage.reverify}, findings=${snapshot.findings.length})`,
+        `project-current-location - drive-model: selected=${driveModel.selected_model} status=${driveModel.selection_status} available=${driveModel.available_models.join(",") || "-"} blocked=${driveModel.blocked_models.join(",") || "-"} command=helix drive model --json`,
+        `project-current-location - recovery-plan: status=${recoveryPlan.status} action=${recoveryPlan.selected_closure_action ?? "-"} exit=${recoveryPlan.exit_forecast.status} remaining=${recoveryPlan.exit_forecast.remaining_queue_items} blockers=${recoveryPlan.exit_forecast.blockers.length} steps=${recoveryPlan.steps.length} command=helix recovery plan --json`,
+        `project-current-location - recovery-reentry: status=${recoveryPlan.reentry_forecast.status} blocking=${recoveryPlan.reentry_forecast.current_blocking_count} after_machine=${recoveryPlan.reentry_forecast.blocking_after_machine_lanes} phases=${recoveryPlan.reentry_forecast.required_phase_count} next=${recoveryPlan.reentry_forecast.next_phase_action ?? "-"} gate=${recoveryPlan.reentry_forecast.next_gate} command=helix recovery plan --json`,
+        `project-current-location - recovery-runway: status=${recoveryPlan.automation_runway.status} machine=${recoveryPlan.automation_runway.machine_actionable_count} approval=${recoveryPlan.automation_runway.human_approval_count} reverse=${recoveryPlan.automation_runway.design_reverse_count} after_machine=${recoveryPlan.automation_runway.remaining_after_machine_lanes} next=${recoveryPlan.automation_runway.next_machine_action ?? "-"} command=helix recovery plan --json`,
+        `project-current-location - recovery-runway-phases: ${recoveryRunwayPhases || "none"} command=helix recovery plan --json`,
+        `project-current-location - recovery-automation: ${recoveryAutomation || "none"} mutation=false command=helix recovery plan --json`,
+        `project-current-location - drive-route: ${route.routeId} status=${route.status} model=${route.selectedModel} default=${route.defaultModel} return_to_design=${route.mustReturnToDesign} write=${route.writePolicy}`,
+        route.reverse.required
+          ? `project-current-location - reverse-scope: targets=${route.reverse.targets.join(",") || "-"} l12=${route.reverse.l12Layers.join(",") || "-"} actions=${route.reverse.queueActions.join(",") || "-"} ledgers=${route.reverse.ledgerIds.length} docs=${route.reverse.docDependencies.length} impl=${route.reverse.implementationDependencies.length}`
+          : `project-current-location - forward-scope: allowed=${route.forward.allowed} roadmap=${route.forward.roadmapStatus} frontier=${route.forward.frontier.join(",") || "-"}`,
+        `project-current-location - design-coverage-gate: status=${snapshot.design_coverage_gate.status} covered=${snapshot.design_coverage_gate.covered} missing=${snapshot.design_coverage_gate.missing} reverify=${snapshot.design_coverage_gate.reverify}`,
+        `project-current-location - zip-adoption: status=${snapshot.zip_adoption.status} adopt=${snapshot.zip_adoption.adopted} complement=${snapshot.zip_adoption.complemented} reject=${snapshot.zip_adoption.rejected} missing=${snapshot.zip_adoption.missing}`,
+        `project-current-location - tailoring-gate: status=${snapshot.tailoring_gate.status} profile=${snapshot.tailoring_gate.profile} required=${snapshot.tailoring_gate.required} optional=${snapshot.tailoring_gate.optional} na=${snapshot.tailoring_gate.excluded} missing=${snapshot.tailoring_gate.missing_required}`,
+        `project-current-location - design-impact: declarations=${snapshot.counts.design_declarations} references=${snapshot.counts.design_references} impact=${snapshot.counts.design_impact} unresolved=${snapshot.counts.unresolved_design_references} drift=${snapshot.counts.design_declaration_drifts}`,
+        `project-current-location - artifact-remap: done=${snapshot.artifact_remap.done} missing=${snapshot.artifact_remap.missing} reverify=${snapshot.artifact_remap.reverify} layers=${snapshot.artifact_remap.layers.map((layer) => `${layer.layer}:${layer.status}`).join(",")}`,
+        `project-current-location - artifact-remap-batch: reverify=helix artifact-remap batch --status reverify --json missing=helix artifact-remap batch --status missing --json`,
+        `project-current-location - roadmap-position: status=${snapshot.roadmap_position.status} bands=${snapshot.roadmap_position.rollup.covered_bands}/${snapshot.roadmap_position.rollup.total_bands} gates=${snapshot.roadmap_position.rollup.reached_gates}/${snapshot.roadmap_position.rollup.total_gates}`,
+        `project-current-location - roadmap-current: status=${roadmapCurrent.status} aligned=${roadmapCurrent.consistency.aligned} basis=${roadmapCurrent.consistency.alignment_basis} db=${roadmapCurrent.consistency.db_current_l12_layer ?? "-"} roadmap=${roadmapCurrent.consistency.roadmap_current_l12_layers.join(",") || "-"} projected=${roadmapCurrent.consistency.roadmap_projected_l12_layers.join(",") || "-"} terminal=${roadmapCurrent.consistency.roadmap_terminal_l12_layers.join(",") || "-"} blockers=${roadmapCurrent.counts.blockers} command=helix roadmap current --json`,
+        `project-current-location - closure-overview: status=${closureOverview.closure.status} queue=${closureOverview.closure.queue_total} close=${closureOverview.closure.route_counts.close_ready} collect=${closureOverview.closure.route_counts.collect_evidence} repair=${closureOverview.closure.route_counts.repair_failed_evidence} reverse=${closureOverview.closure.route_counts.reverse_design} apply=${closureOverview.closure.apply_readiness.status} recommended=${closureOverview.recommended_next_action.action ?? "none"} human=${closureOverview.recommended_next_action.human_required} command=${closureOverview.recommended_next_action.command}`,
+        `project-current-location - closure-evidence-plan: collect=${collectEvidencePlan.total} tables=${collectEvidencePlan.target_tables.join(",") || "-"} command=helix closure evidence-plan --action collect_evidence --json repair=${repairEvidencePlan.total} repair_tables=${repairEvidencePlan.target_tables.join(",") || "-"} repair_command=helix closure evidence-plan --action repair_failed_evidence --json`,
+        `project-current-location - next-action-ledger: total=${snapshot.closure.next_action_ledger.total} ready=${snapshot.closure.next_action_ledger.status_counts.ready} evidence=${snapshot.closure.next_action_ledger.status_counts.needs_evidence} repair=${snapshot.closure.next_action_ledger.status_counts.needs_repair} reverse=${snapshot.closure.next_action_ledger.status_counts.needs_reverse}`,
+      ];
+      const firstPacket = snapshot.closure.packets.items[0];
+      if (firstPacket) {
+        messages.push(
+          `project-current-location - closure-automation: first=${firstPacket.automation.batchId} command=${firstPacket.automation.reviewCommand} filter=${firstPacket.automation.machineFilter} transition=${firstPacket.automation.expectedTransition}`,
+        );
+      }
+      for (const finding of snapshot.findings) {
+        messages.push(
+          `project-current-location - ${finding.severity}: ${finding.code} (${finding.detail})`,
+        );
+      }
+      return { messages, ok: true };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["project-current-location - violation: current location projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkVisualizationViewModelBoundary(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["visualization-view-model-boundary - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot });
+      const viewModel = buildVisualizationViewModel(snapshot);
+      const project = viewModel.view_boundaries.project;
+      const harness = viewModel.view_boundaries.harness;
+      const compatibility = viewModel.project.current_location.l12_compatibility;
+      const violations: string[] = [];
+      const requireIncludes = (label: string, values: string[], required: string[]) => {
+        for (const value of required) {
+          if (!values.includes(value)) violations.push(`${label} missing ${value}`);
+        }
+      };
+      requireIncludes("project.owned_views", project.owned_views, [
+        "current_location",
+        "layer_progress",
+        "runtime_evidence",
+      ]);
+      requireIncludes("project.source_fields", project.source_fields, [
+        "project_current_location",
+        "vmodel_zip_manifest",
+        "vmodel_zip_source_bindings",
+        "project_zip_adoption_decisions",
+        "project_tailoring_decisions",
+        "project_vmodel_regression_guards",
+        "project_vmodel_fit_blockers",
+      ]);
+      requireIncludes("project.excluded_fields", project.excluded_fields, [
+        "evidence.skill_invocations",
+        "evidence.model_runs",
+      ]);
+      requireIncludes("harness.owned_views", harness.owned_views, [
+        "harness_growth",
+        "skill_agent_telemetry",
+      ]);
+      requireIncludes("harness.source_fields", harness.source_fields, [
+        "evidence.skill_invocations",
+        "evidence.model_runs",
+      ]);
+      requireIncludes("harness.excluded_fields", harness.excluded_fields, [
+        "project_current_location.vmodel_fit",
+        "project_current_location.drive_route",
+        "project_current_location.closure",
+        "vmodel_zip_manifest",
+        "vmodel_zip_source_bindings",
+        "project_zip_adoption_decisions",
+        "project_tailoring_decisions",
+        "project_vmodel_regression_guards",
+        "project_vmodel_fit_blockers",
+      ]);
+      if (
+        project.view_command !== "helix progress tree-view --json" ||
+        harness.view_command !== "helix progress tree-view --json"
+      ) {
+        violations.push("view_command must be helix progress tree-view --json");
+      }
+      const requiredCompatibilityPairs = [
+        "l0_slide",
+        "function_design",
+        "implementation",
+        "acceptance",
+        "operation",
+        "recovery",
+      ];
+      const compatibilityPairLabels = compatibility.pairs.map((pair) => pair.label);
+      for (const pair of requiredCompatibilityPairs) {
+        if (!compatibilityPairLabels.includes(pair)) {
+          violations.push(`l12_compatibility.missing_pair=${pair}`);
+        }
+      }
+      if (compatibility.status === "violation") {
+        violations.push("l12_compatibility.status=violation");
+      }
+      if (compatibility.command !== "helix current-location --json") {
+        violations.push(`l12_compatibility.command=${compatibility.command}`);
+      }
+      const prefix =
+        violations.length === 0
+          ? "visualization-view-model-boundary - OK"
+          : "visualization-view-model-boundary - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: project=${project.owned_views.join(",")} harness=${harness.owned_views.join(",")} current=${viewModel.project.current_location.layer ?? "unknown"}->${viewModel.project.current_location.l12_layer ?? "unknown"} status=${viewModel.project.current_location.status} command=helix progress view-model --json`,
+          `visualization-view-model-boundary - l12-compatibility=${compatibility.status} layers=${compatibility.layers}/${compatibility.expected_layers} pairs=${compatibility.pairs.map((pair) => `${pair.label}:${pair.status}:${pair.legacy_layer}->${pair.l12_layer}`).join(",")}`,
+          `visualization-view-model-boundary - project-source=${project.source_fields.join(",")} project-excluded=${project.excluded_fields.join(",") || "-"}`,
+          `visualization-view-model-boundary - harness-source=${harness.source_fields.join(",")} harness-excluded=${harness.excluded_fields.join(",") || "-"}`,
+          ...violations.map((violation) => `visualization-view-model-boundary - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: [
+        "visualization-view-model-boundary - violation: view-model boundary projection could not run",
+      ],
+      ok: false,
+    };
+  }
+}
+
+export function checkVisualizationTreeViewBoundary(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["visualization-tree-view-boundary - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot });
+      const viewModel = buildVisualizationViewModel(snapshot);
+      const tree = buildVisualizationTreeView(viewModel);
+      const roots = tree.roots.map((root) => root.id);
+      const project = tree.roots.find((root) => root.id === "project");
+      const harness = tree.roots.find((root) => root.id === "harness");
+      const violations: string[] = [];
+      const collectIds = (root: TreeViewNode): string[] => {
+        const ids: string[] = [];
+        const queue: TreeViewNode[] = [root];
+        while (queue.length > 0) {
+          const current = queue.shift();
+          if (!current) continue;
+          ids.push(current.id);
+          queue.push(...current.children);
+        }
+        return ids;
+      };
+      if (tree.schema_version !== "visualization-tree-view.v1") {
+        violations.push(`schema_version=${tree.schema_version}`);
+      }
+      if (roots.join(",") !== "project,harness") {
+        violations.push(`roots=${roots.join(",") || "-"}`);
+      }
+      if (!project) {
+        violations.push("project root missing");
+      }
+      if (!harness) {
+        violations.push("harness root missing");
+      }
+      const projectIds = project ? collectIds(project) : [];
+      const harnessIds = harness ? collectIds(harness) : [];
+      const requiredProjectIds = [
+        "project/view-boundary",
+        "project/current-location",
+        "project/current-location/l12-compatibility",
+        "project/current-location/l12-compatibility/l0_slide",
+        "project/current-location/vmodel-fit",
+        "project/current-location/operation-scope",
+        "project/current-location/operation-scope/incident_recovery_route",
+        "project/current-location/operation-scope/incident_recovery_route/observation-gap",
+      ];
+      const requiredHarnessIds = [
+        "harness/view-boundary",
+        "harness/growth",
+        "harness/skill-agent-telemetry",
+      ];
+      for (const id of requiredProjectIds) {
+        if (!projectIds.includes(id)) violations.push(`project.missing=${id}`);
+      }
+      for (const id of requiredHarnessIds) {
+        if (!harnessIds.includes(id)) violations.push(`harness.missing=${id}`);
+      }
+      const harnessProjectLeaks = harnessIds.filter(
+        (id) => id.startsWith("project/") || id.includes("current-location"),
+      );
+      const projectHarnessLeaks = projectIds.filter(
+        (id) => id.startsWith("harness/") || id.includes("skill-agent-telemetry"),
+      );
+      if (harnessProjectLeaks.length > 0) {
+        violations.push(`harness.project_leak=${harnessProjectLeaks.slice(0, 3).join(",")}`);
+      }
+      if (projectHarnessLeaks.length > 0) {
+        violations.push(`project.harness_leak=${projectHarnessLeaks.slice(0, 3).join(",")}`);
+      }
+      const projectBoundary = project?.children.find((child) => child.id === "project/view-boundary");
+      const harnessBoundary = harness?.children.find((child) => child.id === "harness/view-boundary");
+      if (projectBoundary?.command?.arguments[0] !== "helix progress tree-view --json") {
+        violations.push("project.view_boundary.command must be helix progress tree-view --json");
+      }
+      if (harnessBoundary?.command?.arguments[0] !== "helix progress tree-view --json") {
+        violations.push("harness.view_boundary.command must be helix progress tree-view --json");
+      }
+      const prefix =
+        violations.length === 0
+          ? "visualization-tree-view-boundary - OK"
+          : "visualization-tree-view-boundary - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: roots=${roots.join(",") || "-"} project_nodes=${projectIds.length} harness_nodes=${harnessIds.length} policy=project-view-current-location harness-view-telemetry command=helix progress tree-view --json`,
+          `visualization-tree-view-boundary - project-required=${requiredProjectIds.join(",")}`,
+          `visualization-tree-view-boundary - harness-required=${requiredHarnessIds.join(",")}`,
+          ...violations.map((violation) => `visualization-tree-view-boundary - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: [
+        "visualization-tree-view-boundary - violation: tree-view boundary projection could not run",
+      ],
+      ok: false,
+    };
+  }
+}
+
+export function checkVscodeExtensionDynamicBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["vscode-extension-dynamic-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const tree = buildVisualizationTreeView(
+        buildVisualizationViewModel(buildVisualizationSnapshot(db, { repoRoot })),
+      );
+      const validated = validateVisualizationTreeViewModel(tree);
+      const manifest = helixVscodeContributionManifest();
+      const viewIds = manifest.contributes.views.helix.map((view) => view.id);
+      const commandIds = manifest.contributes.commands.map((command) => command.command);
+      const violations: string[] = [];
+      if (validated.roots.map((root) => root.id).join(",") !== "project,harness") {
+        violations.push(`roots=${validated.roots.map((root) => root.id).join(",") || "-"}`);
+      }
+      for (const event of [
+        `onView:${HELIX_PROJECT_VIEW_ID}`,
+        `onView:${HELIX_HARNESS_VIEW_ID}`,
+      ]) {
+        if (!manifest.activationEvents.includes(event)) {
+          violations.push(`activation.missing=${event}`);
+        }
+      }
+      for (const viewId of [HELIX_PROJECT_VIEW_ID, HELIX_HARNESS_VIEW_ID]) {
+        if (!viewIds.includes(viewId)) violations.push(`view.missing=${viewId}`);
+      }
+      for (const command of [HELIX_REFRESH_VISUALIZATION_COMMAND, HELIX_COPY_POINTER_COMMAND]) {
+        if (!commandIds.includes(command)) violations.push(`command.missing=${command}`);
+        if (!manifest.readOnlyCommands.includes(command)) {
+          violations.push(`read_only_command.missing=${command}`);
+        }
+      }
+      const extraCommands = commandIds.filter(
+        (command) =>
+          command !== HELIX_REFRESH_VISUALIZATION_COMMAND &&
+          command !== HELIX_COPY_POINTER_COMMAND,
+      );
+      if (extraCommands.length > 0) {
+        violations.push(`command.extra=${extraCommands.join(",")}`);
+      }
+      const prefix =
+        violations.length === 0
+          ? "vscode-extension-dynamic-binding - OK"
+          : "vscode-extension-dynamic-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: roots=${validated.roots.map((root) => root.id).join(",")} views=${viewIds.join(",")} commands=${commandIds.join(",")} read_only=${manifest.readOnlyCommands.join(",")} source=helix progress tree-view --json`,
+          ...violations.map((violation) => `vscode-extension-dynamic-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch (error) {
+    return {
+      messages: [
+        `vscode-extension-dynamic-binding - violation: VSCode dynamic tree binding could not run (${String(error)})`,
+      ],
+      ok: false,
+    };
+  }
+}
+
+export function checkL12CompatibilityBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["l12-compatibility-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const layers = snapshot.coverage.l12_layers;
+      const byLayer = new Map(layers.map((layer) => [layer.layer, layer]));
+      const requiredLayers = Array.from({ length: 12 }, (_, index) => `L${index + 1}`);
+      const requiredProjectionPairs = [
+        { label: "l0_slide", legacyLayer: "L0", l12Layer: "L1" },
+        { label: "function_design", legacyLayer: "L6", l12Layer: "L5" },
+        { label: "implementation", legacyLayer: "L7", l12Layer: "L6" },
+        { label: "acceptance", legacyLayer: "L12", l12Layer: "L11" },
+        { label: "operation", legacyLayer: "L14", l12Layer: "L12" },
+        { label: "recovery", legacyLayer: "cross", l12Layer: "L12" },
+      ] as const;
+      const violations: string[] = [];
+      for (const layer of requiredLayers) {
+        if (!byLayer.has(layer)) violations.push(`missing_l12_layer=${layer}`);
+      }
+      const zipBindingIds = new Set(VMODEL_ZIP_SOURCE_BINDINGS.map((binding) => binding.bindingId));
+      const expectedZipBindingsForLayer = (layer: string): string[] =>
+        VMODEL_ZIP_SOURCE_BINDINGS.filter((binding) => binding.l12Layers.includes(layer)).map(
+          (binding) => binding.bindingId,
+        );
+      const expectedTailoringForLayer = (layer: string): string[] => {
+        if (["L1", "L2", "L3", "L4"].includes(layer)) return ["HVM-TAILOR-CORE-DESIGN"];
+        if (["L5", "L6"].includes(layer)) return ["HVM-TAILOR-DETAIL-CONTRACT"];
+        if (["L7", "L8", "L9", "L10", "L11"].includes(layer))
+          return ["HVM-TAILOR-TEST-ORACLE"];
+        if (layer === "L12") return ["HVM-TAILOR-OPERATION"];
+        return [];
+      };
+      const unexpectedLayers = layers
+        .map((layer) => layer.layer)
+        .filter((layer) => !requiredLayers.includes(layer));
+      if (unexpectedLayers.length > 0) {
+        violations.push(`unexpected_l12_layers=${unexpectedLayers.join(",")}`);
+      }
+      if (layers.length !== requiredLayers.length) {
+        violations.push(`layer_count=${layers.length}/${requiredLayers.length}`);
+      }
+      const projectionStatus = (legacyLayer: string, l12Layer: string) => {
+        const items = snapshot.artifact_remap.items.filter((item) => item.legacyLayer === legacyLayer);
+        if (items.length === 0) return "not_observed";
+        const matched = items.filter((item) => item.l12Layer === l12Layer);
+        return matched.length > 0 ? l12Layer : `mismatch:0/${items.length}`;
+      };
+      const projectionSummary = requiredProjectionPairs
+        .map((pair) => `${pair.label}=${projectionStatus(pair.legacyLayer, pair.l12Layer)}`)
+        .join(" ");
+      const l0SlideDeclaration = db
+        .prepare(
+          `SELECT defined_id, declaration_kind, title, layer, source_path
+           FROM design_declarations
+           WHERE defined_id = ?`,
+        )
+        .get("HVC-L1-PLANNING-INTENT") as
+        | {
+            defined_id: string;
+            declaration_kind: string;
+            title: string;
+            layer: string;
+            source_path: string;
+          }
+        | undefined;
+      for (const pair of requiredProjectionPairs) {
+        const status = projectionStatus(pair.legacyLayer, pair.l12Layer);
+        if (status.startsWith("mismatch:")) {
+          violations.push(`${pair.label}=${pair.legacyLayer}->${pair.l12Layer}:${status}`);
+        }
+      }
+      if (!l0SlideDeclaration) {
+        violations.push("l0_slide.declaration=HVC-L1-PLANNING-INTENT:missing");
+      } else {
+        if (l0SlideDeclaration.layer !== "L1") {
+          violations.push(`l0_slide.declaration_layer=${l0SlideDeclaration.layer}`);
+        }
+        if (
+          l0SlideDeclaration.source_path !==
+          "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md"
+        ) {
+          violations.push(`l0_slide.declaration_source=${l0SlideDeclaration.source_path}`);
+        }
+        const declarationText = [
+          l0SlideDeclaration.declaration_kind,
+          l0SlideDeclaration.title,
+          l0SlideDeclaration.source_path,
+        ]
+          .join(" ")
+          .toLowerCase();
+        if (!declarationText.includes("企画") && !declarationText.includes("planning")) {
+          violations.push("l0_slide.declaration_intent=planning:missing");
+        }
+      }
+      if (snapshot.current.layer === "L0" && snapshot.current.l12_layer !== "L1") {
+        violations.push(`current_l0_projection=${snapshot.current.l12_layer ?? "-"}`);
+      }
+      if (snapshot.current.layer === "L14" && snapshot.current.l12_layer !== "L12") {
+        violations.push(`current_l14_projection=${snapshot.current.l12_layer ?? "-"}`);
+      }
+      if (snapshot.artifact_remap.layers.length !== requiredLayers.length) {
+        violations.push(
+          `artifact_remap_layers=${snapshot.artifact_remap.layers.length}/${requiredLayers.length}`,
+        );
+      }
+      const unmapped = snapshot.findings.filter((finding) => finding.code === "artifact_remap_unmapped");
+      if (unmapped.length > 0) violations.push(`artifact_remap_unmapped=${unmapped.length}`);
+      const missingRemapLayers = requiredLayers.filter(
+        (layer) => !snapshot.artifact_remap.layers.some((item) => item.layer === layer),
+      );
+      if (missingRemapLayers.length > 0) {
+        violations.push(`artifact_remap_missing_layers=${missingRemapLayers.join(",")}`);
+      }
+      const metadataLayerViolations: string[] = [];
+      for (const layer of layers) {
+        const expectedZipBindings = expectedZipBindingsForLayer(layer.layer);
+        const expectedTailoring = expectedTailoringForLayer(layer.layer);
+        const actualZipBindings = layer.zipSourceBindingIds ?? [];
+        const actualTailoring = layer.tailoringRuleIds ?? [];
+        const actualDetails = layer.tailoringDetailLevels ?? [];
+        const missingZipBindings = expectedZipBindings.filter((id) => !actualZipBindings.includes(id));
+        const unknownZipBindings = actualZipBindings.filter((id) => !zipBindingIds.has(id));
+        const missingTailoring = expectedTailoring.filter((id) => !actualTailoring.includes(id));
+        if (missingZipBindings.length > 0) {
+          metadataLayerViolations.push(`${layer.layer}.zip=${missingZipBindings.join("+")}`);
+        }
+        if (unknownZipBindings.length > 0) {
+          metadataLayerViolations.push(`${layer.layer}.zip_unknown=${unknownZipBindings.join("+")}`);
+        }
+        if (missingTailoring.length > 0) {
+          metadataLayerViolations.push(`${layer.layer}.tailoring=${missingTailoring.join("+")}`);
+        }
+        if (actualDetails.length === 0) {
+          metadataLayerViolations.push(`${layer.layer}.detail=missing`);
+        }
+      }
+      if (metadataLayerViolations.length > 0) {
+        violations.push(`coverage_metadata=${metadataLayerViolations.join(",")}`);
+      }
+      const remapWithLayer = snapshot.artifact_remap.items.filter((item) => item.l12Layer !== null);
+      const remapMissingZipMetadata = remapWithLayer.filter(
+        (item) => (item.zipSourceBindingIds ?? []).length === 0,
+      );
+      const remapMissingTailoringMetadata = remapWithLayer.filter(
+        (item) =>
+          (item.tailoringRuleIds ?? []).length === 0 ||
+          (item.tailoringDetailLevels ?? []).length === 0,
+      );
+      const remapUnknownZipMetadata = remapWithLayer.filter((item) =>
+        (item.zipSourceBindingIds ?? []).some((id) => !zipBindingIds.has(id)),
+      );
+      if (remapMissingZipMetadata.length > 0) {
+        violations.push(`artifact_remap_zip_metadata_missing=${remapMissingZipMetadata.length}`);
+      }
+      if (remapMissingTailoringMetadata.length > 0) {
+        violations.push(
+          `artifact_remap_tailoring_metadata_missing=${remapMissingTailoringMetadata.length}`,
+        );
+      }
+      if (remapUnknownZipMetadata.length > 0) {
+        violations.push(`artifact_remap_zip_metadata_unknown=${remapUnknownZipMetadata.length}`);
+      }
+      const legacySummary = requiredLayers
+        .map((layer) => `${layer}=${byLayer.get(layer)?.legacyLayers.join("+") ?? "-"}`)
+        .join(" ");
+      const artifactSummary = snapshot.artifact_remap.layers
+        .map(
+          (layer) =>
+            `${layer.layer}:${layer.status}:${layer.done}/${layer.missing}/${layer.reverify}:${layer.driveModel}`,
+        )
+        .join(",");
+      const metadataSummary = requiredLayers
+        .map((layer) => {
+          const coverage = byLayer.get(layer);
+          return `${layer}:zip=${coverage?.zipSourceBindingIds?.length ?? 0}:tailoring=${coverage?.tailoringRuleIds?.join("+") || "-"}`;
+        })
+        .join(" ");
+      const prefix =
+        violations.length === 0
+          ? "l12-compatibility-binding - OK"
+          : "l12-compatibility-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: layers=${layers.length} current=${snapshot.current.layer ?? "-"}->${snapshot.current.l12_layer ?? "-"} ${projectionSummary} remap=${snapshot.artifact_remap.done}/${snapshot.artifact_remap.missing}/${snapshot.artifact_remap.reverify} command=helix current-location --json`,
+          `l12-compatibility-binding - l0-slide: declaration=${l0SlideDeclaration?.defined_id ?? "-"} layer=${l0SlideDeclaration?.layer ?? "-"} source=${l0SlideDeclaration?.source_path ?? "-"}`,
+          `l12-compatibility-binding - legacy-map: ${legacySummary}`,
+          `l12-compatibility-binding - artifact-remap: ${artifactSummary || "-"}`,
+          `l12-compatibility-binding - coverage-metadata: ${metadataSummary} remap_zip=${remapWithLayer.length - remapMissingZipMetadata.length}/${remapWithLayer.length} remap_tailoring=${remapWithLayer.length - remapMissingTailoringMetadata.length}/${remapWithLayer.length}`,
+          ...violations.map((violation) => `l12-compatibility-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["l12-compatibility-binding - violation: L12 compatibility projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkRoadmapCurrentBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["roadmap-current-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const report = buildProjectRoadmapCurrentReport(snapshot);
+      const violations: string[] = [];
+      if (report.schema_version !== "project-roadmap-current.v1") {
+        violations.push(`schema_version=${report.schema_version}`);
+      }
+      if (report.source_command !== "helix roadmap current --json") {
+        violations.push(`source_command=${report.source_command}`);
+      }
+      if (report.view_command !== "helix progress tree-view --json") {
+        violations.push(`view_command=${report.view_command}`);
+      }
+      const driveRouteAction = report.actions.find((action) => action.category === "drive_route");
+      const currentBindingLayers =
+        report.consistency.roadmap_projected_l12_layers.length > 0
+          ? report.consistency.roadmap_projected_l12_layers
+          : (driveRouteAction?.l12_layers ?? []);
+      const expectedL12Layers = Array.from({ length: 12 }, (_, index) => `L${index + 1}`);
+      const roadmapCoverageLayerSet = new Set(
+        report.roadmap_position.bands.flatMap((band) => band.l12Layers),
+      );
+      const roadmapCoverageLayers = expectedL12Layers.filter((layer) =>
+        roadmapCoverageLayerSet.has(layer),
+      );
+      const missingRoadmapCoverageLayers = expectedL12Layers.filter(
+        (layer) => !roadmapCoverageLayers.includes(layer),
+      );
+      if (report.roadmap_position.bands.length !== report.roadmap_position.rollup.total_bands) {
+        violations.push(
+          `roadmap_band_count=${report.roadmap_position.bands.length}/${report.roadmap_position.rollup.total_bands}`,
+        );
+      }
+      if (missingRoadmapCoverageLayers.length > 0) {
+        violations.push(`roadmap_l12_coverage_missing=${missingRoadmapCoverageLayers.join(",")}`);
+      }
+      if (
+        !report.roadmap_position.implementationDependencies.includes("roadmap_rollups") ||
+        !report.roadmap_position.implementationDependencies.includes("roadmap_band_coverage")
+      ) {
+        violations.push("roadmap_l12_coverage_tables=missing");
+      }
+      if (!report.consistency.db_current_l12_layer) {
+        violations.push("db_current_l12_layer=missing");
+      }
+      if (currentBindingLayers.length === 0) {
+        violations.push("current_binding_l12_layers=empty");
+      }
+      if (
+        report.consistency.db_current_l12_layer &&
+        currentBindingLayers.length > 0 &&
+        !currentBindingLayers.includes(report.consistency.db_current_l12_layer)
+      ) {
+        violations.push(
+          `db_current_l12_layer=${report.consistency.db_current_l12_layer} not in current_binding_l12_layers`,
+        );
+      }
+      if (!driveRouteAction) {
+        violations.push("drive_route_action=missing");
+      } else {
+        if (driveRouteAction.action_id !== report.drive_route.routeId) {
+          violations.push(
+            `drive_route_action=${driveRouteAction.action_id} route=${report.drive_route.routeId}`,
+          );
+        }
+        if (driveRouteAction.l12_layers.length === 0) {
+          violations.push("drive_route_action.l12_layers=empty");
+        }
+        if (report.drive_route.mustReturnToDesign) {
+          if (driveRouteAction.doc_dependencies.length === 0) {
+            violations.push("drive_route_action.doc_dependencies=empty");
+          }
+          if (driveRouteAction.implementation_dependencies.length === 0) {
+            violations.push("drive_route_action.implementation_dependencies=empty");
+          }
+          if (
+            !driveRouteAction.doc_dependencies.includes("docs/design/**") ||
+            !driveRouteAction.doc_dependencies.includes("docs/test-design/**")
+          ) {
+            violations.push("drive_route_action.doc_dependencies missing design/test-design");
+          }
+        }
+      }
+      if (report.counts.actions !== report.actions.length) {
+        violations.push(`actions_count=${report.counts.actions}/${report.actions.length}`);
+      }
+      for (const command of [
+        "helix db rebuild",
+        "helix roadmap current --json",
+        "helix current-location --json",
+        "helix vmodel fit",
+      ]) {
+        if (!report.postcheck_commands.includes(command)) {
+          violations.push(`missing_postcheck=${command}`);
+        }
+      }
+      const prefix =
+        violations.length > 0
+          ? "roadmap-current-binding - violation"
+          : report.consistency.aligned
+            ? "roadmap-current-binding - OK"
+            : "roadmap-current-binding - advisory";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${report.status} aligned=${report.consistency.aligned} basis=${report.consistency.alignment_basis} db=${report.consistency.db_current_l12_layer ?? "-"} roadmap=${report.consistency.roadmap_current_l12_layers.join(",") || "-"} projected=${report.consistency.roadmap_projected_l12_layers.join(",") || "-"} terminal=${report.consistency.roadmap_terminal_l12_layers.join(",") || "-"} route=${report.drive_route.routeId} blockers=${report.counts.blockers} actions=${report.counts.actions} command=${report.source_command}`,
+          `roadmap-current-binding - current-link: current=${report.current.layer ?? "-"}->${report.current.l12_layer ?? "-"} status=${report.current.status} effective=${currentBindingLayers.join(",") || "-"} drive_action=${driveRouteAction?.action_id ?? "-"} drive_layers=${driveRouteAction?.l12_layers.join(",") || "-"} drive_doc=${driveRouteAction?.doc_dependencies.length ?? 0} drive_impl=${driveRouteAction?.implementation_dependencies.length ?? 0}`,
+          `roadmap-current-binding - l12-coverage: bands=${report.roadmap_position.bands.length}/${report.roadmap_position.rollup.total_bands} layers=${roadmapCoverageLayers.join(",") || "-"} tables=${report.roadmap_position.implementationDependencies.join(",") || "-"}`,
+          `roadmap-current-binding - postcheck=${report.postcheck_commands.join(" && ")} view=${report.view_command} write=${report.write_policy}`,
+          `roadmap-current-binding - blocking-findings=${report.consistency.blocking_findings.join(",") || "-"} reasons=${report.consistency.reasons.join(" | ")}`,
+          ...violations.map((violation) => `roadmap-current-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["roadmap-current-binding - violation: roadmap current binding projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkDriveModelBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["drive-model-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const report = buildProjectDriveModelReport(snapshot);
+      const violations: string[] = [];
+      const expectedModels = [
+        "Forward",
+        "Reverse",
+        "Additive",
+        "Recovery",
+        "Refactor",
+        "OperationVerification",
+      ];
+      const candidateModels = report.candidates.map((candidate) => candidate.model);
+      for (const model of expectedModels) {
+        if (!candidateModels.includes(model as (typeof candidateModels)[number])) {
+          violations.push(`missing_candidate=${model}`);
+        }
+      }
+      if (report.schema_version !== "project-drive-model.v1") {
+        violations.push(`schema_version=${report.schema_version}`);
+      }
+      if (report.source_command !== "helix drive model --json") {
+        violations.push(`source_command=${report.source_command}`);
+      }
+      if (report.view_command !== "helix progress tree-view --json") {
+        violations.push(`view_command=${report.view_command}`);
+      }
+      if (report.selected_candidate.model !== report.selected_model) {
+        violations.push(
+          `selected_candidate=${report.selected_candidate.model} selected=${report.selected_model}`,
+        );
+      }
+      if (report.selected_candidate.status !== "selected") {
+        violations.push(`selected_status=${report.selected_candidate.status}`);
+      }
+      const selectedDeps = {
+        doc: report.selected_candidate.doc_dependencies,
+        impl: report.selected_candidate.implementation_dependencies,
+      };
+      if (selectedDeps.doc.length === 0) {
+        violations.push(`selected_doc_dependencies=empty:${report.selected_candidate.model}`);
+      }
+      if (selectedDeps.impl.length === 0) {
+        violations.push(
+          `selected_implementation_dependencies=empty:${report.selected_candidate.model}`,
+        );
+      }
+      const reverseCandidate = report.candidates.find((candidate) => candidate.model === "Reverse");
+      const recoveryCandidate = report.candidates.find((candidate) => candidate.model === "Recovery");
+      const forwardCandidate = report.candidates.find((candidate) => candidate.model === "Forward");
+      const operationCandidate = report.candidates.find(
+        (candidate) => candidate.model === "OperationVerification",
+      );
+      if (report.selected_candidate.trigger.length === 0) {
+        violations.push("selected_candidate.trigger=empty");
+      }
+      if (report.selected_candidate.required_action.length === 0) {
+        violations.push("selected_candidate.required_action=empty");
+      }
+      if (report.selected_model !== "Forward" && forwardCandidate?.status !== "blocked") {
+        violations.push(`Forward.status=${forwardCandidate?.status ?? "missing"} while selected=${report.selected_model}`);
+      }
+      for (const candidate of [reverseCandidate, recoveryCandidate]) {
+        if (!candidate) continue;
+        if (candidate.doc_dependencies.length === 0) {
+          violations.push(`${candidate.model}.doc_dependencies=empty`);
+        }
+        if (candidate.implementation_dependencies.length === 0) {
+          violations.push(`${candidate.model}.implementation_dependencies=empty`);
+        }
+        if (
+          !candidate.doc_dependencies.includes("docs/design/**") ||
+          !candidate.doc_dependencies.includes("docs/test-design/**")
+        ) {
+          violations.push(`${candidate.model}.doc_dependencies missing design/test-design`);
+        }
+        if (snapshot.drive_route.mustReturnToDesign) {
+          for (const dependency of snapshot.drive_route.reverse.docDependencies) {
+            if (!candidate.doc_dependencies.includes(dependency)) {
+              violations.push(`${candidate.model}.doc_dependencies missing reverse ${dependency}`);
+            }
+          }
+          for (const dependency of snapshot.drive_route.reverse.implementationDependencies) {
+            if (!candidate.implementation_dependencies.includes(dependency)) {
+              violations.push(
+                `${candidate.model}.implementation_dependencies missing reverse ${dependency}`,
+              );
+            }
+          }
+        }
+      }
+      if (!operationCandidate) {
+        violations.push("OperationVerification.candidate=missing");
+      } else {
+        if (!operationCandidate.coverage_ids.includes("L12-operation-observability")) {
+          violations.push("OperationVerification.coverage=L12-operation-observability:missing");
+        }
+        if (
+          !operationCandidate.doc_dependencies.includes("docs/design/**") ||
+          !operationCandidate.doc_dependencies.includes("docs/test-design/**")
+        ) {
+          violations.push("OperationVerification.doc_dependencies missing design/test-design");
+        }
+        for (const dependency of [
+          "design_declarations",
+          "runtime_verification_events",
+          "closure_next_action_ledger",
+        ]) {
+          if (!operationCandidate.implementation_dependencies.includes(dependency)) {
+            violations.push(`OperationVerification.implementation_dependencies missing ${dependency}`);
+          }
+        }
+      }
+      if (snapshot.drive_route.mustReturnToDesign) {
+        if (!snapshot.drive_route.reverse.required) {
+          violations.push("drive_route.mustReturnToDesign without reverse.required");
+        }
+        if (snapshot.drive_route.reverse.docDependencies.length === 0) {
+          violations.push("drive_route.reverse.docDependencies=empty");
+        }
+        if (snapshot.drive_route.reverse.implementationDependencies.length === 0) {
+          violations.push("drive_route.reverse.implementationDependencies=empty");
+        }
+        if (snapshot.drive_route.reverse.coverageIds.length === 0) {
+          violations.push("drive_route.reverse.coverageIds=empty");
+        }
+      }
+      const summarizeDependencies = (values: readonly string[], separator = ","): string => {
+        const uniqueValues = [...new Set(values)];
+        const priority = [
+          "docs/design/**",
+          "docs/test-design/**",
+          "docs/design",
+          "docs/test-design",
+        ].filter((value) => uniqueValues.includes(value));
+        const shown = [
+          ...priority,
+          ...uniqueValues.filter((value) => !priority.includes(value)).slice(0, 6),
+        ].slice(0, 8);
+        const suffix = uniqueValues.length > shown.length ? ` (+${uniqueValues.length - shown.length})` : "";
+        return `${shown.join(separator) || "-"}${suffix}`;
+      };
+      for (const command of [
+        "helix drive model --json",
+        "helix current-location --json",
+        "helix roadmap current --json",
+        "helix vmodel fit",
+      ]) {
+        if (!report.postcheck_commands.includes(command)) {
+          violations.push(`missing_postcheck=${command}`);
+        }
+      }
+      const prefix =
+        violations.length === 0 ? "drive-model-binding - OK" : "drive-model-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: selected=${report.selected_model} status=${report.selection_status} route=${report.selected_candidate.route_id} coverage=${report.selected_candidate.coverage_ids.join(",") || "-"} available=${report.available_models.join(",") || "-"} blocked=${report.blocked_models.join(",") || "-"} command=${report.source_command}`,
+          `drive-model-binding - selection-rationale: selected=${report.selected_model} default=${report.default_model} trigger=${report.selected_candidate.trigger} action=${report.selected_candidate.required_action} reasons=${report.selected_candidate.reasons.join(" | ") || "-"}`,
+          `drive-model-binding - forward-gate: status=${forwardCandidate?.status ?? "-"} trigger=${forwardCandidate?.trigger ?? "-"} action=${forwardCandidate?.required_action ?? "-"} reasons=${forwardCandidate?.reasons.join(" | ") || "-"}`,
+          `drive-model-binding - dependency-closure: selected_doc=${selectedDeps.doc.length} selected_impl=${selectedDeps.impl.length} reverse_doc=${snapshot.drive_route.reverse.docDependencies.length} reverse_impl=${snapshot.drive_route.reverse.implementationDependencies.length} reverse_targets=${snapshot.drive_route.reverse.targets.join(",") || "-"} must_return=${snapshot.drive_route.mustReturnToDesign}`,
+          `drive-model-binding - reverse-dependency-closure: coverage=${snapshot.drive_route.reverse.coverageIds.join(",") || "-"} docs=${summarizeDependencies(snapshot.drive_route.reverse.docDependencies)} impl=${summarizeDependencies(snapshot.drive_route.reverse.implementationDependencies)} actions=${snapshot.drive_route.reverse.queueActions.join(",") || "-"} ledgers=${snapshot.drive_route.reverse.ledgerIds.join(",") || "-"}`,
+          `drive-model-binding - candidate-dependency-closure: ${[recoveryCandidate, reverseCandidate]
+            .filter((candidate): candidate is NonNullable<typeof candidate> => candidate !== undefined)
+            .map(
+              (candidate) =>
+                `${candidate.model}:docs=${summarizeDependencies(candidate.doc_dependencies, "+")}:impl=${summarizeDependencies(candidate.implementation_dependencies, "+")}`,
+            )
+            .join(" | ") || "-"}`,
+          `drive-model-binding - operation-verification: coverage=${operationCandidate?.coverage_ids.join(",") || "-"} doc=${operationCandidate?.doc_dependencies.join(",") || "-"} impl=${operationCandidate?.implementation_dependencies.join(",") || "-"}`,
+          `drive-model-binding - candidates=${report.candidates.map((candidate) => `${candidate.rank}:${candidate.model}:${candidate.status}:${candidate.coverage_ids.join("+") || "-"}`).join(" | ")}`,
+          `drive-model-binding - postcheck=${report.postcheck_commands.join(" && ")} view=${report.view_command} write=${report.write_policy}`,
+          ...violations.map((violation) => `drive-model-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["drive-model-binding - violation: drive model binding projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkRecoveryRunwayBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["recovery-runway-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const runway = fit.recovery_runway_gate;
+      const violations: string[] = [];
+      const blocking = runway.current_blocking_count;
+      const phaseSequences = runway.phases.map((phase) => phase.sequence);
+      if (blocking > 0 && runway.phases.length === 0) {
+        violations.push("phases=empty");
+      }
+      if (runway.required_phase_count !== runway.phases.length) {
+        violations.push(`required_phase_count=${runway.required_phase_count}/${runway.phases.length}`);
+      }
+      if (blocking > 0 && !runway.next_phase_action) {
+        violations.push("next_phase_action=missing");
+      }
+      if (blocking > 0 && runway.next_command.length === 0) {
+        violations.push("next_command=missing");
+      }
+      if (blocking > 0 && runway.next_execution_command.length === 0) {
+        violations.push("next_execution_command=missing");
+      }
+      if (
+        runway.machine_actionable_count > 0 &&
+        (!runway.next_machine_command ||
+          !runway.next_machine_probe_command ||
+          !runway.next_machine_materialize_command)
+      ) {
+        violations.push("machine_lane_commands=missing");
+      }
+      for (const [index, sequence] of phaseSequences.entries()) {
+        if (sequence !== index + 1) violations.push(`phase_sequence=${phaseSequences.join(",")}`);
+      }
+      for (const phase of runway.phases) {
+        if (phase.count <= 0) violations.push(`${phase.sequence}.${phase.action}.count=${phase.count}`);
+        if (phase.remaining_after_phase < 0) {
+          violations.push(`${phase.sequence}.${phase.action}.remaining=${phase.remaining_after_phase}`);
+        }
+        if (phase.command.length === 0) {
+          violations.push(`${phase.sequence}.${phase.action}.command=missing`);
+        }
+        if (phase.postcheck_commands.length === 0) {
+          violations.push(`${phase.sequence}.${phase.action}.postcheck=missing`);
+        }
+        if (
+          phase.phase_type === "machine" &&
+          (!phase.evidence_probe_command ||
+            !phase.evidence_materialize_command ||
+            !phase.evidence_approval_draft_command ||
+            !phase.evidence_apply_dry_run_command)
+        ) {
+          violations.push(`${phase.sequence}.${phase.action}.machine_evidence_commands=missing`);
+        }
+        if (phase.phase_type === "approval" && !phase.human_required) {
+          violations.push(`${phase.sequence}.${phase.action}.approval_human_required=false`);
+        }
+        if (phase.phase_type === "design" && phase.human_required) {
+          violations.push(`${phase.sequence}.${phase.action}.design_human_required=true`);
+        }
+      }
+      const phaseSummary = runway.phases
+        .map(
+          (phase) =>
+            `${phase.sequence}:${phase.phase_type}:${phase.action}:${phase.count}:remaining=${phase.remaining_after_phase}:next=${phase.next_gate}`,
+        )
+        .join(",");
+      const commandSummary = [
+        `next=${runway.next_command}`,
+        `execute=${runway.next_execution_command}`,
+        `machine=${runway.next_machine_command ?? "-"}`,
+        `probe=${runway.next_machine_probe_command ?? "-"}`,
+        `materialize=${runway.next_machine_materialize_command ?? "-"}`,
+        `approval_draft=${runway.next_machine_approval_draft_command ?? "-"}`,
+        `apply_dry_run=${runway.next_machine_apply_dry_run_command ?? "-"}`,
+      ].join(" ");
+      const prefix =
+        violations.length === 0
+          ? "recovery-runway-binding - OK"
+          : "recovery-runway-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${runway.status} blocking=${runway.current_blocking_count} machine=${runway.machine_actionable_count} approval=${runway.human_approval_count} reverse=${runway.design_reverse_count} after_machine=${runway.remaining_after_machine_lanes} phases=${runway.required_phase_count} next=${runway.next_phase_action ?? "-"} phase=${runway.next_phase_type ?? "-"} gate=${runway.next_gate} command=${runway.command}`,
+          `recovery-runway-binding - commands: ${commandSummary}`,
+          `recovery-runway-binding - phases: ${phaseSummary || "none"}`,
+          ...violations.map((violation) => `recovery-runway-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["recovery-runway-binding - violation: recovery runway projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkRecoveryHandoffBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["recovery-handoff-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const handoff = fit.recovery_handoff_gate;
+      const runway = fit.recovery_runway_gate;
+      const violations: string[] = [];
+      const approvalPhase = handoff.effective_phase === "approval";
+      if (runway.machine_actionable_count > 0 && handoff.status === "none") {
+        violations.push("handoff_status=none");
+      }
+      if (approvalPhase && handoff.handoff_missing > 0) {
+        violations.push(`handoff_missing=${handoff.handoff_missing}`);
+      }
+      if (approvalPhase && handoff.handoff_present < 2) {
+        violations.push(`handoff_present=${handoff.handoff_present}`);
+      }
+      if (
+        approvalPhase &&
+        handoff.approval_status !== "pending_human_review" &&
+        handoff.approval_status !== "approved" &&
+        handoff.approval_status !== "rejected"
+      ) {
+        violations.push(`approval_status=${handoff.approval_status ?? "-"}`);
+      }
+      if (approvalPhase && handoff.scope_status !== "match") {
+        violations.push(`scope_status=${handoff.scope_status ?? "-"}`);
+      }
+      if (
+        approvalPhase &&
+        (!handoff.approval_scope_digest || !handoff.approval_scope_digest.startsWith("sha256:"))
+      ) {
+        violations.push(`approval_scope_digest=${handoff.approval_scope_digest ?? "-"}`);
+      }
+      if (
+        approvalPhase &&
+        handoff.approval_scope_digest !== handoff.expected_approval_scope_digest
+      ) {
+        violations.push(
+          `digest_mismatch=${handoff.approval_scope_digest ?? "-"}/${handoff.expected_approval_scope_digest ?? "-"}`,
+        );
+      }
+      if (approvalPhase && handoff.materialize_status !== "ready_for_approval") {
+        violations.push(`materialize_status=${handoff.materialize_status ?? "-"}`);
+      }
+      if (approvalPhase && (handoff.reviewed_candidate_count ?? 0) <= 0) {
+        violations.push(`reviewed_candidate_count=${handoff.reviewed_candidate_count ?? 0}`);
+      }
+      if (handoff.approval_status === "pending_human_review" && handoff.valid_for_apply) {
+        violations.push("valid_for_apply=true_while_pending");
+      }
+      if (approvalPhase && !handoff.command.includes("closure evidence-materialize")) {
+        violations.push(`command=${handoff.command}`);
+      }
+      const prefix =
+        violations.length === 0
+          ? "recovery-handoff-binding - OK"
+          : "recovery-handoff-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${handoff.status} phase=${handoff.effective_phase} approval=${handoff.approval_status ?? "-"} scope=${handoff.scope_status ?? "-"} materialize=${handoff.materialize_status ?? "-"} valid=${handoff.valid_for_apply} present=${handoff.handoff_present} missing=${handoff.handoff_missing} reviewed=${handoff.reviewed_candidate_count ?? "-"} command=${handoff.command}`,
+          `recovery-handoff-binding - digest=${handoff.approval_scope_digest ?? "-"} expected=${handoff.expected_approval_scope_digest ?? "-"} decision=${handoff.decision_id ?? "-"} outcome=${handoff.outcome ?? "-"}`,
+          `recovery-handoff-binding - reasons=${handoff.reasons.join(" | ") || "-"}`,
+          ...violations.map((violation) => `recovery-handoff-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["recovery-handoff-binding - violation: recovery handoff projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkRecoveryExitBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["recovery-exit-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const recoveryPlan = buildProjectRecoveryPlan(snapshot, { limit: 0 });
+      const exit = recoveryPlan.exit_forecast;
+      const reentry = recoveryPlan.reentry_forecast;
+      const violations: string[] = [];
+      const laneTotal = exit.lanes
+        .filter((lane) => lane.blocking)
+        .reduce((sum, lane) => sum + lane.count, 0);
+      if (exit.remaining_queue_items !== laneTotal) {
+        violations.push(`remaining_queue_items=${exit.remaining_queue_items}/${laneTotal}`);
+      }
+      if (exit.remaining_queue_items > 0 && exit.blocking_lanes.length === 0) {
+        violations.push("blocking_lanes=empty");
+      }
+      if (exit.remaining_queue_items > 0 && exit.next_command.length === 0) {
+        violations.push("next_command=missing");
+      }
+      if (recoveryPlan.status === "active" && !recoveryPlan.selected_closure_action) {
+        violations.push("selected_closure_action=missing");
+      }
+      const selectedLane = exit.lanes.find(
+        (lane) => lane.action === recoveryPlan.selected_closure_action,
+      );
+      if (recoveryPlan.selected_closure_action && !selectedLane) {
+        violations.push(`selected_lane=${recoveryPlan.selected_closure_action}:missing`);
+      }
+      if (selectedLane && exit.next_command !== selectedLane.command) {
+        violations.push(`next_command=${exit.next_command}/${selectedLane.command}`);
+      }
+      for (const lane of exit.lanes) {
+        if (lane.blocking && lane.count <= 0) {
+          violations.push(`${lane.action}.count=${lane.count}`);
+        }
+        if (lane.blocking && lane.command.length === 0) {
+          violations.push(`${lane.action}.command=missing`);
+        }
+        if (lane.blocking && lane.required_action.length === 0) {
+          violations.push(`${lane.action}.required_action=missing`);
+        }
+        if (lane.action === "close_ready" && lane.count > 0 && !lane.human_required) {
+          violations.push("close_ready.human_required=false");
+        }
+        if (
+          (lane.action === "collect_evidence" || lane.action === "repair_failed_evidence") &&
+          lane.human_required
+        ) {
+          violations.push(`${lane.action}.human_required=true`);
+        }
+      }
+      const requiredRecomputeCommands = [
+        "helix current-location --json",
+        "helix drive model --json",
+        "helix roadmap current --json",
+        "helix vmodel fit",
+      ];
+      for (const command of requiredRecomputeCommands) {
+        if (!reentry.recompute_commands.includes(command)) {
+          violations.push(`missing_recompute=${command}`);
+        }
+      }
+      if (reentry.current_blocking_count !== exit.remaining_queue_items) {
+        violations.push(
+          `reentry_blocking=${reentry.current_blocking_count}/${exit.remaining_queue_items}`,
+        );
+      }
+      const laneSummary = exit.lanes
+        .map(
+          (lane) =>
+            `${lane.action}:${lane.count}:blocking=${lane.blocking}:human=${lane.human_required}`,
+        )
+        .join(",");
+      const prefix =
+        violations.length === 0
+          ? "recovery-exit-binding - OK"
+          : "recovery-exit-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${exit.status} remaining=${exit.remaining_queue_items} selected=${recoveryPlan.selected_closure_action ?? "-"} next=${exit.next_command} reentry=${reentry.status} after_machine=${reentry.blocking_after_machine_lanes} phases=${reentry.required_phase_count}`,
+          `recovery-exit-binding - lanes=${laneSummary || "none"}`,
+          `recovery-exit-binding - recompute=${reentry.recompute_commands.join(" && ") || "-"}`,
+          ...violations.map((violation) => `recovery-exit-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["recovery-exit-binding - violation: recovery exit projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkApprovalReviewBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["approval-review-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const approval = fit.approval_review_gate;
+      const violations: string[] = [];
+      if (approval.action !== "close_ready") {
+        violations.push(`action=${approval.action}`);
+      }
+      if (approval.count > 0 && approval.status !== "approval_required") {
+        violations.push(`status=${approval.status}`);
+      }
+      if (approval.count > 0 && !approval.approval_required) {
+        violations.push("approval_required=false");
+      }
+      if (approval.count > 0 && !approval.approval_scope_digest.startsWith("sha256:")) {
+        violations.push(`approval_scope_digest=${approval.approval_scope_digest}`);
+      }
+      if (approval.count > 0 && approval.decision_id !== "closure-review:close_ready") {
+        violations.push(`decision_id=${approval.decision_id}`);
+      }
+      if (approval.count > 0 && approval.current_window_command.length === 0) {
+        violations.push("current_window_command=missing");
+      }
+      if (approval.count > 0 && approval.transition_window_command.length === 0) {
+        violations.push("transition_window_command=missing");
+      }
+      if (approval.count > 0 && approval.blocked_by_findings.length > 0) {
+        violations.push(`blocked_by_findings=${approval.blocked_by_findings.length}`);
+      }
+      if (approval.count > 0 && approval.window.page_count < 1) {
+        violations.push(`page_count=${approval.window.page_count}`);
+      }
+      if (approval.count > 0 && approval.listed > approval.limit) {
+        violations.push(`listed_gt_limit=${approval.listed}/${approval.limit}`);
+      }
+      if (approval.count !== approval.listed + approval.omitted) {
+        violations.push(`count_window=${approval.count}/${approval.listed}+${approval.omitted}`);
+      }
+      const requiredOutcomes = [
+        "approve_closure_claim",
+        "reject_to_collect_evidence",
+        "reject_to_repair_failed_evidence",
+        "reject_to_reverse_design",
+      ];
+      const outcomeIds = approval.outcome_routes.map((route) => route.outcome);
+      for (const outcome of requiredOutcomes) {
+        if (approval.count > 0 && !outcomeIds.includes(outcome)) {
+          violations.push(`missing_outcome=${outcome}`);
+        }
+      }
+      const approveRoute = approval.outcome_routes.find(
+        (route) => route.outcome === "approve_closure_claim",
+      );
+      if (approval.count > 0 && approveRoute) {
+        if (approveRoute.projection_type !== "apply_closure") {
+          violations.push(`approve.projection_type=${approveRoute.projection_type}`);
+        }
+        if (!approveRoute.command.includes("closure apply --dry-run")) {
+          violations.push(`approve.command=${approveRoute.command}`);
+        }
+        if (!approveRoute.transition_command.includes("closure apply --execute")) {
+          violations.push(`approve.transition=${approveRoute.transition_command}`);
+        }
+        if (!approveRoute.human_required) {
+          violations.push("approve.human_required=false");
+        }
+      }
+      for (const route of approval.outcome_routes.filter((route) =>
+        route.outcome.startsWith("reject_to_"),
+      )) {
+        if (route.projection_type !== "reroute_closure_lane") {
+          violations.push(`${route.outcome}.projection_type=${route.projection_type}`);
+        }
+        if (!route.human_required) {
+          violations.push(`${route.outcome}.human_required=false`);
+        }
+        if (route.postcheck_commands.length === 0) {
+          violations.push(`${route.outcome}.postcheck=missing`);
+        }
+      }
+      const prefix =
+        violations.length === 0
+          ? "approval-review-binding - OK"
+          : "approval-review-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${approval.status} action=${approval.action} count=${approval.count} listed=${approval.listed} omitted=${approval.omitted} window=${approval.window.page_index}/${approval.window.page_count} digest=${approval.approval_scope_digest} blocked=${approval.blocked_by_findings.length}`,
+          `approval-review-binding - commands: review=${approval.current_window_command} transition=${approval.transition_window_command} next=${approval.next_window_command ?? "-"}`,
+          `approval-review-binding - outcomes=${approval.outcome_routes.map((route) => `${route.outcome}:${route.projection_type}:${route.command}->${route.transition_command}`).join(" | ") || "-"}`,
+          ...violations.map((violation) => `approval-review-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["approval-review-binding - violation: approval review projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkClosureApplyBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["closure-apply-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const overview = buildProjectClosureOverview(snapshot, { limit: 0 });
+      const apply = buildProjectClosureApplyPlan(snapshot, { limit: 20 });
+      const violations: string[] = [];
+      const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
+      if (apply.schema_version !== "project-closure-apply-plan.v1") {
+        violations.push(`schema_version=${apply.schema_version}`);
+      }
+      if (apply.action !== "close_ready") {
+        violations.push(`action=${apply.action}`);
+      }
+      if (!apply.dry_run) {
+        violations.push("dry_run=false");
+      }
+      if (!apply.approval.required) {
+        violations.push("approval.required=false");
+      }
+      if (apply.approval.record_path !== null) {
+        violations.push(`approval.record_path=${apply.approval.record_path}`);
+      }
+      if (apply.approval.valid) {
+        violations.push("approval.valid=true_without_record");
+      }
+      if (apply.allowed_to_apply) {
+        violations.push("allowed_to_apply=true_without_record");
+      }
+      if (!apply.blocked_reasons.includes("approval record が指定されていない")) {
+        violations.push("missing_blocked_reason=approval_record");
+      }
+      if (apply.write_policy !== "read-only") {
+        violations.push(`write_policy=${apply.write_policy}`);
+      }
+      if (apply.source_command !== "helix closure apply --dry-run --json") {
+        violations.push(`source_command=${apply.source_command}`);
+      }
+      if (apply.view_command !== "helix progress tree-view --json") {
+        violations.push(`view_command=${apply.view_command}`);
+      }
+      const expectedPatchCount = Math.min(closeReadyCount, 20);
+      if (apply.patch_candidates.length !== expectedPatchCount) {
+        violations.push(`patch_candidates=${apply.patch_candidates.length}/${expectedPatchCount}`);
+      }
+      for (const candidate of apply.patch_candidates) {
+        if (candidate.next_status !== "accepted") {
+          violations.push(`${candidate.plan_id}.next_status=${candidate.next_status}`);
+        }
+        if (candidate.operation !== "frontmatter_status_update") {
+          violations.push(`${candidate.plan_id}.operation=${candidate.operation}`);
+        }
+      }
+      for (const command of [
+        "helix db rebuild",
+        "helix current-location",
+        "helix closure batch --action close_ready --json",
+        "helix doctor",
+      ]) {
+        if (!apply.postcheck_commands.includes(command)) {
+          violations.push(`missing_postcheck=${command}`);
+        }
+      }
+      const applyReadiness = overview.closure.apply_readiness;
+      if (closeReadyCount > 0 && applyReadiness.status !== "approval_required") {
+        violations.push(`apply_readiness=${applyReadiness.status}`);
+      }
+      if (applyReadiness.dry_run_command !== "helix closure apply --dry-run --json") {
+        violations.push(`dry_run_command=${applyReadiness.dry_run_command}`);
+      }
+      if (
+        applyReadiness.execute_command !==
+        "helix closure apply --execute --approval-record <path> --json"
+      ) {
+        violations.push(`execute_command=${applyReadiness.execute_command}`);
+      }
+      const prefix =
+        violations.length === 0
+          ? "closure-apply-binding - OK"
+          : "closure-apply-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: readiness=${applyReadiness.status} close_ready=${closeReadyCount} allowed=${apply.allowed_to_apply} approval_valid=${apply.approval.valid} patches=${apply.patch_candidates.length}/${expectedPatchCount} write=${apply.write_policy}`,
+          `closure-apply-binding - commands: dry_run=${applyReadiness.dry_run_command} execute=${applyReadiness.execute_command} decision=${applyReadiness.decision_draft_command}`,
+          `closure-apply-binding - postcheck=${apply.postcheck_commands.join(" && ")}`,
+          ...violations.map((violation) => `closure-apply-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["closure-apply-binding - violation: closure apply projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkOperationScopeBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["operation-scope-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const scope = snapshot.operation_scope;
+      const violations: string[] = [];
+      const requiredScopes = [
+        "log_design",
+        "kpi_metric",
+        "runtime_verification",
+        "operation_test",
+        "class_method_contract",
+        "incident_recovery_route",
+      ];
+      const requiredDesignIdsByScope: Record<string, string[]> = {
+        log_design: ["HR-FR-VMFIT-07", "HAT-VMFIT-07"],
+        kpi_metric: ["HR-FR-VMFIT-07", "HAT-VMFIT-07"],
+        runtime_verification: ["HR-FR-VMFIT-07", "HAT-VMFIT-07"],
+        operation_test: ["HOPS-VMFIT-OPTEST-01"],
+        class_method_contract: [
+          "HOPS-VMFIT-CONTRACT-01",
+          "HVC-L6-IMPLEMENTATION-BINDING",
+          "HVM-TAILOR-DETAIL-CONTRACT",
+        ],
+        incident_recovery_route: ["HOPS-VMFIT-INCIDENT-ROUTE-01"],
+      };
+      const actualScopes = scope.items.map((item) => item.scope);
+      for (const required of requiredScopes) {
+        if (!actualScopes.includes(required)) violations.push(`missing_scope=${required}`);
+      }
+      const tree = buildVisualizationTreeView(
+        buildVisualizationViewModel(buildVisualizationSnapshot(db, { repoRoot })),
+      );
+      const projectRoot = tree.roots.find((root) => root.id === "project");
+      const collectIds = (root: TreeViewNode): string[] => {
+        const ids: string[] = [];
+        const queue: TreeViewNode[] = [root];
+        while (queue.length > 0) {
+          const current = queue.shift();
+          if (!current) continue;
+          ids.push(current.id);
+          queue.push(...current.children);
+        }
+        return ids;
+      };
+      const projectTreeIds = projectRoot ? collectIds(projectRoot) : [];
+      const requiredObservationGapNodeIds = requiredScopes.map(
+        (scopeId) => `project/current-location/operation-scope/${scopeId}/observation-gap`,
+      );
+      for (const requiredNodeId of requiredObservationGapNodeIds) {
+        if (!projectTreeIds.includes(requiredNodeId)) {
+          violations.push(`view_missing=${requiredNodeId}`);
+        }
+      }
+      for (const item of scope.items) {
+        if (item.coverageId !== "L12-operation-observability") {
+          violations.push(`${item.scope}.coverage=${item.coverageId}`);
+        }
+        if (!item.evidenceTables.includes("design_declarations")) {
+          violations.push(`${item.scope}.missing_table=design_declarations`);
+        }
+        if (item.status !== "missing") {
+          for (const requiredId of requiredDesignIdsByScope[item.scope] ?? []) {
+            if (!item.designIds.includes(requiredId)) {
+              violations.push(`${item.scope}.missing_design_id=${requiredId}`);
+            }
+          }
+        }
+      }
+      const runtimeVerification = scope.items.find((item) => item.scope === "runtime_verification");
+      if (runtimeVerification && !runtimeVerification.evidenceTables.includes("runtime_verification_events")) {
+        violations.push("runtime_verification.missing_table=runtime_verification_events");
+      }
+      const incidentRoute = scope.items.find((item) => item.scope === "incident_recovery_route");
+      if (incidentRoute && !incidentRoute.evidenceTables.includes("closure_next_action_ledger")) {
+        violations.push("incident_recovery_route.missing_table=closure_next_action_ledger");
+      }
+      if (incidentRoute && !incidentRoute.evidenceTables.includes("runtime_verification_events")) {
+        violations.push("incident_recovery_route.missing_table=runtime_verification_events");
+      }
+      const operationTraceRows = db
+        .prepare(
+          `SELECT from_id, to_id, reference_kind, status, source_path
+           FROM design_references
+           WHERE from_id = ?
+           ORDER BY to_id`,
+        )
+        .all("HAT-VMFIT-07") as Array<{
+        from_id: string;
+        to_id: string;
+        reference_kind: string;
+        status: string;
+        source_path: string;
+      }>;
+      const requiredOperationTraceTargets = [
+        "HR-FR-VMFIT-07",
+        "HOPS-VMFIT-OPTEST-01",
+        "HOPS-VMFIT-CONTRACT-01",
+        "HOPS-VMFIT-INCIDENT-ROUTE-01",
+      ];
+      if (incidentRoute && incidentRoute.status !== "missing") {
+        for (const target of requiredOperationTraceTargets) {
+          const resolved = operationTraceRows.some(
+            (row) =>
+              row.to_id === target &&
+              row.reference_kind === "accepts" &&
+              row.status === "resolved" &&
+              row.source_path === "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+          );
+          if (!resolved) {
+            violations.push(`operation_trace.missing=HAT-VMFIT-07->${target}`);
+          }
+        }
+      }
+      const prefix =
+        violations.length > 0
+          ? "operation-scope-binding - violation"
+          : scope.missing === 0 && scope.reverify === 0
+            ? "operation-scope-binding - OK"
+            : "operation-scope-binding - advisory";
+      const observedGapScopes = scope.items
+        .filter((item) => item.status === "designed" && item.observedCount === 0)
+        .map((item) => item.scope);
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: designed=${scope.designed} observed=${scope.observed} observed_gap=${scope.observed_gap} missing=${scope.missing} reverify=${scope.reverify} coverage=L12-operation-observability command=helix current-location --json`,
+          `operation-scope-binding - scopes=${scope.items.map((item) => `${item.scope}:${item.status}:${item.observedCount}:tables=${item.evidenceTables.join("+")}`).join(" | ")}`,
+          `operation-scope-binding - observed-gap: status=${observedGapScopes.length > 0 ? "watch" : "clear"} scopes=${observedGapScopes.join(",") || "-"} action=accepted runtime evidence を運用時 view へ投影し、設計済み scope を observed に昇格する`,
+          `operation-scope-binding - design=${scope.items.map((item) => `${item.scope}:${item.designIds.join("+") || "-"}`).join(" | ")}`,
+          `operation-scope-binding - traces=HAT-VMFIT-07:${operationTraceRows.filter((row) => row.reference_kind === "accepts" && row.status === "resolved").length}/${requiredOperationTraceTargets.length}`,
+          `operation-scope-binding - view-nodes=observation-gap:${requiredObservationGapNodeIds.filter((id) => projectTreeIds.includes(id)).length}/${requiredObservationGapNodeIds.length}`,
+          `operation-scope-binding - required=log_design,kpi_metric,runtime_verification,operation_test,class_method_contract,incident_recovery_route view=helix progress tree-view --json`,
+          ...violations.map((violation) => `operation-scope-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["operation-scope-binding - violation: operation scope projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkZipAdoptionBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["zip-adoption-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const adoption = snapshot.zip_adoption;
+      const violations: string[] = [];
+      const requiredAdopt = [
+        "HVM-ADOPT-01",
+        "HVM-ADOPT-02",
+        "HVM-ADOPT-03",
+        "HVM-ADOPT-04",
+        "HVM-ADOPT-05",
+      ];
+      const requiredComplement = ["HVM-COMP-01", "HVM-COMP-02", "HVM-COMP-03"];
+      const requiredReject = ["HVM-REJECT-01"];
+      const expectedReceivers: Record<string, string[]> = {
+        "HVM-ADOPT-01": [
+          "design_declarations",
+          "design_references",
+          "vmodel_zip_source_bindings",
+        ],
+        "HVM-ADOPT-02": ["artifact_registry", "design_coverage_gate"],
+        "HVM-ADOPT-03": ["design_impact", "relation_graph"],
+        "HVM-ADOPT-04": ["roadmap_rollups", "roadmap_band_coverage"],
+        "HVM-ADOPT-05": ["runtime_verification_events", "closure_next_action_ledger"],
+        "HVM-COMP-01": ["test_runs", "gate_runs", "runtime_verification_events"],
+        "HVM-COMP-02": [
+          "project_current_location",
+          "visualization_view_model",
+          "visualization_tree_view",
+          "vmodel_zip_source_bindings",
+        ],
+        "HVM-COMP-03": ["closure_next_action_ledger", "approval_review_gate"],
+        "HVM-REJECT-01": ["zip-reference-runtime-boundary", "vmodel_zip_manifest"],
+      };
+      const idsByCategory = (category: "adopt" | "complement" | "reject") =>
+        adoption.items
+          .filter((item) => item.category === category && item.status === "declared")
+          .map((item) => item.adoptionId);
+      const adoptedIds = idsByCategory("adopt");
+      const complementedIds = idsByCategory("complement");
+      const rejectedIds = idsByCategory("reject");
+      const adoptionReferences = db
+        .prepare(
+          `SELECT from_id, to_id, reference_kind, status, source_path
+           FROM design_references
+           WHERE from_id LIKE 'HVM-ADOPT-%'
+              OR from_id LIKE 'HVM-COMP-%'
+              OR from_id LIKE 'HVM-REJECT-%'
+           ORDER BY from_id, to_id`,
+        )
+        .all() as Array<{
+        from_id: string;
+        to_id: string;
+        reference_kind: string;
+        status: string;
+        source_path: string;
+      }>;
+      const referencesByFrom = new Map<string, typeof adoptionReferences>();
+      for (const reference of adoptionReferences) {
+        const list = referencesByFrom.get(reference.from_id) ?? [];
+        list.push(reference);
+        referencesByFrom.set(reference.from_id, list);
+      }
+      const adoptionDecisionRows = db
+        .prepare(
+          `SELECT adoption_id, category, status, implementation_dependencies
+           FROM project_zip_adoption_decisions
+           ORDER BY adoption_id`,
+        )
+        .all() as Array<{
+        adoption_id: string;
+        category: string;
+        status: string;
+        implementation_dependencies: string;
+      }>;
+      const decisionRowsById = new Map(
+        adoptionDecisionRows.map((row) => [row.adoption_id, row]),
+      );
+      const adoptionMatrixPath = join(repoRoot, adoption.sourceDocument);
+      const adoptionMatrixText = existsSync(adoptionMatrixPath)
+        ? readFileSync(adoptionMatrixPath, "utf8")
+        : "";
+      const requireIds = (label: string, actual: string[], required: string[]) => {
+        for (const id of required) {
+          if (!actual.includes(id)) violations.push(`${label}.missing=${id}`);
+        }
+      };
+      requireIds("adopt", adoptedIds, requiredAdopt);
+      requireIds("complement", complementedIds, requiredComplement);
+      requireIds("reject", rejectedIds, requiredReject);
+      if (adoption.sourceDocument !== "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md") {
+        violations.push(`source_document=${adoption.sourceDocument}`);
+      }
+      if (adoptionMatrixText.length === 0) {
+        violations.push("adoption_matrix_text=missing");
+      }
+      for (const marker of ["## §2 共通点", "## §3 差異", "## §4 採用するもの", "## §5 HELIX が補うもの", "## §6 採用しないもの"]) {
+        if (!adoptionMatrixText.includes(marker)) {
+          violations.push(`adoption_matrix_marker_missing=${marker}`);
+        }
+      }
+      const expectedSignature = VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE;
+      const signatureMarkers = [
+        `${expectedSignature.entriesTotal} entries`,
+        `\`.yaml\` ${expectedSignature.byExtension.yaml}`,
+        `\`.md\` ${expectedSignature.byExtension.md}`,
+        `\`.xlsx\` ${expectedSignature.byExtension.xlsx}`,
+        `\`.png\` ${expectedSignature.byExtension.png}`,
+        `\`.py\` ${expectedSignature.byExtension.py}`,
+        `\`.json\` ${expectedSignature.byExtension.json}`,
+        `\`.feature\` ${expectedSignature.byExtension.feature}`,
+        `${expectedSignature.rootPrefix}/`,
+      ];
+      for (const marker of signatureMarkers) {
+        if (!adoptionMatrixText.includes(marker)) {
+          violations.push(`adoption_matrix_signature_missing=${marker}`);
+        }
+      }
+      for (const sourcePath of VMODEL_ZIP_REQUIRED_PATHS) {
+        if (!adoptionMatrixText.includes(sourcePath)) {
+          violations.push(`adoption_matrix_source_missing=${sourcePath}`);
+        }
+      }
+      for (const dependency of [
+        "design_declarations",
+        "design_references",
+        "vmodel_zip_source_bindings",
+      ]) {
+        if (!adoption.implementationDependencies.includes(dependency)) {
+          violations.push(`missing_implementation_dependency=${dependency}`);
+        }
+      }
+      for (const [id, dependencies] of Object.entries(expectedReceivers)) {
+        const item = adoption.items.find((candidate) => candidate.adoptionId === id);
+        if (!item) {
+          violations.push(`${id}.receiver=item_missing`);
+          continue;
+        }
+        const decisionRow = decisionRowsById.get(id);
+        if (!decisionRow) {
+          violations.push(`${id}.decision_row=missing`);
+        } else if (decisionRow.category !== item.category || decisionRow.status !== item.status) {
+          violations.push(`${id}.decision_row=${decisionRow.category}/${decisionRow.status}`);
+        }
+        for (const dependency of dependencies) {
+          if (!item.implementationDependencies.includes(dependency)) {
+            violations.push(`${id}.receiver_missing=${dependency}`);
+          }
+          if (decisionRow && !decisionRow.implementation_dependencies.includes(dependency)) {
+            violations.push(`${id}.decision_row_receiver_missing=${dependency}`);
+          }
+        }
+      }
+      const expectedReferenceKind = (id: string): string =>
+        id.startsWith("HVM-ADOPT-")
+          ? "supports"
+          : id.startsWith("HVM-COMP-")
+            ? "complements"
+            : "constrains";
+      for (const id of [...requiredAdopt, ...requiredComplement, ...requiredReject]) {
+        const references = referencesByFrom.get(id) ?? [];
+        const expectedKind = expectedReferenceKind(id);
+        const resolved = references.filter(
+          (reference) =>
+            reference.status === "resolved" &&
+            reference.reference_kind === expectedKind &&
+            reference.source_path === adoption.sourceDocument,
+        );
+        if (resolved.length === 0) {
+          violations.push(`${id}.resolved_reference=${expectedKind}:missing`);
+        }
+      }
+      if (adoption.missing > 0) violations.push(`missing_decisions=${adoption.missing}`);
+      const prefix =
+        violations.length === 0 ? "zip-adoption-binding - OK" : "zip-adoption-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${adoption.status} adopt=${adoption.adopted} complement=${adoption.complemented} reject=${adoption.rejected} missing=${adoption.missing} source=${adoption.sourceDocument} command=helix vmodel fit --json`,
+          `zip-adoption-binding - adopted=${adoptedIds.join(",") || "-"} complemented=${complementedIds.join(",") || "-"} rejected=${rejectedIds.join(",") || "-"}`,
+          `zip-adoption-binding - decision-db: rows=${adoptionDecisionRows.length}/${requiredAdopt.length + requiredComplement.length + requiredReject.length} table=project_zip_adoption_decisions categories=adopt:${adoptedIds.length},complement:${complementedIds.length},reject:${rejectedIds.length}`,
+          `zip-adoption-binding - references=${adoptionReferences.filter((reference) => reference.status === "resolved").length}/${requiredAdopt.length + requiredComplement.length + requiredReject.length} kinds=${[...new Set(adoptionReferences.map((reference) => reference.reference_kind))].join(",") || "-"}`,
+          `zip-adoption-binding - receivers=${Object.entries(expectedReceivers).map(([id, dependencies]) => `${id}:${dependencies.join("+")}`).join(" | ")}`,
+          `zip-adoption-binding - matrix-signature: entries=${expectedSignature.entriesTotal} extensions=${Object.entries(expectedSignature.byExtension).map(([extension, count]) => `${extension}:${count}`).join(",")} required_sources=${VMODEL_ZIP_REQUIRED_PATHS.length}/${VMODEL_ZIP_REQUIRED_PATHS.length}`,
+          `zip-adoption-binding - deps=${adoption.implementationDependencies.join(",") || "-"} doc=${adoption.docDependencies.join(",") || "-"}`,
+          ...violations.map((violation) => `zip-adoption-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["zip-adoption-binding - violation: ZIP adoption projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkZipSourceBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["zip-source-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const sourceBindings = fit.zip_source_bindings;
+      const violations: string[] = [];
+      const requiredBindingIds = [
+        "zip-source:l12-level-definition",
+        "zip-source:typed-spec",
+        "zip-source:catalog",
+        "zip-source:profiles",
+        "zip-source:tailoring-design",
+        "zip-source:build-tool-reference",
+        "zip-source:spec-check-reference",
+        "zip-source:spec-types-reference",
+      ];
+      const requiredEvidenceTables = [
+        "plan_registry",
+        "roadmap_rollups",
+        "roadmap_band_coverage",
+        "artifact_registry",
+        "design_declarations",
+        "design_references",
+        "design_impact",
+        "guardrail_decisions",
+      ];
+      const bindingIds = sourceBindings.bindings.map((binding) => binding.binding_id);
+      for (const id of requiredBindingIds) {
+        if (!bindingIds.includes(id)) violations.push(`missing_binding=${id}`);
+      }
+      for (const table of requiredEvidenceTables) {
+        if (!sourceBindings.evidence_tables.includes(table)) {
+          violations.push(`missing_evidence_table=${table}`);
+        }
+      }
+      for (const binding of sourceBindings.bindings) {
+        if (binding.status === "missing") {
+          violations.push(`${binding.binding_id}.status=missing`);
+        }
+        if (binding.source_present && !binding.actual_path) {
+          violations.push(`${binding.binding_id}.actual_path=missing`);
+        }
+        if (binding.helix_surfaces.length === 0) {
+          violations.push(`${binding.binding_id}.helix_surfaces=empty`);
+        }
+        if (binding.evidence_tables.length === 0) {
+          violations.push(`${binding.binding_id}.evidence_tables=empty`);
+        }
+      }
+      const prefix =
+        violations.length > 0
+          ? "zip-source-binding - violation"
+          : sourceBindings.advisory > 0
+            ? "zip-source-binding - advisory"
+            : "zip-source-binding - OK";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${sourceBindings.status} bound=${sourceBindings.bound} missing=${sourceBindings.missing} advisory=${sourceBindings.advisory} bindings=${sourceBindings.bindings.length}/${requiredBindingIds.length} tables=${sourceBindings.evidence_tables.join(",") || "-"}`,
+          `zip-source-binding - sources=${sourceBindings.bindings.map((binding) => `${binding.binding_id}:${binding.status}:${binding.source_category}:${binding.source_path}->${binding.evidence_tables.join("+")}`).join(" | ")}`,
+          `zip-source-binding - surfaces=${sourceBindings.bindings.map((binding) => `${binding.binding_id}:${binding.helix_surfaces.join("+")}`).join(" | ")}`,
+          ...violations.map((violation) => `zip-source-binding - violation: ${violation}`),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["zip-source-binding - violation: ZIP source binding projection could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkZipReferenceRuntimeBoundary(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["zip-reference-runtime-boundary - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const scanRoots = ["src", "scripts", ".github", "package.json"].map((entry) =>
+      join(repoRoot, entry),
+    );
+    const allowedReferenceFiles = new Set(
+      [
+        "src/vmodel/zip-manifest.ts",
+        "src/vmodel/fit.ts",
+        "src/vscode/tree-view-provider.ts",
+        "src/doctor/index.ts",
+      ].map((entry) => join(repoRoot, ...entry.split("/"))),
+    );
+    const files: string[] = [];
+    const collect = (path: string) => {
+      if (!existsSync(path)) return;
+      const stat = statSync(path);
+      if (stat.isFile()) {
+        files.push(path);
+        return;
+      }
+      if (!stat.isDirectory()) return;
+      for (const child of readdirSync(path)) {
+        if (child === "node_modules" || child === "dist" || child === ".git") continue;
+        collect(join(path, child));
+      }
+    };
+    for (const root of scanRoots) collect(root);
+    const textFiles = files.filter((path) =>
+      /\.(ts|tsx|js|mjs|cjs|json|ya?ml|sh|ps1)$/.test(path),
+    );
+    const violations: string[] = [];
+    const referenceToolPattern = /tools\/(?:build|spec_check|spec_types|assign|schedule)\.py|hybrid-docgen\/tools\/(?:build|spec_check|spec_types|assign|schedule)\.py/g;
+    const xlsxPattern = /\.xlsx\b/g;
+    const externalExecutionPattern =
+      /\bBun\.(?:spawn|spawnSync)\b|\b(?:node:)?child_process\b|\bpython(?:3)?\b|(?:^|[^\w.])(?:spawn|spawnSync|exec|execSync|execFile|execFileSync)\s*\(/g;
+    let referenceMentions = 0;
+    let xlsxMentions = 0;
+    for (const path of textFiles) {
+      const text = readFileSync(path, "utf8");
+      const relative = path.replace(`${repoRoot}/`, "");
+      const toolMentions = [...text.matchAll(referenceToolPattern)];
+      const xlsxMatches = [...text.matchAll(xlsxPattern)];
+      referenceMentions += toolMentions.length;
+      xlsxMentions += xlsxMatches.length;
+      if (allowedReferenceFiles.has(path)) continue;
+      const executionMatches = [...text.matchAll(externalExecutionPattern)];
+      if (toolMentions.length > 0 && executionMatches.length > 0) {
+        violations.push(
+          `${relative}.zip_tool_runtime_execution=${toolMentions.length}/${executionMatches.length}`,
+        );
+      }
+      if (xlsxMatches.length > 0 && executionMatches.length > 0) {
+        violations.push(
+          `${relative}.xlsx_runtime_execution=${xlsxMatches.length}/${executionMatches.length}`,
+        );
+      }
+    }
+    const prefix =
+      violations.length === 0
+        ? "zip-reference-runtime-boundary - OK"
+        : "zip-reference-runtime-boundary - violation";
+    return {
+      ok: violations.length === 0,
+      messages: [
+        `${prefix}: scanned=${textFiles.length} references=${referenceMentions} xlsx=${xlsxMentions} policy=reference-only command=helix doctor`,
+        "zip-reference-runtime-boundary - allowed=src/vmodel/zip-manifest.ts,src/vmodel/fit.ts,src/vscode/tree-view-provider.ts,src/doctor/index.ts",
+        "zip-reference-runtime-boundary - forbidden=runtime execution/import of tools/build.py,tools/spec_check.py,tools/spec_types.py or xlsx builder output",
+        ...violations.map((violation) => `zip-reference-runtime-boundary - violation: ${violation}`),
+      ],
+    };
+  } catch {
+    return {
+      messages: [
+        "zip-reference-runtime-boundary - violation: ZIP reference-only runtime boundary scan could not run",
+      ],
+      ok: false,
+    };
+  }
+}
+
+export function checkFunctionDesignAbsorptionBinding(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["function-design-absorption-binding - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const absorption = fit.function_design_absorption;
+      const detailCoverage = snapshot.design_coverage_gate.items.find(
+        (item) => item.coverageId === "L5-detailed-contract",
+      );
+      const tailoringDetail = snapshot.tailoring_gate.items.find(
+        (item) => item.tailoringId === "HVM-TAILOR-DETAIL-CONTRACT",
+      );
+      const tailoringDecisionRow = db
+        .prepare(
+          `SELECT tailoring_id, category, detail_level, status, source_document, implementation_dependencies
+           FROM project_tailoring_decisions
+           WHERE tailoring_id = ?`,
+        )
+        .get("HVM-TAILOR-DETAIL-CONTRACT") as
+        | {
+            tailoring_id: string;
+            category: string;
+            detail_level: string;
+            status: string;
+            source_document: string;
+            implementation_dependencies: string;
+          }
+        | undefined;
+      const violations: string[] = [];
+      const requiredAcceptedLayers = ["L5", "L7", "typed declaration", "runtime evidence"];
+      const requiredAbsorbedSurfaces = [
+        "L5 detailed design",
+        "design_declarations",
+        "L7 TDD closure",
+        "test_runs",
+        "gate_runs",
+        "runtime_verification_events",
+      ];
+      const requiredDetailDeclarationIds = [
+        "HOPS-VMFIT-CONTRACT-01",
+        "HVM-TAILOR-DETAIL-CONTRACT",
+      ];
+      if (absorption.independent_layer_policy !== "abolished") {
+        violations.push(`policy=${absorption.independent_layer_policy}`);
+      }
+      if (absorption.detail_contract_coverage_status !== "covered") {
+        violations.push(`detail=${absorption.detail_contract_coverage_status}`);
+      }
+      if (absorption.tailoring_detail_contract_status !== "declared") {
+        violations.push(`tailoring=${absorption.tailoring_detail_contract_status}`);
+      }
+      if (absorption.command !== "helix current-location --json") {
+        violations.push(`command=${absorption.command}`);
+      }
+      if (!detailCoverage) {
+        violations.push("detail_coverage=missing");
+      } else {
+        for (const id of requiredDetailDeclarationIds) {
+          if (!detailCoverage.declarationIds.includes(id)) {
+            violations.push(`missing_detail_declaration=${id}`);
+          }
+        }
+        if (detailCoverage.sourcePaths.length === 0) {
+          violations.push("detail_coverage.sourcePaths=empty");
+        }
+        const legacyFunctionDesignSources = detailCoverage.sourcePaths.filter((sourcePath) =>
+          sourcePath.startsWith("docs/design/helix/L6-function-design/"),
+        );
+        if (legacyFunctionDesignSources.length > 0) {
+          violations.push(
+            `detail_coverage.legacy_function_design_source=${legacyFunctionDesignSources.join(",")}`,
+          );
+        }
+      }
+      if (!tailoringDetail?.declarationIds.includes("HVM-TAILOR-DETAIL-CONTRACT")) {
+        violations.push("tailoring_detail_declaration=missing");
+      }
+      if (!tailoringDecisionRow) {
+        violations.push("tailoring_decision_row=missing");
+      } else {
+        if (
+          tailoringDecisionRow.category !== "required" ||
+          tailoringDecisionRow.detail_level !== "詳細" ||
+          tailoringDecisionRow.status !== "declared"
+        ) {
+          violations.push(
+            `tailoring_decision_row=${tailoringDecisionRow.category}/${tailoringDecisionRow.detail_level}/${tailoringDecisionRow.status}`,
+          );
+        }
+        if (
+          tailoringDecisionRow.source_document !==
+          "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md"
+        ) {
+          violations.push(`tailoring_decision_source=${tailoringDecisionRow.source_document}`);
+        }
+      }
+      for (const layer of requiredAcceptedLayers) {
+        if (!absorption.accepted_layers.includes(layer)) {
+          violations.push(`missing_accepted_layer=${layer}`);
+        }
+      }
+      for (const surface of requiredAbsorbedSurfaces) {
+        if (!absorption.absorbed_surfaces.includes(surface)) {
+          violations.push(`missing_absorbed_surface=${surface}`);
+        }
+      }
+      const prefix =
+        violations.length === 0
+          ? "function-design-absorption-binding - OK"
+          : "function-design-absorption-binding - violation";
+      return {
+        ok: violations.length === 0,
+        messages: [
+          `${prefix}: status=${absorption.status} policy=${absorption.independent_layer_policy} detail=${absorption.detail_contract_coverage_status} tailoring=${absorption.tailoring_detail_contract_status} command=${absorption.command}`,
+          `function-design-absorption-binding - declarations=detail:${detailCoverage?.declarationIds.join("+") || "-"} tailoring:${tailoringDetail?.declarationIds.join("+") || "-"} sources=${detailCoverage?.sourcePaths.join(",") || "-"}`,
+          `function-design-absorption-binding - tailoring-db: table=project_tailoring_decisions detail=${tailoringDecisionRow ? `${tailoringDecisionRow.category}/${tailoringDecisionRow.detail_level}/${tailoringDecisionRow.status}` : "missing"} impl=${tailoringDecisionRow?.implementation_dependencies ?? "-"}`,
+          `function-design-absorption-binding - canonical-sources=${detailCoverage?.sourcePaths.filter((sourcePath) => !sourcePath.startsWith("docs/design/helix/L6-function-design/")).join(",") || "-"}`,
+          `function-design-absorption-binding - accepted=${absorption.accepted_layers.join(",") || "-"} absorbed=${absorption.absorbed_surfaces.join(",") || "-"}`,
+          `function-design-absorption-binding - action=${absorption.required_action}`,
+          ...violations.map(
+            (violation) => `function-design-absorption-binding - violation: ${violation}`,
+          ),
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: [
+        "function-design-absorption-binding - violation: function design absorption projection could not run",
+      ],
+      ok: false,
+    };
+  }
+}
+
+export function checkVmodelZipManifest(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["vmodel-zip-manifest - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  const result = analyzeVmodelZipManifest(repoRoot);
+  return {
+    messages: vmodelZipManifestMessages(result),
+    ok: result.ok,
+  };
+}
+
+export function checkVmodelFit(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["vmodel-fit - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+    try {
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const fitNextActions = fit.next_actions
+        .slice(0, 5)
+        .map(
+          (action) =>
+            `${action.priority}:${action.blocker_code}:${action.automation_class}:${action.count}:${action.command}`,
+        )
+        .join(" | ");
+      const fitNextWorkBuckets = fit.next_actions
+        .filter((action) => action.work_bucket !== null)
+        .slice(0, 5)
+        .map((action) => {
+          const bucket = action.work_bucket;
+          return bucket
+            ? `${action.blocker_code}:${bucket.evidence_signature}:${bucket.count}:failed=${bucket.failed_evidence_count}:projections=${bucket.projection_item_count}:automation=${bucket.repair_automation_status}:next=${bucket.repair_primary_next_command ?? "-"}:handoff=${bucket.evidence_handoff_next?.status ?? "none"}:approval=${bucket.evidence_handoff_status?.approval_record?.status ?? "-"}:scope=${bucket.evidence_handoff_status?.approval_record?.scope_status ?? "-"}:${bucket.primary_command}:patch=${bucket.evidence_patch_command}:patch_candidates=${bucket.evidence_patch_candidate_count}:patch_write=${bucket.evidence_patch_write_policy}`
+            : "";
+        })
+        .filter((item) => item.length > 0)
+        .join(" | ");
+      const fitRegressionGuards = fit.regression_guards.guards
+        .map((guard) => `${guard.guard_id}:${guard.status}:${guard.count}:${guard.command}`)
+        .join(" | ");
+      const fitRecoveryRunwayPhases = fit.recovery_runway_gate.phases
+        .map(
+          (phase) =>
+            `${phase.sequence}:${phase.action}:${phase.phase_type}:count=${phase.count}:listed=${phase.listed}:remaining=${phase.remaining_after_phase}:gate=${phase.next_gate}:signature=${phase.evidence_signature ?? "-"}:plans=${phase.sample_plan_ids.join(",") || "-"}`,
+        )
+        .join(" | ");
+      return {
+        ok: true,
+        messages: [
+          `vmodel-fit - ${fit.status === "pass" ? "OK" : "advisory"}: status=${fit.status} design=${fit.design_coverage_gate.status} ac=${fit.acceptance_traceability_gate.status} zip=${fit.zip_adoption.status} manifest=${fit.zip_manifest.status} tailoring=${fit.tailoring_gate.status} function_design=${fit.function_design_absorption.status} roadmap=${fit.roadmap_current_gate.status} drive=${fit.drive_model_gate.selected_model}/${fit.drive_model_gate.status} operation=${fit.operation_scope.designed}/${fit.operation_scope.observed}/${fit.operation_scope.missing}/${fit.operation_scope.reverify} current=${fit.current_location_gate.status} route=${fit.current_location_gate.route_id}`,
+          `vmodel-fit - blockers: ${fit.blockers.map((blocker) => `${blocker.code}:${blocker.count}:${blocker.command}`).join(" | ") || "-"}`,
+          `vmodel-fit - synthesis: status=${fit.synthesis.status} common=${fit.synthesis.common_adopted} complement=${fit.synthesis.helix_complemented} reject=${fit.synthesis.rejected} missing=${fit.synthesis.missing_decisions} tailoring=${fit.synthesis.tailoring_status} function_policy=${fit.synthesis.function_design_policy} reentry=${fit.synthesis.current_reentry_status} next=${fit.synthesis.next_command}`,
+          `vmodel-fit - regression-guards: status=${fit.regression_guards.status} pass=${fit.regression_guards.pass} watch=${fit.regression_guards.watch} fail=${fit.regression_guards.fail} guards=${fitRegressionGuards || "-"}`,
+          `vmodel-fit - recovery-runway-gate: status=${fit.recovery_runway_gate.status} blocking=${fit.recovery_runway_gate.current_blocking_count} machine=${fit.recovery_runway_gate.machine_actionable_count} approval=${fit.recovery_runway_gate.human_approval_count} reverse=${fit.recovery_runway_gate.design_reverse_count} after_machine=${fit.recovery_runway_gate.remaining_after_machine_lanes} phases=${fit.recovery_runway_gate.required_phase_count} next=${fit.recovery_runway_gate.next_phase_action ?? "-"} phase=${fit.recovery_runway_gate.next_phase_type ?? "-"} gate=${fit.recovery_runway_gate.next_gate} command=${fit.recovery_runway_gate.next_command} execute=${fit.recovery_runway_gate.next_execution_command}`,
+          `vmodel-fit - recovery-runway-phases: ${fitRecoveryRunwayPhases || "-"}`,
+          `vmodel-fit - recovery-handoff-gate: status=${fit.recovery_handoff_gate.status} phase=${fit.recovery_handoff_gate.effective_phase} approval=${fit.recovery_handoff_gate.approval_status ?? "-"} scope=${fit.recovery_handoff_gate.scope_status ?? "-"} decision=${fit.recovery_handoff_gate.decision_id ?? "-"} digest=${fit.recovery_handoff_gate.approval_scope_digest ?? "-"} expected=${fit.recovery_handoff_gate.expected_approval_scope_digest ?? "-"} materialize=${fit.recovery_handoff_gate.materialize_status ?? "-"} valid=${fit.recovery_handoff_gate.valid_for_apply} present=${fit.recovery_handoff_gate.handoff_present} missing=${fit.recovery_handoff_gate.handoff_missing} command=${fit.recovery_handoff_gate.command}`,
+          `vmodel-fit - approval-review-gate: status=${fit.approval_review_gate.status} action=${fit.approval_review_gate.action} count=${fit.approval_review_gate.count} listed=${fit.approval_review_gate.listed} omitted=${fit.approval_review_gate.omitted} window=${fit.approval_review_gate.window.page_index}/${fit.approval_review_gate.window.page_count} range=${fit.approval_review_gate.window.start}-${fit.approval_review_gate.window.end} next=${fit.approval_review_gate.next_window_command ?? "-"} decision=${fit.approval_review_gate.decision_id} digest=${fit.approval_review_gate.approval_scope_digest} tests=${fit.approval_review_gate.evidence_totals.test_runs_passed}/${fit.approval_review_gate.evidence_totals.test_runs_total} gates=${fit.approval_review_gate.evidence_totals.gate_runs_passed}/${fit.approval_review_gate.evidence_totals.gate_runs_total} runtime=${fit.approval_review_gate.evidence_totals.runtime_verification_accepted}/${fit.approval_review_gate.evidence_totals.runtime_verification_total} blocked=${fit.approval_review_gate.blocked_by_findings.length} plans=${fit.approval_review_gate.sample_plan_ids.join(",") || "-"} command=${fit.approval_review_gate.current_window_command}`,
+          `vmodel-fit - next-actions: ${fitNextActions || "-"}`,
+          `vmodel-fit - next-work-buckets: ${fitNextWorkBuckets || "-"}`,
+          `vmodel-fit - zip-inventory-signature: status=${fit.zip_manifest.inventory_signature.status} entries=${fit.zip_manifest.inventory_signature.actual_entries_total}/${fit.zip_manifest.inventory_signature.expected_entries_total} root=${fit.zip_manifest.inventory_signature.actual_root_prefix ?? "-"}/${fit.zip_manifest.inventory_signature.expected_root_prefix} mismatches=${fit.zip_manifest.inventory_signature.mismatches.length}`,
+          `vmodel-fit - zip-source-bindings: status=${fit.zip_source_bindings.status} bound=${fit.zip_source_bindings.bound} missing=${fit.zip_source_bindings.missing} advisory=${fit.zip_source_bindings.advisory} tables=${fit.zip_source_bindings.evidence_tables.join(",") || "-"}`,
+          `vmodel-fit - acceptance-traceability: status=${fit.acceptance_traceability_gate.status} linked=${fit.acceptance_traceability_gate.linked}/${fit.acceptance_traceability_gate.total} declared=${fit.acceptance_traceability_gate.declared} missing=${fit.acceptance_traceability_gate.missing}`,
+          `vmodel-fit - function-design-absorption: status=${fit.function_design_absorption.status} policy=${fit.function_design_absorption.independent_layer_policy} detail=${fit.function_design_absorption.detail_contract_coverage_status} tailoring=${fit.function_design_absorption.tailoring_detail_contract_status}`,
+          `vmodel-fit - roadmap-current-gate: status=${fit.roadmap_current_gate.status} roadmap=${fit.roadmap_current_gate.roadmap_status} aligned=${fit.roadmap_current_gate.aligned} correlation=${fit.roadmap_current_gate.recovery_correlation} basis=${fit.roadmap_current_gate.alignment_basis} db=${fit.roadmap_current_gate.db_current_l12_layer ?? "-"} roadmap=${fit.roadmap_current_gate.roadmap_current_l12_layers.join(",") || "-"} projected=${fit.roadmap_current_gate.roadmap_projected_l12_layers.join(",") || "-"} terminal=${fit.roadmap_current_gate.roadmap_terminal_l12_layers.join(",") || "-"} blockers=${fit.roadmap_current_gate.blocker_count}`,
+          `vmodel-fit - drive-model-gate: status=${fit.drive_model_gate.status} selected=${fit.drive_model_gate.selected_model} route=${fit.drive_model_gate.selected_route_id} default=${fit.drive_model_gate.default_model} blocked=${fit.drive_model_gate.blocked_models.join(",") || "-"} available=${fit.drive_model_gate.available_models.join(",") || "-"}`,
+          `vmodel-fit - skill-binding: status=${fit.skill_binding?.status ?? "-"} selected=${fit.skill_binding?.selectedModel ?? "-"} workflow=${fit.skill_binding?.workflowModes.join(",") || "-"} required=${fit.skill_binding?.requiredSkills ?? 0} recommended=${fit.skill_binding?.recommendedSkills ?? 0} optional=${fit.skill_binding?.optionalSkills ?? 0}`,
+          `vmodel-fit - operation-scope: designed=${fit.operation_scope.designed} observed=${fit.operation_scope.observed} observed_gap=${fit.operation_scope.observed_gap} missing=${fit.operation_scope.missing} reverify=${fit.operation_scope.reverify}`,
+          `vmodel-fit - current-location-gate: status=${fit.current_location_gate.status} current=${fit.current_location_gate.current_status}/${fit.current_location_gate.completion_boundary} route_status=${fit.current_location_gate.drive_route_status} model=${fit.current_location_gate.recommended_model}`,
+          `vmodel-fit - recovery-runway: status=${fit.current_location_gate.recovery_runway.status} machine=${fit.current_location_gate.recovery_runway.machine_actionable_count} approval=${fit.current_location_gate.recovery_runway.human_approval_count} reverse=${fit.current_location_gate.recovery_runway.design_reverse_count} after_machine=${fit.current_location_gate.recovery_runway.remaining_after_machine_lanes} next=${fit.current_location_gate.recovery_runway.next_machine_action ?? "-"}`,
+          `vmodel-fit - recovery-reentry: status=${fit.current_location_gate.reentry_forecast.status} blocking=${fit.current_location_gate.reentry_forecast.current_blocking_count} after_machine=${fit.current_location_gate.reentry_forecast.blocking_after_machine_lanes} phases=${fit.current_location_gate.reentry_forecast.required_phase_count} next=${fit.current_location_gate.reentry_forecast.next_phase_action ?? "-"} gate=${fit.current_location_gate.reentry_forecast.next_gate}`,
+          `vmodel-fit - design-integrity: declarations=${fit.design_integrity.declarations} references=${fit.design_integrity.references} impact=${fit.design_integrity.impact} unresolved=${fit.design_integrity.unresolved_references} drift=${fit.design_integrity.declaration_drifts}`,
+        ],
+      };
+    } finally {
+      if (!prebuiltDb) db.close();
+    }
+  } catch {
+    return {
+      messages: ["vmodel-fit - violation: V-model fit projection could not run"],
       ok: false,
     };
   }
@@ -3463,6 +5770,37 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const guardrailInvariants = checkGuardrailInvariants(deps.repoRoot);
   const dbProjectionCoverage = checkDbProjectionCoverage(deps.repoRoot);
   const dbProjectionIngestion = checkDbProjectionIngestion(deps.repoRoot, sharedProjectionDb);
+  const projectCurrentLocation = checkProjectCurrentLocation(deps.repoRoot, sharedProjectionDb);
+  const visualizationViewModelBoundary = checkVisualizationViewModelBoundary(
+    deps.repoRoot,
+    sharedProjectionDb,
+  );
+  const visualizationTreeViewBoundary = checkVisualizationTreeViewBoundary(
+    deps.repoRoot,
+    sharedProjectionDb,
+  );
+  const vscodeExtensionDynamicBinding = checkVscodeExtensionDynamicBinding(
+    deps.repoRoot,
+    sharedProjectionDb,
+  );
+  const l12CompatibilityBinding = checkL12CompatibilityBinding(deps.repoRoot, sharedProjectionDb);
+  const roadmapCurrentBinding = checkRoadmapCurrentBinding(deps.repoRoot, sharedProjectionDb);
+  const driveModelBinding = checkDriveModelBinding(deps.repoRoot, sharedProjectionDb);
+  const recoveryRunwayBinding = checkRecoveryRunwayBinding(deps.repoRoot, sharedProjectionDb);
+  const recoveryHandoffBinding = checkRecoveryHandoffBinding(deps.repoRoot, sharedProjectionDb);
+  const recoveryExitBinding = checkRecoveryExitBinding(deps.repoRoot, sharedProjectionDb);
+  const approvalReviewBinding = checkApprovalReviewBinding(deps.repoRoot, sharedProjectionDb);
+  const closureApplyBinding = checkClosureApplyBinding(deps.repoRoot, sharedProjectionDb);
+  const operationScopeBinding = checkOperationScopeBinding(deps.repoRoot, sharedProjectionDb);
+  const zipAdoptionBinding = checkZipAdoptionBinding(deps.repoRoot, sharedProjectionDb);
+  const zipSourceBinding = checkZipSourceBinding(deps.repoRoot, sharedProjectionDb);
+  const zipReferenceRuntimeBoundary = checkZipReferenceRuntimeBoundary(deps.repoRoot);
+  const functionDesignAbsorptionBinding = checkFunctionDesignAbsorptionBinding(
+    deps.repoRoot,
+    sharedProjectionDb,
+  );
+  const vmodelZipManifest = checkVmodelZipManifest(deps.repoRoot);
+  const vmodelFit = checkVmodelFit(deps.repoRoot, sharedProjectionDb);
   try {
     sharedProjectionDb?.close();
   } catch {
@@ -3568,6 +5906,25 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       regressionExpansion.ok &&
       dbProjectionCoverage.ok &&
       dbProjectionIngestion.ok &&
+      projectCurrentLocation.ok &&
+      visualizationViewModelBoundary.ok &&
+      visualizationTreeViewBoundary.ok &&
+      vscodeExtensionDynamicBinding.ok &&
+      l12CompatibilityBinding.ok &&
+      roadmapCurrentBinding.ok &&
+      driveModelBinding.ok &&
+      recoveryRunwayBinding.ok &&
+      recoveryHandoffBinding.ok &&
+      recoveryExitBinding.ok &&
+      approvalReviewBinding.ok &&
+      closureApplyBinding.ok &&
+      operationScopeBinding.ok &&
+      zipAdoptionBinding.ok &&
+      zipSourceBinding.ok &&
+      zipReferenceRuntimeBoundary.ok &&
+      functionDesignAbsorptionBinding.ok &&
+      vmodelZipManifest.ok &&
+      vmodelFit.ok &&
       verifierProviderMismatch.ok &&
       agentModelSsot.ok &&
       docConsistency.ok &&
@@ -3670,6 +6027,25 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...regressionExpansion.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionCoverage.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionIngestion.messages.map((m) => `doctor: ${m}`),
+      ...projectCurrentLocation.messages.map((m) => `doctor: ${m}`),
+      ...visualizationViewModelBoundary.messages.map((m) => `doctor: ${m}`),
+      ...visualizationTreeViewBoundary.messages.map((m) => `doctor: ${m}`),
+      ...vscodeExtensionDynamicBinding.messages.map((m) => `doctor: ${m}`),
+      ...l12CompatibilityBinding.messages.map((m) => `doctor: ${m}`),
+      ...roadmapCurrentBinding.messages.map((m) => `doctor: ${m}`),
+      ...driveModelBinding.messages.map((m) => `doctor: ${m}`),
+      ...recoveryRunwayBinding.messages.map((m) => `doctor: ${m}`),
+      ...recoveryHandoffBinding.messages.map((m) => `doctor: ${m}`),
+      ...recoveryExitBinding.messages.map((m) => `doctor: ${m}`),
+      ...approvalReviewBinding.messages.map((m) => `doctor: ${m}`),
+      ...closureApplyBinding.messages.map((m) => `doctor: ${m}`),
+      ...operationScopeBinding.messages.map((m) => `doctor: ${m}`),
+      ...zipAdoptionBinding.messages.map((m) => `doctor: ${m}`),
+      ...zipSourceBinding.messages.map((m) => `doctor: ${m}`),
+      ...zipReferenceRuntimeBoundary.messages.map((m) => `doctor: ${m}`),
+      ...functionDesignAbsorptionBinding.messages.map((m) => `doctor: ${m}`),
+      ...vmodelZipManifest.messages.map((m) => `doctor: ${m}`),
+      ...vmodelFit.messages.map((m) => `doctor: ${m}`),
       ...verifierProviderMismatch.messages.map((m) => `doctor: ${m}`),
       ...agentModelSsot.messages.map((m) => `doctor: ${m}`),
       ...docConsistency.messages.map((m) => `doctor: ${m}`),

@@ -254,6 +254,27 @@ import {
   recommendSkillsForText,
   recordSkillRecommendations,
 } from "./skills/recommend";
+import {
+  buildProjectArtifactRemapBatchReport,
+  buildProjectClosureApplyPlan,
+  buildProjectClosureBatchReport,
+  buildProjectClosureDecisionDraftPacket,
+  buildProjectClosureEvidenceApprovalDraftPacket,
+  buildProjectClosureEvidenceApplyPlan,
+  buildProjectClosureEvidencePlan,
+  buildProjectClosureEvidenceMaterializePacket,
+  buildProjectClosureEvidencePatchPacket,
+  buildProjectClosureEvidenceProbePacket,
+  buildProjectClosureOverview,
+  buildProjectClosureReviewBundle,
+  buildProjectClosureTransitionPlan,
+  buildProjectCurrentLocationSnapshot,
+  buildProjectDriveModelReport,
+  buildProjectRecoveryPlan,
+  buildProjectRoadmapCurrentReport,
+  isProjectArtifactRemapStatus,
+  isProjectClosureQueueNextAction,
+} from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
@@ -266,6 +287,7 @@ import {
 import { collectReverseCandidates } from "./state-db/reverse-candidates";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
 import { buildVisualizationSnapshot } from "./state-db/visualization-read-model";
+import { buildVisualizationViewModel } from "./state-db/visualization-view-model";
 import { classifyProposalDocumentCoverage, classifyTask } from "./task/classify";
 import {
   type Provider,
@@ -283,8 +305,12 @@ import {
   loadTeamDefinition,
   type MemberPlacement,
 } from "./team/run";
+import { buildVmodelFitReport } from "./vmodel/fit";
 import { formatVmodelInjection, resolveVmodelInjection } from "./vmodel/injection";
 import { lintVmodel } from "./vmodel/lint";
+import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
+import { helixVscodePackageManifest } from "./vscode/extension-manifest";
+import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
 import { buildCommandCatalog } from "./workflow/contracts";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
 
@@ -293,6 +319,202 @@ const SAVE_EVIDENCE_OPTION_DESCRIPTION = "persist normalized evidence for DB col
 const SESSION_OPTION_DESCRIPTION = "session_id (defaults to stdin session_id or helix-cli)";
 const MODE_OVERRIDE_OPTION_DESCRIPTION = "override execution mode for tests";
 const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
+const TEXT_REPAIR_TARGET_LIMIT = 3;
+const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
+
+function truncateCliText(value: string, limit: number): string {
+  if (value.length <= limit) return value;
+  return `${value.slice(0, Math.max(0, limit - 3))}...`;
+}
+
+function formatRepairTargetsText(targets: Array<{ component: string; id: string }>): string {
+  if (targets.length === 0) return "-";
+  const sample = targets
+    .slice(0, TEXT_REPAIR_TARGET_LIMIT)
+    .map((target) => `${target.component}:${truncateCliText(target.id, TEXT_REPAIR_TARGET_ID_LIMIT)}`);
+  const omitted = targets.length - sample.length;
+  return omitted > 0 ? `${sample.join(",")} (+${omitted} omitted)` : sample.join(",");
+}
+
+const CLOSURE_EVIDENCE_PROBE_EXCERPT_LIMIT = 4_000;
+
+function buildClosureEvidenceProbeOutputExcerpt(stdout: string, stderr: string) {
+  const limit = CLOSURE_EVIDENCE_PROBE_EXCERPT_LIMIT;
+  return {
+    stdout_head: stdout.slice(0, limit),
+    stdout_tail: stdout.length > limit ? stdout.slice(-limit) : stdout,
+    stderr_head: stderr.slice(0, limit),
+    stderr_tail: stderr.length > limit ? stderr.slice(-limit) : stderr,
+    truncated: stdout.length > limit || stderr.length > limit,
+    limit,
+  };
+}
+
+function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
+  const parts = command.trim().split(/\s+/).filter((part) => part.length > 0);
+  const startedAt = new Date().toISOString();
+  if (parts.length === 0) {
+    const completedAt = new Date().toISOString();
+    const provenanceSeed = `command=${command}\nstarted_at=${startedAt}\ncompleted_at=${completedAt}`;
+    const provenanceDigest = createHash("sha256").update(provenanceSeed).digest("hex");
+    return {
+      command,
+      session_id: `closure-probe:${provenanceDigest.slice(0, 16)}`,
+      correlation_id: `closure-correlation:${provenanceDigest.slice(16, 32)}`,
+      started_at: startedAt,
+      completed_at: completedAt,
+      exit_code: null,
+      status: "error" as const,
+      output_digest: `sha256:${createHash("sha256").update("").digest("hex")}`,
+      stdout_bytes: 0,
+      stderr_bytes: 0,
+      output_excerpt: buildClosureEvidenceProbeOutputExcerpt("", ""),
+      error_message: "empty command",
+    };
+  }
+  const result = spawnSync(parts[0], parts.slice(1), {
+    cwd: repoRoot,
+    encoding: "utf8",
+    maxBuffer: 20 * 1024 * 1024,
+  });
+  const completedAt = new Date().toISOString();
+  const stdout = typeof result.stdout === "string" ? result.stdout : "";
+  const stderr = typeof result.stderr === "string" ? result.stderr : "";
+  const digestPayload = [
+    `command=${command}`,
+    `exit_code=${result.status ?? "null"}`,
+    "--- stdout ---",
+    stdout,
+    "--- stderr ---",
+    stderr,
+  ].join("\n");
+  const status: "passed" | "failed" | "error" = result.error
+    ? "error"
+    : result.status === 0
+      ? "passed"
+      : "failed";
+  const outputDigest = `sha256:${createHash("sha256").update(digestPayload).digest("hex")}`;
+  const provenanceSeed = [
+    `command=${command}`,
+    `started_at=${startedAt}`,
+    `completed_at=${completedAt}`,
+    `output_digest=${outputDigest}`,
+  ].join("\n");
+  const provenanceDigest = createHash("sha256").update(provenanceSeed).digest("hex");
+  return {
+    command,
+    session_id: `closure-probe:${provenanceDigest.slice(0, 16)}`,
+    correlation_id: `closure-correlation:${provenanceDigest.slice(16, 32)}`,
+    started_at: startedAt,
+    completed_at: completedAt,
+    exit_code: result.status,
+    status,
+    output_digest: outputDigest,
+    stdout_bytes: Buffer.byteLength(stdout),
+    stderr_bytes: Buffer.byteLength(stderr),
+    output_excerpt: buildClosureEvidenceProbeOutputExcerpt(stdout, stderr),
+    error_message: result.error?.message ?? null,
+  };
+}
+
+function readClosureEvidenceProbeExecution(path: string | undefined) {
+  if (!path) return null;
+  const payload = JSON.parse(readFileSync(path, "utf8")) as {
+    execution?: unknown;
+  };
+  const execution = payload.execution as
+    | {
+        command?: unknown;
+        started_at?: unknown;
+        completed_at?: unknown;
+        session_id?: unknown;
+        correlation_id?: unknown;
+        exit_code?: unknown;
+        status?: unknown;
+        output_digest?: unknown;
+        stdout_bytes?: unknown;
+        stderr_bytes?: unknown;
+        output_excerpt?: unknown;
+        error_message?: unknown;
+      }
+    | null
+    | undefined;
+  if (!execution) return null;
+  if (
+    typeof execution.command !== "string" ||
+    typeof execution.started_at !== "string" ||
+    typeof execution.completed_at !== "string" ||
+    !(
+      execution.session_id === undefined ||
+      typeof execution.session_id === "string"
+    ) ||
+    !(
+      execution.correlation_id === undefined ||
+      typeof execution.correlation_id === "string"
+    ) ||
+    !(typeof execution.exit_code === "number" || execution.exit_code === null) ||
+    !(
+      execution.status === "passed" ||
+      execution.status === "failed" ||
+      execution.status === "error"
+    ) ||
+    typeof execution.output_digest !== "string" ||
+    typeof execution.stdout_bytes !== "number" ||
+    typeof execution.stderr_bytes !== "number" ||
+    !(typeof execution.error_message === "string" || execution.error_message === null)
+  ) {
+    throw new Error("invalid probe record execution");
+  }
+  const excerpt = execution.output_excerpt as
+    | {
+        stdout_head?: unknown;
+        stdout_tail?: unknown;
+        stderr_head?: unknown;
+        stderr_tail?: unknown;
+        truncated?: unknown;
+        limit?: unknown;
+      }
+    | undefined;
+  if (
+    excerpt !== undefined &&
+    !(
+      typeof excerpt.stdout_head === "string" &&
+      typeof excerpt.stdout_tail === "string" &&
+      typeof excerpt.stderr_head === "string" &&
+      typeof excerpt.stderr_tail === "string" &&
+      typeof excerpt.truncated === "boolean" &&
+      typeof excerpt.limit === "number"
+    )
+  ) {
+    throw new Error("invalid probe record execution");
+  }
+  const outputExcerpt =
+    excerpt === undefined
+      ? undefined
+      : {
+          stdout_head: excerpt.stdout_head as string,
+          stdout_tail: excerpt.stdout_tail as string,
+          stderr_head: excerpt.stderr_head as string,
+          stderr_tail: excerpt.stderr_tail as string,
+          truncated: excerpt.truncated as boolean,
+          limit: excerpt.limit as number,
+        };
+  const status: "passed" | "failed" | "error" = execution.status;
+  return {
+    command: execution.command,
+    ...(execution.session_id ? { session_id: execution.session_id } : {}),
+    ...(execution.correlation_id ? { correlation_id: execution.correlation_id } : {}),
+    started_at: execution.started_at,
+    completed_at: execution.completed_at,
+    exit_code: execution.exit_code,
+    status,
+    output_digest: execution.output_digest,
+    stdout_bytes: execution.stdout_bytes,
+    stderr_bytes: execution.stderr_bytes,
+    ...(outputExcerpt ? { output_excerpt: outputExcerpt } : {}),
+    error_message: execution.error_message,
+  };
+}
 
 function gitBranch(): string | null {
   try {
@@ -3048,6 +3270,1625 @@ db.command("rebuild")
     );
   });
 
+program
+  .command("current-location")
+  .description("Project view current location and drive-model recommendation from DB projection")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
+        return;
+      }
+      const current = snapshot.current;
+      process.stdout.write(
+        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} drive=${snapshot.drive_recommendation.model} findings=${snapshot.findings.length}\n`,
+      );
+      process.stdout.write(
+        `  drive-route: ${snapshot.drive_route.routeId} status=${snapshot.drive_route.status} model=${snapshot.drive_route.selectedModel} default=${snapshot.drive_route.defaultModel} return_to_design=${snapshot.drive_route.mustReturnToDesign} write=${snapshot.drive_route.writePolicy}\n`,
+      );
+	      if (snapshot.drive_route.reverse.required) {
+	        process.stdout.write(
+	          `  drive-reverse-scope: targets=${snapshot.drive_route.reverse.targets.join(",") || "-"} l12=${snapshot.drive_route.reverse.l12Layers.join(",") || "-"} actions=${snapshot.drive_route.reverse.queueActions.join(",") || "-"} ledgers=${snapshot.drive_route.reverse.ledgerIds.length}\n`,
+	        );
+	      } else {
+	        process.stdout.write(
+	          `  drive-forward-scope: allowed=${snapshot.drive_route.forward.allowed} roadmap=${snapshot.drive_route.forward.roadmapStatus} frontier=${snapshot.drive_route.forward.frontier.join(",") || "-"}\n`,
+	        );
+	      }
+	      if (snapshot.recovery) {
+	        process.stdout.write(
+	          `  recovery-exit: status=${snapshot.recovery.exit_forecast.status} remaining=${snapshot.recovery.exit_forecast.remaining_queue_items} blockers=${snapshot.recovery.exit_forecast.blockers.length} next=${snapshot.recovery.exit_forecast.next_command}\n`,
+	        );
+	        process.stdout.write(
+	          `  recovery-runway: status=${snapshot.recovery.automation_runway.status} machine=${snapshot.recovery.automation_runway.machine_actionable_count} approval=${snapshot.recovery.automation_runway.human_approval_count} reverse=${snapshot.recovery.automation_runway.design_reverse_count} after_machine=${snapshot.recovery.automation_runway.remaining_after_machine_lanes} next=${snapshot.recovery.automation_runway.next_machine_command ?? "-"} next_probe=${snapshot.recovery.automation_runway.next_machine_probe_command ?? "-"} materialize=${snapshot.recovery.automation_runway.next_machine_materialize_command ?? "-"} approval_draft=${snapshot.recovery.automation_runway.next_machine_approval_draft_command ?? "-"} apply_dry_run=${snapshot.recovery.automation_runway.next_machine_apply_dry_run_command ?? "-"}\n`,
+	        );
+	        process.stdout.write(
+	          `  recovery-reentry: status=${snapshot.recovery.reentry_forecast.status} blocking=${snapshot.recovery.reentry_forecast.current_blocking_count} after_machine=${snapshot.recovery.reentry_forecast.blocking_after_machine_lanes} phases=${snapshot.recovery.reentry_forecast.required_phase_count} next=${snapshot.recovery.reentry_forecast.next_phase_action ?? "-"} gate=${snapshot.recovery.reentry_forecast.next_gate} command=${snapshot.recovery.reentry_forecast.next_command} execute=${snapshot.recovery.reentry_forecast.next_execution_command}\n`,
+	        );
+	      }
+	      process.stdout.write(
+	        `  l12-coverage: done=${snapshot.coverage.done} missing=${snapshot.coverage.missing} reverify=${snapshot.coverage.reverify}\n`,
+	      );
+      process.stdout.write(
+        `  design-coverage-gate: status=${snapshot.design_coverage_gate.status} covered=${snapshot.design_coverage_gate.covered} missing=${snapshot.design_coverage_gate.missing} reverify=${snapshot.design_coverage_gate.reverify}\n`,
+      );
+      process.stdout.write(
+        `  acceptance-traceability: status=${snapshot.acceptance_traceability.status} linked=${snapshot.acceptance_traceability.linked}/${snapshot.acceptance_traceability.total} declared=${snapshot.acceptance_traceability.declared} missing=${snapshot.acceptance_traceability.missing}\n`,
+      );
+      process.stdout.write(
+        `  design-impact: declarations=${snapshot.counts.design_declarations} references=${snapshot.counts.design_references} impact=${snapshot.counts.design_impact} unresolved=${snapshot.counts.unresolved_design_references} drift=${snapshot.counts.design_declaration_drifts}\n`,
+      );
+      if (snapshot.design_coverage_gate.status !== "pass") {
+        process.stdout.write(
+          `  design-coverage-return: ${snapshot.design_coverage_gate.items
+            .filter((item) => item.status !== "covered")
+            .slice(0, 8)
+            .map((item) => `${item.coverageId}->${item.returnRoute}@${item.l12Layer}`)
+            .join(",")}\n`,
+        );
+      }
+      process.stdout.write(
+        `  roadmap-position: status=${snapshot.roadmap_position.status} bands=${snapshot.roadmap_position.rollup.covered_bands}/${snapshot.roadmap_position.rollup.total_bands} parked=${snapshot.roadmap_position.rollup.parked_bands} uncovered=${snapshot.roadmap_position.rollup.uncovered_bands} gates=${snapshot.roadmap_position.rollup.reached_gates}/${snapshot.roadmap_position.rollup.total_gates} spans=${snapshot.roadmap_position.rollup.confirmed_spans}/${snapshot.roadmap_position.rollup.total_spans}\n`,
+      );
+      if (
+        snapshot.roadmap_position.current_band_ids.length > 0 ||
+        snapshot.roadmap_position.current_gate_ids.length > 0
+      ) {
+        process.stdout.write(
+          `  roadmap-current: bands=${snapshot.roadmap_position.current_band_ids.join(",") || "-"} gates=${snapshot.roadmap_position.current_gate_ids.slice(0, 5).join(",") || "-"}\n`,
+        );
+      }
+      process.stdout.write(
+        `  operation-scope: designed=${snapshot.operation_scope.designed} observed=${snapshot.operation_scope.observed} observed_gap=${snapshot.operation_scope.observed_gap} missing=${snapshot.operation_scope.missing} reverify=${snapshot.operation_scope.reverify}\n`,
+      );
+      process.stdout.write(
+        `  artifact-remap: done=${snapshot.artifact_remap.done} missing=${snapshot.artifact_remap.missing} reverify=${snapshot.artifact_remap.reverify}\n`,
+      );
+      process.stdout.write(
+        `  artifact-remap-layers: ${snapshot.artifact_remap.layers
+          .map(
+            (layer) =>
+              `${layer.layer}=${layer.status}(d${layer.done}/m${layer.missing}/r${layer.reverify})`,
+          )
+          .join(" ")}\n`,
+      );
+      process.stdout.write(
+        `  closure: status=${snapshot.closure.status} open_l7=${snapshot.closure.l7_open_plan_ids.length} l14_claims=${snapshot.closure.terminal_l14_plan_ids.length} evidence=${snapshot.closure.closure_evidence_ids.length}\n`,
+      );
+      process.stdout.write(
+        `  closure-remediation: done=${snapshot.closure.remediation.done} missing=${snapshot.closure.remediation.missing} reverify=${snapshot.closure.remediation.reverify}\n`,
+      );
+      if (snapshot.closure.queue.total > 0) {
+        const queueEvidence = snapshot.closure.queue.items.reduce(
+          (acc, item) => {
+            acc[item.evidence.status] += 1;
+            return acc;
+          },
+          { missing: 0, partial: 0, ready: 0 },
+        );
+        process.stdout.write(
+          `  closure-queue: total=${snapshot.closure.queue.total} head=${snapshot.closure.queue.items
+            .slice(0, 3)
+            .map((item) => item.planId)
+            .join(",")}\n`,
+        );
+        process.stdout.write(
+          `  closure-queue-evidence: ready=${queueEvidence.ready} partial=${queueEvidence.partial} missing=${queueEvidence.missing}\n`,
+        );
+        process.stdout.write(
+          `  closure-queue-route: close=${snapshot.closure.queue.route_counts.close_ready} collect=${snapshot.closure.queue.route_counts.collect_evidence} repair=${snapshot.closure.queue.route_counts.repair_failed_evidence} reverse=${snapshot.closure.queue.route_counts.reverse_design}\n`,
+        );
+        process.stdout.write(
+          `  closure-packets: total=${snapshot.closure.packets.total} ${snapshot.closure.packets.items
+            .map((packet) => `${packet.nextAction}=${packet.count}`)
+            .join(" ")}\n`,
+        );
+        const firstPacket = snapshot.closure.packets.items[0];
+        if (firstPacket) {
+          process.stdout.write(
+            `  closure-automation: first=${firstPacket.automation.batchId} command=${firstPacket.automation.reviewCommand} filter=${firstPacket.automation.machineFilter} transition=${firstPacket.automation.expectedTransition}\n`,
+          );
+        }
+        process.stdout.write(
+          `  next-action-ledger: total=${snapshot.closure.next_action_ledger.total} ready=${snapshot.closure.next_action_ledger.status_counts.ready} evidence=${snapshot.closure.next_action_ledger.status_counts.needs_evidence} repair=${snapshot.closure.next_action_ledger.status_counts.needs_repair} reverse=${snapshot.closure.next_action_ledger.status_counts.needs_reverse} write=${snapshot.closure.next_action_ledger.write_policy}\n`,
+        );
+        for (const entry of snapshot.closure.next_action_ledger.entries) {
+          process.stdout.write(
+            `  next-action: ${entry.ledgerId} status=${entry.status} count=${entry.count} batch=${entry.automation.batchId} command=${entry.primaryCommand} view=${entry.reviewSurface}\n`,
+          );
+        }
+      }
+      if (current.roadmap_frontier.length > 0) {
+        process.stdout.write(`  frontier=${current.roadmap_frontier.join(",")}\n`);
+      }
+      if (snapshot.drive_recommendation.reverseTargets.length > 0) {
+        process.stdout.write(
+          `  reverse-targets=${snapshot.drive_recommendation.reverseTargets.join(",")}\n`,
+        );
+      }
+      for (const finding of snapshot.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code} - ${finding.detail}\n`);
+      }
+    } finally {
+      db.close();
+    }
+  });
+
+const drive = program.command("drive").description("Project drive-model read-only surfaces");
+
+drive
+  .command("model")
+  .description("emit selected drive model and candidate routes from current-location projection")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const report = buildProjectDriveModelReport(snapshot);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `drive model: selected=${report.selected_model} status=${report.selection_status} default=${report.default_model} current=${report.current.layer ?? "unknown"}->${report.current.l12_layer ?? "unknown"} write=${report.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  selected-route=${report.selected_candidate.route_id} command=${report.selected_candidate.command}\n`,
+      );
+      process.stdout.write(
+        `  selected-coverage=${report.selected_candidate.coverage_ids.join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  available=${report.available_models.join(",") || "-"} blocked=${report.blocked_models.join(",") || "-"}\n`,
+      );
+      process.stdout.write(`  postcheck=${report.postcheck_commands.join(" && ")}\n`);
+      for (const candidate of report.candidates) {
+        process.stdout.write(
+          `  candidate: ${candidate.rank}.${candidate.model} ${candidate.status} route=${candidate.route_id} coverage=${candidate.coverage_ids.join(",") || "-"} command=${candidate.command}\n`,
+        );
+        process.stdout.write(`    required=${candidate.required_action}\n`);
+      }
+    } finally {
+      db.close();
+    }
+  });
+
+const recovery = program.command("recovery").description("Project recovery read-only surfaces");
+
+recovery
+  .command("plan")
+  .description("emit recovery plan from selected drive model and closure evidence queue")
+  .option("--limit <n>", "maximum evidence-plan items to include", "20")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { limit?: string; json?: boolean; fromDb?: boolean }) => {
+    const limit = Number.parseInt(opts.limit ?? "20", 10);
+    if (!Number.isFinite(limit) || limit < 0) {
+      process.stderr.write(`recovery plan: invalid limit=${opts.limit ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const plan = buildProjectRecoveryPlan(snapshot, { limit });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `recovery plan: status=${plan.status} selected=${plan.drive_model.selected_model} current=${plan.current.layer ?? "unknown"}->${plan.current.l12_layer ?? "unknown"} closure_action=${plan.selected_closure_action ?? "-"} write=${plan.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  exit-forecast: status=${plan.exit_forecast.status} remaining=${plan.exit_forecast.remaining_queue_items} blockers=${plan.exit_forecast.blockers.length} next=${plan.exit_forecast.next_command}\n`,
+      );
+	      process.stdout.write(
+	        `  reentry-forecast: status=${plan.reentry_forecast.status} blocking=${plan.reentry_forecast.current_blocking_count} after_machine=${plan.reentry_forecast.blocking_after_machine_lanes} phases=${plan.reentry_forecast.required_phase_count} next=${plan.reentry_forecast.next_phase_action ?? "-"} gate=${plan.reentry_forecast.next_gate} command=${plan.reentry_forecast.next_command} execute=${plan.reentry_forecast.next_execution_command}\n`,
+	      );
+	      process.stdout.write(
+	        `  automation-runway: status=${plan.automation_runway.status} machine=${plan.automation_runway.machine_actionable_count} approval=${plan.automation_runway.human_approval_count} reverse=${plan.automation_runway.design_reverse_count} after_machine=${plan.automation_runway.remaining_after_machine_lanes} next=${plan.automation_runway.next_machine_command ?? "-"} next_probe=${plan.automation_runway.next_machine_probe_command ?? "-"} materialize=${plan.automation_runway.next_machine_materialize_command ?? "-"} approval_draft=${plan.automation_runway.next_machine_approval_draft_command ?? "-"} apply_dry_run=${plan.automation_runway.next_machine_apply_dry_run_command ?? "-"}\n`,
+	      );
+	      for (const phase of plan.automation_runway.phases) {
+	        process.stdout.write(
+	          `  runway-phase: ${phase.sequence}.${phase.action} ${phase.phase_type} count=${phase.count} selected=${phase.selected} human=${phase.human_required} remaining=${phase.remaining_after_phase} next_gate=${phase.next_gate} command=${phase.command} probe=${phase.evidence_probe_command ?? "-"} materialize=${phase.evidence_materialize_command ?? "-"} approval_draft=${phase.evidence_approval_draft_command ?? "-"} apply_dry_run=${phase.evidence_apply_dry_run_command ?? "-"}\n`,
+	        );
+	      }
+      if (plan.closure_evidence_plan) {
+        process.stdout.write(
+          `  evidence-plan: action=${plan.closure_evidence_plan.selected_action ?? "-"} total=${plan.closure_evidence_plan.total} listed=${plan.closure_evidence_plan.listed} tables=${plan.closure_evidence_plan.target_tables.join(",") || "-"}\n`,
+        );
+        const repairTargets = plan.closure_evidence_plan.items.flatMap(
+          (item) => item.repair_targets,
+        );
+        if (repairTargets.length > 0) {
+          process.stdout.write(
+            `  repair-targets=${formatRepairTargetsText(repairTargets)}\n`,
+          );
+        }
+      }
+      for (const lane of plan.action_lanes) {
+        if (lane.count === 0) continue;
+        process.stdout.write(
+          `  lane: ${lane.rank}.${lane.action} ${lane.status} count=${lane.count} listed=${lane.listed} omitted=${lane.omitted} type=${lane.lane_type} human=${lane.human_required} selected=${lane.selected} tables=${lane.target_tables.join(",") || "-"} command=${lane.primary_command}\n`,
+        );
+      }
+	      for (const boundary of plan.automation_boundaries) {
+	        if (boundary.count === 0) continue;
+	        process.stdout.write(
+	          `  automation: ${boundary.action} class=${boundary.automation_class} count=${boundary.count} mutation=${boundary.mutation_allowed} approval=${boundary.approval_required} dry_run=${boundary.dry_run_command} execute=${boundary.execute_command ?? "-"} probe=${boundary.evidence_probe_command ?? "-"} materialize=${boundary.evidence_materialize_command ?? "-"} approval_draft=${boundary.evidence_approval_draft_command ?? "-"} apply_dry_run=${boundary.evidence_apply_dry_run_command ?? "-"} apply_execute=${boundary.evidence_apply_execute_command ?? "-"} apply_write=${boundary.evidence_apply_write_policy ?? "-"}\n`,
+	        );
+	      }
+      process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+      for (const step of plan.steps) {
+        process.stdout.write(
+          `  step: ${step.sequence}.${step.step_id} ${step.status} command=${step.command}\n`,
+        );
+        process.stdout.write(`    required=${step.required_action}\n`);
+      }
+    } finally {
+      db.close();
+    }
+  });
+
+const roadmap = program.command("roadmap").description("Project roadmap read-only surfaces");
+
+roadmap
+  .command("current")
+  .description("emit roadmap/current-location consistency from DB projection")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const report = buildProjectRoadmapCurrentReport(snapshot);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `roadmap current: status=${report.status} aligned=${report.consistency.aligned} basis=${report.consistency.alignment_basis} db=${report.consistency.db_current_l12_layer ?? "-"} roadmap=${report.consistency.roadmap_current_l12_layers.join(",") || "-"} projected=${report.consistency.roadmap_projected_l12_layers.join(",") || "-"} terminal=${report.consistency.roadmap_terminal_l12_layers.join(",") || "-"} route=${report.drive_route.routeId} write=${report.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  counts: bands=${report.counts.current_bands} gates=${report.counts.current_gates} blockers=${report.counts.blockers} actions=${report.counts.actions}\n`,
+      );
+      process.stdout.write(
+        `  postcheck=${report.postcheck_commands.join(" && ")}\n`,
+      );
+      for (const action of report.actions.slice(0, 20)) {
+        process.stdout.write(
+          `  action: ${action.action_id} ${action.category}/${action.status} auto=${action.automation_class} phase=${action.phase_action ?? "-"} l12=${action.l12_layers.join(",") || "-"} command=${action.command}\n`,
+        );
+        if (
+          action.evidence_patch_command ||
+          action.evidence_probe_command ||
+          action.evidence_materialize_command ||
+          action.evidence_approval_draft_command ||
+          action.evidence_apply_dry_run_command ||
+          action.evidence_apply_execute_command ||
+          action.review_command ||
+          action.batch_command
+        ) {
+          process.stdout.write(
+            `    surfaces=batch:${action.batch_command ?? "-"} review:${action.review_command ?? "-"} patch:${action.evidence_patch_command ?? "-"} probe:${action.evidence_probe_command ?? "-"} materialize:${action.evidence_materialize_command ?? "-"} approval_draft:${action.evidence_approval_draft_command ?? "-"} apply_dry_run:${action.evidence_apply_dry_run_command ?? "-"} apply_execute:${action.evidence_apply_execute_command ?? "-"} apply_write:${action.evidence_apply_write_policy ?? "-"}\n`,
+          );
+        }
+        process.stdout.write(`    required=${action.required_action}\n`);
+      }
+    } finally {
+      db.close();
+    }
+  });
+
+const artifactRemap = program
+  .command("artifact-remap")
+  .description("Project artifact remap read-only automation surfaces");
+
+artifactRemap
+  .command("batch")
+  .description("emit a machine-readable L12 artifact remap batch")
+  .option("--layer <layer>", "L1..L12 canonical layer")
+  .option("--status <status>", "done | missing | reverify")
+  .option("--limit <n>", "maximum remap items to include", "20")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      layer?: string;
+      status?: string;
+      limit?: string;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.status !== undefined && !isProjectArtifactRemapStatus(opts.status)) {
+        process.stderr.write(
+          `artifact-remap batch: invalid status=${opts.status} (expected done, missing, reverify)\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      if (opts.layer !== undefined && !/^L(?:[1-9]|1[0-2])$/.test(opts.layer)) {
+        process.stderr.write(
+          `artifact-remap batch: invalid layer=${opts.layer} (expected L1..L12)\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      if (!Number.isFinite(limit) || limit < 0) {
+        process.stderr.write(`artifact-remap batch: invalid limit=${opts.limit ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+
+      const repoRoot = process.cwd();
+      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const report = buildProjectArtifactRemapBatchReport(snapshot, {
+          layer: opts.layer,
+          status: opts.status,
+          limit,
+        });
+        if (opts.json) {
+          process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+          return;
+        }
+        process.stdout.write(
+          `artifact-remap batch: layer=${report.selected_layer ?? "all"} status=${report.selected_status ?? "all"} total=${report.total} listed=${report.listed} omitted=${report.omitted} done=${report.counts.done} missing=${report.counts.missing} reverify=${report.counts.reverify} model=${report.recommended_next_action.model} write=${report.write_policy}\n`,
+        );
+        process.stdout.write(
+          `  recommended=${report.recommended_next_action.command} reason=${report.recommended_next_action.reason}\n`,
+        );
+        for (const item of report.items) {
+          process.stdout.write(
+            `  item: ${item.artifactId} ${item.kind} ${item.status} ${item.legacyLayer ?? "-"}->${item.l12Layer ?? "-"} model=${item.driveModel} action=${item.requiredAction}\n`,
+          );
+          process.stdout.write(
+            `    coverage: ${item.coverageId ?? "-"} zip=${item.zipSourceBindingIds.join(",") || "-"} tailoring=${item.tailoringRuleIds.join(",") || "-"} detail=${item.tailoringDetailLevels.join(",") || "-"}\n`,
+          );
+          if (item.closureLink) {
+            process.stdout.write(
+              `    closure-link: next=${item.closureLink.nextAction} evidence=${item.closureLink.evidenceStatus} command=${item.closureLink.batchCommand}\n`,
+            );
+          }
+        }
+      } finally {
+        db.close();
+      }
+    },
+  );
+
+const closure = program
+  .command("closure")
+  .description("Project closure read-only automation surfaces");
+
+function updatePlanFrontmatterStatus(content: string, nextStatus: string): string {
+  if (!content.startsWith("---\n")) {
+    throw new Error("frontmatter が見つからないため status を更新できない");
+  }
+  const end = content.indexOf("\n---", 4);
+  if (end < 0) {
+    throw new Error("frontmatter 終端が見つからないため status を更新できない");
+  }
+  const head = content.slice(0, end);
+  const tail = content.slice(end);
+  if (/^status:\s*.+$/m.test(head)) {
+    return `${head.replace(/^status:\s*.+$/m, `status: ${nextStatus}`)}${tail}`;
+  }
+  return `${head}\nstatus: ${nextStatus}${tail}`;
+}
+
+function appendMaterializedFrontmatterBlock(content: string, lines: string[]): string {
+  if (!content.startsWith("---\n")) {
+    throw new Error("frontmatter が見つからないため materialized evidence を追記できない");
+  }
+  const end = content.indexOf("\n---", 4);
+  if (end < 0) {
+    throw new Error("frontmatter 終端が見つからないため materialized evidence を追記できない");
+  }
+  const head = content.slice(0, end);
+  if (/^review_evidence:\s*$/m.test(head)) {
+    throw new Error("既存 review_evidence の merge は未対応のため evidence-apply を停止する");
+  }
+  const tail = content.slice(end);
+  return `${head}\n${lines.join("\n")}${tail}`;
+}
+
+closure
+  .command("overview")
+  .description("emit a read-only overview of all current-location closure queues")
+  .option("--limit <n>", "sample queue items per action", "5")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { limit?: string; json?: boolean; fromDb?: boolean }) => {
+    const limit = Number.parseInt(opts.limit ?? "5", 10);
+    if (!Number.isFinite(limit) || limit < 0) {
+      process.stderr.write(`closure overview: invalid limit=${opts.limit ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const overview = buildProjectClosureOverview(snapshot, { limit });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(overview, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `closure overview: status=${overview.closure.status} current=${overview.current.layer ?? "unknown"}->${overview.current.l12_layer ?? "unknown"} queue=${overview.closure.queue_total} close_ready=${overview.closure.route_counts.close_ready} collect=${overview.closure.route_counts.collect_evidence} repair=${overview.closure.route_counts.repair_failed_evidence} reverse=${overview.closure.route_counts.reverse_design} write=${overview.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  recommended=${overview.recommended_next_action.action ?? "none"} human_required=${overview.recommended_next_action.human_required} command=${overview.recommended_next_action.command}\n`,
+      );
+      process.stdout.write(
+        `  apply-readiness=${overview.closure.apply_readiness.status} close_ready=${overview.closure.apply_readiness.close_ready_count} approval_required=${overview.closure.apply_readiness.approval_required}\n`,
+      );
+      for (const action of overview.actions) {
+        process.stdout.write(
+          `  action: ${action.action} count=${action.count} listed=${action.listed} omitted=${action.omitted} ledger=${action.ledger_status ?? "-"} human_required=${action.human_required} samples=${action.sample_plan_ids.join(",") || "-"}\n`,
+        );
+      }
+    } finally {
+      db.close();
+    }
+  });
+
+closure
+  .command("batch")
+  .description("emit a machine-readable current-location closure batch")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--limit <n>", "maximum queue items to include", "20")
+  .option("--offset <n>", "zero-based queue item offset", "0")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { action?: string; limit?: string; offset?: string; json?: boolean; fromDb?: boolean }) => {
+    if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+      process.stderr.write(
+        `closure batch: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const limit = Number.parseInt(opts.limit ?? "20", 10);
+    if (!Number.isFinite(limit) || limit < 0) {
+      process.stderr.write(`closure batch: invalid limit=${opts.limit ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const offset = Number.parseInt(opts.offset ?? "0", 10);
+    if (!Number.isFinite(offset) || offset < 0) {
+      process.stderr.write(`closure batch: invalid offset=${opts.offset ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const report = buildProjectClosureBatchReport(snapshot, {
+        action: opts.action,
+        limit,
+        offset,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      const packet = report.packet;
+      const ledger = report.ledger;
+      process.stdout.write(
+        `closure batch: action=${report.selected_action ?? "none"} batch=${packet?.automation.batchId ?? "-"} status=${ledger?.status ?? "none"} count=${report.total} listed=${report.listed} omitted=${report.omitted} drive=${packet?.driveModel ?? snapshot.drive_recommendation.model} write=${report.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  window=${report.window.page_index}/${report.window.page_count} range=${report.window.start}-${report.window.end} offset=${report.offset} limit=${report.limit} prev=${report.window.previous_offset ?? "-"} next=${report.window.next_offset ?? "-"}\n`,
+      );
+      if (packet) {
+        process.stdout.write(`  filter=${packet.automation.machineFilter}\n`);
+        process.stdout.write(`  transition=${packet.automation.expectedTransition}\n`);
+        process.stdout.write(`  promotion-gate=${packet.automation.promotionGate}\n`);
+        process.stdout.write(`  required-action=${packet.requiredAction}\n`);
+      }
+      if (ledger) {
+        process.stdout.write(
+          `  ledger=${ledger.ledgerId} evidence-policy=${ledger.evidencePolicy} human_required=${ledger.humanRequired}\n`,
+        );
+      }
+      for (const bucket of report.work_buckets) {
+        process.stdout.write(
+          `  work-bucket: ${bucket.rank}.${bucket.evidence_signature} count=${bucket.count} listed=${bucket.listed} omitted=${bucket.omitted} tables=${bucket.target_tables.join(",") || "-"} command=${bucket.primary_command}\n`,
+        );
+        process.stdout.write(
+          `    repair-plan=${bucket.repair_plan.status} failed=${bucket.repair_plan.failed_evidence_count} latest=${bucket.repair_plan.latest_failed_at ?? "-"} green=${bucket.repair_plan.required_green_tables.join(",") || "-"}\n`,
+        );
+        process.stdout.write(
+          `    repair-automation=${bucket.repair_plan.automation.status} runnable=${bucket.repair_plan.automation.runnable_command_count} label_only=${bucket.repair_plan.automation.label_only_command_count} resolution=${bucket.repair_plan.automation.resolution_candidate_count} safe_resolution=${bucket.repair_plan.automation.safe_resolution_command_count} projections=${bucket.repair_plan.automation.projection_item_count} next=${bucket.repair_plan.automation.primary_next_command ?? "-"} blockers=${bucket.repair_plan.automation.blockers.join(",") || "-"}\n`,
+        );
+        process.stdout.write(
+          `    evidence-probe=helix closure evidence-probe --action ${bucket.action} --json\n`,
+        );
+        for (const candidate of bucket.repair_plan.command_candidates.slice(0, 3)) {
+          process.stdout.write(
+            `    repair-command: ${candidate.command_label} verb=${candidate.command_verb ?? "-"} count=${candidate.count} runnable=${candidate.runnable_command ?? "-"} latest=${candidate.latest_observed_at ?? "-"} plans=${candidate.sample_plan_ids.join(",") || "-"}\n`,
+          );
+          for (const resolution of candidate.resolution_candidates.slice(0, 3)) {
+            process.stdout.write(
+              `      repair-resolution: ${resolution.command} source=${resolution.source} confidence=${resolution.confidence} safe=${resolution.safe_to_run} project=${resolution.projection_binding.target_tables.join(",") || "-"} postcheck=${resolution.projection_binding.postcheck_commands.join(" && ")}\n`,
+            );
+          }
+        }
+        for (const template of bucket.repair_plan.projection_templates) {
+          process.stdout.write(
+            `    repair-template: ${template.table} status=${template.status_after_projection} fields=${template.required_fields.join(",")}\n`,
+          );
+        }
+        for (const item of bucket.repair_plan.projection_items.slice(0, 5)) {
+          process.stdout.write(
+            `    projection-item: ${item.plan_id} failed=${item.failed_evidence_count} latest=${item.latest_failed_at ?? "-"} tables=${item.required_green_tables.join(",") || "-"} source=${item.source_path}\n`,
+          );
+          for (const template of item.evidence_artifact_templates.slice(0, 3)) {
+            process.stdout.write(
+              `      evidence-artifact: ${template.artifact_kind} path=${template.artifact_path} format=${template.template_format} projects=${template.projection_target_tables.join(",") || "-"} write=${template.write_policy}\n`,
+            );
+          }
+          process.stdout.write(
+            `      evidence-patch-plan: approval=${item.evidence_patch_plan.approval_required} write=${item.evidence_patch_plan.write_policy} candidates=${item.evidence_patch_plan.patch_candidates.length} dry_run=${item.evidence_patch_plan.dry_run_command} execute=${item.evidence_patch_plan.execute_command ?? "-"}\n`,
+          );
+          for (const candidate of item.evidence_patch_plan.patch_candidates.slice(0, 3)) {
+            process.stdout.write(
+              `        evidence-patch: ${candidate.operation} path=${candidate.artifact_path} digest=${candidate.preview_digest} placeholders=${candidate.placeholder_count} projects=${candidate.projection_target_tables.join(",") || "-"}\n`,
+            );
+            if (candidate.unresolved_placeholders.length > 0) {
+              process.stdout.write(
+                `          placeholders=${candidate.unresolved_placeholders.join(",")}\n`,
+              );
+            }
+          }
+        }
+        process.stdout.write(`    required=${bucket.required_action}\n`);
+      }
+      for (const item of report.queue_items) {
+        process.stdout.write(
+          `  item: ${item.planId} evidence=${item.evidence.status} tests=${item.evidence.testRuns.passed}/${item.evidence.testRuns.total} gates=${item.evidence.gateRuns.passed}/${item.evidence.gateRuns.total} runtime=${item.evidence.runtimeVerification.accepted}/${item.evidence.runtimeVerification.total} source=${item.sourcePath}\n`,
+        );
+        process.stdout.write(
+          `    evidence-action=${item.evidenceAction} gaps=${item.evidenceGaps.map((gap) => `${gap.component}:${gap.status}`).join(",") || "-"}\n`,
+        );
+      }
+    } finally {
+      db.close();
+    }
+  });
+
+closure
+  .command("evidence-plan")
+  .description("emit a read-only evidence collection/repair plan for closure queues")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--limit <n>", "maximum plan items to include", "20")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { action?: string; limit?: string; json?: boolean; fromDb?: boolean }) => {
+    if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+      process.stderr.write(
+        `closure evidence-plan: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const limit = Number.parseInt(opts.limit ?? "20", 10);
+    if (!Number.isFinite(limit) || limit < 0) {
+      process.stderr.write(`closure evidence-plan: invalid limit=${opts.limit ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const plan = buildProjectClosureEvidencePlan(snapshot, {
+        action: opts.action,
+        limit,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `closure evidence-plan: action=${plan.selected_action ?? "none"} total=${plan.total} listed=${plan.listed} omitted=${plan.omitted} tables=${plan.target_tables.join(",") || "-"} write=${plan.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  expected-transition=${plan.expected_transition ?? "-"}\n`,
+      );
+      process.stdout.write(
+        `  gaps=${plan.evidence_gap_counts.map((gap) => `${gap.component}:${gap.status}=${gap.count}`).join(",") || "-"}\n`,
+      );
+      process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+      for (const item of plan.items) {
+        process.stdout.write(
+          `  item: ${item.plan_id} evidence=${item.evidence_status} next=${item.next_action} tables=${item.target_tables.join(",") || "-"} source=${item.source_path}\n`,
+        );
+        process.stdout.write(
+          `    evidence-action=${item.evidence_action} gaps=${item.evidence_gaps.map((gap) => `${gap.component}:${gap.status}`).join(",") || "-"}\n`,
+        );
+        if (item.repair_targets.length > 0) {
+          process.stdout.write(
+            `    repair-targets=${formatRepairTargetsText(item.repair_targets)}\n`,
+          );
+        }
+        if (item.evidence_templates.length > 0) {
+          process.stdout.write(
+            `    templates=${item.evidence_templates.map((template) => `${template.table}:${template.example_row.status ?? template.example_row.accept_status ?? template.example_row.artifact_type ?? "row"}`).join(",")}\n`,
+          );
+        }
+      }
+    } finally {
+      db.close();
+    }
+  });
+closure
+  .command("evidence-patch")
+  .description("emit a read-only approval packet for green evidence patch candidates")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--limit <n>", "maximum queue items to include", "20")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { action?: string; limit?: string; json?: boolean; fromDb?: boolean }) => {
+    if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+      process.stderr.write(
+        `closure evidence-patch: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const limit = Number.parseInt(opts.limit ?? "20", 10);
+    if (!Number.isFinite(limit) || limit < 0) {
+      process.stderr.write(`closure evidence-patch: invalid limit=${opts.limit ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const packet = buildProjectClosureEvidencePatchPacket(snapshot, {
+        action: opts.action,
+        limit,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `closure evidence-patch: action=${packet.selected_action ?? "none"} queue=${packet.queue_total} listed=${packet.queue_listed} omitted=${packet.queue_omitted} candidates=${packet.patch_candidate_count} approval=${packet.approval.required} decision=${packet.approval.decision_id} write=${packet.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  approval-scope=${packet.approval.approval_scope_digest} patch-write=${packet.safety_policy.patch_write_policy} execute=${packet.safety_policy.execute_command ?? "-"}\n`,
+      );
+      process.stdout.write(
+        `  apply-readiness=${packet.apply_readiness.status} allowed=${packet.apply_readiness.allowed_to_apply} placeholders=${packet.apply_readiness.placeholder_count} blocked_candidates=${packet.apply_readiness.blocked_candidate_count} execute=${packet.apply_readiness.execute_command ?? "-"}\n`,
+      );
+      for (const candidate of packet.patch_candidates) {
+        process.stdout.write(
+          `  candidate: ${candidate.plan_id} ${candidate.operation} path=${candidate.artifact_path} digest=${candidate.preview_digest} placeholders=${candidate.placeholder_count} tables=${candidate.projection_target_tables.join(",") || "-"}\n`,
+        );
+        if (candidate.unresolved_placeholders.length > 0) {
+          process.stdout.write(
+            `    placeholders=${candidate.unresolved_placeholders.join(",")}\n`,
+          );
+        }
+        process.stdout.write(`    rollback=${candidate.rollback_note}\n`);
+      }
+      process.stdout.write(`  postcheck=${packet.postcheck_commands.join(" && ")}\n`);
+    } finally {
+      db.close();
+    }
+  });
+closure
+  .command("evidence-probe")
+  .description("probe a safe green evidence command without writing evidence files or DB rows")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--limit <n>", "maximum queue items to inspect", "20")
+  .option("--execute", "execute the safe command and return digest-only probe evidence")
+  .option("--out <path>", "write the executed probe JSON record to a new local file")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      action?: string;
+      limit?: string;
+      execute?: boolean;
+      out?: string;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+        process.stderr.write(
+          `closure evidence-probe: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      if (!Number.isFinite(limit) || limit < 0) {
+        process.stderr.write(`closure evidence-probe: invalid limit=${opts.limit ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+
+      const repoRoot = process.cwd();
+      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const dryRunPacket = buildProjectClosureEvidenceProbePacket(snapshot, {
+          action: opts.action,
+          limit,
+          dryRun: true,
+        });
+        if (opts.execute && (!dryRunPacket.can_execute || dryRunPacket.command === null)) {
+          const blockedPacket = buildProjectClosureEvidenceProbePacket(snapshot, {
+            action: opts.action,
+            limit,
+            dryRun: false,
+          });
+          if (opts.json) {
+            process.stdout.write(`${JSON.stringify(blockedPacket, null, 2)}\n`);
+          } else {
+            process.stdout.write(
+              `closure evidence-probe: action=${blockedPacket.selected_action ?? "none"} dry_run=false can_execute=false command=${blockedPacket.command ?? "-"} status=${blockedPacket.apply_readiness.status} write=${blockedPacket.write_policy}\n`,
+            );
+          }
+          process.exitCode = 2;
+          return;
+        }
+        const execution =
+          opts.execute && dryRunPacket.command
+            ? runClosureEvidenceProbeCommand(repoRoot, dryRunPacket.command)
+            : null;
+        const packet = buildProjectClosureEvidenceProbePacket(snapshot, {
+          action: opts.action,
+          limit,
+          dryRun: opts.execute !== true,
+          execution,
+        });
+        let probeRecordOutput: {
+          requested: boolean;
+          path: string | null;
+          written: boolean;
+          bytes: number;
+          sha256: string | null;
+        } = {
+          requested: opts.out !== undefined,
+          path: opts.out ?? null,
+          written: false,
+          bytes: 0,
+          sha256: null,
+        };
+        if (opts.out !== undefined) {
+          if (opts.execute !== true || packet.execution === null) {
+            process.stderr.write("closure evidence-probe: --out requires --execute with probe execution\n");
+            process.exitCode = 2;
+            return;
+          }
+          const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
+          if (existsSync(outputPath)) {
+            process.stderr.write(`closure evidence-probe: output already exists: ${opts.out}\n`);
+            process.exitCode = 2;
+            return;
+          }
+          const content = `${JSON.stringify(packet, null, 2)}\n`;
+          mkdirSync(dirname(outputPath), { recursive: true });
+          writeFileSync(outputPath, content, "utf8");
+          probeRecordOutput = {
+            requested: true,
+            path: opts.out,
+            written: true,
+            bytes: Buffer.byteLength(content, "utf8"),
+            sha256: `sha256:${createHash("sha256").update(content).digest("hex")}`,
+          };
+        }
+        if (opts.json) {
+          process.stdout.write(`${JSON.stringify({ ...packet, probe_record_output: probeRecordOutput }, null, 2)}\n`);
+          return;
+        }
+        process.stdout.write(
+          `closure evidence-probe: action=${packet.selected_action ?? "none"} dry_run=${packet.dry_run} can_execute=${packet.can_execute} command=${packet.command ?? "-"} status=${packet.apply_readiness.status} write=${packet.write_policy}\n`,
+        );
+        if (probeRecordOutput.written) {
+          process.stdout.write(
+            `  output=${probeRecordOutput.path} bytes=${probeRecordOutput.bytes} sha256=${probeRecordOutput.sha256}\n`,
+          );
+        }
+        if (packet.execution) {
+          process.stdout.write(
+            `  execution=${packet.execution.status} exit=${packet.execution.exit_code ?? "-"} digest=${packet.execution.output_digest} stdout=${packet.execution.stdout_bytes} stderr=${packet.execution.stderr_bytes}\n`,
+          );
+          if (packet.execution.status !== "passed" && packet.execution.output_excerpt) {
+            const stderrTail = packet.execution.output_excerpt.stderr_tail.trim();
+            const stdoutTail = packet.execution.output_excerpt.stdout_tail.trim();
+            process.stdout.write(
+              `  output-excerpt=${truncateCliText(stderrTail || stdoutTail || "-", 300)}\n`,
+            );
+          }
+          process.stdout.write(
+            `  provenance=session:${packet.execution.session_id ?? "-"} correlation:${packet.execution.correlation_id ?? "-"}\n`,
+          );
+        }
+        process.stdout.write(
+          `  placeholders: fillable=${packet.placeholder_resolution.fillable_placeholders.join(",") || "-"} remaining=${packet.placeholder_resolution.remaining_placeholders.join(",") || "-"}\n`,
+        );
+        process.stdout.write(`  targets=${packet.target_plan_ids.join(",") || "-"}\n`);
+        process.stdout.write(`  postcheck=${packet.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("evidence-materialize")
+  .description("materialize evidence patch previews from a probe record without writing files")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--limit <n>", "maximum queue items to inspect", "20")
+  .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      action?: string;
+      limit?: string;
+      probeRecord?: string;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+        process.stderr.write(
+          `closure evidence-materialize: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      if (!Number.isFinite(limit) || limit < 0) {
+        process.stderr.write(`closure evidence-materialize: invalid limit=${opts.limit ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+      let probeExecution = null;
+      try {
+        probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+      } catch (error) {
+        process.stderr.write(`closure evidence-materialize: ${String(error)}\n`);
+        process.exitCode = 2;
+        return;
+      }
+
+      const repoRoot = process.cwd();
+      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const packet = buildProjectClosureEvidenceMaterializePacket(snapshot, {
+          action: opts.action,
+          limit,
+          probeExecution,
+        });
+        if (opts.json) {
+          process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+          return;
+        }
+        process.stdout.write(
+          `closure evidence-materialize: action=${packet.selected_action ?? "none"} status=${packet.materialize_readiness.status} candidates=${packet.materialized_candidate_count} remaining=${packet.materialize_readiness.remaining_placeholder_count} blocked=${packet.materialize_readiness.blocked_candidate_count} write=${packet.write_policy}\n`,
+        );
+        process.stdout.write(
+          `  approval-scope=${packet.approval.approval_scope_digest} execute=${packet.materialize_readiness.execute_command ?? "-"}\n`,
+        );
+        for (const candidate of packet.materialized_candidates) {
+          process.stdout.write(
+            `  candidate: ${candidate.plan_id} ${candidate.operation} path=${candidate.artifact_path} digest=${candidate.materialized_preview_digest} filled=${candidate.filled_placeholders.join(",") || "-"} remaining=${candidate.remaining_placeholders.join(",") || "-"}\n`,
+          );
+        }
+        process.stdout.write(`  postcheck=${packet.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+	    },
+	  );
+	closure
+	  .command("evidence-approval-draft")
+	  .description("emit a non-authorizing materialized evidence approval record draft")
+	  .option(
+	    "--action <action>",
+	    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+	  )
+	  .option("--limit <n>", "maximum queue items to inspect", "20")
+	  .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+	  .option("--out <path>", "write the non-authorizing pending approval draft to a new local file")
+	  .option("--json", "JSON output")
+	  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+	  .action(
+	    (opts: {
+	      action?: string;
+	      limit?: string;
+	      probeRecord?: string;
+	      out?: string;
+	      json?: boolean;
+	      fromDb?: boolean;
+	    }) => {
+	      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+	        process.stderr.write(
+	          `closure evidence-approval-draft: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+	        );
+	        process.exitCode = 2;
+	        return;
+	      }
+	      const limit = Number.parseInt(opts.limit ?? "20", 10);
+	      if (!Number.isFinite(limit) || limit < 0) {
+	        process.stderr.write(`closure evidence-approval-draft: invalid limit=${opts.limit ?? ""}\n`);
+	        process.exitCode = 2;
+	        return;
+	      }
+	      let probeExecution = null;
+	      try {
+	        probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+	      } catch (error) {
+	        process.stderr.write(`closure evidence-approval-draft: ${String(error)}\n`);
+	        process.exitCode = 2;
+	        return;
+	      }
+
+	      const repoRoot = process.cwd();
+	      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+	      const db = openHarnessDb(dbPath, { repoRoot });
+	      try {
+	        if (opts.fromDb) migrate(db);
+	        else rebuildHarnessDb({ repoRoot, db });
+	        const snapshot = buildProjectCurrentLocationSnapshot(db);
+	        const packet = buildProjectClosureEvidenceApprovalDraftPacket(snapshot, {
+	          action: opts.action,
+	          limit,
+	          probeExecution,
+	        });
+	        let approvalRecordOutput: {
+	          requested: boolean;
+	          path: string | null;
+	          written: boolean;
+	          bytes: number;
+	          sha256: string | null;
+	          non_authorizing: true;
+	        } = {
+	          requested: opts.out !== undefined,
+	          path: opts.out ?? null,
+	          written: false,
+	          bytes: 0,
+	          sha256: null,
+	          non_authorizing: true,
+	        };
+	        if (opts.out !== undefined) {
+	          if (packet.materialize_readiness.status !== "ready_for_approval") {
+	            process.stderr.write(
+	              `closure evidence-approval-draft: cannot write --out while materialize=${packet.materialize_readiness.status}\n`,
+	            );
+	            process.exitCode = 2;
+	            return;
+	          }
+	          const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
+	          if (existsSync(outputPath)) {
+	            process.stderr.write(`closure evidence-approval-draft: output already exists: ${opts.out}\n`);
+	            process.exitCode = 2;
+	            return;
+	          }
+	          const content = `${packet.approval_record_text}\n`;
+	          mkdirSync(dirname(outputPath), { recursive: true });
+	          writeFileSync(outputPath, content, "utf8");
+	          approvalRecordOutput = {
+	            requested: true,
+	            path: opts.out,
+	            written: true,
+	            bytes: Buffer.byteLength(content, "utf8"),
+	            sha256: `sha256:${createHash("sha256").update(content).digest("hex")}`,
+	            non_authorizing: true,
+	          };
+	        }
+	        if (opts.json) {
+	          process.stdout.write(
+	            `${JSON.stringify({ ...packet, approval_record_output: approvalRecordOutput }, null, 2)}\n`,
+	          );
+	          return;
+	        }
+	        process.stdout.write(
+	          `closure evidence-approval-draft: action=${packet.selected_action ?? "none"} materialize=${packet.materialize_readiness.status} candidates=${packet.materialized_candidate_count} outcome=${packet.approval.draft_outcome} non_authorizing=${packet.approval.non_authorizing} must_not_apply=${packet.must_not_apply} apply_authorized=${packet.apply_authorized} write=${packet.write_policy}\n`,
+	        );
+	        if (approvalRecordOutput.written) {
+	          process.stdout.write(
+	            `  output=${approvalRecordOutput.path} bytes=${approvalRecordOutput.bytes} sha256=${approvalRecordOutput.sha256}\n`,
+	          );
+	        }
+	        process.stdout.write(`  decision=${packet.approval.decision_id}\n`);
+	        process.stdout.write(`  approval-scope=${packet.approval.approval_scope_digest}\n`);
+	        process.stdout.write(`  required-action=${packet.approval.required_action}\n`);
+	        process.stdout.write("  record-template:\n");
+	        for (const line of packet.approval_record_template) {
+	          process.stdout.write(`    ${line}\n`);
+	        }
+	      } finally {
+	        db.close();
+	      }
+	    },
+	  );
+	closure
+	  .command("evidence-apply")
+	  .description("apply approved materialized evidence previews to files")
+	  .option(
+	    "--action <action>",
+	    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+	  )
+	  .option("--dry-run", "preview without mutating files or DB")
+	  .option("--execute", "apply approved materialized evidence")
+	  .option("--limit <n>", "maximum queue items to inspect", "20")
+	  .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+	  .option("--approval-record <path>", "approval record containing materialize decision")
+	  .option("--json", "JSON output")
+	  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+	  .action(
+	    (opts: {
+	      action?: string;
+	      dryRun?: boolean;
+	      execute?: boolean;
+	      limit?: string;
+	      probeRecord?: string;
+	      approvalRecord?: string;
+	      json?: boolean;
+	      fromDb?: boolean;
+	    }) => {
+	      if (opts.dryRun === opts.execute) {
+	        process.stderr.write("closure evidence-apply: exactly one of --dry-run or --execute is required\n");
+	        process.exitCode = 2;
+	        return;
+	      }
+	      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+	        process.stderr.write(
+	          `closure evidence-apply: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+	        );
+	        process.exitCode = 2;
+	        return;
+	      }
+	      const limit = Number.parseInt(opts.limit ?? "20", 10);
+	      if (!Number.isFinite(limit) || limit < 0) {
+	        process.stderr.write(`closure evidence-apply: invalid limit=${opts.limit ?? ""}\n`);
+	        process.exitCode = 2;
+	        return;
+	      }
+	      let probeExecution = null;
+	      try {
+	        probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+	      } catch (error) {
+	        process.stderr.write(`closure evidence-apply: ${String(error)}\n`);
+	        process.exitCode = 2;
+	        return;
+	      }
+	      const approvalRecordText =
+	        opts.approvalRecord && existsSync(opts.approvalRecord)
+	          ? readFileSync(opts.approvalRecord, "utf8")
+	          : null;
+	      const repoRoot = process.cwd();
+	      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+	      const db = openHarnessDb(dbPath, { repoRoot });
+	      try {
+	        if (opts.fromDb) migrate(db);
+	        else rebuildHarnessDb({ repoRoot, db });
+	        const snapshot = buildProjectCurrentLocationSnapshot(db);
+	        const plan = buildProjectClosureEvidenceApplyPlan(snapshot, {
+	          action: opts.action,
+	          limit,
+	          probeExecution,
+	          approvalRecordPath: opts.approvalRecord ?? null,
+	          approvalRecordText,
+	        });
+	        const appliedArtifacts: Array<{
+	          candidate_id: string;
+	          artifact_path: string;
+	          operation: string;
+	        }> = [];
+	        if (opts.execute) {
+	          if (!plan.allowed_to_apply) {
+	            if (opts.json) {
+	              process.stdout.write(
+	                `${JSON.stringify({ ...plan, executed: false, applied_artifacts: [] }, null, 2)}\n`,
+	              );
+	            } else {
+	              process.stdout.write(
+	                `closure evidence-apply: executed=false allowed=false blockers=${plan.blocked_reasons.join(",") || "-"}\n`,
+	              );
+	            }
+	            process.exitCode = 2;
+	            return;
+	          }
+	          for (const candidate of plan.patch_candidates) {
+	            const path = join(repoRoot, candidate.artifact_path);
+	            if (candidate.operation === "append_yaml_frontmatter") {
+	              const next = appendMaterializedFrontmatterBlock(
+	                readFileSync(path, "utf8"),
+	                candidate.materialized_preview_lines,
+	              );
+	              writeFileSync(path, next, "utf8");
+	            } else {
+	              if (existsSync(path)) {
+	                throw new Error(`evidence artifact already exists: ${candidate.artifact_path}`);
+	              }
+	              mkdirSync(dirname(path), { recursive: true });
+	              writeFileSync(path, `${candidate.materialized_preview_lines.join("\n")}\n`, "utf8");
+	            }
+	            appliedArtifacts.push({
+	              candidate_id: candidate.candidate_id,
+	              artifact_path: candidate.artifact_path,
+	              operation: candidate.operation,
+	            });
+	          }
+	        }
+	        if (opts.json) {
+	          process.stdout.write(
+	            `${JSON.stringify(
+	              {
+	                ...plan,
+	                executed: opts.execute === true,
+	                applied_artifacts: appliedArtifacts,
+	              },
+	              null,
+	              2,
+	            )}\n`,
+	          );
+	          return;
+	        }
+	        process.stdout.write(
+	          `closure evidence-apply: dry_run=${opts.dryRun === true} executed=${opts.execute === true} allowed=${plan.allowed_to_apply} approval_valid=${plan.approval.valid} candidates=${plan.patch_candidates.length} applied=${appliedArtifacts.length} write=${plan.write_policy}\n`,
+	        );
+	        process.stdout.write(`  blockers=${plan.blocked_reasons.join(",") || "-"}\n`);
+	        process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+	      } finally {
+	        db.close();
+	      }
+	    },
+	  );
+	closure
+	  .command("review-bundle")
+  .description("emit a read-only approval bundle for closure candidates")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--limit <n>", "maximum candidate items to include", "20")
+  .option("--offset <n>", "zero-based candidate offset", "0")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { action?: string; limit?: string; offset?: string; json?: boolean; fromDb?: boolean }) => {
+    if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+      process.stderr.write(
+        `closure review-bundle: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const limit = Number.parseInt(opts.limit ?? "20", 10);
+    if (!Number.isFinite(limit) || limit < 0) {
+      process.stderr.write(`closure review-bundle: invalid limit=${opts.limit ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const offset = Number.parseInt(opts.offset ?? "0", 10);
+    if (!Number.isFinite(offset) || offset < 0) {
+      process.stderr.write(`closure review-bundle: invalid offset=${opts.offset ?? ""}\n`);
+      process.exitCode = 2;
+      return;
+    }
+
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const bundle = buildProjectClosureReviewBundle(snapshot, {
+        action: opts.action,
+        limit,
+        offset,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(bundle, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `closure review-bundle: action=${bundle.action} approval_required=${bundle.approval_required} count=${bundle.total} listed=${bundle.listed} omitted=${bundle.omitted} decision=${bundle.decision.decision_id} write=${bundle.write_policy}\n`,
+      );
+      process.stdout.write(
+        `  window=${bundle.window.page_index}/${bundle.window.page_count} range=${bundle.window.start}-${bundle.window.end} offset=${bundle.offset} limit=${bundle.limit} prev=${bundle.window.previous_offset ?? "-"} next=${bundle.window.next_offset ?? "-"}\n`,
+      );
+      process.stdout.write(
+        `  outcomes=${bundle.decision.allowed_outcomes.join(",")} blockers=${bundle.decision.blocked_by_findings.join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  outcome-routes=${bundle.decision.outcome_routes.map((route) => `${route.outcome}->${route.target_action ?? "-"}:${route.drive_model}`).join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  review-scope: digest=${bundle.review_scope.approval_scope_digest} plans=${bundle.review_scope.plan_ids.join(",") || "-"} evidence_paths=${bundle.review_scope.evidence_totals.evidence_paths} tests=${bundle.review_scope.evidence_totals.test_runs_passed}/${bundle.review_scope.evidence_totals.test_runs_total} gates=${bundle.review_scope.evidence_totals.gate_runs_passed}/${bundle.review_scope.evidence_totals.gate_runs_total} runtime=${bundle.review_scope.evidence_totals.runtime_verification_accepted}/${bundle.review_scope.evidence_totals.runtime_verification_total}\n`,
+      );
+      process.stdout.write(
+        `  coverage: ids=${bundle.review_scope.coverage_ids.join(",") || "-"} l12=${bundle.review_scope.l12_layers.join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  required-evidence=${bundle.decision.required_evidence.join(" | ")}\n`,
+      );
+      for (const candidate of bundle.candidates) {
+        process.stdout.write(
+          `  candidate: ${candidate.planId} coverage=${candidate.coverageId ?? "-"} l12=${candidate.l12Layer} evidence=${candidate.evidence.status} tests=${candidate.evidence.testRuns.passed}/${candidate.evidence.testRuns.total} gates=${candidate.evidence.gateRuns.passed}/${candidate.evidence.gateRuns.total} runtime=${candidate.evidence.runtimeVerification.accepted}/${candidate.evidence.runtimeVerification.total} source=${candidate.sourcePath}\n`,
+        );
+      }
+    } finally {
+      db.close();
+    }
+	  });
+	closure
+	  .command("decision-draft")
+	  .description("emit a non-authorizing closure review decision record draft")
+	  .option(
+	    "--action <action>",
+	    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+	  )
+	  .option("--limit <n>", "maximum candidate items to include", "20")
+	  .option("--offset <n>", "zero-based candidate offset", "0")
+	  .option("--out <path>", "write the non-authorizing pending decision draft to a new local file")
+	  .option("--json", "JSON output")
+	  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+	  .action(
+	    (opts: {
+	      action?: string;
+	      limit?: string;
+	      offset?: string;
+	      out?: string;
+	      json?: boolean;
+	      fromDb?: boolean;
+	    }) => {
+	      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+	        process.stderr.write(
+	          `closure decision-draft: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+	        );
+	        process.exitCode = 2;
+	        return;
+	      }
+	      const limit = Number.parseInt(opts.limit ?? "20", 10);
+	      if (!Number.isFinite(limit) || limit < 0) {
+	        process.stderr.write(`closure decision-draft: invalid limit=${opts.limit ?? ""}\n`);
+	        process.exitCode = 2;
+	        return;
+	      }
+	      const offset = Number.parseInt(opts.offset ?? "0", 10);
+	      if (!Number.isFinite(offset) || offset < 0) {
+	        process.stderr.write(`closure decision-draft: invalid offset=${opts.offset ?? ""}\n`);
+	        process.exitCode = 2;
+	        return;
+	      }
+
+	      const repoRoot = process.cwd();
+	      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+	      const db = openHarnessDb(dbPath, { repoRoot });
+	      try {
+	        if (opts.fromDb) migrate(db);
+	        else rebuildHarnessDb({ repoRoot, db });
+	        const snapshot = buildProjectCurrentLocationSnapshot(db);
+	        const packet = buildProjectClosureDecisionDraftPacket(snapshot, {
+	          action: opts.action,
+	          limit,
+	          offset,
+	        });
+	        let decisionRecordOutput: {
+	          requested: boolean;
+	          path: string | null;
+	          written: boolean;
+	          bytes: number;
+	          sha256: string | null;
+	          non_authorizing: true;
+	        } = {
+	          requested: opts.out !== undefined,
+	          path: opts.out ?? null,
+	          written: false,
+	          bytes: 0,
+	          sha256: null,
+	          non_authorizing: true,
+	        };
+	        if (opts.out !== undefined) {
+	          const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
+	          if (existsSync(outputPath)) {
+	            process.stderr.write(`closure decision-draft: output already exists: ${opts.out}\n`);
+	            process.exitCode = 2;
+	            return;
+	          }
+	          const content = `${packet.approval_record_text}\n`;
+	          mkdirSync(dirname(outputPath), { recursive: true });
+	          writeFileSync(outputPath, content, "utf8");
+	          decisionRecordOutput = {
+	            requested: true,
+	            path: opts.out,
+	            written: true,
+	            bytes: Buffer.byteLength(content, "utf8"),
+	            sha256: `sha256:${createHash("sha256").update(content).digest("hex")}`,
+	            non_authorizing: true,
+	          };
+	        }
+	        if (opts.json) {
+	          process.stdout.write(
+	            `${JSON.stringify({ ...packet, decision_record_output: decisionRecordOutput }, null, 2)}\n`,
+	          );
+	          return;
+	        }
+	        process.stdout.write(
+	          `closure decision-draft: action=${packet.action} count=${packet.review.total} listed=${packet.review.listed} outcome=${packet.decision.draft_outcome} non_authorizing=${packet.decision.non_authorizing} must_not_apply=${packet.must_not_apply} apply_authorized=${packet.apply_authorized} write=${packet.write_policy}\n`,
+	        );
+	        if (decisionRecordOutput.written) {
+	          process.stdout.write(
+	            `  output=${decisionRecordOutput.path} bytes=${decisionRecordOutput.bytes} sha256=${decisionRecordOutput.sha256}\n`,
+	          );
+	        }
+        process.stdout.write(`  decision=${packet.decision.decision_id}\n`);
+        process.stdout.write(`  approval-scope=${packet.decision.approval_scope_digest}\n`);
+        process.stdout.write(
+          `  coverage=${packet.candidate_digests.map((candidate) => candidate.coverage_id ?? "-").filter((coverageId, index, values) => values.indexOf(coverageId) === index).join(",") || "-"}\n`,
+        );
+        process.stdout.write(
+          `  routes=${packet.decision.outcome_routes.map((route) => `${route.outcome}->${route.target_action ?? "-"}:${route.drive_model}`).join(",") || "-"}\n`,
+        );
+	        process.stdout.write("  record-template:\n");
+	        for (const line of packet.approval_record_template) {
+	          process.stdout.write(`    ${line}\n`);
+	        }
+	      } finally {
+	        db.close();
+	      }
+	    },
+	  );
+	closure
+	  .command("transition-plan")
+  .description("emit a read-only dry-run plan for approved closure candidates")
+  .option(
+    "--action <action>",
+    "close_ready | collect_evidence | repair_failed_evidence | reverse_design",
+  )
+  .option("--decision <outcome>", "decision outcome", "approve_closure_claim")
+  .option("--limit <n>", "maximum target items to include", "20")
+  .option("--offset <n>", "zero-based target offset", "0")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      action?: string;
+      decision?: string;
+      limit?: string;
+      offset?: string;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
+        process.stderr.write(
+          `closure transition-plan: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      if (!Number.isFinite(limit) || limit < 0) {
+        process.stderr.write(`closure transition-plan: invalid limit=${opts.limit ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+      const offset = Number.parseInt(opts.offset ?? "0", 10);
+      if (!Number.isFinite(offset) || offset < 0) {
+        process.stderr.write(`closure transition-plan: invalid offset=${opts.offset ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+
+      const repoRoot = process.cwd();
+      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const plan = buildProjectClosureTransitionPlan(snapshot, {
+          action: opts.action,
+          decisionOutcome: opts.decision,
+          limit,
+          offset,
+        });
+        if (opts.json) {
+          process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+          return;
+        }
+        process.stdout.write(
+          `closure transition-plan: action=${plan.action} decision=${plan.decision_outcome} dry_run=${plan.dry_run} allowed=${plan.allowed_to_apply} targets=${plan.total} listed=${plan.listed} omitted=${plan.omitted} write=${plan.write_policy}\n`,
+        );
+        process.stdout.write(
+          `  window=${plan.window.page_index}/${plan.window.page_count} range=${plan.window.start}-${plan.window.end} offset=${plan.offset} limit=${plan.limit} prev=${plan.window.previous_offset ?? "-"} next=${plan.window.next_offset ?? "-"}\n`,
+        );
+        process.stdout.write(
+          `  outcome-projection: type=${plan.outcome_projection.projection_type} target=${plan.outcome_projection.target_action ?? "-"} drive=${plan.outcome_projection.drive_model} human=${plan.outcome_projection.human_required} command=${plan.outcome_projection.command}\n`,
+        );
+        process.stdout.write(`  blockers=${plan.blocked_reasons.join(",") || "-"}\n`);
+        for (const step of plan.planned_steps) {
+          process.stdout.write(
+            `  step: ${step.step_id} target=${step.target} operation=${step.operation}\n`,
+          );
+        }
+        process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("apply")
+  .description("fail-close apply surface for approved close_ready closure application")
+  .option("--dry-run", "preview without mutating files or DB")
+  .option("--execute", "apply approved status patches")
+  .option("--approval-record <path>", "approval record containing decision_id/outcome")
+  .option("--limit <n>", "maximum patch candidates to include", "20")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      dryRun?: boolean;
+      execute?: boolean;
+      approvalRecord?: string;
+      limit?: string;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.dryRun === opts.execute) {
+        process.stderr.write("closure apply: exactly one of --dry-run or --execute is required\n");
+        process.exitCode = 2;
+        return;
+      }
+      const limit = Number.parseInt(opts.limit ?? "20", 10);
+      if (!Number.isFinite(limit) || limit < 0) {
+        process.stderr.write(`closure apply: invalid limit=${opts.limit ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+      const approvalRecordText =
+        opts.approvalRecord && existsSync(opts.approvalRecord)
+          ? readFileSync(opts.approvalRecord, "utf8")
+          : null;
+
+      const repoRoot = process.cwd();
+      const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const plan = buildProjectClosureApplyPlan(snapshot, {
+          approvalRecordPath: opts.approvalRecord ?? null,
+          approvalRecordText,
+          limit,
+        });
+        const appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }> =
+          [];
+        if (opts.execute) {
+          if (!plan.allowed_to_apply) {
+            if (opts.json) {
+              process.stdout.write(
+                `${JSON.stringify({ ...plan, executed: false, applied_patches: [] }, null, 2)}\n`,
+              );
+            } else {
+              process.stdout.write(
+                `closure apply: executed=false allowed=false blockers=${plan.blocked_reasons.join(",") || "-"}\n`,
+              );
+            }
+            process.exitCode = 2;
+            return;
+          }
+          for (const patch of plan.patch_candidates) {
+            const path = join(repoRoot, patch.source_path);
+            const next = updatePlanFrontmatterStatus(readFileSync(path, "utf8"), patch.next_status);
+            writeFileSync(path, next, "utf8");
+            appliedPatches.push({
+              plan_id: patch.plan_id,
+              source_path: patch.source_path,
+              next_status: patch.next_status,
+            });
+          }
+        }
+        if (opts.json) {
+          process.stdout.write(
+            `${JSON.stringify(
+              {
+                ...plan,
+                executed: opts.execute === true,
+                applied_patches: appliedPatches,
+              },
+              null,
+              2,
+            )}\n`,
+          );
+          return;
+        }
+        process.stdout.write(
+          `closure apply: dry_run=${opts.dryRun === true} executed=${opts.execute === true} allowed=${plan.allowed_to_apply} approval_valid=${plan.approval.valid} patches=${plan.patch_candidates.length} applied=${appliedPatches.length} write=${plan.write_policy}\n`,
+        );
+        process.stdout.write(`  blockers=${plan.blocked_reasons.join(",") || "-"}\n`);
+        for (const patch of plan.patch_candidates) {
+          process.stdout.write(
+            `  patch: ${patch.plan_id} ${patch.current_status}->${patch.next_status} path=${patch.source_path}\n`,
+          );
+        }
+        process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+
 const progress = program.command("progress").description("artifact progress read model");
 progress
   .command("artifacts")
@@ -3096,7 +4937,7 @@ progress
     const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
     try {
       migrate(db);
-      const snapshot = buildVisualizationSnapshot(db);
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: process.cwd() });
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
         return;
@@ -3108,6 +4949,82 @@ progress
     } finally {
       db.close();
     }
+  });
+progress
+  .command("view-model")
+  .description("emit Project/HARNESS visualization view-model with machine-detectable boundaries")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot });
+      const viewModel = buildVisualizationViewModel(snapshot);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(viewModel, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `progress view-model: project=${viewModel.view_boundaries.project.owned_views.join(",")} harness=${viewModel.view_boundaries.harness.owned_views.join(",")} current=${viewModel.project.current_location.layer ?? "unknown"}->${viewModel.project.current_location.l12_layer ?? "unknown"} status=${viewModel.project.current_location.status} warnings=${viewModel.shared_warnings.length}\n`,
+      );
+    } finally {
+      db.close();
+    }
+  });
+progress
+  .command("tree-view")
+  .description("emit VSCode Tree View model from visualization read model")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot });
+      const viewModel = buildVisualizationViewModel(snapshot);
+      const tree = buildVisualizationTreeView(viewModel);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(tree, null, 2)}\n`);
+        return;
+      }
+      const rootLabels = tree.roots.map((root) => root.label).join("/");
+      const projectCurrent = tree.roots
+        .find((root) => root.id === "project")
+        ?.children.find((child) => child.id === "project/current-location");
+      process.stdout.write(
+        `progress tree-view: roots=${rootLabels} current=${projectCurrent?.description ?? "unknown"} warnings=${tree.warnings.length}\n`,
+      );
+    } finally {
+      db.close();
+    }
+  });
+
+const vscode = program.command("vscode").description("VSCode extension read-only surfaces");
+vscode
+  .command("manifest")
+  .description("emit VSCode extension package manifest for HELIX visualization")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const manifest = helixVscodePackageManifest();
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(manifest, null, 2)}\n`);
+      return;
+    }
+    const viewIds = Object.values(manifest.contributes.views)
+      .flat()
+      .map((view) => view.id)
+      .join(",");
+    const commandIds = manifest.contributes.commands.map((command) => command.command).join(",");
+    process.stdout.write(
+      `vscode manifest: name=${manifest.name} main=${manifest.main} views=${viewIds} commands=${commandIds}\n`,
+    );
   });
 
 program
@@ -3828,6 +5745,11 @@ builder
         command: "helix progress snapshot",
         description: "visualization snapshot read model",
       },
+      {
+        path: "src/cli.ts",
+        command: "helix progress view-model",
+        description: "Project/HARNESS visualization boundary view-model",
+      },
       { path: "src/cli.ts", command: "helix graph export", description: "relation graph export" },
       { path: "src/cli.ts", command: "helix asset catalog", description: "asset catalog" },
       { path: "src/cli.ts", command: "helix builder catalog", description: "builder catalog" },
@@ -3844,6 +5766,113 @@ builder
   });
 
 const vmodel = program.command("vmodel").description("V-model trace");
+vmodel
+  .command("fit")
+  .description("ZIP-based L12 V-model fit gate from current-location projection")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const zipManifest = analyzeVmodelZipManifest(repoRoot);
+      const payload = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `vmodel fit: status=${payload.status} design=${payload.design_coverage_gate.status} ac=${payload.acceptance_traceability_gate.status} zip=${payload.zip_adoption.status} manifest=${payload.zip_manifest.status} tailoring=${payload.tailoring_gate.status} function_design=${payload.function_design_absorption.status} roadmap=${payload.roadmap_current_gate.status} drive=${payload.drive_model_gate.selected_model}/${payload.drive_model_gate.status} operation=${payload.operation_scope.designed}/${payload.operation_scope.observed}/${payload.operation_scope.missing}/${payload.operation_scope.reverify} current=${payload.current_location_gate.status} unresolved=${payload.design_integrity.unresolved_references} drift=${payload.design_integrity.declaration_drifts}\n`,
+      );
+      process.stdout.write(
+        `  blockers=${payload.blockers.map((blocker) => `${blocker.code}:${blocker.count}`).join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  synthesis: status=${payload.synthesis.status} common=${payload.synthesis.common_adopted} complement=${payload.synthesis.helix_complemented} reject=${payload.synthesis.rejected} missing=${payload.synthesis.missing_decisions} tailoring=${payload.synthesis.tailoring_status} function_policy=${payload.synthesis.function_design_policy} reentry=${payload.synthesis.current_reentry_status} next=${payload.synthesis.next_command}\n`,
+      );
+      process.stdout.write(
+        `  regression-guards: status=${payload.regression_guards.status} pass=${payload.regression_guards.pass} watch=${payload.regression_guards.watch} fail=${payload.regression_guards.fail}\n`,
+      );
+      process.stdout.write(
+        `  recovery-runway-gate: status=${payload.recovery_runway_gate.status} blocking=${payload.recovery_runway_gate.current_blocking_count} machine=${payload.recovery_runway_gate.machine_actionable_count} approval=${payload.recovery_runway_gate.human_approval_count} reverse=${payload.recovery_runway_gate.design_reverse_count} after_machine=${payload.recovery_runway_gate.remaining_after_machine_lanes} phases=${payload.recovery_runway_gate.required_phase_count} next=${payload.recovery_runway_gate.next_phase_action ?? "-"} phase=${payload.recovery_runway_gate.next_phase_type ?? "-"} gate=${payload.recovery_runway_gate.next_gate} command=${payload.recovery_runway_gate.next_command} execute=${payload.recovery_runway_gate.next_execution_command}\n`,
+      );
+      process.stdout.write(
+        `  recovery-runway-phases: ${payload.recovery_runway_gate.phases.map((phase) => `${phase.sequence}:${phase.action}:${phase.phase_type}:count=${phase.count}:listed=${phase.listed}:remaining=${phase.remaining_after_phase}:gate=${phase.next_gate}:signature=${phase.evidence_signature ?? "-"}:plans=${phase.sample_plan_ids.join(",") || "-"}`).join(" | ") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  recovery-handoff-gate: status=${payload.recovery_handoff_gate.status} phase=${payload.recovery_handoff_gate.effective_phase} approval=${payload.recovery_handoff_gate.approval_status ?? "-"} scope=${payload.recovery_handoff_gate.scope_status ?? "-"} decision=${payload.recovery_handoff_gate.decision_id ?? "-"} digest=${payload.recovery_handoff_gate.approval_scope_digest ?? "-"} expected=${payload.recovery_handoff_gate.expected_approval_scope_digest ?? "-"} materialize=${payload.recovery_handoff_gate.materialize_status ?? "-"} valid=${payload.recovery_handoff_gate.valid_for_apply} present=${payload.recovery_handoff_gate.handoff_present} missing=${payload.recovery_handoff_gate.handoff_missing} command=${payload.recovery_handoff_gate.command}\n`,
+      );
+      process.stdout.write(
+        `  approval-review-gate: status=${payload.approval_review_gate.status} action=${payload.approval_review_gate.action} count=${payload.approval_review_gate.count} listed=${payload.approval_review_gate.listed} omitted=${payload.approval_review_gate.omitted} window=${payload.approval_review_gate.window.page_index}/${payload.approval_review_gate.window.page_count} range=${payload.approval_review_gate.window.start}-${payload.approval_review_gate.window.end} next=${payload.approval_review_gate.next_window_command ?? "-"} decision=${payload.approval_review_gate.decision_id} digest=${payload.approval_review_gate.approval_scope_digest} tests=${payload.approval_review_gate.evidence_totals.test_runs_passed}/${payload.approval_review_gate.evidence_totals.test_runs_total} gates=${payload.approval_review_gate.evidence_totals.gate_runs_passed}/${payload.approval_review_gate.evidence_totals.gate_runs_total} runtime=${payload.approval_review_gate.evidence_totals.runtime_verification_accepted}/${payload.approval_review_gate.evidence_totals.runtime_verification_total} blocked=${payload.approval_review_gate.blocked_by_findings.length} plans=${payload.approval_review_gate.sample_plan_ids.join(",") || "-"} command=${payload.approval_review_gate.current_window_command}\n`,
+      );
+      for (const guard of payload.regression_guards.guards) {
+        process.stdout.write(
+          `  regression-guard: ${guard.guard_id} ${guard.status} count=${guard.count} command=${guard.command}\n`,
+        );
+      }
+      for (const action of payload.next_actions.slice(0, 5)) {
+        process.stdout.write(
+          `  next-action: ${action.priority}.${action.blocker_code} ${action.automation_class} count=${action.count} gate=${action.gate} command=${action.command}\n`,
+        );
+        if (action.work_bucket) {
+          process.stdout.write(
+            `  next-work-bucket: ${action.priority}.${action.blocker_code} ${action.work_bucket.evidence_signature} count=${action.work_bucket.count} failed=${action.work_bucket.failed_evidence_count} projections=${action.work_bucket.projection_item_count} automation=${action.work_bucket.repair_automation_status} next=${action.work_bucket.repair_primary_next_command ?? "-"} handoff=${action.work_bucket.evidence_handoff_next?.status ?? "none"} handoff_command=${action.work_bucket.evidence_handoff_next?.command ?? "-"} handoff_present=${action.work_bucket.evidence_handoff_status?.present ?? 0} handoff_missing=${action.work_bucket.evidence_handoff_status?.missing ?? 0} handoff_unchecked=${action.work_bucket.evidence_handoff_status?.unchecked ?? 0} approval=${action.work_bucket.evidence_handoff_status?.approval_record?.status ?? "-"} scope=${action.work_bucket.evidence_handoff_status?.approval_record?.scope_status ?? "-"} tables=${action.work_bucket.target_tables.join(",") || "-"} command=${action.work_bucket.primary_command} patch=${action.work_bucket.evidence_patch_command} patch_candidates=${action.work_bucket.evidence_patch_candidate_count} patch_write=${action.work_bucket.evidence_patch_write_policy} probe=${action.work_bucket.evidence_probe_command} materialize=${action.work_bucket.evidence_materialize_command} approval_draft=${action.work_bucket.evidence_approval_draft_command} apply_dry_run=${action.work_bucket.evidence_apply_dry_run_command} apply_execute=${action.work_bucket.evidence_apply_execute_command} apply_write=${action.work_bucket.evidence_apply_write_policy}\n`,
+          );
+        }
+      }
+      process.stdout.write(
+        `  zip-adoption: adopt=${payload.zip_adoption.adopted} complement=${payload.zip_adoption.complemented} reject=${payload.zip_adoption.rejected} missing=${payload.zip_adoption.missing}\n`,
+      );
+      process.stdout.write(
+        `  zip-manifest: present=${payload.zip_manifest.present} root=${payload.zip_manifest.root_prefix ?? "-"} entries=${payload.zip_manifest.entries_total} required=${payload.zip_manifest.required_present}/${payload.zip_manifest.required_total}\n`,
+      );
+      process.stdout.write(
+        `  zip-inventory-signature: status=${payload.zip_manifest.inventory_signature.status} entries=${payload.zip_manifest.inventory_signature.actual_entries_total}/${payload.zip_manifest.inventory_signature.expected_entries_total} root=${payload.zip_manifest.inventory_signature.actual_root_prefix ?? "-"}/${payload.zip_manifest.inventory_signature.expected_root_prefix} mismatches=${payload.zip_manifest.inventory_signature.mismatches.length}\n`,
+      );
+      process.stdout.write(
+        `  zip-source-bindings: status=${payload.zip_source_bindings.status} bound=${payload.zip_source_bindings.bound} missing=${payload.zip_source_bindings.missing} advisory=${payload.zip_source_bindings.advisory} tables=${payload.zip_source_bindings.evidence_tables.join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  tailoring-gate: profile=${payload.tailoring_gate.profile} required=${payload.tailoring_gate.required} optional=${payload.tailoring_gate.optional} na=${payload.tailoring_gate.excluded} missing=${payload.tailoring_gate.missing_required}\n`,
+      );
+      process.stdout.write(
+        `  acceptance-traceability: status=${payload.acceptance_traceability_gate.status} linked=${payload.acceptance_traceability_gate.linked}/${payload.acceptance_traceability_gate.total} declared=${payload.acceptance_traceability_gate.declared} missing=${payload.acceptance_traceability_gate.missing}\n`,
+      );
+      process.stdout.write(
+        `  function-design-absorption: status=${payload.function_design_absorption.status} policy=${payload.function_design_absorption.independent_layer_policy} detail=${payload.function_design_absorption.detail_contract_coverage_status} tailoring=${payload.function_design_absorption.tailoring_detail_contract_status}\n`,
+      );
+      process.stdout.write(
+        `  roadmap-current-gate: status=${payload.roadmap_current_gate.status} roadmap=${payload.roadmap_current_gate.roadmap_status} aligned=${payload.roadmap_current_gate.aligned} basis=${payload.roadmap_current_gate.alignment_basis} db=${payload.roadmap_current_gate.db_current_l12_layer ?? "-"} roadmap_layers=${payload.roadmap_current_gate.roadmap_current_l12_layers.join(",") || "-"} projected=${payload.roadmap_current_gate.roadmap_projected_l12_layers.join(",") || "-"} terminal=${payload.roadmap_current_gate.roadmap_terminal_l12_layers.join(",") || "-"} blockers=${payload.roadmap_current_gate.blocker_count}\n`,
+      );
+      process.stdout.write(
+        `  drive-model-gate: status=${payload.drive_model_gate.status} selected=${payload.drive_model_gate.selected_model} route=${payload.drive_model_gate.selected_route_id} coverage=${payload.drive_model_gate.selected_coverage_ids.join(",") || "-"} default=${payload.drive_model_gate.default_model} candidates=${payload.drive_model_gate.candidate_count} blocked=${payload.drive_model_gate.blocked_models.join(",") || "-"} available=${payload.drive_model_gate.available_models.join(",") || "-"}\n`,
+      );
+      process.stdout.write(
+        `  operation-scope: designed=${payload.operation_scope.designed} observed=${payload.operation_scope.observed} observed_gap=${payload.operation_scope.observed_gap} missing=${payload.operation_scope.missing} reverify=${payload.operation_scope.reverify}\n`,
+      );
+      process.stdout.write(
+        `  current-location-gate: status=${payload.current_location_gate.status} current=${payload.current_location_gate.current_status}/${payload.current_location_gate.completion_boundary} route=${payload.current_location_gate.route_id}\n`,
+      );
+	      process.stdout.write(
+	        `  recovery-runway: status=${payload.current_location_gate.recovery_runway.status} machine=${payload.current_location_gate.recovery_runway.machine_actionable_count} approval=${payload.current_location_gate.recovery_runway.human_approval_count} reverse=${payload.current_location_gate.recovery_runway.design_reverse_count} after_machine=${payload.current_location_gate.recovery_runway.remaining_after_machine_lanes} next=${payload.current_location_gate.recovery_runway.next_machine_command ?? "-"} next_probe=${payload.current_location_gate.recovery_runway.next_machine_probe_command ?? "-"} materialize=${payload.current_location_gate.recovery_runway.next_machine_materialize_command ?? "-"} approval_draft=${payload.current_location_gate.recovery_runway.next_machine_approval_draft_command ?? "-"} apply_dry_run=${payload.current_location_gate.recovery_runway.next_machine_apply_dry_run_command ?? "-"}\n`,
+	      );
+	      process.stdout.write(
+	        `  recovery-reentry: status=${payload.current_location_gate.reentry_forecast.status} blocking=${payload.current_location_gate.reentry_forecast.current_blocking_count} after_machine=${payload.current_location_gate.reentry_forecast.blocking_after_machine_lanes} phases=${payload.current_location_gate.reentry_forecast.required_phase_count} next=${payload.current_location_gate.reentry_forecast.next_phase_action ?? "-"} gate=${payload.current_location_gate.reentry_forecast.next_gate} command=${payload.current_location_gate.reentry_forecast.next_command} execute=${payload.current_location_gate.reentry_forecast.next_execution_command}\n`,
+	      );
+      process.stdout.write(
+        `  design-integrity: declarations=${payload.design_integrity.declarations} references=${payload.design_integrity.references} impact=${payload.design_integrity.impact}\n`,
+      );
+      process.stdout.write(
+        `  current-location: layer=${payload.current.layer ?? "unknown"} l12=${payload.current.l12_layer ?? "unknown"} status=${payload.current.status} route=${payload.drive_route.routeId}\n`,
+      );
+    } finally {
+      db.close();
+    }
+  });
 vmodel
   .command("lint [path]")
   .description("V-model 4 artifact trace lint")

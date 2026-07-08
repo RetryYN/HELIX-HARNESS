@@ -119,6 +119,24 @@ describe("HELIX objective evidence audit", () => {
       "docs/test-design/harness/L9-integration-test-design.md",
       "docs/test-design/harness/L9-system-test-design.md",
       "docs/test-design/harness/proposal-document-coverage-routing.md",
+      "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+      "src/vmodel/zip-manifest.ts",
+      "src/vmodel/fit.ts",
+      "src/schema/harness-db-tables-design.ts",
+      "src/state-db/projection-writer.ts",
+      "src/lint/db-projection-ingestion.ts",
+      "src/state-db/current-location.ts",
+      "src/vscode/tree-view-provider.ts",
+      "src/vscode/extension-adapter.ts",
+      "tests/vmodel-zip-manifest.test.ts",
+      "tests/current-location.test.ts",
+      "tests/visualization-treeview.test.ts",
+      "tests/vscode-extension-adapter.test.ts",
+      "tests/slow/doctor.test.ts",
       "CLAUDE.md",
       "AGENTS.md",
       "src/lint/design-language.ts",
@@ -346,6 +364,102 @@ describe("HELIX objective evidence audit", () => {
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L2-screen-ux-test-design.md",
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L5-pillar-integration-test-design.md",
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/harness/L8-unit-test-design.md",
+      ]),
+    );
+  });
+
+  it("fails when V-model ZIP/L12 redesign evidence is detached from objective progress", () => {
+    const text = auditText()
+      .replaceAll(
+        "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "docs/design/helix/L12-vmodel/vmodel-layer-coverage-removed.md",
+      )
+      .replaceAll(
+        "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+        "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix-removed.md",
+      )
+      .replaceAll(
+        "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+        "docs/test-design/helix/vmodel-docgen-fit-acceptance-removed.md",
+      )
+      .replaceAll("src/vmodel/zip-manifest.ts", "src/vmodel/zip-manifest-removed.ts")
+      .replaceAll("src/vmodel/fit.ts", "src/vmodel/fit-removed.ts")
+      .replaceAll(
+        "src/schema/harness-db-tables-design.ts",
+        "src/schema/harness-db-tables-design-removed.ts",
+      )
+      .replaceAll("src/state-db/projection-writer.ts", "src/state-db/projection-writer-removed.ts")
+      .replaceAll(
+        "src/lint/db-projection-ingestion.ts",
+        "src/lint/db-projection-ingestion-removed.ts",
+      )
+      .replaceAll("src/state-db/current-location.ts", "src/state-db/current-location-removed.ts")
+      .replaceAll(
+        "src/vscode/extension-adapter.ts",
+        "src/vscode/extension-adapter-removed.ts",
+      )
+      .replaceAll("zip-source-integrity", "zip source integrity removed")
+      .replaceAll("zip-adoption-binding", "zip adoption binding removed")
+      .replaceAll("project_zip_adoption_decisions", "project zip adoption decisions removed")
+      .replaceAll("project_tailoring_decisions", "project tailoring decisions removed")
+      .replaceAll("project_vmodel_regression_guards", "project vmodel regression guards removed")
+      .replaceAll("project_vmodel_fit_blockers", "project vmodel fit blockers removed")
+      .replaceAll("vmodel-zip-source-bindings", "vmodel zip source bindings removed")
+      .replaceAll(
+        "function-design-absorption-binding",
+        "function design absorption binding removed",
+      )
+      .replaceAll("roadmap-current-binding", "roadmap current binding removed")
+      .replaceAll("project_roadmap_current_actions", "project roadmap current actions removed")
+      .replaceAll("drive-model-binding", "drive model binding removed")
+      .replaceAll("reverse-dependency-closure", "reverse dependency closure removed")
+      .replaceAll("candidate-dependency-closure", "candidate dependency closure removed")
+      .replaceAll(
+        "vscode-extension-dynamic-binding",
+        "vscode extension dynamic binding removed",
+      )
+      .replaceAll("operation-scope-binding", "operation scope binding removed")
+      .replaceAll("vmodel_zip_source_bindings", "vmodel zip source binding table removed")
+      .replaceAll("view-nodes=observation-gap:6/6", "operation observation gap view nodes removed")
+      .replaceAll("L0-slide-to-L1-planning", "L0 slide to L1 planning removed");
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-06: missing V-model ZIP/L12 redesign artifact citation docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/vmodel/zip-manifest.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/vmodel/fit.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/schema/harness-db-tables-design.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/state-db/projection-writer.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/lint/db-projection-ingestion.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/state-db/current-location.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/vscode/extension-adapter.ts",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker zip-source-integrity",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker zip-adoption-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_zip_adoption_decisions",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_tailoring_decisions",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_regression_guards",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_fit_blockers",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker vmodel-zip-source-bindings",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker function-design-absorption-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker roadmap-current-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_roadmap_current_actions",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker drive-model-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker reverse-dependency-closure",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker candidate-dependency-closure",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker vscode-extension-dynamic-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker operation-scope-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker vmodel_zip_source_bindings",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker view-nodes=observation-gap:6/6",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker L0-slide-to-L1-planning",
       ]),
     );
   });

@@ -49,7 +49,12 @@ import {
   primaryKeyOf,
   type TableDef,
 } from "../schema/harness-db";
+import { analyzeDesignDeclarations } from "../vmodel/design-declarations";
+import { buildVmodelFitReport } from "../vmodel/fit";
+import { buildVmodelZipSourceBindings } from "../vmodel/zip-manifest";
+import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
+import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
 import {
   projectFeedbackEvents,
   projectImprovementLog,
@@ -70,6 +75,8 @@ import {
 import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
+import { buildVisualizationSnapshot } from "./visualization-read-model";
+import { buildVisualizationViewModel } from "./visualization-view-model";
 
 type ProjectedUtCase = {
   oracle_id?: string;
@@ -291,6 +298,22 @@ function stableId(prefix: string, value: string): string {
 
 function stableHash(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function stableJsonHash(value: unknown): string {
+  return stableHash(JSON.stringify(value));
+}
+
+function uniqueStrings(values: readonly string[]): string[] {
+  return [...new Set(values.filter((value) => value.trim().length > 0))].sort();
+}
+
+function csv(values: readonly string[]): string {
+  return uniqueStrings(values).join(",");
+}
+
+function countTreeNodes(nodes: readonly TreeViewNode[]): number {
+  return nodes.reduce((sum, node) => sum + 1 + countTreeNodes(node.children), 0);
 }
 
 function relationArtifactId(nodeId: string): string {
@@ -3430,6 +3453,114 @@ function assetFiles(dir: string, extensions: RegExp): string[] {
   return out.sort();
 }
 
+function designDeclarationInputs(repoRoot: string): Array<{ path: string; content: string }> {
+  const roots = [
+    join(repoRoot, "docs", "design", "harness"),
+    join(repoRoot, "docs", "design", "helix"),
+    join(repoRoot, "docs", "test-design", "harness"),
+    join(repoRoot, "docs", "test-design", "helix"),
+  ];
+  const docs: Array<{ path: string; content: string }> = [];
+  for (const root of roots) {
+    for (const path of assetFiles(root, /\.md$/i)) {
+      const content = readFileSync(path, "utf8");
+      if (!/(^|\n)\s*spec:\s*(\r?\n|$)/.test(content)) continue;
+      docs.push({ path: normalizePath(relative(repoRoot, path)), content });
+    }
+  }
+  return docs.sort((a, b) => a.path.localeCompare(b.path));
+}
+
+function projectDesignDeclarations(repoRoot: string, db: HarnessDb): void {
+  const indexedAt = nowIso();
+  const analysis = analyzeDesignDeclarations(designDeclarationInputs(repoRoot));
+  const declarationsById = new Map(
+    analysis.declarations.map((declaration) => [declaration.id, declaration]),
+  );
+  const definedIds = new Set(analysis.declarations.map((declaration) => declaration.id));
+  for (const declaration of analysis.declarations) {
+    const declarationId = stableId(
+      "design-declaration",
+      `${declaration.id}:${declaration.sourcePath}`,
+    );
+    recordProjectionEvent(db, {
+      table: "design_declarations",
+      id: declarationId,
+      row: {
+        declaration_id: declarationId,
+        defined_id: declaration.id,
+        declaration_kind: declaration.kind,
+        title: declaration.title ?? "",
+        layer: declaration.layer ?? "",
+        owner: declaration.owner ?? "",
+        status: declaration.status ?? "",
+        source_path: declaration.sourcePath,
+        source: declaration.source,
+        indexed_at: indexedAt,
+      },
+    });
+  }
+  for (const reference of analysis.references) {
+    const referenceId = stableId(
+      "design-reference",
+      `${reference.from}:${reference.to}:${reference.kind ?? ""}:${reference.sourcePath}`,
+    );
+    const resolved = definedIds.has(reference.from) && definedIds.has(reference.to);
+    const fromDeclaration = declarationsById.get(reference.from);
+    const toDeclaration = declarationsById.get(reference.to);
+    recordProjectionEvent(db, {
+      table: "design_references",
+      id: referenceId,
+      row: {
+        reference_id: referenceId,
+        from_id: reference.from,
+        to_id: reference.to,
+        reference_kind: reference.kind ?? "",
+        status: resolved ? "resolved" : "unresolved",
+        source_path: reference.sourcePath,
+        source: reference.source,
+        indexed_at: indexedAt,
+      },
+    });
+    for (const [direction, rootId, impactedId, root, impacted] of [
+      ["forward", reference.from, reference.to, fromDeclaration, toDeclaration],
+      ["reverse", reference.to, reference.from, toDeclaration, fromDeclaration],
+    ] as const) {
+      const impactId = stableId(
+        "design-impact",
+        `${direction}:${reference.from}:${reference.to}:${reference.kind ?? ""}:${reference.sourcePath}`,
+      );
+      recordProjectionEvent(db, {
+        table: "design_impact",
+        id: impactId,
+        row: {
+          impact_id: impactId,
+          root_id: rootId,
+          impacted_id: impactedId,
+          impact_kind: reference.kind ?? "",
+          direction,
+          status: resolved ? "resolved" : "unresolved",
+          root_layer: root?.layer ?? "",
+          impacted_layer: impacted?.layer ?? "",
+          root_source_path: root?.sourcePath ?? "",
+          impacted_source_path: impacted?.sourcePath ?? "",
+          reference_id: referenceId,
+          indexed_at: indexedAt,
+        },
+      });
+    }
+  }
+  for (const finding of analysis.findings.filter((item) => item.severity === "error")) {
+    recordFinding(db, {
+      kind: `design-declaration-${finding.code}`,
+      severity: finding.severity,
+      subjectId: `${finding.path}:${finding.detail}`,
+      source: "design-declaration-projection",
+      evidencePath: finding.path,
+    });
+  }
+}
+
 function projectAutomationAssets(repoRoot: string, db: HarnessDb): void {
   const indexedAt = nowIso();
   const sources = [
@@ -4167,6 +4298,422 @@ function projectScreens(repoRoot: string, db: HarnessDb): void {
   }
 }
 
+function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
+  const indexedAt = nowIso();
+  const visualizationSnapshot = buildVisualizationSnapshot(db, { repoRoot });
+  const snapshot = visualizationSnapshot.project_current_location;
+  const driveModel = buildProjectDriveModelReport(snapshot);
+  const roadmapCurrent = buildProjectRoadmapCurrentReport(snapshot);
+  const vmodelFit = buildVmodelFitReport(snapshot, visualizationSnapshot.vmodel_zip_manifest, {
+    repoRoot,
+  });
+  const viewModel = buildVisualizationViewModel(visualizationSnapshot);
+  const treeView = buildVisualizationTreeView(viewModel);
+  const snapshotId = "project-current-location:latest";
+  const snapshotHash = stableJsonHash(snapshot);
+  const scrumOperation = snapshot.scrum_operation;
+  const findingErrors = snapshot.findings.filter((finding) => finding.severity === "error").length;
+  const findingWarns = snapshot.findings.filter((finding) => finding.severity === "warn").length;
+  const docDependencies = uniqueStrings([
+    ...snapshot.design_coverage_gate.docDependencies,
+    ...snapshot.acceptance_traceability.docDependencies,
+    ...snapshot.zip_adoption.docDependencies,
+    ...snapshot.tailoring_gate.docDependencies,
+    ...(scrumOperation?.docDependencies ?? []),
+    ...snapshot.roadmap_position.docDependencies,
+    ...snapshot.findings.flatMap((finding) => finding.docDependencies),
+  ]);
+  const implementationDependencies = uniqueStrings([
+    ...snapshot.design_coverage_gate.implementationDependencies,
+    ...snapshot.acceptance_traceability.implementationDependencies,
+    ...snapshot.zip_adoption.implementationDependencies,
+    ...snapshot.tailoring_gate.implementationDependencies,
+    ...(scrumOperation?.implementationDependencies ?? []),
+    ...snapshot.roadmap_position.implementationDependencies,
+    ...snapshot.findings.flatMap((finding) => finding.implementationDependencies),
+  ]);
+
+  recordProjectionEvent(db, {
+    table: "project_current_location",
+    id: snapshotId,
+    row: {
+      snapshot_id: snapshotId,
+      schema_version: snapshot.schema_version,
+      source_clock: snapshot.source_clock ?? "",
+      current_layer: snapshot.current.layer ?? "",
+      l12_layer: snapshot.current.l12_layer ?? "",
+      current_status: snapshot.current.status,
+      completion_boundary: snapshot.current.completion_boundary,
+      selected_drive_model: driveModel.selected_model,
+      drive_route_status: snapshot.drive_route.status,
+      default_drive_model: driveModel.default_model,
+      roadmap_status: snapshot.roadmap_position.status,
+      plans_total: snapshot.counts.plans_total,
+      open_l7_plans: snapshot.counts.open_l7_plans,
+      terminal_l14_plans: snapshot.counts.terminal_l14_plans,
+      l12_done: snapshot.coverage.done,
+      l12_missing: snapshot.coverage.missing,
+      l12_reverify: snapshot.coverage.reverify,
+      design_coverage_status: snapshot.design_coverage_gate.status,
+      acceptance_traceability_status: snapshot.acceptance_traceability.status,
+      zip_adoption_status: snapshot.zip_adoption.status,
+      tailoring_status: snapshot.tailoring_gate.status,
+      operation_designed: snapshot.operation_scope.designed,
+      operation_observed: snapshot.operation_scope.observed,
+      operation_observed_gap: snapshot.operation_scope.observed_gap,
+      operation_missing: snapshot.operation_scope.missing,
+      operation_reverify: snapshot.operation_scope.reverify,
+      findings_error: findingErrors,
+      findings_warn: findingWarns,
+      doc_dependency_count: docDependencies.length,
+      implementation_dependency_count: implementationDependencies.length,
+      source_command: driveModel.source_command,
+      view_command: driveModel.view_command,
+      snapshot_hash: snapshotHash,
+      indexed_at: indexedAt,
+    },
+  });
+
+  for (const candidate of driveModel.candidates) {
+    const candidateId = stableId("drive-model-candidate", candidate.model);
+    recordProjectionEvent(db, {
+      table: "project_drive_model_candidates",
+      id: candidateId,
+      row: {
+        candidate_id: candidateId,
+        snapshot_id: snapshotId,
+        model: candidate.model,
+        rank: candidate.rank,
+        status: candidate.status,
+        selected: candidate.status === "selected" ? 1 : 0,
+        route_id: candidate.route_id,
+        trigger: candidate.trigger,
+        required_action: candidate.required_action,
+        command: candidate.command,
+        coverage_ids: csv(candidate.coverage_ids),
+        coverage_labels: csv(candidate.coverage_labels),
+        doc_dependencies: csv(candidate.doc_dependencies),
+        implementation_dependencies: csv(candidate.implementation_dependencies),
+        reasons: csv(candidate.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const action of roadmapCurrent.actions) {
+    recordProjectionEvent(db, {
+      table: "project_roadmap_current_actions",
+      id: action.action_id,
+      row: {
+        action_id: action.action_id,
+        snapshot_id: snapshotId,
+        category: action.category,
+        status: action.status,
+        automation_class: action.automation_class,
+        phase_action: action.phase_action ?? "",
+        l12_layers: csv(action.l12_layers),
+        coverage_ids: csv(action.coverage_ids),
+        coverage_labels: csv(action.coverage_labels),
+        command: action.command,
+        batch_command: action.batch_command ?? "",
+        review_command: action.review_command ?? "",
+        evidence_patch_command: action.evidence_patch_command ?? "",
+        evidence_probe_command: action.evidence_probe_command ?? "",
+        evidence_materialize_command: action.evidence_materialize_command ?? "",
+        evidence_approval_draft_command: action.evidence_approval_draft_command ?? "",
+        evidence_apply_dry_run_command: action.evidence_apply_dry_run_command ?? "",
+        evidence_apply_execute_command: action.evidence_apply_execute_command ?? "",
+        evidence_apply_write_policy: action.evidence_apply_write_policy ?? "",
+        required_action: action.required_action,
+        doc_dependencies: csv(action.doc_dependencies),
+        implementation_dependencies: csv(action.implementation_dependencies),
+        reasons: csv(action.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const item of snapshot.zip_adoption.items) {
+    recordProjectionEvent(db, {
+      table: "project_zip_adoption_decisions",
+      id: item.adoptionId,
+      row: {
+        adoption_id: item.adoptionId,
+        snapshot_id: snapshotId,
+        category: item.category,
+        label: item.label,
+        status: item.status,
+        source_package: snapshot.zip_adoption.sourcePackage,
+        source_document: snapshot.zip_adoption.sourceDocument,
+        declaration_ids: csv(item.declarationIds),
+        source_paths: csv(item.sourcePaths),
+        doc_dependencies: csv(item.docDependencies),
+        implementation_dependencies: csv(item.implementationDependencies),
+        reasons: csv(item.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const item of snapshot.tailoring_gate.items) {
+    recordProjectionEvent(db, {
+      table: "project_tailoring_decisions",
+      id: item.tailoringId,
+      row: {
+        tailoring_id: item.tailoringId,
+        snapshot_id: snapshotId,
+        category: item.category,
+        label: item.label,
+        detail_level: item.detailLevel,
+        status: item.status,
+        profile: snapshot.tailoring_gate.profile,
+        source_document: snapshot.tailoring_gate.sourceDocument,
+        declaration_ids: csv(item.declarationIds),
+        source_paths: csv(item.sourcePaths),
+        doc_dependencies: csv(item.docDependencies),
+        implementation_dependencies: csv(item.implementationDependencies),
+        reasons: csv(item.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const guard of vmodelFit.regression_guards.guards) {
+    recordProjectionEvent(db, {
+      table: "project_vmodel_regression_guards",
+      id: guard.guard_id,
+      row: {
+        guard_id: guard.guard_id,
+        snapshot_id: snapshotId,
+        status: guard.status,
+        scope: guard.scope,
+        command: guard.command,
+        protected_surface: csv(guard.protected_surface),
+        guard_count: guard.count,
+        required_action: guard.required_action,
+        reasons: csv(guard.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  const vmodelFitBlockerRows =
+    vmodelFit.blockers.length > 0
+      ? vmodelFit.blockers
+      : [
+          {
+            code: "none",
+            status: "pass",
+            count: 0,
+            command: vmodelFit.source_command,
+            required_action: "V-model fit blocker は無い",
+            doc_dependencies: [],
+            implementation_dependencies: [],
+          },
+        ];
+  for (const blocker of vmodelFitBlockerRows) {
+    recordProjectionEvent(db, {
+      table: "project_vmodel_fit_blockers",
+      id: blocker.code,
+      row: {
+        blocker_code: blocker.code,
+        snapshot_id: snapshotId,
+        status: blocker.status,
+        blocker_count: blocker.count,
+        command: blocker.command,
+        required_action: blocker.required_action,
+        doc_dependencies: csv(blocker.doc_dependencies),
+        implementation_dependencies: csv(blocker.implementation_dependencies),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const layer of snapshot.coverage.l12_layers) {
+    const coverageRowId = stableId("l12-layer-coverage", layer.layer);
+    recordProjectionEvent(db, {
+      table: "project_l12_layer_coverage",
+      id: coverageRowId,
+      row: {
+        coverage_row_id: coverageRowId,
+        snapshot_id: snapshotId,
+        layer: layer.layer,
+        label: layer.label,
+        status: layer.status,
+        zip_source_binding_ids: csv(layer.zipSourceBindingIds ?? []),
+        tailoring_rule_ids: csv(layer.tailoringRuleIds ?? []),
+        tailoring_detail_levels: csv(layer.tailoringDetailLevels ?? []),
+        legacy_layers: csv(layer.legacyLayers),
+        plan_ids: csv(layer.planIds),
+        design_ids: csv(layer.designIds),
+        test_design_ids: csv(layer.testDesignIds),
+        reasons: csv(layer.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const item of snapshot.design_coverage_gate.items) {
+    recordProjectionEvent(db, {
+      table: "design_coverage_gate",
+      id: item.coverageId,
+      row: {
+        coverage_id: item.coverageId,
+        snapshot_id: snapshotId,
+        l12_layer: item.l12Layer,
+        label: item.label,
+        status: item.status,
+        return_route: item.returnRoute,
+        zip_source_binding_ids: csv(item.zipSourceBindingIds ?? []),
+        tailoring_rule_ids: csv(item.tailoringRuleIds ?? []),
+        tailoring_detail_levels: csv(item.tailoringDetailLevels ?? []),
+        required_kinds: csv(item.requiredKinds),
+        accepted_layers: csv(item.acceptedLayers),
+        declaration_ids: csv(item.declarationIds),
+        source_paths: csv(item.sourcePaths),
+        doc_dependencies: csv(item.docDependencies),
+        implementation_dependencies: csv(item.implementationDependencies),
+        reasons: csv(item.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const item of snapshot.operation_scope.items) {
+    const operationScopeId = stableId("operation-scope", item.scope);
+    recordProjectionEvent(db, {
+      table: "project_operation_scopes",
+      id: operationScopeId,
+      row: {
+        operation_scope_id: operationScopeId,
+        snapshot_id: snapshotId,
+        scope: item.scope,
+        label: item.label,
+        coverage_id: item.coverageId,
+        coverage_label: item.coverageLabel,
+        status: item.status,
+        design_ids: csv(item.designIds),
+        observed_count: item.observedCount,
+        observed_gap: item.status === "designed" && item.observedCount === 0 ? 1 : 0,
+        observation_sources: csv(item.observationSources),
+        evidence_tables: csv(item.evidenceTables),
+        reasons: csv(item.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  for (const item of snapshot.artifact_remap.items) {
+    const artifactRemapId = stableId("artifact-remap", `${item.kind}:${item.artifactId}`);
+    recordProjectionEvent(db, {
+      table: "project_artifact_remap",
+      id: artifactRemapId,
+      row: {
+        artifact_remap_id: artifactRemapId,
+        snapshot_id: snapshotId,
+        kind: item.kind,
+        artifact_id: item.artifactId,
+        source_path: item.sourcePath,
+        legacy_layer: item.legacyLayer ?? "",
+        l12_layer: item.l12Layer ?? "",
+        coverage_id: item.coverageId ?? "",
+        coverage_label: item.coverageLabel ?? "",
+        status: item.status,
+        zip_source_binding_ids: csv(item.zipSourceBindingIds ?? []),
+        tailoring_rule_ids: csv(item.tailoringRuleIds ?? []),
+        tailoring_detail_levels: csv(item.tailoringDetailLevels ?? []),
+        doc_dependencies: item.sourcePath,
+        implementation_dependencies: "plan_registry,design_declarations",
+        reasons: csv(item.reasons),
+        indexed_at: indexedAt,
+      },
+    });
+  }
+
+  const zipManifest = visualizationSnapshot.vmodel_zip_manifest;
+  if (zipManifest) {
+    const requiredFound = zipManifest.required.filter((entry) => entry.present).length;
+    recordProjectionEvent(db, {
+      table: "vmodel_zip_manifest",
+      id: "vmodel-zip-manifest:latest",
+      row: {
+        manifest_id: "vmodel-zip-manifest:latest",
+        source_package: snapshot.zip_adoption.sourcePackage,
+        archive_path: zipManifest.archivePath,
+        present: zipManifest.present ? 1 : 0,
+        ok: zipManifest.ok ? 1 : 0,
+        root_prefix: zipManifest.rootPrefix ?? "",
+        entries_total: zipManifest.entriesTotal,
+        inventory_status: zipManifest.inventorySignature.status,
+        required_sources_found: requiredFound,
+        required_sources_total: zipManifest.required.length,
+        by_extension: JSON.stringify(zipManifest.byExtension),
+        findings: csv(zipManifest.findings.map((finding) => finding.code)),
+        evidence_tables: "design_declarations,design_references,design_impact,artifact_registry,plan_registry",
+        snapshot_hash: stableJsonHash(zipManifest),
+        indexed_at: indexedAt,
+      },
+    });
+    for (const binding of buildVmodelZipSourceBindings(zipManifest)) {
+      recordProjectionEvent(db, {
+        table: "vmodel_zip_source_bindings",
+        id: binding.bindingId,
+        row: {
+          binding_id: binding.bindingId,
+          manifest_id: "vmodel-zip-manifest:latest",
+          source_path: binding.sourcePath,
+          source_category: binding.sourceCategory,
+          status: binding.status,
+          source_present: binding.sourcePresent ? 1 : 0,
+          actual_path: binding.actualPath ?? "",
+          l12_layers: csv(binding.l12Layers),
+          helix_surfaces: csv(binding.helixSurfaces),
+          evidence_tables: csv(binding.evidenceTables),
+          required_action: binding.requiredAction,
+          zip_source_binding_hash: stableJsonHash(binding),
+          indexed_at: indexedAt,
+        },
+      });
+    }
+  }
+
+  recordProjectionEvent(db, {
+    table: "visualization_view_model",
+    id: "visualization-view-model:latest",
+    row: {
+      view_model_id: "visualization-view-model:latest",
+      schema_version: "visualization-view-model.v1",
+      source_clock: viewModel.source_clock ?? "",
+      generated_from: viewModel.generated_from,
+      project_views: csv(viewModel.view_boundaries.project.owned_views),
+      harness_views: csv(viewModel.view_boundaries.harness.owned_views),
+      source_fields: csv([
+        ...viewModel.view_boundaries.project.source_fields,
+        ...viewModel.view_boundaries.harness.source_fields,
+      ]),
+      warnings_count: viewModel.shared_warnings.length,
+      snapshot_hash: stableJsonHash(viewModel),
+      indexed_at: indexedAt,
+    },
+  });
+
+  recordProjectionEvent(db, {
+    table: "visualization_tree_view",
+    id: "visualization-tree-view:latest",
+    row: {
+      tree_view_id: "visualization-tree-view:latest",
+      schema_version: treeView.schema_version,
+      source_clock: treeView.source_clock ?? "",
+      root_ids: csv(treeView.roots.map((root) => root.id)),
+      root_count: treeView.roots.length,
+      node_count: countTreeNodes(treeView.roots),
+      warnings_count: treeView.warnings.length,
+      snapshot_hash: stableJsonHash(treeView),
+      indexed_at: indexedAt,
+    },
+  });
+}
+
 function profiled<T>(name: string, onProfile: RebuildHarnessDbInput["onProfile"], fn: () => T): T {
   if (!onProfile) return fn();
   const started = performance.now();
@@ -4221,6 +4768,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       );
       profiled("projectDescentObligations", input.onProfile, () =>
         projectDescentObligations(repoRoot, db),
+      );
+      profiled("projectDesignDeclarations", input.onProfile, () =>
+        projectDesignDeclarations(repoRoot, db),
       );
       profiled("projectVerificationBandExecution", input.onProfile, () =>
         projectVerificationBandExecution(db),
@@ -4289,6 +4839,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
         projectImprovementLog(db, projectionDeps),
       );
       profiled("projectScreens", input.onProfile, () => projectScreens(repoRoot, db));
+      profiled("projectVmodelReadModels", input.onProfile, () =>
+        projectVmodelReadModels(repoRoot, db),
+      );
       db.exec("COMMIT");
     } catch (error) {
       db.exec("ROLLBACK");

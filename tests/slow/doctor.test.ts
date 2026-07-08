@@ -5,11 +5,13 @@ import { describe, expect, it } from "vitest";
 import {
   checkActionBindingApprovalReadiness,
   checkAgentSlots,
+  checkApprovalReviewBinding,
   checkAllowlistSync,
   checkAssetDrift,
   checkBackfillResult,
   checkChangeImpact,
   checkChangeSetIntegrity,
+  checkClosureApplyBinding,
   checkCodexWrapperParity,
   checkCodingRules,
   checkCompletionDecisionPacket,
@@ -22,15 +24,18 @@ import {
   checkDependencyDrift,
   checkDescentObligation,
   checkDesignLanguage,
+  checkDriveModelBinding,
   checkDriveDbRegistration,
   checkDriveModelPassage,
   checkFrRoadmapCoverage,
+  checkFunctionDesignAbsorptionBinding,
   checkGateConfirm,
   checkGuardrailInvariants,
   checkHandover,
   checkHandoverDisciplineMessages,
   checkImplPlanTrace,
   checkJudgmentCoreCoverage,
+  checkL12CompatibilityBinding,
   checkL6Completion,
   checkL6FrCoverage,
   checkL7Completion,
@@ -39,19 +44,25 @@ import {
   checkModuleDrift,
   checkObjectiveEvidenceAudit,
   checkOracleTestTrace,
+  checkOperationScopeBinding,
   checkPairFreeze,
   checkPlaceholderDeps,
   checkPlanDod,
   checkPlanGovernance,
   checkPlanTraceGate,
+  checkProjectCurrentLocation,
   checkProjectHooks,
   checkPropagation,
   checkReadability,
   checkRefactorCandidateTriage,
   checkRegressionExpansion,
   checkRequirementsBindingConfig,
+  checkRecoveryExitBinding,
+  checkRecoveryHandoffBinding,
+  checkRecoveryRunwayBinding,
   checkReviewEvidence,
   checkRightArmVerificationStrategy,
+  checkRoadmapCurrentBinding,
   checkRoadmap,
   checkRuleAutomationClosure,
   checkRuleDrift,
@@ -68,6 +79,14 @@ import {
   checkVerificationProfile,
   checkVerifierProviderMismatch,
   checkVersionUpReadiness,
+  checkVisualizationViewModelBoundary,
+  checkVisualizationTreeViewBoundary,
+  checkVscodeExtensionDynamicBinding,
+  checkVmodelFit,
+  checkVmodelZipManifest,
+  checkZipAdoptionBinding,
+  checkZipReferenceRuntimeBoundary,
+  checkZipSourceBinding,
   completionDedicatedPacketBridgeViolations,
   type DoctorDeps,
   projectRuntimeModelTelemetryForDoctor,
@@ -86,7 +105,7 @@ import {
   loadS4DecisionReadinessInput,
 } from "../../src/lint/s4-decision-readiness";
 import type { AgentSlotsDeps, Slot } from "../../src/runtime/agent-slots";
-import { openHarnessDb } from "../../src/state-db/index";
+import { openHarnessDb, upsertRow } from "../../src/state-db/index";
 import { migrate } from "../../src/state-db/migration";
 
 const NOW = "2026-06-04T00:00:00.000Z";
@@ -2343,6 +2362,592 @@ describe("runDoctor", () => {
     expect(r.messages.some((m) => m.includes("scaffold stub"))).toBe(false);
   });
 
+  it("surfaces Project current-location as an advisory doctor check", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-current-location-"));
+    const db = openHarnessDb(":memory:", { repoRoot: root });
+    try {
+      migrate(db);
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: {
+          plan_id: "PLAN-L14-01-close",
+          kind: "impl",
+          layer: "L14",
+          drive: "agent",
+          status: "confirmed",
+          updated_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: {
+          plan_id: "PLAN-L7-999-new-impl",
+          kind: "add-impl",
+          layer: "L7",
+          drive: "agent",
+          status: "draft",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:HVC-L1-PLANNING-INTENT",
+          defined_id: "HVC-L1-PLANNING-INTENT",
+          declaration_kind: "企画 採用境界",
+          title: "L1 planning intent coverage",
+          layer: "L1",
+          owner: "TL",
+          status: "draft",
+          source_path: "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+          source: "test-fixture",
+          indexed_at: "2026-07-08T00:02:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "roadmap_rollups",
+        primaryKey: "rollup_id",
+        row: {
+          rollup_id: "program",
+          total_bands: 5,
+          covered_bands: 5,
+          parked_bands: 0,
+          uncovered_bands: 0,
+          total_gates: 0,
+          reached_gates: 0,
+          total_spans: 0,
+          confirmed_spans: 0,
+          frontier: "",
+          computed_at: "2026-07-08T00:03:00.000Z",
+        },
+      });
+      for (const [bandId, name] of [
+        ["upstream", "上流 (要求〜要件 L0-L3)"],
+        ["design", "設計 (基本〜機能 L4-L6)"],
+        ["impl", "実装+谷 (L7)"],
+        ["verification", "検証 (結合〜運用 L8-L14)"],
+        ["cutover", "cutover (legacy-source isolation)"],
+      ]) {
+        upsertRow(db, {
+          table: "roadmap_band_coverage",
+          primaryKey: "band_id",
+          row: {
+            band_id: bandId,
+            name,
+            status: "covered",
+            roadmap_ids: "",
+            computed_at: "2026-07-08T00:03:00.000Z",
+          },
+        });
+      }
+
+      const check = checkProjectCurrentLocation(root, db);
+
+      expect(check.ok).toBe(true);
+      expect(check.messages[0]).toContain("project-current-location - advisory");
+      expect(check.messages[0]).toContain("status=needs_recovery");
+      expect(check.messages[0]).toContain("route=drive:Recovery:recover-current-location");
+      expect(check.messages[0]).toContain("route_status=recovery_required");
+      expect(check.messages[0]).toContain("coverage done/missing/reverify=");
+      expect(check.messages.join("\n")).toContain(
+        "project-current-location - drive-route: drive:Recovery:recover-current-location status=recovery_required model=Recovery default=Forward return_to_design=true write=read-only",
+      );
+      expect(check.messages.join("\n")).toContain(
+        "project-current-location - reverse-scope: targets=docs/design/**,docs/test-design/**",
+      );
+      expect(check.messages.join("\n")).toContain(
+        "project-current-location - zip-adoption: status=missing adopt=0 complement=0 reject=0 missing=9",
+      );
+      expect(check.messages.join("\n")).toContain(
+        "project-current-location - tailoring-gate: status=needs_tailoring profile=solo required=0 optional=0 na=2 missing=4",
+      );
+      expect(check.messages.join("\n")).toContain("project-current-location - design-impact:");
+      expect(check.messages.join("\n")).toContain(
+        "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=no_close_ready_candidates recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --json",
+      );
+      expect(check.messages.join("\n")).toContain(
+        "project-current-location - next-action-ledger: total=1",
+      );
+      expect(check.messages.join("\n")).toContain("reverse=1");
+      expect(check.messages.join("\n")).toContain("l14_claim_with_l7_work");
+
+      const fitCheck = checkVmodelFit(root, db);
+      expect(fitCheck.ok).toBe(true);
+      expect(fitCheck.messages.join("\n")).toContain("vmodel-fit - advisory: status=needs_fit");
+      expect(fitCheck.messages.join("\n")).toContain(
+        "vmodel-fit - current-location-gate: status=needs_recovery current=needs_recovery/contradicted",
+      );
+      expect(fitCheck.messages.join("\n")).toContain(
+        "vmodel-fit - recovery-runway-gate: status=design_reverse_required blocking=1 machine=0 approval=0 reverse=1 after_machine=1 phases=1 next=reverse_design phase=design_reverse gate=recompute_drive_model command=helix closure batch --action reverse_design --json execute=helix closure batch --action reverse_design --json",
+      );
+      expect(fitCheck.messages.join("\n")).toContain(
+        "vmodel-fit - recovery-runway-phases: 1:reverse_design:design_reverse:count=1:listed=1:remaining=0:gate=recompute_drive_model:signature=artifact:missing+execution:missing:plans=PLAN-L7-999-new-impl",
+      );
+
+      const boundaryCheck = checkVisualizationViewModelBoundary(root, db);
+      expect(boundaryCheck.ok).toBe(true);
+      expect(boundaryCheck.messages.join("\n")).toContain(
+        "visualization-view-model-boundary - OK: project=current_location,layer_progress,design_test_pair,relation_graph,runtime_evidence harness=harness_growth,skill_agent_telemetry",
+      );
+      expect(boundaryCheck.messages.join("\n")).toContain(
+        "command=helix progress view-model --json",
+      );
+      expect(boundaryCheck.messages.join("\n")).toContain(
+        "visualization-view-model-boundary - l12-compatibility=",
+      );
+      expect(boundaryCheck.messages.join("\n")).toContain("implementation:bound:L7->L6");
+      expect(boundaryCheck.messages.join("\n")).toContain(
+        "project-excluded=evidence.skill_invocations,evidence.model_runs,harness_growth",
+      );
+      expect(boundaryCheck.messages.join("\n")).toContain(
+        "harness-excluded=project_current_location.vmodel_fit,project_current_location.drive_route,project_current_location.closure,vmodel_zip_manifest,vmodel_zip_source_bindings,project_zip_adoption_decisions,project_tailoring_decisions,project_vmodel_regression_guards,project_vmodel_fit_blockers",
+      );
+
+      const treeBoundaryCheck = checkVisualizationTreeViewBoundary(root, db);
+      expect(treeBoundaryCheck.ok).toBe(true);
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "visualization-tree-view-boundary - OK: roots=project,harness",
+      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "policy=project-view-current-location harness-view-telemetry",
+      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "project/current-location/l12-compatibility",
+      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "project/current-location/l12-compatibility/l0_slide",
+      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "project/current-location/operation-scope/incident_recovery_route/observation-gap",
+      );
+
+      const vscodeDynamicBinding = checkVscodeExtensionDynamicBinding(root, db);
+      expect(vscodeDynamicBinding.ok).toBe(true);
+      expect(vscodeDynamicBinding.messages.join("\n")).toContain(
+        "vscode-extension-dynamic-binding - OK: roots=project,harness",
+      );
+      expect(vscodeDynamicBinding.messages.join("\n")).toContain(
+        "source=helix progress tree-view --json",
+      );
+
+      const compatibility = checkL12CompatibilityBinding(root, db);
+      expect(compatibility.ok).toBe(true);
+      expect(compatibility.messages.join("\n")).toContain("l12-compatibility-binding - OK");
+      expect(compatibility.messages.join("\n")).toContain(
+        "l12-compatibility-binding - l0-slide: declaration=HVC-L1-PLANNING-INTENT layer=L1",
+      );
+      expect(compatibility.messages.join("\n")).toContain("current=L14->L12");
+      expect(compatibility.messages.join("\n")).toContain("l0_slide=not_observed");
+      expect(compatibility.messages.join("\n")).toContain("function_design=not_observed");
+      expect(compatibility.messages.join("\n")).toContain("implementation=L6");
+      expect(compatibility.messages.join("\n")).toContain("operation=L12");
+      expect(compatibility.messages.join("\n")).toContain(
+        "l12-compatibility-binding - coverage-metadata:",
+      );
+      expect(compatibility.messages.join("\n")).toContain("L12:zip=");
+      expect(compatibility.messages.join("\n")).toContain("tailoring=HVM-TAILOR-OPERATION");
+      expect(compatibility.messages.join("\n")).toContain("remap_zip=");
+      expect(compatibility.messages.join("\n")).toContain("remap_tailoring=");
+
+      const roadmapBinding = checkRoadmapCurrentBinding(root, db);
+      expect(roadmapBinding.ok).toBe(true);
+      expect(roadmapBinding.messages.join("\n")).toContain("roadmap-current-binding -");
+      expect(roadmapBinding.messages.join("\n")).toContain("db=L12");
+      expect(roadmapBinding.messages.join("\n")).toContain(
+        "route=drive:Recovery:recover-current-location",
+      );
+      expect(roadmapBinding.messages.join("\n")).toContain(
+        "roadmap-current-binding - current-link:",
+      );
+      expect(roadmapBinding.messages.join("\n")).toContain(
+        "roadmap-current-binding - l12-coverage: bands=5/5 layers=L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12",
+      );
+      expect(roadmapBinding.messages.join("\n")).toContain("current=L14->L12");
+      expect(roadmapBinding.messages.join("\n")).toContain(
+        "drive_action=drive:Recovery:recover-current-location",
+      );
+      expect(roadmapBinding.messages.join("\n")).toContain(
+        "command=helix roadmap current --json",
+      );
+      expect(roadmapBinding.messages.join("\n")).toContain(
+        "postcheck=helix db rebuild && helix roadmap current --json && helix current-location --json && helix vmodel fit",
+      );
+
+      const driveBinding = checkDriveModelBinding(root, db);
+      expect(driveBinding.ok).toBe(true);
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - OK: selected=Recovery",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "route=drive:Recovery:recover-current-location",
+      );
+      expect(driveBinding.messages.join("\n")).toContain("coverage=");
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - dependency-closure:",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - reverse-dependency-closure:",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "docs=docs/design/**,docs/test-design/**",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - candidate-dependency-closure: Recovery:docs=docs/design/**+docs/test-design/**",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "Reverse:docs=docs/design/**+docs/test-design/**",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - selection-rationale: selected=Recovery default=Forward",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "trigger=L14 claim と L7/open evidence の矛盾",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - forward-gate: status=blocked",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "drive-model-binding - operation-verification: coverage=L12-operation-observability doc=docs/design/**,docs/test-design/**",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "impl=closure_next_action_ledger,design_declarations,gate_runs,runtime_verification_events,test_runs",
+      );
+      expect(driveBinding.messages.join("\n")).toContain(
+        "reverse_targets=docs/design/**,docs/test-design/**",
+      );
+      expect(driveBinding.messages.join("\n")).toContain("must_return=true");
+      expect(driveBinding.messages.join("\n")).toContain("1:Recovery:selected");
+      expect(driveBinding.messages.join("\n")).toContain("4:Forward:blocked");
+      expect(driveBinding.messages.join("\n")).toContain(
+        "postcheck=helix drive model --json && helix current-location --json && helix roadmap current --json && helix vmodel fit",
+      );
+
+      const recoveryRunway = checkRecoveryRunwayBinding(root, db);
+      expect(recoveryRunway.ok).toBe(true);
+      expect(recoveryRunway.messages.join("\n")).toContain("recovery-runway-binding - OK");
+      expect(recoveryRunway.messages.join("\n")).toContain(
+        "status=design_reverse_required blocking=1 machine=0 approval=0 reverse=1",
+      );
+      expect(recoveryRunway.messages.join("\n")).toContain("phases=1");
+      expect(recoveryRunway.messages.join("\n")).toContain(
+        "1:design_reverse:reverse_design:1:remaining=0:next=recompute_drive_model",
+      );
+
+      const recoveryHandoff = checkRecoveryHandoffBinding(root, db);
+      expect(recoveryHandoff.ok).toBe(true);
+      expect(recoveryHandoff.messages.join("\n")).toContain("recovery-handoff-binding - OK");
+      expect(recoveryHandoff.messages.join("\n")).toContain("status=none");
+
+      const recoveryExit = checkRecoveryExitBinding(root, db);
+      expect(recoveryExit.ok).toBe(true);
+      expect(recoveryExit.messages.join("\n")).toContain("recovery-exit-binding - OK");
+      expect(recoveryExit.messages.join("\n")).toContain(
+        "status=blocked remaining=1 selected=reverse_design",
+      );
+      expect(recoveryExit.messages.join("\n")).toContain(
+        "reverse_design:1:blocking=true:human=false",
+      );
+      expect(recoveryExit.messages.join("\n")).toContain(
+        "helix current-location --json && helix drive model --json && helix roadmap current --json && helix vmodel fit",
+      );
+
+      const approvalReview = checkApprovalReviewBinding(root, db);
+      expect(approvalReview.ok).toBe(true);
+      expect(approvalReview.messages.join("\n")).toContain("approval-review-binding - OK");
+      expect(approvalReview.messages.join("\n")).toContain(
+        "status=none action=close_ready count=0",
+      );
+
+      const closureApply = checkClosureApplyBinding(root, db);
+      expect(closureApply.ok).toBe(true);
+      expect(closureApply.messages.join("\n")).toContain("closure-apply-binding - OK");
+      expect(closureApply.messages.join("\n")).toContain(
+        "readiness=no_close_ready_candidates close_ready=0 allowed=false approval_valid=false patches=0/0",
+      );
+      expect(closureApply.messages.join("\n")).toContain(
+        "execute=helix closure apply --execute --approval-record <path> --json",
+      );
+
+      const operationScope = checkOperationScopeBinding(root, db);
+      expect(operationScope.ok).toBe(true);
+      expect(operationScope.messages.join("\n")).toContain("operation-scope-binding -");
+      expect(operationScope.messages.join("\n")).toContain("coverage=L12-operation-observability");
+      expect(operationScope.messages.join("\n")).toContain(
+        "required=log_design,kpi_metric,runtime_verification,operation_test,class_method_contract,incident_recovery_route",
+      );
+      expect(operationScope.messages.join("\n")).toContain(
+        "runtime_verification_events",
+      );
+      expect(operationScope.messages.join("\n")).toContain("operation-scope-binding - design=");
+      expect(operationScope.messages.join("\n")).toContain(
+        "operation-scope-binding - traces=HAT-VMFIT-07:",
+      );
+      expect(operationScope.messages.join("\n")).toContain(
+        "operation-scope-binding - observed-gap:",
+      );
+      expect(operationScope.messages.join("\n")).toContain(
+        "operation-scope-binding - view-nodes=observation-gap:6/6",
+      );
+
+      const zipRuntimeBoundary = checkZipReferenceRuntimeBoundary(root);
+      expect(zipRuntimeBoundary.ok).toBe(true);
+      expect(zipRuntimeBoundary.messages.join("\n")).toContain(
+        "zip-reference-runtime-boundary - OK",
+      );
+      expect(zipRuntimeBoundary.messages.join("\n")).toContain("policy=reference-only");
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+
+    const r = liveDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: project-current-location", "")).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: project-current-location", "closure-overview"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: visualization-view-model-boundary", "OK"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: visualization-tree-view-boundary", "OK"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: vscode-extension-dynamic-binding", "OK"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: vscode-extension-dynamic-binding",
+        "source=helix progress tree-view --json",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: visualization-view-model-boundary",
+        "l12-compatibility=pass",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: l12-compatibility-binding",
+        "current=L14->L12",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: l12-compatibility-binding", "l0_slide=L1"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: roadmap-current-binding",
+        "command=helix roadmap current --json",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: drive-model-binding", "selected=Recovery"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: drive-model-binding",
+        "operation-verification: coverage=L12-operation-observability",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: drive-model-binding",
+        "runtime_verification_events",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-runway-binding",
+        "status=machine_work_available",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-handoff-binding",
+        "status=approval_pending phase=approval",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=match"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-exit-binding",
+        "remaining=344 selected=repair_failed_evidence",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: approval-review-binding",
+        "status=approval_required action=close_ready count=230",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: closure-apply-binding",
+        "readiness=approval_required close_ready=230 allowed=false approval_valid=false patches=20/20",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: operation-scope-binding",
+        "coverage=L12-operation-observability",
+      ),
+    ).toBe(true);
+      expect(
+        hasDoctorMessageWith(
+          r.messages,
+          "doctor: operation-scope-binding",
+          "observed_gap=",
+        ),
+      ).toBe(true);
+      expect(
+        hasDoctorMessageWith(
+          r.messages,
+          "doctor: operation-scope-binding",
+        "observed-gap: status=watch",
+      ),
+    ).toBe(true);
+      expect(
+        hasDoctorMessageWith(
+          r.messages,
+          "doctor: operation-scope-binding",
+          "view-nodes=observation-gap:6/6",
+        ),
+      ).toBe(true);
+      expect(
+        hasDoctorMessageWith(
+          r.messages,
+          "doctor: operation-scope-binding",
+          "class_method_contract:HAC-VMFIT-02b+HOPS-VMFIT-CONTRACT-01+HVC-L6-IMPLEMENTATION-BINDING+HVM-TAILOR-DETAIL-CONTRACT",
+        ),
+      ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: operation-scope-binding",
+        "incident_recovery_route:HOPS-VMFIT-INCIDENT-ROUTE-01",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: operation-scope-binding",
+        "traces=HAT-VMFIT-07:4/4",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "adopt=5 complement=3 reject=1 missing=0",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "references=9/9 kinds=supports,complements,constrains",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "decision-db: rows=9/9 table=project_zip_adoption_decisions categories=adopt:5,complement:3,reject:1",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "receivers=HVM-ADOPT-01:design_declarations+design_references+vmodel_zip_source_bindings",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "HVM-COMP-02:project_current_location+visualization_view_model+visualization_tree_view+vmodel_zip_source_bindings",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "HVM-REJECT-01:zip-reference-runtime-boundary+vmodel_zip_manifest",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-adoption-binding",
+        "matrix-signature: entries=703 extensions=yaml:208,md:161,xlsx:263,png:26,py:29,json:9,feature:3,yml:1,txt:1 required_sources=13/13",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-source-binding",
+        "status=complete bound=11 missing=0 advisory=0",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: zip-reference-runtime-boundary",
+        "policy=reference-only",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: function-design-absorption-binding",
+        "policy=abolished detail=covered tailoring=declared",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: function-design-absorption-binding",
+        "declarations=detail:HOPS-VMFIT-CONTRACT-01+HVM-TAILOR-DETAIL-CONTRACT",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: function-design-absorption-binding",
+        "tailoring-db: table=project_tailoring_decisions detail=required/詳細/declared",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: function-design-absorption-binding",
+        "canonical-sources=docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md,docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      ),
+    ).toBe(true);
+    expect(hasDoctorMessageWith(r.messages, "doctor: vmodel-fit", "current=needs_recovery")).toBe(
+      true,
+    );
+  });
+
   it("surfaces roadmap-rollup as a hard gate summary line", () => {
     const r = liveDoctor();
     const rollupLines = r.messages.filter((m) => m.startsWith("doctor: roadmap-rollup"));
@@ -2666,6 +3271,25 @@ describe("runDoctor", () => {
       ["runtime-portability", checkRuntimePortability(missingRoot)],
       ["db-projection-coverage", checkDbProjectionCoverage(missingRoot)],
       ["db-projection-ingestion", checkDbProjectionIngestion(missingRoot)],
+      ["project-current-location", checkProjectCurrentLocation(missingRoot)],
+      ["visualization-view-model-boundary", checkVisualizationViewModelBoundary(missingRoot)],
+      ["visualization-tree-view-boundary", checkVisualizationTreeViewBoundary(missingRoot)],
+      ["vscode-extension-dynamic-binding", checkVscodeExtensionDynamicBinding(missingRoot)],
+      ["l12-compatibility-binding", checkL12CompatibilityBinding(missingRoot)],
+      ["roadmap-current-binding", checkRoadmapCurrentBinding(missingRoot)],
+      ["drive-model-binding", checkDriveModelBinding(missingRoot)],
+      ["recovery-runway-binding", checkRecoveryRunwayBinding(missingRoot)],
+      ["recovery-handoff-binding", checkRecoveryHandoffBinding(missingRoot)],
+      ["recovery-exit-binding", checkRecoveryExitBinding(missingRoot)],
+      ["approval-review-binding", checkApprovalReviewBinding(missingRoot)],
+      ["closure-apply-binding", checkClosureApplyBinding(missingRoot)],
+      ["operation-scope-binding", checkOperationScopeBinding(missingRoot)],
+      ["zip-adoption-binding", checkZipAdoptionBinding(missingRoot)],
+      ["zip-source-binding", checkZipSourceBinding(missingRoot)],
+      ["zip-reference-runtime-boundary", checkZipReferenceRuntimeBoundary(missingRoot)],
+      ["function-design-absorption-binding", checkFunctionDesignAbsorptionBinding(missingRoot)],
+      ["vmodel-zip-manifest", checkVmodelZipManifest(missingRoot)],
+      ["vmodel-fit", checkVmodelFit(missingRoot)],
       ["rule-drift", checkRuleDrift(missingRoot)],
       ["gate-confirm", checkGateConfirm(missingRoot)],
       ["plan-dod", checkPlanDod(missingRoot)],
@@ -2898,7 +3522,9 @@ describe("runDoctor", () => {
 
   it("U-GREENCMD-003: keeps all hard gates wired into runDoctor hard-gate aggregation", () => {
     const source = readFileSync(join(process.cwd(), "src", "doctor", "index.ts"), "utf8");
-    const okExpression = source.match(/return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/)?.[1] ?? "";
+    const runFullDoctorBody =
+      source.match(/function runFullDoctor[\s\S]*?return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/)
+        ?.[1] ?? "";
     const expectedHardGates = [
       "backfill",
       "scrumRev",
@@ -2920,6 +3546,7 @@ describe("runDoctor", () => {
       "runtimePortability",
       "dbProjectionCoverage",
       "dbProjectionIngestion",
+      "vscodeExtensionDynamicBinding",
       "verifierProviderMismatch",
       "ruleDrift",
       "gateConfirm",
@@ -2958,7 +3585,9 @@ describe("runDoctor", () => {
       "regressionExpansion",
     ];
 
-    expect(expectedHardGates.filter((name) => !okExpression.includes(`${name}.ok`))).toEqual([]);
+    expect(expectedHardGates.filter((name) => !runFullDoctorBody.includes(`${name}.ok`))).toEqual(
+      [],
+    );
   });
 
   it("verifier-provider-mismatch doctor check blocks self-evaluation evidence", () => {

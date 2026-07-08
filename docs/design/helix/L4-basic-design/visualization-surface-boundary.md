@@ -34,6 +34,12 @@ top-level を **2 root** に分割する（L3 §1 情報設計判断）。両 ro
 | Harness | Harness growth | Tree View（資産クラス別現在値） | 時系列 trend panel | `progress.*` 現在値 ＋ `graph.latest_snapshot_id` / `graph.latest_snapshot_hash` / `graph.latest_node_count` / `graph.latest_edge_count`（L6 で時系列 field 新設） |
 | Harness | Skill/agent telemetry | Tree View（skill/model 一覧） | metrics table/trend | `evidence.skill_invocations` / `evidence.model_runs` |
 
+- **境界の機械検出**: Project root は対象プロジェクトの現在地・工程表・L12 設計カバレッジ・駆動モデル・
+  closure/evidence・runtime evidence を所有する。Harness root は HELIX/HARNESS 自体の成長・skill/model
+  telemetry・ハーネス運用メトリクスを所有する。L6 view-model は `view_boundaries.project` /
+  `view_boundaries.harness` を出力し、`owned_views` / `source_fields` / `excluded_fields` により
+  view の混入を機械検出できるようにする。特に `project_current_location.*` と ZIP/L12 fit は Project view
+  側、`evidence.skill_invocations` / `evidence.model_runs` は Harness view 側を主 surface とする。
 - **Tree View first**: 一覧/階層 navigation は Tree View に寄せ、graph/timeline/trend など VS Code
   native view で表現しづらい描画のみ Webview panel に置く（Webview を濫用しない）。
 - **階層構造**: 「view 種別 → 集計 bucket → 個別 row」の 3 段を既定にし、row から drill-down（§4）へ接続する。

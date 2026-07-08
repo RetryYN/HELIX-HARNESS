@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -2162,6 +2162,9 @@ describe("L7 CLI surface closure", () => {
       "helix progress snapshot",
     );
     expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
+      "helix progress view-model",
+    );
+    expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
       "helix graph export",
     );
   });
@@ -2276,6 +2279,2310 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   }, 15_000);
+
+  it("exposes Project view current-location and drive recommendation from DB projection", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "docs", "design", "helix", "L3-requirements"), { recursive: true });
+      mkdirSync(join(root, "docs", "test-design", "helix"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L14-01-close.md"),
+        [
+          "---",
+          "plan_id: PLAN-L14-01-close",
+          "kind: impl",
+          "layer: L14",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-08T00:00:00.000Z",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-new-impl.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-new-impl",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: draft",
+          "updated: 2026-07-08T00:01:00.000Z",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "design", "helix", "L3-requirements", "fixture.md"),
+        [
+          "---",
+          "spec:",
+          "  defines:",
+          "    - id: HR-FR-CLI-01",
+          "      kind: 機能要件",
+          "      layer: L3",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "test-design", "helix", "fixture-acceptance.md"),
+        [
+          "---",
+          "spec:",
+          "  defines:",
+          "    - id: HAT-CLI-01",
+          "      kind: 受入テスト",
+          "      layer: L11",
+          "  refs:",
+          "    - from: HAT-CLI-01",
+          "      to: HR-FR-MISSING",
+          "      kind: accepts",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const json = runCliIn(root, ["current-location", "--json"]);
+      const payload = JSON.parse(json.stdout);
+
+      expect(json.status).toBe(0);
+      expect(payload).toMatchObject({
+        schema_version: "project-current-location.v1",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+          completion_boundary: "contradicted",
+        },
+        drive_recommendation: {
+          model: "Recovery",
+          reverseTargets: ["docs/design/**", "docs/test-design/**"],
+        },
+	        drive_route: {
+	          routeId: "drive:Recovery:recover-current-location",
+          status: "recovery_required",
+          selectedModel: "Recovery",
+          defaultModel: "Forward",
+          mustReturnToDesign: true,
+          forward: {
+            allowed: false,
+          },
+          reverse: {
+            required: true,
+            targets: ["docs/design/**", "docs/test-design/**"],
+            queueActions: ["collect_evidence"],
+            ledgerIds: ["next-action:closure:collect_evidence"],
+	          },
+	        },
+	        recovery: {
+	          status: "active",
+	          selected_closure_action: "collect_evidence",
+	          exit_forecast: {
+	            status: "blocked",
+	            remaining_queue_items: 1,
+	            next_command: "helix closure batch --action collect_evidence --json",
+	          },
+	          automation_runway: {
+	            status: "machine_work_available",
+	            machine_actionable_count: 1,
+	            human_approval_count: 0,
+	            remaining_after_machine_lanes: 0,
+	            next_machine_action: "collect_evidence",
+	            next_machine_command: "helix closure batch --action collect_evidence --json",
+	            next_machine_probe_command:
+	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	            next_machine_materialize_command:
+	              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	          },
+	          reentry_forecast: {
+	            status: "machine_phase_pending",
+	            next_phase_action: "collect_evidence",
+	            next_phase_type: "machine",
+	            next_command: "helix closure batch --action collect_evidence --json",
+	            next_execution_command:
+	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	          },
+	        },
+	        roadmap_position: {
+          status: "uncovered",
+          rollup: {
+            total_bands: 5,
+            covered_bands: 0,
+            parked_bands: 2,
+            uncovered_bands: 3,
+            total_gates: 0,
+            reached_gates: 0,
+          },
+          frontier: ["design", "impl", "upstream"],
+          current_band_ids: ["design", "impl", "upstream"],
+          current_gate_ids: [],
+        },
+      });
+      expect(payload.counts).toMatchObject({
+        plans_total: 2,
+        open_l7_plans: 1,
+        terminal_l14_plans: 1,
+        design_declarations: 2,
+        design_references: 1,
+        unresolved_design_references: 1,
+      });
+      expect(payload.closure).toMatchObject({
+        status: "contradicted",
+        l7_open_plan_ids: ["PLAN-L7-999-new-impl"],
+        terminal_l14_plan_ids: ["PLAN-L14-01-close"],
+        remediation: {
+          done: 0,
+          missing: 1,
+          reverify: 2,
+        },
+        queue: {
+          total: 1,
+          route_counts: {
+            close_ready: 0,
+            collect_evidence: 1,
+            repair_failed_evidence: 0,
+            reverse_design: 0,
+          },
+          items: [
+            expect.objectContaining({
+              planId: "PLAN-L7-999-new-impl",
+              sourcePath: "docs/plans/PLAN-L7-999-new-impl.md",
+              priority: 30,
+              driveModel: "Reverse",
+              nextAction: "collect_evidence",
+              evidence: expect.objectContaining({
+                status: "partial",
+                artifactPaths: ["docs/plans/PLAN-L7-999-new-impl.md"],
+                testRuns: {
+                  total: 0,
+                  passed: 0,
+                  failed: 0,
+                },
+              }),
+            }),
+          ],
+        },
+        packets: {
+          total: 1,
+          items: [
+            expect.objectContaining({
+              packetId: "closure:collect_evidence",
+              nextAction: "collect_evidence",
+              count: 1,
+              planIds: ["PLAN-L7-999-new-impl"],
+            }),
+          ],
+        },
+      });
+      expect(payload.coverage.l12_layers).toHaveLength(12);
+      expect(payload.coverage.l12_layers).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            layer: "L6",
+            status: "reverify",
+            legacyLayers: ["L7"],
+          }),
+          expect.objectContaining({
+            layer: "L12",
+            status: "reverify",
+            legacyLayers: ["L14"],
+          }),
+        ]),
+      );
+      expect(payload.findings.map((finding: { code: string }) => finding.code)).toContain(
+        "unresolved_design_reference",
+      );
+
+      const text = runCliIn(root, ["current-location"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("current-location: layer=L14 l12=L12 status=needs_recovery");
+      expect(text.stdout).toContain(
+        "drive-route: drive:Recovery:recover-current-location status=recovery_required model=Recovery default=Forward return_to_design=true write=read-only",
+      );
+	      expect(text.stdout).toContain(
+	        "drive-reverse-scope: targets=docs/design/**,docs/test-design/**",
+	      );
+	      expect(text.stdout).toContain(
+	        "recovery-exit: status=blocked remaining=1 blockers=2 next=helix closure batch --action collect_evidence --json",
+	      );
+	      expect(text.stdout).toContain(
+	        "recovery-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+	      expect(text.stdout).toContain(
+	        "recovery-reentry: status=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+	      expect(text.stdout).toContain("l12-coverage: done=");
+      expect(text.stdout).toContain("design-impact: declarations=");
+      expect(text.stdout).toContain(
+        "roadmap-position: status=uncovered bands=0/5 parked=2 uncovered=3",
+      );
+      expect(text.stdout).toContain("operation-scope: designed=");
+      expect(text.stdout).toContain("artifact-remap: done=");
+      expect(text.stdout).toContain("artifact-remap-layers: L1=");
+      expect(text.stdout).toContain("closure: status=contradicted open_l7=1 l14_claims=1");
+      expect(text.stdout).toContain("closure-remediation: done=0 missing=1 reverify=2");
+      expect(text.stdout).toContain("closure-queue: total=1 head=PLAN-L7-999-new-impl");
+      expect(text.stdout).toContain("closure-queue-evidence: ready=0 partial=1 missing=0");
+      expect(text.stdout).toContain("closure-queue-route: close=0 collect=1 repair=0 reverse=0");
+      expect(text.stdout).toContain("closure-packets: total=1 collect_evidence=1");
+      expect(text.stdout).toContain(
+        "closure-automation: first=closure-batch:2:collect_evidence command=helix closure batch --action collect_evidence --json",
+      );
+      expect(text.stdout).toContain("drive=Recovery");
+      expect(text.stdout).toContain("reverse-targets=docs/design/**,docs/test-design/**");
+
+      const driveModelJson = runCliIn(root, ["drive", "model", "--json"]);
+      expect(driveModelJson.status).toBe(0);
+      const driveModelPayload = JSON.parse(driveModelJson.stdout);
+      expect(driveModelPayload).toMatchObject({
+        schema_version: "project-drive-model.v1",
+        selected_model: "Recovery",
+        default_model: "Forward",
+        selection_status: "recovery_required",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+        },
+        selected_candidate: {
+          model: "Recovery",
+          route_id: "drive:Recovery:recover-current-location",
+          command: "helix closure evidence-plan --json",
+          coverage_ids: expect.arrayContaining([
+            "L12-operation-observability",
+            "L5-detailed-contract",
+            "L6-implementation-binding",
+            "L7-tdd-closure",
+          ]),
+        },
+        blocked_models: expect.arrayContaining(["Reverse", "Forward"]),
+        available_models: expect.arrayContaining(["Recovery"]),
+        write_policy: "read-only",
+        source_command: "helix drive model --json",
+      });
+      expect(driveModelPayload.candidates).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            model: "OperationVerification",
+            route_id: "drive:OperationVerification:verify-runtime-scope",
+            coverage_ids: ["L12-operation-observability"],
+            doc_dependencies: ["docs/design/**", "docs/test-design/**"],
+            implementation_dependencies: expect.arrayContaining([
+              "design_declarations",
+              "runtime_verification_events",
+              "closure_next_action_ledger",
+            ]),
+          }),
+          expect.objectContaining({
+            model: "Additive",
+            route_id: "drive:Additive:add-design-then-impl",
+          }),
+        ]),
+      );
+      const driveModelText = runCliIn(root, ["drive", "model"]);
+      expect(driveModelText.status).toBe(0);
+      expect(driveModelText.stdout).toContain(
+        "drive model: selected=Recovery status=recovery_required default=Forward current=L14->L12 write=read-only",
+      );
+      expect(driveModelText.stdout).toContain(
+        "selected-route=drive:Recovery:recover-current-location command=helix closure evidence-plan --json",
+      );
+      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L12-operation-observability/);
+      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L5-detailed-contract/);
+      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L6-implementation-binding/);
+      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L7-tdd-closure/);
+      expect(driveModelText.stdout).toContain("candidate: 1.Recovery selected");
+
+      const recoveryPlanJson = runCliIn(root, ["recovery", "plan", "--limit", "1", "--json"]);
+      expect(recoveryPlanJson.status).toBe(0);
+      const recoveryPlanPayload = JSON.parse(recoveryPlanJson.stdout);
+      expect(recoveryPlanPayload).toMatchObject({
+        schema_version: "project-recovery-plan.v1",
+        status: "active",
+        selected_closure_action: "collect_evidence",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+        },
+        drive_model: {
+          selected_model: "Recovery",
+        },
+        closure_evidence_plan: {
+          schema_version: "project-closure-evidence-plan.v1",
+          selected_action: "collect_evidence",
+          total: 1,
+          listed: 1,
+        },
+	        automation_runway: {
+	          status: "machine_work_available",
+	          machine_actionable_count: 1,
+	          human_approval_count: 0,
+	          design_reverse_count: 0,
+	          remaining_after_machine_lanes: 0,
+	          next_machine_action: "collect_evidence",
+	          next_machine_command: "helix closure batch --action collect_evidence --json",
+	          next_machine_probe_command:
+	            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	          phases: [
+	            expect.objectContaining({
+	              sequence: 1,
+	              action: "collect_evidence",
+	              phase_type: "machine",
+	              count: 1,
+	              command: "helix closure batch --action collect_evidence --json",
+	              evidence_probe_command:
+	                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	            }),
+	          ],
+	        },
+	        automation_boundaries: expect.arrayContaining([
+	          expect.objectContaining({
+	            action: "collect_evidence",
+	            automation_class: "evidence_required",
+	            evidence_probe_command:
+	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	            evidence_materialize_command:
+	              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	            evidence_approval_draft_command:
+	              "helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --json",
+	            evidence_apply_dry_run_command:
+	              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+	            evidence_apply_execute_command:
+	              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+	            evidence_apply_write_policy: "approval-required",
+	          }),
+	        ]),
+	        reentry_forecast: {
+	          status: "machine_phase_pending",
+	          current_blocking_count: 1,
+	          blocking_after_machine_lanes: 0,
+	          required_phase_count: 1,
+	          next_phase_action: "collect_evidence",
+	          next_phase_type: "machine",
+	          next_gate: "recompute_drive_model",
+	          next_command: "helix closure batch --action collect_evidence --json",
+	          next_execution_command:
+	            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	        },
+        write_policy: "read-only",
+        source_command: "helix recovery plan --json",
+      });
+      expect(recoveryPlanPayload.steps.map((step: { step_id: string }) => step.step_id)).toEqual([
+        "detect-current-location",
+        "plan-closure-evidence",
+        "review-or-repair-closure",
+        "recompute-drive-model",
+        "verify-vmodel-fit",
+      ]);
+      const recoveryPlanText = runCliIn(root, ["recovery", "plan", "--limit", "1"]);
+      expect(recoveryPlanText.status).toBe(0);
+      expect(recoveryPlanText.stdout).toContain(
+        "recovery plan: status=active selected=Recovery current=L14->L12 closure_action=collect_evidence write=read-only",
+      );
+	      expect(recoveryPlanText.stdout).toContain(
+	        "automation-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+	      expect(recoveryPlanText.stdout).toContain(
+	        "reentry-forecast: status=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+      expect(recoveryPlanText.stdout).toContain(
+        "runway-phase: 1.collect_evidence machine count=1 selected=true human=false remaining=0 next_gate=recompute_drive_model command=helix closure batch --action collect_evidence --json",
+      );
+      expect(recoveryPlanText.stdout).toContain(
+        "evidence-plan: action=collect_evidence total=1 listed=1",
+      );
+	      expect(recoveryPlanText.stdout).toContain(
+	        "automation: collect_evidence class=evidence_required count=1 mutation=false approval=false",
+	      );
+	      expect(recoveryPlanText.stdout).toContain(
+	        "probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize=helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json approval_draft=helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --json apply_dry_run=helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json apply_execute=helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json apply_write=approval-required",
+	      );
+	      expect(recoveryPlanText.stdout).toContain("step: 1.detect-current-location ready");
+
+      const roadmapCurrentJson = runCliIn(root, ["roadmap", "current", "--json"]);
+      expect(roadmapCurrentJson.status).toBe(0);
+      const roadmapCurrentPayload = JSON.parse(roadmapCurrentJson.stdout);
+      expect(roadmapCurrentPayload).toMatchObject({
+        schema_version: "project-roadmap-current.v1",
+        status: "contradicted",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+        },
+        drive_route: {
+          routeId: "drive:Recovery:recover-current-location",
+        },
+        consistency: {
+          aligned: false,
+          db_current_l12_layer: "L12",
+          roadmap_current_l12_layers: expect.arrayContaining(["L6", "L7"]),
+          roadmap_projected_l12_layers: expect.arrayContaining(["L6", "L7"]),
+          roadmap_terminal_l12_layers: [],
+          alignment_basis: "frontier",
+          blocking_findings: expect.arrayContaining(["unresolved_design_reference"]),
+        },
+        counts: expect.objectContaining({
+          current_bands: 3,
+        }),
+        write_policy: "read-only",
+        source_command: "helix roadmap current --json",
+      });
+      expect(roadmapCurrentPayload.actions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action_id: "drive:Recovery:recover-current-location",
+            category: "drive_route",
+            status: "blocked",
+          }),
+          expect.objectContaining({
+            action_id: "closure-queue",
+            category: "closure",
+            status: "blocked",
+            automation_class: "machine",
+            phase_action: "collect_evidence",
+            command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            batch_command: "helix closure batch --action collect_evidence --json",
+            review_command: "helix closure review-bundle --action collect_evidence --json",
+            evidence_patch_command: "helix closure evidence-patch --action collect_evidence --json",
+            evidence_probe_command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            evidence_materialize_command:
+              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            evidence_approval_draft_command:
+              "helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --json",
+            evidence_apply_dry_run_command:
+              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+            evidence_apply_execute_command:
+              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json",
+            evidence_apply_write_policy: "approval-required",
+          }),
+        ]),
+      );
+      expect(roadmapCurrentPayload.counts.blockers).toBeGreaterThanOrEqual(3);
+      const roadmapCurrentText = runCliIn(root, ["roadmap", "current"]);
+      expect(roadmapCurrentText.status).toBe(0);
+      expect(roadmapCurrentText.stdout).toContain(
+        "roadmap current: status=contradicted aligned=false basis=frontier db=L12",
+      );
+      expect(roadmapCurrentText.stdout).toContain("projected=L1,L2,L3,L4,L5,L6,L7");
+      expect(roadmapCurrentText.stdout).toContain(
+        "route=drive:Recovery:recover-current-location write=read-only",
+      );
+      expect(roadmapCurrentText.stdout).toContain(
+        "postcheck=helix db rebuild && helix roadmap current --json && helix current-location --json && helix vmodel fit",
+      );
+      expect(roadmapCurrentText.stdout).toContain(
+        "action: closure-queue closure/blocked auto=machine phase=collect_evidence",
+      );
+      expect(roadmapCurrentText.stdout).toContain(
+        "command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
+      expect(roadmapCurrentText.stdout).toContain(
+        "surfaces=batch:helix closure batch --action collect_evidence --json review:helix closure review-bundle --action collect_evidence --json patch:helix closure evidence-patch --action collect_evidence --json probe:helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize:helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json approval_draft:helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --json apply_dry_run:helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json apply_execute:helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --json apply_write:approval-required",
+      );
+
+      const remapBatchJson = runCliIn(root, [
+        "artifact-remap",
+        "batch",
+        "--layer",
+        "L6",
+        "--status",
+        "reverify",
+        "--json",
+      ]);
+      expect(remapBatchJson.status).toBe(0);
+      const remapBatchPayload = JSON.parse(remapBatchJson.stdout);
+      expect(remapBatchPayload).toMatchObject({
+        schema_version: "project-artifact-remap-batch.v1",
+        selected_layer: "L6",
+        selected_status: "reverify",
+        total: 1,
+        listed: 1,
+        counts: {
+          reverify: 1,
+        },
+        recommended_next_action: {
+          model: "Reverse",
+          command: "helix closure batch --action collect_evidence --json",
+        },
+        items: [
+          expect.objectContaining({
+            artifactId: "PLAN-L7-999-new-impl",
+            status: "reverify",
+            driveModel: "Reverse",
+            zipSourceBindingIds: expect.arrayContaining([
+              "zip-source:l12-level-definition",
+              "zip-source:catalog",
+            ]),
+            tailoringRuleIds: ["HVM-TAILOR-DETAIL-CONTRACT"],
+            tailoringDetailLevels: ["詳細"],
+            closureLink: expect.objectContaining({
+              nextAction: "collect_evidence",
+              evidenceStatus: "partial",
+              batchCommand: "helix closure batch --action collect_evidence --json",
+            }),
+          }),
+        ],
+      });
+      const remapBatchText = runCliIn(root, [
+        "artifact-remap",
+        "batch",
+        "--layer",
+        "L6",
+        "--status",
+        "reverify",
+      ]);
+      expect(remapBatchText.status).toBe(0);
+      expect(remapBatchText.stdout).toContain(
+        "artifact-remap batch: layer=L6 status=reverify total=1 listed=1",
+      );
+      expect(remapBatchText.stdout).toContain("item: PLAN-L7-999-new-impl");
+      expect(remapBatchText.stdout).toContain("coverage: L6-implementation-binding");
+      expect(remapBatchText.stdout).toContain("zip-source:l12-level-definition");
+      expect(remapBatchText.stdout).toContain("zip-source:catalog");
+      expect(remapBatchText.stdout).toContain("zip-source:spec-types-reference");
+      expect(remapBatchText.stdout).toContain("tailoring=HVM-TAILOR-DETAIL-CONTRACT detail=詳細");
+      expect(remapBatchText.stdout).toContain(
+        "closure-link: next=collect_evidence evidence=partial command=helix closure batch --action collect_evidence --json",
+      );
+
+      const fitJson = runCliIn(root, ["vmodel", "fit", "--json"]);
+      expect(fitJson.status).toBe(0);
+      const fitPayload = JSON.parse(fitJson.stdout);
+      expect(fitPayload).toMatchObject({
+        schema_version: "vmodel-fit.v1",
+        status: "needs_fit",
+        write_policy: "read-only",
+        source_command: "helix vmodel fit --json",
+        current_location_command: "helix current-location --json",
+        view_command: "helix progress tree-view --json",
+        design_coverage_gate: {
+          status: "needs_design",
+        },
+        zip_adoption: {
+          status: "missing",
+          missing: 9,
+        },
+        zip_manifest: {
+          status: "advisory_missing",
+          present: false,
+          entries_total: 0,
+          required_present: 0,
+          required_total: 13,
+        },
+        tailoring_gate: {
+          status: "needs_tailoring",
+          missing_required: 4,
+        },
+        synthesis: {
+	          status: "needs_fit",
+	          common_adopted: 0,
+	          helix_complemented: 0,
+	          rejected: 0,
+	          missing_decisions: 9,
+	          tailoring_status: "needs_tailoring",
+	          function_design_policy: "abolished",
+	          current_reentry_status: "machine_phase_pending",
+	          next_command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	        },
+        next_actions: expect.arrayContaining([
+          expect.objectContaining({
+            priority: 20,
+            blocker_code: "current_location",
+	            automation_class: "machine",
+	            count: 1,
+	            gate: "recompute_drive_model",
+	            command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	            work_bucket: expect.objectContaining({
+              evidence_patch_command: "helix closure evidence-patch --action collect_evidence --json",
+              evidence_patch_write_policy: "approval-required",
+              evidence_patch_candidate_count: 3,
+              evidence_approval_draft_command:
+                "helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --json",
+            }),
+          }),
+        ]),
+        regression_guards: {
+          status: "needs_attention",
+          pass: expect.any(Number),
+          watch: expect.any(Number),
+          fail: expect.any(Number),
+          guards: expect.arrayContaining([
+            expect.objectContaining({
+              guard_id: "design-coverage",
+              status: "fail",
+              command: "helix current-location --json",
+            }),
+	            expect.objectContaining({
+	              guard_id: "current-location-reentry",
+	              status: "watch",
+	              command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	            }),
+          ]),
+        },
+        current_location_gate: {
+          status: "needs_recovery",
+          current_status: "needs_recovery",
+          completion_boundary: "contradicted",
+          recommended_model: "Recovery",
+          recovery_runway: {
+            status: "machine_work_available",
+            machine_actionable_count: 1,
+            human_approval_count: 0,
+            next_machine_action: "collect_evidence",
+          },
+          reentry_forecast: {
+            status: "machine_phase_pending",
+            current_blocking_count: 1,
+            blocking_after_machine_lanes: 0,
+            required_phase_count: 1,
+	            next_phase_action: "collect_evidence",
+	            next_gate: "recompute_drive_model",
+	            next_execution_command:
+	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	          },
+        },
+        recovery_runway_gate: {
+          status: "machine_work_available",
+          current_blocking_count: 1,
+          machine_actionable_count: 1,
+          human_approval_count: 0,
+          design_reverse_count: 0,
+          remaining_after_machine_lanes: 0,
+          required_phase_count: 1,
+          next_phase_action: "collect_evidence",
+          next_phase_type: "machine",
+          next_gate: "recompute_drive_model",
+          next_execution_command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          phases: [
+            expect.objectContaining({
+              sequence: 1,
+              action: "collect_evidence",
+              phase_type: "machine",
+              count: 1,
+              listed: 1,
+              omitted: 0,
+              evidence_signature: "execution:missing",
+              sample_plan_ids: ["PLAN-L7-999-new-impl"],
+              sample_source_paths: ["docs/plans/PLAN-L7-999-new-impl.md"],
+              remaining_after_phase: 0,
+              next_gate: "recompute_drive_model",
+              evidence_probe_command:
+                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            }),
+          ],
+        },
+        design_integrity: {
+          unresolved_references: 1,
+        },
+      });
+      const fitText = runCliIn(root, ["vmodel", "fit"]);
+      expect(fitText.status).toBe(0);
+      expect(fitText.stdout).toContain("vmodel fit: status=needs_fit");
+      expect(fitText.stdout).toContain("current=needs_recovery");
+	      expect(fitText.stdout).toContain(
+	        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+      expect(fitText.stdout).toContain("regression-guards: status=needs_attention");
+      expect(fitText.stdout).toContain(
+        "recovery-runway-gate: status=machine_work_available blocking=1 machine=1 approval=0 reverse=0 after_machine=0 phases=1 next=collect_evidence phase=machine gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
+      expect(fitText.stdout).toContain(
+        "recovery-runway-phases: 1:collect_evidence:machine:count=1:listed=1:remaining=0:gate=recompute_drive_model:signature=execution:missing:plans=PLAN-L7-999-new-impl",
+      );
+      expect(fitText.stdout).toContain(
+        "regression-guard: design-coverage fail count=",
+      );
+	      expect(fitText.stdout).toContain(
+	        "regression-guard: current-location-reentry watch count=1 command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+	      expect(fitText.stdout).toContain(
+	        "next-action: 20.current_location machine count=1 gate=recompute_drive_model command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+      expect(fitText.stdout).toContain("next-work-bucket: 20.current_location");
+      expect(fitText.stdout).toContain("command=helix closure batch --action collect_evidence --json");
+      expect(fitText.stdout).toContain(
+        "patch=helix closure evidence-patch --action collect_evidence --json patch_candidates=3 patch_write=approval-required",
+      );
+      expect(fitText.stdout).toContain(
+        "approval_draft=helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --json",
+      );
+      expect(fitText.stdout).toContain(
+        "handoff=generate_probe handoff_command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json handoff_present=0 handoff_missing=2 handoff_unchecked=0",
+      );
+      mkdirSync(join(root, ".helix", "tmp", "closure"), { recursive: true });
+      writeFileSync(
+        join(root, ".helix", "tmp", "closure", "collect_evidence-probe-record.json"),
+        "{}\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, ".helix", "tmp", "closure", "collect_evidence-approval-draft.yml"),
+        [
+          "decision_id: closure-evidence-materialize:collect_evidence",
+          "outcome: pending_human_review",
+          "approval_scope_digest: sha256:test",
+          "reviewed_candidate_count: 3",
+          "reason: <日本語で判断理由>",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      const fitWithArtifactsJson = runCliIn(root, ["vmodel", "fit", "--json"]);
+      expect(fitWithArtifactsJson.status).toBe(0);
+      const fitWithArtifactsPayload = JSON.parse(fitWithArtifactsJson.stdout);
+      const currentLocationAction = fitWithArtifactsPayload.next_actions.find(
+        (action: { blocker_code: string }) => action.blocker_code === "current_location",
+      );
+      expect(fitWithArtifactsPayload.synthesis.next_command).toBe(
+        "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
+      expect(currentLocationAction).toMatchObject({
+        automation_class: "approval",
+        command:
+          "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json",
+        work_bucket: {
+          evidence_handoff_status: {
+            present: 2,
+            missing: 0,
+            unchecked: 0,
+            approval_record: {
+              status: "pending_human_review",
+              scope_status: "not_checked",
+              materialize_status: null,
+              valid_for_apply: false,
+            },
+          },
+          evidence_handoff_next: {
+            status: "approval_pending",
+            command:
+              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          },
+        },
+      });
+      expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=9");
+      expect(fitText.stdout).toContain("zip-manifest: present=false root=- entries=0 required=0/13");
+      expect(fitText.stdout).toContain(
+        "tailoring-gate: profile=solo required=0 optional=0 na=2 missing=4",
+      );
+      expect(fitText.stdout).toContain("function-design-absorption: status=");
+      expect(fitText.stdout).toContain("roadmap-current-gate: status=");
+      expect(fitText.stdout).toContain("drive-model-gate: status=");
+      expect(fitText.stdout).toContain("operation-scope: designed=");
+      expect(fitText.stdout).toContain(
+        "current-location-gate: status=needs_recovery current=needs_recovery/contradicted",
+      );
+	      expect(fitText.stdout).toContain(
+	        "recovery-reentry: status=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+	      );
+
+      const overviewJson = runCliIn(root, ["closure", "overview", "--limit", "1", "--json"]);
+      expect(overviewJson.status).toBe(0);
+      const overviewPayload = JSON.parse(overviewJson.stdout);
+      expect(overviewPayload).toMatchObject({
+        schema_version: "project-closure-overview.v1",
+        closure: {
+          status: "contradicted",
+          open_l7: 1,
+          l14_claims: 1,
+          queue_total: 1,
+          route_counts: {
+            close_ready: 0,
+            collect_evidence: 1,
+            repair_failed_evidence: 0,
+            reverse_design: 0,
+          },
+          ledger_status_counts: {
+            ready: 0,
+            needs_evidence: 1,
+            needs_repair: 0,
+            needs_reverse: 0,
+          },
+        },
+        recommended_next_action: {
+          action: "collect_evidence",
+          command: "helix closure review-bundle --action collect_evidence --json",
+          human_required: false,
+        },
+        write_policy: "read-only",
+        source_command: "helix closure overview --json",
+      });
+      expect(overviewPayload.actions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action: "collect_evidence",
+            count: 1,
+            listed: 1,
+            omitted: 0,
+            batch_id: "closure-batch:2:collect_evidence",
+            ledger_status: "needs_evidence",
+            sample_plan_ids: ["PLAN-L7-999-new-impl"],
+          }),
+        ]),
+      );
+
+      const overviewText = runCliIn(root, ["closure", "overview", "--limit", "1"]);
+      expect(overviewText.status).toBe(0);
+      expect(overviewText.stdout).toContain(
+        "closure overview: status=contradicted current=L14->L12 queue=1 close_ready=0 collect=1 repair=0 reverse=0 write=read-only",
+      );
+      expect(overviewText.stdout).toContain(
+        "recommended=collect_evidence human_required=false command=helix closure review-bundle --action collect_evidence --json",
+      );
+
+      const batchJson = runCliIn(root, [
+        "closure",
+        "batch",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(batchJson.status).toBe(0);
+      const batchPayload = JSON.parse(batchJson.stdout);
+      expect(batchPayload).toMatchObject({
+        schema_version: "project-closure-batch.v1",
+        selected_action: "collect_evidence",
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        write_policy: "read-only",
+        packet: {
+          packetId: "closure:collect_evidence",
+          automation: {
+            batchId: "closure-batch:2:collect_evidence",
+            reviewCommand: "helix closure batch --action collect_evidence --json",
+          },
+        },
+        ledger: {
+          ledgerId: "next-action:closure:collect_evidence",
+          status: "needs_evidence",
+        },
+        work_buckets: [
+          expect.objectContaining({
+            action: "collect_evidence",
+            evidence_signature: "execution:missing",
+            count: 1,
+            primary_command: "helix closure batch --action collect_evidence --json",
+            repair_plan: expect.objectContaining({
+              projection_items: [
+                expect.objectContaining({
+                  plan_id: "PLAN-L7-999-new-impl",
+                  failed_evidence_count: 0,
+                  projection_templates: expect.arrayContaining([
+                    expect.objectContaining({ table: "test_runs" }),
+                    expect.objectContaining({ table: "gate_runs" }),
+                    expect.objectContaining({ table: "runtime_verification_events" }),
+                  ]),
+                }),
+              ],
+              projection_templates: expect.arrayContaining([
+                expect.objectContaining({ table: "test_runs" }),
+                expect.objectContaining({ table: "gate_runs" }),
+                expect.objectContaining({ table: "runtime_verification_events" }),
+              ]),
+            }),
+          }),
+        ],
+        queue_items: [
+          expect.objectContaining({
+            planId: "PLAN-L7-999-new-impl",
+            nextAction: "collect_evidence",
+          }),
+        ],
+      });
+
+      const batchText = runCliIn(root, [
+        "closure",
+        "batch",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(batchText.status).toBe(0);
+      expect(batchText.stdout).toContain(
+        "closure batch: action=collect_evidence batch=closure-batch:2:collect_evidence status=needs_evidence count=1 listed=1 omitted=0 drive=Reverse write=read-only",
+      );
+      expect(batchText.stdout).toContain("filter=closure.queue.items[nextAction=collect_evidence]");
+      expect(batchText.stdout).toContain(
+        "work-bucket: 1.execution:missing count=1 listed=1 omitted=0",
+      );
+      expect(batchText.stdout).toContain(
+        "repair-plan=needs_evidence failed=0 latest=- green=test_runs,gate_runs,runtime_verification_events",
+      );
+      expect(batchText.stdout).toContain(
+        "repair-automation=ready_to_execute runnable=1 label_only=0 resolution=1 safe_resolution=1 projections=1 next=bun run test:fast blockers=-",
+      );
+      expect(batchText.stdout).toContain(
+        "repair-command: package script: test:fast verb=test:fast count=1 runnable=bun run test:fast",
+      );
+      expect(batchText.stdout).toContain(
+        "repair-resolution: bun run test:fast source=package_script confidence=medium safe=true project=test_runs,gate_runs,runtime_verification_events",
+      );
+      expect(batchText.stdout).toContain(
+        "evidence-probe=helix closure evidence-probe --action collect_evidence --json",
+      );
+      expect(batchText.stdout).toContain("repair-template: test_runs status=passed");
+      expect(batchText.stdout).toContain("repair-template: gate_runs status=passed");
+      expect(batchText.stdout).toContain("repair-template: runtime_verification_events status=accepted");
+      expect(batchText.stdout).toContain(
+        "projection-item: PLAN-L7-999-new-impl failed=0 latest=- tables=test_runs,gate_runs,runtime_verification_events",
+      );
+      expect(batchText.stdout).toContain(
+        "evidence-artifact: plan_review_evidence path=docs/plans/PLAN-L7-999-new-impl.md format=yaml_frontmatter projects=review_evidence_registry,test_runs write=template_only",
+      );
+      expect(batchText.stdout).toContain(
+        "evidence-artifact: structured_test_evidence path=docs/evidence/PLAN-L7-999-new-impl-test.json format=json projects=test_cases,test_results,test_artifact_edges write=template_only",
+      );
+      expect(batchText.stdout).toContain(
+        "evidence-patch-plan: approval=true write=approval-required candidates=3 dry_run=helix closure batch --action collect_evidence --json execute=-",
+      );
+      expect(batchText.stdout).toContain(
+        "evidence-patch: append_yaml_frontmatter path=docs/plans/PLAN-L7-999-new-impl.md digest=sha256:",
+      );
+      expect(batchText.stdout).toContain(
+        "placeholders=<green command>,<iso8601>,<output>,<reviewer>",
+      );
+      expect(batchText.stdout).toContain("item: PLAN-L7-999-new-impl evidence=partial");
+      expect(batchText.stdout).toContain("evidence-action=不足 evidence を収集する:");
+      expect(batchText.stdout).toContain("gaps=execution:missing");
+
+      const evidencePlanJson = runCliIn(root, [
+        "closure",
+        "evidence-plan",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(evidencePlanJson.status).toBe(0);
+      const evidencePlanPayload = JSON.parse(evidencePlanJson.stdout);
+      expect(evidencePlanPayload).toMatchObject({
+        schema_version: "project-closure-evidence-plan.v1",
+        selected_action: "collect_evidence",
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        target_tables: expect.arrayContaining([
+          "test_runs",
+          "gate_runs",
+          "runtime_verification_events",
+        ]),
+        write_policy: "read-only",
+        source_command: "helix closure evidence-plan --json",
+        expected_transition: "evidence 追加後に close_ready または repair_failed_evidence へ再分類される",
+        evidence_gap_counts: [
+          {
+            component: "execution",
+            status: "missing",
+            count: 1,
+            evidence_tables: ["test_runs", "gate_runs", "runtime_verification_events"],
+          },
+        ],
+        items: [
+          expect.objectContaining({
+            plan_id: "PLAN-L7-999-new-impl",
+            next_action: "collect_evidence",
+            evidence_status: "partial",
+            target_tables: expect.arrayContaining([
+              "test_runs",
+              "gate_runs",
+              "runtime_verification_events",
+            ]),
+          }),
+        ],
+      });
+
+      const evidencePlanText = runCliIn(root, [
+        "closure",
+        "evidence-plan",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(evidencePlanText.status).toBe(0);
+      expect(evidencePlanText.stdout).toContain(
+        "closure evidence-plan: action=collect_evidence total=1 listed=1 omitted=0",
+      );
+      expect(evidencePlanText.stdout).toContain("tables=");
+      expect(evidencePlanText.stdout).toContain("test_runs");
+      expect(evidencePlanText.stdout).toContain("gate_runs");
+      expect(evidencePlanText.stdout).toContain("runtime_verification_events");
+      expect(evidencePlanText.stdout).toContain("gaps=execution:missing=1");
+      expect(evidencePlanText.stdout).toContain(
+        "templates=gate_runs:passed,runtime_verification_events:accepted,test_runs:passed",
+      );
+      expect(evidencePlanText.stdout).toContain(
+        "postcheck=helix db rebuild && helix closure batch --action collect_evidence --json && helix current-location --json && helix vmodel fit",
+      );
+
+      const evidencePatchJson = runCliIn(root, [
+        "closure",
+        "evidence-patch",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(evidencePatchJson.status).toBe(0);
+      const evidencePatchPayload = JSON.parse(evidencePatchJson.stdout);
+      expect(evidencePatchPayload).toMatchObject({
+        schema_version: "project-closure-evidence-patch-packet.v1",
+        selected_action: "collect_evidence",
+        queue_total: 1,
+        queue_listed: 1,
+        queue_omitted: 0,
+        patch_candidate_count: 3,
+        write_policy: "read-only",
+        apply_readiness: {
+          status: "blocked_placeholders",
+          allowed_to_apply: false,
+          execute_command: null,
+        },
+        approval: {
+          required: true,
+          decision_id: "closure-evidence-patch:collect_evidence",
+          approval_scope_digest: expect.stringMatching(/^sha256:/),
+        },
+        safety_policy: {
+          packet_write_policy: "read-only",
+          patch_write_policy: "approval-required",
+          execute_command: null,
+        },
+        patch_candidates: [
+          expect.objectContaining({
+            plan_id: "PLAN-L7-999-new-impl",
+            artifact_path: "docs/plans/PLAN-L7-999-new-impl.md",
+            operation: "append_yaml_frontmatter",
+            preview_digest: expect.stringMatching(/^sha256:/),
+            placeholder_count: expect.any(Number),
+            unresolved_placeholders: expect.arrayContaining(["<green command>"]),
+            real_evidence_required: true,
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-new-impl-test.json",
+            operation: "create_json_artifact",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-new-impl-runtime.json",
+            operation: "create_json_artifact",
+          }),
+        ],
+      });
+      expect(evidencePatchPayload.apply_readiness.placeholder_count).toBeGreaterThan(0);
+      expect(evidencePatchPayload.apply_readiness.blocked_candidate_count).toBeGreaterThan(0);
+
+      const evidencePatchText = runCliIn(root, [
+        "closure",
+        "evidence-patch",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(evidencePatchText.status).toBe(0);
+      expect(evidencePatchText.stdout).toContain(
+        "closure evidence-patch: action=collect_evidence queue=1 listed=1 omitted=0 candidates=3 approval=true decision=closure-evidence-patch:collect_evidence write=read-only",
+      );
+      expect(evidencePatchText.stdout).toContain("approval-scope=sha256:");
+      expect(evidencePatchText.stdout).toContain(
+        "apply-readiness=blocked_placeholders allowed=false",
+      );
+      expect(evidencePatchText.stdout).toContain(
+        "candidate: PLAN-L7-999-new-impl append_yaml_frontmatter path=docs/plans/PLAN-L7-999-new-impl.md digest=sha256:",
+      );
+      expect(evidencePatchText.stdout).toContain(
+        "placeholders=<green command>,<iso8601>,<output>,<reviewer>",
+      );
+      expect(evidencePatchText.stdout).toContain("rollback=承認適用後に戻す場合は");
+      expect(evidencePatchText.stdout).toContain(
+        "postcheck=helix db rebuild && helix closure batch --action collect_evidence --json && helix current-location --json && helix vmodel fit",
+      );
+
+      const evidenceProbeJson = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(evidenceProbeJson.status).toBe(0);
+      const evidenceProbePayload = JSON.parse(evidenceProbeJson.stdout);
+      expect(evidenceProbePayload).toMatchObject({
+        schema_version: "project-closure-evidence-probe.v1",
+        selected_action: "collect_evidence",
+        dry_run: true,
+        can_execute: true,
+        command: "bun run test:fast",
+        target_plan_ids: ["PLAN-L7-999-new-impl"],
+        apply_readiness: {
+          status: "dry_run",
+          allowed_to_materialize: false,
+        },
+        placeholder_resolution: {
+          fillable_placeholders: [],
+          remaining_placeholders: ["<green command>", "<iso8601>", "<output>"],
+        },
+        write_policy: "read-only",
+      });
+
+      const evidenceProbeText = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(evidenceProbeText.status).toBe(0);
+      expect(evidenceProbeText.stdout).toContain(
+        "closure evidence-probe: action=collect_evidence dry_run=true can_execute=true command=bun run test:fast status=dry_run write=read-only",
+      );
+      expect(evidenceProbeText.stdout).toContain(
+        "placeholders: fillable=- remaining=<green command>,<iso8601>,<output>",
+      );
+
+      const materializeNoProbe = runCliIn(root, [
+        "closure",
+        "evidence-materialize",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(materializeNoProbe.status).toBe(0);
+      expect(materializeNoProbe.stdout).toContain(
+        "closure evidence-materialize: action=collect_evidence status=no_probe_execution candidates=0 remaining=0 blocked=0 write=read-only",
+      );
+
+      const probeRecordPath = join(root, "probe-record.json");
+      writeFileSync(
+        probeRecordPath,
+        JSON.stringify(
+          {
+            execution: {
+              command: "bun run test:fast",
+              started_at: "2026-07-08T00:03:00.000Z",
+              completed_at: "2026-07-08T00:03:10.000Z",
+              exit_code: 0,
+              status: "passed",
+              output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              stdout_bytes: 10,
+              stderr_bytes: 0,
+              output_excerpt: {
+                stdout_head: "passed output",
+                stdout_tail: "passed output",
+                stderr_head: "",
+                stderr_tail: "",
+                truncated: false,
+                limit: 4000,
+              },
+              error_message: null,
+            },
+          },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      const materializeJson = runCliIn(root, [
+        "closure",
+        "evidence-materialize",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordPath,
+        "--json",
+      ]);
+      expect(materializeJson.status).toBe(0);
+      const materializePayload = JSON.parse(materializeJson.stdout);
+      expect(materializePayload).toMatchObject({
+        schema_version: "project-closure-evidence-materialize.v1",
+        selected_action: "collect_evidence",
+        materialized_candidate_count: 3,
+        materialize_readiness: {
+          status: "blocked_placeholders",
+          allowed_to_apply: false,
+          remaining_placeholder_count: 2,
+          blocked_candidate_count: 1,
+        },
+      });
+      expect(materializePayload.materialized_candidates[0]).toMatchObject({
+        plan_id: "PLAN-L7-999-new-impl",
+        artifact_path: "docs/plans/PLAN-L7-999-new-impl.md",
+        filled_placeholders: ["<green command>", "<iso8601>", "<output>", "<reviewer>"],
+        remaining_placeholders: [],
+        ready_for_approval: true,
+      });
+      expect(materializePayload.materialized_candidates[0].placeholder_resolution_sources).toContainEqual({
+        placeholder: "<reviewer>",
+        source: "deterministic_closure_rule",
+        value_digest: expect.stringMatching(/^sha256:/),
+      });
+      expect(materializePayload.materialized_candidates[2]).toMatchObject({
+        remaining_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
+        ready_for_approval: false,
+      });
+      expect(
+        materializePayload.materialized_candidates[0].materialized_preview_lines.join("\n"),
+      ).toContain("bun run test:fast");
+      expect(
+        materializePayload.materialized_candidates[0].materialized_preview_lines.join("\n"),
+      ).toContain("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+      const probeRecordWithProvenancePath = join(root, "probe-record-with-provenance.json");
+      writeFileSync(
+        probeRecordWithProvenancePath,
+        JSON.stringify(
+          {
+            execution: {
+              command: "bun run test:fast",
+              session_id: "closure-probe:session1234",
+              correlation_id: "closure-correlation:corr1234",
+              started_at: "2026-07-08T00:03:00.000Z",
+              completed_at: "2026-07-08T00:03:10.000Z",
+              exit_code: 0,
+              status: "passed",
+              output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              stdout_bytes: 10,
+              stderr_bytes: 0,
+              output_excerpt: {
+                stdout_head: "passed output",
+                stdout_tail: "passed output",
+                stderr_head: "",
+                stderr_tail: "",
+                truncated: false,
+                limit: 4000,
+              },
+              error_message: null,
+            },
+          },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      const materializeReadyJson = runCliIn(root, [
+        "closure",
+        "evidence-materialize",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--json",
+      ]);
+      expect(materializeReadyJson.status).toBe(0);
+      const materializeReadyPayload = JSON.parse(materializeReadyJson.stdout);
+      expect(materializeReadyPayload).toMatchObject({
+        probe_execution: {
+          output_excerpt: {
+            stdout_head: "passed output",
+            stdout_tail: "passed output",
+            stderr_head: "",
+            stderr_tail: "",
+            truncated: false,
+            limit: 4000,
+          },
+        },
+        materialize_readiness: {
+          status: "ready_for_approval",
+          allowed_to_apply: false,
+          remaining_placeholder_count: 0,
+          blocked_candidate_count: 0,
+        },
+      });
+      expect(materializeReadyPayload.materialized_candidates[2]).toMatchObject({
+        filled_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
+        remaining_placeholders: [],
+        ready_for_approval: true,
+      });
+      const approvalDraftJson = runCliIn(root, [
+        "closure",
+        "evidence-approval-draft",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--json",
+      ]);
+      expect(approvalDraftJson.status).toBe(0);
+      const approvalDraftPayload = JSON.parse(approvalDraftJson.stdout);
+      expect(approvalDraftPayload).toMatchObject({
+        schema_version: "project-closure-evidence-approval-draft.v1",
+        selected_action: "collect_evidence",
+        plan_only: true,
+        must_not_apply: true,
+        approval_allowed: false,
+        apply_authorized: false,
+        materialize_readiness: {
+          status: "ready_for_approval",
+        },
+        materialized_candidate_count: 3,
+        approval: {
+          decision_id: "closure-evidence-materialize:collect_evidence",
+          approval_scope_digest: materializeReadyPayload.approval.approval_scope_digest,
+          draft_outcome: "pending_human_review",
+          non_authorizing: true,
+        },
+        approval_record_template: expect.arrayContaining([
+          "outcome: pending_human_review",
+          `approval_scope_digest: ${materializeReadyPayload.approval.approval_scope_digest}`,
+        ]),
+        write_policy: "read-only",
+      });
+      expect(approvalDraftPayload.approval_record_text).toContain("outcome: pending_human_review");
+      const approvalDraftPath = join(root, "tmp", "closure-approval-draft.yml");
+      const approvalDraftOutJson = runCliIn(root, [
+        "closure",
+        "evidence-approval-draft",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--out",
+        approvalDraftPath,
+        "--json",
+      ]);
+      expect(approvalDraftOutJson.status).toBe(0);
+      const approvalDraftOutPayload = JSON.parse(approvalDraftOutJson.stdout);
+      expect(approvalDraftOutPayload.approval_record_output).toMatchObject({
+        requested: true,
+        path: approvalDraftPath,
+        written: true,
+        non_authorizing: true,
+      });
+      const approvalDraftRecord = readFileSync(approvalDraftPath, "utf8");
+      expect(approvalDraftRecord).toContain("outcome: pending_human_review");
+      expect(approvalDraftRecord).not.toContain("outcome: approve_materialized_evidence");
+      const evidenceApplyBlocked = runCliIn(root, [
+        "closure",
+        "evidence-apply",
+        "--dry-run",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--json",
+      ]);
+      expect(evidenceApplyBlocked.status).toBe(0);
+      const evidenceApplyBlockedPayload = JSON.parse(evidenceApplyBlocked.stdout);
+      expect(evidenceApplyBlockedPayload).toMatchObject({
+        schema_version: "project-closure-evidence-apply-plan.v1",
+        selected_action: "collect_evidence",
+        materialize_readiness: {
+          status: "ready_for_approval",
+          remaining_placeholder_count: 0,
+          blocked_candidate_count: 0,
+        },
+        approval: {
+          valid: false,
+          reasons: ["approval record が指定されていない"],
+        },
+        allowed_to_apply: false,
+        blocked_reasons: ["approval record が指定されていない"],
+        patch_candidates: [
+          expect.objectContaining({
+            plan_id: "PLAN-L7-999-new-impl",
+            operation: "append_yaml_frontmatter",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-new-impl-test.json",
+            operation: "create_json_artifact",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-new-impl-runtime.json",
+            operation: "create_json_artifact",
+          }),
+        ],
+        write_policy: "read-only",
+      });
+
+      const bundleJson = runCliIn(root, [
+        "closure",
+        "review-bundle",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(bundleJson.status).toBe(0);
+      const bundlePayload = JSON.parse(bundleJson.stdout);
+      expect(bundlePayload).toMatchObject({
+        schema_version: "project-closure-review-bundle.v1",
+        action: "collect_evidence",
+        approval_required: false,
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        write_policy: "read-only",
+        decision: {
+          decision_id: "closure-review:collect_evidence",
+          allowed_outcomes: [
+            "keep_current_queue",
+            "move_after_evidence_change",
+            "return_to_reverse_design",
+          ],
+          outcome_routes: expect.arrayContaining([
+            expect.objectContaining({
+              outcome: "keep_current_queue",
+              projection_type: "reroute_closure_lane",
+              target_action: "collect_evidence",
+              drive_model: "Recovery",
+            }),
+          ]),
+        },
+        candidates: [
+          expect.objectContaining({
+            planId: "PLAN-L7-999-new-impl",
+            nextAction: "collect_evidence",
+          }),
+        ],
+      });
+
+      const bundleText = runCliIn(root, [
+        "closure",
+        "review-bundle",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(bundleText.status).toBe(0);
+      expect(bundleText.stdout).toContain(
+        "closure review-bundle: action=collect_evidence approval_required=false count=1 listed=1 omitted=0 decision=closure-review:collect_evidence write=read-only",
+      );
+      expect(bundleText.stdout).toContain(
+        "outcome-routes=keep_current_queue->collect_evidence:Recovery",
+      );
+      expect(bundleText.stdout).toContain("review-scope: digest=sha256:");
+      expect(bundleText.stdout).toContain(
+        "coverage: ids=L6-implementation-binding l12=L6",
+      );
+      expect(bundleText.stdout).toContain(
+        "candidate: PLAN-L7-999-new-impl coverage=L6-implementation-binding l12=L6 evidence=partial",
+      );
+
+      const closeReadyDecisionDraft = runCliIn(root, [
+        "closure",
+        "decision-draft",
+        "--action",
+        "close_ready",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(closeReadyDecisionDraft.status).toBe(0);
+      const decisionDraftPayload = JSON.parse(closeReadyDecisionDraft.stdout);
+      expect(decisionDraftPayload).toMatchObject({
+        schema_version: "project-closure-decision-draft.v1",
+        action: "close_ready",
+        plan_only: true,
+        must_not_apply: true,
+        approval_allowed: false,
+        apply_authorized: false,
+        review: {
+          total: 0,
+          listed: 0,
+          omitted: 0,
+          limit: 1,
+          offset: 0,
+        },
+        decision: {
+          decision_id: "closure-review:close_ready",
+          draft_outcome: "pending_human_review",
+          non_authorizing: true,
+          allowed_outcomes: [
+            "approve_closure_claim",
+            "reject_to_collect_evidence",
+            "reject_to_repair_failed_evidence",
+            "reject_to_reverse_design",
+          ],
+        },
+        write_policy: "read-only",
+      });
+      expect(decisionDraftPayload.approval_record_text).toContain(
+        "outcome: pending_human_review",
+      );
+      expect(decisionDraftPayload.approval_record_text).toContain("coverage_ids: none");
+      expect(decisionDraftPayload.approval_record_text).toContain("l12_layers: none");
+      const decisionDraftPath = join(root, "tmp", "closure-decision-draft.yml");
+      const closeReadyDecisionDraftOut = runCliIn(root, [
+        "closure",
+        "decision-draft",
+        "--action",
+        "close_ready",
+        "--limit",
+        "1",
+        "--out",
+        decisionDraftPath,
+        "--json",
+      ]);
+      expect(closeReadyDecisionDraftOut.status).toBe(0);
+      const decisionDraftOutPayload = JSON.parse(closeReadyDecisionDraftOut.stdout);
+      expect(decisionDraftOutPayload.decision_record_output).toMatchObject({
+        requested: true,
+        path: decisionDraftPath,
+        written: true,
+        non_authorizing: true,
+      });
+      const decisionDraftRecord = readFileSync(decisionDraftPath, "utf8");
+      expect(decisionDraftRecord).toContain("outcome: pending_human_review");
+      expect(decisionDraftRecord).toContain("coverage_ids: none");
+      expect(decisionDraftRecord).not.toContain("outcome: approve_closure_claim");
+
+      const transitionJson = runCliIn(root, [
+        "closure",
+        "transition-plan",
+        "--action",
+        "collect_evidence",
+        "--decision",
+        "approve_closure_claim",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(transitionJson.status).toBe(0);
+      const transitionPayload = JSON.parse(transitionJson.stdout);
+      expect(transitionPayload).toMatchObject({
+        schema_version: "project-closure-transition-plan.v1",
+        action: "collect_evidence",
+        decision_outcome: "approve_closure_claim",
+        dry_run: true,
+        target_plan_ids: ["PLAN-L7-999-new-impl"],
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        limit: 1,
+        offset: 0,
+        window: {
+          start: 1,
+          end: 1,
+          page_index: 1,
+          page_count: 1,
+          has_previous: false,
+          has_next: false,
+          previous_offset: null,
+          next_offset: null,
+        },
+        allowed_to_apply: false,
+        blocked_reasons: ["close_ready 以外は closure apply 対象ではなく再分類対象"],
+        outcome_projection: {
+          projection_type: "reroute_closure_lane",
+          target_action: "collect_evidence",
+          drive_model: "Recovery",
+          command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          transition_command: "helix closure review-bundle --action collect_evidence --json",
+        },
+        write_policy: "read-only",
+      });
+      expect(
+        transitionPayload.planned_steps.map((step: { step_id: string }) => step.step_id),
+      ).toEqual([
+        "record-rejection",
+        "reroute-closure-lane",
+        "rebuild-projection",
+        "postcheck-drive-model",
+      ]);
+
+      const transitionText = runCliIn(root, [
+        "closure",
+        "transition-plan",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+      ]);
+      expect(transitionText.status).toBe(0);
+      expect(transitionText.stdout).toContain(
+        "closure transition-plan: action=collect_evidence decision=approve_closure_claim dry_run=true allowed=false targets=1 listed=1 omitted=0 write=read-only",
+      );
+      expect(transitionText.stdout).toContain(
+        "window=1/1 range=1-1 offset=0 limit=1 prev=- next=-",
+      );
+      expect(transitionText.stdout).toContain(
+        "outcome-projection: type=reroute_closure_lane target=collect_evidence drive=Recovery",
+      );
+      expect(transitionText.stdout).toContain(
+        "blockers=close_ready 以外は closure apply 対象ではなく再分類対象",
+      );
+
+      const applyBlocked = runCliIn(root, ["closure", "apply", "--dry-run", "--json"]);
+      expect(applyBlocked.status).toBe(0);
+      const applyBlockedPayload = JSON.parse(applyBlocked.stdout);
+      expect(applyBlockedPayload).toMatchObject({
+        schema_version: "project-closure-apply-plan.v1",
+        dry_run: true,
+        action: "close_ready",
+        allowed_to_apply: false,
+        approval: {
+          required: true,
+          valid: false,
+          reasons: ["approval record が指定されていない"],
+        },
+        blocked_reasons: expect.arrayContaining([
+          "対象 candidate が 0 件",
+          "approval record が指定されていない",
+        ]),
+        patch_candidates: [],
+        write_policy: "read-only",
+      });
+
+      const closeReadyReviewForApproval = runCliIn(root, [
+        "closure",
+        "review-bundle",
+        "--action",
+        "close_ready",
+        "--json",
+      ]);
+      expect(closeReadyReviewForApproval.status).toBe(0);
+      const closeReadyReviewPayload = JSON.parse(closeReadyReviewForApproval.stdout);
+      const approvalPath = join(root, "closure-approval.yaml");
+      writeFileSync(
+        approvalPath,
+        [
+          "decision_id: closure-review:close_ready",
+          "outcome: approve_closure_claim",
+          `approval_scope_digest: ${closeReadyReviewPayload.review_scope.approval_scope_digest}`,
+          "reason: fixture approval",
+        ].join("\n"),
+        "utf8",
+      );
+      const applyWithApproval = runCliIn(root, [
+        "closure",
+        "apply",
+        "--dry-run",
+        "--approval-record",
+        approvalPath,
+        "--json",
+      ]);
+      expect(applyWithApproval.status).toBe(0);
+      const applyWithApprovalPayload = JSON.parse(applyWithApproval.stdout);
+      expect(applyWithApprovalPayload).toMatchObject({
+        approval: {
+          valid: true,
+          decision_id: "closure-review:close_ready",
+          outcome: "approve_closure_claim",
+        },
+        allowed_to_apply: false,
+        blocked_reasons: expect.arrayContaining(["対象 candidate が 0 件"]),
+      });
+
+      const rebuild = runCliIn(root, ["db", "rebuild"]);
+      expect(rebuild.status).toBe(0);
+      const tree = runCliIn(root, ["progress", "tree-view", "--json"]);
+      const treePayload = JSON.parse(tree.stdout);
+      expect(tree.status).toBe(0);
+      expect(treePayload).toMatchObject({
+        schema_version: "visualization-tree-view.v1",
+        roots: [
+          expect.objectContaining({ id: "project", label: "Project" }),
+          expect.objectContaining({ id: "harness", label: "HARNESS" }),
+        ],
+      });
+      const projectRoot = treePayload.roots.find((root: { id: string }) => root.id === "project");
+      const currentNode = projectRoot.children.find(
+        (child: { id: string }) => child.id === "project/current-location",
+      );
+      expect(currentNode).toMatchObject({
+        label: "Current location",
+        description: "L14 -> L12 / needs_recovery",
+      });
+      expect(JSON.stringify(treePayload)).toContain("project/current-location/coverage/L6");
+      expect(JSON.stringify(treePayload)).toContain("project/current-location/roadmap-position");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("executes approved materialized evidence patches in a fixture repo only", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-apply-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "docs", "design", "helix", "L12-vmodel"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L14-01-close.md"),
+        [
+          "---",
+          "plan_id: PLAN-L14-01-close",
+          "kind: impl",
+          "layer: L14",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-08T00:00:00.000Z",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-evidence.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-evidence",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: draft",
+          "updated: 2026-07-08T00:01:00.000Z",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      const definitions = [
+        ["HVC-L1", "企画", "L1"],
+        ["HVC-L2", "要求 画面", "L2"],
+        ["HVC-L3", "機能要件", "L3"],
+        ["HVC-L4", "基本設計", "L4"],
+        ["HVC-L5", "詳細設計 class/method contract", "L5"],
+        ["HVC-L6", "implementation binding", "L6"],
+        ["HVC-L7", "TDD closure trace", "L7"],
+        ["HVC-L8", "unit test", "L8"],
+        ["HVC-L9", "integration test", "L9"],
+        ["HVC-L10", "system test", "L10"],
+        ["HVC-L11", "acceptance test", "L11"],
+        ["HVC-L12", "運用テスト ログ KPI runtime verification class/method contract", "L12"],
+      ];
+      writeFileSync(
+        join(root, "docs", "design", "helix", "L12-vmodel", "coverage.md"),
+        [
+          "---",
+          "spec:",
+          "  defines:",
+          ...definitions.flatMap(([id, kind, layer]) => [
+            `    - id: ${id}`,
+            `      kind: ${kind}`,
+            `      layer: ${layer}`,
+          ]),
+          "---",
+          "",
+          "# coverage",
+          "",
+          ...definitions.map(([id]) => `- ${id}`),
+        ].join("\n"),
+        "utf8",
+      );
+      const probeRecordPath = join(root, "probe-record.json");
+      writeFileSync(
+        probeRecordPath,
+        JSON.stringify(
+          {
+            execution: {
+              command: "bun run test:fast",
+              session_id: "closure-probe:session1234",
+              correlation_id: "closure-correlation:corr1234",
+              started_at: "2026-07-08T00:03:00.000Z",
+              completed_at: "2026-07-08T00:03:10.000Z",
+              exit_code: 0,
+              status: "passed",
+              output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              stdout_bytes: 10,
+              stderr_bytes: 0,
+              error_message: null,
+            },
+          },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      const materialize = runCliIn(root, [
+        "closure",
+        "evidence-materialize",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordPath,
+        "--json",
+      ]);
+      expect(materialize.status).toBe(0);
+      const materializePayload = JSON.parse(materialize.stdout);
+      expect(materializePayload.materialize_readiness.status).toBe("ready_for_approval");
+      const approvalPath = join(root, "materialized-evidence-approval.yaml");
+      writeFileSync(
+        approvalPath,
+        [
+          "decision_id: closure-evidence-materialize:collect_evidence",
+          "outcome: approve_materialized_evidence",
+          `approval_scope_digest: ${materializePayload.approval.approval_scope_digest}`,
+          "reason: fixture materialized evidence approval",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const dryRun = runCliIn(root, [
+        "closure",
+        "evidence-apply",
+        "--dry-run",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordPath,
+        "--approval-record",
+        approvalPath,
+        "--json",
+      ]);
+      expect(dryRun.status).toBe(0);
+      const dryRunPayload = JSON.parse(dryRun.stdout);
+      expect(dryRunPayload).toMatchObject({
+        schema_version: "project-closure-evidence-apply-plan.v1",
+        allowed_to_apply: true,
+        approval: {
+          valid: true,
+          decision_id: "closure-evidence-materialize:collect_evidence",
+          outcome: "approve_materialized_evidence",
+        },
+        patch_candidates: [
+          expect.objectContaining({
+            artifact_path: "docs/plans/PLAN-L7-999-evidence.md",
+            operation: "append_yaml_frontmatter",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-evidence-test.json",
+            operation: "create_json_artifact",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-evidence-runtime.json",
+            operation: "create_json_artifact",
+          }),
+        ],
+      });
+
+      const apply = runCliIn(root, [
+        "closure",
+        "evidence-apply",
+        "--execute",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordPath,
+        "--approval-record",
+        approvalPath,
+        "--json",
+      ]);
+      expect(apply.status).toBe(0);
+      const applied = JSON.parse(apply.stdout);
+      expect(applied).toMatchObject({
+        executed: true,
+        allowed_to_apply: true,
+        applied_artifacts: [
+          expect.objectContaining({
+            artifact_path: "docs/plans/PLAN-L7-999-evidence.md",
+            operation: "append_yaml_frontmatter",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-evidence-test.json",
+            operation: "create_json_artifact",
+          }),
+          expect.objectContaining({
+            artifact_path: "docs/evidence/PLAN-L7-999-evidence-runtime.json",
+            operation: "create_json_artifact",
+          }),
+        ],
+      });
+      const planText = readFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-evidence.md"),
+        "utf8",
+      );
+      expect(planText).toContain("review_evidence:");
+      expect(planText).toContain('command: "bun run test:fast"');
+      expect(existsSync(join(root, "docs", "evidence", "PLAN-L7-999-evidence-test.json"))).toBe(
+        true,
+      );
+      expect(
+        readFileSync(join(root, "docs", "evidence", "PLAN-L7-999-evidence-runtime.json"), "utf8"),
+      ).toContain('"correlation_id": "closure-correlation:corr1234"');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("writes executed evidence probe records as handoff artifacts without overwrite", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-probe-out-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify({ scripts: { "test:fast": "bun --version" } }, null, 2),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-probe.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-probe",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: draft",
+          "updated: 2026-07-08T00:01:00.000Z",
+          "review_evidence:",
+          "  - reviewer: fixture",
+          "    review_kind: intra_runtime_subagent",
+          '    reviewed_at: "2026-07-08T00:02:00.000Z"',
+          '    tests_green_at: "2026-07-08T00:02:00.000Z"',
+          "    verdict: reject",
+          "    scope: fixture",
+          "    worker_model: codex",
+          "    reviewer_model: codex",
+          "    green_commands:",
+          "      - kind: unit_test",
+          '        command: "Bash (vitest)"',
+          "        runner: bash",
+          "        scope: targeted",
+          "        exit_code: 1",
+          '        completed_at: "2026-07-08T00:02:00.000Z"',
+          "        evidence_path: docs/evidence/probe-test.json",
+          "        output_digest: error",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const probePath = join(root, "tmp", "probe-record.json");
+      const probe = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        probePath,
+        "--json",
+      ]);
+      expect(probe.status).toBe(0);
+      const payload = JSON.parse(probe.stdout);
+      expect(payload).toMatchObject({
+        schema_version: "project-closure-evidence-probe.v1",
+        selected_action: "repair_failed_evidence",
+        dry_run: false,
+        command: "bun run test:fast",
+        can_execute: true,
+        execution: {
+          status: "passed",
+          exit_code: 0,
+          command: "bun run test:fast",
+          session_id: expect.stringMatching(/^closure-probe:/),
+          correlation_id: expect.stringMatching(/^closure-correlation:/),
+        },
+        probe_record_output: {
+          requested: true,
+          path: probePath,
+          written: true,
+          sha256: expect.stringMatching(/^sha256:/),
+        },
+      });
+      const record = JSON.parse(readFileSync(probePath, "utf8"));
+      expect(record).toMatchObject({
+        schema_version: "project-closure-evidence-probe.v1",
+        execution: {
+          status: "passed",
+          command: "bun run test:fast",
+        },
+      });
+
+      const overwrite = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        probePath,
+        "--json",
+      ]);
+      expect(overwrite.status).toBe(2);
+      expect(overwrite.stderr).toContain("closure evidence-probe: output already exists:");
+
+      const dryRunOut = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--out",
+        join(root, "tmp", "dry-run-probe.json"),
+        "--json",
+      ]);
+      expect(dryRunOut.status).toBe(2);
+      expect(dryRunOut.stderr).toContain(
+        "closure evidence-probe: --out requires --execute with probe execution",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("executes approved close_ready closure patches in a fixture repo only", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-closure-apply-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "docs", "design", "helix", "L12-vmodel"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L14-01-close.md"),
+        [
+          "---",
+          "plan_id: PLAN-L14-01-close",
+          "kind: impl",
+          "layer: L14",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-08T00:00:00.000Z",
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-ready.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-ready",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-08T00:01:00.000Z",
+          "review_evidence:",
+          "  - reviewer: fixture",
+          "    review_kind: intra_runtime_subagent",
+          '    reviewed_at: "2026-07-08T00:02:00.000Z"',
+          '    tests_green_at: "2026-07-08T00:02:00.000Z"',
+          "    verdict: approve",
+          "    scope: fixture",
+          "    worker_model: codex",
+          "    reviewer_model: codex",
+          "    green_commands:",
+          "      - kind: unit_test",
+          '        command: "bun test tests/fixture.test.ts"',
+          "        runner: bun",
+          "        scope: targeted",
+          "        exit_code: 0",
+          '        completed_at: "2026-07-08T00:02:00.000Z"',
+          "        evidence_path: tests/fixture.test.ts",
+          '        output_digest: "sha256:fixture"',
+          "---",
+          "",
+          "# fixture",
+        ].join("\n"),
+        "utf8",
+      );
+      const definitions = [
+        ["HVC-L1", "企画", "L1"],
+        ["HVC-L2", "要求 画面", "L2"],
+        ["HVC-L3", "機能要件", "L3"],
+        ["HVC-L4", "基本設計", "L4"],
+        ["HVC-L5", "詳細設計 class/method contract", "L5"],
+        ["HVC-L6", "implementation binding", "L6"],
+        ["HVC-L7", "TDD closure trace", "L7"],
+        ["HVC-L8", "unit test", "L8"],
+        ["HVC-L9", "integration test", "L9"],
+        ["HVC-L10", "system test", "L10"],
+        ["HVC-L11", "acceptance test", "L11"],
+        ["HVC-L12", "運用テスト ログ KPI runtime verification class/method contract", "L12"],
+      ];
+      writeFileSync(
+        join(root, "docs", "design", "helix", "L12-vmodel", "coverage.md"),
+        [
+          "---",
+          "spec:",
+          "  defines:",
+          ...definitions.flatMap(([id, kind, layer]) => [
+            `    - id: ${id}`,
+            `      kind: ${kind}`,
+            `      layer: ${layer}`,
+          ]),
+          "---",
+          "",
+          "# coverage",
+          "",
+          ...definitions.map(([id]) => `- ${id}`),
+        ].join("\n"),
+        "utf8",
+      );
+      const closeReadyReviewForExecution = runCliIn(root, [
+        "closure",
+        "review-bundle",
+        "--action",
+        "close_ready",
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(closeReadyReviewForExecution.status).toBe(0);
+      const closeReadyExecutionReview = JSON.parse(closeReadyReviewForExecution.stdout);
+      const approvalPath = join(root, "closure-approval.yaml");
+      writeFileSync(
+        approvalPath,
+        [
+          "decision_id: closure-review:close_ready",
+          "outcome: approve_closure_claim",
+          `approval_scope_digest: ${closeReadyExecutionReview.review_scope.approval_scope_digest}`,
+          "reason: fixture approval",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const before = runCliIn(root, ["closure", "batch", "--action", "close_ready", "--json"]);
+      expect(before.status).toBe(0);
+      expect(JSON.parse(before.stdout)).toMatchObject({ total: 1 });
+
+      const apply = runCliIn(root, [
+        "closure",
+        "apply",
+        "--execute",
+        "--approval-record",
+        approvalPath,
+        "--limit",
+        "1",
+        "--json",
+      ]);
+      expect(apply.status).toBe(0);
+      const applied = JSON.parse(apply.stdout);
+      expect(applied).toMatchObject({
+        executed: true,
+        allowed_to_apply: true,
+        applied_patches: [
+          {
+            plan_id: "PLAN-L7-999-ready",
+            source_path: "docs/plans/PLAN-L7-999-ready.md",
+            next_status: "accepted",
+          },
+        ],
+      });
+      expect(readFileSync(join(root, "docs", "plans", "PLAN-L7-999-ready.md"), "utf8")).toContain(
+        "status: accepted",
+      );
+
+      const current = runCliIn(root, ["current-location", "--json"]);
+      expect(current.status).toBe(0);
+      expect(JSON.parse(current.stdout).counts.open_l7_plans).toBe(0);
+      const after = runCliIn(root, ["closure", "batch", "--action", "close_ready", "--json"]);
+      expect(after.status).toBe(0);
+      expect(JSON.parse(after.stdout)).toMatchObject({ total: 0 });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("exposes VSCode visualization manifest as a read-only CLI surface", () => {
+    const run = runCli(["vscode", "manifest", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      name: "helix-visualization",
+      main: "./dist/vscode/extension.js",
+      extensionKind: ["workspace"],
+      activationEvents: ["onView:helix.projectView", "onView:helix.harnessView"],
+      readOnlyCommands: ["helix.refreshVisualization", "helix.copyPointer"],
+    });
+    expect(payload.contributes.views.helix.map((view: { id: string }) => view.id)).toEqual([
+      "helix.projectView",
+      "helix.harnessView",
+    ]);
+  });
+
+  it("exposes progress view-model as a Project/HARNESS boundary JSON surface", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-progress-view-model-"));
+    try {
+      const run = runCliIn(root, ["progress", "view-model", "--json"]);
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(0);
+      expect(payload).toMatchObject({
+        generated_from: "visualization-snapshot.v1",
+        view_boundaries: {
+          project: {
+            root: "project",
+            owned_views: expect.arrayContaining(["current_location", "layer_progress"]),
+            source_fields: expect.arrayContaining(["project_current_location"]),
+            excluded_fields: expect.arrayContaining(["evidence.skill_invocations"]),
+            view_command: "helix progress tree-view --json",
+          },
+          harness: {
+            root: "harness",
+            owned_views: expect.arrayContaining(["harness_growth", "skill_agent_telemetry"]),
+            source_fields: expect.arrayContaining(["evidence.skill_invocations", "evidence.model_runs"]),
+            excluded_fields: expect.arrayContaining(["project_current_location.vmodel_fit"]),
+            view_command: "helix progress tree-view --json",
+          },
+        },
+        project: {
+          current_location: {
+            status: expect.any(String),
+            vmodel_fit: expect.any(Object),
+          },
+        },
+        harness: {
+          harness_growth: {
+            current_sections: {
+              artifacts: expect.any(Array),
+              plans: expect.any(Array),
+              gates: expect.any(Array),
+            },
+          },
+        },
+      });
+
+      const text = runCliIn(root, ["progress", "view-model"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("progress view-model: project=current_location");
+      expect(text.stdout).toContain("harness=harness_growth,skill_agent_telemetry");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 
   it("fails review command closed unless the current uncommitted scope is explicit", () => {
     const run = runCli(["review", "--json"]);

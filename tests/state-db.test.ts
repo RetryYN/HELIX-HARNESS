@@ -12,6 +12,7 @@ import { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "../src/schema/harness-db-
 import { HARNESS_DB_INDEXES as SECTION_HARNESS_DB_INDEXES } from "../src/schema/harness-db-indexes";
 import { col, pk } from "../src/schema/harness-db-table-builders";
 import { HARNESS_DB_CORE_TABLES } from "../src/schema/harness-db-tables-core";
+import { HARNESS_DB_DESIGN_TABLES } from "../src/schema/harness-db-tables-design";
 import { HARNESS_DB_EVALUATION_TABLES } from "../src/schema/harness-db-tables-evaluation";
 import { HARNESS_DB_GRAPH_EXPORT_TABLES } from "../src/schema/harness-db-tables-graph";
 import { assertWithinHelixStateDir, openHarnessDb, upsertRow } from "../src/state-db/index";
@@ -100,6 +101,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     expect(HARNESS_DB_TABLES.map((t) => t.name)).toEqual(
       [
         ...HARNESS_DB_CORE_TABLES,
+        ...HARNESS_DB_DESIGN_TABLES,
         ...HARNESS_DB_GRAPH_EXPORT_TABLES,
         ...HARNESS_DB_EVALUATION_TABLES,
       ].map((t) => t.name),
@@ -117,6 +119,129 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       .all()
       .map((row) => String(row.name));
     expect(planRegistryColumns).toContain("source_hash");
+    const currentLocationColumns = db
+      .prepare("PRAGMA table_info(project_current_location)")
+      .all()
+      .map((row) => String(row.name));
+    expect(currentLocationColumns).toEqual(
+      expect.arrayContaining([
+        "snapshot_id",
+        "current_status",
+        "selected_drive_model",
+        "operation_observed_gap",
+        "snapshot_hash",
+      ]),
+    );
+    const artifactRemapColumns = db
+      .prepare("PRAGMA table_info(project_artifact_remap)")
+      .all()
+      .map((row) => String(row.name));
+    expect(artifactRemapColumns).toEqual(
+      expect.arrayContaining([
+        "zip_source_binding_ids",
+        "tailoring_rule_ids",
+        "tailoring_detail_levels",
+      ]),
+    );
+    const zipSourceBindingColumns = db
+      .prepare("PRAGMA table_info(vmodel_zip_source_bindings)")
+      .all()
+      .map((row) => String(row.name));
+    expect(zipSourceBindingColumns).toEqual(
+      expect.arrayContaining([
+        "binding_id",
+        "source_path",
+        "source_category",
+        "evidence_tables",
+        "zip_source_binding_hash",
+      ]),
+    );
+    const roadmapCurrentActionColumns = db
+      .prepare("PRAGMA table_info(project_roadmap_current_actions)")
+      .all()
+      .map((row) => String(row.name));
+    expect(roadmapCurrentActionColumns).toEqual(
+      expect.arrayContaining([
+        "action_id",
+        "category",
+        "automation_class",
+        "doc_dependencies",
+        "implementation_dependencies",
+      ]),
+    );
+    const zipAdoptionDecisionColumns = db
+      .prepare("PRAGMA table_info(project_zip_adoption_decisions)")
+      .all()
+      .map((row) => String(row.name));
+    expect(zipAdoptionDecisionColumns).toEqual(
+      expect.arrayContaining([
+        "adoption_id",
+        "category",
+        "source_package",
+        "source_document",
+        "implementation_dependencies",
+      ]),
+    );
+    const tailoringDecisionColumns = db
+      .prepare("PRAGMA table_info(project_tailoring_decisions)")
+      .all()
+      .map((row) => String(row.name));
+    expect(tailoringDecisionColumns).toEqual(
+      expect.arrayContaining([
+        "tailoring_id",
+        "category",
+        "detail_level",
+        "profile",
+        "source_document",
+        "implementation_dependencies",
+      ]),
+    );
+    const vmodelGuardColumns = db
+      .prepare("PRAGMA table_info(project_vmodel_regression_guards)")
+      .all()
+      .map((row) => String(row.name));
+    expect(vmodelGuardColumns).toEqual(
+      expect.arrayContaining([
+        "guard_id",
+        "status",
+        "protected_surface",
+        "guard_count",
+        "required_action",
+      ]),
+    );
+    const vmodelBlockerColumns = db
+      .prepare("PRAGMA table_info(project_vmodel_fit_blockers)")
+      .all()
+      .map((row) => String(row.name));
+    expect(vmodelBlockerColumns).toEqual(
+      expect.arrayContaining([
+        "blocker_code",
+        "status",
+        "blocker_count",
+        "doc_dependencies",
+        "implementation_dependencies",
+      ]),
+    );
+    const vmodelReadModelTables = [
+      "project_current_location",
+      "project_drive_model_candidates",
+      "project_roadmap_current_actions",
+      "project_zip_adoption_decisions",
+      "project_tailoring_decisions",
+      "project_vmodel_regression_guards",
+      "project_vmodel_fit_blockers",
+      "project_l12_layer_coverage",
+      "design_coverage_gate",
+      "project_operation_scopes",
+      "project_artifact_remap",
+      "vmodel_zip_manifest",
+      "vmodel_zip_source_bindings",
+      "visualization_view_model",
+      "visualization_tree_view",
+    ];
+    for (const table of vmodelReadModelTables) {
+      expect(HARNESS_DB_TABLE_BY_NAME.has(table)).toBe(true);
+    }
     expect(missingTables(db)).toEqual([]);
     db.close();
   });

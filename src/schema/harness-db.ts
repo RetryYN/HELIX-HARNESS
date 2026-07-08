@@ -1,6 +1,8 @@
 import { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
+import type { IndexDef, TableDef } from "./harness-db-types";
 
 export { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
+export type { ColumnDef, ColumnType, IndexDef, TableDef } from "./harness-db-types";
 
 /**
  * harness.db projection schema — 単一正本 (PLAN-L7-45, 工程表 PLAN-L7-44 span ①)。
@@ -19,27 +21,7 @@ export { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
  * affinity ヒント)。各 table の列・PK・index は §2.7/§9.1/§9.3 に準拠。
  */
 
-export const SCHEMA_VERSION = 21;
-
-export type ColumnType = "TEXT" | "INTEGER" | "REAL";
-
-export interface ColumnDef {
-  name: string;
-  type: ColumnType;
-  /** PRIMARY KEY 列 (1 table 1 列、physical-data の PK に準拠)。 */
-  primaryKey?: boolean;
-}
-
-export interface TableDef {
-  name: string;
-  columns: ColumnDef[];
-}
-
-export interface IndexDef {
-  name: string;
-  table: string;
-  columns: string[];
-}
+export const SCHEMA_VERSION = 30;
 
 /**
  * SQL 識別子検証 (injection 防止)。table / column / index 名は ? でバインドできず DDL/DML に
