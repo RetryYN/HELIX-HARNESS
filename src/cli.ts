@@ -275,6 +275,7 @@ import {
   isProjectArtifactRemapStatus,
   isProjectClosureQueueNextAction,
   type ProjectArtifactRemapBatchReport,
+  type ProjectClosureApplyPlan,
   type ProjectClosureBatchReport,
   type ProjectClosureEvidenceApprovalDraftPacket,
   type ProjectClosureEvidenceApplyPlan,
@@ -4125,6 +4126,23 @@ function buildSummarySurfaceCommandAudit(
     bytes: 0,
     sha256: null,
   };
+  const nonAuthorizingRecordOutput = {
+    requested: false,
+    path: null,
+    written: false,
+    bytes: 0,
+    sha256: null,
+    non_authorizing: true as const,
+  };
+  const dryRunExecution = {
+    executed: false,
+    applied_artifacts: [],
+  };
+  const closureApplyDryRunExecution = {
+    dryRun: true,
+    executed: false,
+    appliedPatches: [],
+  };
   const surfaces = [
     {
       surface: "current-location",
@@ -4179,6 +4197,50 @@ function buildSummarySurfaceCommandAudit(
       surface: "closure-evidence-materialize",
       payload: summarizeClosureMaterializePacket(
         buildProjectClosureEvidenceMaterializePacket(snapshot, { limit: 1 }),
+      ),
+    },
+    {
+      surface: "closure-evidence-approval-draft",
+      payload: summarizeClosureApprovalDraftPacket(
+        buildProjectClosureEvidenceApprovalDraftPacket(snapshot, { limit: 1 }),
+        nonAuthorizingRecordOutput,
+      ),
+    },
+    {
+      surface: "closure-evidence-apply",
+      payload: summarizeClosureEvidenceApplyPlan(
+        buildProjectClosureEvidenceApplyPlan(snapshot, { limit: 1 }),
+        dryRunExecution,
+      ),
+    },
+    {
+      surface: "closure-review-bundle",
+      payload: summarizeClosureReviewBundle(
+        buildProjectClosureReviewBundle(snapshot, { action: "close_ready", limit: 1 }),
+      ),
+    },
+    {
+      surface: "closure-transition-plan",
+      payload: summarizeClosureTransitionPlan(
+        buildProjectClosureTransitionPlan(snapshot, {
+          action: "close_ready",
+          decisionOutcome: "approve_closure_claim",
+          limit: 1,
+        }),
+      ),
+    },
+    {
+      surface: "closure-decision-draft",
+      payload: summarizeClosureDecisionDraftPacket(
+        buildProjectClosureDecisionDraftPacket(snapshot, { action: "close_ready", limit: 1 }),
+        nonAuthorizingRecordOutput,
+      ),
+    },
+    {
+      surface: "closure-apply",
+      payload: summarizeClosureApplyPlan(
+        buildProjectClosureApplyPlan(snapshot, { limit: 1 }),
+        closureApplyDryRunExecution,
       ),
     },
     {
@@ -4901,7 +4963,12 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     decision: {
       decision_id: bundle.decision.decision_id,
       allowed_outcomes: bundle.decision.allowed_outcomes,
-      outcome_routes: bundle.decision.outcome_routes,
+      outcome_routes: bundle.decision.outcome_routes.map((route) => ({
+        ...route,
+        command: summaryJsonCommand(route.command),
+        transition_command: summaryJsonCommand(route.transition_command),
+        postcheck_commands: route.postcheck_commands.map(summaryJsonCommand),
+      })),
       required_evidence: bundle.decision.required_evidence,
       blocked_by_findings: bundle.decision.blocked_by_findings,
     },
@@ -5033,6 +5100,56 @@ function summarizeClosureDecisionDraftPacket(
       severity: finding.severity,
       detail: finding.detail,
     })),
+  };
+}
+
+function summarizeClosureApplyPlan(
+  plan: ProjectClosureApplyPlan,
+  input: {
+    dryRun: boolean;
+    executed: boolean;
+    appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }>;
+  },
+) {
+  return {
+    schema_version: "project-closure-apply-plan-summary.v1",
+    source_clock: plan.source_clock,
+    dry_run: input.dryRun,
+    executed: input.executed,
+    action: plan.action,
+    approval: {
+      required: plan.approval.required,
+      record_path: plan.approval.record_path,
+      valid: plan.approval.valid,
+      decision_id: plan.approval.decision_id,
+      outcome: plan.approval.outcome,
+      approval_scope_digest: plan.approval.approval_scope_digest,
+      reason_count: plan.approval.reasons.length,
+      reasons: plan.approval.reasons.slice(0, 20),
+    },
+    allowed_to_apply: plan.allowed_to_apply,
+    blocked_reasons: plan.blocked_reasons,
+    patch_candidate_count: plan.patch_candidates.length,
+    patch_candidates: plan.patch_candidates.slice(0, 20).map((patch) => ({
+      plan_id: patch.plan_id,
+      source_path: patch.source_path,
+      current_status: patch.current_status,
+      next_status: patch.next_status,
+      operation: patch.operation,
+      artifact_count: patch.evidence_summary.artifact_paths.length,
+      evidence_count: patch.evidence_summary.evidence_paths.length,
+      test_runs: patch.evidence_summary.test_runs,
+      gate_runs: patch.evidence_summary.gate_runs,
+      runtime_verification: patch.evidence_summary.runtime_verification,
+    })),
+    applied_patch_count: input.appliedPatches.length,
+    applied_patches: input.appliedPatches,
+    postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
+    write_policy: plan.write_policy,
+    source_command: "helix closure apply --dry-run --summary-json",
+    full_source_command: plan.source_command,
+    view_command: summaryJsonCommand(plan.view_command),
+    full_view_command: plan.view_command,
   };
 }
 
@@ -6240,46 +6357,12 @@ closure
         });
         const summarizeApplyPlan = (
           appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }>,
-        ) => ({
-          schema_version: "project-closure-apply-plan-summary.v1",
-          source_clock: plan.source_clock,
-          dry_run: opts.dryRun === true,
-          executed: opts.execute === true,
-          action: plan.action,
-          approval: {
-            required: plan.approval.required,
-            record_path: plan.approval.record_path,
-            valid: plan.approval.valid,
-            decision_id: plan.approval.decision_id,
-            outcome: plan.approval.outcome,
-            approval_scope_digest: plan.approval.approval_scope_digest,
-            reason_count: plan.approval.reasons.length,
-            reasons: plan.approval.reasons.slice(0, 20),
-          },
-          allowed_to_apply: plan.allowed_to_apply,
-          blocked_reasons: plan.blocked_reasons,
-          patch_candidate_count: plan.patch_candidates.length,
-          patch_candidates: plan.patch_candidates.slice(0, 20).map((patch) => ({
-            plan_id: patch.plan_id,
-            source_path: patch.source_path,
-            current_status: patch.current_status,
-            next_status: patch.next_status,
-            operation: patch.operation,
-            artifact_count: patch.evidence_summary.artifact_paths.length,
-            evidence_count: patch.evidence_summary.evidence_paths.length,
-            test_runs: patch.evidence_summary.test_runs,
-            gate_runs: patch.evidence_summary.gate_runs,
-            runtime_verification: patch.evidence_summary.runtime_verification,
-          })),
-          applied_patch_count: appliedPatches.length,
-          applied_patches: appliedPatches,
-          postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
-          write_policy: plan.write_policy,
-          source_command: "helix closure apply --summary-json",
-          full_source_command: plan.source_command,
-          view_command: summaryJsonCommand(plan.view_command),
-          full_view_command: plan.view_command,
-        });
+        ) =>
+          summarizeClosureApplyPlan(plan, {
+            dryRun: opts.dryRun === true,
+            executed: opts.execute === true,
+            appliedPatches,
+          });
         const appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }> =
           [];
         if (opts.execute) {

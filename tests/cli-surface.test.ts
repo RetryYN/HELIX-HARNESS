@@ -4669,7 +4669,7 @@ describe("L7 CLI surface closure", () => {
         ]),
         patch_candidate_count: 0,
         applied_patch_count: 0,
-        source_command: "helix closure apply --summary-json",
+        source_command: "helix closure apply --dry-run --summary-json",
         full_source_command: "helix closure apply --dry-run --limit 20 --json",
         write_policy: "read-only",
       });
@@ -4759,7 +4759,7 @@ describe("L7 CLI surface closure", () => {
         },
         summary_surface_command_audit: {
           status: "pass",
-          checked_surface_count: 12,
+          checked_surface_count: 18,
           unexpected_count: 0,
           allowed_fields: ["full_source_command", "full_view_command"],
           unexpected_commands: [],
@@ -4777,6 +4777,16 @@ describe("L7 CLI surface closure", () => {
             expect.objectContaining({
               surface: "closure-evidence-probe",
               source_command: "helix closure evidence-probe --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
+              surface: "closure-review-bundle",
+              source_command: "helix closure review-bundle --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
+              surface: "closure-apply",
+              source_command: "helix closure apply --dry-run --summary-json",
               unexpected_count: 0,
             }),
           ]),
