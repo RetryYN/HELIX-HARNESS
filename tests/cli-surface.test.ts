@@ -3622,6 +3622,46 @@ describe("L7 CLI surface closure", () => {
         remaining_placeholders: [],
         ready_for_approval: true,
       });
+      const materializeSummaryJson = runCliIn(root, [
+        "closure",
+        "evidence-materialize",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--summary-json",
+      ]);
+      expect(materializeSummaryJson.status).toBe(0);
+      const materializeSummaryPayload = JSON.parse(materializeSummaryJson.stdout);
+      expect(materializeSummaryPayload).toMatchObject({
+        schema_version: "project-closure-evidence-materialize-summary.v1",
+        selected_action: "collect_evidence",
+        queue_total: 1,
+        queue_listed: 1,
+        materialized_candidate_count: 3,
+        materialize_readiness: {
+          status: "ready_for_approval",
+          remaining_placeholder_count: 0,
+          blocked_candidate_count: 0,
+        },
+        approval: {
+          approval_scope_digest: materializeReadyPayload.approval.approval_scope_digest,
+        },
+        probe_execution: {
+          output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          session_id: "closure-probe:session1234",
+          correlation_id: "closure-correlation:corr1234",
+        },
+      });
+      expect(materializeSummaryPayload.materialized_candidates).toBeUndefined();
+      expect(materializeSummaryPayload.sample_candidates).toHaveLength(3);
+      expect(materializeSummaryPayload.sample_candidates[0]).toMatchObject({
+        plan_id: "PLAN-L7-999-new-impl",
+        operation: "append_yaml_frontmatter",
+        ready_for_approval: true,
+      });
       const approvalDraftJson = runCliIn(root, [
         "closure",
         "evidence-approval-draft",
@@ -3659,6 +3699,38 @@ describe("L7 CLI surface closure", () => {
         write_policy: "read-only",
       });
       expect(approvalDraftPayload.approval_record_text).toContain("outcome: pending_human_review");
+      const approvalDraftSummaryJson = runCliIn(root, [
+        "closure",
+        "evidence-approval-draft",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--summary-json",
+      ]);
+      expect(approvalDraftSummaryJson.status).toBe(0);
+      const approvalDraftSummaryPayload = JSON.parse(approvalDraftSummaryJson.stdout);
+      expect(approvalDraftSummaryPayload).toMatchObject({
+        schema_version: "project-closure-evidence-approval-draft-summary.v1",
+        selected_action: "collect_evidence",
+        materialized_candidate_count: 3,
+        candidate_digest_count: 3,
+        approval: {
+          approval_scope_digest: materializeReadyPayload.approval.approval_scope_digest,
+          draft_outcome: "pending_human_review",
+          non_authorizing: true,
+        },
+        approval_record_output: {
+          requested: false,
+          written: false,
+          non_authorizing: true,
+        },
+      });
+      expect(approvalDraftSummaryPayload.candidate_digests).toBeUndefined();
+      expect(approvalDraftSummaryPayload.approval_record_text).toBeUndefined();
+      expect(approvalDraftSummaryPayload.sample_candidate_digests).toHaveLength(3);
       const approvalDraftPath = join(root, "tmp", "closure-approval-draft.yml");
       const approvalDraftOutJson = runCliIn(root, [
         "closure",
@@ -3728,6 +3800,32 @@ describe("L7 CLI surface closure", () => {
         ],
         write_policy: "read-only",
       });
+      const evidenceApplySummary = runCliIn(root, [
+        "closure",
+        "evidence-apply",
+        "--dry-run",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--probe-record",
+        probeRecordWithProvenancePath,
+        "--summary-json",
+      ]);
+      expect(evidenceApplySummary.status).toBe(0);
+      const evidenceApplySummaryPayload = JSON.parse(evidenceApplySummary.stdout);
+      expect(evidenceApplySummaryPayload).toMatchObject({
+        schema_version: "project-closure-evidence-apply-summary.v1",
+        selected_action: "collect_evidence",
+        allowed_to_apply: false,
+        blocked_reasons: ["approval record が指定されていない"],
+        patch_candidate_count: 3,
+        executed: false,
+        applied_artifacts: [],
+        write_policy: "read-only",
+      });
+      expect(evidenceApplySummaryPayload.patch_candidates).toBeUndefined();
+      expect(evidenceApplySummaryPayload.sample_patch_candidates).toHaveLength(3);
 
       const bundleJson = runCliIn(root, [
         "closure",
@@ -3771,6 +3869,37 @@ describe("L7 CLI surface closure", () => {
           }),
         ],
       });
+      const bundleSummaryJson = runCliIn(root, [
+        "closure",
+        "review-bundle",
+        "--action",
+        "collect_evidence",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(bundleSummaryJson.status).toBe(0);
+      const bundleSummaryPayload = JSON.parse(bundleSummaryJson.stdout);
+      expect(bundleSummaryPayload).toMatchObject({
+        schema_version: "project-closure-review-bundle-summary.v1",
+        action: "collect_evidence",
+        approval_required: false,
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        candidate_count: 1,
+        decision: {
+          decision_id: "closure-review:collect_evidence",
+        },
+        sample_candidates: [
+          expect.objectContaining({
+            planId: "PLAN-L7-999-new-impl",
+            nextAction: "collect_evidence",
+            evidence_status: "partial",
+          }),
+        ],
+      });
+      expect(bundleSummaryPayload.candidates).toBeUndefined();
 
       const bundleText = runCliIn(root, [
         "closure",

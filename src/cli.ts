@@ -274,6 +274,10 @@ import {
   buildProjectRoadmapCurrentReport,
   isProjectArtifactRemapStatus,
   isProjectClosureQueueNextAction,
+  type ProjectClosureEvidenceApprovalDraftPacket,
+  type ProjectClosureEvidenceApplyPlan,
+  type ProjectClosureEvidenceMaterializePacket,
+  type ProjectClosureReviewBundle,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
@@ -321,6 +325,7 @@ const MODE_OVERRIDE_OPTION_DESCRIPTION = "override execution mode for tests";
 const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
 const TEXT_REPAIR_TARGET_LIMIT = 3;
 const TEXT_REPAIR_TARGET_ID_LIMIT = 40;
+const CLOSURE_SUMMARY_SAMPLE_LIMIT = 5;
 
 function truncateCliText(value: string, limit: number): string {
   if (value.length <= limit) return value;
@@ -3720,6 +3725,179 @@ function appendMaterializedFrontmatterBlock(content: string, lines: string[]): s
   return `${head}\n${lines.join("\n")}${tail}`;
 }
 
+function summarizeClosureMaterializePacket(packet: ProjectClosureEvidenceMaterializePacket) {
+  return {
+    schema_version: "project-closure-evidence-materialize-summary.v1",
+    source_clock: packet.source_clock,
+    selected_action: packet.selected_action,
+    probe_execution: packet.probe_execution
+      ? {
+          command: packet.probe_execution.command,
+          session_id: packet.probe_execution.session_id ?? null,
+          correlation_id: packet.probe_execution.correlation_id ?? null,
+          completed_at: packet.probe_execution.completed_at,
+          exit_code: packet.probe_execution.exit_code,
+          status: packet.probe_execution.status,
+          output_digest: packet.probe_execution.output_digest,
+        }
+      : null,
+    queue_total: packet.queue_total,
+    queue_listed: packet.queue_listed,
+    queue_omitted: packet.queue_omitted,
+    materialized_candidate_count: packet.materialized_candidate_count,
+    materialize_readiness: packet.materialize_readiness,
+    approval: packet.approval,
+    sample_candidates: packet.materialized_candidates
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((candidate) => ({
+        candidate_id: candidate.candidate_id,
+        plan_id: candidate.plan_id,
+        artifact_path: candidate.artifact_path,
+        operation: candidate.operation,
+        materialized_preview_digest: candidate.materialized_preview_digest,
+        remaining_placeholder_count: candidate.remaining_placeholder_count,
+        ready_for_approval: candidate.ready_for_approval,
+      })),
+    postcheck_commands: packet.postcheck_commands,
+    write_policy: packet.write_policy,
+    source_command: "helix closure evidence-materialize --summary-json",
+    view_command: packet.view_command,
+    findings: packet.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+  };
+}
+
+function summarizeClosureApprovalDraftPacket(
+  packet: ProjectClosureEvidenceApprovalDraftPacket,
+  approvalRecordOutput: {
+    requested: boolean;
+    path: string | null;
+    written: boolean;
+    bytes: number;
+    sha256: string | null;
+    non_authorizing: true;
+  },
+) {
+  return {
+    schema_version: "project-closure-evidence-approval-draft-summary.v1",
+    source_clock: packet.source_clock,
+    selected_action: packet.selected_action,
+    plan_only: packet.plan_only,
+    must_not_apply: packet.must_not_apply,
+    approval_allowed: packet.approval_allowed,
+    apply_authorized: packet.apply_authorized,
+    materialize_readiness: packet.materialize_readiness,
+    materialized_candidate_count: packet.materialized_candidate_count,
+    approval: packet.approval,
+    candidate_digest_count: packet.candidate_digests.length,
+    sample_candidate_digests: packet.candidate_digests
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((candidate) => ({
+        candidate_id: candidate.candidate_id,
+        plan_id: candidate.plan_id,
+        artifact_path: candidate.artifact_path,
+        operation: candidate.operation,
+        materialized_preview_digest: candidate.materialized_preview_digest,
+        ready_for_approval: candidate.ready_for_approval,
+      })),
+    approval_record_template: packet.approval_record_template,
+    approval_record_output: approvalRecordOutput,
+    postcheck_commands: packet.postcheck_commands,
+    write_policy: packet.write_policy,
+    source_command: "helix closure evidence-approval-draft --summary-json",
+    view_command: packet.view_command,
+    findings: packet.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+  };
+}
+
+function summarizeClosureEvidenceApplyPlan(
+  plan: ProjectClosureEvidenceApplyPlan,
+  execution: {
+    executed: boolean;
+    applied_artifacts: Array<{
+      candidate_id: string;
+      artifact_path: string;
+      operation: string;
+    }>;
+  },
+) {
+  return {
+    schema_version: "project-closure-evidence-apply-summary.v1",
+    source_clock: plan.source_clock,
+    dry_run: plan.dry_run,
+    selected_action: plan.selected_action,
+    materialize_readiness: plan.materialize_readiness,
+    approval: plan.approval,
+    allowed_to_apply: plan.allowed_to_apply,
+    blocked_reasons: plan.blocked_reasons,
+    patch_candidate_count: plan.patch_candidates.length,
+    sample_patch_candidates: plan.patch_candidates
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((candidate) => ({
+        candidate_id: candidate.candidate_id,
+        plan_id: candidate.plan_id,
+        artifact_path: candidate.artifact_path,
+        operation: candidate.operation,
+        materialized_preview_digest: candidate.materialized_preview_digest,
+      })),
+    executed: execution.executed,
+    applied_artifacts: execution.applied_artifacts,
+    postcheck_commands: plan.postcheck_commands,
+    write_policy: plan.write_policy,
+    source_command: "helix closure evidence-apply --summary-json",
+    view_command: plan.view_command,
+  };
+}
+
+function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
+  return {
+    schema_version: "project-closure-review-bundle-summary.v1",
+    source_clock: bundle.source_clock,
+    action: bundle.action,
+    approval_required: bundle.approval_required,
+    current: bundle.current,
+    total: bundle.total,
+    listed: bundle.listed,
+    omitted: bundle.omitted,
+    limit: bundle.limit,
+    offset: bundle.offset,
+    window: bundle.window,
+    review_scope: bundle.review_scope,
+    decision: {
+      decision_id: bundle.decision.decision_id,
+      allowed_outcomes: bundle.decision.allowed_outcomes,
+      outcome_routes: bundle.decision.outcome_routes,
+      required_evidence: bundle.decision.required_evidence,
+      blocked_by_findings: bundle.decision.blocked_by_findings,
+    },
+    candidate_count: bundle.candidates.length,
+    sample_candidates: bundle.candidates
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((candidate) => ({
+        planId: candidate.planId,
+        nextAction: candidate.nextAction,
+        sourcePath: candidate.sourcePath,
+        l12Layer: candidate.l12Layer,
+        coverageId: candidate.coverageId,
+        evidence_status: candidate.evidence.status,
+        test_runs: candidate.evidence.testRuns,
+        gate_runs: candidate.evidence.gateRuns,
+        runtime_verification: candidate.evidence.runtimeVerification,
+      })),
+    safeguards: bundle.safeguards,
+    write_policy: bundle.write_policy,
+    source_command: "helix closure review-bundle --summary-json",
+    view_command: bundle.view_command,
+  };
+}
+
 closure
   .command("overview")
   .description("emit a read-only overview of all current-location closure queues")
@@ -4191,6 +4369,7 @@ closure
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
   .action(
     (opts: {
@@ -4198,6 +4377,7 @@ closure
       limit?: string;
       probeRecord?: string;
       json?: boolean;
+      summaryJson?: boolean;
       fromDb?: boolean;
     }) => {
       if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
@@ -4234,6 +4414,10 @@ closure
           limit,
           probeExecution,
         });
+        if (opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(summarizeClosureMaterializePacket(packet), null, 2)}\n`);
+          return;
+        }
         if (opts.json) {
           process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
           return;
@@ -4266,6 +4450,7 @@ closure
 	  .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
 	  .option("--out <path>", "write the non-authorizing pending approval draft to a new local file")
 	  .option("--json", "JSON output")
+	  .option("--summary-json", "compact JSON output for approval and view surfaces")
 	  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
 	  .action(
 	    (opts: {
@@ -4274,6 +4459,7 @@ closure
 	      probeRecord?: string;
 	      out?: string;
 	      json?: boolean;
+	      summaryJson?: boolean;
 	      fromDb?: boolean;
 	    }) => {
 	      if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
@@ -4351,6 +4537,12 @@ closure
 	            non_authorizing: true,
 	          };
 	        }
+	        if (opts.summaryJson) {
+	          process.stdout.write(
+	            `${JSON.stringify(summarizeClosureApprovalDraftPacket(packet, approvalRecordOutput), null, 2)}\n`,
+	          );
+	          return;
+	        }
 	        if (opts.json) {
 	          process.stdout.write(
 	            `${JSON.stringify({ ...packet, approval_record_output: approvalRecordOutput }, null, 2)}\n`,
@@ -4390,6 +4582,7 @@ closure
 	  .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
 	  .option("--approval-record <path>", "approval record containing materialize decision")
 	  .option("--json", "JSON output")
+	  .option("--summary-json", "compact JSON output for approval and view surfaces")
 	  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
 	  .action(
 	    (opts: {
@@ -4400,6 +4593,7 @@ closure
 	      probeRecord?: string;
 	      approvalRecord?: string;
 	      json?: boolean;
+	      summaryJson?: boolean;
 	      fromDb?: boolean;
 	    }) => {
 	      if (opts.dryRun === opts.execute) {
@@ -4453,7 +4647,18 @@ closure
 	        }> = [];
 	        if (opts.execute) {
 	          if (!plan.allowed_to_apply) {
-	            if (opts.json) {
+	            if (opts.summaryJson) {
+	              process.stdout.write(
+	                `${JSON.stringify(
+	                  summarizeClosureEvidenceApplyPlan(plan, {
+	                    executed: false,
+	                    applied_artifacts: [],
+	                  }),
+	                  null,
+	                  2,
+	                )}\n`,
+	              );
+	            } else if (opts.json) {
 	              process.stdout.write(
 	                `${JSON.stringify({ ...plan, executed: false, applied_artifacts: [] }, null, 2)}\n`,
 	              );
@@ -4486,6 +4691,19 @@ closure
 	              operation: candidate.operation,
 	            });
 	          }
+	        }
+	        if (opts.summaryJson) {
+	          process.stdout.write(
+	            `${JSON.stringify(
+	              summarizeClosureEvidenceApplyPlan(plan, {
+	                executed: opts.execute === true,
+	                applied_artifacts: appliedArtifacts,
+	              }),
+	              null,
+	              2,
+	            )}\n`,
+	          );
+	          return;
 	        }
 	        if (opts.json) {
 	          process.stdout.write(
@@ -4521,8 +4739,9 @@ closure
   .option("--limit <n>", "maximum candidate items to include", "20")
   .option("--offset <n>", "zero-based candidate offset", "0")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { action?: string; limit?: string; offset?: string; json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { action?: string; limit?: string; offset?: string; json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
       process.stderr.write(
         `closure review-bundle: invalid action=${opts.action} (expected close_ready, collect_evidence, repair_failed_evidence, reverse_design)\n`,
@@ -4555,6 +4774,10 @@ closure
         limit,
         offset,
       });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeClosureReviewBundle(bundle), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(bundle, null, 2)}\n`);
         return;
