@@ -918,8 +918,10 @@ describe("project current-location read model", () => {
             selected: true,
             mutation_allowed: false,
             approval_required: true,
-            dry_run_command: "helix closure apply --dry-run --json",
-            execute_command: "helix closure apply --execute --approval-record <path> --json",
+            dry_run_command:
+              "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --json",
+            execute_command:
+              "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --json",
             required_record: "approval_scope_digest",
           }),
           expect.objectContaining({
@@ -1468,8 +1470,10 @@ describe("project current-location read model", () => {
           target_action: "accepted",
           drive_model: "Recovery",
           human_required: true,
-          command: "helix closure apply --dry-run --json",
-          transition_command: "helix closure apply --execute --approval-record <path> --json",
+          command:
+            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --json",
+          transition_command:
+            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --json",
         },
         write_policy: "read-only",
         source_command: "helix closure transition-plan --json",

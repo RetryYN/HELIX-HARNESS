@@ -1653,8 +1653,10 @@ describe("buildVisualizationViewModel", () => {
         apply_readiness: {
           close_ready_count: 0,
           approval_required: false,
-          dry_run_command: "helix closure apply --dry-run --json",
-          execute_command: "helix closure apply --execute --approval-record <path> --json",
+          dry_run_command:
+            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
+          execute_command:
+            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --json",
           review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
           transition_plan_command: "helix closure transition-plan --action close_ready --json",
           decision_draft_command:

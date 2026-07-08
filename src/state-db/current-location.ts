@@ -1209,8 +1209,8 @@ export interface ProjectClosureOverview {
       close_ready_count: number;
       approval_required: boolean;
       status: "approval_required" | "no_close_ready_candidates";
-      dry_run_command: "helix closure apply --dry-run --json";
-      execute_command: "helix closure apply --execute --approval-record <path> --json";
+      dry_run_command: string;
+      execute_command: string;
       review_bundle_command: "helix closure review-bundle --action close_ready --summary-json";
       transition_plan_command: "helix closure transition-plan --action close_ready --json";
       review_window_command: string;
@@ -1420,7 +1420,7 @@ export interface ProjectClosureApplyPlan {
   }>;
   postcheck_commands: string[];
   write_policy: "read-only";
-  source_command: "helix closure apply --dry-run --json";
+  source_command: string;
   view_command: "helix progress tree-view --json";
 }
 
@@ -3334,6 +3334,8 @@ function buildProjectRecoveryAutomationBoundaries(
 	      lane.action === "collect_evidence" || lane.action === "repair_failed_evidence"
 	        ? `helix closure evidence-patch --action ${lane.action} --json`
 	        : null;
+    const closureApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
+    const closureApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
 	    return {
       action: lane.action,
       lane_type: lane.lane_type,
@@ -3345,7 +3347,7 @@ function buildProjectRecoveryAutomationBoundaries(
       approval_required: approvalRequired,
       dry_run_command:
         lane.action === "close_ready"
-          ? "helix closure apply --dry-run --json"
+          ? closureApplyDryRunCommand
           : (evidencePatchCommand ?? lane.batch_command),
       review_command: lane.review_command,
       batch_command: lane.batch_command,
@@ -3360,7 +3362,7 @@ function buildProjectRecoveryAutomationBoundaries(
 		      evidence_apply_write_policy: lane.evidence_apply_write_policy,
 		      evidence_handoff_artifacts: lane.evidence_handoff_artifacts,
 	      execute_command: approvalRequired
-        ? "helix closure apply --execute --approval-record <path> --json"
+        ? closureApplyExecuteCommand
         : null,
       required_record: approvalRequired || evidencePatchCommand ? "approval_scope_digest" : null,
       safety_policy: recoverySafetyPolicy(lane, automationClass),
@@ -7213,11 +7215,13 @@ export function buildProjectClosureOverview(
     limit?: number;
   } = {},
 ): ProjectClosureOverview {
-	const limit = Math.max(0, input.limit ?? 5);
+  const limit = Math.max(0, input.limit ?? 5);
   const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
   const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --json`;
   const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${limit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json`;
+  const closeReadyApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${limit} --json`;
+  const closeReadyApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${limit} --json`;
   const actions = PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => {
     const batch = buildProjectClosureBatchReport(snapshot, { action, limit });
     return {
@@ -7263,8 +7267,8 @@ export function buildProjectClosureOverview(
         close_ready_count: closeReadyCount,
         approval_required: closeReadyCount > 0,
         status: closeReadyCount > 0 ? "approval_required" : "no_close_ready_candidates",
-        dry_run_command: "helix closure apply --dry-run --json",
-        execute_command: "helix closure apply --execute --approval-record <path> --json",
+        dry_run_command: closeReadyApplyDryRunCommand,
+        execute_command: closeReadyApplyExecuteCommand,
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
         transition_plan_command: "helix closure transition-plan --action close_ready --json",
         review_window_command: closeReadyReviewWindowCommand,
@@ -7557,7 +7561,7 @@ export function buildProjectClosureDecisionDraftPacket(
       bundle.action === "close_ready"
         ? [
             "helix closure transition-plan --action close_ready --decision <outcome> --json",
-            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --json",
+            `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${bundle.listed} --json`,
             "helix current-location --json",
             "helix vmodel fit --json",
           ]
@@ -7630,14 +7634,15 @@ function closureDecisionOutcomeRoute(input: {
   }
 
   if (input.decisionOutcome === "approve_closure_claim") {
+    const candidateLimit = input.candidates.length;
     return {
       outcome: input.decisionOutcome,
       projection_type: "apply_closure",
       target_action: "accepted",
       drive_model: "Recovery",
       human_required: true,
-      command: "helix closure apply --dry-run --json",
-      transition_command: "helix closure apply --execute --approval-record <path> --json",
+      command: `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${candidateLimit} --json`,
+      transition_command: `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${candidateLimit} --json`,
       expected_transition: "承認済み close_ready candidate を accepted 化し、open L7 queue から除外する",
       required_action:
         "approval_scope_digest に一致する approval record を用意し、closure apply dry-run を確認してから execute する",
@@ -7927,10 +7932,11 @@ export function buildProjectClosureApplyPlan(
     limit?: number;
   } = {},
 ): ProjectClosureApplyPlan {
+  const limit = Math.max(0, input.limit ?? 20);
   const transition = buildProjectClosureTransitionPlan(snapshot, {
     action: "close_ready",
     decisionOutcome: "approve_closure_claim",
-    limit: input.limit,
+    limit,
   });
   const approval = parseApprovalRecord(
     input.approvalRecordText ?? null,
@@ -7942,7 +7948,10 @@ export function buildProjectClosureApplyPlan(
   ];
   const closeReadyItems = snapshot.closure.queue.items
     .filter((item) => item.nextAction === "close_ready")
-    .slice(0, Math.max(0, input.limit ?? 20));
+    .slice(0, limit);
+  const sourceCommand = input.approvalRecordPath
+    ? `helix closure apply --dry-run --approval-record ${input.approvalRecordPath} --limit ${limit} --json`
+    : `helix closure apply --dry-run --limit ${limit} --json`;
 
   return {
     schema_version: "project-closure-apply-plan.v1",
@@ -7983,7 +7992,7 @@ export function buildProjectClosureApplyPlan(
       "helix doctor",
     ],
     write_policy: "read-only",
-    source_command: "helix closure apply --dry-run --json",
+    source_command: sourceCommand,
     view_command: "helix progress tree-view --json",
   };
 }

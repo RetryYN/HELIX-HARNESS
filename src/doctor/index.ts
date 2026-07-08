@@ -2709,8 +2709,9 @@ export function checkClosureApplyBinding(
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
-      const overview = buildProjectClosureOverview(snapshot, { limit: 0 });
-      const apply = buildProjectClosureApplyPlan(snapshot, { limit: 20 });
+      const applyLimit = 20;
+      const overview = buildProjectClosureOverview(snapshot, { limit: applyLimit });
+      const apply = buildProjectClosureApplyPlan(snapshot, { limit: applyLimit });
       const violations: string[] = [];
       const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
       if (apply.schema_version !== "project-closure-apply-plan.v1") {
@@ -2740,7 +2741,7 @@ export function checkClosureApplyBinding(
       if (apply.write_policy !== "read-only") {
         violations.push(`write_policy=${apply.write_policy}`);
       }
-      if (apply.source_command !== "helix closure apply --dry-run --json") {
+      if (apply.source_command !== `helix closure apply --dry-run --limit ${applyLimit} --json`) {
         violations.push(`source_command=${apply.source_command}`);
       }
       if (apply.view_command !== "helix progress tree-view --json") {
@@ -2772,12 +2773,15 @@ export function checkClosureApplyBinding(
       if (closeReadyCount > 0 && applyReadiness.status !== "approval_required") {
         violations.push(`apply_readiness=${applyReadiness.status}`);
       }
-      if (applyReadiness.dry_run_command !== "helix closure apply --dry-run --json") {
+      if (
+        applyReadiness.dry_run_command !==
+        `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${applyLimit} --json`
+      ) {
         violations.push(`dry_run_command=${applyReadiness.dry_run_command}`);
       }
       if (
         applyReadiness.execute_command !==
-        "helix closure apply --execute --approval-record <path> --json"
+        `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${applyLimit} --json`
       ) {
         violations.push(`execute_command=${applyReadiness.execute_command}`);
       }
