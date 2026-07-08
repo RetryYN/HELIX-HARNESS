@@ -421,6 +421,7 @@ import {
   peakParallel,
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
+import { buildSummarySurfaceCommandAudit } from "../runtime/summary-surface-audit";
 import { teamDefinitionSchema } from "../schema/team";
 import {
   analyzeConsumerCiWorkflowContract,
@@ -1591,6 +1592,191 @@ export function checkVisualizationTreeViewBoundary(
       ok: false,
     };
   }
+}
+
+export function checkVisualizationTreeViewSummarySurface(
+  repoRoot: string,
+): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: [
+        "visualization-tree-view-summary-surface - violation: repo root could not be read",
+      ],
+      ok: false,
+    };
+  }
+  const audit = buildSummarySurfaceCommandAudit([
+    {
+      surface: "current-location",
+      payload: {
+        source_command: "helix current-location --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "drive-model",
+      payload: {
+        source_command: "helix drive model --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "recovery-plan",
+      payload: {
+        source_command: "helix recovery plan --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "roadmap-current",
+      payload: {
+        source_command: "helix roadmap current --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "artifact-remap-batch",
+      payload: {
+        source_command: "helix artifact-remap batch --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "progress-artifacts",
+      payload: {
+        source_command: "helix progress artifacts --summary-json",
+        full_source_command: "helix progress artifacts --json",
+      },
+    },
+    {
+      surface: "closure-overview",
+      payload: {
+        source_command: "helix closure overview --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-batch",
+      payload: {
+        source_command: "helix closure batch --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-evidence-plan",
+      payload: {
+        source_command: "helix closure evidence-plan --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-evidence-patch",
+      payload: {
+        source_command: "helix closure evidence-patch --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-evidence-probe",
+      payload: {
+        source_command: "helix closure evidence-probe --summary-json",
+        full_source_command: "helix closure evidence-probe --json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-evidence-materialize",
+      payload: {
+        source_command: "helix closure evidence-materialize --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-evidence-approval-draft",
+      payload: {
+        source_command: "helix closure evidence-approval-draft --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-evidence-apply",
+      payload: {
+        source_command: "helix closure evidence-apply --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-review-bundle",
+      payload: {
+        source_command: "helix closure review-bundle --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-transition-plan",
+      payload: {
+        source_command: "helix closure transition-plan --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-decision-draft",
+      payload: {
+        source_command: "helix closure decision-draft --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "closure-apply",
+      payload: {
+        source_command: "helix closure apply --dry-run --summary-json",
+        full_source_command: "helix closure apply --dry-run --json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+    {
+      surface: "vmodel-fit",
+      payload: {
+        source_command: "helix vmodel fit --summary-json",
+        current_location_command: "helix current-location --summary-json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
+  ]);
+  const prefix =
+    audit.status === "pass"
+      ? "visualization-tree-view-summary-surface - OK"
+      : "visualization-tree-view-summary-surface - violation";
+  return {
+    ok: audit.status === "pass",
+    messages: [
+      `${prefix}: status=${audit.status} checked=${audit.checked_surface_count} excluded=${audit.excluded_surface_count} unexpected=${audit.unexpected_count} source=helix progress tree-view --summary-json`,
+      `visualization-tree-view-summary-surface - allowed-fields=${audit.allowed_fields.join(",")} excluded=${audit.excluded_surfaces.map((surface) => surface.surface).join(",")}`,
+      `visualization-tree-view-summary-surface - surfaces=${audit.surfaces.map((surface) => `${surface.surface}:${surface.source_command ?? "-"}`).join(",")}`,
+      ...audit.unexpected_commands.map(
+        (hit) =>
+          `visualization-tree-view-summary-surface - violation: ${hit.surface}.${hit.path}=${hit.command}`,
+      ),
+    ],
+  };
 }
 
 export function checkVscodeExtensionDynamicBinding(
@@ -5910,6 +6096,9 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     deps.repoRoot,
     sharedProjectionDb,
   );
+  const visualizationTreeViewSummarySurface = checkVisualizationTreeViewSummarySurface(
+    deps.repoRoot,
+  );
   const vscodeExtensionDynamicBinding = checkVscodeExtensionDynamicBinding(
     deps.repoRoot,
     sharedProjectionDb,
@@ -6040,6 +6229,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       projectCurrentLocation.ok &&
       visualizationViewModelBoundary.ok &&
       visualizationTreeViewBoundary.ok &&
+      visualizationTreeViewSummarySurface.ok &&
       vscodeExtensionDynamicBinding.ok &&
       l12CompatibilityBinding.ok &&
       roadmapCurrentBinding.ok &&
@@ -6161,6 +6351,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...projectCurrentLocation.messages.map((m) => `doctor: ${m}`),
       ...visualizationViewModelBoundary.messages.map((m) => `doctor: ${m}`),
       ...visualizationTreeViewBoundary.messages.map((m) => `doctor: ${m}`),
+      ...visualizationTreeViewSummarySurface.messages.map((m) => `doctor: ${m}`),
       ...vscodeExtensionDynamicBinding.messages.map((m) => `doctor: ${m}`),
       ...l12CompatibilityBinding.messages.map((m) => `doctor: ${m}`),
       ...roadmapCurrentBinding.messages.map((m) => `doctor: ${m}`),

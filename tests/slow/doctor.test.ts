@@ -80,6 +80,7 @@ import {
   checkVerifierProviderMismatch,
   checkVersionUpReadiness,
   checkVisualizationTreeViewBoundary,
+  checkVisualizationTreeViewSummarySurface,
   checkVisualizationViewModelBoundary,
   checkVmodelFit,
   checkVmodelZipManifest,
@@ -2559,6 +2560,21 @@ describe("runDoctor", () => {
         "project/current-location/operation-scope/incident_recovery_route/observation-gap",
       );
 
+      const treeSummarySurfaceCheck = checkVisualizationTreeViewSummarySurface(root);
+      expect(treeSummarySurfaceCheck.ok).toBe(true);
+      expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
+        "visualization-tree-view-summary-surface - OK: status=pass checked=19 excluded=2 unexpected=0",
+      );
+      expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
+        "source=helix progress tree-view --summary-json",
+      );
+      expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
+        "closure-evidence-probe:helix closure evidence-probe --summary-json",
+      );
+      expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
+        "vmodel-fit:helix vmodel fit --summary-json",
+      );
+
       const vscodeDynamicBinding = checkVscodeExtensionDynamicBinding(root, db);
       expect(vscodeDynamicBinding.ok).toBe(true);
       expect(vscodeDynamicBinding.messages.join("\n")).toContain(
@@ -2821,6 +2837,20 @@ describe("runDoctor", () => {
         r.messages,
         "doctor: visualization-tree-view-boundary",
         "full-json-audit",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: visualization-tree-view-summary-surface",
+        "checked=19",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: visualization-tree-view-summary-surface",
+        "unexpected=0",
       ),
     ).toBe(true);
     expect(hasDoctorMessageWith(r.messages, "doctor: vscode-extension-dynamic-binding", "OK")).toBe(
@@ -3389,6 +3419,10 @@ describe("runDoctor", () => {
       ["project-current-location", checkProjectCurrentLocation(missingRoot)],
       ["visualization-view-model-boundary", checkVisualizationViewModelBoundary(missingRoot)],
       ["visualization-tree-view-boundary", checkVisualizationTreeViewBoundary(missingRoot)],
+      [
+        "visualization-tree-view-summary-surface",
+        checkVisualizationTreeViewSummarySurface(missingRoot),
+      ],
       ["vscode-extension-dynamic-binding", checkVscodeExtensionDynamicBinding(missingRoot)],
       ["l12-compatibility-binding", checkL12CompatibilityBinding(missingRoot)],
       ["roadmap-current-binding", checkRoadmapCurrentBinding(missingRoot)],

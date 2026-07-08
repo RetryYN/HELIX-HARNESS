@@ -167,6 +167,11 @@ import {
   sweepStaleGuardSlots,
 } from "./runtime/agent-slots";
 import {
+  buildSummarySurfaceCommandAudit as buildSummarySurfaceCommandAuditFromPayloads,
+  summaryJsonCommand,
+  summaryJsonCommandOrNull,
+} from "./runtime/summary-surface-audit";
+import {
   attemptsFromSessionEvents,
   evaluateAttemptEscalation,
   renderEscalationSignals,
@@ -4077,14 +4082,6 @@ const artifactRemap = program
   .command("artifact-remap")
   .description("Project artifact remap read-only automation surfaces");
 
-function summaryJsonCommand(command: string): string {
-  return command.replace(/ --json$/, " --summary-json");
-}
-
-function summaryJsonCommandOrNull(command: string | null): string | null {
-  return command === null ? null : summaryJsonCommand(command);
-}
-
 function loadArtifactProgressRows(
   db: HarnessDb,
   color: string | null,
@@ -4100,36 +4097,6 @@ function loadArtifactProgressRows(
           "SELECT artifact_path, artifact_type, state, color, linked_test_count, passed_test_run_count, dependency_checked, dependency_check_run_id, open_dependency_impacts, linked_test_paths, passed_test_run_ids, recovery_plan_ids, reason, indexed_at FROM artifact_progress ORDER BY CASE color WHEN 'red' THEN 0 WHEN 'yellow' THEN 1 ELSE 2 END, artifact_path",
         )
         .all();
-}
-
-type SummarySurfaceRawJsonHit = {
-  path: string;
-  command: string;
-};
-
-function collectSummarySurfaceRawJsonHits(
-  value: unknown,
-  path: string[] = [],
-): SummarySurfaceRawJsonHit[] {
-  if (typeof value === "string") {
-    const fieldName = path[path.length - 1] ?? "";
-    const intentionallyFull =
-      fieldName === "full_source_command" || fieldName === "full_view_command";
-    return value.includes(" --json") && !value.includes(" --summary-json") && !intentionallyFull
-      ? [{ path: path.join("."), command: value }]
-      : [];
-  }
-  if (Array.isArray(value)) {
-    return value.flatMap((item, index) =>
-      collectSummarySurfaceRawJsonHits(item, [...path, String(index)]),
-    );
-  }
-  if (value !== null && typeof value === "object") {
-    return Object.entries(value).flatMap(([key, item]) =>
-      collectSummarySurfaceRawJsonHits(item, [...path, key]),
-    );
-  }
-  return [];
 }
 
 function buildSummarySurfaceCommandAudit(
@@ -4161,7 +4128,7 @@ function buildSummarySurfaceCommandAudit(
     executed: false,
     appliedPatches: [],
   };
-  const surfaces = [
+  return buildSummarySurfaceCommandAuditFromPayloads([
     {
       surface: "current-location",
       payload: summarizeProjectCurrentLocation(snapshot),
@@ -4271,49 +4238,7 @@ function buildSummarySurfaceCommandAudit(
         buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
       ),
     },
-  ].map((surface) => {
-    const unexpectedCommands = collectSummarySurfaceRawJsonHits(surface.payload);
-    const sourceCommand =
-      typeof surface.payload === "object" &&
-      surface.payload !== null &&
-      "source_command" in surface.payload &&
-      typeof surface.payload.source_command === "string"
-        ? surface.payload.source_command
-        : null;
-    return {
-      surface: surface.surface,
-      source_command: sourceCommand,
-      unexpected_count: unexpectedCommands.length,
-      sample_unexpected_commands: unexpectedCommands.slice(0, 10),
-    };
-  });
-  const unexpectedCommands = surfaces.flatMap((surface) =>
-    surface.sample_unexpected_commands.map((hit) => ({
-      surface: surface.surface,
-      ...hit,
-    })),
-  );
-  return {
-    status: unexpectedCommands.length === 0 ? "pass" : "unexpected_raw_json_command",
-    checked_surface_count: surfaces.length,
-    excluded_surface_count: 2,
-    unexpected_count: unexpectedCommands.length,
-    allowed_fields: ["full_source_command", "full_view_command"],
-    excluded_surfaces: [
-      {
-        surface: "doctor-summary",
-        source_command: "helix doctor --summary-json",
-        reason: "doctor is a meta-diagnostic surface and would recursively invoke broad checks from the tree-view summary audit",
-      },
-      {
-        surface: "progress-tree-view",
-        source_command: "helix progress tree-view --summary-json",
-        reason: "progress tree-view is the host surface for this audit, so self-inclusion would be recursive",
-      },
-    ],
-    surfaces,
-    unexpected_commands: unexpectedCommands.slice(0, 20),
-  };
+  ]);
 }
 
 type ProbeRecordOutput = {
