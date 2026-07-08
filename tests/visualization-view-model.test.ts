@@ -1537,7 +1537,7 @@ describe("buildVisualizationViewModel", () => {
             sample_plan_ids: ["PLAN-L7-fixture"],
           }),
         ],
-        source_command: "helix closure overview --json",
+        source_command: "helix closure overview --summary-json",
         view_command: "helix progress tree-view --json",
       }),
       closure: expect.objectContaining({

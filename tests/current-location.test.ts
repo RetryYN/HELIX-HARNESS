@@ -1177,7 +1177,7 @@ describe("project current-location read model", () => {
           human_required: true,
         },
         write_policy: "read-only",
-        source_command: "helix closure overview --json",
+        source_command: "helix closure overview --summary-json",
       });
       expect(overview.actions).toEqual(
         expect.arrayContaining([

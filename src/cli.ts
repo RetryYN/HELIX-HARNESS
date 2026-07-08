@@ -279,6 +279,7 @@ import {
   type ProjectClosureEvidenceMaterializePacket,
   type ProjectClosureDecisionDraftPacket,
   type ProjectClosureEvidencePlan,
+  type ProjectClosureOverview,
   type ProjectClosureReviewBundle,
   type ProjectClosureTransitionPlan,
 } from "./state-db/current-location";
@@ -3812,6 +3813,56 @@ function summarizeClosureEvidencePlan(plan: ProjectClosureEvidencePlan) {
   };
 }
 
+function summarizeClosureOverview(overview: ProjectClosureOverview) {
+  return {
+    schema_version: "project-closure-overview-summary.v1",
+    source_clock: overview.source_clock,
+    current: overview.current,
+    drive_route: {
+      route_id: overview.drive_route.routeId,
+      status: overview.drive_route.status,
+      selected_model: overview.drive_route.selectedModel,
+      default_model: overview.drive_route.defaultModel,
+      must_return_to_design: overview.drive_route.mustReturnToDesign,
+    },
+    closure: {
+      status: overview.closure.status,
+      open_l7: overview.closure.open_l7,
+      l14_claims: overview.closure.l14_claims,
+      closure_evidence: overview.closure.closure_evidence,
+      remediation: overview.closure.remediation,
+      queue_total: overview.closure.queue_total,
+      route_counts: overview.closure.route_counts,
+      ledger_status_counts: overview.closure.ledger_status_counts,
+      apply_readiness: overview.closure.apply_readiness,
+    },
+    action_count: overview.actions.length,
+    actions: overview.actions.map((action) => ({
+      action: action.action,
+      count: action.count,
+      listed: action.listed,
+      omitted: action.omitted,
+      ledger_status: action.ledger_status,
+      human_required: action.human_required,
+      review_command: action.review_command,
+      transition_command: action.transition_command,
+      sample_plan_ids: action.sample_plan_ids,
+      required_action: action.required_action,
+      promotion_gate: action.promotion_gate,
+    })),
+    recommended_next_action: overview.recommended_next_action,
+    finding_count: overview.findings.length,
+    sample_findings: overview.findings.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+      detail: finding.detail,
+    })),
+    write_policy: overview.write_policy,
+    source_command: "helix closure overview --summary-json",
+    view_command: overview.view_command,
+  };
+}
+
 function summarizeClosureApprovalDraftPacket(
   packet: ProjectClosureEvidenceApprovalDraftPacket,
   approvalRecordOutput: {
@@ -4052,8 +4103,9 @@ closure
   .description("emit a read-only overview of all current-location closure queues")
   .option("--limit <n>", "sample queue items per action", "5")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { limit?: string; json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { limit?: string; json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const limit = Number.parseInt(opts.limit ?? "5", 10);
     if (!Number.isFinite(limit) || limit < 0) {
       process.stderr.write(`closure overview: invalid limit=${opts.limit ?? ""}\n`);
@@ -4069,6 +4121,10 @@ closure
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const overview = buildProjectClosureOverview(snapshot, { limit });
+      if (opts.summaryJson) {
+        process.stdout.write(`${JSON.stringify(summarizeClosureOverview(overview), null, 2)}\n`);
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(overview, null, 2)}\n`);
         return;

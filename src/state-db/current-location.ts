@@ -1242,7 +1242,7 @@ export interface ProjectClosureOverview {
   };
   findings: ProjectCurrentLocationFinding[];
   write_policy: "read-only";
-  source_command: "helix closure overview --json";
+  source_command: string;
   view_command: "helix progress tree-view --json";
 }
 
@@ -3688,7 +3688,7 @@ export function buildProjectRecoveryPlan(
         ? selectedAction === "close_ready"
           ? "helix closure review-bundle --action close_ready --summary-json"
           : `helix closure batch --action ${selectedAction} --json`
-        : "helix closure overview --json",
+        : "helix closure overview --summary-json",
       required_action:
         "close_ready は approval bundle へ進め、collect/repair/reverse は evidence または設計戻しを実施する",
       expected_transition:
@@ -7296,7 +7296,7 @@ export function buildProjectClosureOverview(
         },
     findings: snapshot.findings,
     write_policy: "read-only",
-    source_command: "helix closure overview --json",
+    source_command: "helix closure overview --summary-json",
     view_command: "helix progress tree-view --json",
   };
 }

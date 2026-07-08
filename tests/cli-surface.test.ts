@@ -3120,7 +3120,7 @@ describe("L7 CLI surface closure", () => {
           human_required: false,
         },
         write_policy: "read-only",
-        source_command: "helix closure overview --json",
+        source_command: "helix closure overview --summary-json",
       });
       expect(overviewPayload.actions).toEqual(
         expect.arrayContaining([
@@ -3135,6 +3135,41 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
+
+      const overviewSummary = runCliIn(root, [
+        "closure",
+        "overview",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(overviewSummary.status).toBe(0);
+      const overviewSummaryPayload = JSON.parse(overviewSummary.stdout);
+      expect(overviewSummaryPayload).toMatchObject({
+        schema_version: "project-closure-overview-summary.v1",
+        closure: {
+          status: "contradicted",
+          queue_total: 1,
+          route_counts: {
+            close_ready: 0,
+            collect_evidence: 1,
+            repair_failed_evidence: 0,
+            reverse_design: 0,
+          },
+          apply_readiness: expect.objectContaining({
+            status: "no_close_ready_candidates",
+          }),
+        },
+        recommended_next_action: {
+          action: "collect_evidence",
+          command: "helix closure review-bundle --action collect_evidence --summary-json",
+          human_required: false,
+        },
+        action_count: 4,
+        write_policy: "read-only",
+        source_command: "helix closure overview --summary-json",
+      });
+      expect(overviewSummaryPayload).not.toHaveProperty("work_buckets");
 
       const overviewText = runCliIn(root, ["closure", "overview", "--limit", "1"]);
       expect(overviewText.status).toBe(0);

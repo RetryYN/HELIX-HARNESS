@@ -1654,7 +1654,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix closure overview --json"],
+        arguments: ["helix closure overview --summary-json"],
       },
     });
     expect(closureOverview?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
