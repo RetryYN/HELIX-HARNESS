@@ -1658,13 +1658,14 @@ describe("buildVisualizationViewModel", () => {
           execute_command:
             "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --json",
           review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
-          transition_plan_command: "helix closure transition-plan --action close_ready --json",
+          transition_plan_command:
+            "helix closure transition-plan --action close_ready --summary-json",
           decision_draft_command:
             "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
           review_window_command:
             "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
           transition_window_command:
-            "helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
+            "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
           write_policy: "approval-required",
           status: "no_close_ready_candidates",
           reasons: ["close_ready candidate が無いため apply 対象なし"],

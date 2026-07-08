@@ -4086,6 +4086,43 @@ describe("L7 CLI surface closure", () => {
         "postcheck-drive-model",
       ]);
 
+      const transitionSummary = runCliIn(root, [
+        "closure",
+        "transition-plan",
+        "--action",
+        "collect_evidence",
+        "--decision",
+        "approve_closure_claim",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(transitionSummary.status).toBe(0);
+      const transitionSummaryPayload = JSON.parse(transitionSummary.stdout);
+      expect(transitionSummaryPayload).toMatchObject({
+        schema_version: "project-closure-transition-plan-summary.v1",
+        action: "collect_evidence",
+        decision_outcome: "approve_closure_claim",
+        dry_run: true,
+        total: 1,
+        listed: 1,
+        omitted: 0,
+        allowed_to_apply: false,
+        blocked_reasons: ["close_ready 以外は closure apply 対象ではなく再分類対象"],
+        outcome_projection: {
+          projection_type: "reroute_closure_lane",
+          target_action: "collect_evidence",
+          drive_model: "Recovery",
+          command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          transition_command: "helix closure review-bundle --action collect_evidence --summary-json",
+        },
+        planned_step_count: 4,
+        source_command: "helix closure transition-plan --summary-json",
+        write_policy: "read-only",
+      });
+      expect(transitionSummaryPayload).not.toHaveProperty("target_plan_ids");
+
       const transitionText = runCliIn(root, [
         "closure",
         "transition-plan",

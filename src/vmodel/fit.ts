@@ -473,7 +473,7 @@ export interface VmodelApprovalReviewGate {
   current_window_command: string;
   previous_window_command: string | null;
   next_window_command: string | null;
-  transition_command: "helix closure transition-plan --action close_ready --json";
+  transition_command: "helix closure transition-plan --action close_ready --summary-json";
   transition_window_command: string;
   previous_transition_window_command: string | null;
   next_transition_window_command: string | null;
@@ -2064,16 +2064,16 @@ function buildVmodelApprovalReviewGate(
       bundle.window.next_offset === null
         ? null
         : `helix closure review-bundle --action close_ready --limit ${bundle.limit} --offset ${bundle.window.next_offset} --summary-json`,
-    transition_command: "helix closure transition-plan --action close_ready --json",
-    transition_window_command: `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.offset} --json`,
+    transition_command: "helix closure transition-plan --action close_ready --summary-json",
+    transition_window_command: `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`,
     previous_transition_window_command:
       bundle.window.previous_offset === null
         ? null
-        : `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.window.previous_offset} --json`,
+        : `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.window.previous_offset} --summary-json`,
     next_transition_window_command:
       bundle.window.next_offset === null
         ? null
-        : `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.window.next_offset} --json`,
+        : `helix closure transition-plan --action close_ready --limit ${bundle.limit} --offset ${bundle.window.next_offset} --summary-json`,
     outcome_routes: bundle.decision.outcome_routes.map((route) => ({
       ...route,
       doc_dependencies: [...route.doc_dependencies],

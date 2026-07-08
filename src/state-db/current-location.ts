@@ -1212,7 +1212,7 @@ export interface ProjectClosureOverview {
       dry_run_command: string;
       execute_command: string;
       review_bundle_command: "helix closure review-bundle --action close_ready --summary-json";
-      transition_plan_command: "helix closure transition-plan --action close_ready --json";
+      transition_plan_command: "helix closure transition-plan --action close_ready --summary-json";
       review_window_command: string;
       transition_window_command: string;
       decision_draft_command: string;
@@ -1340,7 +1340,7 @@ export interface ProjectClosureTransitionPlan {
   postcheck_commands: string[];
   rollback_notes: string[];
   write_policy: "read-only";
-  source_command: "helix closure transition-plan --json";
+  source_command: string;
   view_command: "helix progress tree-view --json";
 }
 
@@ -7218,7 +7218,7 @@ export function buildProjectClosureOverview(
   const limit = Math.max(0, input.limit ?? 5);
   const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
   const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --summary-json`;
-  const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --json`;
+  const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${limit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json`;
   const closeReadyApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${limit} --json`;
   const closeReadyApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${limit} --json`;
@@ -7270,7 +7270,7 @@ export function buildProjectClosureOverview(
         dry_run_command: closeReadyApplyDryRunCommand,
         execute_command: closeReadyApplyExecuteCommand,
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
-        transition_plan_command: "helix closure transition-plan --action close_ready --json",
+        transition_plan_command: "helix closure transition-plan --action close_ready --summary-json",
         review_window_command: closeReadyReviewWindowCommand,
         transition_window_command: closeReadyTransitionWindowCommand,
         decision_draft_command: closeReadyDecisionDraftCommand,
@@ -7560,7 +7560,7 @@ export function buildProjectClosureDecisionDraftPacket(
     postcheck_commands:
       bundle.action === "close_ready"
         ? [
-            "helix closure transition-plan --action close_ready --decision <outcome> --json",
+            "helix closure transition-plan --action close_ready --decision <outcome> --summary-json",
             `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${bundle.listed} --json`,
             "helix current-location --json",
             "helix vmodel fit --json",
@@ -7677,7 +7677,7 @@ function closureDecisionOutcomeRoute(input: {
       drive_model: input.driveRoute.selectedModel,
       human_required: true,
       command: "helix closure review-bundle --action close_ready --summary-json",
-      transition_command: "helix closure transition-plan --action close_ready --json",
+      transition_command: "helix closure transition-plan --action close_ready --summary-json",
       expected_transition: "未対応 outcome のため current-location は変更しない",
       required_action: "allowed_outcomes に含まれる outcome を指定する",
       doc_dependencies: commonDocDependencies,
@@ -7876,7 +7876,7 @@ export function buildProjectClosureTransitionPlan(
       "note: apply 実装時は対象 PLAN patch と承認記録を別 commit に分け、git diff で戻せる形にする",
     ],
     write_policy: "read-only",
-    source_command: "helix closure transition-plan --json",
+    source_command: "helix closure transition-plan --summary-json",
     view_command: "helix progress tree-view --json",
   };
 }

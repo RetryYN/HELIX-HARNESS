@@ -279,6 +279,7 @@ import {
   type ProjectClosureEvidenceMaterializePacket,
   type ProjectClosureDecisionDraftPacket,
   type ProjectClosureReviewBundle,
+  type ProjectClosureTransitionPlan,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
@@ -3899,6 +3900,51 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
   };
 }
 
+function summarizeClosureTransitionPlan(plan: ProjectClosureTransitionPlan) {
+  return {
+    schema_version: "project-closure-transition-plan-summary.v1",
+    source_clock: plan.source_clock,
+    action: plan.action,
+    decision_outcome: plan.decision_outcome,
+    dry_run: plan.dry_run,
+    current: plan.current,
+    total: plan.total,
+    listed: plan.listed,
+    omitted: plan.omitted,
+    limit: plan.limit,
+    offset: plan.offset,
+    window: plan.window,
+    approval_scope_digest: plan.approval_scope_digest,
+    allowed_to_apply: plan.allowed_to_apply,
+    blocked_reasons: plan.blocked_reasons,
+    outcome_projection: {
+      outcome: plan.outcome_projection.outcome,
+      projection_type: plan.outcome_projection.projection_type,
+      target_action: plan.outcome_projection.target_action,
+      drive_model: plan.outcome_projection.drive_model,
+      human_required: plan.outcome_projection.human_required,
+      command: plan.outcome_projection.command,
+      transition_command: plan.outcome_projection.transition_command,
+      expected_transition: plan.outcome_projection.expected_transition,
+      required_action: plan.outcome_projection.required_action,
+    },
+    planned_step_count: plan.planned_steps.length,
+    sample_planned_steps: plan.planned_steps
+      .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+      .map((step) => ({
+        step_id: step.step_id,
+        target: step.target,
+        operation: step.operation,
+        expected_effect: step.expected_effect,
+      })),
+    postcheck_commands: plan.postcheck_commands,
+    rollback_notes: plan.rollback_notes,
+    write_policy: plan.write_policy,
+    source_command: "helix closure transition-plan --summary-json",
+    view_command: plan.view_command,
+  };
+}
+
 function summarizeClosureDecisionDraftPacket(
   packet: ProjectClosureDecisionDraftPacket,
   decisionRecordOutput: {
@@ -5001,8 +5047,8 @@ closure
 	      }
 	    },
 	  );
-	closure
-	  .command("transition-plan")
+closure
+  .command("transition-plan")
   .description("emit a read-only dry-run plan for approved closure candidates")
   .option(
     "--action <action>",
@@ -5012,6 +5058,7 @@ closure
   .option("--limit <n>", "maximum target items to include", "20")
   .option("--offset <n>", "zero-based target offset", "0")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
   .action(
     (opts: {
@@ -5020,6 +5067,7 @@ closure
       limit?: string;
       offset?: string;
       json?: boolean;
+      summaryJson?: boolean;
       fromDb?: boolean;
     }) => {
       if (opts.action !== undefined && !isProjectClosureQueueNextAction(opts.action)) {
@@ -5055,6 +5103,12 @@ closure
           limit,
           offset,
         });
+        if (opts.summaryJson) {
+          process.stdout.write(
+            `${JSON.stringify(summarizeClosureTransitionPlan(plan), null, 2)}\n`,
+          );
+          return;
+        }
         if (opts.json) {
           process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
           return;

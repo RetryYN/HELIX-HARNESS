@@ -1476,7 +1476,7 @@ describe("project current-location read model", () => {
             "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --json",
         },
         write_policy: "read-only",
-        source_command: "helix closure transition-plan --json",
+        source_command: "helix closure transition-plan --summary-json",
       });
       expect(transitionPlan.planned_steps.map((step) => step.step_id)).toEqual([
         "record-approval",

@@ -1330,7 +1330,7 @@ describe("visualization Tree View adapter", () => {
     expect(approvalReview?.tooltip).toContain("decision=closure-review:close_ready");
     expect(approvalReview?.tooltip).toContain("tests=0/0");
     expect(approvalReview?.tooltip).toContain(
-      "transition-window=helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
+      "transition-window=helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
     );
     expect(approvalReview?.tooltip).toContain(
       "outcome-route=reject_to_collect_evidence->collect_evidence drive=Recovery",
@@ -1758,7 +1758,7 @@ describe("visualization Tree View adapter", () => {
     });
     expect(applyReadiness?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/closure/apply-readiness/review-bundle:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
-      "project/current-location/closure/apply-readiness/transition-plan:helix closure transition-plan --action close_ready --limit 20 --offset 0 --json",
+      "project/current-location/closure/apply-readiness/transition-plan:helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
       "project/current-location/closure/apply-readiness/decision-draft:helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
       "project/current-location/closure/apply-readiness/dry-run:helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
     ]);
