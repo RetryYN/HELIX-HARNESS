@@ -2026,4 +2026,215 @@ describe("visualization Tree View adapter", () => {
     expect(recoveryHandoff?.tooltip).toContain("reviewed=3");
     expect(recoveryHandoff?.tooltip).toContain("valid_for_apply=false");
   });
+
+  it("U-VTREE-004: renders rejected handoff as blocked approval state", () => {
+    const raw = snapshot();
+    const approvalDraft = raw.recovery_handoff_artifacts.items.find(
+      (item) => item.kind === "approval_draft",
+    );
+    if (!approvalDraft) throw new Error("approval draft fixture missing");
+    approvalDraft.status = "present";
+    approvalDraft.generation_status = "present";
+    approvalDraft.bytes = 253;
+    approvalDraft.sha256 = "sha256:approval";
+    approvalDraft.approval_record = {
+      status: "rejected",
+      decision_id: "closure-evidence-materialize:repair_failed_evidence",
+      outcome: "reject_materialized_evidence",
+      approval_scope_digest: "sha256:test",
+      expected_approval_scope_digest: "sha256:test",
+      scope_status: "match",
+      materialize_status: "ready_for_approval",
+      reviewed_candidate_count: 3,
+      valid_for_apply: false,
+      reasons: ["fixture rejected by reviewer"],
+    };
+
+    const tree = buildVisualizationTreeView(buildVisualizationViewModel(raw));
+    const nextAction = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location",
+    );
+    const handoffNext = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/handoff-next",
+    );
+    const recoveryHandoff = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/recovery-handoff",
+    );
+    const handoffSummary = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/handoff-summary",
+    );
+
+    expect(nextAction).toMatchObject({
+      description: "approval count=1",
+      contextValue: "vmodel-fit.next-action.approval",
+    });
+    expect(handoffNext).toMatchObject({
+      description: "approval_rejected approval=rejected scope=match valid=false",
+      contextValue:
+        "vmodel-fit.work-bucket.handoff-next.approval_rejected.approval-rejected.scope-match.valid-false",
+    });
+    expect(handoffNext?.tooltip).toContain("approval.record.rejected");
+    expect(handoffSummary).toMatchObject({
+      description: "approval_blocked total=1 approval=1 mismatch=0 apply=0",
+      contextValue: "vmodel-fit.handoff-summary.approval_blocked.mismatch-0.apply-0",
+    });
+    expect(recoveryHandoff).toMatchObject({
+      description: "approval_rejected phase=approval approval=rejected scope=match valid=false",
+      contextValue:
+        "vmodel-fit.recovery-handoff.approval.approval_rejected.approval-rejected.scope-match.valid-false",
+    });
+    expect(recoveryHandoff?.tooltip).toContain("outcome=reject_materialized_evidence");
+    expect(recoveryHandoff?.tooltip).toContain("approval.record.rejected");
+    expect(recoveryHandoff?.tooltip).toContain("handoff_next=approval_rejected");
+  });
+
+  it("U-VTREE-004: renders invalid approval record as approval-required state", () => {
+    const raw = snapshot();
+    const approvalDraft = raw.recovery_handoff_artifacts.items.find(
+      (item) => item.kind === "approval_draft",
+    );
+    if (!approvalDraft) throw new Error("approval draft fixture missing");
+    approvalDraft.status = "present";
+    approvalDraft.generation_status = "present";
+    approvalDraft.bytes = 253;
+    approvalDraft.sha256 = "sha256:approval";
+    approvalDraft.approval_record = {
+      status: "invalid",
+      decision_id: "closure-evidence-materialize:repair_failed_evidence",
+      outcome: "unknown_outcome",
+      approval_scope_digest: "sha256:test",
+      expected_approval_scope_digest: "sha256:test",
+      scope_status: "match",
+      materialize_status: "ready_for_approval",
+      reviewed_candidate_count: 3,
+      valid_for_apply: false,
+      reasons: ["approval record の必須 field/outcome を修正する"],
+    };
+
+    const tree = buildVisualizationTreeView(buildVisualizationViewModel(raw));
+    const nextAction = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location",
+    );
+    const handoffNext = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/handoff-next",
+    );
+    const recoveryHandoff = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/recovery-handoff",
+    );
+    const handoffSummary = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/handoff-summary",
+    );
+
+    expect(nextAction).toMatchObject({
+      description: "approval count=1",
+      contextValue: "vmodel-fit.next-action.approval",
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: [
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+        ],
+      },
+    });
+    expect(handoffNext).toMatchObject({
+      description: "approval_required approval=invalid scope=match valid=false",
+      contextValue:
+        "vmodel-fit.work-bucket.handoff-next.approval_required.approval-invalid.scope-match.valid-false",
+    });
+    expect(handoffNext?.tooltip).toContain("approval.record.invalid");
+    expect(handoffSummary).toMatchObject({
+      description: "approval_pending total=1 approval=1 mismatch=0 apply=0",
+      contextValue: "vmodel-fit.handoff-summary.approval_pending.mismatch-0.apply-0",
+    });
+    expect(handoffSummary?.tooltip).toContain("approval_required=1");
+    expect(recoveryHandoff).toMatchObject({
+      description: "approval_required phase=approval approval=invalid scope=match valid=false",
+      contextValue:
+        "vmodel-fit.recovery-handoff.approval.approval_required.approval-invalid.scope-match.valid-false",
+    });
+    expect(recoveryHandoff?.tooltip).toContain("approval record の必須 field/outcome");
+    expect(recoveryHandoff?.tooltip).toContain("approval.record.invalid");
+    expect(recoveryHandoff?.tooltip).toContain("handoff_next=approval_required");
+  });
+
+  it("U-VTREE-004: renders approved handoff as apply dry-run machine step", () => {
+    const raw = snapshot();
+    const approvalDraft = raw.recovery_handoff_artifacts.items.find(
+      (item) => item.kind === "approval_draft",
+    );
+    if (!approvalDraft) throw new Error("approval draft fixture missing");
+    approvalDraft.status = "present";
+    approvalDraft.generation_status = "present";
+    approvalDraft.bytes = 253;
+    approvalDraft.sha256 = "sha256:approval";
+    approvalDraft.approval_record = {
+      status: "approved",
+      decision_id: "closure-evidence-materialize:repair_failed_evidence",
+      outcome: "approve_materialized_evidence",
+      approval_scope_digest: "sha256:test",
+      expected_approval_scope_digest: "sha256:test",
+      scope_status: "match",
+      materialize_status: "ready_for_approval",
+      reviewed_candidate_count: 3,
+      valid_for_apply: true,
+      reasons: ["fixture approved by reviewer"],
+    };
+
+    const tree = buildVisualizationTreeView(buildVisualizationViewModel(raw));
+    const nextAction = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location",
+    );
+    const handoffNext = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/handoff-next",
+    );
+    const recoveryHandoff = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/recovery-handoff",
+    );
+    const handoffSummary = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/handoff-summary",
+    );
+
+    expect(nextAction).toMatchObject({
+      description: "machine count=1",
+      contextValue: "vmodel-fit.next-action.machine",
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: [
+          "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --json",
+        ],
+      },
+    });
+    expect(handoffNext).toMatchObject({
+      description: "apply_dry_run approval=approved scope=match valid=true",
+      contextValue:
+        "vmodel-fit.work-bucket.handoff-next.apply_dry_run.approval-approved.scope-match.valid-true",
+    });
+    expect(handoffNext?.tooltip).toContain("handoff.apply.dry_run_ready");
+    expect(handoffNext?.tooltip).toContain("approval.record.approved");
+    expect(handoffSummary).toMatchObject({
+      description: "apply_ready total=1 approval=0 mismatch=0 apply=1",
+      contextValue: "vmodel-fit.handoff-summary.apply_ready.mismatch-0.apply-1",
+    });
+    expect(recoveryHandoff).toMatchObject({
+      description: "apply_dry_run phase=machine approval=approved scope=match valid=true",
+      contextValue:
+        "vmodel-fit.recovery-handoff.machine.apply_dry_run.approval-approved.scope-match.valid-true",
+    });
+    expect(recoveryHandoff?.tooltip).toContain("outcome=approve_materialized_evidence");
+    expect(recoveryHandoff?.tooltip).toContain("valid_for_apply=true");
+    expect(recoveryHandoff?.tooltip).toContain("handoff.apply.dry_run_ready");
+  });
 });
