@@ -2443,6 +2443,38 @@ describe("runDoctor", () => {
           },
         });
       }
+      upsertRow(db, {
+        table: "project_vmodel_handoff_summary",
+        primaryKey: "summary_id",
+        row: {
+          summary_id: "recovery_handoff",
+          snapshot_id: "project-current-location:latest",
+          status: "none",
+          handoff_total: 0,
+          machine_pending: 0,
+          approval_pending: 0,
+          approval_required: 0,
+          approval_rejected: 0,
+          apply_ready: 0,
+          scope_match: 0,
+          scope_mismatch: 0,
+          scope_missing: 0,
+          valid_for_apply: 0,
+          invalid_for_apply: 0,
+          recovery_gate_status: "none",
+          effective_phase: "none",
+          approval_state: "not_required",
+          approval_status: null,
+          scope_status: null,
+          decision_id: null,
+          materialize_status: null,
+          reviewed_candidate_count: null,
+          command: "helix vmodel fit --json",
+          reason_codes: "handoff.next.missing,handoff.status.none",
+          reasons: "total=0",
+          indexed_at: "2026-07-08T00:04:00.000Z",
+        },
+      });
 
       const check = checkProjectCurrentLocation(root, db);
 
@@ -2636,6 +2668,7 @@ describe("runDoctor", () => {
       expect(recoveryHandoff.ok).toBe(true);
       expect(recoveryHandoff.messages.join("\n")).toContain("recovery-handoff-binding - OK");
       expect(recoveryHandoff.messages.join("\n")).toContain("status=none");
+      expect(recoveryHandoff.messages.join("\n")).toContain("db: status=none");
 
       const recoveryExit = checkRecoveryExitBinding(root, db);
       expect(recoveryExit.ok).toBe(true);
@@ -2771,6 +2804,20 @@ describe("runDoctor", () => {
     ).toBe(true);
     expect(
       hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=match"),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-handoff-binding",
+        "db: status=approval_pending",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-handoff-binding",
+        "reason-codes=handoff.status.approval_pending",
+      ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(

@@ -2343,8 +2343,58 @@ export function checkRecoveryHandoffBinding(
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const handoff = fit.recovery_handoff_gate;
       const runway = fit.recovery_runway_gate;
+      const handoffDbRow = db
+        .prepare(
+          `SELECT status, handoff_total, approval_pending, scope_mismatch, recovery_gate_status,
+                  effective_phase, approval_state, approval_status, scope_status, valid_for_apply,
+                  reason_codes
+           FROM project_vmodel_handoff_summary
+           WHERE summary_id = ?`,
+        )
+        .get("recovery_handoff") as
+        | {
+            status: string;
+            handoff_total: number;
+            approval_pending: number;
+            scope_mismatch: number;
+            recovery_gate_status: string;
+            effective_phase: string;
+            approval_state: string;
+            approval_status: string | null;
+            scope_status: string | null;
+            valid_for_apply: number;
+            reason_codes: string;
+          }
+        | undefined;
       const violations: string[] = [];
       const approvalPhase = handoff.effective_phase === "approval";
+      if (!handoffDbRow) {
+        violations.push("db_row=missing");
+      } else {
+        if (handoffDbRow.recovery_gate_status !== handoff.status) {
+          violations.push(`db.recovery_gate_status=${handoffDbRow.recovery_gate_status}`);
+        }
+        if (handoffDbRow.effective_phase !== handoff.effective_phase) {
+          violations.push(`db.effective_phase=${handoffDbRow.effective_phase}`);
+        }
+        if (handoffDbRow.approval_state !== handoff.approval_state) {
+          violations.push(`db.approval_state=${handoffDbRow.approval_state}`);
+        }
+        if ((handoffDbRow.approval_status ?? null) !== (handoff.approval_status ?? null)) {
+          violations.push(`db.approval_status=${handoffDbRow.approval_status ?? "-"}`);
+        }
+        if ((handoffDbRow.scope_status ?? null) !== (handoff.scope_status ?? null)) {
+          violations.push(`db.scope_status=${handoffDbRow.scope_status ?? "-"}`);
+        }
+        if (Boolean(handoffDbRow.valid_for_apply) !== handoff.valid_for_apply) {
+          violations.push(`db.valid_for_apply=${handoffDbRow.valid_for_apply}`);
+        }
+        for (const code of handoff.reason_codes) {
+          if (!handoffDbRow.reason_codes.split(",").includes(code)) {
+            violations.push(`db.reason_code_missing=${code}`);
+          }
+        }
+      }
       if (runway.machine_actionable_count > 0 && handoff.status === "none") {
         violations.push("handoff_status=none");
       }
@@ -2399,7 +2449,9 @@ export function checkRecoveryHandoffBinding(
         ok: violations.length === 0,
         messages: [
           `${prefix}: status=${handoff.status} phase=${handoff.effective_phase} approval=${handoff.approval_status ?? "-"} scope=${handoff.scope_status ?? "-"} materialize=${handoff.materialize_status ?? "-"} valid=${handoff.valid_for_apply} present=${handoff.handoff_present} missing=${handoff.handoff_missing} reviewed=${handoff.reviewed_candidate_count ?? "-"} command=${handoff.command}`,
+          `recovery-handoff-binding - db: status=${handoffDbRow?.status ?? "-"} total=${handoffDbRow?.handoff_total ?? "-"} approval_pending=${handoffDbRow?.approval_pending ?? "-"} mismatch=${handoffDbRow?.scope_mismatch ?? "-"} gate=${handoffDbRow?.recovery_gate_status ?? "-"} phase=${handoffDbRow?.effective_phase ?? "-"} approval_state=${handoffDbRow?.approval_state ?? "-"} scope=${handoffDbRow?.scope_status ?? "-"}`,
           `recovery-handoff-binding - digest=${handoff.approval_scope_digest ?? "-"} expected=${handoff.expected_approval_scope_digest ?? "-"} decision=${handoff.decision_id ?? "-"} outcome=${handoff.outcome ?? "-"}`,
+          `recovery-handoff-binding - reason-codes=${handoff.reason_codes.join(",") || "-"}`,
           `recovery-handoff-binding - reasons=${handoff.reasons.join(" | ") || "-"}`,
           ...violations.map((violation) => `recovery-handoff-binding - violation: ${violation}`),
         ],
