@@ -286,6 +286,7 @@ import {
   type ProjectClosureTransitionPlan,
   type ProjectCurrentLocationSnapshot,
   type ProjectRecoveryPlan,
+  type ProjectRoadmapCurrentReport,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
@@ -3809,14 +3810,73 @@ recovery
     }
   });
 
+function summarizeProjectRoadmapCurrentReport(report: ProjectRoadmapCurrentReport) {
+  return {
+    schema_version: "project-roadmap-current-summary.v1",
+    source_clock: report.source_clock,
+    status: report.status,
+    current: report.current,
+    drive_route: {
+      route_id: report.drive_route.routeId,
+      status: report.drive_route.status,
+      selected_model: report.drive_route.selectedModel,
+      must_return_to_design: report.drive_route.mustReturnToDesign,
+      forward_current_bands: report.drive_route.forward.currentBandIds,
+      reverse_l12_layers: report.drive_route.reverse.l12Layers,
+    },
+    roadmap_position: {
+      status: report.roadmap_position.status,
+      frontier: report.roadmap_position.frontier,
+      current_band_ids: report.roadmap_position.current_band_ids,
+      current_gate_ids: report.roadmap_position.current_gate_ids,
+      rollup: report.roadmap_position.rollup,
+      doc_dependency_count: report.roadmap_position.docDependencies.length,
+      implementation_dependency_count:
+        report.roadmap_position.implementationDependencies.length,
+    },
+    consistency: report.consistency,
+    counts: report.counts,
+    action_count: report.actions.length,
+    sample_actions: report.actions.slice(0, 20).map((action) => ({
+      action_id: action.action_id,
+      category: action.category,
+      status: action.status,
+      automation_class: action.automation_class,
+      phase_action: action.phase_action,
+      l12_layers: action.l12_layers,
+      coverage_ids: action.coverage_ids,
+      command: action.command,
+      batch_command: action.batch_command,
+      review_command: action.review_command,
+      evidence_patch_command: action.evidence_patch_command,
+      evidence_probe_command: action.evidence_probe_command,
+      evidence_materialize_command: action.evidence_materialize_command,
+      evidence_approval_draft_command: action.evidence_approval_draft_command,
+      evidence_apply_dry_run_command: action.evidence_apply_dry_run_command,
+      evidence_apply_execute_command: action.evidence_apply_execute_command,
+      evidence_apply_write_policy: action.evidence_apply_write_policy,
+      required_action: action.required_action,
+      doc_dependency_count: action.doc_dependencies.length,
+      implementation_dependency_count: action.implementation_dependencies.length,
+      reason_count: action.reasons.length,
+    })),
+    postcheck_commands: report.postcheck_commands,
+    write_policy: report.write_policy,
+    source_command: "helix roadmap current --summary-json",
+    full_source_command: report.source_command,
+    view_command: report.view_command,
+  };
+}
+
 const roadmap = program.command("roadmap").description("Project roadmap read-only surfaces");
 
 roadmap
   .command("current")
   .description("emit roadmap/current-location consistency from DB projection")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and handoff surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
-  .action((opts: { json?: boolean; fromDb?: boolean }) => {
+  .action((opts: { json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
     const db = openHarnessDb(dbPath, { repoRoot });
@@ -3825,6 +3885,12 @@ roadmap
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const report = buildProjectRoadmapCurrentReport(snapshot);
+      if (opts.summaryJson) {
+        process.stdout.write(
+          `${JSON.stringify(summarizeProjectRoadmapCurrentReport(report), null, 2)}\n`,
+        );
+        return;
+      }
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
         return;

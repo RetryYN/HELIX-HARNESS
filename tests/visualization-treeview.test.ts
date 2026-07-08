@@ -1541,7 +1541,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix roadmap current --json"],
+        arguments: ["helix roadmap current --summary-json"],
       },
     });
     expect(

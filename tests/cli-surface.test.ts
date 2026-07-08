@@ -2871,6 +2871,57 @@ describe("L7 CLI surface closure", () => {
         ]),
       );
       expect(roadmapCurrentPayload.counts.blockers).toBeGreaterThanOrEqual(3);
+      const roadmapCurrentSummaryJson = runCliIn(root, [
+        "roadmap",
+        "current",
+        "--summary-json",
+      ]);
+      expect(roadmapCurrentSummaryJson.status).toBe(0);
+      const roadmapCurrentSummary = JSON.parse(roadmapCurrentSummaryJson.stdout);
+      expect(roadmapCurrentSummary).toMatchObject({
+        schema_version: "project-roadmap-current-summary.v1",
+        status: "contradicted",
+        current: {
+          layer: "L14",
+          l12_layer: "L12",
+          status: "needs_recovery",
+        },
+        drive_route: {
+          route_id: "drive:Recovery:recover-current-location",
+          must_return_to_design: true,
+        },
+        roadmap_position: {
+          status: "uncovered",
+          current_band_ids: expect.arrayContaining(["impl"]),
+        },
+        consistency: {
+          aligned: false,
+          db_current_l12_layer: "L12",
+          alignment_basis: "frontier",
+        },
+        counts: expect.objectContaining({
+          current_bands: 3,
+        }),
+        write_policy: "read-only",
+        source_command: "helix roadmap current --summary-json",
+        full_source_command: "helix roadmap current --json",
+      });
+      expect(roadmapCurrentSummary.action_count).toBe(roadmapCurrentPayload.actions.length);
+      expect(roadmapCurrentSummary.sample_actions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action_id: "closure-queue",
+            category: "closure",
+            status: "blocked",
+            automation_class: "machine",
+            phase_action: "collect_evidence",
+            batch_command: "helix closure batch --action collect_evidence --summary-json",
+            evidence_materialize_command:
+              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+            evidence_apply_write_policy: "approval-required",
+          }),
+        ]),
+      );
       const roadmapCurrentText = runCliIn(root, ["roadmap", "current"]);
       expect(roadmapCurrentText.status).toBe(0);
       expect(roadmapCurrentText.stdout).toContain(

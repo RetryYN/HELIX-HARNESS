@@ -1263,7 +1263,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           tooltip:
             "roadmap_rollups / roadmap_band_coverage / roadmap_gate_progress と DB current-location の照合 report",
           contextValue: "roadmap-position.current-sync",
-          commandPointer: "helix roadmap current --json",
+          commandPointer: "helix roadmap current --summary-json",
         }),
         node({
           id: "project/current-location/roadmap-position/bands",
