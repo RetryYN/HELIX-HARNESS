@@ -1466,7 +1466,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix current-location --json"],
+        arguments: ["helix current-location --summary-json"],
       },
     });
     expect(scrumOperation?.tooltip).toContain("zip-source:scrum-product-backlog");
@@ -1925,7 +1925,7 @@ describe("visualization Tree View adapter", () => {
 
     expect(l6Plans?.tooltip).toContain("PLAN-L7-24");
     expect(l6Plans?.tooltip).not.toContain("PLAN-L7-25");
-    expect(l6Plans?.tooltip).toContain("... 6 more (helix current-location --json)");
+    expect(l6Plans?.tooltip).toContain("... 6 more (helix current-location --summary-json)");
     expect(reverseScope?.tooltip).toContain("coverage=L5-detailed-contract");
     expect(reverseScope?.tooltip).toContain("doc=docs/plans/PLAN-L7-22.md");
     expect(reverseScope?.tooltip).not.toContain("doc=docs/plans/PLAN-L7-23.md");
