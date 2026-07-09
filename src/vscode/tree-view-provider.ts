@@ -33,6 +33,9 @@ type VmodelWorkBucket = NonNullable<
 type VmodelHandoffArtifactStatus = NonNullable<
   VmodelWorkBucket["evidence_handoff_status"]
 >["items"][number];
+type ProjectHandoffArtifactStatus =
+  VisualizationViewModel["project"]["current_location"]["recovery_handoff_artifacts"]["items"][number];
+type HandoffArtifactStatus = VmodelHandoffArtifactStatus | ProjectHandoffArtifactStatus;
 
 const TOOLTIP_LINE_LIMIT = 24;
 const SUMMARY_CAPABLE_HELIX_PREFIXES = [
@@ -119,7 +122,7 @@ function summaryJsonPointer(command: string): string {
 }
 
 function artifactStatusDescription(
-  item: VmodelHandoffArtifactStatus | undefined,
+  item: HandoffArtifactStatus | undefined,
   fallbackPath: string,
 ): string {
   if (!item) return fallbackPath;
@@ -127,7 +130,7 @@ function artifactStatusDescription(
 }
 
 function artifactStatusTooltip(
-  item: VmodelHandoffArtifactStatus | undefined,
+  item: HandoffArtifactStatus | undefined,
   fallbackPath: string,
   writePolicy: string,
 ): string {
@@ -155,6 +158,32 @@ function handoffArtifactStatus(
   kind: "probe_record" | "approval_draft",
 ): VmodelHandoffArtifactStatus | undefined {
   return bucket.evidence_handoff_status?.items.find((item) => item.kind === kind);
+}
+
+function activeApprovalDraftStatus(
+  bucket: VmodelWorkBucket,
+): VmodelHandoffArtifactStatus | undefined {
+  const refresh = bucket.evidence_handoff_status?.items.find(
+    (item) =>
+      item.kind === "approval_refresh_draft" &&
+      item.status === "present" &&
+      item.approval_record?.scope_status === "match",
+  );
+  return refresh ?? handoffArtifactStatus(bucket, "approval_draft");
+}
+
+function activeApprovalDraftForAction(
+  artifacts: VisualizationViewModel["project"]["current_location"]["recovery_handoff_artifacts"],
+  action: string,
+): ProjectHandoffArtifactStatus | undefined {
+  const actionArtifacts = artifacts.items.filter((item) => item.action === action);
+  const refresh = actionArtifacts.find(
+    (item) =>
+      item.kind === "approval_refresh_draft" &&
+      item.status === "present" &&
+      item.approval_record?.scope_status === "match",
+  );
+  return refresh ?? actionArtifacts.find((item) => item.kind === "approval_draft");
 }
 
 function handoffNextCommand(bucket: VmodelWorkBucket): string {
@@ -344,10 +373,27 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                         node({
                           id: `project/current-location/drive/recovery-plan/automation-runway/${phase.sequence}-${phase.action}/approval-draft`,
                           label: "approval draft",
-                          description: phase.evidence_handoff_artifacts.approval_draft_path,
-                          tooltip: `evidence-approval-draft --out が生成する non-authorizing draft\nwrite=${phase.evidence_handoff_artifacts.write_policy}`,
+                          description: artifactStatusDescription(
+                            activeApprovalDraftForAction(
+                              current.recovery_handoff_artifacts,
+                              phase.action,
+                            ),
+                            phase.evidence_handoff_artifacts.approval_draft_path,
+                          ),
+                          tooltip: artifactStatusTooltip(
+                            activeApprovalDraftForAction(
+                              current.recovery_handoff_artifacts,
+                              phase.action,
+                            ),
+                            phase.evidence_handoff_artifacts.approval_draft_path,
+                            phase.evidence_handoff_artifacts.write_policy,
+                          ),
                           contextValue: "recovery-plan.handoff.approval-draft",
-                          commandPointer: phase.evidence_handoff_artifacts.approval_draft_path,
+                          commandPointer:
+                            activeApprovalDraftForAction(
+                              current.recovery_handoff_artifacts,
+                              phase.action,
+                            )?.path ?? phase.evidence_handoff_artifacts.approval_draft_path,
                         }),
                       ]
                     : [],
@@ -797,18 +843,17 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                                 id: `project/current-location/vmodel-fit/next-actions/${action.priority}-${action.blocker_code}/work-bucket/approval-draft-artifact`,
                                 label: "approval draft artifact",
                                 description: artifactStatusDescription(
-                                  handoffArtifactStatus(action.work_bucket, "approval_draft"),
+                                  activeApprovalDraftStatus(action.work_bucket),
                                   action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
                                 ),
                                 tooltip: artifactStatusTooltip(
-                                  handoffArtifactStatus(action.work_bucket, "approval_draft"),
+                                  activeApprovalDraftStatus(action.work_bucket),
                                   action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
                                   action.work_bucket.evidence_handoff_artifacts.write_policy,
                                 ),
                                 contextValue: "vmodel-fit.work-bucket.handoff.approval-draft",
                                 commandPointer:
-                                  handoffArtifactStatus(action.work_bucket, "approval_draft")
-                                    ?.path ??
+                                  activeApprovalDraftStatus(action.work_bucket)?.path ??
                                   action.work_bucket.evidence_handoff_artifacts.approval_draft_path,
                               }),
                             ]
@@ -1472,10 +1517,27 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                           node({
                             id: `project/current-location/closure/overview/work-buckets/${bucket.rank}/approval-draft-artifact`,
                             label: "approval draft artifact",
-                            description: bucket.evidence_handoff_artifacts.approval_draft_path,
-                            tooltip: `evidence-approval-draft --out が生成する non-authorizing draft\nwrite=${bucket.evidence_handoff_artifacts.write_policy}`,
+                            description: artifactStatusDescription(
+                              activeApprovalDraftForAction(
+                                current.recovery_handoff_artifacts,
+                                bucket.action,
+                              ),
+                              bucket.evidence_handoff_artifacts.approval_draft_path,
+                            ),
+                            tooltip: artifactStatusTooltip(
+                              activeApprovalDraftForAction(
+                                current.recovery_handoff_artifacts,
+                                bucket.action,
+                              ),
+                              bucket.evidence_handoff_artifacts.approval_draft_path,
+                              bucket.evidence_handoff_artifacts.write_policy,
+                            ),
                             contextValue: `closure-work-bucket.handoff.approval-draft.${bucket.action}`,
-                            commandPointer: bucket.evidence_handoff_artifacts.approval_draft_path,
+                            commandPointer:
+                              activeApprovalDraftForAction(
+                                current.recovery_handoff_artifacts,
+                                bucket.action,
+                              )?.path ?? bucket.evidence_handoff_artifacts.approval_draft_path,
                           }),
                         ]
                       : []),

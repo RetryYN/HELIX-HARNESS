@@ -732,6 +732,47 @@ review_evidence:
         completed_at: "2026-07-09T13:41:36+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:c0bde01688a1349ddd96f3d3563323a6639344543c149a2305861227cfca23fe"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T13:50:08+09:00"
+    tests_green_at: "2026-07-09T13:50:08+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "Project view の work bucket / automation runway / closure overview が stale canonical approval draft ではなく、scope match 済み active refresh approval draft をコピー対象にするよう修正した。承認者が同じ `approval_record_path` を handoff gate、V-model next action、closure work bucket のどこからでも辿れる。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:50:08+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/vscode-extension-adapter.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:50:08+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:07aadf8395cc65cf707e9b9f4b73623fb22c4d3ff037be0444937c5384163724"
+      - kind: smoke
+        command: "bash -lc 'bun src/cli.ts progress tree-view --json | rg -n \"automation-runway/1-repair_failed_evidence/approval-draft|work-bucket/approval-draft-artifact|repair_failed_evidence-approval-draft-refresh-0735\" -C 1'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T13:50:08+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:7838416b720cf27b18c7aaa9d582e7c9ca5374fda4d1167c00781d2518ce80e2"
+      - kind: doctor
+        command: "bun src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:51:45+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:448e2bc9d56c672f93673405f5deacbe7deaaf36a190d83c71f7674ffc3fea5b"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

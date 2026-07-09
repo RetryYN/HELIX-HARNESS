@@ -1710,7 +1710,7 @@ describe("visualization Tree View adapter", () => {
     ).toEqual([
       "project/current-location/closure/overview/work-buckets/1/evidence-probe:helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
       "project/current-location/closure/overview/work-buckets/1/probe-record:.helix/tmp/closure/repair_failed_evidence-probe-record.json",
-      "project/current-location/closure/overview/work-buckets/1/approval-draft-artifact:.helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
+      "project/current-location/closure/overview/work-buckets/1/approval-draft-artifact:missing ready_to_generate -B",
       "project/current-location/closure/overview/work-buckets/1/evidence-materialize:helix closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
       "project/current-location/closure/overview/work-buckets/1/evidence-approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
       "project/current-location/closure/overview/work-buckets/1/evidence-apply-dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
@@ -2221,6 +2221,20 @@ describe("visualization Tree View adapter", () => {
       tree,
       "project/current-location/drive/recovery-plan/handoff-gate",
     );
+    const workBucketApprovalDraft = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/next-actions/20-current_location/work-bucket/approval-draft-artifact",
+    );
+    const recoveryRunwayApprovalDraft = findTreeNode(
+      tree,
+      "project/current-location/drive/recovery-plan/automation-runway/1-repair_failed_evidence/approval-draft",
+    );
+    const closureWorkBucketApprovalDraft = findTreeNode(
+      tree,
+      "project/current-location/closure/overview/work-buckets/1/approval-draft-artifact",
+    );
+    const activeDraftPath =
+      ".helix/tmp/closure/repair_failed_evidence-approval-draft-refresh-fresh.yml";
 
     expect(nextAction).toMatchObject({
       description: "approval count=1",
@@ -2246,9 +2260,7 @@ describe("visualization Tree View adapter", () => {
       description:
         "approval_pending phase=approval approval=pending_human_review scope=match valid=false",
     });
-    expect(recoveryHandoff?.tooltip).toContain(
-      "approval_record_path=.helix/tmp/closure/repair_failed_evidence-approval-draft-refresh-fresh.yml",
-    );
+    expect(recoveryHandoff?.tooltip).toContain(`approval_record_path=${activeDraftPath}`);
     expect(recoveryHandoff?.tooltip).toContain("digest=sha256:fresh");
     expect(recoveryPlan?.description).toContain("handoff=approval_pending");
     expect(recoveryPlanHandoff).toMatchObject({
@@ -2257,9 +2269,24 @@ describe("visualization Tree View adapter", () => {
       contextValue:
         "recovery-plan.handoff-gate.approval.approval_pending.approval-pending_human_review",
     });
-    expect(recoveryPlanHandoff?.tooltip).toContain(
-      "approval_record_path=.helix/tmp/closure/repair_failed_evidence-approval-draft-refresh-fresh.yml",
-    );
+    expect(recoveryPlanHandoff?.tooltip).toContain(`approval_record_path=${activeDraftPath}`);
+    for (const draftNode of [
+      workBucketApprovalDraft,
+      recoveryRunwayApprovalDraft,
+      closureWorkBucketApprovalDraft,
+    ]) {
+      expect(draftNode).toMatchObject({
+        description: "present present 253B",
+        command: {
+          title: "Copy pointer",
+          command: "helix.copyPointer",
+          arguments: [activeDraftPath],
+        },
+      });
+      expect(draftNode?.tooltip).toContain(activeDraftPath);
+      expect(draftNode?.tooltip).toContain("scope=match");
+      expect(draftNode?.tooltip).toContain("approval_scope_digest=sha256:fresh");
+    }
   });
 
   it("U-VTREE-004: renders rejected handoff as blocked approval state", () => {
