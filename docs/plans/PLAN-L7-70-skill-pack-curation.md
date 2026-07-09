@@ -18,6 +18,23 @@ review_evidence:
     scope: "Skill substance curation closed: 54 packs all carry HELIX substance (0 generic stubs), valid skill.v1 routing frontmatter, real helix commands only, 0 legacy terms, readability 0 markers. pmo-tech-docs subagents authored per requirement-mapped batches; PM verified via asset catalog, doctor, readability/asset-drift gates, byte-level U+FFFD scan, and full Vitest (685)."
     worker_model: sonnet
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:10:04+09:00"
+    tests_green_at: "2026-07-09T18:10:04+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: skill recommendation / assignment / asset catalog の現行回帰網で skill pack curation を再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/skill-recommend.test.ts tests/skill-assignment.test.ts tests/asset-catalog.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:10:04+09:00"
+        evidence_path: tests/skill-recommend.test.ts
+        output_digest: "sha256:c06b5b9291c110bd2700bf5bad8fe514ac04eb87d672dab7e964ea86df72655f"
 agent_slots:
   - role: tl
     slot_label: "TL - skill pack HELIX substance curate (catalog frontmatter + body)"

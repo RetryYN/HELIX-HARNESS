@@ -17,6 +17,23 @@ review_evidence:
     reviewed_at: "2026-06-15"
     verdict: pass
     scope: "cross-runtime token telemetry tracker (parseClaudeSessionUsage / parseCodexSessionUsage 純パーサ + computeClaudeCostUsd + loadRuntimeSessionUsage file-scan loader + projectTokenUsage ingest + projectModelEvaluations token 集計拡張 + model_runs/model_evaluations schema 列追加 + SCHEMA_VERSION 12→13 + 10 unit/integration テスト)。両 runtime の session JSONL を CLI 非起動で読む設計(8009001d 回避=ADR-001 整合)、Codex 累積→差分復元、core=token 効率/$=enrichment(Claude 計算/Codex null=非捏造)、cold-start 安全を検証。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:09:54+09:00"
+    tests_green_at: "2026-07-09T18:09:54+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: cross-runtime token telemetry tracker を現行 `tests/token-tracker.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/token-tracker.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:09:54+09:00"
+        evidence_path: tests/token-tracker.test.ts
+        output_digest: "sha256:db6a174cb2371488cf5977ce4a334be07fc6d2fe6d5cfcd2526134c562036eda"
 agent_slots:
   - role: tl
     slot_label: "TL - token telemetry tracker (FR-38 cross-runtime) 設計 + 配線"

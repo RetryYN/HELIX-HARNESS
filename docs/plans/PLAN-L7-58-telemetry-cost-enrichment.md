@@ -17,6 +17,23 @@ review_evidence:
     reviewed_at: "2026-06-15"
     verdict: pass
     scope: "Codex $ cost enrichment (OPENAI_PRICING 公式単価表 + computeCodexCostUsd + pricingKeyFor を variant 境界 -codex/-mini/-pro を跨がない安全 matcher へ一般化 + parseCodexSessionUsage cost 計算化 + summarizeRunUsage) と helix telemetry scan CLI 配線 (session-dir を option>env>OS default で解決、loadRuntimeSessionUsage→projectTokenUsage→projectModelEvaluations、CLI 非起動 file-scan)。code-reviewer verdict=APPROVE (Critical 0)。捏造防止不変条件 (未掲載モデル null)・OpenAI 課金式 (uncached×input + cached×cachedRate + output×output、reasoning 二重計上なし)・既存 oracle (gpt-5.4-codex→null) 非破壊・cold-start 安全を全数手計算で検証。Important 1 (cached>input 境界テスト) と Minor 2 (陳腐化コメント) を反映済み。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:10:02+09:00"
+    tests_green_at: "2026-07-09T18:10:02+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: telemetry cost enrichment と drive DB registration 連動を現行テストで再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/token-tracker.test.ts tests/drive-db-registration.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:10:02+09:00"
+        evidence_path: tests/token-tracker.test.ts
+        output_digest: "sha256:255f9d59803fb4199fd973c5ffb157091f6f4424c6665d24ecd92f8c9c672cc5"
 agent_slots:
   - role: tl
     slot_label: "TL - FR-38 follow-up ($ enrichment + telemetry scan CLI)"

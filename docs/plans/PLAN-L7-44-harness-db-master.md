@@ -19,6 +19,23 @@ review_evidence:
     reviewed_at: "2026-06-11"
     verdict: pass-with-fixes
     scope: "PLAN-L7-44 harness.db L7 DB segment: child spans 45-49 implemented with red-first tests, typecheck/lint/test/doctor evidence, and no secret/PII/raw transcript persistence."
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:09:38+09:00"
+    tests_green_at: "2026-07-09T18:09:38+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: harness.db master hub の工程表/gate/span 構造を現行 `plan lint` で再検証し、gate evidence として投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: lint
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-44-harness-db-master.md"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:09:38+09:00"
+        evidence_path: docs/plans/PLAN-L7-44-harness-db-master.md
+        output_digest: "sha256:8bad9c9758034ef0f3521d3b11b80df7f618051cf8e1e827ad01c0ef923210fa"
 owner: PM (Opus) / PO (人間)
 master_hub: true
 agent_slots:

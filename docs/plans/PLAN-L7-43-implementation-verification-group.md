@@ -17,6 +17,23 @@ review_evidence:
     scope: "VERIFICATION_GROUPS now includes L0-L7 / 実装検証サイクルゲート and doctor surfaces it after L7 freeze. Critical 0 / Important 0."
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:09:38+09:00"
+    tests_green_at: "2026-07-09T18:09:38+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: 実装検証サイクルゲート L0-L7 surface を現行 `tests/vmodel-pair.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/vmodel-pair.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:09:38+09:00"
+        evidence_path: tests/vmodel-pair.test.ts
+        output_digest: "sha256:ad4525167a686e80e06e290ffabac90662c374ced354ffe1cea0b518e80be6b5"
 agent_slots:
   - role: tl
     slot_label: "TL - implementation verification group close"

@@ -42,7 +42,7 @@ dependencies:
     - docs/plans/PLAN-L7-355-handover-db-derivation-impl.md
 review_evidence:
   - reviewer: codex-tl
-    review_kind: self_review
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T18:04:30+09:00"
     tests_green_at: "2026-07-09T18:03:58+09:00"
     verdict: approve

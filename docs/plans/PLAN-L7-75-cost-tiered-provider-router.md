@@ -18,6 +18,23 @@ review_evidence:
     scope: "Cost-tiered dual-provider role router: 3 archetype (consult/worker/verify) × 3 tier (T0/T1/T2) × 2 provider (claude/codex). Hard invariants — archetype decides tier band, workers can never resolve to T0 (opus/gpt-5.5) fail-close, T0 is an explicit-permission gate (designated role + auth), primary provider (currentRuntime) drives cross-branch and GPT is symmetric to Claude. Composes existing classifyTask (FR-L1-39) + inferTaskDifficulty + detectMode. PM verified via tsc, Biome, 9 Vitest cases (archetype→tier, worker fail-close, T0 gate, difficulty T2↔T1, risk override, cross-branch, GPT symmetry), CLI smoke (task route/roster), and doctor."
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:10:05+09:00"
+    tests_green_at: "2026-07-09T18:10:05+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: cost-tiered provider router を現行 `tests/tier-router.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/tier-router.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:10:05+09:00"
+        evidence_path: tests/tier-router.test.ts
+        output_digest: "sha256:9a45ebe65a0d268d57ed8f41628443a13fdf09c1526d67d1b9bd7c9c5605cc3a"
 agent_slots:
   - role: tl
     slot_label: "TL - cost-tiered provider router over existing classify/detect contracts"
