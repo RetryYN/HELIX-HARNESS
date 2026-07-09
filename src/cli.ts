@@ -5795,6 +5795,10 @@ function summarizeClosureDecisionDraftPacket(
     non_authorizing: true;
   },
 ) {
+  const currentWindowCommand = `helix closure decision-draft --action ${packet.action} --limit ${packet.review.limit} --offset ${packet.review.offset} --summary-json`;
+  const decisionRecordDefaultPath = `.helix/tmp/closure/${packet.action}-decision-draft-offset-${packet.review.offset}.yml`;
+  const decisionRecordPath = decisionRecordOutput.path ?? decisionRecordDefaultPath;
+  const decisionRecordCommand = `helix closure decision-draft --action ${packet.action} --limit ${packet.review.limit} --offset ${packet.review.offset} --out ${decisionRecordPath} --summary-json`;
   return {
     schema_version: "project-closure-decision-draft-summary.v1",
     source_clock: packet.source_clock,
@@ -5835,6 +5839,9 @@ function summarizeClosureDecisionDraftPacket(
     approval_record_template: packet.approval_record_template,
     decision_record_output: decisionRecordOutput,
     postcheck_commands: packet.postcheck_commands.map(summaryJsonCommand),
+    current_window_command: currentWindowCommand,
+    decision_record_default_path: decisionRecordDefaultPath,
+    decision_record_command: decisionRecordCommand,
     write_policy: packet.write_policy,
     source_command: "helix closure decision-draft --summary-json",
     view_command: summaryJsonCommand(packet.view_command),

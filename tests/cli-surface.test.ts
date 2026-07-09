@@ -5489,6 +5489,13 @@ describe("L7 CLI surface closure", () => {
           written: false,
           non_authorizing: true,
         },
+        current_window_command:
+          "helix closure decision-draft --action close_ready --limit 1 --offset 0 --summary-json",
+        decision_record_default_path:
+          ".helix/tmp/closure/close_ready-decision-draft-offset-0.yml",
+        decision_record_command:
+          "helix closure decision-draft --action close_ready --limit 1 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+        source_command: "helix closure decision-draft --summary-json",
       });
       expect(decisionDraftSummaryPayload.candidate_digests).toBeUndefined();
       expect(decisionDraftSummaryPayload.approval_record_text).toBeUndefined();
