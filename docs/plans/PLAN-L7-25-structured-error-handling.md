@@ -31,6 +31,31 @@ review_evidence:
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
     scope: "A-114 独立 re-audit と PO closure instruction。confirmation 前に typecheck/lint/vitest/doctor green。add-feature triad は content changes なしで close 済み。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:55:31+09:00"
+    tests_green_at: "2026-07-09T15:55:31+09:00"
+    verdict: approve
+    scope: "PLAN-L7-25 の execution evidence 欠落を、現行 coding-rules / ddd-tdd-rules / doctor targeted green と typecheck で補い、structured error-handling rule の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:55:31+09:00"
+        evidence_path: tests/coding-rules.test.ts
+        output_digest: "sha256:6dba1c6d8889daffd8e73ba0f5151b7db303421d13f466d1a62a2b9eed9d989d"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:55:31+09:00"
+        evidence_path: src/lint/coding-rules.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-25 (add-impl): 構造化 error-handling coding rule
