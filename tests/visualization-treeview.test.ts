@@ -1371,7 +1371,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/synthesis:needs_fit common=1 complement=1 reject=1",
       "project/current-location/vmodel-fit/next-actions:6",
       "project/current-location/vmodel-fit/handoff-summary:machine_pending total=1 approval=0 mismatch=0 apply=0",
-      "project/current-location/vmodel-fit/regression-guards:needs_attention pass=2 watch=2 fail=4",
+      "project/current-location/vmodel-fit/regression-guards:needs_attention attention=design_or_runtime_regression pass=2 watch=2 fail=4",
       "project/current-location/vmodel-fit/design-coverage:needs_design",
       "project/current-location/vmodel-fit/zip-adoption:complete",
       "project/current-location/vmodel-fit/zip-manifest:advisory_missing",
@@ -1497,9 +1497,11 @@ describe("visualization Tree View adapter", () => {
       (child) => child.id === "project/current-location/vmodel-fit/regression-guards",
     );
     expect(vmodelRegressionGuards?.tooltip).toContain("db=project_vmodel_regression_guards");
+    expect(vmodelRegressionGuards?.tooltip).toContain("attention=design_or_runtime_regression");
     expect(
       vmodelRegressionGuards?.children.map((child) => `${child.id}:${child.description}`),
     ).toEqual([
+      "project/current-location/vmodel-fit/regression-guards/attention-boundary:design_or_runtime_regression blocked_by=machine_or_design_work",
       "project/current-location/vmodel-fit/regression-guards/zip-source-integrity:watch count=0",
       "project/current-location/vmodel-fit/regression-guards/acceptance-traceability:fail count=2",
       "project/current-location/vmodel-fit/regression-guards/design-coverage:fail count=1",
@@ -1509,22 +1511,27 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/regression-guards/scrum-operation:pass count=0",
       "project/current-location/vmodel-fit/regression-guards/current-location-reentry:watch count=1",
     ]);
-    expect(vmodelRegressionGuards?.children[3]?.tooltip).toContain(
+    expect(vmodelRegressionGuards?.children[0]?.tooltip).toContain("machine=1");
+    expect(vmodelRegressionGuards?.children[4]?.tooltip).toContain(
       "db=project_vmodel_regression_guards",
     );
     const vmodelBlockers = vmodelFit?.children.find(
       (child) => child.id === "project/current-location/vmodel-fit/blockers",
     );
     expect(vmodelBlockers?.tooltip).toContain("db=project_vmodel_fit_blockers");
+    expect(vmodelBlockers?.tooltip).toContain(
+      "current_location:1 boundary=design_or_runtime_regression/machine",
+    );
     expect(vmodelBlockers?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/vmodel-fit/blockers/design_coverage:needs_design count=1",
-      "project/current-location/vmodel-fit/blockers/acceptance_traceability:needs_trace count=2",
-      "project/current-location/vmodel-fit/blockers/function_design_absorption:needs_absorption count=1",
-      "project/current-location/vmodel-fit/blockers/roadmap_current:needs_sync count=3",
-      "project/current-location/vmodel-fit/blockers/operation_scope:needs_operation_design count=1",
-      "project/current-location/vmodel-fit/blockers/current_location:needs_recovery count=1",
+      "project/current-location/vmodel-fit/blockers/design_coverage:needs_design machine count=1",
+      "project/current-location/vmodel-fit/blockers/acceptance_traceability:needs_trace machine count=2",
+      "project/current-location/vmodel-fit/blockers/function_design_absorption:needs_absorption machine count=1",
+      "project/current-location/vmodel-fit/blockers/roadmap_current:needs_sync machine count=3",
+      "project/current-location/vmodel-fit/blockers/operation_scope:needs_operation_design machine count=1",
+      "project/current-location/vmodel-fit/blockers/current_location:needs_recovery machine count=1",
     ]);
     expect(vmodelBlockers?.children[5]?.tooltip).toContain("db=project_vmodel_fit_blockers");
+    expect(vmodelBlockers?.children[5]?.tooltip).toContain("boundary=design_or_runtime_regression");
     const zipAdoption = current?.children.find(
       (child) => child.id === "project/current-location/zip-adoption",
     );

@@ -975,9 +975,18 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
         node({
           id: "project/current-location/vmodel-fit/regression-guards",
           label: "regression guards",
-          description: `${current.vmodel_fit.regression_guards.status} pass=${current.vmodel_fit.regression_guards.pass} watch=${current.vmodel_fit.regression_guards.watch} fail=${current.vmodel_fit.regression_guards.fail}`,
+          description: `${current.vmodel_fit.regression_guards.status} attention=${current.vmodel_fit.regression_guards.attention_boundary.status} pass=${current.vmodel_fit.regression_guards.pass} watch=${current.vmodel_fit.regression_guards.watch} fail=${current.vmodel_fit.regression_guards.fail}`,
           tooltip: tooltipLines([
             "db=project_vmodel_regression_guards",
+            `attention=${current.vmodel_fit.regression_guards.attention_boundary.status}`,
+            `blocked_by=${current.vmodel_fit.regression_guards.attention_boundary.completion_claim_blocked_by}`,
+            `machine_guards=${current.vmodel_fit.regression_guards.attention_boundary.machine_guard_count}`,
+            `human_guards=${current.vmodel_fit.regression_guards.attention_boundary.human_approval_guard_count}`,
+            `machine=${current.vmodel_fit.regression_guards.attention_boundary.machine_actionable_count}`,
+            `approval=${current.vmodel_fit.regression_guards.attention_boundary.human_approval_count}`,
+            `reverse=${current.vmodel_fit.regression_guards.attention_boundary.design_reverse_count}`,
+            `findings=${current.vmodel_fit.regression_guards.attention_boundary.blocked_by_findings_count}`,
+            `next=${current.vmodel_fit.regression_guards.attention_boundary.next_command}`,
             ...current.vmodel_fit.regression_guards.guards.map(
               (guard) =>
                 `${guard.guard_id}:${guard.status} count=${guard.count} ${guard.required_action}`,
@@ -985,21 +994,39 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           ]),
           contextValue: `vmodel-fit.regression-guards.${current.vmodel_fit.regression_guards.status}`,
           commandPointer: current.vmodel_fit.source_command,
-          children: current.vmodel_fit.regression_guards.guards.map((guard) =>
+          children: [
             node({
-              id: `project/current-location/vmodel-fit/regression-guards/${guard.guard_id}`,
-              label: guard.guard_id,
-              description: `${guard.status} count=${guard.count}`,
+              id: "project/current-location/vmodel-fit/regression-guards/attention-boundary",
+              label: "attention boundary",
+              description: `${current.vmodel_fit.regression_guards.attention_boundary.status} blocked_by=${current.vmodel_fit.regression_guards.attention_boundary.completion_claim_blocked_by}`,
               tooltip: tooltipLines([
-                "db=project_vmodel_regression_guards",
-                guard.required_action,
-                ...guard.protected_surface,
-                ...guard.reasons,
+                `machine_guards=${current.vmodel_fit.regression_guards.attention_boundary.machine_guard_count}`,
+                `human_guards=${current.vmodel_fit.regression_guards.attention_boundary.human_approval_guard_count}`,
+                `machine=${current.vmodel_fit.regression_guards.attention_boundary.machine_actionable_count}`,
+                `approval=${current.vmodel_fit.regression_guards.attention_boundary.human_approval_count}`,
+                `reverse=${current.vmodel_fit.regression_guards.attention_boundary.design_reverse_count}`,
+                `findings=${current.vmodel_fit.regression_guards.attention_boundary.blocked_by_findings_count}`,
+                `next=${current.vmodel_fit.regression_guards.attention_boundary.next_command}`,
               ]),
-              contextValue: `vmodel-fit.regression-guard.${guard.status}`,
-              commandPointer: guard.command,
+              contextValue: `vmodel-fit.attention-boundary.${current.vmodel_fit.regression_guards.attention_boundary.status}`,
+              commandPointer: current.vmodel_fit.regression_guards.attention_boundary.next_command,
             }),
-          ),
+            ...current.vmodel_fit.regression_guards.guards.map((guard) =>
+              node({
+                id: `project/current-location/vmodel-fit/regression-guards/${guard.guard_id}`,
+                label: guard.guard_id,
+                description: `${guard.status} count=${guard.count}`,
+                tooltip: tooltipLines([
+                  "db=project_vmodel_regression_guards",
+                  guard.required_action,
+                  ...guard.protected_surface,
+                  ...guard.reasons,
+                ]),
+                contextValue: `vmodel-fit.regression-guard.${guard.status}`,
+                commandPointer: guard.command,
+              }),
+            ),
+          ],
         }),
         node({
           id: "project/current-location/vmodel-fit/design-coverage",
@@ -1314,7 +1341,8 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           tooltip: tooltipLines([
             "db=project_vmodel_fit_blockers",
             ...current.vmodel_fit.blockers.map(
-              (blocker) => `${blocker.code}:${blocker.count} ${blocker.required_action}`,
+              (blocker) =>
+                `${blocker.code}:${blocker.count} boundary=${blocker.boundary.status}/${blocker.boundary.automation_class} ${blocker.required_action}`,
             ),
           ]),
           contextValue:
@@ -1326,10 +1354,17 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             node({
               id: `project/current-location/vmodel-fit/blockers/${blocker.code}`,
               label: blocker.code,
-              description: `${blocker.status} count=${blocker.count}`,
+              description: `${blocker.status} ${blocker.boundary.automation_class} count=${blocker.count}`,
               tooltip: tooltipLines(
                 [
                   "db=project_vmodel_fit_blockers",
+                  `boundary=${blocker.boundary.status}`,
+                  `blocked_by=${blocker.boundary.completion_claim_blocked_by}`,
+                  `automation=${blocker.boundary.automation_class}`,
+                  `machine=${blocker.boundary.machine_actionable_count}`,
+                  `approval=${blocker.boundary.human_approval_count}`,
+                  `reverse=${blocker.boundary.design_reverse_count}`,
+                  `next=${blocker.boundary.next_command}`,
                   blocker.required_action,
                   ...blocker.doc_dependencies.map((dependency) => `doc=${dependency}`),
                   ...blocker.implementation_dependencies.map((dependency) => `impl=${dependency}`),

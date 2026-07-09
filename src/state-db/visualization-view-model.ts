@@ -764,6 +764,17 @@ export interface ProjectCurrentLocationView {
       pass: number;
       watch: number;
       fail: number;
+      attention_boundary: {
+        status: "none" | "human_approval" | "design_or_runtime_regression" | "machine_reentry";
+        completion_claim_blocked_by: "none" | "human_approval" | "machine_or_design_work";
+        machine_guard_count: number;
+        human_approval_guard_count: number;
+        machine_actionable_count: number;
+        human_approval_count: number;
+        design_reverse_count: number;
+        blocked_by_findings_count: number;
+        next_command: string;
+      };
       guards: Array<{
         guard_id: string;
         status: string;
@@ -855,6 +866,15 @@ export interface ProjectCurrentLocationView {
       required_action: string;
       doc_dependencies: string[];
       implementation_dependencies: string[];
+      boundary: {
+        status: "none" | "human_approval" | "design_or_runtime_regression" | "machine_reentry";
+        completion_claim_blocked_by: "none" | "human_approval" | "machine_or_design_work";
+        automation_class: "none" | "approval" | "machine";
+        machine_actionable_count: number;
+        human_approval_count: number;
+        design_reverse_count: number;
+        next_command: string;
+      };
     }>;
     reasons: string[];
     source_command: string;
@@ -2004,6 +2024,7 @@ export function buildProjectCurrentLocationView(
     : null;
   const zipManifest = snapshot.vmodel_zip_manifest;
   const vmodelFit = buildVmodelFitReport(current, zipManifest);
+  const vmodelAttentionBoundary = vmodelAttentionBoundaryForView(vmodelFit);
   const recoveryHandoffGate = recoveryHandoffGateForView(snapshot, vmodelFit);
   const effectiveRecoveryReentryStatus = effectiveProjectReentryStatus(
     recoveryPlan.reentry_forecast.status,
@@ -2564,6 +2585,7 @@ export function buildProjectCurrentLocationView(
         pass: vmodelFit.regression_guards.pass,
         watch: vmodelFit.regression_guards.watch,
         fail: vmodelFit.regression_guards.fail,
+        attention_boundary: { ...vmodelAttentionBoundary },
         guards: vmodelFit.regression_guards.guards.map((guard) => ({
           guard_id: guard.guard_id,
           status: guard.status,
@@ -2670,6 +2692,31 @@ export function buildProjectCurrentLocationView(
         required_action: blocker.required_action,
         doc_dependencies: [...blocker.doc_dependencies],
         implementation_dependencies: [...blocker.implementation_dependencies],
+        boundary:
+          blocker.code === "current_location"
+            ? {
+                status: vmodelAttentionBoundary.status,
+                completion_claim_blocked_by: vmodelAttentionBoundary.completion_claim_blocked_by,
+                automation_class:
+                  vmodelAttentionBoundary.status === "human_approval"
+                    ? "approval"
+                    : vmodelAttentionBoundary.status === "none"
+                      ? "none"
+                      : "machine",
+                machine_actionable_count: vmodelAttentionBoundary.machine_actionable_count,
+                human_approval_count: vmodelAttentionBoundary.human_approval_count,
+                design_reverse_count: vmodelAttentionBoundary.design_reverse_count,
+                next_command: vmodelAttentionBoundary.next_command,
+              }
+            : {
+                status: "design_or_runtime_regression",
+                completion_claim_blocked_by: "machine_or_design_work",
+                automation_class: "machine",
+                machine_actionable_count: blocker.count,
+                human_approval_count: 0,
+                design_reverse_count: 0,
+                next_command: blocker.command,
+              },
       })),
       reasons: [...vmodelFit.reasons],
       source_command: "helix vmodel fit --summary-json",
@@ -4103,6 +4150,47 @@ function effectiveHandoffPhase(status: string): "machine" | "approval" | "none" 
     return "approval";
   }
   return status === "none" ? "none" : "machine";
+}
+
+function vmodelAttentionBoundaryForView(vmodelFit: ReturnType<typeof buildVmodelFitReport>) {
+  const attentionGuards = vmodelFit.regression_guards.guards.filter(
+    (guard) => guard.status !== "pass",
+  );
+  const humanApprovalBoundaryActive =
+    vmodelFit.regression_guards.fail === 0 &&
+    vmodelFit.regression_guards.watch > 0 &&
+    vmodelFit.recovery_runway_gate.machine_actionable_count === 0 &&
+    vmodelFit.recovery_runway_gate.human_approval_count > 0 &&
+    (vmodelFit.recovery_handoff_gate.effective_phase === "approval" ||
+      vmodelFit.approval_review_gate.status === "approval_required");
+  const status =
+    vmodelFit.regression_guards.status === "pass"
+      ? "none"
+      : humanApprovalBoundaryActive
+        ? "human_approval"
+        : vmodelFit.regression_guards.fail > 0
+          ? "design_or_runtime_regression"
+          : "machine_reentry";
+  const nextCommand =
+    status === "human_approval"
+      ? vmodelFit.approval_review_gate.current_window_command
+      : vmodelFit.recovery_runway_gate.next_execution_command || vmodelFit.synthesis.next_command;
+  return {
+    status,
+    completion_claim_blocked_by:
+      status === "none"
+        ? "none"
+        : status === "human_approval"
+          ? "human_approval"
+          : "machine_or_design_work",
+    machine_guard_count: humanApprovalBoundaryActive ? 0 : attentionGuards.length,
+    human_approval_guard_count: humanApprovalBoundaryActive ? attentionGuards.length : 0,
+    machine_actionable_count: vmodelFit.recovery_runway_gate.machine_actionable_count,
+    human_approval_count: vmodelFit.recovery_runway_gate.human_approval_count,
+    design_reverse_count: vmodelFit.recovery_runway_gate.design_reverse_count,
+    blocked_by_findings_count: vmodelFit.approval_review_gate.blocked_by_findings.length,
+    next_command: nextCommand,
+  } as const;
 }
 
 function recoveryHandoffGateForView(

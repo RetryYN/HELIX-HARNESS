@@ -1323,6 +1323,17 @@ describe("buildVisualizationViewModel", () => {
           pass: 3,
           watch: 1,
           fail: 4,
+          attention_boundary: {
+            status: "design_or_runtime_regression",
+            completion_claim_blocked_by: "machine_or_design_work",
+            machine_guard_count: 5,
+            human_approval_guard_count: 0,
+            machine_actionable_count: 0,
+            human_approval_count: 0,
+            design_reverse_count: 0,
+            blocked_by_findings_count: 0,
+            next_command: "helix drive model --json",
+          },
           guards: expect.arrayContaining([
             expect.objectContaining({
               guard_id: "zip-source-integrity",
@@ -1374,6 +1385,15 @@ describe("buildVisualizationViewModel", () => {
             status: "needs_operation_design",
             count: 2,
             command: "helix current-location --json",
+            boundary: {
+              status: "design_or_runtime_regression",
+              completion_claim_blocked_by: "machine_or_design_work",
+              automation_class: "machine",
+              machine_actionable_count: 2,
+              human_approval_count: 0,
+              design_reverse_count: 0,
+              next_command: "helix current-location --json",
+            },
           }),
         ],
         source_command: "helix vmodel fit --summary-json",
