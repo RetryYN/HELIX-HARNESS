@@ -10,6 +10,8 @@ updated: 2026-06-22
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: PM (Opus) verification (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -19,6 +21,23 @@ review_evidence:
     scope: "PO 質問『中身空っぽを見つけたときの対処法 / DB 上の取り扱い』(2026-06-22) を受け、現状の hollow 扱いをコード確認 (DB は db-projection-ingestion が derived 14=空なら fail-close / evidence-gated 12=cold-start 空は正常、と provenance で分類済) のうえ、残る穴 = plan-artifact-existence が existsSync のみ見るため『declare 済で実在するが中身が空 (hollow)』を素通りさせていた点を根治。修正: 完了 status PLAN の generates artifact が実在するが非空白 0 (= hollow) なら violation に追加 (phantom と distinct に報告)。.gitkeep は意図的空 placeholder ゆえ除外、読めない/バイナリは hollow 断定しない (fail-open、phantom 側が拾う)。blast radius: 全 tracked 空ファイル (.gitkeep 除く) = 0 / 空本文 PLAN = 0 を scan で確認済 → repo green 維持。test 6 ケース追加 (analyze hollow / phantom+hollow distinct / draft 非 flag / loader hollow + .gitkeep 除外)。typecheck/Biome/Vitest/doctor green。prose 真偽や DB row の field-null substance は範囲外 (§4)。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: hollow deliverable detection と phantom/hollow distinct reporting が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/plan-artifact-existence.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - hollow (empty) deliverable detection in plan-artifact-existence"

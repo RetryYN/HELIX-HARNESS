@@ -10,6 +10,7 @@ updated: 2026-06-19
 backprop_decision: not_required
 backprop_decision_reason: "harness 内部の自己適用 tooling (lint gate / runtime dispatch / guard / governance mechanism)。harness 自身の enforcement を強化するが、product の外部 requirement / design / test-design contract は変更しないため、上流 backprop 対象はない。"
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
 review_evidence:
   - reviewer: claude-code-reviewer (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -19,6 +20,23 @@ review_evidence:
     scope: "IMP-137 (full-access 委譲 Codex が DESK REVIEW 中に off-task で共有ファイルを編集し commit に混入 → doctor 後追い赤化) の再発防止を機械化。① read-only 期待ロール (相談/検証 archetype = tl/qa/uiux + review エイリアス) の委譲 session が working tree を変更したら検知 (assessReviewSession violation)、② commit 前に staged 集合を doctor と共に確認し混入を弾く (helix review --staged)。src/runtime/review-guard.ts は純関数のみ (git/fs 端点なし、before/after porcelain 配列を受け取る) で module-boundary (runtime↛lint) を保ち、I/O は cli の loadChangedFiles/loadStagedFiles が担う。helix <provider> --role <read-only> --execute は spawn 前後を assess し warning surface (exit 不変=fail-open、レビュー成果は殺さず混入を staged 前に弾く規律へ繋ぐ)。worker/未知ロールは対象外で誤検知回避。U-RGUARD-001..012 が role 分類・mutation 検知・assessment・message・staged summary を被覆。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: review read-only guard と staged-diff review surface が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/review-guard.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - review read-only guard + staged-diff 機械化"

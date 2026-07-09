@@ -10,6 +10,7 @@ updated: 2026-06-19
 backprop_decision: not_required
 backprop_decision_reason: "内部 harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism) の変更である。harness 自身の enforcement を堅牢化するだけで、product の外部 requirement / design / test-design contract は変更しないため、upstream backprop target はない。"
 owner: Claude TL
+parent_design: docs/design/harness/L6-function-design/session-log.md
 review_evidence:
   - reviewer: codex-gpt-5
     review_kind: cross_agent
@@ -19,6 +20,23 @@ review_evidence:
     scope: "compressPlanDigest は whole-session folding (base.sessions に既にある session の全 event を捨てる挙動) を per-session count high-watermark (session_watermarks[sid]) に置き換えた。複数回要約された session (複数の Stop hooks により append-only の per-session log が伸びる場合) は、全 event を捨てず、watermark を超えた event だけを数える。migration path は pre-L7-80 digest 向けに updated_at から watermarks を seed する (already-folded sessions の ts <= updated_at の event は already counted と扱う)。Codex cross-review (claude-opus-4-8 worker, codex-gpt-5 reviewer) verdict pass: single-call と same-batch re-application は idempotent のまま、migration は double-count せず、genuinely-new events は count される。Documented risks: この修正は caller が complete per-session log を append-only file order で渡すこと (onSessionEnd が whole session jsonl を読むため成立) と、chronological append order が file order と一致することに依存する。Oracle U-SLOG-008 は multi-stop increment、idempotent re-apply、migration を coverage する。"
     worker_model: claude-opus-4-8
     reviewer_model: codex-gpt-5
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: session digest の event-level high-watermark と migration/idempotency contract が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/session-log.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - session digest event-level high-watermark fix"

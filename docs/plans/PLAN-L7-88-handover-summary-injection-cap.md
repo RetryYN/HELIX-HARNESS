@@ -10,6 +10,8 @@ updated: 2026-06-22
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/handover-mechanism.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: PM (Opus) verification (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -19,6 +21,23 @@ review_evidence:
     scope: "PO 指摘『handover がコンテキストを増やしまくってないか + 注入コントロール/圧縮を組み込め』(2026-06-22) に対応。実測で handover doc の肥大を確認 (session-handover-2026-06-15.md = 2036 行 / 174KB / 同日 11 entries、2026-06-17 = 1713 行 / 132KB)。根因 = collectScope が session/active-family 解決に失敗すると空 handover 回避のため全 digest へ fallback し、renderHandoverScaffold の §1 PLAN サマリ + §2 成果物が **全 PLAN registry をダンプ** (1 anchor entry ~295 行)。既存 slimSummary (同日2件目+) と boundSameDayEntries (4 entry cap) は anchor の全 registry ダンプを縮約しなかった。修正: capWithBreadcrumb 純関数 + MAX_SUMMARY_PLANS=12 で §1/§2 を先頭 N + 『+M more — helix status/harness.db 参照』breadcrumb へ畳む (no silent cap)。session-scope が効いた通常時は doc.plans が小さく cap 不発 = 退行なし。注入経路の確認: SessionStart hook (runSessionStartSideEffects) は context 注入せず lifecycle 保守のみ = handover は自動注入されず session 再開時に latest_doc を読むことで context へ入る → latest_doc を bound すれば注入が bound する。U-HOVER-016 (capWithBreadcrumb 上限/breadcrumb/escape-hatch + render cap 発火/不発火) 5 ケース追加。typecheck / Biome / Vitest / doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: handover summary injection cap と capWithBreadcrumb contract が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/handover.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - handover summary injection cap (deliverable-driven context budget)"

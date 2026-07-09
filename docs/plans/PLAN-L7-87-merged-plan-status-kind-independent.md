@@ -10,6 +10,8 @@ updated: 2026-06-22
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 supersedes:
   - PLAN-L7-86-merged-plan-status-deliverable-scope
 review_evidence:
@@ -21,6 +23,23 @@ review_evidence:
     scope: "merged-plan-status gate の 2 次的盲点を根治。L7-86 は path フィルタ (src/*.ts → 出荷物ルート) を直したが、kind フィルタ (ARTIFACT_KINDS={impl,add-impl,refactor}) を据え置き、『design/poc/reverse は出荷物を merge しない』前提に依存した。実際には poc dogfood spike (DISCOVERY-05 が src/schema/roadmap.ts ほかを merge) と add-design (L3-04/L3-05 が src/lint/*.ts を merge) が出荷物を merge しており、3 件の draft-with-merged-src が doctor green のまま埋もれた (L7-86 の review が『draft 5 本は非 artifact-kind ゆえ blast radius 0』と書いた、まさにその盲点)。修正: analyzeMergedPlanStatus の filter から ARTIFACT_KINDS を撤去し deliverable-driven (status 非 confirm かつ mergedArtifacts 実在) に。mergedArtifacts は既に出荷物ルートの実在 artifact に filter 済ゆえ kind は冗長かつ有害だった。本修正に先立ち 3 件の drift を実体検証 (merged 239cb32 + doctor load-bearing + Vitest 787 green) のうえ confirmed 化したので、gate を kind 非依存化しても repo は green 維持。test: kind 非依存 flag (poc/add-design/design) + 未 merge は非 flag + add-design×merged-src の integration 回帰を追加、旧『non-artifact kind を flag しない』unit test を反転。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: merged-plan-status の kind-independent / deliverable-driven 検出と L7-86 supersession 注記が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/merged-plan-status.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - merged-plan-status kind-independent (deliverable-driven) detection"
