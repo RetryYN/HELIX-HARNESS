@@ -111,6 +111,9 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     source_command: "helix drive model --summary-json",
     payload: {
       source_command: "helix drive model --summary-json",
+      forward_spine_model: "Forward",
+      registered_entry_model_count: 10,
+      missing_registered_entry_models: [],
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },

@@ -1061,7 +1061,14 @@ function emptySnapshot(): VisualizationSnapshot {
     progress: {
       artifacts: { total: 0, red: 0, yellow: 0, green: 0, unknown: 0 },
       plans: { total: 0, by_status: {} },
-      gates: { total: 0, passed: 0, failed: 0, blocked: 0, other: 0, by_status: {} },
+      gates: {
+        total: 0,
+        passed: 0,
+        failed: 0,
+        blocked: 0,
+        other: 0,
+        by_status: {},
+      },
     },
     graph: {
       nodes: 0,
@@ -1303,7 +1310,7 @@ describe("buildVisualizationViewModel", () => {
           selected_route_id: "drive:OperationVerification:verify-runtime-scope",
           selected_command: "helix current-location --json",
           selected_coverage_ids: expect.arrayContaining(["L12-operation-observability"]),
-          candidate_count: 6,
+          candidate_count: 12,
           command: "helix drive model --json",
         }),
         current_location_status: "forward",
@@ -1544,7 +1551,9 @@ describe("buildVisualizationViewModel", () => {
                   projection_templates: expect.arrayContaining([
                     expect.objectContaining({ table: "test_runs" }),
                     expect.objectContaining({ table: "gate_runs" }),
-                    expect.objectContaining({ table: "runtime_verification_events" }),
+                    expect.objectContaining({
+                      table: "runtime_verification_events",
+                    }),
                   ]),
                 }),
               ],
@@ -1952,7 +1961,9 @@ describe("buildVisualizationViewModel", () => {
     const vm = buildVisualizationViewModel(snapshot);
     const knownPointers = new Set<string>(Object.values(snapshot.drilldowns));
 
-    const allRows: Array<{ drilldown: { kind: string; pointer: string } | null }> = [
+    const allRows: Array<{
+      drilldown: { kind: string; pointer: string } | null;
+    }> = [
       ...vm.project.layer_progress.artifacts,
       ...vm.project.layer_progress.plans,
       ...vm.project.layer_progress.gates,

@@ -399,7 +399,9 @@ describe("L7 CLI surface closure", () => {
         join(codexDir, "session-a.jsonl"),
         [
           JSON.stringify({ payload: { model: "gpt-5.3-codex" } }),
-          JSON.stringify({ tool_call: { command: "bun test tests/example.test.ts" } }),
+          JSON.stringify({
+            tool_call: { command: "bun test tests/example.test.ts" },
+          }),
         ].join("\n"),
       );
       const run = runCliIn(root, [
@@ -514,7 +516,9 @@ describe("L7 CLI surface closure", () => {
     });
     expect(payload.findings).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ code: "archive_without_design_or_test_delta" }),
+        expect.objectContaining({
+          code: "archive_without_design_or_test_delta",
+        }),
       ]),
     );
   });
@@ -568,7 +572,10 @@ describe("L7 CLI surface closure", () => {
     });
     expect(payload.findings).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ code: "template_conflict_not_silent", severity: "error" }),
+        expect.objectContaining({
+          code: "template_conflict_not_silent",
+          severity: "error",
+        }),
       ]),
     );
     expect(payload.resolved_artifacts[0].digest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -595,7 +602,10 @@ describe("L7 CLI surface closure", () => {
     });
     expect(payload.findings).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ kind: "implemented_without_design", severity: "critical" }),
+        expect.objectContaining({
+          kind: "implemented_without_design",
+          severity: "critical",
+        }),
         expect.objectContaining({ kind: "missing_test", severity: "critical" }),
       ]),
     );
@@ -892,7 +902,11 @@ describe("L7 CLI surface closure", () => {
       retry_ledger: [{ repo: "org/incomplete", status: "pending", retry_status: "queued" }],
     });
     expect(payload.chunk_resume_plan).toEqual([
-      { repo: "org/incomplete", next_chunk_id: "0002", reason: "chunk status pending" },
+      {
+        repo: "org/incomplete",
+        next_chunk_id: "0002",
+        reason: "chunk status pending",
+      },
     ]);
   });
 
@@ -919,7 +933,10 @@ describe("L7 CLI surface closure", () => {
       "--json",
     ]);
     expect(goodCommit.status, goodCommit.stderr || goodCommit.stdout).toBe(0);
-    expect(JSON.parse(goodCommit.stdout)).toMatchObject({ ok: true, subjectCount: 1 });
+    expect(JSON.parse(goodCommit.stdout)).toMatchObject({
+      ok: true,
+      subjectCount: 1,
+    });
 
     const badCommit = runCli(["guard", "commitlint", "--subject", "close guard gap", "--json"]);
     expect(badCommit.status).toBe(1);
@@ -3201,8 +3218,12 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      mkdirSync(join(root, "docs", "design", "helix", "L3-requirements"), { recursive: true });
-      mkdirSync(join(root, "docs", "test-design", "helix"), { recursive: true });
+      mkdirSync(join(root, "docs", "design", "helix", "L3-requirements"), {
+        recursive: true,
+      });
+      mkdirSync(join(root, "docs", "test-design", "helix"), {
+        recursive: true,
+      });
       writeFileSync(
         join(root, "docs", "plans", "PLAN-L14-01-close.md"),
         [
@@ -3683,8 +3704,8 @@ describe("L7 CLI surface closure", () => {
             ]),
           }),
           expect.objectContaining({
-            model: "Additive",
-            route_id: "drive:Additive:add-design-then-impl",
+            model: "Add-feature",
+            route_id: "drive:Add-feature:add-design-then-impl",
           }),
         ]),
       );
@@ -3716,15 +3737,18 @@ describe("L7 CLI surface closure", () => {
         },
         blocked_models: expect.arrayContaining(["Reverse", "Forward"]),
         available_models: expect.arrayContaining(["Recovery"]),
-        candidate_count: 6,
+        candidate_count: 12,
+        forward_spine_model: "Forward",
+        registered_entry_model_count: 10,
+        missing_registered_entry_models: [],
         source_command: "helix drive model --summary-json",
         full_source_command: "helix drive model --json",
       });
       expect(driveModelSummary.candidates).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            model: "Additive",
-            route_id: "drive:Additive:add-design-then-impl",
+            model: "Add-feature",
+            route_id: "drive:Add-feature:add-design-then-impl",
             command: "helix artifact-remap batch --status reverify --summary-json",
           }),
         ]),
@@ -4755,14 +4779,18 @@ describe("L7 CLI surface closure", () => {
                   projection_templates: expect.arrayContaining([
                     expect.objectContaining({ table: "test_runs" }),
                     expect.objectContaining({ table: "gate_runs" }),
-                    expect.objectContaining({ table: "runtime_verification_events" }),
+                    expect.objectContaining({
+                      table: "runtime_verification_events",
+                    }),
                   ]),
                 }),
               ],
               projection_templates: expect.arrayContaining([
                 expect.objectContaining({ table: "test_runs" }),
                 expect.objectContaining({ table: "gate_runs" }),
-                expect.objectContaining({ table: "runtime_verification_events" }),
+                expect.objectContaining({
+                  table: "runtime_verification_events",
+                }),
               ]),
             }),
           }),
@@ -6133,6 +6161,24 @@ describe("L7 CLI surface closure", () => {
             missing_count: expect.any(Number),
           },
           drive_model: {
+            forward_spine_model: "Forward",
+            registered_entry_model_count: 10,
+            missing_registered_entry_models: [],
+            candidate_count: 12,
+            candidate_models: expect.arrayContaining([
+              "Discovery",
+              "Scrum",
+              "Reverse",
+              "Recovery",
+              "Incident",
+              "Refactor",
+              "Retrofit",
+              "Add-feature",
+              "version-up",
+              "Research",
+              "OperationVerification",
+              "Forward",
+            ]),
             selected_model: "Recovery",
             selected_route_id: "drive:Recovery:recover-current-location",
             selection_status: "recovery_required",
@@ -6371,7 +6417,9 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-apply-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      mkdirSync(join(root, "docs", "design", "helix", "L12-vmodel"), { recursive: true });
+      mkdirSync(join(root, "docs", "design", "helix", "L12-vmodel"), {
+        recursive: true,
+      });
       writeFileSync(
         join(root, "docs", "plans", "PLAN-L14-01-close.md"),
         [
@@ -6780,7 +6828,9 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-closure-apply-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      mkdirSync(join(root, "docs", "design", "helix", "L12-vmodel"), { recursive: true });
+      mkdirSync(join(root, "docs", "design", "helix", "L12-vmodel"), {
+        recursive: true,
+      });
       writeFileSync(
         join(root, "docs", "plans", "PLAN-L14-01-close.md"),
         [

@@ -1032,7 +1032,14 @@ function snapshot(): VisualizationSnapshot {
     progress: {
       artifacts: { total: 3, red: 1, yellow: 1, green: 1, unknown: 0 },
       plans: { total: 2, by_status: { confirmed: 1, draft: 1 } },
-      gates: { total: 1, passed: 1, failed: 0, blocked: 0, other: 0, by_status: { passed: 1 } },
+      gates: {
+        total: 1,
+        passed: 1,
+        failed: 0,
+        blocked: 0,
+        other: 0,
+        by_status: { passed: 1 },
+      },
     },
     graph: {
       nodes: 2,
@@ -1226,8 +1233,14 @@ describe("visualization Tree View adapter", () => {
         "project/current-location/drive/model-candidates/2-Reverse:blocked L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
         "project/current-location/drive/model-candidates/3-OperationVerification:blocked L12-operation-observability",
         "project/current-location/drive/model-candidates/4-Forward:blocked L6-implementation-binding,L7-tdd-closure",
-        "project/current-location/drive/model-candidates/5-Additive:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
-        "project/current-location/drive/model-candidates/6-Refactor:blocked L5-detailed-contract",
+        "project/current-location/drive/model-candidates/5-Discovery:blocked L1-planning-intent,L2-requirements-screen",
+        "project/current-location/drive/model-candidates/6-Scrum:blocked L1-planning-intent,L11-acceptance-test-design,L2-requirements-screen,L3-requirements-freeze",
+        "project/current-location/drive/model-candidates/7-Incident:blocked L10-system-test-design,L12-operation-observability,L9-integration-test-design",
+        "project/current-location/drive/model-candidates/8-Refactor:blocked L5-detailed-contract",
+        "project/current-location/drive/model-candidates/9-Retrofit:blocked L4-basic-design,L5-detailed-contract,L6-implementation-binding",
+        "project/current-location/drive/model-candidates/10-Add-feature:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
+        "project/current-location/drive/model-candidates/11-version-up:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
+        "project/current-location/drive/model-candidates/12-Research:blocked L1-planning-intent,L3-requirements-freeze",
       ],
     );
     expect(drive?.children[1]?.children[0]?.tooltip).toContain(

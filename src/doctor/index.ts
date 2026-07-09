@@ -567,13 +567,19 @@ export function checkAgentSlots(deps: AgentSlotsDeps): string {
  * 駆動モデルの back-fill 完全性 (impl⇔Reverse / impl⇔glossary) を検査 (IMP-051、hard)。
  * Reverse 無き impl / §6 用語の glossary 未 merge を violation にして doctor.ok に連動する。
  */
-export function checkBackfillResult(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkBackfillResult(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const docs = loadBackfillDocs(repoRoot);
     const r = analyzeBackfill(docs.plans, docs.glossaryText, docs.auditedLegacyIds);
     return { messages: backfillMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["backfill - violation: PLAN/glossary could not be read"], ok: false };
+    return {
+      messages: ["backfill - violation: PLAN/glossary could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -587,15 +593,24 @@ export function checkBackfill(repoRoot: string): string[] {
  * confirmed poc (redesign 除く) の Reverse 孤児 / reverse が confirmed でない poc を参照 → ok=false。
  * I/O 失敗も violation にして fail-close する。
  */
-export function checkScrumReverse(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkScrumReverse(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["scrum-reverse - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["scrum-reverse - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeScrumReverse(loadSrPlans(repoRoot), loadReverseSeedMarkers(repoRoot));
     return { messages: scrumReverseMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["scrum-reverse - violation: PLAN could not be read"], ok: false };
+    return {
+      messages: ["scrum-reverse - violation: PLAN could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -603,15 +618,24 @@ export function checkScrumReverse(repoRoot: string): { messages: string[]; ok: b
  * PLAN errata の双方向整合を surface (PLAN-L7-89、hard fail)。`supersedes` 宣言の先が実在しない /
  * 原 PLAN に訂正 back-reference が無い → ok=false。I/O 失敗も violation にして fail-close する。
  */
-export function checkPlanSupersession(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanSupersession(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["plan-supersession - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["plan-supersession - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzePlanSupersession(loadSupersedePlans(repoRoot));
     return { messages: planSupersessionMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["plan-supersession - violation: PLAN could not be read"], ok: false };
+    return {
+      messages: ["plan-supersession - violation: PLAN could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -619,7 +643,10 @@ export function checkPlanSupersession(repoRoot: string): { messages: string[]; o
  * PLAN 本文 substance を surface (PLAN-L7-92、hard fail)。frontmatter + タイトルのみで本文実体行 0 の
  * declare-only hollow PLAN (concept AP-13 無効) → ok=false。I/O 失敗も violation にして fail-close する。
  */
-export function checkPlanBodySubstance(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanBodySubstance(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["plan-body-substance - violation: repo root could not be read"],
@@ -630,7 +657,10 @@ export function checkPlanBodySubstance(repoRoot: string): { messages: string[]; 
     const r = analyzePlanBodySubstance(loadPlanBodySubstanceInput(repoRoot));
     return { messages: planBodySubstanceMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["plan-body-substance - violation: PLAN could not be read"], ok: false };
+    return {
+      messages: ["plan-body-substance - violation: PLAN could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -639,7 +669,10 @@ export function checkPlanBodySubstance(repoRoot: string): { messages: string[]; 
  * (作業完了 + gated downstream confirmed なのに recovery/poc PLAN 自身が draft 放置) → ok=false。
  * I/O 失敗も violation にして fail-close する。
  */
-export function checkPlanCompletionDrift(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanCompletionDrift(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["plan-completion-drift - violation: repo root could not be read"],
@@ -650,7 +683,10 @@ export function checkPlanCompletionDrift(repoRoot: string): { messages: string[]
     const r = analyzePlanCompletionDrift(loadPlanCompletionDriftInput(repoRoot));
     return { messages: planCompletionDriftMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["plan-completion-drift - violation: PLAN could not be read"], ok: false };
+    return {
+      messages: ["plan-completion-drift - violation: PLAN could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -659,16 +695,25 @@ export function checkPlanCompletionDrift(repoRoot: string): { messages: string[]
  * 上位正本 (concept) と機械 routing SSoT (requirements) の signal 集合が乖離 → ok=false。
  * I/O 失敗も violation にして fail-close する。
  */
-export function checkPropagation(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPropagation(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["propagation - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["propagation - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const d = loadPropagationDocs(repoRoot);
     const r = analyzePropagation(d.conceptText, d.requirementsText);
     return { messages: propagationMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["propagation - violation: governance docs could not be read"], ok: false };
+    return {
+      messages: ["propagation - violation: governance docs could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -676,9 +721,15 @@ export function checkPropagation(repoRoot: string): { messages: string[]; ok: bo
  * 設計層 pair freeze (design⇔test-design の pair_artifact 双方向・孤児0) を検査 (IMP-067、hard)。
  * 孤児 (pair-missing/ref-unresolved/trace-orphan) を violation にして doctor.ok に連動する。
  */
-export function checkPairFreeze(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPairFreeze(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["pair-freeze - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["pair-freeze - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzePairFreeze(loadPairDocs(repoRoot));
@@ -698,15 +749,24 @@ export function checkPairFreeze(repoRoot: string): { messages: string[]; ok: boo
  * back-fill 完了 (missing 0 安定) を確認してから hard へ昇格した。review-skip の silent 化を機械で塞ぐ。
  * I/O 失敗も violation にして fail-close する。
  */
-export function checkReviewEvidence(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkReviewEvidence(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["review-evidence - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["review-evidence - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeReviewEvidence(loadReviewPlans(repoRoot));
     return { messages: reviewEvidenceMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["review-evidence - violation: PLAN could not be read"], ok: false };
+    return {
+      messages: ["review-evidence - violation: PLAN could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -733,7 +793,10 @@ export function checkReviewEvidence(repoRoot: string): { messages: string[]; ok:
  * human-required-without-evidence 不変条件 (recordGuardrailDecision 書込経路と共有) も review_evidence
  * 面で hard 化する。runtime guardrail decision (recordGuardrailDecision) 経路の本番配線は C-1 carry。
  */
-export function checkGuardrailInvariants(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkGuardrailInvariants(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["guardrail-invariants - violation: repo root could not be read"],
@@ -823,9 +886,15 @@ export function checkGuardrailInvariants(repoRoot: string): { messages: string[]
  * confirmed PLAN にのみ証跡を要求し draft を素通りさせる absence-blindness を補完する (柱3 = state DB が
  * フィードバック機構)。
  */
-export function checkMergedPlanStatus(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkMergedPlanStatus(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["merged-plan-status - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["merged-plan-status - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeMergedPlanStatus(loadMergedPlanStatusInput(repoRoot));
@@ -844,7 +913,10 @@ export function checkMergedPlanStatus(repoRoot: string): { messages: string[]; o
  * の鏡像で、PLAN↕artifact 実在マトリクスを 2 gate で完結させる。impl-plan-trace (src→PLAN) も
  * review-evidence (証跡有無) も artifact 実在を見ない absence-blindness を塞ぐ (柱3 / 柱6)。
  */
-export function checkPlanArtifactExistence(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanArtifactExistence(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["plan-artifact-existence - violation: repo root could not be read"],
@@ -862,9 +934,15 @@ export function checkPlanArtifactExistence(repoRoot: string): { messages: string
   }
 }
 
-export function checkModuleDrift(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkModuleDrift(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["module-drift - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["module-drift - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeModuleDrift(loadModuleDocs(repoRoot));
@@ -877,9 +955,15 @@ export function checkModuleDrift(repoRoot: string): { messages: string[]; ok: bo
   }
 }
 
-export function checkAssetDrift(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkAssetDrift(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["asset-drift - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["asset-drift - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const input = loadAssetDriftInput(repoRoot);
@@ -894,7 +978,10 @@ export function checkAssetDrift(repoRoot: string): { messages: string[]; ok: boo
   }
 }
 
-export function checkAllowlistSync(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkAllowlistSync(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const result = analyzeAllowlistSync(loadAllowlistSyncInput(repoRoot));
     return { messages: allowlistSyncMessages(result), ok: result.ok };
@@ -906,7 +993,10 @@ export function checkAllowlistSync(repoRoot: string): { messages: string[]; ok: 
   }
 }
 
-export function checkJudgmentCoreCoverage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkJudgmentCoreCoverage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const result = analyzeJudgmentCoreCoverage(loadJudgmentCoreCoverageInput(repoRoot));
     return { messages: judgmentCoreCoverageMessages(result), ok: result.ok };
@@ -918,9 +1008,15 @@ export function checkJudgmentCoreCoverage(repoRoot: string): { messages: string[
   }
 }
 
-export function checkSkillAssignment(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkSkillAssignment(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["skill-assignment - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["skill-assignment - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeSkillAssignments(loadSkillAssignmentDocs(repoRoot));
@@ -933,9 +1029,15 @@ export function checkSkillAssignment(repoRoot: string): { messages: string[]; ok
   }
 }
 
-export function checkDescentObligation(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDescentObligation(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["descent-obligation - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["descent-obligation - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = filterSubstanceVerifiedAdvisories(
@@ -955,24 +1057,39 @@ export function checkDescentObligation(repoRoot: string): { messages: string[]; 
   }
 }
 
-export function checkChangeImpact(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkChangeImpact(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["change-impact - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["change-impact - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   // 非 git (ZIP 展開のみ) では change-impact は適用不能 → skip (ok)。git は在るが status が
   // 壊れる実エラーは下の catch で fail-close を維持する。CI は常に git repo なので影響なし。
   if (!isGitRepository(repoRoot)) {
-    return { messages: ["change-impact — skipped (not a git repository)"], ok: true };
+    return {
+      messages: ["change-impact — skipped (not a git repository)"],
+      ok: true,
+    };
   }
   try {
     const r = analyzeChangeImpact({ changedFiles: loadChangedFiles(repoRoot) });
     return { messages: changeImpactMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["change-impact - violation: git status could not be read"], ok: false };
+    return {
+      messages: ["change-impact - violation: git status could not be read"],
+      ok: false,
+    };
   }
 }
 
-export function checkChangeSetIntegrity(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkChangeSetIntegrity(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["change-set-integrity - violation: repo root could not be read"],
@@ -981,7 +1098,10 @@ export function checkChangeSetIntegrity(repoRoot: string): { messages: string[];
   }
   // 非 git では変更集合を確定できない → skip (change-impact と同じ非 git fail-open 方針)。
   if (!isGitRepository(repoRoot)) {
-    return { messages: ["change-set-integrity — skipped (not a git repository)"], ok: true };
+    return {
+      messages: ["change-set-integrity — skipped (not a git repository)"],
+      ok: true,
+    };
   }
   try {
     const dependencyDrift = analyzeDependencyDrift(loadDependencyDriftInput(repoRoot));
@@ -1023,7 +1143,10 @@ function loadChangedFilesForDoctor(repoRoot: string): string[] {
   }
 }
 
-export function checkVerificationProfile(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkVerificationProfile(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["verification-profile - violation: repo root could not be read"],
@@ -1044,9 +1167,15 @@ export function checkVerificationProfile(repoRoot: string): { messages: string[]
   }
 }
 
-export function checkBranchKind(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkBranchKind(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["branch-kind-check - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["branch-kind-check - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeBranchKind(loadBranchKindInput(repoRoot));
@@ -1059,9 +1188,15 @@ export function checkBranchKind(repoRoot: string): { messages: string[]; ok: boo
   }
 }
 
-export function checkCodingRules(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkCodingRules(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["coding-rules - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["coding-rules - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeCodingRules(
@@ -1071,13 +1206,22 @@ export function checkCodingRules(repoRoot: string): { messages: string[]; ok: bo
     );
     return { messages: codingRulesMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["coding-rules — violation: TS coding rule lint could not run"], ok: false };
+    return {
+      messages: ["coding-rules — violation: TS coding rule lint could not run"],
+      ok: false,
+    };
   }
 }
 
-export function checkDddTddRules(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDddTddRules(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["ddd-tdd-rules - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["ddd-tdd-rules - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeDddTddRules(loadDddTddInputs(repoRoot));
@@ -1090,9 +1234,15 @@ export function checkDddTddRules(repoRoot: string): { messages: string[]; ok: bo
   }
 }
 
-export function checkDesignLanguage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDesignLanguage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["design-language - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["design-language - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeDesignLanguage(loadDesignLanguageDocs(repoRoot));
@@ -1105,7 +1255,10 @@ export function checkDesignLanguage(repoRoot: string): { messages: string[]; ok:
   }
 }
 
-export function checkDbProjectionCoverage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDbProjectionCoverage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["db-projection-coverage - violation: repo root could not be read"],
@@ -1123,9 +1276,15 @@ export function checkDbProjectionCoverage(repoRoot: string): { messages: string[
   }
 }
 
-export function checkAgentModelSsot(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkAgentModelSsot(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["agent-model-ssot - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["agent-model-ssot - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const result = analyzeAgentModelSsot(
@@ -1153,7 +1312,10 @@ export function checkVerifierProviderMismatch(repoRoot: string): {
   }
   try {
     const result = analyzeVerifierProviderMismatch(loadLoopIterationFiles(repoRoot));
-    return { messages: verifierProviderMismatchMessages(result), ok: result.ok };
+    return {
+      messages: verifierProviderMismatchMessages(result),
+      ok: result.ok,
+    };
   } catch {
     return {
       messages: [
@@ -1164,7 +1326,10 @@ export function checkVerifierProviderMismatch(repoRoot: string): {
   }
 }
 
-function runtimeSessionDirsForDoctor(): { claudeDir: string; codexDir: string } {
+function runtimeSessionDirsForDoctor(): {
+  claudeDir: string;
+  codexDir: string;
+} {
   return {
     claudeDir: process.env.HELIX_CLAUDE_SESSIONS_DIR ?? join(homedir(), ".claude", "projects"),
     codexDir: process.env.HELIX_CODEX_SESSIONS_DIR ?? join(homedir(), ".codex", "sessions"),
@@ -1173,7 +1338,10 @@ function runtimeSessionDirsForDoctor(): { claudeDir: string; codexDir: string } 
 
 export function projectRuntimeModelTelemetryForDoctor(_repoRoot: string, db: HarnessDb): void {
   const { claudeDir, codexDir } = runtimeSessionDirsForDoctor();
-  const usages = loadRuntimeSessionUsage({ claudeDirs: [claudeDir], codexDirs: [codexDir] });
+  const usages = loadRuntimeSessionUsage({
+    claudeDirs: [claudeDir],
+    codexDirs: [codexDir],
+  });
   projectTokenUsage(db, usages);
 }
 
@@ -1252,7 +1420,9 @@ export function checkProjectCurrentLocation(
     try {
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
-      const closureOverview = buildProjectClosureOverview(snapshot, { limit: 0 });
+      const closureOverview = buildProjectClosureOverview(snapshot, {
+        limit: 0,
+      });
       const closeReadyReviewBundle = buildProjectClosureReviewBundle(snapshot, {
         action: "close_ready",
         limit: 20,
@@ -2129,10 +2299,16 @@ export function checkDriveModelBinding(
       const violations: string[] = [];
       const expectedModels = [
         "Forward",
+        "Discovery",
+        "Scrum",
         "Reverse",
-        "Additive",
         "Recovery",
+        "Incident",
         "Refactor",
+        "Retrofit",
+        "Add-feature",
+        "version-up",
+        "Research",
         "OperationVerification",
       ];
       const candidateModels = report.candidates.map((candidate) => candidate.model);
@@ -2157,6 +2333,14 @@ export function checkDriveModelBinding(
       }
       if (report.selected_candidate.status !== "selected") {
         violations.push(`selected_status=${report.selected_candidate.status}`);
+      }
+      if (report.registered_entry_model_count !== 10) {
+        violations.push(`registered_entry_model_count=${report.registered_entry_model_count}`);
+      }
+      if (report.missing_registered_entry_models.length > 0) {
+        violations.push(
+          `missing_registered_entry_models=${report.missing_registered_entry_models.join(",")}`,
+        );
       }
       const selectedDeps = {
         doc: report.selected_candidate.doc_dependencies,
@@ -2966,8 +3150,12 @@ export function checkClosureApplyBinding(
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const applyLimit = 20;
-      const overview = buildProjectClosureOverview(snapshot, { limit: applyLimit });
-      const apply = buildProjectClosureApplyPlan(snapshot, { limit: applyLimit });
+      const overview = buildProjectClosureOverview(snapshot, {
+        limit: applyLimit,
+      });
+      const apply = buildProjectClosureApplyPlan(snapshot, {
+        limit: applyLimit,
+      });
       const violations: string[] = [];
       const closeReadyCount = snapshot.closure.queue.route_counts.close_ready;
       if (apply.schema_version !== "project-closure-apply-plan.v1") {
@@ -3798,7 +3986,10 @@ export function checkFunctionDesignAbsorptionBinding(
   }
 }
 
-export function checkVmodelZipManifest(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkVmodelZipManifest(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["vmodel-zip-manifest - violation: repo root could not be read"],
@@ -3894,19 +4085,31 @@ export function checkVmodelFit(
   }
 }
 
-export function checkRuleDrift(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRuleDrift(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["rule-drift - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["rule-drift - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeRuleDrift(loadRuleAdapterDocs(repoRoot));
     return { messages: ruleDriftMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["rule-drift - violation: adapter rule docs could not be read"], ok: false };
+    return {
+      messages: ["rule-drift - violation: adapter rule docs could not be read"],
+      ok: false,
+    };
   }
 }
 
-export function checkRuntimePortability(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRuntimePortability(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["runtime-portability - violation: repo root could not be read"],
@@ -3924,9 +4127,15 @@ export function checkRuntimePortability(repoRoot: string): { messages: string[];
   }
 }
 
-export function checkGateConfirm(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkGateConfirm(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["gate-confirm - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["gate-confirm - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeGateConfirm(loadGateConfirmDocs(repoRoot));
@@ -3939,20 +4148,35 @@ export function checkGateConfirm(repoRoot: string): { messages: string[]; ok: bo
   }
 }
 
-export function checkPlanSchedule(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanSchedule(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["plan-schedule - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["plan-schedule - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     return lintPlan(undefined, repoRoot);
   } catch {
-    return { messages: ["plan-schedule - violation: PLAN schedule lint could not run"], ok: false };
+    return {
+      messages: ["plan-schedule - violation: PLAN schedule lint could not run"],
+      ok: false,
+    };
   }
 }
 
-export function checkPlanDescent(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanDescent(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["plan-descent - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["plan-descent - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const result = analyzePlanDescent(
@@ -3961,13 +4185,22 @@ export function checkPlanDescent(repoRoot: string): { messages: string[]; ok: bo
     );
     return { messages: planDescentMessages(result), ok: result.ok };
   } catch {
-    return { messages: ["plan-descent - violation: plan descent lint could not run"], ok: false };
+    return {
+      messages: ["plan-descent - violation: plan descent lint could not run"],
+      ok: false,
+    };
   }
 }
 
-export function checkPlanEntryRouting(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanEntryRouting(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["plan-entry-routing - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["plan-entry-routing - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const result = analyzePlanEntryRouting(
@@ -3983,9 +4216,15 @@ export function checkPlanEntryRouting(repoRoot: string): { messages: string[]; o
   }
 }
 
-export function checkPlanGovernance(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanGovernance(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["plan-governance - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["plan-governance - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     return lintPlanWithGate(undefined, repoRoot, "governance");
@@ -3997,21 +4236,36 @@ export function checkPlanGovernance(repoRoot: string): { messages: string[]; ok:
   }
 }
 
-export function checkPlanDod(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlanDod(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["plan-dod - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["plan-dod - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzePlanDod(loadPlanDodDocs(repoRoot));
     return { messages: planDodMessages(r), ok: r.checked > 0 && r.ok };
   } catch {
-    return { messages: ["plan-dod - violation: L7 PLAN DoD could not be read"], ok: false };
+    return {
+      messages: ["plan-dod - violation: L7 PLAN DoD could not be read"],
+      ok: false,
+    };
   }
 }
 
-export function checkPlaceholderDeps(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkPlaceholderDeps(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["placeholder-deps - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["placeholder-deps - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzePlaceholderDeps(loadPlaceholderDepsDocs(repoRoot));
@@ -4037,11 +4291,17 @@ export function checkPlanTraceGate(
   try {
     return lintPlanWithGate(undefined, repoRoot, gate);
   } catch {
-    return { messages: [`${gate.toLowerCase()} - violation: trace gate could not run`], ok: false };
+    return {
+      messages: [`${gate.toLowerCase()} - violation: trace gate could not run`],
+      ok: false,
+    };
   }
 }
 
-export function checkRuleAutomationClosure(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRuleAutomationClosure(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["rule-automation-closure - violation: repo root could not be read"],
@@ -4050,7 +4310,10 @@ export function checkRuleAutomationClosure(repoRoot: string): { messages: string
   }
   try {
     const r = analyzeRuleAutomationClosure(loadRuleAutomationClosureDocs(repoRoot));
-    return { messages: ruleAutomationClosureMessages(r), ok: r.checked > 0 && r.ok };
+    return {
+      messages: ruleAutomationClosureMessages(r),
+      ok: r.checked > 0 && r.ok,
+    };
   } catch {
     return {
       messages: ["rule-automation-closure - violation: closure table could not be read"],
@@ -4059,7 +4322,10 @@ export function checkRuleAutomationClosure(repoRoot: string): { messages: string
   }
 }
 
-export function checkDriveModelPassage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDriveModelPassage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["drive-model-passage - violation: repo root could not be read"],
@@ -4068,7 +4334,10 @@ export function checkDriveModelPassage(repoRoot: string): { messages: string[]; 
   }
   try {
     const r = analyzeDriveModelPassage(loadDriveModelPassageDocs(repoRoot));
-    return { messages: driveModelPassageMessages(r), ok: r.checked > 0 && r.ok };
+    return {
+      messages: driveModelPassageMessages(r),
+      ok: r.checked > 0 && r.ok,
+    };
   } catch {
     return {
       messages: ["drive-model-passage - violation: passage certificate table could not be read"],
@@ -4098,7 +4367,10 @@ export function checkDriveDbRegistration(
   }
 }
 
-export function checkFrRoadmapCoverage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkFrRoadmapCoverage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["fr-roadmap-coverage - violation: repo root could not be read"],
@@ -4107,7 +4379,10 @@ export function checkFrRoadmapCoverage(repoRoot: string): { messages: string[]; 
   }
   try {
     const r = analyzeFrRoadmapCoverageWithRoot(loadFrRoadmapCoverageDocs(repoRoot), repoRoot);
-    return { messages: frRoadmapCoverageMessages(r), ok: r.checked > 0 && r.ok };
+    return {
+      messages: frRoadmapCoverageMessages(r),
+      ok: r.checked > 0 && r.ok,
+    };
   } catch {
     return {
       messages: ["fr-roadmap-coverage - violation: residual bucket table could not be read"],
@@ -4116,9 +4391,15 @@ export function checkFrRoadmapCoverage(repoRoot: string): { messages: string[]; 
   }
 }
 
-export function checkTelemetryClosure(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkTelemetryClosure(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["telemetry-closure - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["telemetry-closure - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeTelemetryClosure(loadTelemetryClosureDocs(repoRoot));
@@ -4131,7 +4412,10 @@ export function checkTelemetryClosure(repoRoot: string): { messages: string[]; o
   }
 }
 
-export function checkCycleP4Verification(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkCycleP4Verification(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["cycle-p4-verification - violation: repo root could not be read"],
@@ -4140,7 +4424,10 @@ export function checkCycleP4Verification(repoRoot: string): { messages: string[]
   }
   try {
     const r = analyzeCycleP4Verification(loadCycleP4VerificationDocs(repoRoot), repoRoot);
-    return { messages: cycleP4VerificationMessages(r), ok: r.checked > 0 && r.ok };
+    return {
+      messages: cycleP4VerificationMessages(r),
+      ok: r.checked > 0 && r.ok,
+    };
   } catch {
     return {
       messages: ["cycle-p4-verification - violation: Cycle P4 closure audit could not be read"],
@@ -4149,9 +4436,15 @@ export function checkCycleP4Verification(repoRoot: string): { messages: string[]
   }
 }
 
-export function checkProjectHooks(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkProjectHooks(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["project-hook - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["project-hook - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeProjectHooks(loadProjectHookDocs(repoRoot));
@@ -4164,9 +4457,15 @@ export function checkProjectHooks(repoRoot: string): { messages: string[]; ok: b
   }
 }
 
-export function checkCodexHookAdapter(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkCodexHookAdapter(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["codex-hook-adapter - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["codex-hook-adapter - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeCodexHookAdapter(loadCodexHookAdapterInput(repoRoot));
@@ -4179,7 +4478,10 @@ export function checkCodexHookAdapter(repoRoot: string): { messages: string[]; o
   }
 }
 
-export function checkToolContractRegistry(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkToolContractRegistry(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["tool-contract-registry - violation: repo root could not be read"],
@@ -4197,7 +4499,10 @@ export function checkToolContractRegistry(repoRoot: string): { messages: string[
   }
 }
 
-export function checkCodexWrapperParity(deps: DoctorDeps): { messages: string[]; ok: boolean } {
+export function checkCodexWrapperParity(deps: DoctorDeps): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(deps.repoRoot)) {
     return {
       messages: ["codex-wrapper-parity - violation: repo root could not be read"],
@@ -4310,21 +4615,36 @@ export function checkCodexWrapperParity(deps: DoctorDeps): { messages: string[];
   };
 }
 
-export function checkL6FrCoverage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkL6FrCoverage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["l6-fr-coverage - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["l6-fr-coverage - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeL6FrCoverage(loadL6FrCoverageDocs(repoRoot));
     return { messages: l6FrCoverageMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["l6-fr-coverage — ⚠ L6 FR coverage matrix を読めない"], ok: false };
+    return {
+      messages: ["l6-fr-coverage — ⚠ L6 FR coverage matrix を読めない"],
+      ok: false,
+    };
   }
 }
 
-export function checkReadability(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkReadability(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["readability - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["readability - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeReadability(loadSystemReadabilityDocs(repoRoot));
@@ -4342,7 +4662,10 @@ export function checkReadability(repoRoot: string): { messages: string[]; ok: bo
  * any mojibake marker so a corrupted handover/audit/provider-JSON cannot pass
  * silently. repo root unreadable is fail-close.
  */
-export function checkRuntimeReadability(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRuntimeReadability(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["runtime-readability - violation: repo root could not be read"],
@@ -4353,7 +4676,10 @@ export function checkRuntimeReadability(repoRoot: string): { messages: string[];
     const r = analyzeReadability(loadRuntimeArtifactReadabilityDocs(repoRoot));
     return { messages: runtimeReadabilityMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["runtime-readability — ⚠ .helix artifacts を読めない"], ok: false };
+    return {
+      messages: ["runtime-readability — ⚠ .helix artifacts を読めない"],
+      ok: false,
+    };
   }
 }
 
@@ -4361,23 +4687,38 @@ export function checkRuntimeReadability(repoRoot: string): { messages: string[];
  * feedback-log のドメスティック化規律を hard gate 検査 (IMP-085、A-138 ITEM-3)。
  * docs/feedback-log.md 不在は fail-open (任意ドキュメント)、repo root 不在は fail-close。
  */
-export function checkFeedbackLog(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkFeedbackLog(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["feedback-log - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["feedback-log - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   if (!existsSync(join(repoRoot, "docs/feedback-log.md"))) {
-    return { messages: ["feedback-log — OK (docs/feedback-log.md 不在 = 適用なし)"], ok: true };
+    return {
+      messages: ["feedback-log — OK (docs/feedback-log.md 不在 = 適用なし)"],
+      ok: true,
+    };
   }
   try {
     const r = analyzeFeedbackLog(loadFeedbackLogInput(repoRoot));
     return { messages: feedbackLogMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["feedback-log — ⚠ docs/feedback-log.md を読めない"], ok: false };
+    return {
+      messages: ["feedback-log — ⚠ docs/feedback-log.md を読めない"],
+      ok: false,
+    };
   }
 }
 
 /** V-model 層群の Forward freeze 完了 (検証サイクル発火タイミング) を hard gate として検査する。 */
-export function checkL6Completion(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkL6Completion(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!canLoadL6CompletionInputs(repoRoot)) {
     return {
       messages: ["l6-completion - violation: L6 completion inputs could not be read"],
@@ -4395,9 +4736,15 @@ export function checkL6Completion(repoRoot: string): { messages: string[]; ok: b
   }
 }
 
-export function checkL7Completion(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkL7Completion(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["l7-completion - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["l7-completion - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeL7Completion(loadL7CompletionDocs(repoRoot));
@@ -4411,9 +4758,15 @@ export function checkL7Completion(repoRoot: string): { messages: string[]; ok: b
 }
 
 /** impl→PLAN トレーサビリティ (src ⊆ PLAN generates ∪ baseline) を hard gate として検査する。 */
-export function checkImplPlanTrace(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkImplPlanTrace(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["impl-plan-trace - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["impl-plan-trace - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeImplPlanTrace(loadImplPlanTraceInput(repoRoot));
@@ -4427,7 +4780,10 @@ export function checkImplPlanTrace(repoRoot: string): { messages: string[]; ok: 
 }
 
 /** 要件 §G.1 sub-doc 表 ⊆⊇ schema VALID_SUB_DOCS の正本同期を hard gate として検査する (IMP-141)。 */
-export function checkSubDocCatalogDrift(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkSubDocCatalogDrift(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["sub-doc-catalog-drift - violation: repo root could not be read"],
@@ -4468,7 +4824,10 @@ export function checkSubDocSectionStructure(repoRoot: string): {
 }
 
 /** 画面実装宣言 (implemented_screens) が検証ペア (next_pair_freeze) の段階順を破っていないか hard gate。 */
-export function checkScreenImplPairFreeze(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkScreenImplPairFreeze(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["screen-impl-pair-freeze - violation: repo root could not be read"],
@@ -4487,7 +4846,10 @@ export function checkScreenImplPairFreeze(repoRoot: string): { messages: string[
 }
 
 /** L1 画面要求 ⇔ L2 画面設計の双方向 ID 被覆を hard gate として検査する (PLAN-DISCOVERY-11 収束機械判定)。 */
-export function checkL1L2Consistency(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkL1L2Consistency(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["l1-l2-consistency - violation: repo root could not be read"],
@@ -4535,7 +4897,10 @@ export function checkRefactorCandidateTriage(repoRoot: string): {
       .filter((candidate) => candidate.confidence === "high")
       .sort((a, b) => candidateRank(b) - candidateRank(a));
     if (highCandidates.length === 0) {
-      return { messages: ["refactor-candidate-triage - OK (high=0)"], ok: true };
+      return {
+        messages: ["refactor-candidate-triage - OK (high=0)"],
+        ok: true,
+      };
     }
     const top = highCandidates
       .slice(0, 5)
@@ -4556,9 +4921,15 @@ export function checkRefactorCandidateTriage(repoRoot: string): {
 }
 
 /** git tracked top-level ⊆ repository-structure.md canonical の突合を hard gate として検査する。 */
-export function checkTrackedCanonical(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkTrackedCanonical(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["tracked-canonical - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["tracked-canonical - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeTrackedCanonical(loadTrackedCanonicalInput(repoRoot));
@@ -4572,9 +4943,15 @@ export function checkTrackedCanonical(repoRoot: string): { messages: string[]; o
 }
 
 /** oracle 宣言 ⇔ 実テスト citation の突合を hard gate として検査する。 */
-export function checkOracleTestTrace(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkOracleTestTrace(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["oracle-test-trace - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["oracle-test-trace - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const r = analyzeOracleTestTrace(loadOracleTestTraceInput(repoRoot));
@@ -4588,9 +4965,15 @@ export function checkOracleTestTrace(repoRoot: string): { messages: string[]; ok
 }
 
 /** 工程表 (登録 roadmap) の span 実在 + 層内ゲート進捗を hard gate として検査する。 */
-export function checkRoadmap(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRoadmap(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
-    return { messages: ["roadmap - violation: repo root could not be read"], ok: false };
+    return {
+      messages: ["roadmap - violation: repo root could not be read"],
+      ok: false,
+    };
   }
   try {
     const records = loadRoadmaps(repoRoot);
@@ -4653,9 +5036,15 @@ export function checkRoadmap(repoRoot: string): { messages: string[]; ok: boolea
     messages.push(...featurePackMessages);
     const coverageOk =
       analyzeProgramCoverage(records, new Set(PARKED_BANDS.keys())).uncovered.length === 0;
-    return { messages, ok: issueCount === 0 && coverageOk && featurePackCoverage.ok };
+    return {
+      messages,
+      ok: issueCount === 0 && coverageOk && featurePackCoverage.ok,
+    };
   } catch {
-    return { messages: ["roadmap - violation: 工程表を読めず検査できない"], ok: false };
+    return {
+      messages: ["roadmap - violation: 工程表を読めず検査できない"],
+      ok: false,
+    };
   }
 }
 
@@ -4718,7 +5107,10 @@ export function checkVerificationGroupsResult(repoRoot: string): {
     const docs = loadPairDocs(repoRoot);
     const { orphans } = analyzePairFreeze(docs);
     const groups = analyzeVerificationGroups(docs, orphans, loadVerificationPlanEvidence(repoRoot));
-    return { messages: verificationGroupMessages(groups), ok: verificationGroupsOk(groups) };
+    return {
+      messages: verificationGroupMessages(groups),
+      ok: verificationGroupsOk(groups),
+    };
   } catch {
     return {
       messages: ["verification — violation: verification group lint could not run"],
@@ -4993,9 +5385,18 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     { phase: "setup-dry-run", command: "helix setup project --dry-run" },
     { phase: "vscode-profile-open", command: "code --profile HELIX ." },
     { phase: "status-frontier", command: "helix status --json" },
-    { phase: "github-ci-safety", command: "helix setup project --dry-run --json" },
-    { phase: "completion-decision-packet", command: "helix completion decision-packet --json" },
-    { phase: "completion-review-bundle", command: "helix completion review-bundle --json" },
+    {
+      phase: "github-ci-safety",
+      command: "helix setup project --dry-run --json",
+    },
+    {
+      phase: "completion-decision-packet",
+      command: "helix completion decision-packet --json",
+    },
+    {
+      phase: "completion-review-bundle",
+      command: "helix completion review-bundle --json",
+    },
     {
       phase: "version-up-dry-run",
       command:
@@ -5332,7 +5733,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
  * doc-consistency lint を hard gate 検査 (PLAN-L7-95、要件 §G.11 の「自動検証」配線)。
  * carry 整合 / screen-id 妥当性 / NFR 件数宣言-実数を fail-close。I/O 失敗も violation。
  */
-export function checkDocConsistency(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDocConsistency(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeDocConsistency(loadDocConsistencyDocs(repoRoot));
     const bad =
@@ -5367,7 +5771,10 @@ export function checkDocConsistency(repoRoot: string): { messages: string[]; ok:
  * entity-coverage lint を hard gate 検査 (PLAN-L7-95)。business §10.1 primary entity と
  * L3 派生 entity の重複 0 を fail-close。I/O 失敗も violation。
  */
-export function checkEntityCoverage(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkEntityCoverage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeEntityCoverage(loadEntityBusiness(repoRoot));
     if (r.duplicates.length === 0) {
@@ -5385,7 +5792,10 @@ export function checkEntityCoverage(repoRoot: string): { messages: string[]; ok:
       ok: false,
     };
   } catch {
-    return { messages: ["entity-coverage — violation: business doc could not be read"], ok: false };
+    return {
+      messages: ["entity-coverage — violation: business doc could not be read"],
+      ok: false,
+    };
   }
 }
 
@@ -5393,7 +5803,10 @@ export function checkEntityCoverage(repoRoot: string): { messages: string[]; ok:
  * fr-registry-audit lint を hard gate 検査 (PLAN-L7-95、要件 §1.10.G.10 の「漏れ監査自動化」配線)。
  * FR-L1 registry の 5 型漏れ (登録/欠番/属性/件数/画面被覆) を fail-close。I/O 失敗も violation。
  */
-export function checkFrRegistryAudit(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkFrRegistryAudit(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeFrRegistry(loadFrRegistryDocs(repoRoot));
     const bad =
@@ -5429,7 +5842,10 @@ export function checkFrRegistryAudit(repoRoot: string): { messages: string[]; ok
  * IMP 行の malformed/dup/invalid status・candidate/incomplete/unparseable と
  * lower-layer backprop 分類欠落を fail-close。
  */
-export function checkImprovementBacklog(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkImprovementBacklog(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeImprovementBacklog(loadImprovementBacklog(repoRoot));
     const bad =
@@ -5466,7 +5882,10 @@ export function checkImprovementBacklog(repoRoot: string): { messages: string[];
  * lint-wiring meta-gate を hard gate 検査 (PLAN-L7-95、IMP-006)。
  * すべての src/lint module が runtime 経路から到達可能 or DEFERRED 登録済みを fail-close。
  */
-export function checkRightArmGatePlanning(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRightArmGatePlanning(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeRightArmGatePlanning(loadRightArmGatePlanningInput(repoRoot));
     return { messages: rightArmGatePlanningMessages(r), ok: r.ok };
@@ -5495,7 +5914,10 @@ export function checkRightArmVerificationStrategy(repoRoot: string): {
   }
 }
 
-export function checkL14CloseAudit(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkL14CloseAudit(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeL14CloseAudit(loadL14CloseAuditInput(repoRoot));
     return { messages: l14CloseAuditMessages(r), ok: r.ok };
@@ -5507,7 +5929,10 @@ export function checkL14CloseAudit(repoRoot: string): { messages: string[]; ok: 
   }
 }
 
-export function checkLintWiring(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkLintWiring(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeLintWiring(loadLintWiringInput(repoRoot));
     return { messages: lintWiringMessages(r), ok: r.ok };
@@ -5519,7 +5944,10 @@ export function checkLintWiring(repoRoot: string): { messages: string[]; ok: boo
   }
 }
 
-export function checkToolchainPin(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkToolchainPin(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeToolchainPin(loadToolchainPinInput(repoRoot));
     return { messages: toolchainPinMessages(r), ok: r.ok };
@@ -5531,7 +5959,10 @@ export function checkToolchainPin(repoRoot: string): { messages: string[]; ok: b
   }
 }
 
-export function checkRepositoryNamePaths(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkRepositoryNamePaths(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeRepositoryNamePaths(loadRepositoryNamePathsInput(repoRoot));
     return { messages: repositoryNamePathsMessages(r), ok: r.ok };
@@ -5547,7 +5978,10 @@ export function checkRepositoryNamePaths(repoRoot: string): { messages: string[]
  * forward-convergence (fail-close, PLAN-DISCOVERY-08 Step5): spine-外 kind=impl の NEW 未集約 landed を
  * gate する。legacy debt allowlist は grandfather (ok を落とさず surface)。例外時は fail-close。
  */
-export function checkForwardConvergence(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkForwardConvergence(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const docs = loadConvergenceDocs(repoRoot);
     const r = analyzeForwardConvergence(docs.plans, docs.roadmapSpanIds, docs.reverseReferencedIds);
@@ -5560,7 +5994,10 @@ export function checkForwardConvergence(repoRoot: string): { messages: string[];
   }
 }
 
-export function checkVersionUpReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkVersionUpReadiness(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const input = loadVersionUpReadinessInput(repoRoot);
     const r = analyzeVersionUpReadiness(input);
@@ -5604,7 +6041,10 @@ export function checkActionBindingApprovalReadiness(repoRoot: string): {
   }
 }
 
-export function checkS4DecisionReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkS4DecisionReadiness(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeS4DecisionReadiness(loadS4DecisionReadinessInput(repoRoot));
     return { messages: s4DecisionReadinessMessages(r), ok: r.ok };
@@ -5616,7 +6056,10 @@ export function checkS4DecisionReadiness(repoRoot: string): { messages: string[]
   }
 }
 
-export function checkCutoverReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkCutoverReadiness(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeCutoverReadiness(loadCutoverReadinessInput(repoRoot));
     const renamePlan = buildIdentifierRenameCutoverPlan(repoRoot);
@@ -5910,7 +6353,10 @@ function scopedRelatedDecisionPacketCommand(planId: string, command: string): st
   }
 }
 
-export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkObjectiveEvidenceAudit(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   try {
     const r = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput(repoRoot));
     return { messages: objectiveEvidenceAuditMessages(r), ok: r.ok };

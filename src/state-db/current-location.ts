@@ -5,10 +5,16 @@ import type { HarnessDb } from "./index";
 
 export type ProjectDriveModel =
   | "Forward"
+  | "Discovery"
+  | "Scrum"
   | "Reverse"
-  | "Additive"
   | "Recovery"
+  | "Incident"
   | "Refactor"
+  | "Retrofit"
+  | "Add-feature"
+  | "version-up"
+  | "Research"
   | "OperationVerification";
 export type ProjectL12CoverageStatus = "done" | "missing" | "reverify";
 export type ProjectDesignCoverageGateStatus = "pass" | "needs_design" | "unknown";
@@ -257,6 +263,10 @@ export interface ProjectDriveModelCandidate {
 export interface ProjectDriveModelReport {
   schema_version: "project-drive-model.v1";
   source_clock: string | null;
+  forward_spine_model: "Forward";
+  registered_entry_models: ProjectDriveModel[];
+  registered_entry_model_count: number;
+  missing_registered_entry_models: ProjectDriveModel[];
   selected_model: ProjectDriveModel;
   default_model: "Forward";
   selection_status: ProjectDriveRouteStatus;
@@ -1744,6 +1754,19 @@ const L12_LAYERS = [
   { layer: "L12", label: "運用テスト" },
 ] as const;
 
+const PROJECT_REGISTERED_ENTRY_DRIVE_MODELS = [
+  "Discovery",
+  "Scrum",
+  "Reverse",
+  "Recovery",
+  "Incident",
+  "Refactor",
+  "Retrofit",
+  "Add-feature",
+  "version-up",
+  "Research",
+] as const satisfies ProjectDriveModel[];
+
 const OPERATION_SCOPES = [
   {
     scope: "log_design",
@@ -3034,14 +3057,26 @@ function driveModelRouteId(
   snapshot: ProjectCurrentLocationSnapshot,
 ): string {
   switch (model) {
+    case "Discovery":
+      return "drive:Discovery:clarify-uncertain-requirements";
+    case "Scrum":
+      return "drive:Scrum:iterate-product-backlog";
     case "Recovery":
       return "drive:Recovery:recover-current-location";
     case "Reverse":
       return "drive:Reverse:repair-design-test-implementation";
-    case "Additive":
-      return "drive:Additive:add-design-then-impl";
+    case "Incident":
+      return "drive:Incident:contain-production-regression";
     case "Refactor":
       return "drive:Refactor:preserve-behavior-clean-structure";
+    case "Retrofit":
+      return "drive:Retrofit:adapt-existing-system";
+    case "Add-feature":
+      return "drive:Add-feature:add-design-then-impl";
+    case "version-up":
+      return "drive:version-up:activate-parked-upgrade";
+    case "Research":
+      return "drive:Research:collect-decision-evidence";
     case "OperationVerification":
       return "drive:OperationVerification:verify-runtime-scope";
     case "Forward":
@@ -3058,10 +3093,32 @@ function driveModelCandidateCoverage(input: {
   let coverageIds: string[];
   let coverageLabels: string[];
   switch (input.model) {
+    case "Discovery":
+      coverageIds = designCoverageIdsForL12Layers(["L1", "L2"]);
+      coverageLabels = designCoverageLabelsForL12Layers(["L1", "L2"]);
+      break;
+    case "Scrum":
+      coverageIds = designCoverageIdsForL12Layers(["L1", "L2", "L3", "L11"]);
+      coverageLabels = designCoverageLabelsForL12Layers(["L1", "L2", "L3", "L11"]);
+      break;
     case "Recovery":
     case "Reverse":
       coverageIds = [...input.snapshot.drive_route.reverse.coverageIds];
       coverageLabels = [...input.snapshot.drive_route.reverse.coverageLabels];
+      break;
+    case "Incident":
+      coverageIds = unique([
+        ...designCoverageIdsForL12Layers(["L9", "L10", "L12"]),
+        ...input.snapshot.operation_scope.items
+          .filter((item) => item.scope === "incident_recovery_route")
+          .map((item) => item.coverageId),
+      ]);
+      coverageLabels = unique([
+        ...designCoverageLabelsForL12Layers(["L9", "L10", "L12"]),
+        ...input.snapshot.operation_scope.items
+          .filter((item) => item.scope === "incident_recovery_route")
+          .map((item) => item.coverageLabel),
+      ]);
       break;
     case "OperationVerification":
       coverageIds = unique(input.snapshot.operation_scope.items.map((item) => item.coverageId));
@@ -3073,7 +3130,7 @@ function driveModelCandidateCoverage(input: {
       coverageIds = [...input.snapshot.drive_route.forward.coverageIds];
       coverageLabels = [...input.snapshot.drive_route.forward.coverageLabels];
       break;
-    case "Additive":
+    case "Add-feature":
       coverageIds = unique(
         input.snapshot.artifact_remap.items
           .map((item) => item.coverageId)
@@ -3091,6 +3148,18 @@ function driveModelCandidateCoverage(input: {
       coverageLabels = coverageRule ? [coverageRule.label] : [];
       break;
     }
+    case "Retrofit":
+      coverageIds = designCoverageIdsForL12Layers(["L4", "L5", "L6"]);
+      coverageLabels = designCoverageLabelsForL12Layers(["L4", "L5", "L6"]);
+      break;
+    case "version-up":
+      coverageIds = designCoverageIdsForL12Layers(["L3", "L6", "L7"]);
+      coverageLabels = designCoverageLabelsForL12Layers(["L3", "L6", "L7"]);
+      break;
+    case "Research":
+      coverageIds = designCoverageIdsForL12Layers(["L1", "L3"]);
+      coverageLabels = designCoverageLabelsForL12Layers(["L1", "L3"]);
+      break;
   }
   return { coverage_ids: coverageIds, coverage_labels: coverageLabels };
 }
@@ -3104,6 +3173,8 @@ export function buildProjectDriveModelReport(
     snapshot.design_coverage_gate.status !== "pass" || snapshot.tailoring_gate.status !== "pass";
   const hasOperationGaps =
     snapshot.operation_scope.missing > 0 || snapshot.operation_scope.reverify > 0;
+  const scrumOperation = snapshot.scrum_operation;
+  const hasScrumGaps = scrumOperation?.items.some((item) => item.status === "missing") ?? false;
   const hasRoadmapFrontier =
     snapshot.roadmap_position.status === "frontier" ||
     snapshot.roadmap_position.status === "uncovered";
@@ -3182,7 +3253,10 @@ export function buildProjectDriveModelReport(
         required_action:
           "operation scope の missing/reverify を design declaration と runtime evidence に接続する",
         command: "helix current-location --json",
-        ...driveModelCandidateCoverage({ model: "OperationVerification", snapshot }),
+        ...driveModelCandidateCoverage({
+          model: "OperationVerification",
+          snapshot,
+        }),
         doc_dependencies: ["docs/design/**", "docs/test-design/**"],
         implementation_dependencies: unique(
           snapshot.operation_scope.items.flatMap((item) => item.evidenceTables),
@@ -3213,29 +3287,73 @@ export function buildProjectDriveModelReport(
         ],
       },
       {
-        model: "Additive",
+        model: "Discovery",
         rank: 5,
         status: driveCandidateStatus(
           selectedModel,
-          "Additive",
-          selectedModel === "Recovery" || selectedModel === "Reverse" || !hasRoadmapFrontier,
+          "Discovery",
+          selectedModel === "Recovery" || selectedModel === "Reverse" || !hasDesignGaps,
         ),
-        route_id: driveModelRouteId("Additive", snapshot),
-        trigger: "既存設計を保った delta 追加。add-design / add-impl を L12 coverage に再投影する",
+        route_id: driveModelRouteId("Discovery", snapshot),
+        trigger: "要求・成功条件・画面/モック前提が未確定で、L1/L2 へ戻す必要がある",
         required_action:
-          "追加分を L5 詳細設計または typed spec に登録し、対応する実装/evidence を接続する",
-        command: "helix artifact-remap batch --status reverify --json",
-        ...driveModelCandidateCoverage({ model: "Additive", snapshot }),
-        doc_dependencies: unique(snapshot.artifact_remap.items.map((item) => item.sourcePath)),
-        implementation_dependencies: ["artifact_remap", "plan_registry", "design_declarations"],
+          "企画・要求・画面の不確実性を Discovery として切り出し、S4 判断後に Forward へ合流する",
+        command: 'helix task classify --text "design_uncertain"',
+        ...driveModelCandidateCoverage({ model: "Discovery", snapshot }),
+        doc_dependencies: ["docs/design/**", "docs/plans/**"],
+        implementation_dependencies: ["plan_registry", "design_declarations"],
         reasons: [
-          `artifact_reverify=${snapshot.artifact_remap.reverify}`,
-          `artifact_missing=${snapshot.artifact_remap.missing}`,
+          `design_coverage=${snapshot.design_coverage_gate.status}`,
+          `tailoring=${snapshot.tailoring_gate.status}`,
+        ],
+      },
+      {
+        model: "Scrum",
+        rank: 6,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Scrum",
+          selectedModel === "Recovery" || selectedModel === "Reverse" || !hasScrumGaps,
+        ),
+        route_id: driveModelRouteId("Scrum", snapshot),
+        trigger: "プロダクトバックログ、スプリント、受入、メトリクスなど Scrum 運営層の不足",
+        required_action:
+          "Scrum operation の missing item を工程表・受入基準・Sprint 記録へ接続して Forward/Reverse へ合流する",
+        command: "helix current-location --summary-json",
+        ...driveModelCandidateCoverage({ model: "Scrum", snapshot }),
+        doc_dependencies: unique(scrumOperation?.docDependencies ?? ["docs/plans/**"]),
+        implementation_dependencies: unique(
+          scrumOperation?.implementationDependencies ?? ["plan_registry"],
+        ),
+        reasons: [
+          `scrum_status=${scrumOperation?.status ?? "not_observed"}`,
+          `scrum_missing=${scrumOperation?.items.filter((item) => item.status === "missing").length ?? 0}`,
+        ],
+      },
+      {
+        model: "Incident",
+        rank: 7,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Incident",
+          selectedModel === "Recovery" || selectedModel === "Reverse",
+        ),
+        route_id: driveModelRouteId("Incident", snapshot),
+        trigger:
+          "本番障害、hotfix、regression_prod を Incident として隔離し Recovery/Reverse へ接続する",
+        required_action:
+          "障害時の containment、検証ログ、復旧 route、approval boundary を incident runbook と current-location に記録する",
+        command: 'helix task classify --text "production_incident"',
+        ...driveModelCandidateCoverage({ model: "Incident", snapshot }),
+        doc_dependencies: ["docs/skills/incident-runbook.md", "docs/design/**"],
+        implementation_dependencies: ["runtime_verification_events", "quality_signals"],
+        reasons: [
+          `incident_scope=${snapshot.operation_scope.items.find((item) => item.scope === "incident_recovery_route")?.status ?? "missing"}`,
         ],
       },
       {
         model: "Refactor",
-        rank: 6,
+        rank: 8,
         status: driveCandidateStatus(
           selectedModel,
           "Refactor",
@@ -3256,13 +3374,96 @@ export function buildProjectDriveModelReport(
         ),
         reasons: [`design_declaration_drifts=${snapshot.counts.design_declaration_drifts}`],
       },
+      {
+        model: "Retrofit",
+        rank: 9,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Retrofit",
+          selectedModel === "Recovery" || selectedModel === "Reverse",
+        ),
+        route_id: driveModelRouteId("Retrofit", snapshot),
+        trigger: "既存 system / dependency / config の適応差分を Retrofit として扱う",
+        required_action:
+          "移行・設定・rollback evidence を L4/L5/L6 の依存として再投影し、Forward へ戻す",
+        command: 'helix task classify --text "dependency_outdated config_drift"',
+        ...driveModelCandidateCoverage({ model: "Retrofit", snapshot }),
+        doc_dependencies: ["docs/process/modes/retrofit.md", "docs/design/**"],
+        implementation_dependencies: ["plan_registry", "test_runs", "quality_signals"],
+        reasons: [`roadmap=${snapshot.roadmap_position.status}`],
+      },
+      {
+        model: "Add-feature",
+        rank: 10,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Add-feature",
+          selectedModel === "Recovery" || selectedModel === "Reverse" || !hasRoadmapFrontier,
+        ),
+        route_id: driveModelRouteId("Add-feature", snapshot),
+        trigger: "既存設計を保った delta 追加。add-design / add-impl を L12 coverage に再投影する",
+        required_action:
+          "追加分を L5 詳細設計または typed spec に登録し、対応する実装/evidence を接続する",
+        command: "helix artifact-remap batch --status reverify --json",
+        ...driveModelCandidateCoverage({ model: "Add-feature", snapshot }),
+        doc_dependencies: unique(snapshot.artifact_remap.items.map((item) => item.sourcePath)),
+        implementation_dependencies: ["artifact_remap", "plan_registry", "design_declarations"],
+        reasons: [
+          `artifact_reverify=${snapshot.artifact_remap.reverify}`,
+          `artifact_missing=${snapshot.artifact_remap.missing}`,
+        ],
+      },
+      {
+        model: "version-up",
+        rank: 11,
+        status: driveCandidateStatus(
+          selectedModel,
+          "version-up",
+          selectedModel === "Recovery" || selectedModel === "Reverse",
+        ),
+        route_id: driveModelRouteId("version-up", snapshot),
+        trigger: "今版に入れない upgrade / activation / release 差分を parked work として管理する",
+        required_action:
+          "activation packet、dry-run、security/cost/rollback evidence を揃え、承認後に Forward へ合流する",
+        command: "helix version-up activation-packet",
+        ...driveModelCandidateCoverage({ model: "version-up", snapshot }),
+        doc_dependencies: ["docs/process/modes/version-up.md", "docs/plans/**"],
+        implementation_dependencies: ["plan_registry", "test_runs", "quality_signals"],
+        reasons: [`queue=${snapshot.closure.queue.items.length}`],
+      },
+      {
+        model: "Research",
+        rank: 12,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Research",
+          selectedModel === "Recovery" || selectedModel === "Reverse",
+        ),
+        route_id: driveModelRouteId("Research", snapshot),
+        trigger: "技術選定、外部仕様、ADR 候補など判断材料が不足している",
+        required_action:
+          "research memo と source ledger を揃え、ADR/Discovery/Forward のどこへ合流するかを記録する",
+        command: 'helix task classify --text "research adr_required"',
+        ...driveModelCandidateCoverage({ model: "Research", snapshot }),
+        doc_dependencies: ["docs/research/**", "docs/adr/**", "docs/plans/**"],
+        implementation_dependencies: ["plan_registry", "design_declarations"],
+        reasons: [`design_refs=${snapshot.counts.unresolved_design_references}`],
+      },
     ] satisfies ProjectDriveModelCandidate[]
   ).sort((a, b) => a.rank - b.rank);
   const selectedCandidate =
     candidates.find((candidate) => candidate.model === selectedModel) ?? candidates[0];
+  const candidateModels = new Set(candidates.map((candidate) => candidate.model));
+  const missingRegisteredEntryModels = PROJECT_REGISTERED_ENTRY_DRIVE_MODELS.filter(
+    (model) => !candidateModels.has(model),
+  );
   return {
     schema_version: "project-drive-model.v1",
     source_clock: snapshot.source_clock,
+    forward_spine_model: "Forward",
+    registered_entry_models: [...PROJECT_REGISTERED_ENTRY_DRIVE_MODELS],
+    registered_entry_model_count: PROJECT_REGISTERED_ENTRY_DRIVE_MODELS.length,
+    missing_registered_entry_models: missingRegisteredEntryModels,
     selected_model: selectedCandidate.model,
     default_model: "Forward",
     selection_status: snapshot.drive_route.status,
@@ -3379,7 +3580,10 @@ function buildProjectRecoveryActionLanes(
 ): ProjectRecoveryActionLane[] {
   return PROJECT_CLOSURE_QUEUE_ACTIONS.map((action, index) => {
     const queueItems = snapshot.closure.queue.items.filter((item) => item.nextAction === action);
-    const evidencePlan = buildProjectClosureEvidencePlan(snapshot, { action, limit: 0 });
+    const evidencePlan = buildProjectClosureEvidencePlan(snapshot, {
+      action,
+      limit: 0,
+    });
     const commandLimit = projectClosureActionCommandLimit(snapshot, action, input.limit);
     const evidenceChain = recoveryEvidenceCommandChain(action, commandLimit);
     const status: ProjectRecoveryActionLane["status"] =
@@ -3635,7 +3839,10 @@ function buildProjectRecoveryAutomationRunway(input: {
   const phaseInputs = [
     ...machinePhases.map((lane) => ({ lane, phaseType: "machine" as const })),
     ...approvalLanes.map((lane) => ({ lane, phaseType: "approval" as const })),
-    ...designReverseLanes.map((lane) => ({ lane, phaseType: "design_reverse" as const })),
+    ...designReverseLanes.map((lane) => ({
+      lane,
+      phaseType: "design_reverse" as const,
+    })),
   ];
   let remainingAfterPhase = totalActiveCount;
   const phases = phaseInputs.map((phase, index): ProjectRecoveryAutomationRunwayPhase => {
@@ -6298,7 +6505,11 @@ export function buildProjectClosureBatchReport(
     packet,
     ledger,
     work_buckets: selectedAction
-      ? buildClosureBatchWorkBuckets({ action: selectedAction, allItems, limit })
+      ? buildClosureBatchWorkBuckets({
+          action: selectedAction,
+          allItems,
+          limit,
+        })
       : [],
     queue_items: queueItems,
     total: allItems.length,
@@ -7208,9 +7419,17 @@ function materializePreviewLines(
       value: escapeDoubleQuotedEvidenceValue(execution.command),
       source: "probe_execution",
     },
-    { placeholder: "<iso8601>", value: execution.completed_at, source: "probe_execution" },
+    {
+      placeholder: "<iso8601>",
+      value: execution.completed_at,
+      source: "probe_execution",
+    },
     { placeholder: "<output>", value: digestValue, source: "probe_execution" },
-    { placeholder: "<timestamp>", value: execution.completed_at, source: "probe_execution" },
+    {
+      placeholder: "<timestamp>",
+      value: execution.completed_at,
+      source: "probe_execution",
+    },
     ...(execution.session_id
       ? [
           {
@@ -8712,7 +8931,10 @@ function buildClosureQueue(
         ],
         evidence,
         evidenceGaps,
-        evidenceAction: closureEvidenceAction({ nextAction, gaps: evidenceGaps }),
+        evidenceAction: closureEvidenceAction({
+          nextAction,
+          gaps: evidenceGaps,
+        }),
         reasons: [
           "open L7 PLAN は L12 canonical では L6 実装相当の未閉鎖 queue item",
           "L14 claim と並存する場合は Reverse で設計/テスト設計へ戻して閉じる",

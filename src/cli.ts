@@ -2231,7 +2231,10 @@ pairAgent
       json?: boolean;
       saveEvidence?: boolean;
     }) => {
-      const taskText = resolveTaskText({ task: opts.task, taskFile: opts.taskFile });
+      const taskText = resolveTaskText({
+        task: opts.task,
+        taskFile: opts.taskFile,
+      });
       if (taskText === null || taskText.trim().length === 0) {
         process.stderr.write("pair-agent plan requires exactly one of --task or --task-file\n");
         process.exitCode = 1;
@@ -2344,7 +2347,10 @@ pairAgent
       json?: boolean;
       saveEvidence?: boolean;
     }) => {
-      const taskText = resolveTaskText({ task: opts.task, taskFile: opts.taskFile });
+      const taskText = resolveTaskText({
+        task: opts.task,
+        taskFile: opts.taskFile,
+      });
       if (taskText === null || taskText.trim().length === 0) {
         process.stderr.write("pair-agent run requires exactly one of --task or --task-file\n");
         process.exitCode = 1;
@@ -2790,7 +2796,12 @@ mcp
   .action(
     (
       name: string,
-      opts: { method?: string; allowExternal?: boolean; json?: boolean; saveEvidence?: boolean },
+      opts: {
+        method?: string;
+        allowExternal?: boolean;
+        json?: boolean;
+        saveEvidence?: boolean;
+      },
     ) => {
       const deps = nodeVerificationProbeDeps(process.cwd());
       const result = inspectMcpProfile(
@@ -2882,7 +2893,10 @@ verify
       const deps = nodeVerificationProbeDeps(process.cwd());
       const result = runVerificationProfile(
         opts.profile,
-        { dryRun: Boolean(opts.dryRun), allowExternal: Boolean(opts.allowExternal) },
+        {
+          dryRun: Boolean(opts.dryRun),
+          allowExternal: Boolean(opts.allowExternal),
+        },
         deps,
       );
       if (!result) {
@@ -3013,7 +3027,10 @@ graph
     const changedFiles =
       opts.changed && opts.changed.length > 0 ? opts.changed : loadChangedFiles();
     const projection = collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot));
-    const result = analyzeRelationImpact({ changedPaths: changedFiles, projection });
+    const result = analyzeRelationImpact({
+      changedPaths: changedFiles,
+      projection,
+    });
     process.stdout.write(
       `graph impact: changed=${result.changedNodes.length}, impacted=${result.impacted.length}, actions=${result.actions.length}\n`,
     );
@@ -3057,7 +3074,11 @@ graph
     // dot/d2 はこの段階では純粋なテキスト表現を emit する。Graphviz / D2 CLI での
     // SVG/PDF/PNG rendering は後段 adapter の責務で、ここでは外部コマンドを起動しない。
     const availableAdapters: RelationDiagramAdapter[] = format === "mermaid" ? [] : [format];
-    const artifact = exportRelationDiagram({ snapshot: projection, format, availableAdapters });
+    const artifact = exportRelationDiagram({
+      snapshot: projection,
+      format,
+      availableAdapters,
+    });
     if (opts.scope) process.stdout.write(`# scope=${opts.scope}\n`);
     if (!artifact.ok) {
       for (const f of artifact.findings) {
@@ -3869,8 +3890,9 @@ function projectRecoveryHandoffGate(
   repoRoot: string,
 ): VmodelFitReport["recovery_handoff_gate"] | null {
   if (!snapshot.recovery) return null;
-  return buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot })
-    .recovery_handoff_gate;
+  return buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), {
+    repoRoot,
+  }).recovery_handoff_gate;
 }
 
 function summarizeProjectFunctionDesignPolicy(snapshot: ProjectCurrentLocationSnapshot) {
@@ -4009,7 +4031,9 @@ function summarizeProjectOperationScope(
 
 function summarizeProjectCurrentLocation(
   snapshot: ProjectCurrentLocationSnapshot,
-  options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
+  options: {
+    recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null;
+  } = {},
 ) {
   const closeReadyReviewBundle = buildProjectClosureReviewBundle(snapshot, {
     action: "close_ready",
@@ -4493,6 +4517,10 @@ function summarizeProjectDriveModelReport(report: ProjectDriveModelReport) {
   return {
     schema_version: "project-drive-model-summary.v1",
     source_clock: report.source_clock,
+    forward_spine_model: report.forward_spine_model,
+    registered_entry_models: report.registered_entry_models,
+    registered_entry_model_count: report.registered_entry_model_count,
+    missing_registered_entry_models: report.missing_registered_entry_models,
     selected_model: report.selected_model,
     default_model: report.default_model,
     selection_status: report.selection_status,
@@ -4589,7 +4617,9 @@ const recovery = program.command("recovery").description("Project recovery read-
 
 function summarizeProjectRecoveryPlan(
   plan: ProjectRecoveryPlan,
-  options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
+  options: {
+    recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null;
+  } = {},
 ) {
   return {
     schema_version: "project-recovery-plan-summary.v1",
@@ -5087,7 +5117,10 @@ function buildSummarySurfaceCommandAudit(
     {
       surface: "closure-review-bundle",
       payload: summarizeClosureReviewBundle(
-        buildProjectClosureReviewBundle(snapshot, { action: "close_ready", limit: 1 }),
+        buildProjectClosureReviewBundle(snapshot, {
+          action: "close_ready",
+          limit: 1,
+        }),
       ),
     },
     {
@@ -5103,7 +5136,10 @@ function buildSummarySurfaceCommandAudit(
     {
       surface: "closure-decision-draft",
       payload: summarizeClosureDecisionDraftPacket(
-        buildProjectClosureDecisionDraftPacket(snapshot, { action: "close_ready", limit: 1 }),
+        buildProjectClosureDecisionDraftPacket(snapshot, {
+          action: "close_ready",
+          limit: 1,
+        }),
         nonAuthorizingRecordOutput,
       ),
     },
@@ -5117,7 +5153,9 @@ function buildSummarySurfaceCommandAudit(
     {
       surface: "vmodel-fit",
       payload: summarizeVmodelFitReport(
-        buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
+        buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), {
+          repoRoot,
+        }),
         summarizeCurrentLocationFrontier(snapshot),
       ),
     },
@@ -5142,10 +5180,15 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
   const driveModel = summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot));
   const functionDesignPolicy = summarizeProjectFunctionDesignPolicy(snapshot);
   const closeReadyReview = summarizeClosureReviewBundle(
-    buildProjectClosureReviewBundle(snapshot, { action: "close_ready", limit: 20 }),
+    buildProjectClosureReviewBundle(snapshot, {
+      action: "close_ready",
+      limit: 20,
+    }),
   );
   const vmodelFit = summarizeVmodelFitReport(
-    buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
+    buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), {
+      repoRoot,
+    }),
     summarizeCurrentLocationFrontier(snapshot),
   );
   const skillBinding = summarizeProjectSkillBinding(projectSkillBindingCliPayload(snapshot));
@@ -5187,10 +5230,16 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
         }
       : null,
     drive_model: {
+      forward_spine_model: driveModel.forward_spine_model,
+      registered_entry_models: driveModel.registered_entry_models,
+      registered_entry_model_count: driveModel.registered_entry_model_count,
+      missing_registered_entry_models: driveModel.missing_registered_entry_models,
       selected_model: driveModel.selected_model,
       selected_route_id: driveModel.selected_candidate.route_id,
       selection_status: driveModel.selection_status,
       default_model: driveModel.default_model,
+      candidate_count: driveModel.candidate_count,
+      candidate_models: driveModel.candidates.map((candidate) => candidate.model),
       available_models: driveModel.available_models,
       blocked_models: driveModel.blocked_models,
       must_return_to_design: snapshot.drive_route.mustReturnToDesign,
@@ -6285,7 +6334,11 @@ function summarizeClosureApplyPlan(
   input: {
     dryRun: boolean;
     executed: boolean;
-    appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }>;
+    appliedPatches: Array<{
+      plan_id: string;
+      source_path: string;
+      next_status: string;
+    }>;
   },
 ) {
   return {
@@ -7589,15 +7642,22 @@ closure
           limit,
         });
         const summarizeApplyPlan = (
-          appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }>,
+          appliedPatches: Array<{
+            plan_id: string;
+            source_path: string;
+            next_status: string;
+          }>,
         ) =>
           summarizeClosureApplyPlan(plan, {
             dryRun: opts.dryRun === true,
             executed: opts.execute === true,
             appliedPatches,
           });
-        const appliedPatches: Array<{ plan_id: string; source_path: string; next_status: string }> =
-          [];
+        const appliedPatches: Array<{
+          plan_id: string;
+          source_path: string;
+          next_status: string;
+        }> = [];
         if (opts.execute) {
           if (!plan.allowed_to_apply) {
             if (opts.summaryJson) {
@@ -7702,7 +7762,9 @@ progress
   .option("--summary-json", "compact JSON output for review and view surfaces")
   .option("--color <color>", "filter by color: red, yellow, or green")
   .action((opts: { json?: boolean; summaryJson?: boolean; color?: string }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       migrate(db);
       const color = opts.color?.trim().toLowerCase();
@@ -7735,10 +7797,14 @@ progress
   .description("emit deterministic visualization snapshot from harness.db")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       migrate(db);
-      const snapshot = buildVisualizationSnapshot(db, { repoRoot: process.cwd() });
+      const snapshot = buildVisualizationSnapshot(db, {
+        repoRoot: process.cwd(),
+      });
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
         return;
@@ -7977,7 +8043,9 @@ metrics
   .description("compute skill firing and acceptance metrics")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const rows = computeSkillMetrics(db);
       if (opts.json) process.stdout.write(`${JSON.stringify(rows, null, 2)}\n`);
@@ -8022,7 +8090,10 @@ telemetry
       opts.codexDir ??
       process.env.HELIX_CODEX_SESSIONS_DIR ??
       join(homedir(), ".codex", "sessions");
-    const usages = loadRuntimeSessionUsage({ claudeDirs: [claudeDir], codexDirs: [codexDir] });
+    const usages = loadRuntimeSessionUsage({
+      claudeDirs: [claudeDir],
+      codexDirs: [codexDir],
+    });
     const summary = summarizeRunUsage(usages);
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
@@ -8692,7 +8763,9 @@ automation
   .description("evaluate automation readiness from harness.db projections")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const rows = evaluateAutomationReadiness(db);
       if (opts.json) process.stdout.write(`${JSON.stringify(rows, null, 2)}\n`);
@@ -8714,7 +8787,9 @@ guardrail
   .description("list guardrail decisions from harness.db")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const rows = db.prepare("SELECT * FROM guardrail_decisions ORDER BY decided_at").all();
       if (opts.json) process.stdout.write(`${JSON.stringify(rows, null, 2)}\n`);
@@ -8736,7 +8811,9 @@ issue
   .description("list GitHub issue dry-run queue entries")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const rows = db
         .prepare("SELECT * FROM issue_queue ORDER BY created_at, issue_queue_id")
@@ -8762,7 +8839,9 @@ issue
   .option("--issue-id <id>", "GitHub issue number or node id")
   .option("--approved-by <name>", "human approver")
   .action((opts: { queueId: string; issueUrl: string; issueId?: string; approvedBy?: string }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const existing = db
         .prepare("SELECT * FROM issue_queue WHERE issue_queue_id = ?")
@@ -8801,7 +8880,9 @@ trouble
   .description("list projected trouble events")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const rows = db
         .prepare("SELECT * FROM trouble_events ORDER BY created_at, trouble_event_id")
@@ -8825,7 +8906,9 @@ improvement
   .description("list projected self-improvement log entries")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const rows = db
         .prepare("SELECT * FROM improvement_log ORDER BY created_at, improvement_log_id")
@@ -8849,7 +8932,9 @@ asset
   .description("catalog skill/roster/command docs into harness.db")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       const result = catalogAutomationAssets({ repoRoot: process.cwd(), db });
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
@@ -8872,9 +8957,21 @@ builder
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const commandDocs = [
-      { path: "src/cli.ts", command: "helix skill suggest", description: "skill recommendation" },
-      { path: "src/cli.ts", command: "helix review --uncommitted", description: "review packet" },
-      { path: "src/cli.ts", command: "helix cutover --to", description: "cutover dry-run" },
+      {
+        path: "src/cli.ts",
+        command: "helix skill suggest",
+        description: "skill recommendation",
+      },
+      {
+        path: "src/cli.ts",
+        command: "helix review --uncommitted",
+        description: "review packet",
+      },
+      {
+        path: "src/cli.ts",
+        command: "helix cutover --to",
+        description: "cutover dry-run",
+      },
       {
         path: "src/cli.ts",
         command: "helix progress artifacts",
@@ -8890,12 +8987,27 @@ builder
         command: "helix progress view-model",
         description: "Project/HARNESS visualization boundary view-model",
       },
-      { path: "src/cli.ts", command: "helix graph export", description: "relation graph export" },
-      { path: "src/cli.ts", command: "helix asset catalog", description: "asset catalog" },
-      { path: "src/cli.ts", command: "helix builder catalog", description: "builder catalog" },
+      {
+        path: "src/cli.ts",
+        command: "helix graph export",
+        description: "relation graph export",
+      },
+      {
+        path: "src/cli.ts",
+        command: "helix asset catalog",
+        description: "asset catalog",
+      },
+      {
+        path: "src/cli.ts",
+        command: "helix builder catalog",
+        description: "builder catalog",
+      },
     ];
     const surface = commandDocs.map((doc) => doc.command);
-    const result = buildCommandCatalog({ command_docs: commandDocs, cli_surface: surface });
+    const result = buildCommandCatalog({
+      command_docs: commandDocs,
+      cli_surface: surface,
+    });
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     } else {
@@ -9233,7 +9345,9 @@ vmodel
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
-      const payload = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
+      const payload = buildVmodelFitReport(snapshot, zipManifest, {
+        repoRoot,
+      });
       if (opts.summaryJson) {
         process.stdout.write(
           `${JSON.stringify(
@@ -9354,7 +9468,11 @@ vmodel
     (
       drive: string,
       layer: string,
-      opts: { injection?: boolean; json?: boolean; mode?: ReturnType<typeof detectMode>["mode"] },
+      opts: {
+        injection?: boolean;
+        json?: boolean;
+        mode?: ReturnType<typeof detectMode>["mode"];
+      },
     ) => {
       if (!opts.injection) {
         process.stderr.write("vmodel show currently requires --injection\n");
@@ -9363,7 +9481,9 @@ vmodel
       }
       try {
         const executionMode = opts.mode ?? detectMode().mode;
-        const injection = resolveVmodelInjection(drive, layer, { executionMode });
+        const injection = resolveVmodelInjection(drive, layer, {
+          executionMode,
+        });
         if (opts.json) {
           process.stdout.write(`${JSON.stringify(injection, null, 2)}\n`);
           return;
@@ -9615,7 +9735,10 @@ task
       designDocs?: boolean;
       json?: boolean;
     }) => {
-      const text = resolveTaskText({ task: opts.text, taskFile: opts.textFile ?? opts.plan });
+      const text = resolveTaskText({
+        task: opts.text,
+        taskFile: opts.textFile ?? opts.plan,
+      });
       if (text === null || text.trim().length === 0) {
         process.stderr.write(
           "task classify requires exactly one of --text, --text-file, or --plan\n",
@@ -9632,7 +9755,10 @@ task
       if (opts.designDocs) {
         const result = {
           task: classifyTask({ text, affected_files }),
-          document_coverage: classifyProposalDocumentCoverage({ text, affected_files }),
+          document_coverage: classifyProposalDocumentCoverage({
+            text,
+            affected_files,
+          }),
         };
         if (opts.json) {
           process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
@@ -9720,7 +9846,10 @@ task
         process.exitCode = 1;
         return;
       }
-      const text = resolveTaskText({ task: opts.text, taskFile: opts.textFile ?? opts.plan });
+      const text = resolveTaskText({
+        task: opts.text,
+        taskFile: opts.textFile ?? opts.plan,
+      });
       if (text === null || text.trim().length === 0) {
         process.stderr.write("task route requires exactly one of --text, --text-file, or --plan\n");
         process.exitCode = 1;
@@ -9880,7 +10009,11 @@ team
             if (!r.routed || !r.decision) return null;
             const d = r.decision;
             if (d.status !== "ready" || !d.model) {
-              return { provider: d.provider, model: "", blockedReason: d.reason ?? "blocked" };
+              return {
+                provider: d.provider,
+                model: "",
+                blockedReason: d.reason ?? "blocked",
+              };
             }
             return { provider: d.provider, model: d.model };
           });
@@ -9922,7 +10055,11 @@ team
               };
               runSessionStartSideEffects(repoRoot, startInput, sessionDeps);
               dispatch(startInput, sessionDeps, HOOK_EVENT_SESSION_START);
-              const invocation = buildProviderInvocation({ provider, command, args });
+              const invocation = buildProviderInvocation({
+                provider,
+                command,
+                args,
+              });
               const ioMode = opts.json ? "ignore" : "inherit";
               const child = spawn(invocation.command, invocation.args, {
                 cwd: repoRoot,
@@ -10504,7 +10641,14 @@ constitution
       const entries =
         (opts.entry ?? []).length > 0
           ? (opts.entry ?? []).map(parseTemplateEntrySpec)
-          : [{ key: "plan-scaffold", source: "core" as const, priority: 10, content: "core" }];
+          : [
+              {
+                key: "plan-scaffold",
+                source: "core" as const,
+                priority: 10,
+                content: "core",
+              },
+            ];
       const report = buildConstitutionTemplateStackReport(entries, {
         sourceCommand: "helix constitution check --json",
       });
@@ -10978,7 +11122,9 @@ github
   .option("--base <branch>", "base branch for the pull request", "main")
   .option("--json", "JSON output")
   .action((opts: { base?: string; json?: boolean }) => {
-    const result = loadGithubMergeReadiness(process.cwd(), { baseBranch: opts.base ?? "main" });
+    const result = loadGithubMergeReadiness(process.cwd(), {
+      baseBranch: opts.base ?? "main",
+    });
     if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     else process.stdout.write(renderGithubMergeReadiness(result));
     process.exitCode = result.localReady ? 0 : 1;
@@ -11085,7 +11231,9 @@ feedback
     "compute feedback events from current findings and quality signals before listing",
   )
   .action((opts: { json?: boolean; emit?: boolean }) => {
-    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
     try {
       if (opts.emit) emitFeedbackEvents(db);
       const rows = db
@@ -11256,7 +11404,11 @@ function setupArgsFromOptions(opts: SetupCliOptions): SetupArgs | null {
   const phase = opts.solo ? "0-A" : opts.team ? "0-B" : undefined;
   const teams =
     teamCount === 3
-      ? { tl: opts.tlTeam as string, qa: opts.qaTeam as string, po: opts.poTeam as string }
+      ? {
+          tl: opts.tlTeam as string,
+          qa: opts.qaTeam as string,
+          po: opts.poTeam as string,
+        }
       : undefined;
   return {
     ...(phase ? { phase } : {}),
@@ -11399,7 +11551,9 @@ distribution
     const detection = detectMode();
     let bunVersion: string | null = null;
     try {
-      bunVersion = execFileSync("bun", ["--version"], { encoding: "utf8" }).trim();
+      bunVersion = execFileSync("bun", ["--version"], {
+        encoding: "utf8",
+      }).trim();
     } catch {
       bunVersion = null;
     }

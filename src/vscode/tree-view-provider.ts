@@ -309,7 +309,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           label: "model candidates",
           description: "helix drive model --json",
           tooltip:
-            "Forward / Reverse / Additive / Recovery / Refactor / OperationVerification の候補と blocker を表示する read-only report",
+            "Forward spine + 10 entry drive models + OperationVerification の候補と blocker を表示する read-only report",
           contextValue: "drive-model.candidates",
           commandPointer: "helix drive model --json",
           children: current.drive_model_candidates.map((candidate) =>
@@ -1256,7 +1256,9 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                   (route) =>
                     `${route.outcome}->${route.target_action ?? "-"} ${route.expected_transition}`,
                 ),
-                { omittedHint: current.vmodel_fit.approval_review_gate.review_command },
+                {
+                  omittedHint: current.vmodel_fit.approval_review_gate.review_command,
+                },
               ),
               contextValue: "vmodel-fit.approval-review.outcome-routes",
               commandPointer: current.vmodel_fit.approval_review_gate.transition_window_command,

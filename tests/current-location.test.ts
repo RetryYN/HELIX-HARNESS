@@ -1051,9 +1051,32 @@ describe("project current-location read model", () => {
         "Reverse",
         "OperationVerification",
         "Forward",
-        "Additive",
+        "Discovery",
+        "Scrum",
+        "Incident",
         "Refactor",
+        "Retrofit",
+        "Add-feature",
+        "version-up",
+        "Research",
       ]);
+      expect(driveModel).toMatchObject({
+        forward_spine_model: "Forward",
+        registered_entry_model_count: 10,
+        registered_entry_models: expect.arrayContaining([
+          "Discovery",
+          "Scrum",
+          "Reverse",
+          "Recovery",
+          "Incident",
+          "Refactor",
+          "Retrofit",
+          "Add-feature",
+          "version-up",
+          "Research",
+        ]),
+        missing_registered_entry_models: [],
+      });
       for (const model of ["Recovery", "Reverse"]) {
         const candidate = driveModel.candidates.find((item) => item.model === model);
         expect(candidate?.doc_dependencies).toEqual(
