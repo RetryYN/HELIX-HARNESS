@@ -33,6 +33,31 @@ review_evidence:
     scope: "IMP-141 = 要件§G.1↔schema VALID_SUB_DOCS 整合 + sub-doc-catalog-drift fail-close gate + plan_id 99上限バグ修正 (2桁以上連番許容)。code-reviewer (sonnet) VERDICT=pass / Critical 0。実証 = vitest 901 green (U-SDCD-001..008 + planIdSchema 2桁/3桁/棄却) + doctor EXIT=0 (sub-doc-catalog-drift drift 0 / lint-wiring wired=54)。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:32:33+09:00"
+    tests_green_at: "2026-07-09T15:32:33+09:00"
+    verdict: approve
+    scope: "PLAN-L7-99 の execution evidence 欠落を、現行 sub-doc-catalog-drift / session-log / forced-stop / doctor targeted green、typecheck、full doctor で補い、sub-doc catalog drift gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/sub-doc-catalog-drift.test.ts tests/session-log.test.ts tests/forced-stop.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:32:33+09:00"
+        evidence_path: tests/sub-doc-catalog-drift.test.ts
+        output_digest: "sha256:fa1bfea6a93aa1503184b3c6567ce7ea34d28b5cfa4617c0cff8c8cb262f5438"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:32:33+09:00"
+        evidence_path: src/lint/sub-doc-catalog-drift.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-99 (troubleshoot): 要件 §G.1 ↔ schema VALID_SUB_DOCS 正本同期 gate (IMP-141 完遂)
