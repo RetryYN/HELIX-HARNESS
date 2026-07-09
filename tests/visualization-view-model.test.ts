@@ -194,7 +194,7 @@ function forwardCurrentLocation(): ProjectCurrentLocationSnapshot {
     source_clock: "2026-07-01T00:00:00.000Z",
     current: {
       layer: "L7",
-      l12_layer: "L6-L7",
+      l12_layer: "L6",
       status: "forward",
       completion_boundary: "open",
       roadmap_frontier: ["impl"],
@@ -1138,7 +1138,7 @@ describe("buildVisualizationViewModel", () => {
     expect(vm.project.relation_graph.edge_count).toBe(snapshot.graph.latest_edge_count);
     expect(vm.project.current_location).toMatchObject({
       layer: "L7",
-      l12_layer: "L6-L7",
+      l12_layer: "L6",
       drive_model: "OperationVerification",
       drive_route: expect.objectContaining({
         route_id: "drive:Forward:advance-roadmap-frontier",
@@ -1263,7 +1263,7 @@ describe("buildVisualizationViewModel", () => {
           status: "pass",
           aligned: true,
           alignment_basis: "frontier",
-          db_current_l12_layer: "L6-L7",
+          db_current_l12_layer: "L6",
           roadmap_current_l12_layers: ["L6", "L7"],
           roadmap_projected_l12_layers: ["L6", "L7"],
           roadmap_terminal_l12_layers: [],

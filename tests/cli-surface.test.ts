@@ -2087,6 +2087,29 @@ describe("L7 CLI surface closure", () => {
     expect(payload.items[0].skill_path).toMatch(/^docs\/skills\//);
   }, 30_000);
 
+  it("exposes Project current-location skill binding as a summary JSON command surface", () => {
+    const run = runCli(["skill", "suggest", "--current-location", "--summary-json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      schema_version: "project-skill-binding-summary.v1",
+      source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      status: "ready",
+      selected_model: "Recovery",
+      source_command: "helix skill suggest --current-location --summary-json",
+      full_source_command: "helix skill suggest --current-location --json",
+      view_command: "helix progress tree-view --json",
+      write_policy: "read-only",
+    });
+    expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Recovery", "Scrum"]));
+    expect(payload.item_count).toBeGreaterThan(0);
+    expect(payload.top_items[0]).toMatchObject({
+      tier: "required",
+      inject_at: "before_work",
+    });
+  }, 30_000);
+
   it("exposes Project current-location skill binding as an injection manifest", () => {
     const run = runCli(["skill", "suggest", "--current-location", "--inject", "--json"]);
     const payload = JSON.parse(run.stdout);

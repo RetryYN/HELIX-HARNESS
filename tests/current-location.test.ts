@@ -17,6 +17,7 @@ import {
   buildProjectDriveModelReport,
   buildProjectRecoveryPlan,
   buildProjectRoadmapCurrentReport,
+  mapCurrentLayerToL12,
 } from "../src/state-db/current-location";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
@@ -33,6 +34,11 @@ function withDb<T>(fn: (db: ReturnType<typeof openHarnessDb>) => T): T {
 }
 
 describe("project current-location read model", () => {
+  it("旧 L7 実装現在地を L12 canonical の単一 L6 layer へ正規化する", () => {
+    expect(mapCurrentLayerToL12("L7")).toBe("L6");
+    expect(mapCurrentLayerToL12("L14")).toBe("L12");
+  });
+
   it("工程表とDB現在地を結び、逆流要因がなければForwardを推奨する", () =>
     withDb((db) => {
       upsertRow(db, {

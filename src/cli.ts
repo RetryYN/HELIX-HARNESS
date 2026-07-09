@@ -3498,6 +3498,38 @@ function projectSkillBindingCliPayload(snapshot: ProjectCurrentLocationSnapshot)
   };
 }
 
+function summarizeProjectSkillBinding(payload: ReturnType<typeof projectSkillBindingCliPayload>) {
+  return {
+    schema_version: "project-skill-binding-summary.v1",
+    source_clock: payload.source_clock,
+    status: payload.status,
+    source_package: payload.source_package,
+    selected_model: payload.selected_model,
+    workflow_modes: payload.workflow_modes,
+    l12_layers: payload.l12_layers,
+    required_skills: payload.required_skills,
+    recommended_skills: payload.recommended_skills,
+    optional_skills: payload.optional_skills,
+    source_bindings: payload.source_bindings,
+    implementation_dependencies: payload.implementation_dependencies,
+    item_count: payload.items.length,
+    top_items: payload.items.slice(0, 8).map((item) => ({
+      skill_id: item.skill_id,
+      tier: item.tier,
+      inject_at: item.inject_at,
+      rank: item.rank,
+      score: item.score,
+      matched_drive_models: item.matched_drive_models,
+      matched_layers: item.matched_layers,
+    })),
+    source_command: "helix skill suggest --current-location --summary-json",
+    full_source_command: "helix skill suggest --current-location --json",
+    inject_command: payload.inject_command,
+    view_command: payload.view_command,
+    write_policy: payload.write_policy,
+  };
+}
+
 program
   .command("current-location")
   .description("Project view current location and drive-model recommendation from DB projection")
@@ -6856,6 +6888,7 @@ skill
   .option("--buckets", "group ranked rows into required/recommended/optional (additive view)")
   .option("--inject", "emit provider context injection manifest (skill paths only)")
   .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for view and handoff surfaces")
   .action(
     (opts: {
       plan?: string;
@@ -6865,6 +6898,7 @@ skill
       buckets?: boolean;
       inject?: boolean;
       json?: boolean;
+      summaryJson?: boolean;
     }) => {
       // A-138 ITEM-2 + L12 current-location: 入力 source はちょうど 1 つだけ許可する。
       const inputCount = [opts.plan, opts.text, opts.currentLocation].filter(Boolean).length;
@@ -6946,6 +6980,12 @@ skill
                 }
               }
             }
+            return;
+          }
+          if (opts.summaryJson) {
+            process.stdout.write(
+              `${JSON.stringify(summarizeProjectSkillBinding(payload), null, 2)}\n`,
+            );
             return;
           }
           if (opts.json) process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);

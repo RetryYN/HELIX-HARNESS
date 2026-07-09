@@ -147,7 +147,7 @@ export interface ProjectSkillBinding {
   recommendedSkills: number;
   optionalSkills: number;
   items: ProjectSkillBindingItem[];
-  command: "helix skill suggest --current-location --json";
+  command: "helix skill suggest --current-location --summary-json";
   sourceBindings: string[];
   docDependencies: string[];
   implementationDependencies: string[];
@@ -2125,7 +2125,7 @@ export function mapCurrentLayerToL12(layer: string | null): string | null {
     case "L6":
       return "L5";
     case "L7":
-      return "L6-L7";
+      return "L6";
     case "L8":
       return "L8";
     case "L9":
@@ -2431,10 +2431,7 @@ function terminalRoadmapL12Layers(position: ProjectRoadmapPosition): string[] {
 
 function l12LayerTokens(layer: string | null): string[] {
   if (layer === null) return [];
-  return layer
-    .split("-")
-    .map((token) => token.trim())
-    .filter((token) => /^L\d+$/.test(token));
+  return /^L\d+$/.test(layer) ? [layer] : [];
 }
 
 function roadmapCurrentRequiredAction(
@@ -4474,7 +4471,7 @@ function buildProjectSkillBinding(
       recommendedSkills: 0,
       optionalSkills: 0,
       items: [],
-      command: "helix skill suggest --current-location --json",
+      command: "helix skill suggest --current-location --summary-json",
       sourceBindings: scrumOperation.sourceBindings,
       docDependencies: ["docs/skills/SKILL_MAP.md", "docs/skills/**"],
       implementationDependencies: ["automation_assets", "skill_recommendations"],
@@ -4526,7 +4523,7 @@ function buildProjectSkillBinding(
     recommendedSkills: items.filter((item) => item.tier === "recommended").length,
     optionalSkills: items.filter((item) => item.tier === "optional").length,
     items,
-    command: "helix skill suggest --current-location --json",
+    command: "helix skill suggest --current-location --summary-json",
     sourceBindings: scrumOperation.sourceBindings,
     docDependencies: unique([
       "docs/skills/SKILL_MAP.md",

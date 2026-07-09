@@ -223,7 +223,7 @@ describe("visualization read model", () => {
       expect(first.evidence.guardrail_decisions).toMatchObject({ total: 1, allow: 1 });
       expect(first.project_current_location.current).toMatchObject({
         layer: "L7",
-        l12_layer: "L6-L7",
+        l12_layer: "L6",
         status: "forward",
       });
       expect(first.project_current_location.drive_recommendation.model).toBe("Reverse");
