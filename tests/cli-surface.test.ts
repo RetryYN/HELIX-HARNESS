@@ -5321,6 +5321,24 @@ describe("L7 CLI surface closure", () => {
         listed: 1,
         omitted: 0,
         approval_window_count: 1,
+        review_window_index: [
+          {
+            page_index: 1,
+            page_count: 1,
+            current: true,
+            offset: 0,
+            limit: 1,
+            start: 1,
+            end: 1,
+            listed: 1,
+            omitted_before: 0,
+            omitted_after: 0,
+            review_window_command:
+              "helix closure review-bundle --action collect_evidence --limit 1 --offset 0 --summary-json",
+            transition_window_command:
+              "helix closure transition-plan --action collect_evidence --limit 1 --offset 0 --summary-json",
+          },
+        ],
         aggregate_review_scope: {
           plan_ids: ["PLAN-L7-999-new-impl"],
           source_paths: ["docs/plans/PLAN-L7-999-new-impl.md"],
@@ -5765,6 +5783,7 @@ describe("L7 CLI surface closure", () => {
             listed: expect.any(Number),
             omitted: expect.any(Number),
             approval_window_count: expect.any(Number),
+            review_window_index: expect.any(Array),
             review_scope: expect.objectContaining({
               approval_scope_digest: expect.any(String),
             }),

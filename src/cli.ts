@@ -4909,6 +4909,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       listed: closeReadyReview.listed,
       omitted: closeReadyReview.omitted,
       approval_window_count: closeReadyReview.approval_window_count,
+      review_window_index: closeReadyReview.review_window_index,
       review_scope: closeReadyReview.review_scope,
       aggregate_review_scope: closeReadyReview.aggregate_review_scope,
       decision_id: closeReadyReview.decision.decision_id,
@@ -5628,6 +5629,27 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
       ? null
       : `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.window.next_offset} --summary-json`;
   const transitionWindowCommand = `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`;
+  const reviewWindowIndex = Array.from({ length: bundle.window.page_count }, (_, index) => {
+    const offset = bundle.limit === 0 ? 0 : index * bundle.limit;
+    const listed =
+      bundle.limit === 0 ? 0 : Math.max(0, Math.min(bundle.limit, bundle.total - offset));
+    return {
+      page_index: index + 1,
+      page_count: bundle.window.page_count,
+      current: offset === bundle.offset,
+      offset,
+      limit: bundle.limit,
+      start: listed === 0 ? 0 : offset + 1,
+      end: listed === 0 ? 0 : offset + listed,
+      listed,
+      omitted_before: Math.min(offset, bundle.total),
+      omitted_after: Math.max(0, bundle.total - offset - listed),
+      review_window_command:
+        `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`,
+      transition_window_command:
+        `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`,
+    };
+  });
 
   return {
     schema_version: "project-closure-review-bundle-summary.v1",
@@ -5642,6 +5664,7 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     offset: bundle.offset,
     window: bundle.window,
     approval_window_count: bundle.window.page_count,
+    review_window_index: reviewWindowIndex,
     review_scope: bundle.review_scope,
     aggregate_review_scope: bundle.aggregate_review_scope,
     decision: {
