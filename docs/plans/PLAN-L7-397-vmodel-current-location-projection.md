@@ -1043,6 +1043,47 @@ review_evidence:
         completed_at: "2026-07-09T14:55:32+09:00"
         evidence_path: src/state-db/current-location.ts
         output_digest: "sha256:36c0f103841e02028111ce952e14d1cd6fa6ffc2f53059d41f851260f8252226"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T19:17:11+09:00"
+    tests_green_at: "2026-07-09T19:17:11+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "closure queue の failed evidence 判定を latest failure / latest passed evidence の時刻比較へ厳格化した。失敗履歴は DB に保持しつつ、最新 pass が failure 以降なら修復済みとして `evidenceGaps` / `repair_targets` / `repair_plan` から除外し、未修復 component だけを `repair_failed_evidence` に送る。version-up parked / live backlog boundary 除外と合わせ、Project current-location の次手が履歴ノイズで誤描画されないことを確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T19:16:56+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T19:16:56+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:bb63c9af4bf44ab1d9f11f6de55824df4422b5c82f2fe77493d007070babf0ea"
+      - kind: smoke
+        command: "bun run src/cli.ts closure batch --action close_ready --limit 5 --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T19:17:11+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:402601a9d25a1e4c16ab3cfec96a6a121890761db16b9d5011912aabe3455e82"
+      - kind: smoke
+        command: "git diff --check"
+        runner: bash
+        scope: changed-files
+        exit_code: 0
+        completed_at: "2026-07-09T19:16:56+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

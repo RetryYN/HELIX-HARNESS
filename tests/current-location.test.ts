@@ -1296,16 +1296,16 @@ describe("project current-location read model", () => {
                 status: "ready",
                 artifactPaths: ["docs/plans/PLAN-L7-999-new-impl.md"],
                 traceEdges: 0,
-                testRuns: {
+                testRuns: expect.objectContaining({
                   total: 1,
                   passed: 1,
                   failed: 0,
-                },
-                gateRuns: {
+                }),
+                gateRuns: expect.objectContaining({
                   total: 1,
                   passed: 1,
                   failed: 0,
-                },
+                }),
                 runtimeVerification: {
                   total: 1,
                   accepted: 1,
@@ -2169,6 +2169,28 @@ describe("project current-location read model", () => {
         },
       });
       upsertRow(db, {
+        table: "test_runs",
+        primaryKey: "test_run_id",
+        row: {
+          test_run_id: "tr:later-passed",
+          session_id: "session",
+          plan_id: "PLAN-L7-777-failed-evidence",
+          command: "bun test fixed",
+          runner: "bun",
+          runtime: "test",
+          os: "linux",
+          shell: "bash",
+          scope: "unit",
+          started_at: "2026-07-08T00:02:30.000Z",
+          completed_at: "2026-07-08T00:02:40.000Z",
+          exit_code: 0,
+          evidence_path: "docs/evidence/later-passed-test.json",
+          output_digest: "sha256:later-passed-test",
+          green_definition_id: "green",
+          status: "passed",
+        },
+      });
+      upsertRow(db, {
         table: "plan_registry",
         primaryKey: "plan_id",
         row: {
@@ -2235,23 +2257,13 @@ describe("project current-location read model", () => {
         selected_action: "repair_failed_evidence",
         total: 1,
         listed: 1,
-        target_tables: expect.arrayContaining(["test_runs", "gate_runs"]),
+        target_tables: ["gate_runs"],
         items: [
           expect.objectContaining({
             plan_id: "PLAN-L7-777-failed-evidence",
             next_action: "repair_failed_evidence",
-            evidence_status: "partial",
+            evidence_status: "ready",
             evidence_templates: expect.arrayContaining([
-              expect.objectContaining({
-                table: "test_runs",
-                status_after_projection: "passed test_runs が同じ plan_id に追加される",
-                required_fields: expect.arrayContaining(["plan_id", "status", "exit_code"]),
-                example_row: expect.objectContaining({
-                  plan_id: "PLAN-L7-777-failed-evidence",
-                  status: "passed",
-                  exit_code: 0,
-                }),
-              }),
               expect.objectContaining({
                 table: "gate_runs",
                 status_after_projection: "passed gate_runs が同じ plan_id に追加される",
@@ -2262,15 +2274,6 @@ describe("project current-location read model", () => {
               }),
             ]),
             repair_targets: [
-              expect.objectContaining({
-                component: "test",
-                id: "tr:failed",
-                status: "failed",
-                command: "bun test failing",
-                evidencePath: "docs/evidence/failed-test.json",
-                outputDigest: "sha256:failed-test",
-                observedAt: "2026-07-08T00:02:10.000Z",
-              }),
               expect.objectContaining({
                 component: "gate",
                 id: "gate:failed",

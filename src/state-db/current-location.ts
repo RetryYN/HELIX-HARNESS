@@ -1600,11 +1600,15 @@ export interface ProjectClosureEvidenceSummary {
     total: number;
     passed: number;
     failed: number;
+    latestPassedAt: string | null;
+    latestFailedAt: string | null;
   };
   gateRuns: {
     total: number;
     passed: number;
     failed: number;
+    latestPassedAt: string | null;
+    latestFailedAt: string | null;
   };
   runtimeVerification: {
     total: number;
@@ -4168,6 +4172,16 @@ function collectClosureEvidenceForPlan(
     "SELECT COUNT(*) AS value FROM test_runs WHERE plan_id = ? AND (status = ? OR exit_code <> 0)",
     [plan.planId, "failed"],
   );
+  const testRunsLatestPassedAt = scalarText(
+    db,
+    "SELECT MAX(completed_at) AS value FROM test_runs WHERE plan_id = ? AND (status = ? OR exit_code = 0)",
+    [plan.planId, "passed"],
+  );
+  const testRunsLatestFailedAt = scalarText(
+    db,
+    "SELECT MAX(completed_at) AS value FROM test_runs WHERE plan_id = ? AND (status = ? OR exit_code <> 0)",
+    [plan.planId, "failed"],
+  );
   const gateRunsTotal = scalarNumber(
     db,
     "SELECT COUNT(*) AS value FROM gate_runs WHERE plan_id = ?",
@@ -4181,6 +4195,16 @@ function collectClosureEvidenceForPlan(
   const gateRunsFailed = scalarNumber(
     db,
     "SELECT COUNT(*) AS value FROM gate_runs WHERE plan_id = ? AND status = ?",
+    [plan.planId, "failed"],
+  );
+  const gateRunsLatestPassedAt = scalarText(
+    db,
+    "SELECT MAX(checked_at) AS value FROM gate_runs WHERE plan_id = ? AND status = ?",
+    [plan.planId, "passed"],
+  );
+  const gateRunsLatestFailedAt = scalarText(
+    db,
+    "SELECT MAX(checked_at) AS value FROM gate_runs WHERE plan_id = ? AND status = ?",
     [plan.planId, "failed"],
   );
   const runtimeVerificationTotal = scalarNumber(
@@ -4218,11 +4242,15 @@ function collectClosureEvidenceForPlan(
       total: testRunsTotal,
       passed: testRunsPassed,
       failed: testRunsFailed,
+      latestPassedAt: testRunsLatestPassedAt,
+      latestFailedAt: testRunsLatestFailedAt,
     },
     gateRuns: {
       total: gateRunsTotal,
       passed: gateRunsPassed,
       failed: gateRunsFailed,
+      latestPassedAt: gateRunsLatestPassedAt,
+      latestFailedAt: gateRunsLatestFailedAt,
     },
     runtimeVerification: {
       total: runtimeVerificationTotal,
@@ -5411,10 +5439,32 @@ function closureQueueRequiredAction(plan: PlanRegistryRow): string {
 function closureQueueNextAction(
   evidence: ProjectClosureEvidenceSummary,
 ): ProjectClosureQueueNextAction {
+  if (hasUnrepairedFailedEvidence(evidence)) return "repair_failed_evidence";
   if (evidence.status === "ready") return "close_ready";
-  if (evidence.testRuns.failed > 0 || evidence.gateRuns.failed > 0) return "repair_failed_evidence";
   if (evidence.status === "partial") return "collect_evidence";
   return "reverse_design";
+}
+
+function evidenceTimestampMs(value: string | null): number | null {
+  if (!value) return null;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function isLatestFailureRepaired(input: {
+  failed: number;
+  latestFailedAt: string | null;
+  latestPassedAt: string | null;
+}): boolean {
+  if (input.failed === 0) return true;
+  const failedAt = evidenceTimestampMs(input.latestFailedAt);
+  const passedAt = evidenceTimestampMs(input.latestPassedAt);
+  if (failedAt === null || passedAt === null) return false;
+  return passedAt >= failedAt;
+}
+
+function hasUnrepairedFailedEvidence(evidence: ProjectClosureEvidenceSummary): boolean {
+  return !isLatestFailureRepaired(evidence.testRuns) || !isLatestFailureRepaired(evidence.gateRuns);
 }
 
 function closureEvidenceGaps(evidence: ProjectClosureEvidenceSummary): ProjectClosureEvidenceGap[] {
@@ -5440,7 +5490,7 @@ function closureEvidenceGaps(evidence: ProjectClosureEvidenceSummary): ProjectCl
         "passed test/gate/runtime verification のいずれかを追加して DB projection へ反映する",
     });
   }
-  if (evidence.testRuns.failed > 0) {
+  if (!isLatestFailureRepaired(evidence.testRuns)) {
     gaps.push({
       component: "test",
       status: "failed",
@@ -5448,7 +5498,7 @@ function closureEvidenceGaps(evidence: ProjectClosureEvidenceSummary): ProjectCl
       requiredAction: "failed test を保持したまま修正後の passed test evidence を追加する",
     });
   }
-  if (evidence.gateRuns.failed > 0) {
+  if (!isLatestFailureRepaired(evidence.gateRuns)) {
     gaps.push({
       component: "gate",
       status: "failed",
@@ -5831,7 +5881,7 @@ function buildClosureBatchRepairPlan(
   limit: number,
 ): ProjectClosureBatchRepairPlan {
   const failedEvidence = items.flatMap((item) =>
-    (item.evidence.failedEvidence ?? []).map((evidence) => ({
+    unrepairedFailedEvidenceForItem(item).map((evidence) => ({
       evidence,
       planId: item.planId,
     })),
@@ -5890,7 +5940,7 @@ function buildClosureBatchRepairPlan(
   const projectionItems = items
     .slice(0, limit)
     .map((item): ProjectClosureBatchRepairProjectionItem => {
-      const itemFailedEvidence = item.evidence.failedEvidence ?? [];
+      const itemFailedEvidence = unrepairedFailedEvidenceForItem(item);
       const artifactTemplates = closureGreenEvidenceArtifactTemplates({
         action,
         planId: item.planId,
@@ -5958,6 +6008,25 @@ function buildClosureBatchRepairPlan(
       `commands=${commandCandidates.length}`,
     ],
   };
+}
+
+function unrepairedFailedEvidenceForItem(
+  item: ProjectClosureQueueItem,
+): ProjectClosureFailedEvidence[] {
+  const failedComponents = new Set(
+    item.evidenceGaps
+      .filter((gap) => gap.status === "failed")
+      .map((gap): ProjectClosureFailedEvidence["component"] | null =>
+        gap.component === "test" || gap.component === "gate" ? gap.component : null,
+      )
+      .filter(
+        (component): component is ProjectClosureFailedEvidence["component"] => component !== null,
+      ),
+  );
+  if (failedComponents.size === 0) return [];
+  return (item.evidence.failedEvidence ?? []).filter((evidence) =>
+    failedComponents.has(evidence.component),
+  );
 }
 
 function buildClosureBatchRepairAutomation(input: {
@@ -6682,7 +6751,7 @@ export function buildProjectClosureEvidencePlan(
         evidenceTables: [...gap.evidenceTables],
         requiredAction: gap.requiredAction,
       })),
-      repair_targets: (item.evidence.failedEvidence ?? []).map((target) => ({
+      repair_targets: unrepairedFailedEvidenceForItem(item).map((target) => ({
         component: target.component,
         id: target.id,
         status: target.status,

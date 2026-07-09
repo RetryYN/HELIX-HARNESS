@@ -351,6 +351,12 @@ module-decomposition の公開 IF に**関数 signature・pseudocode・型・WBS
 | `lintVmodel` | `(path?: string) => LintResult` | 同上 | 12 edge 照合、孤児で ok=false |
 | `runDoctor` | `() => LintResult` | detector/lint の読む doc 解決可 | 全 detector 集約、error≥1 で ok=false/exit 1 |
 
+### §1.4 state-db current-location / closure queue 契約
+
+| 関数 | signature | pre | post |
+|---|---|---|---|
+| `buildProjectCurrentLocationSnapshot` / `buildProjectClosureOverview` / `buildProjectClosureBatchReport` | `(db: HarnessDb) => ProjectCurrentLocationSnapshot` / `(snapshot, options) => ProjectClosureOverview\|ProjectClosureBatchReport` | `harness.db` は `plan_registry`、`artifact_registry`、`test_runs`、`gate_runs`、`runtime_verification_events` を投影済み。`test_runs.completed_at` / `gate_runs.checked_at` は ISO8601 文字列または空 | L14 claim と open L7 が並存する場合は `Recovery` / `needs_recovery` とし、closure queue を `close_ready` / `collect_evidence` / `repair_failed_evidence` / `reverse_design` に分類する。失敗証跡は削除しないが、`repair_failed_evidence` は最新 failure が最新 passed evidence より後、または passed evidence が無い component のみに限定する。最新 passed evidence が最新 failure 以降なら failure history は保持したまま修復済みとして扱い、`evidenceGaps` / `repair_targets` / `repair_plan` には未修復 component だけを出す。`version_target` parked PLAN と live backlog boundary PLAN は open L7 には残すが current completion の機械証跡回収 queue から除外する。 |
+
 ## §2 core 操作の pseudocode (IEEE 1016 §5.7、IMP-019)
 
 > internal-processing §2 の処理フローをアルゴリズム化。L7 実装の正本。共通骨格 = `入力 → zod validate → state 読込 → 処理 → state 書込 → 出力/exit` (副作用は cli/hook 端点)。

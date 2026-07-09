@@ -577,11 +577,15 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
                 total: 1,
                 passed: 0,
                 failed: 1,
+                latestPassedAt: null,
+                latestFailedAt: "2026-07-08T00:00:00.000Z",
               },
               gateRuns: {
                 total: 0,
                 passed: 0,
                 failed: 0,
+                latestPassedAt: null,
+                latestFailedAt: null,
               },
               runtimeVerification: {
                 total: 0,
