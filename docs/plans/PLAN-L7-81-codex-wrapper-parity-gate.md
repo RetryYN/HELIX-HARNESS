@@ -19,6 +19,31 @@ review_evidence:
     scope: "Codex（worker）が src/doctor/index.ts に checkCodexWrapperParity を追加した。これは 2 つの provider integration path が parity を保つことを検証する doctor hard gate である。Claude 側は project .claude/settings.json hooks 経由で動き（3 つの session/hook command が存在）、Codex 側の parity は helix wrapper lifecycle tests と stdin adapter oracles で担保する（codex --execute/--task-file/--plan lifecycle test name が存在し、adapter は `exec -` stdin sentinel + stdin:intent.task + plan_id:intent.planId を使い、U-ADAPTER-007/008 を引用し、U-ADAPTER-009 を文書化する）。Claude（reviewer）の cross-review verdict は pass。gate は runDoctor.ok に接続され（hard fail-close、src/doctor/index.ts:1428）、message も表示される。U-ADAPTER-009 は tests/doctor.test.ts で引用される（OK + fail-closed-when-missing + missing-root cases）。function-spec と L7-unit-test-design の back-fill があり、typecheck + biome + full Vitest 727/727 + doctor は green。reviewer が閉じた gap: Codex は impl/test/design/test-design を出荷したが、この PLAN file は未作成だった（test-design はすでに \"PLAN-L7-81\" を参照していた）。そのため gate は harness 自身の impl-plan-trace discipline に対する orphan-impl になっており、この PLAN が trace を復元する。"
     worker_model: codex-gpt-5
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:21:26+09:00"
+    tests_green_at: "2026-07-09T15:21:26+09:00"
+    verdict: approve
+    scope: "PLAN-L7-81 の execution evidence 欠落を、現行 plan-artifact-existence / doctor / runtime hook / runtime adapter / plan-supersession targeted green と typecheck で補い、Codex wrapper parity gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-artifact-existence.test.ts tests/doctor.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/plan-supersession.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:21:26+09:00"
+        evidence_path: tests/doctor.test.ts
+        output_digest: "sha256:7589bc8dd3802e4ea9bb8badbb1be9e2a0a0deb262cef45451bee0c6915edd11"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:21:26+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - codex/claude wrapper parity doctor gate"

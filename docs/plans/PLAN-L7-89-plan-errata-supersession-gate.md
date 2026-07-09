@@ -19,6 +19,31 @@ review_evidence:
     scope: "PO 指摘『プランの誤記への対策』(2026-06-22) に対応。誘因 = PLAN-L7-86 の review_evidence/AC が『kind filter は false-positive を出さない / blast radius 0』と断定したが実際は false-negative の盲点だった (= 自由記述の誤った主張を機械が検証しない、coding≠substance)。prose の真偽は一般に機械化不能ゆえ、(1) 規律明文化と (2) 機械化できる errata 整合の 2 段で対策。(1) .claude/CLAUDE.md PLAN Rules に『falsifiable な safety/completeness 主張 (blast radius 0 / no false positive / N green) は断定でなくテスト/コマンド引用で裏付ける』+『confirmed PLAN の誤記は後継で supersedes 宣言 + 原 PLAN に訂正注記』を追記。(2) schema に optional `supersedes: string[]` を追加し、doctor plan-supersession (hard) が『宣言された supersede 先が実在 + 原 PLAN に core-id back-reference 有』を fail-close。適用: L7-87 が supersedes=[L7-86] を宣言、L7-86 は訂正注記で双方向化。blast radius: 既存 PLAN で supersedes 宣言は L7-87 の 1 件のみ → 他 PLAN は対象外で green 維持。test 11 ケース (planCoreId/parseSupersedes/analyze 5 + loader/check 2)。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:21:26+09:00"
+    tests_green_at: "2026-07-09T15:21:26+09:00"
+    verdict: approve
+    scope: "PLAN-L7-89 の execution evidence 欠落を、現行 plan-artifact-existence / doctor / runtime hook / runtime adapter / plan-supersession targeted green と typecheck で補い、plan-supersession gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-artifact-existence.test.ts tests/doctor.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/plan-supersession.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:21:26+09:00"
+        evidence_path: tests/plan-supersession.test.ts
+        output_digest: "sha256:7589bc8dd3802e4ea9bb8badbb1be9e2a0a0deb262cef45451bee0c6915edd11"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:21:26+09:00"
+        evidence_path: src/lint/plan-supersession.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - PLAN errata supersession gate + safety-claim discipline"
