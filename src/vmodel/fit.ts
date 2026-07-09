@@ -11,6 +11,7 @@ import {
   closureEvidenceApplyDryRunCommand,
   closureEvidenceApplyExecuteCommand,
   closureEvidenceApprovalDraftCommand,
+  closureEvidenceApprovalDraftRefreshPath,
   closureEvidenceHandoffArtifacts,
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
@@ -311,6 +312,7 @@ export interface VmodelHandoffNextStep {
   status:
     | "generate_probe"
     | "generate_approval_draft"
+    | "refresh_approval_draft"
     | "approval_pending"
     | "approval_rejected"
     | "apply_dry_run"
@@ -1258,6 +1260,7 @@ function vmodelNextActionAutomationClass(
     ) {
       return "approval";
     }
+    if (handoffStatus) return "machine";
     return currentGate.reentry_forecast.next_phase_type === "approval" ? "approval" : "machine";
   }
   if (blocker.code === "roadmap_current" || blocker.code === "drive_model") return "verification";
@@ -1583,6 +1586,8 @@ function vmodelHandoffReasonCodes(input: {
 }
 
 function buildVmodelHandoffNextStep(input: {
+  action: ProjectClosureQueueNextAction;
+  commandLimit: number;
   status: VmodelHandoffStatus | null;
   evidenceProbeCommand: string;
   evidenceApprovalDraftCommand: string;
@@ -1649,6 +1654,36 @@ function buildVmodelHandoffNextStep(input: {
     };
   }
   const approval = input.status.approval_record;
+  if (approval?.scope_status === "mismatch" && approval.expected_approval_scope_digest) {
+    const refreshPath = closureEvidenceApprovalDraftRefreshPath(
+      input.action,
+      approval.expected_approval_scope_digest,
+    );
+    return {
+      status: "refresh_approval_draft",
+      approval_state: vmodelApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: false,
+      command: closureEvidenceApprovalDraftCommand(input.action, input.commandLimit, refreshPath),
+      label: "refresh approval draft",
+      required_action:
+        "既存 approval draft は current materialize scope と不一致。既存ファイルを上書きせず refresh draft を再生成する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "refresh_approval_draft",
+        approval,
+        extras: [
+          "approval.scope.mismatch",
+          "approval.draft.stale",
+          "approval.refresh.non_destructive",
+        ],
+      }),
+      reasons: [
+        ...approval.reasons,
+        `canonical_approval_draft_path=${input.approvalRecordPath}`,
+        `refresh_approval_draft_path=${refreshPath}`,
+      ],
+    };
+  }
   if (approval?.status === "approved" && approval.valid_for_apply) {
     return {
       status: "apply_dry_run",
@@ -1864,6 +1899,8 @@ function buildVmodelNextActionWorkBucket(input: {
     : null;
   const evidenceHandoffNext = evidenceHandoffArtifacts
     ? buildVmodelHandoffNextStep({
+        action: bucket.action,
+        commandLimit: evidenceCommandLimit,
         status: evidenceHandoffStatus,
         evidenceProbeCommand,
         evidenceApprovalDraftCommand,

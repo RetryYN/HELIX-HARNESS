@@ -446,6 +446,39 @@ review_evidence:
         completed_at: "2026-07-09T11:51:03+09:00"
         evidence_path: .helix/tmp/closure/verify-view-limit-vmodel-fit-20260709.json
         output_digest: "sha256:e5a946c27a17160c838296350bdb90c5bf08dcd4f2a9a8fe16126a6ba8a717aa"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T12:04:02+09:00"
+    tests_green_at: "2026-07-09T12:04:02+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "approval draft の approval_scope_digest が current materialize scope と不一致になった場合、既存 draft を上書きせず digest 付き refresh draft へ再発行する handoff next を vmodel fit と Project view に投影する。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T12:03:56+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T12:03:57+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:140f9612fb038b3718d444edf1938a2fc1a9afe42d4965b1da7141c1fea67b98"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:04:02+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:daef7db4012e9319b992f77642aed3f13f19286e80093a4eafbd76d41a6b38aa"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

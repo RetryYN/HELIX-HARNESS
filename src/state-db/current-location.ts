@@ -2595,6 +2595,14 @@ export function closureEvidenceApprovalDraftPath(action: ProjectClosureQueueNext
   return `.helix/tmp/closure/${action}-approval-draft.yml`;
 }
 
+export function closureEvidenceApprovalDraftRefreshPath(
+  action: ProjectClosureQueueNextAction,
+  approvalScopeDigest: string,
+): string {
+  const digestPrefix = approvalScopeDigest.replace(/^sha256:/, "").slice(0, 12) || "unknown";
+  return `.helix/tmp/closure/${action}-approval-draft-refresh-${digestPrefix}.yml`;
+}
+
 function closureEvidenceCommandLimit(limit?: number): number {
   return Math.max(1, Math.floor(limit ?? 1));
 }
@@ -2630,9 +2638,10 @@ export function closureEvidenceMaterializeCommand(
 export function closureEvidenceApprovalDraftCommand(
   action: ProjectClosureQueueNextAction,
   limit?: number,
+  outPath = closureEvidenceApprovalDraftPath(action),
 ): string {
   const commandLimit = closureEvidenceCommandLimit(limit);
-  return `helix closure evidence-approval-draft --action ${action} --limit ${commandLimit} --probe-record ${closureEvidenceProbeRecordPath(action)} --out ${closureEvidenceApprovalDraftPath(action)} --summary-json`;
+  return `helix closure evidence-approval-draft --action ${action} --limit ${commandLimit} --probe-record ${closureEvidenceProbeRecordPath(action)} --out ${outPath} --summary-json`;
 }
 
 export function closureEvidenceApplyDryRunCommand(

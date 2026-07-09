@@ -11,6 +11,7 @@ import {
   closureEvidenceApplyDryRunCommand,
   closureEvidenceApplyExecuteCommand,
   closureEvidenceApprovalDraftCommand,
+  closureEvidenceApprovalDraftRefreshPath,
   closureEvidenceHandoffArtifacts,
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
@@ -444,6 +445,7 @@ export interface ProjectCurrentLocationView {
           status:
             | "generate_probe"
             | "generate_approval_draft"
+            | "refresh_approval_draft"
             | "approval_pending"
             | "approval_rejected"
             | "apply_dry_run"
@@ -3330,6 +3332,7 @@ function vmodelHandoffSummaryForView(
   const machinePendingStatuses = new Set<ProjectEvidenceHandoffNext["status"]>([
     "generate_probe",
     "generate_approval_draft",
+    "refresh_approval_draft",
     "unchecked",
     "unavailable",
   ]);
@@ -3427,6 +3430,8 @@ function evidenceHandoffStatusForAction(
 function evidenceHandoffNextStep(input: {
   bucket: Pick<
     NonNullable<ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]>,
+    | "action"
+    | "listed"
     | "evidence_handoff_artifacts"
     | "evidence_probe_command"
     | "evidence_approval_draft_command"
@@ -3536,6 +3541,41 @@ function evidenceHandoffNextStep(input: {
     };
   }
   const approval = draft.approval_record;
+  if (approval?.scope_status === "mismatch" && approval.expected_approval_scope_digest) {
+    const refreshPath = isProjectClosureQueueNextAction(input.bucket.action)
+      ? closureEvidenceApprovalDraftRefreshPath(
+          input.bucket.action,
+          approval.expected_approval_scope_digest,
+        )
+      : null;
+    return {
+      status: "refresh_approval_draft",
+      approval_state: projectApprovalState(approval),
+      scope_status: approval.scope_status,
+      valid_for_apply: false,
+      command:
+        refreshPath && isProjectClosureQueueNextAction(input.bucket.action)
+          ? closureEvidenceApprovalDraftCommand(input.bucket.action, input.bucket.listed, refreshPath)
+          : input.bucket.evidence_approval_draft_command,
+      label: "refresh approval draft",
+      required_action:
+        "既存 approval draft は current materialize scope と不一致。既存ファイルを上書きせず refresh draft を再生成する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "refresh_approval_draft",
+        approval,
+        extras: [
+          "approval.scope.mismatch",
+          "approval.draft.stale",
+          "approval.refresh.non_destructive",
+        ],
+      }),
+      reasons: [
+        ...approval.reasons,
+        `canonical_approval_draft_path=${input.bucket.evidence_handoff_artifacts.approval_draft_path}`,
+        ...(refreshPath ? [`refresh_approval_draft_path=${refreshPath}`] : []),
+      ],
+    };
+  }
   if (approval?.status === "approved" && approval.valid_for_apply) {
     return {
       status: "apply_dry_run",
@@ -3642,6 +3682,7 @@ function handoffAwareAutomationClass(
   ) {
     return "approval";
   }
+  if (handoffNext) return "machine";
   return fallback;
 }
 
