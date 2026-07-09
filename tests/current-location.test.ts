@@ -2985,7 +2985,19 @@ describe("project current-location read model", () => {
       expect(snapshot.findings.map((finding) => finding.code)).not.toContain("operation_scope_gap");
       const fit = buildVmodelFitReport(snapshot);
       expect(fit.blockers.map((blocker) => blocker.code)).not.toContain("operation_scope");
-      expect(fit.reasons).toContain("operation scope gate passed");
+      expect(fit.reasons).toContain("operation scope observed gaps=5");
+      expect(fit.regression_guards.guards).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            guard_id: "operation-scope",
+            status: "watch",
+            count: 5,
+            required_action:
+              "設計済み operation scope を accepted runtime evidence として観測し、運用時の可視化基盤を実証する",
+            reasons: expect.arrayContaining(["observed_gap=5", "runtime_observed=1"]),
+          }),
+        ]),
+      );
       expect(snapshot.coverage.l12_layers.find((layer) => layer.layer === "L12")).toMatchObject({
         status: "done",
         designIds: expect.arrayContaining([
@@ -3262,10 +3274,14 @@ describe("project current-location read model", () => {
           expect.objectContaining({
             guard_id: "operation-scope",
             status: "watch",
-            count: 1,
+            count: 6,
             required_action:
-              "runtime verification を accepted runtime evidence として観測し、運用時の可視化基盤を実証する",
-            reasons: expect.arrayContaining(["runtime_observed=0"]),
+              "設計済み operation scope を accepted runtime evidence として観測し、運用時の可視化基盤を実証する",
+            reasons: expect.arrayContaining([
+              "observed_gap=6",
+              "runtime_observed=0",
+              "runtime_unobserved=1",
+            ]),
           }),
         ]),
       );

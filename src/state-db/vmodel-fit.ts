@@ -2039,6 +2039,9 @@ function buildVmodelRegressionGuards(input: {
   );
   const unobservedRuntimeVerification =
     runtimeVerificationScope?.status === "designed" && runtimeVerificationScope.observedCount === 0;
+  const operationScopeHardGap =
+    input.snapshot.operation_scope.missing + input.snapshot.operation_scope.reverify;
+  const operationScopeObservedGap = input.snapshot.operation_scope.observed_gap;
   const scrumGapItems = scrumOperationGapItems(input.snapshot);
   const scrumGapFinding = scrumOperationGapFinding(input.snapshot);
   const guards: VmodelRegressionGuard[] = [
@@ -2131,25 +2134,27 @@ function buildVmodelRegressionGuards(input: {
     {
       guard_id: "operation-scope",
       status:
-        input.snapshot.operation_scope.missing > 0 || input.snapshot.operation_scope.reverify > 0
+        operationScopeHardGap > 0
           ? "fail"
-          : unobservedRuntimeVerification
+          : operationScopeObservedGap > 0
             ? "watch"
             : "pass",
       scope: "L12 operation/log/KPI/runtime verification scope",
       command: "helix current-location --json",
       protected_surface: ["operation_scope", "runtime_verification_events"],
-      count:
-        input.snapshot.operation_scope.missing +
-        input.snapshot.operation_scope.reverify +
-        (unobservedRuntimeVerification ? 1 : 0),
-      required_action: unobservedRuntimeVerification
-        ? "runtime verification を accepted runtime evidence として観測し、運用時の可視化基盤を実証する"
-        : "ログ/KPI/runtime verification/運用テストを L12 coverage へ投影する",
+      count: operationScopeHardGap > 0 ? operationScopeHardGap : operationScopeObservedGap,
+      required_action:
+        operationScopeHardGap > 0
+          ? "ログ/KPI/runtime verification/運用テストを L12 coverage へ投影する"
+          : operationScopeObservedGap > 0
+            ? "設計済み operation scope を accepted runtime evidence として観測し、運用時の可視化基盤を実証する"
+            : "ログ/KPI/runtime verification/運用テストを L12 coverage へ投影する",
       reasons: [
         `missing=${input.snapshot.operation_scope.missing}`,
         `reverify=${input.snapshot.operation_scope.reverify}`,
+        `observed_gap=${operationScopeObservedGap}`,
         `runtime_observed=${runtimeVerificationScope?.observedCount ?? 0}`,
+        `runtime_unobserved=${unobservedRuntimeVerification ? 1 : 0}`,
       ],
     },
     {
@@ -2431,7 +2436,9 @@ export function buildVmodelFitReport(
       ? `skill binding ready required=${snapshot.skill_binding.requiredSkills} recommended=${snapshot.skill_binding.recommendedSkills} optional=${snapshot.skill_binding.optionalSkills}`
       : `skill binding is ${snapshot.skill_binding?.status ?? "missing"}`,
     snapshot.operation_scope.missing === 0 && snapshot.operation_scope.reverify === 0
-      ? "operation scope gate passed"
+      ? snapshot.operation_scope.observed_gap === 0
+        ? "operation scope gate passed"
+        : `operation scope observed gaps=${snapshot.operation_scope.observed_gap}`
       : `operation scope gaps missing=${snapshot.operation_scope.missing} reverify=${snapshot.operation_scope.reverify}`,
     scrumGapItems.length === 0 && !scrumGapFinding
       ? "Scrum operation projection gate passed"

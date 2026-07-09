@@ -2707,6 +2707,7 @@ describe("L7 CLI surface closure", () => {
         "roadmap-position: status=uncovered bands=0/5 parked=2 uncovered=3",
       );
       expect(text.stdout).toContain("operation-scope: designed=");
+      expect(text.stdout).toContain("observed_gap=");
       expect(text.stdout).toContain("artifact-remap: done=");
       expect(text.stdout).toContain("artifact-remap-layers: L1=");
       expect(text.stdout).toContain("closure: status=contradicted open_l7=1 l14_claims=1");
@@ -3302,6 +3303,9 @@ describe("L7 CLI surface closure", () => {
 	            }),
           ]),
         },
+        operation_scope: {
+          observed_gap: expect.any(Number),
+        },
         current_location_gate: {
           status: "needs_recovery",
           current_status: "needs_recovery",
@@ -3453,6 +3457,8 @@ describe("L7 CLI surface closure", () => {
 	        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
 	      );
       expect(fitText.stdout).toContain("regression-guards: status=needs_attention");
+      expect(fitText.stdout).toContain("operation-scope: designed=");
+      expect(fitText.stdout).toContain("observed_gap=");
       expect(fitText.stdout).toContain(
         "recovery-runway-gate: status=machine_work_available blocking=1 machine=1 approval=0 reverse=0 after_machine=0 phases=1 next=collect_evidence phase=machine gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
       );

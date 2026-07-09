@@ -871,6 +871,63 @@ review_evidence:
         completed_at: "2026-07-09T14:21:25+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:95b00909dcec11dad11776208b34da1153a5f8a752bd44500444ac203c274772"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T14:29:49+09:00"
+    tests_green_at: "2026-07-09T14:29:49+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "L12 operation scope の `observed_gap` を regression guard へ昇格し、missing/reverify が無い設計済み未観測 scope を `operation-scope:watch` として CLI / doctor / Project view read-model に投影するようにした。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:29:49+09:00"
+        evidence_path: src/state-db/vmodel-fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/current-location.test.ts -t \"operation\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:29:49+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:fbc3675959fd9d93802f44abed3bda7070837b940d52e1db544b58855f067154"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:29:49+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:8e5f6ed25f0ccdeb479bb43d3cb986de4856ed736a1de050ea8ec912ab5eeaad"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:29:49+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:e3e46c89c822ea109423aeca7ce339801020234758987ccdcac022d4a8f6953f"
+      - kind: smoke
+        command: "bash -lc 'set -o pipefail; { bun src/cli.ts vmodel fit | rg \"regression-guard: operation-scope watch count=5|operation-scope: designed=5 observed=1 observed_gap=5\"; bun src/cli.ts doctor | rg \"operation-scope:watch:5|vmodel-fit - operation-scope: designed=5 observed=1 observed_gap=5\"; }'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T14:29:49+09:00"
+        evidence_path: src/state-db/vmodel-fit.ts
+        output_digest: "sha256:9b1b40924c8980587120e3775c06b83a4d8b34022419729eb64b3a0291c63fd2"
+      - kind: doctor
+        command: "bun src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:29:49+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:36607a366efda9954059a2ff7d84e3ea265c8a617ff47bbe67c3f27d38893f29"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
