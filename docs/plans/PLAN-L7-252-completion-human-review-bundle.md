@@ -58,6 +58,39 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T22:58:35+09:00"
+    tests_green_at: "2026-07-09T22:58:50+09:00"
+    verdict: approve
+    scope: "VSCode Project Tree の closure apply に review windows ノードを追加し、close_ready が存在する場合に全 window の range、approval_scope_digest、window evidence totals、review/transition/decision draft/decision record command を DB/current-location 正本から描画するようにした。実データでは 343 件 close_ready approval が 18 window として表示され、1 page 目と 18 page 目の digest 付き導線を smoke で確認した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T22:58:50+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:58:50+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:d7e4290165ef09cefa591bce70c0e4428584d1494e28dd7eef419d3df804f92e"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:58:50+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:0fed2ddbc38454a7c8ef2944d332b3381949e8194804e3d77b395e00d428eee4"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T22:49:02+09:00"
     tests_green_at: "2026-07-09T22:49:02+09:00"
     verdict: approve

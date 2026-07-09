@@ -5,6 +5,7 @@ import {
   buildProjectClosureEvidencePlan,
   buildProjectClosureEvidenceProbePacket,
   buildProjectClosureOverview,
+  buildProjectClosureReviewBundle,
   buildProjectDriveModelReport,
   buildProjectRecoveryPlan,
   closureEvidenceApplyDryRunCommand,
@@ -68,6 +69,46 @@ export interface GraphIrEdge {
 export interface GraphIr {
   nodes: GraphIrNode[];
   edges: GraphIrEdge[];
+}
+
+export interface ClosureReviewScopeView {
+  approval_scope_digest: string;
+  plan_ids: string[];
+  source_paths: string[];
+  coverage_ids: string[];
+  l12_layers: string[];
+  evidence_totals: {
+    artifact_paths: number;
+    evidence_paths: number;
+    trace_edges: number;
+    test_runs_total: number;
+    test_runs_passed: number;
+    gate_runs_total: number;
+    gate_runs_passed: number;
+    runtime_verification_total: number;
+    runtime_verification_accepted: number;
+  };
+  blocked_by_findings: string[];
+}
+
+export interface ClosureReviewWindowView {
+  page_index: number;
+  page_count: number;
+  current: boolean;
+  offset: number;
+  limit: number;
+  start: number;
+  end: number;
+  listed: number;
+  omitted_before: number;
+  omitted_after: number;
+  approval_scope_digest: string;
+  review_scope: ClosureReviewScopeView;
+  review_window_command: string;
+  transition_window_command: string;
+  decision_draft_command: string;
+  decision_draft_record_command: string;
+  decision_record_default_path: string;
 }
 
 export interface LayerProgressView {
@@ -992,6 +1033,7 @@ export interface ProjectCurrentLocationView {
       close_ready_count: number;
       approval_required: boolean;
       status: string;
+      approval_window_count: number;
       dry_run_command: string;
       execute_command: string;
       review_bundle_command: string;
@@ -999,6 +1041,8 @@ export interface ProjectCurrentLocationView {
       decision_draft_command: string;
       review_window_command: string;
       transition_window_command: string;
+      review_window_index: ClosureReviewWindowView[];
+      aggregate_review_scope: ClosureReviewScopeView;
       write_policy: string;
     };
     actions: Array<{
@@ -1370,6 +1414,7 @@ export interface ProjectCurrentLocationView {
     apply_readiness: {
       close_ready_count: number;
       approval_required: boolean;
+      approval_window_count: number;
       dry_run_command: string;
       execute_command: string;
       review_bundle_command: string;
@@ -1377,6 +1422,8 @@ export interface ProjectCurrentLocationView {
       decision_draft_command: string;
       review_window_command: string;
       transition_window_command: string;
+      review_window_index: ClosureReviewWindowView[];
+      aggregate_review_scope: ClosureReviewScopeView;
       write_policy: string;
       status: string;
       reasons: string[];
@@ -1837,6 +1884,44 @@ export function buildProjectCurrentLocationView(
   const scrumOperation = current.scrum_operation ?? emptyScrumOperation();
   const skillBinding = current.skill_binding ?? emptySkillBinding();
   const closureOverview = buildProjectClosureOverview(current);
+  const closeReadyReviewBundle = buildProjectClosureReviewBundle(current, {
+    action: "close_ready",
+    limit: 20,
+    offset: 0,
+  });
+  const closeReadyReviewScope = (scope: typeof closeReadyReviewBundle.review_scope) => ({
+    approval_scope_digest: scope.approval_scope_digest,
+    plan_ids: [...scope.plan_ids],
+    source_paths: [...scope.source_paths],
+    coverage_ids: [...scope.coverage_ids],
+    l12_layers: [...scope.l12_layers],
+    evidence_totals: { ...scope.evidence_totals },
+    blocked_by_findings: [...scope.blocked_by_findings],
+  });
+  const closeReadyReviewWindowIndex = closeReadyReviewBundle.review_window_index.map((window) => ({
+    page_index: window.page_index,
+    page_count: window.page_count,
+    current: window.current,
+    offset: window.offset,
+    limit: window.limit,
+    start: window.start,
+    end: window.end,
+    listed: window.listed,
+    omitted_before: window.omitted_before,
+    omitted_after: window.omitted_after,
+    approval_scope_digest: window.review_scope.approval_scope_digest,
+    review_scope: closeReadyReviewScope(window.review_scope),
+    review_window_command:
+      `helix closure review-bundle --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
+    transition_window_command:
+      `helix closure transition-plan --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
+    decision_draft_command:
+      `helix closure decision-draft --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
+    decision_draft_record_command:
+      `helix closure decision-draft --action close_ready --limit ${window.limit} --offset ${window.offset} --out .helix/tmp/closure/close_ready-decision-draft-offset-${window.offset}.yml --summary-json`,
+    decision_record_default_path:
+      `.helix/tmp/closure/close_ready-decision-draft-offset-${window.offset}.yml`,
+  }));
   const driveModel = buildProjectDriveModelReport(current);
   const recoveryViewLimit = 3;
   const recoveryPlan = buildProjectRecoveryPlan(current, { limit: recoveryViewLimit });
@@ -2716,6 +2801,10 @@ export function buildProjectCurrentLocationView(
         close_ready_count: closureOverview.closure.apply_readiness.close_ready_count,
         approval_required: closureOverview.closure.apply_readiness.approval_required,
         status: closureOverview.closure.apply_readiness.status,
+        approval_window_count:
+          closureOverview.closure.apply_readiness.close_ready_count > 0
+            ? closeReadyReviewWindowIndex.length
+            : 0,
         dry_run_command: closureOverview.closure.apply_readiness.dry_run_command,
         execute_command: closureOverview.closure.apply_readiness.execute_command,
         review_bundle_command: closureOverview.closure.apply_readiness.review_bundle_command,
@@ -2724,6 +2813,13 @@ export function buildProjectCurrentLocationView(
         review_window_command: closureOverview.closure.apply_readiness.review_window_command,
         transition_window_command:
           closureOverview.closure.apply_readiness.transition_window_command,
+        review_window_index:
+          closureOverview.closure.apply_readiness.close_ready_count > 0
+            ? closeReadyReviewWindowIndex
+            : [],
+        aggregate_review_scope: closeReadyReviewScope(
+          closeReadyReviewBundle.aggregate_review_scope,
+        ),
         write_policy: closureOverview.closure.apply_readiness.write_policy,
       },
       actions: closureOverview.actions.map((action) => ({
@@ -3130,6 +3226,10 @@ export function buildProjectCurrentLocationView(
       apply_readiness: {
         close_ready_count: current.closure.queue.route_counts.close_ready,
         approval_required: current.closure.queue.route_counts.close_ready > 0,
+        approval_window_count:
+          current.closure.queue.route_counts.close_ready > 0
+            ? closeReadyReviewWindowIndex.length
+            : 0,
         dry_run_command:
           "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
         execute_command:
@@ -3143,6 +3243,11 @@ export function buildProjectCurrentLocationView(
           "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
         transition_window_command:
           "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+        review_window_index:
+          current.closure.queue.route_counts.close_ready > 0 ? closeReadyReviewWindowIndex : [],
+        aggregate_review_scope: closeReadyReviewScope(
+          closeReadyReviewBundle.aggregate_review_scope,
+        ),
         write_policy: "approval-required",
         status:
           current.closure.queue.route_counts.close_ready > 0

@@ -2119,6 +2119,42 @@ describe("visualization Tree View adapter", () => {
     expect(recoveryPlanHandoff?.tooltip).toContain(
       "approval_record_path=.helix/tmp/closure/close_ready-decision-draft.yml",
     );
+    const applyReviewWindows = findTreeNode(
+      tree,
+      "project/current-location/closure/apply-readiness/review-windows",
+    );
+    expect(applyReviewWindows).toMatchObject({
+      label: "review windows",
+      description: "windows=1 total=1",
+      contextValue: "closure-apply.review-windows",
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: [
+          "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+        ],
+      },
+    });
+    expect(applyReviewWindows?.tooltip).toContain("aggregate_digest=sha256:");
+    expect(applyReviewWindows?.tooltip).toContain("aggregate_artifacts=1");
+    const firstWindow = findTreeNode(
+      tree,
+      "project/current-location/closure/apply-readiness/review-windows/1",
+    );
+    expect(firstWindow).toMatchObject({
+      label: "page 1/1",
+      description: "current 1-1 listed=1",
+      contextValue: "closure-apply.review-window.current",
+    });
+    expect(firstWindow?.tooltip).toContain("approval_scope_digest=sha256:");
+    expect(firstWindow?.tooltip).toContain("offset=0");
+    expect(firstWindow?.tooltip).toContain("record=.helix/tmp/closure/close_ready-decision-draft-offset-0.yml");
+    expect(firstWindow?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
+      "project/current-location/closure/apply-readiness/review-windows/1/review:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+      "project/current-location/closure/apply-readiness/review-windows/1/transition:helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+      "project/current-location/closure/apply-readiness/review-windows/1/decision-draft:helix closure decision-draft --action close_ready --limit 20 --offset 0 --summary-json",
+      "project/current-location/closure/apply-readiness/review-windows/1/decision-record:helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+    ]);
   });
 
   it("U-VTREE-004: renders approval-pending handoff as an approval next action", () => {

@@ -1682,6 +1682,7 @@ describe("buildVisualizationViewModel", () => {
         apply_readiness: {
           close_ready_count: 0,
           approval_required: false,
+          approval_window_count: 0,
           dry_run_command:
             "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
           execute_command:
@@ -1695,6 +1696,26 @@ describe("buildVisualizationViewModel", () => {
             "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
           transition_window_command:
             "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+          review_window_index: [],
+          aggregate_review_scope: expect.objectContaining({
+            approval_scope_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+            plan_ids: [],
+            source_paths: [],
+            coverage_ids: [],
+            l12_layers: [],
+            evidence_totals: {
+              artifact_paths: 0,
+              evidence_paths: 0,
+              trace_edges: 0,
+              test_runs_total: 0,
+              test_runs_passed: 0,
+              gate_runs_total: 0,
+              gate_runs_passed: 0,
+              runtime_verification_total: 0,
+              runtime_verification_accepted: 0,
+            },
+            blocked_by_findings: [],
+          }),
           write_policy: "approval-required",
           status: "no_close_ready_candidates",
           reasons: ["close_ready candidate が無いため apply 対象なし"],

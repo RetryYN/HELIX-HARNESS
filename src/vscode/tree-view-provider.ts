@@ -242,6 +242,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
   const recoveryReentryStatus =
     current.recovery_exit.reentry_forecast.effective_status ??
     current.recovery_exit.reentry_forecast.status;
+  const closeReadyReviewWindows = current.closure.apply_readiness.review_window_index;
   const vmodelFitReentryStatus =
     current.vmodel_fit.reentry_forecast.effective_status ??
     current.vmodel_fit.reentry_forecast.status;
@@ -1830,6 +1831,83 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               contextValue: "closure-apply.decision-draft",
               commandPointer: current.closure.apply_readiness.decision_draft_command,
             }),
+            ...(closeReadyReviewWindows.length > 0
+              ? [
+                  node({
+                    id: "project/current-location/closure/apply-readiness/review-windows",
+                    label: "review windows",
+                    description: `windows=${current.closure.apply_readiness.approval_window_count} total=${current.closure.apply_readiness.close_ready_count}`,
+                    tooltip: tooltipLines([
+                      `aggregate_digest=${current.closure.apply_readiness.aggregate_review_scope.approval_scope_digest}`,
+                      `aggregate_artifacts=${current.closure.apply_readiness.aggregate_review_scope.evidence_totals.artifact_paths}`,
+                      `aggregate_evidence=${current.closure.apply_readiness.aggregate_review_scope.evidence_totals.evidence_paths}`,
+                      `aggregate_tests=${current.closure.apply_readiness.aggregate_review_scope.evidence_totals.test_runs_passed}/${current.closure.apply_readiness.aggregate_review_scope.evidence_totals.test_runs_total}`,
+                      current.closure.apply_readiness.review_bundle_command,
+                    ]),
+                    contextValue: "closure-apply.review-windows",
+                    commandPointer: current.closure.apply_readiness.review_window_command,
+                    children: closeReadyReviewWindows.map((window) =>
+                      node({
+                        id: `project/current-location/closure/apply-readiness/review-windows/${window.page_index}`,
+                        label: `page ${window.page_index}/${window.page_count}`,
+                        description: `${window.current ? "current " : ""}${window.start}-${window.end} listed=${window.listed}`,
+                        tooltip: tooltipLines([
+                          `approval_scope_digest=${window.approval_scope_digest}`,
+                          `offset=${window.offset}`,
+                          `limit=${window.limit}`,
+                          `omitted_before=${window.omitted_before}`,
+                          `omitted_after=${window.omitted_after}`,
+                          `plans=${window.review_scope.plan_ids.join(",") || "-"}`,
+                          `coverage=${window.review_scope.coverage_ids.join(",") || "-"}`,
+                          `layers=${window.review_scope.l12_layers.join(",") || "-"}`,
+                          `artifacts=${window.review_scope.evidence_totals.artifact_paths}`,
+                          `evidence=${window.review_scope.evidence_totals.evidence_paths}`,
+                          `tests=${window.review_scope.evidence_totals.test_runs_passed}/${window.review_scope.evidence_totals.test_runs_total}`,
+                          `runtime=${window.review_scope.evidence_totals.runtime_verification_accepted}/${window.review_scope.evidence_totals.runtime_verification_total}`,
+                          `record=${window.decision_record_default_path}`,
+                          `review=${window.review_window_command}`,
+                          `transition=${window.transition_window_command}`,
+                          `decision_draft=${window.decision_draft_command}`,
+                          `decision_record=${window.decision_draft_record_command}`,
+                        ]),
+                        contextValue: `closure-apply.review-window.${window.current ? "current" : "page"}`,
+                        commandPointer: window.review_window_command,
+                        children: [
+                          node({
+                            id: `project/current-location/closure/apply-readiness/review-windows/${window.page_index}/review`,
+                            label: "review bundle",
+                            description: window.review_window_command,
+                            contextValue: "closure-apply.review-window.review",
+                            commandPointer: window.review_window_command,
+                          }),
+                          node({
+                            id: `project/current-location/closure/apply-readiness/review-windows/${window.page_index}/transition`,
+                            label: "transition plan",
+                            description: window.transition_window_command,
+                            contextValue: "closure-apply.review-window.transition",
+                            commandPointer: window.transition_window_command,
+                          }),
+                          node({
+                            id: `project/current-location/closure/apply-readiness/review-windows/${window.page_index}/decision-draft`,
+                            label: "decision draft",
+                            description: window.decision_draft_command,
+                            contextValue: "closure-apply.review-window.decision-draft",
+                            commandPointer: window.decision_draft_command,
+                          }),
+                          node({
+                            id: `project/current-location/closure/apply-readiness/review-windows/${window.page_index}/decision-record`,
+                            label: "decision record",
+                            description: window.decision_draft_record_command,
+                            tooltip: window.decision_record_default_path,
+                            contextValue: "closure-apply.review-window.decision-record",
+                            commandPointer: window.decision_draft_record_command,
+                          }),
+                        ],
+                      }),
+                    ),
+                  }),
+                ]
+              : []),
             node({
               id: "project/current-location/closure/apply-readiness/dry-run",
               label: "apply dry-run",
