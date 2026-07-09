@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  buildProjectClosureDecisionDraftPacket,
   buildProjectClosureEvidenceApprovalDraftPacket,
   buildProjectCurrentLocationSnapshot,
   closureEvidenceApprovalDraftRefreshPath,
@@ -292,7 +293,7 @@ describe("visualization read model", () => {
 
       expect(snapshot.recovery_handoff_artifacts).toMatchObject({
         present: 1,
-        missing: 3,
+        missing: 4,
         unchecked: 0,
       });
       expect(probe).toMatchObject({
@@ -315,6 +316,60 @@ describe("visualization read model", () => {
         bytes: null,
         sha256: null,
       });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-VISUAL-003: detects close_ready decision drafts and validates closure approval outcomes", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-visualization-close-ready-draft-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
+      const current = buildProjectCurrentLocationSnapshot(db);
+      const draft = buildProjectClosureDecisionDraftPacket(current, {
+        action: "close_ready",
+        limit: 1,
+        offset: 0,
+      });
+      writeFileSync(
+        join(root, ".helix/tmp/closure/close_ready-decision-draft.yml"),
+        draft.approval_record_text.replace(
+          "outcome: pending_human_review",
+          "outcome: approve_closure_claim",
+        ),
+      );
+
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
+      const decisionDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) => item.action === "close_ready" && item.kind === "decision_draft",
+      );
+
+      expect(decisionDraft).toMatchObject({
+        path: ".helix/tmp/closure/close_ready-decision-draft.yml",
+        status: "present",
+        generation_status: "present",
+        generation_command:
+          "helix closure decision-draft --action close_ready --limit 1 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
+        write_policy: "local-artifact-new-file",
+        approval_record: {
+          status: "approved",
+          decision_id: "closure-review:close_ready",
+          outcome: "approve_closure_claim",
+          approval_scope_digest: draft.decision.approval_scope_digest,
+          expected_approval_scope_digest: draft.decision.approval_scope_digest,
+          scope_status: "match",
+          reviewed_candidate_count: 0,
+          valid_for_apply: true,
+        },
+      });
+      expect(decisionDraft?.bytes).toBeGreaterThan(0);
+      expect(decisionDraft?.sha256).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(decisionDraft?.approval_record?.reasons).toContain(
+        "approval outcome は approve_closure_claim",
+      );
     } finally {
       db.close();
       rmSync(root, { recursive: true, force: true });

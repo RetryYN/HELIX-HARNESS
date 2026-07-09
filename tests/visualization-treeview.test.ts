@@ -2026,6 +2026,64 @@ describe("visualization Tree View adapter", () => {
     expect(reverseScope?.tooltip).toContain("... 10 more (helix current-location --json)");
   });
 
+  it("U-VTREE-005: renders close_ready decision draft as a Project recovery handoff artifact", () => {
+    const raw = snapshot();
+    raw.recovery_handoff_artifacts.items.unshift({
+      action: "close_ready",
+      kind: "decision_draft",
+      path: ".helix/tmp/closure/close_ready-decision-draft.yml",
+      status: "present",
+      generation_status: "present",
+      generation_command:
+        "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
+      bytes: 418,
+      sha256: "sha256:decision-draft",
+      write_policy: "local-artifact-new-file",
+      approval_record: {
+        status: "pending_human_review",
+        decision_id: "closure-review:close_ready",
+        outcome: "pending_human_review",
+        approval_scope_digest: "sha256:close-ready",
+        expected_approval_scope_digest: "sha256:close-ready",
+        scope_status: "match",
+        materialize_status: null,
+        reviewed_candidate_count: 20,
+        valid_for_apply: false,
+        reasons: ["人間レビュー待ちの non-authorizing approval draft"],
+      },
+      reasons: ["handoff artifact を repoRoot から検出した"],
+    });
+    raw.recovery_handoff_artifacts.present += 1;
+
+    const tree = buildVisualizationTreeView(buildVisualizationViewModel(raw));
+    const recoveryArtifacts = findTreeNode(
+      tree,
+      "project/current-location/recovery-handoff-artifacts",
+    );
+    const decisionDraft = findTreeNode(
+      tree,
+      "project/current-location/recovery-handoff-artifacts/close_ready/decision_draft",
+    );
+
+    expect(recoveryArtifacts?.description).toBe("present=2 missing=1 unchecked=0");
+    expect(decisionDraft).toMatchObject({
+      label: "close_ready decision_draft",
+      description: "present present 418B",
+      contextValue: "recovery-handoff-artifact.present",
+      command: {
+        title: "Copy pointer",
+        command: "helix.copyPointer",
+        arguments: [".helix/tmp/closure/close_ready-decision-draft.yml"],
+      },
+    });
+    expect(decisionDraft?.tooltip).toContain(
+      "generate=helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
+    );
+    expect(decisionDraft?.tooltip).toContain("outcome=pending_human_review");
+    expect(decisionDraft?.tooltip).toContain("scope=match");
+    expect(decisionDraft?.tooltip).toContain("approval_scope_digest=sha256:close-ready");
+  });
+
   it("U-VTREE-004: renders approval-pending handoff as an approval next action", () => {
     const raw = snapshot();
     const approvalDraft = raw.recovery_handoff_artifacts.items.find(

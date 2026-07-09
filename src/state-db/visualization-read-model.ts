@@ -11,6 +11,7 @@ import {
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceMaterializePacket,
+  buildProjectClosureReviewBundle,
   buildProjectCurrentLocationSnapshot,
   closureEvidenceApprovalDraftCommand,
   closureEvidenceApprovalDraftRefreshPath,
@@ -106,7 +107,7 @@ export interface VisualizationSnapshot {
 
 export interface VisualizationRecoveryHandoffArtifact {
   action: ProjectClosureQueueNextAction;
-  kind: "probe_record" | "approval_draft" | "approval_refresh_draft";
+  kind: "probe_record" | "approval_draft" | "approval_refresh_draft" | "decision_draft";
   path: string;
   status: "present" | "missing" | "unchecked";
   generation_status:
@@ -296,7 +297,10 @@ function parseVisualizationApprovalRecord(
   const outcome = /^outcome:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const approvalScopeDigest = /^approval_scope_digest:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const reviewedCandidateCountRaw =
-    /^reviewed_candidate_count:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
+    (
+      /^reviewed_candidate_count:\s*(.+)$/m.exec(text)?.[1] ??
+      /^reviewed_count:\s*(.+)$/m.exec(text)?.[1]
+    )?.trim() ?? null;
   const reviewedCandidateCount =
     reviewedCandidateCountRaw === null ? null : Number(reviewedCandidateCountRaw);
   const invalidFields: string[] = [];
@@ -357,12 +361,32 @@ function parseVisualizationApprovalRecord(
       reasons: ["approval outcome は approve_materialized_evidence", ...scopeReasons],
     };
   }
+  if (outcome === "approve_closure_claim") {
+    return {
+      status: "approved",
+      ...common,
+      valid_for_apply: common.scope_status === "match",
+      reasons: ["approval outcome は approve_closure_claim", ...scopeReasons],
+    };
+  }
   if (outcome === "reject_materialized_evidence") {
     return {
       status: "rejected",
       ...common,
       valid_for_apply: false,
       reasons: ["approval outcome は reject_materialized_evidence", ...scopeReasons],
+    };
+  }
+  if (
+    outcome === "reject_to_collect_evidence" ||
+    outcome === "reject_to_repair_failed_evidence" ||
+    outcome === "reject_to_reverse_design"
+  ) {
+    return {
+      status: "rejected",
+      ...common,
+      valid_for_apply: false,
+      reasons: [`approval outcome は ${outcome}`, ...scopeReasons],
     };
   }
   return {
@@ -628,76 +652,103 @@ function buildRecoveryHandoffArtifacts(input: {
     };
   };
 
-  const items = PROJECT_CLOSURE_QUEUE_ACTIONS.flatMap((action) => {
-    const commandLimit = projectClosureActionCommandLimit(input.snapshot, action, 3);
-    const artifacts = closureEvidenceHandoffArtifacts(action);
-    if (!artifacts) return [];
-    const probe = inspectHandoffArtifact({
-      repoRoot: input.repoRoot,
-      snapshot: input.snapshot,
-      action,
-      kind: "probe_record",
-      path: artifacts.probe_record_path,
-      writePolicy: artifacts.write_policy,
-      generation: probeGeneration(action),
-    });
-    probePresentByAction.set(action, probe.status === "present");
-    const draftGeneration: HandoffGenerationPlan = probePresentByAction.get(action)
-      ? {
-          status: "ready_to_generate",
-          command: closureEvidenceApprovalDraftCommand(action, commandLimit),
-          reasons: ["probe record があるため approval draft を生成できる"],
-        }
-      : {
-          status: "waiting_for_probe",
-          command: closureEvidenceApprovalDraftCommand(action, commandLimit),
-          reasons: ["approval draft 生成には先に probe record が必要"],
-        };
-    const expectedApproval = expectedApprovalScope({
-      repoRoot: input.repoRoot,
-      snapshot: input.snapshot,
-      action,
-      limit: commandLimit,
-      probeRecordPath: artifacts.probe_record_path,
-    });
-    const draft = inspectHandoffArtifact({
-      repoRoot: input.repoRoot,
-      snapshot: input.snapshot,
-      action,
-      kind: "approval_draft",
-      path: artifacts.approval_draft_path,
-      writePolicy: artifacts.write_policy,
-      generation: draftGeneration,
-      expectedApprovalScopeDigest: expectedApproval?.digest ?? null,
-      expectedMaterializeStatus: expectedApproval?.materializeStatus ?? null,
-    });
-    const refresh =
-      draft.approval_record?.scope_status === "mismatch" && expectedApproval?.digest
-        ? inspectHandoffArtifact({
-            repoRoot: input.repoRoot,
-            snapshot: input.snapshot,
-            action,
-            kind: "approval_refresh_draft",
-            path: closureEvidenceApprovalDraftRefreshPath(action, expectedApproval.digest),
-            writePolicy: artifacts.write_policy,
-            generation: {
-              status: probe.status === "present" ? "ready_to_generate" : "waiting_for_probe",
-              command: closureEvidenceApprovalDraftCommand(
-                action,
-                commandLimit,
-                closureEvidenceApprovalDraftRefreshPath(action, expectedApproval.digest),
-              ),
-              reasons:
-                probe.status === "present"
-                  ? ["canonical approval draft が stale のため refresh draft を生成できる"]
-                  : ["refresh draft 生成には先に probe record が必要"],
-            },
-            expectedApprovalScopeDigest: expectedApproval.digest,
-            expectedMaterializeStatus: expectedApproval.materializeStatus,
-          })
-        : null;
-    return [probe, draft, ...(refresh ? [refresh] : [])];
+  const closeReadyLimit = projectClosureActionCommandLimit(input.snapshot, "close_ready", 20);
+  const closeReadyBundle = buildProjectClosureReviewBundle(input.snapshot, {
+    action: "close_ready",
+    limit: closeReadyLimit,
+    offset: 0,
   });
+  const closeReadyDecisionDraft = inspectHandoffArtifact({
+    repoRoot: input.repoRoot,
+    snapshot: input.snapshot,
+    action: "close_ready",
+    kind: "decision_draft",
+    path: ".helix/tmp/closure/close_ready-decision-draft.yml",
+    writePolicy: "local-artifact-new-file",
+    generation: {
+      status: closeReadyBundle.total > 0 ? "ready_to_generate" : "needs_evidence_projection",
+      command: `helix closure decision-draft --action close_ready --limit ${closeReadyLimit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json`,
+      reasons:
+        closeReadyBundle.total > 0
+          ? ["close_ready candidate があるため decision draft を生成できる"]
+          : ["close_ready candidate が無いため decision draft は不要"],
+    },
+    expectedApprovalScopeDigest: closeReadyBundle.review_scope.approval_scope_digest,
+  });
+
+  const items = [
+    closeReadyDecisionDraft,
+    ...PROJECT_CLOSURE_QUEUE_ACTIONS.flatMap((action) => {
+      const commandLimit = projectClosureActionCommandLimit(input.snapshot, action, 3);
+      const artifacts = closureEvidenceHandoffArtifacts(action);
+      if (!artifacts) return [];
+      const probe = inspectHandoffArtifact({
+        repoRoot: input.repoRoot,
+        snapshot: input.snapshot,
+        action,
+        kind: "probe_record",
+        path: artifacts.probe_record_path,
+        writePolicy: artifacts.write_policy,
+        generation: probeGeneration(action),
+      });
+      probePresentByAction.set(action, probe.status === "present");
+      const draftGeneration: HandoffGenerationPlan = probePresentByAction.get(action)
+        ? {
+            status: "ready_to_generate",
+            command: closureEvidenceApprovalDraftCommand(action, commandLimit),
+            reasons: ["probe record があるため approval draft を生成できる"],
+          }
+        : {
+            status: "waiting_for_probe",
+            command: closureEvidenceApprovalDraftCommand(action, commandLimit),
+            reasons: ["approval draft 生成には先に probe record が必要"],
+          };
+      const expectedApproval = expectedApprovalScope({
+        repoRoot: input.repoRoot,
+        snapshot: input.snapshot,
+        action,
+        limit: commandLimit,
+        probeRecordPath: artifacts.probe_record_path,
+      });
+      const draft = inspectHandoffArtifact({
+        repoRoot: input.repoRoot,
+        snapshot: input.snapshot,
+        action,
+        kind: "approval_draft",
+        path: artifacts.approval_draft_path,
+        writePolicy: artifacts.write_policy,
+        generation: draftGeneration,
+        expectedApprovalScopeDigest: expectedApproval?.digest ?? null,
+        expectedMaterializeStatus: expectedApproval?.materializeStatus ?? null,
+      });
+      const refresh =
+        draft.approval_record?.scope_status === "mismatch" && expectedApproval?.digest
+          ? inspectHandoffArtifact({
+              repoRoot: input.repoRoot,
+              snapshot: input.snapshot,
+              action,
+              kind: "approval_refresh_draft",
+              path: closureEvidenceApprovalDraftRefreshPath(action, expectedApproval.digest),
+              writePolicy: artifacts.write_policy,
+              generation: {
+                status: probe.status === "present" ? "ready_to_generate" : "waiting_for_probe",
+                command: closureEvidenceApprovalDraftCommand(
+                  action,
+                  commandLimit,
+                  closureEvidenceApprovalDraftRefreshPath(action, expectedApproval.digest),
+                ),
+                reasons:
+                  probe.status === "present"
+                    ? ["canonical approval draft が stale のため refresh draft を生成できる"]
+                    : ["refresh draft 生成には先に probe record が必要"],
+              },
+              expectedApprovalScopeDigest: expectedApproval.digest,
+              expectedMaterializeStatus: expectedApproval.materializeStatus,
+            })
+          : null;
+      return [probe, draft, ...(refresh ? [refresh] : [])];
+    }),
+  ];
   return {
     items,
     present: items.filter((item) => item.status === "present").length,
