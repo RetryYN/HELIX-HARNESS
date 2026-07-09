@@ -4871,6 +4871,88 @@ function buildSummarySurfaceCommandAudit(
   ]);
 }
 
+function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentLocationSnapshot) {
+  const driveModel = summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot));
+  const closeReadyReview = summarizeClosureReviewBundle(
+    buildProjectClosureReviewBundle(snapshot, { action: "close_ready", limit: 20 }),
+  );
+  const vmodelFit = summarizeVmodelFitReport(
+    buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
+  );
+  const skillBinding = summarizeProjectSkillBinding(projectSkillBindingCliPayload(snapshot));
+
+  return {
+    schema_version: "project-frontier-summary.v1",
+    source_clock: snapshot.source_clock,
+    current: {
+      layer: snapshot.current.layer,
+      l12_layer: snapshot.current.l12_layer,
+      status: snapshot.current.status,
+      completion_boundary: snapshot.current.completion_boundary,
+      roadmap_frontier: snapshot.current.roadmap_frontier,
+    },
+    drive_model: {
+      selected_model: driveModel.selected_model,
+      selected_route_id: driveModel.selected_candidate.route_id,
+      selection_status: driveModel.selection_status,
+      default_model: driveModel.default_model,
+      available_models: driveModel.available_models,
+      blocked_models: driveModel.blocked_models,
+      must_return_to_design: snapshot.drive_route.mustReturnToDesign,
+      selected_route_command: driveModel.selected_candidate.command,
+      source_command: driveModel.source_command,
+    },
+    closure_frontier: {
+      action: closeReadyReview.action,
+      approval_required: closeReadyReview.approval_required,
+      total: closeReadyReview.total,
+      listed: closeReadyReview.listed,
+      omitted: closeReadyReview.omitted,
+      approval_window_count: closeReadyReview.approval_window_count,
+      review_scope: closeReadyReview.review_scope,
+      aggregate_review_scope: closeReadyReview.aggregate_review_scope,
+      decision_id: closeReadyReview.decision.decision_id,
+      current_window_command: closeReadyReview.current_window_command,
+      previous_window_command: closeReadyReview.previous_window_command,
+      next_window_command: closeReadyReview.next_window_command,
+      transition_window_command: closeReadyReview.transition_window_command,
+      source_command: closeReadyReview.source_command,
+    },
+    vmodel_fit: {
+      status: vmodelFit.status,
+      gates: vmodelFit.gates,
+      current_location_gate: vmodelFit.current_location_gate,
+      recovery_runway_gate: vmodelFit.recovery_runway_gate,
+      recovery_handoff_gate: vmodelFit.recovery_handoff_gate,
+      approval_review_gate: vmodelFit.approval_review_gate,
+      source_command: vmodelFit.source_command,
+    },
+    skill_binding: {
+      status: skillBinding.status,
+      source_package: skillBinding.source_package,
+      selected_model: skillBinding.selected_model,
+      workflow_modes: skillBinding.workflow_modes,
+      l12_layers: skillBinding.l12_layers,
+      required_skills: skillBinding.required_skills,
+      recommended_skills: skillBinding.recommended_skills,
+      optional_skills: skillBinding.optional_skills,
+      item_count: skillBinding.item_count,
+      top_items: skillBinding.top_items,
+      source_command: skillBinding.source_command,
+    },
+    commands: {
+      current_location: "helix current-location --summary-json",
+      drive_model: driveModel.source_command,
+      closure_review_window: closeReadyReview.current_window_command,
+      closure_transition_window: closeReadyReview.transition_window_command,
+      vmodel_fit: vmodelFit.source_command,
+      skill_binding: skillBinding.source_command,
+    },
+    write_policy: "read-only",
+    source_command: "helix progress tree-view --summary-json",
+  };
+}
+
 type ProbeRecordOutput = {
   requested: boolean;
   path: string | null;
@@ -7271,6 +7353,10 @@ progress
           currentLocationSnapshot,
           db,
         );
+        const projectFrontierSummary = buildProjectFrontierSummary(
+          repoRoot,
+          currentLocationSnapshot,
+        );
         process.stdout.write(
           `${JSON.stringify(
             {
@@ -7309,6 +7395,7 @@ progress
                 pointers: fullJsonPointers,
                 unexpected_pointers: unexpectedFullJsonPointers,
               },
+              project_frontier_summary: projectFrontierSummary,
               summary_surface_command_audit: summarySurfaceCommandAudit,
               write_policy: "read-only",
               source_command: "helix progress tree-view --summary-json",

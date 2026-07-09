@@ -58,6 +58,39 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T22:17:04+09:00"
+    tests_green_at: "2026-07-09T22:17:04+09:00"
+    verdict: approve
+    scope: "Project view の progress tree-view summary に project_frontier_summary を追加し、現在地、Recovery drive route、close_ready 承認 frontier、V-model gates、skill binding、summary command 導線を top-level read-only payload として機械検出できるようにした。承認 record 作成や closure apply は実行せず、raw JSON 導線は通常 command field に混入させない。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T22:15:08+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:31baba1442ee7617affba8b163bb29196afcd5e63046e89e4717176d23d74d4b"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:17:04+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:d58d87363f68489b888d055d476fc6dc3ee4177536282ab95cb11fb7b1ee87d4"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:13:54+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:8c67dbb99506eba832fd10b5f80d003fd9a8dbb3cb1a19c106a80b1c510c4e4e"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T22:04:43+09:00"
     tests_green_at: "2026-07-09T22:04:33+09:00"
     verdict: approve

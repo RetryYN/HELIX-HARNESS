@@ -5744,6 +5744,81 @@ describe("L7 CLI surface closure", () => {
           pointers: [],
           unexpected_pointers: [],
         },
+        project_frontier_summary: {
+          schema_version: "project-frontier-summary.v1",
+          current: {
+            layer: "L14",
+            l12_layer: "L12",
+            status: "needs_recovery",
+            completion_boundary: "contradicted",
+          },
+          drive_model: {
+            selected_model: "Recovery",
+            selected_route_id: "drive:Recovery:recover-current-location",
+            selection_status: "recovery_required",
+            source_command: "helix drive model --summary-json",
+          },
+          closure_frontier: {
+            action: "close_ready",
+            approval_required: true,
+            total: expect.any(Number),
+            listed: expect.any(Number),
+            omitted: expect.any(Number),
+            approval_window_count: expect.any(Number),
+            review_scope: expect.objectContaining({
+              approval_scope_digest: expect.any(String),
+            }),
+            aggregate_review_scope: expect.objectContaining({
+              evidence_totals: expect.objectContaining({
+                artifact_paths: expect.any(Number),
+                evidence_paths: expect.any(Number),
+                test_runs_total: expect.any(Number),
+                test_runs_passed: expect.any(Number),
+              }),
+            }),
+            decision_id: "closure-review:close_ready",
+            current_window_command:
+              "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+            transition_window_command:
+              "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+            source_command: "helix closure review-bundle --action close_ready --summary-json",
+          },
+          vmodel_fit: {
+            status: "needs_fit",
+            current_location_gate: expect.objectContaining({
+              status: "needs_recovery",
+              completion_boundary: "contradicted",
+            }),
+            recovery_runway_gate: expect.objectContaining({
+              status: expect.any(String),
+              human_approval_count: expect.any(Number),
+            }),
+            approval_review_gate: expect.objectContaining({
+              status: expect.any(String),
+              action: "close_ready",
+            }),
+            source_command: "helix vmodel fit --summary-json",
+          },
+          skill_binding: {
+            status: expect.any(String),
+            selected_model: "Recovery",
+            required_skills: expect.any(Number),
+            item_count: expect.any(Number),
+            source_command: "helix skill suggest --current-location --summary-json",
+          },
+          commands: {
+            current_location: "helix current-location --summary-json",
+            drive_model: "helix drive model --summary-json",
+            closure_review_window:
+              "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+            closure_transition_window:
+              "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+            vmodel_fit: "helix vmodel fit --summary-json",
+            skill_binding: "helix skill suggest --current-location --summary-json",
+          },
+          write_policy: "read-only",
+          source_command: "helix progress tree-view --summary-json",
+        },
         summary_surface_command_audit: {
           status: "pass",
           catalog_status: "pass",
