@@ -370,6 +370,9 @@ describe("visualization read model", () => {
       expect(decisionDraft?.approval_record?.reasons).toContain(
         "approval outcome は approve_closure_claim",
       );
+      expect(decisionDraft?.approval_record?.reasons).toContain(
+        "approval_scope_digest は current closure review scope と一致",
+      );
     } finally {
       db.close();
       rmSync(root, { recursive: true, force: true });

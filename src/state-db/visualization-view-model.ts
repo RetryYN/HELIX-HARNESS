@@ -2152,96 +2152,87 @@ export function buildProjectCurrentLocationView(
         next_command: vmodelFit.synthesis.next_command,
         reasons: [...vmodelFit.synthesis.reasons],
       },
-      next_actions: vmodelFit.next_actions.map((action) => ({
-        priority: action.priority,
-        action_id: action.action_id,
-        blocker_code: action.blocker_code,
-        status: action.status,
-        command: action.work_bucket?.evidence_handoff_artifacts
-          ? (evidenceHandoffNextStep({
+      next_actions: vmodelFit.next_actions.map((action) => {
+        const handoffStatus = action.work_bucket
+          ? evidenceHandoffStatusForAction(snapshot, action.work_bucket.action)
+          : null;
+        const handoffNext = action.work_bucket
+          ? evidenceHandoffNextStep({
               bucket: action.work_bucket,
-              status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
-            })?.command ?? action.command)
-          : action.command,
-        gate: action.gate,
-        automation_class: handoffAwareAutomationClass(
-          action.automation_class,
-          action.work_bucket?.evidence_handoff_artifacts
-            ? evidenceHandoffNextStep({
-                bucket: action.work_bucket,
-                status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
-              })
-            : null,
-        ),
-        count: action.count,
-        required_action: action.required_action,
-        doc_dependencies: [...action.doc_dependencies],
-        implementation_dependencies: [...action.implementation_dependencies],
-        reasons: [...action.reasons],
-        work_bucket: action.work_bucket
-          ? {
-              bucket_id: action.work_bucket.bucket_id,
-              action: action.work_bucket.action,
-              evidence_signature: action.work_bucket.evidence_signature,
-              count: action.work_bucket.count,
-              listed: action.work_bucket.listed,
-              omitted: action.work_bucket.omitted,
-              target_tables: [...action.work_bucket.target_tables],
-              primary_command: action.work_bucket.primary_command,
-              evidence_patch_command: action.work_bucket.evidence_patch_command,
-              evidence_patch_write_policy: action.work_bucket.evidence_patch_write_policy,
-              evidence_patch_candidate_count: action.work_bucket.evidence_patch_candidate_count,
-              evidence_probe_command: action.work_bucket.evidence_probe_command,
-              evidence_materialize_command: action.work_bucket.evidence_materialize_command,
-              evidence_approval_draft_command: action.work_bucket.evidence_approval_draft_command,
-              evidence_apply_dry_run_command: action.work_bucket.evidence_apply_dry_run_command,
-              evidence_apply_execute_command: action.work_bucket.evidence_apply_execute_command,
-              evidence_apply_write_policy: action.work_bucket.evidence_apply_write_policy,
-              evidence_handoff_artifacts: action.work_bucket.evidence_handoff_artifacts,
-              evidence_handoff_status: action.work_bucket.evidence_handoff_artifacts
-                ? evidenceHandoffStatusForAction(snapshot, action.work_bucket.action)
-                : null,
-              evidence_handoff_next: action.work_bucket.evidence_handoff_artifacts
-                ? evidenceHandoffNextStep({
-                    bucket: action.work_bucket,
-                    status: evidenceHandoffStatusForAction(snapshot, action.work_bucket.action),
-                  })
-                : null,
-              repair_status: action.work_bucket.repair_status,
-              repair_automation_status: action.work_bucket.repair_automation_status,
-              repair_primary_next_command: action.work_bucket.repair_primary_next_command,
-              failed_evidence_count: action.work_bucket.failed_evidence_count,
-              projection_item_count: action.work_bucket.projection_item_count,
-              projection_plan_ids: [...action.work_bucket.projection_plan_ids],
-              required_green_tables: [...action.work_bucket.required_green_tables],
-              command_candidates: action.work_bucket.command_candidates.map((candidate) => ({
-                command_label: candidate.command_label,
-                command_verb: candidate.command_verb,
-                runnable_command: candidate.runnable_command,
-                resolution_candidates: candidate.resolution_candidates.map((resolution) => ({
-                  command: resolution.command,
-                  source: resolution.source,
-                  confidence: resolution.confidence,
-                  safe_to_run: resolution.safe_to_run,
-                  projection_binding: {
-                    target_tables: [...resolution.projection_binding.target_tables],
-                    source_surfaces: [...resolution.projection_binding.source_surfaces],
-                    required_fields: [...resolution.projection_binding.required_fields],
-                    success_status: resolution.projection_binding.success_status,
-                    write_policy: resolution.projection_binding.write_policy,
-                    postcheck_commands: [...resolution.projection_binding.postcheck_commands],
-                    required_action: resolution.projection_binding.required_action,
-                  },
-                  required_action: resolution.required_action,
+              status: handoffStatus,
+            })
+          : null;
+        return {
+          priority: action.priority,
+          action_id: action.action_id,
+          blocker_code: action.blocker_code,
+          status: action.status,
+          command: handoffNext?.command ?? action.command,
+          gate: action.gate,
+          automation_class: handoffAwareAutomationClass(action.automation_class, handoffNext),
+          count: action.count,
+          required_action: action.required_action,
+          doc_dependencies: [...action.doc_dependencies],
+          implementation_dependencies: [...action.implementation_dependencies],
+          reasons: [...action.reasons],
+          work_bucket: action.work_bucket
+            ? {
+                bucket_id: action.work_bucket.bucket_id,
+                action: action.work_bucket.action,
+                evidence_signature: action.work_bucket.evidence_signature,
+                count: action.work_bucket.count,
+                listed: action.work_bucket.listed,
+                omitted: action.work_bucket.omitted,
+                target_tables: [...action.work_bucket.target_tables],
+                primary_command: action.work_bucket.primary_command,
+                evidence_patch_command: action.work_bucket.evidence_patch_command,
+                evidence_patch_write_policy: action.work_bucket.evidence_patch_write_policy,
+                evidence_patch_candidate_count: action.work_bucket.evidence_patch_candidate_count,
+                evidence_probe_command: action.work_bucket.evidence_probe_command,
+                evidence_materialize_command: action.work_bucket.evidence_materialize_command,
+                evidence_approval_draft_command: action.work_bucket.evidence_approval_draft_command,
+                evidence_apply_dry_run_command: action.work_bucket.evidence_apply_dry_run_command,
+                evidence_apply_execute_command: action.work_bucket.evidence_apply_execute_command,
+                evidence_apply_write_policy: action.work_bucket.evidence_apply_write_policy,
+                evidence_handoff_artifacts: action.work_bucket.evidence_handoff_artifacts,
+                evidence_handoff_status: handoffStatus,
+                evidence_handoff_next: handoffNext,
+                repair_status: action.work_bucket.repair_status,
+                repair_automation_status: action.work_bucket.repair_automation_status,
+                repair_primary_next_command: action.work_bucket.repair_primary_next_command,
+                failed_evidence_count: action.work_bucket.failed_evidence_count,
+                projection_item_count: action.work_bucket.projection_item_count,
+                projection_plan_ids: [...action.work_bucket.projection_plan_ids],
+                required_green_tables: [...action.work_bucket.required_green_tables],
+                command_candidates: action.work_bucket.command_candidates.map((candidate) => ({
+                  command_label: candidate.command_label,
+                  command_verb: candidate.command_verb,
+                  runnable_command: candidate.runnable_command,
+                  resolution_candidates: candidate.resolution_candidates.map((resolution) => ({
+                    command: resolution.command,
+                    source: resolution.source,
+                    confidence: resolution.confidence,
+                    safe_to_run: resolution.safe_to_run,
+                    projection_binding: {
+                      target_tables: [...resolution.projection_binding.target_tables],
+                      source_surfaces: [...resolution.projection_binding.source_surfaces],
+                      required_fields: [...resolution.projection_binding.required_fields],
+                      success_status: resolution.projection_binding.success_status,
+                      write_policy: resolution.projection_binding.write_policy,
+                      postcheck_commands: [...resolution.projection_binding.postcheck_commands],
+                      required_action: resolution.projection_binding.required_action,
+                    },
+                    required_action: resolution.required_action,
+                  })),
+                  count: candidate.count,
+                  latest_observed_at: candidate.latest_observed_at,
                 })),
-                count: candidate.count,
-                latest_observed_at: candidate.latest_observed_at,
-              })),
-              sample_plan_ids: [...action.work_bucket.sample_plan_ids],
-              postcheck_commands: [...action.work_bucket.postcheck_commands],
-            }
-          : null,
-      })),
+                sample_plan_ids: [...action.work_bucket.sample_plan_ids],
+                postcheck_commands: [...action.work_bucket.postcheck_commands],
+              }
+            : null,
+        };
+      }),
       handoff_summary: {
         status: vmodelHandoffSummary.status,
         total: vmodelHandoffSummary.total,
@@ -3386,7 +3377,7 @@ function vmodelHandoffSummaryForView(
   const steps = nextActions
     .map((action) => {
       const bucket = action.work_bucket;
-      if (!bucket?.evidence_handoff_artifacts) return null;
+      if (!bucket) return null;
       return evidenceHandoffNextStep({
         bucket,
         status: evidenceHandoffStatusForAction(snapshot, bucket.action),
@@ -3512,7 +3503,6 @@ function evidenceHandoffNextStep(input: {
     ProjectCurrentLocationView["vmodel_fit"]["next_actions"][number]["work_bucket"]
   >["evidence_handoff_next"]
 > | null {
-  if (!input.bucket.evidence_handoff_artifacts) return null;
   if (!input.status) {
     return {
       status: "unavailable",
@@ -3529,6 +3519,117 @@ function evidenceHandoffNextStep(input: {
       reasons: ["handoff_status=missing"],
     };
   }
+  const decisionDraft = input.status.items.find(
+    (item) => input.bucket.action === "close_ready" && item.kind === "decision_draft",
+  );
+  if (decisionDraft) {
+    const approval = decisionDraft.approval_record;
+    const approvalRecordPath = decisionDraft.path;
+    if (decisionDraft.status === "unchecked") {
+      return {
+        status: "unchecked",
+        approval_state: projectApprovalState(approval),
+        scope_status: approval?.scope_status ?? null,
+        valid_for_apply: approval?.valid_for_apply ?? false,
+        command: decisionDraft.generation_command ?? input.bucket.evidence_probe_command,
+        label: "decision draft unchecked",
+        required_action: "repoRoot 付き view で close_ready decision draft を再検査する",
+        reason_codes: projectHandoffReasonCodes({
+          status: "unchecked",
+          approval,
+          extras: ["handoff.decision_draft.unchecked"],
+        }),
+        reasons: decisionDraft.reasons,
+      };
+    }
+    if (decisionDraft.status !== "present") {
+      return {
+        status: "approval_required",
+        approval_state: projectApprovalState(approval),
+        scope_status: approval?.scope_status ?? null,
+        valid_for_apply: approval?.valid_for_apply ?? false,
+        command: decisionDraft.generation_command ?? input.bucket.evidence_approval_draft_command,
+        label: "generate close_ready decision draft",
+        required_action:
+          "close_ready approval bundle から non-authorizing decision draft を生成する",
+        reason_codes: projectHandoffReasonCodes({
+          status: "approval_required",
+          approval,
+          extras: ["handoff.decision_draft.missing"],
+        }),
+        reasons: decisionDraft.reasons,
+      };
+    }
+    if (approval?.status === "approved" && approval.valid_for_apply) {
+      return {
+        status: "apply_dry_run",
+        approval_state: projectApprovalState(approval),
+        scope_status: approval.scope_status,
+        valid_for_apply: approval.valid_for_apply,
+        command: `helix closure apply --dry-run --approval-record ${approvalRecordPath} --limit ${input.bucket.listed} --json`,
+        label: "apply dry-run approved closure claim",
+        required_action:
+          "承認済み close_ready record を使って closure apply dry-run を実行し、対象 PLAN と approval scope を照合する",
+        reason_codes: projectHandoffReasonCodes({
+          status: "apply_dry_run",
+          approval,
+          extras: ["handoff.closure_apply.dry_run_ready", "approval.record.approved"],
+        }),
+        reasons: [...approval.reasons, "execute remains separate approval-required surface"],
+      };
+    }
+    if (approval?.status === "pending_human_review") {
+      return {
+        status: "approval_pending",
+        approval_state: projectApprovalState(approval),
+        scope_status: approval.scope_status,
+        valid_for_apply: approval.valid_for_apply,
+        command: "helix closure review-bundle --action close_ready --summary-json",
+        label: "close_ready approval pending",
+        required_action:
+          "close_ready review bundle と approval_scope_digest を確認し、人間判断で outcome を approve/reject に更新する",
+        reason_codes: projectHandoffReasonCodes({
+          status: "approval_pending",
+          approval,
+          extras: ["approval.waiting_for_human_review", "handoff.decision_draft.present"],
+        }),
+        reasons: approval.reasons,
+      };
+    }
+    if (approval?.status === "rejected") {
+      return {
+        status: "approval_rejected",
+        approval_state: projectApprovalState(approval),
+        scope_status: approval.scope_status,
+        valid_for_apply: approval.valid_for_apply,
+        command: "helix closure transition-plan --action close_ready --summary-json",
+        label: "close_ready approval rejected",
+        required_action: "reject outcome に従って collect/repair/reverse lane へ戻す",
+        reason_codes: projectHandoffReasonCodes({
+          status: "approval_rejected",
+          approval,
+          extras: ["approval.record.rejected", "handoff.decision_draft.present"],
+        }),
+        reasons: approval.reasons,
+      };
+    }
+    return {
+      status: "approval_required",
+      approval_state: projectApprovalState(approval),
+      scope_status: approval?.scope_status ?? null,
+      valid_for_apply: approval?.valid_for_apply ?? false,
+      command: decisionDraft.generation_command ?? input.bucket.evidence_approval_draft_command,
+      label: "close_ready approval record required",
+      required_action: "decision draft の必須 field/outcome を確認してから dry-run する",
+      reason_codes: projectHandoffReasonCodes({
+        status: "approval_required",
+        approval,
+        extras: ["approval.record.invalid", "handoff.decision_draft.present"],
+      }),
+      reasons: approval?.reasons ?? ["decision draft approval record is unavailable"],
+    };
+  }
+  if (!input.bucket.evidence_handoff_artifacts) return null;
   const probe = input.status.items.find((item) => item.kind === "probe_record");
   const canonicalDraft = input.status.items.find((item) => item.kind === "approval_draft");
   const refreshDraft = input.status.items.find(
@@ -3751,6 +3852,12 @@ function evidenceHandoffNextStep(input: {
 function activeApprovalArtifactForHandoffStatus(
   status: ProjectEvidenceHandoffStatus | null,
 ): { approval_record: ProjectEvidenceApprovalRecord; path: string } | null {
+  const decisionDraft = status?.items.find(
+    (item) =>
+      item.kind === "decision_draft" &&
+      item.status === "present" &&
+      item.approval_record?.scope_status === "match",
+  );
   const refreshArtifact = status?.items.find(
     (item) =>
       item.kind === "approval_refresh_draft" &&
@@ -3758,6 +3865,7 @@ function activeApprovalArtifactForHandoffStatus(
       item.approval_record?.scope_status === "match",
   );
   const artifact =
+    decisionDraft ??
     refreshArtifact ??
     status?.items.find((item) => item.kind === "approval_draft" && item.approval_record) ??
     status?.items.find((item) => item.approval_record);
@@ -3798,7 +3906,7 @@ function recoveryHandoffGateForView(
 ): ProjectCurrentLocationView["vmodel_fit"]["recovery_handoff_gate"] {
   const action = vmodelFit.next_actions.find((item) => item.blocker_code === "current_location");
   const bucket = action?.work_bucket ?? null;
-  if (!action || !bucket?.evidence_handoff_artifacts) {
+  if (!action || !bucket) {
     return {
       status: vmodelFit.recovery_handoff_gate.status,
       effective_phase: vmodelFit.recovery_handoff_gate.effective_phase,

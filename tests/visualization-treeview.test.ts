@@ -2054,6 +2054,13 @@ describe("visualization Tree View adapter", () => {
       reasons: ["handoff artifact を repoRoot から検出した"],
     });
     raw.recovery_handoff_artifacts.present += 1;
+    const queueItem = raw.project_current_location.closure.queue.items[0];
+    if (!queueItem) throw new Error("closure queue fixture missing");
+    queueItem.nextAction = "close_ready";
+    queueItem.requiredAction =
+      "close_ready review bundle と approval_scope_digest を確認し、人間判断で approve/reject を記録する";
+    raw.project_current_location.closure.queue.route_counts.close_ready = 1;
+    raw.project_current_location.closure.queue.route_counts.repair_failed_evidence = 0;
 
     const tree = buildVisualizationTreeView(buildVisualizationViewModel(raw));
     const recoveryArtifacts = findTreeNode(
@@ -2082,6 +2089,36 @@ describe("visualization Tree View adapter", () => {
     expect(decisionDraft?.tooltip).toContain("outcome=pending_human_review");
     expect(decisionDraft?.tooltip).toContain("scope=match");
     expect(decisionDraft?.tooltip).toContain("approval_scope_digest=sha256:close-ready");
+    const recoveryHandoff = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/recovery-handoff",
+    );
+    const recoveryPlan = findTreeNode(tree, "project/current-location/drive/recovery-plan");
+    const recoveryPlanHandoff = findTreeNode(
+      tree,
+      "project/current-location/drive/recovery-plan/handoff-gate",
+    );
+    expect(recoveryHandoff).toMatchObject({
+      description:
+        "approval_pending phase=approval approval=pending_human_review scope=match valid=false",
+      contextValue:
+        "vmodel-fit.recovery-handoff.approval.approval_pending.approval-pending_human_review.scope-match.valid-false",
+    });
+    expect(recoveryHandoff?.tooltip).toContain(
+      "approval_record_path=.helix/tmp/closure/close_ready-decision-draft.yml",
+    );
+    expect(recoveryHandoff?.tooltip).toContain("decision=closure-review:close_ready");
+    expect(recoveryHandoff?.tooltip).toContain("approval_scope_digest=sha256:close-ready");
+    expect(recoveryHandoff?.tooltip).toContain("approval_state=pending_human_review");
+    expect(recoveryPlan?.description).toContain("handoff=approval_pending");
+    expect(recoveryPlanHandoff).toMatchObject({
+      description: "approval_pending phase=approval approval=pending_human_review scope=match",
+      contextValue:
+        "recovery-plan.handoff-gate.approval.approval_pending.approval-pending_human_review",
+    });
+    expect(recoveryPlanHandoff?.tooltip).toContain(
+      "approval_record_path=.helix/tmp/closure/close_ready-decision-draft.yml",
+    );
   });
 
   it("U-VTREE-004: renders approval-pending handoff as an approval next action", () => {

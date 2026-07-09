@@ -299,7 +299,7 @@ export interface VmodelHandoffStatus {
 }
 
 export interface VmodelHandoffArtifactStatus {
-  kind: "probe_record" | "approval_draft";
+  kind: "probe_record" | "approval_draft" | "decision_draft";
   path: string;
   status: "present" | "missing" | "unchecked";
   generation_status: "present" | "ready_to_generate" | "waiting_for_probe" | "unchecked";
@@ -1366,7 +1366,10 @@ function parseVmodelApprovalRecord(text: string | null): VmodelApprovalRecordSta
   const outcome = /^outcome:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const approvalScopeDigest = /^approval_scope_digest:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const reviewedCandidateCountRaw =
-    /^reviewed_candidate_count:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
+    (
+      /^reviewed_candidate_count:\s*(.+)$/m.exec(text)?.[1] ??
+      /^reviewed_count:\s*(.+)$/m.exec(text)?.[1]
+    )?.trim() ?? null;
   const reviewedCandidateCount =
     reviewedCandidateCountRaw === null ? null : Number(reviewedCandidateCountRaw);
   const missing: string[] = [];
@@ -1424,6 +1427,22 @@ function parseVmodelApprovalRecord(text: string | null): VmodelApprovalRecordSta
       reasons: ["approval outcome は approve_materialized_evidence"],
     };
   }
+  if (outcome === "approve_closure_claim") {
+    return {
+      status: "approved",
+      decision_id: decisionId,
+      outcome,
+      approval_scope_digest: approvalScopeDigest,
+      expected_approval_scope_digest: null,
+      scope_status: "not_checked",
+      materialize_status: null,
+      reviewed_candidate_count: Number.isFinite(reviewedCandidateCount)
+        ? reviewedCandidateCount
+        : null,
+      valid_for_apply: true,
+      reasons: ["approval outcome は approve_closure_claim"],
+    };
+  }
   if (outcome === "reject_materialized_evidence") {
     return {
       status: "rejected",
@@ -1438,6 +1457,26 @@ function parseVmodelApprovalRecord(text: string | null): VmodelApprovalRecordSta
         : null,
       valid_for_apply: false,
       reasons: ["approval outcome は reject_materialized_evidence"],
+    };
+  }
+  if (
+    outcome === "reject_to_collect_evidence" ||
+    outcome === "reject_to_repair_failed_evidence" ||
+    outcome === "reject_to_reverse_design"
+  ) {
+    return {
+      status: "rejected",
+      decision_id: decisionId,
+      outcome,
+      approval_scope_digest: approvalScopeDigest,
+      expected_approval_scope_digest: null,
+      scope_status: "not_checked",
+      materialize_status: null,
+      reviewed_candidate_count: Number.isFinite(reviewedCandidateCount)
+        ? reviewedCandidateCount
+        : null,
+      valid_for_apply: false,
+      reasons: [`approval outcome は ${outcome}`],
     };
   }
   return {
@@ -1511,6 +1550,91 @@ function withVmodelApprovalScopeCheck(input: {
     materialize_status: materialize.materialize_readiness.status,
     valid_for_apply: input.approval.valid_for_apply && scopeStatus === "match",
     reasons: [...input.approval.reasons, ...scopeReasons],
+  };
+}
+
+function withVmodelClosureReviewScopeCheck(input: {
+  approval: VmodelApprovalRecordStatus;
+  snapshot: ProjectCurrentLocationSnapshot;
+}): VmodelApprovalRecordStatus {
+  const commandLimit = projectClosureActionCommandLimit(input.snapshot, "close_ready", 20);
+  const bundle = buildProjectClosureReviewBundle(input.snapshot, {
+    action: "close_ready",
+    limit: commandLimit,
+    offset: 0,
+  });
+  const expected = bundle.review_scope.approval_scope_digest;
+  const scopeStatus: VmodelApprovalRecordStatus["scope_status"] =
+    input.approval.approval_scope_digest === null
+      ? "missing"
+      : input.approval.approval_scope_digest === expected
+        ? "match"
+        : "mismatch";
+  const scopeReasons =
+    scopeStatus === "match"
+      ? ["approval_scope_digest は current closure review scope と一致"]
+      : scopeStatus === "mismatch"
+        ? ["approval_scope_digest が current closure review scope と一致しない"]
+        : ["approval_scope_digest が指定されていない"];
+  return {
+    ...input.approval,
+    expected_approval_scope_digest: expected,
+    scope_status: scopeStatus,
+    materialize_status: null,
+    valid_for_apply: input.approval.valid_for_apply && scopeStatus === "match",
+    reasons: [...input.approval.reasons, ...scopeReasons],
+  };
+}
+
+const CLOSE_READY_DECISION_DRAFT_PATH = ".helix/tmp/closure/close_ready-decision-draft.yml";
+
+function closeReadyDecisionDraftCommand(snapshot: ProjectCurrentLocationSnapshot): string {
+  const commandLimit = projectClosureActionCommandLimit(snapshot, "close_ready", 20);
+  return `helix closure decision-draft --action close_ready --limit ${commandLimit} --offset 0 --out ${CLOSE_READY_DECISION_DRAFT_PATH} --summary-json`;
+}
+
+function buildVmodelCloseReadyDecisionHandoffStatus(input: {
+  snapshot: ProjectCurrentLocationSnapshot;
+  repoRoot?: string;
+}): VmodelHandoffStatus {
+  const decisionDraft = inspectVmodelHandoffArtifact({
+    repoRoot: input.repoRoot,
+    kind: "decision_draft",
+    path: CLOSE_READY_DECISION_DRAFT_PATH,
+    generationCommand: closeReadyDecisionDraftCommand(input.snapshot),
+    generationStatus: "ready_to_generate",
+    writePolicy: "local-artifact-new-file",
+    reasons: ["close_ready candidate があるため decision draft を生成できる"],
+  });
+  const approvalRecord =
+    input.repoRoot && decisionDraft.status === "present"
+      ? withVmodelClosureReviewScopeCheck({
+          approval: parseVmodelApprovalRecord(
+            readFileSync(join(input.repoRoot, decisionDraft.path), "utf8"),
+          ),
+          snapshot: input.snapshot,
+        })
+      : decisionDraft.status === "unchecked"
+        ? {
+            status: "unchecked" as const,
+            decision_id: null,
+            outcome: null,
+            approval_scope_digest: null,
+            expected_approval_scope_digest: null,
+            scope_status: "not_checked" as const,
+            materialize_status: null,
+            reviewed_candidate_count: null,
+            valid_for_apply: false,
+            reasons: ["repoRoot が無いため decision draft の内容は未検査"],
+          }
+        : parseVmodelApprovalRecord(null);
+  return {
+    present: decisionDraft.status === "present" ? 1 : 0,
+    missing: decisionDraft.status === "missing" ? 1 : 0,
+    unchecked: decisionDraft.status === "unchecked" ? 1 : 0,
+    items: [decisionDraft],
+    approval_record: approvalRecord,
+    approval_record_path: decisionDraft.status === "present" ? decisionDraft.path : null,
   };
 }
 
@@ -1651,6 +1775,114 @@ function buildVmodelHandoffNextStep(input: {
   approvalRecordPath: string;
 }): VmodelHandoffNextStep | null {
   if (!input.status) return null;
+  const decisionDraft = input.status.items.find((item) => item.kind === "decision_draft");
+  if (input.action === "close_ready" && decisionDraft) {
+    const approval = input.status.approval_record;
+    const approvalRecordPath = input.status.approval_record_path ?? decisionDraft.path;
+    if (decisionDraft.status === "unchecked") {
+      return {
+        status: "unchecked",
+        approval_state: vmodelApprovalState(approval),
+        scope_status: approval?.scope_status ?? null,
+        valid_for_apply: approval?.valid_for_apply ?? false,
+        command: decisionDraft.generation_command,
+        label: "decision draft unchecked",
+        required_action: "repoRoot 付き fit gate で close_ready decision draft を再検査する",
+        reason_codes: vmodelHandoffReasonCodes({
+          status: "unchecked",
+          approval,
+          extras: ["handoff.decision_draft.unchecked"],
+        }),
+        reasons: decisionDraft.reasons,
+      };
+    }
+    if (decisionDraft.status !== "present") {
+      return {
+        status: "approval_required",
+        approval_state: vmodelApprovalState(approval),
+        scope_status: approval?.scope_status ?? null,
+        valid_for_apply: approval?.valid_for_apply ?? false,
+        command: decisionDraft.generation_command,
+        label: "generate close_ready decision draft",
+        required_action:
+          "close_ready approval bundle から non-authorizing decision draft を生成する",
+        reason_codes: vmodelHandoffReasonCodes({
+          status: "approval_required",
+          approval,
+          extras: ["handoff.decision_draft.missing"],
+        }),
+        reasons: decisionDraft.reasons,
+      };
+    }
+    if (approval?.status === "approved" && approval.valid_for_apply) {
+      return {
+        status: "apply_dry_run",
+        approval_state: vmodelApprovalState(approval),
+        scope_status: approval.scope_status,
+        valid_for_apply: approval.valid_for_apply,
+        command: `helix closure apply --dry-run --approval-record ${approvalRecordPath} --limit ${input.commandLimit} --json`,
+        label: "apply dry-run approved closure claim",
+        required_action:
+          "承認済み close_ready record を使って closure apply dry-run を実行し、対象 PLAN と approval scope を照合する",
+        reason_codes: vmodelHandoffReasonCodes({
+          status: "apply_dry_run",
+          approval,
+          extras: ["handoff.closure_apply.dry_run_ready", "approval.record.approved"],
+        }),
+        reasons: [...approval.reasons, "execute remains separate approval-required surface"],
+      };
+    }
+    if (approval?.status === "pending_human_review") {
+      return {
+        status: "approval_pending",
+        approval_state: vmodelApprovalState(approval),
+        scope_status: approval.scope_status,
+        valid_for_apply: approval.valid_for_apply,
+        command: "helix closure review-bundle --action close_ready --summary-json",
+        label: "close_ready approval pending",
+        required_action:
+          "close_ready review bundle と approval_scope_digest を確認し、人間判断で outcome を approve/reject に更新する",
+        reason_codes: vmodelHandoffReasonCodes({
+          status: "approval_pending",
+          approval,
+          extras: ["approval.waiting_for_human_review", "handoff.decision_draft.present"],
+        }),
+        reasons: approval.reasons,
+      };
+    }
+    if (approval?.status === "rejected") {
+      return {
+        status: "approval_rejected",
+        approval_state: vmodelApprovalState(approval),
+        scope_status: approval.scope_status,
+        valid_for_apply: approval.valid_for_apply,
+        command: "helix closure transition-plan --action close_ready --summary-json",
+        label: "close_ready approval rejected",
+        required_action: "reject outcome に従って collect/repair/reverse lane へ戻す",
+        reason_codes: vmodelHandoffReasonCodes({
+          status: "approval_rejected",
+          approval,
+          extras: ["approval.record.rejected", "handoff.decision_draft.present"],
+        }),
+        reasons: approval.reasons,
+      };
+    }
+    return {
+      status: "approval_required",
+      approval_state: vmodelApprovalState(approval),
+      scope_status: approval?.scope_status ?? null,
+      valid_for_apply: approval?.valid_for_apply ?? false,
+      command: decisionDraft.generation_command,
+      label: "close_ready approval record required",
+      required_action: "decision draft の必須 field/outcome を確認してから dry-run する",
+      reason_codes: vmodelHandoffReasonCodes({
+        status: "approval_required",
+        approval,
+        extras: ["approval.record.invalid", "handoff.decision_draft.present"],
+      }),
+      reasons: approval?.reasons ?? ["decision draft approval record is unavailable"],
+    };
+  }
   const probe = input.status.items.find((item) => item.kind === "probe_record");
   const draft = input.status.items.find((item) => item.kind === "approval_draft");
   if (probe?.status === "unchecked" || draft?.status === "unchecked") {
@@ -1952,8 +2184,13 @@ function buildVmodelNextActionWorkBucket(input: {
         evidenceProbeCommand,
         evidenceApprovalDraftCommand,
       })
-    : null;
-  const evidenceHandoffNext = evidenceHandoffArtifacts
+    : bucket.action === "close_ready"
+      ? buildVmodelCloseReadyDecisionHandoffStatus({
+          snapshot: input.snapshot,
+          repoRoot: input.repoRoot,
+        })
+      : null;
+  const evidenceHandoffNext = evidenceHandoffStatus
     ? buildVmodelHandoffNextStep({
         action: bucket.action,
         commandLimit: evidenceCommandLimit,
@@ -1962,7 +2199,8 @@ function buildVmodelNextActionWorkBucket(input: {
         evidenceApprovalDraftCommand,
         evidenceMaterializeCommand,
         evidenceApplyDryRunCommand,
-        approvalRecordPath: evidenceHandoffArtifacts.approval_draft_path,
+        approvalRecordPath:
+          evidenceHandoffArtifacts?.approval_draft_path ?? CLOSE_READY_DECISION_DRAFT_PATH,
       })
     : null;
   return {

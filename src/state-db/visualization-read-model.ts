@@ -276,9 +276,15 @@ function approvalScopeStatus(
 
 function parseVisualizationApprovalRecord(
   text: string | null,
-  expectedApprovalScopeDigest: string | null = null,
-  expectedMaterializeStatus: string | null = null,
+  options: {
+    expectedApprovalScopeDigest?: string | null;
+    expectedMaterializeStatus?: string | null;
+    scopeLabel?: "materialize" | "closure_review";
+  } = {},
 ): VisualizationApprovalRecordStatus {
+  const expectedApprovalScopeDigest = options.expectedApprovalScopeDigest ?? null;
+  const expectedMaterializeStatus = options.expectedMaterializeStatus ?? null;
+  const scopeLabel = options.scopeLabel ?? "materialize";
   if (text === null) {
     return {
       status: "missing",
@@ -339,9 +345,17 @@ function parseVisualizationApprovalRecord(
   };
   const scopeReasons =
     common.scope_status === "match"
-      ? ["approval_scope_digest は current materialize scope と一致"]
+      ? [
+          scopeLabel === "closure_review"
+            ? "approval_scope_digest は current closure review scope と一致"
+            : "approval_scope_digest は current materialize scope と一致",
+        ]
       : common.scope_status === "mismatch"
-        ? ["approval_scope_digest が current materialize scope と一致しない"]
+        ? [
+            scopeLabel === "closure_review"
+              ? "approval_scope_digest が current closure review scope と一致しない"
+              : "approval_scope_digest が current materialize scope と一致しない",
+          ]
         : common.scope_status === "missing"
           ? ["approval_scope_digest が指定されていない"]
           : [];
@@ -566,11 +580,11 @@ function inspectHandoffArtifact(input: {
       write_policy: input.writePolicy,
       approval_record:
         input.kind !== "probe_record"
-          ? parseVisualizationApprovalRecord(
-              null,
-              input.expectedApprovalScopeDigest ?? null,
-              input.expectedMaterializeStatus ?? null,
-            )
+          ? parseVisualizationApprovalRecord(null, {
+              expectedApprovalScopeDigest: input.expectedApprovalScopeDigest ?? null,
+              expectedMaterializeStatus: input.expectedMaterializeStatus ?? null,
+              scopeLabel: input.kind === "decision_draft" ? "closure_review" : "materialize",
+            })
           : null,
       reasons: ["handoff artifact はまだ生成されていない", ...input.generation.reasons],
     };
@@ -591,11 +605,11 @@ function inspectHandoffArtifact(input: {
     write_policy: input.writePolicy,
     approval_record:
       input.kind !== "probe_record"
-        ? parseVisualizationApprovalRecord(
-            content.toString("utf8"),
-            input.expectedApprovalScopeDigest ?? null,
-            input.expectedMaterializeStatus ?? null,
-          )
+        ? parseVisualizationApprovalRecord(content.toString("utf8"), {
+            expectedApprovalScopeDigest: input.expectedApprovalScopeDigest ?? null,
+            expectedMaterializeStatus: input.expectedMaterializeStatus ?? null,
+            scopeLabel: input.kind === "decision_draft" ? "closure_review" : "materialize",
+          })
         : null,
     reasons: ["handoff artifact を repoRoot から検出した"],
   };
