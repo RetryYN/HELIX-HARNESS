@@ -1178,34 +1178,49 @@ describe("visualization Tree View adapter", () => {
       description: "Recovery / recovery_required",
     });
     expect(drive?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
+      "project/current-location/drive/current-location-frontier:recovery_frontier / l14_claim_with_l7_work",
       "project/current-location/drive/model-candidates:helix drive model --json",
       "project/current-location/drive/recovery-plan:blocked remaining=1 handoff=generate_approval_draft",
       "project/current-location/drive/route:return-to-design L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
       "project/current-location/drive/reverse:L5/L6/L7/L12 L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability actions=repair_failed_evidence",
       "project/current-location/drive/forward:blocked",
     ]);
-    expect(drive?.children[2]?.tooltip).toContain(
-      "reverse_coverage=L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
+    expect(drive?.children[0]?.tooltip).toContain("open_l7=1");
+    expect(drive?.children[0]?.tooltip).toContain("terminal_l14=1");
+    expect(drive?.children[0]?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: ["helix progress frontier --summary-json"],
+    });
+    expect(drive?.children[0]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+      [
+        "project/current-location/drive/current-location-frontier/open-l7:1",
+        "project/current-location/drive/current-location-frontier/l14-claims:1",
+        "project/current-location/drive/current-location-frontier/reentry:machine_phase_pending -> recompute_drive_model",
+      ],
     );
     expect(drive?.children[3]?.tooltip).toContain(
+      "reverse_coverage=L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
+    );
+    expect(drive?.children[4]?.tooltip).toContain(
       "coverage=L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
     );
-    expect(drive?.children[3]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+    expect(drive?.children[4]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
         "project/current-location/drive/reverse/doc-dependencies:3",
         "project/current-location/drive/reverse/implementation-dependencies:2",
         "project/current-location/drive/reverse/closure-links:1/1",
       ],
     );
-    expect(drive?.children[3]?.children[0]?.tooltip).toContain("docs/design/**");
-    expect(drive?.children[3]?.children[1]?.tooltip).toContain("design_declarations");
-    expect(drive?.children[3]?.children[2]?.tooltip).toContain("action=repair_failed_evidence");
-    expect(drive?.children[0]?.command).toEqual({
+    expect(drive?.children[4]?.children[0]?.tooltip).toContain("docs/design/**");
+    expect(drive?.children[4]?.children[1]?.tooltip).toContain("design_declarations");
+    expect(drive?.children[4]?.children[2]?.tooltip).toContain("action=repair_failed_evidence");
+    expect(drive?.children[1]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix drive model --summary-json"],
     });
-    expect(drive?.children[0]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+    expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
         "project/current-location/drive/model-candidates/1-Recovery:selected L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
         "project/current-location/drive/model-candidates/2-Reverse:blocked L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
@@ -1215,18 +1230,18 @@ describe("visualization Tree View adapter", () => {
         "project/current-location/drive/model-candidates/6-Refactor:blocked L5-detailed-contract",
       ],
     );
-    expect(drive?.children[0]?.children[0]?.tooltip).toContain(
+    expect(drive?.children[1]?.children[0]?.tooltip).toContain(
       "trigger=L14 claim と L7/open evidence の矛盾",
     );
-    expect(drive?.children[0]?.children[3]?.tooltip).toContain(
+    expect(drive?.children[1]?.children[3]?.tooltip).toContain(
       "action=roadmap current と design coverage が一致している範囲を Forward で進める",
     );
-    expect(drive?.children[1]?.command).toEqual({
+    expect(drive?.children[2]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix recovery plan --summary-json"],
     });
-    expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+    expect(drive?.children[2]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
         "project/current-location/drive/recovery-plan/exit-forecast:blocked remaining=1 lanes=repair_failed_evidence",
         "project/current-location/drive/recovery-plan/handoff-gate:generate_approval_draft phase=machine approval=missing scope=missing",
@@ -1242,18 +1257,23 @@ describe("visualization Tree View adapter", () => {
     );
     expect(reentryForecast?.tooltip).toContain("raw=machine_phase_pending");
     expect(reentryForecast?.tooltip).toContain("effective=machine_phase_pending");
-    const automationRunway = drive?.children[1]?.children.find(
+    const automationRunway = drive?.children[2]?.children.find(
       (child) => child.id === "project/current-location/drive/recovery-plan/automation-runway",
     );
     expect(automationRunway?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/drive/recovery-plan/automation-runway/1-repair_failed_evidence:machine count=1 remaining=0",
     ]);
-    expect(drive?.children[2]?.command).toEqual({
+    expect(drive?.children[3]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix current-location --summary-json"],
     });
     expect(drive?.children[4]?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: ["helix current-location --summary-json"],
+    });
+    expect(drive?.children[5]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix progress tree-view --summary-json"],

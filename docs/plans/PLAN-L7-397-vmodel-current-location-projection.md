@@ -86,6 +86,79 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-10T00:27:10+09:00"
+    tests_green_at: "2026-07-10T00:27:10+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "`current_location_frontier` を Project current-location view-model、VSCode/Project tree-view、doctor 表示へ投影し、`project/current-location/drive/current-location-frontier` から open L7 / terminal L14 claim / reentry command を機械検出できるようにした。doctor は既知 frontier 状態で exit 1 のまま、`project-current-location - frontier:` 行を出して現在地矛盾と Recovery 導線を通常確認面へ露出する。"
+    green_commands:
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:21:25+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:66a7968bb5f6b8e128df6e850ea96b03da9cc4d18aca5d138e90ac35959957ff"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:21:25+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/visualization-treeview.test.ts -t current-location"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:21:25+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:35dcf3574628918b91ede4685388977efc7da8f2fc692bba1b07c2910b08d8ed"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:26:21+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:1e65117c2f989e2479bc823c368b7895f38335a66a2a5a300404cf2d2ab6f443"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:21:25+09:00"
+        evidence_path: tests/summary-surface-audit.test.ts
+        output_digest: "sha256:c2e12f2a061bd37a1d446124701a5ac7a959c2b0aa9189d7895e6fdc59f2b349"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:26:21+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:608018b7bd2a916868a006a0484c7ba1fd6a45b3a23b297ff66c46b4643eba26"
+      - kind: smoke
+        command: "bun src/cli.ts progress frontier --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:26:21+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:56815bae244c571494e46f7223a4541a7414aea10a4db024e649f0e09e988a85"
+      - kind: doctor
+        command: "bun src/cli.ts doctor (expected exit 1) + rg \"project-current-location - frontier\""
+        runner: bash
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:27:10+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:a24c0245c4fbffefb7164e179c1e382d975bf46a3b45e5f1a954ab6de5e45a8a"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-10T00:09:25+09:00"
     tests_green_at: "2026-07-10T00:09:25+09:00"
     verdict: approve

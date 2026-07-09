@@ -258,6 +258,53 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
       contextValue: "current-location.drive",
       children: [
         node({
+          id: "project/current-location/drive/current-location-frontier",
+          label: "current-location frontier",
+          description: `${current.current_location_frontier.frontier_type} / ${current.current_location_frontier.classification}`,
+          tooltip: tooltipLines([
+            `status=${current.current_location_frontier.status}`,
+            `boundary=${current.current_location_frontier.completion_boundary}`,
+            `route=${current.current_location_frontier.route_id}`,
+            `return_to_design=${current.current_location_frontier.must_return_to_design}`,
+            `open_l7=${current.current_location_frontier.open_l7_count}`,
+            `terminal_l14=${current.current_location_frontier.terminal_l14_claim_count}`,
+            `queue=${current.current_location_frontier.queue_total}`,
+            `selected_action=${current.current_location_frontier.selected_closure_action ?? "-"}`,
+            `next=${current.current_location_frontier.reentry.next_command}`,
+            current.current_location_frontier.required_action,
+          ]),
+          contextValue: `current-location.frontier.${current.current_location_frontier.frontier_type}`,
+          commandPointer: current.current_location_frontier.commands.project_frontier,
+          children: [
+            node({
+              id: "project/current-location/drive/current-location-frontier/open-l7",
+              label: "open L7",
+              description: String(current.current_location_frontier.open_l7_count),
+              tooltip: current.current_location_frontier.sample_open_l7_plan_ids.join("\n"),
+              contextValue: "current-location.frontier.open-l7",
+            }),
+            node({
+              id: "project/current-location/drive/current-location-frontier/l14-claims",
+              label: "L14 claims",
+              description: String(current.current_location_frontier.terminal_l14_claim_count),
+              tooltip: current.current_location_frontier.sample_terminal_l14_plan_ids.join("\n"),
+              contextValue: "current-location.frontier.l14-claims",
+            }),
+            node({
+              id: "project/current-location/drive/current-location-frontier/reentry",
+              label: "reentry",
+              description: `${current.current_location_frontier.reentry.status} -> ${current.current_location_frontier.reentry.next_gate}`,
+              tooltip: tooltipLines([
+                `next_action=${current.current_location_frontier.reentry.next_phase_action ?? "-"}`,
+                `command=${current.current_location_frontier.reentry.next_command}`,
+                `execute=${current.current_location_frontier.reentry.next_execution_command}`,
+              ]),
+              contextValue: `current-location.frontier.reentry.${current.current_location_frontier.reentry.status}`,
+              commandPointer: current.current_location_frontier.reentry.next_command,
+            }),
+          ],
+        }),
+        node({
           id: "project/current-location/drive/model-candidates",
           label: "model candidates",
           description: "helix drive model --json",

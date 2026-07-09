@@ -1279,12 +1279,23 @@ export function checkProjectCurrentLocation(
         .join(",");
       const current = snapshot.current;
       const route = snapshot.drive_route;
+      const hasL14L7Contradiction = snapshot.findings.some(
+        (finding) => finding.code === "l14_claim_with_l7_work",
+      );
+      const currentLocationFrontierType =
+        current.status === "needs_recovery" ? "recovery_frontier" : "forward_frontier";
+      const currentLocationFrontierClassification = hasL14L7Contradiction
+        ? "l14_claim_with_l7_work"
+        : current.status === "needs_recovery"
+          ? "recovery_queue"
+          : "no_current_location_contradiction";
       const prefix =
         current.status === "forward"
           ? "project-current-location - OK"
           : "project-current-location - advisory";
       const messages = [
         `${prefix} (layer=${current.layer ?? "unknown"}, l12=${current.l12_layer ?? "unknown"}, status=${current.status}, boundary=${current.completion_boundary}, drive=${snapshot.drive_recommendation.model}, route=${route.routeId}, route_status=${route.status}, coverage done/missing/reverify=${snapshot.coverage.done}/${snapshot.coverage.missing}/${snapshot.coverage.reverify}, findings=${snapshot.findings.length})`,
+        `project-current-location - frontier: type=${currentLocationFrontierType} classification=${currentLocationFrontierClassification} open_l7=${snapshot.closure.l7_open_plan_ids.length} terminal_l14=${snapshot.closure.terminal_l14_plan_ids.length} queue=${snapshot.closure.queue.total} action=${recoveryPlan.selected_closure_action ?? "-"} next=${recoveryPlan.reentry_forecast.next_command} command=helix progress frontier --summary-json`,
         `project-current-location - drive-model: selected=${driveModel.selected_model} status=${driveModel.selection_status} available=${driveModel.available_models.join(",") || "-"} blocked=${driveModel.blocked_models.join(",") || "-"} command=helix drive model --json`,
         `project-current-location - recovery-plan: status=${recoveryPlan.status} action=${recoveryPlan.selected_closure_action ?? "-"} exit=${recoveryPlan.exit_forecast.status} remaining=${recoveryPlan.exit_forecast.remaining_queue_items} blockers=${recoveryPlan.exit_forecast.blockers.length} steps=${recoveryPlan.steps.length} command=helix recovery plan --json`,
         `project-current-location - recovery-reentry: status=${recoveryPlan.reentry_forecast.status} effective=${fit.synthesis.effective_reentry_status} blocking=${recoveryPlan.reentry_forecast.current_blocking_count} after_machine=${recoveryPlan.reentry_forecast.blocking_after_machine_lanes} phases=${recoveryPlan.reentry_forecast.required_phase_count} next=${recoveryPlan.reentry_forecast.next_phase_action ?? "-"} gate=${recoveryPlan.reentry_forecast.next_gate} command=helix recovery plan --json`,

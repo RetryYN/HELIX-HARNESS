@@ -182,6 +182,55 @@ export interface ProjectCurrentLocationView {
   status: string;
   completion_boundary: string;
   roadmap_frontier: string[];
+  current_location_frontier: {
+    schema_version: "current-location-frontier-summary.v1";
+    frontier_type: "recovery_frontier" | "forward_frontier";
+    status: "recovery_required" | "current";
+    classification:
+      | "l14_claim_with_l7_work"
+      | "recovery_queue"
+      | "no_current_location_contradiction";
+    completion_boundary: string;
+    selected_model: string;
+    route_id: string;
+    must_return_to_design: boolean;
+    open_l7_count: number;
+    terminal_l14_claim_count: number;
+    sample_open_l7_plan_ids: string[];
+    sample_terminal_l14_plan_ids: string[];
+    finding_codes: string[];
+    selected_closure_action: string | null;
+    queue_total: number;
+    route_counts: {
+      close_ready: number;
+      collect_evidence: number;
+      repair_failed_evidence: number;
+      reverse_design: number;
+    };
+    automation: {
+      status: string;
+      machine_actionable_count: number;
+      human_approval_count: number;
+      design_reverse_count: number;
+      remaining_after_machine_lanes: number;
+    };
+    reentry: {
+      status: string;
+      next_gate: string;
+      next_phase_action: string | null;
+      next_command: string;
+      next_execution_command: string;
+    };
+    commands: {
+      current_location: "helix current-location --summary-json";
+      drive_model: "helix drive model --summary-json";
+      recovery_plan: "helix recovery plan --summary-json";
+      roadmap_current: "helix roadmap current --summary-json";
+      vmodel_fit: "helix vmodel fit --summary-json";
+      project_frontier: "helix progress frontier --summary-json";
+    };
+    required_action: string;
+  };
   projection_counts: {
     design_declarations: number;
     design_references: number;
@@ -1996,6 +2045,62 @@ export function buildProjectCurrentLocationView(
     status: current.current.status,
     completion_boundary: current.current.completion_boundary,
     roadmap_frontier: [...current.current.roadmap_frontier],
+    current_location_frontier: {
+      schema_version: "current-location-frontier-summary.v1",
+      frontier_type:
+        current.current.status === "needs_recovery" ? "recovery_frontier" : "forward_frontier",
+      status: current.current.status === "needs_recovery" ? "recovery_required" : "current",
+      classification: current.findings.some((finding) => finding.code === "l14_claim_with_l7_work")
+        ? "l14_claim_with_l7_work"
+        : current.current.status === "needs_recovery"
+          ? "recovery_queue"
+          : "no_current_location_contradiction",
+      completion_boundary: current.current.completion_boundary,
+      selected_model: current.drive_route.selectedModel,
+      route_id: current.drive_route.routeId,
+      must_return_to_design: current.drive_route.mustReturnToDesign,
+      open_l7_count: current.closure.l7_open_plan_ids.length,
+      terminal_l14_claim_count: current.closure.terminal_l14_plan_ids.length,
+      sample_open_l7_plan_ids: current.closure.l7_open_plan_ids.slice(0, 5),
+      sample_terminal_l14_plan_ids: current.closure.terminal_l14_plan_ids.slice(0, 5),
+      finding_codes: current.findings.map((finding) => finding.code),
+      selected_closure_action: recoveryPlan.selected_closure_action,
+      queue_total: current.closure.queue.total,
+      route_counts: { ...current.closure.queue.route_counts },
+      automation: {
+        status: recoveryPlan.automation_runway.status,
+        machine_actionable_count: recoveryPlan.automation_runway.machine_actionable_count,
+        human_approval_count: recoveryPlan.automation_runway.human_approval_count,
+        design_reverse_count: recoveryPlan.automation_runway.design_reverse_count,
+        remaining_after_machine_lanes: recoveryPlan.automation_runway.remaining_after_machine_lanes,
+      },
+      reentry: {
+        status: recoveryPlan.reentry_forecast.status,
+        next_gate: recoveryPlan.reentry_forecast.next_gate,
+        next_phase_action: recoveryPlan.reentry_forecast.next_phase_action,
+        next_command: recoveryPlan.reentry_forecast.next_command.replace(
+          / --json$/,
+          " --summary-json",
+        ),
+        next_execution_command: recoveryPlan.reentry_forecast.next_execution_command.replace(
+          / --json$/,
+          " --summary-json",
+        ),
+      },
+      commands: {
+        current_location: "helix current-location --summary-json",
+        drive_model: "helix drive model --summary-json",
+        recovery_plan: "helix recovery plan --summary-json",
+        roadmap_current: "helix roadmap current --summary-json",
+        vmodel_fit: "helix vmodel fit --summary-json",
+        project_frontier: "helix progress frontier --summary-json",
+      },
+      required_action: current.findings.some((finding) => finding.code === "l14_claim_with_l7_work")
+        ? "L14 claim と open L7 を closure/recovery frontier として照合し、Recovery lane を消化してから completion claim を再評価する"
+        : current.current.status === "needs_recovery"
+          ? "Recovery lane を消化し、current-location / drive model / vmodel fit を再計算する"
+          : "current-location frontier は現時点で contradiction を持たない",
+    },
     projection_counts: {
       design_declarations: current.counts.design_declarations,
       design_references: current.counts.design_references,
