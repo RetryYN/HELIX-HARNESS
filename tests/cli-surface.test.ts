@@ -3384,6 +3384,7 @@ describe("L7 CLI surface closure", () => {
           missing_decisions: 9,
           function_design_policy: "abolished",
           current_reentry_status: "machine_phase_pending",
+          effective_reentry_status: "machine_phase_pending",
           next_command:
             "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
         },
@@ -3533,8 +3534,11 @@ describe("L7 CLI surface closure", () => {
         "--summary-json",
       ]);
       expect(currentLocationSummaryWithHandoff.status).toBe(0);
-      expect(JSON.parse(currentLocationSummaryWithHandoff.stdout).recovery.local_handoff).toMatchObject(
-        {
+      const currentLocationSummaryPayload = JSON.parse(currentLocationSummaryWithHandoff.stdout);
+      expect(currentLocationSummaryPayload.recovery).toMatchObject({
+        reentry_status: "machine_phase_pending",
+        effective_reentry_status: "approval_pending",
+        local_handoff: {
           status: "approval_pending",
           effective_phase: "approval",
           approval_status: "pending_human_review",
@@ -3543,7 +3547,7 @@ describe("L7 CLI surface closure", () => {
           command:
             "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
         },
-      );
+      });
       const recoveryPlanSummaryWithHandoff = runCliIn(root, [
         "recovery",
         "plan",
@@ -3552,15 +3556,38 @@ describe("L7 CLI surface closure", () => {
         "--summary-json",
       ]);
       expect(recoveryPlanSummaryWithHandoff.status).toBe(0);
-      expect(JSON.parse(recoveryPlanSummaryWithHandoff.stdout).recovery_handoff_gate).toMatchObject(
-        {
+      const recoveryPlanSummaryPayload = JSON.parse(recoveryPlanSummaryWithHandoff.stdout);
+      expect(recoveryPlanSummaryPayload).toMatchObject({
+        reentry_forecast: {
+          status: "machine_phase_pending",
+          effective_status: "approval_pending",
+        },
+        recovery_handoff_gate: {
           status: "approval_pending",
           effective_phase: "approval",
           approval_status: "pending_human_review",
           approval_record_path: ".helix/tmp/closure/collect_evidence-approval-draft.yml",
           valid_for_apply: false,
         },
-      );
+      });
+      const fitSummaryWithHandoff = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
+      expect(fitSummaryWithHandoff.status).toBe(0);
+      expect(JSON.parse(fitSummaryWithHandoff.stdout)).toMatchObject({
+        synthesis: {
+          current_reentry_status: "machine_phase_pending",
+          effective_reentry_status: "approval_pending",
+        },
+        current_location_gate: {
+          reentry_forecast: {
+            status: "machine_phase_pending",
+            effective_status: "approval_pending",
+          },
+        },
+        recovery_handoff_gate: {
+          status: "approval_pending",
+          effective_phase: "approval",
+        },
+      });
       expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=9");
       expect(fitText.stdout).toContain("zip-manifest: present=false root=- entries=0 required=0/21");
       expect(fitText.stdout).toContain(

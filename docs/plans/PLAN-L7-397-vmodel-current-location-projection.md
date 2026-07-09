@@ -734,8 +734,8 @@ review_evidence:
         output_digest: "sha256:c0bde01688a1349ddd96f3d3563323a6639344543c149a2305861227cfca23fe"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-09T13:50:08+09:00"
-    tests_green_at: "2026-07-09T13:50:08+09:00"
+    reviewed_at: "2026-07-09T13:51:45+09:00"
+    tests_green_at: "2026-07-09T13:51:45+09:00"
     verdict: approve
     worker_model: codex
     reviewer_model: codex
@@ -773,6 +773,55 @@ review_evidence:
         completed_at: "2026-07-09T13:51:45+09:00"
         evidence_path: src/vscode/tree-view-provider.ts
         output_digest: "sha256:448e2bc9d56c672f93673405f5deacbe7deaaf36a190d83c71f7674ffc3fea5b"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T14:05:57+09:00"
+    tests_green_at: "2026-07-09T14:05:57+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "`reentry_status=machine_phase_pending` を raw DB forecast として残しつつ、local handoff が approval_pending へ進んだ場合の実効現在地を `effective_reentry_status` / `effective_status` として `current-location --summary-json`、`recovery plan --summary-json`、`vmodel fit --summary-json` に投影した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:59:21+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:59:21+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:8e5b0e462ad8e72ad5a10bf945d81792774c853cbb68e8d2b3af86b425d456bd"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:59:21+09:00"
+        evidence_path: tests/visualization-view-model.test.ts
+        output_digest: "sha256:1389eeae9f776b5c34537f04c0ed5c136b3508af556d67d3d53a4670c374b6a8"
+      - kind: smoke
+        command: "bash -lc '{ bun src/cli.ts current-location --summary-json | rg -n \"reentry_status|effective_reentry_status|local_handoff|approval_pending|machine_phase_pending\" -C 1; bun src/cli.ts recovery plan --summary-json | rg -n \"reentry_forecast|effective_status|recovery_handoff_gate|approval_pending|machine_phase_pending\" -C 1; bun src/cli.ts vmodel fit --summary-json | rg -n \"current_reentry_status|effective_reentry_status|effective_status|recovery_handoff_gate|approval_pending|machine_phase_pending\" -C 1; }'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T13:59:21+09:00"
+        evidence_path: src/state-db/vmodel-fit.ts
+        output_digest: "sha256:242600338707fb7f7950bb4427cdf4585c56c09e5630255a370addd689e45512"
+      - kind: doctor
+        command: "bun src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:05:57+09:00"
+        evidence_path: src/state-db/vmodel-fit.ts
+        output_digest: "sha256:077a0faa8bad8b38c49af98d2867636d2454b32e20ac21e2bddda7ffa871aab6"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

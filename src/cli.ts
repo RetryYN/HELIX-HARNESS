@@ -3364,6 +3364,16 @@ function summarizeRecoveryHandoffGateForCli(
   };
 }
 
+function effectiveRecoveryReentryStatusForCli(
+  rawStatus: string,
+  gate: VmodelFitReport["recovery_handoff_gate"] | null,
+): string {
+  if (!gate || gate.status === "none") return rawStatus;
+  if (gate.effective_phase === "approval") return gate.status;
+  if (gate.status === "apply_dry_run") return "apply_ready";
+  return rawStatus;
+}
+
 function projectRecoveryHandoffGate(
   snapshot: ProjectCurrentLocationSnapshot,
   repoRoot: string,
@@ -3465,8 +3475,12 @@ function summarizeProjectCurrentLocation(
           next_machine_approval_draft_command:
             summaryJsonCommandOrNull(
               snapshot.recovery.automation_runway.next_machine_approval_draft_command,
-            ),
+          ),
           reentry_status: snapshot.recovery.reentry_forecast.status,
+          effective_reentry_status: effectiveRecoveryReentryStatusForCli(
+            snapshot.recovery.reentry_forecast.status,
+            options.recoveryHandoffGate ?? null,
+          ),
           reentry_next_gate: snapshot.recovery.reentry_forecast.next_gate,
           local_handoff: summarizeRecoveryHandoffGateForCli(
             options.recoveryHandoffGate ?? null,
@@ -3961,6 +3975,10 @@ function summarizeProjectRecoveryPlan(
     },
     reentry_forecast: {
       status: plan.reentry_forecast.status,
+      effective_status: effectiveRecoveryReentryStatusForCli(
+        plan.reentry_forecast.status,
+        options.recoveryHandoffGate ?? null,
+      ),
       current_blocking_count: plan.reentry_forecast.current_blocking_count,
       blocking_after_machine_lanes: plan.reentry_forecast.blocking_after_machine_lanes,
       required_phase_count: plan.reentry_forecast.required_phase_count,
@@ -7639,6 +7657,7 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       tailoring_status: payload.synthesis.tailoring_status,
       function_design_policy: payload.synthesis.function_design_policy,
       current_reentry_status: payload.synthesis.current_reentry_status,
+      effective_reentry_status: payload.synthesis.effective_reentry_status,
       next_command: payload.synthesis.next_command,
     },
     zip_manifest: {
@@ -7692,6 +7711,10 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       },
       reentry_forecast: {
         status: payload.current_location_gate.reentry_forecast.status,
+        effective_status: effectiveRecoveryReentryStatusForCli(
+          payload.current_location_gate.reentry_forecast.status,
+          payload.recovery_handoff_gate,
+        ),
         current_blocking_count:
           payload.current_location_gate.reentry_forecast.current_blocking_count,
         blocking_after_machine_lanes:

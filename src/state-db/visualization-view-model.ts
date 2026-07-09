@@ -254,6 +254,7 @@ export interface ProjectCurrentLocationView {
     };
     reentry_forecast: {
       status: string;
+      effective_status: string;
       current_blocking_count: number;
       blocking_after_machine_lanes: number;
       required_phase_count: number;
@@ -391,6 +392,7 @@ export interface ProjectCurrentLocationView {
       tailoring_status: string;
       function_design_policy: string;
       current_reentry_status: string;
+      effective_reentry_status: string;
       next_command: string;
       reasons: string[];
     };
@@ -743,6 +745,7 @@ export interface ProjectCurrentLocationView {
     };
     reentry_forecast: {
       status: string;
+      effective_status: string;
       current_blocking_count: number;
       blocking_after_machine_lanes: number;
       required_phase_count: number;
@@ -2002,6 +2005,10 @@ export function buildProjectCurrentLocationView(
       },
       reentry_forecast: {
         status: recoveryPlan.reentry_forecast.status,
+        effective_status: effectiveProjectReentryStatus(
+          recoveryPlan.reentry_forecast.status,
+          vmodelFit.recovery_handoff_gate,
+        ),
         current_blocking_count: recoveryPlan.reentry_forecast.current_blocking_count,
         blocking_after_machine_lanes: recoveryPlan.reentry_forecast.blocking_after_machine_lanes,
         required_phase_count: recoveryPlan.reentry_forecast.required_phase_count,
@@ -2136,6 +2143,7 @@ export function buildProjectCurrentLocationView(
         tailoring_status: vmodelFit.synthesis.tailoring_status,
         function_design_policy: vmodelFit.synthesis.function_design_policy,
         current_reentry_status: vmodelFit.synthesis.current_reentry_status,
+        effective_reentry_status: vmodelFit.synthesis.effective_reentry_status,
         next_command: vmodelFit.synthesis.next_command,
         reasons: [...vmodelFit.synthesis.reasons],
       },
@@ -2458,6 +2466,10 @@ export function buildProjectCurrentLocationView(
       },
       reentry_forecast: {
         status: vmodelFit.current_location_gate.reentry_forecast.status,
+        effective_status: effectiveProjectReentryStatus(
+          vmodelFit.current_location_gate.reentry_forecast.status,
+          vmodelFit.recovery_handoff_gate,
+        ),
         current_blocking_count:
           vmodelFit.current_location_gate.reentry_forecast.current_blocking_count,
         blocking_after_machine_lanes:
@@ -3349,6 +3361,19 @@ function projectHandoffReasonCodes(input: {
     `approval.valid_for_apply.${approval?.valid_for_apply ?? false}`,
     ...(input.extras ?? []),
   ];
+}
+
+function effectiveProjectReentryStatus(
+  rawStatus: string,
+  handoffGate: Pick<
+    ReturnType<typeof buildVmodelFitReport>["recovery_handoff_gate"],
+    "status" | "effective_phase"
+  > | null,
+): string {
+  if (!handoffGate || handoffGate.status === "none") return rawStatus;
+  if (handoffGate.effective_phase === "approval") return handoffGate.status;
+  if (handoffGate.status === "apply_dry_run") return "apply_ready";
+  return rawStatus;
 }
 
 function vmodelHandoffSummaryForView(

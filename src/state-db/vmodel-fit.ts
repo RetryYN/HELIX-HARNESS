@@ -209,6 +209,7 @@ export interface VmodelSynthesisReport {
   tailoring_status: ProjectCurrentLocationSnapshot["tailoring_gate"]["status"];
   function_design_policy: VmodelFunctionDesignAbsorptionGate["independent_layer_policy"];
   current_reentry_status: string;
+  effective_reentry_status: string;
   next_command: string;
   reasons: string[];
 }
@@ -1172,6 +1173,7 @@ function buildVmodelFitBlockers(input: {
 function buildVmodelSynthesisReport(input: {
   snapshot: ProjectCurrentLocationSnapshot;
   currentGate: VmodelCurrentLocationGate;
+  recoveryHandoffGate: VmodelRecoveryHandoffGate;
   functionAbsorption: VmodelFunctionDesignAbsorptionGate;
   status: VmodelFitStatus;
   blockers: VmodelFitBlocker[];
@@ -1205,6 +1207,10 @@ function buildVmodelSynthesisReport(input: {
     tailoring_status: input.snapshot.tailoring_gate.status,
     function_design_policy: input.functionAbsorption.independent_layer_policy,
     current_reentry_status: input.currentGate.reentry_forecast.status,
+    effective_reentry_status: effectiveVmodelRecoveryReentryStatus(
+      input.currentGate.reentry_forecast.status,
+      input.recoveryHandoffGate,
+    ),
     next_command: nextCommand,
     reasons: [
       `common_adopted=${adoptedIds.length}`,
@@ -1216,6 +1222,16 @@ function buildVmodelSynthesisReport(input: {
       `blockers=${input.blockers.length}`,
     ],
   };
+}
+
+function effectiveVmodelRecoveryReentryStatus(
+  rawStatus: string,
+  handoffGate: Pick<VmodelRecoveryHandoffGate, "status" | "effective_phase"> | null,
+): string {
+  if (!handoffGate || handoffGate.status === "none") return rawStatus;
+  if (handoffGate.effective_phase === "approval") return handoffGate.status;
+  if (handoffGate.status === "apply_dry_run") return "apply_ready";
+  return rawStatus;
 }
 
 function vmodelNextActionPriority(blocker: VmodelFitBlocker): number {
@@ -2465,6 +2481,7 @@ export function buildVmodelFitReport(
   const synthesis = buildVmodelSynthesisReport({
     snapshot,
     currentGate,
+    recoveryHandoffGate,
     functionAbsorption,
     status,
     blockers,
