@@ -5637,35 +5637,32 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     `helix closure decision-draft --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`;
   const decisionDraftRecordCommand = (offset: number) =>
     `helix closure decision-draft --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --out .helix/tmp/closure/${bundle.action}-decision-draft-offset-${offset}.yml --summary-json`;
-  const reviewWindowIndex = Array.from({ length: bundle.window.page_count }, (_, index) => {
-    const offset = bundle.limit === 0 ? 0 : index * bundle.limit;
-    const listed =
-      bundle.limit === 0 ? 0 : Math.max(0, Math.min(bundle.limit, bundle.total - offset));
-    return {
-      page_index: index + 1,
-      page_count: bundle.window.page_count,
-      current: offset === bundle.offset,
-      decision_id: bundle.decision.decision_id,
-      allowed_outcomes: bundle.decision.allowed_outcomes,
-      draft_outcome: "pending_human_review",
-      non_authorizing: true,
-      offset,
-      limit: bundle.limit,
-      start: listed === 0 ? 0 : offset + 1,
-      end: listed === 0 ? 0 : offset + listed,
-      listed,
-      omitted_before: Math.min(offset, bundle.total),
-      omitted_after: Math.max(0, bundle.total - offset - listed),
-      decision_record_default_path:
-        `.helix/tmp/closure/${bundle.action}-decision-draft-offset-${offset}.yml`,
-      review_window_command:
-        `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`,
-      transition_window_command:
-        `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`,
-      decision_draft_command: decisionDraftCommand(offset),
-      decision_draft_record_command: decisionDraftRecordCommand(offset),
-    };
-  });
+  const reviewWindowIndex = bundle.review_window_index.map((window) => ({
+    page_index: window.page_index,
+    page_count: window.page_count,
+    current: window.current,
+    decision_id: bundle.decision.decision_id,
+    allowed_outcomes: bundle.decision.allowed_outcomes,
+    draft_outcome: "pending_human_review",
+    non_authorizing: true,
+    offset: window.offset,
+    limit: window.limit,
+    start: window.start,
+    end: window.end,
+    listed: window.listed,
+    omitted_before: window.omitted_before,
+    omitted_after: window.omitted_after,
+    approval_scope_digest: window.review_scope.approval_scope_digest,
+    review_scope: window.review_scope,
+    decision_record_default_path:
+      `.helix/tmp/closure/${bundle.action}-decision-draft-offset-${window.offset}.yml`,
+    review_window_command:
+      `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${window.offset} --summary-json`,
+    transition_window_command:
+      `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${window.offset} --summary-json`,
+    decision_draft_command: decisionDraftCommand(window.offset),
+    decision_draft_record_command: decisionDraftRecordCommand(window.offset),
+  }));
 
   return {
     schema_version: "project-closure-review-bundle-summary.v1",

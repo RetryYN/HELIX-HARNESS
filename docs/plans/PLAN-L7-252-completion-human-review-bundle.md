@@ -58,6 +58,47 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T22:49:02+09:00"
+    tests_green_at: "2026-07-09T22:49:02+09:00"
+    verdict: approve
+    scope: "Project closure review-bundle の review_window_index を builder 側の正本にし、各 window が approval_scope_digest と review_scope evidence totals を持つようにした。343 件 close_ready approval の全 18 window について、current window 以外も個別 digest と証跡量を summary から機械検出できる。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T22:46:08+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:c1327c6e55ea8b992d0d55f6b82008e70645ee7d92018a90ad9268fd0f75e66b"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:49:02+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:59ad700bc9c4f377a122e4909e406744047dc8d0d6fd36ff1cb7f9f9f5de6dc9"
+      - kind: smoke
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:46:08+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:812ffc120eb7aab9f9145b000a7c11856048b823c2c9910256f18c066bf8f8b1"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:49:02+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:d89ddfdfb90c4f7ed6898f96c66d46324f006a597f9765d62cc2c3a43b7b9816"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T22:40:55+09:00"
     tests_green_at: "2026-07-09T22:40:55+09:00"
     verdict: approve

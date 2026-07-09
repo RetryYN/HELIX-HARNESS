@@ -5341,6 +5341,20 @@ describe("L7 CLI surface closure", () => {
             listed: 1,
             omitted_before: 0,
             omitted_after: 0,
+            approval_scope_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+            review_scope: expect.objectContaining({
+              approval_scope_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+              plan_ids: ["PLAN-L7-999-new-impl"],
+              source_paths: ["docs/plans/PLAN-L7-999-new-impl.md"],
+              coverage_ids: ["L6-implementation-binding"],
+              l12_layers: ["L6"],
+              evidence_totals: expect.objectContaining({
+                artifact_paths: 1,
+                evidence_paths: 0,
+                test_runs_total: 0,
+                test_runs_passed: 0,
+              }),
+            }),
             decision_record_default_path:
               ".helix/tmp/closure/collect_evidence-decision-draft-offset-0.yml",
             review_window_command:

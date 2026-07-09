@@ -1522,6 +1522,26 @@ describe("project current-location read model", () => {
           previous_offset: null,
           next_offset: null,
         },
+        review_window_index: [
+          expect.objectContaining({
+            page_index: 1,
+            page_count: 1,
+            current: true,
+            offset: 0,
+            limit: 1,
+            start: 1,
+            end: 1,
+            listed: 1,
+            omitted_before: 0,
+            omitted_after: 0,
+            review_scope: expect.objectContaining({
+              approval_scope_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+              plan_ids: ["PLAN-L7-999-new-impl"],
+              coverage_ids: ["L6-implementation-binding"],
+              l12_layers: ["L6"],
+            }),
+          }),
+        ],
         write_policy: "read-only",
         source_command: "helix closure review-bundle --json",
         decision: {

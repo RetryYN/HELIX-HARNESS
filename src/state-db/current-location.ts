@@ -1301,6 +1301,19 @@ export interface ProjectClosureReviewBundle {
     };
     blocked_by_findings: string[];
   };
+  review_window_index: Array<{
+    page_index: number;
+    page_count: number;
+    current: boolean;
+    offset: number;
+    limit: number;
+    start: number;
+    end: number;
+    listed: number;
+    omitted_before: number;
+    omitted_after: number;
+    review_scope: ProjectClosureReviewBundle["review_scope"];
+  }>;
   aggregate_review_scope: ProjectClosureReviewBundle["review_scope"];
   decision: {
     decision_id: string;
@@ -7985,9 +7998,33 @@ export function buildProjectClosureReviewBundle(
     candidates: batch.queue_items,
     blockedByFindings,
   });
+  const actionItems = snapshot.closure.queue.items.filter((item) => item.nextAction === action);
+  const reviewWindowIndex = Array.from({ length: batch.window.page_count }, (_, index) => {
+    const offset = batch.limit === 0 ? 0 : index * batch.limit;
+    const windowCandidates =
+      batch.limit === 0 ? [] : actionItems.slice(offset, offset + batch.limit);
+    const listed = windowCandidates.length;
+    return {
+      page_index: index + 1,
+      page_count: batch.window.page_count,
+      current: offset === batch.offset,
+      offset,
+      limit: batch.limit,
+      start: listed === 0 ? 0 : offset + 1,
+      end: listed === 0 ? 0 : offset + listed,
+      listed,
+      omitted_before: Math.min(offset, actionItems.length),
+      omitted_after: Math.max(0, actionItems.length - offset - listed),
+      review_scope: buildClosureReviewScope({
+        action,
+        candidates: windowCandidates,
+        blockedByFindings,
+      }),
+    };
+  });
   const aggregateReviewScope = buildClosureReviewScope({
     action,
-    candidates: snapshot.closure.queue.items.filter((item) => item.nextAction === action),
+    candidates: actionItems,
     blockedByFindings,
   });
 
@@ -8008,6 +8045,7 @@ export function buildProjectClosureReviewBundle(
     offset: batch.offset,
     window: batch.window,
     review_scope: reviewScope,
+    review_window_index: reviewWindowIndex,
     aggregate_review_scope: aggregateReviewScope,
     decision: {
       decision_id: `closure-review:${action}`,
