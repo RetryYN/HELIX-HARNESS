@@ -57,6 +57,7 @@ import { evaluateStaticGate } from "./gate/static";
 import { loadRelationGraphSourceSet } from "./graph/loader";
 import {
   checkHandoverBypass,
+  checkHandoverDerivedPointerDrift,
   checkHandoverDiscipline,
   handoverStale,
   latestSessionId,
@@ -885,7 +886,11 @@ function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[
 
 function writeHandoverWarnings(): void {
   const hdeps = nodeHandoverDeps(process.cwd());
-  for (const w of [...checkHandoverDiscipline(hdeps), ...checkHandoverBypass(hdeps)]) {
+  for (const w of [
+    ...checkHandoverDiscipline(hdeps),
+    ...checkHandoverBypass(hdeps),
+    ...checkHandoverDerivedPointerDrift(hdeps),
+  ]) {
     process.stderr.write(`[helix handover] ${w}\n`);
   }
 }

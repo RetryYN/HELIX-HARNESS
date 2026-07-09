@@ -1,5 +1,7 @@
 import type { CompletionDecisionPacket, OutstandingWork } from "../lint/outstanding";
 import type { PlanDigest } from "../runtime/session-log";
+import type { HarnessDb } from "../state-db/index";
+import type { DerivedHandoverSnapshot, GitBaseline, PointerDrift } from "./handover-derivation";
 
 type HandoverStatus = "in_progress" | "completed";
 
@@ -20,6 +22,9 @@ interface HandoverPointer {
   doc_entry_count?: number;
   outstanding?: OutstandingWork;
   completionDecisionPacket?: CompletionDecisionPacket;
+  derivedSnapshot?: DerivedHandoverSnapshot;
+  derivedPointerDrift?: PointerDrift[];
+  takeover_note?: string | null;
 }
 
 interface HandoverDoc {
@@ -64,6 +69,8 @@ interface HandoverDeps {
   readText: (path: string) => string | null;
   writeText: (path: string, content: string) => void;
   listDir: (dir: string) => string[];
+  openDb?: () => HarnessDb;
+  resolveGit?: () => GitBaseline;
 }
 
 interface HandoverScopeOpts {

@@ -11,6 +11,7 @@
  * 型で分離し、AI が Next Action を捏造しない。current-plan 活性化 (Gap B) の writer は循環 import
  * 回避のため session-log.ts に置き、本 module は import 再利用する (PLAN §1.1)。
  */
+import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { analyzeCompletionDecisionPacket } from "../lint/completion-decision-packet";
@@ -32,6 +33,7 @@ import {
   sanitize,
   setActivePlan,
 } from "../runtime/session-log";
+import { defaultHarnessDbPath, openHarnessDb } from "../state-db/index";
 import {
   CURRENT_PLAN_REL,
   GENERATED_BY,
@@ -42,6 +44,7 @@ import {
   PLAN_DIGEST_DIR,
   POINTER_PATH,
 } from "./handover-constants";
+import { deriveHandoverSnapshot, detectPointerDrift } from "./handover-derivation";
 import type {
   BuildPointerInput,
   CapRender,
@@ -1042,6 +1045,15 @@ export function checkHandoverBypass(deps: HandoverDeps): string[] {
   return warnings;
 }
 
+export function checkHandoverDerivedPointerDrift(deps: HandoverDeps): string[] {
+  const pointer = readPointer(deps);
+  if (!pointer?.derivedPointerDrift || pointer.derivedPointerDrift.length === 0) return [];
+  const fields = pointer.derivedPointerDrift.map((item) => item.field).join(",");
+  return [
+    `handover derived pointer drift: CURRENT.json の派生 field が DB/git snapshot と不一致 (${fields}) → \`helix handover\` で再生成`,
+  ];
+}
+
 /**
  * U-HOVER-014: 同日 markdown の累積上限化 (純関数、PLAN-L7-83)。
  * runHandover が 1 件 append する前提で、append 後に handover entry 数が
@@ -1132,6 +1144,25 @@ export function runHandover(args: HandoverArgs, deps: HandoverDeps): HandoverRes
     now,
     sourceCommand: "helix handover",
   });
+  const existingPointerText = deps.readText(join(deps.repoRoot, POINTER_PATH));
+  const takeoverNote = readTakeoverNote(existingPointerText);
+  const derived =
+    deps.openDb && deps.resolveGit
+      ? (() => {
+          try {
+            const snapshot = deriveHandoverSnapshot({
+              openDb: deps.openDb,
+              resolveGit: deps.resolveGit,
+            });
+            return {
+              snapshot,
+              drift: detectPointerDrift(existingPointerText, snapshot),
+            };
+          } catch {
+            return null;
+          }
+        })()
+      : null;
   const content = renderHandoverScaffold(doc, { slimSummary: bounded != null, outstanding });
   const next = bounded ? `${bounded.replace(/\s*$/, "")}\n\n---\n\n${content}\n` : `${content}\n`;
   // IMP-078 gap①: generated_by 署名 + entry 数を刻む (手書き bypass を checkHandoverBypass が検知できる)。
@@ -1142,6 +1173,13 @@ export function runHandover(args: HandoverArgs, deps: HandoverDeps): HandoverRes
     // IMP-139: 未了の正の集計を CURRENT.json へ additive 記録 (session 再開時に「完了主張」を機械照合可能に)。
     outstanding,
     completionDecisionPacket,
+    ...(derived
+      ? {
+          derivedSnapshot: derived.snapshot,
+          derivedPointerDrift: derived.drift,
+          takeover_note: takeoverNote,
+        }
+      : {}),
   };
 
   const written: string[] = [];
@@ -1193,7 +1231,34 @@ export function nodeHandoverDeps(repoRoot: string): HandoverDeps {
       writeFileSync(p, c);
     },
     listDir: (dir) => (existsSync(dir) ? readdirSync(dir) : []),
+    openDb: () => openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot }),
+    resolveGit: () => ({
+      headSha: gitText(repoRoot, ["rev-parse", "HEAD"]) ?? "unknown",
+      branch: gitText(repoRoot, ["rev-parse", "--abbrev-ref", "HEAD"]),
+    }),
   };
+}
+
+function gitText(repoRoot: string, args: string[]): string | null {
+  try {
+    return execFileSync("git", args, {
+      cwd: repoRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return null;
+  }
+}
+
+function readTakeoverNote(raw: string | null): string | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as { takeover_note?: unknown };
+    return typeof parsed.takeover_note === "string" ? parsed.takeover_note : null;
+  } catch {
+    return null;
+  }
 }
 
 /** CLI `helix plan use` 用: current-plan を session-log の nodeDeps 経由で書く/clear。 */

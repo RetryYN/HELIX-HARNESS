@@ -147,10 +147,11 @@ export function detectPointerDrift(
     ];
   }
   const expected = pointerDerivedFields(snapshot, "", null);
+  const actualFields = pointerComparableFields(parsed);
   const drifts: PointerDrift[] = [];
   for (const field of derivedPointerFields()) {
     const expectedValue = expected[field];
-    const actualValue = parsed[field];
+    const actualValue = actualFields[field];
     if (stableJson(expectedValue) !== stableJson(actualValue)) {
       drifts.push({ field, expected: expectedValue, actual: actualValue });
     }
@@ -234,6 +235,34 @@ function pointerDerivedFields(
 
 function derivedPointerFields(): Array<keyof ReturnType<typeof pointerDerivedFields>> {
   return ["generator", "active_plans", "outstanding", "feedback", "git"];
+}
+
+function pointerComparableFields(parsed: Record<string, unknown>) {
+  const nested = parseNestedSnapshot(parsed.derivedSnapshot);
+  if (nested) {
+    return {
+      generator: parsed.generator ?? POINTER_GENERATOR,
+      active_plans: nested.activePlans,
+      outstanding: nested.outstanding,
+      feedback: nested.feedback,
+      git: nested.git,
+    };
+  }
+  return parsed;
+}
+
+function parseNestedSnapshot(value: unknown): DerivedHandoverSnapshot | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const candidate = value as Partial<DerivedHandoverSnapshot>;
+  if (
+    !Array.isArray(candidate.activePlans) ||
+    !candidate.outstanding ||
+    !candidate.feedback ||
+    !candidate.git
+  ) {
+    return null;
+  }
+  return candidate as DerivedHandoverSnapshot;
 }
 
 function parseJsonObject(value: string): Record<string, unknown> | null {
