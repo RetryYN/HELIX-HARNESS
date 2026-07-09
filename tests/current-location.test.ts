@@ -1178,9 +1178,9 @@ describe("project current-location read model", () => {
             mutation_allowed: false,
             approval_required: true,
             dry_run_command:
-              "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --json",
+              "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --offset 0 --json",
             execute_command:
-              "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --json",
+              "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --offset 0 --json",
             required_record: "approval_scope_digest",
           }),
           expect.objectContaining({
@@ -1775,9 +1775,9 @@ describe("project current-location read model", () => {
           drive_model: "Recovery",
           human_required: true,
           command:
-            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --json",
+            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --offset 0 --json",
           transition_command:
-            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --json",
+            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --offset 0 --json",
         },
         write_policy: "read-only",
         source_command: "helix closure transition-plan --summary-json",
@@ -1924,6 +1924,70 @@ describe("project current-location read model", () => {
         blocked_reasons: [
           "blocker finding が残っている: unresolved_design_reference,impl_ahead_descent_obligation",
         ],
+      });
+      const pagedSnapshot = structuredClone(snapshot);
+      const firstCloseReady = pagedSnapshot.closure.queue.items.find(
+        (item) => item.nextAction === "close_ready",
+      );
+      if (!firstCloseReady) throw new Error("close_ready fixture is missing");
+      const secondCloseReady = {
+        ...firstCloseReady,
+        planId: "PLAN-L7-998-second-page",
+        sourcePath: "docs/plans/PLAN-L7-998-second-page.md",
+      };
+      pagedSnapshot.closure.queue.items = [firstCloseReady, secondCloseReady];
+      pagedSnapshot.closure.queue.total = 2;
+      pagedSnapshot.closure.queue.route_counts.close_ready = 2;
+      const secondPageReview = buildProjectClosureReviewBundle(pagedSnapshot, {
+        action: "close_ready",
+        limit: 1,
+        offset: 1,
+      });
+      const secondPageApply = buildProjectClosureApplyPlan(pagedSnapshot, {
+        approvalRecordPath: "docs/evidence/closure-approval-page-2.yaml",
+        approvalRecordText: [
+          "decision_id: closure-review:close_ready",
+          "outcome: approve_closure_claim",
+          `approval_scope_digest: ${secondPageReview.review_scope.approval_scope_digest}`,
+          "reason: fixture second-page approval",
+        ].join("\n"),
+        limit: 1,
+        offset: 1,
+      });
+      expect(secondPageReview.decision.outcome_routes).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            outcome: "approve_closure_claim",
+            command:
+              "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 1 --offset 1 --json",
+            transition_command:
+              "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 1 --offset 1 --json",
+          }),
+        ]),
+      );
+      expect(secondPageApply).toMatchObject({
+        total: 2,
+        listed: 1,
+        omitted: 1,
+        limit: 1,
+        offset: 1,
+        window: {
+          page_index: 2,
+          page_count: 2,
+          start: 2,
+          end: 2,
+          has_previous: true,
+          has_next: false,
+        },
+        approval: { valid: true },
+        patch_candidates: [
+          expect.objectContaining({
+            plan_id: "PLAN-L7-998-second-page",
+            source_path: "docs/plans/PLAN-L7-998-second-page.md",
+          }),
+        ],
+        source_command:
+          "helix closure apply --dry-run --approval-record docs/evidence/closure-approval-page-2.yaml --limit 1 --offset 1 --json",
       });
       expect(snapshot.roadmap_position).toMatchObject({
         status: "uncovered",

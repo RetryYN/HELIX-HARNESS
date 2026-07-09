@@ -6037,9 +6037,18 @@ describe("L7 CLI surface closure", () => {
         patch_candidate_count: 0,
         applied_patch_count: 0,
         source_command: "helix closure apply --dry-run --summary-json",
-        full_source_command: "helix closure apply --dry-run --limit 20 --json",
+        full_source_command: "helix closure apply --dry-run --limit 20 --offset 0 --json",
         write_policy: "read-only",
       });
+      const applyInvalidOffset = runCliIn(root, [
+        "closure",
+        "apply",
+        "--dry-run",
+        "--offset",
+        "-1",
+      ]);
+      expect(applyInvalidOffset.status).toBe(2);
+      expect(applyInvalidOffset.stderr).toContain("closure apply: invalid offset=-1");
 
       const closeReadyReviewForApproval = runCliIn(root, [
         "closure",

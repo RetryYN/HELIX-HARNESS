@@ -3378,9 +3378,9 @@ export function buildProjectCurrentLocationView(
             ? closeReadyReviewWindowIndex.length
             : 0,
         dry_run_command:
-          "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
+          "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
         execute_command:
-          "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --json",
+          "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
         transition_plan_command:
           "helix closure transition-plan --action close_ready --summary-json",
@@ -3818,7 +3818,7 @@ function evidenceHandoffNextStep(input: {
         approval_state: projectApprovalState(approval),
         scope_status: approval.scope_status,
         valid_for_apply: approval.valid_for_apply,
-        command: `helix closure apply --dry-run --approval-record ${approvalRecordPath} --limit ${input.bucket.listed} --json`,
+        command: `helix closure apply --dry-run --approval-record ${approvalRecordPath} --limit ${input.bucket.listed} --offset 0 --json`,
         label: "apply dry-run approved closure claim",
         required_action:
           "承認済み close_ready record を使って closure apply dry-run を実行し、対象 PLAN と approval scope を照合する",

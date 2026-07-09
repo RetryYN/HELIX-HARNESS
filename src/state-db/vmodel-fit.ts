@@ -1821,7 +1821,7 @@ function buildVmodelHandoffNextStep(input: {
         approval_state: vmodelApprovalState(approval),
         scope_status: approval.scope_status,
         valid_for_apply: approval.valid_for_apply,
-        command: `helix closure apply --dry-run --approval-record ${approvalRecordPath} --limit ${input.commandLimit} --json`,
+        command: `helix closure apply --dry-run --approval-record ${approvalRecordPath} --limit ${input.commandLimit} --offset 0 --json`,
         label: "apply dry-run approved closure claim",
         required_action:
           "承認済み close_ready record を使って closure apply dry-run を実行し、対象 PLAN と approval scope を照合する",

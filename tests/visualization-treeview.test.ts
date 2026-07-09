@@ -1878,14 +1878,14 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/closure/apply-readiness/review-bundle:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
       "project/current-location/closure/apply-readiness/transition-plan:helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
       "project/current-location/closure/apply-readiness/decision-draft:helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
-      "project/current-location/closure/apply-readiness/dry-run:helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
+      "project/current-location/closure/apply-readiness/dry-run:helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
     ]);
     expect(
       applyReadiness?.children.find(
         (child) => child.id === "project/current-location/closure/apply-readiness/dry-run",
       )?.command?.arguments[0],
     ).toBe(
-      "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --summary-json",
+      "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --summary-json",
     );
     const queue = closure?.children.find(
       (child) => child.id === "project/current-location/closure/queue",

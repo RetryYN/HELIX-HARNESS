@@ -6525,6 +6525,12 @@ function summarizeClosureApplyPlan(
     dry_run: input.dryRun,
     executed: input.executed,
     action: plan.action,
+    total: plan.total,
+    listed: plan.listed,
+    omitted: plan.omitted,
+    limit: plan.limit,
+    offset: plan.offset,
+    window: plan.window,
     approval: {
       required: plan.approval.required,
       record_path: plan.approval.record_path,
@@ -7778,6 +7784,7 @@ closure
   .option("--execute", "apply approved status patches")
   .option("--approval-record <path>", "approval record containing decision_id/outcome")
   .option("--limit <n>", "maximum patch candidates to include", "20")
+  .option("--offset <n>", "zero-based patch candidate offset", "0")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
@@ -7787,6 +7794,7 @@ closure
       execute?: boolean;
       approvalRecord?: string;
       limit?: string;
+      offset?: string;
       json?: boolean;
       summaryJson?: boolean;
       fromDb?: boolean;
@@ -7799,6 +7807,12 @@ closure
       const limit = Number.parseInt(opts.limit ?? "20", 10);
       if (!Number.isFinite(limit) || limit < 0) {
         process.stderr.write(`closure apply: invalid limit=${opts.limit ?? ""}\n`);
+        process.exitCode = 2;
+        return;
+      }
+      const offset = Number.parseInt(opts.offset ?? "0", 10);
+      if (!Number.isFinite(offset) || offset < 0) {
+        process.stderr.write(`closure apply: invalid offset=${opts.offset ?? ""}\n`);
         process.exitCode = 2;
         return;
       }
@@ -7818,6 +7832,7 @@ closure
           approvalRecordPath: opts.approvalRecord ?? null,
           approvalRecordText,
           limit,
+          offset,
         });
         const summarizeApplyPlan = (
           appliedPatches: Array<{

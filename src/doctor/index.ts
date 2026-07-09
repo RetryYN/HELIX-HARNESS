@@ -3185,7 +3185,10 @@ export function checkClosureApplyBinding(
       if (apply.write_policy !== "read-only") {
         violations.push(`write_policy=${apply.write_policy}`);
       }
-      if (apply.source_command !== `helix closure apply --dry-run --limit ${applyLimit} --json`) {
+      if (
+        apply.source_command !==
+        `helix closure apply --dry-run --limit ${applyLimit} --offset 0 --json`
+      ) {
         violations.push(`source_command=${apply.source_command}`);
       }
       if (apply.view_command !== "helix progress tree-view --json") {
@@ -3219,13 +3222,13 @@ export function checkClosureApplyBinding(
       }
       if (
         applyReadiness.dry_run_command !==
-        `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${applyLimit} --json`
+        `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${applyLimit} --offset 0 --json`
       ) {
         violations.push(`dry_run_command=${applyReadiness.dry_run_command}`);
       }
       if (
         applyReadiness.execute_command !==
-        `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${applyLimit} --json`
+        `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${applyLimit} --offset 0 --json`
       ) {
         violations.push(`execute_command=${applyReadiness.execute_command}`);
       }

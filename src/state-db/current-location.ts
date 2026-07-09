@@ -1437,6 +1437,12 @@ export interface ProjectClosureApplyPlan {
   source_clock: string | null;
   dry_run: true;
   action: "close_ready";
+  total: number;
+  listed: number;
+  omitted: number;
+  limit: number;
+  offset: number;
+  window: ProjectClosureBatchReport["window"];
   approval: {
     required: true;
     record_path: string | null;
@@ -3731,8 +3737,8 @@ function buildProjectRecoveryAutomationBoundaries(
       (evidencePatchCommand !== null || lane.evidence_apply_write_policy === "approval-required");
     const closureApprovalRequired = automationClass === "approval_required";
     const approvalRequired = closureApprovalRequired || evidenceMutationRequiresApproval;
-    const closureApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
-    const closureApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
+    const closureApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${lane.count} --offset 0 --json`;
+    const closureApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${lane.count} --offset 0 --json`;
     return {
       action: lane.action,
       lane_type: lane.lane_type,
@@ -8001,8 +8007,8 @@ export function buildProjectClosureOverview(
   const closeReadyReviewWindowCommand = `helix closure review-bundle --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${limit} --offset 0 --summary-json`;
   const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${limit} --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json`;
-  const closeReadyApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${limit} --json`;
-  const closeReadyApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${limit} --json`;
+  const closeReadyApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${limit} --offset 0 --json`;
+  const closeReadyApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${limit} --offset 0 --json`;
   const actions = PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => {
     const batch = buildProjectClosureBatchReport(snapshot, { action, limit });
     return {
@@ -8279,6 +8285,7 @@ export function buildProjectClosureReviewBundle(
           action,
           driveRoute: snapshot.drive_route,
           candidates: batch.queue_items,
+          offset: batch.offset,
           commandLimitByAction: (targetAction) =>
             projectClosureActionCommandLimit(snapshot, targetAction, 3),
         }),
@@ -8377,7 +8384,7 @@ export function buildProjectClosureDecisionDraftPacket(
       bundle.action === "close_ready"
         ? [
             "helix closure transition-plan --action close_ready --decision <outcome> --summary-json",
-            `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${bundle.listed} --json`,
+            `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${bundle.listed} --offset ${bundle.offset} --json`,
             "helix current-location --json",
             "helix vmodel fit --json",
           ]
@@ -8416,6 +8423,7 @@ function closureDecisionOutcomeRoute(input: {
   action: ProjectClosureQueueNextAction;
   driveRoute: ProjectDriveRouteDecision;
   candidates: ProjectClosureQueueItem[];
+  offset?: number;
   commandLimitByAction?: (action: ProjectClosureQueueNextAction) => number;
 }): ProjectClosureOutcomeRoute {
   const commonDocDependencies = unique(
@@ -8453,14 +8461,15 @@ function closureDecisionOutcomeRoute(input: {
 
   if (input.decisionOutcome === "approve_closure_claim") {
     const candidateLimit = input.candidates.length;
+    const offset = Math.max(0, input.offset ?? 0);
     return {
       outcome: input.decisionOutcome,
       projection_type: "apply_closure",
       target_action: "accepted",
       drive_model: "Recovery",
       human_required: true,
-      command: `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${candidateLimit} --json`,
-      transition_command: `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${candidateLimit} --json`,
+      command: `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${candidateLimit} --offset ${offset} --json`,
+      transition_command: `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${candidateLimit} --offset ${offset} --json`,
       expected_transition:
         "承認済み close_ready candidate を accepted 化し、open L7 queue から除外する",
       required_action:
@@ -8549,6 +8558,7 @@ function closureTransitionOutcomeProjection(input: {
     action: input.bundle.action,
     driveRoute: input.bundle.drive_route,
     candidates: input.bundle.candidates,
+    offset: input.bundle.offset,
   });
 }
 
@@ -8750,13 +8760,16 @@ export function buildProjectClosureApplyPlan(
     approvalRecordPath?: string | null;
     approvalRecordText?: string | null;
     limit?: number;
+    offset?: number;
   } = {},
 ): ProjectClosureApplyPlan {
   const limit = Math.max(0, input.limit ?? 20);
+  const offset = Math.max(0, input.offset ?? 0);
   const transition = buildProjectClosureTransitionPlan(snapshot, {
     action: "close_ready",
     decisionOutcome: "approve_closure_claim",
     limit,
+    offset,
   });
   const approval = parseApprovalRecord(
     input.approvalRecordText ?? null,
@@ -8768,16 +8781,22 @@ export function buildProjectClosureApplyPlan(
   ];
   const closeReadyItems = snapshot.closure.queue.items
     .filter((item) => item.nextAction === "close_ready")
-    .slice(0, limit);
+    .slice(offset, offset + limit);
   const sourceCommand = input.approvalRecordPath
-    ? `helix closure apply --dry-run --approval-record ${input.approvalRecordPath} --limit ${limit} --json`
-    : `helix closure apply --dry-run --limit ${limit} --json`;
+    ? `helix closure apply --dry-run --approval-record ${input.approvalRecordPath} --limit ${limit} --offset ${offset} --json`
+    : `helix closure apply --dry-run --limit ${limit} --offset ${offset} --json`;
 
   return {
     schema_version: "project-closure-apply-plan.v1",
     source_clock: snapshot.source_clock,
     dry_run: true,
     action: "close_ready",
+    total: transition.total,
+    listed: transition.listed,
+    omitted: transition.omitted,
+    limit: transition.limit,
+    offset: transition.offset,
+    window: transition.window,
     approval: {
       required: true,
       record_path: input.approvalRecordPath ?? null,

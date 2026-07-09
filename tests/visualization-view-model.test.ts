@@ -1713,9 +1713,9 @@ describe("buildVisualizationViewModel", () => {
           approval_required: false,
           approval_window_count: 0,
           dry_run_command:
-            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --json",
+            "helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
           execute_command:
-            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --json",
+            "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
           review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
           transition_plan_command:
             "helix closure transition-plan --action close_ready --summary-json",

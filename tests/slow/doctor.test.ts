@@ -2904,7 +2904,7 @@ describe("runDoctor", () => {
         "readiness=no_close_ready_candidates close_ready=0 allowed=false approval_valid=false patches=0/0",
       );
       expect(closureApply.messages.join("\n")).toContain(
-        "execute=helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --json",
+        "execute=helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --offset 0 --json",
       );
 
       const operationScope = checkOperationScopeBinding(root, db);
