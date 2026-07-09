@@ -961,6 +961,47 @@ review_evidence:
         completed_at: "2026-07-09T14:38:06+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:6b3015e3964d0797d221dc11fa09ba02d0e4f0b0d0f82e2ab683018edcd6ebe3"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T14:47:09+09:00"
+    tests_green_at: "2026-07-09T14:47:09+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "L12 operation scope の KPI/metric 観測を `quality_signals` へ接続し、既存 telemetry / skill metric 証跡を `kpi_metric` observed として Project current-location / vmodel fit に投影した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:47:09+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/current-location.test.ts tests/db-projection-ingestion.test.ts tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:47:09+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:1b6bdef98b68c3ac956492e740fc7243f77e5c20d9ba796a36e7e92b22e9b345"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:47:09+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:de8c7cee6b6843e6be9117155db41ff7218cf57d9041ff4746f9b379659db807"
+      - kind: smoke
+        command: "bash -lc 'set -o pipefail; { bun src/cli.ts current-location --summary-json | rg \"\\\"operation_scope\\\"|\\\"observed\\\": 2|\\\"observed_gap\\\": 4\" -A 8; bun src/cli.ts vmodel fit | rg \"regression-guard: operation-scope watch count=4|operation-scope: designed=4 observed=2 observed_gap=4\"; }'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T14:47:09+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:b0b193e87bc4efb9c1fe0a6e1a0d430f6c43f1837e83b91141d70e3af36a909d"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

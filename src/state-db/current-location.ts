@@ -1737,8 +1737,8 @@ const OPERATION_SCOPES = [
   {
     scope: "kpi_metric",
     label: "KPI/metric",
-    patterns: [/\bkpi\b/i, /\bmetric\b/i, /メトリク/, /指標/],
-    tables: ["design_declarations", "runtime_verification_events"],
+    patterns: [/\bkpi\b/i, /\bmetrics?\b/i, /メトリク/, /指標/],
+    tables: ["design_declarations", "runtime_verification_events", "quality_signals"],
   },
   {
     scope: "runtime_verification",
@@ -4263,6 +4263,12 @@ function operationTestEvidenceText(row: Record<string, unknown>): string {
     .join(" ");
 }
 
+function operationQualitySignalMatchesKpi(row: Record<string, unknown>): boolean {
+  const source = String(row.source ?? "");
+  const metric = String(row.metric ?? "");
+  return /metrics?/i.test(source) || /\bkpi\b/i.test(metric) || /metrics?|rate|trend/i.test(metric);
+}
+
 function operationScopeMatches(scopeId: string, text: string): boolean {
   const scope = OPERATION_SCOPES.find((item) => item.scope === scopeId);
   if (!scope) return false;
@@ -4304,6 +4310,7 @@ function operationObservationSources(input: {
   runtimeAcceptedRows: Array<Record<string, unknown>>;
   operationTestRows: Array<Record<string, unknown>>;
   operationGateRows: Array<Record<string, unknown>>;
+  qualitySignalRows: Array<Record<string, unknown>>;
 }): string[] {
   const runtimeSources = input.runtimeAcceptedRows
     .filter((row) =>
@@ -4316,6 +4323,15 @@ function operationObservationSources(input: {
     .map((row) =>
       `runtime_verification_events:${String(row.evidence_path || row.event_id || "").trim()}`,
     );
+  if (input.scopeId === "kpi_metric") {
+    const qualitySources = input.qualitySignalRows
+      .filter((row) => operationQualitySignalMatchesKpi(row))
+      .map(
+        (row) =>
+          `quality_signals:${String(row.source ?? "").trim()}:${String(row.metric ?? "").trim()}:${String(row.status ?? "").trim()}`,
+      );
+    return unique([...runtimeSources, ...qualitySources]);
+  }
   if (input.scopeId !== "operation_test") return unique(runtimeSources);
 
   const testSources = input.operationTestRows
@@ -5175,6 +5191,14 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
        WHERE status = ?`,
     )
     .all("passed") as Array<Record<string, unknown>>;
+  const qualitySignalRows = db
+    .prepare(
+      `SELECT source, subject_id, metric, status, MAX(computed_at) AS computed_at, COUNT(*) AS signal_count
+       FROM quality_signals
+       GROUP BY source, subject_id, metric, status
+       ORDER BY source, subject_id, metric, status`,
+    )
+    .all() as Array<Record<string, unknown>>;
 
   const items = OPERATION_SCOPES.map((scope): ProjectOperationScopeCoverage => {
     const operationCoverage = designCoverageRuleForL12Layer("L12");
@@ -5188,6 +5212,7 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
       runtimeAcceptedRows,
       operationTestRows,
       operationGateRows,
+      qualitySignalRows,
     });
     const observedCount = observationSources.length;
     const evidenceTables = [...scope.tables];

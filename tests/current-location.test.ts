@@ -3226,6 +3226,54 @@ describe("project current-location read model", () => {
       );
     }));
 
+  it("KPI/metricはquality_signalsから観測source付きでobservedに昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:kpi",
+          defined_id: "HOPS-KPI-01",
+          declaration_kind: "KPI",
+          title: "operation KPI metric",
+          layer: "L12",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "quality_signals",
+        primaryKey: "signal_id",
+        row: {
+          signal_id: "quality:telemetry:drive-rate",
+          source: "telemetry-metrics",
+          subject_id: "drive:Recovery",
+          metric: "drive_firing_rate",
+          value: 1,
+          threshold: 0,
+          status: "pass",
+          computed_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "kpi_metric",
+            status: "observed",
+            observedCount: 1,
+            observationSources: [
+              "quality_signals:telemetry-metrics:drive_firing_rate:pass",
+            ],
+            evidenceTables: expect.arrayContaining(["quality_signals"]),
+          }),
+        ]),
+      );
+    }));
+
   it("runtime verificationが設計済みでも未観測ならoperation regression guardをwatchにする", () =>
     withDb((db) => {
       for (const [declarationId, definedId, kind, layer, title] of [
