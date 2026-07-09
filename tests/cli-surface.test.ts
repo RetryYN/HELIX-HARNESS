@@ -2897,7 +2897,9 @@ describe("L7 CLI surface closure", () => {
       selected_model: "Recovery",
       source_command: "helix skill suggest --current-location --summary-json",
       full_source_command: "helix skill suggest --current-location --json",
-      view_command: "helix progress tree-view --json",
+      full_inject_command: "helix skill suggest --current-location --inject --json",
+      view_command: "helix progress tree-view --summary-json",
+      full_view_command: "helix progress tree-view --json",
       write_policy: "read-only",
     });
     expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Recovery", "Scrum"]));
@@ -2905,6 +2907,8 @@ describe("L7 CLI surface closure", () => {
     expect(payload.top_items[0]).toMatchObject({
       tier: "required",
       inject_at: "before_work",
+      skill_path: expect.stringMatching(/^docs\/skills\//),
+      sample_reasons: expect.arrayContaining(["scrum_operation_gap_signal"]),
     });
   }, 30_000);
 
@@ -4392,6 +4396,22 @@ describe("L7 CLI surface closure", () => {
               observed_count: expect.any(Number),
             }),
           ]),
+        },
+        scrum_operation: {
+          status: expect.any(String),
+          source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+          source_binding_count: expect.any(Number),
+          observed_count: expect.any(Number),
+          missing_count: expect.any(Number),
+          source_command: "helix current-location --summary-json",
+        },
+        skill_binding: {
+          status: expect.any(String),
+          selected_model: "Recovery",
+          source_command: "helix skill suggest --current-location --summary-json",
+          full_source_command: "helix skill suggest --current-location --json",
+          full_inject_command: "helix skill suggest --current-location --inject --json",
+          top_items: expect.any(Array),
         },
         next_action_count: expect.any(Number),
         blocker_count: expect.any(Number),

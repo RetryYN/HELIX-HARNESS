@@ -116,6 +116,23 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     },
   },
   {
+    surface: "skill-binding",
+    source_command: "helix skill suggest --current-location --summary-json",
+    payload: {
+      source_command: "helix skill suggest --current-location --summary-json",
+      full_source_command: "helix skill suggest --current-location --json",
+      full_inject_command: "helix skill suggest --current-location --inject --json",
+      top_items: [
+        {
+          skill_path: "docs/skills/gate-planning.md",
+          sample_reasons: ["scrum_operation_gap_signal"],
+        },
+      ],
+      view_command: "helix progress tree-view --summary-json",
+      full_view_command: "helix progress tree-view --json",
+    },
+  },
+  {
     surface: "recovery-plan",
     source_command: "helix recovery plan --summary-json",
     payload: {
@@ -290,6 +307,15 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
       operation_scope: {
         source_command: "helix vmodel fit --summary-json",
         items: [],
+      },
+      scrum_operation: {
+        source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      },
+      skill_binding: {
+        source_command: "helix skill suggest --current-location --summary-json",
+        full_source_command: "helix skill suggest --current-location --json",
+        full_inject_command: "helix skill suggest --current-location --inject --json",
+        top_items: [],
       },
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",

@@ -88,6 +88,78 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-10T01:13:40+09:00"
+    tests_green_at: "2026-07-10T01:13:40+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-subagents
+    scope: "L5 operation scope の typed declaration drift を解消し、close_ready approval review を `blocked_by_findings` から `ready_for_human_review` へ戻した。さらに `skill suggest --current-location --summary-json` を summary audit catalog へ登録し、skill summary / current-location / vmodel fit summary で `skill_path` と `sample_reasons` を保持するようにした。`vmodel fit --summary-json` には compact `scrum_operation` と `skill_binding` を追加し、ハイブリッド V+Scrum と駆動 skill の結合を 1 surface で機械検出できるようにした。"
+    green_commands:
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T01:12:51+09:00"
+        evidence_path: src/cli.ts
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T01:12:51+09:00"
+        evidence_path: src/state-db/vmodel-fit.ts
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/design-declarations.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T01:11:51+09:00"
+        evidence_path: tests/summary-surface-audit.test.ts
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"skill binding|exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T01:13:36+09:00"
+        evidence_path: tests/cli-surface.test.ts
+      - kind: smoke
+        command: "bun src/cli.ts current-location --summary-json | skill/drift/approval smoke"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-10T01:13:20+09:00"
+        evidence_path: docs/design/helix/L5-detail/operation-scope.md
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json | scrum/skill/drift smoke"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-10T01:13:20+09:00"
+        evidence_path: src/cli.ts
+      - kind: smoke
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 1 --summary-json | approval checklist smoke"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-10T01:13:20+09:00"
+        evidence_path: src/state-db/current-location.ts
+      - kind: plan_lint
+        command: "bun src/cli.ts plan lint"
+        runner: bun
+        scope: governance
+        exit_code: 0
+        completed_at: "2026-07-10T01:13:25+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+      - kind: smoke
+        command: "git diff --check"
+        runner: bash
+        scope: changed-files
+        exit_code: 0
+        completed_at: "2026-07-10T01:13:25+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-10T01:01:45+09:00"
     tests_green_at: "2026-07-10T01:01:45+09:00"
     verdict: approve

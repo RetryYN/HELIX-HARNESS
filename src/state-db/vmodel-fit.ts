@@ -504,6 +504,7 @@ export interface VmodelFitReport {
   roadmap_current_gate: VmodelRoadmapCurrentGate;
   drive_model_gate: VmodelDriveModelGate;
   skill_binding: ProjectCurrentLocationSnapshot["skill_binding"];
+  scrum_operation: ProjectCurrentLocationSnapshot["scrum_operation"];
   operation_scope: ProjectCurrentLocationSnapshot["operation_scope"];
   current_location_gate: VmodelCurrentLocationGate;
   design_integrity: {
@@ -2752,6 +2753,7 @@ export function buildVmodelFitReport(
     roadmap_current_gate: roadmapGate,
     drive_model_gate: driveGate,
     skill_binding: snapshot.skill_binding,
+    scrum_operation: snapshot.scrum_operation,
     operation_scope: snapshot.operation_scope,
     current_location_gate: currentGate,
     design_integrity: {

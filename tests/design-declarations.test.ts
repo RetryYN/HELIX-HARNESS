@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   analyzeDesignDeclarations,
@@ -216,5 +217,23 @@ spec:
       "declaration_only",
       "undeclared_definition",
     ]);
+  });
+
+  it("L5 operation scope contract は実在文書として drift しない", () => {
+    const path = "docs/design/helix/L5-detail/operation-scope.md";
+    const doc = parseDesignDeclarationDoc(path, readFileSync(path, "utf8"));
+
+    expect(doc.ok).toBe(true);
+    expect(doc.findings.filter((finding) => finding.severity === "error")).toEqual([]);
+    expect(doc.declarations.map((declaration) => declaration.id)).toEqual(
+      expect.arrayContaining([
+        "HOD-OPS-LOG-DESIGN",
+        "HOD-OPS-KPI-METRIC",
+        "HOD-OPS-RUNTIME-VERIFICATION",
+        "HOD-OPS-OPERATION-TEST",
+        "HOD-OPS-CLASS-METHOD-CONTRACT",
+        "HOD-OPS-INCIDENT-RECOVERY-ROUTE",
+      ]),
+    );
   });
 });

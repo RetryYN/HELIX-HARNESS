@@ -96,7 +96,7 @@ spec:
 `designed=0 observed=6` は「設計が無い」ではなく、全 scope が runtime / quality / closure evidence により `observed` へ昇格済みであることを示す。
 そのため item 単位の設計 ID と観測 source を同時に出し、現在地・工程表・Project view が同じ意味で読めるようにする。
 
-## §3 Fail-close 条件
+## §3 失敗時に閉じる条件
 
 - `operation_scope.items[]` が summary から消えた場合は退行とする。
 - `log_design`、`class_method_contract`、`runtime_verification` のいずれかが item に存在しない場合は退行とする。

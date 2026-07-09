@@ -4190,12 +4190,14 @@ function summarizeProjectCurrentLocation(
           full_inject_command: "helix skill suggest --current-location --inject --json",
           top_items: snapshot.skill_binding.items.slice(0, 5).map((item) => ({
             skill_id: item.skillId,
+            skill_path: item.skillPath,
             tier: item.tier,
             inject_at: item.injectAt,
             rank: item.rank,
             score: item.score,
             matched_drive_models: item.matchedDriveModels,
             matched_layers: item.matchedLayers,
+            sample_reasons: item.reasons.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT),
           })),
         }
       : null,
@@ -4279,17 +4281,22 @@ function summarizeProjectSkillBinding(payload: ReturnType<typeof projectSkillBin
     item_count: payload.items.length,
     top_items: payload.items.slice(0, 8).map((item) => ({
       skill_id: item.skill_id,
+      skill_path: item.skill_path,
       tier: item.tier,
       inject_at: item.inject_at,
       rank: item.rank,
       score: item.score,
       matched_drive_models: item.matched_drive_models,
       matched_layers: item.matched_layers,
+      source_drive_models: item.source_drive_models,
+      source_layers: item.source_layers,
+      sample_reasons: item.reasons.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT),
     })),
     source_command: "helix skill suggest --current-location --summary-json",
     full_source_command: "helix skill suggest --current-location --json",
-    inject_command: payload.inject_command,
-    view_command: payload.view_command,
+    full_inject_command: payload.inject_command,
+    view_command: "helix progress tree-view --summary-json",
+    full_view_command: payload.view_command,
     write_policy: payload.write_policy,
   };
 }
@@ -5007,6 +5014,10 @@ function buildSummarySurfaceCommandAudit(
     {
       surface: "drive-model",
       payload: summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot)),
+    },
+    {
+      surface: "skill-binding",
+      payload: summarizeProjectSkillBinding(projectSkillBindingCliPayload(snapshot)),
     },
     {
       surface: "recovery-plan",
@@ -9152,6 +9163,53 @@ function summarizeVmodelFitReport(
       payload.operation_scope,
       "helix vmodel fit --summary-json",
     ),
+    scrum_operation: payload.scrum_operation
+      ? {
+          status: payload.scrum_operation.status,
+          source_package: payload.scrum_operation.sourcePackage,
+          source_binding_count: payload.scrum_operation.sourceBindings.length,
+          backlog_items: payload.scrum_operation.backlogItems,
+          sprint_items: payload.scrum_operation.sprintItems,
+          acceptance_items: payload.scrum_operation.acceptanceItems,
+          planning_items: payload.scrum_operation.planningItems,
+          ceremony_items: payload.scrum_operation.ceremonyItems,
+          metric_items: payload.scrum_operation.metricItems,
+          active_sprint_plans: payload.scrum_operation.activeSprintPlans,
+          observed_count: payload.scrum_operation.items.filter((item) => item.status === "observed")
+            .length,
+          missing_count: payload.scrum_operation.items.filter((item) => item.status === "missing")
+            .length,
+          source_command: "helix current-location --summary-json",
+        }
+      : null,
+    skill_binding: payload.skill_binding
+      ? {
+          status: payload.skill_binding.status,
+          selected_model: payload.skill_binding.selectedModel,
+          workflow_modes: payload.skill_binding.workflowModes,
+          l12_layers: payload.skill_binding.l12Layers,
+          required_skills: payload.skill_binding.requiredSkills,
+          recommended_skills: payload.skill_binding.recommendedSkills,
+          optional_skills: payload.skill_binding.optionalSkills,
+          item_count: payload.skill_binding.items.length,
+          top_items: payload.skill_binding.items
+            .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+            .map((item) => ({
+              skill_id: item.skillId,
+              skill_path: item.skillPath,
+              tier: item.tier,
+              inject_at: item.injectAt,
+              rank: item.rank,
+              score: item.score,
+              matched_drive_models: item.matchedDriveModels,
+              matched_layers: item.matchedLayers,
+              sample_reasons: item.reasons.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT),
+            })),
+          source_command: "helix skill suggest --current-location --summary-json",
+          full_source_command: "helix skill suggest --current-location --json",
+          full_inject_command: "helix skill suggest --current-location --inject --json",
+        }
+      : null,
     write_policy: payload.write_policy,
     source_command: "helix vmodel fit --summary-json",
     current_location_command: "helix current-location --summary-json",
