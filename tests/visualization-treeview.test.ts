@@ -1226,12 +1226,18 @@ describe("visualization Tree View adapter", () => {
       [
         "project/current-location/drive/recovery-plan/exit-forecast:blocked remaining=1 lanes=repair_failed_evidence",
         "project/current-location/drive/recovery-plan/handoff-gate:generate_approval_draft phase=machine approval=missing scope=missing",
-        "project/current-location/drive/recovery-plan/reentry-forecast:machine_phase_pending blocking=1",
+        "project/current-location/drive/recovery-plan/reentry-forecast:machine_phase_pending raw=machine_phase_pending blocking=1",
         "project/current-location/drive/recovery-plan/automation-runway:machine_work_available machine=1 approval=0",
         "project/current-location/drive/recovery-plan/automation-boundaries:evidence_required:1",
         "project/current-location/drive/recovery-plan/repair_failed_evidence:1 needs_repair human=false",
       ],
     );
+    const reentryForecast = findTreeNode(
+      first,
+      "project/current-location/drive/recovery-plan/reentry-forecast",
+    );
+    expect(reentryForecast?.tooltip).toContain("raw=machine_phase_pending");
+    expect(reentryForecast?.tooltip).toContain("effective=machine_phase_pending");
     const automationRunway = drive?.children[1]?.children.find(
       (child) => child.id === "project/current-location/drive/recovery-plan/automation-runway",
     );
@@ -1336,13 +1342,19 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/function-design-absorption:needs_absorption policy=abolished",
       "project/current-location/vmodel-fit/roadmap-current:needs_sync aligned=false correlation=independent basis=frontier",
       "project/current-location/vmodel-fit/drive-model:Recovery/pass L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
-      "project/current-location/vmodel-fit/current-location:needs_recovery/contradicted",
+      "project/current-location/vmodel-fit/current-location:needs_recovery/contradicted reentry=machine_phase_pending",
       "project/current-location/vmodel-fit/recovery-runway:machine_work_available machine=1 approval=0",
       "project/current-location/vmodel-fit/recovery-handoff:generate_approval_draft phase=machine approval=missing scope=missing valid=false",
       "project/current-location/vmodel-fit/approval-review:none count=0 listed=0",
       "project/current-location/vmodel-fit/design-integrity:unresolved=0 drift=0",
       "project/current-location/vmodel-fit/blockers:6",
     ]);
+    const vmodelCurrentLocation = findTreeNode(
+      first,
+      "project/current-location/vmodel-fit/current-location",
+    );
+    expect(vmodelCurrentLocation?.tooltip).toContain("reentry=machine_phase_pending");
+    expect(vmodelCurrentLocation?.tooltip).toContain("effective=machine_phase_pending");
     const approvalReview = vmodelFit?.children.find(
       (child) => child.id === "project/current-location/vmodel-fit/approval-review",
     );
@@ -1925,6 +1937,43 @@ describe("visualization Tree View adapter", () => {
     };
     collectIds(first.roots);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("U-VTREE-002a: uses effective reentry status in Project view labels while preserving raw status in tooltips", () => {
+    const vm = buildVisualizationViewModel(snapshot());
+    vm.project.current_location.recovery_exit.reentry_forecast.effective_status =
+      "approval_pending";
+    vm.project.current_location.vmodel_fit.reentry_forecast.effective_status =
+      "approval_pending";
+    vm.project.current_location.vmodel_fit.synthesis.effective_reentry_status =
+      "approval_pending";
+
+    const tree = buildVisualizationTreeView(vm);
+    const reentryForecast = findTreeNode(
+      tree,
+      "project/current-location/drive/recovery-plan/reentry-forecast",
+    );
+    expect(reentryForecast).toMatchObject({
+      description: "approval_pending raw=machine_phase_pending blocking=1",
+      contextValue: "recovery-plan.reentry.approval_pending.raw-machine_phase_pending",
+    });
+    expect(reentryForecast?.tooltip).toContain("raw=machine_phase_pending");
+    expect(reentryForecast?.tooltip).toContain("effective=approval_pending");
+
+    const vmodelCurrentLocation = findTreeNode(
+      tree,
+      "project/current-location/vmodel-fit/current-location",
+    );
+    expect(vmodelCurrentLocation).toMatchObject({
+      description: "needs_recovery/contradicted reentry=approval_pending",
+      contextValue: "vmodel-fit.current-location.needs_recovery.reentry-approval_pending",
+    });
+    expect(vmodelCurrentLocation?.tooltip).toContain("reentry=machine_phase_pending");
+    expect(vmodelCurrentLocation?.tooltip).toContain("effective=approval_pending");
+
+    const synthesis = findTreeNode(tree, "project/current-location/vmodel-fit/synthesis");
+    expect(synthesis?.tooltip).toContain("reentry=machine_phase_pending");
+    expect(synthesis?.tooltip).toContain("effective=approval_pending");
   });
 
   it("U-VTREE-002: keeps Tree View actions read-only copy pointers only", () => {

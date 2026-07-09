@@ -822,6 +822,55 @@ review_evidence:
         completed_at: "2026-07-09T14:05:57+09:00"
         evidence_path: src/state-db/vmodel-fit.ts
         output_digest: "sha256:077a0faa8bad8b38c49af98d2867636d2454b32e20ac21e2bddda7ffa871aab6"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T14:21:25+09:00"
+    tests_green_at: "2026-07-09T14:21:25+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "raw `machine_phase_pending` を保持しながら、CLI 通常テキスト、doctor、Project view / VSCode tree view の reentry 表示を handoff-aware な `effective=approval_pending` へ揃えた。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:18:58+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:18:58+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:4f31abcee6eb81ed650e4bd0bb373ffad21157f72fe971858c629aeb3102de43"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:18:58+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:db1e1c912b21ee5b5248abcd337429eb464c624605121426e419b391a3db06cb"
+      - kind: smoke
+        command: "bash -lc '{ bun src/cli.ts current-location | rg -n \"recovery-reentry: status=machine_phase_pending effective=approval_pending\"; bun src/cli.ts recovery plan --limit 3 | rg -n \"reentry-forecast: status=machine_phase_pending effective=approval_pending\"; bun src/cli.ts vmodel fit | rg -n \"synthesis: .*reentry=machine_phase_pending effective=approval_pending|recovery-reentry: status=machine_phase_pending effective=approval_pending\"; bun src/cli.ts progress tree-view --json | rg -n \"approval_pending raw=machine_phase_pending|reentry=approval_pending|effective=approval_pending\" -C 1; }'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T14:18:58+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:621c5eff1be0f1d4ac682136c15720d2b3ad321a119e7afa47204817ece3ba61"
+      - kind: doctor
+        command: "bun src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:21:25+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:95b00909dcec11dad11776208b34da1153a5f8a752bd44500444ac203c274772"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

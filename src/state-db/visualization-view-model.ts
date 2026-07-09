@@ -1876,6 +1876,14 @@ export function buildProjectCurrentLocationView(
   const zipManifest = snapshot.vmodel_zip_manifest;
   const vmodelFit = buildVmodelFitReport(current, zipManifest);
   const recoveryHandoffGate = recoveryHandoffGateForView(snapshot, vmodelFit);
+  const effectiveRecoveryReentryStatus = effectiveProjectReentryStatus(
+    recoveryPlan.reentry_forecast.status,
+    recoveryHandoffGate,
+  );
+  const effectiveVmodelFitReentryStatus = effectiveProjectReentryStatus(
+    vmodelFit.current_location_gate.reentry_forecast.status,
+    recoveryHandoffGate,
+  );
   const vmodelHandoffSummary = vmodelHandoffSummaryForView(snapshot, vmodelFit.next_actions);
   const closureEvidenceTemplates = (
     ["collect_evidence", "repair_failed_evidence", "reverse_design"] as const
@@ -2005,10 +2013,7 @@ export function buildProjectCurrentLocationView(
       },
       reentry_forecast: {
         status: recoveryPlan.reentry_forecast.status,
-        effective_status: effectiveProjectReentryStatus(
-          recoveryPlan.reentry_forecast.status,
-          vmodelFit.recovery_handoff_gate,
-        ),
+        effective_status: effectiveRecoveryReentryStatus,
         current_blocking_count: recoveryPlan.reentry_forecast.current_blocking_count,
         blocking_after_machine_lanes: recoveryPlan.reentry_forecast.blocking_after_machine_lanes,
         required_phase_count: recoveryPlan.reentry_forecast.required_phase_count,
@@ -2143,7 +2148,7 @@ export function buildProjectCurrentLocationView(
         tailoring_status: vmodelFit.synthesis.tailoring_status,
         function_design_policy: vmodelFit.synthesis.function_design_policy,
         current_reentry_status: vmodelFit.synthesis.current_reentry_status,
-        effective_reentry_status: vmodelFit.synthesis.effective_reentry_status,
+        effective_reentry_status: effectiveVmodelFitReentryStatus,
         next_command: vmodelFit.synthesis.next_command,
         reasons: [...vmodelFit.synthesis.reasons],
       },
@@ -2466,10 +2471,7 @@ export function buildProjectCurrentLocationView(
       },
       reentry_forecast: {
         status: vmodelFit.current_location_gate.reentry_forecast.status,
-        effective_status: effectiveProjectReentryStatus(
-          vmodelFit.current_location_gate.reentry_forecast.status,
-          vmodelFit.recovery_handoff_gate,
-        ),
+        effective_status: effectiveVmodelFitReentryStatus,
         current_blocking_count:
           vmodelFit.current_location_gate.reentry_forecast.current_blocking_count,
         blocking_after_machine_lanes:
@@ -3365,10 +3367,7 @@ function projectHandoffReasonCodes(input: {
 
 function effectiveProjectReentryStatus(
   rawStatus: string,
-  handoffGate: Pick<
-    ReturnType<typeof buildVmodelFitReport>["recovery_handoff_gate"],
-    "status" | "effective_phase"
-  > | null,
+  handoffGate: Pick<{ status: string; effective_phase: string }, "status" | "effective_phase"> | null,
 ): string {
   if (!handoffGate || handoffGate.status === "none") return rawStatus;
   if (handoffGate.effective_phase === "approval") return handoffGate.status;

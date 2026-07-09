@@ -239,6 +239,15 @@ function boundaryNode(
 
 function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
   const current = vm.project.current_location;
+  const recoveryReentryStatus =
+    current.recovery_exit.reentry_forecast.effective_status ??
+    current.recovery_exit.reentry_forecast.status;
+  const vmodelFitReentryStatus =
+    current.vmodel_fit.reentry_forecast.effective_status ??
+    current.vmodel_fit.reentry_forecast.status;
+  const vmodelFitSynthesisReentryStatus =
+    current.vmodel_fit.synthesis.effective_reentry_status ??
+    current.vmodel_fit.synthesis.current_reentry_status;
   const children = [
     node({
       id: "project/current-location/drive",
@@ -337,9 +346,9 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             node({
               id: "project/current-location/drive/recovery-plan/reentry-forecast",
               label: "reentry forecast",
-              description: `${current.recovery_exit.reentry_forecast.status} blocking=${current.recovery_exit.reentry_forecast.current_blocking_count}`,
-              tooltip: `${current.recovery_exit.reentry_forecast.expected_transition}\nafter_machine=${current.recovery_exit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.recovery_exit.reentry_forecast.required_phase_count}\nnext=${current.recovery_exit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.recovery_exit.reentry_forecast.next_gate}\ncommand=${current.recovery_exit.reentry_forecast.next_command}\nexecute=${current.recovery_exit.reentry_forecast.next_execution_command}\nrecompute=${current.recovery_exit.reentry_forecast.recompute_commands.join(" && ")}\n${current.recovery_exit.reentry_forecast.reasons.join("\n")}`,
-              contextValue: `recovery-plan.reentry.${current.recovery_exit.reentry_forecast.status}`,
+              description: `${recoveryReentryStatus} raw=${current.recovery_exit.reentry_forecast.status} blocking=${current.recovery_exit.reentry_forecast.current_blocking_count}`,
+              tooltip: `${current.recovery_exit.reentry_forecast.expected_transition}\nraw=${current.recovery_exit.reentry_forecast.status}\neffective=${recoveryReentryStatus}\nafter_machine=${current.recovery_exit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.recovery_exit.reentry_forecast.required_phase_count}\nnext=${current.recovery_exit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.recovery_exit.reentry_forecast.next_gate}\ncommand=${current.recovery_exit.reentry_forecast.next_command}\nexecute=${current.recovery_exit.reentry_forecast.next_execution_command}\nrecompute=${current.recovery_exit.reentry_forecast.recompute_commands.join(" && ")}\n${current.recovery_exit.reentry_forecast.reasons.join("\n")}`,
+              contextValue: `recovery-plan.reentry.${recoveryReentryStatus}.raw-${current.recovery_exit.reentry_forecast.status}`,
               commandPointer: current.recovery_exit.reentry_forecast.next_execution_command,
             }),
             node({
@@ -762,7 +771,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           id: "project/current-location/vmodel-fit/synthesis",
           label: "synthesis",
           description: `${current.vmodel_fit.synthesis.status} common=${current.vmodel_fit.synthesis.common_adopted} complement=${current.vmodel_fit.synthesis.helix_complemented} reject=${current.vmodel_fit.synthesis.rejected}`,
-          tooltip: `${current.vmodel_fit.synthesis.source_package}\n${current.vmodel_fit.synthesis.source_document}\ntailoring=${current.vmodel_fit.synthesis.tailoring_status}\nfunction_policy=${current.vmodel_fit.synthesis.function_design_policy}\nreentry=${current.vmodel_fit.synthesis.current_reentry_status}\nnext=${current.vmodel_fit.synthesis.next_command}\n${current.vmodel_fit.synthesis.reasons.join("\n")}`,
+          tooltip: `${current.vmodel_fit.synthesis.source_package}\n${current.vmodel_fit.synthesis.source_document}\ntailoring=${current.vmodel_fit.synthesis.tailoring_status}\nfunction_policy=${current.vmodel_fit.synthesis.function_design_policy}\nreentry=${current.vmodel_fit.synthesis.current_reentry_status}\neffective=${vmodelFitSynthesisReentryStatus}\nnext=${current.vmodel_fit.synthesis.next_command}\n${current.vmodel_fit.synthesis.reasons.join("\n")}`,
           contextValue: `vmodel-fit.synthesis.${current.vmodel_fit.synthesis.status}`,
           commandPointer: current.vmodel_fit.synthesis.next_command,
         }),
@@ -999,9 +1008,9 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
         node({
           id: "project/current-location/vmodel-fit/current-location",
           label: "current-location",
-          description: `${current.vmodel_fit.current_location_status}/${current.vmodel_fit.completion_boundary}`,
-          tooltip: `runway=${current.vmodel_fit.recovery_runway.status}\nreentry=${current.vmodel_fit.reentry_forecast.status}\nmachine=${current.vmodel_fit.recovery_runway.machine_actionable_count}\napproval=${current.vmodel_fit.recovery_runway.human_approval_count}\nreverse=${current.vmodel_fit.recovery_runway.design_reverse_count}\nafter_machine=${current.vmodel_fit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.vmodel_fit.reentry_forecast.required_phase_count}\nnext=${current.vmodel_fit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.vmodel_fit.reentry_forecast.next_gate}\ncommand=${current.vmodel_fit.reentry_forecast.next_command}\nexecute=${current.vmodel_fit.reentry_forecast.next_execution_command}\nnext_probe=${current.vmodel_fit.recovery_runway.next_machine_probe_command ?? "-"}\nmaterialize=${current.vmodel_fit.recovery_runway.next_machine_materialize_command ?? "-"}`,
-          contextValue: `vmodel-fit.current-location.${current.vmodel_fit.current_location_status}`,
+          description: `${current.vmodel_fit.current_location_status}/${current.vmodel_fit.completion_boundary} reentry=${vmodelFitReentryStatus}`,
+          tooltip: `runway=${current.vmodel_fit.recovery_runway.status}\nreentry=${current.vmodel_fit.reentry_forecast.status}\neffective=${vmodelFitReentryStatus}\nmachine=${current.vmodel_fit.recovery_runway.machine_actionable_count}\napproval=${current.vmodel_fit.recovery_runway.human_approval_count}\nreverse=${current.vmodel_fit.recovery_runway.design_reverse_count}\nafter_machine=${current.vmodel_fit.reentry_forecast.blocking_after_machine_lanes}\nphases=${current.vmodel_fit.reentry_forecast.required_phase_count}\nnext=${current.vmodel_fit.reentry_forecast.next_phase_action ?? "-"}\ngate=${current.vmodel_fit.reentry_forecast.next_gate}\ncommand=${current.vmodel_fit.reentry_forecast.next_command}\nexecute=${current.vmodel_fit.reentry_forecast.next_execution_command}\nnext_probe=${current.vmodel_fit.recovery_runway.next_machine_probe_command ?? "-"}\nmaterialize=${current.vmodel_fit.recovery_runway.next_machine_materialize_command ?? "-"}`,
+          contextValue: `vmodel-fit.current-location.${current.vmodel_fit.current_location_status}.reentry-${vmodelFitReentryStatus}`,
           commandPointer: current.vmodel_fit.reentry_forecast.next_execution_command,
         }),
         node({

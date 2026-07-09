@@ -3595,11 +3595,12 @@ program
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
         process.stdout.write(
           `${JSON.stringify(
             summarizeProjectCurrentLocation(snapshot, {
-              recoveryHandoffGate: projectRecoveryHandoffGate(snapshot, repoRoot),
+              recoveryHandoffGate,
             }),
             null,
             2,
@@ -3628,6 +3629,10 @@ program
 	        );
 	      }
 	      if (snapshot.recovery) {
+          const effectiveReentryStatus = effectiveRecoveryReentryStatusForCli(
+            snapshot.recovery.reentry_forecast.status,
+            recoveryHandoffGate,
+          );
 	        process.stdout.write(
 	          `  recovery-exit: status=${snapshot.recovery.exit_forecast.status} remaining=${snapshot.recovery.exit_forecast.remaining_queue_items} blockers=${snapshot.recovery.exit_forecast.blockers.length} next=${snapshot.recovery.exit_forecast.next_command}\n`,
 	        );
@@ -3635,7 +3640,7 @@ program
 	          `  recovery-runway: status=${snapshot.recovery.automation_runway.status} machine=${snapshot.recovery.automation_runway.machine_actionable_count} approval=${snapshot.recovery.automation_runway.human_approval_count} reverse=${snapshot.recovery.automation_runway.design_reverse_count} after_machine=${snapshot.recovery.automation_runway.remaining_after_machine_lanes} next=${snapshot.recovery.automation_runway.next_machine_command ?? "-"} next_probe=${snapshot.recovery.automation_runway.next_machine_probe_command ?? "-"} materialize=${snapshot.recovery.automation_runway.next_machine_materialize_command ?? "-"} approval_draft=${snapshot.recovery.automation_runway.next_machine_approval_draft_command ?? "-"} apply_dry_run=${snapshot.recovery.automation_runway.next_machine_apply_dry_run_command ?? "-"}\n`,
 	        );
 	        process.stdout.write(
-	          `  recovery-reentry: status=${snapshot.recovery.reentry_forecast.status} blocking=${snapshot.recovery.reentry_forecast.current_blocking_count} after_machine=${snapshot.recovery.reentry_forecast.blocking_after_machine_lanes} phases=${snapshot.recovery.reentry_forecast.required_phase_count} next=${snapshot.recovery.reentry_forecast.next_phase_action ?? "-"} gate=${snapshot.recovery.reentry_forecast.next_gate} command=${snapshot.recovery.reentry_forecast.next_command} execute=${snapshot.recovery.reentry_forecast.next_execution_command}\n`,
+	          `  recovery-reentry: status=${snapshot.recovery.reentry_forecast.status} effective=${effectiveReentryStatus} blocking=${snapshot.recovery.reentry_forecast.current_blocking_count} after_machine=${snapshot.recovery.reentry_forecast.blocking_after_machine_lanes} phases=${snapshot.recovery.reentry_forecast.required_phase_count} next=${snapshot.recovery.reentry_forecast.next_phase_action ?? "-"} gate=${snapshot.recovery.reentry_forecast.next_gate} command=${snapshot.recovery.reentry_forecast.next_command} execute=${snapshot.recovery.reentry_forecast.next_execution_command}\n`,
 	        );
 	      }
 	      process.stdout.write(
@@ -4029,11 +4034,12 @@ recovery
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
+      const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
       if (opts.summaryJson) {
         process.stdout.write(
           `${JSON.stringify(
             summarizeProjectRecoveryPlan(plan, {
-              recoveryHandoffGate: projectRecoveryHandoffGate(snapshot, repoRoot),
+              recoveryHandoffGate,
             }),
             null,
             2,
@@ -4052,7 +4058,7 @@ recovery
         `  exit-forecast: status=${plan.exit_forecast.status} remaining=${plan.exit_forecast.remaining_queue_items} blockers=${plan.exit_forecast.blockers.length} next=${plan.exit_forecast.next_command}\n`,
       );
 	      process.stdout.write(
-	        `  reentry-forecast: status=${plan.reentry_forecast.status} blocking=${plan.reentry_forecast.current_blocking_count} after_machine=${plan.reentry_forecast.blocking_after_machine_lanes} phases=${plan.reentry_forecast.required_phase_count} next=${plan.reentry_forecast.next_phase_action ?? "-"} gate=${plan.reentry_forecast.next_gate} command=${plan.reentry_forecast.next_command} execute=${plan.reentry_forecast.next_execution_command}\n`,
+	        `  reentry-forecast: status=${plan.reentry_forecast.status} effective=${effectiveRecoveryReentryStatusForCli(plan.reentry_forecast.status, recoveryHandoffGate)} blocking=${plan.reentry_forecast.current_blocking_count} after_machine=${plan.reentry_forecast.blocking_after_machine_lanes} phases=${plan.reentry_forecast.required_phase_count} next=${plan.reentry_forecast.next_phase_action ?? "-"} gate=${plan.reentry_forecast.next_gate} command=${plan.reentry_forecast.next_command} execute=${plan.reentry_forecast.next_execution_command}\n`,
 	      );
 	      process.stdout.write(
 	        `  automation-runway: status=${plan.automation_runway.status} machine=${plan.automation_runway.machine_actionable_count} approval=${plan.automation_runway.human_approval_count} reverse=${plan.automation_runway.design_reverse_count} after_machine=${plan.automation_runway.remaining_after_machine_lanes} next=${plan.automation_runway.next_machine_command ?? "-"} next_probe=${plan.automation_runway.next_machine_probe_command ?? "-"} materialize=${plan.automation_runway.next_machine_materialize_command ?? "-"} approval_draft=${plan.automation_runway.next_machine_approval_draft_command ?? "-"} apply_dry_run=${plan.automation_runway.next_machine_apply_dry_run_command ?? "-"}\n`,
@@ -7901,7 +7907,7 @@ vmodel
         `  blockers=${payload.blockers.map((blocker) => `${blocker.code}:${blocker.count}`).join(",") || "-"}\n`,
       );
       process.stdout.write(
-        `  synthesis: status=${payload.synthesis.status} common=${payload.synthesis.common_adopted} complement=${payload.synthesis.helix_complemented} reject=${payload.synthesis.rejected} missing=${payload.synthesis.missing_decisions} tailoring=${payload.synthesis.tailoring_status} function_policy=${payload.synthesis.function_design_policy} reentry=${payload.synthesis.current_reentry_status} next=${payload.synthesis.next_command}\n`,
+        `  synthesis: status=${payload.synthesis.status} common=${payload.synthesis.common_adopted} complement=${payload.synthesis.helix_complemented} reject=${payload.synthesis.rejected} missing=${payload.synthesis.missing_decisions} tailoring=${payload.synthesis.tailoring_status} function_policy=${payload.synthesis.function_design_policy} reentry=${payload.synthesis.current_reentry_status} effective=${payload.synthesis.effective_reentry_status} next=${payload.synthesis.next_command}\n`,
       );
       process.stdout.write(
         `  regression-guards: status=${payload.regression_guards.status} pass=${payload.regression_guards.pass} watch=${payload.regression_guards.watch} fail=${payload.regression_guards.fail}\n`,
@@ -7970,7 +7976,7 @@ vmodel
 	        `  recovery-runway: status=${payload.current_location_gate.recovery_runway.status} machine=${payload.current_location_gate.recovery_runway.machine_actionable_count} approval=${payload.current_location_gate.recovery_runway.human_approval_count} reverse=${payload.current_location_gate.recovery_runway.design_reverse_count} after_machine=${payload.current_location_gate.recovery_runway.remaining_after_machine_lanes} next=${payload.current_location_gate.recovery_runway.next_machine_command ?? "-"} next_probe=${payload.current_location_gate.recovery_runway.next_machine_probe_command ?? "-"} materialize=${payload.current_location_gate.recovery_runway.next_machine_materialize_command ?? "-"} approval_draft=${payload.current_location_gate.recovery_runway.next_machine_approval_draft_command ?? "-"} apply_dry_run=${payload.current_location_gate.recovery_runway.next_machine_apply_dry_run_command ?? "-"}\n`,
 	      );
 	      process.stdout.write(
-	        `  recovery-reentry: status=${payload.current_location_gate.reentry_forecast.status} blocking=${payload.current_location_gate.reentry_forecast.current_blocking_count} after_machine=${payload.current_location_gate.reentry_forecast.blocking_after_machine_lanes} phases=${payload.current_location_gate.reentry_forecast.required_phase_count} next=${payload.current_location_gate.reentry_forecast.next_phase_action ?? "-"} gate=${payload.current_location_gate.reentry_forecast.next_gate} command=${payload.current_location_gate.reentry_forecast.next_command} execute=${payload.current_location_gate.reentry_forecast.next_execution_command}\n`,
+	        `  recovery-reentry: status=${payload.current_location_gate.reentry_forecast.status} effective=${payload.synthesis.effective_reentry_status} blocking=${payload.current_location_gate.reentry_forecast.current_blocking_count} after_machine=${payload.current_location_gate.reentry_forecast.blocking_after_machine_lanes} phases=${payload.current_location_gate.reentry_forecast.required_phase_count} next=${payload.current_location_gate.reentry_forecast.next_phase_action ?? "-"} gate=${payload.current_location_gate.reentry_forecast.next_gate} command=${payload.current_location_gate.reentry_forecast.next_command} execute=${payload.current_location_gate.reentry_forecast.next_execution_command}\n`,
 	      );
       process.stdout.write(
         `  design-integrity: declarations=${payload.design_integrity.declarations} references=${payload.design_integrity.references} impact=${payload.design_integrity.impact}\n`,
