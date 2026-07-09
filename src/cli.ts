@@ -7631,6 +7631,20 @@ builder
 const vmodel = program.command("vmodel").description("V-model trace");
 
 function summarizeVmodelFitReport(payload: VmodelFitReport) {
+  const summarizeGuard = (guard: VmodelFitReport["regression_guards"]["guards"][number]) => ({
+    guard_id: guard.guard_id,
+    status: guard.status,
+    scope: guard.scope,
+    command: summaryJsonCommand(guard.command),
+    count: guard.count,
+  });
+  const prioritizedGuards = [...payload.regression_guards.guards].sort((left, right) => {
+    const priority = { fail: 0, watch: 1, pass: 2 } as const;
+    const leftPriority = priority[left.status];
+    const rightPriority = priority[right.status];
+    return leftPriority === rightPriority ? 0 : leftPriority - rightPriority;
+  });
+
   return {
     schema_version: "vmodel-fit-summary.v1",
     status: payload.status,
@@ -7811,13 +7825,10 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
       pass: payload.regression_guards.pass,
       watch: payload.regression_guards.watch,
       fail: payload.regression_guards.fail,
-      sample_guards: payload.regression_guards.guards.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((guard) => ({
-        guard_id: guard.guard_id,
-        status: guard.status,
-        scope: guard.scope,
-        command: summaryJsonCommand(guard.command),
-        count: guard.count,
-      })),
+      attention_guards: payload.regression_guards.guards
+        .filter((guard) => guard.status !== "pass")
+        .map(summarizeGuard),
+      sample_guards: prioritizedGuards.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map(summarizeGuard),
     },
     next_action_count: payload.next_actions.length,
     sample_next_actions: payload.next_actions.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map((action) => ({

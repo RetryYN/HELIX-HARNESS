@@ -3420,6 +3420,20 @@ describe("L7 CLI surface closure", () => {
             }),
           ],
         },
+        regression_guards: {
+          status: "needs_attention",
+          attention_guards: expect.arrayContaining([
+            expect.objectContaining({
+              guard_id: "current-location-reentry",
+              status: "watch",
+            }),
+          ]),
+          sample_guards: expect.arrayContaining([
+            expect.objectContaining({
+              status: expect.stringMatching(/fail|watch/),
+            }),
+          ]),
+        },
         next_action_count: expect.any(Number),
         blocker_count: expect.any(Number),
         source_command: "helix vmodel fit --summary-json",

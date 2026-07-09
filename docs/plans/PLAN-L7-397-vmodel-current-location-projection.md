@@ -928,6 +928,39 @@ review_evidence:
         completed_at: "2026-07-09T14:29:49+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:36607a366efda9954059a2ff7d84e3ea265c8a617ff47bbe67c3f27d38893f29"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T14:38:06+09:00"
+    tests_green_at: "2026-07-09T14:38:06+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "`vmodel fit --summary-json` の regression guard 要約で pass 先頭5件が watch/fail を隠す問題を解消し、`attention_guards` と非pass優先 `sample_guards` で operation-scope / current-location-reentry を機械的に見えるようにした。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T14:38:06+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T14:38:06+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:e971e1d66b2e61d3212f4f5d2c7f18933e409dafbb07b181baa01e4e8216fbb4"
+      - kind: smoke
+        command: "bash -lc 'set -o pipefail; bun src/cli.ts vmodel fit --summary-json | rg \"attention_guards|operation-scope|current-location-reentry|sample_guards\" -C 2'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T14:38:06+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:6b3015e3964d0797d221dc11fa09ba02d0e4f0b0d0f82e2ab683018edcd6ebe3"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
