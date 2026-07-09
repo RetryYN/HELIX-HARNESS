@@ -181,6 +181,14 @@ import {
   selectPrecedingSessionFile,
 } from "./runtime/attempt-escalation";
 import { buildAutonomousLoopRunReceipt } from "./runtime/autonomous-loop-run-receipts";
+import {
+  buildChangePackageDeltaArchiveReport,
+  type ChangePackageStatus,
+} from "./runtime/change-package-delta-archive";
+import {
+  buildCrossRepoSpecStoreReport,
+  type SpecStoreOperation,
+} from "./runtime/cross-repo-spec-store";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
 import {
   type ClassifyResult,
@@ -250,6 +258,7 @@ import {
   summaryJsonCommand,
   summaryJsonCommandOrNull,
 } from "./runtime/summary-surface-audit";
+import { buildToolAugmentationRegistryReport } from "./runtime/tool-augmentation-registry";
 import {
   evaluateWorkGuardTargets,
   extractEditTargets,
@@ -1696,6 +1705,29 @@ function isActivationKind(value: string | undefined): value is ActivationKind | 
     value === "external_api" ||
     value === "auth" ||
     value === "infra"
+  );
+}
+
+function isSpecStoreOperation(value: string | undefined): value is SpecStoreOperation | undefined {
+  return (
+    value === undefined ||
+    value === "read" ||
+    value === "write" ||
+    value === "sync" ||
+    value === "publish"
+  );
+}
+
+function isChangePackageStatus(
+  value: string | undefined,
+): value is ChangePackageStatus | undefined {
+  return (
+    value === undefined ||
+    value === "draft" ||
+    value === "active" ||
+    value === "confirmed" ||
+    value === "accepted" ||
+    value === "archived"
   );
 }
 
@@ -9252,6 +9284,175 @@ security
       }
       process.stdout.write(
         `security egress-check: ${report.ok ? "ok" : "blocked"} tool=${report.tool_policy.tool_name} policy=${report.tool_policy.egress_policy}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    },
+  );
+
+const tools = program.command("tools").description("tool augmentation read-only surfaces");
+
+tools
+  .command("registry")
+  .description("emit task-lens tool augmentation registry and non-executable suggestions")
+  .option("--task <text>", "task text used for task-lens selection")
+  .option("--json", "JSON output")
+  .action((opts: { task?: string; json?: boolean }) => {
+    const report = buildToolAugmentationRegistryReport({
+      task: opts.task,
+      sourceCommand: "helix tools registry --json",
+    });
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `tools registry: entries=${report.registry.length} suggestions=${report.suggestions.length} blocked=${report.blocked_tools.length} read=${report.read_only}\n`,
+    );
+    for (const finding of report.findings) {
+      process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+    }
+  });
+
+const change = program.command("change").description("change package validation surfaces");
+
+change
+  .command("package")
+  .description("emit a dry-run change package delta/archive validation packet")
+  .requiredOption("--dry-run", "do not archive or mutate PLAN state")
+  .option("--json", "JSON output")
+  .option("--package-id <id>", "change package id", "change:dry-run")
+  .option("--plan <id>", "PLAN id", "PLAN-UNKNOWN")
+  .option("--status <status>", "draft, active, confirmed, accepted, or archived", "draft")
+  .option("--archive-requested", "validate archive request rules")
+  .option("--design <path>", "related design path", collectCliValues, [])
+  .option("--test-design <path>", "related test-design path", collectCliValues, [])
+  .option("--evidence <path>", "acceptance evidence path", collectCliValues, [])
+  .option("--layer <layer>", "delta L-layer", collectCliValues, [])
+  .option("--rollback-path <path>", "archive rollback path")
+  .option("--evidence-digest <digest>", "archive evidence digest")
+  .action(
+    (opts: {
+      dryRun: boolean;
+      json?: boolean;
+      packageId?: string;
+      plan?: string;
+      status?: string;
+      archiveRequested?: boolean;
+      design?: string[];
+      testDesign?: string[];
+      evidence?: string[];
+      layer?: string[];
+      rollbackPath?: string;
+      evidenceDigest?: string;
+    }) => {
+      if (!isChangePackageStatus(opts.status)) {
+        const output = {
+          ok: false,
+          error: "invalid_change_package_status",
+          status: opts.status ?? null,
+          source_command: "helix change package --dry-run --json",
+        };
+        process.exitCode = 1;
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else process.stderr.write("invalid change package status\n");
+        return;
+      }
+      const report = buildChangePackageDeltaArchiveReport(
+        {
+          package_id: opts.packageId ?? "change:dry-run",
+          plan_id: opts.plan ?? "PLAN-UNKNOWN",
+          plan_status: opts.status ?? "draft",
+          archive_requested: Boolean(opts.archiveRequested),
+          design_paths: opts.design ?? [],
+          test_design_paths: opts.testDesign ?? [],
+          acceptance_evidence_paths: opts.evidence ?? [],
+          delta_layers: opts.layer ?? [],
+          archive_decision:
+            opts.rollbackPath || opts.evidenceDigest
+              ? {
+                  rollback_path: opts.rollbackPath ?? null,
+                  evidence_digest: opts.evidenceDigest ?? null,
+                }
+              : null,
+        },
+        { sourceCommand: "helix change package --dry-run --json" },
+      );
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `change package: ${report.ok ? "ok" : "blocked"} package=${report.package_id} archive_allowed=${report.archive_allowed}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    },
+  );
+
+const specStore = program.command("spec-store").description("cross-repo spec store dry-run checks");
+
+specStore
+  .command("check")
+  .description("emit read-only cross-repo spec store validation packet")
+  .requiredOption("--dry-run", "do not write, sync, publish, or access credentials")
+  .option("--json", "JSON output")
+  .option("--store <id>", "store id", "store:dry-run")
+  .option("--source <source>", "store source repo or path", "local")
+  .option("--ref <ref>", "pinned commit sha or refs/tags/*", "HEAD")
+  .option("--operation <operation>", "read, write, sync, or publish", "read")
+  .option("--read-only", "mark store operation as read-only")
+  .option("--plan <id>", "consuming PLAN id")
+  .option("--digest <digest>", "trusted artifact digest")
+  .option("--approval-present", "action-binding approval is present")
+  .action(
+    (opts: {
+      dryRun: boolean;
+      json?: boolean;
+      store?: string;
+      source?: string;
+      ref?: string;
+      operation?: string;
+      readOnly?: boolean;
+      plan?: string;
+      digest?: string;
+      approvalPresent?: boolean;
+    }) => {
+      if (!isSpecStoreOperation(opts.operation)) {
+        const output = {
+          ok: false,
+          error: "invalid_spec_store_operation",
+          operation: opts.operation ?? null,
+          source_command: "helix spec-store check --dry-run --json",
+        };
+        process.exitCode = 1;
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else process.stderr.write("invalid spec-store operation\n");
+        return;
+      }
+      const report = buildCrossRepoSpecStoreReport(
+        {
+          store_id: opts.store ?? "store:dry-run",
+          source: opts.source ?? "local",
+          ref: opts.ref ?? "HEAD",
+          operation: opts.operation ?? "read",
+          read_only: Boolean(opts.readOnly),
+          consuming_plan_id: opts.plan ?? null,
+          artifact_digest: opts.digest ?? null,
+          action_binding_approval_present: Boolean(opts.approvalPresent),
+        },
+        { sourceCommand: "helix spec-store check --dry-run --json" },
+      );
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `spec-store check: ${report.ok ? "ok" : "blocked"} store=${report.store_id} op=${report.operation} trusted=${report.trusted_artifact}\n`,
       );
       for (const finding of report.findings) {
         process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);

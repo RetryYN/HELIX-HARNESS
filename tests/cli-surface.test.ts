@@ -463,6 +463,90 @@ describe("L7 CLI surface closure", () => {
     });
   });
 
+  it("exposes tool augmentation registry as non-executable task-lens suggestions", () => {
+    const run = runCli([
+      "tools",
+      "registry",
+      "--task",
+      "設計と検証で browser と LSP の候補を見る",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      read_only: true,
+      schema_version: "tool-augmentation-registry.v1",
+      source_command: "helix tools registry --json",
+    });
+    expect(
+      payload.suggestions.every(
+        (item: { auto_execute_allowed: boolean }) => !item.auto_execute_allowed,
+      ),
+    ).toBe(true);
+    expect(
+      payload.suggestions.every((item: { evidence_claim: boolean }) => !item.evidence_claim),
+    ).toBe(true);
+  });
+
+  it("exposes change package archive validation as a dry-run fail-close packet", () => {
+    const run = runCli([
+      "change",
+      "package",
+      "--dry-run",
+      "--package-id",
+      "change:PLAN-L7-373",
+      "--plan",
+      "PLAN-L7-373",
+      "--status",
+      "draft",
+      "--archive-requested",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      dry_run: true,
+      schema_version: "change-package-delta-archive.v1",
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "archive_without_design_or_test_delta" }),
+      ]),
+    );
+  });
+
+  it("exposes cross-repo spec store validation as a dry-run fail-close packet", () => {
+    const run = runCli([
+      "spec-store",
+      "check",
+      "--dry-run",
+      "--store",
+      "store:shared-spec",
+      "--source",
+      "git@github.com:RetryYN/shared-spec.git",
+      "--ref",
+      "main",
+      "--operation",
+      "sync",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      dry_run: true,
+      schema_version: "cross-repo-spec-store.v1",
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: "unpinned_store_ref_fail_close" })]),
+    );
+  });
+
   it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",
