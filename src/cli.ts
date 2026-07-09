@@ -4858,6 +4858,16 @@ function buildSummarySurfaceCommandAudit(
         buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
       ),
     },
+    {
+      surface: "completion-decision-packet",
+      payload: {
+        source_command: "helix completion decision-packet --summary-json",
+        full_review_bundle_command: "helix completion review-bundle --json",
+        full_source_command: "helix completion decision-packet --json",
+        view_command: "helix progress tree-view --summary-json",
+        full_view_command: "helix progress tree-view --json",
+      },
+    },
   ]);
 }
 

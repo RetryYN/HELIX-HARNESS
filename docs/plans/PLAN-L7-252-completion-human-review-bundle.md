@@ -25,9 +25,13 @@ generates:
     artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/runtime/summary-surface-audit.ts
+    artifact_type: source_module
   - artifact_path: tests/completion-decision-packet.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/summary-surface-audit.test.ts
     artifact_type: test_code
   - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
     artifact_type: design_doc
@@ -39,11 +43,54 @@ dependencies:
     - src/lint/outstanding.ts
     - src/lint/completion-decision-packet.ts
     - src/cli.ts
+    - src/runtime/summary-surface-audit.ts
     - tests/completion-decision-packet.test.ts
     - tests/cli-surface.test.ts
+    - tests/summary-surface-audit.test.ts
     - docs/design/helix/L6-function-design/pillar-function-design.md
     - docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T21:43:01+09:00"
+    tests_green_at: "2026-07-09T21:42:44+09:00"
+    verdict: approve
+    scope: "completion decision-packet summary を Project view summary catalog の機械検出 surface に追加し、review bundle への full JSON 導線を full_review_bundle_command として分類した。summary は承認正本を置き換えず、completion decision packet / review bundle / progress tree-view の導線だけを read-only で可視化する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T21:39:30+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:04e1dd1df3c3fd78fd687ccbd2a2581b341dfd5aba1d59d023df7f330d073baf"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:42:44+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:e3598db81c7d5e4e42dee2f9e3af817ef3f294932cde09c7fddab7b59972c082"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:39:58+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:9637af00b915e0e49d04d45d8d4748b7eccc22228067875cc1ac734034712b9d"
+      - kind: doctor
+        command: "bun src/cli.ts doctor"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:42:44+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:da13d6d2a2b3e12f97219f5ee6e2d5c0de3112fa0c42d556d0b1ac86f66c10ce"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-03T12:53:01+09:00"
@@ -203,6 +250,8 @@ PO が対象 PLAN や packet command を推測する workflow 穴を塞ぐ。
   status、completion claim 可否、semantic frontier count、human decision blocker、decision ごとの
   scoped packet / required record / review bundle command を機械検出できるようにする。
   summary は正本承認材料を置き換えず、`full_source_command=helix completion decision-packet --json` を持つ。
+- Project view summary catalog は `completion-decision-packet` surface を監査対象に含め、
+  `completion review-bundle` への導線は `full_review_bundle_command` として明示的に full JSON 参照へ分類する。
 
 ## 採用判断
 

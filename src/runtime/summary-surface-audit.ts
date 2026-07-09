@@ -58,7 +58,11 @@ export const SUMMARY_SURFACE_AUDIT_EXCLUDED_SURFACES = [
   },
 ];
 
-export const SUMMARY_SURFACE_AUDIT_ALLOWED_FIELDS = ["full_source_command", "full_view_command"];
+export const SUMMARY_SURFACE_AUDIT_ALLOWED_FIELDS = [
+  "full_source_command",
+  "full_view_command",
+  "full_review_bundle_command",
+];
 
 export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
   {
@@ -230,6 +234,17 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     payload: {
       source_command: "helix vmodel fit --summary-json",
       current_location_command: "helix current-location --summary-json",
+      view_command: "helix progress tree-view --summary-json",
+      full_view_command: "helix progress tree-view --json",
+    },
+  },
+  {
+    surface: "completion-decision-packet",
+    source_command: "helix completion decision-packet --summary-json",
+    payload: {
+      source_command: "helix completion decision-packet --summary-json",
+      full_review_bundle_command: "helix completion review-bundle --json",
+      full_source_command: "helix completion decision-packet --json",
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },

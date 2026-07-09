@@ -5722,7 +5722,11 @@ describe("L7 CLI surface closure", () => {
           checked_surface_count: SUMMARY_SURFACE_CONTRACTS.length,
           excluded_surface_count: 2,
           unexpected_count: 0,
-          allowed_fields: ["full_source_command", "full_view_command"],
+          allowed_fields: [
+            "full_source_command",
+            "full_view_command",
+            "full_review_bundle_command",
+          ],
           expected_surfaces: SUMMARY_SURFACE_CONTRACTS.map((contract) => contract.surface),
           missing_surfaces: [],
           unexpected_surfaces: [],
@@ -5752,6 +5756,11 @@ describe("L7 CLI surface closure", () => {
             expect.objectContaining({
               surface: "vmodel-fit",
               source_command: "helix vmodel fit --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
+              surface: "completion-decision-packet",
+              source_command: "helix completion decision-packet --summary-json",
               unexpected_count: 0,
             }),
             expect.objectContaining({
