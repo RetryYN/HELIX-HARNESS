@@ -27,6 +27,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/state-db/current-location.ts
     artifact_type: source_module
+  - artifact_path: src/state-db/visualization-view-model.ts
+    artifact_type: source_module
   - artifact_path: src/runtime/summary-surface-audit.ts
     artifact_type: source_module
   - artifact_path: tests/completion-decision-packet.test.ts
@@ -37,6 +39,10 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/summary-surface-audit.test.ts
     artifact_type: test_code
+  - artifact_path: tests/visualization-treeview.test.ts
+    artifact_type: test_code
+  - artifact_path: docs/design/harness/L6-function-design/function-spec.md
+    artifact_type: design_doc
   - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
@@ -48,14 +54,58 @@ dependencies:
     - src/lint/completion-decision-packet.ts
     - src/cli.ts
     - src/state-db/current-location.ts
+    - src/state-db/visualization-view-model.ts
     - src/runtime/summary-surface-audit.ts
     - tests/completion-decision-packet.test.ts
     - tests/cli-surface.test.ts
     - tests/current-location.test.ts
     - tests/summary-surface-audit.test.ts
+    - tests/visualization-treeview.test.ts
+    - docs/design/harness/L6-function-design/function-spec.md
     - docs/design/helix/L6-function-design/pillar-function-design.md
     - docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T23:22:54+09:00"
+    tests_green_at: "2026-07-09T23:22:54+09:00"
+    verdict: approve
+    scope: "Project closure review-bundle summary に approval_review_checklist を追加し、current window の digest、scope、evidence totals、blocker、non-authorizing decision record route、承認 route/postcheck を機械検出できるようにした。close_ready 343 件の window 1/18 では approval_allowed=true、required_checks は scope/digest/evidence/blocker が pass、decision record route が review として出る。Project view 関連ファイルは Biome 整形のみで意味変更なし。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:21:01+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:21:01+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:66a7968bb5f6b8e128df6e850ea96b03da9cc4d18aca5d138e90ac35959957ff"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts tests/visualization-treeview.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:22:54+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:c05edff8e339a272f865cb9e05462956b20f75534441184548a02d47bd7510a9"
+      - kind: smoke
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:21:01+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:f79b6649ed5761e4c20b98ae31dfa2c1dd511d9b9d3f2c25db56d61b8d8c0ca8"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:07:31+09:00"

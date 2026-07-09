@@ -5683,6 +5683,83 @@ function summarizeClosureEvidenceApplyPlan(
   };
 }
 
+function summarizeClosureApprovalReviewChecklist(bundle: ProjectClosureReviewBundle) {
+  const digestOk = /^sha256:[0-9a-f]{64}$/.test(bundle.review_scope.approval_scope_digest);
+  const evidenceTotals = bundle.review_scope.evidence_totals;
+  const hasReviewEvidence =
+    evidenceTotals.evidence_paths > 0 ||
+    evidenceTotals.test_runs_total > 0 ||
+    evidenceTotals.gate_runs_total > 0 ||
+    evidenceTotals.runtime_verification_total > 0;
+  const blockedByFindings = Array.from(
+    new Set([...bundle.review_scope.blocked_by_findings, ...bundle.decision.blocked_by_findings]),
+  ).sort();
+  const hasBlockingFindings = blockedByFindings.length > 0;
+  const approvalAllowed =
+    bundle.approval_required && bundle.listed > 0 && digestOk && !hasBlockingFindings;
+  const approvalRoute =
+    bundle.decision.outcome_routes.find((route) => route.outcome === "approve_closure_claim") ??
+    null;
+  const decisionDraftRecordCommand = `helix closure decision-draft --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --out .helix/tmp/closure/${bundle.action}-decision-draft-offset-${bundle.offset}.yml --summary-json`;
+
+  return {
+    schema_version: "project-closure-approval-review-checklist.v1",
+    checklist_id: `closure-review:${bundle.action}:offset:${bundle.offset}`,
+    scope: "current_window",
+    status:
+      bundle.listed === 0
+        ? "empty_window"
+        : hasBlockingFindings || !digestOk
+          ? "blocked_by_findings"
+          : "ready_for_human_review",
+    non_authorizing: true,
+    must_not_apply: true,
+    approval_required: bundle.approval_required,
+    approval_allowed: approvalAllowed,
+    allowed_outcomes: bundle.decision.allowed_outcomes,
+    required_checks: [
+      {
+        check_id: "window_candidate_scope",
+        status: bundle.listed > 0 ? "pass" : "blocked",
+        evidence_field: "listed",
+        expected: bundle.listed,
+      },
+      {
+        check_id: "approval_scope_digest",
+        status: digestOk ? "pass" : "blocked",
+        evidence_field: "review_scope.approval_scope_digest",
+        expected: bundle.review_scope.approval_scope_digest,
+      },
+      {
+        check_id: "window_evidence_totals",
+        status: hasReviewEvidence ? "pass" : "review",
+        evidence_field: "review_scope.evidence_totals",
+        expected: evidenceTotals,
+      },
+      {
+        check_id: "blocked_findings",
+        status: hasBlockingFindings ? "blocked" : "pass",
+        evidence_field: "decision.blocked_by_findings",
+        expected: blockedByFindings,
+      },
+      {
+        check_id: "decision_record_non_authorizing",
+        status: "review",
+        evidence_field: "decision_draft_record_command",
+        expected: decisionDraftRecordCommand,
+      },
+    ],
+    current_window_command: `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`,
+    transition_window_command: `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`,
+    decision_draft_command: `helix closure decision-draft --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`,
+    decision_draft_record_command: decisionDraftRecordCommand,
+    approval_route_command:
+      approvalRoute === null ? null : summaryJsonCommand(approvalRoute.command),
+    approval_route_postcheck_commands:
+      approvalRoute === null ? [] : approvalRoute.postcheck_commands.map(summaryJsonCommand),
+  };
+}
+
 function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
   const baseSummaryCommand = `helix closure review-bundle --action ${bundle.action} --summary-json`;
   const currentWindowCommand = `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`;
@@ -5716,12 +5793,9 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     omitted_after: window.omitted_after,
     approval_scope_digest: window.review_scope.approval_scope_digest,
     review_scope: window.review_scope,
-    decision_record_default_path:
-      `.helix/tmp/closure/${bundle.action}-decision-draft-offset-${window.offset}.yml`,
-    review_window_command:
-      `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${window.offset} --summary-json`,
-    transition_window_command:
-      `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${window.offset} --summary-json`,
+    decision_record_default_path: `.helix/tmp/closure/${bundle.action}-decision-draft-offset-${window.offset}.yml`,
+    review_window_command: `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${window.offset} --summary-json`,
+    transition_window_command: `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${window.offset} --summary-json`,
     decision_draft_command: decisionDraftCommand(window.offset),
     decision_draft_record_command: decisionDraftRecordCommand(window.offset),
   }));
@@ -5760,6 +5834,7 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     transition_window_command: transitionWindowCommand,
     decision_draft_command: decisionDraftCommand(bundle.offset),
     decision_draft_record_command: decisionDraftRecordCommand(bundle.offset),
+    approval_review_checklist: summarizeClosureApprovalReviewChecklist(bundle),
     candidate_count: bundle.candidates.length,
     sample_candidates: bundle.candidates
       .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)

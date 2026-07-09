@@ -1911,16 +1911,11 @@ export function buildProjectCurrentLocationView(
     omitted_after: window.omitted_after,
     approval_scope_digest: window.review_scope.approval_scope_digest,
     review_scope: closeReadyReviewScope(window.review_scope),
-    review_window_command:
-      `helix closure review-bundle --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
-    transition_window_command:
-      `helix closure transition-plan --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
-    decision_draft_command:
-      `helix closure decision-draft --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
-    decision_draft_record_command:
-      `helix closure decision-draft --action close_ready --limit ${window.limit} --offset ${window.offset} --out .helix/tmp/closure/close_ready-decision-draft-offset-${window.offset}.yml --summary-json`,
-    decision_record_default_path:
-      `.helix/tmp/closure/close_ready-decision-draft-offset-${window.offset}.yml`,
+    review_window_command: `helix closure review-bundle --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
+    transition_window_command: `helix closure transition-plan --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
+    decision_draft_command: `helix closure decision-draft --action close_ready --limit ${window.limit} --offset ${window.offset} --summary-json`,
+    decision_draft_record_command: `helix closure decision-draft --action close_ready --limit ${window.limit} --offset ${window.offset} --out .helix/tmp/closure/close_ready-decision-draft-offset-${window.offset}.yml --summary-json`,
+    decision_record_default_path: `.helix/tmp/closure/close_ready-decision-draft-offset-${window.offset}.yml`,
   }));
   const driveModel = buildProjectDriveModelReport(current);
   const recoveryViewLimit = 3;

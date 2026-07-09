@@ -2148,7 +2148,9 @@ describe("visualization Tree View adapter", () => {
     });
     expect(firstWindow?.tooltip).toContain("approval_scope_digest=sha256:");
     expect(firstWindow?.tooltip).toContain("offset=0");
-    expect(firstWindow?.tooltip).toContain("record=.helix/tmp/closure/close_ready-decision-draft-offset-0.yml");
+    expect(firstWindow?.tooltip).toContain(
+      "record=.helix/tmp/closure/close_ready-decision-draft-offset-0.yml",
+    );
     expect(firstWindow?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/closure/apply-readiness/review-windows/1/review:helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
       "project/current-location/closure/apply-readiness/review-windows/1/transition:helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",

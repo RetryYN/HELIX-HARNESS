@@ -5425,6 +5425,63 @@ describe("L7 CLI surface closure", () => {
           "helix closure decision-draft --action collect_evidence --limit 1 --offset 0 --summary-json",
         decision_draft_record_command:
           "helix closure decision-draft --action collect_evidence --limit 1 --offset 0 --out .helix/tmp/closure/collect_evidence-decision-draft-offset-0.yml --summary-json",
+        approval_review_checklist: {
+          schema_version: "project-closure-approval-review-checklist.v1",
+          checklist_id: "closure-review:collect_evidence:offset:0",
+          scope: "current_window",
+          status: "ready_for_human_review",
+          non_authorizing: true,
+          must_not_apply: true,
+          approval_required: false,
+          approval_allowed: false,
+          allowed_outcomes: [
+            "keep_current_queue",
+            "move_after_evidence_change",
+            "return_to_reverse_design",
+          ],
+          required_checks: expect.arrayContaining([
+            expect.objectContaining({
+              check_id: "window_candidate_scope",
+              status: "pass",
+              evidence_field: "listed",
+              expected: 1,
+            }),
+            expect.objectContaining({
+              check_id: "approval_scope_digest",
+              status: "pass",
+              evidence_field: "review_scope.approval_scope_digest",
+              expected: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+            }),
+            expect.objectContaining({
+              check_id: "window_evidence_totals",
+              status: "review",
+              evidence_field: "review_scope.evidence_totals",
+            }),
+            expect.objectContaining({
+              check_id: "blocked_findings",
+              status: "pass",
+              evidence_field: "decision.blocked_by_findings",
+              expected: [],
+            }),
+            expect.objectContaining({
+              check_id: "decision_record_non_authorizing",
+              status: "review",
+              evidence_field: "decision_draft_record_command",
+              expected:
+                "helix closure decision-draft --action collect_evidence --limit 1 --offset 0 --out .helix/tmp/closure/collect_evidence-decision-draft-offset-0.yml --summary-json",
+            }),
+          ]),
+          current_window_command:
+            "helix closure review-bundle --action collect_evidence --limit 1 --offset 0 --summary-json",
+          transition_window_command:
+            "helix closure transition-plan --action collect_evidence --limit 1 --offset 0 --summary-json",
+          decision_draft_command:
+            "helix closure decision-draft --action collect_evidence --limit 1 --offset 0 --summary-json",
+          decision_draft_record_command:
+            "helix closure decision-draft --action collect_evidence --limit 1 --offset 0 --out .helix/tmp/closure/collect_evidence-decision-draft-offset-0.yml --summary-json",
+          approval_route_command: null,
+          approval_route_postcheck_commands: [],
+        },
         source_command: "helix closure review-bundle --action collect_evidence --summary-json",
         full_source_command: "helix closure review-bundle --json",
         sample_candidates: [
@@ -5537,8 +5594,7 @@ describe("L7 CLI surface closure", () => {
         },
         current_window_command:
           "helix closure decision-draft --action close_ready --limit 1 --offset 0 --summary-json",
-        decision_record_default_path:
-          ".helix/tmp/closure/close_ready-decision-draft-offset-0.yml",
+        decision_record_default_path: ".helix/tmp/closure/close_ready-decision-draft-offset-0.yml",
         decision_record_command:
           "helix closure decision-draft --action close_ready --limit 1 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
         source_command: "helix closure decision-draft --summary-json",
