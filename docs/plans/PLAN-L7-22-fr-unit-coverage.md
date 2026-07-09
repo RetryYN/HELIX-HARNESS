@@ -34,6 +34,31 @@ review_evidence:
     reviewed_at: "2026-06-09T17:00:00+09:00"
     verdict: approve
     scope: "L6 FR coverage lint implementation already shipped; lint/typecheck/vitest/doctor green before confirmation; reverse pairing edge added."
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:51:36+09:00"
+    tests_green_at: "2026-07-09T15:51:36+09:00"
+    verdict: approve
+    scope: "PLAN-L7-22 の execution evidence 欠落を、現行 L6 FR coverage / L6 completion / coding-rules / doctor targeted green と typecheck で補い、FR unit coverage gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/l6-fr-coverage.test.ts tests/l6-completion.test.ts tests/coding-rules.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:51:36+09:00"
+        evidence_path: tests/l6-fr-coverage.test.ts
+        output_digest: "sha256:a7d0df912edc2b7633242f5ec99897ea9edf47b5f366d056388115566851ac61"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:51:36+09:00"
+        evidence_path: src/lint/l6-fr-coverage.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-22 (add-impl): L6 FR coverage lint の機械検証
