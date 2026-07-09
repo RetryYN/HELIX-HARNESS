@@ -42,7 +42,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T16:36:23+09:00"
-    tests_green_at: "2026-07-09T16:35:52+09:00"
+    tests_green_at: "2026-07-09T16:36:23+09:00"
     verdict: approve
     scope: "PLAN-L7-367 parallel candidate verifier council。candidate / verifier / council decision packet、self-review veto、missing replay reject、merge/apply は既存GitHub gateへ委譲する policy を追加した。"
     worker_model: codex

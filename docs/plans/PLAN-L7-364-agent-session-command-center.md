@@ -41,7 +41,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T16:36:23+09:00"
-    tests_green_at: "2026-07-09T16:35:52+09:00"
+    tests_green_at: "2026-07-09T16:36:23+09:00"
     verdict: approve
     scope: "PLAN-L7-364 agent session command center。agent slot と handover pointer を統合した read-only board を追加し、active/stale/blocked、needs-you reason、DB/handover next action を機械表示した。"
     worker_model: codex

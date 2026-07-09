@@ -42,7 +42,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T16:36:23+09:00"
-    tests_green_at: "2026-07-09T16:35:52+09:00"
+    tests_green_at: "2026-07-09T16:36:23+09:00"
     verdict: approve
     scope: "PLAN-L7-366 autonomous loop run receipts。loop state / iteration receipt から restartable next action、stop kind、retry bound、missing receipt fail-close を出す read-only receipt surface を追加した。"
     worker_model: codex

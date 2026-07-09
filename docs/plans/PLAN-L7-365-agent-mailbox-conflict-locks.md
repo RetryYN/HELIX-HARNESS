@@ -41,7 +41,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T16:36:23+09:00"
-    tests_green_at: "2026-07-09T16:35:52+09:00"
+    tests_green_at: "2026-07-09T16:36:23+09:00"
     verdict: approve
     scope: "PLAN-L7-365 agent mailbox and conflict locks。lock conflict fail-close、stale lock owner review、mailbox dry-run packet を追加し、network relay / destructive checkout は対象外のまま維持した。"
     worker_model: codex
