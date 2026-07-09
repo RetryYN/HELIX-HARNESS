@@ -261,6 +261,7 @@ export interface ProjectDriveModelReport {
   default_model: "Forward";
   selection_status: ProjectDriveRouteStatus;
   current: ProjectCurrentLocationSnapshot["current"];
+  blocking_finding_codes: string[];
   candidates: ProjectDriveModelCandidate[];
   selected_candidate: ProjectDriveModelCandidate;
   blocked_models: ProjectDriveModel[];
@@ -3266,6 +3267,9 @@ export function buildProjectDriveModelReport(
     default_model: "Forward",
     selection_status: snapshot.drive_route.status,
     current: snapshot.current,
+    blocking_finding_codes: snapshot.findings
+      .filter((finding) => finding.severity === "error")
+      .map((finding) => finding.code),
     candidates,
     selected_candidate: selectedCandidate,
     blocked_models: candidates

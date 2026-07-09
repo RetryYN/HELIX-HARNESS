@@ -70,6 +70,18 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     source_command: "helix current-location --summary-json",
     payload: {
       source_command: "helix current-location --summary-json",
+      current_location_frontier: {
+        schema_version: "current-location-frontier-summary.v1",
+        frontier_type: "recovery_frontier",
+        commands: {
+          current_location: "helix current-location --summary-json",
+          drive_model: "helix drive model --summary-json",
+          recovery_plan: "helix recovery plan --summary-json",
+          roadmap_current: "helix roadmap current --summary-json",
+          vmodel_fit: "helix vmodel fit --summary-json",
+          project_frontier: "helix progress frontier --summary-json",
+        },
+      },
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
@@ -243,6 +255,18 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     payload: {
       source_command: "helix vmodel fit --summary-json",
       current_location_command: "helix current-location --summary-json",
+      current_location_frontier: {
+        schema_version: "current-location-frontier-summary.v1",
+        frontier_type: "recovery_frontier",
+        commands: {
+          current_location: "helix current-location --summary-json",
+          drive_model: "helix drive model --summary-json",
+          recovery_plan: "helix recovery plan --summary-json",
+          roadmap_current: "helix roadmap current --summary-json",
+          vmodel_fit: "helix vmodel fit --summary-json",
+          project_frontier: "helix progress frontier --summary-json",
+        },
+      },
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
@@ -252,6 +276,18 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     source_command: "helix progress frontier --summary-json",
     payload: {
       source_command: "helix progress frontier --summary-json",
+      current_location_frontier: {
+        schema_version: "current-location-frontier-summary.v1",
+        frontier_type: "recovery_frontier",
+        commands: {
+          current_location: "helix current-location --summary-json",
+          drive_model: "helix drive model --summary-json",
+          recovery_plan: "helix recovery plan --summary-json",
+          roadmap_current: "helix roadmap current --summary-json",
+          vmodel_fit: "helix vmodel fit --summary-json",
+          project_frontier: "helix progress frontier --summary-json",
+        },
+      },
       commands: {
         project_frontier: "helix progress frontier --summary-json",
         current_location: "helix current-location --summary-json",

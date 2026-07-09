@@ -86,6 +86,87 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-10T00:09:25+09:00"
+    tests_green_at: "2026-07-10T00:09:25+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "`current_location_frontier` を `current-location --summary-json` / `progress frontier --summary-json` / `vmodel fit --summary-json` へ投影し、L14 claim と open L7 の矛盾を `frontier_type=recovery_frontier` / `classification=l14_claim_with_l7_work` として機械検出できるようにした。`drive model --summary-json` には `blocking_finding_codes` を追加し、Recovery 選択理由が summary 単体で追跡できることを確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:08:01+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:07:55+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:b95c354f92aae05a11638b7a1e883301934de06803b3a8d3963533c7a5175335"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:08:22+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:5f94a68f96b5cace99f674b08622615afa66260a4ac56ec387652766f8f1c22d"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts -t \"L14到達済みclaim\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:08:59+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:3270e2ef99ed966aa51e0e296048efd93aec91db93dce4d3e720818a2fd6f53d"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:08:59+09:00"
+        evidence_path: tests/summary-surface-audit.test.ts
+        output_digest: "sha256:16f270a9eb010f607317b5d364d68d2de9dae85ec7966182f9428a68f06e86e1"
+      - kind: smoke
+        command: "bun src/cli.ts current-location --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:09:06+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:ccadc1fa4678c87d89a49b16f804426bdfffbea64ceb447042b80d5ff616dcf3"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:09:06+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:1673050dea0f1df5984d747eb0a232cedb2af4ebc7ecbfdae6e87540aed1d8f6"
+      - kind: smoke
+        command: "bun src/cli.ts drive model --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:09:15+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:97090e30688603b440453272724e58dda695fece86e16bc65a8c2a87d8cc8681"
+      - kind: smoke
+        command: "bun src/cli.ts progress frontier --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:09:15+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:428c49605a526c1d6848a30f359bdfb61ae215d0ce8f3de2263139e05909fdc8"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:54:35+09:00"
     tests_green_at: "2026-07-09T23:54:35+09:00"
     verdict: approve

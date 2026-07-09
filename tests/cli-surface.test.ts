@@ -2064,6 +2064,14 @@ describe("L7 CLI surface closure", () => {
             status: expect.any(String),
             completion_boundary: expect.any(String),
           }),
+          current_location_frontier: expect.objectContaining({
+            schema_version: "current-location-frontier-summary.v1",
+            frontier_type: expect.any(String),
+            commands: expect.objectContaining({
+              current_location: "helix current-location --summary-json",
+              project_frontier: "helix progress frontier --summary-json",
+            }),
+          }),
           drive_model: expect.objectContaining({
             source_command: "helix drive model --summary-json",
           }),
@@ -3438,6 +3446,41 @@ describe("L7 CLI surface closure", () => {
             ledger_count: 1,
           },
         },
+        current_location_frontier: {
+          schema_version: "current-location-frontier-summary.v1",
+          frontier_type: "recovery_frontier",
+          status: "recovery_required",
+          classification: "l14_claim_with_l7_work",
+          completion_boundary: "contradicted",
+          selected_model: "Recovery",
+          route_id: "drive:Recovery:recover-current-location",
+          must_return_to_design: true,
+          open_l7_count: 1,
+          terminal_l14_claim_count: 1,
+          sample_open_l7_plan_ids: ["PLAN-L7-999-new-impl"],
+          sample_terminal_l14_plan_ids: ["PLAN-L14-01-close"],
+          finding_codes: expect.arrayContaining(["l14_claim_with_l7_work"]),
+          selected_closure_action: "collect_evidence",
+          queue_total: 1,
+          automation: expect.objectContaining({
+            status: "machine_work_available",
+            machine_actionable_count: 1,
+            human_approval_count: 0,
+          }),
+          reentry: expect.objectContaining({
+            status: "machine_phase_pending",
+            next_gate: "recompute_drive_model",
+            next_command: "helix closure batch --action collect_evidence --summary-json",
+          }),
+          commands: {
+            current_location: "helix current-location --summary-json",
+            drive_model: "helix drive model --summary-json",
+            recovery_plan: "helix recovery plan --summary-json",
+            roadmap_current: "helix roadmap current --summary-json",
+            vmodel_fit: "helix vmodel fit --summary-json",
+            project_frontier: "helix progress frontier --summary-json",
+          },
+        },
         function_design_policy: {
           status: expect.any(String),
           independent_layer_policy: "abolished",
@@ -3547,6 +3590,7 @@ describe("L7 CLI surface closure", () => {
         selected_model: "Recovery",
         default_model: "Forward",
         selection_status: "recovery_required",
+        blocking_finding_codes: expect.arrayContaining(["l14_claim_with_l7_work"]),
         current: {
           layer: "L14",
           l12_layer: "L12",
@@ -3595,6 +3639,7 @@ describe("L7 CLI surface closure", () => {
         selected_model: "Recovery",
         default_model: "Forward",
         selection_status: "recovery_required",
+        blocking_finding_codes: expect.arrayContaining(["l14_claim_with_l7_work"]),
         current: {
           layer: "L14",
           l12_layer: "L12",
@@ -4226,6 +4271,16 @@ describe("L7 CLI surface closure", () => {
             next_machine_action: "collect_evidence",
           },
         },
+        current_location_frontier: expect.objectContaining({
+          schema_version: "current-location-frontier-summary.v1",
+          frontier_type: "recovery_frontier",
+          classification: "l14_claim_with_l7_work",
+          selected_model: "Recovery",
+          commands: expect.objectContaining({
+            current_location: "helix current-location --summary-json",
+            project_frontier: "helix progress frontier --summary-json",
+          }),
+        }),
         recovery_runway_gate: {
           status: "machine_work_available",
           current_blocking_count: 1,
@@ -5930,6 +5985,18 @@ describe("L7 CLI surface closure", () => {
             status: "needs_recovery",
             completion_boundary: "contradicted",
           },
+          current_location_frontier: expect.objectContaining({
+            schema_version: "current-location-frontier-summary.v1",
+            frontier_type: "recovery_frontier",
+            status: "recovery_required",
+            classification: "l14_claim_with_l7_work",
+            selected_model: "Recovery",
+            route_id: "drive:Recovery:recover-current-location",
+            commands: expect.objectContaining({
+              current_location: "helix current-location --summary-json",
+              project_frontier: "helix progress frontier --summary-json",
+            }),
+          }),
           function_design_policy: {
             status: expect.any(String),
             independent_layer_policy: "abolished",
@@ -6132,6 +6199,15 @@ describe("L7 CLI surface closure", () => {
       expect(parsedFrontierSummary).toMatchObject({
         schema_version: "project-frontier-summary.v1",
         current: parsedTreeSummary.project_frontier_summary.current,
+        current_location_frontier: expect.objectContaining({
+          schema_version: "current-location-frontier-summary.v1",
+          frontier_type: "recovery_frontier",
+          classification: "l14_claim_with_l7_work",
+          commands: expect.objectContaining({
+            current_location: "helix current-location --summary-json",
+            project_frontier: "helix progress frontier --summary-json",
+          }),
+        }),
         function_design_policy: expect.objectContaining({
           independent_layer_policy: "abolished",
           command: "helix current-location --summary-json",

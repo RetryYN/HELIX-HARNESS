@@ -3905,6 +3905,80 @@ function summarizeProjectFunctionDesignPolicy(snapshot: ProjectCurrentLocationSn
   };
 }
 
+function summarizeCurrentLocationFrontier(snapshot: ProjectCurrentLocationSnapshot) {
+  const hasL14L7Contradiction = snapshot.findings.some(
+    (finding) => finding.code === "l14_claim_with_l7_work",
+  );
+  const activeRecovery = snapshot.current.status === "needs_recovery";
+  const recovery = snapshot.recovery;
+  const nextRecoveryCommand =
+    recovery?.reentry_forecast.next_command ??
+    recovery?.automation_runway.next_machine_command ??
+    "helix drive model --summary-json";
+
+  return {
+    schema_version: "current-location-frontier-summary.v1",
+    frontier_type: activeRecovery ? "recovery_frontier" : "forward_frontier",
+    status: activeRecovery ? "recovery_required" : "current",
+    classification: hasL14L7Contradiction
+      ? "l14_claim_with_l7_work"
+      : activeRecovery
+        ? "recovery_queue"
+        : "no_current_location_contradiction",
+    completion_boundary: snapshot.current.completion_boundary,
+    selected_model: snapshot.drive_route.selectedModel,
+    route_id: snapshot.drive_route.routeId,
+    must_return_to_design: snapshot.drive_route.mustReturnToDesign,
+    open_l7_count: snapshot.closure.l7_open_plan_ids.length,
+    terminal_l14_claim_count: snapshot.closure.terminal_l14_plan_ids.length,
+    sample_open_l7_plan_ids: snapshot.closure.l7_open_plan_ids.slice(
+      0,
+      CLOSURE_SUMMARY_SAMPLE_LIMIT,
+    ),
+    sample_terminal_l14_plan_ids: snapshot.closure.terminal_l14_plan_ids.slice(
+      0,
+      CLOSURE_SUMMARY_SAMPLE_LIMIT,
+    ),
+    finding_codes: snapshot.findings.map((finding) => finding.code),
+    selected_closure_action: recovery?.selected_closure_action ?? null,
+    queue_total: snapshot.closure.queue.total,
+    route_counts: snapshot.closure.queue.route_counts,
+    automation: recovery
+      ? {
+          status: recovery.automation_runway.status,
+          machine_actionable_count: recovery.automation_runway.machine_actionable_count,
+          human_approval_count: recovery.automation_runway.human_approval_count,
+          design_reverse_count: recovery.automation_runway.design_reverse_count,
+          remaining_after_machine_lanes: recovery.automation_runway.remaining_after_machine_lanes,
+        }
+      : null,
+    reentry: recovery
+      ? {
+          status: recovery.reentry_forecast.status,
+          next_gate: recovery.reentry_forecast.next_gate,
+          next_phase_action: recovery.reentry_forecast.next_phase_action,
+          next_command: summaryJsonCommand(nextRecoveryCommand),
+          next_execution_command: summaryJsonCommand(
+            recovery.reentry_forecast.next_execution_command,
+          ),
+        }
+      : null,
+    commands: {
+      current_location: "helix current-location --summary-json",
+      drive_model: "helix drive model --summary-json",
+      recovery_plan: "helix recovery plan --summary-json",
+      roadmap_current: "helix roadmap current --summary-json",
+      vmodel_fit: "helix vmodel fit --summary-json",
+      project_frontier: "helix progress frontier --summary-json",
+    },
+    required_action: hasL14L7Contradiction
+      ? "L14 claim と open L7 を closure/recovery frontier として照合し、Recovery lane を消化してから completion claim を再評価する"
+      : activeRecovery
+        ? "Recovery lane を消化し、current-location / drive model / vmodel fit を再計算する"
+        : "current-location frontier は現時点で contradiction を持たない",
+  };
+}
+
 function summarizeProjectCurrentLocation(
   snapshot: ProjectCurrentLocationSnapshot,
   options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
@@ -3958,6 +4032,7 @@ function summarizeProjectCurrentLocation(
       missing: snapshot.operation_scope.missing,
       reverify: snapshot.operation_scope.reverify,
     },
+    current_location_frontier: summarizeCurrentLocationFrontier(snapshot),
     function_design_policy: summarizeProjectFunctionDesignPolicy(snapshot),
     scrum_operation: snapshot.scrum_operation
       ? {
@@ -4310,6 +4385,7 @@ function summarizeProjectDriveModelReport(report: ProjectDriveModelReport) {
     default_model: report.default_model,
     selection_status: report.selection_status,
     current: report.current,
+    blocking_finding_codes: report.blocking_finding_codes,
     selected_candidate: {
       model: report.selected_candidate.model,
       rank: report.selected_candidate.rank,
@@ -4926,6 +5002,7 @@ function buildSummarySurfaceCommandAudit(
       surface: "vmodel-fit",
       payload: summarizeVmodelFitReport(
         buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
+        summarizeCurrentLocationFrontier(snapshot),
       ),
     },
     {
@@ -4953,6 +5030,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
   );
   const vmodelFit = summarizeVmodelFitReport(
     buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot }),
+    summarizeCurrentLocationFrontier(snapshot),
   );
   const skillBinding = summarizeProjectSkillBinding(projectSkillBindingCliPayload(snapshot));
 
@@ -4966,6 +5044,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       completion_boundary: snapshot.current.completion_boundary,
       roadmap_frontier: snapshot.current.roadmap_frontier,
     },
+    current_location_frontier: summarizeCurrentLocationFrontier(snapshot),
     function_design_policy: functionDesignPolicy,
     drive_model: {
       selected_model: driveModel.selected_model,
@@ -5052,6 +5131,7 @@ function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed
       completion_claim_allowed: completionClaimAllowed,
       status: projectFrontier.vmodel_fit.status,
       current: projectFrontier.current,
+      current_location_frontier: projectFrontier.current_location_frontier,
       function_design_policy: projectFrontier.function_design_policy,
       drive_model: projectFrontier.drive_model,
       recovery_runway: {
@@ -8687,7 +8767,10 @@ builder
 
 const vmodel = program.command("vmodel").description("V-model trace");
 
-function summarizeVmodelFitReport(payload: VmodelFitReport) {
+function summarizeVmodelFitReport(
+  payload: VmodelFitReport,
+  currentLocationFrontier: ReturnType<typeof summarizeCurrentLocationFrontier> | null = null,
+) {
   const summarizeGuard = (guard: VmodelFitReport["regression_guards"]["guards"][number]) => ({
     guard_id: guard.guard_id,
     status: guard.status,
@@ -8804,6 +8887,7 @@ function summarizeVmodelFitReport(payload: VmodelFitReport) {
         ),
       },
     },
+    current_location_frontier: currentLocationFrontier,
     recovery_runway_gate: {
       status: payload.recovery_runway_gate.status,
       current_blocking_count: payload.recovery_runway_gate.current_blocking_count,
@@ -8967,7 +9051,13 @@ vmodel
       const zipManifest = analyzeVmodelZipManifest(repoRoot);
       const payload = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       if (opts.summaryJson) {
-        process.stdout.write(`${JSON.stringify(summarizeVmodelFitReport(payload), null, 2)}\n`);
+        process.stdout.write(
+          `${JSON.stringify(
+            summarizeVmodelFitReport(payload, summarizeCurrentLocationFrontier(snapshot)),
+            null,
+            2,
+          )}\n`,
+        );
         return;
       }
       if (opts.json) {
