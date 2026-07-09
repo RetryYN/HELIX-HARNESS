@@ -13,6 +13,7 @@ import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceMaterializePacket,
   closureEvidenceApprovalDraftCommand,
+  closureEvidenceApprovalDraftRefreshPath,
   closureEvidenceHandoffArtifacts,
   closureEvidenceProbeCommand,
   projectClosureActionCommandLimit,
@@ -105,7 +106,7 @@ export interface VisualizationSnapshot {
 
 export interface VisualizationRecoveryHandoffArtifact {
   action: ProjectClosureQueueNextAction;
-  kind: "probe_record" | "approval_draft";
+  kind: "probe_record" | "approval_draft" | "approval_refresh_draft";
   path: string;
   status: "present" | "missing" | "unchecked";
   generation_status:
@@ -508,7 +509,7 @@ function inspectHandoffArtifact(input: {
       sha256: null,
       write_policy: input.writePolicy,
       approval_record:
-        input.kind === "approval_draft"
+        input.kind !== "probe_record"
           ? {
               status: "unchecked",
               decision_id: null,
@@ -539,7 +540,7 @@ function inspectHandoffArtifact(input: {
       sha256: null,
       write_policy: input.writePolicy,
       approval_record:
-        input.kind === "approval_draft"
+        input.kind !== "probe_record"
           ? parseVisualizationApprovalRecord(
               null,
               input.expectedApprovalScopeDigest ?? null,
@@ -564,7 +565,7 @@ function inspectHandoffArtifact(input: {
     sha256,
     write_policy: input.writePolicy,
     approval_record:
-      input.kind === "approval_draft"
+      input.kind !== "probe_record"
         ? parseVisualizationApprovalRecord(
             content.toString("utf8"),
             input.expectedApprovalScopeDigest ?? null,
@@ -655,19 +656,46 @@ function buildRecoveryHandoffArtifacts(input: {
       limit: commandLimit,
       probeRecordPath: artifacts.probe_record_path,
     });
+    const draft = inspectHandoffArtifact({
+      repoRoot: input.repoRoot,
+      snapshot: input.snapshot,
+      action,
+      kind: "approval_draft",
+      path: artifacts.approval_draft_path,
+      writePolicy: artifacts.write_policy,
+      generation: draftGeneration,
+      expectedApprovalScopeDigest: expectedApproval?.digest ?? null,
+      expectedMaterializeStatus: expectedApproval?.materializeStatus ?? null,
+    });
+    const refresh =
+      draft.approval_record?.scope_status === "mismatch" && expectedApproval?.digest
+        ? inspectHandoffArtifact({
+            repoRoot: input.repoRoot,
+            snapshot: input.snapshot,
+            action,
+            kind: "approval_refresh_draft",
+            path: closureEvidenceApprovalDraftRefreshPath(action, expectedApproval.digest),
+            writePolicy: artifacts.write_policy,
+            generation: {
+              status: probe.status === "present" ? "ready_to_generate" : "waiting_for_probe",
+              command: closureEvidenceApprovalDraftCommand(
+                action,
+                commandLimit,
+                closureEvidenceApprovalDraftRefreshPath(action, expectedApproval.digest),
+              ),
+              reasons:
+                probe.status === "present"
+                  ? ["canonical approval draft が stale のため refresh draft を生成できる"]
+                  : ["refresh draft 生成には先に probe record が必要"],
+            },
+            expectedApprovalScopeDigest: expectedApproval.digest,
+            expectedMaterializeStatus: expectedApproval.materializeStatus,
+          })
+        : null;
     return [
       probe,
-      inspectHandoffArtifact({
-        repoRoot: input.repoRoot,
-        snapshot: input.snapshot,
-        action,
-        kind: "approval_draft",
-        path: artifacts.approval_draft_path,
-        writePolicy: artifacts.write_policy,
-        generation: draftGeneration,
-        expectedApprovalScopeDigest: expectedApproval?.digest ?? null,
-        expectedMaterializeStatus: expectedApproval?.materializeStatus ?? null,
-      }),
+      draft,
+      ...(refresh ? [refresh] : []),
     ];
   });
   return {

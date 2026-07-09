@@ -294,6 +294,7 @@ export interface VmodelHandoffStatus {
   unchecked: number;
   items: VmodelHandoffArtifactStatus[];
   approval_record: VmodelApprovalRecordStatus | null;
+  approval_record_path: string | null;
 }
 
 export interface VmodelHandoffArtifactStatus {
@@ -1554,13 +1555,50 @@ function buildVmodelHandoffStatus(input: {
             path: input.artifacts.probe_record_path,
           }),
         });
+  let activeApprovalRecord = approvalRecord;
+  let activeApprovalRecordPath: string | null =
+    draft.status === "present" ? input.artifacts.approval_draft_path : null;
+  if (
+    input.repoRoot &&
+    approvalRecord.scope_status === "mismatch" &&
+    approvalRecord.expected_approval_scope_digest
+  ) {
+    const refreshPath = closureEvidenceApprovalDraftRefreshPath(
+      input.action,
+      approvalRecord.expected_approval_scope_digest,
+    );
+    const refreshAbsolutePath = join(input.repoRoot, refreshPath);
+    if (existsSync(refreshAbsolutePath)) {
+      const refreshApprovalRecord = withVmodelApprovalScopeCheck({
+        approval: parseVmodelApprovalRecord(readFileSync(refreshAbsolutePath, "utf8")),
+        snapshot: input.snapshot,
+        action: input.action,
+        probeExecution: readVmodelProbeExecution({
+          repoRoot: input.repoRoot,
+          path: input.artifacts.probe_record_path,
+        }),
+      });
+      if (refreshApprovalRecord.scope_status === "match") {
+        activeApprovalRecord = {
+          ...refreshApprovalRecord,
+          reasons: [
+            ...refreshApprovalRecord.reasons,
+            `active_approval_record_path=${refreshPath}`,
+            `canonical_approval_draft_path=${input.artifacts.approval_draft_path}`,
+          ],
+        };
+        activeApprovalRecordPath = refreshPath;
+      }
+    }
+  }
   const items = [probe, draft];
   return {
     present: items.filter((item) => item.status === "present").length,
     missing: items.filter((item) => item.status === "missing").length,
     unchecked: items.filter((item) => item.status === "unchecked").length,
     items,
-    approval_record: approvalRecord,
+    approval_record: activeApprovalRecord,
+    approval_record_path: activeApprovalRecordPath,
   };
 }
 
@@ -1654,6 +1692,7 @@ function buildVmodelHandoffNextStep(input: {
     };
   }
   const approval = input.status.approval_record;
+  const approvalRecordPath = input.status.approval_record_path ?? input.approvalRecordPath;
   if (approval?.scope_status === "mismatch" && approval.expected_approval_scope_digest) {
     const refreshPath = closureEvidenceApprovalDraftRefreshPath(
       input.action,
@@ -1692,7 +1731,7 @@ function buildVmodelHandoffNextStep(input: {
       valid_for_apply: approval.valid_for_apply,
       command: input.evidenceApplyDryRunCommand.replace(
         "<approved-approval-record-path>",
-        input.approvalRecordPath,
+        approvalRecordPath,
       ),
       label: "apply dry-run approved evidence",
       required_action:

@@ -3466,7 +3466,14 @@ function evidenceHandoffNextStep(input: {
     };
   }
   const probe = input.status.items.find((item) => item.kind === "probe_record");
-  const draft = input.status.items.find((item) => item.kind === "approval_draft");
+  const canonicalDraft = input.status.items.find((item) => item.kind === "approval_draft");
+  const refreshDraft = input.status.items.find(
+    (item) =>
+      item.kind === "approval_refresh_draft" &&
+      item.status === "present" &&
+      item.approval_record?.scope_status === "match",
+  );
+  const draft = refreshDraft ?? canonicalDraft;
   if (probe?.status === "unchecked" || draft?.status === "unchecked") {
     return {
       status: "unchecked",
@@ -3541,6 +3548,8 @@ function evidenceHandoffNextStep(input: {
     };
   }
   const approval = draft.approval_record;
+  const approvalRecordPath =
+    draft.path ?? input.bucket.evidence_handoff_artifacts.approval_draft_path;
   if (approval?.scope_status === "mismatch" && approval.expected_approval_scope_digest) {
     const refreshPath = isProjectClosureQueueNextAction(input.bucket.action)
       ? closureEvidenceApprovalDraftRefreshPath(
@@ -3584,7 +3593,7 @@ function evidenceHandoffNextStep(input: {
       valid_for_apply: approval.valid_for_apply,
       command: input.bucket.evidence_apply_dry_run_command.replace(
         "<approved-approval-record-path>",
-        input.bucket.evidence_handoff_artifacts.approval_draft_path,
+        approvalRecordPath,
       ),
       label: "apply dry-run approved evidence",
       required_action:
@@ -3671,6 +3680,23 @@ function evidenceHandoffNextStep(input: {
   };
 }
 
+function activeApprovalRecordForHandoffStatus(
+  status: ProjectEvidenceHandoffStatus | null,
+): ProjectEvidenceApprovalRecord | null {
+  const refreshApproval = status?.items.find(
+    (item) =>
+      item.kind === "approval_refresh_draft" &&
+      item.status === "present" &&
+      item.approval_record?.scope_status === "match",
+  )?.approval_record;
+  return (
+    refreshApproval ??
+    status?.items.find((item) => item.kind === "approval_draft")?.approval_record ??
+    status?.items.find((item) => item.approval_record)?.approval_record ??
+    null
+  );
+}
+
 function handoffAwareAutomationClass(
   fallback: string,
   handoffNext: ReturnType<typeof evidenceHandoffNextStep>,
@@ -3730,6 +3756,7 @@ function recoveryHandoffGateForView(
   }
   const handoffStatus = evidenceHandoffStatusForAction(snapshot, bucket.action);
   const handoffNext = evidenceHandoffNextStep({ bucket, status: handoffStatus });
+  const activeApprovalRecord = activeApprovalRecordForHandoffStatus(handoffStatus);
   if (!handoffNext) {
     return {
       status: "none",
@@ -3740,41 +3767,31 @@ function recoveryHandoffGateForView(
       required_action: "current-location recovery handoff は未検出",
       handoff_present: handoffStatus?.present ?? 0,
       handoff_missing: handoffStatus?.missing ?? 0,
-      approval_status:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.status ?? null,
-      scope_status:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.scope_status ??
-        null,
+      approval_status: activeApprovalRecord?.status ?? null,
+      scope_status: activeApprovalRecord?.scope_status ?? null,
       decision_id:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.decision_id ??
-        vmodelFit.recovery_handoff_gate.decision_id,
-      outcome:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record?.outcome ??
-        vmodelFit.recovery_handoff_gate.outcome,
+        activeApprovalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
+      outcome: activeApprovalRecord?.outcome ?? vmodelFit.recovery_handoff_gate.outcome,
       approval_scope_digest:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-          ?.approval_scope_digest ?? vmodelFit.recovery_handoff_gate.approval_scope_digest,
+        activeApprovalRecord?.approval_scope_digest ??
+        vmodelFit.recovery_handoff_gate.approval_scope_digest,
       expected_approval_scope_digest:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-          ?.expected_approval_scope_digest ??
+        activeApprovalRecord?.expected_approval_scope_digest ??
         vmodelFit.recovery_handoff_gate.expected_approval_scope_digest,
       materialize_status:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-          ?.materialize_status ?? vmodelFit.recovery_handoff_gate.materialize_status,
+        activeApprovalRecord?.materialize_status ??
+        vmodelFit.recovery_handoff_gate.materialize_status,
       reviewed_candidate_count:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-          ?.reviewed_candidate_count ?? vmodelFit.recovery_handoff_gate.reviewed_candidate_count,
+        activeApprovalRecord?.reviewed_candidate_count ??
+        vmodelFit.recovery_handoff_gate.reviewed_candidate_count,
       valid_for_apply:
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record
-          ?.valid_for_apply ?? vmodelFit.recovery_handoff_gate.valid_for_apply,
-      approval_state: projectApprovalState(
-        handoffStatus?.items.find((item) => item.approval_record)?.approval_record,
-      ),
+        activeApprovalRecord?.valid_for_apply ?? vmodelFit.recovery_handoff_gate.valid_for_apply,
+      approval_state: projectApprovalState(activeApprovalRecord),
       reason_codes: ["handoff.status.none", "handoff.next.missing"],
       reasons: ["current_location next action に handoff_next が無い"],
     };
   }
-  const approvalRecord = handoffStatus?.items.find((item) => item.approval_record)?.approval_record;
+  const approvalRecord = activeApprovalRecord;
   return {
     status: handoffNext.status,
     effective_phase: effectiveHandoffPhase(handoffNext.status),

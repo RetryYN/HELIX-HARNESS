@@ -5,6 +5,7 @@ import { join } from "node:path";
 import {
   buildProjectClosureEvidenceApprovalDraftPacket,
   buildProjectCurrentLocationSnapshot,
+  closureEvidenceApprovalDraftRefreshPath,
   type ProjectClosureEvidenceProbeExecution,
 } from "../src/state-db/current-location";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
@@ -385,6 +386,96 @@ describe("visualization read model", () => {
       expect(approvalDraft?.approval_record?.reasons).toContain(
         "approval_scope_digest は current materialize scope と一致",
       );
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("detects matching refresh approval drafts without overwriting stale canonical drafts", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-visualization-refresh-scope-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
+      const execution: ProjectClosureEvidenceProbeExecution = {
+        command: "bun run test:fast",
+        session_id: "session-refresh-read-model",
+        correlation_id: "corr-refresh-read-model",
+        started_at: "2026-07-09T00:00:00.000Z",
+        completed_at: "2026-07-09T00:01:00.000Z",
+        exit_code: 0,
+        status: "passed",
+        output_digest: "sha256:probe-output-refresh",
+        stdout_bytes: 12,
+        stderr_bytes: 0,
+        output_excerpt: {
+          stdout_head: "ok",
+          stdout_tail: "ok",
+          stderr_head: "",
+          stderr_tail: "",
+          truncated: false,
+          limit: 2000,
+        },
+        error_message: null,
+      };
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-probe-record.json"),
+        JSON.stringify({
+          schema_version: "project-closure-evidence-probe.v1",
+          execution,
+        }),
+      );
+      const draft = buildProjectClosureEvidenceApprovalDraftPacket(
+        buildProjectCurrentLocationSnapshot(db),
+        {
+          action: "repair_failed_evidence",
+          limit: 1,
+          probeExecution: execution,
+        },
+      );
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml"),
+        draft.approval_record_text.replace(
+          draft.approval.approval_scope_digest,
+          "sha256:stale",
+        ),
+      );
+      const refreshPath = closureEvidenceApprovalDraftRefreshPath(
+        "repair_failed_evidence",
+        draft.approval.approval_scope_digest,
+      );
+      writeFileSync(join(root, refreshPath), draft.approval_record_text);
+
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
+      const canonicalDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) =>
+          item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+      );
+      const refreshDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) =>
+          item.action === "repair_failed_evidence" &&
+          item.kind === "approval_refresh_draft",
+      );
+
+      expect(canonicalDraft?.approval_record).toMatchObject({
+        approval_scope_digest: "sha256:stale",
+        expected_approval_scope_digest: draft.approval.approval_scope_digest,
+        scope_status: "mismatch",
+      });
+      expect(refreshDraft).toMatchObject({
+        path: refreshPath,
+        status: "present",
+        generation_command:
+          `helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out ${refreshPath} --summary-json`,
+        approval_record: {
+          status: "pending_human_review",
+          approval_scope_digest: draft.approval.approval_scope_digest,
+          expected_approval_scope_digest: draft.approval.approval_scope_digest,
+          scope_status: "match",
+          valid_for_apply: false,
+        },
+      });
     } finally {
       db.close();
       rmSync(root, { recursive: true, force: true });

@@ -479,6 +479,39 @@ review_evidence:
         completed_at: "2026-07-09T12:04:02+09:00"
         evidence_path: src/vmodel/fit.ts
         output_digest: "sha256:daef7db4012e9319b992f77642aed3f13f19286e80093a4eafbd76d41a6b38aa"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T12:21:00+09:00"
+    tests_green_at: "2026-07-09T12:21:00+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "refresh approval draft を生成後、canonical stale draft ではなく matching refresh draft を active approval record として採用し、vmodel fit / Project view が approval_pending へ進むことを確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T12:19:00+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/current-location.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T12:19:01+09:00"
+        evidence_path: tests/visualization-read-model.test.ts
+        output_digest: "sha256:d8c77dcaf558b8e90ba1c7949ccc4b3a9ed9c788c6f6d05268708d562b281d9a"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:19:06+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:b98f6a61aa236d5d83cbd23aeedaa2306b4f5083d2a7832f911816d5cc0ed76d"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
