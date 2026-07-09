@@ -1026,6 +1026,30 @@ function nonZeroSnapshot(): VisualizationSnapshot {
   };
 }
 
+function withThreeRepairQueueItems(snapshot: VisualizationSnapshot): VisualizationSnapshot {
+  const current = snapshot.project_current_location;
+  const base = current.closure.queue.items[0];
+  const clone = (suffix: string): typeof base => ({
+    ...base,
+    planId: `PLAN-L7-fixture-${suffix}`,
+    sourcePath: `docs/plans/PLAN-L7-fixture-${suffix}.md`,
+    docDependencies: [`docs/plans/PLAN-L7-fixture-${suffix}.md`, "docs/design/**"],
+    evidence: {
+      ...base.evidence,
+      artifactPaths: [`docs/plans/PLAN-L7-fixture-${suffix}.md`],
+      evidencePaths: [`docs/evidence/PLAN-L7-fixture-${suffix}-test.json`],
+    },
+    reasons: [`fixture ${suffix} は同一 nextAction の multi-item 表示検査用`],
+  });
+  current.closure.queue.items = [base, clone("a"), clone("b")];
+  current.closure.queue.total = 3;
+  current.closure.queue.route_counts = {
+    ...current.closure.queue.route_counts,
+    repair_failed_evidence: 3,
+  };
+  return snapshot;
+}
+
 function emptySnapshot(): VisualizationSnapshot {
   return {
     schema_version: "visualization-snapshot.v1",
@@ -1869,6 +1893,32 @@ describe("buildVisualizationViewModel", () => {
     expect(vm.harness.harness_growth.current_sections.artifacts[0]).toMatchObject({
       label: "total",
       value: snapshot.progress.artifacts.total,
+    });
+  });
+
+  it("uses current repair queue count for Project view evidence commands", () => {
+    const vm = buildVisualizationViewModel(withThreeRepairQueueItems(nonZeroSnapshot()));
+    const currentLocation = vm.project.current_location;
+
+    expect(currentLocation.closure_overview.work_buckets[0]).toMatchObject({
+      action: "repair_failed_evidence",
+      count: 3,
+      listed: 3,
+      evidence_probe_command:
+        "helix closure evidence-probe --action repair_failed_evidence --limit 3 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+      evidence_materialize_command:
+        "helix closure evidence-materialize --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
+      evidence_apply_dry_run_command:
+        "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+    });
+    expect(currentLocation.closure.evidence_apply).toMatchObject({
+      action: "repair_failed_evidence",
+      dry_run_command:
+        "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+      execute_command:
+        "helix closure evidence-apply --execute --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+      approval_draft_command:
+        "helix closure evidence-approval-draft --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
     });
   });
 

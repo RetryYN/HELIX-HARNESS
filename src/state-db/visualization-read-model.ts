@@ -15,6 +15,7 @@ import {
   closureEvidenceApprovalDraftCommand,
   closureEvidenceHandoffArtifacts,
   closureEvidenceProbeCommand,
+  projectClosureActionCommandLimit,
   PROJECT_CLOSURE_QUEUE_ACTIONS,
   type ProjectClosureEvidenceProbeExecution,
   type ProjectClosureQueueNextAction,
@@ -468,13 +469,14 @@ function expectedApprovalScope(input: {
   repoRoot?: string;
   snapshot: ProjectCurrentLocationSnapshot;
   action: ProjectClosureQueueNextAction;
+  limit: number;
   probeRecordPath: string;
 }): { digest: string; materializeStatus: string } | null {
   const execution = readVisualizationProbeExecution(input.repoRoot, input.probeRecordPath);
   if (!execution) return null;
   const materialize = buildProjectClosureEvidenceMaterializePacket(input.snapshot, {
     action: input.action,
-    limit: 1,
+    limit: input.limit,
     probeExecution: execution,
   });
   return {
@@ -580,42 +582,49 @@ function buildRecoveryHandoffArtifacts(input: {
   const batchByAction = new Map(
     PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => [
       action,
-      buildProjectClosureBatchReport(input.snapshot, { action, limit: 1 }),
+      buildProjectClosureBatchReport(input.snapshot, {
+        action,
+        limit: projectClosureActionCommandLimit(input.snapshot, action, 3),
+      }),
     ] as const),
   );
   const probePresentByAction = new Map<ProjectClosureQueueNextAction, boolean>();
   const probeGeneration = (action: ProjectClosureQueueNextAction): HandoffGenerationPlan => {
+    const commandLimit = projectClosureActionCommandLimit(input.snapshot, action, 3);
     const batch = batchByAction.get(action);
     const automation = batch?.work_buckets[0]?.repair_plan.automation;
     if (!automation) {
       return {
         status: "needs_evidence_projection",
-        command: closureEvidenceProbeCommand(action),
+        command: closureEvidenceProbeCommand(action, commandLimit),
         reasons: ["closure batch に handoff 用 work bucket が無い"],
       };
     }
     if (automation.safe_resolution_command_count > 0 || automation.runnable_command_count > 0) {
       return {
         status: "ready_to_generate",
-        command: closureEvidenceProbeCommand(action),
+        command: closureEvidenceProbeCommand(action, commandLimit),
         reasons: ["safe command resolution があるため probe artifact を生成できる"],
       };
     }
     if (automation.status === "needs_evidence_projection") {
       return {
         status: "needs_evidence_projection",
-        command: batch?.work_buckets[0]?.evidence_plan_command ?? closureEvidenceProbeCommand(action),
+        command:
+          batch?.work_buckets[0]?.evidence_plan_command ??
+          closureEvidenceProbeCommand(action, commandLimit),
         reasons: [automation.required_action, ...automation.reasons],
       };
     }
     return {
       status: "needs_command_resolution",
-      command: closureEvidenceProbeCommand(action),
+      command: closureEvidenceProbeCommand(action, commandLimit),
       reasons: [automation.required_action, ...automation.reasons],
     };
   };
 
   const items = PROJECT_CLOSURE_QUEUE_ACTIONS.flatMap((action) => {
+    const commandLimit = projectClosureActionCommandLimit(input.snapshot, action, 3);
     const artifacts = closureEvidenceHandoffArtifacts(action);
     if (!artifacts) return [];
     const probe = inspectHandoffArtifact({
@@ -631,18 +640,19 @@ function buildRecoveryHandoffArtifacts(input: {
     const draftGeneration: HandoffGenerationPlan = probePresentByAction.get(action)
       ? {
           status: "ready_to_generate",
-          command: closureEvidenceApprovalDraftCommand(action),
+          command: closureEvidenceApprovalDraftCommand(action, commandLimit),
           reasons: ["probe record があるため approval draft を生成できる"],
         }
       : {
           status: "waiting_for_probe",
-          command: closureEvidenceApprovalDraftCommand(action),
+          command: closureEvidenceApprovalDraftCommand(action, commandLimit),
           reasons: ["approval draft 生成には先に probe record が必要"],
         };
     const expectedApproval = expectedApprovalScope({
       repoRoot: input.repoRoot,
       snapshot: input.snapshot,
       action,
+      limit: commandLimit,
       probeRecordPath: artifacts.probe_record_path,
     });
     return [

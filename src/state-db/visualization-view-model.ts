@@ -15,6 +15,7 @@ import {
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
   isProjectClosureQueueNextAction,
+  projectClosureActionCommandLimit,
   type ProjectScrumOperation,
   type ProjectSkillBinding,
 } from "./current-location";
@@ -1814,7 +1815,8 @@ export function buildProjectCurrentLocationView(
   const skillBinding = current.skill_binding ?? emptySkillBinding();
   const closureOverview = buildProjectClosureOverview(current);
   const driveModel = buildProjectDriveModelReport(current);
-  const recoveryPlan = buildProjectRecoveryPlan(current, { limit: 1 });
+  const recoveryViewLimit = 3;
+  const recoveryPlan = buildProjectRecoveryPlan(current, { limit: recoveryViewLimit });
   const closureBucketAction = isProjectClosureQueueNextAction(
     recoveryPlan.reentry_forecast.next_phase_action ?? "",
   )
@@ -1823,26 +1825,29 @@ export function buildProjectCurrentLocationView(
   const closureBucketPreview = closureBucketAction
     ? buildProjectClosureBatchReport(current, {
         action: closureBucketAction,
-        limit: 3,
+        limit: recoveryViewLimit,
       }).work_buckets
     : [];
+  const closureBucketCommandLimit = closureBucketAction
+    ? projectClosureActionCommandLimit(current, closureBucketAction, recoveryViewLimit)
+    : 1;
   const evidenceProbePacket = closureBucketAction
     ? buildProjectClosureEvidenceProbePacket(current, {
         action: closureBucketAction,
-        limit: 1,
+        limit: closureBucketCommandLimit,
         dryRun: true,
       })
     : null;
   const evidenceMaterializePacket = closureBucketAction
     ? buildProjectClosureEvidenceMaterializePacket(current, {
         action: closureBucketAction,
-        limit: 1,
+        limit: closureBucketCommandLimit,
       })
     : null;
   const evidenceApplyPlan = closureBucketAction
     ? buildProjectClosureEvidenceApplyPlan(current, {
         action: closureBucketAction,
-        limit: 1,
+        limit: closureBucketCommandLimit,
       })
     : null;
   const zipManifest = snapshot.vmodel_zip_manifest;
@@ -2707,11 +2712,23 @@ export function buildProjectCurrentLocationView(
         primary_command: bucket.primary_command,
         evidence_plan_command: bucket.evidence_plan_command,
         evidence_patch_command: `helix closure evidence-patch --action ${bucket.action} --summary-json`,
-        evidence_probe_command: closureEvidenceProbeCommand(bucket.action),
-        evidence_materialize_command: closureEvidenceMaterializeCommand(bucket.action),
-        evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(bucket.action),
-        evidence_apply_dry_run_command: closureEvidenceApplyDryRunCommand(bucket.action),
-        evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(bucket.action),
+        evidence_probe_command: closureEvidenceProbeCommand(bucket.action, bucket.listed),
+        evidence_materialize_command: closureEvidenceMaterializeCommand(
+          bucket.action,
+          bucket.listed,
+        ),
+        evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(
+          bucket.action,
+          bucket.listed,
+        ),
+        evidence_apply_dry_run_command: closureEvidenceApplyDryRunCommand(
+          bucket.action,
+          bucket.listed,
+        ),
+        evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(
+          bucket.action,
+          bucket.listed,
+        ),
         evidence_apply_write_policy: "approval-required",
         evidence_handoff_artifacts: closureEvidenceHandoffArtifacts(bucket.action),
         postcheck_commands: [...bucket.postcheck_commands],
@@ -2869,10 +2886,10 @@ export function buildProjectCurrentLocationView(
         action: closureBucketAction,
         status: evidenceMaterializePacket?.materialize_readiness.status ?? "no_action",
         probe_command: closureBucketAction
-          ? closureEvidenceProbeCommand(closureBucketAction)
+          ? closureEvidenceProbeCommand(closureBucketAction, closureBucketCommandLimit)
           : "helix closure evidence-probe --json",
         materialize_command: closureBucketAction
-          ? closureEvidenceMaterializeCommand(closureBucketAction)
+          ? closureEvidenceMaterializeCommand(closureBucketAction, closureBucketCommandLimit)
           : "helix closure evidence-materialize --summary-json",
         materialized_candidate_count: evidenceMaterializePacket?.materialized_candidate_count ?? 0,
         remaining_placeholder_count:
@@ -2905,13 +2922,13 @@ export function buildProjectCurrentLocationView(
           ]),
         ],
         dry_run_command: closureBucketAction
-          ? closureEvidenceApplyDryRunCommand(closureBucketAction)
+          ? closureEvidenceApplyDryRunCommand(closureBucketAction, closureBucketCommandLimit)
           : "helix closure evidence-apply --dry-run --summary-json",
         execute_command: closureBucketAction
-          ? closureEvidenceApplyExecuteCommand(closureBucketAction)
+          ? closureEvidenceApplyExecuteCommand(closureBucketAction, closureBucketCommandLimit)
           : "helix closure evidence-apply --execute --summary-json",
         approval_draft_command: closureBucketAction
-          ? closureEvidenceApprovalDraftCommand(closureBucketAction)
+          ? closureEvidenceApprovalDraftCommand(closureBucketAction, closureBucketCommandLimit)
           : "helix closure evidence-approval-draft --summary-json",
         approval_record_fields: [
           ...(evidenceMaterializePacket?.approval.required_record_fields ?? [

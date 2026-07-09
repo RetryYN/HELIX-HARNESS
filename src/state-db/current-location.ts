@@ -2599,6 +2599,18 @@ function closureEvidenceCommandLimit(limit?: number): number {
   return Math.max(1, Math.floor(limit ?? 1));
 }
 
+export function projectClosureActionCommandLimit(
+  snapshot: ProjectCurrentLocationSnapshot,
+  action: ProjectClosureQueueNextAction,
+  limit = 3,
+): number {
+  const commandLimit = closureEvidenceCommandLimit(limit);
+  const queueCount = snapshot.closure.queue.items.filter(
+    (item) => item.nextAction === action,
+  ).length;
+  return queueCount > 0 ? Math.max(1, Math.min(queueCount, commandLimit)) : 1;
+}
+
 export function closureEvidenceProbeCommand(
   action: ProjectClosureQueueNextAction,
   limit?: number,
@@ -3334,7 +3346,7 @@ function buildProjectRecoveryActionLanes(
   return PROJECT_CLOSURE_QUEUE_ACTIONS.map((action, index) => {
     const queueItems = snapshot.closure.queue.items.filter((item) => item.nextAction === action);
     const evidencePlan = buildProjectClosureEvidencePlan(snapshot, { action, limit: 0 });
-    const commandLimit = Math.max(1, Math.min(queueItems.length, input.limit));
+    const commandLimit = projectClosureActionCommandLimit(snapshot, action, input.limit);
     const evidenceChain = recoveryEvidenceCommandChain(action, commandLimit);
     const status: ProjectRecoveryActionLane["status"] = !input.active || queueItems.length === 0
       ? "not_required"
@@ -7784,6 +7796,8 @@ export function buildProjectClosureReviewBundle(
           action,
           driveRoute: snapshot.drive_route,
           candidates: batch.queue_items,
+          commandLimitByAction: (targetAction) =>
+            projectClosureActionCommandLimit(snapshot, targetAction, 3),
         }),
       ),
       required_evidence: closureReviewRequiredEvidence(action),
@@ -7918,6 +7932,7 @@ function closureDecisionOutcomeRoute(input: {
   action: ProjectClosureQueueNextAction;
   driveRoute: ProjectDriveRouteDecision;
   candidates: ProjectClosureQueueItem[];
+  commandLimitByAction?: (action: ProjectClosureQueueNextAction) => number;
 }): ProjectClosureOutcomeRoute {
   const commonDocDependencies = unique(
     input.candidates.flatMap((candidate) => candidate.docDependencies),
@@ -7936,7 +7951,7 @@ function closureDecisionOutcomeRoute(input: {
       human_required: false,
       command:
         targetAction === "collect_evidence" || targetAction === "repair_failed_evidence"
-          ? closureEvidenceProbeCommand(targetAction)
+          ? closureEvidenceProbeCommand(targetAction, input.commandLimitByAction?.(targetAction))
           : `helix closure evidence-plan --action ${targetAction} --json`,
       transition_command: `helix closure review-bundle --action ${targetAction} --summary-json`,
       expected_transition: closurePacketExpectedTransition(targetAction),
@@ -8006,7 +8021,10 @@ function closureDecisionOutcomeRoute(input: {
   }
 
   const driveModel: ProjectDriveModel = targetAction === "reverse_design" ? "Reverse" : "Recovery";
-  const evidenceChain = recoveryEvidenceCommandChain(targetAction);
+  const evidenceChain = recoveryEvidenceCommandChain(
+    targetAction,
+    input.commandLimitByAction?.(targetAction),
+  );
   const command =
     targetAction === "collect_evidence" || targetAction === "repair_failed_evidence"
       ? (evidenceChain.evidence_probe_command ?? `helix closure batch --action ${targetAction} --json`)

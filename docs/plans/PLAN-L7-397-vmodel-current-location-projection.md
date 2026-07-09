@@ -397,6 +397,55 @@ review_evidence:
         completed_at: "2026-07-09T11:39:29+09:00"
         evidence_path: .helix/tmp/closure/verify-approval-boundary-vmodel-fit-20260709.json
         output_digest: "sha256:1093614711e624e6a103261b66ec5f7210e11c7c6bef2512bc5af051d478df3e"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T11:53:04+09:00"
+    tests_green_at: "2026-07-09T11:53:04+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "Project view / read-model / vmodel handoff scope の evidence command limit を closure queue の現在件数に追従させた。実プロジェクトの repair_failed_evidence 3件では tree-view 上位コマンド、work bucket、materialize/apply 表示、close_ready reject ルートが `limit 3` になり、古い `limit 1` approval draft は scope mismatch として検出される。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T11:50:44+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T11:50:44+09:00"
+        evidence_path: tests/visualization-view-model.test.ts
+        output_digest: "sha256:2a797ac6b613c88ab68e26d7cfaa7cc44c335951ac5ab508f0ad1f326a2c1e66"
+      - kind: unit_test
+        command: "bun run vitest run tests/current-location.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T11:52:26+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:151d320829a0b11e1773c37cc15cfcd8460725907c13381c4abfd52ab7bcd724"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T11:51:03+09:00"
+        evidence_path: .helix/tmp/closure/verify-view-limit-tree-summary-final-20260709.json
+        output_digest: "sha256:da2fcf9b255a6fe2ddfb0f90fa497b7c405d1da5eeb46eacee46b9b4be1dda52"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T11:51:03+09:00"
+        evidence_path: .helix/tmp/closure/verify-view-limit-vmodel-fit-20260709.json
+        output_digest: "sha256:e5a946c27a17160c838296350bdb90c5bf08dcd4f2a9a8fe16126a6ba8a717aa"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

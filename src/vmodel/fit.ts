@@ -15,6 +15,7 @@ import {
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
   isProjectClosureQueueNextAction,
+  projectClosureActionCommandLimit,
   type ProjectClosureEvidenceProbeExecution,
   type ProjectClosureOutcomeRoute,
   type ProjectClosureQueueNextAction,
@@ -1463,9 +1464,10 @@ function withVmodelApprovalScopeCheck(input: {
       reasons: [...input.approval.reasons, "probe execution が読めないため scope digest は未照合"],
     };
   }
+  const commandLimit = projectClosureActionCommandLimit(input.snapshot, input.action, 3);
   const materialize = buildProjectClosureEvidenceMaterializePacket(input.snapshot, {
     action: input.action,
-    limit: 1,
+    limit: commandLimit,
     probeExecution: input.probeExecution,
   });
   const expected = materialize.approval.approval_scope_digest;
