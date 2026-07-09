@@ -2621,6 +2621,9 @@ describe("runDoctor", () => {
         "visualization-tree-view-boundary - full-json-audit",
       );
       expect(treeBoundaryCheck.messages.join("\n")).toContain(
+        "allowed=helix skill suggest --current-location --json",
+      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain(
         "policy=project-view-current-location harness-view-telemetry",
       );
       expect(treeBoundaryCheck.messages.join("\n")).toContain(
@@ -2755,7 +2758,7 @@ describe("runDoctor", () => {
       );
       expect(projectSkillBinding.messages.join("\n")).toContain("workflow=Recovery,Scrum");
       expect(projectSkillBinding.messages.join("\n")).toContain(
-        "command=helix skill suggest --plan <active-plan-path>",
+        "command=helix skill suggest --current-location --json",
       );
       expect(projectSkillBinding.messages.join("\n")).toContain("automation_assets");
       expect(projectSkillBinding.messages.join("\n")).toContain("skill_recommendations");
@@ -3001,7 +3004,7 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: project-skill-binding",
-        "helix skill suggest --plan <active-plan-path>",
+        "helix skill suggest --current-location --json",
       ),
     ).toBe(true);
     expect(

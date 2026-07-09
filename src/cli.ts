@@ -3460,6 +3460,44 @@ function summarizeProjectCurrentLocation(snapshot: ProjectCurrentLocationSnapsho
   };
 }
 
+function projectSkillBindingCliPayload(snapshot: ProjectCurrentLocationSnapshot) {
+  const binding = snapshot.skill_binding;
+  return {
+    schema_version: "project-skill-binding.v1",
+    source_clock: snapshot.source_clock,
+    status: binding?.status ?? "missing",
+    source_package: binding?.sourcePackage ?? "",
+    selected_model: binding?.selectedModel ?? snapshot.drive_recommendation.model,
+    workflow_modes: binding?.workflowModes ?? [],
+    l12_layers: binding?.l12Layers ?? [],
+    required_skills: binding?.requiredSkills ?? 0,
+    recommended_skills: binding?.recommendedSkills ?? 0,
+    optional_skills: binding?.optionalSkills ?? 0,
+    source_bindings: binding?.sourceBindings ?? [],
+    doc_dependencies: binding?.docDependencies ?? [],
+    implementation_dependencies: binding?.implementationDependencies ?? [],
+    reasons: binding?.reasons ?? ["skill binding projection is missing"],
+    items:
+      binding?.items.map((item) => ({
+        skill_id: item.skillId,
+        skill_path: item.skillPath,
+        tier: item.tier,
+        inject_at: item.injectAt,
+        rank: item.rank,
+        score: item.score,
+        matched_drive_models: item.matchedDriveModels,
+        matched_layers: item.matchedLayers,
+        source_drive_models: item.sourceDriveModels,
+        source_layers: item.sourceLayers,
+        reasons: item.reasons,
+      })) ?? [],
+    source_command: "helix skill suggest --current-location --json",
+    inject_command: "helix skill suggest --current-location --inject --json",
+    view_command: "helix progress tree-view --json",
+    write_policy: "read-only",
+  };
+}
+
 program
   .command("current-location")
   .description("Project view current location and drive-model recommendation from DB projection")
@@ -6813,6 +6851,7 @@ skill
   .description("suggest skills for a PLAN id or a free-text task from harness.db context")
   .option("--plan <id>", "PLAN id (harness.db plan/layer/drive context)")
   .option("--text <task>", "free-text task (classify → context; mutually exclusive with --plan)")
+  .option("--current-location", "derive skill binding from Project current-location and drive model")
   .option("--record", "write recommendations to harness.db (--plan only)")
   .option("--buckets", "group ranked rows into required/recommended/optional (additive view)")
   .option("--inject", "emit provider context injection manifest (skill paths only)")
@@ -6821,26 +6860,110 @@ skill
     (opts: {
       plan?: string;
       text?: string;
+      currentLocation?: boolean;
       record?: boolean;
       buckets?: boolean;
       inject?: boolean;
       json?: boolean;
     }) => {
-      // A-138 ITEM-2: --plan / --text のどちらか一方が必須 (相互排他、flat ranked list は不変)。
-      if (Boolean(opts.plan) === Boolean(opts.text)) {
-        process.stderr.write("skill suggest requires exactly one of --plan or --text\n");
+      // A-138 ITEM-2 + L12 current-location: 入力 source はちょうど 1 つだけ許可する。
+      const inputCount = [opts.plan, opts.text, opts.currentLocation].filter(Boolean).length;
+      if (inputCount !== 1) {
+        process.stderr.write(
+          "skill suggest requires exactly one of --plan, --text, or --current-location\n",
+        );
         process.exitCode = 1;
         return;
       }
       // 自由文は登録 PLAN でないので DB record 不可 (--record は --plan 専用)。
-      if (opts.text && opts.record) {
+      if ((opts.text || opts.currentLocation) && opts.record) {
         process.stderr.write(
-          "--record requires --plan (free-text task is not a registered PLAN)\n",
+          "--record requires --plan (free-text/current-location task is not a registered PLAN)\n",
         );
         process.exitCode = 1;
         return;
       }
       const repoRoot = process.cwd();
+      if (opts.currentLocation) {
+        const db = openHarnessDb(":memory:", { repoRoot });
+        try {
+          rebuildHarnessDb({ repoRoot, db });
+          const snapshot = buildProjectCurrentLocationSnapshot(db);
+          const payload = projectSkillBindingCliPayload(snapshot);
+          if (opts.inject) {
+            const entries = payload.items
+              .filter((item) => item.skill_path.length > 0)
+              .map((item) => ({
+                skill_id: item.skill_id,
+                skill_path: item.skill_path,
+                tier: item.tier,
+                inject_at: item.inject_at,
+                reason: item.reasons.join("; ") || `selected_model=${payload.selected_model}`,
+                rank: item.rank,
+                score: item.score,
+              }));
+            const injection = {
+              plan_id: "project-current-location",
+              generated_at: payload.source_clock ?? "",
+              entries,
+              required_paths: entries
+                .filter((entry) => entry.inject_at === "before_work")
+                .map((entry) => entry.skill_path),
+              optional_paths: entries
+                .filter((entry) => entry.inject_at === "on_demand")
+                .map((entry) => entry.skill_path),
+              missing_skill_ids: payload.items
+                .filter((item) => item.skill_path.length === 0)
+                .map((item) => item.skill_id),
+              source_command: "helix skill suggest --current-location --inject --json",
+              write_policy: "read-only",
+            };
+            if (opts.json) process.stdout.write(`${JSON.stringify(injection, null, 2)}\n`);
+            else {
+              process.stdout.write("project-current-location skill injection\n");
+              for (const entry of injection.entries) {
+                process.stdout.write(
+                  `  ${entry.tier} ${entry.inject_at} ${entry.skill_id} -> ${entry.skill_path} reason=${entry.reason}\n`,
+                );
+              }
+            }
+            return;
+          }
+          if (opts.buckets) {
+            const buckets = {
+              required: payload.items.filter((item) => item.tier === "required"),
+              recommended: payload.items.filter((item) => item.tier === "recommended"),
+              optional: payload.items.filter((item) => item.tier === "optional"),
+            };
+            if (opts.json) process.stdout.write(`${JSON.stringify(buckets, null, 2)}\n`);
+            else {
+              for (const tier of ["required", "recommended", "optional"] as const) {
+                process.stdout.write(`# ${tier}\n`);
+                for (const item of buckets[tier]) {
+                  process.stdout.write(
+                    `  ${item.skill_id}: score=${item.score} drive=${item.matched_drive_models.join(",") || "-"} layers=${item.matched_layers.join(",") || "-"}\n`,
+                  );
+                }
+              }
+            }
+            return;
+          }
+          if (opts.json) process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+          else {
+            process.stdout.write(
+              `skill binding: status=${payload.status} selected=${payload.selected_model} workflow=${payload.workflow_modes.join(",") || "-"} required=${payload.required_skills} recommended=${payload.recommended_skills} optional=${payload.optional_skills}\n`,
+            );
+            for (const item of payload.items) {
+              process.stdout.write(
+                `  ${item.rank}. ${item.skill_id}: ${item.tier} score=${item.score} inject=${item.inject_at} drive=${item.matched_drive_models.join(",") || "-"} layers=${item.matched_layers.join(",") || "-"}\n`,
+              );
+            }
+          }
+        } finally {
+          db.close();
+        }
+        return;
+      }
       const { db } = openSkillSuggestDb(repoRoot, Boolean(opts.record));
       try {
         const rows = opts.plan

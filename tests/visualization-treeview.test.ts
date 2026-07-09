@@ -345,7 +345,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
       requiredSkills: 2,
       recommendedSkills: 0,
       optionalSkills: 0,
-      command: "helix skill suggest --plan <active-plan-path>",
+      command: "helix skill suggest --current-location --json",
       sourceBindings: [
         "zip-source:scrum-product-backlog",
         "zip-source:scrum-sprint-plan",
@@ -1445,7 +1445,7 @@ describe("visualization Tree View adapter", () => {
       command: {
         title: "Copy pointer",
         command: "helix.copyPointer",
-        arguments: ["helix skill suggest --plan <active-plan-path>"],
+        arguments: ["helix skill suggest --current-location --json"],
       },
     });
     expect(skillBinding?.tooltip).toContain("workflow=Recovery,Scrum");

@@ -122,7 +122,7 @@ function emptySkillBinding(): ProjectSkillBinding {
     recommendedSkills: 0,
     optionalSkills: 0,
     items: [],
-    command: "helix skill suggest --plan <active-plan-path>",
+    command: "helix skill suggest --current-location --json",
     sourceBindings: [],
     docDependencies: [],
     implementationDependencies: [],

@@ -1562,7 +1562,10 @@ export function checkVisualizationTreeViewBoundary(
       const fullJsonCommands = allCommands.filter(
         (command) => command.includes(" --json") && !command.includes(" --summary-json"),
       );
-      const unexpectedFullJsonCommands = fullJsonCommands;
+      const allowedFullJsonCommands = ["helix skill suggest --current-location --json"];
+      const unexpectedFullJsonCommands = fullJsonCommands.filter(
+        (command) => !allowedFullJsonCommands.includes(command),
+      );
       if (unexpectedFullJsonCommands.length > 0) {
         violations.push(
           `unexpected_full_json=${[...new Set(unexpectedFullJsonCommands)].slice(0, 5).join("|")}`,
@@ -1576,7 +1579,7 @@ export function checkVisualizationTreeViewBoundary(
         ok: violations.length === 0,
         messages: [
           `${prefix}: roots=${roots.join(",") || "-"} project_nodes=${projectIds.length} harness_nodes=${harnessIds.length} policy=project-view-current-location harness-view-telemetry command=helix progress tree-view --summary-json full=helix progress tree-view --json`,
-          `visualization-tree-view-boundary - full-json-audit total=${fullJsonCommands.length} unexpected=${unexpectedFullJsonCommands.length} allowed=none`,
+          `visualization-tree-view-boundary - full-json-audit total=${fullJsonCommands.length} unexpected=${unexpectedFullJsonCommands.length} allowed=${allowedFullJsonCommands.join("|")}`,
           `visualization-tree-view-boundary - project-required=${requiredProjectIds.join(",")}`,
           `visualization-tree-view-boundary - harness-required=${requiredHarnessIds.join(",")}`,
           ...violations.map(
@@ -2309,7 +2312,7 @@ export function checkProjectSkillBinding(
         if (binding.sourcePackage !== "ハイブリッド設計ドキュメントv1-fixed.zip") {
           violations.push(`source_package=${binding.sourcePackage}`);
         }
-        if (binding.command !== "helix skill suggest --plan <active-plan-path>") {
+        if (binding.command !== "helix skill suggest --current-location --json") {
           violations.push(`command=${binding.command}`);
         }
         if (binding.selectedModel !== report.selected_model) {

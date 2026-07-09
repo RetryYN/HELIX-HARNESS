@@ -2054,6 +2054,58 @@ describe("L7 CLI surface closure", () => {
     expect(JSON.parse(run.stdout)).toEqual([]);
   }, 15_000);
 
+  it("exposes Project current-location skill binding as a JSON command surface", () => {
+    const run = runCli(["skill", "suggest", "--current-location", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      schema_version: "project-skill-binding.v1",
+      source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      status: "ready",
+      selected_model: "Recovery",
+      source_command: "helix skill suggest --current-location --json",
+      view_command: "helix progress tree-view --json",
+      write_policy: "read-only",
+    });
+    expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Recovery", "Scrum"]));
+    expect(payload.source_bindings).toEqual(
+      expect.arrayContaining([
+        "zip-source:scrum-product-backlog",
+        "zip-source:scrum-sprint-plan",
+        "zip-source:scrum-acceptance",
+      ]),
+    );
+    expect(payload.implementation_dependencies).toEqual(
+      expect.arrayContaining(["automation_assets", "skill_recommendations"]),
+    );
+    expect(payload.required_skills).toBeGreaterThan(0);
+    expect(payload.items[0]).toMatchObject({
+      tier: "required",
+      inject_at: "before_work",
+    });
+    expect(payload.items[0].skill_path).toMatch(/^docs\/skills\//);
+  }, 30_000);
+
+  it("exposes Project current-location skill binding as an injection manifest", () => {
+    const run = runCli(["skill", "suggest", "--current-location", "--inject", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      plan_id: "project-current-location",
+      source_command: "helix skill suggest --current-location --inject --json",
+      write_policy: "read-only",
+      missing_skill_ids: [],
+    });
+    expect(payload.entries.length).toBeGreaterThan(0);
+    expect(payload.required_paths.length).toBeGreaterThan(0);
+    expect(payload.entries[0]).toMatchObject({
+      tier: "required",
+      inject_at: "before_work",
+    });
+  }, 30_000);
+
   it("exposes skill injection as a provider-neutral JSON manifest", () => {
     const run = runCli([
       "skill",

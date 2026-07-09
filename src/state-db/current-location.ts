@@ -147,7 +147,7 @@ export interface ProjectSkillBinding {
   recommendedSkills: number;
   optionalSkills: number;
   items: ProjectSkillBindingItem[];
-  command: "helix skill suggest --plan <active-plan-path>";
+  command: "helix skill suggest --current-location --json";
   sourceBindings: string[];
   docDependencies: string[];
   implementationDependencies: string[];
@@ -4474,7 +4474,7 @@ function buildProjectSkillBinding(
       recommendedSkills: 0,
       optionalSkills: 0,
       items: [],
-      command: "helix skill suggest --plan <active-plan-path>",
+      command: "helix skill suggest --current-location --json",
       sourceBindings: scrumOperation.sourceBindings,
       docDependencies: ["docs/skills/SKILL_MAP.md", "docs/skills/**"],
       implementationDependencies: ["automation_assets", "skill_recommendations"],
@@ -4526,7 +4526,7 @@ function buildProjectSkillBinding(
     recommendedSkills: items.filter((item) => item.tier === "recommended").length,
     optionalSkills: items.filter((item) => item.tier === "optional").length,
     items,
-    command: "helix skill suggest --plan <active-plan-path>",
+    command: "helix skill suggest --current-location --json",
     sourceBindings: scrumOperation.sourceBindings,
     docDependencies: unique([
       "docs/skills/SKILL_MAP.md",
