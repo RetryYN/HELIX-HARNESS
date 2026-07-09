@@ -2611,10 +2611,17 @@ export function checkRecoveryHandoffBinding(
       if (runway.machine_actionable_count > 0 && handoff.status === "none") {
         violations.push("handoff_status=none");
       }
+      const closeReadyDecisionDraft =
+        handoff.decision_id === "closure-review:close_ready" ||
+        handoff.reason_codes.includes("handoff.decision_draft.present") ||
+        handoff.reason_codes.includes("handoff.decision_draft.missing");
       if (approvalPhase && handoff.handoff_missing > 0) {
         violations.push(`handoff_missing=${handoff.handoff_missing}`);
       }
-      if (approvalPhase && handoff.handoff_present < 2) {
+      if (approvalPhase && closeReadyDecisionDraft && handoff.handoff_present < 1) {
+        violations.push(`handoff_present=${handoff.handoff_present}`);
+      }
+      if (approvalPhase && !closeReadyDecisionDraft && handoff.handoff_present < 2) {
         violations.push(`handoff_present=${handoff.handoff_present}`);
       }
       if (
@@ -2639,7 +2646,11 @@ export function checkRecoveryHandoffBinding(
           `digest_mismatch=${handoff.approval_scope_digest ?? "-"}/${handoff.expected_approval_scope_digest ?? "-"}`,
         );
       }
-      if (approvalPhase && handoff.materialize_status !== "ready_for_approval") {
+      if (
+        approvalPhase &&
+        !closeReadyDecisionDraft &&
+        handoff.materialize_status !== "ready_for_approval"
+      ) {
         violations.push(`materialize_status=${handoff.materialize_status ?? "-"}`);
       }
       if (approvalPhase && (handoff.reviewed_candidate_count ?? 0) <= 0) {
@@ -2648,7 +2659,18 @@ export function checkRecoveryHandoffBinding(
       if (handoff.approval_status === "pending_human_review" && handoff.valid_for_apply) {
         violations.push("valid_for_apply=true_while_pending");
       }
-      if (approvalPhase && !handoff.command.includes("closure evidence-materialize")) {
+      if (
+        approvalPhase &&
+        closeReadyDecisionDraft &&
+        !handoff.command.includes("closure review-bundle --action close_ready")
+      ) {
+        violations.push(`command=${handoff.command}`);
+      }
+      if (
+        approvalPhase &&
+        !closeReadyDecisionDraft &&
+        !handoff.command.includes("closure evidence-materialize")
+      ) {
         violations.push(`command=${handoff.command}`);
       }
       const prefix =

@@ -6245,6 +6245,47 @@ describe("L7 CLI surface closure", () => {
       ]);
       expect(closeReadyReviewForExecution.status).toBe(0);
       const closeReadyExecutionReview = JSON.parse(closeReadyReviewForExecution.stdout);
+      const decisionDraftPath = join(
+        root,
+        ".helix",
+        "tmp",
+        "closure",
+        "close_ready-decision-draft.yml",
+      );
+      const decisionDraft = runCliIn(root, [
+        "closure",
+        "decision-draft",
+        "--action",
+        "close_ready",
+        "--limit",
+        "1",
+        "--out",
+        decisionDraftPath,
+        "--summary-json",
+      ]);
+      expect(decisionDraft.status).toBe(0);
+      const rebuildWithDecisionDraft = runCliIn(root, ["db", "rebuild"]);
+      expect(rebuildWithDecisionDraft.status).toBe(0);
+      const fitWithDecisionDraft = runCliIn(root, ["vmodel", "fit", "--json"]);
+      expect(fitWithDecisionDraft.status).toBe(0);
+      const fitWithDecisionDraftPayload = JSON.parse(fitWithDecisionDraft.stdout);
+      expect(fitWithDecisionDraftPayload).toMatchObject({
+        recovery_handoff_gate: {
+          status: "approval_pending",
+          effective_phase: "approval",
+          approval_status: "pending_human_review",
+          approval_record_path: ".helix/tmp/closure/close_ready-decision-draft.yml",
+          decision_id: "closure-review:close_ready",
+          materialize_status: null,
+          valid_for_apply: false,
+          handoff_present: 1,
+          handoff_missing: 0,
+          command: "helix closure review-bundle --action close_ready --summary-json",
+        },
+      });
+      expect(fitWithDecisionDraftPayload.recovery_handoff_gate.reason_codes).toContain(
+        "handoff.decision_draft.present",
+      );
       const approvalPath = join(root, "closure-approval.yaml");
       writeFileSync(
         approvalPath,

@@ -3037,20 +3037,31 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-handoff-binding",
-        "status=none phase=none",
+        "status=approval_pending phase=approval",
       ),
     ).toBe(true);
-    expect(hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=-")).toBe(
-      true,
-    );
     expect(
-      hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "db: status=none"),
+      hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=match"),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-handoff-binding",
-        "reason-codes=handoff.status.none,handoff.next.missing",
+        "db: status=approval_pending",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-handoff-binding",
+        "decision=closure-review:close_ready",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-handoff-binding",
+        "handoff.decision_draft.present",
       ),
     ).toBe(true);
     expect(
