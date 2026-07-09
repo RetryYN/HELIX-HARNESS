@@ -15,6 +15,31 @@ review_evidence:
     tests_green_at: "2026-06-05"
     verdict: pass
     scope: "schema tests_green_at + analyzeReviewEvidence testBeforeReviewViolations (欠落/>reviewed_at、全駆動モデル普遍) + 38 entry back-fill (honest) + doctor hard + U-TORDER-001〜005。pmo-sonnet PASS (Critical 0、正確性/honesty/普遍/doctor連動 OK)。typecheck 0 / vitest 205 / doctor exit 0"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:45:25+09:00"
+    tests_green_at: "2026-07-09T15:45:25+09:00"
+    verdict: approve
+    scope: "PLAN-L7-15 の execution evidence 欠落を、現行 review-evidence / module-drift / handover / session-log / doctor targeted green と typecheck で補い、test-before-review gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/review-evidence.test.ts tests/module-drift.test.ts tests/handover.test.ts tests/session-log.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:45:25+09:00"
+        evidence_path: tests/review-evidence.test.ts
+        output_digest: "sha256:39a96b074f932fe442f5a32284aef697d58e6e5a1475b8dbb12a95367e5e684d"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:45:25+09:00"
+        evidence_path: src/lint/review-evidence.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL — testBeforeReview 純関数 (presence + 順序) / 全 entry 普遍適用 / 既存 analyze 非破壊のレビュー"

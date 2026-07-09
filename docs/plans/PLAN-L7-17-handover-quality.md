@@ -41,6 +41,31 @@ review_evidence:
     tests_green_at: "2026-06-08"
     verdict: pass
     scope: "handover 品質増分実装 (checkHandoverBypass/generated_by/doc_entry_count + activePlanStale/headCommit + scopeToSession/latestSessionId + readPlanMeta family 解決 + Stop hook 配線) のレビュー。後方互換 (U-HOVER-001〜010/U-SLOG-001〜005 全 green) + fail-open 維持を確認。typecheck 0 / vitest green 後に review。pmo-sonnet 確定 (code-reviewer は IMP-009 truncate)。claude-only TL/QA 代替"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:45:25+09:00"
+    tests_green_at: "2026-07-09T15:45:25+09:00"
+    verdict: approve
+    scope: "PLAN-L7-17 の execution evidence 欠落を、現行 review-evidence / module-drift / handover / session-log / doctor targeted green と typecheck で補い、handover quality increment の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/review-evidence.test.ts tests/module-drift.test.ts tests/handover.test.ts tests/session-log.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:45:25+09:00"
+        evidence_path: tests/handover.test.ts
+        output_digest: "sha256:39a96b074f932fe442f5a32284aef697d58e6e5a1475b8dbb12a95367e5e684d"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:45:25+09:00"
+        evidence_path: src/handover/index.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-17 (add-impl): handover 機構 品質増分の実装 (IMP-078)
