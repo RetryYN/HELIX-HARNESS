@@ -4,9 +4,9 @@ title: "PLAN-L7-367: parallel candidate verifier council"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-07
-updated: 2026-07-07
+updated: 2026-07-09
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07:awesome-agent-catalog-reconciliation"
@@ -23,15 +23,55 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md
     artifact_type: markdown_doc
+  - artifact_path: src/runtime/parallel-candidate-verifier-council.ts
+    artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
   - artifact_path: tests/parallel-candidate-verifier-council.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
   requires:
-    - PLAN-L7-217-pair-agent-consultation-precedence
+    - docs/plans/PLAN-L7-217-pair-agent-consultation-precedence.md
   references:
-    - PLAN-L7-363-isolated-worktree-sandbox-runner
+    - docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T16:36:23+09:00"
+    tests_green_at: "2026-07-09T16:35:52+09:00"
+    verdict: approve
+    scope: "PLAN-L7-367 parallel candidate verifier council。candidate / verifier / council decision packet、self-review veto、missing replay reject、merge/apply は既存GitHub gateへ委譲する policy を追加した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/agent-session-command-center.test.ts tests/agent-mailbox-conflict-locks.test.ts tests/autonomous-loop-run-receipts.test.ts tests/parallel-candidate-verifier-council.test.ts tests/cli-surface.test.ts tests/handover-db-derivation.test.ts tests/agent-slots.test.ts tests/pair-agent.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T16:35:52+09:00"
+        evidence_path: tests/parallel-candidate-verifier-council.test.ts
+        output_digest: "sha256:824bc4ab8b78490fcf71a5b2a9e8b349e746bd01e5518fd9690bcb1d81be8986"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T16:34:00+09:00"
+        evidence_path: src/runtime/parallel-candidate-verifier-council.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bunx biome check src/cli.ts src/runtime/agent-session-command-center.ts src/runtime/agent-mailbox-conflict-locks.ts src/runtime/autonomous-loop-run-receipts.ts src/runtime/parallel-candidate-verifier-council.ts tests/agent-session-command-center.test.ts tests/agent-mailbox-conflict-locks.test.ts tests/autonomous-loop-run-receipts.test.ts tests/parallel-candidate-verifier-council.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T16:36:23+09:00"
+        evidence_path: src/runtime/parallel-candidate-verifier-council.ts
+        output_digest: "sha256:6a0b2f2edd1b67893754cb7200712a15817aa1133f4c51e47d8f83edc64eb6a8"
 ---
 
 # PLAN-L7-367: parallel candidate verifier council 整備

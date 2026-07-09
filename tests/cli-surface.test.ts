@@ -269,6 +269,127 @@ describe("L7 CLI surface closure", () => {
     expect(payload.rollback_command).toContain("git worktree remove --force");
   });
 
+  it("exposes the agent session board as a read-only command-center surface", () => {
+    const run = runCli(["sessions", "board", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      schema_version: "agent-session-command-center.v1",
+      source_command: "helix sessions board --json",
+    });
+    expect(Array.isArray(payload.rows)).toBe(true);
+  });
+
+  it("exposes agent locks and mailbox dry-run packets", () => {
+    const locks = runCli([
+      "agent",
+      "locks",
+      "--lock",
+      "a:s1:src/cli.ts",
+      "--lock",
+      "b:s2:src/cli.ts",
+      "--json",
+    ]);
+    const lockPayload = JSON.parse(locks.stdout);
+    expect(locks.status).toBe(1);
+    expect(lockPayload).toMatchObject({
+      ok: false,
+      schema_version: "agent-mailbox-conflict-locks.v1",
+      conflicts: [expect.objectContaining({ path: "src/cli.ts" })],
+    });
+
+    const message = runCli([
+      "agent",
+      "message",
+      "--dry-run",
+      "--from",
+      "s1",
+      "--to",
+      "s2",
+      "--plan",
+      "PLAN-L7-365",
+      "--task",
+      "coordinate",
+      "--body",
+      "hello",
+      "--json",
+    ]);
+    const messagePayload = JSON.parse(message.stdout);
+    expect(message.status, message.stderr || message.stdout).toBe(0);
+    expect(messagePayload).toMatchObject({
+      dry_run: true,
+      from_session_id: "s1",
+      to_session_id: "s2",
+      plan_id: "PLAN-L7-365",
+    });
+  });
+
+  it("exposes autonomous loop receipts as restartable JSON packets", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-loop-receipt-"));
+    try {
+      mkdirSync(join(root, ".helix", "state", "loop"), { recursive: true });
+      writeFileSync(
+        join(root, ".helix", "state", "loop", "PLAN-L7-366.json"),
+        JSON.stringify({
+          planId: "PLAN-L7-366",
+          status: "running",
+          iteration: 1,
+          maxIterations: 2,
+          lastVerdict: "pending",
+          workerProvider: "codex",
+          verifierProvider: "claude",
+          blockedReason: null,
+          windowOpensAt: "2026-07-09T09:00:00.000Z",
+          windowClosesAt: "2026-07-09T11:00:00.000Z",
+          costUsd: 0,
+          updatedAt: "2026-07-09T10:00:00.000Z",
+        }),
+      );
+      writeFileSync(
+        join(root, ".helix", "state", "loop", "PLAN-L7-366.iterations.jsonl"),
+        `${JSON.stringify({ iteration: 1 })}\n`,
+      );
+      const run = runCliIn(root, ["loop", "receipt", "--plan", "PLAN-L7-366", "--json"]);
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(payload).toMatchObject({
+        ok: true,
+        schema_version: "autonomous-loop-run-receipts.v1",
+        restartable_next_action: "helix loop run --plan PLAN-L7-366 --once",
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("exposes candidate council decisions without applying candidates", () => {
+    const candidateJson = JSON.stringify([
+      {
+        candidate_id: "candidate-a",
+        worker_session_id: "s1",
+        verifier_session_id: "s2",
+        worktree_path: ".helix/worktrees/a",
+        replay_command: "bun test tests/a.test.ts",
+        diff_summary: "changed implementation",
+        risk_findings: [],
+        evidence_path: "tests/a.test.ts",
+      },
+    ]);
+    const run = runCli(["candidate", "council", "--candidate-json", candidateJson, "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      schema_version: "parallel-candidate-verifier-council.v1",
+      selected_candidate_id: "candidate-a",
+      merge_policy: "delegate_to_existing_github_gate",
+    });
+  });
+
   it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",

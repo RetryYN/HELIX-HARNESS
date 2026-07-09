@@ -161,6 +161,12 @@ import {
   type ResolvedFamily,
 } from "./runtime/agent-guard";
 import {
+  type AgentLockRecord,
+  buildAgentLockReport,
+  buildAgentMessageDryRun,
+} from "./runtime/agent-mailbox-conflict-locks";
+import { buildAgentSessionBoardReport } from "./runtime/agent-session-command-center";
+import {
   DEFAULT_MAX_PARALLEL,
   nodeAgentSlotsDeps,
   recordGuardFire,
@@ -173,6 +179,7 @@ import {
   renderEscalationSignals,
   selectPrecedingSessionFile,
 } from "./runtime/attempt-escalation";
+import { buildAutonomousLoopRunReceipt } from "./runtime/autonomous-loop-run-receipts";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
 import {
   type ClassifyResult,
@@ -192,6 +199,10 @@ import {
   validateAdapterParityMap,
 } from "./runtime/hosted-preflight";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
+import {
+  buildCandidateCouncilReport,
+  type CandidateVerifierInput,
+} from "./runtime/parallel-candidate-verifier-council";
 import {
   nodeProviderHandoverDeps,
   type ProviderRuntime,
@@ -1650,6 +1661,119 @@ memory
     }
   });
 
+function collectCliValues(value: string, previous: string[] = []): string[] {
+  return [...previous, value];
+}
+
+function parseAgentLockSpec(spec: string, now: string): AgentLockRecord {
+  const [lockId = "", ownerSessionId = "", path = "", expiresAt = ""] = spec.split(":");
+  return {
+    lock_id: lockId || `lock:${ownerSessionId}:${path}`,
+    owner_session_id: ownerSessionId || "unknown",
+    plan_id: null,
+    path: path || "unknown",
+    symbol: null,
+    acquired_at: now,
+    expires_at: expiresAt || null,
+    status: "active",
+  };
+}
+
+function parseCandidateJson(value: string | undefined): CandidateVerifierInput[] {
+  if (!value) return [];
+  const parsed = JSON.parse(value) as unknown;
+  if (!Array.isArray(parsed)) throw new Error("--candidate-json must be an array");
+  return parsed.map((item) => item as CandidateVerifierInput);
+}
+
+const sessions = program.command("sessions").description("agent session read-only surfaces");
+
+sessions
+  .command("board")
+  .description("emit the agent session command-center board")
+  .option("--json", "JSON output")
+  .option("--stale-minutes <n>", "stale threshold in minutes", (value) =>
+    Number.parseInt(value, 10),
+  )
+  .action((opts: { json?: boolean; staleMinutes?: number }) => {
+    const report = buildAgentSessionBoardReport(process.cwd(), {
+      staleMinutes: Number.isFinite(opts.staleMinutes) ? opts.staleMinutes : undefined,
+    });
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `sessions board: rows=${report.rows.length} active=${report.counts.active} stale=${report.counts.stale} blocked=${report.counts.blocked}\n`,
+    );
+    for (const row of report.rows) {
+      process.stdout.write(
+        `  ${row.session_id}: state=${row.state} role=${row.role ?? "-"} plan=${row.plan_id ?? "-"} needs=${row.needs_you_reason} next=${row.next_action ?? "-"}\n`,
+      );
+    }
+  });
+
+const agent = program.command("agent").description("agent mailbox and lock read-only surfaces");
+
+agent
+  .command("locks")
+  .description("emit agent file/symbol lock conflict report")
+  .option("--json", "JSON output")
+  .option("--lock <spec>", "lock_id:owner_session_id:path[:expires_at]", collectCliValues, [])
+  .action((opts: { json?: boolean; lock?: string[] }) => {
+    const now = new Date().toISOString();
+    const locks = (opts.lock ?? []).map((spec) => parseAgentLockSpec(spec, now));
+    const report = buildAgentLockReport(locks, { now });
+    process.exitCode = report.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `agent locks: ${report.ok ? "ok" : "blocked"} locks=${report.locks.length} conflicts=${report.conflicts.length} stale=${report.stale_locks.length}\n`,
+    );
+    for (const finding of report.findings) {
+      process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+    }
+  });
+
+agent
+  .command("message")
+  .description("emit a dry-run mailbox message packet")
+  .requiredOption("--dry-run", "do not write a mailbox message")
+  .requiredOption("--from <session>", "sender session id")
+  .requiredOption("--to <session>", "recipient session id")
+  .requiredOption("--plan <id>", "PLAN id")
+  .requiredOption("--task <text>", "task label")
+  .requiredOption("--body <text>", "message body")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      dryRun: boolean;
+      from: string;
+      to: string;
+      plan: string;
+      task: string;
+      body: string;
+      json?: boolean;
+    }) => {
+      const packet = buildAgentMessageDryRun({
+        fromSessionId: opts.from,
+        toSessionId: opts.to,
+        planId: opts.plan,
+        task: opts.task,
+        body: opts.body,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `agent message: dry-run from=${packet.from_session_id} to=${packet.to_session_id} plan=${packet.plan_id}\n`,
+      );
+    },
+  );
+
 const loop = program.command("loop").description("P2 orchestration loop runtime");
 loop
   .command("run")
@@ -1712,6 +1836,64 @@ loop
     process.stdout.write(
       `loop run: plan=${current.planId} ticks=${ticks} status=${current.status} iteration=${current.iteration} verdict=${current.lastVerdict}\n`,
     );
+  });
+
+loop
+  .command("receipt")
+  .description("emit an autonomous loop run receipt")
+  .requiredOption("--plan <id>", "PLAN id / loop state id")
+  .option("--json", "JSON output")
+  .action((opts: { plan: string; json?: boolean }) => {
+    const receipt = buildAutonomousLoopRunReceipt(process.cwd(), opts.plan);
+    process.exitCode = receipt.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `loop receipt: ${receipt.ok ? "ok" : "blocked"} plan=${receipt.plan_id} status=${receipt.status} iterations=${receipt.iteration_count} stop=${receipt.stop_kind} next=${receipt.restartable_next_action ?? "-"}\n`,
+    );
+    for (const finding of receipt.findings) {
+      process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+    }
+  });
+
+const candidate = program
+  .command("candidate")
+  .description("parallel candidate verification read-only surfaces");
+
+candidate
+  .command("council")
+  .description("emit a verifier council decision packet without applying any candidate")
+  .option("--json", "JSON output")
+  .option("--candidate-json <json>", "JSON array of candidate verifier inputs")
+  .action((opts: { json?: boolean; candidateJson?: string }) => {
+    let candidates: CandidateVerifierInput[] = [];
+    try {
+      candidates = parseCandidateJson(opts.candidateJson);
+    } catch (error) {
+      process.exitCode = 1;
+      const output = {
+        ok: false,
+        error: error instanceof Error ? error.message : String(error),
+        source_command: "helix candidate council --json",
+      };
+      if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+      else process.stderr.write(`${output.error}\n`);
+      return;
+    }
+    const report = buildCandidateCouncilReport(candidates);
+    process.exitCode = report.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `candidate council: ${report.ok ? "ok" : "blocked"} candidates=${report.decisions.length} selected=${report.selected_candidate_id ?? "-"} merge=${report.merge_policy}\n`,
+    );
+    for (const finding of report.findings) {
+      process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+    }
   });
 
 const pairAgent = program.command("pair-agent").description("P2/P3 TDD pair programming route");
