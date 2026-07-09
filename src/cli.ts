@@ -5535,6 +5535,18 @@ function summarizeClosureEvidenceApplyPlan(
 }
 
 function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
+  const baseSummaryCommand = `helix closure review-bundle --action ${bundle.action} --summary-json`;
+  const currentWindowCommand = `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`;
+  const previousWindowCommand =
+    bundle.window.previous_offset === null
+      ? null
+      : `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.window.previous_offset} --summary-json`;
+  const nextWindowCommand =
+    bundle.window.next_offset === null
+      ? null
+      : `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.window.next_offset} --summary-json`;
+  const transitionWindowCommand = `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`;
+
   return {
     schema_version: "project-closure-review-bundle-summary.v1",
     source_clock: bundle.source_clock,
@@ -5560,6 +5572,10 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
       required_evidence: bundle.decision.required_evidence,
       blocked_by_findings: bundle.decision.blocked_by_findings,
     },
+    current_window_command: currentWindowCommand,
+    previous_window_command: previousWindowCommand,
+    next_window_command: nextWindowCommand,
+    transition_window_command: transitionWindowCommand,
     candidate_count: bundle.candidates.length,
     sample_candidates: bundle.candidates
       .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
@@ -5576,13 +5592,26 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
       })),
     safeguards: bundle.safeguards,
     write_policy: bundle.write_policy,
-    source_command: "helix closure review-bundle --summary-json",
+    source_command: baseSummaryCommand,
+    full_source_command: bundle.source_command,
     view_command: summaryJsonCommand(bundle.view_command),
     full_view_command: bundle.view_command,
   };
 }
 
 function summarizeClosureTransitionPlan(plan: ProjectClosureTransitionPlan) {
+  const baseSummaryCommand = `helix closure transition-plan --action ${plan.action} --decision ${plan.decision_outcome} --summary-json`;
+  const currentWindowCommand = `helix closure transition-plan --action ${plan.action} --decision ${plan.decision_outcome} --limit ${plan.limit} --offset ${plan.offset} --summary-json`;
+  const previousWindowCommand =
+    plan.window.previous_offset === null
+      ? null
+      : `helix closure transition-plan --action ${plan.action} --decision ${plan.decision_outcome} --limit ${plan.limit} --offset ${plan.window.previous_offset} --summary-json`;
+  const nextWindowCommand =
+    plan.window.next_offset === null
+      ? null
+      : `helix closure transition-plan --action ${plan.action} --decision ${plan.decision_outcome} --limit ${plan.limit} --offset ${plan.window.next_offset} --summary-json`;
+  const fullSourceCommand = `helix closure transition-plan --action ${plan.action} --decision ${plan.decision_outcome} --limit ${plan.limit} --offset ${plan.offset} --json`;
+
   return {
     schema_version: "project-closure-transition-plan-summary.v1",
     source_clock: plan.source_clock,
@@ -5619,8 +5648,12 @@ function summarizeClosureTransitionPlan(plan: ProjectClosureTransitionPlan) {
     })),
     postcheck_commands: plan.postcheck_commands.map(summaryJsonCommand),
     rollback_notes: plan.rollback_notes,
+    current_window_command: currentWindowCommand,
+    previous_window_command: previousWindowCommand,
+    next_window_command: nextWindowCommand,
     write_policy: plan.write_policy,
-    source_command: "helix closure transition-plan --summary-json",
+    source_command: baseSummaryCommand,
+    full_source_command: fullSourceCommand,
     view_command: summaryJsonCommand(plan.view_command),
     full_view_command: plan.view_command,
   };

@@ -5324,6 +5324,14 @@ describe("L7 CLI surface closure", () => {
         decision: {
           decision_id: "closure-review:collect_evidence",
         },
+        current_window_command:
+          "helix closure review-bundle --action collect_evidence --limit 1 --offset 0 --summary-json",
+        previous_window_command: null,
+        next_window_command: null,
+        transition_window_command:
+          "helix closure transition-plan --action collect_evidence --limit 1 --offset 0 --summary-json",
+        source_command: "helix closure review-bundle --action collect_evidence --summary-json",
+        full_source_command: "helix closure review-bundle --json",
         sample_candidates: [
           expect.objectContaining({
             planId: "PLAN-L7-999-new-impl",
@@ -5549,7 +5557,14 @@ describe("L7 CLI surface closure", () => {
             "helix closure review-bundle --action collect_evidence --summary-json",
         },
         planned_step_count: 4,
-        source_command: "helix closure transition-plan --summary-json",
+        current_window_command:
+          "helix closure transition-plan --action collect_evidence --decision approve_closure_claim --limit 1 --offset 0 --summary-json",
+        previous_window_command: null,
+        next_window_command: null,
+        source_command:
+          "helix closure transition-plan --action collect_evidence --decision approve_closure_claim --summary-json",
+        full_source_command:
+          "helix closure transition-plan --action collect_evidence --decision approve_closure_claim --limit 1 --offset 0 --json",
         view_command: "helix progress tree-view --summary-json",
         full_view_command: "helix progress tree-view --json",
         write_policy: "read-only",
@@ -5770,7 +5785,7 @@ describe("L7 CLI surface closure", () => {
             }),
             expect.objectContaining({
               surface: "closure-review-bundle",
-              source_command: "helix closure review-bundle --summary-json",
+              source_command: "helix closure review-bundle --action close_ready --summary-json",
               unexpected_count: 0,
             }),
             expect.objectContaining({

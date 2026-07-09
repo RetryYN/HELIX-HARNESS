@@ -193,18 +193,27 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
   },
   {
     surface: "closure-review-bundle",
-    source_command: "helix closure review-bundle --summary-json",
+    source_command: "helix closure review-bundle --action close_ready --summary-json",
     payload: {
-      source_command: "helix closure review-bundle --summary-json",
+      source_command: "helix closure review-bundle --action close_ready --summary-json",
+      current_window_command:
+        "helix closure review-bundle --action close_ready --limit 1 --offset 0 --summary-json",
+      full_source_command: "helix closure review-bundle --json",
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
   },
   {
     surface: "closure-transition-plan",
-    source_command: "helix closure transition-plan --summary-json",
+    source_command:
+      "helix closure transition-plan --action close_ready --decision approve_closure_claim --summary-json",
     payload: {
-      source_command: "helix closure transition-plan --summary-json",
+      source_command:
+        "helix closure transition-plan --action close_ready --decision approve_closure_claim --summary-json",
+      current_window_command:
+        "helix closure transition-plan --action close_ready --decision approve_closure_claim --limit 1 --offset 0 --summary-json",
+      full_source_command:
+        "helix closure transition-plan --action close_ready --decision approve_closure_claim --limit 1 --offset 0 --json",
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },

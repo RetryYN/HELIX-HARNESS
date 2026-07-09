@@ -52,6 +52,55 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T21:58:00+09:00"
+    tests_green_at: "2026-07-09T21:57:15+09:00"
+    verdict: approve
+    scope: "Project closure review-bundle summary と transition-plan summary に current / previous / next window command と full_source_command を追加し、343 件の close_ready approval をページ単位で機械遷移できるようにした。承認 record の作成・適用は行わず、read-only summary と Project view summary catalog の command drift を固定する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T21:54:45+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:4a31005cb47391212444856a19b7f7f7e8334ca9c82986d7df6da7ee2d841126"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/cli-surface.test.ts tests/current-location.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:57:15+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:0b6de2430683ef12c9747e531721b7f3681e504c17c8fd34652403a908bb15e7"
+      - kind: smoke
+        command: "bun src/cli.ts closure review-bundle --action close_ready --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:54:45+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:34c9b7e8090382aea91c333190bdca5536399290773f34e2d090e7a173a6936e"
+      - kind: smoke
+        command: "bun src/cli.ts closure transition-plan --action close_ready --decision approve_closure_claim --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:54:45+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:566b303b5db7474c4f5d7d165e08787cdb63a113e458587f917507dbe2c553ab"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:55:20+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:4294cd33365b9fc983898b0f0f57bf4588aa740bbecb610fe03c5e61ab8041a4"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T21:43:01+09:00"
     tests_green_at: "2026-07-09T21:42:44+09:00"
     verdict: approve
@@ -252,6 +301,9 @@ PO が対象 PLAN や packet command を推測する workflow 穴を塞ぐ。
   summary は正本承認材料を置き換えず、`full_source_command=helix completion decision-packet --json` を持つ。
 - Project view summary catalog は `completion-decision-packet` surface を監査対象に含め、
   `completion review-bundle` への導線は `full_review_bundle_command` として明示的に full JSON 参照へ分類する。
+- `closure review-bundle --summary-json` は `current_window_command` / `previous_window_command` /
+  `next_window_command` / `transition_window_command` を持ち、close_ready approval のページングを offset
+  手計算ではなく機械 command として辿れるようにする。full JSON 導線は `full_source_command` に限定する。
 
 ## 採用判断
 
