@@ -4929,6 +4929,10 @@ function buildSummarySurfaceCommandAudit(
       ),
     },
     {
+      surface: "project-frontier",
+      payload: buildProjectFrontierSummary(repoRoot, snapshot),
+    },
+    {
       surface: "completion-decision-packet",
       payload: {
         source_command: "helix completion decision-packet --summary-json",
@@ -5018,6 +5022,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       source_command: skillBinding.source_command,
     },
     commands: {
+      project_frontier: "helix progress frontier --summary-json",
       current_location: "helix current-location --summary-json",
       drive_model: driveModel.source_command,
       closure_review_window: closeReadyReview.current_window_command,
@@ -5028,7 +5033,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       skill_binding: skillBinding.source_command,
     },
     write_policy: "read-only",
-    source_command: "helix progress tree-view --summary-json",
+    source_command: "helix progress frontier --summary-json",
   };
 }
 
@@ -7546,6 +7551,36 @@ progress
       }
       process.stdout.write(
         `progress view-model: project=${viewModel.view_boundaries.project.owned_views.join(",")} harness=${viewModel.view_boundaries.harness.owned_views.join(",")} current=${viewModel.project.current_location.layer ?? "unknown"}->${viewModel.project.current_location.l12_layer ?? "unknown"} status=${viewModel.project.current_location.status} warnings=${viewModel.shared_warnings.length}\n`,
+      );
+    } finally {
+      db.close();
+    }
+  });
+progress
+  .command("frontier")
+  .description(
+    "emit Project frontier summary from current-location, drive model, closure, V-model fit, and skill binding",
+  )
+  .option("--json", "JSON output")
+  .option("--summary-json", "compact JSON output for review and view surfaces")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action((opts: { json?: boolean; summaryJson?: boolean; fromDb?: boolean }) => {
+    const repoRoot = process.cwd();
+    const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
+    const db = openHarnessDb(dbPath, { repoRoot });
+    try {
+      if (opts.fromDb) migrate(db);
+      else rebuildHarnessDb({ repoRoot, db });
+      const summary = buildProjectFrontierSummary(
+        repoRoot,
+        buildProjectCurrentLocationSnapshot(db),
+      );
+      if (opts.summaryJson || opts.json) {
+        process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `progress frontier: current=${summary.current.layer}->${summary.current.l12_layer} status=${summary.current.status} model=${summary.drive_model.selected_model} closure=${summary.closure_frontier.action}:${summary.closure_frontier.total} skill=${summary.skill_binding.status} function_policy=${summary.function_design_policy.independent_layer_policy}\n`,
       );
     } finally {
       db.close();

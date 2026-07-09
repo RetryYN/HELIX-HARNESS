@@ -86,6 +86,71 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T23:54:35+09:00"
+    tests_green_at: "2026-07-09T23:54:35+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "`progress frontier --summary-json` を Project frontier の独立 read-only summary surface として追加し、tree-view / completion frontier / summary catalog が `helix progress frontier --summary-json` を正本 command として指すようにした。ZIP/L12 方針の現在地、駆動モデル、機能設計廃止境界、close-ready approval frontier、V-model fit、skill binding を tree-view 描画に依存せず機械検出できることを確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:53:54+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:53:54+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:4dcef3f51425192567bedb43f283f14dca9063ad797c0ecb3e956d79be50ee5a"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:54:20+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:4638cfc3a13e697bb7f804c2835a32ccb0a036f77f9b42dc28e90d8bed056d62"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:54:35+09:00"
+        evidence_path: tests/summary-surface-audit.test.ts
+        output_digest: "sha256:b1a1811e5f6da7921def39ffdb5a1279b6a05ea4d805a7fce16608cccd413f04"
+      - kind: smoke
+        command: "bun src/cli.ts progress frontier --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:54:52+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:76791346ab0a34c2806736d490288edd218a9f2319eb021c16a11e6175ba996d"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:54:51+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:90c24508a44aebe58a0a49d119a6a7fc69a5f41c9885f427ed4247e8aba73aec"
+      - kind: smoke
+        command: "bun src/cli.ts completion decision-packet --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:54:51+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:ebca9b2fc8df04fcd495dfc120ca0369f452c2f6c113c0365788befd54ec1b13"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:45:33+09:00"
     tests_green_at: "2026-07-09T23:45:33+09:00"
     verdict: approve

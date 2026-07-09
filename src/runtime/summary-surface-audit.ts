@@ -248,6 +248,21 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     },
   },
   {
+    surface: "project-frontier",
+    source_command: "helix progress frontier --summary-json",
+    payload: {
+      source_command: "helix progress frontier --summary-json",
+      commands: {
+        project_frontier: "helix progress frontier --summary-json",
+        current_location: "helix current-location --summary-json",
+        drive_model: "helix drive model --summary-json",
+        vmodel_fit: "helix vmodel fit --summary-json",
+        skill_binding: "helix skill suggest --current-location --summary-json",
+      },
+      write_policy: "read-only",
+    },
+  },
+  {
     surface: "completion-decision-packet",
     source_command: "helix completion decision-packet --summary-json",
     payload: {
@@ -256,9 +271,9 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
       full_source_command: "helix completion decision-packet --json",
       completion_frontier: {
         source_command: "helix completion decision-packet --summary-json",
-        project_frontier_source_command: "helix progress tree-view --summary-json",
+        project_frontier_source_command: "helix progress frontier --summary-json",
         commands: {
-          project_frontier: "helix progress tree-view --summary-json",
+          project_frontier: "helix progress frontier --summary-json",
           current_location: "helix current-location --summary-json",
           vmodel_fit: "helix vmodel fit --summary-json",
           closure_review_window:

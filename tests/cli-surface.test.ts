@@ -2082,11 +2082,11 @@ describe("L7 CLI surface closure", () => {
             source_command: "helix closure review-bundle --action close_ready --summary-json",
           }),
           commands: expect.objectContaining({
-            project_frontier: "helix progress tree-view --summary-json",
+            project_frontier: "helix progress frontier --summary-json",
             closure_review_window: expect.stringContaining("helix closure review-bundle"),
             closure_decision_draft: expect.stringContaining("helix closure decision-draft"),
           }),
-          project_frontier_source_command: "helix progress tree-view --summary-json",
+          project_frontier_source_command: "helix progress frontier --summary-json",
         },
         decisions: [
           expect.objectContaining({
@@ -5902,7 +5902,8 @@ describe("L7 CLI surface closure", () => {
       expect(treePayloadJson).toContain("project/current-location/roadmap-position");
       const treeSummary = runCliIn(root, ["progress", "tree-view", "--summary-json"]);
       expect(treeSummary.status).toBe(0);
-      expect(JSON.parse(treeSummary.stdout)).toMatchObject({
+      const parsedTreeSummary = JSON.parse(treeSummary.stdout);
+      expect(parsedTreeSummary).toMatchObject({
         schema_version: "visualization-tree-view-summary.v1",
         root_count: 2,
         roots: [
@@ -6022,6 +6023,7 @@ describe("L7 CLI surface closure", () => {
             source_command: "helix skill suggest --current-location --summary-json",
           },
           commands: {
+            project_frontier: "helix progress frontier --summary-json",
             current_location: "helix current-location --summary-json",
             drive_model: "helix drive model --summary-json",
             closure_review_window:
@@ -6036,7 +6038,7 @@ describe("L7 CLI surface closure", () => {
             skill_binding: "helix skill suggest --current-location --summary-json",
           },
           write_policy: "read-only",
-          source_command: "helix progress tree-view --summary-json",
+          source_command: "helix progress frontier --summary-json",
         },
         summary_surface_command_audit: {
           status: "pass",
@@ -6081,6 +6083,11 @@ describe("L7 CLI surface closure", () => {
               unexpected_count: 0,
             }),
             expect.objectContaining({
+              surface: "project-frontier",
+              source_command: "helix progress frontier --summary-json",
+              unexpected_count: 0,
+            }),
+            expect.objectContaining({
               surface: "completion-decision-packet",
               source_command: "helix completion decision-packet --summary-json",
               unexpected_count: 0,
@@ -6106,7 +6113,6 @@ describe("L7 CLI surface closure", () => {
         source_command: "helix progress tree-view --summary-json",
         full_source_command: "helix progress tree-view --json",
       });
-      const parsedTreeSummary = JSON.parse(treeSummary.stdout);
       expect(
         parsedTreeSummary.summary_surface_command_audit.surfaces.map(
           (surface: { surface: string; source_command: string }) => ({
@@ -6120,6 +6126,35 @@ describe("L7 CLI surface closure", () => {
           source_command: contract.source_command,
         })),
       );
+      const frontierSummary = runCliIn(root, ["progress", "frontier", "--summary-json"]);
+      expect(frontierSummary.status).toBe(0);
+      const parsedFrontierSummary = JSON.parse(frontierSummary.stdout);
+      expect(parsedFrontierSummary).toMatchObject({
+        schema_version: "project-frontier-summary.v1",
+        current: parsedTreeSummary.project_frontier_summary.current,
+        function_design_policy: expect.objectContaining({
+          independent_layer_policy: "abolished",
+          command: "helix current-location --summary-json",
+        }),
+        drive_model: expect.objectContaining({
+          selected_model: "Recovery",
+          source_command: "helix drive model --summary-json",
+        }),
+        closure_frontier: expect.objectContaining({
+          action: "close_ready",
+          approval_review_checklist: expect.objectContaining({
+            schema_version: "project-closure-approval-review-checklist.v1",
+            non_authorizing: true,
+          }),
+        }),
+        commands: expect.objectContaining({
+          project_frontier: "helix progress frontier --summary-json",
+          current_location: "helix current-location --summary-json",
+          vmodel_fit: "helix vmodel fit --summary-json",
+        }),
+        write_policy: "read-only",
+        source_command: "helix progress frontier --summary-json",
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
