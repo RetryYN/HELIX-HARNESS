@@ -30,7 +30,7 @@ describe("db projection ingestion detector", () => {
       expect(result.rowCounts.project_roadmap_current_actions).toBeGreaterThan(0);
       expect(result.rowCounts.project_zip_adoption_decisions).toBe(9);
       expect(result.rowCounts.project_tailoring_decisions).toBe(8);
-      expect(result.rowCounts.project_vmodel_regression_guards).toBe(7);
+      expect(result.rowCounts.project_vmodel_regression_guards).toBe(8);
       expect(result.rowCounts.project_vmodel_fit_blockers).toBeGreaterThan(0);
       expect(result.rowCounts.project_vmodel_handoff_summary).toBe(1);
       expect(result.rowCounts.project_l12_layer_coverage).toBeGreaterThan(0);
@@ -223,7 +223,7 @@ describe("db projection ingestion detector", () => {
         protected_surface: string;
         guard_count: number;
       }>;
-      expect(vmodelRegressionGuards).toHaveLength(7);
+      expect(vmodelRegressionGuards).toHaveLength(8);
       expect(
         vmodelRegressionGuards.find((row) => row.guard_id === "zip-source-integrity"),
       ).toMatchObject({
@@ -237,6 +237,12 @@ describe("db projection ingestion detector", () => {
         vmodelRegressionGuards.find((row) => row.guard_id === "current-location-reentry")
           ?.protected_surface,
       ).toContain("drive_model");
+      expect(
+        vmodelRegressionGuards.find((row) => row.guard_id === "scrum-operation"),
+      ).toMatchObject({
+        status: "pass",
+        guard_count: 0,
+      });
       const vmodelFitBlockers = db
         .prepare(
           `SELECT blocker_code, status, blocker_count, doc_dependencies, implementation_dependencies
@@ -346,6 +352,48 @@ describe("db projection ingestion detector", () => {
       expect(typedSpecBinding?.l12_layers).toContain("L5");
       expect(typedSpecBinding?.evidence_tables).toContain("design_declarations");
       expect(typedSpecBinding?.evidence_tables).toContain("design_references");
+      const scrumZipDeclarations = db
+        .prepare(
+          `SELECT defined_id, source_path, source
+           FROM design_declarations
+           WHERE source = ?
+           ORDER BY defined_id`,
+        )
+        .all("zip_source_binding") as Array<{
+        defined_id: string;
+        source_path: string;
+        source: string;
+      }>;
+      expect(scrumZipDeclarations).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            defined_id: "HSC-STORY-MAPPING-01",
+            source_path: "docs/113_ユーザーストーリーマッピング.yaml",
+          }),
+          expect.objectContaining({
+            defined_id: "HSC-DOR-DOD-01",
+            source_path: "docs/117_DoR・DoD.yaml",
+          }),
+          expect.objectContaining({
+            defined_id: "HSC-BURNDOWN-VELOCITY-01",
+            source_path: "docs/121_バーンダウン・ベロシティ実績.yaml",
+          }),
+        ]),
+      );
+      expect(scrumZipDeclarations).toHaveLength(10);
+      const fitBlockers = db
+        .prepare("SELECT blocker_code FROM project_vmodel_fit_blockers ORDER BY blocker_code")
+        .all() as Array<{ blocker_code: string }>;
+      expect(fitBlockers.map((row) => row.blocker_code)).not.toContain("scrum_operation_gap");
+      const scrumOperationGuard = db
+        .prepare(
+          "SELECT status, guard_count FROM project_vmodel_regression_guards WHERE guard_id = ?",
+        )
+        .get("scrum-operation") as { status?: string; guard_count?: number } | undefined;
+      expect(scrumOperationGuard).toMatchObject({
+        status: "pass",
+        guard_count: 0,
+      });
     } finally {
       db.close();
     }

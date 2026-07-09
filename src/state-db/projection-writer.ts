@@ -51,7 +51,7 @@ import {
 } from "../schema/harness-db";
 import { analyzeDesignDeclarations } from "../vmodel/design-declarations";
 import { buildVmodelFitReport } from "../vmodel/fit";
-import { buildVmodelZipSourceBindings } from "../vmodel/zip-manifest";
+import { analyzeVmodelZipManifest, buildVmodelZipSourceBindings } from "../vmodel/zip-manifest";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -3471,6 +3471,79 @@ function designDeclarationInputs(repoRoot: string): Array<{ path: string; conten
   return docs.sort((a, b) => a.path.localeCompare(b.path));
 }
 
+const ZIP_SCRUM_DECLARATION_RULES = [
+  {
+    sourceCategory: "scrum_backlog",
+    definedId: "HSC-BACKLOG-01",
+    kind: "Scrum product backlog",
+    title: "ハイブリッド Scrum プロダクトバックログ",
+    layer: "L2",
+  },
+  {
+    sourceCategory: "scrum_story_mapping",
+    definedId: "HSC-STORY-MAPPING-01",
+    kind: "Scrum story mapping",
+    title: "ハイブリッド Scrum ユーザーストーリーマッピング",
+    layer: "L2",
+  },
+  {
+    sourceCategory: "scrum_estimation",
+    definedId: "HSC-ESTIMATION-01",
+    kind: "Scrum estimation velocity",
+    title: "ハイブリッド Scrum 見積り・ベロシティ設計",
+    layer: "L3",
+  },
+  {
+    sourceCategory: "scrum_release",
+    definedId: "HSC-RELEASE-01",
+    kind: "Scrum release plan",
+    title: "ハイブリッド Scrum リリースプラン",
+    layer: "L11",
+  },
+  {
+    sourceCategory: "scrum_readiness_done",
+    definedId: "HSC-DOR-DOD-01",
+    kind: "Scrum DoR DoD",
+    title: "ハイブリッド Scrum DoR・DoD",
+    layer: "L3",
+  },
+  {
+    sourceCategory: "scrum_daily",
+    definedId: "HSC-DAILY-01",
+    kind: "Scrum daily record",
+    title: "ハイブリッド Scrum デイリースクラム・進行記録",
+    layer: "L7",
+  },
+  {
+    sourceCategory: "scrum_review",
+    definedId: "HSC-REVIEW-01",
+    kind: "Scrum sprint review",
+    title: "ハイブリッド Scrum スプリントレビュー記録",
+    layer: "L11",
+  },
+  {
+    sourceCategory: "scrum_retro",
+    definedId: "HSC-RETRO-01",
+    kind: "Scrum retrospective",
+    title: "ハイブリッド Scrum レトロスペクティブ記録",
+    layer: "L12",
+  },
+  {
+    sourceCategory: "scrum_metrics",
+    definedId: "HSC-BURNDOWN-VELOCITY-01",
+    kind: "Scrum burndown velocity metrics",
+    title: "ハイブリッド Scrum バーンダウン・ベロシティ実績",
+    layer: "L12",
+  },
+  {
+    sourceCategory: "scrum_acceptance",
+    definedId: "HSC-ACCEPTANCE-01",
+    kind: "Scrum acceptance BDD",
+    title: "ハイブリッド Scrum 受入基準・BDDシナリオ",
+    layer: "L11",
+  },
+] as const;
+
 function projectDesignDeclarations(repoRoot: string, db: HarnessDb): void {
   const indexedAt = nowIso();
   const analysis = analyzeDesignDeclarations(designDeclarationInputs(repoRoot));
@@ -3557,6 +3630,45 @@ function projectDesignDeclarations(repoRoot: string, db: HarnessDb): void {
       subjectId: `${finding.path}:${finding.detail}`,
       source: "design-declaration-projection",
       evidencePath: finding.path,
+    });
+  }
+}
+
+// ZIP source bindings are already machine-verified against the adopted package.
+// Project them as typed declaration anchors so current-location does not rely on
+// looser Scrum text heuristics.
+function projectVmodelZipSourceDeclarations(repoRoot: string, db: HarnessDb): void {
+  const zipManifest = analyzeVmodelZipManifest(repoRoot);
+  if (!zipManifest.present) return;
+  const indexedAt = nowIso();
+  const ruleByCategory = new Map<string, (typeof ZIP_SCRUM_DECLARATION_RULES)[number]>(
+    ZIP_SCRUM_DECLARATION_RULES.map((rule) => [rule.sourceCategory, rule]),
+  );
+  for (const binding of buildVmodelZipSourceBindings(zipManifest)) {
+    if (!binding.sourcePresent || !binding.evidenceTables.includes("design_declarations")) {
+      continue;
+    }
+    const rule = ruleByCategory.get(binding.sourceCategory);
+    if (!rule) continue;
+    const declarationId = stableId(
+      "zip-scrum-declaration",
+      `${binding.bindingId}:${rule.definedId}:${binding.sourcePath}`,
+    );
+    recordProjectionEvent(db, {
+      table: "design_declarations",
+      id: declarationId,
+      row: {
+        declaration_id: declarationId,
+        defined_id: rule.definedId,
+        declaration_kind: rule.kind,
+        title: rule.title,
+        layer: rule.layer,
+        owner: "HELIX",
+        status: "confirmed",
+        source_path: binding.sourcePath,
+        source: "zip_source_binding",
+        indexed_at: indexedAt,
+      },
     });
   }
 }
@@ -4811,6 +4923,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       );
       profiled("projectDesignDeclarations", input.onProfile, () =>
         projectDesignDeclarations(repoRoot, db),
+      );
+      profiled("projectVmodelZipSourceDeclarations", input.onProfile, () =>
+        projectVmodelZipSourceDeclarations(repoRoot, db),
       );
       profiled("projectVerificationBandExecution", input.onProfile, () =>
         projectVerificationBandExecution(db),
