@@ -128,9 +128,26 @@ function importSpecifiers(doc: DependencyDoc): string[] {
   const specs: string[] = [];
   const visit = (node: ts.Node): void => {
     if (
-      (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+      ts.isImportDeclaration(node) &&
       node.moduleSpecifier != null &&
       ts.isStringLiteral(node.moduleSpecifier)
+    ) {
+      const clause = node.importClause;
+      const namedBindings = clause?.namedBindings;
+      const namedImports = namedBindings && ts.isNamedImports(namedBindings) ? namedBindings : null;
+      const typeOnly =
+        clause?.isTypeOnly === true ||
+        (clause?.name == null &&
+          namedImports != null &&
+          namedImports.elements.length > 0 &&
+          namedImports.elements.every((element) => element.isTypeOnly));
+      if (!typeOnly) specs.push(node.moduleSpecifier.text);
+    }
+    if (
+      ts.isExportDeclaration(node) &&
+      node.moduleSpecifier != null &&
+      ts.isStringLiteral(node.moduleSpecifier) &&
+      !node.isTypeOnly
     ) {
       specs.push(node.moduleSpecifier.text);
     }

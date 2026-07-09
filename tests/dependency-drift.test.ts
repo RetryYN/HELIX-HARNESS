@@ -102,6 +102,32 @@ describe("dependency-drift and regression expansion (PLAN-REVERSE-42)", () => {
     expect(dependencyDriftMessages(result)[0]).toContain("grandfathered cycles 1");
   });
 
+  it("U-DEPD-005: type-only imports do not create runtime module cycles", () => {
+    const result = analyzeDependencyDrift({
+      sourceDocs: [
+        { path: "src/vscode/tree.ts", text: 'import type { View } from "../state-db/view";' },
+        {
+          path: "src/state-db/view.ts",
+          text: 'import { render } from "../vscode/tree"; export const view = render;',
+        },
+        {
+          path: "src/vmodel/lint.ts",
+          text: 'import { type LintResult } from "../plan/lint"; export const ok = true;',
+        },
+        {
+          path: "src/plan/lint.ts",
+          text: 'export type LintResult = { ok: boolean };',
+        },
+      ],
+      testDocs: [],
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.moduleEdges).toContainEqual({ from: "state-db", to: "vscode" });
+    expect(result.moduleEdges).not.toContainEqual({ from: "vscode", to: "state-db" });
+    expect(result.moduleEdges).not.toContainEqual({ from: "vmodel", to: "plan" });
+  });
+
   it("U-REGEXP-001: changed source expands to direct tests and dependent module tests", () => {
     const drift = analyzeDependencyDrift(input);
     const scope = expandRegressionScope(drift, ["src/lint/audit.ts"]);
