@@ -4380,6 +4380,7 @@ function operationObservationSources(input: {
   operationGateRows: Array<Record<string, unknown>>;
   qualitySignalRows: Array<Record<string, unknown>>;
   hookEventRows: Array<Record<string, unknown>>;
+  closureLedgerEntries: ProjectClosureNextActionLedgerEntry[];
 }): string[] {
   const runtimeSources = input.runtimeAcceptedRows
     .filter((row) =>
@@ -4406,6 +4407,12 @@ function operationObservationSources(input: {
       );
     return unique([...runtimeSources, ...qualitySources]);
   }
+  if (input.scopeId === "incident_recovery_route") {
+    const ledgerSources = input.closureLedgerEntries
+      .filter((entry) => operationClosureLedgerMatchesIncidentRoute(entry))
+      .map((entry) => `closure_next_action_ledger:${entry.ledgerId}`);
+    return unique([...runtimeSources, ...ledgerSources]);
+  }
   if (input.scopeId !== "operation_test") return unique(runtimeSources);
 
   const testSources = input.operationTestRows
@@ -4415,6 +4422,25 @@ function operationObservationSources(input: {
     .filter((row) => operationScopeMatches(input.scopeId, operationTestEvidenceText(row)))
     .map((row) => `gate_runs:${String(row.evidence_path || row.gate_run_id || "").trim()}`);
   return unique([...runtimeSources, ...testSources, ...gateSources]);
+}
+
+function operationClosureLedgerMatchesIncidentRoute(
+  entry: ProjectClosureNextActionLedgerEntry,
+): boolean {
+  const text = [
+    entry.ledgerId,
+    entry.nextAction,
+    entry.status,
+    entry.driveModel,
+    entry.l12Layer,
+    entry.requiredAction,
+    entry.evidencePolicy,
+    ...entry.reasons,
+    ...entry.acceptanceCriteria,
+    ...entry.docDependencies,
+    ...entry.implementationDependencies,
+  ].join(" ");
+  return operationScopeMatches("incident_recovery_route", text);
 }
 
 function designCoverageText(row: Record<string, unknown>): string {
@@ -5225,7 +5251,10 @@ function buildL12Coverage(input: {
   };
 }
 
-function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["operation_scope"] {
+function buildOperationScope(
+  db: HarnessDb,
+  input: { closureLedgerEntries?: ProjectClosureNextActionLedgerEntry[] } = {},
+): ProjectCurrentLocationSnapshot["operation_scope"] {
   const declarationRows = db
     .prepare(
       "SELECT defined_id, declaration_kind, title, layer, source_path FROM design_declarations",
@@ -5293,6 +5322,7 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
       operationGateRows,
       qualitySignalRows,
       hookEventRows,
+      closureLedgerEntries: input.closureLedgerEntries ?? [],
     });
     const observedCount = observationSources.length;
     const evidenceTables = [...scope.tables];
@@ -9173,7 +9203,6 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
     "SELECT COALESCE(uncovered_bands, 0) AS value FROM roadmap_rollups WHERE rollup_id = ?",
     ["program"],
   );
-  const operationScope = buildOperationScope(db);
   const closureEvidenceIds = collectClosureEvidenceIds(db);
 
   const findings: ProjectCurrentLocationFinding[] = [];
@@ -9226,23 +9255,6 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
       implementationDependencies: roadmapPosition.implementationDependencies,
     });
   }
-  if (operationScope.missing > 0 || operationScope.reverify > 0) {
-    const gapItems = operationScope.items
-      .filter((item) => item.status === "missing" || item.status === "reverify")
-      .map((item) => item.scope);
-    findings.push({
-      code: "operation_scope_gap",
-      severity: "warn",
-      detail: `L12 運用後検証 scope に未設計/要再検証が ${gapItems.length} 件ある: ${gapItems.join(", ")}`,
-      docDependencies: ["docs/design/**", "docs/test-design/**"],
-      implementationDependencies: unique(
-        operationScope.items
-          .filter((item) => item.status === "missing" || item.status === "reverify")
-          .flatMap((item) => item.evidenceTables),
-      ),
-    });
-  }
-
   const hasReverseNeed =
     unresolvedDesignReferences > 0 || designDeclarationDrifts > 0 || implAheadObligations > 0;
   const status =
@@ -9266,6 +9278,25 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
     terminalL14PlanIds,
     closureEvidenceIds,
   });
+  const operationScope = buildOperationScope(db, {
+    closureLedgerEntries: closure.next_action_ledger.entries,
+  });
+  if (operationScope.missing > 0 || operationScope.reverify > 0) {
+    const gapItems = operationScope.items
+      .filter((item) => item.status === "missing" || item.status === "reverify")
+      .map((item) => item.scope);
+    findings.push({
+      code: "operation_scope_gap",
+      severity: "warn",
+      detail: `L12 運用後検証 scope に未設計/要再検証が ${gapItems.length} 件ある: ${gapItems.join(", ")}`,
+      docDependencies: ["docs/design/**", "docs/test-design/**"],
+      implementationDependencies: unique(
+        operationScope.items
+          .filter((item) => item.status === "missing" || item.status === "reverify")
+          .flatMap((item) => item.evidenceTables),
+      ),
+    });
+  }
   const designCoverageGate = buildDesignCoverageGate(db);
   const acceptanceTraceability = buildAcceptanceTraceability(db);
   const zipAdoption = buildZipAdoptionMatrix(db);

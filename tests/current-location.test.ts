@@ -3291,6 +3291,91 @@ describe("project current-location read model", () => {
       );
     }));
 
+  it("障害時逆流routeはclosure next-action ledgerから観測source付きでobservedに昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:incident",
+          defined_id: "HOPS-VMFIT-INCIDENT-ROUTE-01",
+          declaration_kind: "障害時逆流 route",
+          title: "incident recovery reverse route",
+          layer: "L12",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: {
+          plan_id: "PLAN-L7-999-incident-route",
+          kind: "add-impl",
+          layer: "L7",
+          drive: "agent",
+          status: "draft",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "artifact_registry",
+        primaryKey: "artifact_id",
+        row: {
+          artifact_id: "artifact:PLAN-L7-999-incident-route",
+          artifact_type: "plan",
+          path: "docs/plans/PLAN-L7-999-incident-route.md",
+          pair_artifact: "",
+          status: "current",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "test_runs",
+        primaryKey: "test_run_id",
+        row: {
+          test_run_id: "tr:incident-route",
+          session_id: "session",
+          plan_id: "PLAN-L7-999-incident-route",
+          command: "bun run test:fast",
+          runner: "bun",
+          runtime: "test",
+          os: "linux",
+          shell: "bash",
+          scope: "targeted",
+          started_at: "2026-07-08T00:01:10.000Z",
+          completed_at: "2026-07-08T00:01:20.000Z",
+          exit_code: 0,
+          evidence_path: "docs/evidence/incident-route-test.json",
+          output_digest: "sha256:incident-route-test",
+          green_definition_id: "test-fast",
+          status: "passed",
+        },
+      });
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.closure.next_action_ledger.entries).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            ledgerId: "next-action:closure:close_ready",
+            nextAction: "close_ready",
+            driveModel: "Reverse",
+          }),
+        ]),
+      );
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "incident_recovery_route",
+            status: "observed",
+            observedCount: 1,
+            observationSources: ["closure_next_action_ledger:next-action:closure:close_ready"],
+          }),
+        ]),
+      );
+    }));
+
   it("KPI/metricはquality_signalsから観測source付きでobservedに昇格する", () =>
     withDb((db) => {
       upsertRow(db, {
