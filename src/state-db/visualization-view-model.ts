@@ -235,6 +235,23 @@ export interface ProjectCurrentLocationView {
     blockers: string[];
     next_command: string;
     expected_transition: string;
+    handoff_gate: {
+      status: string;
+      effective_phase: string;
+      approval_status: string | null;
+      scope_status: string | null;
+      decision_id: string | null;
+      outcome: string | null;
+      approval_record_path: string | null;
+      approval_scope_digest: string | null;
+      expected_approval_scope_digest: string | null;
+      materialize_status: string | null;
+      valid_for_apply: boolean;
+      approval_state: string;
+      command: string;
+      required_action: string;
+      reasons: string[];
+    };
     reentry_forecast: {
       status: string;
       current_blocking_count: number;
@@ -1966,6 +1983,23 @@ export function buildProjectCurrentLocationView(
       blockers: [...recoveryPlan.exit_forecast.blockers],
       next_command: recoveryPlan.exit_forecast.next_command,
       expected_transition: recoveryPlan.exit_forecast.expected_transition,
+      handoff_gate: {
+        status: recoveryHandoffGate.status,
+        effective_phase: recoveryHandoffGate.effective_phase,
+        approval_status: recoveryHandoffGate.approval_status,
+        scope_status: recoveryHandoffGate.scope_status,
+        decision_id: recoveryHandoffGate.decision_id,
+        outcome: recoveryHandoffGate.outcome,
+        approval_record_path: recoveryHandoffGate.approval_record_path,
+        approval_scope_digest: recoveryHandoffGate.approval_scope_digest,
+        expected_approval_scope_digest: recoveryHandoffGate.expected_approval_scope_digest,
+        materialize_status: recoveryHandoffGate.materialize_status,
+        valid_for_apply: recoveryHandoffGate.valid_for_apply,
+        approval_state: recoveryHandoffGate.approval_state,
+        command: recoveryHandoffGate.command,
+        required_action: recoveryHandoffGate.required_action,
+        reasons: [...recoveryHandoffGate.reasons],
+      },
       reentry_forecast: {
         status: recoveryPlan.reentry_forecast.status,
         current_blocking_count: recoveryPlan.reentry_forecast.current_blocking_count,

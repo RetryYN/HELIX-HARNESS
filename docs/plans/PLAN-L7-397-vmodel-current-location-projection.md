@@ -586,6 +586,47 @@ review_evidence:
         completed_at: "2026-07-09T12:42:43+09:00"
         evidence_path: src/vmodel/fit.ts
         output_digest: "sha256:acc4b4cc35d8bc030e3c8a375f915cf4b07254d96e1f3fbb1c59561ad9457b00"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T12:52:16+09:00"
+    tests_green_at: "2026-07-09T12:52:16+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "Project view の recovery plan 配下へ handoff gate を追加し、DB recovery reentry が machine_phase_pending のままでも active refresh approval draft により local handoff が approval_pending へ進んだことを同じ recovery plan surface で確認できるようにした。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T12:52:16+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/current-location.test.ts tests/cli-surface.test.ts tests/vscode-extension-adapter.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T12:52:16+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:482e828509c63f370c7bf2c09c39f2f6da22c30b26d1d5aac4f762e8cfe446cc"
+      - kind: smoke
+        command: "bun src/cli.ts progress view-model --json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:52:16+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:65f784e967005601092051fe32c147c7fde1be4c87f79fd169fd9eff44108c10"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:52:16+09:00"
+        evidence_path: src/vscode/tree-view-provider.ts
+        output_digest: "sha256:870e58393cdd1417c3f85d6804ffbe131ed3d1d4cd3055be0fadf21db0614063"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

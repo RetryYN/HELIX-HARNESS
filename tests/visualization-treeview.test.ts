@@ -1175,7 +1175,7 @@ describe("visualization Tree View adapter", () => {
     });
     expect(drive?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/drive/model-candidates:helix drive model --json",
-      "project/current-location/drive/recovery-plan:blocked remaining=1",
+      "project/current-location/drive/recovery-plan:blocked remaining=1 handoff=generate_approval_draft",
       "project/current-location/drive/route:return-to-design L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
       "project/current-location/drive/reverse:L5/L6/L7/L12 L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability actions=repair_failed_evidence",
       "project/current-location/drive/forward:blocked",
@@ -1225,6 +1225,7 @@ describe("visualization Tree View adapter", () => {
     expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
         "project/current-location/drive/recovery-plan/exit-forecast:blocked remaining=1 lanes=repair_failed_evidence",
+        "project/current-location/drive/recovery-plan/handoff-gate:generate_approval_draft phase=machine approval=missing scope=missing",
         "project/current-location/drive/recovery-plan/reentry-forecast:machine_phase_pending blocking=1",
         "project/current-location/drive/recovery-plan/automation-runway:machine_work_available machine=1 approval=0",
         "project/current-location/drive/recovery-plan/automation-boundaries:evidence_required:1",
@@ -2215,6 +2216,11 @@ describe("visualization Tree View adapter", () => {
       tree,
       "project/current-location/vmodel-fit/recovery-handoff",
     );
+    const recoveryPlan = findTreeNode(tree, "project/current-location/drive/recovery-plan");
+    const recoveryPlanHandoff = findTreeNode(
+      tree,
+      "project/current-location/drive/recovery-plan/handoff-gate",
+    );
 
     expect(nextAction).toMatchObject({
       description: "approval count=1",
@@ -2244,6 +2250,16 @@ describe("visualization Tree View adapter", () => {
       "approval_record_path=.helix/tmp/closure/repair_failed_evidence-approval-draft-refresh-fresh.yml",
     );
     expect(recoveryHandoff?.tooltip).toContain("digest=sha256:fresh");
+    expect(recoveryPlan?.description).toContain("handoff=approval_pending");
+    expect(recoveryPlanHandoff).toMatchObject({
+      description:
+        "approval_pending phase=approval approval=pending_human_review scope=match",
+      contextValue:
+        "recovery-plan.handoff-gate.approval.approval_pending.approval-pending_human_review",
+    });
+    expect(recoveryPlanHandoff?.tooltip).toContain(
+      "approval_record_path=.helix/tmp/closure/repair_failed_evidence-approval-draft-refresh-fresh.yml",
+    );
   });
 
   it("U-VTREE-004: renders rejected handoff as blocked approval state", () => {
