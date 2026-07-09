@@ -6107,6 +6107,119 @@ describe("L7 CLI surface closure", () => {
           pointers: [],
           unexpected_pointers: [],
         },
+        project_outline: {
+          schema_version: "project-view-outline.v1",
+          root_id: "project",
+          root_label: "Project",
+          root_child_count: expect.any(Number),
+          section_count: 8,
+          sections: expect.arrayContaining([
+            expect.objectContaining({
+              id: "current-location",
+              status: "needs_recovery",
+              command: "helix current-location --summary-json",
+            }),
+            expect.objectContaining({
+              id: "roadmap-position",
+              command: "helix roadmap current --summary-json",
+            }),
+            expect.objectContaining({
+              id: "drive-model",
+              status: "recovery_required",
+              command: "helix drive model --summary-json",
+            }),
+            expect.objectContaining({
+              id: "scrum-operation",
+              status: expect.any(String),
+              command: "helix current-location --summary-json",
+            }),
+            expect.objectContaining({
+              id: "operation-scope",
+              command: "helix current-location --summary-json",
+            }),
+            expect.objectContaining({
+              id: "skill-binding",
+              status: expect.any(String),
+              command: "helix skill suggest --current-location --summary-json",
+            }),
+            expect.objectContaining({
+              id: "closure-frontier",
+              command:
+                "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+            }),
+            expect.objectContaining({
+              id: "vmodel-fit",
+              status: "needs_fit",
+              command: "helix vmodel fit --summary-json",
+            }),
+          ]),
+          current_location: {
+            layer: "L14",
+            l12_layer: "L12",
+            status: "needs_recovery",
+            completion_boundary: "contradicted",
+            frontier_type: "recovery_frontier",
+            classification: "l14_claim_with_l7_work",
+            command: "helix current-location --summary-json",
+          },
+          roadmap_position: {
+            frontier_count: expect.any(Number),
+            frontier: expect.any(Array),
+            command: "helix roadmap current --summary-json",
+          },
+          roadmap: {
+            frontier_count: expect.any(Number),
+            frontier: expect.any(Array),
+            command: "helix roadmap current --summary-json",
+          },
+          drive_model: {
+            selected_model: "Recovery",
+            selection_status: "recovery_required",
+            forward_spine_model: "Forward",
+            registered_entry_model_count: 10,
+            missing_registered_entry_models: [],
+            candidate_count: 12,
+            command: "helix drive model --summary-json",
+          },
+          scrum_operation: {
+            status: expect.any(String),
+            source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+            observed_count: expect.any(Number),
+            missing_count: expect.any(Number),
+            command: "helix current-location --summary-json",
+          },
+          operation_scope: {
+            observed: expect.any(Number),
+            missing: expect.any(Number),
+            reverify: expect.any(Number),
+            item_count: expect.any(Number),
+            command: "helix current-location --summary-json",
+          },
+          skill_binding: {
+            status: expect.any(String),
+            selected_model: "Recovery",
+            required_skills: expect.any(Number),
+            item_count: expect.any(Number),
+            top_skill_path: null,
+            command: "helix skill suggest --current-location --summary-json",
+          },
+          closure_frontier: {
+            action: "close_ready",
+            total: expect.any(Number),
+            approval_window_count: expect.any(Number),
+            checklist_status: expect.any(String),
+            command:
+              "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+          },
+          vmodel_fit: {
+            status: "needs_fit",
+            current_location_status: "needs_recovery",
+            approval_review_status: expect.any(String),
+            command: "helix vmodel fit --summary-json",
+          },
+          source_command: "helix progress tree-view --summary-json",
+          full_source_command: "helix progress tree-view --json",
+        },
         project_frontier_summary: {
           schema_version: "project-frontier-summary.v1",
           current: {

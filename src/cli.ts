@@ -5305,6 +5305,182 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
   };
 }
 
+function findTreeNodeById(
+  nodes: ReturnType<typeof buildVisualizationTreeView>["roots"],
+  id: string,
+): ReturnType<typeof buildVisualizationTreeView>["roots"][number] | null {
+  const queue = [...nodes];
+  while (queue.length > 0) {
+    const node = queue.shift();
+    if (!node) continue;
+    if (node.id === id) return node;
+    queue.push(...node.children);
+  }
+  return null;
+}
+
+function buildProjectViewOutline(
+  tree: ReturnType<typeof buildVisualizationTreeView>,
+  projectFrontierSummary: ReturnType<typeof buildProjectFrontierSummary>,
+) {
+  const projectRoot = tree.roots.find((root) => root.id === "project") ?? null;
+  const currentNode = findTreeNodeById(tree.roots, "project/current-location");
+  const roadmapNode = findTreeNodeById(tree.roots, "project/current-location/roadmap-position");
+  const driveNode = findTreeNodeById(tree.roots, "project/current-location/drive");
+  const operationNode = findTreeNodeById(tree.roots, "project/current-location/operation-scope");
+  const skillNode = findTreeNodeById(tree.roots, "project/current-location/skill-binding");
+  const closureNode = findTreeNodeById(
+    tree.roots,
+    "project/current-location/closure/apply-readiness",
+  );
+  const topSkill = projectFrontierSummary.skill_binding.top_items[0] ?? null;
+  const sections = [
+    {
+      id: "current-location",
+      tree_node_id: currentNode?.id ?? "project/current-location",
+      label: currentNode?.label ?? "Current location",
+      status: projectFrontierSummary.current.status,
+      description: currentNode?.description ?? "",
+      command: "helix current-location --summary-json",
+    },
+    {
+      id: "roadmap-position",
+      tree_node_id: roadmapNode?.id ?? "project/current-location/roadmap-position",
+      label: roadmapNode?.label ?? "Roadmap position",
+      status: projectFrontierSummary.current.roadmap_frontier.length > 0 ? "frontier" : "current",
+      description: roadmapNode?.description ?? "",
+      command: "helix roadmap current --summary-json",
+    },
+    {
+      id: "drive-model",
+      tree_node_id: driveNode?.id ?? "project/current-location/drive",
+      label: driveNode?.label ?? "Drive model",
+      status: projectFrontierSummary.drive_model.selection_status,
+      description: driveNode?.description ?? "",
+      command: "helix drive model --summary-json",
+    },
+    {
+      id: "scrum-operation",
+      tree_node_id: "project/current-location/scrum-operation",
+      label: "Scrum operation",
+      status: projectFrontierSummary.scrum_operation?.status ?? "not_observed",
+      description: projectFrontierSummary.scrum_operation
+        ? `${projectFrontierSummary.scrum_operation.observed_count}/${projectFrontierSummary.scrum_operation.missing_count}`
+        : "",
+      command: "helix current-location --summary-json",
+    },
+    {
+      id: "operation-scope",
+      tree_node_id: operationNode?.id ?? "project/current-location/operation-scope",
+      label: operationNode?.label ?? "Operation scope",
+      status: projectFrontierSummary.operation_scope.missing > 0 ? "missing" : "observed",
+      description: operationNode?.description ?? "",
+      command: "helix current-location --summary-json",
+    },
+    {
+      id: "skill-binding",
+      tree_node_id: skillNode?.id ?? "project/current-location/skill-binding",
+      label: skillNode?.label ?? "Skill binding",
+      status: projectFrontierSummary.skill_binding.status,
+      description: skillNode?.description ?? "",
+      command: "helix skill suggest --current-location --summary-json",
+    },
+    {
+      id: "closure-frontier",
+      tree_node_id: closureNode?.id ?? "project/current-location/closure/apply-readiness",
+      label: closureNode?.label ?? "Closure frontier",
+      status: projectFrontierSummary.closure_frontier.approval_review_checklist.status,
+      description: closureNode?.description ?? "",
+      command: projectFrontierSummary.closure_frontier.current_window_command,
+    },
+    {
+      id: "vmodel-fit",
+      tree_node_id: "project/current-location/vmodel-fit",
+      label: "V-model fit",
+      status: projectFrontierSummary.vmodel_fit.status,
+      description: projectFrontierSummary.vmodel_fit.current_location_gate.status,
+      command: "helix vmodel fit --summary-json",
+    },
+  ];
+
+  return {
+    schema_version: "project-view-outline.v1",
+    source_command: "helix progress tree-view --summary-json",
+    full_source_command: "helix progress tree-view --json",
+    root_id: projectRoot?.id ?? "project",
+    root_label: projectRoot?.label ?? "Project",
+    root_child_count: projectRoot?.children.length ?? 0,
+    section_count: sections.length,
+    sections,
+    current_location: {
+      layer: projectFrontierSummary.current.layer,
+      l12_layer: projectFrontierSummary.current.l12_layer,
+      status: projectFrontierSummary.current.status,
+      completion_boundary: projectFrontierSummary.current.completion_boundary,
+      frontier_type: projectFrontierSummary.current_location_frontier.frontier_type,
+      classification: projectFrontierSummary.current_location_frontier.classification,
+      command: "helix current-location --summary-json",
+    },
+    roadmap_position: {
+      frontier_count: projectFrontierSummary.current.roadmap_frontier.length,
+      frontier: projectFrontierSummary.current.roadmap_frontier,
+      command: "helix roadmap current --summary-json",
+    },
+    roadmap: {
+      frontier_count: projectFrontierSummary.current.roadmap_frontier.length,
+      frontier: projectFrontierSummary.current.roadmap_frontier,
+      command: "helix roadmap current --summary-json",
+    },
+    drive_model: {
+      selected_model: projectFrontierSummary.drive_model.selected_model,
+      selection_status: projectFrontierSummary.drive_model.selection_status,
+      forward_spine_model: projectFrontierSummary.drive_model.forward_spine_model,
+      registered_entry_model_count: projectFrontierSummary.drive_model.registered_entry_model_count,
+      missing_registered_entry_models:
+        projectFrontierSummary.drive_model.missing_registered_entry_models,
+      candidate_count: projectFrontierSummary.drive_model.candidate_count,
+      command: "helix drive model --summary-json",
+    },
+    scrum_operation: projectFrontierSummary.scrum_operation
+      ? {
+          status: projectFrontierSummary.scrum_operation.status,
+          source_package: projectFrontierSummary.scrum_operation.source_package,
+          observed_count: projectFrontierSummary.scrum_operation.observed_count,
+          missing_count: projectFrontierSummary.scrum_operation.missing_count,
+          command: "helix current-location --summary-json",
+        }
+      : null,
+    operation_scope: {
+      observed: projectFrontierSummary.operation_scope.observed,
+      missing: projectFrontierSummary.operation_scope.missing,
+      reverify: projectFrontierSummary.operation_scope.reverify,
+      item_count: projectFrontierSummary.operation_scope.items.length,
+      command: "helix current-location --summary-json",
+    },
+    skill_binding: {
+      status: projectFrontierSummary.skill_binding.status,
+      selected_model: projectFrontierSummary.skill_binding.selected_model,
+      required_skills: projectFrontierSummary.skill_binding.required_skills,
+      item_count: projectFrontierSummary.skill_binding.item_count,
+      top_skill_path: topSkill?.skill_path ?? null,
+      command: "helix skill suggest --current-location --summary-json",
+    },
+    closure_frontier: {
+      action: projectFrontierSummary.closure_frontier.action,
+      total: projectFrontierSummary.closure_frontier.total,
+      approval_window_count: projectFrontierSummary.closure_frontier.approval_window_count,
+      checklist_status: projectFrontierSummary.closure_frontier.approval_review_checklist.status,
+      command: projectFrontierSummary.closure_frontier.current_window_command,
+    },
+    vmodel_fit: {
+      status: projectFrontierSummary.vmodel_fit.status,
+      current_location_status: projectFrontierSummary.vmodel_fit.current_location_gate.status,
+      approval_review_status: projectFrontierSummary.vmodel_fit.approval_review_gate.status,
+      command: "helix vmodel fit --summary-json",
+    },
+  };
+}
+
 function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed: boolean) {
   const db = openHarnessDb(":memory:", { repoRoot });
   try {
@@ -7965,6 +8141,7 @@ progress
                 pointers: fullJsonPointers,
                 unexpected_pointers: unexpectedFullJsonPointers,
               },
+              project_outline: buildProjectViewOutline(tree, projectFrontierSummary),
               project_frontier_summary: projectFrontierSummary,
               summary_surface_command_audit: summarySurfaceCommandAudit,
               write_policy: "read-only",
