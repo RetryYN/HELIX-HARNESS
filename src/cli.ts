@@ -3873,6 +3873,38 @@ function projectRecoveryHandoffGate(
     .recovery_handoff_gate;
 }
 
+function summarizeProjectFunctionDesignPolicy(snapshot: ProjectCurrentLocationSnapshot) {
+  const detailCoverage = snapshot.design_coverage_gate.items.find(
+    (item) => item.coverageId === "L5-detailed-contract",
+  );
+  const tailoringDetail = snapshot.tailoring_gate.items.find(
+    (item) => item.tailoringId === "HVM-TAILOR-DETAIL-CONTRACT",
+  );
+  const status =
+    detailCoverage?.status === "covered" && tailoringDetail?.status === "declared"
+      ? "pass"
+      : "needs_absorption";
+
+  return {
+    status,
+    independent_layer_policy: "abolished",
+    detail_contract_coverage_status: detailCoverage?.status ?? "missing",
+    tailoring_detail_contract_status: tailoringDetail?.status ?? "missing",
+    accepted_layers: ["L5", "L7", "typed declaration", "runtime evidence"],
+    absorbed_surfaces: [
+      "L5 detailed design",
+      "design_declarations",
+      "L7 TDD closure",
+      "test_runs",
+      "gate_runs",
+      "runtime_verification_events",
+    ],
+    command: "helix current-location --summary-json",
+    required_action:
+      "独立した重い機能設計層を要求せず、必要な契約を L5 詳細設計・typed declaration・L7 TDD closure・runtime evidence へ吸収する",
+  };
+}
+
 function summarizeProjectCurrentLocation(
   snapshot: ProjectCurrentLocationSnapshot,
   options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
@@ -3926,6 +3958,7 @@ function summarizeProjectCurrentLocation(
       missing: snapshot.operation_scope.missing,
       reverify: snapshot.operation_scope.reverify,
     },
+    function_design_policy: summarizeProjectFunctionDesignPolicy(snapshot),
     scrum_operation: snapshot.scrum_operation
       ? {
           status: snapshot.scrum_operation.status,
@@ -4910,6 +4943,7 @@ function buildSummarySurfaceCommandAudit(
 
 function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentLocationSnapshot) {
   const driveModel = summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot));
+  const functionDesignPolicy = summarizeProjectFunctionDesignPolicy(snapshot);
   const closeReadyReview = summarizeClosureReviewBundle(
     buildProjectClosureReviewBundle(snapshot, { action: "close_ready", limit: 20 }),
   );
@@ -4928,6 +4962,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       completion_boundary: snapshot.current.completion_boundary,
       roadmap_frontier: snapshot.current.roadmap_frontier,
     },
+    function_design_policy: functionDesignPolicy,
     drive_model: {
       selected_model: driveModel.selected_model,
       selected_route_id: driveModel.selected_candidate.route_id,
@@ -4966,6 +5001,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       recovery_runway_gate: vmodelFit.recovery_runway_gate,
       recovery_handoff_gate: vmodelFit.recovery_handoff_gate,
       approval_review_gate: vmodelFit.approval_review_gate,
+      function_design_policy: functionDesignPolicy,
       source_command: vmodelFit.source_command,
     },
     skill_binding: {
@@ -5011,6 +5047,7 @@ function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed
       completion_claim_allowed: completionClaimAllowed,
       status: projectFrontier.vmodel_fit.status,
       current: projectFrontier.current,
+      function_design_policy: projectFrontier.function_design_policy,
       drive_model: projectFrontier.drive_model,
       recovery_runway: {
         status: recoveryRunway.status,

@@ -86,6 +86,55 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T23:45:33+09:00"
+    tests_green_at: "2026-07-09T23:45:33+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "`current-location --summary-json` と Project frontier summary に `function_design_policy` を投影し、独立機能設計廃止方針を `vmodel fit` 専用 field から常用 current-location surface へ引き上げた。live repo では status=pass、independent_layer_policy=abolished、detail_contract_coverage_status=covered、tailoring_detail_contract_status=declared、absorbed_surfaces に L5 detailed design / design_declarations / L7 TDD closure / runtime evidence を確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:44:47+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:44:47+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:4c20c762cc8fe7ccfe9444ce76d70876ff81d9ac6831160fa72f69ad66c63328"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:45:33+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:ce1eef761277168c2f93034ab523a41fd7c5e71e7a244729b9607d568e57a34b"
+      - kind: smoke
+        command: "bun src/cli.ts current-location --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:44:47+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:38efb3d03ee75b36f62b58fc1d0d1a79b22af7d2bacfc0b559c20d45fb0e2f36"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:45:33+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:005c42035039cecd262a037b203f3bf1fc3210cde8f33e8038e1f37b608877e3"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:38:04+09:00"
     tests_green_at: "2026-07-09T23:38:31+09:00"
     verdict: approve

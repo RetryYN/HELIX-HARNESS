@@ -3438,6 +3438,22 @@ describe("L7 CLI surface closure", () => {
             ledger_count: 1,
           },
         },
+        function_design_policy: {
+          status: expect.any(String),
+          independent_layer_policy: "abolished",
+          detail_contract_coverage_status: expect.any(String),
+          tailoring_detail_contract_status: expect.any(String),
+          accepted_layers: ["L5", "L7", "typed declaration", "runtime evidence"],
+          absorbed_surfaces: expect.arrayContaining([
+            "L5 detailed design",
+            "design_declarations",
+            "L7 TDD closure",
+            "runtime_verification_events",
+          ]),
+          command: "helix current-location --summary-json",
+          required_action:
+            "独立した重い機能設計層を要求せず、必要な契約を L5 詳細設計・typed declaration・L7 TDD closure・runtime evidence へ吸収する",
+        },
         scrum_operation: {
           status: expect.any(String),
           source_package: expect.any(String),
@@ -5913,6 +5929,11 @@ describe("L7 CLI surface closure", () => {
             status: "needs_recovery",
             completion_boundary: "contradicted",
           },
+          function_design_policy: {
+            status: expect.any(String),
+            independent_layer_policy: "abolished",
+            command: "helix current-location --summary-json",
+          },
           drive_model: {
             selected_model: "Recovery",
             selected_route_id: "drive:Recovery:recover-current-location",
@@ -5986,6 +6007,11 @@ describe("L7 CLI surface closure", () => {
               status: expect.any(String),
               action: "close_ready",
             }),
+            function_design_policy: {
+              status: expect.any(String),
+              independent_layer_policy: "abolished",
+              command: "helix current-location --summary-json",
+            },
             source_command: "helix vmodel fit --summary-json",
           },
           skill_binding: {
