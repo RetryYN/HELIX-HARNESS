@@ -3009,9 +3009,9 @@ describe("project current-location read model", () => {
       const snapshot = buildProjectCurrentLocationSnapshot(db);
 
       expect(snapshot.operation_scope).toMatchObject({
-        designed: 5,
-        observed: 1,
-        observed_gap: 5,
+        designed: 4,
+        observed: 2,
+        observed_gap: 4,
         missing: 0,
         reverify: 0,
       });
@@ -3019,7 +3019,7 @@ describe("project current-location read model", () => {
         "log_design:designed",
         "kpi_metric:designed",
         "runtime_verification:observed",
-        "operation_test:designed",
+        "operation_test:observed",
         "class_method_contract:designed",
         "incident_recovery_route:designed",
       ]);
@@ -3029,6 +3029,12 @@ describe("project current-location read model", () => {
             scope: "runtime_verification",
             coverageId: "L12-operation-observability",
             coverageLabel: "運用テスト/ログ/KPI/runtime",
+            observationSources: [
+              "runtime_verification_events:docs/state/logs/runtime-verification.jsonl",
+            ],
+          }),
+          expect.objectContaining({
+            scope: "operation_test",
             observationSources: [
               "runtime_verification_events:docs/state/logs/runtime-verification.jsonl",
             ],
@@ -3050,16 +3056,16 @@ describe("project current-location read model", () => {
       expect(snapshot.findings.map((finding) => finding.code)).not.toContain("operation_scope_gap");
       const fit = buildVmodelFitReport(snapshot);
       expect(fit.blockers.map((blocker) => blocker.code)).not.toContain("operation_scope");
-      expect(fit.reasons).toContain("operation scope observed gaps=5");
+      expect(fit.reasons).toContain("operation scope observed gaps=4");
       expect(fit.regression_guards.guards).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
             guard_id: "operation-scope",
             status: "watch",
-            count: 5,
+            count: 4,
             required_action:
               "設計済み operation scope を accepted runtime evidence として観測し、運用時の可視化基盤を実証する",
-            reasons: expect.arrayContaining(["observed_gap=5", "runtime_observed=1"]),
+            reasons: expect.arrayContaining(["observed_gap=4", "runtime_observed=1"]),
           }),
         ]),
       );
@@ -3286,6 +3292,112 @@ describe("project current-location read model", () => {
               "gate_runs:docs/evidence/operation-test-gate.json",
               "test_runs:docs/evidence/operation-test.json",
             ],
+          }),
+        ]),
+      );
+    }));
+
+  it("operation testはoperationとtestが分離したpassed test_runsからもobservedに昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:optest",
+          defined_id: "HOPS-VMFIT-OPTEST-01",
+          declaration_kind: "運用テスト",
+          title: "operation scope",
+          layer: "L12",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "test_runs",
+        primaryKey: "test_run_id",
+        row: {
+          test_run_id: "tr:operation-tokenized",
+          session_id: "session",
+          plan_id: "PLAN-L12-OPS",
+          command: 'bun run vitest run tests/current-location.test.ts -t "operation"',
+          runner: "bun",
+          runtime: "test",
+          os: "linux",
+          shell: "bash",
+          scope: "targeted",
+          started_at: "2026-07-08T00:01:10.000Z",
+          completed_at: "2026-07-08T00:01:20.000Z",
+          exit_code: 0,
+          evidence_path: "tests/current-location.test.ts",
+          output_digest: "sha256:operation-tokenized",
+          green_definition_id: "current-location-operation",
+          status: "passed",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "operation_test",
+            status: "observed",
+            observedCount: 1,
+            observationSources: ["test_runs:tests/current-location.test.ts"],
+          }),
+        ]),
+      );
+    }));
+
+  it("operation testはoperationだけのpassed test_runsではobservedへ誤昇格しない", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:optest",
+          defined_id: "HOPS-VMFIT-OPTEST-01",
+          declaration_kind: "運用テスト",
+          title: "operation scope",
+          layer: "L12",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "test_runs",
+        primaryKey: "test_run_id",
+        row: {
+          test_run_id: "tr:operation-only",
+          session_id: "session",
+          plan_id: "PLAN-L12-OPS",
+          command: "bun run current-location operation summary",
+          runner: "bun",
+          runtime: "test",
+          os: "linux",
+          shell: "bash",
+          scope: "operation",
+          started_at: "2026-07-08T00:01:10.000Z",
+          completed_at: "2026-07-08T00:01:20.000Z",
+          exit_code: 0,
+          evidence_path: "docs/evidence/operation-summary.json",
+          output_digest: "sha256:operation-only",
+          green_definition_id: "operation-summary",
+          status: "passed",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "operation_test",
+            status: "designed",
+            observedCount: 0,
+            observationSources: [],
           }),
         ]),
       );

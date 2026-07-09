@@ -907,6 +907,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-DBPROJ-PROV-03 | `checkDbProjectionIngestion` / `projectRuntimeModelTelemetryForDoctor` | Doctor の in-memory DB rebuild は、既存 Claude/Codex JSONL token usage を `projectTokenUsage` 経由で overlay する。そのため token/cost-valued column を持つ `model_runs` は provider CLI execution を要求せず runtime provenance として数える。deterministic `db rebuild` command は source-projection-only のままにする。 |
 | U-DBPROJ-PROV-04 | `projectRuntimeGuardrailDecisionFromSessionEvent` | session-log `forced_stop` event は、非空 `session_id`、`guardrail=forced-stop`、`decision=block`、`mode=runtime-hook`、JSONL evidence path を持つ `guardrail_decisions` row をちょうど 1 件作る。ordinary `tool_use` events は guardrail decision を捏造しない。 |
 | U-DBPROJ-PROV-05 | `summarize` / `projectRuntimeSkillInvocationFromSessionEvent` | `skill suggest` を含む Bash command は `Bash (skill)` として log される。session-log `Bash (skill)` event は、非空 `session_id`、`source=runtime-hook:skill-suggest`、hook outcome 由来の accepted status を持つ `skill_invocations` row を作る。generic `Bash (bash)` events は skill invocation を捏造しない。 |
+| U-CURRENT-OPS-001 | `buildProjectCurrentLocationSnapshot` / `operationObservationSources` | `operation_test` は `operation_test` 直書きだけでなく、同一 passed `test_runs` / `gate_runs` evidence text に `operation/ops/運用` と `test/テスト` が揃う場合も observed source とする。`operation` だけの evidence は observed に誤昇格しない。 |
 
 ### §1.23 U-RUNDEBUG (L7.5 RUN & Debug runtime verification 検査)
 

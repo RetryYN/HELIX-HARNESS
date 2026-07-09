@@ -4345,6 +4345,11 @@ function operationScopeMatches(scopeId: string, text: string): boolean {
     const hasContract = /\bcontract\b/i.test(text) || /契約/.test(text);
     return hasClass && hasMethod && hasContract;
   }
+  if (scopeId === "operation_test") {
+    const hasOperation = /\boperation\b/i.test(text) || /\bops\b/i.test(text) || /運用/.test(text);
+    const hasTest = /\btest\b/i.test(text) || /テスト/.test(text);
+    return hasOperation && hasTest;
+  }
   if (scopeId === "incident_recovery_route") {
     const hasIncident =
       /\bincident\b/i.test(text) || /\bfailure\b/i.test(text) || /障害/.test(text);
