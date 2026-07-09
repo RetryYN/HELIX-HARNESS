@@ -14,7 +14,6 @@ import {
   analyzePlanEntryRouting,
   buildPlanEntryRoutingBaseline,
   loadPlanEntryRoutingBaseline,
-  loadPlanEntryRoutingDocs,
   PLAN_ENTRY_ROUTING_BASELINE_PATH,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
@@ -38,6 +37,7 @@ import {
   VALID_REVERSE_FULLBACK_SCOPE_DECISIONS,
   VALID_SUB_DOCS,
 } from "./lint-policy";
+import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import type {
   LintResult,
   PlanGovernanceDoc,
@@ -821,7 +821,7 @@ export function lintPlanDescent(path?: string, repoRoot: string = process.cwd())
 
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
   const result = analyzePlanEntryRouting(
-    loadPlanEntryRoutingDocs(repoRoot, path),
+    loadPlanEntryRoutingDocsFromDb(repoRoot, path),
     loadPlanEntryRoutingBaseline(repoRoot),
   );
   return { ok: result.ok, messages: planEntryRoutingMessages(result) };
@@ -852,7 +852,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
       };
     }
     const baseline = buildPlanEntryRoutingBaseline(
-      loadPlanEntryRoutingDocs(repoRoot),
+      loadPlanEntryRoutingDocsFromDb(repoRoot),
       new Date().toISOString(),
     );
     writeFileSync(

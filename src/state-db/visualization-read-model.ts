@@ -7,7 +7,7 @@ import {
   VMODEL_ZIP_FILENAME,
   VMODEL_ZIP_REQUIRED_PATHS,
   type VmodelZipManifestResult,
-} from "../vmodel/zip-manifest";
+} from "../schema/hybrid-vmodel-manifest";
 import {
   buildProjectCurrentLocationSnapshot,
   buildProjectClosureBatchReport,

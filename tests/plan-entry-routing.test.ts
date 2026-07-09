@@ -12,6 +12,7 @@ import {
 import { workflowModeForPlan } from "../src/schema/mode-catalog";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
+import { loadPlanEntryRoutingDocsFromDb } from "../src/state-db/plan-entry-routing-input";
 import { classifyTask } from "../src/task/classify";
 
 const EMPTY_BASELINE: PlanEntryRoutingBaseline = { recorded: null, grandfathered: [] };
@@ -116,7 +117,7 @@ function writePlan(root: string, spec: PlanSpec): void {
 }
 
 function analyze(root: string, baseline: PlanEntryRoutingBaseline = EMPTY_BASELINE) {
-  return analyzePlanEntryRouting(loadPlanEntryRoutingDocs(root), baseline);
+  return analyzePlanEntryRouting(loadPlanEntryRoutingDocsFromDb(root), baseline);
 }
 
 afterAll(() => {
@@ -267,7 +268,7 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
     const root = makeRepo();
     writePlan(root, { planId: "PLAN-L7-913-b", routeMode: null, entrySignals: null });
     writePlan(root, { planId: "PLAN-L7-912-a", routeMode: null, entrySignals: null });
-    const docs = loadPlanEntryRoutingDocs(root);
+    const docs = loadPlanEntryRoutingDocsFromDb(root);
     const baseline = buildPlanEntryRoutingBaseline(docs, "2026-07-06");
     expect(baseline.grandfathered).toEqual(["PLAN-L7-912-a", "PLAN-L7-913-b"]);
     expect(analyzePlanEntryRouting(docs, baseline).ok).toBe(true);
@@ -276,5 +277,15 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
   it("baseline loader: 不在時は空 baseline を返す", () => {
     const root = makeRepo();
     expect(loadPlanEntryRoutingBaseline(root)).toEqual({ recorded: null, grandfathered: [] });
+  });
+
+  it("pure loader: DB を読まず entry signal を unresolved として保持する", () => {
+    const root = makeRepo();
+    seedDb(root);
+    writePlan(root, { planId: "PLAN-L7-914-pure-loader" });
+    const docs = loadPlanEntryRoutingDocs(root);
+    expect(docs[0]?.resolvedSignals).toEqual([
+      { value: "source-1", token: null, kind: "unresolvable" },
+    ]);
   });
 });

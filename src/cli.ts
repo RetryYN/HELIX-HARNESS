@@ -327,7 +327,7 @@ import {
   loadTeamDefinition,
   type MemberPlacement,
 } from "./team/run";
-import { buildVmodelFitReport, type VmodelFitReport } from "./vmodel/fit";
+import { buildVmodelFitReport, type VmodelFitReport } from "./state-db/vmodel-fit";
 import { formatVmodelInjection, resolveVmodelInjection } from "./vmodel/injection";
 import { lintVmodel } from "./vmodel/lint";
 import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";

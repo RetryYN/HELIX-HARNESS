@@ -1,5 +1,8 @@
 import { createHash } from "node:crypto";
-import { VMODEL_ZIP_FILENAME, VMODEL_ZIP_SOURCE_BINDINGS } from "../vmodel/zip-manifest";
+import {
+  VMODEL_ZIP_FILENAME,
+  VMODEL_ZIP_SOURCE_BINDINGS,
+} from "../schema/hybrid-vmodel-manifest";
 import type { HarnessDb } from "./index";
 
 export type ProjectDriveModel =

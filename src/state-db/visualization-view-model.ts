@@ -1,4 +1,4 @@
-import { buildVmodelFitReport } from "../vmodel/fit";
+import { buildVmodelFitReport } from "./vmodel-fit";
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceApplyPlan,

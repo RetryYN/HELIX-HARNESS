@@ -260,7 +260,6 @@ import { analyzePlanDod, loadPlanDodDocs, planDodMessages } from "../lint/plan-d
 import {
   analyzePlanEntryRouting,
   loadPlanEntryRoutingBaseline,
-  loadPlanEntryRoutingDocs,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
 import {
@@ -458,6 +457,7 @@ import {
 } from "../state-db/guardrail-invariants";
 import { type HarnessDb, openHarnessDb } from "../state-db/index";
 import { rowCounts } from "../state-db/migration";
+import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
 import {
   analyzeRefactorCandidates,
@@ -469,7 +469,7 @@ import { buildVisualizationSnapshot } from "../state-db/visualization-read-model
 import { buildVisualizationViewModel } from "../state-db/visualization-view-model";
 import { classifyProposalDocumentCoverage } from "../task/classify";
 import { buildTeamRunPlan } from "../team/run";
-import { buildVmodelFitReport } from "../vmodel/fit";
+import { buildVmodelFitReport } from "../state-db/vmodel-fit";
 import {
   analyzePairFreeze,
   analyzeVerificationGroups,
@@ -3923,7 +3923,7 @@ export function checkPlanEntryRouting(repoRoot: string): { messages: string[]; o
   }
   try {
     const result = analyzePlanEntryRouting(
-      loadPlanEntryRoutingDocs(repoRoot),
+      loadPlanEntryRoutingDocsFromDb(repoRoot),
       loadPlanEntryRoutingBaseline(repoRoot),
     );
     return { messages: planEntryRoutingMessages(result), ok: result.ok };

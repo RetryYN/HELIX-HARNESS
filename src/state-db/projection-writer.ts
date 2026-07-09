@@ -49,9 +49,7 @@ import {
   primaryKeyOf,
   type TableDef,
 } from "../schema/harness-db";
-import { analyzeDesignDeclarations } from "../vmodel/design-declarations";
-import { buildVmodelFitReport } from "../vmodel/fit";
-import { analyzeVmodelZipManifest, buildVmodelZipSourceBindings } from "../vmodel/zip-manifest";
+import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -75,8 +73,13 @@ import {
 import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
+import { buildVmodelFitReport } from "./vmodel-fit";
 import { buildVisualizationSnapshot } from "./visualization-read-model";
 import { buildVisualizationViewModel } from "./visualization-view-model";
+import {
+  analyzeVmodelZipManifest,
+  buildVmodelZipSourceBindings,
+} from "../schema/hybrid-vmodel-manifest";
 
 type ProjectedUtCase = {
   oracle_id?: string;

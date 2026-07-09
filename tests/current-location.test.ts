@@ -21,7 +21,7 @@ import {
 } from "../src/state-db/current-location";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
-import { buildVmodelFitReport } from "../src/vmodel/fit";
+import { buildVmodelFitReport } from "../src/state-db/vmodel-fit";
 
 function withDb<T>(fn: (db: ReturnType<typeof openHarnessDb>) => T): T {
   const db = openHarnessDb(":memory:");
