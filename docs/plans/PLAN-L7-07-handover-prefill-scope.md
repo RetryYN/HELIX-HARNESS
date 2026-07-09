@@ -35,6 +35,31 @@ review_evidence:
     tests_green_at: "2026-06-04"
     verdict: approve
     scope: "code-reviewer 2周 APPROVE (cluster1 commit 5b09ee5 で L7-06/L7-07 一括 review) (handover 2026-06-04)"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:35:40+09:00"
+    tests_green_at: "2026-07-09T15:35:40+09:00"
+    verdict: approve
+    scope: "PLAN-L7-07 の execution evidence 欠落を、現行 handover / agent-slots / team-schema / doctor targeted green と typecheck で補い、handover prefill scope/dedup の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/handover.test.ts tests/agent-slots.test.ts tests/team-schema.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:35:40+09:00"
+        evidence_path: tests/handover.test.ts
+        output_digest: "sha256:7eb5dd84152dbe59abdea2f9604ab9d2fed6ddf712c387fccbd6223fe2d00e66"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:35:40+09:00"
+        evidence_path: src/handover/index.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-07 (add-impl): handover prefill のノイズ低減 (IMP-048)

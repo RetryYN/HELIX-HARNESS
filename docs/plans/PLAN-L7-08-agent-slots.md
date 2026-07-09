@@ -40,6 +40,31 @@ review_evidence:
     tests_green_at: "2026-06-04"
     verdict: approve
     scope: "code-reviewer 2周 APPROVE (cluster2 commit 1acda2e で L6-07/L7-08/REVERSE-06 一括 review) (handover 2026-06-04)"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:35:40+09:00"
+    tests_green_at: "2026-07-09T15:35:40+09:00"
+    verdict: approve
+    scope: "PLAN-L7-08 の execution evidence 欠落を、現行 handover / agent-slots / team-schema / doctor targeted green と typecheck で補い、agent-slots 機構の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/handover.test.ts tests/agent-slots.test.ts tests/team-schema.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:35:40+09:00"
+        evidence_path: tests/agent-slots.test.ts
+        output_digest: "sha256:7eb5dd84152dbe59abdea2f9604ab9d2fed6ddf712c387fccbd6223fe2d00e66"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:35:40+09:00"
+        evidence_path: src/runtime/agent-slots.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-08 (add-impl): agent-slots 機構の実装 (IMP-050 + IMP-049 機械支援)
