@@ -44,6 +44,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/state-db/current-location.ts
     artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
   - artifact_path: src/state-db/visualization-read-model.ts
     artifact_type: source_module
   - artifact_path: src/state-db/projection-writer.ts
@@ -54,12 +56,18 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/current-location.test.ts
     artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
   - artifact_path: tests/db-projection-ingestion.test.ts
     artifact_type: test_code
   - artifact_path: tests/visualization-view-model.test.ts
     artifact_type: test_code
   - artifact_path: tests/visualization-treeview.test.ts
     artifact_type: test_code
+  - artifact_path: docs/design/harness/L6-function-design/function-spec.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L7-44-harness-db-master.md
   requires:
@@ -76,6 +84,47 @@ dependencies:
     - docs/test-design/harness/L8-unit-test-design.md
     - docs/test-design/helix/vmodel-docgen-fit-acceptance.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T23:38:04+09:00"
+    tests_green_at: "2026-07-09T23:38:31+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "`current-location --summary-json` に `scrum_operation` を first-class field として追加し、ハイブリッド版 V+Scrum の運営層投影状態を raw JSON や Project view に回らず機械検出できるようにした。live repo では status=active、source_package=ハイブリッド設計ドキュメントv1-fixed.zip、source_binding_count=11、observed_count=12、missing_count=0 を確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:38:04+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:38:04+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:f3f70f86d4dd70f8f995011d06705e1daa8478116058dd1b441acd7b608891e3"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:38:31+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:ea21f4b616bdc21ce55693300e19c3ee1361d567220dd9cfda21bb7979ad3baa"
+      - kind: smoke
+        command: "bun src/cli.ts current-location --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:38:04+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:3c1c0bf27fe3e98b643fefc18e9acb4966b43cfcdb9341e6d3470fa110161c8c"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-08T07:57:06+09:00"

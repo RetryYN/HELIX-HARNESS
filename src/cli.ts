@@ -3926,6 +3926,35 @@ function summarizeProjectCurrentLocation(
       missing: snapshot.operation_scope.missing,
       reverify: snapshot.operation_scope.reverify,
     },
+    scrum_operation: snapshot.scrum_operation
+      ? {
+          status: snapshot.scrum_operation.status,
+          source_package: snapshot.scrum_operation.sourcePackage,
+          source_binding_count: snapshot.scrum_operation.sourceBindings.length,
+          source_bindings: snapshot.scrum_operation.sourceBindings,
+          backlog_items: snapshot.scrum_operation.backlogItems,
+          sprint_items: snapshot.scrum_operation.sprintItems,
+          acceptance_items: snapshot.scrum_operation.acceptanceItems,
+          planning_items: snapshot.scrum_operation.planningItems,
+          ceremony_items: snapshot.scrum_operation.ceremonyItems,
+          metric_items: snapshot.scrum_operation.metricItems,
+          active_sprint_plans: snapshot.scrum_operation.activeSprintPlans,
+          observed_count: snapshot.scrum_operation.items.filter(
+            (item) => item.status === "observed",
+          ).length,
+          missing_count: snapshot.scrum_operation.items.filter((item) => item.status === "missing")
+            .length,
+          gap_items: snapshot.scrum_operation.items
+            .filter((item) => item.status === "missing")
+            .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
+            .map((item) => ({
+              operation_id: item.operationId,
+              category: item.category,
+              doc_dependencies: item.docDependencies,
+              implementation_dependencies: item.implementationDependencies,
+            })),
+        }
+      : null,
     artifact_remap: {
       done: snapshot.artifact_remap.done,
       missing: snapshot.artifact_remap.missing,
