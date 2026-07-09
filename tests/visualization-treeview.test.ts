@@ -2240,6 +2240,9 @@ describe("visualization Tree View adapter", () => {
       description:
         "approval_pending phase=approval approval=pending_human_review scope=match valid=false",
     });
+    expect(recoveryHandoff?.tooltip).toContain(
+      "approval_record_path=.helix/tmp/closure/repair_failed_evidence-approval-draft-refresh-fresh.yml",
+    );
     expect(recoveryHandoff?.tooltip).toContain("digest=sha256:fresh");
   });
 

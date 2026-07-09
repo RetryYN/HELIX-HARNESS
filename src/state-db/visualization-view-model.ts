@@ -3682,21 +3682,22 @@ function evidenceHandoffNextStep(input: {
   };
 }
 
-function activeApprovalRecordForHandoffStatus(
+function activeApprovalArtifactForHandoffStatus(
   status: ProjectEvidenceHandoffStatus | null,
-): ProjectEvidenceApprovalRecord | null {
-  const refreshApproval = status?.items.find(
+): { approval_record: ProjectEvidenceApprovalRecord; path: string } | null {
+  const refreshArtifact = status?.items.find(
     (item) =>
       item.kind === "approval_refresh_draft" &&
       item.status === "present" &&
       item.approval_record?.scope_status === "match",
-  )?.approval_record;
-  return (
-    refreshApproval ??
-    status?.items.find((item) => item.kind === "approval_draft")?.approval_record ??
-    status?.items.find((item) => item.approval_record)?.approval_record ??
-    null
   );
+  const artifact =
+    refreshArtifact ??
+    status?.items.find((item) => item.kind === "approval_draft" && item.approval_record) ??
+    status?.items.find((item) => item.approval_record);
+  return artifact?.approval_record
+    ? { approval_record: artifact.approval_record, path: artifact.path }
+    : null;
 }
 
 function handoffAwareAutomationClass(
@@ -3759,7 +3760,10 @@ function recoveryHandoffGateForView(
   }
   const handoffStatus = evidenceHandoffStatusForAction(snapshot, bucket.action);
   const handoffNext = evidenceHandoffNextStep({ bucket, status: handoffStatus });
-  const activeApprovalRecord = activeApprovalRecordForHandoffStatus(handoffStatus);
+  const activeApprovalArtifact = activeApprovalArtifactForHandoffStatus(handoffStatus);
+  const activeApprovalRecord = activeApprovalArtifact?.approval_record ?? null;
+  const activeApprovalRecordPath =
+    activeApprovalArtifact?.path ?? vmodelFit.recovery_handoff_gate.approval_record_path;
   if (!handoffNext) {
     return {
       status: "none",
@@ -3775,7 +3779,7 @@ function recoveryHandoffGateForView(
       decision_id:
         activeApprovalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
       outcome: activeApprovalRecord?.outcome ?? vmodelFit.recovery_handoff_gate.outcome,
-      approval_record_path: vmodelFit.recovery_handoff_gate.approval_record_path,
+      approval_record_path: activeApprovalRecordPath,
       approval_scope_digest:
         activeApprovalRecord?.approval_scope_digest ??
         vmodelFit.recovery_handoff_gate.approval_scope_digest,
@@ -3809,7 +3813,7 @@ function recoveryHandoffGateForView(
     scope_status: approvalRecord?.scope_status ?? null,
     decision_id: approvalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
     outcome: approvalRecord?.outcome ?? vmodelFit.recovery_handoff_gate.outcome,
-    approval_record_path: vmodelFit.recovery_handoff_gate.approval_record_path,
+    approval_record_path: activeApprovalRecordPath,
     approval_scope_digest:
       approvalRecord?.approval_scope_digest ??
       vmodelFit.recovery_handoff_gate.approval_scope_digest,
@@ -3837,7 +3841,7 @@ function recoveryHandoffGateForView(
       `approval=${approvalRecord?.status ?? "-"}`,
       `scope=${approvalRecord?.scope_status ?? "-"}`,
       `decision=${approvalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id ?? "-"}`,
-      `approval_record_path=${vmodelFit.recovery_handoff_gate.approval_record_path ?? "-"}`,
+      `approval_record_path=${activeApprovalRecordPath ?? "-"}`,
       `digest=${approvalRecord?.approval_scope_digest ?? vmodelFit.recovery_handoff_gate.approval_scope_digest ?? "-"}`,
       `expected_digest=${approvalRecord?.expected_approval_scope_digest ?? vmodelFit.recovery_handoff_gate.expected_approval_scope_digest ?? "-"}`,
       `materialize=${approvalRecord?.materialize_status ?? vmodelFit.recovery_handoff_gate.materialize_status ?? "-"}`,

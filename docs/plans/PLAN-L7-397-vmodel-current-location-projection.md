@@ -545,6 +545,47 @@ review_evidence:
         completed_at: "2026-07-09T12:33:45+09:00"
         evidence_path: src/vmodel/fit.ts
         output_digest: "sha256:4abdac235b064b5781e4430a3d5450edb317f81dc7aec82594a2e0c723790b11"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T12:42:43+09:00"
+    tests_green_at: "2026-07-09T12:42:43+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "Project view の recovery handoff gate が repoRoot 非依存の view-model 経路でも active refresh approval draft の実 path を採用し、vmodel fit と同じ approval_record_path を機械表示できることを確認した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T12:42:43+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/current-location.test.ts tests/cli-surface.test.ts tests/vscode-extension-adapter.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T12:42:43+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:2b06fa546cc67897c7f00cccbf29aea8d769dd587cb53f1bea1c1a7527b29b75"
+      - kind: smoke
+        command: "bun src/cli.ts progress view-model --json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:42:43+09:00"
+        evidence_path: src/state-db/visualization-view-model.ts
+        output_digest: "sha256:3c1629b0619c04b737e2b10073edee3e194404c19a0756b393dd7acef85dedd1"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:42:43+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:acc4b4cc35d8bc030e3c8a375f915cf4b07254d96e1f3fbb1c59561ad9457b00"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
