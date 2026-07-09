@@ -709,6 +709,193 @@ describe("L7 CLI surface closure", () => {
     expect(payload.hash_manifest[0].digest).toMatch(/^sha256:[a-f0-9]{64}$/);
   });
 
+  it("exposes review feedback intake as idempotent read-only routing", () => {
+    const eventJson = JSON.stringify([
+      {
+        feedback_key: "ci:1",
+        kind: "ci_failure",
+        source_url: "https://github.com/org/repo/actions/runs/1",
+        source_ref: "refs/heads/work",
+        target_session_id: "session-a",
+      },
+      {
+        feedback_key: "ci:1",
+        kind: "ci_failure",
+        source_url: "https://github.com/org/repo/actions/runs/1",
+        source_ref: "refs/heads/work",
+        target_session_id: "session-a",
+      },
+    ]);
+    const sessionJson = JSON.stringify([{ session_id: "session-a", plan_id: "PLAN-L7-380" }]);
+    const run = runCli([
+      "feedback",
+      "intake",
+      "--event-json",
+      eventJson,
+      "--session-json",
+      sessionJson,
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      read_only: true,
+      duplicate_intake_count: 1,
+      schema_version: "review-feedback-session-intake.v1",
+    });
+    expect(payload.routed_events[0]).toMatchObject({
+      source_ref: "refs/heads/work",
+      target_session_id: "session-a",
+      plan_id: "PLAN-L7-380",
+    });
+  });
+
+  it("exposes agent SSoT runtime projection without overwriting user-modified files", () => {
+    const run = runCli([
+      "agent",
+      "ssot-project",
+      "--dry-run",
+      "--item-json",
+      JSON.stringify([
+        {
+          artifact_id: "agent:test",
+          kind: "agent",
+          runtime: "codex",
+          source_path: "docs/agents/test.md",
+          source_content: "source",
+          target_path: ".codex/agents/test.md",
+          generated_content: "generated",
+          existing_content: "user edit",
+          user_modified: true,
+          cleanup_policy: "preserve_user_modified",
+          required_capability: "hooks",
+        },
+      ]),
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      read_only: true,
+      schema_version: "agent-ssot-runtime-projection.v1",
+      projected_files: [expect.objectContaining({ action: "skip", user_modified: true })],
+    });
+  });
+
+  it("exposes skill efficacy as a dry-run with reproducible grading evidence", () => {
+    const run = runCli([
+      "skill",
+      "efficacy",
+      "--dry-run",
+      "--eval-json",
+      JSON.stringify([
+        {
+          skill_id: "skill:test",
+          eval_id: "eval:1",
+          with_skill: {
+            artifact_path: "tests/with.md",
+            command_digest: "sha256:0123456789abcdef",
+            reproducible: true,
+            grade: 0.9,
+          },
+          without_skill: {
+            artifact_path: "tests/without.md",
+            command_digest: "sha256:fedcba9876543210",
+            reproducible: true,
+            grade: 0.5,
+          },
+        },
+      ]),
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      dry_run: true,
+      promotion_allowed_count: 1,
+      schema_version: "skill-efficacy-evaluation.v1",
+    });
+    expect(payload.evaluations[0].grading[0]).toMatchObject({
+      artifact_path: "tests/with.md",
+      command_digest: "sha256:0123456789abcdef",
+    });
+  });
+
+  it("exposes harness taxonomy curation as fail-close source classification", () => {
+    const run = runCli([
+      "audit",
+      "taxonomy",
+      "--source-json",
+      JSON.stringify([
+        {
+          source_id: "repo:unknown",
+          source_url: "https://github.com/org/unknown",
+          source_verified: false,
+          license_risk: "unknown",
+          topic_result_digest: "sha256:unknown",
+        },
+      ]),
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      read_only: true,
+      schema_version: "harness-taxonomy-curation-policy.v1",
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: "unclassified_source_fail_close" })]),
+    );
+  });
+
+  it("exposes source mirror completeness with retry ledger and completion blocking", () => {
+    const run = runCli([
+      "source",
+      "mirror-check",
+      "--repo-json",
+      JSON.stringify([
+        {
+          repo: "org/incomplete",
+          refs_digest: null,
+          default_tree_digest: null,
+          default_branch_content_digest: "sha256:0011223344556677",
+          all_ref_content_status: "pending",
+          retry_status: "queued",
+          chunks: [
+            {
+              chunk_id: "0002",
+              status: "pending",
+              object_ids: ["blob:c"],
+              size_bytes: 512,
+            },
+          ],
+        },
+      ]),
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      completion_claim_allowed: false,
+      read_only: true,
+      schema_version: "source-content-mirror-completeness.v1",
+      retry_ledger: [{ repo: "org/incomplete", status: "pending", retry_status: "queued" }],
+    });
+    expect(payload.chunk_resume_plan).toEqual([
+      { repo: "org/incomplete", next_chunk_id: "0002", reason: "chunk status pending" },
+    ]);
+  });
+
   it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",

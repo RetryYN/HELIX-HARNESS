@@ -175,6 +175,10 @@ import {
   sweepStaleGuardSlots,
 } from "./runtime/agent-slots";
 import {
+  type AgentSsotProjectionItem,
+  buildAgentSsotRuntimeProjectionReport,
+} from "./runtime/agent-ssot-runtime-projection";
+import {
   type ArtifactType,
   buildArtifactConvergenceReport,
 } from "./runtime/artifact-convergence-analyzer";
@@ -217,6 +221,10 @@ import {
   resolveDestructiveGitOverride,
 } from "./runtime/git-command-guard";
 import {
+  buildHarnessTaxonomyCurationReport,
+  type HarnessTaxonomySource,
+} from "./runtime/harness-taxonomy-curation-policy";
+import {
   requireHostedSurfacePreflight,
   validateAdapterParityMap,
 } from "./runtime/hosted-preflight";
@@ -231,6 +239,11 @@ import {
   readProviderHandoverCurrent,
   runProviderHandover,
 } from "./runtime/provider-handover";
+import {
+  buildReviewFeedbackSessionIntakeReport,
+  type ReviewFeedbackEventInput,
+  type ReviewFeedbackSessionRow,
+} from "./runtime/review-feedback-session-intake";
 import {
   assessReviewSession,
   isReadOnlyDelegationRole,
@@ -263,9 +276,17 @@ import {
   safeName,
 } from "./runtime/session-log";
 import {
+  buildSkillEfficacyEvaluationReport,
+  type SkillEfficacyEvalInput,
+} from "./runtime/skill-efficacy-evaluation";
+import {
   buildSkillMemoryHygieneReport,
   loadSkillHygieneTelemetryFromDb,
 } from "./runtime/skill-memory-hygiene";
+import {
+  buildSourceContentMirrorCompletenessReport,
+  type SourceMirrorRepoRecord,
+} from "./runtime/source-content-mirror-completeness";
 import {
   buildStateMachineTemplatePlan,
   type ExecutionTriple,
@@ -1827,6 +1848,13 @@ function parseExecutionTriples(value: string | undefined): ExecutionTriple[] {
   return parsed.map((entry) => entry as ExecutionTriple);
 }
 
+function parseJsonArrayOption<T>(value: string | undefined, optionName: string): T[] {
+  if (!value) return [];
+  const parsed = JSON.parse(value) as unknown;
+  if (!Array.isArray(parsed)) throw new Error(`${optionName} must be an array`);
+  return parsed.map((entry) => entry as T);
+}
+
 function parseAgentLockSpec(spec: string, now: string): AgentLockRecord {
   const [lockId = "", ownerSessionId = "", path = "", expiresAt = ""] = spec.split(":");
   return {
@@ -1935,6 +1963,55 @@ agent
       );
     },
   );
+
+agent
+  .command("ssot-project")
+  .description("emit dry-run runtime-native projections from HELIX agent SSoT manifest")
+  .requiredOption("--dry-run", "do not write runtime-native files")
+  .option("--json", "JSON output")
+  .option("--item-json <json>", "projection item array JSON")
+  .action((opts: { dryRun: boolean; json?: boolean; itemJson?: string }) => {
+    try {
+      const items =
+        parseJsonArrayOption<AgentSsotProjectionItem>(opts.itemJson, "--item-json").length > 0
+          ? parseJsonArrayOption<AgentSsotProjectionItem>(opts.itemJson, "--item-json")
+          : [
+              {
+                artifact_id: "agent:dry-run",
+                kind: "agent" as const,
+                runtime: "codex",
+                source_path: "docs/agents/dry-run.md",
+                source_content: "agent dry run",
+                target_path: ".codex/agents/dry-run.md",
+                generated_content: "agent dry run",
+                cleanup_policy: "owned_generated" as const,
+                required_capability: "hooks" as const,
+              },
+            ];
+      const report = buildAgentSsotRuntimeProjectionReport(items, {
+        sourceCommand: "helix agent ssot-project --dry-run --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `agent ssot-project: ${report.ok ? "ok" : "blocked"} files=${report.projected_files.length} drift=${report.drift_count} unsupported=${report.unsupported_count}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix agent ssot-project --dry-run --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
 
 const loop = program.command("loop").description("P2 orchestration loop runtime");
 loop
@@ -7413,6 +7490,61 @@ skill
       db.close();
     }
   });
+
+skill
+  .command("efficacy")
+  .description("emit dry-run with/without skill efficacy evaluation report")
+  .requiredOption("--dry-run", "do not promote, quarantine, or rewrite skills")
+  .option("--json", "JSON output")
+  .option("--eval-json <json>", "skill efficacy evaluation array JSON")
+  .action((opts: { dryRun: boolean; json?: boolean; evalJson?: string }) => {
+    try {
+      const parsed = parseJsonArrayOption<SkillEfficacyEvalInput>(opts.evalJson, "--eval-json");
+      const evaluations =
+        parsed.length > 0
+          ? parsed
+          : [
+              {
+                skill_id: "skill:dry-run",
+                eval_id: "eval:dry-run",
+                with_skill: {
+                  artifact_path: "tests/fixtures/with-skill.md",
+                  command_digest: "sha256:0123456789abcdef",
+                  reproducible: true,
+                  grade: 0.9,
+                },
+                without_skill: {
+                  artifact_path: "tests/fixtures/without-skill.md",
+                  command_digest: "sha256:fedcba9876543210",
+                  reproducible: true,
+                  grade: 0.5,
+                },
+              },
+            ];
+      const report = buildSkillEfficacyEvaluationReport(evaluations, {
+        sourceCommand: "helix skill efficacy --dry-run --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `skill efficacy: ${report.ok ? "ok" : "blocked"} evaluations=${report.evaluations.length} promotion=${report.promotion_allowed_count} quarantine=${report.quarantine_candidates.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix skill efficacy --dry-run --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
 skill
   .command("suggest")
   .description("suggest skills for a PLAN id or a free-text task from harness.db context")
@@ -9274,6 +9406,56 @@ audit
     }
   });
 
+audit
+  .command("taxonomy")
+  .description("emit harness taxonomy curation policy and source verification report")
+  .option("--json", "JSON output")
+  .option("--source-json <json>", "taxonomy source array JSON")
+  .action((opts: { json?: boolean; sourceJson?: string }) => {
+    try {
+      const parsed = parseJsonArrayOption<HarnessTaxonomySource>(opts.sourceJson, "--source-json");
+      const sources =
+        parsed.length > 0
+          ? parsed
+          : [
+              {
+                source_id: "source:dry-run",
+                source_url: "https://github.com/example/agent-harness",
+                taxonomy_family: "runtime_orchestration" as const,
+                source_verified: true,
+                license_risk: "low" as const,
+                activity_freshness_days: 14,
+                scope_fit: "fit" as const,
+                topic_result_digest: "sha256:0123456789abcdef",
+                previous_topic_result_digest: "sha256:0123456789abcdef",
+                star_count: 9999,
+              },
+            ];
+      const report = buildHarnessTaxonomyCurationReport(sources, {
+        sourceCommand: "helix audit taxonomy --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `taxonomy: ${report.ok ? "ok" : "blocked"} sources=${report.source_count} changed=${report.changed_sources.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix audit taxonomy --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
+
 const runtime = program.command("runtime").description("runtime capability read-only surfaces");
 
 runtime
@@ -9835,6 +10017,63 @@ extensions
     },
   );
 
+const source = program.command("source").description("external source read-only audit surfaces");
+
+source
+  .command("mirror-check")
+  .description("emit source content mirror completeness and retry ledger report")
+  .option("--json", "JSON output")
+  .option("--repo-json <json>", "source mirror repository record array JSON")
+  .action((opts: { json?: boolean; repoJson?: string }) => {
+    try {
+      const parsed = parseJsonArrayOption<SourceMirrorRepoRecord>(opts.repoJson, "--repo-json");
+      const repos =
+        parsed.length > 0
+          ? parsed
+          : [
+              {
+                repo: "RetryYN/HELIX-HARNESS",
+                refs_digest: "sha256:0123456789abcdef",
+                default_tree_digest: "sha256:fedcba9876543210",
+                default_branch_content_digest: "sha256:0011223344556677",
+                all_ref_content_status: "complete" as const,
+                retry_status: "none" as const,
+                chunks: [
+                  {
+                    chunk_id: "0001",
+                    status: "ok" as const,
+                    object_ids: ["blob:a", "blob:a", "blob:b"],
+                    size_bytes: 42,
+                    reused_digest: true,
+                  },
+                ],
+              },
+            ];
+      const report = buildSourceContentMirrorCompletenessReport(repos, {
+        sourceCommand: "helix source mirror-check --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `source mirror-check: ${report.ok ? "ok" : "blocked"} repos=${report.repo_count} complete=${report.complete_count} retry=${report.retry_ledger.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix source mirror-check --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
+
 const run = program.command("run").description("agent run planning surfaces");
 
 run
@@ -10109,6 +10348,64 @@ feedback
       else process.stdout.write(renderFeedbackEventRows(rows));
     } finally {
       db.close();
+    }
+  });
+
+feedback
+  .command("intake")
+  .description("emit read-only review/CI/conflict feedback intake routing report")
+  .option("--json", "JSON output")
+  .option("--event-json <json>", "review feedback event array JSON")
+  .option("--session-json <json>", "known session array JSON")
+  .action((opts: { json?: boolean; eventJson?: string; sessionJson?: string }) => {
+    try {
+      const events = parseJsonArrayOption<ReviewFeedbackEventInput>(opts.eventJson, "--event-json");
+      const sessions = parseJsonArrayOption<ReviewFeedbackSessionRow>(
+        opts.sessionJson,
+        "--session-json",
+      );
+      const report = buildReviewFeedbackSessionIntakeReport(
+        events.length > 0
+          ? events
+          : [
+              {
+                feedback_key: "ci:dry-run",
+                kind: "ci_failure",
+                source_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/dry-run",
+                source_ref: "refs/heads/codex/helix-l3-pillar-descent",
+                target_session_id: "session:dry-run",
+                plan_id: "PLAN-L7-380-review-feedback-session-intake",
+              },
+            ],
+        sessions.length > 0
+          ? sessions
+          : [
+              {
+                session_id: "session:dry-run",
+                plan_id: "PLAN-L7-380-review-feedback-session-intake",
+              },
+            ],
+        { sourceCommand: "helix feedback intake --json" },
+      );
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `feedback intake: ${report.ok ? "ok" : "blocked"} routed=${report.routed_events.length} orphan=${report.orphan_count} duplicate=${report.duplicate_intake_count}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix feedback intake --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
     }
   });
 
