@@ -111,6 +111,7 @@ export interface VisualizationRecoveryHandoffArtifact {
     | "present"
     | "ready_to_generate"
     | "waiting_for_probe"
+    | "safe_resolution_available"
     | "needs_command_resolution"
     | "needs_evidence_projection"
     | "unchecked";

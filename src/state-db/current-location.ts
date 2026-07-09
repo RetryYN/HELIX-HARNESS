@@ -751,6 +751,7 @@ export interface ProjectClosureBatchRepairAutomation {
   status:
     | "not_required"
     | "ready_to_execute"
+    | "safe_resolution_available"
     | "needs_command_resolution"
     | "needs_evidence_projection";
   command_candidate_count: number;
@@ -5859,6 +5860,28 @@ function buildClosureBatchRepairAutomation(input: {
     };
   }
   if (labelOnlyCandidates.length > 0) {
+    if (safeResolutionCandidates.length > 0) {
+      return {
+        status: "safe_resolution_available",
+        command_candidate_count: input.commandCandidates.length,
+        runnable_command_count: runnableCandidates.length,
+        label_only_command_count: labelOnlyCandidates.length,
+        resolution_candidate_count: resolutionCandidates.length,
+        safe_resolution_command_count: safeResolutionCandidates.length,
+        projection_item_count: input.projectionItemCount,
+        primary_next_command: safeResolutionCandidates[0]?.command ?? null,
+        blockers: [],
+        required_action:
+          "adapter label は raw command ではないが、安全な green command 解決候補を実行して passed evidence を追加投影できる",
+        reasons: [
+          `label_only=${labelOnlyCandidates.length}`,
+          `runnable=${runnableCandidates.length}`,
+          `resolution_candidates=${resolutionCandidates.length}`,
+          `safe_resolution=${safeResolutionCandidates.length}`,
+          `projection_items=${input.projectionItemCount}`,
+        ],
+      };
+    }
     return {
       status: "needs_command_resolution",
       command_candidate_count: input.commandCandidates.length,

@@ -1327,7 +1327,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/synthesis:needs_fit common=1 complement=1 reject=1",
       "project/current-location/vmodel-fit/next-actions:6",
       "project/current-location/vmodel-fit/handoff-summary:machine_pending total=1 approval=0 mismatch=0 apply=0",
-      "project/current-location/vmodel-fit/regression-guards:needs_attention pass=1 watch=2 fail=4",
+      "project/current-location/vmodel-fit/regression-guards:needs_attention pass=2 watch=2 fail=4",
       "project/current-location/vmodel-fit/design-coverage:needs_design",
       "project/current-location/vmodel-fit/zip-adoption:complete",
       "project/current-location/vmodel-fit/zip-manifest:advisory_missing",
@@ -1415,6 +1415,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/regression-guards/implementation-binding:fail count=1",
       "project/current-location/vmodel-fit/regression-guards/trace-impact-integrity:pass count=0",
       "project/current-location/vmodel-fit/regression-guards/operation-scope:fail count=1",
+      "project/current-location/vmodel-fit/regression-guards/scrum-operation:pass count=0",
       "project/current-location/vmodel-fit/regression-guards/current-location-reentry:watch count=1",
     ]);
     expect(vmodelRegressionGuards?.children[3]?.tooltip).toContain(

@@ -2282,13 +2282,13 @@ describe("project current-location read model", () => {
       });
 
       expect(batch.work_buckets[0]?.repair_plan.automation).toMatchObject({
-        status: "needs_command_resolution",
+        status: "safe_resolution_available",
         runnable_command_count: 0,
         label_only_command_count: 1,
         resolution_candidate_count: 2,
         safe_resolution_command_count: 1,
         primary_next_command: "bun run test:fast",
-        blockers: ["Bash (vitest)"],
+        blockers: [],
       });
       expect(batch.work_buckets[0]?.repair_plan.command_candidates[0]).toMatchObject({
         command_label: "Bash (vitest)",
@@ -2727,6 +2727,83 @@ describe("project current-location read model", () => {
           }),
         ]),
       );
+    }));
+
+  it("safe resolutionが無いlabel-only commandはneeds_command_resolutionに留める", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: {
+          plan_id: "PLAN-L7-779-unsafe-label",
+          kind: "add-impl",
+          layer: "L7",
+          drive: "agent",
+          status: "draft",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "artifact_registry",
+        primaryKey: "artifact_id",
+        row: {
+          artifact_id: "artifact:PLAN-L7-779-unsafe-label",
+          artifact_type: "markdown_doc",
+          path: "docs/plans/PLAN-L7-779-unsafe-label.md",
+          pair_artifact: "",
+          status: "current",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "test_runs",
+        primaryKey: "test_run_id",
+        row: {
+          test_run_id: "tr:unsafe-label",
+          session_id: "session",
+          plan_id: "PLAN-L7-779-unsafe-label",
+          command: "Bash (eslint)",
+          runner: "bash",
+          runtime: "hook-session-log",
+          os: "linux",
+          shell: "bash",
+          scope: "runtime-hook",
+          started_at: "",
+          completed_at: "2026-07-08T00:02:10.000Z",
+          exit_code: 1,
+          evidence_path: ".helix/logs/session/session.jsonl",
+          output_digest: "error",
+          green_definition_id: "",
+          status: "failed",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const batch = buildProjectClosureBatchReport(snapshot, {
+        action: "repair_failed_evidence",
+        limit: 1,
+      });
+
+      expect(batch.work_buckets[0]?.repair_plan.automation).toMatchObject({
+        status: "needs_command_resolution",
+        runnable_command_count: 0,
+        label_only_command_count: 1,
+        resolution_candidate_count: 1,
+        safe_resolution_command_count: 0,
+        primary_next_command: "helix closure evidence-plan --action repair_failed_evidence --json",
+        blockers: ["Bash (eslint)"],
+      });
+      expect(batch.work_buckets[0]?.repair_plan.command_candidates[0]).toMatchObject({
+        command_label: "Bash (eslint)",
+        command_verb: "eslint",
+        runnable_command: null,
+        resolution_candidates: [
+          expect.objectContaining({
+            command: "npx eslint <paths>",
+            safe_to_run: false,
+          }),
+        ],
+      });
     }));
 
   it("log/KPI/runtime verification/operation test/class-method contract/incident routeをL12運用後scopeとして検出する", () =>

@@ -38,6 +38,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/state-db/current-location.ts
     artifact_type: source_module
+  - artifact_path: src/state-db/visualization-read-model.ts
+    artifact_type: source_module
   - artifact_path: src/state-db/projection-writer.ts
     artifact_type: source_module
   - artifact_path: tests/design-declarations.test.ts
@@ -45,6 +47,8 @@ generates:
   - artifact_path: tests/current-location.test.ts
     artifact_type: test_code
   - artifact_path: tests/db-projection-ingestion.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/visualization-treeview.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-44-harness-db-master.md
@@ -201,6 +205,63 @@ review_evidence:
         completed_at: "2026-07-09T10:08:40+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:38bfec99fe1001139dfa83a28224dc7fbc5c34d2a7c5e78d371ceee742a3c55c"
+  - reviewer: codex-tl
+    review_kind: direct_verification
+    reviewed_at: "2026-07-09T10:32:30+09:00"
+    tests_green_at: "2026-07-09T10:32:30+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "repair_failed_evidence の label-only failed command を、安全な解決候補ありと未解決に分離し、Recovery machine lane の次手を `safe_resolution_available` として DB/read-model/Project view に投影する。自動承認はせず、evidence patch/apply は approval-required のまま維持した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T10:29:11+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
+      - kind: unit_test
+        command: "bun run vitest run tests/current-location.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T10:31:27+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:c8f1cca259c4991c6788355ee5e4323f92f95cd2996af04c73211543bcc0872a"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-treeview.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T10:29:11+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:4ce2586a99efe303b304cf10cf4439dfb023cd7b0b5ad8b4301ecf282d4281a4"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T10:28:14+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:455f23d1a4c3445890b716583044990ada6b8db249e6c6e9361dc4ee26357009"
+      - kind: db_rebuild
+        command: "bun src/cli.ts db rebuild"
+        runner: bun
+        scope: live_projection
+        exit_code: 0
+        completed_at: "2026-07-09T10:28:39+09:00"
+        evidence_path: .helix/harness.db
+        output_digest: "sha256:38bfec99fe1001139dfa83a28224dc7fbc5c34d2a7c5e78d371ceee742a3c55c"
+      - kind: diff_check
+        command: "git diff --check"
+        runner: git
+        scope: changed
+        exit_code: 0
+        completed_at: "2026-07-09T10:26:00+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:466c2f308b48c7661d646fdd068fbecea974c665fe65dbf8ed508f224180ce0b"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
