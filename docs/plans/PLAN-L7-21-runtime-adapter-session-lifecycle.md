@@ -17,6 +17,31 @@ review_evidence:
     worker_model: codex-gpt-5
     reviewer_model: claude-pmo-sonnet
     scope: "PLAN-L6-20/L7-21/REVERSE-20 runtime adapter lifecycle; Critical/High/Important 0 after follow-up review."
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:48:30+09:00"
+    tests_green_at: "2026-07-09T15:48:30+09:00"
+    verdict: approve
+    scope: "PLAN-L7-21 の execution evidence 欠落を、現行 review-evidence / plan-lint / trace gates / runtime adapter / doctor targeted green と typecheck で補い、runtime adapter lifecycle の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/review-evidence.test.ts tests/plan-lint.test.ts tests/g1-trace.test.ts tests/gate-static.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/session-log.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:48:30+09:00"
+        evidence_path: tests/runtime-adapter.test.ts
+        output_digest: "sha256:42b5abf78d614ed444d71293375df0343e2c27add5712c97bc5f02504612e806"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:48:30+09:00"
+        evidence_path: src/runtime/adapter.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 parent_design: docs/design/harness/L6-function-design/session-log.md
 agent_slots:
   - role: tl
