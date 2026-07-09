@@ -165,6 +165,7 @@ import {
   buildAgentLockReport,
   buildAgentMessageDryRun,
 } from "./runtime/agent-mailbox-conflict-locks";
+import { buildAgentObservabilityProvenanceReport } from "./runtime/agent-observability-provenance";
 import { buildAgentSessionBoardReport } from "./runtime/agent-session-command-center";
 import {
   DEFAULT_MAX_PARALLEL,
@@ -228,6 +229,11 @@ import {
   type RuntimeCapability,
 } from "./runtime/runtime-capability-matrix";
 import {
+  type ActivationKind,
+  buildSecurityCredentialEgressGuardReport,
+  type EgressPolicy,
+} from "./runtime/security-credential-egress-guard";
+import {
   dispatch,
   nodeDeps,
   parseSessionEvents,
@@ -235,6 +241,10 @@ import {
   type SessionHookInput,
   safeName,
 } from "./runtime/session-log";
+import {
+  buildSkillMemoryHygieneReport,
+  loadSkillHygieneTelemetryFromDb,
+} from "./runtime/skill-memory-hygiene";
 import {
   buildSummarySurfaceCommandAudit as buildSummarySurfaceCommandAuditFromPayloads,
   summaryJsonCommand,
@@ -1663,6 +1673,30 @@ memory
 
 function collectCliValues(value: string, previous: string[] = []): string[] {
   return [...previous, value];
+}
+
+function currentGitHeadShort(repoRoot: string): string {
+  const result = spawnSync("git", ["rev-parse", "--short", "HEAD"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  });
+  return result.status === 0 ? result.stdout.trim() || "unknown" : "unknown";
+}
+
+function isEgressPolicy(value: string | undefined): value is EgressPolicy | undefined {
+  return (
+    value === undefined || value === "offline" || value === "allowlist" || value === "undefined"
+  );
+}
+
+function isActivationKind(value: string | undefined): value is ActivationKind | undefined {
+  return (
+    value === undefined ||
+    value === "none" ||
+    value === "external_api" ||
+    value === "auth" ||
+    value === "infra"
+  );
 }
 
 function parseAgentLockSpec(spec: string, now: string): AgentLockRecord {
@@ -7113,6 +7147,47 @@ telemetry
         `  sources: claude=${claudeDir}, codex=${codexDir}\n`,
     );
   });
+telemetry
+  .command("sessions")
+  .description("emit read-only transcript index, command digests, cost, and diff provenance hints")
+  .option(
+    "--claude-dir <dir>",
+    "Claude transcript dir (default: $HELIX_CLAUDE_SESSIONS_DIR or ~/.claude/projects)",
+  )
+  .option(
+    "--codex-dir <dir>",
+    "Codex session dir (default: $HELIX_CODEX_SESSIONS_DIR or ~/.codex/sessions)",
+  )
+  .option("--json", "JSON output")
+  .action((opts: { claudeDir?: string; codexDir?: string; json?: boolean }) => {
+    const repoRoot = process.cwd();
+    const claudeDir =
+      opts.claudeDir ??
+      process.env.HELIX_CLAUDE_SESSIONS_DIR ??
+      join(homedir(), ".claude", "projects");
+    const codexDir =
+      opts.codexDir ??
+      process.env.HELIX_CODEX_SESSIONS_DIR ??
+      join(homedir(), ".codex", "sessions");
+    const report = buildAgentObservabilityProvenanceReport({
+      repoRoot,
+      claudeDirs: [claudeDir],
+      codexDirs: [codexDir],
+      commitHash: currentGitHeadShort(repoRoot),
+      sourceCommand: "helix telemetry sessions --json",
+    });
+    process.exitCode = report.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `telemetry sessions: ${report.ok ? "ok" : "blocked"} transcripts=${report.transcript_index.length} commands=${report.command_digests.length} runs=${report.usage_summary.totalRuns}\n`,
+    );
+    for (const finding of report.findings) {
+      process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+    }
+  });
 
 const skill = program.command("skill").description("skill recommendation and invocation telemetry");
 skill
@@ -7183,6 +7258,33 @@ skill
       if (!result.ok) process.exitCode = 1;
     },
   );
+skill
+  .command("hygiene")
+  .description("emit dry-run skill quarantine and memory retention hygiene report")
+  .requiredOption("--dry-run", "do not quarantine, delete, compact, or rewrite skills/memory")
+  .option("--json", "JSON output")
+  .action((opts: { dryRun: boolean; json?: boolean }) => {
+    const repoRoot = process.cwd();
+    const db = openHarnessDb(":memory:", { repoRoot });
+    try {
+      rebuildHarnessDb({ repoRoot, db });
+      const report = buildSkillMemoryHygieneReport(loadSkillHygieneTelemetryFromDb(db), {
+        sourceCommand: "helix skill hygiene --dry-run --json",
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `skill hygiene: dry-run=${report.dry_run} quarantine=${report.quarantine_plan.length} improvements=${report.improvement_candidates.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } finally {
+      db.close();
+    }
+  });
 skill
   .command("suggest")
   .description("suggest skills for a PLAN id or a free-text task from harness.db context")
@@ -9091,6 +9193,71 @@ runtime
       process.stdout.write(`  ${record.runtime}: supported=${supportedCount}\n`);
     }
   });
+
+const security = program.command("security").description("security policy dry-run checks");
+
+security
+  .command("egress-check")
+  .description("emit credential and egress guard dry-run report")
+  .requiredOption("--dry-run", "do not activate credentials, auth, infra, or network egress")
+  .option("--json", "JSON output")
+  .option("--tool <name>", "tool name", "tool")
+  .option("--external", "mark the tool as external/network-capable")
+  .option("--egress-policy <policy>", "offline, allowlist, or undefined")
+  .option("--allowed-host <host>", "allowed host for allowlist policy", collectCliValues, [])
+  .option("--arg <value>", "tool argument to scan", collectCliValues, [])
+  .option("--activation-kind <kind>", "none, external_api, auth, or infra")
+  .option("--approval-present", "action-binding approval is present")
+  .action(
+    (opts: {
+      dryRun: boolean;
+      json?: boolean;
+      tool?: string;
+      external?: boolean;
+      egressPolicy?: string;
+      allowedHost?: string[];
+      arg?: string[];
+      activationKind?: string;
+      approvalPresent?: boolean;
+    }) => {
+      if (!isEgressPolicy(opts.egressPolicy) || !isActivationKind(opts.activationKind)) {
+        const output = {
+          ok: false,
+          error: "invalid_security_egress_option",
+          egress_policy: opts.egressPolicy ?? null,
+          activation_kind: opts.activationKind ?? null,
+          source_command: "helix security egress-check --dry-run --json",
+        };
+        process.exitCode = 1;
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else process.stderr.write("invalid security egress option\n");
+        return;
+      }
+      const report = buildSecurityCredentialEgressGuardReport(
+        {
+          tool_name: opts.tool ?? "tool",
+          external: Boolean(opts.external),
+          egress_policy: opts.egressPolicy,
+          allowed_hosts: opts.allowedHost ?? [],
+          args: opts.arg ?? [],
+          activation_kind: opts.activationKind,
+          action_binding_approval_present: Boolean(opts.approvalPresent),
+        },
+        { sourceCommand: "helix security egress-check --dry-run --json" },
+      );
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `security egress-check: ${report.ok ? "ok" : "blocked"} tool=${report.tool_policy.tool_name} policy=${report.tool_policy.egress_policy}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    },
+  );
 
 const run = program.command("run").description("agent run planning surfaces");
 

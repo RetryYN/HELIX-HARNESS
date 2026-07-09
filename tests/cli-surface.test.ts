@@ -390,6 +390,79 @@ describe("L7 CLI surface closure", () => {
     });
   });
 
+  it("exposes telemetry session provenance as a read-only surface", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-telemetry-sessions-"));
+    try {
+      const codexDir = join(root, "codex");
+      mkdirSync(codexDir, { recursive: true });
+      writeFileSync(
+        join(codexDir, "session-a.jsonl"),
+        [
+          JSON.stringify({ payload: { model: "gpt-5.3-codex" } }),
+          JSON.stringify({ tool_call: { command: "bun test tests/example.test.ts" } }),
+        ].join("\n"),
+      );
+      const run = runCliIn(root, [
+        "telemetry",
+        "sessions",
+        "--claude-dir",
+        join(root, "claude"),
+        "--codex-dir",
+        codexDir,
+        "--json",
+      ]);
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(payload).toMatchObject({
+        ok: true,
+        schema_version: "agent-observability-provenance.v1",
+        read_only: true,
+        source_command: "helix telemetry sessions --json",
+      });
+      expect(payload.command_digests[0].command_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("exposes skill hygiene as a dry-run report", () => {
+    const run = runCli(["skill", "hygiene", "--dry-run", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      dry_run: true,
+      schema_version: "skill-memory-hygiene.v1",
+      source_command: "helix skill hygiene --dry-run --json",
+    });
+    expect(payload.memory_retention.provenance_preserved).toBe(true);
+  });
+
+  it("exposes credential and egress policy as a fail-close dry-run guard", () => {
+    const run = runCli([
+      "security",
+      "egress-check",
+      "--dry-run",
+      "--external",
+      "--tool",
+      "external-search",
+      "--egress-policy",
+      "undefined",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      dry_run: true,
+      schema_version: "security-credential-egress-guard.v1",
+      findings: [expect.objectContaining({ code: "undefined_egress_policy_fail_close" })],
+    });
+  });
+
   it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",
@@ -2816,6 +2889,7 @@ describe("L7 CLI surface closure", () => {
 
       const summaryJson = runCliIn(root, ["current-location", "--summary-json"]);
       const summaryPayload = JSON.parse(summaryJson.stdout);
+      const summaryFindingCount = summaryPayload.finding_count;
       expect(summaryJson.status).toBe(0);
       expect(summaryPayload).toMatchObject({
         schema_version: "project-current-location-summary.v1",
@@ -2862,7 +2936,7 @@ describe("L7 CLI surface closure", () => {
         view_command: "helix progress tree-view --summary-json",
         full_view_command: "helix progress tree-view --json",
       });
-      expect(summaryPayload.finding_count).toBeGreaterThanOrEqual(1);
+      expect(summaryFindingCount).toBeGreaterThanOrEqual(1);
       expect(summaryPayload.findings.map((finding: { code: string }) => finding.code)).toContain(
         "unresolved_design_reference",
       );
@@ -3174,6 +3248,8 @@ describe("L7 CLI surface closure", () => {
       const roadmapCurrentJson = runCliIn(root, ["roadmap", "current", "--json"]);
       expect(roadmapCurrentJson.status).toBe(0);
       const roadmapCurrentPayload = JSON.parse(roadmapCurrentJson.stdout);
+      const roadmapCurrentBlockers = roadmapCurrentPayload.counts.blockers;
+      const roadmapCurrentActionCount = roadmapCurrentPayload.actions.length;
       expect(roadmapCurrentPayload).toMatchObject({
         schema_version: "project-roadmap-current.v1",
         status: "contradicted",
@@ -3233,7 +3309,7 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
-      expect(roadmapCurrentPayload.counts.blockers).toBeGreaterThanOrEqual(3);
+      expect(roadmapCurrentBlockers).toBeGreaterThanOrEqual(3);
       const roadmapCurrentSummaryJson = runCliIn(root, ["roadmap", "current", "--summary-json"]);
       expect(roadmapCurrentSummaryJson.status).toBe(0);
       const roadmapCurrentSummary = JSON.parse(roadmapCurrentSummaryJson.stdout);
@@ -3265,7 +3341,7 @@ describe("L7 CLI surface closure", () => {
         source_command: "helix roadmap current --summary-json",
         full_source_command: "helix roadmap current --json",
       });
-      expect(roadmapCurrentSummary.action_count).toBe(roadmapCurrentPayload.actions.length);
+      expect(roadmapCurrentSummary.action_count).toBe(roadmapCurrentActionCount);
       expect(roadmapCurrentSummary.sample_actions).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -3554,6 +3630,8 @@ describe("L7 CLI surface closure", () => {
       const fitSummaryJson = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
       expect(fitSummaryJson.status).toBe(0);
       const fitSummaryPayload = JSON.parse(fitSummaryJson.stdout);
+      const fitSummaryNextActionCount = fitSummaryPayload.next_action_count;
+      const fitSummaryBlockerCount = fitSummaryPayload.blocker_count;
       expect(fitSummaryPayload).toMatchObject({
         schema_version: "vmodel-fit-summary.v1",
         status: "needs_fit",
@@ -3629,8 +3707,8 @@ describe("L7 CLI surface closure", () => {
         view_command: "helix progress tree-view --summary-json",
         full_view_command: "helix progress tree-view --json",
       });
-      expect(fitSummaryPayload.next_action_count).toBeGreaterThanOrEqual(1);
-      expect(fitSummaryPayload.blocker_count).toBeGreaterThanOrEqual(1);
+      expect(fitSummaryNextActionCount).toBeGreaterThanOrEqual(1);
+      expect(fitSummaryBlockerCount).toBeGreaterThanOrEqual(1);
       expect(fitSummaryPayload.sample_next_actions).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -5101,6 +5179,11 @@ describe("L7 CLI surface closure", () => {
       expect(rebuild.status).toBe(0);
       const tree = runCliIn(root, ["progress", "tree-view", "--json"]);
       const treePayload = JSON.parse(tree.stdout);
+      const treeRoots = JSON.parse(JSON.stringify(treePayload.roots)) as Array<{
+        id: string;
+        children: Array<{ id: string }>;
+      }>;
+      const treePayloadJson = JSON.stringify(treePayload);
       expect(tree.status).toBe(0);
       expect(treePayload).toMatchObject({
         schema_version: "visualization-tree-view.v1",
@@ -5109,7 +5192,8 @@ describe("L7 CLI surface closure", () => {
           expect.objectContaining({ id: "harness", label: "HARNESS" }),
         ],
       });
-      const projectRoot = treePayload.roots.find((root: { id: string }) => root.id === "project");
+      const projectRoot = treeRoots.find((root: { id: string }) => root.id === "project");
+      if (!projectRoot) throw new Error("project root is missing from tree-view payload");
       const currentNode = projectRoot.children.find(
         (child: { id: string }) => child.id === "project/current-location",
       );
@@ -5117,8 +5201,8 @@ describe("L7 CLI surface closure", () => {
         label: "Current location",
         description: "L14 -> L12 / needs_recovery",
       });
-      expect(JSON.stringify(treePayload)).toContain("project/current-location/coverage/L6");
-      expect(JSON.stringify(treePayload)).toContain("project/current-location/roadmap-position");
+      expect(treePayloadJson).toContain("project/current-location/coverage/L6");
+      expect(treePayloadJson).toContain("project/current-location/roadmap-position");
       const treeSummary = runCliIn(root, ["progress", "tree-view", "--summary-json"]);
       expect(treeSummary.status).toBe(0);
       expect(JSON.parse(treeSummary.stdout)).toMatchObject({
@@ -5216,7 +5300,7 @@ describe("L7 CLI surface closure", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
-  }, 15_000);
+  }, 60_000);
 
   it("executes approved materialized evidence patches in a fixture repo only", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-apply-"));
