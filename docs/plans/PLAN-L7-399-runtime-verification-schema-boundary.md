@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-399-runtime-verification-schema-boundary
-title: "PLAN-L7-399 (refactor): runtime verification schema boundary"
+title: "PLAN-L7-399 (refactor): 実行時検証スキーマ境界"
 kind: refactor
 layer: L7
 drive: be
@@ -12,16 +12,16 @@ owner: Codex / TL
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 entry_signals:
-  - "po_directive:2026-07-09 ハイブリッドL12適合のため dependency-drift の runtime -> state-db -> runtime error cycle を解消し、機械検出境界を強化する"
+  - "po_directive:2026-07-09 ハイブリッドL12適合のため dependency-drift の runtime -> state-db -> runtime 循環エラーを解消し、機械検出境界を強化する"
 backprop_decision: not_required
-backprop_decision_reason: "runtime verification の型・分類・検証を schema SSoT に抽出する境界整理であり、ユーザー向け runtime behavior や DB schema を変更しない。L6 function-spec へ配置境界を追補済み。"
+backprop_decision_reason: "実行時検証の型・分類・検証を schema SSoT に抽出する境界整理であり、ユーザー向け実行時振る舞いや DB 構造を変更しない。L6 function-spec へ配置境界を追補済み。"
 agent_slots:
   - role: tl
     slot_label: "TL - dependency-drift 境界と L6 契約整合"
   - role: se
-    slot_label: "SE - runtime verification pure schema extraction"
+    slot_label: "SE - 実行時検証の純粋 schema 抽出"
   - role: qa
-    slot_label: "QA - run-debug / projection writer / dependency-drift regression"
+    slot_label: "QA - run-debug / projection writer / dependency-drift 回帰検証"
 generates:
   - artifact_path: docs/plans/PLAN-L7-399-runtime-verification-schema-boundary.md
     artifact_type: markdown_doc
@@ -54,7 +54,7 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "runtime verification の純粋契約を schema/runtime-verification.ts に抽出し、run-debug は append I/O 端点、projection-writer は schema SSoT 参照に整理した。dependency-drift の runtime -> state-db -> runtime error cycle は解消し、残りは既存 grandfather warn のみ。"
+    scope: "実行時検証の純粋契約を schema/runtime-verification.ts に抽出し、run-debug は追記 I/O 端点、projection-writer は schema SSoT 参照に整理した。dependency-drift の runtime -> state-db -> runtime 循環エラーは解消し、残りは既存 grandfather warn のみ。"
     green_commands:
       - kind: typecheck
         command: "bun run typecheck"
@@ -98,18 +98,18 @@ review_evidence:
         output_digest: "sha256:0b84e667d96af4b35f96f2ee89285253ca3f0aaa18a83572eb7ea1fe4726398d"
 ---
 
-# PLAN-L7-399: runtime verification schema boundary
+# PLAN-L7-399: 実行時検証スキーマ境界
 
 ## 目的
 
-`runtime -> state-db -> runtime` の module-cycle を解消し、runtime behavior claim の分類・ログ event
-検証を CLI append 経路と DB projection 経路で共有する。
+`runtime -> state-db -> runtime` の module-cycle を解消し、実行時振る舞い主張の分類・ログ行検証を
+CLI 追記経路と DB 投影経路で共有する。
 
 ## スコープ
 
 - `RuntimeVerification*` 型、`classifyRuntimeVerificationEvidence`、`buildRuntimeVerificationLogEvent`、
   `validateRuntimeVerificationLogCompleteness` を `src/schema/runtime-verification.ts` に分離する。
-- `src/runtime/run-debug.ts` は append-only JSONL 書込端点と schema SSoT の re-export に縮退する。
+- `src/runtime/run-debug.ts` は追記専用 JSONL 書込端点と schema SSoT の再公開に縮退する。
 - `src/state-db/projection-writer.ts` は runtime module ではなく schema SSoT を参照する。
 - current-location / Project view fixture は現行 evidence schema の `latestPassedAt` / `latestFailedAt` を期待する。
 
@@ -117,7 +117,7 @@ review_evidence:
 
 - `.helix/evidence/run-debug/runtime-verification.jsonl` の形式変更。
 - DB table schema 変更。
-- runtime claim の accept/reject ルール変更。
+- 実行時主張の accept/reject ルール変更。
 
 ## 受入条件
 
