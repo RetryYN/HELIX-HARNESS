@@ -1285,7 +1285,7 @@ describe("buildVisualizationViewModel", () => {
         design_declaration_drifts: 0,
         regression_guards: expect.objectContaining({
           status: "needs_attention",
-          pass: 2,
+          pass: 3,
           watch: 1,
           fail: 4,
           guards: expect.arrayContaining([
@@ -1357,6 +1357,7 @@ describe("buildVisualizationViewModel", () => {
           "drive model gate passed selected=OperationVerification",
           "skill binding is missing",
           "operation scope gaps missing=1 reverify=1",
+          "Scrum operation projection gate passed",
           "current location is forward-consistent",
           "design references resolved",
           "design declaration drift is zero",

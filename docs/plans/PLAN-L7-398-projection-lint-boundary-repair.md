@@ -49,8 +49,8 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-09T04:21:25+09:00"
-    tests_green_at: "2026-07-09T04:21:25+09:00"
+    reviewed_at: "2026-07-09T04:39:12+09:00"
+    tests_green_at: "2026-07-09T04:39:12+09:00"
     verdict: approve
     scope: "DB projection ingestion lint が Vモデル ZIP manifest 実装 constant を直接 import しないようにし、current-location の Scrum operation helper を input object 化して source max params を解消した。U-CODE-011 に lint -> vmodel 禁止 import の oracle を追加した。"
     green_commands:

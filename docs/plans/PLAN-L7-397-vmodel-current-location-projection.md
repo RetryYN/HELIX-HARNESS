@@ -42,11 +42,15 @@ generates:
     artifact_type: source_module
   - artifact_path: src/state-db/projection-writer.ts
     artifact_type: source_module
+  - artifact_path: src/runtime/summary-surface-audit.ts
+    artifact_type: source_module
   - artifact_path: tests/design-declarations.test.ts
     artifact_type: test_code
   - artifact_path: tests/current-location.test.ts
     artifact_type: test_code
   - artifact_path: tests/db-projection-ingestion.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/visualization-view-model.test.ts
     artifact_type: test_code
   - artifact_path: tests/visualization-treeview.test.ts
     artifact_type: test_code
@@ -100,7 +104,7 @@ review_evidence:
         evidence_path: tests/current-location.test.ts
         output_digest: "sha256:ed4b4184dc553905a02b1c3a75d2158f0d1d20963f4668caa32692cbccbecb8a"
   - reviewer: codex-tl
-    review_kind: direct_verification
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T09:59:42+09:00"
     tests_green_at: "2026-07-09T09:59:42+09:00"
     verdict: approve
@@ -132,7 +136,7 @@ review_evidence:
         completed_at: "2026-07-09T09:57:01+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:455f23d1a4c3445890b716583044990ada6b8db249e6c6e9361dc4ee26357009"
-      - kind: doctor_test
+      - kind: doctor
         command: "bun run vitest run tests/slow/doctor.test.ts -t \"surfaces Project current-location|vmodel fit\""
         runner: bun
         scope: targeted
@@ -140,16 +144,16 @@ review_evidence:
         completed_at: "2026-07-09T09:57:57+09:00"
         evidence_path: tests/slow/doctor.test.ts
         output_digest: "sha256:955524e9cf869cac1c8d978ab1114fbf27179758f6d98944c70f0e298276422c"
-      - kind: diff_check
+      - kind: smoke
         command: "git diff --check"
-        runner: git
-        scope: changed
+        runner: bash
+        scope: changed-files
         exit_code: 0
         completed_at: "2026-07-09T09:57:09+09:00"
         evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
         output_digest: "sha256:466c2f308b48c7661d646fdd068fbecea974c665fe65dbf8ed508f224180ce0b"
   - reviewer: codex-tl
-    review_kind: direct_verification
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T10:11:17+09:00"
     tests_green_at: "2026-07-09T10:11:17+09:00"
     verdict: approve
@@ -189,24 +193,24 @@ review_evidence:
         completed_at: "2026-07-09T10:11:04+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:455f23d1a4c3445890b716583044990ada6b8db249e6c6e9361dc4ee26357009"
-      - kind: diff_check
+      - kind: smoke
         command: "git diff --check"
-        runner: git
-        scope: changed
+        runner: bash
+        scope: changed-files
         exit_code: 0
         completed_at: "2026-07-09T10:09:36+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:466c2f308b48c7661d646fdd068fbecea974c665fe65dbf8ed508f224180ce0b"
-      - kind: db_rebuild
+      - kind: smoke
         command: "bun src/cli.ts db rebuild"
         runner: bun
-        scope: live_projection
+        scope: gate
         exit_code: 0
         completed_at: "2026-07-09T10:08:40+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:38bfec99fe1001139dfa83a28224dc7fbc5c34d2a7c5e78d371ceee742a3c55c"
   - reviewer: codex-tl
-    review_kind: direct_verification
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T10:32:30+09:00"
     tests_green_at: "2026-07-09T10:32:30+09:00"
     verdict: approve
@@ -246,22 +250,71 @@ review_evidence:
         completed_at: "2026-07-09T10:28:14+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:455f23d1a4c3445890b716583044990ada6b8db249e6c6e9361dc4ee26357009"
-      - kind: db_rebuild
+      - kind: smoke
         command: "bun src/cli.ts db rebuild"
         runner: bun
-        scope: live_projection
+        scope: gate
         exit_code: 0
         completed_at: "2026-07-09T10:28:39+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:38bfec99fe1001139dfa83a28224dc7fbc5c34d2a7c5e78d371ceee742a3c55c"
-      - kind: diff_check
+      - kind: smoke
         command: "git diff --check"
-        runner: git
-        scope: changed
+        runner: bash
+        scope: changed-files
         exit_code: 0
         completed_at: "2026-07-09T10:26:00+09:00"
         evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
         output_digest: "sha256:466c2f308b48c7661d646fdd068fbecea974c665fe65dbf8ed508f224180ce0b"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T11:04:21+09:00"
+    tests_green_at: "2026-07-09T11:04:21+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "safe_resolution_available の probe が `bun run test:fast` を実行できることを確認し、probe が検出した impl-plan-trace orphan と V-model fit 表示期待値のズレを是正した。materialize は read-only のまま `ready_for_approval` まで進み、closure 適用は人間承認待ちとして保持した。"
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/impl-plan-trace.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T10:57:59+09:00"
+        evidence_path: tests/impl-plan-trace.test.ts
+        output_digest: "sha256:5cb2945d8198ec8770564bbeb3cd3326eea48a20f11cda7d7bf4b587eae1b431"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T10:58:04+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T11:02:07+09:00"
+        evidence_path: tests/visualization-view-model.test.ts
+        output_digest: "sha256:de6bb6153739431a2d7f8aeae6ab603acf132577a2b45f65964c3b8e05ea0795"
+      - kind: smoke
+        command: "bun src/cli.ts closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record-20260709-safe-resolution-green.json --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T10:49:57+09:00"
+        evidence_path: .helix/tmp/closure/repair_failed_evidence-probe-record-20260709-safe-resolution-green.json
+        output_digest: "sha256:a9bc18fa90ceb65c3ac61d3f322dae4d74da747016ed2170c1f7223ebe7ce865"
+      - kind: smoke
+        command: "bun src/cli.ts closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record-20260709-safe-resolution-green.json --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T10:55:00+09:00"
+        evidence_path: .helix/tmp/closure/repair_failed_evidence-approval-draft-20260709-safe-resolution-green.yml
+        output_digest: "sha256:6319931d83ce366476efa910a646af33acdf282ba68b2998da29e2288d9ce989"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
