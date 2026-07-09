@@ -37,12 +37,6 @@ import {
   catalogVerificationProfiles,
   recommendVerificationProfiles,
 } from "../lint/verification-profile";
-import {
-  classifyRuntimeVerificationEvidence,
-  DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
-  type RuntimeVerificationLogEvent,
-  validateRuntimeVerificationLogCompleteness,
-} from "../runtime/run-debug";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import {
   HARNESS_DB_TABLE_BY_NAME,
@@ -54,6 +48,12 @@ import {
   analyzeVmodelZipManifest,
   buildVmodelZipSourceBindings,
 } from "../schema/hybrid-vmodel-manifest";
+import {
+  classifyRuntimeVerificationEvidence,
+  DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
+  type RuntimeVerificationLogEvent,
+  validateRuntimeVerificationLogCompleteness,
+} from "../schema/runtime-verification";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";

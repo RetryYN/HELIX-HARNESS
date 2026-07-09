@@ -3284,6 +3284,8 @@ describe("L7 CLI surface closure", () => {
                   total: 0,
                   passed: 0,
                   failed: 0,
+                  latestPassedAt: null,
+                  latestFailedAt: null,
                 },
               }),
             }),
