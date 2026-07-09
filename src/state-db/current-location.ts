@@ -1301,6 +1301,7 @@ export interface ProjectClosureReviewBundle {
     };
     blocked_by_findings: string[];
   };
+  aggregate_review_scope: ProjectClosureReviewBundle["review_scope"];
   decision: {
     decision_id: string;
     allowed_outcomes: string[];
@@ -7984,6 +7985,11 @@ export function buildProjectClosureReviewBundle(
     candidates: batch.queue_items,
     blockedByFindings,
   });
+  const aggregateReviewScope = buildClosureReviewScope({
+    action,
+    candidates: snapshot.closure.queue.items.filter((item) => item.nextAction === action),
+    blockedByFindings,
+  });
 
   return {
     schema_version: "project-closure-review-bundle.v1",
@@ -8002,6 +8008,7 @@ export function buildProjectClosureReviewBundle(
     offset: batch.offset,
     window: batch.window,
     review_scope: reviewScope,
+    aggregate_review_scope: aggregateReviewScope,
     decision: {
       decision_id: `closure-review:${action}`,
       allowed_outcomes: closureReviewAllowedOutcomes(action),

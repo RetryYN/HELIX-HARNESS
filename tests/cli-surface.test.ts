@@ -5320,6 +5320,19 @@ describe("L7 CLI surface closure", () => {
         total: 1,
         listed: 1,
         omitted: 0,
+        approval_window_count: 1,
+        aggregate_review_scope: {
+          plan_ids: ["PLAN-L7-999-new-impl"],
+          source_paths: ["docs/plans/PLAN-L7-999-new-impl.md"],
+          coverage_ids: ["L6-implementation-binding"],
+          l12_layers: ["L6"],
+          evidence_totals: expect.objectContaining({
+            artifact_paths: 1,
+            evidence_paths: 0,
+            test_runs_total: 0,
+            test_runs_passed: 0,
+          }),
+        },
         candidate_count: 1,
         decision: {
           decision_id: "closure-review:collect_evidence",

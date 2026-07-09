@@ -5559,7 +5559,9 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     limit: bundle.limit,
     offset: bundle.offset,
     window: bundle.window,
+    approval_window_count: bundle.window.page_count,
     review_scope: bundle.review_scope,
+    aggregate_review_scope: bundle.aggregate_review_scope,
     decision: {
       decision_id: bundle.decision.decision_id,
       allowed_outcomes: bundle.decision.allowed_outcomes,

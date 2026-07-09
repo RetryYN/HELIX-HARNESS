@@ -25,11 +25,15 @@ generates:
     artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/state-db/current-location.ts
+    artifact_type: source_module
   - artifact_path: src/runtime/summary-surface-audit.ts
     artifact_type: source_module
   - artifact_path: tests/completion-decision-packet.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/current-location.test.ts
     artifact_type: test_code
   - artifact_path: tests/summary-surface-audit.test.ts
     artifact_type: test_code
@@ -43,13 +47,56 @@ dependencies:
     - src/lint/outstanding.ts
     - src/lint/completion-decision-packet.ts
     - src/cli.ts
+    - src/state-db/current-location.ts
     - src/runtime/summary-surface-audit.ts
     - tests/completion-decision-packet.test.ts
     - tests/cli-surface.test.ts
+    - tests/current-location.test.ts
     - tests/summary-surface-audit.test.ts
     - docs/design/helix/L6-function-design/pillar-function-design.md
     - docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T22:04:43+09:00"
+    tests_green_at: "2026-07-09T22:04:33+09:00"
+    verdict: approve
+    scope: "Project closure review-bundle summary に aggregate_review_scope と approval_window_count を追加し、現在 window の approval scope と close_ready 全件の証跡量を分離して機械検出できるようにした。approval_scope_digest の window 単位 semantics は変更せず、承認 record の作成・適用も行わない。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T22:00:59+09:00"
+        evidence_path: src/state-db/current-location.ts
+        output_digest: "sha256:8ecf37cc6185a2657d6d4c75e449e20c4d8b24cd7d4a7ee53da243cdd57d6e81"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:04:33+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:d58d87363f68489b888d055d476fc6dc3ee4177536282ab95cb11fb7b1ee87d4"
+      - kind: smoke
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:01:35+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:1fbc4f9acceb4d11cf3efa2d5d96581f00cef7dcff4f71c8075ec5da1a3c873b"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:02:38+09:00"
+        evidence_path: src/runtime/summary-surface-audit.ts
+        output_digest: "sha256:f243ab5ac2ca2bcc8343f93e3e0936146ff7714e2a03ea483297307f7cd36ae6"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T21:58:00+09:00"
@@ -304,6 +351,8 @@ PO が対象 PLAN や packet command を推測する workflow 穴を塞ぐ。
 - `closure review-bundle --summary-json` は `current_window_command` / `previous_window_command` /
   `next_window_command` / `transition_window_command` を持ち、close_ready approval のページングを offset
   手計算ではなく機械 command として辿れるようにする。full JSON 導線は `full_source_command` に限定する。
+- 同 summary は window 単位の `review_scope` と全件の `aggregate_review_scope` を分け、
+  343 件全体の証跡量と現在 window の承認 scope を混同しないようにする。
 
 ## 採用判断
 

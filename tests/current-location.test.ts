@@ -1565,6 +1565,19 @@ describe("project current-location read model", () => {
           }),
           approval_scope_digest: expect.stringMatching(/^sha256:/),
         },
+        aggregate_review_scope: {
+          plan_ids: ["PLAN-L7-999-new-impl"],
+          source_paths: ["docs/plans/PLAN-L7-999-new-impl.md"],
+          coverage_ids: ["L6-implementation-binding"],
+          l12_layers: ["L6"],
+          evidence_totals: expect.objectContaining({
+            artifact_paths: 1,
+            evidence_paths: 3,
+            test_runs_total: 1,
+            test_runs_passed: 1,
+          }),
+          approval_scope_digest: expect.stringMatching(/^sha256:/),
+        },
         candidates: [
           expect.objectContaining({
             planId: "PLAN-L7-999-new-impl",
@@ -1668,6 +1681,18 @@ describe("project current-location read model", () => {
             evidence_paths: 0,
             test_runs_total: 0,
             test_runs_passed: 0,
+          }),
+        },
+        aggregate_review_scope: {
+          plan_ids: ["PLAN-L7-999-new-impl"],
+          source_paths: ["docs/plans/PLAN-L7-999-new-impl.md"],
+          coverage_ids: ["L6-implementation-binding"],
+          l12_layers: ["L6"],
+          evidence_totals: expect.objectContaining({
+            artifact_paths: 1,
+            evidence_paths: 3,
+            test_runs_total: 1,
+            test_runs_passed: 1,
           }),
         },
       });
