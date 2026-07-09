@@ -4927,6 +4927,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       transition_window_command: closeReadyReview.transition_window_command,
       decision_draft_command: closeReadyReview.decision_draft_command,
       decision_draft_record_command: closeReadyReview.decision_draft_record_command,
+      approval_review_checklist: closeReadyReview.approval_review_checklist,
       source_command: closeReadyReview.source_command,
     },
     vmodel_fit: {

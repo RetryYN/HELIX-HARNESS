@@ -5931,6 +5931,29 @@ describe("L7 CLI surface closure", () => {
               "helix closure decision-draft --action close_ready --limit 20 --offset 0 --summary-json",
             decision_draft_record_command:
               "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+            approval_review_checklist: expect.objectContaining({
+              schema_version: "project-closure-approval-review-checklist.v1",
+              checklist_id: "closure-review:close_ready:offset:0",
+              status: expect.any(String),
+              non_authorizing: true,
+              must_not_apply: true,
+              approval_required: true,
+              approval_allowed: expect.any(Boolean),
+              required_checks: expect.arrayContaining([
+                expect.objectContaining({
+                  check_id: "approval_scope_digest",
+                  status: "pass",
+                  evidence_field: "review_scope.approval_scope_digest",
+                }),
+                expect.objectContaining({
+                  check_id: "decision_record_non_authorizing",
+                  status: "review",
+                  evidence_field: "decision_draft_record_command",
+                }),
+              ]),
+              decision_draft_record_command:
+                "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+            }),
             source_command: "helix closure review-bundle --action close_ready --summary-json",
           },
           vmodel_fit: {

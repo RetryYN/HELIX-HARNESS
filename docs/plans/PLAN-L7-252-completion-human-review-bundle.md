@@ -67,6 +67,47 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T23:31:52+09:00"
+    tests_green_at: "2026-07-09T23:31:52+09:00"
+    verdict: approve
+    scope: "Project frontier summary の closure_frontier に approval_review_checklist を投影し、progress tree-view --summary-json と completion_frontier からも close_ready 承認前 checklist を機械検出できるようにした。live repo では schema=project-closure-approval-review-checklist.v1、status=ready_for_human_review、approval_allowed=true、non-authorizing decision record command が summary 上で確認できる。承認 record 作成や apply は実行していない。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:31:22+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T23:31:22+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:edebd74360d304431569ddd2ca3a096daffa2eee50b1ee9031207725c38f0ea5"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:31:52+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:c5235ff94c443a267d48950624f1f53e4f65759fb6467b93af5c8269663a420e"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T23:31:22+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:0fb6d4f1e7175a9f89008c64f6e662e63bc6d8f8d59aef43fc05739cd6a0be25"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:22:54+09:00"
     tests_green_at: "2026-07-09T23:22:54+09:00"
     verdict: approve
