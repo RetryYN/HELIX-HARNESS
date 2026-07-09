@@ -47,6 +47,24 @@ dependencies:
     - docs/design/harness/L6-function-design/function-spec.md
     - docs/test-design/harness/L7-unit-test-design.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:19:40+09:00"
+    tests_green_at: "2026-07-09T18:19:40+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: green command kind contract と frontmatter schema の意味検証を現行テストで再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/review-evidence.test.ts tests/frontmatter.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:19:40+09:00"
+        evidence_path: tests/review-evidence.test.ts
+        output_digest: "sha256:409ae963fbba668163cd61050a43bcd169ffd96400501957cc3ce6be0998729e"
 ---
 
 # PLAN-L7-232: green command の kind contract

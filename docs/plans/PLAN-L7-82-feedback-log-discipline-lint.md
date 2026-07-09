@@ -17,6 +17,23 @@ review_evidence:
     reviewed_at: "2026-06-19"
     verdict: pass
     scope: "feedback-log discipline lint (analyzeFeedbackLog 純関数 + parseFeedbackEntries + loadFeedbackLogInput loader + checkFeedbackLog doctor 配線 + 8 unit テスト U-FBLOG-001..008)。検査規則 = status=open / domesticated 空(status≠superseded) → undomesticated 違反、domesticated の IMP-NNN が improvement-backlog 不在 → dangling、backtick path repo 不在 → missingPathRef、不正 status / 重複 ID / 列欠落 / unparseable FB 行 (absence-blindness)。superseded は domestication/参照実在 対象外。memory [[name]] は repo 外 private で存在突合せず非空のみ要求 (honest 限界)。fail-open(docs/feedback-log.md 不在)/fail-close(repo root 不在/読めない)。実 repo 4 FB entries domesticated=green。cross_agent QA(codex-gpt-5.5) verdict=pass-with-nits (Critical/Important 0、Minor=path 表記制約の明文化のみ→コメント反映済)。evidence=.helix/audit/A-139。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex
+    tests_green_at: "2026-07-09T18:19:19+09:00"
+    reviewed_at: "2026-07-09T18:19:19+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: feedback-log discipline lint の U-FBLOG-001..008 を現行 `tests/feedback-log.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/feedback-log.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:19:19+09:00"
+        evidence_path: tests/feedback-log.test.ts
+        output_digest: "sha256:688adb7684501440a8ebefd6f05c7f2d974ad4f4921b810bc0e7fe91900608e7"
 agent_slots:
   - role: qa
     slot_label: "QA - feedback-log domestication discipline lint 設計 + 配線 + cross_agent review"

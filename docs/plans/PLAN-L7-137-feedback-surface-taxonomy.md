@@ -39,6 +39,24 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-44-harness-db-master.md
     - docs/plans/PLAN-L7-110-takeover-feedback-surface.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:20:12+09:00"
+    tests_green_at: "2026-07-09T18:20:12+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: feedback surface taxonomy と projection writer の unresolved join 抑止を現行テストで再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/feedback-surface.test.ts tests/search-feedback.test.ts tests/projection-writer.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:20:12+09:00"
+        evidence_path: tests/feedback-surface.test.ts
+        output_digest: "sha256:aed39cc63f3b8a9c66399ee3062907d4ea485c16fccfa988ed84f241d2cced28"
 ---
 
 # PLAN-L7-137 (troubleshoot): feedback surface を対応可能性で要約する
