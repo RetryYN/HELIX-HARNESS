@@ -5273,6 +5273,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       recovery_runway_gate: vmodelFit.recovery_runway_gate,
       recovery_handoff_gate: vmodelFit.recovery_handoff_gate,
       approval_review_gate: vmodelFit.approval_review_gate,
+      regression_guards: vmodelFit.regression_guards,
       function_design_policy: functionDesignPolicy,
       source_command: vmodelFit.source_command,
     },
@@ -5476,6 +5477,7 @@ function buildProjectViewOutline(
       status: projectFrontierSummary.vmodel_fit.status,
       current_location_status: projectFrontierSummary.vmodel_fit.current_location_gate.status,
       approval_review_status: projectFrontierSummary.vmodel_fit.approval_review_gate.status,
+      attention_boundary: projectFrontierSummary.vmodel_fit.regression_guards.attention_boundary,
       command: "helix vmodel fit --summary-json",
     },
   };
@@ -9213,6 +9215,28 @@ function summarizeVmodelFitReport(
     const rightPriority = priority[right.status];
     return leftPriority === rightPriority ? 0 : leftPriority - rightPriority;
   });
+  const attentionGuards = payload.regression_guards.guards.filter(
+    (guard) => guard.status !== "pass",
+  );
+  const humanApprovalBoundaryActive =
+    payload.regression_guards.fail === 0 &&
+    payload.regression_guards.watch > 0 &&
+    payload.recovery_runway_gate.machine_actionable_count === 0 &&
+    payload.recovery_runway_gate.human_approval_count > 0 &&
+    (payload.recovery_handoff_gate.effective_phase === "approval" ||
+      payload.approval_review_gate.status === "approval_required");
+  const attentionBoundary =
+    payload.regression_guards.status === "pass"
+      ? "none"
+      : humanApprovalBoundaryActive
+        ? "human_approval"
+        : payload.regression_guards.fail > 0
+          ? "design_or_runtime_regression"
+          : "machine_reentry";
+  const attentionBoundaryCommand =
+    attentionBoundary === "human_approval"
+      ? payload.approval_review_gate.current_window_command
+      : payload.recovery_runway_gate.next_execution_command || payload.synthesis.next_command;
 
   return {
     schema_version: "vmodel-fit-summary.v1",
@@ -9398,9 +9422,23 @@ function summarizeVmodelFitReport(
       pass: payload.regression_guards.pass,
       watch: payload.regression_guards.watch,
       fail: payload.regression_guards.fail,
-      attention_guards: payload.regression_guards.guards
-        .filter((guard) => guard.status !== "pass")
-        .map(summarizeGuard),
+      attention_boundary: {
+        status: attentionBoundary,
+        completion_claim_blocked_by:
+          attentionBoundary === "none"
+            ? "none"
+            : attentionBoundary === "human_approval"
+              ? "human_approval"
+              : "machine_or_design_work",
+        machine_guard_count: humanApprovalBoundaryActive ? 0 : attentionGuards.length,
+        human_approval_guard_count: humanApprovalBoundaryActive ? attentionGuards.length : 0,
+        machine_actionable_count: payload.recovery_runway_gate.machine_actionable_count,
+        human_approval_count: payload.recovery_runway_gate.human_approval_count,
+        design_reverse_count: payload.recovery_runway_gate.design_reverse_count,
+        blocked_by_findings_count: payload.approval_review_gate.blocked_by_findings.length,
+        next_command: summaryJsonCommand(attentionBoundaryCommand),
+      },
+      attention_guards: attentionGuards.map(summarizeGuard),
       sample_guards: prioritizedGuards.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT).map(summarizeGuard),
     },
     next_action_count: payload.next_actions.length,
@@ -9525,14 +9563,9 @@ vmodel
       const payload = buildVmodelFitReport(snapshot, zipManifest, {
         repoRoot,
       });
+      const summary = summarizeVmodelFitReport(payload, summarizeCurrentLocationFrontier(snapshot));
       if (opts.summaryJson) {
-        process.stdout.write(
-          `${JSON.stringify(
-            summarizeVmodelFitReport(payload, summarizeCurrentLocationFrontier(snapshot)),
-            null,
-            2,
-          )}\n`,
-        );
+        process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
         return;
       }
       if (opts.json) {
@@ -9549,7 +9582,7 @@ vmodel
         `  synthesis: status=${payload.synthesis.status} common=${payload.synthesis.common_adopted} complement=${payload.synthesis.helix_complemented} reject=${payload.synthesis.rejected} missing=${payload.synthesis.missing_decisions} tailoring=${payload.synthesis.tailoring_status} function_policy=${payload.synthesis.function_design_policy} reentry=${payload.synthesis.current_reentry_status} effective=${payload.synthesis.effective_reentry_status} next=${payload.synthesis.next_command}\n`,
       );
       process.stdout.write(
-        `  regression-guards: status=${payload.regression_guards.status} pass=${payload.regression_guards.pass} watch=${payload.regression_guards.watch} fail=${payload.regression_guards.fail}\n`,
+        `  regression-guards: status=${payload.regression_guards.status} attention=${summary.regression_guards.attention_boundary.status} blocked_by=${summary.regression_guards.attention_boundary.completion_claim_blocked_by} machine_guards=${summary.regression_guards.attention_boundary.machine_guard_count} human_guards=${summary.regression_guards.attention_boundary.human_approval_guard_count} machine=${summary.regression_guards.attention_boundary.machine_actionable_count} approval=${summary.regression_guards.attention_boundary.human_approval_count} reverse=${summary.regression_guards.attention_boundary.design_reverse_count} findings=${summary.regression_guards.attention_boundary.blocked_by_findings_count} next=${summary.regression_guards.attention_boundary.next_command} pass=${payload.regression_guards.pass} watch=${payload.regression_guards.watch} fail=${payload.regression_guards.fail}\n`,
       );
       process.stdout.write(
         `  recovery-runway-gate: status=${payload.recovery_runway_gate.status} blocking=${payload.recovery_runway_gate.current_blocking_count} machine=${payload.recovery_runway_gate.machine_actionable_count} approval=${payload.recovery_runway_gate.human_approval_count} reverse=${payload.recovery_runway_gate.design_reverse_count} after_machine=${payload.recovery_runway_gate.remaining_after_machine_lanes} phases=${payload.recovery_runway_gate.required_phase_count} next=${payload.recovery_runway_gate.next_phase_action ?? "-"} phase=${payload.recovery_runway_gate.next_phase_type ?? "-"} gate=${payload.recovery_runway_gate.next_gate} command=${payload.recovery_runway_gate.next_command} execute=${payload.recovery_runway_gate.next_execution_command}\n`,

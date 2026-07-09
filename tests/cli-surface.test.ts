@@ -4398,6 +4398,18 @@ describe("L7 CLI surface closure", () => {
               status: "watch",
             }),
           ]),
+          attention_boundary: {
+            status: "design_or_runtime_regression",
+            completion_claim_blocked_by: "machine_or_design_work",
+            machine_guard_count: expect.any(Number),
+            human_approval_guard_count: 0,
+            machine_actionable_count: 1,
+            human_approval_count: 0,
+            design_reverse_count: 0,
+            blocked_by_findings_count: expect.any(Number),
+            next_command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+          },
           sample_guards: expect.arrayContaining([
             expect.objectContaining({
               status: expect.stringMatching(/fail|watch/),
@@ -4473,7 +4485,9 @@ describe("L7 CLI surface closure", () => {
       expect(fitText.stdout).toContain(
         "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
       );
-      expect(fitText.stdout).toContain("regression-guards: status=needs_attention");
+      expect(fitText.stdout).toContain(
+        "regression-guards: status=needs_attention attention=design_or_runtime_regression blocked_by=machine_or_design_work",
+      );
       expect(fitText.stdout).toContain("operation-scope: designed=");
       expect(fitText.stdout).toContain("observed_gap=");
       expect(fitText.stdout).toContain(
@@ -6215,6 +6229,15 @@ describe("L7 CLI surface closure", () => {
             status: "needs_fit",
             current_location_status: "needs_recovery",
             approval_review_status: expect.any(String),
+            attention_boundary: expect.objectContaining({
+              status: expect.any(String),
+              completion_claim_blocked_by: expect.any(String),
+              machine_guard_count: expect.any(Number),
+              human_approval_guard_count: expect.any(Number),
+              machine_actionable_count: expect.any(Number),
+              human_approval_count: expect.any(Number),
+              next_command: expect.any(String),
+            }),
             command: "helix vmodel fit --summary-json",
           },
           source_command: "helix progress tree-view --summary-json",
@@ -6363,6 +6386,13 @@ describe("L7 CLI surface closure", () => {
             approval_review_gate: expect.objectContaining({
               status: expect.any(String),
               action: "close_ready",
+            }),
+            regression_guards: expect.objectContaining({
+              attention_boundary: expect.objectContaining({
+                completion_claim_blocked_by: expect.any(String),
+                machine_guard_count: expect.any(Number),
+                human_approval_guard_count: expect.any(Number),
+              }),
             }),
             function_design_policy: {
               status: expect.any(String),
