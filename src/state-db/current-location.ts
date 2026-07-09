@@ -4073,6 +4073,85 @@ function operationRuntimeEvidenceText(row: Record<string, unknown>): string {
     .join(" ");
 }
 
+function operationTestEvidenceText(row: Record<string, unknown>): string {
+  return [
+    row.test_run_id,
+    row.gate_run_id,
+    row.gate_id,
+    row.plan_id,
+    row.command,
+    row.scope,
+    row.green_definition_id,
+    row.evidence_path,
+  ]
+    .map((value) => String(value ?? ""))
+    .join(" ");
+}
+
+function operationScopeMatches(scopeId: string, text: string): boolean {
+  const scope = OPERATION_SCOPES.find((item) => item.scope === scopeId);
+  if (!scope) return false;
+  if (scopeId === "class_method_contract") {
+    const hasClass = /\bclass\b/i.test(text) || /クラス/.test(text);
+    const hasMethod = /\bmethod\b/i.test(text) || /メソッド/.test(text);
+    const hasContract = /\bcontract\b/i.test(text) || /契約/.test(text);
+    return hasClass && hasMethod && hasContract;
+  }
+  if (scopeId === "incident_recovery_route") {
+    const hasIncident = /\bincident\b/i.test(text) || /\bfailure\b/i.test(text) || /障害/.test(text);
+    const hasRoute =
+      /逆流/.test(text) ||
+      /\brecovery\b/i.test(text) ||
+      /\breverse\b/i.test(text) ||
+      /\broute\b/i.test(text);
+    return hasIncident && hasRoute;
+  }
+  return scope.patterns.some((pattern) => pattern.test(text));
+}
+
+function operationRuntimeEvidenceMatchesScope(input: {
+  scopeId: string;
+  row: Record<string, unknown>;
+  designIds: string[];
+}): boolean {
+  const directDesignMatch = [input.row.requirement_id, input.row.test_oracle_id].some((value) =>
+    input.designIds.includes(String(value ?? "")),
+  );
+  if (input.scopeId === "runtime_verification") return directDesignMatch;
+  const textMatch = operationScopeMatches(input.scopeId, operationRuntimeEvidenceText(input.row));
+  if (input.scopeId === "log_design" || input.scopeId === "kpi_metric") return textMatch;
+  return directDesignMatch || textMatch;
+}
+
+function operationObservationSources(input: {
+  scopeId: string;
+  designIds: string[];
+  runtimeAcceptedRows: Array<Record<string, unknown>>;
+  operationTestRows: Array<Record<string, unknown>>;
+  operationGateRows: Array<Record<string, unknown>>;
+}): string[] {
+  const runtimeSources = input.runtimeAcceptedRows
+    .filter((row) =>
+      operationRuntimeEvidenceMatchesScope({
+        scopeId: input.scopeId,
+        row,
+        designIds: input.designIds,
+      }),
+    )
+    .map((row) =>
+      `runtime_verification_events:${String(row.evidence_path || row.event_id || "").trim()}`,
+    );
+  if (input.scopeId !== "operation_test") return unique(runtimeSources);
+
+  const testSources = input.operationTestRows
+    .filter((row) => operationScopeMatches(input.scopeId, operationTestEvidenceText(row)))
+    .map((row) => `test_runs:${String(row.evidence_path || row.test_run_id || "").trim()}`);
+  const gateSources = input.operationGateRows
+    .filter((row) => operationScopeMatches(input.scopeId, operationTestEvidenceText(row)))
+    .map((row) => `gate_runs:${String(row.evidence_path || row.gate_run_id || "").trim()}`);
+  return unique([...runtimeSources, ...testSources, ...gateSources]);
+}
+
 function designCoverageText(row: Record<string, unknown>): string {
   return [row.defined_id, row.declaration_kind, row.title, row.layer, row.source_path]
     .map((value) => String(value ?? ""))
@@ -4854,6 +4933,20 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
        WHERE verification_class = ? AND accept_status = ?`,
     )
     .all("runtime_verified", "accepted") as Array<Record<string, unknown>>;
+  const operationTestRows = db
+    .prepare(
+      `SELECT test_run_id, plan_id, command, scope, green_definition_id, evidence_path
+       FROM test_runs
+       WHERE status = ? OR exit_code = 0`,
+    )
+    .all("passed") as Array<Record<string, unknown>>;
+  const operationGateRows = db
+    .prepare(
+      `SELECT gate_run_id, gate_id, plan_id, status, evidence_path
+       FROM gate_runs
+       WHERE status = ?`,
+    )
+    .all("passed") as Array<Record<string, unknown>>;
 
   const items = OPERATION_SCOPES.map((scope): ProjectOperationScopeCoverage => {
     const operationCoverage = designCoverageRuleForL12Layer("L12");
@@ -4861,28 +4954,29 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
       scope.patterns.some((pattern) => pattern.test(operationScopeText(row))),
     );
     const designIds = unique(matched.map((row) => String(row.defined_id ?? "")));
-    const observedRows =
-      scope.scope === "runtime_verification"
-        ? runtimeAcceptedRows
-        : runtimeAcceptedRows.filter((row) =>
-            scope.patterns.some((pattern) => pattern.test(operationRuntimeEvidenceText(row))),
-          );
-    const observedCount = observedRows.length;
-    const observationSources = unique(
-      observedRows.map((row) => String(row.evidence_path || row.event_id || "")).filter(Boolean),
-    );
+    const observationSources = operationObservationSources({
+      scopeId: scope.scope,
+      designIds,
+      runtimeAcceptedRows,
+      operationTestRows,
+      operationGateRows,
+    });
+    const observedCount = observationSources.length;
     const evidenceTables = [...scope.tables];
     const reasons: string[] = [];
     let status: ProjectOperationScopeStatus;
 
     if (observedCount > 0) {
       status = "observed";
-      reasons.push("runtime_verified + accepted の runtime evidence がある");
+      reasons.push("scope に結合した accepted evidence がある");
     } else if (designIds.length > 0) {
       status = scope.scope === "runtime_verification" && runtimeTotal > 0 ? "reverify" : "designed";
       reasons.push("typed declaration から設計済みとして検出した");
       if (scope.scope === "runtime_verification" && runtimeTotal > 0 && runtimeAccepted === 0) {
         reasons.push("runtime verification event はあるが accepted/runtime_verified ではない");
+      }
+      if (scope.scope === "runtime_verification" && runtimeAccepted > 0) {
+        reasons.push("accepted runtime evidence はあるが runtime_verification 設計IDへ結合していない");
       }
       if (scope.scope !== "runtime_verification" && observedCount === 0) {
         reasons.push("runtime 観測は未接続。設計済みだが運用時 view では observed gap として扱う");
@@ -4913,7 +5007,8 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
     items,
     designed: items.filter((item) => item.status === "designed").length,
     observed: items.filter((item) => item.status === "observed").length,
-    observed_gap: items.filter((item) => item.status === "designed" && item.observedCount === 0).length,
+    observed_gap: items.filter((item) => item.status !== "missing" && item.observedCount === 0)
+      .length,
     missing: items.filter((item) => item.status === "missing").length,
     reverify: items.filter((item) => item.status === "reverify").length,
   };

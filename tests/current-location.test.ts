@@ -2579,7 +2579,9 @@ describe("project current-location read model", () => {
             scope: "runtime_verification",
             coverageId: "L12-operation-observability",
             coverageLabel: "運用テスト/ログ/KPI/runtime",
-            observationSources: ["docs/state/logs/runtime-verification.jsonl"],
+            observationSources: [
+              "runtime_verification_events:docs/state/logs/runtime-verification.jsonl",
+            ],
           }),
           expect.objectContaining({
             scope: "class_method_contract",
@@ -2627,6 +2629,201 @@ describe("project current-location read model", () => {
               "HOPS-OPTEST-01",
               "HOPS-VMFIT-INCIDENT-ROUTE-01",
             ]),
+          }),
+        ]),
+      );
+    }));
+
+  it("runtime verificationは対象設計IDに結合しないaccepted evidenceでobservedへ誤昇格しない", () =>
+    withDb((db) => {
+      for (const [declarationId, definedId, kind, layer, title] of [
+        ["decl:log", "HOPS-LOG-01", "ログ設計", "L12", "operation log design"],
+        ["decl:kpi", "HOPS-KPI-01", "KPI", "L12", "operation KPI metric"],
+        ["decl:runtime", "HOPS-RUNTIME-01", "runtime verification", "L12", "runtime evidence"],
+        ["decl:optest", "HOPS-OPTEST-01", "運用テスト", "L12", "operation test"],
+        ["decl:contract", "HOPS-CONTRACT-01", "class/method contract", "L5", "class method"],
+        [
+          "decl:incident",
+          "HOPS-VMFIT-INCIDENT-ROUTE-01",
+          "障害時逆流 route",
+          "L12",
+          "incident recovery reverse route",
+        ],
+      ]) {
+        upsertRow(db, {
+          table: "design_declarations",
+          primaryKey: "declaration_id",
+          row: {
+            declaration_id: declarationId,
+            defined_id: definedId,
+            declaration_kind: kind,
+            title,
+            layer,
+            source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+            source: "frontmatter",
+            indexed_at: "2026-07-08T00:00:00.000Z",
+          },
+        });
+      }
+      upsertRow(db, {
+        table: "runtime_verification_events",
+        primaryKey: "event_id",
+        row: {
+          event_id: "rv:unbound",
+          plan_id: "PLAN-L12-OPS",
+          requirement_id: "UNRELATED-REQ",
+          test_oracle_id: "UNRELATED-ORACLE",
+          claim: "runtime verified but unrelated to the runtime verification design id",
+          session_id: "session",
+          source: "test",
+          runtime_surface: "cli",
+          correlation_id: "corr",
+          evidence_path: "docs/state/logs/runtime-verification-unbound.jsonl",
+          occurred_at: "2026-07-08T00:01:00.000Z",
+          redaction_policy: "none",
+          verification_class: "runtime_verified",
+          accept_status: "accepted",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope).toMatchObject({
+        designed: 5,
+        observed: 0,
+        observed_gap: 6,
+        missing: 0,
+        reverify: 1,
+      });
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "runtime_verification",
+            status: "reverify",
+            observedCount: 0,
+            observationSources: [],
+            reasons: expect.arrayContaining([
+              "accepted runtime evidence はあるが runtime_verification 設計IDへ結合していない",
+            ]),
+          }),
+        ]),
+      );
+    }));
+
+  it("class/method contractは単語一致だけではobservedへ誤昇格しない", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:contract",
+          defined_id: "HOPS-CONTRACT-01",
+          declaration_kind: "class/method contract",
+          title: "class method contract",
+          layer: "L5",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "runtime_verification_events",
+        primaryKey: "event_id",
+        row: {
+          event_id: "rv:class-only",
+          plan_id: "PLAN-L12-OPS",
+          requirement_id: "UNRELATED-REQ",
+          test_oracle_id: "UNRELATED-ORACLE",
+          claim: "class loader runtime check",
+          session_id: "session",
+          source: "test",
+          runtime_surface: "cli",
+          correlation_id: "corr",
+          evidence_path: "docs/state/logs/class-only.jsonl",
+          occurred_at: "2026-07-08T00:01:00.000Z",
+          redaction_policy: "none",
+          verification_class: "runtime_verified",
+          accept_status: "accepted",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "class_method_contract",
+            status: "designed",
+            observedCount: 0,
+            observationSources: [],
+          }),
+        ]),
+      );
+    }));
+
+  it("operation testはpassed test_runs/gate_runsから観測source付きでobservedに昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:optest",
+          defined_id: "HOPS-OPTEST-01",
+          declaration_kind: "運用テスト",
+          title: "operation test",
+          layer: "L12",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "test_runs",
+        primaryKey: "test_run_id",
+        row: {
+          test_run_id: "tr:operation-test",
+          session_id: "session",
+          plan_id: "PLAN-L12-OPS",
+          command: "bun run operation-test",
+          runner: "bun",
+          runtime: "test",
+          os: "linux",
+          shell: "bash",
+          scope: "operation_test",
+          started_at: "2026-07-08T00:01:10.000Z",
+          completed_at: "2026-07-08T00:01:20.000Z",
+          exit_code: 0,
+          evidence_path: "docs/evidence/operation-test.json",
+          output_digest: "sha256:operation-test",
+          green_definition_id: "operation-test",
+          status: "passed",
+        },
+      });
+      upsertRow(db, {
+        table: "gate_runs",
+        primaryKey: "gate_run_id",
+        row: {
+          gate_run_id: "gate:operation-test",
+          gate_id: "operation_test",
+          plan_id: "PLAN-L12-OPS",
+          status: "passed",
+          checked_at: "2026-07-08T00:01:30.000Z",
+          evidence_path: "docs/evidence/operation-test-gate.json",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "operation_test",
+            status: "observed",
+            observedCount: 2,
+            observationSources: [
+              "gate_runs:docs/evidence/operation-test-gate.json",
+              "test_runs:docs/evidence/operation-test.json",
+            ],
           }),
         ]),
       );

@@ -2895,6 +2895,9 @@ describe("runDoctor", () => {
       expect(operationScope.messages.join("\n")).toContain("runtime_verification_events");
       expect(operationScope.messages.join("\n")).toContain("operation-scope-binding - design=");
       expect(operationScope.messages.join("\n")).toContain(
+        "operation-scope-binding - observation-sources=",
+      );
+      expect(operationScope.messages.join("\n")).toContain(
         "operation-scope-binding - traces=HAT-VMFIT-07:",
       );
       expect(operationScope.messages.join("\n")).toContain(

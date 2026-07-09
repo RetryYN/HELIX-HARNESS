@@ -3054,6 +3054,23 @@ export function checkOperationScopeBinding(
         ],
         incident_recovery_route: ["HOPS-VMFIT-INCIDENT-ROUTE-01"],
       };
+      const requiredEvidenceTablesByScope: Record<string, string[]> = {
+        log_design: ["design_declarations", "runtime_verification_events"],
+        kpi_metric: ["design_declarations", "runtime_verification_events"],
+        runtime_verification: ["design_declarations", "runtime_verification_events"],
+        operation_test: [
+          "design_declarations",
+          "test_runs",
+          "gate_runs",
+          "runtime_verification_events",
+        ],
+        class_method_contract: ["design_declarations", "runtime_verification_events"],
+        incident_recovery_route: [
+          "design_declarations",
+          "closure_next_action_ledger",
+          "runtime_verification_events",
+        ],
+      };
       const actualScopes = scope.items.map((item) => item.scope);
       for (const required of requiredScopes) {
         if (!actualScopes.includes(required)) violations.push(`missing_scope=${required}`);
@@ -3088,6 +3105,14 @@ export function checkOperationScopeBinding(
         }
         if (!item.evidenceTables.includes("design_declarations")) {
           violations.push(`${item.scope}.missing_table=design_declarations`);
+        }
+        for (const requiredTable of requiredEvidenceTablesByScope[item.scope] ?? []) {
+          if (!item.evidenceTables.includes(requiredTable)) {
+            violations.push(`${item.scope}.missing_table=${requiredTable}`);
+          }
+        }
+        if (item.status === "observed" && item.observationSources.length === 0) {
+          violations.push(`${item.scope}.observed_without_source`);
         }
         if (item.status !== "missing") {
           for (const requiredId of requiredDesignIdsByScope[item.scope] ?? []) {
@@ -3152,13 +3177,14 @@ export function checkOperationScopeBinding(
             ? "operation-scope-binding - OK"
             : "operation-scope-binding - advisory";
       const observedGapScopes = scope.items
-        .filter((item) => item.status === "designed" && item.observedCount === 0)
-        .map((item) => item.scope);
+        .filter((item) => item.status !== "missing" && item.observedCount === 0)
+        .map((item) => `${item.scope}:${item.status}`);
       return {
         ok: violations.length === 0,
         messages: [
           `${prefix}: designed=${scope.designed} observed=${scope.observed} observed_gap=${scope.observed_gap} missing=${scope.missing} reverify=${scope.reverify} coverage=L12-operation-observability command=helix current-location --json`,
           `operation-scope-binding - scopes=${scope.items.map((item) => `${item.scope}:${item.status}:${item.observedCount}:tables=${item.evidenceTables.join("+")}`).join(" | ")}`,
+          `operation-scope-binding - observation-sources=${scope.items.map((item) => `${item.scope}:${item.observationSources.join("+") || "-"}`).join(" | ")}`,
           `operation-scope-binding - observed-gap: status=${observedGapScopes.length > 0 ? "watch" : "clear"} scopes=${observedGapScopes.join(",") || "-"} action=accepted runtime evidence を運用時 view へ投影し、設計済み scope を observed に昇格する`,
           `operation-scope-binding - design=${scope.items.map((item) => `${item.scope}:${item.designIds.join("+") || "-"}`).join(" | ")}`,
           `operation-scope-binding - traces=HAT-VMFIT-07:${operationTraceRows.filter((row) => row.reference_kind === "accepts" && row.status === "resolved").length}/${requiredOperationTraceTargets.length}`,
