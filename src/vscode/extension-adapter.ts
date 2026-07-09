@@ -128,9 +128,7 @@ function validateTreeNode(rootId: "project" | "harness", value: unknown): TreeVi
   return value;
 }
 
-export function validateVisualizationTreeViewModel(
-  value: unknown,
-): VisualizationTreeViewModel {
+export function validateVisualizationTreeViewModel(value: unknown): VisualizationTreeViewModel {
   if (!value || typeof value !== "object") {
     throw new Error("HELIX visualization tree payload is not an object");
   }

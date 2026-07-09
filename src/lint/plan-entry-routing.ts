@@ -77,9 +77,7 @@ function markdownFrontmatter(content: string): Record<string, unknown> | null {
   }
 }
 
-export function unresolvedPlanEntrySignals(
-  entrySignals: string[],
-): PlanEntrySignalResolution[] {
+export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySignalResolution[] {
   return entrySignals.map((value) =>
     value.startsWith("po_directive:")
       ? { value, token: "po_directive", kind: "po_directive" }

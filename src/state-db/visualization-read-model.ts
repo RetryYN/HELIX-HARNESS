@@ -9,18 +9,18 @@ import {
   type VmodelZipManifestResult,
 } from "../schema/hybrid-vmodel-manifest";
 import {
-  buildProjectCurrentLocationSnapshot,
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceMaterializePacket,
+  buildProjectCurrentLocationSnapshot,
   closureEvidenceApprovalDraftCommand,
   closureEvidenceApprovalDraftRefreshPath,
   closureEvidenceHandoffArtifacts,
   closureEvidenceProbeCommand,
-  projectClosureActionCommandLimit,
   PROJECT_CLOSURE_QUEUE_ACTIONS,
   type ProjectClosureEvidenceProbeExecution,
   type ProjectClosureQueueNextAction,
   type ProjectCurrentLocationSnapshot,
+  projectClosureActionCommandLimit,
 } from "./current-location";
 import type { HarnessDb } from "./index";
 
@@ -294,8 +294,7 @@ function parseVisualizationApprovalRecord(
   }
   const decisionId = /^decision_id:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const outcome = /^outcome:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
-  const approvalScopeDigest =
-    /^approval_scope_digest:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
+  const approvalScopeDigest = /^approval_scope_digest:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const reviewedCandidateCountRaw =
     /^reviewed_candidate_count:\s*(.+)$/m.exec(text)?.[1]?.trim() ?? null;
   const reviewedCandidateCount =
@@ -330,7 +329,9 @@ function parseVisualizationApprovalRecord(
     expected_approval_scope_digest: expectedApprovalScopeDigest,
     scope_status: approvalScopeStatus(approvalScopeDigest, expectedApprovalScopeDigest),
     materialize_status: expectedMaterializeStatus,
-    reviewed_candidate_count: Number.isFinite(reviewedCandidateCount) ? reviewedCandidateCount : null,
+    reviewed_candidate_count: Number.isFinite(reviewedCandidateCount)
+      ? reviewedCandidateCount
+      : null,
   };
   const scopeReasons =
     common.scope_status === "match"
@@ -581,13 +582,16 @@ function buildRecoveryHandoffArtifacts(input: {
   snapshot: ProjectCurrentLocationSnapshot;
 }): VisualizationSnapshot["recovery_handoff_artifacts"] {
   const batchByAction = new Map(
-    PROJECT_CLOSURE_QUEUE_ACTIONS.map((action) => [
-      action,
-      buildProjectClosureBatchReport(input.snapshot, {
-        action,
-        limit: projectClosureActionCommandLimit(input.snapshot, action, 3),
-      }),
-    ] as const),
+    PROJECT_CLOSURE_QUEUE_ACTIONS.map(
+      (action) =>
+        [
+          action,
+          buildProjectClosureBatchReport(input.snapshot, {
+            action,
+            limit: projectClosureActionCommandLimit(input.snapshot, action, 3),
+          }),
+        ] as const,
+    ),
   );
   const probePresentByAction = new Map<ProjectClosureQueueNextAction, boolean>();
   const probeGeneration = (action: ProjectClosureQueueNextAction): HandoffGenerationPlan => {
@@ -629,12 +633,12 @@ function buildRecoveryHandoffArtifacts(input: {
     const artifacts = closureEvidenceHandoffArtifacts(action);
     if (!artifacts) return [];
     const probe = inspectHandoffArtifact({
-        repoRoot: input.repoRoot,
-        snapshot: input.snapshot,
-        action,
-        kind: "probe_record",
-        path: artifacts.probe_record_path,
-        writePolicy: artifacts.write_policy,
+      repoRoot: input.repoRoot,
+      snapshot: input.snapshot,
+      action,
+      kind: "probe_record",
+      path: artifacts.probe_record_path,
+      writePolicy: artifacts.write_policy,
       generation: probeGeneration(action),
     });
     probePresentByAction.set(action, probe.status === "present");
@@ -692,11 +696,7 @@ function buildRecoveryHandoffArtifacts(input: {
             expectedMaterializeStatus: expectedApproval.materializeStatus,
           })
         : null;
-    return [
-      probe,
-      draft,
-      ...(refresh ? [refresh] : []),
-    ];
+    return [probe, draft, ...(refresh ? [refresh] : [])];
   });
   return {
     items,

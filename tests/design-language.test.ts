@@ -180,9 +180,7 @@ describe("design-language lint", () => {
 
       const docs = loadDesignLanguageDocs(root);
 
-      expect(docs.map((doc) => doc.path)).toEqual([
-        "docs/handover/SESSION-2026-07-08-handover.md",
-      ]);
+      expect(docs.map((doc) => doc.path)).toEqual(["docs/handover/SESSION-2026-07-08-handover.md"]);
       expect(analyzeDesignLanguage(docs, { baselineViolations: 0 }).ok).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });

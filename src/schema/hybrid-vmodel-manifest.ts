@@ -103,7 +103,12 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     sourceCategory: "l12_level_definition",
     l12Layers: ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12"],
     helixSurfaces: ["current-location", "drive model", "artifact-remap", "Project view"],
-    evidenceTables: ["plan_registry", "roadmap_rollups", "roadmap_band_coverage", "artifact_registry"],
+    evidenceTables: [
+      "plan_registry",
+      "roadmap_rollups",
+      "roadmap_band_coverage",
+      "artifact_registry",
+    ],
     requiredAction:
       "ZIP L1-L12 level definition を HELIX L0-L14 compatibility projection と current-location へ接続する",
   },
@@ -144,8 +149,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     l12Layers: ["L5", "L12"],
     helixSurfaces: ["tailoring gate", "design coverage gate"],
     evidenceTables: ["design_declarations", "design_references"],
-    requiredAction:
-      "詳細/標準/簡易/省略の粒度を L5 詳細設計と L12 coverage の検出規則へ接続する",
+    requiredAction: "詳細/標準/簡易/省略の粒度を L5 詳細設計と L12 coverage の検出規則へ接続する",
   },
   {
     bindingId: "zip-source:scrum-product-backlog",
@@ -174,8 +178,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     l12Layers: ["L3", "L7"],
     helixSurfaces: ["Scrum operation", "drive model", "Project view"],
     evidenceTables: ["design_declarations", "project_current_location"],
-    requiredAction:
-      "見積り・ベロシティ設計を sprint capacity と drive model の補助情報へ接続する",
+    requiredAction: "見積り・ベロシティ設計を sprint capacity と drive model の補助情報へ接続する",
   },
   {
     bindingId: "zip-source:scrum-release-plan",
@@ -244,8 +247,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     l12Layers: ["L7", "L12"],
     helixSurfaces: ["Scrum operation", "Project view"],
     evidenceTables: ["design_declarations", "quality_signals", "project_current_location"],
-    requiredAction:
-      "バーンダウン・ベロシティ実績を進捗/KPIの機械検出対象へ接続する",
+    requiredAction: "バーンダウン・ベロシティ実績を進捗/KPIの機械検出対象へ接続する",
   },
   {
     bindingId: "zip-source:scrum-acceptance",
@@ -254,8 +256,7 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     l12Layers: ["L3", "L11", "L12"],
     helixSurfaces: ["acceptance traceability", "Scrum operation", "Project view"],
     evidenceTables: ["design_declarations", "design_references", "test_runs"],
-    requiredAction:
-      "Scrum AC/BDD を acceptance traceability と L12 運用後検証の観測対象へ接続する",
+    requiredAction: "Scrum AC/BDD を acceptance traceability と L12 運用後検証の観測対象へ接続する",
   },
   {
     bindingId: "zip-source:build-tool-reference",

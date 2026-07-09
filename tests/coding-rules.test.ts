@@ -154,10 +154,7 @@ export function rethrowOnly(): void {
     ]);
 
     expect(result.ok).toBe(false);
-    expect(result.violations.map((v) => v.rule)).toEqual([
-      "module-boundary",
-      "module-boundary",
-    ]);
+    expect(result.violations.map((v) => v.rule)).toEqual(["module-boundary", "module-boundary"]);
   });
 
   it("U-CODE-010: detects machine-facing status messages without ASCII decision tokens", () => {

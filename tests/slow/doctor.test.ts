@@ -51,8 +51,8 @@ import {
   checkPlanGovernance,
   checkPlanTraceGate,
   checkProjectCurrentLocation,
-  checkProjectSkillBinding,
   checkProjectHooks,
+  checkProjectSkillBinding,
   checkPropagation,
   checkReadability,
   checkRecoveryExitBinding,
@@ -2637,9 +2637,7 @@ describe("runDoctor", () => {
       expect(treeBoundaryCheck.messages.join("\n")).toContain(
         "visualization-tree-view-boundary - full-json-audit",
       );
-      expect(treeBoundaryCheck.messages.join("\n")).toContain(
-        "allowed=none",
-      );
+      expect(treeBoundaryCheck.messages.join("\n")).toContain("allowed=none");
       expect(treeBoundaryCheck.messages.join("\n")).toContain(
         "policy=project-view-current-location harness-view-telemetry",
       );
@@ -2779,9 +2777,7 @@ describe("runDoctor", () => {
       );
       expect(projectSkillBinding.messages.join("\n")).toContain("automation_assets");
       expect(projectSkillBinding.messages.join("\n")).toContain("skill_recommendations");
-      expect(projectSkillBinding.messages.join("\n")).toContain(
-        "skill:gate-planning:required",
-      );
+      expect(projectSkillBinding.messages.join("\n")).toContain("skill:gate-planning:required");
       expect(projectSkillBinding.messages.join("\n")).toContain(
         "skill:planning-and-task-breakdown:required",
       );
@@ -3017,9 +3013,9 @@ describe("runDoctor", () => {
         "runtime_verification_events",
       ),
     ).toBe(true);
-    expect(
-      hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "status=ready"),
-    ).toBe(true);
+    expect(hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "status=ready")).toBe(
+      true,
+    );
     expect(
       hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "workflow=Recovery,Scrum"),
     ).toBe(true);

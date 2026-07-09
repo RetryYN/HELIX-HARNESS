@@ -91,7 +91,9 @@ describe("V-model ZIP manifest", () => {
       const bindings = buildVmodelZipSourceBindings(result);
       expect(bindings).toHaveLength(19);
       expect(bindings.every((binding) => binding.status === "bound")).toBe(true);
-      expect(bindings.find((binding) => binding.bindingId === "zip-source:typed-spec")).toMatchObject({
+      expect(
+        bindings.find((binding) => binding.bindingId === "zip-source:typed-spec"),
+      ).toMatchObject({
         sourcePath: "docs/99_型付きスペック・自動検出設計書.yaml",
         evidenceTables: ["design_declarations", "design_references", "design_impact"],
         helixSurfaces: ["design declarations", "design references", "design impact"],
@@ -101,9 +103,7 @@ describe("V-model ZIP manifest", () => {
       expect(vmodelZipManifestMessages(result)[1]).toContain(
         "vmodel-zip-inventory-signature - violation",
       );
-      expect(vmodelZipManifestMessages(result)[2]).toContain(
-        "vmodel-zip-source-bindings - OK",
-      );
+      expect(vmodelZipManifestMessages(result)[2]).toContain("vmodel-zip-source-bindings - OK");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -120,8 +120,9 @@ describe("V-model ZIP manifest", () => {
       const result = analyzeVmodelZipManifest(root);
       expect(result.ok).toBe(false);
       expect(result.required.filter((entry) => entry.present)).toHaveLength(1);
-      expect(buildVmodelZipSourceBindings(result).filter((binding) => binding.status === "missing"))
-        .toHaveLength(18);
+      expect(
+        buildVmodelZipSourceBindings(result).filter((binding) => binding.status === "missing"),
+      ).toHaveLength(18);
       expect(result.inventorySignature.status).toBe("mismatch");
       expect(result.findings.map((finding) => finding.code)).toContain("required_entry_missing");
       expect(vmodelZipManifestMessages(result)[0]).toContain("violation");

@@ -1943,10 +1943,8 @@ describe("visualization Tree View adapter", () => {
     const vm = buildVisualizationViewModel(snapshot());
     vm.project.current_location.recovery_exit.reentry_forecast.effective_status =
       "approval_pending";
-    vm.project.current_location.vmodel_fit.reentry_forecast.effective_status =
-      "approval_pending";
-    vm.project.current_location.vmodel_fit.synthesis.effective_reentry_status =
-      "approval_pending";
+    vm.project.current_location.vmodel_fit.reentry_forecast.effective_status = "approval_pending";
+    vm.project.current_location.vmodel_fit.synthesis.effective_reentry_status = "approval_pending";
 
     const tree = buildVisualizationTreeView(vm);
     const reentryForecast = findTreeNode(
@@ -2313,8 +2311,7 @@ describe("visualization Tree View adapter", () => {
     expect(recoveryHandoff?.tooltip).toContain("digest=sha256:fresh");
     expect(recoveryPlan?.description).toContain("handoff=approval_pending");
     expect(recoveryPlanHandoff).toMatchObject({
-      description:
-        "approval_pending phase=approval approval=pending_human_review scope=match",
+      description: "approval_pending phase=approval approval=pending_human_review scope=match",
       contextValue:
         "recovery-plan.handoff-gate.approval.approval_pending.approval-pending_human_review",
     });

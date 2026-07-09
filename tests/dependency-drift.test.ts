@@ -116,7 +116,7 @@ describe("dependency-drift and regression expansion (PLAN-REVERSE-42)", () => {
         },
         {
           path: "src/plan/lint.ts",
-          text: 'export type LintResult = { ok: boolean };',
+          text: "export type LintResult = { ok: boolean };",
         },
       ],
       testDocs: [],

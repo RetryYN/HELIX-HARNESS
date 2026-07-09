@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { describe, expect, it } from "vitest";
 import {
   buildProjectClosureEvidenceApprovalDraftPacket,
   buildProjectCurrentLocationSnapshot,
@@ -284,12 +284,10 @@ describe("visualization read model", () => {
 
       const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
       const probe = snapshot.recovery_handoff_artifacts.items.find(
-        (item) =>
-          item.action === "repair_failed_evidence" && item.kind === "probe_record",
+        (item) => item.action === "repair_failed_evidence" && item.kind === "probe_record",
       );
       const draft = snapshot.recovery_handoff_artifacts.items.find(
-        (item) =>
-          item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+        (item) => item.action === "repair_failed_evidence" && item.kind === "approval_draft",
       );
 
       expect(snapshot.recovery_handoff_artifacts).toMatchObject({
@@ -372,8 +370,7 @@ describe("visualization read model", () => {
 
       const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
       const approvalDraft = snapshot.recovery_handoff_artifacts.items.find(
-        (item) =>
-          item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+        (item) => item.action === "repair_failed_evidence" && item.kind === "approval_draft",
       );
 
       expect(approvalDraft?.approval_record).toMatchObject({
@@ -436,10 +433,7 @@ describe("visualization read model", () => {
       );
       writeFileSync(
         join(root, ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml"),
-        draft.approval_record_text.replace(
-          draft.approval.approval_scope_digest,
-          "sha256:stale",
-        ),
+        draft.approval_record_text.replace(draft.approval.approval_scope_digest, "sha256:stale"),
       );
       const refreshPath = closureEvidenceApprovalDraftRefreshPath(
         "repair_failed_evidence",
@@ -449,13 +443,11 @@ describe("visualization read model", () => {
 
       const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
       const canonicalDraft = snapshot.recovery_handoff_artifacts.items.find(
-        (item) =>
-          item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+        (item) => item.action === "repair_failed_evidence" && item.kind === "approval_draft",
       );
       const refreshDraft = snapshot.recovery_handoff_artifacts.items.find(
         (item) =>
-          item.action === "repair_failed_evidence" &&
-          item.kind === "approval_refresh_draft",
+          item.action === "repair_failed_evidence" && item.kind === "approval_refresh_draft",
       );
 
       expect(canonicalDraft?.approval_record).toMatchObject({
@@ -466,8 +458,7 @@ describe("visualization read model", () => {
       expect(refreshDraft).toMatchObject({
         path: refreshPath,
         status: "present",
-        generation_command:
-          `helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out ${refreshPath} --summary-json`,
+        generation_command: `helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out ${refreshPath} --summary-json`,
         approval_record: {
           status: "pending_human_review",
           approval_scope_digest: draft.approval.approval_scope_digest,

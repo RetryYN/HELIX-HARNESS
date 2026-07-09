@@ -1626,7 +1626,8 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
               label: "collect evidence",
               description: "helix closure evidence-plan --action collect_evidence --summary-json",
               contextValue: "closure-evidence-plan.collect",
-              commandPointer: "helix closure evidence-plan --action collect_evidence --summary-json",
+              commandPointer:
+                "helix closure evidence-plan --action collect_evidence --summary-json",
               children:
                 current.closure.evidence_templates
                   .find((template) => template.action === "collect_evidence")
@@ -1645,9 +1646,11 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             node({
               id: "project/current-location/closure/evidence-plan/repair",
               label: "repair evidence",
-              description: "helix closure evidence-plan --action repair_failed_evidence --summary-json",
+              description:
+                "helix closure evidence-plan --action repair_failed_evidence --summary-json",
               contextValue: "closure-evidence-plan.repair",
-              commandPointer: "helix closure evidence-plan --action repair_failed_evidence --summary-json",
+              commandPointer:
+                "helix closure evidence-plan --action repair_failed_evidence --summary-json",
               children:
                 current.closure.evidence_templates
                   .find((template) => template.action === "repair_failed_evidence")
@@ -1679,7 +1682,8 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
                       description: template.example_status,
                       tooltip: `${template.status_after_projection}\n${template.required_action}\n${template.required_fields.join(",")}`,
                       contextValue: "closure-evidence-template",
-                      commandPointer: "helix closure evidence-plan --action reverse_design --summary-json",
+                      commandPointer:
+                        "helix closure evidence-plan --action reverse_design --summary-json",
                     }),
                   ) ?? [],
             }),

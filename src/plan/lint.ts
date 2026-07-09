@@ -18,6 +18,7 @@ import {
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
 import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
+import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import {
   DB_PROJECTION_BACKPROP_REQUIRED_GENERATES,
   DESIGN_LAYERS_REQUIRING_SUB_DOC,
@@ -37,7 +38,6 @@ import {
   VALID_REVERSE_FULLBACK_SCOPE_DECISIONS,
   VALID_SUB_DOCS,
 } from "./lint-policy";
-import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import type {
   LintResult,
   PlanGovernanceDoc,

@@ -4,11 +4,11 @@ import {
   buildProjectClosureApplyPlan,
   buildProjectClosureBatchReport,
   buildProjectClosureDecisionDraftPacket,
-  buildProjectClosureEvidenceApprovalDraftPacket,
   buildProjectClosureEvidenceApplyPlan,
-  buildProjectClosureEvidencePlan,
+  buildProjectClosureEvidenceApprovalDraftPacket,
   buildProjectClosureEvidenceMaterializePacket,
   buildProjectClosureEvidencePatchPacket,
+  buildProjectClosureEvidencePlan,
   buildProjectClosureEvidenceProbePacket,
   buildProjectClosureOverview,
   buildProjectClosureReviewBundle,
@@ -508,8 +508,10 @@ describe("project current-location read model", () => {
       });
 
       const snapshot = buildProjectCurrentLocationSnapshot(db);
-      expect(snapshot.scrum_operation).toBeDefined();
-      const scrumOperation = snapshot.scrum_operation!;
+      const scrumOperation = snapshot.scrum_operation;
+      if (!scrumOperation) {
+        throw new Error("expected scrum_operation to be projected");
+      }
 
       expect(scrumOperation).toMatchObject({
         status: "active",
@@ -1098,8 +1100,7 @@ describe("project current-location read model", () => {
           blocking_lanes: ["close_ready"],
           blockers: ["completion_boundary=contradicted", "close_ready:1:human"],
           next_command: "helix closure review-bundle --action close_ready --summary-json",
-          expected_transition:
-            "blocking lanes を 0 件へ減らし、current-location を再計算する",
+          expected_transition: "blocking lanes を 0 件へ減らし、current-location を再計算する",
           lanes: [
             {
               action: "close_ready",
@@ -1121,7 +1122,8 @@ describe("project current-location read model", () => {
             status: "blocked",
             human_required: true,
             primary_command: "helix closure review-bundle --action close_ready --summary-json",
-            evidence_plan_command: "helix closure evidence-plan --action close_ready --summary-json",
+            evidence_plan_command:
+              "helix closure evidence-plan --action close_ready --summary-json",
             target_tables: [],
             sample_plan_ids: ["PLAN-L7-999-new-impl"],
           }),
@@ -2665,17 +2667,19 @@ describe("project current-location read model", () => {
         ready_for_approval: true,
         materialized_preview_digest: expect.stringMatching(/^sha256:/),
       });
-      expect(materialize.materialized_candidates[0]?.placeholder_resolution_sources).toContainEqual({
-        placeholder: "<reviewer>",
-        source: "deterministic_closure_rule",
-        value_digest: expect.stringMatching(/^sha256:/),
-      });
-      expect(materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n")).toContain(
-        "bun run test:fast",
+      expect(materialize.materialized_candidates[0]?.placeholder_resolution_sources).toContainEqual(
+        {
+          placeholder: "<reviewer>",
+          source: "deterministic_closure_rule",
+          value_digest: expect.stringMatching(/^sha256:/),
+        },
       );
-      expect(materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n")).toContain(
-        "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      );
+      expect(
+        materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n"),
+      ).toContain("bun run test:fast");
+      expect(
+        materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n"),
+      ).toContain("sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       expect(materialize.materialized_candidates[2]).toMatchObject({
         remaining_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
         ready_for_approval: false,
@@ -3265,9 +3269,7 @@ describe("project current-location read model", () => {
             scope: "kpi_metric",
             status: "observed",
             observedCount: 1,
-            observationSources: [
-              "quality_signals:telemetry-metrics:drive_firing_rate:pass",
-            ],
+            observationSources: ["quality_signals:telemetry-metrics:drive_firing_rate:pass"],
             evidenceTables: expect.arrayContaining(["quality_signals"]),
           }),
         ]),
@@ -3313,9 +3315,7 @@ describe("project current-location read model", () => {
             scope: "log_design",
             status: "observed",
             observedCount: 1,
-            observationSources: [
-              "hook_events:session_start:.helix/logs/session/session-log.jsonl",
-            ],
+            observationSources: ["hook_events:session_start:.helix/logs/session/session-log.jsonl"],
             evidenceTables: expect.arrayContaining(["hook_events"]),
           }),
         ]),

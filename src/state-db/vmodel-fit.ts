@@ -2,6 +2,13 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import {
+  buildVmodelZipSourceBindings,
+  VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE,
+  VMODEL_ZIP_FILENAME,
+  type VmodelZipInventorySignature,
+  type VmodelZipManifestResult,
+} from "../schema/hybrid-vmodel-manifest";
+import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceMaterializePacket,
   buildProjectClosureReviewBundle,
@@ -16,19 +23,12 @@ import {
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
   isProjectClosureQueueNextAction,
-  projectClosureActionCommandLimit,
   type ProjectClosureEvidenceProbeExecution,
   type ProjectClosureOutcomeRoute,
   type ProjectClosureQueueNextAction,
   type ProjectCurrentLocationSnapshot,
+  projectClosureActionCommandLimit,
 } from "./current-location";
-import {
-  buildVmodelZipSourceBindings,
-  VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE,
-  VMODEL_ZIP_FILENAME,
-  type VmodelZipInventorySignature,
-  type VmodelZipManifestResult,
-} from "../schema/hybrid-vmodel-manifest";
 
 export type VmodelFitStatus = "pass" | "needs_fit";
 export type VmodelZipManifestStatus = "ok" | "advisory_missing" | "violation";
@@ -2133,12 +2133,7 @@ function buildVmodelRegressionGuards(input: {
     },
     {
       guard_id: "operation-scope",
-      status:
-        operationScopeHardGap > 0
-          ? "fail"
-          : operationScopeObservedGap > 0
-            ? "watch"
-            : "pass",
+      status: operationScopeHardGap > 0 ? "fail" : operationScopeObservedGap > 0 ? "watch" : "pass",
       scope: "L12 operation/log/KPI/runtime verification scope",
       command: "helix current-location --json",
       protected_surface: ["operation_scope", "runtime_verification_events"],

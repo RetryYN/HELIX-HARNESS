@@ -1,4 +1,3 @@
-import { buildVmodelFitReport } from "./vmodel-fit";
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceApplyPlan,
@@ -16,11 +15,12 @@ import {
   closureEvidenceMaterializeCommand,
   closureEvidenceProbeCommand,
   isProjectClosureQueueNextAction,
-  projectClosureActionCommandLimit,
   type ProjectScrumOperation,
   type ProjectSkillBinding,
+  projectClosureActionCommandLimit,
 } from "./current-location";
 import type { VisualizationSnapshot } from "./visualization-read-model";
+import { buildVmodelFitReport } from "./vmodel-fit";
 
 /**
  * L6 view-model layer for the visualization surface (PLAN-L6-58 / PLAN-L7-372).
@@ -3144,7 +3144,8 @@ export function buildProjectCurrentLocationView(
         execute_command:
           "helix closure apply --execute --approval-record <approved-approval-record-path> --limit 20 --json",
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
-        transition_plan_command: "helix closure transition-plan --action close_ready --summary-json",
+        transition_plan_command:
+          "helix closure transition-plan --action close_ready --summary-json",
         decision_draft_command:
           "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
         review_window_command:
@@ -3367,7 +3368,10 @@ function projectHandoffReasonCodes(input: {
 
 function effectiveProjectReentryStatus(
   rawStatus: string,
-  handoffGate: Pick<{ status: string; effective_phase: string }, "status" | "effective_phase"> | null,
+  handoffGate: Pick<
+    { status: string; effective_phase: string },
+    "status" | "effective_phase"
+  > | null,
 ): string {
   if (!handoffGate || handoffGate.status === "none") return rawStatus;
   if (handoffGate.effective_phase === "approval") return handoffGate.status;
@@ -3624,7 +3628,11 @@ function evidenceHandoffNextStep(input: {
       valid_for_apply: false,
       command:
         refreshPath && isProjectClosureQueueNextAction(input.bucket.action)
-          ? closureEvidenceApprovalDraftCommand(input.bucket.action, input.bucket.listed, refreshPath)
+          ? closureEvidenceApprovalDraftCommand(
+              input.bucket.action,
+              input.bucket.listed,
+              refreshPath,
+            )
           : input.bucket.evidence_approval_draft_command,
       label: "refresh approval draft",
       required_action:
@@ -3834,8 +3842,7 @@ function recoveryHandoffGateForView(
       handoff_missing: handoffStatus?.missing ?? 0,
       approval_status: activeApprovalRecord?.status ?? null,
       scope_status: activeApprovalRecord?.scope_status ?? null,
-      decision_id:
-        activeApprovalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
+      decision_id: activeApprovalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
       outcome: activeApprovalRecord?.outcome ?? vmodelFit.recovery_handoff_gate.outcome,
       approval_record_path: activeApprovalRecordPath,
       approval_scope_digest:

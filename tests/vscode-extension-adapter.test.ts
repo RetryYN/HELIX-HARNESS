@@ -3,10 +3,10 @@ import { activate, deactivate } from "../src/vscode/extension";
 import {
   defaultWorkspaceRepoRoot,
   registerHelixVisualization,
-  validateVisualizationTreeViewModel,
   type VscodeApiLike,
   type VscodeDisposableLike,
   type VscodeTreeDataProviderLike,
+  validateVisualizationTreeViewModel,
 } from "../src/vscode/extension-adapter";
 import {
   HELIX_COPY_POINTER_COMMAND,

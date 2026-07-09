@@ -467,9 +467,9 @@ import {
 import { loadRuntimeSessionUsage } from "../state-db/token-tracker";
 import { buildVisualizationSnapshot } from "../state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "../state-db/visualization-view-model";
+import { buildVmodelFitReport } from "../state-db/vmodel-fit";
 import { classifyProposalDocumentCoverage } from "../task/classify";
 import { buildTeamRunPlan } from "../team/run";
-import { buildVmodelFitReport } from "../state-db/vmodel-fit";
 import {
   analyzePairFreeze,
   analyzeVerificationGroups,
@@ -1601,9 +1601,10 @@ export function checkVisualizationTreeViewBoundary(
   }
 }
 
-export function checkVisualizationTreeViewSummarySurface(
-  repoRoot: string,
-): { messages: string[]; ok: boolean } {
+export function checkVisualizationTreeViewSummarySurface(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: [
@@ -1625,7 +1626,8 @@ export function checkVisualizationTreeViewSummarySurface(
       `visualization-tree-view-summary-surface - catalog=${audit.catalog_status} expected=${audit.expected_surfaces.length} missing=${audit.missing_surfaces.length} unexpected_surfaces=${audit.unexpected_surfaces.length} source_mismatches=${audit.source_command_mismatches.length}`,
       `visualization-tree-view-summary-surface - surfaces=${audit.surfaces.map((surface) => `${surface.surface}:${surface.source_command ?? "-"}`).join(",")}`,
       ...audit.missing_surfaces.map(
-        (surface) => `visualization-tree-view-summary-surface - violation: missing_surface=${surface}`,
+        (surface) =>
+          `visualization-tree-view-summary-surface - violation: missing_surface=${surface}`,
       ),
       ...audit.unexpected_surfaces.map(
         (surface) =>
@@ -2394,7 +2396,9 @@ export function checkProjectSkillBinding(
         }
       }
       const prefix =
-        violations.length === 0 ? "project-skill-binding - OK" : "project-skill-binding - violation";
+        violations.length === 0
+          ? "project-skill-binding - OK"
+          : "project-skill-binding - violation";
       return {
         ok: violations.length === 0,
         messages: [
@@ -2624,10 +2628,7 @@ export function checkRecoveryHandoffBinding(
       if (approvalPhase && handoff.scope_status !== "match") {
         violations.push(`scope_status=${handoff.scope_status ?? "-"}`);
       }
-      if (
-        approvalPhase &&
-        (!handoff.approval_scope_digest || !handoff.approval_scope_digest.startsWith("sha256:"))
-      ) {
+      if (approvalPhase && !handoff.approval_scope_digest?.startsWith("sha256:")) {
         violations.push(`approval_scope_digest=${handoff.approval_scope_digest ?? "-"}`);
       }
       if (

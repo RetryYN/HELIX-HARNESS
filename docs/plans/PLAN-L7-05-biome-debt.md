@@ -10,6 +10,8 @@ updated: 2026-06-04
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 backfill_required: false  # refactor 機能不変 (dead code 削除 + biome --write、契約/挙動の変更なし) → KIND_BACKFILL conditional で Reverse 不要。doctor backfill 行は note のみ。
 agent_slots:
   - role: tl
@@ -19,8 +21,44 @@ github_issue_id: null
 generates: []
 dependencies:
   parent: null
-  requires: []
+  requires:
+    - docs/design/harness/L6-function-design/function-spec.md
+    - docs/test-design/harness/L7-unit-test-design.md
   blocks: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:35:29+09:00"
+    tests_green_at: "2026-07-09T18:35:29+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: 現HEADで再発していた Biome drift を pinned `biome check src tests` で解消し、typecheck と fast suite で機能不変を再検証する。`project_vmodel_handoff_summary` は approval scope digest の変化で match/mismatch が変動するため、DB投影テストを状態整合 invariant へ更新した。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:30:55+09:00"
+        evidence_path: biome.json
+        output_digest: "sha256:4051fc288b8942ab5bf84cfa2410f5968e1d7e190dac9807ffc6ec588dfd73e0"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:30:55+09:00"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:35:29+09:00"
+        evidence_path: tests/db-projection-ingestion.test.ts
+        output_digest: "sha256:c3d6724be231015300f64cfc199a8b25da2a7f173817acdff0ec255887037e0f"
 ---
 
 # PLAN-L7-05 (refactor): repo 既存 biome 負債を解消し CI に biome lint を有効化

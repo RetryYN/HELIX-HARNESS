@@ -1,8 +1,5 @@
 import { createHash } from "node:crypto";
-import {
-  VMODEL_ZIP_FILENAME,
-  VMODEL_ZIP_SOURCE_BINDINGS,
-} from "../schema/hybrid-vmodel-manifest";
+import { VMODEL_ZIP_FILENAME, VMODEL_ZIP_SOURCE_BINDINGS } from "../schema/hybrid-vmodel-manifest";
 import type { HarnessDb } from "./index";
 
 export type ProjectDriveModel =
@@ -1016,11 +1013,7 @@ export interface ProjectClosureEvidenceProbePacket {
     required_action: string;
   };
   apply_readiness: {
-    status:
-      | "command_not_available"
-      | "dry_run"
-      | "command_failed"
-      | "needs_artifact_values";
+    status: "command_not_available" | "dry_run" | "command_failed" | "needs_artifact_values";
     allowed_to_materialize: false;
     required_action: string;
   };
@@ -1062,7 +1055,11 @@ export interface ProjectClosureEvidenceMaterializePacket {
   materialized_candidate_count: number;
   materialized_candidates: ProjectClosureEvidenceMaterializeCandidate[];
   materialize_readiness: {
-    status: "no_probe_execution" | "probe_not_green" | "blocked_placeholders" | "ready_for_approval";
+    status:
+      | "no_probe_execution"
+      | "probe_not_green"
+      | "blocked_placeholders"
+      | "ready_for_approval";
     allowed_to_apply: false;
     remaining_placeholder_count: number;
     blocked_candidate_count: number;
@@ -1762,11 +1759,7 @@ const OPERATION_SCOPES = [
     scope: "incident_recovery_route",
     label: "incident Recovery/Reverse route",
     patterns: [/incident/i, /failure/i, /障害/, /逆流/, /recovery.+reverse/i, /reverse.+recovery/i],
-    tables: [
-      "design_declarations",
-      "closure_next_action_ledger",
-      "runtime_verification_events",
-    ],
+    tables: ["design_declarations", "closure_next_action_ledger", "runtime_verification_events"],
   },
 ] as const;
 
@@ -1897,11 +1890,7 @@ const ZIP_ADOPTION_RULES = [
 }>;
 
 const ZIP_ADOPTION_IMPLEMENTATION_DEPENDENCIES: Record<string, string[]> = {
-  "HVM-ADOPT-01": [
-    "design_declarations",
-    "design_references",
-    "vmodel_zip_source_bindings",
-  ],
+  "HVM-ADOPT-01": ["design_declarations", "design_references", "vmodel_zip_source_bindings"],
   "HVM-ADOPT-02": ["artifact_registry", "design_declarations", "design_coverage_gate"],
   "HVM-ADOPT-03": ["design_references", "design_impact", "relation_graph"],
   "HVM-ADOPT-04": ["plan_registry", "roadmap_rollups", "roadmap_band_coverage"],
@@ -1910,28 +1899,15 @@ const ZIP_ADOPTION_IMPLEMENTATION_DEPENDENCIES: Record<string, string[]> = {
     "runtime_verification_events",
     "closure_next_action_ledger",
   ],
-  "HVM-COMP-01": [
-    "test_runs",
-    "gate_runs",
-    "runtime_verification_events",
-    "guardrail_decisions",
-  ],
+  "HVM-COMP-01": ["test_runs", "gate_runs", "runtime_verification_events", "guardrail_decisions"],
   "HVM-COMP-02": [
     "project_current_location",
     "visualization_view_model",
     "visualization_tree_view",
     "vmodel_zip_source_bindings",
   ],
-  "HVM-COMP-03": [
-    "closure_next_action_ledger",
-    "approval_review_gate",
-    "action_binding_approval",
-  ],
-  "HVM-REJECT-01": [
-    "zip-reference-runtime-boundary",
-    "vmodel_zip_manifest",
-    "ADR-001",
-  ],
+  "HVM-COMP-03": ["closure_next_action_ledger", "approval_review_gate", "action_binding_approval"],
+  "HVM-REJECT-01": ["zip-reference-runtime-boundary", "vmodel_zip_manifest", "ADR-001"],
 };
 
 const TAILORING_RULES = [
@@ -2077,7 +2053,9 @@ const DESIGN_COVERAGE_RULES = [
   },
 ] as const;
 
-function designCoverageRuleForL12Layer(layer: string | null): (typeof DESIGN_COVERAGE_RULES)[number] | null {
+function designCoverageRuleForL12Layer(
+  layer: string | null,
+): (typeof DESIGN_COVERAGE_RULES)[number] | null {
   if (layer === null) return null;
   return DESIGN_COVERAGE_RULES.find((rule) => rule.l12Layer === layer) ?? null;
 }
@@ -2513,7 +2491,10 @@ function roadmapCurrentReportStatus(
 function terminalRoadmapL12Layers(position: ProjectRoadmapPosition): string[] {
   if (position.status !== "clear") return [];
   if (position.rollup.total_bands === 0) return [];
-  if (position.rollup.total_gates > 0 && position.rollup.reached_gates < position.rollup.total_gates) {
+  if (
+    position.rollup.total_gates > 0 &&
+    position.rollup.reached_gates < position.rollup.total_gates
+  ) {
     return [];
   }
   const hasTerminalBand = position.bands.some(
@@ -2712,7 +2693,9 @@ export function buildProjectRoadmapCurrentReport(
   const roadmapCurrentL12Layers = unique([
     ...snapshot.roadmap_position.current_band_ids.flatMap((bandId) => bandIdToL12Layers(bandId)),
     ...snapshot.roadmap_position.gates
-      .filter((gate) => snapshot.roadmap_position.current_gate_ids.includes(`${gate.planId}:${gate.gateId}`))
+      .filter((gate) =>
+        snapshot.roadmap_position.current_gate_ids.includes(`${gate.planId}:${gate.gateId}`),
+      )
       .flatMap((gate) => gate.l12Layers),
   ]);
   const roadmapTerminalL12Layers = terminalRoadmapL12Layers(snapshot.roadmap_position);
@@ -2775,7 +2758,9 @@ export function buildProjectRoadmapCurrentReport(
       };
     });
   const gateActions = snapshot.roadmap_position.gates
-    .filter((gate) => snapshot.roadmap_position.current_gate_ids.includes(`${gate.planId}:${gate.gateId}`))
+    .filter((gate) =>
+      snapshot.roadmap_position.current_gate_ids.includes(`${gate.planId}:${gate.gateId}`),
+    )
     .map((gate): ProjectRoadmapCurrentAction => {
       const action = {
         action_id: `roadmap-gate:${gate.planId}:${gate.gateId}`,
@@ -2938,7 +2923,13 @@ export function buildProjectRoadmapCurrentReport(
       required_action: roadmapFindingRequiredAction(finding),
     };
   });
-  const actions = [driveAction, ...closureActions, ...bandActions, ...gateActions, ...findingActions];
+  const actions = [
+    driveAction,
+    ...closureActions,
+    ...bandActions,
+    ...gateActions,
+    ...findingActions,
+  ];
   return {
     schema_version: "project-roadmap-current.v1",
     source_clock: snapshot.source_clock,
@@ -2992,7 +2983,9 @@ function driveCandidateStatus(
   return blocked ? "blocked" : "available";
 }
 
-function selectedDriveModelForSnapshot(snapshot: ProjectCurrentLocationSnapshot): ProjectDriveModel {
+function selectedDriveModelForSnapshot(
+  snapshot: ProjectCurrentLocationSnapshot,
+): ProjectDriveModel {
   if (
     snapshot.current.status === "needs_recovery" ||
     snapshot.drive_route.status === "recovery_required" ||
@@ -3052,7 +3045,9 @@ function driveModelCandidateCoverage(input: {
       break;
     case "OperationVerification":
       coverageIds = unique(input.snapshot.operation_scope.items.map((item) => item.coverageId));
-      coverageLabels = unique(input.snapshot.operation_scope.items.map((item) => item.coverageLabel));
+      coverageLabels = unique(
+        input.snapshot.operation_scope.items.map((item) => item.coverageLabel),
+      );
       break;
     case "Forward":
       coverageIds = [...input.snapshot.drive_route.forward.coverageIds];
@@ -3102,143 +3097,147 @@ export function buildProjectDriveModelReport(
     ...snapshot.closure.queue.items.flatMap((item) => item.implementationDependencies),
     ...snapshot.drive_route.reverse.implementationDependencies,
   ]);
-  const candidates = ([
-    {
-      model: "Recovery",
-      rank: 1,
-      status: driveCandidateStatus(
-        selectedModel,
-        "Recovery",
-        snapshot.current.status !== "needs_recovery",
-      ),
-      route_id: driveModelRouteId("Recovery", snapshot),
-      trigger: "L14 claim と L7/open evidence の矛盾、または current-location recovery_required",
-      required_action:
-        "closure evidence-plan / review-bundle で L7 closure と L12 claim を再照合し、現在地矛盾を解消する",
-      command: "helix closure evidence-plan --summary-json",
-      ...driveModelCandidateCoverage({ model: "Recovery", snapshot }),
-      doc_dependencies: recoveryDeps,
-      implementation_dependencies: recoveryImplDeps,
-      reasons: [
-        `current=${snapshot.current.status}/${snapshot.current.completion_boundary}`,
-        `closure=${snapshot.closure.status}`,
-        `route=${snapshot.drive_route.routeId}`,
-      ],
-    },
-    {
-      model: "Reverse",
-      rank: 2,
-      status: driveCandidateStatus(
-        selectedModel,
-        "Reverse",
-        selectedModel === "Recovery" || (!hasErrorFindings && !hasDesignGaps),
-      ),
-      route_id: driveModelRouteId("Reverse", snapshot),
-      trigger: "設計/テスト設計/実装依存の欠落、drift、impl-ahead、coverage gap",
-      required_action:
-        "該当 doc/implementation dependency を設計・テスト設計へ戻し、Forward に復帰できる状態へ修復する",
-      command: "helix current-location --json",
-      ...driveModelCandidateCoverage({ model: "Reverse", snapshot }),
-      doc_dependencies: unique([
-        ...snapshot.drive_route.reverse.docDependencies,
-        ...snapshot.design_coverage_gate.docDependencies,
-      ]),
-      implementation_dependencies: unique([
-        ...snapshot.drive_route.reverse.implementationDependencies,
-        ...snapshot.design_coverage_gate.implementationDependencies,
-      ]),
-      reasons: [
-        `error_findings=${snapshot.findings.filter((finding) => finding.severity === "error").length}`,
-        `design_coverage=${snapshot.design_coverage_gate.status}`,
-        `tailoring=${snapshot.tailoring_gate.status}`,
-      ],
-    },
-    {
-      model: "OperationVerification",
-      rank: 3,
-      status: driveCandidateStatus(
-        selectedModel,
-        "OperationVerification",
-        selectedModel === "Recovery" || selectedModel === "Reverse" || !hasOperationGaps,
-      ),
-      route_id: driveModelRouteId("OperationVerification", snapshot),
-      trigger: "ログ設計、runtime verification、class/method contract など L12 運用 scope の不足",
-      required_action:
-        "operation scope の missing/reverify を design declaration と runtime evidence に接続する",
-      command: "helix current-location --json",
-      ...driveModelCandidateCoverage({ model: "OperationVerification", snapshot }),
-      doc_dependencies: ["docs/design/**", "docs/test-design/**"],
-      implementation_dependencies: unique(
-        snapshot.operation_scope.items.flatMap((item) => item.evidenceTables),
-      ),
-      reasons: [
-        `operation_missing=${snapshot.operation_scope.missing}`,
-        `operation_reverify=${snapshot.operation_scope.reverify}`,
-      ],
-    },
-    {
-      model: "Forward",
-      rank: 4,
-      status: driveCandidateStatus(
-        selectedModel,
-        "Forward",
-        selectedModel === "Recovery" || selectedModel === "Reverse",
-      ),
-      route_id: driveModelRouteId("Forward", snapshot),
-      trigger: "原則駆動モデル。blocker が無ければ工程表 frontier を前進させる",
-      required_action: "roadmap current と design coverage が一致している範囲を Forward で進める",
-      command: "helix roadmap current --json",
-      ...driveModelCandidateCoverage({ model: "Forward", snapshot }),
-      doc_dependencies: [...snapshot.roadmap_position.docDependencies],
-      implementation_dependencies: [...snapshot.roadmap_position.implementationDependencies],
-      reasons: [
-        `roadmap=${snapshot.roadmap_position.status}`,
-        `frontier=${snapshot.roadmap_position.frontier.join(",") || "-"}`,
-      ],
-    },
-    {
-      model: "Additive",
-      rank: 5,
-      status: driveCandidateStatus(
-        selectedModel,
-        "Additive",
-        selectedModel === "Recovery" || selectedModel === "Reverse" || !hasRoadmapFrontier,
-      ),
-      route_id: driveModelRouteId("Additive", snapshot),
-      trigger: "既存設計を保った delta 追加。add-design / add-impl を L12 coverage に再投影する",
-      required_action: "追加分を L5 詳細設計または typed spec に登録し、対応する実装/evidence を接続する",
-      command: "helix artifact-remap batch --status reverify --json",
-      ...driveModelCandidateCoverage({ model: "Additive", snapshot }),
-      doc_dependencies: unique(snapshot.artifact_remap.items.map((item) => item.sourcePath)),
-      implementation_dependencies: ["artifact_remap", "plan_registry", "design_declarations"],
-      reasons: [
-        `artifact_reverify=${snapshot.artifact_remap.reverify}`,
-        `artifact_missing=${snapshot.artifact_remap.missing}`,
-      ],
-    },
-    {
-      model: "Refactor",
-      rank: 6,
-      status: driveCandidateStatus(
-        selectedModel,
-        "Refactor",
-        selectedModel === "Recovery" ||
-          selectedModel === "Reverse" ||
-          snapshot.counts.design_declaration_drifts === 0,
-      ),
-      route_id: driveModelRouteId("Refactor", snapshot),
-      trigger: "振る舞い維持の構造改善。design declaration drift や class/method 契約の重複を整理する",
-      required_action:
-        "設計/テスト evidence を保持したまま、構造変更の影響範囲と regression evidence を追加する",
-      command: "helix current-location --json",
-      ...driveModelCandidateCoverage({ model: "Refactor", snapshot }),
-      doc_dependencies: unique(snapshot.findings.flatMap((finding) => finding.docDependencies)),
-      implementation_dependencies: unique(
-        snapshot.findings.flatMap((finding) => finding.implementationDependencies),
-      ),
-      reasons: [`design_declaration_drifts=${snapshot.counts.design_declaration_drifts}`],
-    },
-  ] satisfies ProjectDriveModelCandidate[]).sort((a, b) => a.rank - b.rank);
+  const candidates = (
+    [
+      {
+        model: "Recovery",
+        rank: 1,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Recovery",
+          snapshot.current.status !== "needs_recovery",
+        ),
+        route_id: driveModelRouteId("Recovery", snapshot),
+        trigger: "L14 claim と L7/open evidence の矛盾、または current-location recovery_required",
+        required_action:
+          "closure evidence-plan / review-bundle で L7 closure と L12 claim を再照合し、現在地矛盾を解消する",
+        command: "helix closure evidence-plan --summary-json",
+        ...driveModelCandidateCoverage({ model: "Recovery", snapshot }),
+        doc_dependencies: recoveryDeps,
+        implementation_dependencies: recoveryImplDeps,
+        reasons: [
+          `current=${snapshot.current.status}/${snapshot.current.completion_boundary}`,
+          `closure=${snapshot.closure.status}`,
+          `route=${snapshot.drive_route.routeId}`,
+        ],
+      },
+      {
+        model: "Reverse",
+        rank: 2,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Reverse",
+          selectedModel === "Recovery" || (!hasErrorFindings && !hasDesignGaps),
+        ),
+        route_id: driveModelRouteId("Reverse", snapshot),
+        trigger: "設計/テスト設計/実装依存の欠落、drift、impl-ahead、coverage gap",
+        required_action:
+          "該当 doc/implementation dependency を設計・テスト設計へ戻し、Forward に復帰できる状態へ修復する",
+        command: "helix current-location --json",
+        ...driveModelCandidateCoverage({ model: "Reverse", snapshot }),
+        doc_dependencies: unique([
+          ...snapshot.drive_route.reverse.docDependencies,
+          ...snapshot.design_coverage_gate.docDependencies,
+        ]),
+        implementation_dependencies: unique([
+          ...snapshot.drive_route.reverse.implementationDependencies,
+          ...snapshot.design_coverage_gate.implementationDependencies,
+        ]),
+        reasons: [
+          `error_findings=${snapshot.findings.filter((finding) => finding.severity === "error").length}`,
+          `design_coverage=${snapshot.design_coverage_gate.status}`,
+          `tailoring=${snapshot.tailoring_gate.status}`,
+        ],
+      },
+      {
+        model: "OperationVerification",
+        rank: 3,
+        status: driveCandidateStatus(
+          selectedModel,
+          "OperationVerification",
+          selectedModel === "Recovery" || selectedModel === "Reverse" || !hasOperationGaps,
+        ),
+        route_id: driveModelRouteId("OperationVerification", snapshot),
+        trigger: "ログ設計、runtime verification、class/method contract など L12 運用 scope の不足",
+        required_action:
+          "operation scope の missing/reverify を design declaration と runtime evidence に接続する",
+        command: "helix current-location --json",
+        ...driveModelCandidateCoverage({ model: "OperationVerification", snapshot }),
+        doc_dependencies: ["docs/design/**", "docs/test-design/**"],
+        implementation_dependencies: unique(
+          snapshot.operation_scope.items.flatMap((item) => item.evidenceTables),
+        ),
+        reasons: [
+          `operation_missing=${snapshot.operation_scope.missing}`,
+          `operation_reverify=${snapshot.operation_scope.reverify}`,
+        ],
+      },
+      {
+        model: "Forward",
+        rank: 4,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Forward",
+          selectedModel === "Recovery" || selectedModel === "Reverse",
+        ),
+        route_id: driveModelRouteId("Forward", snapshot),
+        trigger: "原則駆動モデル。blocker が無ければ工程表 frontier を前進させる",
+        required_action: "roadmap current と design coverage が一致している範囲を Forward で進める",
+        command: "helix roadmap current --json",
+        ...driveModelCandidateCoverage({ model: "Forward", snapshot }),
+        doc_dependencies: [...snapshot.roadmap_position.docDependencies],
+        implementation_dependencies: [...snapshot.roadmap_position.implementationDependencies],
+        reasons: [
+          `roadmap=${snapshot.roadmap_position.status}`,
+          `frontier=${snapshot.roadmap_position.frontier.join(",") || "-"}`,
+        ],
+      },
+      {
+        model: "Additive",
+        rank: 5,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Additive",
+          selectedModel === "Recovery" || selectedModel === "Reverse" || !hasRoadmapFrontier,
+        ),
+        route_id: driveModelRouteId("Additive", snapshot),
+        trigger: "既存設計を保った delta 追加。add-design / add-impl を L12 coverage に再投影する",
+        required_action:
+          "追加分を L5 詳細設計または typed spec に登録し、対応する実装/evidence を接続する",
+        command: "helix artifact-remap batch --status reverify --json",
+        ...driveModelCandidateCoverage({ model: "Additive", snapshot }),
+        doc_dependencies: unique(snapshot.artifact_remap.items.map((item) => item.sourcePath)),
+        implementation_dependencies: ["artifact_remap", "plan_registry", "design_declarations"],
+        reasons: [
+          `artifact_reverify=${snapshot.artifact_remap.reverify}`,
+          `artifact_missing=${snapshot.artifact_remap.missing}`,
+        ],
+      },
+      {
+        model: "Refactor",
+        rank: 6,
+        status: driveCandidateStatus(
+          selectedModel,
+          "Refactor",
+          selectedModel === "Recovery" ||
+            selectedModel === "Reverse" ||
+            snapshot.counts.design_declaration_drifts === 0,
+        ),
+        route_id: driveModelRouteId("Refactor", snapshot),
+        trigger:
+          "振る舞い維持の構造改善。design declaration drift や class/method 契約の重複を整理する",
+        required_action:
+          "設計/テスト evidence を保持したまま、構造変更の影響範囲と regression evidence を追加する",
+        command: "helix current-location --json",
+        ...driveModelCandidateCoverage({ model: "Refactor", snapshot }),
+        doc_dependencies: unique(snapshot.findings.flatMap((finding) => finding.docDependencies)),
+        implementation_dependencies: unique(
+          snapshot.findings.flatMap((finding) => finding.implementationDependencies),
+        ),
+        reasons: [`design_declaration_drifts=${snapshot.counts.design_declaration_drifts}`],
+      },
+    ] satisfies ProjectDriveModelCandidate[]
+  ).sort((a, b) => a.rank - b.rank);
   const selectedCandidate =
     candidates.find((candidate) => candidate.model === selectedModel) ?? candidates[0];
   return {
@@ -3360,12 +3359,13 @@ function buildProjectRecoveryActionLanes(
     const evidencePlan = buildProjectClosureEvidencePlan(snapshot, { action, limit: 0 });
     const commandLimit = projectClosureActionCommandLimit(snapshot, action, input.limit);
     const evidenceChain = recoveryEvidenceCommandChain(action, commandLimit);
-    const status: ProjectRecoveryActionLane["status"] = !input.active || queueItems.length === 0
-      ? "not_required"
-      : action === "close_ready" &&
-          snapshot.findings.some((finding) => finding.severity === "error")
-        ? "blocked"
-        : "ready";
+    const status: ProjectRecoveryActionLane["status"] =
+      !input.active || queueItems.length === 0
+        ? "not_required"
+        : action === "close_ready" &&
+            snapshot.findings.some((finding) => finding.severity === "error")
+          ? "blocked"
+          : "ready";
     const humanRequired = action === "close_ready" && queueItems.length > 0;
     return {
       action,
@@ -3377,18 +3377,18 @@ function buildProjectRecoveryActionLanes(
       lane_type: recoveryLaneType(action),
       status,
       human_required: humanRequired,
-	      primary_command: recoveryLanePrimaryCommand(action),
-	      evidence_plan_command: `helix closure evidence-plan --action ${action} --summary-json`,
-	      batch_command: `helix closure batch --action ${action} --json`,
-	      review_command: `helix closure review-bundle --action ${action} --summary-json`,
-	      evidence_probe_command: evidenceChain.evidence_probe_command,
-	      evidence_materialize_command: evidenceChain.evidence_materialize_command,
-	      evidence_approval_draft_command: evidenceChain.evidence_approval_draft_command,
-	      evidence_apply_dry_run_command: evidenceChain.evidence_apply_dry_run_command,
-	      evidence_apply_execute_command: evidenceChain.evidence_apply_execute_command,
-	      evidence_apply_write_policy: evidenceChain.evidence_apply_write_policy,
-	      evidence_handoff_artifacts: evidenceChain.evidence_handoff_artifacts,
-	      target_tables: [...evidencePlan.target_tables],
+      primary_command: recoveryLanePrimaryCommand(action),
+      evidence_plan_command: `helix closure evidence-plan --action ${action} --summary-json`,
+      batch_command: `helix closure batch --action ${action} --json`,
+      review_command: `helix closure review-bundle --action ${action} --summary-json`,
+      evidence_probe_command: evidenceChain.evidence_probe_command,
+      evidence_materialize_command: evidenceChain.evidence_materialize_command,
+      evidence_approval_draft_command: evidenceChain.evidence_approval_draft_command,
+      evidence_apply_dry_run_command: evidenceChain.evidence_apply_dry_run_command,
+      evidence_apply_execute_command: evidenceChain.evidence_apply_execute_command,
+      evidence_apply_write_policy: evidenceChain.evidence_apply_write_policy,
+      evidence_handoff_artifacts: evidenceChain.evidence_handoff_artifacts,
+      target_tables: [...evidencePlan.target_tables],
       sample_plan_ids: queueItems.slice(0, input.limit).map((item) => item.planId),
       required_action: closurePacketRequiredAction(action),
       expected_transition: closurePacketExpectedTransition(action),
@@ -3397,7 +3397,9 @@ function buildProjectRecoveryActionLanes(
         `route_count=${queueItems.length}`,
         `lane=${recoveryLaneType(action)}`,
         humanRequired ? "human approval required" : "machine evidence lane",
-        input.selectedAction === action ? "selected by recovery priority" : "parallel recovery lane",
+        input.selectedAction === action
+          ? "selected by recovery priority"
+          : "parallel recovery lane",
       ],
     };
   });
@@ -3456,9 +3458,7 @@ function buildProjectRecoveryExitForecast(input: {
   };
 }
 
-function recoveryAutomationClass(
-  lane: ProjectRecoveryActionLane,
-): ProjectRecoveryAutomationClass {
+function recoveryAutomationClass(lane: ProjectRecoveryActionLane): ProjectRecoveryAutomationClass {
   if (lane.count === 0) return "not_required";
   switch (lane.action) {
     case "close_ready":
@@ -3542,7 +3542,9 @@ function buildProjectRecoveryAutomationBoundaries(
         approvalRequired || evidencePatchCommand
           ? "approval_scope_digest required before mutation"
           : "read-only planning surface",
-        evidencePatchCommand ? "evidence_patch_write_policy=approval-required" : "evidence_patch=none",
+        evidencePatchCommand
+          ? "evidence_patch_write_policy=approval-required"
+          : "evidence_patch=none",
         lane.evidence_probe_command
           ? `evidence_probe=${lane.evidence_probe_command}`
           : "evidence_probe=none",
@@ -3572,14 +3574,14 @@ function buildProjectRecoveryAutomationRunway(input: {
       machine_actionable_count: 0,
       human_approval_count: 0,
       design_reverse_count: 0,
-	      remaining_after_machine_lanes: 0,
-	      next_machine_action: null,
-	      next_machine_command: null,
-	      next_machine_probe_command: null,
-	      next_machine_materialize_command: null,
-	      next_machine_approval_draft_command: null,
-	      next_machine_apply_dry_run_command: null,
-	      approval_actions: [],
+      remaining_after_machine_lanes: 0,
+      next_machine_action: null,
+      next_machine_command: null,
+      next_machine_probe_command: null,
+      next_machine_materialize_command: null,
+      next_machine_approval_draft_command: null,
+      next_machine_apply_dry_run_command: null,
+      approval_actions: [],
       phases: [],
       target_tables: [],
       postcheck_commands: ["helix drive model --json"],
@@ -3631,17 +3633,17 @@ function buildProjectRecoveryAutomationRunway(input: {
       count: phase.lane.count,
       selected: phase.lane.selected,
       status: phase.lane.status,
-	      human_required: phase.lane.human_required,
-	      command:
-	        phase.phaseType === "approval" ? phase.lane.review_command : phase.lane.primary_command,
-	      evidence_probe_command: phase.lane.evidence_probe_command,
-	      evidence_materialize_command: phase.lane.evidence_materialize_command,
-	      evidence_approval_draft_command: phase.lane.evidence_approval_draft_command,
-		      evidence_apply_dry_run_command: phase.lane.evidence_apply_dry_run_command,
-		      evidence_apply_execute_command: phase.lane.evidence_apply_execute_command,
-		      evidence_apply_write_policy: phase.lane.evidence_apply_write_policy,
-		      evidence_handoff_artifacts: phase.lane.evidence_handoff_artifacts,
-		      target_tables: [...phase.lane.target_tables],
+      human_required: phase.lane.human_required,
+      command:
+        phase.phaseType === "approval" ? phase.lane.review_command : phase.lane.primary_command,
+      evidence_probe_command: phase.lane.evidence_probe_command,
+      evidence_materialize_command: phase.lane.evidence_materialize_command,
+      evidence_approval_draft_command: phase.lane.evidence_approval_draft_command,
+      evidence_apply_dry_run_command: phase.lane.evidence_apply_dry_run_command,
+      evidence_apply_execute_command: phase.lane.evidence_apply_execute_command,
+      evidence_apply_write_policy: phase.lane.evidence_apply_write_policy,
+      evidence_handoff_artifacts: phase.lane.evidence_handoff_artifacts,
+      target_tables: [...phase.lane.target_tables],
       postcheck_commands: [...phase.lane.postcheck_commands],
       remaining_after_phase: remainingAfterPhase,
       next_gate: nextGate,
@@ -3662,14 +3664,14 @@ function buildProjectRecoveryAutomationRunway(input: {
     machine_actionable_count: machineActionableCount,
     human_approval_count: humanApprovalCount,
     design_reverse_count: designReverseCount,
-	    remaining_after_machine_lanes: Math.max(0, totalActiveCount - machineActionableCount),
-	    next_machine_action: nextMachineLane?.action ?? null,
-	    next_machine_command: nextMachineLane?.primary_command ?? null,
-	    next_machine_probe_command: nextMachineLane?.evidence_probe_command ?? null,
-	    next_machine_materialize_command: nextMachineLane?.evidence_materialize_command ?? null,
-	    next_machine_approval_draft_command: nextMachineLane?.evidence_approval_draft_command ?? null,
-	    next_machine_apply_dry_run_command: nextMachineLane?.evidence_apply_dry_run_command ?? null,
-	    approval_actions: approvalLanes.map((lane) => lane.action),
+    remaining_after_machine_lanes: Math.max(0, totalActiveCount - machineActionableCount),
+    next_machine_action: nextMachineLane?.action ?? null,
+    next_machine_command: nextMachineLane?.primary_command ?? null,
+    next_machine_probe_command: nextMachineLane?.evidence_probe_command ?? null,
+    next_machine_materialize_command: nextMachineLane?.evidence_materialize_command ?? null,
+    next_machine_approval_draft_command: nextMachineLane?.evidence_approval_draft_command ?? null,
+    next_machine_apply_dry_run_command: nextMachineLane?.evidence_apply_dry_run_command ?? null,
+    approval_actions: approvalLanes.map((lane) => lane.action),
     phases,
     target_tables: unique(machineLanes.flatMap((lane) => lane.target_tables)),
     postcheck_commands: unique(machineLanes.flatMap((lane) => lane.postcheck_commands)),
@@ -3686,9 +3688,7 @@ function buildProjectRecoveryAutomationRunway(input: {
       `human_approval=${humanApprovalCount}`,
       `design_reverse=${designReverseCount}`,
       `remaining_after_machine=${Math.max(0, totalActiveCount - machineActionableCount)}`,
-      nextMachineLane
-        ? `next_machine_action=${nextMachineLane.action}`
-        : "next_machine_action=-",
+      nextMachineLane ? `next_machine_action=${nextMachineLane.action}` : "next_machine_action=-",
     ],
   };
 }
@@ -3712,11 +3712,11 @@ function buildProjectRecoveryReentryForecast(input: {
       blocking_after_machine_lanes: 0,
       required_phase_count: 0,
       next_phase_action: null,
-	      next_phase_type: null,
-	      next_gate: "not_required",
-	      next_command: "helix drive model --json",
-	      next_execution_command: "helix drive model --json",
-	      recompute_commands: ["helix drive model --json"],
+      next_phase_type: null,
+      next_gate: "not_required",
+      next_command: "helix drive model --json",
+      next_execution_command: "helix drive model --json",
+      recompute_commands: ["helix drive model --json"],
       expected_transition: "Recovery 以外の drive model selection に従う",
       reasons: ["Recovery が選択されていない"],
     };
@@ -3731,18 +3731,18 @@ function buildProjectRecoveryReentryForecast(input: {
         : nextPhase.phase_type === "approval"
           ? "approval_gate_pending"
           : "design_reverse_pending";
-	  return {
+  return {
     status,
     current_blocking_count: input.exitForecast.remaining_queue_items,
     blocking_after_machine_lanes: input.automationRunway.remaining_after_machine_lanes,
     required_phase_count: input.automationRunway.phases.length,
     next_phase_action: nextPhase?.action ?? null,
     next_phase_type: nextPhase?.phase_type ?? null,
-	    next_gate: nextPhase?.next_gate ?? "recompute_drive_model",
-	    next_command: nextPhase?.command ?? "helix drive model --json",
-	    next_execution_command:
-	      nextPhase?.evidence_probe_command ?? nextPhase?.command ?? "helix drive model --json",
-	    recompute_commands: [...RECOVERY_REENTRY_RECOMPUTE_COMMANDS],
+    next_gate: nextPhase?.next_gate ?? "recompute_drive_model",
+    next_command: nextPhase?.command ?? "helix drive model --json",
+    next_execution_command:
+      nextPhase?.evidence_probe_command ?? nextPhase?.command ?? "helix drive model --json",
+    recompute_commands: [...RECOVERY_REENTRY_RECOMPUTE_COMMANDS],
     expected_transition:
       nextPhase === null
         ? "drive model を再計算して Recovery 解除または次駆動モデルを確定する"
@@ -3854,7 +3854,9 @@ export function buildProjectRecoveryPlan(
       sequence: 3,
       status: recoveryStepStatus({
         required: active && selectedAction !== null,
-        blocked: selectedAction === "close_ready" && snapshot.findings.some((finding) => finding.severity === "error"),
+        blocked:
+          selectedAction === "close_ready" &&
+          snapshot.findings.some((finding) => finding.severity === "error"),
       }),
       command: selectedAction
         ? selectedAction === "close_ready"
@@ -3884,7 +3886,10 @@ export function buildProjectRecoveryPlan(
         "selected model が Recovery から Forward/Reverse/OperationVerification のいずれかへ移る",
       doc_dependencies: recoveryDocDeps,
       implementation_dependencies: recoveryImplDeps,
-      reasons: [`selected=${driveModel.selected_model}`, `blocked=${driveModel.blocked_models.join(",") || "-"}`],
+      reasons: [
+        `selected=${driveModel.selected_model}`,
+        `blocked=${driveModel.blocked_models.join(",") || "-"}`,
+      ],
     },
     {
       step_id: "verify-vmodel-fit",
@@ -4068,8 +4073,7 @@ function collectFailedClosureEvidenceForPlan(
         typeof row.completed_at === "string" && row.completed_at.length > 0
           ? row.completed_at
           : null,
-      requiredAction:
-        "失敗 test を保持したまま、同じ plan_id に passed test_runs を追加投影する",
+      requiredAction: "失敗 test を保持したまま、同じ plan_id に passed test_runs を追加投影する",
     }),
   );
   const failedGates = (
@@ -4098,8 +4102,7 @@ function collectFailedClosureEvidenceForPlan(
       outputDigest: null,
       observedAt:
         typeof row.checked_at === "string" && row.checked_at.length > 0 ? row.checked_at : null,
-      requiredAction:
-        "失敗 gate を保持したまま、同じ plan_id に passed gate_runs を追加投影する",
+      requiredAction: "失敗 gate を保持したまま、同じ plan_id に passed gate_runs を追加投影する",
     }),
   );
   return [...failedTests, ...failedGates];
@@ -4285,7 +4288,8 @@ function operationScopeMatches(scopeId: string, text: string): boolean {
     return hasClass && hasMethod && hasContract;
   }
   if (scopeId === "incident_recovery_route") {
-    const hasIncident = /\bincident\b/i.test(text) || /\bfailure\b/i.test(text) || /障害/.test(text);
+    const hasIncident =
+      /\bincident\b/i.test(text) || /\bfailure\b/i.test(text) || /障害/.test(text);
     const hasRoute =
       /逆流/.test(text) ||
       /\brecovery\b/i.test(text) ||
@@ -4327,8 +4331,9 @@ function operationObservationSources(input: {
         designIds: input.designIds,
       }),
     )
-    .map((row) =>
-      `runtime_verification_events:${String(row.evidence_path || row.event_id || "").trim()}`,
+    .map(
+      (row) =>
+        `runtime_verification_events:${String(row.evidence_path || row.event_id || "").trim()}`,
     );
   if (input.scopeId === "log_design" && input.designIds.length > 0) {
     const hookSources = input.hookEventRows.map(operationHookEventLogSource);
@@ -4503,13 +4508,10 @@ function buildAcceptanceTraceability(db: HarnessDb): ProjectAcceptanceTraceabili
   };
 }
 
-function scrumDeclarationCategory(row: Record<string, unknown>): ProjectScrumOperationCategory | null {
-  const text = [
-    row.defined_id,
-    row.declaration_kind,
-    row.title,
-    row.source_path,
-  ]
+function scrumDeclarationCategory(
+  row: Record<string, unknown>,
+): ProjectScrumOperationCategory | null {
+  const text = [row.defined_id, row.declaration_kind, row.title, row.source_path]
     .map((value) => String(value ?? ""))
     .join(" ");
   const sourcePath = String(row.source_path ?? "");
@@ -4519,8 +4521,7 @@ function scrumDeclarationCategory(row: Record<string, unknown>): ProjectScrumOpe
   }
   const matchedSource = SCRUM_OPERATION_SOURCES.find(
     (source) =>
-      text.includes(source.sourcePath) ||
-      source.patterns.some((pattern) => pattern.test(text)),
+      text.includes(source.sourcePath) || source.patterns.some((pattern) => pattern.test(text)),
   );
   if (matchedSource) {
     return matchedSource.category;
@@ -4533,9 +4534,7 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     binding.bindingId.startsWith("zip-source:scrum-"),
   );
   const declarationRows = db
-    .prepare(
-      "SELECT defined_id, declaration_kind, title, source_path FROM design_declarations",
-    )
+    .prepare("SELECT defined_id, declaration_kind, title, source_path FROM design_declarations")
     .all() as Array<Record<string, unknown>>;
   const planRows = db
     .prepare(
@@ -4585,9 +4584,7 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
           : ["ハイブリッド版の Scrum 運営層に対応する typed declaration が未検出"],
     };
   };
-  const planSourcePaths = activePlanRows.map(
-    (row) => `docs/plans/${String(row.plan_id ?? "")}.md`,
-  );
+  const planSourcePaths = activePlanRows.map((row) => `docs/plans/${String(row.plan_id ?? "")}.md`);
   const items: ProjectScrumOperationItem[] = [
     ...SCRUM_OPERATION_SOURCES.map((source) =>
       itemFromDeclarations({
@@ -4604,7 +4601,8 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
       declarationIds: [],
       planIds: unique(activePlanRows.map((row) => String(row.plan_id ?? ""))),
       sourcePaths: unique(planSourcePaths),
-      docDependencies: planSourcePaths.length > 0 ? unique(planSourcePaths) : ["docs/plans/PLAN-DISCOVERY-*.md"],
+      docDependencies:
+        planSourcePaths.length > 0 ? unique(planSourcePaths) : ["docs/plans/PLAN-DISCOVERY-*.md"],
       implementationDependencies: ["plan_registry"],
       reasons:
         activePlanRows.length > 0
@@ -4651,8 +4649,12 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
   };
 }
 
-function scrumOperationGapItems(scrumOperation: ProjectScrumOperation): ProjectScrumOperationItem[] {
-  return scrumOperation.items.filter((item) => item.category !== "plan" && item.status === "missing");
+function scrumOperationGapItems(
+  scrumOperation: ProjectScrumOperation,
+): ProjectScrumOperationItem[] {
+  return scrumOperation.items.filter(
+    (item) => item.category !== "plan" && item.status === "missing",
+  );
 }
 
 function scrumOperationItemL12Layers(category: ProjectScrumOperationCategory): string[] {
@@ -4744,9 +4746,7 @@ function skillBindingScore(input: {
   }
   if (
     matchedDriveModels.includes("Scrum") &&
-    /scrum|sprint|backlog|planning|story|mapping|velocity|release|retro|dod|dor|burndown/.test(
-      text,
-    )
+    /scrum|sprint|backlog|planning|story|mapping|velocity|release|retro|dod|dor|burndown/.test(text)
   ) {
     score += 0.15;
     reasons.push("scrum_operation_gap_signal");
@@ -4764,7 +4764,9 @@ function skillBindingScore(input: {
 function skillBindingLayers(snapshot: ProjectCurrentLocationSnapshot): string[] {
   return unique([
     snapshot.current.l12_layer ?? "",
-    ...snapshot.drive_route.forward.coverageIds.map((coverageId) => l12LayerForCoverageId(coverageId) ?? ""),
+    ...snapshot.drive_route.forward.coverageIds.map(
+      (coverageId) => l12LayerForCoverageId(coverageId) ?? "",
+    ),
     ...snapshot.drive_route.reverse.l12Layers,
     ...snapshot.operation_scope.items.map((item) => l12LayerForCoverageId(item.coverageId) ?? ""),
     ...(snapshot.scrum_operation ? scrumOperationGapL12Layers(snapshot.scrum_operation) : []),
@@ -4809,7 +4811,9 @@ function buildProjectSkillBinding(
       sourceBindings: scrumOperation.sourceBindings,
       docDependencies: ["docs/skills/SKILL_MAP.md", "docs/skills/**"],
       implementationDependencies: ["automation_assets", "skill_recommendations"],
-      reasons: ["automation_assets に skill catalog が無く、drive model から skill を機械選択できない"],
+      reasons: [
+        "automation_assets に skill catalog が無く、drive model から skill を機械選択できない",
+      ],
     };
   }
 
@@ -4820,9 +4824,7 @@ function buildProjectSkillBinding(
     })
     .filter(
       (entry) =>
-        entry.score >= 0.5 ||
-        entry.matchedDriveModels.length > 0 ||
-        entry.matchedLayers.length > 0,
+        entry.score >= 0.5 || entry.matchedDriveModels.length > 0 || entry.matchedLayers.length > 0,
     )
     .sort(
       (a, b) =>
@@ -4921,11 +4923,10 @@ function buildZipAdoptionMatrix(db: HarnessDb): ProjectZipAdoptionMatrix {
         sourcePaths.length > 0
           ? sourcePaths
           : ["docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md"],
-      implementationDependencies:
-        ZIP_ADOPTION_IMPLEMENTATION_DEPENDENCIES[rule.adoptionId] ?? [
-          "design_declarations",
-          "design_references",
-        ],
+      implementationDependencies: ZIP_ADOPTION_IMPLEMENTATION_DEPENDENCIES[rule.adoptionId] ?? [
+        "design_declarations",
+        "design_references",
+      ],
       reasons:
         status === "declared"
           ? ["ZIP 採用/補完/非採用判断が typed declaration として検出された"]
@@ -5250,7 +5251,9 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
         reasons.push("runtime verification event はあるが accepted/runtime_verified ではない");
       }
       if (scope.scope === "runtime_verification" && runtimeAccepted > 0) {
-        reasons.push("accepted runtime evidence はあるが runtime_verification 設計IDへ結合していない");
+        reasons.push(
+          "accepted runtime evidence はあるが runtime_verification 設計IDへ結合していない",
+        );
       }
       if (scope.scope !== "runtime_verification" && observedCount === 0) {
         reasons.push("runtime 観測は未接続。設計済みだが運用時 view では observed gap として扱う");
@@ -5607,9 +5610,7 @@ function buildClosurePackets(items: ProjectClosureQueueItem[]): ProjectClosurePa
 }
 
 function closureBatchEvidenceSignature(item: ProjectClosureQueueItem): string {
-  const gapKeys = item.evidenceGaps
-    .map((gap) => `${gap.component}:${gap.status}`)
-    .sort();
+  const gapKeys = item.evidenceGaps.map((gap) => `${gap.component}:${gap.status}`).sort();
   return gapKeys.length > 0 ? gapKeys.join("+") : "no-gap";
 }
 
@@ -5630,7 +5631,9 @@ function closureBatchWorkBucketRequiredAction(
 }
 
 function latestIso(values: Array<string | null | undefined>): string | null {
-  const present = values.filter((value): value is string => typeof value === "string" && value.length > 0);
+  const present = values.filter(
+    (value): value is string => typeof value === "string" && value.length > 0,
+  );
   return present.sort().at(-1) ?? null;
 }
 
@@ -5788,11 +5791,7 @@ function collectEvidenceFallbackCommandCandidate(
     sample_plan_ids: [],
     required_action:
       "既知の失敗 command が無い collect_evidence queue のため、repository-wide green command を probe として取得する",
-    reasons: [
-      "fallback=repository-wide-green-command",
-      `count=${itemCount}`,
-      "safe_to_run=true",
-    ],
+    reasons: ["fallback=repository-wide-green-command", `count=${itemCount}`, "safe_to_run=true"],
   };
 }
 
@@ -5825,9 +5824,8 @@ function buildClosureBatchRepairPlan(
     .map(([command, entries]): ProjectClosureBatchRepairCommandCandidate => {
       const runnableCommand = closureFailedEvidenceRunnableCommand(command);
       const commandVerb = closureFailedEvidenceCommandVerb(command);
-      const resolutionCandidates = runnableCommand === null
-        ? closureCommandResolutionCandidates(command, action)
-        : [];
+      const resolutionCandidates =
+        runnableCommand === null ? closureCommandResolutionCandidates(command, action) : [];
       return {
         command_label: command,
         command_verb: commandVerb,
@@ -5859,48 +5857,48 @@ function buildClosureBatchRepairPlan(
   const projectionPlanIds = unique(items.map((item) => item.planId)).slice(0, 20);
   const templatePlanId = projectionPlanIds[0] ?? "<plan_id>";
   const requiredGreenTables = ["test_runs", "gate_runs", "runtime_verification_events"];
-  const projectionItems = items.slice(0, limit).map((item): ProjectClosureBatchRepairProjectionItem => {
-    const itemFailedEvidence = item.evidence.failedEvidence ?? [];
-    const artifactTemplates = closureGreenEvidenceArtifactTemplates({
-      action,
-      planId: item.planId,
-      sourcePath: item.sourcePath,
-    });
-    return {
-      plan_id: item.planId,
-      source_path: item.sourcePath,
-      failed_evidence_count: itemFailedEvidence.length,
-      latest_failed_at: latestIso(itemFailedEvidence.map((evidence) => evidence.observedAt)),
-      command_labels: unique(
-        itemFailedEvidence.map((evidence) => evidence.command ?? "unknown"),
-      ),
-      evidence_paths: unique(
-        itemFailedEvidence
-          .map((evidence) => evidence.evidencePath)
-          .filter((path): path is string => path !== null),
-      ),
-      required_green_tables: requiredGreenTables,
-      projection_templates: requiredGreenTables
-        .map((table) => closureEvidenceRowTemplate({ table, planId: item.planId, action }))
-        .filter((template): template is ProjectClosureEvidenceRowTemplate => template !== null),
-      evidence_artifact_templates: artifactTemplates,
-      evidence_patch_plan: closureGreenEvidencePatchPlan({
+  const projectionItems = items
+    .slice(0, limit)
+    .map((item): ProjectClosureBatchRepairProjectionItem => {
+      const itemFailedEvidence = item.evidence.failedEvidence ?? [];
+      const artifactTemplates = closureGreenEvidenceArtifactTemplates({
         action,
         planId: item.planId,
-        templates: artifactTemplates,
-      }),
-      required_action:
-        itemFailedEvidence.length > 0
-          ? "この plan_id に passed test/gate または accepted runtime verification を追加投影し、failed evidence は保持する"
-          : "この plan_id に不足している green evidence を追加投影する",
-      postcheck_commands: closureEvidencePlanPostcheckCommands(action),
-      reasons: [
-        `plan=${item.planId}`,
-        `failed_evidence=${itemFailedEvidence.length}`,
-        `evidence_status=${item.evidence.status}`,
-      ],
-    };
-  });
+        sourcePath: item.sourcePath,
+      });
+      return {
+        plan_id: item.planId,
+        source_path: item.sourcePath,
+        failed_evidence_count: itemFailedEvidence.length,
+        latest_failed_at: latestIso(itemFailedEvidence.map((evidence) => evidence.observedAt)),
+        command_labels: unique(itemFailedEvidence.map((evidence) => evidence.command ?? "unknown")),
+        evidence_paths: unique(
+          itemFailedEvidence
+            .map((evidence) => evidence.evidencePath)
+            .filter((path): path is string => path !== null),
+        ),
+        required_green_tables: requiredGreenTables,
+        projection_templates: requiredGreenTables
+          .map((table) => closureEvidenceRowTemplate({ table, planId: item.planId, action }))
+          .filter((template): template is ProjectClosureEvidenceRowTemplate => template !== null),
+        evidence_artifact_templates: artifactTemplates,
+        evidence_patch_plan: closureGreenEvidencePatchPlan({
+          action,
+          planId: item.planId,
+          templates: artifactTemplates,
+        }),
+        required_action:
+          itemFailedEvidence.length > 0
+            ? "この plan_id に passed test/gate または accepted runtime verification を追加投影し、failed evidence は保持する"
+            : "この plan_id に不足している green evidence を追加投影する",
+        postcheck_commands: closureEvidencePlanPostcheckCommands(action),
+        reasons: [
+          `plan=${item.planId}`,
+          `failed_evidence=${itemFailedEvidence.length}`,
+          `evidence_status=${item.evidence.status}`,
+        ],
+      };
+    });
   const automation = buildClosureBatchRepairAutomation({
     action,
     status,
@@ -5947,7 +5945,9 @@ function buildClosureBatchRepairAutomation(input: {
   const resolutionCandidates = input.commandCandidates.flatMap(
     (candidate) => candidate.resolution_candidates,
   );
-  const safeResolutionCandidates = resolutionCandidates.filter((candidate) => candidate.safe_to_run);
+  const safeResolutionCandidates = resolutionCandidates.filter(
+    (candidate) => candidate.safe_to_run,
+  );
   if (input.status === "not_required") {
     return {
       status: "not_required",
@@ -6056,7 +6056,8 @@ function buildClosureBatchWorkBuckets(input: {
   }
   return [...grouped.entries()]
     .sort(([aSignature, aItems], [bSignature, bItems]) => {
-      const priorityDelta = Math.min(...aItems.map((item) => item.priority)) -
+      const priorityDelta =
+        Math.min(...aItems.map((item) => item.priority)) -
         Math.min(...bItems.map((item) => item.priority));
       if (priorityDelta !== 0) return priorityDelta;
       return bItems.length - aItems.length || aSignature.localeCompare(bSignature);
@@ -6088,7 +6089,9 @@ function buildClosureBatchWorkBuckets(input: {
         expected_transition: closurePacketExpectedTransition(input.action),
         sample_plan_ids: listedItems.map((item) => item.planId),
         doc_dependencies: unique(items.flatMap((item) => item.docDependencies)),
-        implementation_dependencies: unique(items.flatMap((item) => item.implementationDependencies)),
+        implementation_dependencies: unique(
+          items.flatMap((item) => item.implementationDependencies),
+        ),
         reasons: [
           `signature=${signature}`,
           `count=${items.length}`,
@@ -6114,7 +6117,8 @@ export function buildProjectClosureBatchReport(
   const limit = Math.max(0, input.limit ?? 20);
   const offset = Math.max(0, input.offset ?? 0);
   const queueItems = allItems.slice(offset, offset + limit);
-  const pageCount = limit === 0 ? (allItems.length > 0 ? 1 : 0) : Math.ceil(allItems.length / limit);
+  const pageCount =
+    limit === 0 ? (allItems.length > 0 ? 1 : 0) : Math.ceil(allItems.length / limit);
   const pageIndex =
     allItems.length === 0
       ? 0
@@ -6145,10 +6149,10 @@ export function buildProjectClosureBatchReport(
       ? buildClosureBatchWorkBuckets({ action: selectedAction, allItems, limit })
       : [],
     queue_items: queueItems,
-	    total: allItems.length,
-	    listed: queueItems.length,
-	    omitted: Math.max(0, allItems.length - queueItems.length),
-	    limit,
+    total: allItems.length,
+    listed: queueItems.length,
+    omitted: Math.max(0, allItems.length - queueItems.length),
+    limit,
     offset,
     window: {
       start: windowStart,
@@ -6161,7 +6165,7 @@ export function buildProjectClosureBatchReport(
         offset > 0 && allItems.length > 0 ? Math.max(0, offset - Math.max(1, limit)) : null,
       next_offset: offset + limit < allItems.length ? offset + limit : null,
     },
-	    write_policy: "read-only",
+    write_policy: "read-only",
     source_command: "helix closure batch --json",
     view_command: "helix progress tree-view --json",
     findings: snapshot.findings,
@@ -6290,7 +6294,14 @@ function closureEvidenceRowTemplate(input: {
         table: "gate_runs",
         purpose: `${repairPrefix} gate evidence template`,
         status_after_projection: "passed gate_runs が同じ plan_id に追加される",
-        required_fields: ["gate_run_id", "gate_id", "plan_id", "status", "checked_at", "evidence_path"],
+        required_fields: [
+          "gate_run_id",
+          "gate_id",
+          "plan_id",
+          "status",
+          "checked_at",
+          "evidence_path",
+        ],
         example_row: {
           gate_run_id: `gate:${input.planId}:<gate_id>:<timestamp>`,
           gate_id: "<gate_id>",
@@ -6299,8 +6310,7 @@ function closureEvidenceRowTemplate(input: {
           checked_at: "<iso8601>",
           evidence_path: `docs/evidence/${input.planId}-gate.json`,
         },
-        required_action:
-          "status=passed の gate_runs を追加し、失敗 gate を削除しない",
+        required_action: "status=passed の gate_runs を追加し、失敗 gate を削除しない",
       };
     case "runtime_verification_events":
       return {
@@ -6346,7 +6356,8 @@ function closureEvidenceRowTemplate(input: {
       return {
         table: "artifact_registry",
         purpose: "closure 対象 artifact を projection source として登録する",
-        status_after_projection: "artifact path が同じ plan_id の closure evidence と join 可能になる",
+        status_after_projection:
+          "artifact path が同じ plan_id の closure evidence と join 可能になる",
         required_fields: [
           "artifact_id",
           "artifact_type",
@@ -6511,26 +6522,28 @@ function closureGreenEvidencePatchPlan(input: {
   planId: string;
   templates: ProjectClosureGreenEvidenceArtifactTemplate[];
 }): ProjectClosureGreenEvidencePatchPlan {
-  const patchCandidates = input.templates.map((template): ProjectClosureGreenEvidencePatchCandidate => {
-    const previewLines = closureGreenEvidencePatchPreviewLines(template);
-    const unresolvedPlaceholders = closureEvidencePatchPlaceholders(previewLines);
-    return {
-      artifact_kind: template.artifact_kind,
-      artifact_path: template.artifact_path,
-      operation:
-        template.template_format === "yaml_frontmatter"
-          ? "append_yaml_frontmatter"
-          : "create_json_artifact",
-      template_format: template.template_format,
-      projection_target_tables: [...template.projection_target_tables],
-      preview_digest: digestLines(previewLines),
-      preview_lines: previewLines,
-      unresolved_placeholders: unresolvedPlaceholders,
-      placeholder_count: unresolvedPlaceholders.length,
-      real_evidence_required: unresolvedPlaceholders.length > 0,
-      required_action: template.required_action,
-    };
-  });
+  const patchCandidates = input.templates.map(
+    (template): ProjectClosureGreenEvidencePatchCandidate => {
+      const previewLines = closureGreenEvidencePatchPreviewLines(template);
+      const unresolvedPlaceholders = closureEvidencePatchPlaceholders(previewLines);
+      return {
+        artifact_kind: template.artifact_kind,
+        artifact_path: template.artifact_path,
+        operation:
+          template.template_format === "yaml_frontmatter"
+            ? "append_yaml_frontmatter"
+            : "create_json_artifact",
+        template_format: template.template_format,
+        projection_target_tables: [...template.projection_target_tables],
+        preview_digest: digestLines(previewLines),
+        preview_lines: previewLines,
+        unresolved_placeholders: unresolvedPlaceholders,
+        placeholder_count: unresolvedPlaceholders.length,
+        real_evidence_required: unresolvedPlaceholders.length > 0,
+        required_action: template.required_action,
+      };
+    },
+  );
   return {
     approval_required: true,
     write_policy: "approval-required",
@@ -6568,8 +6581,11 @@ function closureGreenEvidencePatchPreviewLines(
       "        exit_code: 0",
       '        completed_at: "<iso8601>"',
       `        evidence_path: ${String(
-        (template.example.review_evidence as Array<{ green_commands?: Array<{ evidence_path?: string }> }> | undefined)?.[0]
-          ?.green_commands?.[0]?.evidence_path ?? "<evidence_path>",
+        (
+          template.example.review_evidence as
+            | Array<{ green_commands?: Array<{ evidence_path?: string }> }>
+            | undefined
+        )?.[0]?.green_commands?.[0]?.evidence_path ?? "<evidence_path>",
       )}`,
       '        output_digest: "sha256:<output>"',
     ];
@@ -6683,11 +6699,7 @@ function closureEvidencePatchRollbackNote(
 }
 
 function closureEvidencePatchPlaceholders(lines: string[]): string[] {
-  return unique(
-    lines.flatMap((line) =>
-      [...line.matchAll(/<[^>\n]+>/g)].map((match) => match[0]),
-    ),
-  );
+  return unique(lines.flatMap((line) => [...line.matchAll(/<[^>\n]+>/g)].map((match) => match[0])));
 }
 
 function buildClosureEvidencePatchApprovalDigest(input: {
@@ -6731,32 +6743,34 @@ export function buildProjectClosureEvidencePatchPacket(
   });
   const patchCandidates = batch.work_buckets.flatMap((bucket) =>
     bucket.repair_plan.projection_items.flatMap((item) =>
-      item.evidence_patch_plan.patch_candidates.map((candidate, index): ProjectClosureEvidencePatchPacketCandidate => {
-        return {
-          candidate_id: `${item.plan_id}:${candidate.artifact_kind}:${index + 1}`,
-          plan_id: item.plan_id,
-          source_path: item.source_path,
-          artifact_kind: candidate.artifact_kind,
-          artifact_path: candidate.artifact_path,
-          operation: candidate.operation,
-          template_format: candidate.template_format,
-          projection_target_tables: [...candidate.projection_target_tables],
-          preview_digest: candidate.preview_digest,
-          preview_lines: [...candidate.preview_lines],
-          unresolved_placeholders: [...candidate.unresolved_placeholders],
-          placeholder_count: candidate.placeholder_count,
-          real_evidence_required: candidate.real_evidence_required,
-          required_action: candidate.required_action,
-          postcheck_commands: [...item.evidence_patch_plan.postcheck_commands],
-          rollback_note: closureEvidencePatchRollbackNote(candidate),
-          reasons: [
-            `bucket=${bucket.bucket_id}`,
-            `action=${bucket.action}`,
-            `repair_status=${bucket.repair_plan.status}`,
-            ...item.reasons,
-          ],
-        };
-      }),
+      item.evidence_patch_plan.patch_candidates.map(
+        (candidate, index): ProjectClosureEvidencePatchPacketCandidate => {
+          return {
+            candidate_id: `${item.plan_id}:${candidate.artifact_kind}:${index + 1}`,
+            plan_id: item.plan_id,
+            source_path: item.source_path,
+            artifact_kind: candidate.artifact_kind,
+            artifact_path: candidate.artifact_path,
+            operation: candidate.operation,
+            template_format: candidate.template_format,
+            projection_target_tables: [...candidate.projection_target_tables],
+            preview_digest: candidate.preview_digest,
+            preview_lines: [...candidate.preview_lines],
+            unresolved_placeholders: [...candidate.unresolved_placeholders],
+            placeholder_count: candidate.placeholder_count,
+            real_evidence_required: candidate.real_evidence_required,
+            required_action: candidate.required_action,
+            postcheck_commands: [...item.evidence_patch_plan.postcheck_commands],
+            rollback_note: closureEvidencePatchRollbackNote(candidate),
+            reasons: [
+              `bucket=${bucket.bucket_id}`,
+              `action=${bucket.action}`,
+              `repair_status=${bucket.repair_plan.status}`,
+              ...item.reasons,
+            ],
+          };
+        },
+      ),
     ),
   );
   const placeholderCount = patchCandidates.reduce(
@@ -6841,9 +6855,7 @@ export function buildProjectClosureEvidencePatchPacket(
   };
 }
 
-function buildClosureEvidenceProbeCommand(
-  batch: ProjectClosureBatchReport,
-): {
+function buildClosureEvidenceProbeCommand(batch: ProjectClosureBatchReport): {
   command: string | null;
   source: string | null;
   confidence: string | null;
@@ -6881,7 +6893,9 @@ function buildClosureEvidenceProbeCommand(
       source: "classified_verb",
       confidence: "medium",
       canExecute: true,
-      projectionBinding: closureCommandProjectionBinding(batch.selected_action ?? "collect_evidence"),
+      projectionBinding: closureCommandProjectionBinding(
+        batch.selected_action ?? "collect_evidence",
+      ),
     };
   }
   return {
@@ -6985,16 +6999,16 @@ export function buildProjectClosureEvidenceProbePacket(
     target_plan_ids: targetPlanIds,
     projection_binding: command.projectionBinding,
     execution,
-      placeholder_resolution: {
-        fillable_placeholders: fillablePlaceholders,
-        remaining_placeholders: remainingPlaceholders,
-        required_action:
-          execution?.status === "passed"
-            ? remainingPlaceholders.length === 0
-              ? "probe result と deterministic closure rule で command/completed_at/output_digest/reviewer/oracle/claim/runtime provenance を実値化できる"
-              : "probe result と deterministic closure rule で command/completed_at/output_digest/reviewer/oracle/claim を実値化し、runtime provenance 固有値だけを別途補完する"
-            : "safe command を実行して command/completed_at/output_digest を取得する",
-      },
+    placeholder_resolution: {
+      fillable_placeholders: fillablePlaceholders,
+      remaining_placeholders: remainingPlaceholders,
+      required_action:
+        execution?.status === "passed"
+          ? remainingPlaceholders.length === 0
+            ? "probe result と deterministic closure rule で command/completed_at/output_digest/reviewer/oracle/claim/runtime provenance を実値化できる"
+            : "probe result と deterministic closure rule で command/completed_at/output_digest/reviewer/oracle/claim を実値化し、runtime provenance 固有値だけを別途補完する"
+          : "safe command を実行して command/completed_at/output_digest を取得する",
+    },
     apply_readiness: closureEvidenceProbeApplyReadiness({
       command: command.command,
       canExecute: command.canExecute,
@@ -7096,7 +7110,11 @@ function materializePreviewLines(
   ];
   const filled = new Map<
     string,
-    { placeholder: string; source: "probe_execution" | "deterministic_closure_rule"; value_digest: string }
+    {
+      placeholder: string;
+      source: "probe_execution" | "deterministic_closure_rule";
+      value_digest: string;
+    }
   >();
   const materialized = candidate.preview_lines.map((line) => {
     let next = line;
@@ -7170,28 +7188,30 @@ export function buildProjectClosureEvidenceMaterializePacket(
   const execution = input.probeExecution ?? null;
   const materializedCandidates =
     execution?.status === "passed"
-      ? patchPacket.patch_candidates.map((candidate): ProjectClosureEvidenceMaterializeCandidate => {
-          const materialized = materializePreviewLines(candidate, selectedAction, execution);
-          const remaining = closureEvidencePatchPlaceholders(materialized.lines);
-          return {
-            candidate_id: candidate.candidate_id,
-            plan_id: candidate.plan_id,
-            artifact_path: candidate.artifact_path,
-            operation: candidate.operation,
-            projection_target_tables: [...candidate.projection_target_tables],
-            materialized_preview_digest: digestLines(materialized.lines),
-            materialized_preview_lines: materialized.lines,
-            filled_placeholders: materialized.filledPlaceholders,
-            placeholder_resolution_sources: materialized.resolutionSources,
-            remaining_placeholders: remaining,
-            remaining_placeholder_count: remaining.length,
-            ready_for_approval: remaining.length === 0,
-            required_action:
-              remaining.length === 0
-                ? "materialized preview を approval scope に含め、別 apply surface で扱う"
-                : "残る runtime provenance placeholder を実値で補完してから approval packet を再生成する",
-          };
-        })
+      ? patchPacket.patch_candidates.map(
+          (candidate): ProjectClosureEvidenceMaterializeCandidate => {
+            const materialized = materializePreviewLines(candidate, selectedAction, execution);
+            const remaining = closureEvidencePatchPlaceholders(materialized.lines);
+            return {
+              candidate_id: candidate.candidate_id,
+              plan_id: candidate.plan_id,
+              artifact_path: candidate.artifact_path,
+              operation: candidate.operation,
+              projection_target_tables: [...candidate.projection_target_tables],
+              materialized_preview_digest: digestLines(materialized.lines),
+              materialized_preview_lines: materialized.lines,
+              filled_placeholders: materialized.filledPlaceholders,
+              placeholder_resolution_sources: materialized.resolutionSources,
+              remaining_placeholders: remaining,
+              remaining_placeholder_count: remaining.length,
+              ready_for_approval: remaining.length === 0,
+              required_action:
+                remaining.length === 0
+                  ? "materialized preview を approval scope に含め、別 apply surface で扱う"
+                  : "残る runtime provenance placeholder を実値で補完してから approval packet を再生成する",
+            };
+          },
+        )
       : [];
   const remainingPlaceholderCount = materializedCandidates.reduce(
     (sum, candidate) => sum + candidate.remaining_placeholder_count,
@@ -7275,7 +7295,7 @@ export function buildProjectClosureEvidenceApprovalDraftPacket(
     `decision_id: ${materialize.approval.decision_id}`,
     "outcome: pending_human_review",
     `approval_scope_digest: ${materialize.approval.approval_scope_digest}`,
-    "reviewed_candidate_count: " + String(materialize.materialized_candidate_count),
+    `reviewed_candidate_count: ${String(materialize.materialized_candidate_count)}`,
     "reason: <日本語で判断理由>",
   ];
 
@@ -7387,7 +7407,9 @@ export function buildProjectClosureEvidenceApplyPlan(
   const blockedReasons = [
     ...(materialize.materialize_readiness.status === "ready_for_approval"
       ? []
-      : [`materialize_readiness が ready_for_approval ではない: ${materialize.materialize_readiness.status}`]),
+      : [
+          `materialize_readiness が ready_for_approval ではない: ${materialize.materialize_readiness.status}`,
+        ]),
     ...(materialize.materialized_candidate_count > 0 ? [] : ["materialized candidate が 0 件"]),
     ...(approval.valid ? [] : approval.reasons),
   ];
@@ -7658,7 +7680,8 @@ export function buildProjectClosureOverview(
         dry_run_command: closeReadyApplyDryRunCommand,
         execute_command: closeReadyApplyExecuteCommand,
         review_bundle_command: "helix closure review-bundle --action close_ready --summary-json",
-        transition_plan_command: "helix closure transition-plan --action close_ready --summary-json",
+        transition_plan_command:
+          "helix closure transition-plan --action close_ready --summary-json",
         review_window_command: closeReadyReviewWindowCommand,
         transition_window_command: closeReadyTransitionWindowCommand,
         decision_draft_command: closeReadyDecisionDraftCommand,
@@ -7943,7 +7966,8 @@ export function buildProjectClosureDecisionDraftPacket(
       coverage_id: candidate.coverageId,
       coverage_label: candidate.coverageLabel,
       evidence_status: candidate.evidence.status,
-      ready_for_approval: candidate.nextAction === "close_ready" && candidate.evidence.status === "ready",
+      ready_for_approval:
+        candidate.nextAction === "close_ready" && candidate.evidence.status === "ready",
     })),
     approval_record_template: approvalRecordTemplate,
     approval_record_text: approvalRecordTemplate.join("\n"),
@@ -8000,7 +8024,8 @@ function closureDecisionOutcomeRoute(input: {
   );
   if (input.action !== "close_ready") {
     const targetAction = input.action;
-    const driveModel: ProjectDriveModel = targetAction === "reverse_design" ? "Reverse" : "Recovery";
+    const driveModel: ProjectDriveModel =
+      targetAction === "reverse_design" ? "Reverse" : "Recovery";
     return {
       outcome: input.decisionOutcome,
       projection_type: "reroute_closure_lane",
@@ -8034,7 +8059,8 @@ function closureDecisionOutcomeRoute(input: {
       human_required: true,
       command: `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${candidateLimit} --json`,
       transition_command: `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${candidateLimit} --json`,
-      expected_transition: "承認済み close_ready candidate を accepted 化し、open L7 queue から除外する",
+      expected_transition:
+        "承認済み close_ready candidate を accepted 化し、open L7 queue から除外する",
       required_action:
         "approval_scope_digest に一致する approval record を用意し、closure apply dry-run を確認してから execute する",
       doc_dependencies: commonDocDependencies,
@@ -8085,7 +8111,8 @@ function closureDecisionOutcomeRoute(input: {
   );
   const command =
     targetAction === "collect_evidence" || targetAction === "repair_failed_evidence"
-      ? (evidenceChain.evidence_probe_command ?? `helix closure batch --action ${targetAction} --json`)
+      ? (evidenceChain.evidence_probe_command ??
+        `helix closure batch --action ${targetAction} --json`)
       : `helix closure evidence-plan --action ${targetAction} --summary-json`;
   return {
     outcome: input.decisionOutcome,
@@ -8099,11 +8126,7 @@ function closureDecisionOutcomeRoute(input: {
     required_action: closurePacketRequiredAction(targetAction),
     doc_dependencies:
       targetAction === "reverse_design"
-        ? unique([
-            ...commonDocDependencies,
-            "docs/design/**",
-            "docs/test-design/**",
-          ])
+        ? unique([...commonDocDependencies, "docs/design/**", "docs/test-design/**"])
         : commonDocDependencies,
     implementation_dependencies: commonImplementationDependencies,
     postcheck_commands: closureEvidencePlanPostcheckCommands(targetAction),
@@ -8158,7 +8181,8 @@ function closureTransitionPlannedSteps(input: {
         step_id: "rebuild-projection",
         target: "harness.db",
         operation: "projection を再構築し current-location を再計算する",
-        expected_effect: "closure queue / next-action ledger / artifact remap が戻し先 lane を反映する",
+        expected_effect:
+          "closure queue / next-action ledger / artifact remap が戻し先 lane を反映する",
         evidence_required: ["helix db rebuild", "helix current-location --json"],
       },
       {
@@ -8923,7 +8947,9 @@ function buildDriveRouteDecision(input: {
   const forwardL12Layers = unique([
     ...input.roadmapPosition.current_band_ids.flatMap((id) => bandIdToL12Layers(id)),
     ...input.roadmapPosition.gates
-      .filter((gate) => input.roadmapPosition.current_gate_ids.includes(`${gate.planId}:${gate.gateId}`))
+      .filter((gate) =>
+        input.roadmapPosition.current_gate_ids.includes(`${gate.planId}:${gate.gateId}`),
+      )
       .flatMap((gate) => gate.l12Layers),
   ]);
   const reverseL12Layers = unique([

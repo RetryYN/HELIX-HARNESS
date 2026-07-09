@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
-  SUMMARY_SURFACE_CONTRACTS,
   buildSummarySurfaceCommandAudit,
   buildSummarySurfaceContractPayloads,
   collectSummarySurfaceRawJsonHits,
+  SUMMARY_SURFACE_CONTRACTS,
 } from "../src/runtime/summary-surface-audit";
 
 describe("summary surface audit", () => {

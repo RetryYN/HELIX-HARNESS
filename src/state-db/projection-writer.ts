@@ -43,13 +43,17 @@ import {
   type RuntimeVerificationLogEvent,
   validateRuntimeVerificationLogCompleteness,
 } from "../runtime/run-debug";
+import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import {
   HARNESS_DB_TABLE_BY_NAME,
   HARNESS_DB_TABLES,
   primaryKeyOf,
   type TableDef,
 } from "../schema/harness-db";
-import { analyzeDesignDeclarations } from "../schema/design-declarations";
+import {
+  analyzeVmodelZipManifest,
+  buildVmodelZipSourceBindings,
+} from "../schema/hybrid-vmodel-manifest";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -73,13 +77,9 @@ import {
 import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
-import { buildVmodelFitReport } from "./vmodel-fit";
 import { buildVisualizationSnapshot } from "./visualization-read-model";
 import { buildVisualizationViewModel } from "./visualization-view-model";
-import {
-  analyzeVmodelZipManifest,
-  buildVmodelZipSourceBindings,
-} from "../schema/hybrid-vmodel-manifest";
+import { buildVmodelFitReport } from "./vmodel-fit";
 
 type ProjectedUtCase = {
   oracle_id?: string;

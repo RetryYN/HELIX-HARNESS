@@ -53,14 +53,12 @@ export const SUMMARY_SURFACE_AUDIT_EXCLUDED_SURFACES = [
   {
     surface: "progress-tree-view",
     source_command: "helix progress tree-view --summary-json",
-    reason: "progress tree-view is the host surface for this audit, so self-inclusion would be recursive",
+    reason:
+      "progress tree-view is the host surface for this audit, so self-inclusion would be recursive",
   },
 ];
 
-export const SUMMARY_SURFACE_AUDIT_ALLOWED_FIELDS = [
-  "full_source_command",
-  "full_view_command",
-];
+export const SUMMARY_SURFACE_AUDIT_ALLOWED_FIELDS = ["full_source_command", "full_view_command"];
 
 export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
   {
