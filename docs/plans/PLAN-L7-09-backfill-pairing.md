@@ -36,6 +36,31 @@ review_evidence:
     tests_green_at: "2026-06-05"
     verdict: approve
     scope: "code-reviewer 事後 review APPROVE (Critical 0)。analyze 純関数 + loader 分離 / 実 repo 回帰ガード U-BACKFILL-006。Important は carry"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:38:46+09:00"
+    tests_green_at: "2026-07-09T15:38:46+09:00"
+    verdict: approve
+    scope: "PLAN-L7-09 の execution evidence 欠落を、現行 backfill-pairing / scrum-reverse / propagation / vmodel-pair / doctor targeted green と typecheck で補い、back-fill pairing lint の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/backfill-pairing.test.ts tests/scrum-reverse.test.ts tests/propagation.test.ts tests/vmodel-pair.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:38:46+09:00"
+        evidence_path: tests/backfill-pairing.test.ts
+        output_digest: "sha256:18c2cccef2c8175a3e8c033415184b05ec2e0a21bd9c599c3eef9765c75f7528"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:38:46+09:00"
+        evidence_path: src/lint/backfill-pairing.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-09 (add-impl): back-fill pairing lint の実装 (IMP-051)
