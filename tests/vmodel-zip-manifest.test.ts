@@ -80,16 +80,16 @@ describe("V-model ZIP manifest", () => {
 
       const result = analyzeVmodelZipManifest(root);
       expect(result.ok).toBe(false);
-      expect(result.entriesTotal).toBe(15);
-      expect(result.byExtension).toMatchObject({ yaml: 8, py: 5, xlsx: 1, md: 1 });
+      expect(result.entriesTotal).toBe(23);
+      expect(result.byExtension).toMatchObject({ yaml: 16, py: 5, xlsx: 1, md: 1 });
       expect(result.inventorySignature).toMatchObject({
         status: "mismatch",
         expected_entries_total: 703,
-        actual_entries_total: 15,
+        actual_entries_total: 23,
       });
       expect(result.required.every((entry) => entry.present)).toBe(true);
       const bindings = buildVmodelZipSourceBindings(result);
-      expect(bindings).toHaveLength(11);
+      expect(bindings).toHaveLength(19);
       expect(bindings.every((binding) => binding.status === "bound")).toBe(true);
       expect(bindings.find((binding) => binding.bindingId === "zip-source:typed-spec")).toMatchObject({
         sourcePath: "docs/99_型付きスペック・自動検出設計書.yaml",
@@ -97,7 +97,7 @@ describe("V-model ZIP manifest", () => {
         helixSurfaces: ["design declarations", "design references", "design impact"],
       });
       expect(vmodelZipManifestMessages(result)[0]).toContain("vmodel-zip-manifest - violation");
-      expect(vmodelZipManifestMessages(result)[0]).toContain("required=13/13");
+      expect(vmodelZipManifestMessages(result)[0]).toContain("required=21/21");
       expect(vmodelZipManifestMessages(result)[1]).toContain(
         "vmodel-zip-inventory-signature - violation",
       );
@@ -121,7 +121,7 @@ describe("V-model ZIP manifest", () => {
       expect(result.ok).toBe(false);
       expect(result.required.filter((entry) => entry.present)).toHaveLength(1);
       expect(buildVmodelZipSourceBindings(result).filter((binding) => binding.status === "missing"))
-        .toHaveLength(10);
+        .toHaveLength(18);
       expect(result.inventorySignature.status).toBe("mismatch");
       expect(result.findings.map((finding) => finding.code)).toContain("required_entry_missing");
       expect(vmodelZipManifestMessages(result)[0]).toContain("violation");

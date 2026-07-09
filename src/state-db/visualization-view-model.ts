@@ -103,6 +103,9 @@ function emptyScrumOperation(): ProjectScrumOperation {
     backlogItems: 0,
     sprintItems: 0,
     acceptanceItems: 0,
+    planningItems: 0,
+    ceremonyItems: 0,
+    metricItems: 0,
     activeSprintPlans: 0,
     items: [],
     docDependencies: [],
@@ -773,6 +776,9 @@ export interface ProjectCurrentLocationView {
     backlog_items: number;
     sprint_items: number;
     acceptance_items: number;
+    planning_items: number;
+    ceremony_items: number;
+    metric_items: number;
     active_sprint_plans: number;
     doc_dependencies: string[];
     implementation_dependencies: string[];
@@ -2466,6 +2472,9 @@ export function buildProjectCurrentLocationView(
       backlog_items: scrumOperation.backlogItems,
       sprint_items: scrumOperation.sprintItems,
       acceptance_items: scrumOperation.acceptanceItems,
+      planning_items: scrumOperation.planningItems,
+      ceremony_items: scrumOperation.ceremonyItems,
+      metric_items: scrumOperation.metricItems,
       active_sprint_plans: scrumOperation.activeSprintPlans,
       doc_dependencies: [...scrumOperation.docDependencies],
       implementation_dependencies: [...scrumOperation.implementationDependencies],

@@ -3236,7 +3236,7 @@ describe("L7 CLI surface closure", () => {
           present: false,
           entries_total: 0,
           required_present: 0,
-          required_total: 13,
+          required_total: 21,
         },
         tailoring_gate: {
           status: "needs_tailoring",
@@ -3515,7 +3515,7 @@ describe("L7 CLI surface closure", () => {
         },
       });
       expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=9");
-      expect(fitText.stdout).toContain("zip-manifest: present=false root=- entries=0 required=0/13");
+      expect(fitText.stdout).toContain("zip-manifest: present=false root=- entries=0 required=0/21");
       expect(fitText.stdout).toContain(
         "tailoring-gate: profile=solo required=0 optional=0 na=2 missing=4",
       );

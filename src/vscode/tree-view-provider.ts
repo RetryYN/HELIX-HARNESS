@@ -1174,7 +1174,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
     node({
       id: "project/current-location/scrum-operation",
       label: "Scrum operation",
-      description: `${current.scrum_operation.status} backlog=${current.scrum_operation.backlog_items} sprint=${current.scrum_operation.sprint_items} ac=${current.scrum_operation.acceptance_items} active=${current.scrum_operation.active_sprint_plans}`,
+      description: `${current.scrum_operation.status} backlog=${current.scrum_operation.backlog_items} sprint=${current.scrum_operation.sprint_items} ac=${current.scrum_operation.acceptance_items} plan=${current.scrum_operation.planning_items} ceremony=${current.scrum_operation.ceremony_items} metric=${current.scrum_operation.metric_items} active=${current.scrum_operation.active_sprint_plans}`,
       tooltip: tooltipLines(
         [
           current.scrum_operation.source_package,

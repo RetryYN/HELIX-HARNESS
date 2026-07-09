@@ -293,12 +293,23 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
       sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
       sourceBindings: [
         "zip-source:scrum-product-backlog",
+        "zip-source:scrum-story-mapping",
+        "zip-source:scrum-estimation-velocity",
+        "zip-source:scrum-release-plan",
         "zip-source:scrum-sprint-plan",
+        "zip-source:scrum-dor-dod",
+        "zip-source:scrum-daily-record",
+        "zip-source:scrum-sprint-review",
+        "zip-source:scrum-retrospective",
+        "zip-source:scrum-burndown-velocity",
         "zip-source:scrum-acceptance",
       ],
       backlogItems: 2,
       sprintItems: 1,
       acceptanceItems: 2,
+      planningItems: 0,
+      ceremonyItems: 0,
+      metricItems: 0,
       activeSprintPlans: 1,
       docDependencies: [
         "docs/112_プロダクトバックログ.yaml",
@@ -348,7 +359,15 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
       command: "helix skill suggest --current-location --summary-json",
       sourceBindings: [
         "zip-source:scrum-product-backlog",
+        "zip-source:scrum-story-mapping",
+        "zip-source:scrum-estimation-velocity",
+        "zip-source:scrum-release-plan",
         "zip-source:scrum-sprint-plan",
+        "zip-source:scrum-dor-dod",
+        "zip-source:scrum-daily-record",
+        "zip-source:scrum-sprint-review",
+        "zip-source:scrum-retrospective",
+        "zip-source:scrum-burndown-velocity",
         "zip-source:scrum-acceptance",
       ],
       docDependencies: [
@@ -1461,7 +1480,7 @@ describe("visualization Tree View adapter", () => {
     );
     expect(scrumOperation).toMatchObject({
       label: "Scrum operation",
-      description: "active backlog=2 sprint=1 ac=2 active=1",
+      description: "active backlog=2 sprint=1 ac=2 plan=0 ceremony=0 metric=0 active=1",
       contextValue: "current-location.scrum-operation.active",
       command: {
         title: "Copy pointer",

@@ -10,7 +10,15 @@ export const VMODEL_ZIP_REQUIRED_PATHS = [
   "docs/profiles.yaml",
   "docs/52_文書化方針・テーラリング設計.yaml",
   "docs/112_プロダクトバックログ.yaml",
+  "docs/113_ユーザーストーリーマッピング.yaml",
+  "docs/114_見積り・ベロシティ設計.yaml",
+  "docs/115_リリースプラン.yaml",
   "docs/116_スプリント計画.yaml",
+  "docs/117_DoR・DoD.yaml",
+  "docs/118_デイリースクラム・進行記録.yaml",
+  "docs/119_スプリントレビュー記録.yaml",
+  "docs/120_レトロスペクティブ記録.yaml",
+  "docs/121_バーンダウン・ベロシティ実績.yaml",
   "docs/29_受入基準・BDDシナリオ.yaml",
   "tools/build.py",
   "tools/spec_check.py",
@@ -63,7 +71,15 @@ export interface VmodelZipSourceBindingDefinition {
     | "catalog"
     | "tailoring"
     | "scrum_backlog"
+    | "scrum_story_mapping"
+    | "scrum_estimation"
+    | "scrum_release"
     | "scrum_sprint"
+    | "scrum_readiness_done"
+    | "scrum_daily"
+    | "scrum_review"
+    | "scrum_retro"
+    | "scrum_metrics"
     | "scrum_acceptance"
     | "reference_tool";
   l12Layers: string[];
@@ -142,6 +158,36 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
       "Scrum backlog の G/EP/US を L12 要求・要件・実装 frontier として current-location へ接続する",
   },
   {
+    bindingId: "zip-source:scrum-story-mapping",
+    sourcePath: "docs/113_ユーザーストーリーマッピング.yaml",
+    sourceCategory: "scrum_story_mapping",
+    l12Layers: ["L2", "L3"],
+    helixSurfaces: ["Scrum operation", "current-location", "Project view"],
+    evidenceTables: ["design_declarations", "project_current_location"],
+    requiredAction:
+      "ユーザーストーリーマップを backlog の補助軸として検出し、要求分解の現在地へ接続する",
+  },
+  {
+    bindingId: "zip-source:scrum-estimation-velocity",
+    sourcePath: "docs/114_見積り・ベロシティ設計.yaml",
+    sourceCategory: "scrum_estimation",
+    l12Layers: ["L3", "L7"],
+    helixSurfaces: ["Scrum operation", "drive model", "Project view"],
+    evidenceTables: ["design_declarations", "project_current_location"],
+    requiredAction:
+      "見積り・ベロシティ設計を sprint capacity と drive model の補助情報へ接続する",
+  },
+  {
+    bindingId: "zip-source:scrum-release-plan",
+    sourcePath: "docs/115_リリースプラン.yaml",
+    sourceCategory: "scrum_release",
+    l12Layers: ["L11", "L12"],
+    helixSurfaces: ["Scrum operation", "acceptance traceability", "Project view"],
+    evidenceTables: ["design_declarations", "project_current_location"],
+    requiredAction:
+      "リリースプランを受入・運用テストの境界へ接続し、increment の出口を機械検出する",
+  },
+  {
     bindingId: "zip-source:scrum-sprint-plan",
     sourcePath: "docs/116_スプリント計画.yaml",
     sourceCategory: "scrum_sprint",
@@ -150,6 +196,56 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     evidenceTables: ["plan_registry", "runtime_verification_events", "project_current_location"],
     requiredAction:
       "現在スプリントのタスク状態を DB 現在地と drive model へ投影し、Forward/Reverse の起点にする",
+  },
+  {
+    bindingId: "zip-source:scrum-dor-dod",
+    sourcePath: "docs/117_DoR・DoD.yaml",
+    sourceCategory: "scrum_readiness_done",
+    l12Layers: ["L3", "L7", "L11"],
+    helixSurfaces: ["Scrum operation", "design coverage gate", "Project view"],
+    evidenceTables: ["design_declarations", "test_runs", "project_current_location"],
+    requiredAction:
+      "DoR/DoD を着手条件・完了条件の機械検出点として current-location と gate に接続する",
+  },
+  {
+    bindingId: "zip-source:scrum-daily-record",
+    sourcePath: "docs/118_デイリースクラム・進行記録.yaml",
+    sourceCategory: "scrum_daily",
+    l12Layers: ["L7", "L12"],
+    helixSurfaces: ["Scrum operation", "Project view"],
+    evidenceTables: ["design_declarations", "project_current_location"],
+    requiredAction:
+      "デイリースクラム記録を障害・差し込みの運営シグナルとして Project view に接続する",
+  },
+  {
+    bindingId: "zip-source:scrum-sprint-review",
+    sourcePath: "docs/119_スプリントレビュー記録.yaml",
+    sourceCategory: "scrum_review",
+    l12Layers: ["L11", "L12"],
+    helixSurfaces: ["Scrum operation", "acceptance traceability", "Project view"],
+    evidenceTables: ["design_declarations", "design_references", "project_current_location"],
+    requiredAction:
+      "スプリントレビューの INC/feedback を受入・要求再投影の evidence として接続する",
+  },
+  {
+    bindingId: "zip-source:scrum-retrospective",
+    sourcePath: "docs/120_レトロスペクティブ記録.yaml",
+    sourceCategory: "scrum_retro",
+    l12Layers: ["L12"],
+    helixSurfaces: ["Scrum operation", "Project view"],
+    evidenceTables: ["design_declarations", "feedback_events", "project_current_location"],
+    requiredAction:
+      "レトロスペクティブ改善アクションを feedback_events と運用後改善の検出対象へ接続する",
+  },
+  {
+    bindingId: "zip-source:scrum-burndown-velocity",
+    sourcePath: "docs/121_バーンダウン・ベロシティ実績.yaml",
+    sourceCategory: "scrum_metrics",
+    l12Layers: ["L7", "L12"],
+    helixSurfaces: ["Scrum operation", "Project view"],
+    evidenceTables: ["design_declarations", "quality_signals", "project_current_location"],
+    requiredAction:
+      "バーンダウン・ベロシティ実績を進捗/KPIの機械検出対象へ接続する",
   },
   {
     bindingId: "zip-source:scrum-acceptance",

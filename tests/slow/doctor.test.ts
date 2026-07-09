@@ -3153,14 +3153,14 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: zip-adoption-binding",
-        "matrix-signature: entries=703 extensions=yaml:208,md:161,xlsx:263,png:26,py:29,json:9,feature:3,yml:1,txt:1 required_sources=13/13",
+        "matrix-signature: entries=703 extensions=yaml:208,md:161,xlsx:263,png:26,py:29,json:9,feature:3,yml:1,txt:1 required_sources=21/21",
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: zip-source-binding",
-        "status=complete bound=11 missing=0 advisory=0",
+        "status=complete bound=19 missing=0 advisory=0",
       ),
     ).toBe(true);
     expect(

@@ -97,9 +97,23 @@ export interface ProjectAcceptanceTraceability {
   implementationDependencies: string[];
 }
 
+type ProjectScrumOperationCategory =
+  | "backlog"
+  | "story_mapping"
+  | "estimation"
+  | "release"
+  | "sprint"
+  | "readiness"
+  | "daily"
+  | "review"
+  | "retro"
+  | "metric"
+  | "acceptance"
+  | "plan";
+
 export interface ProjectScrumOperationItem {
   operationId: string;
-  category: "backlog" | "sprint" | "acceptance" | "plan";
+  category: ProjectScrumOperationCategory;
   status: "observed" | "missing";
   declarationIds: string[];
   planIds: string[];
@@ -116,6 +130,9 @@ export interface ProjectScrumOperation {
   backlogItems: number;
   sprintItems: number;
   acceptanceItems: number;
+  planningItems: number;
+  ceremonyItems: number;
+  metricItems: number;
   activeSprintPlans: number;
   items: ProjectScrumOperationItem[];
   docDependencies: string[];
@@ -1747,6 +1764,80 @@ const OPERATION_SCOPES = [
     ],
   },
 ] as const;
+
+const SCRUM_OPERATION_SOURCES = [
+  {
+    operationId: "scrum:product-backlog",
+    category: "backlog",
+    sourcePath: "docs/112_プロダクトバックログ.yaml",
+    patterns: [/\b(?:EP|US)-\d+\b/, /\bG\d+\b/, /backlog|バックログ|ストーリー|エピック/i],
+  },
+  {
+    operationId: "scrum:story-mapping",
+    category: "story_mapping",
+    sourcePath: "docs/113_ユーザーストーリーマッピング.yaml",
+    patterns: [/story[_ -]?mapping|ストーリーマッピング|ユーザーストーリーマッピング/i],
+  },
+  {
+    operationId: "scrum:estimation-velocity",
+    category: "estimation",
+    sourcePath: "docs/114_見積り・ベロシティ設計.yaml",
+    patterns: [/見積|ベロシティ|velocity|estimation/i],
+  },
+  {
+    operationId: "scrum:release-plan",
+    category: "release",
+    sourcePath: "docs/115_リリースプラン.yaml",
+    patterns: [/リリース|release/i],
+  },
+  {
+    operationId: "scrum:sprint-plan",
+    category: "sprint",
+    sourcePath: "docs/116_スプリント計画.yaml",
+    patterns: [/\b(?:SP|SG)-\d+\b/, /スプリント|sprint/i],
+  },
+  {
+    operationId: "scrum:dor-dod",
+    category: "readiness",
+    sourcePath: "docs/117_DoR・DoD.yaml",
+    patterns: [/\bDoR\b|\bDoD\b|Definition of Ready|Definition of Done|着手条件|完成条件/i],
+  },
+  {
+    operationId: "scrum:daily-record",
+    category: "daily",
+    sourcePath: "docs/118_デイリースクラム・進行記録.yaml",
+    patterns: [/デイリー|daily|進行記録|ブロッカー|障害/i],
+  },
+  {
+    operationId: "scrum:sprint-review",
+    category: "review",
+    sourcePath: "docs/119_スプリントレビュー記録.yaml",
+    patterns: [/\bINC-\d+\b|スプリントレビュー|sprint review|increment|フィードバック/i],
+  },
+  {
+    operationId: "scrum:retrospective",
+    category: "retro",
+    sourcePath: "docs/120_レトロスペクティブ記録.yaml",
+    patterns: [/レトロ|retrospective|KPT|改善アクション/i],
+  },
+  {
+    operationId: "scrum:burndown-velocity",
+    category: "metric",
+    sourcePath: "docs/121_バーンダウン・ベロシティ実績.yaml",
+    patterns: [/バーンダウン|バーンアップ|velocity|ベロシティ|実績/i],
+  },
+  {
+    operationId: "scrum:acceptance",
+    category: "acceptance",
+    sourcePath: "docs/29_受入基準・BDDシナリオ.yaml",
+    patterns: [/\bAC-\d+(?:-\d+)?\b|受入基準|BDD|acceptance|Gherkin/i],
+  },
+] as const satisfies ReadonlyArray<{
+  operationId: string;
+  category: Exclude<ProjectScrumOperationCategory, "plan">;
+  sourcePath: string;
+  patterns: RegExp[];
+}>;
 
 const ZIP_ADOPTION_RULES = [
   {
@@ -4301,7 +4392,7 @@ function buildAcceptanceTraceability(db: HarnessDb): ProjectAcceptanceTraceabili
   };
 }
 
-function scrumDeclarationCategory(row: Record<string, unknown>): ProjectScrumOperationItem["category"] | null {
+function scrumDeclarationCategory(row: Record<string, unknown>): ProjectScrumOperationCategory | null {
   const text = [
     row.defined_id,
     row.declaration_kind,
@@ -4310,14 +4401,18 @@ function scrumDeclarationCategory(row: Record<string, unknown>): ProjectScrumOpe
   ]
     .map((value) => String(value ?? ""))
     .join(" ");
-  if (/\bAC-\d+(?:-\d+)?\b/.test(text) || /受入基準|BDD|acceptance/i.test(text)) {
-    return "acceptance";
+  const sourcePath = String(row.source_path ?? "");
+  const exactSource = SCRUM_OPERATION_SOURCES.find((source) => sourcePath === source.sourcePath);
+  if (exactSource) {
+    return exactSource.category;
   }
-  if (/\b(?:SP|SG|INC)-\d+\b/.test(text) || /スプリント|sprint|increment/i.test(text)) {
-    return "sprint";
-  }
-  if (/\b(?:EP|US)-\d+\b/.test(text) || /\bG\d+\b/.test(text) || /backlog|バックログ|ストーリー|エピック/i.test(text)) {
-    return "backlog";
+  const matchedSource = SCRUM_OPERATION_SOURCES.find(
+    (source) =>
+      text.includes(source.sourcePath) ||
+      source.patterns.some((pattern) => pattern.test(text)),
+  );
+  if (matchedSource) {
+    return matchedSource.category;
   }
   return null;
 }
@@ -4341,21 +4436,25 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
        ORDER BY plan_id`,
     )
     .all() as Array<Record<string, unknown>>;
-  const rowsByCategory: Record<"backlog" | "sprint" | "acceptance", Array<Record<string, unknown>>> = {
-    backlog: [],
-    sprint: [],
-    acceptance: [],
-  };
+  const rowsByCategory = SCRUM_OPERATION_SOURCES.reduce(
+    (acc, source) => {
+      acc[source.category] = [];
+      return acc;
+    },
+    {} as Record<Exclude<ProjectScrumOperationCategory, "plan">, Array<Record<string, unknown>>>,
+  );
   for (const row of declarationRows) {
     const category = scrumDeclarationCategory(row);
-    if (category && category !== "plan") rowsByCategory[category].push(row);
+    if (category && category !== "plan") {
+      rowsByCategory[category].push(row);
+    }
   }
   const activePlanRows = planRows.filter((row) =>
     ACTIVE_STATUSES.has(String(row.status ?? "").toLowerCase()),
   );
   const itemFromDeclarations = (input: {
     operationId: string;
-    category: "backlog" | "sprint" | "acceptance";
+    category: Exclude<ProjectScrumOperationCategory, "plan">;
     rows: Array<Record<string, unknown>>;
     missingDoc: string;
   }): ProjectScrumOperationItem => {
@@ -4379,24 +4478,14 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     (row) => `docs/plans/${String(row.plan_id ?? "")}.md`,
   );
   const items: ProjectScrumOperationItem[] = [
-    itemFromDeclarations({
-      operationId: "scrum:product-backlog",
-      category: "backlog",
-      rows: rowsByCategory.backlog,
-      missingDoc: "docs/112_プロダクトバックログ.yaml",
-    }),
-    itemFromDeclarations({
-      operationId: "scrum:sprint-plan",
-      category: "sprint",
-      rows: rowsByCategory.sprint,
-      missingDoc: "docs/116_スプリント計画.yaml",
-    }),
-    itemFromDeclarations({
-      operationId: "scrum:acceptance",
-      category: "acceptance",
-      rows: rowsByCategory.acceptance,
-      missingDoc: "docs/29_受入基準・BDDシナリオ.yaml",
-    }),
+    ...SCRUM_OPERATION_SOURCES.map((source) =>
+      itemFromDeclarations({
+        operationId: source.operationId,
+        category: source.category,
+        rows: rowsByCategory[source.category],
+        missingDoc: source.sourcePath,
+      }),
+    ),
     {
       operationId: "scrum:active-plan",
       category: "plan",
@@ -4427,6 +4516,16 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     backlogItems: rowsByCategory.backlog.length,
     sprintItems: rowsByCategory.sprint.length,
     acceptanceItems: rowsByCategory.acceptance.length,
+    planningItems:
+      rowsByCategory.story_mapping.length +
+      rowsByCategory.estimation.length +
+      rowsByCategory.release.length,
+    ceremonyItems:
+      rowsByCategory.readiness.length +
+      rowsByCategory.daily.length +
+      rowsByCategory.review.length +
+      rowsByCategory.retro.length,
+    metricItems: rowsByCategory.metric.length,
     activeSprintPlans: activePlanRows.length,
     items,
     docDependencies: unique(items.flatMap((item) => item.docDependencies)),
