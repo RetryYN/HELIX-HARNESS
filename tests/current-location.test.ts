@@ -3229,6 +3229,57 @@ describe("project current-location read model", () => {
       );
     }));
 
+  it("class/method contractは対象設計IDに結合したaccepted runtime evidenceでobservedに昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:contract",
+          defined_id: "HOPS-VMFIT-CONTRACT-01",
+          declaration_kind: "class/method contract",
+          title: "class method contract",
+          layer: "L5",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "runtime_verification_events",
+        primaryKey: "event_id",
+        row: {
+          event_id: "rv:class-method-contract",
+          plan_id: "PLAN-L12-OPS",
+          requirement_id: "HOPS-VMFIT-CONTRACT-01",
+          test_oracle_id: null,
+          claim: "observed",
+          session_id: "session",
+          source: "run-debug",
+          runtime_surface: "helix-cli",
+          correlation_id: "corr",
+          evidence_path: "src/state-db/current-location.ts",
+          occurred_at: "2026-07-08T00:01:00.000Z",
+          redaction_policy: "no-secret-material",
+          verification_class: "runtime_verified",
+          accept_status: "accepted",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "class_method_contract",
+            status: "observed",
+            observedCount: 1,
+            observationSources: ["runtime_verification_events:src/state-db/current-location.ts"],
+          }),
+        ]),
+      );
+    }));
+
   it("operation testはpassed test_runs/gate_runsから観測source付きでobservedに昇格する", () =>
     withDb((db) => {
       upsertRow(db, {

@@ -2754,7 +2754,7 @@ describe("runDoctor", () => {
         "drive-model-binding - operation-verification: coverage=L12-operation-observability doc=docs/design/**,docs/test-design/**",
       );
       expect(driveBinding.messages.join("\n")).toContain(
-        "impl=closure_next_action_ledger,design_declarations,gate_runs,runtime_verification_events,test_runs",
+        "impl=closure_next_action_ledger,design_declarations,gate_runs,hook_events,quality_signals,runtime_verification_events,test_runs",
       );
       expect(driveBinding.messages.join("\n")).toContain(
         "reverse_targets=docs/design/**,docs/test-design/**",
@@ -3030,52 +3030,48 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-runway-binding",
-        "status=machine_work_available",
+        "status=approval_required",
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-handoff-binding",
-        "status=approval_pending phase=approval",
+        "status=none phase=none",
       ),
     ).toBe(true);
+    expect(hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=-")).toBe(
+      true,
+    );
     expect(
-      hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=match"),
+      hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "db: status=none"),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-handoff-binding",
-        "db: status=approval_pending",
-      ),
-    ).toBe(true);
-    expect(
-      hasDoctorMessageWith(
-        r.messages,
-        "doctor: recovery-handoff-binding",
-        "reason-codes=handoff.status.approval_pending",
+        "reason-codes=handoff.status.none,handoff.next.missing",
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-exit-binding",
-        "remaining=344 selected=repair_failed_evidence",
+        "remaining=343 selected=close_ready",
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: approval-review-binding",
-        "status=approval_required action=close_ready count=230",
+        "status=approval_required action=close_ready count=343",
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: closure-apply-binding",
-        "readiness=approval_required close_ready=230 allowed=false approval_valid=false patches=20/20",
+        "readiness=approval_required close_ready=343 allowed=false approval_valid=false patches=20/20",
       ),
     ).toBe(true);
     expect(
@@ -3092,7 +3088,7 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: operation-scope-binding",
-        "observed-gap: status=watch",
+        "observed-gap: status=clear",
       ),
     ).toBe(true);
     expect(
