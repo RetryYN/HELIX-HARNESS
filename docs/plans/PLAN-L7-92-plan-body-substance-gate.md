@@ -19,6 +19,31 @@ review_evidence:
     scope: "PO「入れて」(2026-06-22) を受け PLAN-L7-91 §6 で follow-up としていた『PLAN 本文の空 (AP-13)』機械強制を実装。concept §3.6 AP-13『本文 0 行・成果物 declare のみの PLAN は無効』を deliverable hollow ([[PLAN-L7-91]]) の PLAN 版として fail-close。新規 lint plan-body-substance: frontmatter を除いた本文に『先頭 h1 タイトル / 空行 / HTML コメントを除く実体行が 0』の PLAN を violation。countSubstantiveBodyLines (純関数、CRLF 対応、先頭 h1 のみ skip) + loader (archived 除外) + doctor hard gate。閾値は AP-13 literal bright-line (本文 0 行) ゆえ terse PLAN を罰しない: 実リポ最小は PLAN-REVERSE-45 の 6 実体行 = blast radius 0 を scan で確認、repo green 維持。test 10 ケース (count 6: title-only/comment-only/empty/CRLF/2nd-h1 + analyze 2 + loader/check 2)。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:25:38+09:00"
+    tests_green_at: "2026-07-09T15:25:38+09:00"
+    verdict: approve
+    scope: "PLAN-L7-92 の execution evidence 欠落を、現行 plan-body-substance / plan-completion-drift / lint-wiring / doctor targeted green と typecheck で補い、PLAN body substance gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-body-substance.test.ts tests/plan-completion-drift.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:25:38+09:00"
+        evidence_path: tests/plan-body-substance.test.ts
+        output_digest: "sha256:2fd68c3da792fca4752576950b7060042a414ddeb31478fbf87b273b9a5afb90"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:25:38+09:00"
+        evidence_path: src/lint/plan-body-substance.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - PLAN body substance gate (AP-13 hollow-plan enforcement)"

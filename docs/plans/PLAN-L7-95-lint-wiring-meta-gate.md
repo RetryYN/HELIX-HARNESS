@@ -19,6 +19,31 @@ review_evidence:
     scope: "PO『/goal 全数監査 → 実装もれ/ルール整備不備を直せ』を受け、死蔵ルール (src/lint module が tested-green だが runtime 実行経路から audit 未呼出) の absence-blindness を fail-close 化。新規 src/lint/lint-wiring.ts: loadLintWiringInput (src 全 *.ts の相対 import グラフ構築 + src/cli.ts から BFS 到達解析、コメント除去後に抽出) + analyzeLintWiring (純関数: wired/deferred/unwired/staleDeferred 分類、DEFERRED_LINTS 理由必須 + stale fail-close) + doctor checkLintWiring。あわせて inert だった 4 audit (doc-consistency 完全 inert / entity-coverage 完全 inert / fr-registry-audit helper 再利用で audit inert / improvement-backlog 同) を doctor へ実配線 (live で 4 本とも violation 0、blast radius 0)。回帰二重化 = meta-gate (module 到達性) + doctor invocation fence (tests/doctor.test.ts、配線済 audit が実行され続けることを assert)。code-reviewer (sonnet) が『コメントアウト/文字列内の from \"...\" を IMPORT_SPEC が誤マッチし死蔵 module を偽 wired 化し得る』correctness 懸念を指摘 → stripComments + extractImportSpecs を純関数化し comment 除去で remediate + 専用テスト追加。修正後も live 分類は不変 (wired=52, deferred=1 [tool-adapter], 死蔵 0 = 偽 wired は元々無し、robustness 改善)。docs back-fill = 要件 §G.10/§G.11/§G.12 に doctor 配線明示 + gate-design §7 を IMP-033 配線部分の partial discharge と注記 + improvement-backlog IMP-006 を implemented (= lint-wiring meta-gate)。typecheck / Biome / Vitest / doctor / db rebuild green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:25:38+09:00"
+    tests_green_at: "2026-07-09T15:25:38+09:00"
+    verdict: approve
+    scope: "PLAN-L7-95 の execution evidence 欠落を、現行 plan-body-substance / plan-completion-drift / lint-wiring / doctor targeted green と typecheck で補い、lint-wiring meta-gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-body-substance.test.ts tests/plan-completion-drift.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:25:38+09:00"
+        evidence_path: tests/lint-wiring.test.ts
+        output_digest: "sha256:2fd68c3da792fca4752576950b7060042a414ddeb31478fbf87b273b9a5afb90"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:25:38+09:00"
+        evidence_path: src/lint/lint-wiring.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - lint-wiring meta-gate + 4 inert-lint audit 配線 (rule reachability の absence-blindness)"
