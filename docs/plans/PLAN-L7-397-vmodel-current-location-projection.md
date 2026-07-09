@@ -699,6 +699,39 @@ review_evidence:
         completed_at: "2026-07-09T13:34:28+09:00"
         evidence_path: .helix/tmp/closure/repair_failed_evidence-probe-record.json
         output_digest: "sha256:ed343eadd4087e6df0e5fd8018496826c7c4d486d2866df782f94c8ba83f123d"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T13:41:36+09:00"
+    tests_green_at: "2026-07-09T13:41:36+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "DB current-location が machine_phase_pending のままでも、ローカル handoff artifact が approval_pending まで進んでいる状態を `current-location --summary-json` と `recovery plan --summary-json` に併記した。Project view / vmodel fit だけでなく、工程表・駆動モデル summary でも承認待ちの現在地を機械判定できる。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:41:36+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:41:36+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:cd82ad72adc04f47dade95b7344d6cff12a7a6a71824b08a40cd6e89117c23f5"
+      - kind: smoke
+        command: "bash -lc 'bun src/cli.ts current-location --summary-json | rg -n \"local_handoff|approval_pending|approval_record_path\" -C 1 && bun src/cli.ts recovery plan --summary-json | rg -n \"recovery_handoff_gate|approval_pending|approval_record_path\" -C 1'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T13:41:36+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:c0bde01688a1349ddd96f3d3563323a6639344543c149a2305861227cfca23fe"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

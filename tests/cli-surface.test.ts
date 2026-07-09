@@ -3528,6 +3528,39 @@ describe("L7 CLI surface closure", () => {
           },
         },
       });
+      const currentLocationSummaryWithHandoff = runCliIn(root, [
+        "current-location",
+        "--summary-json",
+      ]);
+      expect(currentLocationSummaryWithHandoff.status).toBe(0);
+      expect(JSON.parse(currentLocationSummaryWithHandoff.stdout).recovery.local_handoff).toMatchObject(
+        {
+          status: "approval_pending",
+          effective_phase: "approval",
+          approval_status: "pending_human_review",
+          approval_record_path: ".helix/tmp/closure/collect_evidence-approval-draft.yml",
+          valid_for_apply: false,
+          command:
+            "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+        },
+      );
+      const recoveryPlanSummaryWithHandoff = runCliIn(root, [
+        "recovery",
+        "plan",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
+      expect(recoveryPlanSummaryWithHandoff.status).toBe(0);
+      expect(JSON.parse(recoveryPlanSummaryWithHandoff.stdout).recovery_handoff_gate).toMatchObject(
+        {
+          status: "approval_pending",
+          effective_phase: "approval",
+          approval_status: "pending_human_review",
+          approval_record_path: ".helix/tmp/closure/collect_evidence-approval-draft.yml",
+          valid_for_apply: false,
+        },
+      );
       expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=9");
       expect(fitText.stdout).toContain("zip-manifest: present=false root=- entries=0 required=0/21");
       expect(fitText.stdout).toContain(

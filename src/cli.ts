@@ -3342,7 +3342,41 @@ db.command("rebuild")
     );
   });
 
-function summarizeProjectCurrentLocation(snapshot: ProjectCurrentLocationSnapshot) {
+function summarizeRecoveryHandoffGateForCli(
+  gate: VmodelFitReport["recovery_handoff_gate"] | null,
+) {
+  if (!gate) return null;
+  return {
+    status: gate.status,
+    effective_phase: gate.effective_phase,
+    command: summaryJsonCommand(gate.command),
+    handoff_present: gate.handoff_present,
+    handoff_missing: gate.handoff_missing,
+    approval_status: gate.approval_status,
+    scope_status: gate.scope_status,
+    decision_id: gate.decision_id,
+    approval_record_path: gate.approval_record_path,
+    approval_scope_digest: gate.approval_scope_digest,
+    expected_approval_scope_digest: gate.expected_approval_scope_digest,
+    materialize_status: gate.materialize_status,
+    valid_for_apply: gate.valid_for_apply,
+    approval_state: gate.approval_state,
+  };
+}
+
+function projectRecoveryHandoffGate(
+  snapshot: ProjectCurrentLocationSnapshot,
+  repoRoot: string,
+): VmodelFitReport["recovery_handoff_gate"] | null {
+  if (!snapshot.recovery) return null;
+  return buildVmodelFitReport(snapshot, analyzeVmodelZipManifest(repoRoot), { repoRoot })
+    .recovery_handoff_gate;
+}
+
+function summarizeProjectCurrentLocation(
+  snapshot: ProjectCurrentLocationSnapshot,
+  options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
+) {
   return {
     schema_version: "project-current-location-summary.v1",
     source_clock: snapshot.source_clock,
@@ -3434,6 +3468,9 @@ function summarizeProjectCurrentLocation(snapshot: ProjectCurrentLocationSnapsho
             ),
           reentry_status: snapshot.recovery.reentry_forecast.status,
           reentry_next_gate: snapshot.recovery.reentry_forecast.next_gate,
+          local_handoff: summarizeRecoveryHandoffGateForCli(
+            options.recoveryHandoffGate ?? null,
+          ),
         }
       : null,
     skill_binding: snapshot.skill_binding
@@ -3545,7 +3582,15 @@ program
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       if (opts.summaryJson) {
-        process.stdout.write(`${JSON.stringify(summarizeProjectCurrentLocation(snapshot), null, 2)}\n`);
+        process.stdout.write(
+          `${JSON.stringify(
+            summarizeProjectCurrentLocation(snapshot, {
+              recoveryHandoffGate: projectRecoveryHandoffGate(snapshot, repoRoot),
+            }),
+            null,
+            2,
+          )}\n`,
+        );
         return;
       }
       if (opts.json) {
@@ -3785,7 +3830,10 @@ drive
 
 const recovery = program.command("recovery").description("Project recovery read-only surfaces");
 
-function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
+function summarizeProjectRecoveryPlan(
+  plan: ProjectRecoveryPlan,
+  options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
+) {
   return {
     schema_version: "project-recovery-plan-summary.v1",
     source_clock: plan.source_clock,
@@ -3800,6 +3848,9 @@ function summarizeProjectRecoveryPlan(plan: ProjectRecoveryPlan) {
       available_models: plan.drive_model.available_models,
     },
     selected_closure_action: plan.selected_closure_action,
+    recovery_handoff_gate: summarizeRecoveryHandoffGateForCli(
+      options.recoveryHandoffGate ?? null,
+    ),
     closure_evidence_plan: plan.closure_evidence_plan
       ? {
           selected_action: plan.closure_evidence_plan.selected_action,
@@ -3961,7 +4012,15 @@ recovery
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
       if (opts.summaryJson) {
-        process.stdout.write(`${JSON.stringify(summarizeProjectRecoveryPlan(plan), null, 2)}\n`);
+        process.stdout.write(
+          `${JSON.stringify(
+            summarizeProjectRecoveryPlan(plan, {
+              recoveryHandoffGate: projectRecoveryHandoffGate(snapshot, repoRoot),
+            }),
+            null,
+            2,
+          )}\n`,
+        );
         return;
       }
       if (opts.json) {
