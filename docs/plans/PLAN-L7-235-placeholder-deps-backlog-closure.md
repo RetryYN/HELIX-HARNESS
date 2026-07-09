@@ -12,6 +12,24 @@ backprop_decision_reason: "IMP-107 は既存 placeholder-deps lint / descent-obl
 owner: TL (Codex)
 parent_design: docs/design/harness/L5-detailed-design/physical-data.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+review_evidence:
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: placeholder-deps backlog closure と L7 impl-state / spec-backfill wait の分離が現HEADの fast regression で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/placeholder-deps.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: aim
     slot_label: "AIM - placeholder_deps backlog closure evidence"

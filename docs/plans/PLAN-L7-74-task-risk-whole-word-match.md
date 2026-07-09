@@ -10,6 +10,7 @@ updated: 2026-06-17
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
 review_evidence:
   - reviewer: claude-opus-4-8
     review_kind: intra_runtime_subagent
@@ -19,6 +20,23 @@ review_evidence:
     scope: "Fix false-positive escalation-risk flags in classifyTask: substring matching flagged 'production' inside 'reproduction', 'schema' inside 'schematic', and 'secret' inside 'secretary'. Replaced with whole-word + optional-plural regex so the safety signal keeps plurals (credentials/payments/schemas) but stops over-flagging innocent words. PM verified via tsc, Biome, 2 new Vitest cases (false-positive guard + plural coverage), full regression, and doctor. Warn-only safety surface; no public signature change, no Reverse pairing required."
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: whole-word escalation-risk matching と false-positive guard が現HEADの fast regression で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/task-classify.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - task risk whole-word matching"
@@ -34,8 +52,9 @@ dependencies:
   requires:
     - docs/governance/helix-harness-requirements_v1.2.md
     - docs/adr/ADR-001-helix-harness-redesign-and-language.md
-  references:
     - docs/design/harness/L6-function-design/function-spec.md
+  references:
+    - docs/design/harness/L4-basic-design/architecture.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 

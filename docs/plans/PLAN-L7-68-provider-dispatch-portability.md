@@ -10,6 +10,7 @@ updated: 2026-06-16
 backprop_decision: not_required
 backprop_decision_reason: "内部 harness 自己適用 tooling (lint gate / runtime dispatch / guard / governance mechanism)。harness 自身の強制力を harden するもので、product の外部 requirement / design / test-design contract は変更しないため、上流 backprop target はない。"
 owner: Codex TL
+parent_design: docs/design/harness/L6-function-design/handover-mechanism.md
 review_evidence:
   - reviewer: codex-self-review
     review_kind: intra_runtime_subagent
@@ -19,6 +20,23 @@ review_evidence:
     scope: "Provider dispatch portability、capability-based runtime detection、handover の mechanical/explicit 分離、および HELIX runtime-env 分離。self-review で Critical 0 / High 0。完全な regression evidence は session output に記録済み。"
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: provider dispatch portability と mechanical/explicit handover separation が現HEADの fast regression で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/runtime-adapter.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - provider dispatch portability"
