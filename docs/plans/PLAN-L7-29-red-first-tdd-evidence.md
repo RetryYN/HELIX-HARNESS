@@ -31,6 +31,31 @@ review_evidence:
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
     scope: "A-114 の独立再 audit と PO closure 指示。confirmation 前に typecheck/lint/vitest/doctor が green。add-feature triad は内容変更なしで close 済み。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:58:43+09:00"
+    tests_green_at: "2026-07-09T15:58:43+09:00"
+    verdict: approve
+    scope: "PLAN-L7-29 の execution evidence 欠落を、現行 ddd-tdd-rules / doctor targeted green と typecheck で補い、red-first TDD evidence gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/ddd-tdd-rules.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:58:43+09:00"
+        evidence_path: tests/ddd-tdd-rules.test.ts
+        output_digest: "sha256:da2a0cc8b4acc05e0b579e133d4e76a3ac164e961d10efa95b14e5e84885b9d9"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:58:43+09:00"
+        evidence_path: src/lint/ddd-tdd-rules.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-29 (add-impl): red-first-tdd-evidence の実装
