@@ -547,6 +547,168 @@ describe("L7 CLI surface closure", () => {
     );
   });
 
+  it("exposes constitution template resolution with non-silent conflict detection", () => {
+    const run = runCli([
+      "constitution",
+      "check",
+      "--entry",
+      "plan-scaffold:core:10:core",
+      "--entry",
+      "plan-scaffold:project:10:project",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      read_only: true,
+      schema_version: "constitution-template-stack.v1",
+      source_command: "helix constitution check --json",
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "template_conflict_not_silent", severity: "error" }),
+      ]),
+    );
+    expect(payload.resolved_artifacts[0].digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
+  it("exposes artifact convergence analysis that blocks unsafe completion claims", () => {
+    const run = runCli([
+      "artifacts",
+      "converge",
+      "--artifact",
+      "src-feature:code:src/feature.ts:sha256-code:12",
+      "--existing-plan",
+      "converge:missing_test:src-feature",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      completion_claim_allowed: false,
+      read_only: true,
+      schema_version: "artifact-convergence-analyzer.v1",
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ kind: "implemented_without_design", severity: "critical" }),
+        expect.objectContaining({ kind: "missing_test", severity: "critical" }),
+      ]),
+    );
+    expect(payload.generated_tasks).toEqual(
+      expect.arrayContaining([expect.objectContaining({ duplicate: true })]),
+    );
+  });
+
+  it("exposes state-machine policy fail-close and transition evidence", () => {
+    const missing = runCli(["state-machine", "policy", "--missing-policy", "--json"]);
+    expect(missing.status).toBe(1);
+    expect(JSON.parse(missing.stdout)).toMatchObject({
+      ok: false,
+      run_allowed: false,
+      schema_version: "state-machine-tool-policy.v1",
+      findings: [expect.objectContaining({ code: "state_policy_missing_fail_close" })],
+    });
+
+    const advisory = runCli([
+      "state-machine",
+      "policy",
+      "--state",
+      "state:implement",
+      "--enforcement",
+      "unsupported",
+      "--allowed-tool",
+      "apply_patch",
+      "--requested-tool",
+      "apply_patch",
+      "--transition",
+      "trace-freeze",
+      "--exit-criteria",
+      "tests green",
+      "--json",
+    ]);
+    const payload = JSON.parse(advisory.stdout);
+
+    expect(advisory.status, advisory.stderr || advisory.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      run_allowed: false,
+      enforcement_claim: "advisory",
+      state_transition_evidence: {
+        from_state: "state:implement",
+        to_states: ["trace-freeze"],
+      },
+    });
+  });
+
+  it("exposes state-machine template planning without executing generated workflows", () => {
+    const run = runCli([
+      "state-machine",
+      "template",
+      "--task",
+      "設計と検証",
+      "--triple-json",
+      JSON.stringify([
+        {
+          task: "safe",
+          template_id: "workflow:design-verify",
+          outcome: "success",
+          evidence_digest: "sha256:safe",
+        },
+        {
+          task: "unsafe",
+          template_id: "workflow:design-verify",
+          outcome: "failure",
+          evidence_digest: "api_key=secret",
+        },
+      ]),
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(1);
+    expect(payload).toMatchObject({
+      ok: false,
+      executable: false,
+      schema_version: "state-machine-template-planner.v1",
+      selected_template_id: "workflow:design-verify",
+    });
+    expect(payload.execution_triples).toHaveLength(1);
+    expect(run.stdout).not.toContain("api_key=secret");
+  });
+
+  it("exposes extension preset bundle registry as discovery-only dry-run by default", () => {
+    const run = runCli([
+      "extensions",
+      "registry",
+      "--dry-run",
+      "--manifest",
+      "bundle:community",
+      "--catalog",
+      "community",
+      "--component",
+      "docs/skills/ui.md:ui:true:false",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      dry_run: true,
+      catalog_policy: "discovery-only",
+      schema_version: "extension-preset-bundle-registry.v1",
+    });
+    expect(payload.install_plan).toEqual([
+      expect.objectContaining({ path: "docs/skills/ui.md", action: "skip" }),
+    ]);
+    expect(payload.hash_manifest[0].digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
   it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
     const branchKind = runCli([
       "guard",

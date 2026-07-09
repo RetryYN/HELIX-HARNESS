@@ -175,6 +175,10 @@ import {
   sweepStaleGuardSlots,
 } from "./runtime/agent-slots";
 import {
+  type ArtifactType,
+  buildArtifactConvergenceReport,
+} from "./runtime/artifact-convergence-analyzer";
+import {
   attemptsFromSessionEvents,
   evaluateAttemptEscalation,
   renderEscalationSignals,
@@ -186,10 +190,19 @@ import {
   type ChangePackageStatus,
 } from "./runtime/change-package-delta-archive";
 import {
+  buildConstitutionTemplateStackReport,
+  type TemplateSourceKind,
+} from "./runtime/constitution-template-stack";
+import {
   buildCrossRepoSpecStoreReport,
   type SpecStoreOperation,
 } from "./runtime/cross-repo-spec-store";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
+import {
+  type BundleCatalog,
+  type BundleKind,
+  buildExtensionPresetBundleRegistryReport,
+} from "./runtime/extension-preset-bundle-registry";
 import {
   type ClassifyResult,
   emitClassifyRequest,
@@ -253,6 +266,14 @@ import {
   buildSkillMemoryHygieneReport,
   loadSkillHygieneTelemetryFromDb,
 } from "./runtime/skill-memory-hygiene";
+import {
+  buildStateMachineTemplatePlan,
+  type ExecutionTriple,
+} from "./runtime/state-machine-template-planner";
+import {
+  buildStateMachineToolPolicyReport,
+  type EnforcementMode,
+} from "./runtime/state-machine-tool-policy";
 import {
   buildSummarySurfaceCommandAudit as buildSummarySurfaceCommandAuditFromPayloads,
   summaryJsonCommand,
@@ -1729,6 +1750,81 @@ function isChangePackageStatus(
     value === "accepted" ||
     value === "archived"
   );
+}
+
+function isTemplateSourceKind(value: string | undefined): value is TemplateSourceKind | undefined {
+  return (
+    value === undefined ||
+    value === "core" ||
+    value === "role" ||
+    value === "preset" ||
+    value === "project"
+  );
+}
+
+function isArtifactType(value: string | undefined): value is ArtifactType | undefined {
+  return (
+    value === undefined ||
+    value === "spec" ||
+    value === "plan" ||
+    value === "task" ||
+    value === "code" ||
+    value === "test" ||
+    value === "design"
+  );
+}
+
+function isEnforcementMode(value: string | undefined): value is EnforcementMode | undefined {
+  return value === undefined || value === "hard" || value === "advisory" || value === "unsupported";
+}
+
+function isBundleCatalog(value: string | undefined): value is BundleCatalog | undefined {
+  return value === undefined || value === "official" || value === "community" || value === "local";
+}
+
+function isBundleKind(value: string | undefined): value is BundleKind | undefined {
+  return value === undefined || value === "extension" || value === "preset" || value === "bundle";
+}
+
+function parseTemplateEntrySpec(spec: string) {
+  const [key = "", source = "", priority = "", content = "", overrideReason = ""] = spec.split(":");
+  if (!isTemplateSourceKind(source)) {
+    throw new Error(`invalid template source: ${source}`);
+  }
+  const parsedPriority = Number.parseInt(priority, 10);
+  if (!Number.isFinite(parsedPriority)) {
+    throw new Error(`invalid template priority: ${priority}`);
+  }
+  return {
+    key,
+    source: source ?? "core",
+    priority: parsedPriority,
+    content,
+    override_reason: overrideReason || null,
+  };
+}
+
+function parseConvergenceArtifactSpec(spec: string) {
+  const [artifactId = "", type = "", path = "", digest = "", line = ""] = spec.split(":");
+  if (!isArtifactType(type)) throw new Error(`invalid artifact type: ${type}`);
+  const parsedLine = line ? Number.parseInt(line, 10) : null;
+  if (line && !Number.isFinite(parsedLine)) {
+    throw new Error(`invalid artifact line: ${line}`);
+  }
+  return {
+    artifact_id: artifactId,
+    type: type ?? "plan",
+    path,
+    digest,
+    line: parsedLine,
+  };
+}
+
+function parseExecutionTriples(value: string | undefined): ExecutionTriple[] {
+  if (!value) return [];
+  const parsed = JSON.parse(value) as unknown;
+  if (!Array.isArray(parsed)) throw new Error("--triple-json must be an array");
+  return parsed.map((entry) => entry as ExecutionTriple);
 }
 
 function parseAgentLockSpec(spec: string, now: string): AgentLockRecord {
@@ -9453,6 +9549,285 @@ specStore
       }
       process.stdout.write(
         `spec-store check: ${report.ok ? "ok" : "blocked"} store=${report.store_id} op=${report.operation} trusted=${report.trusted_artifact}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    },
+  );
+
+const constitution = program
+  .command("constitution")
+  .description("constitution and template stack read-only checks");
+
+constitution
+  .command("check")
+  .description("emit deterministic template stack resolution and constitution findings")
+  .option("--json", "JSON output")
+  .option(
+    "--entry <spec>",
+    "template entry key:source:priority:content[:override_reason]",
+    collectCliValues,
+    [],
+  )
+  .action((opts: { json?: boolean; entry?: string[] }) => {
+    try {
+      const entries =
+        (opts.entry ?? []).length > 0
+          ? (opts.entry ?? []).map(parseTemplateEntrySpec)
+          : [{ key: "plan-scaffold", source: "core" as const, priority: 10, content: "core" }];
+      const report = buildConstitutionTemplateStackReport(entries, {
+        sourceCommand: "helix constitution check --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `constitution check: ${report.ok ? "ok" : "blocked"} resolved=${report.resolved_artifacts.length} findings=${report.findings.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix constitution check --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
+
+const artifacts = program.command("artifacts").description("cross-artifact analysis surfaces");
+
+artifacts
+  .command("converge")
+  .description("emit read-only artifact convergence analysis")
+  .option("--json", "JSON output")
+  .option("--artifact <spec>", "artifact id:type:path:digest[:line]", collectCliValues, [])
+  .option(
+    "--existing-plan <id>",
+    "existing PLAN/task id for duplicate detection",
+    collectCliValues,
+    [],
+  )
+  .action((opts: { json?: boolean; artifact?: string[]; existingPlan?: string[] }) => {
+    try {
+      const inputArtifacts =
+        (opts.artifact ?? []).length > 0
+          ? (opts.artifact ?? []).map(parseConvergenceArtifactSpec)
+          : [
+              {
+                artifact_id: "plan:dry-run",
+                type: "plan" as const,
+                path: "docs/plans/PLAN-DRY-RUN.md",
+                digest: "sha256:dry-run",
+                line: null,
+              },
+            ];
+      const report = buildArtifactConvergenceReport(inputArtifacts, {
+        existingPlanIds: opts.existingPlan ?? [],
+        sourceCommand: "helix artifacts converge --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `artifacts converge: ${report.ok ? "ok" : "blocked"} findings=${report.findings.length} completion=${report.completion_claim_allowed}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(
+          `  ${finding.severity}: ${finding.kind}: ${finding.source_artifact.path}:${finding.source_artifact.line ?? "-"} ${finding.actionable_task}\n`,
+        );
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix artifacts converge --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
+
+const stateMachine = program
+  .command("state-machine")
+  .description("state-machine planning surfaces");
+
+stateMachine
+  .command("policy")
+  .description("emit state policy enforcement and tool escalation report")
+  .option("--json", "JSON output")
+  .option("--missing-policy", "simulate missing state policy fail-close")
+  .option("--state <id>", "state id", "state:dry-run")
+  .option("--enforcement <mode>", "hard, advisory, or unsupported", "advisory")
+  .option("--allowed-tool <tool>", "allowed tool id", collectCliValues, [])
+  .option("--requested-tool <tool>", "requested tool id", collectCliValues, [])
+  .option("--approval-tool <tool>", "approval-required tool id", collectCliValues, [])
+  .option("--transition <state>", "allowed transition", collectCliValues, [])
+  .option("--exit-criteria <text>", "exit criteria", collectCliValues, [])
+  .action(
+    (opts: {
+      json?: boolean;
+      missingPolicy?: boolean;
+      state?: string;
+      enforcement?: string;
+      allowedTool?: string[];
+      requestedTool?: string[];
+      approvalTool?: string[];
+      transition?: string[];
+      exitCriteria?: string[];
+    }) => {
+      if (!isEnforcementMode(opts.enforcement)) {
+        process.exitCode = 1;
+        const output = {
+          ok: false,
+          error: "invalid_enforcement_mode",
+          source_command: "helix state-machine policy --json",
+        };
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else process.stderr.write("invalid enforcement mode\n");
+        return;
+      }
+      const policy = opts.missingPolicy
+        ? null
+        : {
+            state_id: opts.state ?? "state:dry-run",
+            allowed_tools: opts.allowedTool ?? [],
+            transitions: opts.transition ?? [],
+            exit_criteria: opts.exitCriteria ?? [],
+            enforcement: opts.enforcement ?? "advisory",
+            approval_required_tools: opts.approvalTool ?? [],
+          };
+      const report = buildStateMachineToolPolicyReport({
+        policy,
+        requested_tools: opts.requestedTool ?? [],
+        sourceCommand: "helix state-machine policy --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `state-machine policy: ${report.ok ? "ok" : "blocked"} state=${report.state_id ?? "-"} run=${report.run_allowed}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    },
+  );
+
+stateMachine
+  .command("template")
+  .description("emit workflow state-machine template selection and validation")
+  .option("--task <text>", "task text for task-lens template selection")
+  .option("--triple-json <json>", "execution triple array JSON")
+  .option("--json", "JSON output")
+  .action((opts: { task?: string; tripleJson?: string; json?: boolean }) => {
+    try {
+      const report = buildStateMachineTemplatePlan({
+        task: opts.task,
+        triples: parseExecutionTriples(opts.tripleJson),
+        sourceCommand: "helix state-machine template --json",
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `state-machine template: ${report.ok ? "ok" : "blocked"} selected=${report.selected_template_id ?? "-"} executable=${report.executable}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: false, error: message, source_command: "helix state-machine template --json" }, null, 2)}\n`,
+        );
+      } else process.stderr.write(`${message}\n`);
+    }
+  });
+
+const extensions = program
+  .command("extensions")
+  .description("extension/preset/bundle dry-run surfaces");
+
+extensions
+  .command("registry")
+  .description("emit extension preset bundle registry dry-run plan")
+  .requiredOption("--dry-run", "do not install, remove, or fetch extension bundles")
+  .option("--json", "JSON output")
+  .option("--manifest <id>", "manifest id", "bundle:dry-run")
+  .option("--kind <kind>", "extension, preset, or bundle", "bundle")
+  .option("--catalog <catalog>", "official, community, or local", "community")
+  .option("--role <role>", "role-oriented setup target", "se")
+  .option("--install-allowed", "mark install allowed")
+  .option("--secret-config", "simulate secret config material")
+  .option("--component <spec>", "path:content[:owned][:modified]", collectCliValues, [])
+  .action(
+    (opts: {
+      dryRun: boolean;
+      json?: boolean;
+      manifest?: string;
+      kind?: string;
+      catalog?: string;
+      role?: string;
+      installAllowed?: boolean;
+      secretConfig?: boolean;
+      component?: string[];
+    }) => {
+      if (!isBundleKind(opts.kind) || !isBundleCatalog(opts.catalog)) {
+        const output = {
+          ok: false,
+          error: "invalid_extension_bundle_option",
+          source_command: "helix extensions registry --dry-run --json",
+        };
+        process.exitCode = 1;
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else process.stderr.write("invalid extension bundle option\n");
+        return;
+      }
+      const components = (opts.component ?? ["docs/skills/example.md:example:true:false"]).map(
+        (spec) => {
+          const [path = "", content = "", owned = "", modified = ""] = spec.split(":");
+          return {
+            path,
+            content,
+            owned_by_registry: owned === "true",
+            user_modified: modified === "true",
+          };
+        },
+      );
+      const report = buildExtensionPresetBundleRegistryReport(
+        {
+          manifest_id: opts.manifest ?? "bundle:dry-run",
+          kind: opts.kind ?? "bundle",
+          catalog: opts.catalog ?? "community",
+          role: opts.role ?? "se",
+          install_allowed: Boolean(opts.installAllowed),
+          contains_secret_config: Boolean(opts.secretConfig),
+          components,
+        },
+        { sourceCommand: "helix extensions registry --dry-run --json" },
+      );
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `extensions registry: ${report.ok ? "ok" : "blocked"} manifest=${report.manifest_id} policy=${report.catalog_policy}\n`,
       );
       for (const finding of report.findings) {
         process.stdout.write(`  ${finding.severity}: ${finding.code}: ${finding.detail}\n`);
