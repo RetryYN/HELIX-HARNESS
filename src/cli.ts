@@ -3979,6 +3979,34 @@ function summarizeCurrentLocationFrontier(snapshot: ProjectCurrentLocationSnapsh
   };
 }
 
+function summarizeProjectOperationScope(
+  operationScope: ProjectCurrentLocationSnapshot["operation_scope"],
+  sourceCommand: string,
+) {
+  return {
+    designed: operationScope.designed,
+    observed: operationScope.observed,
+    observed_gap: operationScope.observed_gap,
+    missing: operationScope.missing,
+    reverify: operationScope.reverify,
+    source_command: sourceCommand,
+    items: operationScope.items.map((item) => ({
+      scope: item.scope,
+      label: item.label,
+      coverage_id: item.coverageId,
+      coverage_label: item.coverageLabel,
+      status: item.status,
+      design_count: item.designIds.length,
+      observed_count: item.observedCount,
+      observation_gap: item.status !== "missing" && item.observedCount === 0,
+      sample_design_ids: item.designIds.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT),
+      sample_observation_sources: item.observationSources.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT),
+      evidence_tables: item.evidenceTables,
+      reasons: item.reasons.slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT),
+    })),
+  };
+}
+
 function summarizeProjectCurrentLocation(
   snapshot: ProjectCurrentLocationSnapshot,
   options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
@@ -4038,13 +4066,10 @@ function summarizeProjectCurrentLocation(
       missing: snapshot.coverage.missing,
       reverify: snapshot.coverage.reverify,
     },
-    operation_scope: {
-      designed: snapshot.operation_scope.designed,
-      observed: snapshot.operation_scope.observed,
-      observed_gap: snapshot.operation_scope.observed_gap,
-      missing: snapshot.operation_scope.missing,
-      reverify: snapshot.operation_scope.reverify,
-    },
+    operation_scope: summarizeProjectOperationScope(
+      snapshot.operation_scope,
+      "helix current-location --summary-json",
+    ),
     current_location_frontier: summarizeCurrentLocationFrontier(snapshot),
     function_design_policy: summarizeProjectFunctionDesignPolicy(snapshot),
     scrum_operation: snapshot.scrum_operation
@@ -5126,13 +5151,10 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
     },
     current_location_frontier: summarizeCurrentLocationFrontier(snapshot),
     function_design_policy: functionDesignPolicy,
-    operation_scope: {
-      designed: snapshot.operation_scope.designed,
-      observed: snapshot.operation_scope.observed,
-      observed_gap: snapshot.operation_scope.observed_gap,
-      missing: snapshot.operation_scope.missing,
-      reverify: snapshot.operation_scope.reverify,
-    },
+    operation_scope: summarizeProjectOperationScope(
+      snapshot.operation_scope,
+      "helix progress frontier --summary-json",
+    ),
     scrum_operation: snapshot.scrum_operation
       ? {
           status: snapshot.scrum_operation.status,
@@ -9126,13 +9148,10 @@ function summarizeVmodelFitReport(
       required_action: blocker.required_action,
     })),
     design_integrity: payload.design_integrity,
-    operation_scope: {
-      designed: payload.operation_scope.designed,
-      observed: payload.operation_scope.observed,
-      observed_gap: payload.operation_scope.observed_gap,
-      missing: payload.operation_scope.missing,
-      reverify: payload.operation_scope.reverify,
-    },
+    operation_scope: summarizeProjectOperationScope(
+      payload.operation_scope,
+      "helix vmodel fit --summary-json",
+    ),
     write_policy: payload.write_policy,
     source_command: "helix vmodel fit --summary-json",
     current_location_command: "helix current-location --summary-json",

@@ -2101,7 +2101,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
         node({
           id: `project/current-location/operation-scope/${item.scope}`,
           label: item.label,
-          description: `${item.status} ${item.coverage_id}`,
+          description: `${item.status} design=${item.design_ids.length} observed=${item.observed_count} ${item.coverage_id}`,
           tooltip: `coverage=${item.coverage_id} ${item.coverage_label}\n${item.reasons.join("; ")}`,
           contextValue: `operation-scope.${item.status}`,
           children: [

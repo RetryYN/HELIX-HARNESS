@@ -9,7 +9,7 @@ route_mode: forward
 entry_signals:
   - "po_directive:2026-07-08 ハイブリッド設計ドキュメントv1-fixed.zip を基に、工程表と harness.db 現在地を結び、厳格な機械検出と駆動モデル選択へ接続する"
 created: 2026-07-08
-updated: 2026-07-09
+updated: 2026-07-10
 backprop_decision: not_required
 backprop_decision_reason: "L3 構想と L12 採用マトリクスを実装 projection へ接続する L7 実装であり、L0/L1 の意味変更や runtime state 名称変更は行わない。"
 owner: Codex / TL
@@ -52,6 +52,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/runtime/summary-surface-audit.ts
     artifact_type: source_module
+  - artifact_path: docs/design/helix/L5-detail/operation-scope.md
+    artifact_type: design_doc
   - artifact_path: tests/design-declarations.test.ts
     artifact_type: test_code
   - artifact_path: tests/current-location.test.ts
@@ -84,6 +86,111 @@ dependencies:
     - docs/test-design/harness/L8-unit-test-design.md
     - docs/test-design/helix/vmodel-docgen-fit-acceptance.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-10T01:01:45+09:00"
+    tests_green_at: "2026-07-10T01:01:45+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-subagents
+    scope: "`operation_scope` summary を counts-only から item 単位へ拡張し、current-location / vmodel fit / project frontier の3面で `log_design`、`kpi_metric`、`runtime_verification`、`operation_test`、`class_method_contract`、`incident_recovery_route` の status、design count、observed count、evidence tables を機械検出できるようにした。VSCode Project tree の operation scope 子ノードにも design/observed count を出し、L5 詳細設計 `docs/design/helix/L5-detail/operation-scope.md` で ZIP由来の運用後 scope 契約を typed declaration 化した。"
+    green_commands:
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:20+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:101c0e9d9514c52ae835196c495a092b15ce14929febd4febf037c4325c9111c"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:59:04+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"exposes Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T01:00:48+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:0fa2d957b4fa2a784beeb79a539f6113d509b0a1d0ab08d452f237fa3e59eb0d"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/visualization-treeview.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:59:04+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:070a891db1ae320e4dc7d971c2237427f4fce7a9832bfe95577a3f535a9aac52"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/db-projection-ingestion.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:05+09:00"
+        evidence_path: tests/db-projection-ingestion.test.ts
+        output_digest: "sha256:bc20b01006213d5a4b313ac5b9ed38cf364ca7ef5917d5366ec87b49a8558650"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:00+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:95d8c9f91965c964c7154f33fab5cbd7df9d8f448324acdb0e2d1f32612d5e10"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:01+09:00"
+        evidence_path: tests/summary-surface-audit.test.ts
+        output_digest: "sha256:c8864456eef0b12abed4c768a85aa59c0520c0ddb8f0f91fc14d8f3bbea92cd1"
+      - kind: smoke
+        command: "bun src/cli.ts current-location --summary-json | operation_scope.items smoke"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:10+09:00"
+        evidence_path: docs/design/helix/L5-detail/operation-scope.md
+        output_digest: "sha256:ee6975ba499ac93155250010b8a19133b6e6c7ff04f3282af1347f3d4c3527d8"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json | operation_scope.items smoke"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:11+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:c353765326c06bc771390d01d95c67137c3289e1ef918938a7f58ce67fb3b297"
+      - kind: smoke
+        command: "bun src/cli.ts progress frontier --summary-json | operation_scope.items smoke"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:11+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:12e9c58250ea0cd630b29f4f79316a70a4b9a33e662318075c1fdd8eaa3a6980"
+      - kind: plan_lint
+        command: "bun src/cli.ts plan lint"
+        runner: bun
+        scope: governance
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:22+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:6ec26e087de8a95b82fd4f686e4a6e5c6e3a5a6b2eb0d086ef98d7a3a217570c"
+      - kind: smoke
+        command: "git diff --check"
+        runner: bash
+        scope: changed-files
+        exit_code: 0
+        completed_at: "2026-07-10T01:01:23+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-10T00:50:17+09:00"

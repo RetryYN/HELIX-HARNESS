@@ -1894,10 +1894,10 @@ describe("visualization Tree View adapter", () => {
       "designed=2 observed=1 observed_gap=2 missing=1 reverify=0",
     );
     expect(operationScope?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
-      "project/current-location/operation-scope/log_design:designed L12-operation-observability",
-      "project/current-location/operation-scope/runtime_verification:observed L12-operation-observability",
-      "project/current-location/operation-scope/class_method_contract:missing L12-operation-observability",
-      "project/current-location/operation-scope/incident_recovery_route:designed L12-operation-observability",
+      "project/current-location/operation-scope/log_design:designed design=1 observed=0 L12-operation-observability",
+      "project/current-location/operation-scope/runtime_verification:observed design=1 observed=1 L12-operation-observability",
+      "project/current-location/operation-scope/class_method_contract:missing design=0 observed=0 L12-operation-observability",
+      "project/current-location/operation-scope/incident_recovery_route:designed design=1 observed=0 L12-operation-observability",
     ]);
     expect(operationScope?.children[0]?.tooltip).toContain(
       "coverage=L12-operation-observability 運用テスト/ログ/KPI/runtime",

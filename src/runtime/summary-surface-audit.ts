@@ -90,6 +90,10 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         decision_draft_record_command:
           "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
       },
+      operation_scope: {
+        source_command: "helix current-location --summary-json",
+        items: [],
+      },
       commands: {
         current_location: "helix current-location --summary-json",
         closure_review_window:
@@ -283,6 +287,10 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
           project_frontier: "helix progress frontier --summary-json",
         },
       },
+      operation_scope: {
+        source_command: "helix vmodel fit --summary-json",
+        items: [],
+      },
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
@@ -304,7 +312,10 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
           project_frontier: "helix progress frontier --summary-json",
         },
       },
-      operation_scope: {},
+      operation_scope: {
+        source_command: "helix progress frontier --summary-json",
+        items: [],
+      },
       scrum_operation: {
         source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
       },

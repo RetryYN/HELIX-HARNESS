@@ -3497,6 +3497,35 @@ describe("L7 CLI surface closure", () => {
           required_action:
             "独立した重い機能設計層を要求せず、必要な契約を L5 詳細設計・typed declaration・L7 TDD closure・runtime evidence へ吸収する",
         },
+        operation_scope: {
+          designed: expect.any(Number),
+          observed: expect.any(Number),
+          observed_gap: expect.any(Number),
+          missing: expect.any(Number),
+          reverify: expect.any(Number),
+          source_command: "helix current-location --summary-json",
+          items: expect.arrayContaining([
+            expect.objectContaining({
+              scope: "log_design",
+              status: expect.any(String),
+              design_count: expect.any(Number),
+              observed_count: expect.any(Number),
+              evidence_tables: expect.arrayContaining(["design_declarations"]),
+            }),
+            expect.objectContaining({
+              scope: "kpi_metric",
+              status: "observed",
+              observation_gap: false,
+              sample_observation_sources: expect.any(Array),
+              evidence_tables: expect.arrayContaining(["quality_signals"]),
+            }),
+            expect.objectContaining({
+              scope: "class_method_contract",
+              status: expect.any(String),
+              coverage_id: "L12-operation-observability",
+            }),
+          ]),
+        },
         scrum_operation: {
           status: expect.any(String),
           source_package: expect.any(String),
@@ -4194,6 +4223,18 @@ describe("L7 CLI surface closure", () => {
         },
         operation_scope: {
           observed_gap: expect.any(Number),
+          items: expect.arrayContaining([
+            expect.objectContaining({
+              scope: "kpi_metric",
+              status: "observed",
+              evidenceTables: expect.arrayContaining(["quality_signals"]),
+            }),
+            expect.objectContaining({
+              scope: "class_method_contract",
+              designIds: expect.any(Array),
+              observedCount: expect.any(Number),
+            }),
+          ]),
         },
         current_location_gate: {
           status: "needs_recovery",
@@ -4332,6 +4373,23 @@ describe("L7 CLI surface closure", () => {
           sample_guards: expect.arrayContaining([
             expect.objectContaining({
               status: expect.stringMatching(/fail|watch/),
+            }),
+          ]),
+        },
+        operation_scope: {
+          observed_gap: expect.any(Number),
+          source_command: "helix vmodel fit --summary-json",
+          items: expect.arrayContaining([
+            expect.objectContaining({
+              scope: "kpi_metric",
+              status: "observed",
+              observation_gap: false,
+              evidence_tables: expect.arrayContaining(["quality_signals"]),
+            }),
+            expect.objectContaining({
+              scope: "class_method_contract",
+              design_count: expect.any(Number),
+              observed_count: expect.any(Number),
             }),
           ]),
         },
@@ -6032,6 +6090,20 @@ describe("L7 CLI surface closure", () => {
             observed_gap: expect.any(Number),
             missing: expect.any(Number),
             reverify: expect.any(Number),
+            source_command: "helix progress frontier --summary-json",
+            items: expect.arrayContaining([
+              expect.objectContaining({
+                scope: "log_design",
+                design_count: expect.any(Number),
+                observed_count: expect.any(Number),
+                evidence_tables: expect.any(Array),
+              }),
+              expect.objectContaining({
+                scope: "class_method_contract",
+                status: expect.any(String),
+                coverage_id: "L12-operation-observability",
+              }),
+            ]),
           },
           scrum_operation: {
             status: expect.any(String),
