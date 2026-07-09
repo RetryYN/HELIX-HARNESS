@@ -58,6 +58,47 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T22:34:22+09:00"
+    tests_green_at: "2026-07-09T22:34:22+09:00"
+    verdict: approve
+    scope: "Project closure review-bundle summary の review_window_index に decision_id、allowed_outcomes、pending_human_review/non_authorizing metadata、default record path、decision-draft summary command、decision-draft record output command を追加し、343 件の close_ready approval の各 window から人間判断 record 作成導線へ機械的に辿れるようにした。Project frontier summary の commands にも current window の draft 導線を追加した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T22:31:49+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:17e275da54d333f410be75456ac3e6553bf49386cb6bbb2e9501f25df4ea77cd"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:34:22+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:cb6fffc76ac1d140881e09e5f243e0ee2a768fd421048ac367d6f7c8ae14dae6"
+      - kind: smoke
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:31:49+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:b8b92453e79445226f6975ecc6a3e023415506b5a0cdf7ef80dea95fbe635904"
+      - kind: smoke
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T22:34:22+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:9f1504a358a91ecd0806452dacd7342fa80ec3a7c4294b3cbc747e023af7b5ab"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T22:26:01+09:00"
     tests_green_at: "2026-07-09T22:26:01+09:00"
     verdict: approve

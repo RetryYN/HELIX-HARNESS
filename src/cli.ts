@@ -4917,6 +4917,8 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       previous_window_command: closeReadyReview.previous_window_command,
       next_window_command: closeReadyReview.next_window_command,
       transition_window_command: closeReadyReview.transition_window_command,
+      decision_draft_command: closeReadyReview.decision_draft_command,
+      decision_draft_record_command: closeReadyReview.decision_draft_record_command,
       source_command: closeReadyReview.source_command,
     },
     vmodel_fit: {
@@ -4946,6 +4948,8 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
       drive_model: driveModel.source_command,
       closure_review_window: closeReadyReview.current_window_command,
       closure_transition_window: closeReadyReview.transition_window_command,
+      closure_decision_draft: closeReadyReview.decision_draft_command,
+      closure_decision_draft_record: closeReadyReview.decision_draft_record_command,
       vmodel_fit: vmodelFit.source_command,
       skill_binding: skillBinding.source_command,
     },
@@ -5629,6 +5633,10 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
       ? null
       : `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.window.next_offset} --summary-json`;
   const transitionWindowCommand = `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${bundle.offset} --summary-json`;
+  const decisionDraftCommand = (offset: number) =>
+    `helix closure decision-draft --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`;
+  const decisionDraftRecordCommand = (offset: number) =>
+    `helix closure decision-draft --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --out .helix/tmp/closure/${bundle.action}-decision-draft-offset-${offset}.yml --summary-json`;
   const reviewWindowIndex = Array.from({ length: bundle.window.page_count }, (_, index) => {
     const offset = bundle.limit === 0 ? 0 : index * bundle.limit;
     const listed =
@@ -5637,6 +5645,10 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
       page_index: index + 1,
       page_count: bundle.window.page_count,
       current: offset === bundle.offset,
+      decision_id: bundle.decision.decision_id,
+      allowed_outcomes: bundle.decision.allowed_outcomes,
+      draft_outcome: "pending_human_review",
+      non_authorizing: true,
       offset,
       limit: bundle.limit,
       start: listed === 0 ? 0 : offset + 1,
@@ -5644,10 +5656,14 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
       listed,
       omitted_before: Math.min(offset, bundle.total),
       omitted_after: Math.max(0, bundle.total - offset - listed),
+      decision_record_default_path:
+        `.helix/tmp/closure/${bundle.action}-decision-draft-offset-${offset}.yml`,
       review_window_command:
         `helix closure review-bundle --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`,
       transition_window_command:
         `helix closure transition-plan --action ${bundle.action} --limit ${bundle.limit} --offset ${offset} --summary-json`,
+      decision_draft_command: decisionDraftCommand(offset),
+      decision_draft_record_command: decisionDraftRecordCommand(offset),
     };
   });
 
@@ -5683,6 +5699,8 @@ function summarizeClosureReviewBundle(bundle: ProjectClosureReviewBundle) {
     previous_window_command: previousWindowCommand,
     next_window_command: nextWindowCommand,
     transition_window_command: transitionWindowCommand,
+    decision_draft_command: decisionDraftCommand(bundle.offset),
+    decision_draft_record_command: decisionDraftRecordCommand(bundle.offset),
     candidate_count: bundle.candidates.length,
     sample_candidates: bundle.candidates
       .slice(0, CLOSURE_SUMMARY_SAMPLE_LIMIT)
