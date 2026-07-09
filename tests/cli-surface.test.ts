@@ -4473,6 +4473,16 @@ describe("L7 CLI surface closure", () => {
           expect.objectContaining({
             code: "current_location",
             command: "helix recovery plan --summary-json",
+            boundary: {
+              status: "design_or_runtime_regression",
+              completion_claim_blocked_by: "machine_or_design_work",
+              automation_class: "machine",
+              machine_actionable_count: 1,
+              human_approval_count: 0,
+              design_reverse_count: 0,
+              next_command:
+                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+            },
           }),
         ]),
       );

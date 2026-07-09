@@ -9484,6 +9484,36 @@ function summarizeVmodelFitReport(
       count: blocker.count,
       command: summaryJsonCommand(blocker.command),
       required_action: blocker.required_action,
+      boundary:
+        blocker.code === "current_location"
+          ? {
+              status: attentionBoundary,
+              completion_claim_blocked_by:
+                attentionBoundary === "human_approval"
+                  ? "human_approval"
+                  : attentionBoundary === "none"
+                    ? "none"
+                    : "machine_or_design_work",
+              automation_class:
+                attentionBoundary === "human_approval"
+                  ? "approval"
+                  : attentionBoundary === "none"
+                    ? "none"
+                    : "machine",
+              machine_actionable_count: payload.recovery_runway_gate.machine_actionable_count,
+              human_approval_count: payload.recovery_runway_gate.human_approval_count,
+              design_reverse_count: payload.recovery_runway_gate.design_reverse_count,
+              next_command: summaryJsonCommand(attentionBoundaryCommand),
+            }
+          : {
+              status: "machine_or_design_work",
+              completion_claim_blocked_by: "machine_or_design_work",
+              automation_class: "machine",
+              machine_actionable_count: blocker.count,
+              human_approval_count: 0,
+              design_reverse_count: 0,
+              next_command: summaryJsonCommand(blocker.command),
+            },
     })),
     design_integrity: payload.design_integrity,
     operation_scope: summarizeProjectOperationScope(

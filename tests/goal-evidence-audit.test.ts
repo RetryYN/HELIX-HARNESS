@@ -38,6 +38,14 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain(
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
     );
+
+    const l12Coverage = readFileSync(
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "utf8",
+    );
+    expect(l12Coverage).toContain("status: confirmed");
+    expect(l12Coverage).toContain("## §3 機械ゲート対応");
+    expect(l12Coverage).toContain("`recovery_runway` / `approval_review` / `attention_boundary`");
     expect(text).toContain("distribution_latest_tag");
     expect(text).toContain("sourceStatusDelta");
     expect(text).toContain("workflowRouteImpact");

@@ -4,6 +4,7 @@ import {
   buildSummarySurfaceContractPayloads,
   collectSummarySurfaceRawJsonHits,
   SUMMARY_SURFACE_CONTRACTS,
+  SUMMARY_SURFACE_SEMANTIC_REQUIREMENTS,
 } from "../src/runtime/summary-surface-audit";
 
 describe("summary surface audit", () => {
@@ -35,10 +36,12 @@ describe("summary surface audit", () => {
     expect(audit).toMatchObject({
       status: "pass",
       catalog_status: "pass",
+      semantic_status: "pass",
       checked_surface_count: SUMMARY_SURFACE_CONTRACTS.length,
       missing_surfaces: [],
       unexpected_surfaces: [],
       source_command_mismatches: [],
+      semantic_missing: [],
       unexpected_commands: [],
     });
     expect(audit.surfaces.map((surface) => surface.surface)).toEqual(
@@ -75,5 +78,46 @@ describe("summary surface audit", () => {
         actual: "helix wrong --summary-json",
       },
     ]);
+  });
+
+  it("fails closed when hybrid summary semantics are dropped", () => {
+    const payloads = buildSummarySurfaceContractPayloads().map((payload) =>
+      payload.surface === "vmodel-fit"
+        ? {
+            surface: payload.surface,
+            payload: {
+              source_command: "helix vmodel fit --summary-json",
+              regression_guards: {},
+              blockers: [{}],
+              sample_next_actions: [],
+            },
+          }
+        : payload,
+    );
+    const audit = buildSummarySurfaceCommandAudit(payloads);
+
+    expect(audit.status).toBe("semantic_drift");
+    expect(audit.catalog_status).toBe("pass");
+    expect(audit.semantic_status).toBe("drift");
+    expect(audit.semantic_missing).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          surface: "vmodel-fit",
+          path: "regression_guards.attention_boundary",
+        }),
+        expect.objectContaining({
+          surface: "vmodel-fit",
+          path: "blockers.0.boundary",
+        }),
+      ]),
+    );
+    expect(SUMMARY_SURFACE_SEMANTIC_REQUIREMENTS).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          surface: "project-frontier",
+          path: "vmodel_fit.regression_guards.attention_boundary",
+        }),
+      ]),
+    );
   });
 });

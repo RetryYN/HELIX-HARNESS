@@ -14,9 +14,16 @@ export type SummarySurfaceContract = {
   payload: Record<string, unknown>;
 };
 
+export type SummarySurfaceSemanticRequirement = {
+  surface: string;
+  path: string;
+  reason: string;
+};
+
 export type SummarySurfaceCommandAudit = {
-  status: "pass" | "unexpected_raw_json_command" | "catalog_drift";
+  status: "pass" | "unexpected_raw_json_command" | "catalog_drift" | "semantic_drift";
   catalog_status: "pass" | "drift";
+  semantic_status: "pass" | "drift";
   checked_surface_count: number;
   excluded_surface_count: number;
   unexpected_count: number;
@@ -40,6 +47,7 @@ export type SummarySurfaceCommandAudit = {
     expected: string;
     actual: string | null;
   }>;
+  semantic_missing: Array<SummarySurfaceSemanticRequirement>;
   unexpected_commands: Array<SummarySurfaceRawJsonHit & { surface: string }>;
 };
 
@@ -63,6 +71,79 @@ export const SUMMARY_SURFACE_AUDIT_ALLOWED_FIELDS = [
   "full_view_command",
   "full_review_bundle_command",
   "full_inject_command",
+];
+
+export const SUMMARY_SURFACE_SEMANTIC_REQUIREMENTS: SummarySurfaceSemanticRequirement[] = [
+  {
+    surface: "current-location",
+    path: "current_location_frontier.commands.drive_model",
+    reason: "Project view must retain current-location to drive-model navigation",
+  },
+  {
+    surface: "current-location",
+    path: "operation_scope.items",
+    reason: "Hybrid L12 operation/log/KPI scope must remain visible",
+  },
+  {
+    surface: "current-location",
+    path: "skill_binding.top_items",
+    reason: "Current location must expose skill binding candidates",
+  },
+  {
+    surface: "drive-model",
+    path: "candidate_count",
+    reason: "Drive model summary must retain selectable model coverage",
+  },
+  {
+    surface: "drive-model",
+    path: "forward_spine_model",
+    reason: "Hybrid operation keeps Forward as the default spine",
+  },
+  {
+    surface: "skill-binding",
+    path: "full_inject_command",
+    reason: "Skill binding summary must expose injection provenance",
+  },
+  {
+    surface: "skill-binding",
+    path: "top_items",
+    reason: "Skill binding summary must retain ranked recommendations",
+  },
+  {
+    surface: "roadmap-current",
+    path: "roadmap_position.frontier",
+    reason: "Roadmap summary must connect schedule frontier to DB current location",
+  },
+  {
+    surface: "roadmap-current",
+    path: "sample_actions",
+    reason: "Roadmap summary must retain machine-readable next work samples",
+  },
+  {
+    surface: "vmodel-fit",
+    path: "regression_guards.attention_boundary",
+    reason: "V-model fit summary must separate machine work from human approval",
+  },
+  {
+    surface: "vmodel-fit",
+    path: "blockers.0.boundary",
+    reason: "V-model blockers must expose their completion boundary",
+  },
+  {
+    surface: "vmodel-fit",
+    path: "sample_next_actions",
+    reason: "V-model fit summary must retain next action classification",
+  },
+  {
+    surface: "project-frontier",
+    path: "vmodel_fit.regression_guards.attention_boundary",
+    reason: "Project frontier must project V-model attention boundary to views",
+  },
+  {
+    surface: "project-frontier",
+    path: "skill_binding.top_items",
+    reason: "Project frontier must keep skill binding visible to Project view",
+  },
 ];
 
 export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
@@ -94,6 +175,9 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         source_command: "helix current-location --summary-json",
         items: [],
       },
+      skill_binding: {
+        top_items: [],
+      },
       commands: {
         current_location: "helix current-location --summary-json",
         closure_review_window:
@@ -111,6 +195,7 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     source_command: "helix drive model --summary-json",
     payload: {
       source_command: "helix drive model --summary-json",
+      candidate_count: 12,
       forward_spine_model: "Forward",
       registered_entry_model_count: 10,
       missing_registered_entry_models: [],
@@ -149,6 +234,10 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     source_command: "helix roadmap current --summary-json",
     payload: {
       source_command: "helix roadmap current --summary-json",
+      roadmap_position: {
+        frontier: [],
+      },
+      sample_actions: [],
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
@@ -320,6 +409,19 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         full_inject_command: "helix skill suggest --current-location --inject --json",
         top_items: [],
       },
+      regression_guards: {
+        attention_boundary: {
+          status: "human_approval",
+        },
+      },
+      blockers: [
+        {
+          boundary: {
+            status: "human_approval",
+          },
+        },
+      ],
+      sample_next_actions: [],
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
@@ -347,6 +449,16 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
       },
       scrum_operation: {
         source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      },
+      vmodel_fit: {
+        regression_guards: {
+          attention_boundary: {
+            status: "human_approval",
+          },
+        },
+      },
+      skill_binding: {
+        top_items: [],
       },
       commands: {
         project_frontier: "helix progress frontier --summary-json",
@@ -425,6 +537,21 @@ export function collectSummarySurfaceRawJsonHits(
   return [];
 }
 
+function hasSummarySurfacePath(value: unknown, path: string): boolean {
+  let current = value;
+  for (const segment of path.split(".")) {
+    if (Array.isArray(current)) {
+      const index = Number(segment);
+      if (!Number.isInteger(index) || index < 0 || index >= current.length) return false;
+      current = current[index];
+      continue;
+    }
+    if (current === null || typeof current !== "object" || !(segment in current)) return false;
+    current = (current as Record<string, unknown>)[segment];
+  }
+  return current !== undefined;
+}
+
 export function buildSummarySurfaceCommandAudit(
   payloads: SummarySurfacePayload[],
 ): SummarySurfaceCommandAudit {
@@ -467,18 +594,27 @@ export function buildSummarySurfaceCommandAudit(
       ...hit,
     })),
   );
+  const payloadBySurface = new Map(payloads.map((surface) => [surface.surface, surface.payload]));
+  const semanticMissing = SUMMARY_SURFACE_SEMANTIC_REQUIREMENTS.filter((requirement) => {
+    const payload = payloadBySurface.get(requirement.surface);
+    return payload === undefined || !hasSummarySurfacePath(payload, requirement.path);
+  });
   const catalogDrift =
     missingSurfaces.length > 0 ||
     unexpectedSurfaces.length > 0 ||
     sourceCommandMismatches.length > 0;
+  const semanticDrift = semanticMissing.length > 0;
   return {
     status:
       unexpectedCommands.length > 0
         ? "unexpected_raw_json_command"
         : catalogDrift
           ? "catalog_drift"
-          : "pass",
+          : semanticDrift
+            ? "semantic_drift"
+            : "pass",
     catalog_status: catalogDrift ? "drift" : "pass",
+    semantic_status: semanticDrift ? "drift" : "pass",
     checked_surface_count: surfaces.length,
     excluded_surface_count: SUMMARY_SURFACE_AUDIT_EXCLUDED_SURFACES.length,
     unexpected_count: unexpectedCommands.length,
@@ -489,6 +625,7 @@ export function buildSummarySurfaceCommandAudit(
     missing_surfaces: missingSurfaces,
     unexpected_surfaces: unexpectedSurfaces,
     source_command_mismatches: sourceCommandMismatches,
+    semantic_missing: semanticMissing,
     unexpected_commands: unexpectedCommands.slice(0, 20),
   };
 }
