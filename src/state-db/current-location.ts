@@ -2595,24 +2595,48 @@ export function closureEvidenceApprovalDraftPath(action: ProjectClosureQueueNext
   return `.helix/tmp/closure/${action}-approval-draft.yml`;
 }
 
-export function closureEvidenceProbeCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-probe --action ${action} --limit 1 --execute --out ${closureEvidenceProbeRecordPath(action)} --json`;
+function closureEvidenceCommandLimit(limit?: number): number {
+  return Math.max(1, Math.floor(limit ?? 1));
 }
 
-export function closureEvidenceMaterializeCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-materialize --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --summary-json`;
+export function closureEvidenceProbeCommand(
+  action: ProjectClosureQueueNextAction,
+  limit?: number,
+): string {
+  const commandLimit = closureEvidenceCommandLimit(limit);
+  return `helix closure evidence-probe --action ${action} --limit ${commandLimit} --execute --out ${closureEvidenceProbeRecordPath(action)} --json`;
 }
 
-export function closureEvidenceApprovalDraftCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-approval-draft --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --out ${closureEvidenceApprovalDraftPath(action)} --summary-json`;
+export function closureEvidenceMaterializeCommand(
+  action: ProjectClosureQueueNextAction,
+  limit?: number,
+): string {
+  const commandLimit = closureEvidenceCommandLimit(limit);
+  return `helix closure evidence-materialize --action ${action} --limit ${commandLimit} --probe-record ${closureEvidenceProbeRecordPath(action)} --summary-json`;
 }
 
-export function closureEvidenceApplyDryRunCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-apply --dry-run --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --summary-json`;
+export function closureEvidenceApprovalDraftCommand(
+  action: ProjectClosureQueueNextAction,
+  limit?: number,
+): string {
+  const commandLimit = closureEvidenceCommandLimit(limit);
+  return `helix closure evidence-approval-draft --action ${action} --limit ${commandLimit} --probe-record ${closureEvidenceProbeRecordPath(action)} --out ${closureEvidenceApprovalDraftPath(action)} --summary-json`;
 }
 
-export function closureEvidenceApplyExecuteCommand(action: ProjectClosureQueueNextAction): string {
-  return `helix closure evidence-apply --execute --action ${action} --limit 1 --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --summary-json`;
+export function closureEvidenceApplyDryRunCommand(
+  action: ProjectClosureQueueNextAction,
+  limit?: number,
+): string {
+  const commandLimit = closureEvidenceCommandLimit(limit);
+  return `helix closure evidence-apply --dry-run --action ${action} --limit ${commandLimit} --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --summary-json`;
+}
+
+export function closureEvidenceApplyExecuteCommand(
+  action: ProjectClosureQueueNextAction,
+  limit?: number,
+): string {
+  const commandLimit = closureEvidenceCommandLimit(limit);
+  return `helix closure evidence-apply --execute --action ${action} --limit ${commandLimit} --probe-record ${closureEvidenceProbeRecordPath(action)} --approval-record <approved-approval-record-path> --summary-json`;
 }
 
 export interface ProjectClosureEvidenceHandoffArtifacts {
@@ -3265,7 +3289,10 @@ function recoveryLanePrimaryCommand(action: ProjectClosureQueueNextAction): stri
   }
 }
 
-function recoveryEvidenceCommandChain(action: ProjectClosureQueueNextAction): {
+function recoveryEvidenceCommandChain(
+  action: ProjectClosureQueueNextAction,
+  limit?: number,
+): {
   evidence_probe_command: string | null;
   evidence_materialize_command: string | null;
   evidence_approval_draft_command: string | null;
@@ -3286,11 +3313,11 @@ function recoveryEvidenceCommandChain(action: ProjectClosureQueueNextAction): {
     };
   }
   return {
-    evidence_probe_command: closureEvidenceProbeCommand(action),
-    evidence_materialize_command: closureEvidenceMaterializeCommand(action),
-    evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(action),
-    evidence_apply_dry_run_command: closureEvidenceApplyDryRunCommand(action),
-    evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(action),
+    evidence_probe_command: closureEvidenceProbeCommand(action, limit),
+    evidence_materialize_command: closureEvidenceMaterializeCommand(action, limit),
+    evidence_approval_draft_command: closureEvidenceApprovalDraftCommand(action, limit),
+    evidence_apply_dry_run_command: closureEvidenceApplyDryRunCommand(action, limit),
+    evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(action, limit),
     evidence_apply_write_policy: "approval-required",
     evidence_handoff_artifacts: closureEvidenceHandoffArtifacts(action),
   };
@@ -3304,10 +3331,11 @@ function buildProjectRecoveryActionLanes(
     limit: number;
   },
 ): ProjectRecoveryActionLane[] {
-	  return PROJECT_CLOSURE_QUEUE_ACTIONS.map((action, index) => {
-	    const queueItems = snapshot.closure.queue.items.filter((item) => item.nextAction === action);
-	    const evidencePlan = buildProjectClosureEvidencePlan(snapshot, { action, limit: 0 });
-	    const evidenceChain = recoveryEvidenceCommandChain(action);
+  return PROJECT_CLOSURE_QUEUE_ACTIONS.map((action, index) => {
+    const queueItems = snapshot.closure.queue.items.filter((item) => item.nextAction === action);
+    const evidencePlan = buildProjectClosureEvidencePlan(snapshot, { action, limit: 0 });
+    const commandLimit = Math.max(1, Math.min(queueItems.length, input.limit));
+    const evidenceChain = recoveryEvidenceCommandChain(action, commandLimit);
     const status: ProjectRecoveryActionLane["status"] = !input.active || queueItems.length === 0
       ? "not_required"
       : action === "close_ready" &&

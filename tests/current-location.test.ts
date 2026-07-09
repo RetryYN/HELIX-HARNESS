@@ -2274,6 +2274,55 @@ describe("project current-location read model", () => {
           status: "failed",
         },
       });
+      for (const suffix of ["a", "b"]) {
+        const planId = `PLAN-L7-778-label-only-${suffix}`;
+        upsertRow(db, {
+          table: "plan_registry",
+          primaryKey: "plan_id",
+          row: {
+            plan_id: planId,
+            kind: "add-impl",
+            layer: "L7",
+            drive: "agent",
+            status: "draft",
+            updated_at: "2026-07-08T00:01:00.000Z",
+          },
+        });
+        upsertRow(db, {
+          table: "artifact_registry",
+          primaryKey: "artifact_id",
+          row: {
+            artifact_id: `artifact:${planId}`,
+            artifact_type: "markdown_doc",
+            path: `docs/plans/${planId}.md`,
+            pair_artifact: "",
+            status: "current",
+            updated_at: "2026-07-08T00:01:00.000Z",
+          },
+        });
+        upsertRow(db, {
+          table: "test_runs",
+          primaryKey: "test_run_id",
+          row: {
+            test_run_id: `tr:label-only-${suffix}`,
+            session_id: "session",
+            plan_id: planId,
+            command: "Bash (vitest)",
+            runner: "bash",
+            runtime: "hook-session-log",
+            os: "linux",
+            shell: "bash",
+            scope: "runtime-hook",
+            started_at: "",
+            completed_at: "2026-07-08T00:02:10.000Z",
+            exit_code: 1,
+            evidence_path: ".helix/logs/session/session.jsonl",
+            output_digest: "error",
+            green_definition_id: "",
+            status: "failed",
+          },
+        });
+      }
 
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const batch = buildProjectClosureBatchReport(snapshot, {
@@ -2394,6 +2443,23 @@ describe("project current-location read model", () => {
           ],
         }),
       });
+      const recoveryPlan = buildProjectRecoveryPlan(snapshot, { limit: 3 });
+      const repairLane = recoveryPlan.action_lanes.find(
+        (lane) => lane.action === "repair_failed_evidence",
+      );
+      expect(repairLane).toMatchObject({
+        action: "repair_failed_evidence",
+        count: 3,
+        listed: 3,
+        evidence_probe_command:
+          "helix closure evidence-probe --action repair_failed_evidence --limit 3 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+        evidence_materialize_command:
+          "helix closure evidence-materialize --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json",
+        evidence_approval_draft_command:
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
+        evidence_apply_dry_run_command:
+          "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+      });
       const patchPacket = buildProjectClosureEvidencePatchPacket(snapshot, {
         action: "repair_failed_evidence",
         limit: 1,
@@ -2401,9 +2467,9 @@ describe("project current-location read model", () => {
       expect(patchPacket).toMatchObject({
         schema_version: "project-closure-evidence-patch-packet.v1",
         selected_action: "repair_failed_evidence",
-        queue_total: 1,
+        queue_total: 3,
         queue_listed: 1,
-        queue_omitted: 0,
+        queue_omitted: 2,
         patch_candidate_count: 3,
         apply_readiness: {
           status: "blocked_placeholders",

@@ -643,7 +643,7 @@ function zipSourceBindingView(
 }
 
 function currentLocationGate(snapshot: ProjectCurrentLocationSnapshot): VmodelCurrentLocationGate {
-  const recoveryPlan = buildProjectRecoveryPlan(snapshot, { limit: 0 });
+  const recoveryPlan = buildProjectRecoveryPlan(snapshot, { limit: 3 });
   const status =
     snapshot.current.status === "forward" && snapshot.current.completion_boundary !== "contradicted"
       ? "pass"
@@ -1835,10 +1835,20 @@ function buildVmodelNextActionWorkBucket(input: {
     (sum, item) => sum + item.evidence_patch_plan.patch_candidates.length,
     0,
   );
-  const evidenceProbeCommand = closureEvidenceProbeCommand(bucket.action);
-  const evidenceMaterializeCommand = closureEvidenceMaterializeCommand(bucket.action);
-  const evidenceApprovalDraftCommand = closureEvidenceApprovalDraftCommand(bucket.action);
-  const evidenceApplyDryRunCommand = closureEvidenceApplyDryRunCommand(bucket.action);
+  const evidenceCommandLimit = Math.max(1, bucket.listed);
+  const evidenceProbeCommand = closureEvidenceProbeCommand(bucket.action, evidenceCommandLimit);
+  const evidenceMaterializeCommand = closureEvidenceMaterializeCommand(
+    bucket.action,
+    evidenceCommandLimit,
+  );
+  const evidenceApprovalDraftCommand = closureEvidenceApprovalDraftCommand(
+    bucket.action,
+    evidenceCommandLimit,
+  );
+  const evidenceApplyDryRunCommand = closureEvidenceApplyDryRunCommand(
+    bucket.action,
+    evidenceCommandLimit,
+  );
   const evidenceHandoffArtifacts = closureEvidenceHandoffArtifacts(bucket.action);
   const evidenceHandoffStatus = evidenceHandoffArtifacts
     ? buildVmodelHandoffStatus({
@@ -1876,7 +1886,10 @@ function buildVmodelNextActionWorkBucket(input: {
     evidence_materialize_command: evidenceMaterializeCommand,
     evidence_approval_draft_command: evidenceApprovalDraftCommand,
     evidence_apply_dry_run_command: evidenceApplyDryRunCommand,
-    evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(bucket.action),
+    evidence_apply_execute_command: closureEvidenceApplyExecuteCommand(
+      bucket.action,
+      evidenceCommandLimit,
+    ),
     evidence_apply_write_policy: "approval-required",
     evidence_handoff_artifacts: evidenceHandoffArtifacts,
     evidence_handoff_status: evidenceHandoffStatus,

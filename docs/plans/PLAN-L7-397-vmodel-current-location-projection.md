@@ -315,6 +315,39 @@ review_evidence:
         completed_at: "2026-07-09T10:55:00+09:00"
         evidence_path: .helix/tmp/closure/repair_failed_evidence-approval-draft-20260709-safe-resolution-green.yml
         output_digest: "sha256:6319931d83ce366476efa910a646af33acdf282ba68b2998da29e2288d9ce989"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T11:31:36+09:00"
+    tests_green_at: "2026-07-09T11:31:36+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "repair_failed_evidence の machine lane を `limit 1` 誘導から、現在の repair queue 3件を一括 materialize / approval draft できる `limit 3` 誘導へ拡張した。apply は引き続き approval-required とし、承認前の自動化範囲を read-only materialize と approval draft までに限定した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T11:28:50+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/current-location.test.ts tests/visualization-view-model.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T11:28:50+09:00"
+        evidence_path: tests/current-location.test.ts
+        output_digest: "sha256:66a542bbd48fb8543127c87e065733618d3560068b75aa6745d98277f6a6e9c3"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T11:30:53+09:00"
+        evidence_path: .helix/tmp/closure/verify-zip-all-vmodel-fit-20260709.json
+        output_digest: "sha256:ec9fdc4100fb6498e54dc675c61989f09c9a7b7fc1a72226fadd1ac2d1fab92f"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装
