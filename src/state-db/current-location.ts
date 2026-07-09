@@ -1732,7 +1732,7 @@ const OPERATION_SCOPES = [
     scope: "log_design",
     label: "ログ設計",
     patterns: [/(?<!バック)ログ/, /\blog\b/i, /\blogging\b/i],
-    tables: ["design_declarations", "runtime_verification_events"],
+    tables: ["design_declarations", "runtime_verification_events", "hook_events"],
   },
   {
     scope: "kpi_metric",
@@ -4269,6 +4269,12 @@ function operationQualitySignalMatchesKpi(row: Record<string, unknown>): boolean
   return /metrics?/i.test(source) || /\bkpi\b/i.test(metric) || /metrics?|rate|trend/i.test(metric);
 }
 
+function operationHookEventLogSource(row: Record<string, unknown>): string {
+  const eventType = String(row.event_type ?? "").trim();
+  const evidencePath = String(row.evidence_path || row.event_id || "").trim();
+  return `hook_events:${eventType}:${evidencePath}`;
+}
+
 function operationScopeMatches(scopeId: string, text: string): boolean {
   const scope = OPERATION_SCOPES.find((item) => item.scope === scopeId);
   if (!scope) return false;
@@ -4311,6 +4317,7 @@ function operationObservationSources(input: {
   operationTestRows: Array<Record<string, unknown>>;
   operationGateRows: Array<Record<string, unknown>>;
   qualitySignalRows: Array<Record<string, unknown>>;
+  hookEventRows: Array<Record<string, unknown>>;
 }): string[] {
   const runtimeSources = input.runtimeAcceptedRows
     .filter((row) =>
@@ -4323,6 +4330,10 @@ function operationObservationSources(input: {
     .map((row) =>
       `runtime_verification_events:${String(row.evidence_path || row.event_id || "").trim()}`,
     );
+  if (input.scopeId === "log_design" && input.designIds.length > 0) {
+    const hookSources = input.hookEventRows.map(operationHookEventLogSource);
+    return unique([...runtimeSources, ...hookSources]);
+  }
   if (input.scopeId === "kpi_metric") {
     const qualitySources = input.qualitySignalRows
       .filter((row) => operationQualitySignalMatchesKpi(row))
@@ -5199,6 +5210,15 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
        ORDER BY source, subject_id, metric, status`,
     )
     .all() as Array<Record<string, unknown>>;
+  const hookEventRows = db
+    .prepare(
+      `SELECT event_type, evidence_path, MIN(event_id) AS event_id, COUNT(*) AS event_count
+       FROM hook_events
+       WHERE evidence_path IS NOT NULL AND evidence_path <> ''
+       GROUP BY event_type, evidence_path
+       ORDER BY event_type, evidence_path`,
+    )
+    .all() as Array<Record<string, unknown>>;
 
   const items = OPERATION_SCOPES.map((scope): ProjectOperationScopeCoverage => {
     const operationCoverage = designCoverageRuleForL12Layer("L12");
@@ -5213,6 +5233,7 @@ function buildOperationScope(db: HarnessDb): ProjectCurrentLocationSnapshot["ope
       operationTestRows,
       operationGateRows,
       qualitySignalRows,
+      hookEventRows,
     });
     const observedCount = observationSources.length;
     const evidenceTables = [...scope.tables];

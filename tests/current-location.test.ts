@@ -3274,6 +3274,54 @@ describe("project current-location read model", () => {
       );
     }));
 
+  it("ログ設計はhook_eventsから観測source付きでobservedに昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:log",
+          defined_id: "HOPS-LOG-01",
+          declaration_kind: "ログ設計",
+          title: "operation log design",
+          layer: "L12",
+          source_path: "docs/design/helix/L5-detailed-design/operation-scope.md",
+          source: "frontmatter",
+          indexed_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "hook_events",
+        primaryKey: "event_id",
+        row: {
+          event_id: "hook:session-start",
+          session_id: "session-log",
+          plan_id: "PLAN-L12-LOG",
+          hook_name: "session-log",
+          event_type: "session_start",
+          occurred_at: "2026-07-08T00:01:00.000Z",
+          digest: "sha256:hook",
+          evidence_path: ".helix/logs/session/session-log.jsonl",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.operation_scope.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            scope: "log_design",
+            status: "observed",
+            observedCount: 1,
+            observationSources: [
+              "hook_events:session_start:.helix/logs/session/session-log.jsonl",
+            ],
+            evidenceTables: expect.arrayContaining(["hook_events"]),
+          }),
+        ]),
+      );
+    }));
+
   it("runtime verificationが設計済みでも未観測ならoperation regression guardをwatchにする", () =>
     withDb((db) => {
       for (const [declarationId, definedId, kind, layer, title] of [
