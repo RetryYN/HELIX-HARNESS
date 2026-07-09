@@ -5286,6 +5286,36 @@ describe("L7 CLI surface closure", () => {
       expect(overwrite.status).toBe(2);
       expect(overwrite.stderr).toContain("closure evidence-probe: output already exists:");
 
+      writeFileSync(
+        join(root, "package.json"),
+        JSON.stringify(
+          {
+            scripts: {
+              "test:fast":
+                "bun -e \"require('node:fs').writeFileSync('probe-should-not-run.txt', 'ran')\"",
+            },
+          },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      const overwriteFailFast = runCliIn(root, [
+        "closure",
+        "evidence-probe",
+        "--action",
+        "repair_failed_evidence",
+        "--limit",
+        "1",
+        "--execute",
+        "--out",
+        probePath,
+        "--summary-json",
+      ]);
+      expect(overwriteFailFast.status).toBe(2);
+      expect(overwriteFailFast.stderr).toContain("closure evidence-probe: output already exists:");
+      expect(existsSync(join(root, "probe-should-not-run.txt"))).toBe(false);
+
       const dryRunOut = runCliIn(root, [
         "closure",
         "evidence-probe",

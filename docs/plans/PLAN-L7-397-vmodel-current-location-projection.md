@@ -666,6 +666,39 @@ review_evidence:
         completed_at: "2026-07-09T13:16:26+09:00"
         evidence_path: src/lint/dependency-drift.ts
         output_digest: "sha256:f6fa5ac850c768a325485423ae0809b688ea5dc6413ba55f8d1ab8df05b9e42e"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T13:34:28+09:00"
+    tests_green_at: "2026-07-09T13:34:28+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "Recovery machine lane の `closure evidence-probe --execute --out` が既存 probe record を検出した場合、DB rebuild や `bun run test:fast` 実行前に fail-fast するようにした。既存 record 上書きは引き続き拒否し、承認前の evidence handoff artifact を壊さない。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:34:28+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts -t \"writes executed evidence probe records\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:34:28+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:63d893a4e6bee60bcb2544a33ccbe6de1fc677266ac7608636fee2b5121c481f"
+      - kind: smoke
+        command: "bash -lc 'bun src/cli.ts closure evidence-probe --action repair_failed_evidence --limit 3 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --summary-json; test $? -eq 2'"
+        runner: bash
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T13:34:28+09:00"
+        evidence_path: .helix/tmp/closure/repair_failed_evidence-probe-record.json
+        output_digest: "sha256:ed343eadd4087e6df0e5fd8018496826c7c4d486d2866df782f94c8ba83f123d"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

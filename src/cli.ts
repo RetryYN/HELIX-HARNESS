@@ -5556,6 +5556,14 @@ closure
       }
 
       const repoRoot = process.cwd();
+      if (opts.out !== undefined && opts.execute === true) {
+        const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
+        if (existsSync(outputPath)) {
+          process.stderr.write(`closure evidence-probe: output already exists: ${opts.out}\n`);
+          process.exitCode = 2;
+          return;
+        }
+      }
       const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
       const db = openHarnessDb(dbPath, { repoRoot });
       try {
@@ -5612,11 +5620,6 @@ closure
             return;
           }
           const outputPath = isAbsolute(opts.out) ? opts.out : join(repoRoot, opts.out);
-          if (existsSync(outputPath)) {
-            process.stderr.write(`closure evidence-probe: output already exists: ${opts.out}\n`);
-            process.exitCode = 2;
-            return;
-          }
           const content = `${JSON.stringify(packet, null, 2)}\n`;
           mkdirSync(dirname(outputPath), { recursive: true });
           writeFileSync(outputPath, content, "utf8");
