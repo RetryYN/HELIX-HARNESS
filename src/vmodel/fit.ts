@@ -375,6 +375,7 @@ export interface VmodelRecoveryHandoffGate {
   scope_status: VmodelApprovalRecordStatus["scope_status"] | null;
   decision_id: string | null;
   outcome: string | null;
+  approval_record_path: string | null;
   approval_scope_digest: string | null;
   expected_approval_scope_digest: string | null;
   materialize_status: string | null;
@@ -2285,6 +2286,7 @@ function buildVmodelRecoveryHandoffGate(
       scope_status: handoffStatus?.approval_record?.scope_status ?? null,
       decision_id: handoffStatus?.approval_record?.decision_id ?? null,
       outcome: handoffStatus?.approval_record?.outcome ?? null,
+      approval_record_path: handoffStatus?.approval_record_path ?? null,
       approval_scope_digest: handoffStatus?.approval_record?.approval_scope_digest ?? null,
       expected_approval_scope_digest:
         handoffStatus?.approval_record?.expected_approval_scope_digest ?? null,
@@ -2315,6 +2317,7 @@ function buildVmodelRecoveryHandoffGate(
     scope_status: handoffStatus?.approval_record?.scope_status ?? null,
     decision_id: handoffStatus?.approval_record?.decision_id ?? null,
     outcome: handoffStatus?.approval_record?.outcome ?? null,
+    approval_record_path: handoffStatus?.approval_record_path ?? null,
     approval_scope_digest: handoffStatus?.approval_record?.approval_scope_digest ?? null,
     expected_approval_scope_digest:
       handoffStatus?.approval_record?.expected_approval_scope_digest ?? null,
@@ -2335,6 +2338,7 @@ function buildVmodelRecoveryHandoffGate(
       `approval=${handoffStatus?.approval_record?.status ?? "-"}`,
       `scope=${handoffStatus?.approval_record?.scope_status ?? "-"}`,
       `decision=${handoffStatus?.approval_record?.decision_id ?? "-"}`,
+      `approval_record_path=${handoffStatus?.approval_record_path ?? "-"}`,
       `digest=${handoffStatus?.approval_record?.approval_scope_digest ?? "-"}`,
       `expected_digest=${handoffStatus?.approval_record?.expected_approval_scope_digest ?? "-"}`,
       `materialize=${handoffStatus?.approval_record?.materialize_status ?? "-"}`,

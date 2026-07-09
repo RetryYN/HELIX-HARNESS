@@ -1009,6 +1009,7 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
             `scope=${current.vmodel_fit.recovery_handoff_gate.scope_status ?? "-"}`,
             `decision=${current.vmodel_fit.recovery_handoff_gate.decision_id ?? "-"}`,
             `outcome=${current.vmodel_fit.recovery_handoff_gate.outcome ?? "-"}`,
+            `approval_record_path=${current.vmodel_fit.recovery_handoff_gate.approval_record_path ?? "-"}`,
             `approval_scope_digest=${current.vmodel_fit.recovery_handoff_gate.approval_scope_digest ?? "-"}`,
             `expected=${current.vmodel_fit.recovery_handoff_gate.expected_approval_scope_digest ?? "-"}`,
             `materialize=${current.vmodel_fit.recovery_handoff_gate.materialize_status ?? "-"}`,

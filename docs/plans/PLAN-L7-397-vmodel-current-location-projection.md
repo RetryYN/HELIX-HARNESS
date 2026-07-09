@@ -512,6 +512,39 @@ review_evidence:
         completed_at: "2026-07-09T12:19:06+09:00"
         evidence_path: src/vmodel/fit.ts
         output_digest: "sha256:b98f6a61aa236d5d83cbd23aeedaa2306b4f5083d2a7832f911816d5cc0ed76d"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T12:34:00+09:00"
+    tests_green_at: "2026-07-09T12:34:00+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "approval_pending に到達した後、人間承認者が stale canonical ではなく active refresh approval record を機械的に開けるよう、vmodel fit / Project view / CLI summary に approval_record_path を投影した。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T12:32:10+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/current-location.test.ts tests/cli-surface.test.ts tests/vscode-extension-adapter.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T12:33:39+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:386058ebc9cc55f28d8a4602fef1e5a00174cf5aa9280c59a9022a528b665be6"
+      - kind: smoke
+        command: "bun src/cli.ts vmodel fit --summary-json"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T12:33:45+09:00"
+        evidence_path: src/vmodel/fit.ts
+        output_digest: "sha256:4abdac235b064b5781e4430a3d5450edb317f81dc7aec82594a2e0c723790b11"
 ---
 
 # PLAN-L7-397: ZIP/L12 current-location projection 実装

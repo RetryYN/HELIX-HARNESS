@@ -2305,7 +2305,7 @@ describe("visualization Tree View adapter", () => {
     });
     expect(recoveryHandoff?.tooltip).toContain("outcome=reject_materialized_evidence");
     expect(recoveryHandoff?.tooltip).toContain("approval.record.rejected");
-    expect(recoveryHandoff?.tooltip).toContain("handoff_next=approval_rejected");
+    expect(recoveryHandoff?.tooltip).toContain("handoff.status.approval_rejected");
   });
 
   it("U-VTREE-004: renders invalid approval record as approval-required state", () => {
@@ -2378,7 +2378,7 @@ describe("visualization Tree View adapter", () => {
     });
     expect(recoveryHandoff?.tooltip).toContain("approval record の必須 field/outcome");
     expect(recoveryHandoff?.tooltip).toContain("approval.record.invalid");
-    expect(recoveryHandoff?.tooltip).toContain("handoff_next=approval_required");
+    expect(recoveryHandoff?.tooltip).toContain("handoff.status.approval_required");
   });
 
   it("U-VTREE-004: renders approved handoff as apply dry-run machine step", () => {

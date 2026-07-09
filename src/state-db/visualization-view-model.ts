@@ -527,6 +527,7 @@ export interface ProjectCurrentLocationView {
       scope_status: string | null;
       decision_id: string | null;
       outcome: string | null;
+      approval_record_path: string | null;
       approval_scope_digest: string | null;
       expected_approval_scope_digest: string | null;
       materialize_status: string | null;
@@ -2226,6 +2227,7 @@ export function buildProjectCurrentLocationView(
         scope_status: recoveryHandoffGate.scope_status,
         decision_id: recoveryHandoffGate.decision_id,
         outcome: recoveryHandoffGate.outcome,
+        approval_record_path: recoveryHandoffGate.approval_record_path,
         approval_scope_digest: recoveryHandoffGate.approval_scope_digest,
         expected_approval_scope_digest: recoveryHandoffGate.expected_approval_scope_digest,
         materialize_status: recoveryHandoffGate.materialize_status,
@@ -3743,6 +3745,7 @@ function recoveryHandoffGateForView(
       scope_status: vmodelFit.recovery_handoff_gate.scope_status,
       decision_id: vmodelFit.recovery_handoff_gate.decision_id,
       outcome: vmodelFit.recovery_handoff_gate.outcome,
+      approval_record_path: vmodelFit.recovery_handoff_gate.approval_record_path,
       approval_scope_digest: vmodelFit.recovery_handoff_gate.approval_scope_digest,
       expected_approval_scope_digest:
         vmodelFit.recovery_handoff_gate.expected_approval_scope_digest,
@@ -3772,6 +3775,7 @@ function recoveryHandoffGateForView(
       decision_id:
         activeApprovalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
       outcome: activeApprovalRecord?.outcome ?? vmodelFit.recovery_handoff_gate.outcome,
+      approval_record_path: vmodelFit.recovery_handoff_gate.approval_record_path,
       approval_scope_digest:
         activeApprovalRecord?.approval_scope_digest ??
         vmodelFit.recovery_handoff_gate.approval_scope_digest,
@@ -3805,6 +3809,7 @@ function recoveryHandoffGateForView(
     scope_status: approvalRecord?.scope_status ?? null,
     decision_id: approvalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id,
     outcome: approvalRecord?.outcome ?? vmodelFit.recovery_handoff_gate.outcome,
+    approval_record_path: vmodelFit.recovery_handoff_gate.approval_record_path,
     approval_scope_digest:
       approvalRecord?.approval_scope_digest ??
       vmodelFit.recovery_handoff_gate.approval_scope_digest,
@@ -3832,6 +3837,7 @@ function recoveryHandoffGateForView(
       `approval=${approvalRecord?.status ?? "-"}`,
       `scope=${approvalRecord?.scope_status ?? "-"}`,
       `decision=${approvalRecord?.decision_id ?? vmodelFit.recovery_handoff_gate.decision_id ?? "-"}`,
+      `approval_record_path=${vmodelFit.recovery_handoff_gate.approval_record_path ?? "-"}`,
       `digest=${approvalRecord?.approval_scope_digest ?? vmodelFit.recovery_handoff_gate.approval_scope_digest ?? "-"}`,
       `expected_digest=${approvalRecord?.expected_approval_scope_digest ?? vmodelFit.recovery_handoff_gate.expected_approval_scope_digest ?? "-"}`,
       `materialize=${approvalRecord?.materialize_status ?? vmodelFit.recovery_handoff_gate.materialize_status ?? "-"}`,
