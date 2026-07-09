@@ -3,9 +3,9 @@ title: "HELIX L12 受入テスト設計 — ハイブリッド設計ドキュメ
 layer: L3
 executed_at_layer: L12
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-09
 owner: Codex / TL
 plan: PLAN-L3-13-vmodel-docgen-fit
 pair_artifact: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
@@ -18,145 +18,145 @@ spec:
       title: ZIP 採用境界
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-02
       kind: 受入テスト
       title: L12 map と機能設計廃止境界
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-03
       kind: 受入テスト
       title: typed declaration
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-04
       kind: 受入テスト
       title: DB projection と工程表
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-05
       kind: 受入テスト
       title: current-location と drive model
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-06
       kind: 受入テスト
       title: VSCode view
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-07
       kind: 受入テスト
       title: 運用後検証と log/KPI
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAT-VMFIT-L7-CLOSURE
       kind: TDD closure oracle
       title: L7 TDD closure / trace closure
       layer: L7
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-01a
       kind: acceptance criteria
       title: ZIP 採用対象境界
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-01b
       kind: acceptance criteria
       title: ZIP runtime import guard
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-02a
       kind: acceptance criteria
       title: L12 compatibility projection
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-02b
       kind: acceptance criteria
       title: 機能設計契約移転
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-02c
       kind: acceptance criteria
       title: cross PLAN 再投影
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-03a
       kind: acceptance criteria
       title: typed declaration parser
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-03b
       kind: acceptance criteria
       title: heuristic-only downgrade
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-04a
       kind: acceptance criteria
       title: DB projection
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-04b
       kind: acceptance criteria
       title: roadmap current-location binding
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-05a
       kind: acceptance criteria
       title: whole-program completion boundary
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-05b
       kind: acceptance criteria
       title: drive-model selector reverse scope
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-06a
       kind: acceptance criteria
       title: Project view DB/read-model rendering
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-06b
       kind: acceptance criteria
       title: Project view contradiction rendering
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-07a
       kind: acceptance criteria
       title: operation coverage gap
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-07b
       kind: acceptance criteria
       title: runtime evidence provenance
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HAC-VMFIT-07c
       kind: acceptance criteria
       title: operation observed gap visibility
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
   refs:
     - from: HAT-VMFIT-01
       to: HR-FR-VMFIT-01

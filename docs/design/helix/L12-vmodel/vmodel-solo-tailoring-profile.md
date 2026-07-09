@@ -2,9 +2,9 @@
 title: "HELIX L12 個人開発テーラリングプロファイル"
 layer: L12
 kind: design
-status: draft
+status: confirmed
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-09
 owner: Codex / TL
 plan: PLAN-L3-13-vmodel-docgen-fit
 related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
@@ -24,49 +24,49 @@ spec:
       title: core design documents are required
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-DETAIL-CONTRACT
       kind: tailoring required
       title: detailed design absorbs function design contract
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-TEST-ORACLE
       kind: tailoring required
       title: test design and TDD closure are required
       layer: L12
       owner: QA
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-OPERATION
       kind: tailoring required
       title: operation observability is required
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-DIAGRAMS
       kind: tailoring optional
       title: diagrams are optional generated support
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-INDEXES
       kind: tailoring optional
       title: indexes and maps are optional support
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-MOBILE-DESKTOP-NA
       kind: tailoring na
       title: mobile and desktop specific documents are out of scope by default
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-TAILOR-ENTERPRISE-NA
       kind: tailoring na
       title: enterprise only governance documents are out of scope by default
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
   refs:
     - from: HVM-TAILOR-CORE-DESIGN
       to: HVM-ADOPT-02

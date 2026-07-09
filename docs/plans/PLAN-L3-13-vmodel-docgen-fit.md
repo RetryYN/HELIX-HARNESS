@@ -4,12 +4,12 @@ title: "PLAN-L3-13 (add-design): ハイブリッド設計ドキュメントv1-fi
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-08 ハイブリッド設計ドキュメントv1-fixed.zip をベースに、機能設計を軽量化し L12 Vモデルへ再構築する"
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-09
 backprop_decision: not_required
 backprop_decision_reason: "既存 P9 は DB 収束・強い検証・可視化を既に要求している。本 PLAN は ZIP の L12/typed spec/impact/tailoring を HELIX 側へ additive に取り込む構想であり、L0 は V 字成立のためのスライド調整対象として扱う。"
 owner: Codex / TL
@@ -48,6 +48,24 @@ dependencies:
     - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
     - docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md
     - docs/test-design/helix/vmodel-docgen-fit-acceptance.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T21:05:00+09:00"
+    tests_green_at: "2026-07-09T21:05:00+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "ハイブリッド設計ドキュメントv1-fixed.zip の L12 V+Scrum 適合構想、採用マトリクス、solo tailoring、acceptance pair を confirmed 化する。PO は ZIP 方針の導入を承認済みで、実装変更は後続 L7 PLAN に分離する。"
+    green_commands:
+      - kind: lint
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:02:00+09:00"
+        evidence_path: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
+        output_digest: "sha256:1f03aef46fb7eb35543972ce7c77266ad167ec937ec6a8b2c50423bacba217f0"
 ---
 
 # PLAN-L3-13: ハイブリッド設計ドキュメントv1-fixed.zip 適合構想
@@ -58,7 +76,7 @@ dependencies:
 VSCode view、工程表、駆動モデルへ統合する。直接置換ではなく、ZIP の強みを HELIX の既存強みに従属させる。
 
 本 PLAN の成果は L3 の構想・要件化であり、L番号 schema、DB migration、VSCode extension 実装は後続 PLAN へ送る。
-L3 は人間承認境界のため、現時点の status は `draft` とする。
+L3 は人間承認境界のため、PO の導入承認と review evidence を確認して `confirmed` とする。
 
 ## §1 調査証跡
 

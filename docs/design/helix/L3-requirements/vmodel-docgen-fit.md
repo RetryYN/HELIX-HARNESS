@@ -2,10 +2,10 @@
 title: "HELIX L3 要件 — ハイブリッド設計ドキュメントv1-fixed.zip 適合構想"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 freeze_blocking: false
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-09
 owner: Codex / TL
 plan: PLAN-L3-13-vmodel-docgen-fit
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -20,91 +20,91 @@ spec:
       title: ZIP 採用境界
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-02
       kind: 機能要件
       title: L12 map と機能設計廃止境界
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-03
       kind: 機能要件
       title: typed design declaration
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-04
       kind: 機能要件
       title: DB projection と工程表
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-05
       kind: 機能要件
       title: current-location と drive model
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-06
       kind: 機能要件
       title: VSCode view
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-07
       kind: 機能要件
       title: 運用後検証と log/KPI
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HR-FR-VMFIT-08
       kind: 機能要件
       title: drive model skill binding
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-OPTEST-01
       kind: 運用テスト設計
       title: 運用テスト scope
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-CONTRACT-01
       kind: class/method contract
       title: class/method contract for operation observability
       layer: L5
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-INCIDENT-ROUTE-01
       kind: 障害時逆流 route
       title: incident recovery route to Recovery/Reverse
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-SCRUM-BACKLOG-01
       kind: Scrum backlog
       title: hybrid product backlog / G-EP-US projection
       layer: L3
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-SCRUM-SPRINT-01
       kind: スプリント計画
       title: hybrid sprint plan / current sprint operation
       layer: L7
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-SCRUM-AC-01
       kind: Scrum acceptance BDD
       title: hybrid acceptance criteria / BDD scenario projection
       layer: L11
       owner: TL
-      status: draft
+      status: confirmed
     - id: HOPS-VMFIT-SKILL-BINDING-01
       kind: skill binding projection
       title: drive model / Scrum / L12 layer skill binding
       layer: L7
       owner: TL
-      status: draft
+      status: confirmed
 ---
 
 # HELIX L3 要件 — ハイブリッド設計ドキュメントv1-fixed.zip 適合構想

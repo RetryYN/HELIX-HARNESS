@@ -2,7 +2,7 @@
 title: "HELIX L12 Vモデル ZIP 採用マトリクス"
 layer: L12
 kind: design
-status: draft
+status: confirmed
 created: 2026-07-08
 updated: 2026-07-09
 owner: Codex / TL
@@ -19,55 +19,55 @@ spec:
       title: YAML source and typed spec adoption
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-ADOPT-02
       kind: ZIP採用判断
       title: document coverage and tailoring adoption
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-ADOPT-03
       kind: ZIP採用判断
       title: traceability and impact adoption
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-ADOPT-04
       kind: ZIP採用判断
       title: WBS/current-location adoption
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-ADOPT-05
       kind: ZIP採用判断
       title: operation observability adoption
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-COMP-01
       kind: HELIX補完
       title: harness.db runtime evidence complement
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-COMP-02
       kind: HELIX補完
       title: Project view dynamic rendering complement
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-COMP-03
       kind: HELIX補完
       title: approval and action-boundary complement
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
     - id: HVM-REJECT-01
       kind: 非採用判断
       title: Python and Excel generator are reference only
       layer: L12
       owner: TL
-      status: draft
+      status: confirmed
   refs:
     - from: HVM-ADOPT-01
       to: HR-FR-VMFIT-03
