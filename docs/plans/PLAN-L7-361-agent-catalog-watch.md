@@ -4,9 +4,9 @@ title: "PLAN-L7-361: external agent catalog watch"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-07
-updated: 2026-07-07
+updated: 2026-07-09
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07:awesome-agent-catalog-reconciliation"
@@ -25,15 +25,55 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
     artifact_type: markdown_doc
+  - artifact_path: src/runtime/agent-catalog-watch.ts
+    artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
   - artifact_path: tests/agent-catalog-watch.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
   requires:
-    - PLAN-L7-204-upstream-adoption-decisions
+    - docs/plans/PLAN-L7-204-upstream-adoption-decisions.md
   references:
     - docs/design/helix/L0-charter/helix-charter_v0.1.md
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T16:17:11+09:00"
+    tests_green_at: "2026-07-09T16:16:48+09:00"
+    verdict: approve
+    scope: "PLAN-L7-361 external agent catalog watch。外部 install / execution なしで inventory digest、capability family 分類、source_rejected、unclassified fail-close、CLI read-only surface を追加した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T16:16:48+09:00"
+        evidence_path: tests/agent-catalog-watch.test.ts
+        output_digest: "sha256:19104295c7cb615d72336559c5fb60a81b4d236b136068bda31db7f8e02aff28"
+      - kind: smoke
+        command: "bun src/cli.ts audit agent-catalog --json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T16:14:37+09:00"
+        evidence_path: src/runtime/agent-catalog-watch.ts
+        output_digest: "sha256:f9a8225da9445b90e96ddf0dde846b4b4fc7c0689d9b11f74be553f89b7c1928"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T16:15:15+09:00"
+        evidence_path: src/runtime/agent-catalog-watch.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-361: 外部 agent catalog 監視

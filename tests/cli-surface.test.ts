@@ -1,5 +1,13 @@
 import { spawnSync } from "node:child_process";
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -201,6 +209,64 @@ describe("L7 CLI surface closure", () => {
 
     expect(run.status, run.stderr || run.stdout).toBe(0);
     expect(run.stdout.trim()).toBe(packageJson.version);
+  });
+
+  it("exposes external agent catalog watch as a read-only audit surface", () => {
+    const run = runCli(["audit", "agent-catalog", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      schema_version: "agent-catalog-watch.v1",
+      source_command: "helix audit agent-catalog --json",
+      unclassified_count: 0,
+    });
+    expect(payload.inventory_sha256).toMatch(/^[a-f0-9]{64}$/);
+    expect(payload.capability_family_counts.code_automation).toBeGreaterThan(0);
+  });
+
+  it("exposes runtime capability route decisions with evidence paths", () => {
+    const run = runCli([
+      "runtime",
+      "capabilities",
+      "--runtime",
+      "codex",
+      "--requires",
+      "tool_shell",
+      "hooks",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      schema_version: "runtime-capability-matrix.v1",
+      route_decision: {
+        runtime: "codex",
+        missing: [],
+      },
+    });
+    expect(payload.route_decision.evidence_paths).toContain("src/runtime/hosted-preflight.ts");
+  });
+
+  it("exposes isolated worktree dry-run packets without creating worktrees", () => {
+    const run = runCli(["run", "isolate", "--dry-run", "--allow-dirty", "--json"]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      schema_version: "isolated-worktree-sandbox-runner.v1",
+      mode: "dry-run",
+      credential_policy: "no_credentials",
+      cleanup_requires: {
+        explicit_target_path: true,
+        dry_run_evidence: true,
+      },
+    });
+    expect(payload.rollback_command).toContain("git worktree remove --force");
   });
 
   it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
@@ -2492,8 +2558,8 @@ describe("L7 CLI surface closure", () => {
           model: "Recovery",
           reverseTargets: ["docs/design/**", "docs/test-design/**"],
         },
-	        drive_route: {
-	          routeId: "drive:Recovery:recover-current-location",
+        drive_route: {
+          routeId: "drive:Recovery:recover-current-location",
           status: "recovery_required",
           selectedModel: "Recovery",
           defaultModel: "Forward",
@@ -2506,38 +2572,38 @@ describe("L7 CLI surface closure", () => {
             targets: ["docs/design/**", "docs/test-design/**"],
             queueActions: ["collect_evidence"],
             ledgerIds: ["next-action:closure:collect_evidence"],
-	          },
-	        },
-	        recovery: {
-	          status: "active",
-	          selected_closure_action: "collect_evidence",
-	          exit_forecast: {
-	            status: "blocked",
-	            remaining_queue_items: 1,
-	            next_command: "helix closure batch --action collect_evidence --json",
-	          },
-	          automation_runway: {
-	            status: "machine_work_available",
-	            machine_actionable_count: 1,
-	            human_approval_count: 0,
-	            remaining_after_machine_lanes: 0,
-	            next_machine_action: "collect_evidence",
-	            next_machine_command: "helix closure batch --action collect_evidence --json",
-	            next_machine_probe_command:
-	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	            next_machine_materialize_command:
-	              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
-	          },
-	          reentry_forecast: {
-	            status: "machine_phase_pending",
-	            next_phase_action: "collect_evidence",
-	            next_phase_type: "machine",
-	            next_command: "helix closure batch --action collect_evidence --json",
-	            next_execution_command:
-	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	          },
-	        },
-	        roadmap_position: {
+          },
+        },
+        recovery: {
+          status: "active",
+          selected_closure_action: "collect_evidence",
+          exit_forecast: {
+            status: "blocked",
+            remaining_queue_items: 1,
+            next_command: "helix closure batch --action collect_evidence --json",
+          },
+          automation_runway: {
+            status: "machine_work_available",
+            machine_actionable_count: 1,
+            human_approval_count: 0,
+            remaining_after_machine_lanes: 0,
+            next_machine_action: "collect_evidence",
+            next_machine_command: "helix closure batch --action collect_evidence --json",
+            next_machine_probe_command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            next_machine_materialize_command:
+              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+          },
+          reentry_forecast: {
+            status: "machine_phase_pending",
+            next_phase_action: "collect_evidence",
+            next_phase_type: "machine",
+            next_command: "helix closure batch --action collect_evidence --json",
+            next_execution_command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          },
+        },
+        roadmap_position: {
           status: "uncovered",
           rollup: {
             total_bands: 5,
@@ -2689,19 +2755,19 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "drive-route: drive:Recovery:recover-current-location status=recovery_required model=Recovery default=Forward return_to_design=true write=read-only",
       );
-	      expect(text.stdout).toContain(
-	        "drive-reverse-scope: targets=docs/design/**,docs/test-design/**",
-	      );
-	      expect(text.stdout).toContain(
-	        "recovery-exit: status=blocked remaining=1 blockers=2 next=helix closure batch --action collect_evidence --json",
-	      );
-	      expect(text.stdout).toContain(
-	        "recovery-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
-	      expect(text.stdout).toContain(
-	        "recovery-reentry: status=machine_phase_pending effective=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
-	      expect(text.stdout).toContain("l12-coverage: done=");
+      expect(text.stdout).toContain(
+        "drive-reverse-scope: targets=docs/design/**,docs/test-design/**",
+      );
+      expect(text.stdout).toContain(
+        "recovery-exit: status=blocked remaining=1 blockers=2 next=helix closure batch --action collect_evidence --json",
+      );
+      expect(text.stdout).toContain(
+        "recovery-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
+      expect(text.stdout).toContain(
+        "recovery-reentry: status=machine_phase_pending effective=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
+      expect(text.stdout).toContain("l12-coverage: done=");
       expect(text.stdout).toContain("design-impact: declarations=");
       expect(text.stdout).toContain(
         "roadmap-position: status=uncovered bands=0/5 parked=2 uncovered=3",
@@ -2846,28 +2912,28 @@ describe("L7 CLI surface closure", () => {
           total: 1,
           listed: 1,
         },
-	        automation_runway: {
-	          status: "machine_work_available",
-	          machine_actionable_count: 1,
-	          human_approval_count: 0,
-	          design_reverse_count: 0,
-	          remaining_after_machine_lanes: 0,
-	          next_machine_action: "collect_evidence",
-	          next_machine_command: "helix closure batch --action collect_evidence --json",
-	          next_machine_probe_command:
-	            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	          phases: [
-	            expect.objectContaining({
-	              sequence: 1,
-	              action: "collect_evidence",
-	              phase_type: "machine",
-	              count: 1,
-	              command: "helix closure batch --action collect_evidence --json",
-	              evidence_probe_command:
-	                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	            }),
-	          ],
-	        },
+        automation_runway: {
+          status: "machine_work_available",
+          machine_actionable_count: 1,
+          human_approval_count: 0,
+          design_reverse_count: 0,
+          remaining_after_machine_lanes: 0,
+          next_machine_action: "collect_evidence",
+          next_machine_command: "helix closure batch --action collect_evidence --json",
+          next_machine_probe_command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          phases: [
+            expect.objectContaining({
+              sequence: 1,
+              action: "collect_evidence",
+              phase_type: "machine",
+              count: 1,
+              command: "helix closure batch --action collect_evidence --json",
+              evidence_probe_command:
+                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            }),
+          ],
+        },
         automation_boundaries: expect.arrayContaining([
           expect.objectContaining({
             action: "collect_evidence",
@@ -2891,18 +2957,18 @@ describe("L7 CLI surface closure", () => {
             evidence_apply_write_policy: "approval-required",
           }),
         ]),
-	        reentry_forecast: {
-	          status: "machine_phase_pending",
-	          current_blocking_count: 1,
-	          blocking_after_machine_lanes: 0,
-	          required_phase_count: 1,
-	          next_phase_action: "collect_evidence",
-	          next_phase_type: "machine",
-	          next_gate: "recompute_drive_model",
-	          next_command: "helix closure batch --action collect_evidence --json",
-	          next_execution_command:
-	            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	        },
+        reentry_forecast: {
+          status: "machine_phase_pending",
+          current_blocking_count: 1,
+          blocking_after_machine_lanes: 0,
+          required_phase_count: 1,
+          next_phase_action: "collect_evidence",
+          next_phase_type: "machine",
+          next_gate: "recompute_drive_model",
+          next_command: "helix closure batch --action collect_evidence --json",
+          next_execution_command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+        },
         write_policy: "read-only",
         source_command: "helix recovery plan --json",
       });
@@ -3030,7 +3096,8 @@ describe("L7 CLI surface closure", () => {
               "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
             batch_command: "helix closure batch --action collect_evidence --summary-json",
             review_command: "helix closure review-bundle --action collect_evidence --summary-json",
-            evidence_patch_command: "helix closure evidence-patch --action collect_evidence --summary-json",
+            evidence_patch_command:
+              "helix closure evidence-patch --action collect_evidence --summary-json",
             evidence_probe_command:
               "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
             evidence_materialize_command:
@@ -3046,11 +3113,7 @@ describe("L7 CLI surface closure", () => {
         ]),
       );
       expect(roadmapCurrentPayload.counts.blockers).toBeGreaterThanOrEqual(3);
-      const roadmapCurrentSummaryJson = runCliIn(root, [
-        "roadmap",
-        "current",
-        "--summary-json",
-      ]);
+      const roadmapCurrentSummaryJson = runCliIn(root, ["roadmap", "current", "--summary-json"]);
       expect(roadmapCurrentSummaryJson.status).toBe(0);
       const roadmapCurrentSummary = JSON.parse(roadmapCurrentSummaryJson.stdout);
       expect(roadmapCurrentSummary).toMatchObject({
@@ -3258,26 +3321,29 @@ describe("L7 CLI surface closure", () => {
           missing_required: 4,
         },
         synthesis: {
-	          status: "needs_fit",
-	          common_adopted: 0,
-	          helix_complemented: 0,
-	          rejected: 0,
-	          missing_decisions: 9,
-	          tailoring_status: "needs_tailoring",
-	          function_design_policy: "abolished",
-	          current_reentry_status: "machine_phase_pending",
-	          next_command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	        },
+          status: "needs_fit",
+          common_adopted: 0,
+          helix_complemented: 0,
+          rejected: 0,
+          missing_decisions: 9,
+          tailoring_status: "needs_tailoring",
+          function_design_policy: "abolished",
+          current_reentry_status: "machine_phase_pending",
+          next_command:
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+        },
         next_actions: expect.arrayContaining([
           expect.objectContaining({
             priority: 20,
             blocker_code: "current_location",
-	            automation_class: "machine",
-	            count: 1,
-	            gate: "recompute_drive_model",
-	            command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	            work_bucket: expect.objectContaining({
-              evidence_patch_command: "helix closure evidence-patch --action collect_evidence --summary-json",
+            automation_class: "machine",
+            count: 1,
+            gate: "recompute_drive_model",
+            command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            work_bucket: expect.objectContaining({
+              evidence_patch_command:
+                "helix closure evidence-patch --action collect_evidence --summary-json",
               evidence_patch_write_policy: "approval-required",
               evidence_patch_candidate_count: 3,
               evidence_approval_draft_command:
@@ -3296,11 +3362,12 @@ describe("L7 CLI surface closure", () => {
               status: "fail",
               command: "helix current-location --json",
             }),
-	            expect.objectContaining({
-	              guard_id: "current-location-reentry",
-	              status: "watch",
-	              command: "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	            }),
+            expect.objectContaining({
+              guard_id: "current-location-reentry",
+              status: "watch",
+              command:
+                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            }),
           ]),
         },
         operation_scope: {
@@ -3322,11 +3389,11 @@ describe("L7 CLI surface closure", () => {
             current_blocking_count: 1,
             blocking_after_machine_lanes: 0,
             required_phase_count: 1,
-	            next_phase_action: "collect_evidence",
-	            next_gate: "recompute_drive_model",
-	            next_execution_command:
-	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	          },
+            next_phase_action: "collect_evidence",
+            next_gate: "recompute_drive_model",
+            next_execution_command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+          },
         },
         recovery_runway_gate: {
           status: "machine_work_available",
@@ -3468,8 +3535,8 @@ describe("L7 CLI surface closure", () => {
       expect(fitText.stdout).toContain("vmodel fit: status=needs_fit");
       expect(fitText.stdout).toContain("current=needs_recovery");
       expect(fitText.stdout).toContain(
-	        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
+        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
       expect(fitText.stdout).toContain("regression-guards: status=needs_attention");
       expect(fitText.stdout).toContain("operation-scope: designed=");
       expect(fitText.stdout).toContain("observed_gap=");
@@ -3479,17 +3546,17 @@ describe("L7 CLI surface closure", () => {
       expect(fitText.stdout).toContain(
         "recovery-runway-phases: 1:collect_evidence:machine:count=1:listed=1:remaining=0:gate=recompute_drive_model:signature=execution:missing:plans=PLAN-L7-999-new-impl",
       );
+      expect(fitText.stdout).toContain("regression-guard: design-coverage fail count=");
       expect(fitText.stdout).toContain(
-        "regression-guard: design-coverage fail count=",
+        "regression-guard: current-location-reentry watch count=1 command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
       );
-	      expect(fitText.stdout).toContain(
-	        "regression-guard: current-location-reentry watch count=1 command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
-	      expect(fitText.stdout).toContain(
-	        "next-action: 20.current_location machine count=1 gate=recompute_drive_model command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
+      expect(fitText.stdout).toContain(
+        "next-action: 20.current_location machine count=1 gate=recompute_drive_model command=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
       expect(fitText.stdout).toContain("next-work-bucket: 20.current_location");
-      expect(fitText.stdout).toContain("command=helix closure batch --action collect_evidence --json");
+      expect(fitText.stdout).toContain(
+        "command=helix closure batch --action collect_evidence --json",
+      );
       expect(fitText.stdout).toContain(
         "patch=helix closure evidence-patch --action collect_evidence --summary-json patch_candidates=3 patch_write=approval-required",
       );
@@ -3627,7 +3694,9 @@ describe("L7 CLI surface closure", () => {
         "recovery-reentry: status=machine_phase_pending effective=approval_pending",
       );
       expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=9");
-      expect(fitText.stdout).toContain("zip-manifest: present=false root=- entries=0 required=0/21");
+      expect(fitText.stdout).toContain(
+        "zip-manifest: present=false root=- entries=0 required=0/21",
+      );
       expect(fitText.stdout).toContain(
         "tailoring-gate: profile=solo required=0 optional=0 na=2 missing=4",
       );
@@ -3638,9 +3707,9 @@ describe("L7 CLI surface closure", () => {
       expect(fitText.stdout).toContain(
         "current-location-gate: status=needs_recovery current=needs_recovery/contradicted",
       );
-	      expect(fitText.stdout).toContain(
-	        "recovery-reentry: status=machine_phase_pending effective=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
+      expect(fitText.stdout).toContain(
+        "recovery-reentry: status=machine_phase_pending effective=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
 
       const overviewJson = runCliIn(root, ["closure", "overview", "--limit", "1", "--json"]);
       expect(overviewJson.status).toBe(0);
@@ -3827,7 +3896,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(batchText.stdout).toContain("repair-template: test_runs status=passed");
       expect(batchText.stdout).toContain("repair-template: gate_runs status=passed");
-      expect(batchText.stdout).toContain("repair-template: runtime_verification_events status=accepted");
+      expect(batchText.stdout).toContain(
+        "repair-template: runtime_verification_events status=accepted",
+      );
       expect(batchText.stdout).toContain(
         "projection-item: PLAN-L7-999-new-impl failed=0 latest=- tables=test_runs,gate_runs,runtime_verification_events",
       );
@@ -3874,7 +3945,8 @@ describe("L7 CLI surface closure", () => {
         ]),
         write_policy: "read-only",
         source_command: "helix closure evidence-plan --json",
-        expected_transition: "evidence 追加後に close_ready または repair_failed_evidence へ再分類される",
+        expected_transition:
+          "evidence 追加後に close_ready または repair_failed_evidence へ再分類される",
         evidence_gap_counts: [
           {
             component: "execution",
@@ -4154,7 +4226,8 @@ describe("L7 CLI surface closure", () => {
               completed_at: "2026-07-08T00:03:10.000Z",
               exit_code: 0,
               status: "passed",
-              output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              output_digest:
+                "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
               stdout_bytes: 10,
               stderr_bytes: 0,
               output_excerpt: {
@@ -4204,7 +4277,9 @@ describe("L7 CLI surface closure", () => {
         remaining_placeholders: [],
         ready_for_approval: true,
       });
-      expect(materializePayload.materialized_candidates[0].placeholder_resolution_sources).toContainEqual({
+      expect(
+        materializePayload.materialized_candidates[0].placeholder_resolution_sources,
+      ).toContainEqual({
         placeholder: "<reviewer>",
         source: "deterministic_closure_rule",
         value_digest: expect.stringMatching(/^sha256:/),
@@ -4233,7 +4308,8 @@ describe("L7 CLI surface closure", () => {
               completed_at: "2026-07-08T00:03:10.000Z",
               exit_code: 0,
               status: "passed",
-              output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              output_digest:
+                "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
               stdout_bytes: 10,
               stderr_bytes: 0,
               output_excerpt: {
@@ -4583,9 +4659,7 @@ describe("L7 CLI surface closure", () => {
         "outcome-routes=keep_current_queue->collect_evidence:Recovery",
       );
       expect(bundleText.stdout).toContain("review-scope: digest=sha256:");
-      expect(bundleText.stdout).toContain(
-        "coverage: ids=L6-implementation-binding l12=L6",
-      );
+      expect(bundleText.stdout).toContain("coverage: ids=L6-implementation-binding l12=L6");
       expect(bundleText.stdout).toContain(
         "candidate: PLAN-L7-999-new-impl coverage=L6-implementation-binding l12=L6 evidence=partial",
       );
@@ -4628,9 +4702,7 @@ describe("L7 CLI surface closure", () => {
         },
         write_policy: "read-only",
       });
-      expect(decisionDraftPayload.approval_record_text).toContain(
-        "outcome: pending_human_review",
-      );
+      expect(decisionDraftPayload.approval_record_text).toContain("outcome: pending_human_review");
       expect(decisionDraftPayload.approval_record_text).toContain("coverage_ids: none");
       expect(decisionDraftPayload.approval_record_text).toContain("l12_layers: none");
       const closeReadyDecisionDraftSummary = runCliIn(root, [
@@ -4739,7 +4811,8 @@ describe("L7 CLI surface closure", () => {
           drive_model: "Recovery",
           command:
             "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-          transition_command: "helix closure review-bundle --action collect_evidence --summary-json",
+          transition_command:
+            "helix closure review-bundle --action collect_evidence --summary-json",
         },
         write_policy: "read-only",
       });
@@ -4781,7 +4854,8 @@ describe("L7 CLI surface closure", () => {
           drive_model: "Recovery",
           command:
             "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
-          transition_command: "helix closure review-bundle --action collect_evidence --summary-json",
+          transition_command:
+            "helix closure review-bundle --action collect_evidence --summary-json",
         },
         planned_step_count: 4,
         source_command: "helix closure transition-plan --summary-json",
@@ -5106,7 +5180,8 @@ describe("L7 CLI surface closure", () => {
               completed_at: "2026-07-08T00:03:10.000Z",
               exit_code: 0,
               status: "passed",
-              output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              output_digest:
+                "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
               stdout_bytes: 10,
               stderr_bytes: 0,
               error_message: null,
@@ -5217,10 +5292,7 @@ describe("L7 CLI surface closure", () => {
           }),
         ],
       });
-      const planText = readFileSync(
-        join(root, "docs", "plans", "PLAN-L7-999-evidence.md"),
-        "utf8",
-      );
+      const planText = readFileSync(join(root, "docs", "plans", "PLAN-L7-999-evidence.md"), "utf8");
       expect(planText).toContain("review_evidence:");
       expect(planText).toContain('command: "bun run test:fast"');
       expect(existsSync(join(root, "docs", "evidence", "PLAN-L7-999-evidence-test.json"))).toBe(
@@ -5625,7 +5697,10 @@ describe("L7 CLI surface closure", () => {
           harness: {
             root: "harness",
             owned_views: expect.arrayContaining(["harness_growth", "skill_agent_telemetry"]),
-            source_fields: expect.arrayContaining(["evidence.skill_invocations", "evidence.model_runs"]),
+            source_fields: expect.arrayContaining([
+              "evidence.skill_invocations",
+              "evidence.model_runs",
+            ]),
             excluded_fields: expect.arrayContaining(["project_current_location.vmodel_fit"]),
             view_command: "helix progress tree-view --json",
           },
