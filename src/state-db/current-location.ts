@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
 import { VMODEL_ZIP_FILENAME, VMODEL_ZIP_SOURCE_BINDINGS } from "../schema/hybrid-vmodel-manifest";
 import type { HarnessDb } from "./index";
 
@@ -4021,6 +4022,35 @@ function collectOpenL7PlanRows(db: HarnessDb): PlanRegistryRow[] {
     status: String(row.status ?? ""),
     updatedAt: String(row.updated_at ?? "") || null,
   }));
+}
+
+function readClosurePlanText(plan: PlanRegistryRow): string | null {
+  const sourcePath = `docs/plans/${plan.planId}.md`;
+  if (!existsSync(sourcePath)) return null;
+  return readFileSync(sourcePath, "utf8");
+}
+
+function closurePlanFrontmatterValue(text: string, key: string): string {
+  const frontmatter = text.match(/^---\s*\n([\s\S]*?)\n---/);
+  if (!frontmatter) return "";
+  const match = frontmatter[1].match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"));
+  return match?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
+}
+
+function closureQueueDeferralReason(plan: PlanRegistryRow): string | null {
+  const text = readClosurePlanText(plan);
+  if (!text) return null;
+  const versionTarget = closurePlanFrontmatterValue(text, "version_target");
+  if (versionTarget) {
+    return "version_target frontmatter を持つ future/version-up parked PLAN は current completion の証跡回収 queue から除外する";
+  }
+  if (
+    /live backlog boundary/i.test(text) &&
+    /実装 schedule\s*\/\s*oracle\s*\/\s*owner が未確定/.test(text)
+  ) {
+    return "live backlog boundary として登録のみの PLAN は scope/oracle/owner 確定まで current completion の証跡回収 queue から除外する";
+  }
+  return null;
 }
 
 function closureEvidenceStatus(
@@ -8494,6 +8524,7 @@ function buildClosureQueue(
   openL7Plans: PlanRegistryRow[],
 ): ProjectClosureQueueItem[] {
   return openL7Plans
+    .filter((plan) => closureQueueDeferralReason(plan) === null)
     .map((plan): ProjectClosureQueueItem => {
       const priority = closureQueuePriority(plan);
       const sourcePath = `docs/plans/${plan.planId}.md`;

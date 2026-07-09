@@ -2050,6 +2050,64 @@ describe("project current-location read model", () => {
       });
     }));
 
+  it("version-up parked and live backlog boundary PLANs remain open but leave machine evidence queue", () =>
+    withDb((db) => {
+      for (const plan of [
+        {
+          plan_id: "PLAN-L7-146-serverless-readonly-share",
+          kind: "impl",
+          drive: "fullstack",
+          status: "draft",
+          updated_at: "2026-07-06T00:00:00.000Z",
+        },
+        {
+          plan_id: "PLAN-L7-307-loop-continuous-run-heartbeat",
+          kind: "troubleshoot",
+          drive: "agent",
+          status: "confirmed",
+          updated_at: "2026-07-06T00:00:00.000Z",
+        },
+      ]) {
+        upsertRow(db, {
+          table: "plan_registry",
+          primaryKey: "plan_id",
+          row: {
+            ...plan,
+            layer: "L7",
+          },
+        });
+      }
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.closure.l7_open_plan_ids).toEqual([
+        "PLAN-L7-146-serverless-readonly-share",
+        "PLAN-L7-307-loop-continuous-run-heartbeat",
+      ]);
+      expect(snapshot.closure.remediation).toMatchObject({
+        reverify: 1,
+      });
+      expect(snapshot.closure.queue).toMatchObject({
+        total: 0,
+        items: [],
+        route_counts: {
+          close_ready: 0,
+          collect_evidence: 0,
+          repair_failed_evidence: 0,
+          reverse_design: 0,
+        },
+      });
+      expect(snapshot.closure.next_action_ledger).toMatchObject({
+        total: 0,
+        status_counts: {
+          ready: 0,
+          needs_evidence: 0,
+          needs_repair: 0,
+          needs_reverse: 0,
+        },
+      });
+    }));
+
   it("failed test/gateをrepair_failed_evidenceの修復対象として機械抽出する", () =>
     withDb((db) => {
       upsertRow(db, {
