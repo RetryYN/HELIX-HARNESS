@@ -42,6 +42,31 @@ review_evidence:
     scope: "PLAN governance artifact_path/artifact_type consistency gate and regression tests"
     worker_model: codex
     reviewer_model: codex-intra-runtime
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:16:23+09:00"
+    tests_green_at: "2026-07-09T15:16:23+09:00"
+    verdict: approve
+    scope: "PLAN-L7-105 の execution evidence 欠落を、現行 plan-lint / improvement-backlog / gate-confirm / merged-plan-status targeted green と typecheck で補い、artifact path/type governance gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:16:23+09:00"
+        evidence_path: tests/plan-lint.test.ts
+        output_digest: "sha256:e50d9080733a80eafd2463820e4d0e72d7ea2482e71459043e79b8ad2efa72ec"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:16:23+09:00"
+        evidence_path: src/plan/lint.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-105: 成果物 path/type ガバナンス gate
