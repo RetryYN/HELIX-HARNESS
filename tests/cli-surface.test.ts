@@ -2028,6 +2028,63 @@ describe("L7 CLI surface closure", () => {
         ]),
       );
 
+      const summaryJson = runCliIn(root, ["completion", "decision-packet", "--summary-json"]);
+      expect(summaryJson.status).toBe(0);
+      const summary = JSON.parse(summaryJson.stdout);
+      expect(summary).toMatchObject({
+        schema_version: "completion-decision-packet-summary.v1",
+        status: "blocked",
+        ok: false,
+        completion_claim_allowed: false,
+        human_decision_required: true,
+        next_authority: "human",
+        authority_boundary: "human_decision_required",
+        decision_count: 2,
+        semantic_frontier_count: 2,
+        confirmed_current_meaning_count: 11,
+        blockers: expect.arrayContaining([
+          "human_approval_pending",
+          "irreversible_migration_pending",
+          "non_terminal_plans",
+          "po_decision_pending",
+          "semantic_frontier_blocked",
+        ]),
+        human_review_bundle: {
+          schema_version: "completion-decision-human-review-bundle.v1",
+          status: "blocked",
+          decision_count: 2,
+          next_authority: "human",
+          completion_claim_allowed: false,
+        },
+        decisions: [
+          expect.objectContaining({
+            plan_id: "PLAN-DISCOVERY-10-fixture",
+            decision_kind: "po_s4_decision",
+            scoped_primary_packet_command:
+              "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+            required_records: ["s4_decision_record"],
+          }),
+          expect.objectContaining({
+            plan_id: "PLAN-M-02-fixture",
+            decision_kind: "irreversible_migration_signoff",
+            scoped_primary_packet_command: "helix rename plan --json",
+            scoped_supporting_packet_commands: [
+              "helix rename plan --json",
+              "helix rename approval-draft --json",
+              "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            ],
+            required_records: ["cutover_decision_record", "action_binding_approval_record"],
+          }),
+        ],
+        review_bundle_command: "helix completion review-bundle --json",
+        runnable_review_bundle_command: "bun run helix completion review-bundle --json",
+        write_policy: "read-only",
+        source_command: "helix completion decision-packet --summary-json",
+        full_source_command: "helix completion decision-packet --json",
+      });
+      expect(summary.decisions[0].recordTemplates).toBeUndefined();
+      expect(summary.decisions[0].supportingPacketSummaries).toBeUndefined();
+
       const text = runCliIn(root, ["completion", "decision-packet"]);
       expect(text.status).toBe(0);
       const cutoverDecision = packet.decisions[1];

@@ -125,6 +125,55 @@ review_evidence:
         completed_at: "2026-07-03T12:53:01+09:00"
         evidence_path: docs/plans/PLAN-L7-252-completion-human-review-bundle.md
         output_digest: "sha256:e3e8f44c5f94f3ad855f04a1882a673e38c30d06a6bb99599d32d8f3a422aeaf"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T21:32:52+09:00"
+    tests_green_at: "2026-07-09T21:32:52+09:00"
+    verdict: approve
+    scope: "`helix completion decision-packet --summary-json` を追加し、full JSON の承認材料を削らずに、status / completion claim 可否 / semantic frontier count / human decision blocker / scoped packet / required record / review bundle command を軽量に機械検出できるようにした。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T21:30:39+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:7f65c03a377b3444fd84fd9e794eb7daa36cd9dd9c117f66b1deb0ea5e4e4807"
+      - kind: smoke
+        command: "bun src/cli.ts completion decision-packet --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:30:34+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:197366e0bd82d78462d34c47ccd04c7cf5d0c74efe37d78c0a95bc3ea4b12dc7"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:32:49+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:1dbc970c064e9fc746bb3ccf8ba3f4f0061cfde102318ffcabaa26fd71847ea6"
+      - kind: lint
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-252-completion-human-review-bundle.md && bun run src/cli.ts plan lint --gate governance"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:30:56+09:00"
+        evidence_path: docs/plans/PLAN-L7-252-completion-human-review-bundle.md
+        output_digest: "sha256:96720d44cc5e071284f958232582418e400d270c37578e1e77e934ea415abd6c"
+      - kind: lint
+        command: "bunx biome check src/cli.ts tests/cli-surface.test.ts docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-252-completion-human-review-bundle.md"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:30:56+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:d583fc2c3cbc4a19b6e19ddb05e5057b3539b3df9762bd9f1ad9ea5fa3f32295"
 ---
 
 # PLAN-L7-252: completion decision packet の human review bundle
@@ -150,6 +199,10 @@ PO が対象 PLAN や packet command を推測する workflow 穴を塞ぐ。
   record / route drift を `invalid_human_review_bundle` として fail-close する。
 - `helix completion decision-packet` text output は `human-review-bundle:` と `human-review-item:` を出す。
 - L6/L7 docs と unit/CLI test に bundle 契約を追加する。
+- 追補として `helix completion decision-packet --summary-json` を追加し、full JSON を開かずに
+  status、completion claim 可否、semantic frontier count、human decision blocker、decision ごとの
+  scoped packet / required record / review bundle command を機械検出できるようにする。
+  summary は正本承認材料を置き換えず、`full_source_command=helix completion decision-packet --json` を持つ。
 
 ## 採用判断
 

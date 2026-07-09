@@ -1381,12 +1381,64 @@ completion
   .command("decision-packet")
   .description("emit the decision packet required before whole-program completion can be claimed")
   .option("--json", "JSON output")
-  .action((opts: { json?: boolean }) => {
+  .option("--summary-json", "compact JSON output")
+  .action((opts: { json?: boolean; summaryJson?: boolean }) => {
     const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()), {
       sourceCommand: "helix completion decision-packet --json",
     });
+    const packetSummary = () => ({
+      schema_version: "completion-decision-packet-summary.v1",
+      status: packet.status,
+      ok: packet.ok,
+      completion_claim_allowed: packet.semanticMeaningSummary.completionClaimAllowed,
+      human_decision_required: packet.humanDecisionRequired,
+      next_authority: packet.nextAuthority,
+      authority_boundary: packet.authorityBoundary,
+      decision_count: packet.decisionCount,
+      semantic_frontier_count: packet.semanticMeaningSummary.frontierRecordCount,
+      confirmed_current_meaning_count:
+        packet.semanticMeaningSummary.confirmedCurrentMeaningRecordCount,
+      blockers: packet.blockers,
+      human_decision_blockers: packet.humanDecisionBlockers,
+      workflow_state_blockers: packet.workflowStateBlockers,
+      autonomous_work_blockers: packet.autonomousWorkBlockers,
+      freshness: {
+        valid_for_minutes: packet.freshness.validForMinutes,
+        stale: packet.freshness.stale,
+        expires_at: packet.freshness.expiresAt,
+        policy: packet.freshness.policy,
+      },
+      human_review_bundle: {
+        schema_version: packet.humanReviewBundle.schemaVersion,
+        status: packet.humanReviewBundle.status,
+        decision_count: packet.humanReviewBundle.decisionCount,
+        next_authority: packet.humanReviewBundle.nextAuthority,
+        completion_claim_allowed: packet.humanReviewBundle.completionClaimAllowed,
+      },
+      decisions: packet.decisions.map((decision) => ({
+        plan_id: decision.planId,
+        decision_kind: decision.decisionKind,
+        blocker_reason: decision.blockerReason,
+        blockers: decision.blockers,
+        required_records: decision.requiredRecords.map((record) => record.recordName),
+        scoped_primary_packet_command: decision.scopedDecisionPacketCommand,
+        runnable_scoped_primary_packet_command: decision.runnableScopedDecisionPacketCommand,
+        scoped_supporting_packet_commands: decision.scopedPacketCommands,
+        next_workflow_route: decision.nextWorkflowRoute,
+        next_workflow_route_ja: decision.nextWorkflowRouteJa,
+      })),
+      review_bundle_command: "helix completion review-bundle --json",
+      runnable_review_bundle_command: "bun run helix completion review-bundle --json",
+      write_policy: "read-only",
+      source_command: "helix completion decision-packet --summary-json",
+      full_source_command: "helix completion decision-packet --json",
+    });
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    if (opts.summaryJson) {
+      process.stdout.write(`${JSON.stringify(packetSummary(), null, 2)}\n`);
       return;
     }
     process.stdout.write(
