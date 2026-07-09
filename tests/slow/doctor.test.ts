@@ -2519,6 +2519,23 @@ describe("runDoctor", () => {
         table: "automation_assets",
         primaryKey: "asset_id",
         row: {
+          asset_id: "skill:gate-planning",
+          asset_type: "skill",
+          path: "docs/skills/gate-planning.md",
+          trigger: "Scrum gate planning",
+          role: "",
+          capability: "scrum sprint gate planning checklist",
+          skill_type: "orchestration",
+          applies_layers: "L3,L7",
+          applies_drive_models: "Forward,Scrum,Discovery",
+          drift_status: "ok",
+          indexed_at: "2026-07-08T00:05:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "automation_assets",
+        primaryKey: "asset_id",
+        row: {
           asset_id: "skill:planning-and-task-breakdown",
           asset_type: "skill",
           path: "docs/skills/planning-and-task-breakdown.md",
@@ -2762,6 +2779,9 @@ describe("runDoctor", () => {
       );
       expect(projectSkillBinding.messages.join("\n")).toContain("automation_assets");
       expect(projectSkillBinding.messages.join("\n")).toContain("skill_recommendations");
+      expect(projectSkillBinding.messages.join("\n")).toContain(
+        "skill:gate-planning:required",
+      );
       expect(projectSkillBinding.messages.join("\n")).toContain(
         "skill:planning-and-task-breakdown:required",
       );

@@ -586,6 +586,108 @@ describe("project current-location read model", () => {
       ).not.toContain("US-03");
     }));
 
+  it("Scrum運営層のmissingをfindingと工程表actionへ昇格する", () =>
+    withDb((db) => {
+      for (const row of [
+        {
+          declaration_id: "decl:US-03",
+          defined_id: "US-03",
+          declaration_kind: "ストーリー",
+          title: "通知設定 Story",
+          layer: "L3",
+          source_path: "docs/112_プロダクトバックログ.yaml",
+        },
+        {
+          declaration_id: "decl:SP-2",
+          defined_id: "SP-2",
+          declaration_kind: "スプリント計画",
+          title: "通知スプリント",
+          layer: "L7",
+          source_path: "docs/116_スプリント計画.yaml",
+        },
+        {
+          declaration_id: "decl:AC-03-1",
+          defined_id: "AC-03-1",
+          declaration_kind: "受入基準",
+          title: "通知設定 BDD",
+          layer: "L11",
+          source_path: "docs/29_受入基準・BDDシナリオ.yaml",
+        },
+      ]) {
+        upsertRow(db, {
+          table: "design_declarations",
+          primaryKey: "declaration_id",
+          row: {
+            ...row,
+            owner: "TL",
+            status: "draft",
+            source: "frontmatter",
+            indexed_at: "2026-07-08T00:04:00.000Z",
+          },
+        });
+      }
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: {
+          plan_id: "PLAN-DISCOVERY-99-hybrid-sprint",
+          kind: "poc",
+          layer: "cross",
+          drive: "agent",
+          status: "confirmed",
+          updated_at: "2026-07-08T00:05:00.000Z",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const scrumFinding = snapshot.findings.find(
+        (finding) => finding.code === "scrum_operation_gap",
+      );
+      expect(scrumFinding).toMatchObject({
+        severity: "warn",
+        docDependencies: expect.arrayContaining([
+          "docs/113_ユーザーストーリーマッピング.yaml",
+          "docs/117_DoR・DoD.yaml",
+          "docs/121_バーンダウン・ベロシティ実績.yaml",
+        ]),
+        implementationDependencies: expect.arrayContaining([
+          "design_declarations",
+          "project_current_location",
+        ]),
+      });
+      expect(scrumFinding?.detail).toContain("scrum:story-mapping");
+      expect(scrumFinding?.detail).toContain("scrum:daily-record");
+      const roadmapCurrent = buildProjectRoadmapCurrentReport(snapshot);
+      expect(roadmapCurrent.actions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action_id: "finding:scrum_operation_gap",
+            category: "finding",
+            status: "pending",
+            automation_class: "design",
+            l12_layers: expect.arrayContaining(["L2", "L3", "L7", "L11", "L12"]),
+            coverage_ids: expect.arrayContaining([
+              "L2-requirements-screen",
+              "L3-requirements-freeze",
+              "L7-tdd-closure",
+              "L11-acceptance-test-design",
+              "L12-operation-observability",
+            ]),
+            doc_dependencies: expect.arrayContaining([
+              "docs/113_ユーザーストーリーマッピング.yaml",
+              "docs/118_デイリースクラム・進行記録.yaml",
+            ]),
+            implementation_dependencies: expect.arrayContaining([
+              "design_declarations",
+              "project_current_location",
+            ]),
+            required_action:
+              "Scrum 運営層の missing source を typed declaration に投影し、current-location / roadmap / skill binding を再計算する",
+          }),
+        ]),
+      );
+    }));
+
   it("typed design declaration drift を current-location の Reverse 要因にする", () =>
     withDb((db) => {
       upsertRow(db, {
@@ -1771,6 +1873,7 @@ describe("project current-location read model", () => {
         "impl_ahead_descent_obligation",
         "roadmap_uncovered_frontier",
         "operation_scope_gap",
+        "scrum_operation_gap",
         "design_coverage_gap",
         "tailoring_required_gap",
       ]);

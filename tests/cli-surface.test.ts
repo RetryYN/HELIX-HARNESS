@@ -2081,8 +2081,16 @@ describe("L7 CLI surface closure", () => {
     );
     expect(payload.required_skills).toBeGreaterThan(0);
     expect(payload.items[0]).toMatchObject({
+      skill_id: "skill:gate-planning",
       tier: "required",
       inject_at: "before_work",
+      reasons: expect.arrayContaining(["scrum_operation_gap_signal"]),
+    });
+    expect(payload.items[1]).toMatchObject({
+      skill_id: "skill:planning-and-task-breakdown",
+      tier: "required",
+      inject_at: "before_work",
+      reasons: expect.arrayContaining(["scrum_operation_gap_signal"]),
     });
     expect(payload.items[0].skill_path).toMatch(/^docs\/skills\//);
   }, 30_000);

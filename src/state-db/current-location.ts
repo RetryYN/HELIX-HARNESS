@@ -178,6 +178,7 @@ export interface ProjectCurrentLocationFinding {
     | "impl_ahead_descent_obligation"
     | "roadmap_uncovered_frontier"
     | "operation_scope_gap"
+    | "scrum_operation_gap"
     | "artifact_remap_unmapped"
     | "design_coverage_gap"
     | "tailoring_required_gap"
@@ -1806,7 +1807,7 @@ const SCRUM_OPERATION_SOURCES = [
     operationId: "scrum:daily-record",
     category: "daily",
     sourcePath: "docs/118_デイリースクラム・進行記録.yaml",
-    patterns: [/デイリー|daily|進行記録|ブロッカー|障害/i],
+    patterns: [/デイリー|daily|daily scrum|進行記録/i],
   },
   {
     operationId: "scrum:sprint-review",
@@ -2547,6 +2548,24 @@ function roadmapCurrentRequiredAction(
   return "blocking finding を解消し、工程表と DB 現在地の整合を再計算する";
 }
 
+function roadmapFindingRequiredAction(finding: ProjectCurrentLocationFinding): string {
+  if (finding.code === "scrum_operation_gap") {
+    return "Scrum 運営層の missing source を typed declaration に投影し、current-location / roadmap / skill binding を再計算する";
+  }
+  return "blocking finding を解消し、工程表と DB 現在地の整合を再計算する";
+}
+
+function roadmapFindingL12Layers(finding: ProjectCurrentLocationFinding): string[] {
+  if (finding.code === "scrum_operation_gap") {
+    return unique(
+      SCRUM_OPERATION_SOURCES.filter((source) =>
+        finding.docDependencies.includes(source.sourcePath),
+      ).flatMap((source) => scrumOperationItemL12Layers(source.category)),
+    );
+  }
+  return [];
+}
+
 function roadmapClosurePhaseAction(
   snapshot: ProjectCurrentLocationSnapshot,
 ): ProjectClosureQueueNextAction | null {
@@ -2835,15 +2854,21 @@ export function buildProjectRoadmapCurrentReport(
         ]
       : [];
   const findingActions = snapshot.findings.map((finding): ProjectRoadmapCurrentAction => {
+    const l12Layers = roadmapFindingL12Layers(finding);
     const action = {
       action_id: `finding:${finding.code}`,
       category: "finding" as const,
       status: finding.severity === "error" ? ("blocked" as const) : ("pending" as const),
-      automation_class: finding.severity === "error" ? ("machine" as const) : ("verification" as const),
+      automation_class:
+        finding.code === "scrum_operation_gap"
+          ? ("design" as const)
+          : finding.severity === "error"
+            ? ("machine" as const)
+            : ("verification" as const),
       phase_action: null,
-      l12_layers: [],
-      coverage_ids: [],
-      coverage_labels: [],
+      l12_layers: l12Layers,
+      coverage_ids: designCoverageIdsForL12Layers(l12Layers),
+      coverage_labels: designCoverageLabelsForL12Layers(l12Layers),
       command: "helix current-location --json",
       batch_command: null,
       review_command: null,
@@ -2855,13 +2880,13 @@ export function buildProjectRoadmapCurrentReport(
       evidence_apply_execute_command: null,
       evidence_apply_write_policy: null,
       required_action: "",
-      doc_dependencies: [],
-      implementation_dependencies: [],
+      doc_dependencies: [...finding.docDependencies],
+      implementation_dependencies: [...finding.implementationDependencies],
       reasons: [finding.detail],
     };
     return {
       ...action,
-      required_action: roadmapCurrentRequiredAction(action),
+      required_action: roadmapFindingRequiredAction(finding),
     };
   });
   const actions = [driveAction, ...closureActions, ...bandActions, ...gateActions, ...findingActions];
@@ -4540,6 +4565,41 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
   };
 }
 
+function scrumOperationGapItems(scrumOperation: ProjectScrumOperation): ProjectScrumOperationItem[] {
+  return scrumOperation.items.filter((item) => item.category !== "plan" && item.status === "missing");
+}
+
+function scrumOperationItemL12Layers(category: ProjectScrumOperationCategory): string[] {
+  switch (category) {
+    case "backlog":
+    case "story_mapping":
+      return ["L2", "L3"];
+    case "estimation":
+    case "sprint":
+      return ["L3", "L7"];
+    case "release":
+    case "review":
+    case "acceptance":
+      return ["L11", "L12"];
+    case "readiness":
+      return ["L3", "L7", "L11"];
+    case "daily":
+    case "retro":
+    case "metric":
+      return ["L7", "L12"];
+    case "plan":
+      return ["L3", "L7"];
+  }
+}
+
+function scrumOperationGapL12Layers(scrumOperation: ProjectScrumOperation): string[] {
+  return unique(
+    scrumOperationGapItems(scrumOperation).flatMap((item) =>
+      scrumOperationItemL12Layers(item.category),
+    ),
+  );
+}
+
 function skillBindingTier(score: number): ProjectSkillBindingItem["tier"] {
   if (score >= 0.8) return "required";
   if (score >= 0.5) return "recommended";
@@ -4596,6 +4656,15 @@ function skillBindingScore(input: {
     score += 0.1;
     reasons.push("scrum_or_planning_signal");
   }
+  if (
+    matchedDriveModels.includes("Scrum") &&
+    /scrum|sprint|backlog|planning|story|mapping|velocity|release|retro|dod|dor|burndown/.test(
+      text,
+    )
+  ) {
+    score += 0.15;
+    reasons.push("scrum_operation_gap_signal");
+  }
   return {
     score: Math.min(1, Number(score.toFixed(2))),
     matchedDriveModels,
@@ -4612,6 +4681,7 @@ function skillBindingLayers(snapshot: ProjectCurrentLocationSnapshot): string[] 
     ...snapshot.drive_route.forward.coverageIds.map((coverageId) => l12LayerForCoverageId(coverageId) ?? ""),
     ...snapshot.drive_route.reverse.l12Layers,
     ...snapshot.operation_scope.items.map((item) => l12LayerForCoverageId(item.coverageId) ?? ""),
+    ...(snapshot.scrum_operation ? scrumOperationGapL12Layers(snapshot.scrum_operation) : []),
     ...snapshot.design_coverage_gate.items
       .filter((item) => item.status !== "covered")
       .map((item) => item.l12Layer),
@@ -8942,6 +9012,22 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
   const zipAdoption = buildZipAdoptionMatrix(db);
   const tailoringGate = buildTailoringGate(db);
   const scrumOperation = buildScrumOperation(db);
+  const scrumGapItems = scrumOperationGapItems(scrumOperation);
+  if (scrumGapItems.length > 0 && scrumOperation.status !== "not_observed") {
+    findings.push({
+      code: "scrum_operation_gap",
+      severity: "warn",
+      detail: `ハイブリッド版 Scrum 運営層に未投影 source が ${scrumGapItems.length} 件ある: ${scrumGapItems
+        .map((item) => item.operationId)
+        .join(", ")}`,
+      docDependencies: unique(scrumGapItems.flatMap((item) => item.docDependencies)),
+      implementationDependencies: unique([
+        "design_declarations",
+        "project_current_location",
+        ...scrumGapItems.flatMap((item) => item.implementationDependencies),
+      ]),
+    });
+  }
   if (designCoverageGate.status === "needs_design") {
     const gapItems = designCoverageGate.items.filter((item) => item.status !== "covered");
     findings.push({
