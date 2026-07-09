@@ -182,6 +182,7 @@ export interface VmodelFitBlocker {
     | "zip_source_bindings"
     | "tailoring"
     | "operation_scope"
+    | "scrum_operation_gap"
     | "current_location"
     | "design_integrity";
   status: string;
@@ -520,6 +521,43 @@ export interface VmodelFitReport {
   source_command: "helix vmodel fit --json";
   current_location_command: "helix current-location --json";
   view_command: "helix progress tree-view --json";
+}
+
+const SCRUM_OPERATION_FIT_REQUIRED_ACTION =
+  "Scrum 運営層の missing source を typed declaration に投影し、current-location / roadmap / skill binding を再計算する";
+
+function uniqueStrings(values: string[]): string[] {
+  return [...new Set(values.filter((value) => value.trim().length > 0))];
+}
+
+function scrumOperationGapItems(snapshot: ProjectCurrentLocationSnapshot) {
+  const scrumOperation = snapshot.scrum_operation;
+  if (!scrumOperation || scrumOperation.status === "not_observed") return [];
+  return scrumOperation.items.filter(
+    (item) => item.category !== "plan" && item.status === "missing",
+  );
+}
+
+function scrumOperationGapFinding(snapshot: ProjectCurrentLocationSnapshot) {
+  return snapshot.findings.find((finding) => finding.code === "scrum_operation_gap") ?? null;
+}
+
+function scrumOperationGapDocDependencies(snapshot: ProjectCurrentLocationSnapshot): string[] {
+  const finding = scrumOperationGapFinding(snapshot);
+  if (finding) return [...finding.docDependencies];
+  return uniqueStrings(scrumOperationGapItems(snapshot).flatMap((item) => item.docDependencies));
+}
+
+function scrumOperationGapImplementationDependencies(
+  snapshot: ProjectCurrentLocationSnapshot,
+): string[] {
+  const finding = scrumOperationGapFinding(snapshot);
+  if (finding) return [...finding.implementationDependencies];
+  return uniqueStrings([
+    "design_declarations",
+    "project_current_location",
+    ...scrumOperationGapItems(snapshot).flatMap((item) => item.implementationDependencies),
+  ]);
 }
 
 function zipManifestStatus(zipManifest?: VmodelZipManifestResult): VmodelZipManifestStatus {
@@ -1083,6 +1121,18 @@ function buildVmodelFitBlockers(input: {
       ],
     });
   }
+  const scrumGapItems = scrumOperationGapItems(snapshot);
+  if (scrumGapItems.length > 0 || scrumOperationGapFinding(snapshot)) {
+    blockers.push({
+      code: "scrum_operation_gap",
+      status: "needs_scrum_operation_projection",
+      count: scrumGapItems.length || scrumOperationGapDocDependencies(snapshot).length,
+      command: "helix roadmap current --json",
+      required_action: SCRUM_OPERATION_FIT_REQUIRED_ACTION,
+      doc_dependencies: scrumOperationGapDocDependencies(snapshot),
+      implementation_dependencies: scrumOperationGapImplementationDependencies(snapshot),
+    });
+  }
   if (currentGate.status !== "pass") {
     blockers.push({
       code: "current_location",
@@ -1184,6 +1234,8 @@ function vmodelNextActionPriority(blocker: VmodelFitBlocker): number {
       return 50;
     case "operation_scope":
       return 60;
+    case "scrum_operation_gap":
+      return 62;
     case "drive_model":
       return 70;
     case "design_integrity":
@@ -1216,7 +1268,8 @@ function vmodelNextActionAutomationClass(
     blocker.code === "acceptance_traceability" ||
     blocker.code === "function_design_absorption" ||
     blocker.code === "tailoring" ||
-    blocker.code === "operation_scope"
+    blocker.code === "operation_scope" ||
+    blocker.code === "scrum_operation_gap"
   ) {
     return "design";
   }
@@ -1878,6 +1931,8 @@ function buildVmodelRegressionGuards(input: {
   );
   const unobservedRuntimeVerification =
     runtimeVerificationScope?.status === "designed" && runtimeVerificationScope.observedCount === 0;
+  const scrumGapItems = scrumOperationGapItems(input.snapshot);
+  const scrumGapFinding = scrumOperationGapFinding(input.snapshot);
   const guards: VmodelRegressionGuard[] = [
     {
       guard_id: "zip-source-integrity",
@@ -1987,6 +2042,29 @@ function buildVmodelRegressionGuards(input: {
         `missing=${input.snapshot.operation_scope.missing}`,
         `reverify=${input.snapshot.operation_scope.reverify}`,
         `runtime_observed=${runtimeVerificationScope?.observedCount ?? 0}`,
+      ],
+    },
+    {
+      guard_id: "scrum-operation",
+      status: scrumGapItems.length > 0 || scrumGapFinding ? "fail" : "pass",
+      scope: "Hybrid Scrum operation sources to DB/read-model projections",
+      command: "helix roadmap current --json",
+      protected_surface: [
+        "scrum_operation",
+        "project_current_location",
+        "roadmap_current",
+        "project_skill_binding",
+      ],
+      count: scrumGapItems.length || scrumOperationGapDocDependencies(input.snapshot).length,
+      required_action: SCRUM_OPERATION_FIT_REQUIRED_ACTION,
+      reasons: [
+        `status=${input.snapshot.scrum_operation?.status ?? "missing"}`,
+        `missing=${scrumGapItems.length}`,
+        `finding=${scrumGapFinding?.severity ?? "none"}`,
+        `planning=${input.snapshot.scrum_operation?.planningItems ?? 0}`,
+        `ceremony=${input.snapshot.scrum_operation?.ceremonyItems ?? 0}`,
+        `metric=${input.snapshot.scrum_operation?.metricItems ?? 0}`,
+        `missing_ids=${scrumGapItems.map((item) => item.operationId).join(",") || "-"}`,
       ],
     },
     {
@@ -2187,6 +2265,8 @@ export function buildVmodelFitReport(
   const roadmapGate = roadmapCurrentGate(snapshot);
   const driveGate = driveModelGate(snapshot);
   const currentGate = currentLocationGate(snapshot);
+  const scrumGapItems = scrumOperationGapItems(snapshot);
+  const scrumGapFinding = scrumOperationGapFinding(snapshot);
   const blockers = buildVmodelFitBlockers({
     snapshot,
     zip,
@@ -2242,6 +2322,9 @@ export function buildVmodelFitReport(
     snapshot.operation_scope.missing === 0 && snapshot.operation_scope.reverify === 0
       ? "operation scope gate passed"
       : `operation scope gaps missing=${snapshot.operation_scope.missing} reverify=${snapshot.operation_scope.reverify}`,
+    scrumGapItems.length === 0 && !scrumGapFinding
+      ? "Scrum operation projection gate passed"
+      : `Scrum operation gaps missing=${scrumGapItems.length} finding=${scrumGapFinding?.severity ?? "none"}`,
     currentGate.status === "pass"
       ? "current location is forward-consistent"
       : `current location is ${snapshot.current.status}/${snapshot.current.completion_boundary}`,
@@ -2265,6 +2348,8 @@ export function buildVmodelFitReport(
     driveGate.status === "pass" &&
     snapshot.operation_scope.missing === 0 &&
     snapshot.operation_scope.reverify === 0 &&
+    scrumGapItems.length === 0 &&
+    !scrumGapFinding &&
     currentGate.status === "pass" &&
     snapshot.counts.unresolved_design_references === 0 &&
     snapshot.counts.design_declaration_drifts === 0

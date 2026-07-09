@@ -686,6 +686,39 @@ describe("project current-location read model", () => {
           }),
         ]),
       );
+      const fit = buildVmodelFitReport(snapshot);
+      expect(fit.blockers).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            code: "scrum_operation_gap",
+            status: "needs_scrum_operation_projection",
+            count: 8,
+            command: "helix roadmap current --json",
+            required_action:
+              "Scrum 運営層の missing source を typed declaration に投影し、current-location / roadmap / skill binding を再計算する",
+          }),
+        ]),
+      );
+      expect(fit.next_actions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action_id: "vmodel-fit:scrum_operation_gap",
+            blocker_code: "scrum_operation_gap",
+            automation_class: "design",
+            command: "helix roadmap current --json",
+          }),
+        ]),
+      );
+      expect(fit.regression_guards.guards).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            guard_id: "scrum-operation",
+            status: "fail",
+            count: 8,
+            command: "helix roadmap current --json",
+          }),
+        ]),
+      );
     }));
 
   it("typed design declaration drift を current-location の Reverse 要因にする", () =>
