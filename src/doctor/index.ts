@@ -445,6 +445,7 @@ import {
   buildProjectClosureApplyPlan,
   buildProjectClosureEvidencePlan,
   buildProjectClosureOverview,
+  buildProjectClosureReviewBundle,
   buildProjectCurrentLocationSnapshot,
   buildProjectDriveModelReport,
   buildProjectRecoveryPlan,
@@ -1252,6 +1253,11 @@ export function checkProjectCurrentLocation(
       if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildProjectCurrentLocationSnapshot(db);
       const closureOverview = buildProjectClosureOverview(snapshot, { limit: 0 });
+      const closeReadyReviewBundle = buildProjectClosureReviewBundle(snapshot, {
+        action: "close_ready",
+        limit: 20,
+        offset: 0,
+      });
       const collectEvidencePlan = buildProjectClosureEvidencePlan(snapshot, {
         action: "collect_evidence",
         limit: 0,
@@ -1289,6 +1295,12 @@ export function checkProjectCurrentLocation(
         : current.status === "needs_recovery"
           ? "recovery_queue"
           : "no_current_location_contradiction";
+      const closeReadyDecisionRecordCommand = `helix closure decision-draft --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.offset} --out .helix/tmp/closure/close_ready-decision-draft-offset-${closeReadyReviewBundle.offset}.yml --summary-json`;
+      const closeReadyCurrentWindowCommand = `helix closure review-bundle --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.offset} --summary-json`;
+      const closeReadyNextWindowCommand =
+        closeReadyReviewBundle.window.next_offset === null
+          ? "-"
+          : `helix closure review-bundle --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.window.next_offset} --summary-json`;
       const prefix =
         current.status === "forward"
           ? "project-current-location - OK"
@@ -1315,6 +1327,7 @@ export function checkProjectCurrentLocation(
         `project-current-location - roadmap-position: status=${snapshot.roadmap_position.status} bands=${snapshot.roadmap_position.rollup.covered_bands}/${snapshot.roadmap_position.rollup.total_bands} gates=${snapshot.roadmap_position.rollup.reached_gates}/${snapshot.roadmap_position.rollup.total_gates}`,
         `project-current-location - roadmap-current: status=${roadmapCurrent.status} aligned=${roadmapCurrent.consistency.aligned} basis=${roadmapCurrent.consistency.alignment_basis} db=${roadmapCurrent.consistency.db_current_l12_layer ?? "-"} roadmap=${roadmapCurrent.consistency.roadmap_current_l12_layers.join(",") || "-"} projected=${roadmapCurrent.consistency.roadmap_projected_l12_layers.join(",") || "-"} terminal=${roadmapCurrent.consistency.roadmap_terminal_l12_layers.join(",") || "-"} blockers=${roadmapCurrent.counts.blockers} command=helix roadmap current --json`,
         `project-current-location - closure-overview: status=${closureOverview.closure.status} queue=${closureOverview.closure.queue_total} close=${closureOverview.closure.route_counts.close_ready} collect=${closureOverview.closure.route_counts.collect_evidence} repair=${closureOverview.closure.route_counts.repair_failed_evidence} reverse=${closureOverview.closure.route_counts.reverse_design} apply=${closureOverview.closure.apply_readiness.status} recommended=${closureOverview.recommended_next_action.action ?? "none"} human=${closureOverview.recommended_next_action.human_required} command=${closureOverview.recommended_next_action.command}`,
+        `project-current-location - closure-approval-frontier: windows=${closeReadyReviewBundle.window.page_count} current=${closeReadyReviewBundle.window.page_index}/${closeReadyReviewBundle.window.page_count} listed=${closeReadyReviewBundle.listed} omitted=${closeReadyReviewBundle.omitted} digest=${closeReadyReviewBundle.review_scope.approval_scope_digest} decision_record=${closeReadyDecisionRecordCommand} review=${closeReadyCurrentWindowCommand} next=${closeReadyNextWindowCommand} command=helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json`,
         `project-current-location - closure-evidence-plan: collect=${collectEvidencePlan.total} tables=${collectEvidencePlan.target_tables.join(",") || "-"} command=helix closure evidence-plan --action collect_evidence --json repair=${repairEvidencePlan.total} repair_tables=${repairEvidencePlan.target_tables.join(",") || "-"} repair_command=helix closure evidence-plan --action repair_failed_evidence --json`,
         `project-current-location - next-action-ledger: total=${snapshot.closure.next_action_ledger.total} ready=${snapshot.closure.next_action_ledger.status_counts.ready} evidence=${snapshot.closure.next_action_ledger.status_counts.needs_evidence} repair=${snapshot.closure.next_action_ledger.status_counts.needs_repair} reverse=${snapshot.closure.next_action_ledger.status_counts.needs_reverse}`,
       ];

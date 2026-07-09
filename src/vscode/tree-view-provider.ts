@@ -1183,6 +1183,116 @@ function projectCurrentLocation(vm: VisualizationViewModel): TreeViewNode {
           ]),
           contextValue: `vmodel-fit.approval-review.${current.vmodel_fit.approval_review_gate.status}`,
           commandPointer: current.vmodel_fit.approval_review_gate.current_window_command,
+          children: [
+            node({
+              id: "project/current-location/vmodel-fit/approval-review/current-window",
+              label: "current window",
+              description: `${current.vmodel_fit.approval_review_gate.window.page_index}/${current.vmodel_fit.approval_review_gate.window.page_count} ${current.vmodel_fit.approval_review_gate.window.start}-${current.vmodel_fit.approval_review_gate.window.end}`,
+              tooltip: tooltipLines([
+                `digest=${current.vmodel_fit.approval_review_gate.approval_scope_digest}`,
+                `offset=${current.vmodel_fit.approval_review_gate.offset}`,
+                `limit=${current.vmodel_fit.approval_review_gate.limit}`,
+                `listed=${current.vmodel_fit.approval_review_gate.listed}`,
+                `omitted=${current.vmodel_fit.approval_review_gate.omitted}`,
+                `plans=${current.vmodel_fit.approval_review_gate.sample_plan_ids.join(",") || "-"}`,
+                `sources=${current.vmodel_fit.approval_review_gate.sample_source_paths.join(",") || "-"}`,
+              ]),
+              contextValue: "vmodel-fit.approval-review.current-window",
+              commandPointer: current.vmodel_fit.approval_review_gate.current_window_command,
+            }),
+            ...(current.vmodel_fit.approval_review_gate.previous_window_command
+              ? [
+                  node({
+                    id: "project/current-location/vmodel-fit/approval-review/previous-window",
+                    label: "previous window",
+                    description: current.vmodel_fit.approval_review_gate.previous_window_command,
+                    contextValue: "vmodel-fit.approval-review.previous-window",
+                    commandPointer: current.vmodel_fit.approval_review_gate.previous_window_command,
+                  }),
+                ]
+              : []),
+            ...(current.vmodel_fit.approval_review_gate.next_window_command
+              ? [
+                  node({
+                    id: "project/current-location/vmodel-fit/approval-review/next-window",
+                    label: "next window",
+                    description: current.vmodel_fit.approval_review_gate.next_window_command,
+                    contextValue: "vmodel-fit.approval-review.next-window",
+                    commandPointer: current.vmodel_fit.approval_review_gate.next_window_command,
+                  }),
+                ]
+              : []),
+            node({
+              id: "project/current-location/vmodel-fit/approval-review/evidence",
+              label: "evidence totals",
+              description: `artifacts=${current.vmodel_fit.approval_review_gate.evidence_totals.artifact_paths} evidence=${current.vmodel_fit.approval_review_gate.evidence_totals.evidence_paths} tests=${current.vmodel_fit.approval_review_gate.evidence_totals.test_runs_passed}/${current.vmodel_fit.approval_review_gate.evidence_totals.test_runs_total}`,
+              tooltip: tooltipLines([
+                `trace=${current.vmodel_fit.approval_review_gate.evidence_totals.trace_edges}`,
+                `gates=${current.vmodel_fit.approval_review_gate.evidence_totals.gate_runs_passed}/${current.vmodel_fit.approval_review_gate.evidence_totals.gate_runs_total}`,
+                `runtime=${current.vmodel_fit.approval_review_gate.evidence_totals.runtime_verification_accepted}/${current.vmodel_fit.approval_review_gate.evidence_totals.runtime_verification_total}`,
+                `blocked=${current.vmodel_fit.approval_review_gate.blocked_by_findings.join(",") || "-"}`,
+              ]),
+              contextValue: "vmodel-fit.approval-review.evidence",
+              commandPointer: current.vmodel_fit.approval_review_gate.current_window_command,
+            }),
+            node({
+              id: "project/current-location/vmodel-fit/approval-review/transition",
+              label: "transition",
+              description: current.vmodel_fit.approval_review_gate.transition_window_command,
+              tooltip: tooltipLines([
+                `all=${current.vmodel_fit.approval_review_gate.transition_command}`,
+                `previous=${current.vmodel_fit.approval_review_gate.previous_transition_window_command ?? "-"}`,
+                `next=${current.vmodel_fit.approval_review_gate.next_transition_window_command ?? "-"}`,
+              ]),
+              contextValue: "vmodel-fit.approval-review.transition",
+              commandPointer: current.vmodel_fit.approval_review_gate.transition_window_command,
+            }),
+            node({
+              id: "project/current-location/vmodel-fit/approval-review/outcome-routes",
+              label: "outcome routes",
+              description: String(current.vmodel_fit.approval_review_gate.outcome_routes.length),
+              tooltip: tooltipLines(
+                current.vmodel_fit.approval_review_gate.outcome_routes.map(
+                  (route) =>
+                    `${route.outcome}->${route.target_action ?? "-"} ${route.expected_transition}`,
+                ),
+                { omittedHint: current.vmodel_fit.approval_review_gate.review_command },
+              ),
+              contextValue: "vmodel-fit.approval-review.outcome-routes",
+              commandPointer: current.vmodel_fit.approval_review_gate.transition_window_command,
+              children: current.vmodel_fit.approval_review_gate.outcome_routes.map((route) =>
+                node({
+                  id: `project/current-location/vmodel-fit/approval-review/outcome-routes/${route.outcome}`,
+                  label: route.outcome,
+                  description: `${route.target_action ?? "-"} ${route.drive_model}`,
+                  tooltip: tooltipLines([
+                    `projection=${route.projection_type}`,
+                    `human=${route.human_required}`,
+                    `transition=${route.expected_transition}`,
+                    `command=${route.command}`,
+                    `transition_command=${route.transition_command}`,
+                    route.required_action,
+                    ...route.doc_dependencies.map((dependency) => `doc=${dependency}`),
+                    ...route.implementation_dependencies.map((dependency) => `impl=${dependency}`),
+                    ...route.postcheck_commands.map((command) => `postcheck=${command}`),
+                    ...route.reasons,
+                  ]),
+                  contextValue: `vmodel-fit.approval-review.outcome.${route.outcome}`,
+                  commandPointer: route.command,
+                }),
+              ),
+            }),
+            node({
+              id: "project/current-location/vmodel-fit/approval-review/record-template",
+              label: "record template",
+              description: `${current.vmodel_fit.approval_review_gate.approval_record_template.length} fields`,
+              tooltip: tooltipLines(
+                current.vmodel_fit.approval_review_gate.approval_record_template,
+              ),
+              contextValue: "vmodel-fit.approval-review.record-template",
+              commandPointer: current.vmodel_fit.approval_review_gate.current_window_command,
+            }),
+          ],
         }),
         node({
           id: "project/current-location/vmodel-fit/design-integrity",

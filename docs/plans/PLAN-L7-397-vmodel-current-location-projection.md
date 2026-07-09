@@ -86,6 +86,87 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-10T00:50:17+09:00"
+    tests_green_at: "2026-07-10T00:50:17+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-subagents
+    scope: "`current-location --summary-json` に close_ready `approval_review_gate`、decision draft record command、skill binding command/top items を追加し、default handoff surface から承認 review と skill injection へ 1 hop で戻れるようにした。`progress frontier --summary-json` には `operation_scope` と `scrum_operation` を追加し、V+Scrum 工程表/運用後 scope が current-location 専用 surface に閉じないようにした。VSCode/Project tree-view の `vmodel-fit/approval-review` には current/next window、evidence totals、transition、outcome routes、record template の子ノードを追加し、doctor/current-location text には `closure-approval-frontier` 行を追加した。"
+    green_commands:
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:48:43+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:101c0e9d9514c52ae835196c495a092b15ce14929febd4febf037c4325c9111c"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:48:43+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/visualization-treeview.test.ts -t current-location"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:48:43+09:00"
+        evidence_path: tests/visualization-treeview.test.ts
+        output_digest: "sha256:6807aae1ae9b2125c2cdbb4bb26986e2c385ad8c7ec4ce5df643a2938dc59a82"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:49:04+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:d9937c6ee2f3c068d13fee7be2c09595426d12c5d7c6958d9c082943ea42feee"
+      - kind: unit_test
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:48:43+09:00"
+        evidence_path: tests/summary-surface-audit.test.ts
+        output_digest: "sha256:9dae572473b9ce6fba6f13450ea25a2e0e9b5131df2897d0f539ca41942c9d3f"
+      - kind: unit_test
+        command: "bun run vitest run tests/slow/doctor.test.ts -t \"surfaces Project current-location as an advisory doctor check\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:49:04+09:00"
+        evidence_path: tests/slow/doctor.test.ts
+        output_digest: "sha256:b0d2a425f30e3998a2028b68e9e1a9f08e04eadf1c866d394103a3c45fbed0bd"
+      - kind: smoke
+        command: "bun src/cli.ts current-location --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:49:04+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:8151dac76e32c8fe9d8bb513a3f7d1f660f24313f15f5b0120388386e0b69623"
+      - kind: smoke
+        command: "bun src/cli.ts progress frontier --summary-json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-10T00:49:04+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:b5d60fbdd4a557a9866d68ae487fde33069a795c9a448945b174d410069f7b61"
+      - kind: lint
+        command: "bun src/cli.ts plan lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-10T00:50:17+09:00"
+        evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:7c17187d16234db0cbe313108457acd3efc4697382ce92948f93653bc8208964"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-10T00:27:10+09:00"
     tests_green_at: "2026-07-10T00:27:10+09:00"
     verdict: approve

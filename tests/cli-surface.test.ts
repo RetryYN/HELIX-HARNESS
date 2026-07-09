@@ -3522,6 +3522,17 @@ describe("L7 CLI surface closure", () => {
             collect_evidence: 1,
           },
         },
+        approval_review_gate: {
+          status: "none",
+          action: "close_ready",
+          count: 0,
+          approval_window_count: 0,
+          current_window_command:
+            "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+          decision_draft_record_command:
+            "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+          write_policy: "read-only",
+        },
         recovery: {
           status: "active",
           selected_closure_action: "collect_evidence",
@@ -3530,6 +3541,19 @@ describe("L7 CLI surface closure", () => {
           human_approval_count: 0,
           next_machine_command: "helix closure batch --action collect_evidence --summary-json",
         },
+        skill_binding: expect.objectContaining({
+          source_command: "helix skill suggest --current-location --summary-json",
+          full_inject_command: "helix skill suggest --current-location --inject --json",
+          top_items: expect.any(Array),
+        }),
+        commands: expect.objectContaining({
+          current_location: "helix current-location --summary-json",
+          closure_review_window:
+            "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+          closure_decision_draft_record:
+            "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+          skill_binding: "helix skill suggest --current-location --summary-json",
+        }),
         finding_count: expect.any(Number),
         source_command: "helix current-location --summary-json",
         view_command: "helix progress tree-view --summary-json",
@@ -6002,6 +6026,20 @@ describe("L7 CLI surface closure", () => {
             independent_layer_policy: "abolished",
             command: "helix current-location --summary-json",
           },
+          operation_scope: {
+            designed: expect.any(Number),
+            observed: expect.any(Number),
+            observed_gap: expect.any(Number),
+            missing: expect.any(Number),
+            reverify: expect.any(Number),
+          },
+          scrum_operation: {
+            status: expect.any(String),
+            source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+            source_binding_count: expect.any(Number),
+            observed_count: expect.any(Number),
+            missing_count: expect.any(Number),
+          },
           drive_model: {
             selected_model: "Recovery",
             selected_route_id: "drive:Recovery:recover-current-location",
@@ -6117,6 +6155,7 @@ describe("L7 CLI surface closure", () => {
             "full_source_command",
             "full_view_command",
             "full_review_bundle_command",
+            "full_inject_command",
           ],
           expected_surfaces: SUMMARY_SURFACE_CONTRACTS.map((contract) => contract.surface),
           missing_surfaces: [],

@@ -1391,6 +1391,47 @@ describe("visualization Tree View adapter", () => {
     expect(approvalReview?.tooltip).toContain(
       "outcome-route=reject_to_collect_evidence->collect_evidence drive=Recovery",
     );
+    expect(approvalReview?.children?.map((child) => child.id)).toEqual([
+      "project/current-location/vmodel-fit/approval-review/current-window",
+      "project/current-location/vmodel-fit/approval-review/evidence",
+      "project/current-location/vmodel-fit/approval-review/transition",
+      "project/current-location/vmodel-fit/approval-review/outcome-routes",
+      "project/current-location/vmodel-fit/approval-review/record-template",
+    ]);
+    const approvalReviewCurrentWindow = findTreeNode(
+      first,
+      "project/current-location/vmodel-fit/approval-review/current-window",
+    );
+    expect(approvalReviewCurrentWindow?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: [
+        "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+      ],
+    });
+    const approvalReviewEvidence = findTreeNode(
+      first,
+      "project/current-location/vmodel-fit/approval-review/evidence",
+    );
+    expect(approvalReviewEvidence?.description).toContain("tests=0/0");
+    const approvalReviewTransition = findTreeNode(
+      first,
+      "project/current-location/vmodel-fit/approval-review/transition",
+    );
+    expect(approvalReviewTransition?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: [
+        "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+      ],
+    });
+    const approvalReviewOutcomeRoutes = findTreeNode(
+      first,
+      "project/current-location/vmodel-fit/approval-review/outcome-routes",
+    );
+    expect(approvalReviewOutcomeRoutes?.children?.map((child) => child.id)).toContain(
+      "project/current-location/vmodel-fit/approval-review/outcome-routes/reject_to_collect_evidence",
+    );
     const recoveryRunway = vmodelFit?.children.find(
       (child) => child.id === "project/current-location/vmodel-fit/recovery-runway",
     );

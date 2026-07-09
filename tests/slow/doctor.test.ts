@@ -2592,6 +2592,12 @@ describe("runDoctor", () => {
         "project-current-location - closure-overview: status=contradicted queue=1 close=0 collect=0 repair=0 reverse=1 apply=no_close_ready_candidates recommended=reverse_design human=false command=helix closure review-bundle --action reverse_design --summary-json",
       );
       expect(check.messages.join("\n")).toContain(
+        "project-current-location - closure-approval-frontier: windows=0 current=0/0 listed=0 omitted=0",
+      );
+      expect(check.messages.join("\n")).toContain(
+        "decision_record=helix closure decision-draft --action close_ready --limit 20 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft-offset-0.yml --summary-json",
+      );
+      expect(check.messages.join("\n")).toContain(
         "project-current-location - next-action-ledger: total=1",
       );
       expect(check.messages.join("\n")).toContain("reverse=1");
@@ -2654,13 +2660,13 @@ describe("runDoctor", () => {
       const treeSummarySurfaceCheck = checkVisualizationTreeViewSummarySurface(root);
       expect(treeSummarySurfaceCheck.ok).toBe(true);
       expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
-        "visualization-tree-view-summary-surface - OK: status=pass checked=19 excluded=2 unexpected=0",
+        "visualization-tree-view-summary-surface - OK: status=pass checked=21 excluded=2 unexpected=0",
       );
       expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
         "source=helix progress tree-view --summary-json",
       );
       expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
-        "visualization-tree-view-summary-surface - catalog=pass expected=19 missing=0 unexpected_surfaces=0 source_mismatches=0",
+        "visualization-tree-view-summary-surface - catalog=pass expected=21 missing=0 unexpected_surfaces=0 source_mismatches=0",
       );
       expect(treeSummarySurfaceCheck.messages.join("\n")).toContain(
         "closure-evidence-probe:helix closure evidence-probe --summary-json",
@@ -2956,7 +2962,7 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: visualization-tree-view-summary-surface",
-        "checked=19",
+        "checked=21",
       ),
     ).toBe(true);
     expect(

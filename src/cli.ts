@@ -3983,6 +3983,19 @@ function summarizeProjectCurrentLocation(
   snapshot: ProjectCurrentLocationSnapshot,
   options: { recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null } = {},
 ) {
+  const closeReadyReviewBundle = buildProjectClosureReviewBundle(snapshot, {
+    action: "close_ready",
+    limit: 20,
+    offset: 0,
+  });
+  const closeReadyDecisionDraftCommand = `helix closure decision-draft --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.offset} --summary-json`;
+  const closeReadyDecisionRecordCommand = `helix closure decision-draft --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.offset} --out .helix/tmp/closure/close_ready-decision-draft-offset-${closeReadyReviewBundle.offset}.yml --summary-json`;
+  const closeReadyCurrentWindowCommand = `helix closure review-bundle --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.offset} --summary-json`;
+  const closeReadyTransitionWindowCommand = `helix closure transition-plan --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.offset} --summary-json`;
+  const closeReadyNextWindowCommand =
+    closeReadyReviewBundle.window.next_offset === null
+      ? null
+      : `helix closure review-bundle --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.window.next_offset} --summary-json`;
   return {
     schema_version: "project-current-location-summary.v1",
     source_clock: snapshot.source_clock,
@@ -4078,6 +4091,34 @@ function summarizeProjectCurrentLocation(
       ledger_status_counts: snapshot.closure.next_action_ledger.status_counts,
       packet_count: snapshot.closure.packets.total,
     },
+    approval_review_gate: {
+      status: closeReadyReviewBundle.total > 0 ? "approval_required" : "none",
+      action: "close_ready",
+      count: closeReadyReviewBundle.total,
+      listed: closeReadyReviewBundle.listed,
+      omitted: closeReadyReviewBundle.omitted,
+      approval_window_count: closeReadyReviewBundle.window.page_count,
+      current_window: {
+        page_index: closeReadyReviewBundle.window.page_index,
+        page_count: closeReadyReviewBundle.window.page_count,
+        start: closeReadyReviewBundle.window.start,
+        end: closeReadyReviewBundle.window.end,
+        offset: closeReadyReviewBundle.offset,
+        limit: closeReadyReviewBundle.limit,
+      },
+      approval_scope_digest: closeReadyReviewBundle.review_scope.approval_scope_digest,
+      evidence_totals: closeReadyReviewBundle.review_scope.evidence_totals,
+      sample_plan_ids: closeReadyReviewBundle.review_scope.plan_ids.slice(
+        0,
+        CLOSURE_SUMMARY_SAMPLE_LIMIT,
+      ),
+      current_window_command: closeReadyCurrentWindowCommand,
+      next_window_command: closeReadyNextWindowCommand,
+      transition_window_command: closeReadyTransitionWindowCommand,
+      decision_draft_command: closeReadyDecisionDraftCommand,
+      decision_draft_record_command: closeReadyDecisionRecordCommand,
+      write_policy: "read-only",
+    },
     recovery: snapshot.recovery
       ? {
           status: snapshot.recovery.status,
@@ -4120,6 +4161,17 @@ function summarizeProjectCurrentLocation(
           required_skills: snapshot.skill_binding.requiredSkills,
           recommended_skills: snapshot.skill_binding.recommendedSkills,
           optional_skills: snapshot.skill_binding.optionalSkills,
+          source_command: "helix skill suggest --current-location --summary-json",
+          full_inject_command: "helix skill suggest --current-location --inject --json",
+          top_items: snapshot.skill_binding.items.slice(0, 5).map((item) => ({
+            skill_id: item.skillId,
+            tier: item.tier,
+            inject_at: item.injectAt,
+            rank: item.rank,
+            score: item.score,
+            matched_drive_models: item.matchedDriveModels,
+            matched_layers: item.matchedLayers,
+          })),
         }
       : null,
     finding_count: snapshot.findings.length,
@@ -4129,6 +4181,18 @@ function summarizeProjectCurrentLocation(
       detail: finding.detail,
     })),
     write_policy: "read-only",
+    commands: {
+      current_location: "helix current-location --summary-json",
+      drive_model: "helix drive model --summary-json",
+      recovery_plan: "helix recovery plan --summary-json",
+      closure_review_window: closeReadyCurrentWindowCommand,
+      closure_transition_window: closeReadyTransitionWindowCommand,
+      closure_decision_draft: closeReadyDecisionDraftCommand,
+      closure_decision_draft_record: closeReadyDecisionRecordCommand,
+      vmodel_fit: "helix vmodel fit --summary-json",
+      project_frontier: "helix progress frontier --summary-json",
+      skill_binding: "helix skill suggest --current-location --summary-json",
+    },
     source_command: "helix current-location --summary-json",
     view_command: "helix progress tree-view --summary-json",
     full_view_command: "helix progress tree-view --json",
@@ -4339,6 +4403,22 @@ program
         process.stdout.write(
           `  closure-queue-route: close=${snapshot.closure.queue.route_counts.close_ready} collect=${snapshot.closure.queue.route_counts.collect_evidence} repair=${snapshot.closure.queue.route_counts.repair_failed_evidence} reverse=${snapshot.closure.queue.route_counts.reverse_design}\n`,
         );
+        if (snapshot.closure.queue.route_counts.close_ready > 0) {
+          const closeReadyBundle = buildProjectClosureReviewBundle(snapshot, {
+            action: "close_ready",
+            limit: 20,
+            offset: 0,
+          });
+          const closeReadyDecisionRecordCommand = `helix closure decision-draft --action close_ready --limit ${closeReadyBundle.limit} --offset ${closeReadyBundle.offset} --out .helix/tmp/closure/close_ready-decision-draft-offset-${closeReadyBundle.offset}.yml --summary-json`;
+          const closeReadyCurrentWindowCommand = `helix closure review-bundle --action close_ready --limit ${closeReadyBundle.limit} --offset ${closeReadyBundle.offset} --summary-json`;
+          const closeReadyNextWindowCommand =
+            closeReadyBundle.window.next_offset === null
+              ? "-"
+              : `helix closure review-bundle --action close_ready --limit ${closeReadyBundle.limit} --offset ${closeReadyBundle.window.next_offset} --summary-json`;
+          process.stdout.write(
+            `  closure-approval-frontier: windows=${closeReadyBundle.window.page_count} current=${closeReadyBundle.window.page_index}/${closeReadyBundle.window.page_count} listed=${closeReadyBundle.listed} omitted=${closeReadyBundle.omitted} digest=${closeReadyBundle.review_scope.approval_scope_digest} decision_record=${closeReadyDecisionRecordCommand} review=${closeReadyCurrentWindowCommand} next=${closeReadyNextWindowCommand}\n`,
+          );
+        }
         process.stdout.write(
           `  closure-packets: total=${snapshot.closure.packets.total} ${snapshot.closure.packets.items
             .map((packet) => `${packet.nextAction}=${packet.count}`)
@@ -5046,6 +5126,33 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
     },
     current_location_frontier: summarizeCurrentLocationFrontier(snapshot),
     function_design_policy: functionDesignPolicy,
+    operation_scope: {
+      designed: snapshot.operation_scope.designed,
+      observed: snapshot.operation_scope.observed,
+      observed_gap: snapshot.operation_scope.observed_gap,
+      missing: snapshot.operation_scope.missing,
+      reverify: snapshot.operation_scope.reverify,
+    },
+    scrum_operation: snapshot.scrum_operation
+      ? {
+          status: snapshot.scrum_operation.status,
+          source_package: snapshot.scrum_operation.sourcePackage,
+          source_binding_count: snapshot.scrum_operation.sourceBindings.length,
+          source_bindings: snapshot.scrum_operation.sourceBindings,
+          backlog_items: snapshot.scrum_operation.backlogItems,
+          sprint_items: snapshot.scrum_operation.sprintItems,
+          acceptance_items: snapshot.scrum_operation.acceptanceItems,
+          planning_items: snapshot.scrum_operation.planningItems,
+          ceremony_items: snapshot.scrum_operation.ceremonyItems,
+          metric_items: snapshot.scrum_operation.metricItems,
+          active_sprint_plans: snapshot.scrum_operation.activeSprintPlans,
+          observed_count: snapshot.scrum_operation.items.filter(
+            (item) => item.status === "observed",
+          ).length,
+          missing_count: snapshot.scrum_operation.items.filter((item) => item.status === "missing")
+            .length,
+        }
+      : null,
     drive_model: {
       selected_model: driveModel.selected_model,
       selected_route_id: driveModel.selected_candidate.route_id,
