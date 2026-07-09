@@ -1383,56 +1383,64 @@ completion
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output")
   .action((opts: { json?: boolean; summaryJson?: boolean }) => {
-    const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()), {
+    const repoRoot = process.cwd();
+    const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(repoRoot), {
       sourceCommand: "helix completion decision-packet --json",
     });
-    const packetSummary = () => ({
-      schema_version: "completion-decision-packet-summary.v1",
-      status: packet.status,
-      ok: packet.ok,
-      completion_claim_allowed: packet.semanticMeaningSummary.completionClaimAllowed,
-      human_decision_required: packet.humanDecisionRequired,
-      next_authority: packet.nextAuthority,
-      authority_boundary: packet.authorityBoundary,
-      decision_count: packet.decisionCount,
-      semantic_frontier_count: packet.semanticMeaningSummary.frontierRecordCount,
-      confirmed_current_meaning_count:
-        packet.semanticMeaningSummary.confirmedCurrentMeaningRecordCount,
-      blockers: packet.blockers,
-      human_decision_blockers: packet.humanDecisionBlockers,
-      workflow_state_blockers: packet.workflowStateBlockers,
-      autonomous_work_blockers: packet.autonomousWorkBlockers,
-      freshness: {
-        valid_for_minutes: packet.freshness.validForMinutes,
-        stale: packet.freshness.stale,
-        expires_at: packet.freshness.expiresAt,
-        policy: packet.freshness.policy,
-      },
-      human_review_bundle: {
-        schema_version: packet.humanReviewBundle.schemaVersion,
-        status: packet.humanReviewBundle.status,
-        decision_count: packet.humanReviewBundle.decisionCount,
-        next_authority: packet.humanReviewBundle.nextAuthority,
-        completion_claim_allowed: packet.humanReviewBundle.completionClaimAllowed,
-      },
-      decisions: packet.decisions.map((decision) => ({
-        plan_id: decision.planId,
-        decision_kind: decision.decisionKind,
-        blocker_reason: decision.blockerReason,
-        blockers: decision.blockers,
-        required_records: decision.requiredRecords.map((record) => record.recordName),
-        scoped_primary_packet_command: decision.scopedDecisionPacketCommand,
-        runnable_scoped_primary_packet_command: decision.runnableScopedDecisionPacketCommand,
-        scoped_supporting_packet_commands: decision.scopedPacketCommands,
-        next_workflow_route: decision.nextWorkflowRoute,
-        next_workflow_route_ja: decision.nextWorkflowRouteJa,
-      })),
-      review_bundle_command: "helix completion review-bundle --json",
-      runnable_review_bundle_command: "bun run helix completion review-bundle --json",
-      write_policy: "read-only",
-      source_command: "helix completion decision-packet --summary-json",
-      full_source_command: "helix completion decision-packet --json",
-    });
+    const packetSummary = () => {
+      const completionFrontier = buildCompletionFrontierSummary(
+        repoRoot,
+        packet.semanticMeaningSummary.completionClaimAllowed,
+      );
+      return {
+        schema_version: "completion-decision-packet-summary.v1",
+        status: packet.status,
+        ok: packet.ok,
+        completion_claim_allowed: packet.semanticMeaningSummary.completionClaimAllowed,
+        human_decision_required: packet.humanDecisionRequired,
+        next_authority: packet.nextAuthority,
+        authority_boundary: packet.authorityBoundary,
+        decision_count: packet.decisionCount,
+        semantic_frontier_count: packet.semanticMeaningSummary.frontierRecordCount,
+        confirmed_current_meaning_count:
+          packet.semanticMeaningSummary.confirmedCurrentMeaningRecordCount,
+        blockers: packet.blockers,
+        human_decision_blockers: packet.humanDecisionBlockers,
+        workflow_state_blockers: packet.workflowStateBlockers,
+        autonomous_work_blockers: packet.autonomousWorkBlockers,
+        freshness: {
+          valid_for_minutes: packet.freshness.validForMinutes,
+          stale: packet.freshness.stale,
+          expires_at: packet.freshness.expiresAt,
+          policy: packet.freshness.policy,
+        },
+        human_review_bundle: {
+          schema_version: packet.humanReviewBundle.schemaVersion,
+          status: packet.humanReviewBundle.status,
+          decision_count: packet.humanReviewBundle.decisionCount,
+          next_authority: packet.humanReviewBundle.nextAuthority,
+          completion_claim_allowed: packet.humanReviewBundle.completionClaimAllowed,
+        },
+        completion_frontier: completionFrontier,
+        decisions: packet.decisions.map((decision) => ({
+          plan_id: decision.planId,
+          decision_kind: decision.decisionKind,
+          blocker_reason: decision.blockerReason,
+          blockers: decision.blockers,
+          required_records: decision.requiredRecords.map((record) => record.recordName),
+          scoped_primary_packet_command: decision.scopedDecisionPacketCommand,
+          runnable_scoped_primary_packet_command: decision.runnableScopedDecisionPacketCommand,
+          scoped_supporting_packet_commands: decision.scopedPacketCommands,
+          next_workflow_route: decision.nextWorkflowRoute,
+          next_workflow_route_ja: decision.nextWorkflowRouteJa,
+        })),
+        review_bundle_command: "helix completion review-bundle --json",
+        runnable_review_bundle_command: "bun run helix completion review-bundle --json",
+        write_policy: "read-only",
+        source_command: "helix completion decision-packet --summary-json",
+        full_source_command: "helix completion decision-packet --json",
+      };
+    };
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
       return;
@@ -4956,6 +4964,60 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
     write_policy: "read-only",
     source_command: "helix progress tree-view --summary-json",
   };
+}
+
+function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed: boolean) {
+  const db = openHarnessDb(":memory:", { repoRoot });
+  try {
+    rebuildHarnessDb({ repoRoot, db });
+    const projectFrontier = buildProjectFrontierSummary(
+      repoRoot,
+      buildProjectCurrentLocationSnapshot(db),
+    );
+    const recoveryRunway = projectFrontier.vmodel_fit.current_location_gate.recovery_runway;
+    const reentryForecast = projectFrontier.vmodel_fit.current_location_gate.reentry_forecast;
+    return {
+      schema_version: "completion-frontier-summary.v1",
+      completion_claim_allowed: completionClaimAllowed,
+      status: projectFrontier.vmodel_fit.status,
+      current: projectFrontier.current,
+      drive_model: projectFrontier.drive_model,
+      recovery_runway: {
+        status: recoveryRunway.status,
+        machine_actionable_count: recoveryRunway.machine_actionable_count,
+        human_approval_count: recoveryRunway.human_approval_count,
+        design_reverse_count: recoveryRunway.design_reverse_count,
+        remaining_after_machine_lanes: recoveryRunway.remaining_after_machine_lanes,
+        next_machine_command: recoveryRunway.next_machine_command,
+      },
+      reentry_forecast: {
+        status: reentryForecast.status,
+        effective_status: reentryForecast.effective_status,
+        current_blocking_count: reentryForecast.current_blocking_count,
+        blocking_after_machine_lanes: reentryForecast.blocking_after_machine_lanes,
+        required_phase_count: reentryForecast.required_phase_count,
+        next_phase_action: reentryForecast.next_phase_action,
+        next_gate: reentryForecast.next_gate,
+        next_command: reentryForecast.next_command,
+        next_execution_command: reentryForecast.next_execution_command,
+      },
+      closure_frontier: projectFrontier.closure_frontier,
+      commands: {
+        project_frontier: projectFrontier.source_command,
+        current_location: projectFrontier.commands.current_location,
+        vmodel_fit: projectFrontier.commands.vmodel_fit,
+        closure_review_window: projectFrontier.commands.closure_review_window,
+        closure_transition_window: projectFrontier.commands.closure_transition_window,
+        closure_decision_draft: projectFrontier.commands.closure_decision_draft,
+        closure_decision_draft_record: projectFrontier.commands.closure_decision_draft_record,
+      },
+      write_policy: "read-only",
+      source_command: "helix completion decision-packet --summary-json",
+      project_frontier_source_command: projectFrontier.source_command,
+    };
+  } finally {
+    db.close();
+  }
 }
 
 type ProbeRecordOutput = {

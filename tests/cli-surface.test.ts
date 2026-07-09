@@ -2056,6 +2056,38 @@ describe("L7 CLI surface closure", () => {
           next_authority: "human",
           completion_claim_allowed: false,
         },
+        completion_frontier: {
+          schema_version: "completion-frontier-summary.v1",
+          completion_claim_allowed: false,
+          status: expect.any(String),
+          current: expect.objectContaining({
+            status: expect.any(String),
+            completion_boundary: expect.any(String),
+          }),
+          drive_model: expect.objectContaining({
+            source_command: "helix drive model --summary-json",
+          }),
+          recovery_runway: expect.objectContaining({
+            status: expect.any(String),
+            machine_actionable_count: expect.any(Number),
+            human_approval_count: expect.any(Number),
+          }),
+          reentry_forecast: expect.objectContaining({
+            status: expect.any(String),
+            next_command: expect.any(String),
+          }),
+          closure_frontier: expect.objectContaining({
+            action: "close_ready",
+            review_window_index: expect.any(Array),
+            source_command: "helix closure review-bundle --action close_ready --summary-json",
+          }),
+          commands: expect.objectContaining({
+            project_frontier: "helix progress tree-view --summary-json",
+            closure_review_window: expect.stringContaining("helix closure review-bundle"),
+            closure_decision_draft: expect.stringContaining("helix closure decision-draft"),
+          }),
+          project_frontier_source_command: "helix progress tree-view --summary-json",
+        },
         decisions: [
           expect.objectContaining({
             plan_id: "PLAN-DISCOVERY-10-fixture",

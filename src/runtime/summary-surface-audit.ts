@@ -254,6 +254,21 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
       source_command: "helix completion decision-packet --summary-json",
       full_review_bundle_command: "helix completion review-bundle --json",
       full_source_command: "helix completion decision-packet --json",
+      completion_frontier: {
+        source_command: "helix completion decision-packet --summary-json",
+        project_frontier_source_command: "helix progress tree-view --summary-json",
+        commands: {
+          project_frontier: "helix progress tree-view --summary-json",
+          current_location: "helix current-location --summary-json",
+          vmodel_fit: "helix vmodel fit --summary-json",
+          closure_review_window:
+            "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
+          closure_transition_window:
+            "helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
+          closure_decision_draft:
+            "helix closure decision-draft --action close_ready --limit 20 --offset 0 --summary-json",
+        },
+      },
       view_command: "helix progress tree-view --summary-json",
       full_view_command: "helix progress tree-view --json",
     },
