@@ -2460,6 +2460,22 @@ describe("project current-location read model", () => {
         evidence_apply_dry_run_command:
           "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
       });
+      expect(recoveryPlan.automation_boundaries).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            action: "repair_failed_evidence",
+            automation_class: "evidence_required",
+            approval_required: true,
+            mutation_allowed: false,
+            dry_run_command:
+              "helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+            execute_command:
+              "helix closure evidence-apply --execute --action repair_failed_evidence --limit 3 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+            required_record: "approval_scope_digest",
+            evidence_apply_write_policy: "approval-required",
+          }),
+        ]),
+      );
       const patchPacket = buildProjectClosureEvidencePatchPacket(snapshot, {
         action: "repair_failed_evidence",
         limit: 1,

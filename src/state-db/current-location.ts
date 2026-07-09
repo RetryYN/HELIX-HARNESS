@@ -3458,9 +3458,9 @@ function recoverySafetyPolicy(
     case "close_ready":
       return "read-only review bundle まで。closure apply は approval record と dry-run 確認が揃うまで禁止";
     case "collect_evidence":
-      return "evidence row template と target table を提示し、実ファイル patch は evidence-patch approval packet で承認する";
+      return "evidence row template と target table を提示し、実ファイル patch/apply は evidence materialize と approval record で承認する";
     case "repair_failed_evidence":
-      return "failed evidence は保持し、green evidence の再投影 patch は evidence-patch approval packet で承認する";
+      return "failed evidence は保持し、green evidence の再投影 patch/apply は evidence materialize と approval record で承認する";
     case "reverse_design":
       return "設計/テスト設計へ戻す依存範囲を提示するだけで、設計成果物は自動改変しない";
   }
@@ -3471,14 +3471,18 @@ function buildProjectRecoveryAutomationBoundaries(
 ): ProjectRecoveryAutomationBoundary[] {
   return lanes.map((lane): ProjectRecoveryAutomationBoundary => {
     const automationClass = recoveryAutomationClass(lane);
-    const approvalRequired = automationClass === "approval_required";
-	    const evidencePatchCommand =
-	      lane.action === "collect_evidence" || lane.action === "repair_failed_evidence"
-	        ? `helix closure evidence-patch --action ${lane.action} --summary-json`
-	        : null;
+    const evidencePatchCommand =
+      lane.action === "collect_evidence" || lane.action === "repair_failed_evidence"
+        ? `helix closure evidence-patch --action ${lane.action} --summary-json`
+        : null;
+    const evidenceMutationRequiresApproval =
+      automationClass === "evidence_required" &&
+      (evidencePatchCommand !== null || lane.evidence_apply_write_policy === "approval-required");
+    const closureApprovalRequired = automationClass === "approval_required";
+    const approvalRequired = closureApprovalRequired || evidenceMutationRequiresApproval;
     const closureApplyDryRunCommand = `helix closure apply --dry-run --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
     const closureApplyExecuteCommand = `helix closure apply --execute --approval-record <approved-approval-record-path> --limit ${lane.count} --json`;
-	    return {
+    return {
       action: lane.action,
       lane_type: lane.lane_type,
       automation_class: automationClass,
@@ -3490,22 +3494,22 @@ function buildProjectRecoveryAutomationBoundaries(
       dry_run_command:
         lane.action === "close_ready"
           ? closureApplyDryRunCommand
-          : (evidencePatchCommand ?? lane.batch_command),
+          : (lane.evidence_apply_dry_run_command ?? evidencePatchCommand ?? lane.batch_command),
       review_command: lane.review_command,
       batch_command: lane.batch_command,
-	      evidence_plan_command: lane.evidence_plan_command,
-	      evidence_patch_command: evidencePatchCommand,
-	      evidence_patch_write_policy: evidencePatchCommand ? "approval-required" : null,
-	      evidence_probe_command: lane.evidence_probe_command,
-	      evidence_materialize_command: lane.evidence_materialize_command,
-	      evidence_approval_draft_command: lane.evidence_approval_draft_command,
-		      evidence_apply_dry_run_command: lane.evidence_apply_dry_run_command,
-		      evidence_apply_execute_command: lane.evidence_apply_execute_command,
-		      evidence_apply_write_policy: lane.evidence_apply_write_policy,
-		      evidence_handoff_artifacts: lane.evidence_handoff_artifacts,
-	      execute_command: approvalRequired
+      evidence_plan_command: lane.evidence_plan_command,
+      evidence_patch_command: evidencePatchCommand,
+      evidence_patch_write_policy: evidencePatchCommand ? "approval-required" : null,
+      evidence_probe_command: lane.evidence_probe_command,
+      evidence_materialize_command: lane.evidence_materialize_command,
+      evidence_approval_draft_command: lane.evidence_approval_draft_command,
+      evidence_apply_dry_run_command: lane.evidence_apply_dry_run_command,
+      evidence_apply_execute_command: lane.evidence_apply_execute_command,
+      evidence_apply_write_policy: lane.evidence_apply_write_policy,
+      evidence_handoff_artifacts: lane.evidence_handoff_artifacts,
+      execute_command: closureApprovalRequired
         ? closureApplyExecuteCommand
-        : null,
+        : lane.evidence_apply_execute_command,
       required_record: approvalRequired || evidencePatchCommand ? "approval_scope_digest" : null,
       safety_policy: recoverySafetyPolicy(lane, automationClass),
       reasons: [
@@ -3515,16 +3519,18 @@ function buildProjectRecoveryAutomationBoundaries(
           ? "approval_scope_digest required before mutation"
           : "read-only planning surface",
         evidencePatchCommand ? "evidence_patch_write_policy=approval-required" : "evidence_patch=none",
-	        lane.evidence_probe_command ? `evidence_probe=${lane.evidence_probe_command}` : "evidence_probe=none",
-	        lane.evidence_materialize_command
-	          ? `evidence_materialize=${lane.evidence_materialize_command}`
-	          : "evidence_materialize=none",
-	        lane.evidence_approval_draft_command
-	          ? `evidence_approval_draft=${lane.evidence_approval_draft_command}`
-	          : "evidence_approval_draft=none",
-	        lane.evidence_apply_dry_run_command
-	          ? `evidence_apply_dry_run=${lane.evidence_apply_dry_run_command}`
-	          : "evidence_apply_dry_run=none",
+        lane.evidence_probe_command
+          ? `evidence_probe=${lane.evidence_probe_command}`
+          : "evidence_probe=none",
+        lane.evidence_materialize_command
+          ? `evidence_materialize=${lane.evidence_materialize_command}`
+          : "evidence_materialize=none",
+        lane.evidence_approval_draft_command
+          ? `evidence_approval_draft=${lane.evidence_approval_draft_command}`
+          : "evidence_approval_draft=none",
+        lane.evidence_apply_dry_run_command
+          ? `evidence_apply_dry_run=${lane.evidence_apply_dry_run_command}`
+          : "evidence_apply_dry_run=none",
         ...lane.reasons,
       ],
     };

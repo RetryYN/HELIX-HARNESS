@@ -2867,23 +2867,29 @@ describe("L7 CLI surface closure", () => {
 	            }),
 	          ],
 	        },
-	        automation_boundaries: expect.arrayContaining([
-	          expect.objectContaining({
-	            action: "collect_evidence",
-	            automation_class: "evidence_required",
-	            evidence_probe_command:
-	              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	            evidence_materialize_command:
-	              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
-	            evidence_approval_draft_command:
-	              "helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json",
-	            evidence_apply_dry_run_command:
-	              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-	            evidence_apply_execute_command:
-	              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-	            evidence_apply_write_policy: "approval-required",
-	          }),
-	        ]),
+        automation_boundaries: expect.arrayContaining([
+          expect.objectContaining({
+            action: "collect_evidence",
+            automation_class: "evidence_required",
+            approval_required: true,
+            dry_run_command:
+              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+            execute_command:
+              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+            required_record: "approval_scope_digest",
+            evidence_probe_command:
+              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            evidence_materialize_command:
+              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+            evidence_approval_draft_command:
+              "helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json",
+            evidence_apply_dry_run_command:
+              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+            evidence_apply_execute_command:
+              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
+            evidence_apply_write_policy: "approval-required",
+          }),
+        ]),
 	        reentry_forecast: {
 	          status: "machine_phase_pending",
 	          current_blocking_count: 1,
@@ -2957,25 +2963,25 @@ describe("L7 CLI surface closure", () => {
       expect(recoveryPlanText.stdout).toContain(
         "recovery plan: status=active selected=Recovery current=L14->L12 closure_action=collect_evidence write=read-only",
       );
-	      expect(recoveryPlanText.stdout).toContain(
-	        "automation-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
-	      expect(recoveryPlanText.stdout).toContain(
-	        "reentry-forecast: status=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-	      );
+      expect(recoveryPlanText.stdout).toContain(
+        "automation-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
+      expect(recoveryPlanText.stdout).toContain(
+        "reentry-forecast: status=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+      );
       expect(recoveryPlanText.stdout).toContain(
         "runway-phase: 1.collect_evidence machine count=1 selected=true human=false remaining=0 next_gate=recompute_drive_model command=helix closure batch --action collect_evidence --json",
       );
       expect(recoveryPlanText.stdout).toContain(
         "evidence-plan: action=collect_evidence total=1 listed=1",
       );
-	      expect(recoveryPlanText.stdout).toContain(
-	        "automation: collect_evidence class=evidence_required count=1 mutation=false approval=false",
-	      );
-	      expect(recoveryPlanText.stdout).toContain(
-	        "probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize=helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json approval_draft=helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json apply_dry_run=helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_execute=helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_write=approval-required",
-	      );
-	      expect(recoveryPlanText.stdout).toContain("step: 1.detect-current-location ready");
+      expect(recoveryPlanText.stdout).toContain(
+        "automation: collect_evidence class=evidence_required count=1 mutation=false approval=true",
+      );
+      expect(recoveryPlanText.stdout).toContain(
+        "probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize=helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json approval_draft=helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json apply_dry_run=helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_execute=helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_write=approval-required",
+      );
+      expect(recoveryPlanText.stdout).toContain("step: 1.detect-current-location ready");
 
       const roadmapCurrentJson = runCliIn(root, ["roadmap", "current", "--json"]);
       expect(roadmapCurrentJson.status).toBe(0);
