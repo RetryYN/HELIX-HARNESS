@@ -630,9 +630,7 @@ describe("HELIX objective evidence audit", () => {
 
     const prefixCollision = analyzeObjectiveEvidenceAudit({
       ...input,
-      auditText: mutateG10((line) =>
-        line.replaceAll(liveMarker, `decisionCount=${expected + 10}`),
-      ),
+      auditText: mutateG10((line) => line.replaceAll(liveMarker, `decisionCount=${expected + 10}`)),
     });
     expect(prefixCollision.ok).toBe(false);
     expect(prefixCollision.violations).toContain(
