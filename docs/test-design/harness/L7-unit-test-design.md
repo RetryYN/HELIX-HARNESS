@@ -407,6 +407,8 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-VPAIR-004 | `analyzePairFreeze` (self-pair / L2 group)              | `pair_artifact: self` → 孤児にしない / L2 group (wireframe 参照) は hub が self-pair なら成立                                                                                                                    |
 | U-VPAIR-005 | `loadPairDocs`+`analyzePairFreeze` (実 repo 回帰ガード) | 実 repo で `orphans == []` (全 V-pair が双方向、孤児0)                                                                                                                                                           |
 | U-VPAIR-006 | `pairFreezeMessages`                                    | 孤児なし → `"OK"` / 孤児あり → reason 別文言 (`pair 欠落`/`参照不実在`/`逆参照なし`)                                                                                                                             |
+| U-VPAIR-007 | `analyzePairFreeze` (test-design起点)                    | designから一度も参照されないtest-designは`test-design-orphan`で`ok=false`。design起点のpair数がgreenでもtest-design孤児を見逃さない。                                                                           |
+| U-VPAIR-008 | `pair_freeze_exempt`                                     | exemption flag/kind/reason/targetをtyped検査する。片側指定、未知kind、理由欠落、target不在は`pair-exemption-invalid`でfail-closeする。nested test-designも走査対象にする。                                     |
 
 ### §1.14 U-VTRIG (検証発火 = 層群 freeze の機械発火、PLAN-L7-12 / IMP-068)
 

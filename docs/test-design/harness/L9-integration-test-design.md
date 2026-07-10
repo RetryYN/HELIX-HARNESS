@@ -2,6 +2,10 @@
 layer: L9
 artifact_type: test_design
 status: confirmed
+pair_freeze_exempt: true
+pair_freeze_exempt_kind: layer_migration_staged
+pair_freeze_exempt_reason: "L8=unit/L9=integrationへのatomic layer migrationが未完了のため、現行L5↔L8正本を維持してstaged扱いにする"
+pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.md
 legacy_source: docs/test-design/harness/L8-integration-test-design.md
 pair_artifact: docs/design/harness/L5-detailed-design/
 created: 2026-07-08

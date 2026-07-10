@@ -25,9 +25,19 @@ export interface PairDoc {
   status: string | null;
   /** false の doc は pair 整合だけを見て、既存 freeze を巻き戻さない frontier として扱う。 */
   freezeBlocking?: boolean;
+  /** migration/meta test-designをpair-freeze対象外にする明示契約。理由との同時指定を必須にする。 */
+  pairFreezeExempt?: boolean;
+  pairFreezeExemptReason?: string | null;
+  pairFreezeExemptKind?: string | null;
+  pairFreezeExemptTarget?: string | null;
 }
 
-export type PairOrphanReason = "pair-missing" | "ref-unresolved" | "trace-orphan";
+export type PairOrphanReason =
+  | "pair-missing"
+  | "ref-unresolved"
+  | "trace-orphan"
+  | "test-design-orphan"
+  | "pair-exemption-invalid";
 
 export interface PairOrphan {
   path: string;
@@ -50,6 +60,18 @@ export function stripInlineComment(value: string): string {
   return value.replace(/\s+#.*$/, "").trim();
 }
 
+function stripScalarQuotes(value: string): string {
+  const normalized = stripInlineComment(value);
+  if (
+    normalized.length >= 2 &&
+    ((normalized.startsWith('"') && normalized.endsWith('"')) ||
+      (normalized.startsWith("'") && normalized.endsWith("'")))
+  ) {
+    return normalized.slice(1, -1).trim();
+  }
+  return normalized;
+}
+
 const toPosix = (p: string): string => p.split(sep).join("/");
 const basename = (p: string): string => p.split("/").pop() ?? p;
 /** 末尾 "/" 込みの親 dir。 */
@@ -69,15 +91,32 @@ export function isDesignSubDoc(d: PairDoc): boolean {
   return designLayerFromPath(d.path) != null;
 }
 
+export function isTestDesignDoc(d: PairDoc): boolean {
+  if (EXCLUDED_BASENAMES.has(basename(d.path))) return false;
+  return /^docs\/test-design\/(?:harness|helix)\/.+\.md$/.test(d.path);
+}
+
 export function parsePairDoc(path: string, content: string): PairDoc {
   const raw = fmValue(content, "pair_artifact");
   const freezeBlocking = stripInlineComment(fmValue(content, "freeze_blocking") ?? "true");
+  const pairFreezeExempt = stripInlineComment(fmValue(content, "pair_freeze_exempt") ?? "false");
+  const pairFreezeExemptReason = fmValue(content, "pair_freeze_exempt_reason");
+  const pairFreezeExemptKind = fmValue(content, "pair_freeze_exempt_kind");
+  const pairFreezeExemptTarget = fmValue(content, "pair_freeze_exempt_target");
   return {
     path: toPosix(path),
     layer: fmValue(content, "layer") ?? null,
     pairArtifact: raw != null ? stripInlineComment(raw) : null,
     status: fmValue(content, "status") ?? null,
     freezeBlocking: freezeBlocking !== "false",
+    pairFreezeExempt: pairFreezeExempt === "true",
+    pairFreezeExemptReason: pairFreezeExemptReason
+      ? stripScalarQuotes(pairFreezeExemptReason)
+      : null,
+    pairFreezeExemptKind: pairFreezeExemptKind ? stripScalarQuotes(pairFreezeExemptKind) : null,
+    pairFreezeExemptTarget: pairFreezeExemptTarget
+      ? stripScalarQuotes(pairFreezeExemptTarget)
+      : null,
   };
 }
 
@@ -142,6 +181,81 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
     }
   }
 
+  const referencedTestDesigns = new Set(
+    docs
+      .filter(isDesignSubDoc)
+      .map((doc) => doc.pairArtifact)
+      .filter((path): path is string => path?.startsWith("docs/test-design/") === true),
+  );
+  for (const testDesign of docs.filter(isTestDesignDoc)) {
+    const hasExemptionMetadata = Boolean(
+      testDesign.pairFreezeExemptReason ||
+        testDesign.pairFreezeExemptKind ||
+        testDesign.pairFreezeExemptTarget,
+    );
+    if (!testDesign.pairFreezeExempt && hasExemptionMetadata) {
+      orphans.push({
+        path: testDesign.path,
+        reason: "pair-exemption-invalid",
+        detail: "pair_freeze_exempt=falseまたは欠落なのにexemption metadataが残っている",
+      });
+      continue;
+    }
+    if (testDesign.pairFreezeExempt) {
+      const kind = testDesign.pairFreezeExemptKind;
+      const allowedKinds = new Set(["legacy_shim", "layer_migration_staged", "cross_layer_meta"]);
+      let detail = "";
+      if (!testDesign.pairFreezeExemptReason?.trim()) {
+        detail = "pair_freeze_exempt_reasonが無い";
+      } else if (!kind || !allowedKinds.has(kind)) {
+        detail = `pair_freeze_exempt_kindが不正: ${kind ?? "missing"}`;
+      } else if (kind === "cross_layer_meta") {
+        const relatedDesign = testDesign.pairArtifact
+          ? byPath.get(testDesign.pairArtifact)
+          : undefined;
+        if (!relatedDesign || !isDesignSubDoc(relatedDesign)) {
+          detail = "cross_layer_metaのpair_artifactが実在designを指していない";
+        }
+      } else {
+        const target = testDesign.pairFreezeExemptTarget;
+        const targetDoc = target ? byPath.get(target) : undefined;
+        if (
+          !target ||
+          !targetDoc ||
+          !isTestDesignDoc(targetDoc) ||
+          targetDoc.pairFreezeExempt ||
+          !referencedTestDesigns.has(target) ||
+          target === testDesign.path
+        ) {
+          detail = `${kind}のpair_freeze_exempt_targetがdesignから参照される非exempt test-designを指していない`;
+        }
+      }
+      if (detail) {
+        orphans.push({
+          path: testDesign.path,
+          reason: "pair-exemption-invalid",
+          detail,
+        });
+      }
+      continue;
+    }
+    if (!testDesign.pairArtifact) {
+      orphans.push({
+        path: testDesign.path,
+        reason: "pair-missing",
+        detail: "test-designにpair_artifactが無い",
+      });
+      continue;
+    }
+    if (!referencedTestDesigns.has(testDesign.path)) {
+      orphans.push({
+        path: testDesign.path,
+        reason: "test-design-orphan",
+        detail: "対応するdesignからpair_artifactで参照されていない",
+      });
+    }
+  }
+
   return { orphans, pairs, ok: orphans.length === 0 };
 }
 
@@ -190,9 +304,17 @@ export function pairFreezeMessages(result: PairFreezeResult): string[] {
     "pair-missing": "pair 欠落",
     "ref-unresolved": "参照不実在",
     "trace-orphan": "逆参照なし",
+    "test-design-orphan": "test-design孤児",
+    "pair-exemption-invalid": "pair exemption不正",
   };
   const msgs: string[] = [];
-  for (const reason of ["pair-missing", "ref-unresolved", "trace-orphan"] as PairOrphanReason[]) {
+  for (const reason of [
+    "pair-missing",
+    "ref-unresolved",
+    "trace-orphan",
+    "test-design-orphan",
+    "pair-exemption-invalid",
+  ] as PairOrphanReason[]) {
     const hits = result.orphans.filter((o) => o.reason === reason);
     if (hits.length === 0) continue;
     const list = hits.map((o) => `${o.path} (${o.detail})`).join(", ");

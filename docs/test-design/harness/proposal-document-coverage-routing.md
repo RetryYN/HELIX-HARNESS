@@ -3,6 +3,9 @@ layer: L1-L9
 executed_at_layer: L7-L14
 artifact_type: test_design
 status: draft
+pair_freeze_exempt: true
+pair_freeze_exempt_kind: cross_layer_meta
+pair_freeze_exempt_reason: "複数層のcoverage routingを定義するmeta test-designで、単一designとのpair-freeze対象ではない"
 pair_artifact: docs/design/harness/L3-functional/functional-requirements.md
 related_function: src/task/classify.ts
 related_cli: src/cli.ts

@@ -102,6 +102,19 @@ function analyzePairFreeze(docs):
 - `runDoctor` に `checkPairFreeze` を **hard/fail-close** で配線 (`pairFreeze.ok` を `runDoctor.ok` に連動)。
 - 純関数 + 実 repo ガードのみ。新 hook 不要 (governance-enforcement / backfill-pairing と同方式)。
 
+## §6.1 test-design起点の孤児検出
+
+design文書だけを走査すると、どのdesignからも参照されないtest-designが検査対象に入らず、
+「双方向・孤児0」を過剰主張できる。`analyzePairFreeze` はtest-design文書も起点として走査し、
+対応するdesign文書から一度も`pair_artifact`で参照されない場合を`test-design-orphan`としてfail-closeする。
+
+migration shim、layer migration staged文書、横断meta test-designをpair-freeze対象外にする場合は、frontmatterへ
+`pair_freeze_exempt: true`、`pair_freeze_exempt_kind`、`pair_freeze_exempt_reason`を同時に記録する。
+kindは`legacy_shim` / `layer_migration_staged` / `cross_layer_meta`だけを許可する。shim/migrationは
+実在する現行test-designを`pair_freeze_exempt_target`で指し、meta文書は実在するrelated designを
+`pair_artifact`で指す。片側指定、未知kind、target不在は`pair-exemption-invalid`とし、
+`freeze_blocking: false`やstatusだけでは暗黙除外しない。
+
 ## §7 検証タイミングの機械発火 (IMP-068、PLAN-L6-11 / L7-12)
 
 > pair-freeze lint (§1-§6) の status 集計を **V-model 層群**単位に拡張し、**検証ロードマップの「いつ検証するか」を人の記憶でなく V-model 構造で機械発火**させる (崩れ防止の全体調整)。
