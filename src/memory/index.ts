@@ -1,6 +1,7 @@
 import type { MemoryDeps, MemoryEntry, MemoryLayer, WriteMemoryInput } from "./memory-types";
 
 export type { MemoryDeps, MemoryEntry, MemoryLayer, WriteMemoryInput } from "./memory-types";
+export * from "./memory-v2";
 
 export function writeMemory(input: WriteMemoryInput, deps: MemoryDeps): MemoryEntry {
   const { layer, key, body } = input;

@@ -68,11 +68,12 @@ interface MemoryEntryV2 {
 | `compactMemoryV2(input, deps): CompactMemoryV2Result` | layer lock内で再読→temp write→fsync→fenced atomic replaceまで保持し、v2 event fileをactive entry + latest terminal tombstoneへ整理する。前後のnormalized view/lifecycle集計deep equalを検証し、不一致なら置換しない。旧`compactMemory`は変更しない。 |
 
 `MemoryDepsV2`は`now/readEvents/appendEvent/writeSessionEvent/writeOutput/replaceEvents`に加え
-`withLayerLock(layer,{timeoutMs,owner},criticalSection)`を注入する。critical sectionは単調増加fencing tokenを受け、
-`appendEvent`/`replaceEvents`はcommit直前にcurrent token一致を検証する。stale tokenは副作用ゼロで拒否する。
-lockはcross-process exclusive、timeout時は副作用ゼロ、owner/token/取得/更新/解放をauditし、異常終了後はlease
-timeoutで回収する。旧holderが回収後に再開しても古いtokenではcommitできない。write/consume/expire/compactの
-全mutatorが同じlayer lockを使い、lock内で必ず再readしてからcheck→append/replaceする。
+`withLayerLock(layer,owner,criticalSection)`を注入する。node実装は`.helix/memory/coordination.sqlite`の
+`BEGIN IMMEDIATE` transactionをcross-process mutexとして使い、layerごとのmonotonic fencing tokenを同transactionで
+incrementする。SQLiteはcoordination専用でmemory dataを保持せず、JSONLのdata SSoTを変えない。critical sectionは
+tokenを受け、`appendEvent`/`replaceEvents`はcommit直前にtransaction内のcurrent token一致を検証する。process crash時は
+SQLiteがtransaction lockを解放し、旧processは再開できない。timeout/busy/stale tokenは副作用ゼロで拒否する。
+write/consume/expire/compactの全mutatorが同じlayer lockを使い、lock内で必ず再readしてからcheck→append/replaceする。
 
 - `key` は layer 内の論理系列、`id` は immutable event identity。更新は新 entry が旧 `id` を
   `supersedes` する append-only 操作であり、in-place update を禁止する。
@@ -133,9 +134,9 @@ read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。
 - `consumeTakeover(ids, consumerId)` は active takeover だけを遷移できる。同じ id の再 consume は
   idempotent success、未知 id / takeover 外 / expired は結果理由付き no-op とし別 entry を壊さない。
 - consumed tombstone id は `takeover-consumed:<target-id>` のstable idとし、`supersedes=target-id`を持つ。
-  file lock下で「既存tombstone確認→append」を行い、同時consumeでもtargetあたり1件だけ残す。lock取得失敗は
-  `persist_failed`で、consume済みと主張しない。再consumeは`already_consumed`かつ追記ゼロ。lease回収後の
-  stale holderはfencing token不一致でappendを拒否される。
+  SQLite coordination transaction内で「再read→既存tombstone確認→append」を行い、別processの同時consumeでも
+  targetあたり1件だけ残す。lock取得/append失敗は`persist_failed`で、consume済みと主張しない。再consumeは
+  `already_consumed`かつ追記ゼロ。transaction外または旧fencing tokenのappend/replaceは拒否する。
 - expired tombstone idは`memory-expired:<target-id>`、`supersedes=target-id`、body空、state=expired、
   expiresAt=target値とする。`expireMemory`がlayer lock内の再読後に最大1件appendする。read viewは未materializeでも
   clockからexpiredと判定するが、deliveryと`compactMemoryV2`は先に`expireMemory`を実行して物理状態を収束させる。
@@ -186,7 +187,7 @@ read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。
 | MEMV2-S4a | takeoverは許可type + 7日以内expiryのみ受理。`expireMemory`は期限境界でstable tombstoneを1件だけ生成。 |
 | MEMV2-S4b | stdout成功後だけconsume。stdout/append各失敗とcrash pointで情報を失わず再表示可能。 |
 | MEMV2-S5a | 再consumeは追記ゼロの`already_consumed`、未知/expired/他layerは理由付きno-op。 |
-| MEMV2-S5b | 同時consumeでtombstoneがtargetあたり1件。lease回収後に旧holderが再開してもstale fencing tokenで追記ゼロ。 |
+| MEMV2-S5b | 別processの同時consumeでもSQLite coordinationによりtombstoneがtargetあたり1件。transaction外/旧fencing tokenは追記ゼロ。 |
 | MEMV2-S6 | 単一typeが100件でも別typeを選び、hidden/lifecycle breadcrumbが実数一致。 |
 | MEMV2-S7a | entries/code-points境界、breadcrumb予約、oversize skip、0 unlimited、不正値を検証。 |
 | MEMV2-S7b | 同一入力/clock/budgetの決定論と`maxBodyChars`→`maxChars` precedenceを検証。 |

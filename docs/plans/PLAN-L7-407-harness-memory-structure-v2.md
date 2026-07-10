@@ -30,6 +30,8 @@ generates:
     artifact_type: test_design
   - artifact_path: src/memory/memory-types.ts
     artifact_type: source_module
+  - artifact_path: src/memory/memory-v2.ts
+    artifact_type: source_module
   - artifact_path: src/memory/memory-store.ts
     artifact_type: source_module
   - artifact_path: src/memory/index.ts
@@ -59,7 +61,7 @@ provenance/lifecycle、決定論surface、情報無損失のfenced compactionを
 
 1. [直列] L8 unit test-designへMEMV2-S1a..S8bを`U-MEMV2-*`として宣言し、Red fixtureを追加する。
 2. [直列] v1 normalizer、schema validator、legacy API adapterを実装する。
-3. [直列] v2 JSONL event store、cross-process layer lock、fencing token付きappend/replaceを実装する。
+3. [直列] v2 JSONL event store、SQLite `BEGIN IMMEDIATE` coordination、fencing token付きappend/replaceを実装する。
 4. [直列] takeover write/expire/deliver/consumeと決定論surface budgetを実装する。
 5. [直列] `compactMemoryV2`をtemp→fsync→fenced atomic replaceで実装し、旧`compactMemory`を不変に保つ。
 6. [直列] targeted/full tests、typecheck、lint、doctor、別runtimeレビューで閉じる。
@@ -68,7 +70,7 @@ provenance/lifecycle、決定論surface、情報無損失のfenced compactionを
 
 - MEMV2-S1a..S8bの14 subcaseが実test citation付きでgreen。
 - v1 JSONL、旧API signature/返値、12件/240文字既定、U-MEMC-001..004が退行しない。
-- stdout失敗、append失敗、session event失敗、lock timeout、lease回収後stale holderをfixtureで再現する。
+- stdout失敗、append失敗、session event失敗、transaction外/stale fencing tokenをfixtureで再現する。
 - concurrent write/consume/compactionでentry消失とterminal tombstone重複がない。
 - secret/PII-like metadata、未知enum、矛盾lifecycle、不正linkをfail-closeする。
 - `bun run typecheck`、targeted Vitest、Biome、doctor、PLAN lintがgreen。
