@@ -7929,3 +7929,27 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 });
+
+describe("PLAN-L7-417 hook-quiet 出力 (Codex 0.144 Stop/SubagentStop stdout 契約)", () => {
+  // Codex 0.144 は Stop / SubagentStop hook の非 JSON stdout を Failed 扱いするため、
+  // hook 配線 (.codex/hooks.json / consumer template) は --quiet で stdout を抑止する。
+  it("U-HOOKQUIET-001: session summary --quiet は stdout を出さない (既定は従来出力)", () => {
+    const quiet = runCli(["session", "summary", "--quiet", "--session", "hookquiet-test"]);
+    expect(quiet.status).toBe(0);
+    expect(quiet.stdout).toBe("");
+
+    const loud = runCli(["session", "summary", "--session", "hookquiet-test"]);
+    expect(loud.status).toBe(0);
+    expect(loud.stdout).toContain("session-log: summary hookquiet-test");
+  }, 30_000);
+
+  it("U-HOOKQUIET-002: hook subagent-stop --quiet は stdout を出さない (既定は従来出力)", () => {
+    const quiet = runCli(["hook", "subagent-stop", "--quiet"]);
+    expect(quiet.status).toBe(0);
+    expect(quiet.stdout).toBe("");
+
+    const loud = runCli(["hook", "subagent-stop"]);
+    expect(loud.status).toBe(0);
+    expect(loud.stdout).toContain("agent-slots:");
+  }, 30_000);
+});

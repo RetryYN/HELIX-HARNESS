@@ -3419,11 +3419,17 @@ session
   .command("summary")
   .description("compress session events into PLAN digest and surface handover discipline warnings")
   .option("--session <id>", SESSION_OPTION_DESCRIPTION)
-  .action((opts: { session?: string }) => {
+  .option(
+    "--quiet",
+    "suppress stdout (Codex 0.144+ は Stop hook の非 JSON stdout を Failed 扱いするため hook 配線で使う。warning は従来どおり stderr)",
+  )
+  .action((opts: { session?: string; quiet?: boolean }) => {
     const input = readHookInput("Stop", opts.session);
     dispatch(input, nodeDeps(process.cwd(), gitBranch, gitHead), "Stop");
     writeHandoverWarnings();
-    process.stdout.write(`session-log: summary ${input.session_id ?? "helix-cli"}\n`);
+    if (!opts.quiet) {
+      process.stdout.write(`session-log: summary ${input.session_id ?? "helix-cli"}\n`);
+    }
   });
 
 const hook = program.command("hook").description("package-local hook entrypoints");
@@ -3566,15 +3572,21 @@ hook
   .description(
     "SubagentStop: agent_guard slot を 1 件 (最古) release し active 数を実時間で正確化 (fail-open)",
   )
-  .action(() => {
+  .option(
+    "--quiet",
+    "suppress stdout (Codex 0.144+ は SubagentStop hook の非 JSON stdout を Failed 扱いするため hook 配線で使う)",
+  )
+  .action((opts: { quiet?: boolean }) => {
     // SubagentStop payload (session_id/transcript_path/stop_hook_active) は終了 subagent の
     // slot_id を含まず slot 個体相関に使えないため読まない (設計根拠 = agent-slots.md §2.4)。
     const released = releaseOldestGuardSlot(nodeAgentSlotsDeps(process.cwd()));
-    process.stdout.write(
-      released
-        ? `agent-slots: released ${released.slot_id} (${released.agent_kind})\n`
-        : "agent-slots: no running guard slot to release\n",
-    );
+    if (!opts.quiet) {
+      process.stdout.write(
+        released
+          ? `agent-slots: released ${released.slot_id} (${released.agent_kind})\n`
+          : "agent-slots: no running guard slot to release\n",
+      );
+    }
   });
 
 const guard = program.command("guard").description("manual guard checks for non-hooked runtimes");

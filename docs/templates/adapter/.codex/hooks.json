@@ -45,7 +45,7 @@
           {
             "type": "command",
             "command": "helix session start",
-            "timeout": 5,
+            "timeout": 90,
             "statusMessage": "session-log: session start (fail-open)"
           }
         ]
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "helix hook subagent-stop",
+            "command": "helix hook subagent-stop --quiet",
             "timeout": 5,
             "statusMessage": "agent-slots: release subagent slot (fail-open)"
           }
@@ -81,8 +81,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "helix session summary",
-            "timeout": 5,
+            "command": "helix session summary --quiet",
+            "timeout": 60,
             "statusMessage": "session-log: PLAN digest summary (fail-open)"
           }
         ]

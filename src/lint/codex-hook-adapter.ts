@@ -66,6 +66,8 @@ export type CodexHookViolationReason =
   | "missing_hook"
   | "hooks_feature_disabled"
   | "missing_block_on_failure"
+  | "missing_required_token"
+  | "insufficient_timeout"
   | "claude_project_dir_in_codex"
   | "global_codex_path"
   | "forbidden_path"
@@ -87,6 +89,7 @@ interface HookCommand {
   type?: string;
   command?: string;
   blockOnFailure?: boolean;
+  timeout?: number;
 }
 
 interface HookEntry {
@@ -211,6 +214,28 @@ export function analyzeCodexHookAdapter(input: {
     }
     if (required.blockOnFailure && !matchingCommands.some((hook) => hook.blockOnFailure === true)) {
       violations.push({ hook: required.id, reason: "missing_block_on_failure" });
+    }
+    // Codex 0.144 stdout 契約: Stop/SubagentStop は非 JSON stdout で Failed になるため、
+    // 抑止 flag (--quiet 等) の欠落を fail-close する (PLAN-L7-417)。
+    const requiredTokens = "requiredTokens" in required ? (required.requiredTokens ?? []) : [];
+    if (
+      requiredTokens.length > 0 &&
+      !matchingCommands.some((hook) => {
+        const tokens = (hook.command ?? "").trim().split(/\s+/);
+        return requiredTokens.every((token) => tokens.includes(token));
+      })
+    ) {
+      violations.push({ hook: required.id, reason: "missing_required_token" });
+    }
+    // Codex 0.144 sandbox 実測 (session start 最大 ~44s) に基づく timeout 下限 (PLAN-L7-417)。
+    const minTimeoutSec = "minTimeoutSec" in required ? required.minTimeoutSec : undefined;
+    if (
+      typeof minTimeoutSec === "number" &&
+      !matchingCommands.some(
+        (hook) => typeof hook.timeout === "number" && hook.timeout >= minTimeoutSec,
+      )
+    ) {
+      violations.push({ hook: required.id, reason: "insufficient_timeout" });
     }
   }
 

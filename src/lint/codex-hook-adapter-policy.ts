@@ -4,6 +4,17 @@ interface CodexRequiredHook {
   matcher?: string;
   commandParts: readonly string[];
   blockOnFailure?: boolean;
+  /**
+   * command に必須の追加 token (entrypoint parity 照合には含めない)。
+   * 例: `--quiet` — Codex 0.144 は Stop/SubagentStop hook の非 JSON stdout を Failed 扱い
+   * するため、抑止 flag の欠落を fail-close する (PLAN-L7-417 cross-review Important)。
+   */
+  requiredTokens?: readonly string[];
+  /**
+   * hook timeout の下限秒。Codex 0.144 sandbox 実測で session start は最大 ~44s
+   * (PLAN-L7-417 Slice B) のため、既定 5s へ退行したら fail-close する。
+   */
+  minTimeoutSec?: number;
 }
 
 interface CodexDeferredSurface {
@@ -38,18 +49,29 @@ export const CODEX_REQUIRED = [
     commandParts: [".claude/hooks/git-command-guard.ts"],
     blockOnFailure: true,
   },
-  { id: "session-start", event: "SessionStart", commandParts: ["src/cli.ts", "session start"] },
+  {
+    id: "session-start",
+    event: "SessionStart",
+    commandParts: ["src/cli.ts", "session start"],
+    minTimeoutSec: 90,
+  },
   {
     id: "post-tool-use",
     event: "PostToolUse",
     matcher: "apply_patch|Write|Edit|Bash",
     commandParts: ["src/cli.ts", "hook post-tool-use"],
   },
-  { id: "session-summary", event: "Stop", commandParts: ["src/cli.ts", "session summary"] },
+  {
+    id: "session-summary",
+    event: "Stop",
+    commandParts: ["src/cli.ts", "session summary"],
+    requiredTokens: ["--quiet"],
+  },
   {
     id: "subagent-stop",
     event: "SubagentStop",
     commandParts: ["src/cli.ts", "hook subagent-stop"],
+    requiredTokens: ["--quiet"],
   },
 ] satisfies readonly CodexRequiredHook[];
 

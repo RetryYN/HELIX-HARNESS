@@ -50,7 +50,9 @@ function validCodexHooks(): Record<string, unknown> {
           ],
         },
       ],
-      SessionStart: [{ hooks: [{ type: "command", command: "bun src/cli.ts session start" }] }],
+      SessionStart: [
+        { hooks: [{ type: "command", command: "bun src/cli.ts session start", timeout: 90 }] },
+      ],
       PostToolUse: [
         {
           matcher: "apply_patch|Write|Edit|Bash",
@@ -58,9 +60,9 @@ function validCodexHooks(): Record<string, unknown> {
         },
       ],
       SubagentStop: [
-        { hooks: [{ type: "command", command: "bun src/cli.ts hook subagent-stop" }] },
+        { hooks: [{ type: "command", command: "bun src/cli.ts hook subagent-stop --quiet" }] },
       ],
-      Stop: [{ hooks: [{ type: "command", command: "bun src/cli.ts session summary" }] }],
+      Stop: [{ hooks: [{ type: "command", command: "bun src/cli.ts session summary --quiet" }] }],
     },
   };
 }
@@ -275,11 +277,64 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
       hooks: { Stop: { hooks: { command: string }[] }[] };
     };
     // 'src/cli.tsx' は 'src/cli.ts' を部分文字列に含むが別ファイル。token 完全一致なら弾ける。
-    broken.hooks.Stop[0].hooks[0].command = "bun src/cli.tsx session summary";
+    broken.hooks.Stop[0].hooks[0].command = "bun src/cli.tsx session summary --quiet";
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(
       r.violations.some((v) => v.hook === "session-summary" && v.reason === "missing_hook"),
+    ).toBe(true);
+  });
+
+  it("U-CXHOOK-016: Stop/SubagentStop の --quiet 欠落は fail-close (Codex 0.144 非 JSON stdout = Failed)", () => {
+    // PLAN-L7-417 cross-review Important: 障害原因 (--quiet 欠落で Stop hook が Failed) の
+    // 再発を doctor が検出できるよう、抑止 flag を必須契約にする。
+    const stopBroken = validCodexHooks() as {
+      hooks: { Stop: { hooks: { command: string }[] }[] };
+    };
+    stopBroken.hooks.Stop[0].hooks[0].command = "bun src/cli.ts session summary";
+    const stopResult = analyzeCodexHookAdapter({ codexHooksJson: json(stopBroken) });
+    expect(stopResult.ok).toBe(false);
+    expect(
+      stopResult.violations.some(
+        (v) => v.hook === "session-summary" && v.reason === "missing_required_token",
+      ),
+    ).toBe(true);
+
+    const subagentBroken = validCodexHooks() as {
+      hooks: { SubagentStop: { hooks: { command: string }[] }[] };
+    };
+    subagentBroken.hooks.SubagentStop[0].hooks[0].command = "bun src/cli.ts hook subagent-stop";
+    const subagentResult = analyzeCodexHookAdapter({ codexHooksJson: json(subagentBroken) });
+    expect(subagentResult.ok).toBe(false);
+    expect(
+      subagentResult.violations.some(
+        (v) => v.hook === "subagent-stop" && v.reason === "missing_required_token",
+      ),
+    ).toBe(true);
+  });
+
+  it("U-CXHOOK-017: SessionStart timeout が 90s 未満へ退行したら fail-close (sandbox 実測 ~44s)", () => {
+    const broken = validCodexHooks() as {
+      hooks: { SessionStart: { hooks: { command: string; timeout?: number }[] }[] };
+    };
+    broken.hooks.SessionStart[0].hooks[0].timeout = 5;
+    const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
+    expect(r.ok).toBe(false);
+    expect(
+      r.violations.some((v) => v.hook === "session-start" && v.reason === "insufficient_timeout"),
+    ).toBe(true);
+
+    // timeout 欠落 (既定 600s に依存しない明示契約) も fail-close。
+    const missing = validCodexHooks() as {
+      hooks: { SessionStart: { hooks: { command: string; timeout?: number }[] }[] };
+    };
+    missing.hooks.SessionStart[0].hooks[0].timeout = undefined;
+    const rMissing = analyzeCodexHookAdapter({ codexHooksJson: json(missing) });
+    expect(rMissing.ok).toBe(false);
+    expect(
+      rMissing.violations.some(
+        (v) => v.hook === "session-start" && v.reason === "insufficient_timeout",
+      ),
     ).toBe(true);
   });
 });

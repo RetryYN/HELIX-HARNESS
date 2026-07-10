@@ -165,6 +165,11 @@ type RequiredHookCommand = {
   matcher?: string;
   command: string;
   blockOnFailure?: true;
+  /**
+   * hook timeout の下限秒 (PLAN-L7-417)。Codex 0.144 sandbox 実測で session start は
+   * 最大 ~44s のため、consumer template が既定 5s へ退行したら契約不一致にする。
+   */
+  minTimeout?: number;
 };
 
 const CONSUMER_CLAUDE_REQUIRED_HOOKS: RequiredHookCommand[] = [
@@ -217,14 +222,16 @@ const CONSUMER_CODEX_REQUIRED_HOOKS: RequiredHookCommand[] = [
     command: "helix hook git-command-guard",
     blockOnFailure: true,
   },
-  { event: "SessionStart", command: "helix session start" },
+  { event: "SessionStart", command: "helix session start", minTimeout: 90 },
   {
     event: "PostToolUse",
     matcher: "apply_patch|Write|Edit|Bash",
     command: "helix hook post-tool-use",
   },
-  { event: "Stop", command: "helix session summary" },
-  { event: "SubagentStop", command: "helix hook subagent-stop" },
+  // --quiet: Codex 0.144 は Stop/SubagentStop hook の非 JSON stdout を Failed 扱いするため
+  // (PLAN-L7-417 Slice A)。SessionStart の stdout は context 注入として許容されるので quiet にしない。
+  { event: "Stop", command: "helix session summary --quiet" },
+  { event: "SubagentStop", command: "helix hook subagent-stop --quiet" },
 ];
 
 function hookConfigMatchesContract(text: string, requiredHooks: RequiredHookCommand[]): boolean {
@@ -245,7 +252,9 @@ function hookConfigMatchesContract(text: string, requiredHooks: RequiredHookComm
         return (
           hook.type === "command" &&
           hook.command === required.command &&
-          (required.blockOnFailure !== true || hook.blockOnFailure === true)
+          (required.blockOnFailure !== true || hook.blockOnFailure === true) &&
+          (required.minTimeout === undefined ||
+            (typeof hook.timeout === "number" && hook.timeout >= required.minTimeout))
         );
       });
     });
