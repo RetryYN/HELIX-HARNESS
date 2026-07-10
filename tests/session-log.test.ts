@@ -64,6 +64,18 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
     };
     recordEvent(ev, deps);
     expect(deps.files.get(sessionPath("s1"))).toContain('"plan_id":"PLAN-A"');
+    const idempotent = {
+      ...ev,
+      event_id: "memory-write:harness:k:op:x",
+      event_type: "memory_write" as const,
+    };
+    recordEvent(idempotent, deps);
+    recordEvent({ ...idempotent, ts: "T2" }, deps);
+    expect(
+      parseSessionEvents(deps.files.get(sessionPath("s1")) ?? "").filter(
+        (event) => event.event_id === idempotent.event_id,
+      ),
+    ).toHaveLength(1);
 
     const throwing = mockDeps({
       appendLine: () => {

@@ -1,5 +1,13 @@
-import { spawn } from "node:child_process";
-import { appendFileSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { spawn, spawnSync } from "node:child_process";
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -123,12 +131,39 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
       ok: false,
       reason: "schema_invalid",
     });
+    expect(normalizeMemoryEntry({ ...entry(), body: "sk-1234567890abcdef" })).toEqual({
+      ok: false,
+      reason: "schema_invalid",
+    });
     expect(
       normalizeMemoryEntry({
         ...entry({ layer: "takeover", type: "state" }),
         lifecycle: {
           state: "active",
           expiresAt: "not-a-date",
+          consumedAt: null,
+          consumedBy: null,
+        },
+      }),
+    ).toEqual({ ok: false, reason: "schema_invalid" });
+    expect(normalizeMemoryEntry({ ...entry(), createdAt: "not-a-date" })).toEqual({
+      ok: false,
+      reason: "schema_invalid",
+    });
+    expect(normalizeMemoryEntry({ ...entry(), createdAt: "2026-07-11" })).toEqual({
+      ok: false,
+      reason: "schema_invalid",
+    });
+    expect(normalizeMemoryEntry({ ...entry(), createdAt: "2026-02-30T00:00:00.000Z" })).toEqual({
+      ok: false,
+      reason: "schema_invalid",
+    });
+    expect(
+      normalizeMemoryEntry({
+        ...entry({ layer: "takeover", type: "state" }),
+        lifecycle: {
+          state: "active",
+          expiresAt: "2026-07-19T00:00:00.000Z",
           consumedAt: null,
           consumedBy: null,
         },
@@ -156,24 +191,36 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(compactMemoryV2("harness", deps)).toMatchObject({ applied: true, damaged: 1 });
 
     const writerScript = [
+      'import { writeFileSync } from "node:fs";',
       'import { nodeMemoryV2Deps, writeMemoryV2 } from "./src/memory/memory-v2.ts";',
       "const root = process.env.MEMORY_V2_ROOT;",
       'if (!root) throw new Error("missing root");',
       'const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:02:00.000Z" });',
       'const result = writeMemoryV2({ operationId:"concurrent", layer:"harness", key:"concurrent", body:"preserve" }, deps);',
       "if (!result.ok) throw new Error(result.reason);",
+      'writeFileSync(process.env.WRITER_DONE, "done");',
     ].join("");
     const compactScript = [
+      'import { existsSync, writeFileSync } from "node:fs";',
       'import { compactMemoryV2, nodeMemoryV2Deps } from "./src/memory/memory-v2.ts";',
       "const root = process.env.MEMORY_V2_ROOT;",
       'if (!root) throw new Error("missing root");',
-      'const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:02:00.000Z" });',
+      'const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:02:00.000Z", onLockAcquired: () => { writeFileSync(process.env.HOLDER_READY, "ready"); while (!existsSync(process.env.HOLDER_RELEASE)) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20); } });',
       'compactMemoryV2("harness", deps);',
     ].join("");
-    await Promise.all([
-      runBunChild(writerScript, root, "unused"),
-      runBunChild(compactScript, root, "unused"),
-    ]);
+    const holderReady = join(root, "holder.ready");
+    const holderRelease = join(root, "holder.release");
+    const writerDone = join(root, "writer.done");
+    const compactPromise = runBunChild(compactScript, root, "unused", {
+      HOLDER_READY: holderReady,
+      HOLDER_RELEASE: holderRelease,
+    });
+    await waitForFile(holderReady);
+    const writerPromise = runBunChild(writerScript, root, "unused", { WRITER_DONE: writerDone });
+    await delay(100);
+    expect(existsSync(writerDone)).toBe(false);
+    writeFileSync(holderRelease, "release", "utf8");
+    await Promise.all([compactPromise, writerPromise]);
     expect(
       resolveMemoryView(
         deps.readEvents("harness"),
@@ -254,6 +301,40 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     });
     persistFailure.failAppend = false;
     expect(surfaceMemoryV2({ layers: ["takeover"] }, persistFailure).selectedIds).toHaveLength(1);
+
+    root = mkdtempSync(join(tmpdir(), "helix-memv2-deliver-cli-"));
+    const cliPath = join(process.cwd(), "src", "cli.ts");
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+    const write = spawnSync(
+      "bun",
+      [
+        cliPath,
+        "memory",
+        "write",
+        "takeover",
+        "next",
+        "continue",
+        "--type",
+        "state",
+        "--expires-at",
+        expiresAt,
+      ],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(write.status, write.stderr).toBe(0);
+    const deliver = spawnSync("bun", [cliPath, "memory", "deliver", "--consumer", "test"], {
+      cwd: root,
+      encoding: "utf8",
+    });
+    expect(deliver.status, deliver.stderr).toBe(0);
+    expect(deliver.stdout).toContain('"status":"delivered"');
+    const surface = spawnSync(
+      "bun",
+      [cliPath, "memory", "surface-v2", "--layer", "takeover", "--json"],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(surface.status, surface.stderr).toBe(0);
+    expect(JSON.parse(surface.stdout).selectedIds).toEqual([]);
   });
 
   it("U-MEMV2-005a: consume is idempotent and returns explicit no-op reasons", () => {
@@ -335,6 +416,11 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const result = surfaceMemoryV2({ layers: ["harness"], maxEntries: 2 }, mock);
     expect(result.selectedIds).toContain("constraint");
     expect(result.hidden.harness.reference).toBe(99);
+    const deduped = surfaceMemoryV2({ layers: ["harness", "harness"], maxEntries: 200 }, mock);
+    expect(new Set(deduped.selectedIds).size).toBe(deduped.selectedIds.length);
+    expect(() =>
+      surfaceMemoryV2({ layers: ["invalid" as unknown as MemoryLayerV2] }, mock),
+    ).toThrow(/invalid_layers/);
   });
 
   it("U-MEMV2-007a: code-point budget reserves breadcrumbs, skips oversize entries, and validates values", () => {
@@ -373,9 +459,113 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(result.ok).toBe(true);
     expect(mock.sessionEvents).toHaveLength(1);
     expect(JSON.stringify(mock.sessionEvents)).not.toContain("private body");
+
+    root = mkdtempSync(join(tmpdir(), "helix-memv2-cli-"));
+    const cli = spawnSync(
+      "bun",
+      [
+        join(process.cwd(), "src", "cli.ts"),
+        "memory",
+        "write",
+        "harness",
+        "cli-key",
+        "cli body",
+        "--type",
+        "constraint",
+      ],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(cli.status, cli.stderr).toBe(0);
+    const firstPayload = JSON.parse(cli.stdout) as { entry: MemoryEntryV2 };
+    expect(firstPayload).toMatchObject({ ok: true, entry: { layer: "harness" } });
+    const replay = spawnSync(
+      "bun",
+      [
+        join(process.cwd(), "src", "cli.ts"),
+        "memory",
+        "write",
+        "harness",
+        "cli-key",
+        "cli body",
+        "--type",
+        "constraint",
+      ],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(replay.status, replay.stderr).toBe(0);
+    expect(JSON.parse(replay.stdout)).toMatchObject({ diagnostics: ["idempotent_replay"] });
+    expect(
+      readFileSync(join(root, ".helix", "memory", "harness.jsonl"), "utf8")
+        .trim()
+        .split("\n"),
+    ).toHaveLength(1);
+    const sessionLog = readFileSync(
+      join(root, ".helix", "logs", "session", "cli-memory.jsonl"),
+      "utf8",
+    );
+    expect(sessionLog).toContain('"event_type":"memory_write"');
+    expect(sessionLog).not.toContain("cli body");
+    expect(
+      sessionLog
+        .trim()
+        .split("\n")
+        .filter((line) => line.includes('"event_type":"memory_write"')),
+    ).toHaveLength(1);
+
+    const update = spawnSync(
+      "bun",
+      [
+        join(process.cwd(), "src", "cli.ts"),
+        "memory",
+        "write",
+        "harness",
+        "cli-key",
+        "different body",
+        "--type",
+        "constraint",
+      ],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(update.status, update.stderr).toBe(0);
+    const updatePayload = JSON.parse(update.stdout) as { entry: MemoryEntryV2 };
+    const restore = spawnSync(
+      "bun",
+      [
+        join(process.cwd(), "src", "cli.ts"),
+        "memory",
+        "write",
+        "harness",
+        "cli-key",
+        "cli body",
+        "--type",
+        "constraint",
+      ],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(restore.status, restore.stderr).toBe(0);
+    const restorePayload = JSON.parse(restore.stdout) as { entry: MemoryEntryV2 };
+    expect(restorePayload.entry.id).not.toBe(firstPayload.entry.id);
+    expect(restorePayload.entry.supersedes).toBe(updatePayload.entry.id);
+
+    const conflicting = spawnSync(
+      "bun",
+      [
+        join(process.cwd(), "src", "cli.ts"),
+        "memory",
+        "write",
+        "harness",
+        "conflict",
+        "body",
+        "--v2",
+        "--legacy-v1",
+      ],
+      { cwd: root, encoding: "utf8" },
+    );
+    expect(conflicting.status).toBe(1);
+    expect(conflicting.stderr).toContain("mutually exclusive");
   });
 
-  it("U-MEMV2-008b: event failure preserves memory success while validation/dry-run emit nothing", () => {
+  it("U-MEMV2-008b: event failure/retry preserves one durable idempotent event", async () => {
     const mock = mockDeps("2026-07-11T00:00:00.000Z");
     mock.failSessionEvent = true;
     expect(
@@ -398,6 +588,11 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
       ).ok,
     ).toBe(false);
     expect(mock.sessionEvents).toHaveLength(count);
+    mock.failSessionEvent = false;
+    expect(
+      writeMemoryV2({ operationId: "ok", layer: "harness", key: "k", body: "ok" }, mock),
+    ).toMatchObject({ ok: true, diagnostics: ["idempotent_replay"] });
+    expect(mock.sessionEvents).toHaveLength(1);
 
     const recovery = mockDeps("2026-07-11T00:00:00.000Z");
     recovery.failAfterMutation = true;
@@ -423,6 +618,40 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     });
     expect(writeCalls).toBe(3);
     expect(() => writeAllBytes(1, new Uint8Array([1]), () => 0)).toThrow(/short_write/);
+
+    root = mkdtempSync(join(tmpdir(), "helix-memv2-event-failure-"));
+    mkdirSync(join(root, ".helix", "logs"), { recursive: true });
+    writeFileSync(join(root, ".helix", "logs", "session"), "not-a-directory", "utf8");
+    const cliPath = join(process.cwd(), "src", "cli.ts");
+    const failedLog = spawnSync("bun", [cliPath, "memory", "write", "harness", "failure", "body"], {
+      cwd: root,
+      encoding: "utf8",
+    });
+    expect(failedLog.status, failedLog.stderr).toBe(0);
+    expect(JSON.parse(failedLog.stdout)).toMatchObject({
+      ok: true,
+      diagnostics: ["session_event_persist_failed"],
+    });
+
+    rmSync(root, { recursive: true, force: true });
+    root = mkdtempSync(join(tmpdir(), "helix-memv2-event-race-"));
+    const eventScript = [
+      'import { nodeDeps, recordEventResult } from "./src/runtime/session-log.ts";',
+      "const root = process.env.MEMORY_V2_ROOT;",
+      'if (!root) throw new Error("missing root");',
+      "const deps = nodeDeps(root, () => null);",
+      'const result = recordEventResult({event_id:"memory-write:race",ts:"T",session_id:"race",plan_id:null,event_type:"memory_write",outcome:"ok"}, deps);',
+      "if (!result.ok) throw new Error(result.reason);",
+    ].join("");
+    await Promise.all([
+      runBunChild(eventScript, root, "unused"),
+      runBunChild(eventScript, root, "unused"),
+    ]);
+    expect(
+      readFileSync(join(root, ".helix", "logs", "session", "race.jsonl"), "utf8")
+        .trim()
+        .split("\n"),
+    ).toHaveLength(1);
   });
 });
 
@@ -473,6 +702,17 @@ function mockDeps(clock: string): MockDeps {
     },
     writeSessionEvent: (event) => {
       if (mock.failSessionEvent) throw new Error("session_event_failed");
+      if (
+        mock.sessionEvents.some(
+          (existing) =>
+            typeof existing === "object" &&
+            existing !== null &&
+            "eventId" in existing &&
+            existing.eventId === event.eventId,
+        )
+      ) {
+        return;
+      }
       mock.sessionEvents.push(event);
     },
     writeOutput: (lines) => {
@@ -520,11 +760,16 @@ function legacyEntry(id: string, supersedes: string | null, createdAt: string) {
   return { id, layer: "harness", key: "k", body: "legacy", supersedes, createdAt };
 }
 
-function runBunChild(script: string, root: string, id: string): Promise<void> {
+function runBunChild(
+  script: string,
+  root: string,
+  id: string,
+  extraEnv: Record<string, string> = {},
+): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = spawn("bun", ["-e", script], {
       cwd: process.cwd(),
-      env: { ...process.env, MEMORY_V2_ROOT: root, MEMORY_V2_ID: id },
+      env: { ...process.env, MEMORY_V2_ROOT: root, MEMORY_V2_ID: id, ...extraEnv },
       stdio: ["ignore", "pipe", "pipe"],
     });
     let stderr = "";
@@ -538,4 +783,16 @@ function runBunChild(script: string, root: string, id: string): Promise<void> {
       else reject(new Error(`memory v2 child failed (${String(code)}): ${stderr}`));
     });
   });
+}
+
+async function waitForFile(path: string): Promise<void> {
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    if (existsSync(path)) return;
+    await delay(20);
+  }
+  throw new Error(`timed out waiting for ${path}`);
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

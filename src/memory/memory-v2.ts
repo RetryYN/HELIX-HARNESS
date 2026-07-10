@@ -112,6 +112,7 @@ export interface MemoryDepsV2 {
   appendEvent(layer: MemoryLayerV2, entry: MemoryEntryV2, fence: number): void;
   replaceEvents(layer: MemoryLayerV2, entries: MemoryEntryV2[], fence: number): void;
   writeSessionEvent(event: {
+    eventId: string;
     type: "memory_write";
     entryId: string;
     layer: MemoryLayerV2;
@@ -193,11 +194,11 @@ export function validateMemoryEntry(
     if (!input.expiresAt) return invalid("takeover_expiry_required", "expiresAt");
     const nowMs = Date.parse(now);
     const expiryMs = Date.parse(input.expiresAt);
-    if (!Number.isFinite(expiryMs)) return invalid("invalid_expiry", "expiresAt");
+    if (!isIsoUtc(input.expiresAt)) return invalid("invalid_expiry", "expiresAt");
     if (expiryMs <= nowMs) return invalid("expiry_not_future", "expiresAt");
     if (expiryMs - nowMs > TAKEOVER_MAX_TTL_MS)
       return invalid("expiry_exceeds_policy", "expiresAt");
-  } else if (input.expiresAt && !Number.isFinite(Date.parse(input.expiresAt))) {
+  } else if (input.expiresAt && !isIsoUtc(input.expiresAt)) {
     return invalid("invalid_expiry", "expiresAt");
   }
   return { ok: true };
@@ -307,9 +308,9 @@ export function writeMemoryV2(input: WriteMemoryV2Input, deps: MemoryDepsV2): Wr
   const diagnostics: MemoryV2Diagnostic[] = [];
   if (recovered) diagnostics.push("coordination_commit_unknown_recovered");
   if (!appended && !recovered) diagnostics.push("idempotent_replay");
-  if (!appended) return { ok: true, entry, diagnostics };
   try {
     deps.writeSessionEvent({
+      eventId: `memory-write:${entry.id}`,
       type: "memory_write",
       entryId: entry.id,
       layer: entry.layer,
@@ -413,7 +414,11 @@ export function surfaceMemoryV2(
   const perTypeMin = validatedBudget(input.perTypeMin, 1, "perTypeMin");
   if (perTypeMin === 0) throw new Error("invalid_perTypeMin");
   const now = input.now ?? deps.now();
-  const layers = input.layers ?? [...LAYER_PRIORITY];
+  const requestedLayers = input.layers ?? [...LAYER_PRIORITY];
+  if (requestedLayers.some((layer) => !LAYERS.includes(layer))) {
+    throw new Error("invalid_layers");
+  }
+  const layers = [...new Set(requestedLayers)];
   const views = new Map(
     layers.map((layer) => [layer, resolveMemoryView(deps.readEvents(layer), now, layer)]),
   );
@@ -511,6 +516,8 @@ export function nodeMemoryV2Deps(opts: {
   owner?: string;
   writeSessionEvent?: MemoryDepsV2["writeSessionEvent"];
   writeOutput?: MemoryDepsV2["writeOutput"];
+  /** deterministic concurrency fixture hook; production callers omit. */
+  onLockAcquired?: (layer: MemoryLayerV2, fence: number) => void;
 }): MemoryDepsV2 {
   const memoryDir = join(opts.root, ".helix", "memory");
   const coordinationPath = join(memoryDir, "coordination.sqlite");
@@ -550,6 +557,7 @@ export function nodeMemoryV2Deps(opts: {
         if (!row) throw new Error("memory_fence_missing");
         const fence = Number(row.fence_token);
         activeLocks.set(layer, { db, fence });
+        opts.onLockAcquired?.(layer, fence);
         const result = fn(fence);
         db.exec("COMMIT");
         return result;
@@ -639,11 +647,13 @@ function normalizeV1(value: Record<string, unknown>): NormalizeResult {
 }
 
 function validV2Shape(value: Record<string, unknown>): boolean {
+  const createdAtMs = Date.parse(String(value.createdAt));
   if (
     typeof value.id !== "string" ||
     typeof value.key !== "string" ||
     typeof value.body !== "string" ||
     typeof value.createdAt !== "string" ||
+    !isIsoUtc(String(value.createdAt)) ||
     !TYPES.includes(value.type as MemoryType) ||
     !Array.isArray(value.links) ||
     value.links.some((link) => typeof link !== "string") ||
@@ -656,6 +666,9 @@ function validV2Shape(value: Record<string, unknown>): boolean {
   const provenance = value.provenance;
   const lifecycle = value.lifecycle;
   const links = value.links as unknown[];
+  if (isSecretLike(JSON.stringify({ body: value.body, key: value.key, provenance, links }))) {
+    return false;
+  }
   if (
     (provenance.planId !== null && typeof provenance.planId !== "string") ||
     (provenance.sessionId !== null && typeof provenance.sessionId !== "string") ||
@@ -674,8 +687,8 @@ function validV2Shape(value: Record<string, unknown>): boolean {
     return false;
   }
   if (
-    (lifecycle.expiresAt !== null && !Number.isFinite(Date.parse(String(lifecycle.expiresAt)))) ||
-    (lifecycle.consumedAt !== null && !Number.isFinite(Date.parse(String(lifecycle.consumedAt))))
+    (lifecycle.expiresAt !== null && !isIsoUtc(String(lifecycle.expiresAt))) ||
+    (lifecycle.consumedAt !== null && !isIsoUtc(String(lifecycle.consumedAt)))
   ) {
     return false;
   }
@@ -686,6 +699,10 @@ function validV2Shape(value: Record<string, unknown>): boolean {
       typeof lifecycle.expiresAt !== "string")
   ) {
     return false;
+  }
+  if (value.layer === "takeover" && lifecycle.state === "active") {
+    const expiryMs = Date.parse(String(lifecycle.expiresAt));
+    if (expiryMs <= createdAtMs || expiryMs - createdAtMs > TAKEOVER_MAX_TTL_MS) return false;
   }
   if (
     lifecycle.state === "consumed" &&
@@ -903,7 +920,7 @@ export function writeAllBytes(
   }
 }
 
-function sameWriteIntent(entry: MemoryEntryV2, input: WriteMemoryV2Input): boolean {
+export function sameWriteIntent(entry: MemoryEntryV2, input: WriteMemoryV2Input): boolean {
   const expected = {
     layer: input.layer,
     key: input.key,
@@ -940,6 +957,14 @@ function isUnsupportedDirectorySync(error: unknown): boolean {
     "code" in error &&
     ["EINVAL", "EPERM", "ENOTSUP", "EISDIR"].includes(String((error as NodeJS.ErrnoException).code))
   );
+}
+
+function isIsoUtc(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value)) return false;
+  const parsed = Date.parse(value);
+  if (!Number.isFinite(parsed)) return false;
+  const canonical = new Date(parsed).toISOString();
+  return value === canonical || value === canonical.replace(".000Z", "Z");
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

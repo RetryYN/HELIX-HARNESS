@@ -19,6 +19,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { dirname, join } from "node:path";
+import { openHarnessDb } from "../state-db";
 import { classifyVerificationVerb } from "./verb-classify";
 
 export type SessionEventType =
@@ -28,10 +29,13 @@ export type SessionEventType =
   | "plan_switch"
   | "session_end"
   | "skill_injection"
+  | "memory_write"
   | "forced_stop" // 強制停止 (推定、PLAN-L6-04/L7-02 forced-stop-feedback)
   | "user_prompt"; // ユーザー入力 (dangling-turn 推定の活動 marker)
 
 export interface SessionEvent {
+  /** append-only retry dedupe key。未指定のlegacy eventは従来どおり毎回append。 */
+  event_id?: string;
   ts: string; // ISO8601 (hook 受領時)
   session_id: string;
   plan_id: string | null;
@@ -92,6 +96,8 @@ export interface SessionLogDeps {
   removeFile?: (path: string) => void;
   /** 直近 commit hash (`git rev-parse HEAD`)。IMP-078 gap③: commit 捕捉を hook で供給。未提供→hash 無し。 */
   headCommit?: () => string | null;
+  /** event_id dedupeのread→appendをcross-process直列化する。 */
+  withEventLock?<T>(eventId: string, fn: () => T): T;
 }
 
 const BRANCH_PLAN_RE = /^(?:add|design|feature|reverse|hotfix|poc|refactor)\/(.+)$/;
@@ -222,6 +228,13 @@ export function inferPlanFromCommit(commitMessage: string): string | null {
  * U-SLOG-002: session jsonl へ 1 行 append。**never throws (fail-open)**。
  */
 export function recordEvent(ev: SessionEvent, deps: SessionLogDeps): void {
+  recordEventResult(ev, deps);
+}
+
+export function recordEventResult(
+  ev: SessionEvent,
+  deps: SessionLogDeps,
+): { ok: true; appended: boolean } | { ok: false; reason: string } {
   try {
     const file = join(
       deps.repoRoot,
@@ -230,9 +243,26 @@ export function recordEvent(ev: SessionEvent, deps: SessionLogDeps): void {
       "session",
       `${safeName(ev.session_id)}.jsonl`,
     );
-    deps.appendLine(file, JSON.stringify(ev));
-  } catch {
-    // fail-open: ログ失敗で作業を止めない
+    const append = (): boolean => {
+      if (!ev.event_id) {
+        deps.appendLine(file, JSON.stringify(ev));
+        return true;
+      }
+      const existing = deps.readText(file);
+      if (
+        existing &&
+        parseSessionEvents(existing).some((event) => event.event_id === ev.event_id)
+      ) {
+        return false;
+      }
+      deps.appendLine(file, JSON.stringify(ev));
+      return true;
+    };
+    const appended =
+      ev.event_id && deps.withEventLock ? deps.withEventLock(ev.event_id, append) : append();
+    return { ok: true, appended };
+  } catch (error) {
+    return { ok: false, reason: error instanceof Error ? error.message : String(error) };
   }
 }
 
@@ -487,6 +517,7 @@ export function nodeDeps(
   gitBranch: () => string | null,
   gitHead?: () => string | null,
 ): SessionLogDeps {
+  const coordinationPath = join(repoRoot, ".helix", "logs", "session", "coordination.sqlite");
   return {
     repoRoot,
     now: () => new Date().toISOString(),
@@ -505,5 +536,35 @@ export function nodeDeps(
       if (existsSync(path)) rmSync(path);
     },
     headCommit: gitHead,
+    withEventLock: (_eventId, fn) => {
+      for (let attempt = 0; ; attempt += 1) {
+        let db: ReturnType<typeof openHarnessDb> | undefined;
+        try {
+          db = openHarnessDb(coordinationPath, { repoRoot });
+          db.exec("BEGIN IMMEDIATE");
+          const result = fn();
+          db.exec("COMMIT");
+          return result;
+        } catch (error) {
+          try {
+            db?.exec("ROLLBACK");
+          } catch {
+            // transaction may not have started
+          }
+          if (attempt >= 100 || !isSqliteBusy(error)) throw error;
+          Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20);
+        } finally {
+          db?.close();
+        }
+      }
+    },
   };
+}
+
+function isSqliteBusy(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    (String((error as Error & { code?: unknown }).code).includes("SQLITE_BUSY") ||
+      /database is locked|SQLITE_BUSY/i.test(error.message))
+  );
 }

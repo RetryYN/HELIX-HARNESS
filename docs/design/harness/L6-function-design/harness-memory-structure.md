@@ -162,10 +162,16 @@ read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。
 ## §6 write / session event 契約
 
 `helix memory write` は既存 `--layer/--key/--body` に `--type`、provenance、`--expires-at`、複数
-`--link` を追加する。既存引数だけの呼出しは layer に応じた安全な既定値で v2 を書くが、`takeover`
-だけは type と expiry の明示を必須とする。成功時のみ session log に `memory_write` event を1件記録し、
-失敗・dry-run は success event を記録しない。event payload は entry id / layer / type / key のみで body
-を含めない。
+`--link` を追加する。既存3引数だけの呼出しもv2を既定とし、CLIはsession/PLAN/request intent digestから
+retry安定な`operationId`を生成する。auto IDはruntime/origin/expiry/linkを含むfull intentとcurrent predecessorを
+束縛し、active同一intentのretryだけ既存IDを再利用するため、x→y→x更新を古いxのreplayへ誤縮退しない。
+明示`--operation-id`はlayer+key scopeで同一intentへ束縛し、同IDの異なるintentを拒否する。migration中だけ
+`--legacy-v1`を明示指定でき、`--v2`との同時指定は拒否する。`takeover`はtypeとexpiryの明示を
+必須とする。成功時は`memory-write:<entry-id>`をdeterministic event idとしてsession logへ`memory_write`を
+ちょうど1件記録する。session event側もSQLite transactionでread→appendをcross-process直列化し、entry replay時も
+event欠落を回収する一方、既存eventは重複appendしない。real adapterのevent persist失敗は握り潰さずmemory resultの
+`session_event_persist_failed` diagnosticへ戻す。失敗・dry-runは
+success eventを記録しない。event payloadはentry id/layer/type/keyのみでbodyを含めない。
 
 ## §7 不変条件と失敗境界
 

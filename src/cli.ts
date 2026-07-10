@@ -129,7 +129,23 @@ import {
   buildVersionUpSecurityChecklistPacket,
   loadVersionUpReadinessInput,
 } from "./lint/version-up-readiness";
-import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
+import {
+  compactMemoryV2,
+  consumeTakeover,
+  deliverTakeover,
+  listMemory,
+  type MemoryLayer,
+  type MemoryLayerV2,
+  type MemoryRuntime,
+  type MemoryType,
+  nodeMemoryV2Deps,
+  resolveMemoryView,
+  sameWriteIntent,
+  surfaceMemory,
+  surfaceMemoryV2,
+  writeMemory,
+  writeMemoryV2,
+} from "./memory";
 import { compactMemory, nodeMemoryCompactionDeps } from "./memory/memory-compaction";
 import { fileMemoryDeps } from "./memory/memory-store";
 import { selectVerifier } from "./orchestration/cross-verifier";
@@ -155,10 +171,6 @@ import {
   normalizeInvokeResult,
 } from "./runtime/adapter";
 import { DELEGATION_MEMORY_BUDGET } from "./runtime/adapter-policy";
-import {
-  composeDelegationInjection,
-  type MemoryInjectionSurface,
-} from "./runtime/memory-injection";
 import { buildAgentCatalogWatchReport } from "./runtime/agent-catalog-watch";
 import {
   type AgentGuardInput,
@@ -236,6 +248,10 @@ import {
 } from "./runtime/hosted-preflight";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
 import {
+  composeDelegationInjection,
+  type MemoryInjectionSurface,
+} from "./runtime/memory-injection";
+import {
   buildCandidateCouncilReport,
   type CandidateVerifierInput,
 } from "./runtime/parallel-candidate-verifier-council";
@@ -277,6 +293,7 @@ import {
   dispatch,
   nodeDeps,
   parseSessionEvents,
+  recordEventResult,
   resolveActivePlan,
   type SessionHookInput,
   safeName,
@@ -1740,22 +1757,156 @@ const memory = program.command("memory").description("shared harness/project mem
 memory
   .command("write <layer> <key> <body>")
   .description("write a shared memory entry")
-  .action((layer: string, key: string, body: string) => {
-    const memoryLayer = parseMemoryLayer(layer);
-    if (!memoryLayer) return;
-    const deps = fileMemoryDeps({ root: process.cwd() });
-    try {
-      const entry = writeMemory({ layer: memoryLayer, key, body }, deps);
-      process.stdout.write(`${entry.id}\n`);
-    } catch (error) {
-      if (error instanceof Error && /secret policy/.test(error.message)) {
-        process.stderr.write("rejected: secret detected\n");
+  .option("--v2", "write the memory v2 event contract")
+  .option("--legacy-v1", "write the deprecated memory v1 contract")
+  .option("--operation-id <id>", "v2 idempotency key (auto-derived when omitted)")
+  .option("--type <type>", "memory type (decision|constraint|feedback|state|reference)")
+  .option("--plan-id <id>", "originating PLAN id")
+  .option("--session-id <id>", "originating session id")
+  .option("--runtime <runtime>", "origin runtime (claude|codex|human|system)", "system")
+  .option("--origin <origin>", "origin label", "helix-memory-cli")
+  .option("--expires-at <iso>", "ISO-8601 expiry (required for takeover)")
+  .option("--link <layer:key>", "related memory key", collectCliValues, [])
+  .option("--dry-run", "validate without persisting")
+  .action(
+    (
+      layer: string,
+      key: string,
+      body: string,
+      opts: {
+        v2?: boolean;
+        legacyV1?: boolean;
+        operationId?: string;
+        type?: string;
+        planId?: string;
+        sessionId?: string;
+        runtime?: string;
+        origin?: string;
+        expiresAt?: string;
+        link?: string[];
+        dryRun?: boolean;
+      },
+    ) => {
+      if (opts.v2 && opts.legacyV1) {
+        process.stderr.write("rejected: --v2 and --legacy-v1 are mutually exclusive\n");
         process.exitCode = 1;
         return;
       }
-      throw error;
-    }
-  });
+      if (!opts.legacyV1) {
+        const memoryLayer = parseMemoryLayerV2(layer);
+        if (!memoryLayer) return;
+        const memoryType = parseMemoryType(opts.type ?? "reference");
+        const runtime = parseMemoryRuntime(opts.runtime ?? "system");
+        if (!memoryType || !runtime) return;
+        const root = process.cwd();
+        const sessionDeps = nodeDeps(root, gitBranch, gitHead);
+        const effectivePlanId = opts.planId ?? resolveActivePlan(sessionDeps);
+        const effectiveSessionId = opts.sessionId ?? "cli-memory";
+        const memoryDeps = nodeMemoryV2Deps({
+          root,
+          writeSessionEvent: (event) => {
+            const logged = recordEventResult(
+              {
+                event_id: event.eventId,
+                ts: new Date().toISOString(),
+                session_id: effectiveSessionId,
+                plan_id: effectivePlanId,
+                event_type: "memory_write",
+                target: `memory:${event.layer}:${event.memoryType}:${event.key}:${event.entryId}`,
+                outcome: "ok",
+              },
+              sessionDeps,
+            );
+            if (!logged.ok) throw new Error(logged.reason);
+          },
+        });
+        const intent = {
+          operationId: "pending",
+          layer: memoryLayer,
+          key,
+          body,
+          type: memoryType,
+          provenance: {
+            planId: effectivePlanId,
+            sessionId: effectiveSessionId,
+            runtime,
+            origin: opts.origin ?? "helix-memory-cli",
+          },
+          expiresAt: opts.expiresAt ?? null,
+          links: opts.link ?? [],
+          dryRun: opts.dryRun,
+        };
+        const activeForKey = resolveMemoryView(
+          memoryDeps.readEvents(memoryLayer),
+          memoryDeps.now(),
+          memoryLayer,
+        ).activeEntries.filter((entry) => entry.key === key);
+        const activeMatch = activeForKey.find((entry) => sameWriteIntent(entry, intent));
+        const predecessorId = activeForKey.at(-1)?.id ?? null;
+        const operationId =
+          opts.operationId ??
+          (activeMatch
+            ? activeMatch.id.slice(activeMatch.id.lastIndexOf(":op:") + 4)
+            : `auto-${createHash("sha256")
+                .update(JSON.stringify({ intent, predecessorId }))
+                .digest("hex")
+                .slice(0, 24)}`);
+        const result = writeMemoryV2({ ...intent, operationId }, memoryDeps);
+        if (!result.ok) {
+          if (result.reason === "dry_run") {
+            process.stdout.write(
+              `${JSON.stringify({ ok: true, dryRun: true, persisted: false })}\n`,
+            );
+            return;
+          }
+          process.stderr.write(
+            `rejected: ${result.reason}${result.field ? ` field=${result.field}` : ""}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
+        process.stdout.write(`${JSON.stringify(result)}\n`);
+        return;
+      }
+      const memoryLayer = parseMemoryLayer(layer);
+      if (!memoryLayer) return;
+      const deps = fileMemoryDeps({ root: process.cwd() });
+      try {
+        const entry = writeMemory({ layer: memoryLayer, key, body }, deps);
+        process.stdout.write(`${entry.id}\n`);
+      } catch (error) {
+        if (error instanceof Error && /secret policy/.test(error.message)) {
+          process.stderr.write("rejected: secret detected\n");
+          process.exitCode = 1;
+          return;
+        }
+        throw error;
+      }
+    },
+  );
+
+function parseMemoryLayerV2(value: string): MemoryLayerV2 | null {
+  if (value === "harness" || value === "project" || value === "takeover") return value;
+  process.stderr.write(`invalid memory layer: ${value}\n`);
+  process.exitCode = 1;
+  return null;
+}
+
+function parseMemoryType(value: string): MemoryType | null {
+  if (["decision", "constraint", "feedback", "state", "reference"].includes(value)) {
+    return value as MemoryType;
+  }
+  process.stderr.write(`invalid memory type: ${value}\n`);
+  process.exitCode = 1;
+  return null;
+}
+
+function parseMemoryRuntime(value: string): MemoryRuntime | null {
+  if (["claude", "codex", "human", "system"].includes(value)) return value as MemoryRuntime;
+  process.stderr.write(`invalid memory runtime: ${value}\n`);
+  process.exitCode = 1;
+  return null;
+}
 
 memory
   .command("list <layer>")
@@ -1793,6 +1944,69 @@ memory
     process.stdout.write(
       `memory compact: layer=${result.layer} kept=${result.kept} removedSuperseded=${result.removedSuperseded} removedDamaged=${result.removedDamaged} applied=${result.applied} backup=${result.backupPath ?? "-"}\n`,
     );
+  });
+
+memory
+  .command("compact-v2")
+  .description("compact memory v2 JSONL with SQLite coordination and fencing")
+  .option("--layer <layer>", "memory v2 layer (harness|project|takeover)", "harness")
+  .action((opts: { layer?: string }) => {
+    const layer = parseMemoryLayerV2(opts.layer ?? "harness");
+    if (!layer) return;
+    process.stdout.write(
+      `${JSON.stringify(compactMemoryV2(layer, nodeMemoryV2Deps({ root: process.cwd() })))}\n`,
+    );
+  });
+
+memory
+  .command("surface-v2")
+  .description("surface active memory v2 entries")
+  .option("--layer <layer>", "repeatable memory v2 layer", collectCliValues, [])
+  .option("--max-entries <n>", "entry budget", (value) => Number(value))
+  .option("--max-chars <n>", "rendered code-point budget", (value) => Number(value))
+  .option("--json", "JSON output")
+  .action((opts: { layer?: string[]; maxEntries?: number; maxChars?: number; json?: boolean }) => {
+    const layers = (opts.layer ?? []).map(parseMemoryLayerV2);
+    if (layers.some((layer) => layer === null)) return;
+    const result = surfaceMemoryV2(
+      {
+        layers: layers.length > 0 ? (layers as MemoryLayerV2[]) : undefined,
+        maxEntries: opts.maxEntries,
+        maxChars: opts.maxChars,
+      },
+      nodeMemoryV2Deps({ root: process.cwd() }),
+    );
+    if (opts.json) process.stdout.write(`${JSON.stringify(result)}\n`);
+    else process.stdout.write(result.lines.length > 0 ? `${result.lines.join("\n")}\n` : "");
+  });
+
+memory
+  .command("consume <ids...>")
+  .description("consume active takeover memory entries")
+  .requiredOption("--consumer <id>", "consumer identity")
+  .action((ids: string[], opts: { consumer: string }) => {
+    process.stdout.write(
+      `${JSON.stringify(consumeTakeover(ids, opts.consumer, nodeMemoryV2Deps({ root: process.cwd() })))}\n`,
+    );
+  });
+
+memory
+  .command("deliver")
+  .description("surface takeover memory and consume only after successful stdout write")
+  .requiredOption("--consumer <id>", "consumer identity")
+  .option("--max-entries <n>", "entry budget", (value) => Number(value))
+  .action((opts: { consumer: string; maxEntries?: number }) => {
+    const deps = nodeMemoryV2Deps({
+      root: process.cwd(),
+      writeOutput: (lines) => {
+        if (lines.length > 0) process.stdout.write(`${lines.join("\n")}\n`);
+      },
+    });
+    const result = deliverTakeover(
+      { consumerId: opts.consumer, maxEntries: opts.maxEntries },
+      deps,
+    );
+    process.stdout.write(`${JSON.stringify(result)}\n`);
   });
 
 memory
