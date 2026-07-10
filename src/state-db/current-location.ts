@@ -1932,6 +1932,16 @@ const ZIP_ADOPTION_RULES = [
     category: "reject",
     label: "Python and Excel generator are reference only",
   },
+  {
+    adoptionId: "HVM-REJECT-02",
+    category: "reject",
+    label: "all source documents are not mandatory",
+  },
+  {
+    adoptionId: "HVM-REJECT-03",
+    category: "reject",
+    label: "Excel build is not completion evidence SSOT",
+  },
 ] as const satisfies ReadonlyArray<{
   adoptionId: string;
   category: ProjectZipAdoptionCategory;
@@ -1957,6 +1967,8 @@ const ZIP_ADOPTION_IMPLEMENTATION_DEPENDENCIES: Record<string, string[]> = {
   ],
   "HVM-COMP-03": ["closure_next_action_ledger", "approval_review_gate", "action_binding_approval"],
   "HVM-REJECT-01": ["zip-reference-runtime-boundary", "vmodel_zip_manifest", "ADR-001"],
+  "HVM-REJECT-02": ["artifact_registry", "design_coverage_gate", "tailoring_profile"],
+  "HVM-REJECT-03": ["design_declarations", "harness.db", "runtime_verification_events"],
 };
 
 const TAILORING_RULES = [

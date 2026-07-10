@@ -246,7 +246,7 @@ describe("project current-location read model", () => {
         adopted: 0,
         complemented: 0,
         rejected: 0,
-        missing: 9,
+        missing: 11,
         sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
         sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
       });

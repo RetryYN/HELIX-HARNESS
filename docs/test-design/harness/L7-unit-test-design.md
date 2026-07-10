@@ -8,6 +8,7 @@ parent_doc: docs/plans/PLAN-L6-00-master.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l6_function_spec: docs/design/harness/L6-function-design/function-spec.md
 related_l6_edge_case: docs/design/harness/L6-function-design/edge-case.md
+related_l5_operation_scope: docs/design/helix/L5-detail/operation-scope.md
 next_pair_freeze: L6
 v2_import: docs/migration/v2-import-ledger.md
 created: 2026-05-29
@@ -30,6 +31,15 @@ updated: 2026-05-29
 > **status correction (2026-06-09 / A-118)**: frontmatter status は `confirmed`。下部の歴史的な "draft / placeholder skeleton" 表現は、上記 L6 pair-scope 追補と現行 L6 design docs 全件へ追加した U-* oracle family により置き換え済みである。残る実装詳細の展開は L7 carry であり、Phase 2 pair の未完成ではない。
 > **PLAN**: `docs/plans/PLAN-L6-{01,02}-*.md` の pair_artifact / DoD で本書参照
 > **特殊性**: L6↔L7 は最短ペア。L7 は単体テスト設計と実装スプリントが同層 — 本書 U-* は L7 entry で先行 ④ テストコード (TDD Red、§1.10 line 671) に変換される oracle。
+
+## 2026-07-11 L5 operation scope Vペア追補
+
+`docs/design/helix/L5-detail/operation-scope.md` の双方向 Vペア正本は
+`docs/test-design/helix/operation-scope.md` とする。本書は実装oracle側の補助検証として、`HOD-OPS-LOG-DESIGN`、`HOD-OPS-KPI-METRIC`、
+`HOD-OPS-RUNTIME-VERIFICATION`、`HOD-OPS-OPERATION-TEST`、
+`HOD-OPS-CLASS-METHOD-CONTRACT`、`HOD-OPS-INCIDENT-RECOVERY-ROUTE` を
+U-OUTSTANDING-014c / U-OUTSTANDING-014d の operation scope oracle で検証する。
+設計ID、観測source、evidence table、未観測gapのいずれかが欠けた場合は Vペア未成立として fail-close する。
 
 ## §0 量閉じ原則 (L6 ↔ L7)
 

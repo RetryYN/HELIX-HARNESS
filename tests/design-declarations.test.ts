@@ -219,6 +219,34 @@ spec:
     ]);
   });
 
+  it("同一 section の本文定義 ID 重複を検出する", () => {
+    const doc = parseDesignDeclarationDoc(
+      "duplicate-body.md",
+      `---
+spec:
+  defines:
+    - id: D-001
+      kind: 判断
+---
+
+## 判断
+
+| ID | 内容 |
+|----|------|
+| D-001 | first |
+| D-001 | duplicate |
+`,
+    );
+
+    expect(doc.ok).toBe(false);
+    expect(doc.findings).toContainEqual({
+      code: "duplicate_body_definition",
+      severity: "error",
+      path: "duplicate-body.md",
+      detail: "D-001: 同一 section の本文定義 ID が重複している",
+    });
+  });
+
   it("L5 operation scope contract は実在文書として drift しない", () => {
     const path = "docs/design/helix/L5-detail/operation-scope.md";
     const doc = parseDesignDeclarationDoc(path, readFileSync(path, "utf8"));
@@ -234,6 +262,19 @@ spec:
         "HOD-OPS-CLASS-METHOD-CONTRACT",
         "HOD-OPS-INCIDENT-RECOVERY-ROUTE",
       ]),
+    );
+  });
+
+  it("ZIP adoption matrix の判断 ID は section 内で一意", () => {
+    const path = "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md";
+    const doc = parseDesignDeclarationDoc(path, readFileSync(path, "utf8"));
+
+    expect(doc.ok).toBe(true);
+    expect(doc.findings.filter((finding) => finding.code === "duplicate_body_definition")).toEqual(
+      [],
+    );
+    expect(doc.declarations.map((declaration) => declaration.id)).toEqual(
+      expect.arrayContaining(["HVM-REJECT-01", "HVM-REJECT-02", "HVM-REJECT-03"]),
     );
   });
 });

@@ -68,6 +68,18 @@ spec:
       layer: L12
       owner: TL
       status: confirmed
+    - id: HVM-REJECT-02
+      kind: 非採用判断
+      title: 全source文書の一律必須化を採用しない
+      layer: L12
+      owner: TL
+      status: confirmed
+    - id: HVM-REJECT-03
+      kind: 非採用判断
+      title: Excel buildを完了証跡の正本にしない
+      layer: L12
+      owner: TL
+      status: confirmed
   refs:
     - from: HVM-ADOPT-01
       to: HR-FR-VMFIT-03
@@ -95,6 +107,12 @@ spec:
       kind: complements
     - from: HVM-REJECT-01
       to: HR-FR-VMFIT-01
+      kind: constrains
+    - from: HVM-REJECT-02
+      to: HR-FR-VMFIT-02
+      kind: constrains
+    - from: HVM-REJECT-03
+      to: HR-FR-VMFIT-04
       kind: constrains
 ---
 
@@ -181,8 +199,8 @@ ZIP がある場合は必須 source 不足を violation とする。
 | ID | 非採用対象 | 理由 | 代替 |
 |----|------------|------|------|
 | HVM-REJECT-01 | ZIP の Python generator / Excel builder を HELIX core runtime として移植する | ADR-001 に反し、HELIX の TS/Bun core、DB projection、runtime evidence を弱める | Python は reference。必要な検出契約を TS/Bun で再実装する |
-| HVM-REJECT-01 | 53 文書を全案件で必須化する | 個人開発には重く、機能設計廃止の狙いに逆行する | catalog/profile/tailoring を使い、L12 coverage gate で必要な契約だけを要求する |
-| HVM-REJECT-01 | Excel build を完了証跡の正本にする | 生成物は stale になり得る | Markdown source、typed declaration、harness.db、runtime evidence を正本にする |
+| HVM-REJECT-02 | 53 文書を全案件で必須化する | 個人開発には重く、機能設計廃止の狙いに逆行する | catalog/profile/tailoring を使い、L12 coverage gate で必要な契約だけを要求する |
+| HVM-REJECT-03 | Excel build を完了証跡の正本にする | 生成物は stale になり得る | Markdown source、typed declaration、harness.db、runtime evidence を正本にする |
 
 ## §7 L12 への効果
 

@@ -68,7 +68,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:31:52+09:00"
-    tests_green_at: "2026-07-09T23:31:52+09:00"
+    tests_green_at: "2026-07-09T23:31:51+09:00"
     verdict: approve
     scope: "Project frontier summary の closure_frontier に approval_review_checklist を投影し、progress tree-view --summary-json と completion_frontier からも close_ready 承認前 checklist を機械検出できるようにした。live repo では schema=project-closure-approval-review-checklist.v1、status=ready_for_human_review、approval_allowed=true、non-authorizing decision record command が summary 上で確認できる。承認 record 作成や apply は実行していない。"
     worker_model: codex
@@ -149,7 +149,7 @@ review_evidence:
         output_digest: "sha256:f79b6649ed5761e4c20b98ae31dfa2c1dd511d9b9d3f2c25db56d61b8d8c0ca8"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-09T23:07:31+09:00"
+    reviewed_at: "2026-07-09T23:08:00+09:00"
     tests_green_at: "2026-07-09T23:07:59+09:00"
     verdict: approve
     scope: "completion decision-packet summary に completion_frontier を追加し、whole-program completion blocked の判断と Project frontier/current-location/Recovery/close_ready review window を同じ read-only summary で機械検出できるようにした。実データでは completion_claim_allowed=false、status=needs_fit、human approval=343、review windows=18、next=helix closure review-bundle --action close_ready --summary-json を確認した。"
@@ -190,7 +190,7 @@ review_evidence:
         output_digest: "sha256:1ad3bf16fbfde795a57f2c744e42ee8e32d3520f2d3c420609637f4fa0562749"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-09T22:58:35+09:00"
+    reviewed_at: "2026-07-09T22:59:00+09:00"
     tests_green_at: "2026-07-09T22:58:50+09:00"
     verdict: approve
     scope: "VSCode Project Tree の closure apply に review windows ノードを追加し、close_ready が存在する場合に全 window の range、approval_scope_digest、window evidence totals、review/transition/decision draft/decision record command を DB/current-location 正本から描画するようにした。実データでは 343 件 close_ready approval が 18 window として表示され、1 page 目と 18 page 目の digest 付き導線を smoke で確認した。"

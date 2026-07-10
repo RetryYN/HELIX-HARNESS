@@ -44,6 +44,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/state-db/current-location.ts
     artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
   - artifact_path: src/state-db/visualization-read-model.ts
@@ -54,6 +56,8 @@ generates:
     artifact_type: source_module
   - artifact_path: docs/design/helix/L5-detail/operation-scope.md
     artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/operation-scope.md
+    artifact_type: test_design
   - artifact_path: tests/design-declarations.test.ts
     artifact_type: test_code
   - artifact_path: tests/current-location.test.ts
@@ -67,6 +71,8 @@ generates:
   - artifact_path: tests/visualization-view-model.test.ts
     artifact_type: test_code
   - artifact_path: tests/visualization-treeview.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/slow/doctor.test.ts
     artifact_type: test_code
   - artifact_path: docs/design/harness/L6-function-design/function-spec.md
     artifact_type: design_doc
@@ -90,76 +96,85 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-10T01:13:40+09:00"
-    tests_green_at: "2026-07-10T01:13:40+09:00"
+    reviewed_at: "2026-07-11T02:30:00+09:00"
+    tests_green_at: "2026-07-11T02:20:00+09:00"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-subagents
-    scope: "L5 operation scope の typed declaration drift を解消し、close_ready approval review を `blocked_by_findings` から `ready_for_human_review` へ戻した。さらに `skill suggest --current-location --summary-json` を summary audit catalog へ登録し、skill summary / current-location / vmodel fit summary で `skill_path` と `sample_reasons` を保持するようにした。`vmodel fit --summary-json` には compact `scrum_operation` と `skill_binding` を追加し、ハイブリッド V+Scrum と駆動 skill の結合を 1 surface で機械検出できるようにした。"
+    scope: "既存の operation/skill binding 証跡を再検証し、ZIP typed ID 一意性に従って同一 section の本文定義 ID 重複を fail-close 化した。採用マトリクスの非採用判断を HVM-REJECT-01..03 に分離し、current-location / doctor / DB projection / view の件数契約を11判断へ追従させた。"
     green_commands:
       - kind: lint
         command: "bun run lint"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-10T01:12:51+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: src/cli.ts
+        output_digest: "sha256:f10702d6c0a2f8740b976a7124304473cb52a5d1dc35b60139c770b7554b1412"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-10T01:12:51+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: src/state-db/vmodel-fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
         command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/design-declarations.test.ts"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-10T01:11:51+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: tests/summary-surface-audit.test.ts
+        output_digest: "sha256:22da4a15efa3b193af46847de6a70f682531df06d36bfbcf49c8bbc648aac828"
       - kind: unit_test
         command: "bun run test:fast -- tests/cli-surface.test.ts -t \"skill binding|exposes Project view current-location\""
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-10T01:13:36+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:c3e95385caed0b2357c5137535d07d9e764d1728ab504316f379d71a28176b0d"
       - kind: smoke
         command: "bun src/cli.ts current-location --summary-json | skill/drift/approval smoke"
         runner: bun
         scope: gate
         exit_code: 0
-        completed_at: "2026-07-10T01:13:20+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: docs/design/helix/L5-detail/operation-scope.md
+        output_digest: "sha256:65f30ed77d0848772508503a1baf0d33e5c1c24e7499662f3186f0e9168207b6"
       - kind: smoke
         command: "bun src/cli.ts vmodel fit --summary-json | scrum/skill/drift smoke"
         runner: bun
         scope: gate
         exit_code: 0
-        completed_at: "2026-07-10T01:13:20+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: src/cli.ts
+        output_digest: "sha256:b330186383a99165590ce6edaa8f0e4ac5884b03bf576afa8d53abcab6e38efb"
       - kind: smoke
         command: "bun src/cli.ts closure review-bundle --action close_ready --limit 1 --summary-json | approval checklist smoke"
         runner: bun
         scope: gate
         exit_code: 0
-        completed_at: "2026-07-10T01:13:20+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: src/state-db/current-location.ts
-      - kind: plan_lint
+        output_digest: "sha256:8899f492785594b1ecb309e3b8f85f84ca46def0dca93a21b5f98fd033cd0a0e"
+      - kind: lint
         command: "bun src/cli.ts plan lint"
         runner: bun
-        scope: governance
+        scope: targeted
         exit_code: 0
-        completed_at: "2026-07-10T01:13:25+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:7c17187d16234db0cbe313108457acd3efc4697382ce92948f93653bc8208964"
       - kind: smoke
         command: "git diff --check"
         runner: bash
         scope: changed-files
         exit_code: 0
-        completed_at: "2026-07-10T01:13:25+09:00"
+        completed_at: "2026-07-11T02:00:00+09:00"
         evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-10T01:01:45+09:00"
@@ -249,10 +264,10 @@ review_evidence:
         completed_at: "2026-07-10T01:01:11+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:12e9c58250ea0cd630b29f4f79316a70a4b9a33e662318075c1fdd8eaa3a6980"
-      - kind: plan_lint
+      - kind: lint
         command: "bun src/cli.ts plan lint"
         runner: bun
-        scope: governance
+        scope: targeted
         exit_code: 0
         completed_at: "2026-07-10T01:01:22+09:00"
         evidence_path: docs/plans/PLAN-L7-397-vmodel-current-location-projection.md
@@ -616,7 +631,7 @@ review_evidence:
         output_digest: "sha256:005c42035039cecd262a037b203f3bf1fc3210cde8f33e8038e1f37b608877e3"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-09T23:38:04+09:00"
+    reviewed_at: "2026-07-09T23:39:00+09:00"
     tests_green_at: "2026-07-09T23:38:31+09:00"
     verdict: approve
     worker_model: codex

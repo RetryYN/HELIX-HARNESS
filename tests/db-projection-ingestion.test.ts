@@ -28,7 +28,7 @@ describe("db projection ingestion detector", () => {
       expect(result.rowCounts.project_current_location).toBeGreaterThan(0);
       expect(result.rowCounts.project_drive_model_candidates).toBeGreaterThan(0);
       expect(result.rowCounts.project_roadmap_current_actions).toBeGreaterThan(0);
-      expect(result.rowCounts.project_zip_adoption_decisions).toBe(9);
+      expect(result.rowCounts.project_zip_adoption_decisions).toBe(11);
       expect(result.rowCounts.project_tailoring_decisions).toBe(8);
       expect(result.rowCounts.project_vmodel_regression_guards).toBe(8);
       expect(result.rowCounts.project_vmodel_fit_blockers).toBeGreaterThan(0);
@@ -142,10 +142,10 @@ describe("db projection ingestion detector", () => {
         source_document: string;
         implementation_dependencies: string;
       }>;
-      expect(zipAdoptionDecisions).toHaveLength(9);
+      expect(zipAdoptionDecisions).toHaveLength(11);
       expect(zipAdoptionDecisions.filter((row) => row.category === "adopt")).toHaveLength(5);
       expect(zipAdoptionDecisions.filter((row) => row.category === "complement")).toHaveLength(3);
-      expect(zipAdoptionDecisions.filter((row) => row.category === "reject")).toHaveLength(1);
+      expect(zipAdoptionDecisions.filter((row) => row.category === "reject")).toHaveLength(3);
       expect(zipAdoptionDecisions.every((row) => row.status === "declared")).toBe(true);
       expect(
         zipAdoptionDecisions.every(

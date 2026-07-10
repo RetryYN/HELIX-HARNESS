@@ -28,6 +28,7 @@ export type DesignDeclarationFindingCode =
   | "invalid_reference"
   | "declaration_only"
   | "undeclared_definition"
+  | "duplicate_body_definition"
   | "duplicate_define"
   | "unresolved_reference"
   | "reference_source_missing";
@@ -112,6 +113,34 @@ function bodyDefinitionIds(body: string): string[] {
     ids.add(id);
   }
   return [...ids].sort();
+}
+
+function duplicateBodyDefinitionIds(body: string): string[] {
+  const duplicates = new Set<string>();
+  let seenInSection = new Set<string>();
+  let idDefinitionTable = false;
+  for (const line of body.split(/\r?\n/)) {
+    if (/^#{1,6}\s+/.test(line)) {
+      seenInSection = new Set<string>();
+      idDefinitionTable = false;
+      continue;
+    }
+    if (/^\|\s*ID\s*\|/i.test(line)) {
+      idDefinitionTable = true;
+      continue;
+    }
+    if (!line.startsWith("|")) {
+      idDefinitionTable = false;
+      continue;
+    }
+    if (!idDefinitionTable || /^\|\s*:?-+/.test(line)) continue;
+    const match = line.match(/^\|\s*([A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+)\s*\|/);
+    const id = match?.[1];
+    if (!id || id.endsWith("-ID")) continue;
+    if (seenInSection.has(id)) duplicates.add(id);
+    seenInSection.add(id);
+  }
+  return [...duplicates].sort();
 }
 
 function parseYamlDocument(input: {
@@ -306,6 +335,14 @@ export function parseDesignDeclarationDoc(
   }
 
   const body = bodyWithoutDeclarationBlocks(content);
+  for (const id of duplicateBodyDefinitionIds(body)) {
+    findings.push({
+      code: "duplicate_body_definition",
+      severity: "error",
+      path,
+      detail: `${id}: 同一 section の本文定義 ID が重複している`,
+    });
+  }
   for (const declaration of declarations) {
     if (!bodyHasId(body, declaration.id)) {
       findings.push({

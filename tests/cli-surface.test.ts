@@ -164,7 +164,7 @@ function writeFakeGitLsRemote(
         `  echo ${packHead} refs/heads/main`,
         "  exit /b 0",
         ")",
-        "echo b828fcf64c204d1cfa65c729fa590ca9562adccc refs/heads/main",
+        "echo e95850d08cfcf0f3ce811659178c0db7522e24d7 refs/heads/main",
         "exit /b 0",
         "",
       ].join("\r\n"),
@@ -189,7 +189,7 @@ function writeFakeGitLsRemote(
       `    echo '${packHead} refs/heads/main'`,
       "    ;;",
       "  *)",
-      "    echo 'b828fcf64c204d1cfa65c729fa590ca9562adccc refs/heads/main'",
+      "    echo 'e95850d08cfcf0f3ce811659178c0db7522e24d7 refs/heads/main'",
       "    ;;",
       "esac",
       "",
@@ -1795,7 +1795,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload).toMatchObject({
         ok: true,
         externalObserved: {
-          development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
+          development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
           distribution_repo: "unpublished",
           distribution_latest_tag: "unpublished",
         },
@@ -4186,7 +4186,7 @@ describe("L7 CLI surface closure", () => {
         },
         zip_adoption: {
           status: "missing",
-          missing: 9,
+          missing: 11,
         },
         zip_manifest: {
           status: "advisory_missing",
@@ -4204,7 +4204,7 @@ describe("L7 CLI surface closure", () => {
           common_adopted: 0,
           helix_complemented: 0,
           rejected: 0,
-          missing_decisions: 9,
+          missing_decisions: 11,
           tailoring_status: "needs_tailoring",
           function_design_policy: "abolished",
           current_reentry_status: "machine_phase_pending",
@@ -4345,7 +4345,7 @@ describe("L7 CLI surface closure", () => {
         },
         synthesis: {
           status: "needs_fit",
-          missing_decisions: 9,
+          missing_decisions: 11,
           function_design_policy: "abolished",
           current_reentry_status: "machine_phase_pending",
           effective_reentry_status: "machine_phase_pending",
@@ -4493,7 +4493,7 @@ describe("L7 CLI surface closure", () => {
       expect(fitText.stdout).toContain("vmodel fit: status=needs_fit");
       expect(fitText.stdout).toContain("current=needs_recovery");
       expect(fitText.stdout).toContain(
-        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=11 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=machine_phase_pending next=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
       );
       expect(fitText.stdout).toContain(
         "regression-guards: status=needs_attention attention=design_or_runtime_regression blocked_by=machine_or_design_work",
@@ -4648,12 +4648,12 @@ describe("L7 CLI surface closure", () => {
       const fitTextWithHandoff = runCliIn(root, ["vmodel", "fit"]);
       expect(fitTextWithHandoff.status).toBe(0);
       expect(fitTextWithHandoff.stdout).toContain(
-        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=9 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=approval_pending",
+        "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=11 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=approval_pending",
       );
       expect(fitTextWithHandoff.stdout).toContain(
         "recovery-reentry: status=machine_phase_pending effective=approval_pending",
       );
-      expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=9");
+      expect(fitText.stdout).toContain("zip-adoption: adopt=0 complement=0 reject=0 missing=11");
       expect(fitText.stdout).toContain(
         "zip-manifest: present=false root=- entries=0 required=0/21",
       );

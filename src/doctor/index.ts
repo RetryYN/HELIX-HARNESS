@@ -3468,7 +3468,7 @@ export function checkZipAdoptionBinding(
         "HVM-ADOPT-05",
       ];
       const requiredComplement = ["HVM-COMP-01", "HVM-COMP-02", "HVM-COMP-03"];
-      const requiredReject = ["HVM-REJECT-01"];
+      const requiredReject = ["HVM-REJECT-01", "HVM-REJECT-02", "HVM-REJECT-03"];
       const expectedReceivers: Record<string, string[]> = {
         "HVM-ADOPT-01": ["design_declarations", "design_references", "vmodel_zip_source_bindings"],
         "HVM-ADOPT-02": ["artifact_registry", "design_coverage_gate"],
@@ -3484,6 +3484,8 @@ export function checkZipAdoptionBinding(
         ],
         "HVM-COMP-03": ["closure_next_action_ledger", "approval_review_gate"],
         "HVM-REJECT-01": ["zip-reference-runtime-boundary", "vmodel_zip_manifest"],
+        "HVM-REJECT-02": ["artifact_registry", "design_coverage_gate", "tailoring_profile"],
+        "HVM-REJECT-03": ["design_declarations", "harness.db", "runtime_verification_events"],
       };
       const idsByCategory = (category: "adopt" | "complement" | "reject") =>
         adoption.items

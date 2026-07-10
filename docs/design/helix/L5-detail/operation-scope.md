@@ -11,7 +11,7 @@ related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l12:
   - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
   - docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/helix/operation-scope.md
 source_package: ハイブリッド設計ドキュメントv1-fixed.zip
 spec:
   defines:
