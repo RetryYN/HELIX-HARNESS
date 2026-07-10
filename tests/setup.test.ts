@@ -543,7 +543,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(codex.hooks.PreToolUse).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            matcher: "spawn_agent|spawn_agents_on_csv",
+            matcher: "spawn_agent|spawn_agents_on_csv|Agent",
             hooks: [
               expect.objectContaining({
                 command: "helix hook agent-guard",
@@ -552,13 +552,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             ],
           }),
           expect.objectContaining({
-            matcher: "apply_patch|write_file",
+            matcher: "apply_patch|Write|Edit",
             hooks: [
               expect.objectContaining({ command: "helix hook work-guard", blockOnFailure: true }),
             ],
           }),
           expect.objectContaining({
-            matcher: "exec_command|local_shell",
+            matcher: "Bash",
             hooks: [
               expect.objectContaining({
                 command: "helix hook git-command-guard",
@@ -578,7 +578,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(repoCodex.hooks.PreToolUse).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            matcher: "spawn_agent|spawn_agents_on_csv",
+            matcher: "spawn_agent|spawn_agents_on_csv|Agent",
             hooks: [
               expect.objectContaining({
                 command: "helix hook agent-guard",
@@ -587,13 +587,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             ],
           }),
           expect.objectContaining({
-            matcher: "apply_patch|write_file",
+            matcher: "apply_patch|Write|Edit",
             hooks: [
               expect.objectContaining({ command: "helix hook work-guard", blockOnFailure: true }),
             ],
           }),
           expect.objectContaining({
-            matcher: "exec_command|local_shell",
+            matcher: "Bash",
             hooks: [
               expect.objectContaining({
                 command: "helix hook git-command-guard",
@@ -2768,7 +2768,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         hooks: {
           PreToolUse: [
             {
-              matcher: "spawn_agent|spawn_agents_on_csv",
+              matcher: "spawn_agent|spawn_agents_on_csv|Agent",
               hooks: [
                 {
                   type: "command",
@@ -2778,7 +2778,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               ],
             },
             {
-              matcher: "apply_patch|write_file",
+              matcher: "apply_patch|Write|Edit",
               hooks: [
                 {
                   type: "command",
@@ -2788,7 +2788,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               ],
             },
             {
-              matcher: "exec_command|local_shell",
+              matcher: "Bash",
               hooks: [
                 {
                   type: "command",
@@ -2801,7 +2801,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           SessionStart: [{ hooks: [{ type: "command", command: "helix session start" }] }],
           PostToolUse: [
             {
-              matcher: "apply_patch|write_file|exec_command|local_shell",
+              matcher: "apply_patch|Write|Edit|Bash",
               hooks: [{ type: "command", command: "helix hook post-tool-use" }],
             },
           ],
@@ -3392,7 +3392,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(50);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "d96cd383574639148525231b4b9b1df4a0f18fc783462189542be151be2f9a1b",
+      "3332c88e21a63a58489eb830bba33631c15505d084ccb9ecbe2d163f6b31aa07",
     );
     expect(manifest).toContain(
       "61beb2e0a281fa655666e82c197e4d6ebbdc5b40551d1671d10a2b210bc672e9  adapter/AGENTS.md",
@@ -3401,7 +3401,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ff280e9812d758fe346d56728092b295462e56c25e03c89c1b3c3127e31703d8  adapter/.claude/settings.json",
     );
     expect(manifest).toContain(
-      "65b9904b19d7402937d8bf701f89319555dd9ba698be11ab46cdea05b3ee38d6  adapter/.codex/hooks.json",
+      "8a35680c153adb1f84255a0f31a63dfce90a26131061ca50566109ea75fa4990  adapter/.codex/hooks.json",
     );
   });
 

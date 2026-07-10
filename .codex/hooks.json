@@ -1,9 +1,9 @@
 {
-  "$comment": "Codex CLI project-local hook adapter (PLAN-L7-139). Official Codex discovery reads <repo>/.codex/hooks.json or <repo>/.codex/config.toml when the project is trusted. This mirrors the Claude guard hooks in .claude/settings.json, wired with Codex tool names, and reuses the same TypeScript entrypoints. Do not move this to global ~/.codex/.",
+  "description": "Codex CLI project-local hook adapter (PLAN-L7-139)。Codex は <repo>/.codex/hooks.json を読み、schema 上 top-level は description|hooks のみ許容 ($comment は 0.144 で parse error になり hooks 全体が無効化される)。.claude/settings.json の guard hooks を Codex tool 名で mirror し、同じ TypeScript entrypoint を再利用する。global ~/.codex/ へ移動しない。",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "spawn_agent|spawn_agents_on_csv",
+        "matcher": "spawn_agent|spawn_agents_on_csv|Agent",
         "hooks": [
           {
             "type": "command",
@@ -15,7 +15,7 @@
         ]
       },
       {
-        "matcher": "apply_patch|write_file",
+        "matcher": "apply_patch|Write|Edit",
         "hooks": [
           {
             "type": "command",
@@ -27,7 +27,7 @@
         ]
       },
       {
-        "matcher": "exec_command|local_shell",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
@@ -45,7 +45,7 @@
           {
             "type": "command",
             "command": "bun src/cli.ts session start",
-            "timeout": 5,
+            "timeout": 60,
             "statusMessage": "session-log: session start (fail-open)"
           }
         ]
@@ -53,13 +53,25 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "apply_patch|write_file|exec_command|local_shell",
+        "matcher": "apply_patch|Write|Edit|Bash",
         "hooks": [
           {
             "type": "command",
             "command": "bun src/cli.ts hook post-tool-use",
-            "timeout": 5,
+            "timeout": 30,
             "statusMessage": "session-log: post tool use (fail-open)"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'bun src/cli.ts hook subagent-stop >/dev/null 2>&1'",
+            "timeout": 30,
+            "statusMessage": "agent-slots: release subagent slot (fail-open; Codex 0.144 で SubagentStop event が実装されたため配線)"
           }
         ]
       }
@@ -69,9 +81,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun src/cli.ts session summary",
-            "timeout": 5,
-            "statusMessage": "session-log: PLAN digest summary (fail-open)"
+            "command": "bash -c 'bun src/cli.ts session summary >/dev/null 2>&1'",
+            "timeout": 60,
+            "statusMessage": "session-log: PLAN digest summary (fail-open; stdout抑止 — Codex 0.144 は Stop hook の非JSON stdout を Failed 扱いするため)"
           }
         ]
       }

@@ -196,32 +196,35 @@ const CONSUMER_CLAUDE_REQUIRED_HOOKS: RequiredHookCommand[] = [
   { event: "SubagentStop", command: "helix hook subagent-stop" },
 ];
 
+// Codex 0.144 canonical tool 名 (shell=Bash / 編集=apply_patch+Write/Edit alias / agent=spawn_agent+Agent alias)。
+// 正本 = src/lint/codex-hook-adapter-policy.ts の CODEX_REQUIRED (matcher を同期させる)。
 const CONSUMER_CODEX_REQUIRED_HOOKS: RequiredHookCommand[] = [
   {
     event: "PreToolUse",
-    matcher: "spawn_agent|spawn_agents_on_csv",
+    matcher: "spawn_agent|spawn_agents_on_csv|Agent",
     command: "helix hook agent-guard",
     blockOnFailure: true,
   },
   {
     event: "PreToolUse",
-    matcher: "apply_patch|write_file",
+    matcher: "apply_patch|Write|Edit",
     command: "helix hook work-guard",
     blockOnFailure: true,
   },
   {
     event: "PreToolUse",
-    matcher: "exec_command|local_shell",
+    matcher: "Bash",
     command: "helix hook git-command-guard",
     blockOnFailure: true,
   },
   { event: "SessionStart", command: "helix session start" },
   {
     event: "PostToolUse",
-    matcher: "apply_patch|write_file|exec_command|local_shell",
+    matcher: "apply_patch|Write|Edit|Bash",
     command: "helix hook post-tool-use",
   },
   { event: "Stop", command: "helix session summary" },
+  { event: "SubagentStop", command: "helix hook subagent-stop" },
 ];
 
 function hookConfigMatchesContract(text: string, requiredHooks: RequiredHookCommand[]): boolean {
