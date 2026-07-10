@@ -140,10 +140,10 @@ source precedenceを変更波の境界に使い、path/symbolの未分類が1件
 - `provider_evidence`: preserve。runtime invocation/review provenanceでありsession継続の正本にはしない。
 - `operations_transition`: preserve。開発から運用への移管成果物として別型化する。
 - `legacy_archive`: archive。成立経緯は残すがruntime read sourceから除外する。
-- `handover-retirement-inventory`はtracked source 1,456 files / 2,765 referencesを分類し、
+- `handover-retirement-inventory`は明示したrepository source rootの1,492 files / 2,963 referencesを分類し、
   `unclassified=0 / conflicts=0 / preserve_boundary=0`を確認した。
   `U-HRET-001`とdoctor hard gateで新規未分類・異kind重複・preserve型へのsession継続意味混入をfail-closeする。
-- R1 inventory境界は完了した。ただし`active_session_prose=527 / compatibility_only=513 /
+- R1 inventory境界は完了した。ただし`active_session_prose=2204 / compatibility_only=521 /
   retirement-ready=false`であり、L0/L1/L3/L4/L5と対向test-designに現役契約が残るため、R3 freezeは不可。
 
 ## R2 判定（進行中）

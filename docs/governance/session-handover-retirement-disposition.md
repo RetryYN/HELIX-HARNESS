@@ -69,11 +69,12 @@ terminal遷移は同一`operation_id`でDB projection、feedback lifecycle、必
 ### R1 検証状態
 
 - 2026-07-11時点の既知live surface classは上記14行へ分類した。
-- `src/lint/handover-retirement.ts` がtracked source surfaceをpath/symbol単位で1,456 files・2,765 references
-  scanし、`classified=2765 / unclassified=0 / conflicts=0 / preserve_boundary=0`を確認した。
-- 内訳は`session_prose=2069 / provider_evidence=144 / operations_transition=3 /
-  legacy_archive=36 / compatibility_only=513`である。`active_session_prose=527`かつ
-  `compatibility_only=513`のため、分類境界はgreenでも`retirement-ready=false`である。
+- `src/lint/handover-retirement.ts` が明示したrepository source rootをpath/symbol単位で1,492 files・
+  2,963 references scanし、`classified=2963 / unclassified=0 / conflicts=0 / preserve_boundary=0`を確認した。
+  filesystem inventoryであり、git tracked file一覧と同義ではない。
+- 内訳は`session_prose=2204 / provider_evidence=81 / operations_transition=3 /
+  legacy_archive=154 / compatibility_only=521`である。`active_session_prose=2204`かつ
+  `compatibility_only=521`のため、分類境界はgreenでも`retirement-ready=false`である。
 - `tests/handover-retirement.test.ts`の`U-HRET-001`は未分類、異kind重複、preserve型へのsession継続意味混入、
   実repo回帰を負例込みで検証し、
   `helix doctor`の`handover-retirement-inventory`へhard gate配線した。

@@ -53,19 +53,18 @@ export interface HandoverRetirementInventoryResult {
   byKind: Record<HandoverRetirementKind, number>;
 }
 
-const PROVIDER_MARKER =
-  /provider[-_ ]handover|provider delegation|provider_evidence|\.helix\/handover\/provider/i;
+const PROVIDER_MARKER = /provider delegation|provider_evidence|\.helix\/handover\/provider/i;
 const OPERATIONS_MARKER =
   /operations?[-_ ](?:transition|handover)|operational[-_ ]handover|開発.{0,8}運用.{0,8}(?:移管|引継ぎ)/i;
 const BOUNDARY_DECLARATION_MARKER =
   /(?:session|prose|セッション).{0,160}(?:provider|operations)|(?:provider|operations).{0,160}(?:session|prose|セッション)|provider delegation evidence.{0,160}operations transition|session_prose.{0,160}provider_evidence|provider_evidence.{0,160}operations_transition/i;
-const REFERENCE_MARKER = /handover|CURRENT\.json|ハンドオーバー|引継ぎ/i;
+const REFERENCE_MARKER = /handover|CURRENT\.json|ハンドオーバー|引継ぎ|引き継ぎ|引き渡し/i;
 const SESSION_MUTATION_MARKER =
-  /runHandover|helix handover(?! provider)|session.{0,40}(?:next.action|continuation)|bounded recall/i;
+  /(?:run|read|write|generate|derive|consume|load|save|update)Handover|(?:write|read|generate|consume|update).{0,40}CURRENT|CURRENT.{0,40}(?:writer|reader|pointer|stale|freshness|generator)|handover.{0,40}(?:next.action|pointer|stale|freshness|generator)|helix handover(?! provider)|session.{0,40}(?:next.action|continuation)|bounded recall/i;
+const ALLOWED_PROVIDER_MUTATION_MARKER =
+  /(?:run|read|write)ProviderHandover|(?:provider[-_ ]handover|handover\/provider).{0,80}CURRENT|CURRENT.{0,80}(?:provider[-_ ]handover|handover\/provider)|writes package and CURRENT/i;
 const NEGATED_BOUNDARY_MARKER =
   /禁止|しない|別型|除外|must not|never|not (?:a |the )?(?:source|input)/i;
-const ACTIVE_RUNTIME_PATH =
-  /^(?:src|scripts|\.claude|\.codex|\.github|\.vscode)\/|^(?:AGENTS|CLAUDE|README)\.md$|^package\.json$/;
 const PROVIDER_PATH = /provider-handover|handover\/provider/i;
 const COMPATIBILITY_PATH =
   /handover-(?:mechanism|db-derivation)\.md$|tests\/handover(?:-completion-wording|-db-derivation|-derivation-wiring)?\.test\.ts$|tests\/handover\.test\.ts$/;
@@ -87,8 +86,8 @@ export const HANDOVER_RETIREMENT_RULES: readonly HandoverRetirementRule[] = [
     ruleId: "typed-boundary-declaration",
     kind: "session_prose",
     pathPattern:
-      /^(?:AGENTS|CLAUDE|README)\.md$|^package\.json$|^docs\/(?:design|test-design|governance|templates|migration|plans|process|reference|research|skills)\//,
-    excludePathPattern: COMPATIBILITY_PATH,
+      /^(?:AGENTS|CLAUDE|README)\.md$|^package\.json$|^docs\/(?:adr|design|memory|test-design|governance|templates|migration|plans|process|reference|research|skills)\//,
+    excludePathPattern: new RegExp(`${COMPATIBILITY_PATH.source}|${ARCHIVE_PATH.source}`),
     contentPattern: BOUNDARY_DECLARATION_MARKER,
     owner: "design/verification/governance",
     replacement: "session retirementとprovider/operations preserve境界を同じVペアで維持する",
@@ -164,7 +163,7 @@ export const HANDOVER_RETIREMENT_RULES: readonly HandoverRetirementRule[] = [
     ruleId: "session-prose-governance",
     kind: "session_prose",
     pathPattern:
-      /^(?:AGENTS|CLAUDE|README)\.md$|^package\.json$|^docs\/(?:design|test-design|governance|templates|migration|plans|process|reference|research|skills)\//,
+      /^(?:AGENTS|CLAUDE|README)\.md$|^package\.json$|^docs\/(?:adr|design|memory|test-design|governance|templates|migration|plans|process|reference|research|skills)\//,
     excludePathPattern: new RegExp(`${COMPATIBILITY_PATH.source}|${ARCHIVE_PATH.source}`),
     contentPattern: REFERENCE_MARKER,
     excludeContentPattern: new RegExp(`${PROVIDER_MARKER.source}|${OPERATIONS_MARKER.source}`, "i"),
@@ -182,7 +181,11 @@ const INVENTORY_ROOTS = [
   ".codex",
   ".github",
   ".vscode",
+  "docs/adr",
+  "docs/archive",
   "docs/design",
+  "docs/handover",
+  "docs/memory",
   "docs/migration",
   "docs/plans",
   "docs/process",
@@ -270,6 +273,14 @@ function ruleMatches(
   );
 }
 
+function hasPreserveBoundaryViolation(symbol: string): boolean {
+  return symbol.split(/[.;。]/).some((clause) => {
+    if (!SESSION_MUTATION_MARKER.test(clause)) return false;
+    if (ALLOWED_PROVIDER_MUTATION_MARKER.test(clause)) return false;
+    return !NEGATED_BOUNDARY_MARKER.test(clause);
+  });
+}
+
 export function classifyHandoverRetirementReferences(
   references: readonly HandoverRetirementReference[],
   rules: readonly HandoverRetirementRule[] = HANDOVER_RETIREMENT_RULES,
@@ -319,16 +330,13 @@ export function classifyHandoverRetirementReferences(
     .filter(
       (reference) =>
         (reference.kind === "provider_evidence" || reference.kind === "operations_transition") &&
-        SESSION_MUTATION_MARKER.test(reference.symbol) &&
-        !NEGATED_BOUNDARY_MARKER.test(reference.symbol),
+        hasPreserveBoundaryViolation(reference.symbol),
     )
     .map((reference) => ({
       ...reference,
       reason: "session_continuation_mixed_into_preserved_type" as const,
     }));
-  const activeSessionProse = classified.filter(
-    (reference) => reference.kind === "session_prose" && ACTIVE_RUNTIME_PATH.test(reference.path),
-  );
+  const activeSessionProse = classified.filter((reference) => reference.kind === "session_prose");
   const inventoryOk =
     unclassified.length === 0 && conflicts.length === 0 && preserveBoundaryViolations.length === 0;
   return {
@@ -341,7 +349,11 @@ export function classifyHandoverRetirementReferences(
     preserveBoundaryViolations,
     activeSessionProse,
     retirementReady:
-      inventoryOk && activeSessionProse.length === 0 && byKind.compatibility_only === 0,
+      inventoryOk &&
+      scannedFiles > 0 &&
+      references.length > 0 &&
+      activeSessionProse.length === 0 &&
+      byKind.compatibility_only === 0,
     byKind,
   };
 }
