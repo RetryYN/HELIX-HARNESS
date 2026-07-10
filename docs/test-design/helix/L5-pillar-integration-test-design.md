@@ -39,7 +39,7 @@ next_pair_freeze: L5
 | LIT-ID | 対応 L3 | 対応 L5 contract（L5 契約） | GWT |
 |--------|---------|------------------|---------------------|
 | LIT-P0-01 | HR-FR-P0-01 | HC-P0 | 前提: workflow PLAN / 操作: return contract を確認 / 期待: Forward return、gap-only、または `version_target` が存在する |
-| LIT-P0-02 | HR-FR-P0-02 | HC-P0 | 前提: cap または lock signal / 操作: stop contract を記録 / 期待: state と handover が stop reason を保持する |
+| LIT-P0-02 | HR-FR-P0-02 | HC-P0 | 前提: capまたはlock signal / 操作: stop eventをdurable append後にDBへ冪等投影 / 期待:JSONLとSQLiteを同一transactionと見なさず、append後・projection前crashは同一event IDでreplayし、投影成功前のcheckpointを公開しない |
 | LIT-P1-01 | HR-FR-P1-01 | HC-P1 | 前提: runnable job と budget / 操作: scheduler が resume を評価 / 期待: resume predicate がすべて pass する |
 | LIT-P1-02 | HR-FR-P1-02 | HC-P1 | 前提: version target / 操作: dry-run upgrade を生成 / 期待: migration、rollback、idempotency evidence が存在する |
 | LIT-P1-03 | HR-FR-P1-03 | HC-P1 | 前提: large request / 操作: work breakdown を実行 / 期待: sprint または PoC slice が Forward return と budget を持つ |
@@ -76,7 +76,7 @@ next_pair_freeze: L5
 | LIT-N3-03 | HR-NFR-P3-03 | HC-P9 | 前提: affected layer / 操作: regression fence を実行 / 期待: missing gate/test/doctor profile が pass を block する |
 | LIT-N3-04 | HR-NFR-P3-04 | HC-P3 | 前提: AI implementation / 操作: TDD evidence を確認 / 期待: Red/oracle/Green/refactor または substitute oracle が存在する |
 | LIT-N5-01 | HR-NFR-P5-01 | HC-P1 | 前提: injection plan / 操作: budget split を確認 / 期待: verbatim、summary、stable constraint が bounded である |
-| LIT-N5-02 | HR-NFR-P5-02 | HC-P1 | 前提: handover update / 操作: anchored merge を実行 / 期待: Next Action と artifact trail を保持する |
+| LIT-N5-02 | HR-NFR-P5-02 | HC-P1 | 前提: checkpoint途中crash/同一event再送/旧surface混入/provider evidence / 操作: replayとresurrection detectorを実行 / 期待: Next Actionを一度だけ投影し旧surfaceをfail-close、provider evidenceは保持する |
 | LIT-N5-03 | HR-NFR-P5-03 | HC-P3 | 前提: verification request / 操作: profile を選択 / 期待: fast/default/full と resource budget を evidence 化する |
 | LIT-N8-01 | HR-NFR-P8-01 | HC-P8 | 前提: high-impact action / 操作: approval gate を実行 / 期待: apply 前に action-binding approval を要求し、snapshot-bound approval は `reviewed_snapshot_binding` が current `sha256:` snapshotId を cite するまで pending のまま残る |
 | LIT-N8-02 | HR-NFR-P8-02 | HC-P8 | 前提: injection/exfiltration pattern / 操作: security classification を実行 / 期待: deny/review/redaction decision を記録する |

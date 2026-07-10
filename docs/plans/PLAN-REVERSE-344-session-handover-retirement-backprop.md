@@ -3,11 +3,11 @@ plan_id: PLAN-REVERSE-344-session-handover-retirement-backprop
 title: "PLAN-REVERSE-344: 廃止済みsession handover契約をDB+memory継続状態へfullback"
 kind: reverse
 layer: cross
-workflow_phase: R2
+workflow_phase: R3
 confirmed_reverse_type: fullback
 route_mode: reverse
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-11
 updated: 2026-07-11
 owner: Codex / TL
@@ -15,6 +15,10 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 entry_signals:
   - "po_directive:2026-07-11『ハンドオーバーは廃止した』— session/prose handoverを廃止済みの正本判断として固定"
 backprop_scope:
+  - layer: charter
+    decision: update_required
+    evidence_path: docs/design/helix/L0-charter/helix-charter_v0.1.md
+    reason: "P5のhandover要約契約をevent-first continuationへ置換する。"
   - layer: concept
     decision: update_required
     evidence_path: docs/governance/helix-harness-concept_v3.1.md
@@ -39,6 +43,10 @@ backprop_scope:
     decision: update_required
     evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
     reason: "handover input/output/failure contractをDB+memoryへ置換する。"
+  - layer: L6-function-design
+    decision: update_required
+    evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
+    reason: "mergeAnchoredHandoverとhandover resume/setup契約をevent-first continuation関数へ置換する。"
   - layer: L4-basic-design
     decision: update_required
     evidence_path: docs/design/harness/L4-basic-design/
@@ -59,6 +67,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L0-charter/helix-charter_v0.1.md
+    artifact_type: design_doc
   - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
@@ -72,6 +82,8 @@ generates:
   - artifact_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L5-detail/pillar-detail-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
     artifact_type: design_doc
   - artifact_path: docs/design/harness/L4-basic-design/architecture.md
     artifact_type: design_doc
@@ -91,6 +103,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
     artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L1-pillar-operational-test-design.md
+    artifact_type: test_design
   - artifact_path: docs/test-design/helix/L4-pillar-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/test-design/helix/L5-pillar-integration-test-design.md
@@ -100,6 +114,8 @@ generates:
   - artifact_path: docs/test-design/harness/L9-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/test-design/harness/L9-integration-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/harness/L8-unit-test-design.md
     artifact_type: test_design
   - artifact_path: src/lint/handover-retirement.ts
     artifact_type: source_module
@@ -111,6 +127,24 @@ dependencies:
   references:
     - docs/governance/handover-retirement-memory-audit-2026-07-11.md
     - docs/design/harness/L6-function-design/harness-memory-structure.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T06:25:00+09:00"
+    tests_green_at: "2026-07-11T06:24:13+09:00"
+    verdict: approve
+    scope: "L0-L6とL8/L9/L12/L14のevent-first continuation、4集約、non-atomic crash recovery、旧surface不存在、provider/operations preserve integrityを独立レビューし、R3 freeze blocker 0を確認した。runtime retirement完了はR4/L7 evidence待ち。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/vmodel-pair.test.ts tests/module-drift.test.ts tests/design-language.test.ts tests/handover-retirement.test.ts tests/plan-lint.test.ts --reporter=dot && bun src/cli.ts plan lint && git diff --check"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T06:24:13+09:00"
+        evidence_path: tests/handover-retirement.test.ts
+        output_digest: "sha256:dda9b913b8c88f068ef923b5537200b94944efbc9562e832287dbaeecaf85d27"
 ---
 
 # PLAN-REVERSE-344: session handover廃止の上位fullback
@@ -143,16 +177,25 @@ source precedenceを変更波の境界に使い、path/symbolの未分類が1件
 - `handover-retirement-inventory`は明示したrepository source rootの1,492 files / 2,963 referencesを分類し、
   `unclassified=0 / conflicts=0 / preserve_boundary=0`を確認した。
   `U-HRET-001`とdoctor hard gateで新規未分類・異kind重複・preserve型へのsession継続意味混入をfail-closeする。
-- R1 inventory境界は完了した。ただし`active_session_prose=2204 / compatibility_only=521 /
-  retirement-ready=false`であり、L0/L1/L3/L4/L5と対向test-designに現役契約が残るため、R3 freezeは不可。
+- R1 inventory境界は完了した。`active_session_prose=2204 / compatibility_only=521 /
+  retirement-ready=false`はruntime撤去前の残存量であり、R4/L7完了までは廃止完了を主張しない。
 
-## R2 判定（進行中）
+## R2 判定（完了）
 
 - machine stateはharness.db、事実trailはappend-only session event、bounded recallはmemory、actionable issueは
   feedback lifecycleへ割当てる。
 - provider delegation evidenceとoperations transitionはcontinuation sourceへjoinせず、監査・運用artifactとして保持する。
 - 旧CURRENT固有のtakeover noteはprovenance/TTL付きmemoryへ最大1件移管する。DBと競合する値は採用しない。
-- confirmed正本と対向Vペアの二重拘束が残るため、情報欠落・二重正本0の反証完了まではR3へ進めない。
+- JSONLとSQLiteを同一transactionと見なさず、append失敗、append後/projection前、projection後/memory前、
+  DB消失、同一sequence異payloadをreplay/rebuild/fail-closeへ割り当てた。
+
+## R3 判定（confirmed / freeze済み）
+
+- L0 charterからL6 function design、L14/L12/L9/L8の対向test-designまで同じ変更波で更新した。
+- Plan / Artifact / Workflow / Evaluationの4集約とcontinuation read modelへ構造契約を統一した。
+- session/prose/CURRENT/旧CLIのabsence・resurrection oracleと、provider/operations evidenceの
+  count/digest/provenance/schema/query/export/retention保持oracleを分離した。
+- 独立TLレビューでfreeze blocker 0を確認した。これは設計freezeであり、runtime実装greenやretirement完了ではない。
 
 ## 不変境界
 
