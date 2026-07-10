@@ -40,9 +40,9 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-11T03:01:30+09:00"
+    reviewed_at: "2026-07-11T03:14:30+09:00"
     tests_green_at: "2026-07-11T03:08:06+09:00"
-    verdict: approve_after_fixes
+    verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
     scope: "memory v2 schema/v1互換/takeover lifecycle/surface budget/compaction不変/V-pairをseverity-firstで4巡レビュー。terminal tombstoneと旧compaction衝突、API互換、物理SSoT、副作用順序、cross-process lock、lease回収raceをcompactMemoryV2分離とfencing tokenで是正し、blocker/high残存なし。"

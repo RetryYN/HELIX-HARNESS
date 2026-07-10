@@ -1263,7 +1263,7 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | MEMV2-S8a | memory write event | append成功時だけbody非包含eventを1件記録する。 |
 | MEMV2-S8b | event failure boundary | event失敗はmemory成功を反転せずdiagnostic、dry-run/validation失敗はeventゼロ。 |
 
-### objective evidence audit の動的 decisionCount 拘束（PLAN-L7-406）
+### objective evidence audit の動的 decisionCount 拘束（PLAN-L7-408）
 
 | U-ID | 対象 | Oracle |
 |---|---|---|
