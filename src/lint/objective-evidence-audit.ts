@@ -569,6 +569,18 @@ function checkCompletionRow(
   if (!row.includes(expectedOkMarker)) {
     violations.push(`G-10: completion row must cite ${expectedOkMarker}`);
   }
+  const expectedDecisionCount = input.outstanding.items.length;
+  const decisionCounts = [...row.matchAll(/\bdecisionCount=(\d+)(?![A-Za-z0-9_])/g)].map((match) =>
+    Number(match[1]),
+  );
+  if (
+    decisionCounts.length === 0 ||
+    decisionCounts.some((decisionCount) => decisionCount !== expectedDecisionCount)
+  ) {
+    violations.push(
+      `G-10: completion row decisionCount markers must all equal ${expectedDecisionCount} (actual=${decisionCounts.join(",") || "missing"})`,
+    );
+  }
   for (const blocker of readiness.blockers) {
     if (!row.includes(blocker)) {
       violations.push(`G-10: completion row missing blocker ${blocker}`);

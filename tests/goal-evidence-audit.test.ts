@@ -15,7 +15,8 @@ function auditText(): string {
 
 describe("HELIX objective evidence audit", () => {
   it("tracks active objective requirements and allows completion only when readiness is true", () => {
-    const text = auditText();
+    const input = loadObjectiveEvidenceAuditInput();
+    const text = input.auditText;
     const provedIds = ["G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09"];
 
     for (const id of provedIds) {
@@ -28,7 +29,7 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow, "G-10 row missing").toBeTruthy();
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
-    expect(completionRow).toContain("decisionCount=2");
+    expect(completionRow).toContain(`decisionCount=${input.outstanding.items.length}`);
 
     expect(text).toContain("外部ソース HEAD 確認日: 2026-07-10");
     expect(text).toContain("外部 source ledger (checked 2026-07-10)");
@@ -593,6 +594,58 @@ describe("HELIX objective evidence audit", () => {
     expect(result.objectiveProgress.basis).toContain("G-10 is blocked by completionReadiness");
     expect(objectiveEvidenceAuditMessages(result)[0]).toContain(
       "objective-evidence-audit - OK (completion=blocked, progress=90%, proved=9/10)",
+    );
+  });
+
+  it("U-OBJAUD-001: fails closed when G-10 decisionCount drifts, collides, or contradicts live outstanding items", () => {
+    const input = loadObjectiveEvidenceAuditInput();
+    const liveMarker = `decisionCount=${input.outstanding.items.length}`;
+    const staleMarker = `decisionCount=${input.outstanding.items.length + 1}`;
+    const driftedAuditText = input.auditText
+      .split("\n")
+      .map((line) =>
+        line.startsWith("| G-10 |") ? line.replaceAll(liveMarker, staleMarker) : line,
+      )
+      .join("\n");
+    const result = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: driftedAuditText,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContain(
+      `G-10: completion row decisionCount markers must all equal ${input.outstanding.items.length} (actual=${input.outstanding.items.length + 1},${input.outstanding.items.length + 1})`,
+    );
+  });
+
+  it("U-OBJAUD-001b: rejects decisionCount prefix collisions and contradictory markers", () => {
+    const input = loadObjectiveEvidenceAuditInput();
+    const expected = input.outstanding.items.length;
+    const liveMarker = `decisionCount=${expected}`;
+    const mutateG10 = (mutate: (line: string) => string): string =>
+      input.auditText
+        .split("\n")
+        .map((line) => (line.startsWith("| G-10 |") ? mutate(line) : line))
+        .join("\n");
+
+    const prefixCollision = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: mutateG10((line) =>
+        line.replaceAll(liveMarker, `decisionCount=${expected + 10}`),
+      ),
+    });
+    expect(prefixCollision.ok).toBe(false);
+    expect(prefixCollision.violations).toContain(
+      `G-10: completion row decisionCount markers must all equal ${expected} (actual=${expected + 10},${expected + 10})`,
+    );
+
+    const contradictory = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: mutateG10((line) => `${line} decisionCount=${expected + 1}`),
+    });
+    expect(contradictory.ok).toBe(false);
+    expect(contradictory.violations).toContain(
+      `G-10: completion row decisionCount markers must all equal ${expected} (actual=${expected},${expected},${expected + 1})`,
     );
   });
 
