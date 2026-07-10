@@ -8,7 +8,9 @@ import {
   readZipManifestEntries,
   VMODEL_ZIP_FILENAME,
   VMODEL_ZIP_REQUIRED_PATHS,
+  VMODEL_ZIP_SOURCE_BINDINGS,
   vmodelZipManifestMessages,
+  vmodelZipSourceBindingDefinitionViolations,
 } from "../src/vmodel/zip-manifest";
 
 function minimalZip(paths: string[]): Buffer {
@@ -89,8 +91,9 @@ describe("V-model ZIP manifest", () => {
       });
       expect(result.required.every((entry) => entry.present)).toBe(true);
       const bindings = buildVmodelZipSourceBindings(result);
-      expect(bindings).toHaveLength(19);
+      expect(bindings).toHaveLength(21);
       expect(bindings.every((binding) => binding.status === "bound")).toBe(true);
+      expect(vmodelZipSourceBindingDefinitionViolations()).toEqual([]);
       expect(
         bindings.find((binding) => binding.bindingId === "zip-source:typed-spec"),
       ).toMatchObject({
@@ -109,6 +112,23 @@ describe("V-model ZIP manifest", () => {
     }
   });
 
+  it("必須 source と binding の全単射を強制する", () => {
+    const withoutAssign = VMODEL_ZIP_SOURCE_BINDINGS.filter(
+      (binding) => binding.sourcePath !== "tools/assign.py",
+    );
+    expect(vmodelZipSourceBindingDefinitionViolations(withoutAssign)).toContain(
+      "missing_source_binding=tools/assign.py",
+    );
+
+    const duplicate = [...VMODEL_ZIP_SOURCE_BINDINGS, ...VMODEL_ZIP_SOURCE_BINDINGS.slice(0, 1)];
+    expect(vmodelZipSourceBindingDefinitionViolations(duplicate)).toEqual(
+      expect.arrayContaining([
+        "duplicate_binding_id=zip-source:l12-level-definition",
+        "duplicate_source_path=docs/107_Vモデル・レベル定義.yaml",
+      ]),
+    );
+  });
+
   it("required source が不足している ZIP は violation にする", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-vmodel-zip-missing-"));
     try {
@@ -122,7 +142,7 @@ describe("V-model ZIP manifest", () => {
       expect(result.required.filter((entry) => entry.present)).toHaveLength(1);
       expect(
         buildVmodelZipSourceBindings(result).filter((binding) => binding.status === "missing"),
-      ).toHaveLength(18);
+      ).toHaveLength(20);
       expect(result.inventorySignature.status).toBe("mismatch");
       expect(result.findings.map((finding) => finding.code)).toContain("required_entry_missing");
       expect(vmodelZipManifestMessages(result)[0]).toContain("violation");

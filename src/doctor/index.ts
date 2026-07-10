@@ -491,6 +491,7 @@ import {
   VMODEL_ZIP_REQUIRED_PATHS,
   VMODEL_ZIP_SOURCE_BINDINGS,
   vmodelZipManifestMessages,
+  vmodelZipSourceBindingDefinitionViolations,
 } from "../vmodel/zip-manifest";
 import { validateVisualizationTreeViewModel } from "../vscode/extension-adapter";
 import {
@@ -3711,26 +3712,11 @@ export function checkZipSourceBinding(
       const fit = buildVmodelFitReport(snapshot, zipManifest, { repoRoot });
       const sourceBindings = fit.zip_source_bindings;
       const violations: string[] = [];
-      const requiredBindingIds = [
-        "zip-source:l12-level-definition",
-        "zip-source:typed-spec",
-        "zip-source:catalog",
-        "zip-source:profiles",
-        "zip-source:tailoring-design",
-        "zip-source:build-tool-reference",
-        "zip-source:spec-check-reference",
-        "zip-source:spec-types-reference",
-      ];
+      const requiredBindingIds = VMODEL_ZIP_SOURCE_BINDINGS.map((binding) => binding.bindingId);
       const requiredEvidenceTables = [
-        "plan_registry",
-        "roadmap_rollups",
-        "roadmap_band_coverage",
-        "artifact_registry",
-        "design_declarations",
-        "design_references",
-        "design_impact",
-        "guardrail_decisions",
+        ...new Set(VMODEL_ZIP_SOURCE_BINDINGS.flatMap((binding) => binding.evidenceTables)),
       ];
+      violations.push(...vmodelZipSourceBindingDefinitionViolations());
       const bindingIds = sourceBindings.bindings.map((binding) => binding.binding_id);
       for (const id of requiredBindingIds) {
         if (!bindingIds.includes(id)) violations.push(`missing_binding=${id}`);

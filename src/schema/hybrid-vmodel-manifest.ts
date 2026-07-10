@@ -288,7 +288,54 @@ export const VMODEL_ZIP_SOURCE_BINDINGS: readonly VmodelZipSourceBindingDefiniti
     requiredAction:
       "ZIP typed spec の型境界を TS/Bun の parser と projection writer の契約へ移植する",
   },
+  {
+    bindingId: "zip-source:assign-tool-reference",
+    sourcePath: "tools/assign.py",
+    sourceCategory: "reference_tool",
+    l12Layers: ["L7", "L12"],
+    helixSurfaces: ["agent assignment", "execution evidence", "Project view"],
+    evidenceTables: ["model_runs", "guardrail_decisions", "plan_registry"],
+    requiredAction:
+      "ZIP assign の宣言→実行割当→証跡必須signalを、TS/Bun のagent assignmentとexecution evidence検出へ移植する",
+  },
+  {
+    bindingId: "zip-source:schedule-tool-reference",
+    sourcePath: "tools/schedule.py",
+    sourceCategory: "reference_tool",
+    l12Layers: ["L1", "L2", "L3", "L4", "L5", "L8", "L9", "L10", "L11", "L12"],
+    helixSurfaces: ["V-pair schedule", "current-location", "roadmap gate", "Project view"],
+    evidenceTables: ["roadmap_rollups", "roadmap_band_coverage", "project_current_location"],
+    requiredAction:
+      "ZIP schedule のL1→L12 V対・循環・日程・進捗・coverage検出を、TS/Bun のroadmap/current-location gateへ移植する",
+  },
 ] as const;
+
+/** 必須 ZIP source と採用bindingの全単射を守る。欠落・重複・余剰は正本追従漏れである。 */
+export function vmodelZipSourceBindingDefinitionViolations(
+  definitions: readonly VmodelZipSourceBindingDefinition[] = VMODEL_ZIP_SOURCE_BINDINGS,
+  requiredPaths: readonly string[] = VMODEL_ZIP_REQUIRED_PATHS,
+): string[] {
+  const violations: string[] = [];
+  const countBy = <T extends string>(values: readonly T[]) => {
+    const counts = new Map<string, number>();
+    for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+    return counts;
+  };
+  const bindingIds = countBy(definitions.map((definition) => definition.bindingId));
+  const sourcePaths = countBy(definitions.map((definition) => definition.sourcePath));
+  const required = new Set(requiredPaths);
+  for (const [bindingId, count] of bindingIds) {
+    if (count > 1) violations.push(`duplicate_binding_id=${bindingId}`);
+  }
+  for (const [sourcePath, count] of sourcePaths) {
+    if (count > 1) violations.push(`duplicate_source_path=${sourcePath}`);
+    if (!required.has(sourcePath)) violations.push(`unexpected_source_path=${sourcePath}`);
+  }
+  for (const sourcePath of requiredPaths) {
+    if (!sourcePaths.has(sourcePath)) violations.push(`missing_source_binding=${sourcePath}`);
+  }
+  return violations;
+}
 
 export interface ZipManifestEntry {
   path: string;
