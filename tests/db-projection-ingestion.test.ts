@@ -310,10 +310,10 @@ describe("db projection ingestion detector", () => {
       } else {
         expect(handoffSummary).toMatchObject({
           status: "approval_pending",
-          approval_pending: 1,
+          approval_pending: 0,
           scope_mismatch: 0,
           scope_status: "missing",
-          recovery_gate_status: "approval_pending",
+          recovery_gate_status: "approval_required",
           effective_phase: "approval",
         });
       }
