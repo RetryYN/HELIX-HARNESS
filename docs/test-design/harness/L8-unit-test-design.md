@@ -75,15 +75,15 @@ PLAN-REVERSE-344がR4へmergeされるまで本節は設計oracleであり、実
 | U-ID | 対象 | 反例と期待結果 |
 |---|---|---|
 | U-HRET-001 | typed inventory | live参照の未分類、型なしallowlist、同一symbolの矛盾分類をhard fail |
-| U-HRET-002 | phase state machine | prerequisite未達、逆行、complete後rollback、異intent replayを拒否 |
+| U-HRET-002 | phase state machine | canonical intentDigest、status値域、隣接forward edgeを検査し、prerequisite未達、skip、逆行、legacy_write_disabled以後/complete後rollback、異intent replayを拒否 |
 | U-HRET-003 | legacy note移管 | provenance/TTL/link/operationIdを持つ有効noteだけ最大1件移管しsecret/PIIを拒否 |
 | U-HRET-004 | journal crash recovery | partial append後にsemantic prefixを検証し、完了checkpointを重複実行しない |
-| U-HRET-005 | delivery semantics | stable deliveryIdでconsumer dedupeし、stdout成功後crashの再配信を許容 |
+| U-HRET-005 | delivery semantics | immutable entry UUID + stable consumer IDのdeliveryIdとpayload digest、durable receipt/event、pending→delivered→acknowledged/expired、同ID同digest dedupe、同ID異digest conflict、DB消失rebuildを検証し、stdout成功後crashの再配信を許容 |
 | U-HRET-006 | continuation precedence | DBとmemory矛盾時はDBを表示しdiagnosticを生成、memoryでDBを上書きしない |
 | U-HRET-007 | Stop / complete | session digest・DB event・promotion nudgeだけを生成しCURRENT/proseを書かない |
 | U-HRET-008 | preserve境界 | provider delegationとoperations transitionをcontinuation sourceにはしない。retirement前後で件数・原本digest・provenance・schema validation・query/export可用性・retention metadataが不変であることを別fixtureで検証する |
 | U-HRET-009 | archive reconcile | source/target件数とper-file digest一致前のsource削除を拒否 |
-| U-HRET-010 | backup / rollback | checkpoint・digest一致時だけcomplete前rollbackを許可 |
+| U-HRET-010 | backup / rollback | checkpoint・digest一致時だけlegacy_write_disabled到達前rollbackを許可し、それ以後は旧read/writerを復活させずforward fixへ送る |
 | U-HRET-011 | generated surfaces | adapter/setup/template/task/CI/distributionのmanifest差分をfail-close |
 | U-HRET-012 | resurrection | complete後の旧CLI/path/import/writer/CURRENT再出現をhard fail |
 | U-HRET-013 | fresh / brownfield | 旧surfaceなしでactive PLAN・blocker・next authority・feedbackを再開 |

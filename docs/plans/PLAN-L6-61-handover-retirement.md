@@ -4,7 +4,7 @@ title: "PLAN-L6-61 (add-design): handover 機構の廃止設計 — CURRENT.json
 kind: add-design
 layer: L6
 drive: be
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-11 /goal「ハンドオーバーの課題を突き詰めてハンドオーバーを廃止してハーネスメモリを強化する方向で進めたい」（2026-07-07 の『廃止ではなく DB 導出化で縮小』judgment を PO 自身が廃止へ方向転換）"
@@ -30,6 +30,10 @@ dependencies:
   parent: docs/plans/PLAN-L6-01-function-spec.md
   requires:
     - docs/plans/PLAN-L6-57-handover-db-derivation.md
+    - docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md
+    - docs/plans/PLAN-L6-62-harness-memory-structure.md
+    - docs/plans/PLAN-L6-63-feedback-lifecycle.md
+    - docs/plans/PLAN-L6-64-memory-cross-runtime-surface.md
   references:
     - docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md
     - docs/governance/handover-retirement-memory-audit-2026-07-11.md
@@ -38,6 +42,24 @@ dependencies:
     - docs/plans/PLAN-L6-64-memory-cross-runtime-surface.md
     - docs/plans/PLAN-L7-396-handover-derivation-wiring.md
     - src/handover/index.ts
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T06:32:00+09:00"
+    tests_green_at: "2026-07-11T06:30:58+09:00"
+    verdict: approve
+    scope: "L6↔L8のrollback edge、shadow writer freeze、non-atomic continuation crash windows、preserve manifest、delivery receipt、journal intent、L7 descent dependenciesを独立レビューしfreeze blocker 0を確認した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/vmodel-pair.test.ts tests/design-language.test.ts tests/plan-lint.test.ts tests/review-evidence.test.ts --reporter=dot && bun src/cli.ts plan lint && git diff --check"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T06:30:58+09:00"
+        evidence_path: docs/test-design/harness/L8-unit-test-design.md
+        output_digest: "sha256:d24010e4bb165aeb80a974924615c6925816a879db4eb4c707e0d82c725653ee"
 ---
 
 # PLAN-L6-61 (add-design): handover 機構の廃止設計
@@ -74,8 +96,8 @@ dependencies:
    ~/.codex/AGENTS.md の handover 記述と Adapter Rule Markers「引き継ぎ: `helix handover`」の
    置換内容（memory 参照規約への差し替え）を、rule-drift gate が green のまま atomic に行える
    変更セットとして設計する。
-5. **移行順序と rollback**: 受け皿（L6-62/63/64 の L7 descent 着地）→ 並行期間（生成は継続・参照は
-   memory へ）→ 撤去 slice、の段階設計。各段階の検証 oracle と rollback 手順を定義する。
+5. **移行順序と rollback**: 受け皿（L6-62/63/64 の L7 descent 着地）→ shadow期間（旧writerは凍結し、
+   read結果だけを新readと比較）→ memory primary → 撤去slice、の段階設計。各段階の検証oracleとrollback手順を定義する。
 6. **`docs/handover/` の archive 方針**: 既存 session-handover md 14 本の archive 先と、以後の
    session 引き継ぎ記録を memory + DB に限定する規約。
 
@@ -103,3 +125,5 @@ dependencies:
 - rule-drift gate が設計した変更セット適用後も green であることを oracle として明記。
 - `bun run src/cli.ts plan lint docs/plans/PLAN-L6-61-handover-retirement.md` green。
 - 撤去実行は本 PLAN の範囲外（後続 L7 PLAN + PO 承認後）。
+- Reverse-344、L6-62/63/64がterminal statusかつ各green evidence digestを持ち、本L6 pairのR4 freezeが
+  greenである場合だけ後続L7 PLANを起票できる。自然文scheduleやfile存在だけでprecondition充足にしない。

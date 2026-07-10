@@ -1,8 +1,8 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
-freeze_blocking: false
+status: confirmed
+freeze_blocking: true
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 plan: docs/plans/PLAN-L6-61-handover-retirement.md
 ---
@@ -14,8 +14,9 @@ plan: docs/plans/PLAN-L6-61-handover-retirement.md
 
 # session handover retirement — 機能設計
 
-本書はPLAN-REVERSE-344の上位fullback完了までdraftであり、既にconfirmed済みのL4-L6 verification cycleを
-偽って未freezeへ戻さないため`freeze_blocking: false`とする。Reverse merge後にtrueへ戻して独立freezeする。
+PLAN-REVERSE-344のR3 fullbackと独立TLレビューが完了したため、本書をL6 retirement正本としてfreezeする。
+ただし設計freezeはruntime撤去完了を意味しない。U-HRET-002..014とIT-CONT/ST-ARCHのL7 test_code、
+runtime撤去、resurrection detectorがgreenになるまで`retirement-ready=false`を維持する。
 
 ## §1 廃止対象と保持対象
 
@@ -27,8 +28,12 @@ plan: docs/plans/PLAN-L6-61-handover-retirement.md
 | `legacy_archive` | 過去session handover/readiness証跡 | `archive`。runtime read source禁止 |
 | `compatibility_only` | rollback window中のread-only decoder | `compatibility-only`。writer/生成器禁止、期限と除去条件必須 |
 
+`provider_evidence` / `operations_transition`のpreserveは存在確認だけで終えない。retirement直前・直後の
+count、原本SHA-256、provenance、schema validation結果、query/export可用性、retention metadataを
+preserve manifestへ記録し、全項目一致をphase exit条件にする。同名artifactをcontinuation sourceへjoinしない。
+
 文字列`handover`の一律禁止は行わない。runtime import/CLI route/hook/CURRENT read-write/session prose生成を
-禁止対象とし、provider/operations/archiveはtyped allowlistで区別する。source manifestはrepo内の全参照を
+禁止対象とし、provider/operations/archiveはtyped allowlistで区別する。source manifestは明示したrepository source root内の参照を
 path、symbol、kind、disposition、replacement、owner、removal checkpointへ分類し、未分類をhard failにする。
 
 対象inventoryは少なくともCLI、`src/handover/`、Stop/SessionStart hook、doctor、lint、plan complete、status/
@@ -52,7 +57,11 @@ memoryはDB stateを複製せず、矛盾時はDBを優先する。旧CURRENTの
 ## §3 takeover delivery契約
 
 deliveryはstdoutとconsumeをatomicにできないため**at-least-once**である。one-shot/exactly-onceと主張しない。
-各deliveryはstable `deliveryId=<entryId>:<consumerId>`を持ち、consumerはdeliveryIdで重複排除する。
+`entryId`はmemory entryのimmutable UUID、`consumerId`はadapter/runtime instanceのstable IDとし、各deliveryは
+`deliveryId=<entryId>:<consumerId>`とpayload digestを持つ。receiptはharness.dbのdelivery receipt projectionと
+append-only memory delivery eventへdurable記録し、`pending -> delivered -> acknowledged|expired`だけを許可する。
+同deliveryId・同digestはdedupeし、同ID異digestはconflictとしてfail-closeする。DB消失時はdelivery eventから
+receiptを再構築する。ack/expired receiptのretentionは元entryのretention以上とする。
 stdout成功後・consume前crashは再配信し得る。並行consumerも同じentryを受け得るため、機密性や排他制御を
 deliveryに依存させない。将来claim/leaseを導入する場合は別設計とする。
 
@@ -69,9 +78,12 @@ type RetirementPhase =
   | "rolled_back";
 ```
 
-`.helix/audit/session-handover-retirement.jsonl`をmigration journalとし、`runId/operationId/phase/status/error/
+`.helix/audit/session-handover-retirement.jsonl`をmigration journalとし、`runId/operationId/intentDigest/phase/status/error/
 checkpoint/backupDigest/inventoryDigest/sourceCount/targetCount/sourceDigest/targetDigest/occurredAt`をappend-onlyで
-保持する。同operation+同intentはreplay、異intentは拒否する。
+保持する。`intentDigest`は対象root、inventory digest、target phase、writer policyをcanonical JSON化したSHA-256とする。
+同operation+同intentはreplay、同operation+異intentは拒否する。statusは`started|completed|failed`、checkpointは
+直前completed phaseとそのartifact digest集合である。許可edgeは表の上から隣接phaseへの前進と、
+`prerequisite|shadow_read|memory_primary`から`rolled_back`だけとし、skip・逆行・complete後遷移を拒否する。
 
 | phase | entry条件 | writer / reader | exit検証 |
 |---|---|---|---|
@@ -81,7 +93,7 @@ checkpoint/backupDigest/inventoryDigest/sourceCount/targetCount/sourceDigest/tar
 | legacy_write_disabled | old CLI/hook/generator無効 | CURRENT再生成をhard fail | setup/plan complete/Stop非生成 |
 | cleanup | live consumer 0、rollback packet有効 | runtime import/path削除 | residual detector 0 |
 | complete | 全gate green | provider/operations evidenceのみ保持 | distribution/fresh/brownfield green |
-| rolled_back | complete前の失敗 | backupとcheckpointから旧readを一時復元 | restore digest一致、incident記録 |
+| rolled_back | `legacy_write_disabled`到達前の失敗 | backupとcheckpointから旧readを一時復元 | restore digest一致、incident記録 |
 
 `complete`後はsession handover writerをrollbackで復活させない。rollbackは`legacy_write_disabled`以前だけに限定し、
 complete後の問題はDB+memory側のforward fixで扱う。
@@ -100,7 +112,10 @@ complete後の問題はDB+memory側のforward fixで扱う。
 - `helix handover` / `handover status`は削除し、未知commandとして非0終了する。aliasやsilent fallbackを残さない。
 - `helix status`はactive PLAN、blocker、next authority、feedback、continuation memory pointerを構造化表示する。
 - Stopはsession digestとpromotion nudgeだけを扱い、CURRENT/session proseを生成しない。
-- `plan complete`はDB/event evidenceをcommitしてcurrent-planをclearし、handover生成をtransactionへ混ぜない。
+- `plan complete`はR3 HC-P1 contractに従い、event evidenceを先にdurable appendし、event ID/payload hashで
+  SQLiteへ冪等投影した後だけcheckpointを公開してcurrent-planをclearする。JSONLとSQLiteを同一transactionと
+  見なさない。append失敗は非公開、append後/projection前はreplay、projection後/memory前はDBを正として
+  breadcrumbを再生成し、同sequence異payloadはfail-closeする。handover生成を処理へ混ぜない。
 - doctorはhandover stalenessではなくcontinuation DB/memory health、resurrection、unclassified residualを検査する。
 - setup/fresh/brownfield/distribution/VSCode/CIは旧path/task/commandを生成しない。
 
@@ -121,7 +136,7 @@ CLAUDE.md / .claude/CLAUDE.md / AGENTS.md / setup managed block / rule-drift mar
 | HRET-S5 | at-least-once deliveryとstable deliveryIdで並行/再配信を明示 |
 | HRET-S6 | statusが旧pointerの必要な機械情報を意味的に包含 |
 | HRET-S7 | Stop/plan complete/doctorが旧snapshotを生成・参照しない |
-| HRET-S8 | provider/operations evidenceを無損失保持しsession型と分離 |
+| HRET-S8 | provider/operations evidenceをsession型と分離し、retirement前後のcount・原本digest・provenance・schema validation・query/export可用性・retention metadataを無損失保持 |
 | HRET-S9 | archive manifest件数/digest一致、誤分類artifact移動0 |
 | HRET-S10 | backup/reconcile/rollbackがcheckpointとdigestを復元 |
 | HRET-S11 | adapter/setup/template/CI/distributionが同一manifestへ同期 |

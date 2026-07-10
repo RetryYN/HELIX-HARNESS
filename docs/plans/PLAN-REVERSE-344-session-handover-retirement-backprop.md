@@ -3,9 +3,11 @@ plan_id: PLAN-REVERSE-344-session-handover-retirement-backprop
 title: "PLAN-REVERSE-344: 廃止済みsession handover契約をDB+memory継続状態へfullback"
 kind: reverse
 layer: cross
-workflow_phase: R3
+workflow_phase: R4
 confirmed_reverse_type: fullback
 route_mode: reverse
+forward_routing: L6
+promotion_strategy: reuse-with-hardening
 drive: agent
 status: confirmed
 created: 2026-07-11
@@ -196,6 +198,15 @@ source precedenceを変更波の境界に使い、path/symbolの未分類が1件
 - session/prose/CURRENT/旧CLIのabsence・resurrection oracleと、provider/operations evidenceの
   count/digest/provenance/schema/query/export/retention保持oracleを分離した。
 - 独立TLレビューでfreeze blocker 0を確認した。これは設計freezeであり、runtime実装greenやretirement完了ではない。
+
+## R4 判定（Forward merge済み）
+
+- R3正本を`PLAN-L6-61`と`handover-retirement.md`へmergeし、L6↔L8をconfirmed/freezeした。
+- rollbackは`legacy_write_disabled`到達前だけ、shadow期間は旧writer凍結、continuationは
+  durable append→冪等projection→checkpoint公開の順に固定した。
+- `provider/operations preserve manifest`、`at-least-once receipt`、`intentDigest/allowed phase edge`、
+  Reverse-344 + L6-62/63/64 terminal/green dependencyをL7 descent preconditionへ束縛した。
+- Forward返却先はL6。後続L7 PLANは依存証跡を再検証してから起票し、runtime retirement完了はそのgreen後に判定する。
 
 ## 不変境界
 
