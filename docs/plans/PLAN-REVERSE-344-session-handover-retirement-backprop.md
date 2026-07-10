@@ -3,7 +3,7 @@ plan_id: PLAN-REVERSE-344-session-handover-retirement-backprop
 title: "PLAN-REVERSE-344: 廃止済みsession handover契約をDB+memory継続状態へfullback"
 kind: reverse
 layer: cross
-workflow_phase: R0
+workflow_phase: R1
 confirmed_reverse_type: fullback
 route_mode: reverse
 drive: agent
@@ -23,6 +23,10 @@ backprop_scope:
     reason: "Handover aggregateをDB+memory continuationへ置換する。"
   - layer: requirements
     decision: update_required
+    evidence_path: docs/design/helix/L1-requirements/pillar-requirements.md
+    reason: "HBR/HNFRのprose handover契約をatomic continuation checkpointへ置換する。"
+  - layer: requirements
+    decision: update_required
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "handover必須、3層原則、CLI/CURRENT.json契約を廃止する。"
   - layer: requirements
@@ -37,6 +41,18 @@ backprop_scope:
     decision: update_required
     evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
     reason: "handover input/output/failure contractをDB+memoryへ置換する。"
+  - layer: L4-basic-design
+    decision: update_required
+    evidence_path: docs/design/harness/L4-basic-design/
+    reason: "Handover aggregate/module/UIをcontinuation read modelへ置換する。"
+  - layer: L5-detailed-design
+    decision: update_required
+    evidence_path: docs/design/harness/L5-detailed-design/
+    reason: "CURRENT物理schemaとsrc/handover moduleを廃止する。"
+  - layer: verification-design
+    decision: update_required
+    evidence_path: docs/test-design/
+    reason: "L3-L6 pillar pairとharness L9 system/integrationへ正負oracleを追加する。"
 agent_slots:
   - role: se
     slot_label: "SE — L0-L5 handover契約inventoryとtyped disposition"
@@ -49,12 +65,26 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
+  - artifact_path: docs/governance/session-handover-retirement-disposition.md
+    artifact_type: governance_doc
+  - artifact_path: docs/design/helix/L1-requirements/pillar-requirements.md
+    artifact_type: design_doc
   - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L5-detail/pillar-detail-design.md
     artifact_type: design_doc
+  - artifact_path: docs/design/harness/L4-basic-design/
+    artifact_type: design_doc_set
+  - artifact_path: docs/design/harness/L5-detailed-design/
+    artifact_type: design_doc_set
+  - artifact_path: docs/test-design/helix/
+    artifact_type: test_design_set
+  - artifact_path: docs/test-design/harness/L9-system-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/harness/L9-integration-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L6-61-handover-retirement.md
   requires: []
@@ -79,6 +109,18 @@ L6だけで隠さず、Reverseで上位正本へ戻す。
    情報欠落と二重正本を反証する。
 3. R3: concept / requirements / L3 / L4 / L5と対向test-designを同じ変更波で更新する。
 4. R4: provider/operations証跡を保持したままL6-61へForward mergeし、runtime撤去descentを許可する。
+
+R1のtyped inventory正本は
+`docs/governance/session-handover-retirement-disposition.md`とする。R2以降は同文書の分類と
+source precedenceを変更波の境界に使い、path/symbolの未分類が1件でもあればfreezeしない。
+
+## R1 判定（2026-07-11）
+
+- `session_prose`: replace。CURRENT、旧CLI、writer/reader、stale判定、aggregate/module/UIを撤去する。
+- `provider_evidence`: preserve。runtime invocation/review provenanceでありsession継続の正本にはしない。
+- `operations_transition`: preserve。開発から運用への移管成果物として別型化する。
+- `legacy_archive`: archive。成立経緯は残すがruntime read sourceから除外する。
+- 現状はL0/L1/L3/L4/L5と対向test-designに現役契約が残るため、R2/R3 freezeは不可。
 
 ## 不変境界
 
