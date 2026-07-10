@@ -16,6 +16,10 @@ export interface SurfacedFeedback {
   plan_id: string;
   next_action: string;
   bucket: FeedbackSurfaceBucket;
+  /** group-first cap の代表行が保持する group 実件数 (省略時 1、PLAN-L7-404)。 */
+  surface_count?: number;
+  /** group 内の distinct plan_id (表示は先頭 3 件のみ)。 */
+  surface_plan_ids?: string[];
 }
 
 export interface TakeoverFeedbackResult {
@@ -27,8 +31,13 @@ export interface TakeoverFeedbackResult {
   byBucket: Record<FeedbackSurfaceBucket, number>;
   /** Count by signal type for telemetry items that are intentionally summarized. */
   telemetryBySignal: Record<string, number>;
-  /** Stable bucket/severity/id ordered non-telemetry items after applying the display limit. */
+  /**
+   * bucket/severity/signal_type の group 代表行 (group-first cap 適用後)。limit は表示 group 数の
+   * 予算であり、単一クラスタが他 signal_type を追い出さない (PLAN-L7-404)。
+   */
   items: SurfacedFeedback[];
+  /** group-first cap 適用後に隠れた残余 (group 数と実件数)。 */
+  hidden: { groups: number; items: number };
 }
 
 export type FeedbackSurfaceBucket = "gate" | "actionable" | "telemetry";
@@ -102,6 +111,10 @@ function planIdOf(subject: string): string {
   return subject.startsWith("PLAN-") ? subject : "";
 }
 
+function feedbackGroupKey(item: SurfacedFeedback): string {
+  return `${item.bucket}:${item.severity}:${item.signal_type}`;
+}
+
 function renderGroupedItems(items: SurfacedFeedback[], indent = "    "): string[] {
   const groups = new Map<
     string,
@@ -115,7 +128,7 @@ function renderGroupedItems(items: SurfacedFeedback[], indent = "    "): string[
     }
   >();
   for (const item of items) {
-    const key = `${item.bucket}:${item.severity}:${item.signal_type}`;
+    const key = feedbackGroupKey(item);
     const group = groups.get(key) ?? {
       bucket: item.bucket,
       severity: item.severity,
@@ -124,8 +137,10 @@ function renderGroupedItems(items: SurfacedFeedback[], indent = "    "): string[
       planIds: new Set<string>(),
       nextAction: item.next_action,
     };
-    group.count += 1;
-    if (item.plan_id) group.planIds.add(item.plan_id);
+    group.count += item.surface_count ?? 1;
+    for (const planId of item.surface_plan_ids ?? (item.plan_id ? [item.plan_id] : [])) {
+      group.planIds.add(planId);
+    }
     groups.set(key, group);
   }
   return [...groups.values()]
@@ -226,8 +241,48 @@ export function selectTakeoverFeedback(
     }
   }
 
-  const surfaced = items.filter((item) => item.bucket !== "telemetry").slice(0, limit);
-  return { total: items.length, bySeverity, byBucket, telemetryBySignal, items: surfaced };
+  // group-first cap (PLAN-L7-404): limit は「表示 group 数」の予算。単一 signal_type の大量クラスタが
+  // 予算を独占して他の問題種別を不可視化しないよう、bucket:severity:signal_type で畳んでから選定する。
+  const nonTelemetry = items.filter((item) => item.bucket !== "telemetry");
+  const groups = new Map<string, { representative: SurfacedFeedback; count: number; planIds: Set<string> }>();
+  for (const item of nonTelemetry) {
+    const group = groups.get(feedbackGroupKey(item));
+    if (group) {
+      group.count += 1;
+      if (item.plan_id) group.planIds.add(item.plan_id);
+    } else {
+      groups.set(feedbackGroupKey(item), {
+        representative: item,
+        count: 1,
+        planIds: new Set(item.plan_id ? [item.plan_id] : []),
+      });
+    }
+  }
+  const orderedGroups = [...groups.values()].sort(
+    (a, b) =>
+      BUCKET_RANK[a.representative.bucket] - BUCKET_RANK[b.representative.bucket] ||
+      severityRank(a.representative.severity) - severityRank(b.representative.severity) ||
+      b.count - a.count ||
+      a.representative.signal_type.localeCompare(b.representative.signal_type),
+  );
+  const selected = orderedGroups.slice(0, limit);
+  const surfaced = selected.map((group) => ({
+    ...group.representative,
+    surface_count: group.count,
+    surface_plan_ids: [...group.planIds],
+  }));
+  const representedItems = selected.reduce((sum, group) => sum + group.count, 0);
+  return {
+    total: items.length,
+    bySeverity,
+    byBucket,
+    telemetryBySignal,
+    items: surfaced,
+    hidden: {
+      groups: orderedGroups.length - selected.length,
+      items: nonTelemetry.length - representedItems,
+    },
+  };
 }
 
 export function renderTakeoverFeedback(result: TakeoverFeedbackResult): string {
@@ -245,9 +300,10 @@ export function renderTakeoverFeedback(result: TakeoverFeedbackResult): string {
   lines.push(...renderGroupedItems(gateItems));
   if (actionableItems.length > 0) lines.push("  actionable:");
   lines.push(...renderGroupedItems(actionableItems));
-  const hiddenActionable = result.byBucket.gate + result.byBucket.actionable - result.items.length;
-  if (hiddenActionable > 0) {
-    lines.push(`  - (+${hiddenActionable} more actionable - helix feedback list --emit)`);
+  if (result.hidden.groups > 0) {
+    lines.push(
+      `  - (+${result.hidden.items} more actionable in ${result.hidden.groups} group(s) - helix feedback list --emit)`,
+    );
   }
   if (result.byBucket.telemetry > 0) {
     const topTelemetry = Object.entries(result.telemetryBySignal)

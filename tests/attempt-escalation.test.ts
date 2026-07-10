@@ -189,5 +189,32 @@ describe("attempt escalation (PLAN-RECOVERY-05) — Iron Law 3-attempt stop", ()
       expect(block).toContain("root cause");
       expect(block).toContain("Bash (vitest)");
     });
+
+    it("caps rendered signals at the default surface limit with a breadcrumb (PLAN-L7-404)", () => {
+      const signals = Array.from({ length: 11 }, (_, i) => ({
+        escalate: true as const,
+        subject: `S${String(i).padStart(2, "0")}`,
+        failureCount: 3,
+        message: "x",
+      }));
+      const block = renderEscalationSignals(signals);
+      // ヘッダの検出総数は cap 前の実数のまま。
+      expect(block).toContain("11 件");
+      expect(block).toContain("S09");
+      expect(block).not.toContain("S10:");
+      expect(block).toContain("+1 more");
+    });
+
+    it("maxSignals=0 renders all signals (explicit unlimited)", () => {
+      const signals = Array.from({ length: 11 }, (_, i) => ({
+        escalate: true as const,
+        subject: `S${String(i).padStart(2, "0")}`,
+        failureCount: 3,
+        message: "x",
+      }));
+      const block = renderEscalationSignals(signals, { maxSignals: 0 });
+      expect(block).toContain("S10");
+      expect(block).not.toContain("more");
+    });
   });
 });
