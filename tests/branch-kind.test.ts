@@ -107,6 +107,20 @@ describe("branch-kind-check", () => {
     );
   });
 
+  it("ignores git-generated merge/revert subjects (PR 自走運用, PLAN-L7-418)", () => {
+    // PR ベース運用では git 既定 subject の merge commit が正常に履歴へ入る。
+    expect(
+      analyzeCommitSubjects([
+        "Merge remote-tracking branch 'origin/main' into codex/helix-l3-pillar-descent",
+        "Merge pull request #2 from RetryYN/codex/helix-l3-pillar-descent",
+        'Revert "feat(runtime): freeze event-first continuation"',
+        "fix: close guard gap",
+      ]).ok,
+    ).toBe(true);
+    // ignore は機械生成 subject に限る: 手書きの非規約 subject は引き続き block。
+    expect(analyzeCommitSubjects(["Merged stuff manually"]).ok).toBe(false);
+  });
+
   it("blocks poc direct-main PRs and requires hotfix postmortem evidence", () => {
     expect(
       analyzePrContext({

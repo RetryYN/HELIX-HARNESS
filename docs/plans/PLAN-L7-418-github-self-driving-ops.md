@@ -27,6 +27,10 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/setup.test.ts
     artifact_type: test_code
+  - artifact_path: src/lint/github-guards.ts
+    artifact_type: source_module
+  - artifact_path: tests/branch-kind.test.ts
+    artifact_type: test_code
   - artifact_path: CLAUDE.md
     artifact_type: markdown_doc
   - artifact_path: AGENTS.md
@@ -88,6 +92,15 @@ approve 必須化可) へ同期し、旧 `-f restrictions=` の無効 API 形式
 - [x] merge ゲート = CI green のみ、を PO が明示承認 (AskUserQuestion 回答、review_evidence)。
 - [x] template `setup-branch-protection.sh` が適用済み実構成と一致し `bash -n` green。
 - [x] CLAUDE.md / AGENTS.md に PR/auto-merge/CI self-heal の自走規律を明文化。
+
+## CI self-heal 実績 (dogfood、2026-07-11)
+
+PR #2 の初回 harness-check が commitlint gate で red になった
+(`Merge remote-tracking branch ...` という git 既定 merge subject を non-conventional 判定)。
+self-heal 規律どおり `gh run view --log-failed` で原因を特定し、push 済み履歴は書き換えずに
+gate 側を PR 運用へ追随させた: `analyzeCommitSubjects` に upstream commitlint 既定 ignores 相当の
+機械生成 subject 除外 (`^Merge ` / `^Revert "`) を追加 (手書き非規約 subject は引き続き block、
+正例・負例テストを tests/branch-kind.test.ts に追加)。
 
 ## 残課題（本 PLAN 外の follow-up）
 
