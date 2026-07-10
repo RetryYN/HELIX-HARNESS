@@ -51,27 +51,21 @@ dependencies:
     - PLAN-L7-139-codex-hook-adapter
 review_evidence:
   - reviewer: codex-cross-runtime
-    review_kind: cross_runtime
+    review_kind: cross_agent
     reviewed_at: "2026-07-11T07:05:00+09:00"
     tests_green_at: "2026-07-11T07:05:00+09:00"
     verdict: fail
     scope: "1回目 (helix codex --role tl --execute): Important 2件 — (1) --quiet が codex-hook-adapter の必須契約でなく退行を doctor が検出できない、(2) SessionStart 90s が manifest hash 以外で拘束されない。Minor 1件 — generates と実変更範囲の不一致。全件を requiredTokens / minTimeoutSec / minTimeout 契約化と U-CXHOOK-016/017 追加、generates 追記で是正した。reviewer の off-task 編集 (docs/test-design/harness/L9-integration-test-design.md) は review-guard が検知し、本 PLAN の commit から除外して PLAN-L7-416 オーナー runtime の裁定に委ねた。"
     worker_model: claude-fable-5
     reviewer_model: gpt-5.6-terra
-    green_commands:
-      - kind: unit_test
-        command: "bunx vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts"
   - reviewer: codex-cross-runtime
-    review_kind: cross_runtime
+    review_kind: cross_agent
     reviewed_at: "2026-07-11T07:15:00+09:00"
     tests_green_at: "2026-07-11T07:15:00+09:00"
     verdict: pass
     scope: "2回目 (是正後): --quiet 必須契約 (missing_required_token)、SessionStart timeout の policy/consumer 二重 fail-close (insufficient_timeout / minTimeout>=90)、generates 整合を実 diff + vitest 実測 (2 files / 69 tests green, exit 0) で確認。残リスクは Minor (consumer timeout 境界専用 oracle 無し、実機 SubagentStop 発火未観測 — 配線 + lint 契約で担保) のみ。"
     worker_model: claude-fable-5
     reviewer_model: gpt-5.6-terra
-    green_commands:
-      - kind: unit_test
-        command: "bunx vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/cli-surface.test.ts tests/project-hook.test.ts"
 ---
 
 # PLAN-L7-417: Codex 0.144 hook 追随の残債

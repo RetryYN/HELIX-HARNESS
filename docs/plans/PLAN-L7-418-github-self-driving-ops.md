@@ -43,7 +43,7 @@ dependencies:
     - PLAN-L7-229-helix-setup-branch-protection-approval
 review_evidence:
   - reviewer: po-direct
-    review_kind: human_approval
+    review_kind: human
     reviewed_at: "2026-07-11T08:05:00+09:00"
     verdict: approve
     scope: "PO が AskUserQuestion で「A: CI green のみ (人間レビュー必須なし)」を明示選択。auto-merge / delete-branch-on-merge / branch protection (harness-check required, strict, enforce_admins, approve 0) の適用を承認。"
