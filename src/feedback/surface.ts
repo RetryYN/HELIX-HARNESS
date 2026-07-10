@@ -1,4 +1,5 @@
 import type { HarnessDb } from "../state-db/index";
+import { type FeedbackSourceLike, feedbackSourceIdentity } from "./lifecycle";
 
 /**
  * Takeover feedback surface (PLAN-L7-110).
@@ -20,6 +21,8 @@ export interface SurfacedFeedback {
   surface_count?: number;
   /** group 内の distinct plan_id (表示は先頭 3 件のみ)。 */
   surface_plan_ids?: string[];
+  /** receipt writer用canonical `table:id@generation`。 */
+  surface_source_refs?: string[];
 }
 
 export interface TakeoverFeedbackResult {
@@ -38,6 +41,10 @@ export interface TakeoverFeedbackResult {
   items: SurfacedFeedback[];
   /** group-first cap 適用後に隠れた残余 (group 数と実件数)。 */
   hidden: { groups: number; items: number };
+  /** lifecycleで通常表示から退避した未解決/terminal件数。 */
+  lifecycleHidden?: Record<FeedbackSurfaceBucket, number>;
+  /** 同一sessionですでに表示済みの件数。 */
+  sessionReceiptHidden?: Record<FeedbackSurfaceBucket, number>;
 }
 
 export type FeedbackSurfaceBucket = "gate" | "actionable" | "telemetry";
@@ -170,40 +177,62 @@ function renderGroupedItems(items: SurfacedFeedback[], indent = "    "): string[
  */
 export function selectTakeoverFeedback(
   db: HarnessDb,
-  opts: { limit?: number } = {},
+  opts: { limit?: number; sessionId?: string } = {},
 ): TakeoverFeedbackResult {
   const limit = opts.limit ?? 10;
-  const items: SurfacedFeedback[] = [];
+  let items: SurfacedFeedback[] = [];
+  const lifecycleSources = new Map<string, FeedbackSourceLike>();
+  const lifecycleHidden: Record<FeedbackSurfaceBucket, number> = {
+    gate: 0,
+    actionable: 0,
+    telemetry: 0,
+  };
+  const sessionReceiptHidden: Record<FeedbackSurfaceBucket, number> = {
+    gate: 0,
+    actionable: 0,
+    telemetry: 0,
+  };
 
   const openFindings = db
     .prepare("SELECT finding_id, kind, severity, subject_id FROM findings WHERE status = 'open'")
     .all() as Array<Record<string, unknown>>;
   for (const finding of openFindings) {
     const subject = String(finding.subject_id ?? finding.finding_id ?? "");
+    const feedbackEventId = feedbackId("feedback:finding", String(finding.finding_id ?? subject));
+    const severity = String(finding.severity ?? "warn");
     items.push({
-      feedback_event_id: feedbackId("feedback:finding", String(finding.finding_id ?? subject)),
+      feedback_event_id: feedbackEventId,
       signal_type: String(finding.kind ?? "finding"),
-      severity: String(finding.severity ?? "warn"),
+      severity,
       plan_id: planIdOf(subject),
       next_action: `review finding ${finding.finding_id ?? subject}`,
       bucket: classifyFeedbackBucket({
-        severity: String(finding.severity ?? "warn"),
+        severity,
         signal_type: String(finding.kind ?? "finding"),
       }),
+    });
+    lifecycleSources.set(feedbackEventId, {
+      sourceTable: "findings",
+      sourceId: String(finding.finding_id ?? subject),
+      status: "open",
+      severity,
+      kind: String(finding.kind ?? "finding"),
+      subject,
     });
   }
 
   const failedSignals = db
     .prepare(
-      "SELECT signal_id, metric, status, subject_id FROM quality_signals WHERE status IN ('fail', 'warn')",
+      "SELECT signal_id, metric, status, subject_id, value, threshold FROM quality_signals WHERE status IN ('fail', 'warn')",
     )
     .all() as Array<Record<string, unknown>>;
   for (const signal of failedSignals) {
     const subject = String(signal.subject_id ?? signal.signal_id ?? "");
     const signalType = String(signal.metric ?? "quality_signal");
     const severity = qualitySignalSeverity(String(signal.status ?? "warn"), signalType);
+    const feedbackEventId = feedbackId("feedback:signal", String(signal.signal_id ?? subject));
     items.push({
-      feedback_event_id: feedbackId("feedback:signal", String(signal.signal_id ?? subject)),
+      feedback_event_id: feedbackEventId,
       signal_type: signalType,
       severity,
       plan_id: planIdOf(subject),
@@ -214,7 +243,67 @@ export function selectTakeoverFeedback(
       }),
       bucket: classifyFeedbackBucket({ severity, signal_type: signalType }),
     });
+    lifecycleSources.set(feedbackEventId, {
+      sourceTable: "quality_signals",
+      sourceId: String(signal.signal_id ?? subject),
+      status: String(signal.status ?? "warn"),
+      severity,
+      metric: signalType,
+      value: signal.value,
+      threshold: signal.threshold,
+      subject,
+    });
   }
+
+  const directKeys = new Set(
+    [...lifecycleSources.values()].map((source) => feedbackSourceIdentity(source).key),
+  );
+  const feedbackRows = db
+    .prepare(
+      "SELECT feedback_event_id, source_table, source_id, signal_type, severity, plan_id, next_action, status FROM feedback_events WHERE status = 'open'",
+    )
+    .all();
+  for (const row of feedbackRows) {
+    const originTable = String(row.source_table ?? "");
+    const source: FeedbackSourceLike = {
+      sourceTable: "feedback_events",
+      sourceId: String(row.feedback_event_id ?? ""),
+      status: "open",
+      severity: String(row.severity ?? "warn"),
+      kind: String(row.signal_type ?? "feedback"),
+      subject: String(row.plan_id ?? row.source_id ?? ""),
+      ...((originTable === "findings" || originTable === "quality_signals") && row.source_id
+        ? {
+            source_table: originTable as "findings" | "quality_signals",
+            source_id: String(row.source_id),
+          }
+        : {}),
+    };
+    const identity = feedbackSourceIdentity(source);
+    if (directKeys.has(identity.key)) continue;
+    const feedbackEventId = String(row.feedback_event_id ?? "");
+    const signalType = String(row.signal_type ?? "feedback");
+    const severity = String(row.severity ?? "warn");
+    items.push({
+      feedback_event_id: feedbackEventId,
+      signal_type: signalType,
+      severity,
+      plan_id: String(row.plan_id ?? ""),
+      next_action: String(row.next_action ?? "review feedback"),
+      bucket: classifyFeedbackBucket({ severity, signal_type: signalType }),
+    });
+    lifecycleSources.set(feedbackEventId, source);
+    directKeys.add(identity.key);
+  }
+
+  items = filterByLifecycleProjection(
+    db,
+    items,
+    lifecycleSources,
+    lifecycleHidden,
+    sessionReceiptHidden,
+    opts.sessionId,
+  );
 
   items.sort(
     (a, b) =>
@@ -246,18 +335,25 @@ export function selectTakeoverFeedback(
   const nonTelemetry = items.filter((item) => item.bucket !== "telemetry");
   const groups = new Map<
     string,
-    { representative: SurfacedFeedback; count: number; planIds: Set<string> }
+    {
+      representative: SurfacedFeedback;
+      count: number;
+      planIds: Set<string>;
+      sourceRefs: Set<string>;
+    }
   >();
   for (const item of nonTelemetry) {
     const group = groups.get(feedbackGroupKey(item));
     if (group) {
       group.count += 1;
       if (item.plan_id) group.planIds.add(item.plan_id);
+      for (const ref of item.surface_source_refs ?? []) group.sourceRefs.add(ref);
     } else {
       groups.set(feedbackGroupKey(item), {
         representative: item,
         count: 1,
         planIds: new Set(item.plan_id ? [item.plan_id] : []),
+        sourceRefs: new Set(item.surface_source_refs ?? []),
       });
     }
   }
@@ -273,8 +369,17 @@ export function selectTakeoverFeedback(
     ...group.representative,
     surface_count: group.count,
     surface_plan_ids: [...group.planIds],
+    surface_source_refs: [...group.sourceRefs],
   }));
   const representedItems = selected.reduce((sum, group) => sum + group.count, 0);
+  const lifecycleHiddenTotal = Object.values(lifecycleHidden).reduce(
+    (sum, count) => sum + count,
+    0,
+  );
+  const sessionReceiptHiddenTotal = Object.values(sessionReceiptHidden).reduce(
+    (sum, count) => sum + count,
+    0,
+  );
   return {
     total: items.length,
     bySeverity,
@@ -285,11 +390,156 @@ export function selectTakeoverFeedback(
       groups: orderedGroups.length - selected.length,
       items: nonTelemetry.length - representedItems,
     },
+    ...(lifecycleHiddenTotal > 0 ? { lifecycleHidden } : {}),
+    ...(sessionReceiptHiddenTotal > 0 ? { sessionReceiptHidden } : {}),
   };
 }
 
+export function loadFeedbackLifecycleSources(db: HarnessDb): FeedbackSourceLike[] {
+  const findings = db
+    .prepare("SELECT finding_id, kind, severity, subject_id, status FROM findings")
+    .all()
+    .map((row) => ({
+      sourceTable: "findings" as const,
+      sourceId: String(row.finding_id ?? ""),
+      status: String(row.status ?? ""),
+      severity: String(row.severity ?? "warn"),
+      kind: String(row.kind ?? "finding"),
+      subject: String(row.subject_id ?? row.finding_id ?? ""),
+    }));
+  const signals = db
+    .prepare("SELECT signal_id, metric, status, subject_id, value, threshold FROM quality_signals")
+    .all()
+    .map((row) => {
+      const signalType = String(row.metric ?? "quality_signal");
+      return {
+        sourceTable: "quality_signals" as const,
+        sourceId: String(row.signal_id ?? ""),
+        status: String(row.status ?? ""),
+        severity: qualitySignalSeverity(String(row.status ?? "warn"), signalType),
+        metric: signalType,
+        value: row.value,
+        threshold: row.threshold,
+        subject: String(row.subject_id ?? row.signal_id ?? ""),
+      };
+    });
+  const sources: FeedbackSourceLike[] = [...findings, ...signals];
+  const keys = new Set(sources.map((source) => feedbackSourceIdentity(source).key));
+  for (const row of db
+    .prepare(
+      "SELECT feedback_event_id, source_table, source_id, signal_type, severity, plan_id, status FROM feedback_events",
+    )
+    .all()) {
+    const originTable = String(row.source_table ?? "");
+    const source: FeedbackSourceLike = {
+      sourceTable: "feedback_events",
+      sourceId: String(row.feedback_event_id ?? ""),
+      status: String(row.status ?? ""),
+      severity: String(row.severity ?? "warn"),
+      kind: String(row.signal_type ?? "feedback"),
+      subject: String(row.plan_id ?? row.source_id ?? ""),
+      ...((originTable === "findings" || originTable === "quality_signals") && row.source_id
+        ? {
+            source_table: originTable as "findings" | "quality_signals",
+            source_id: String(row.source_id),
+          }
+        : {}),
+    };
+    const key = feedbackSourceIdentity(source).key;
+    if (!keys.has(key)) {
+      sources.push(source);
+      keys.add(key);
+    }
+  }
+  return sources;
+}
+
+function filterByLifecycleProjection(
+  db: HarnessDb,
+  items: SurfacedFeedback[],
+  sources: ReadonlyMap<string, FeedbackSourceLike>,
+  hidden: Record<FeedbackSurfaceBucket, number>,
+  receiptHidden: Record<FeedbackSurfaceBucket, number>,
+  sessionId?: string,
+): SurfacedFeedback[] {
+  try {
+    const health = db
+      .prepare(
+        "SELECT damaged_count FROM feedback_lifecycle_health WHERE health_id = 'feedback-lifecycle'",
+      )
+      .get();
+    if (!health || Number(health.damaged_count ?? 0) > 0) return items;
+    const rows = db
+      .prepare(
+        "SELECT source_table, source_id, source_generation, activity_epoch, policy_epoch, state, payload_digest, surfaced_sessions FROM feedback_lifecycle",
+      )
+      .all();
+    const latest = new Map<
+      string,
+      {
+        sourceGeneration: string;
+        activityEpoch: number;
+        policyEpoch: number;
+        state: string;
+        payloadDigest: string;
+        surfacedSessions: string[];
+      }
+    >();
+    for (const row of rows) {
+      const key = `${String(row.source_table ?? "")}:${String(row.source_id ?? "")}`;
+      const candidate = {
+        sourceGeneration: String(row.source_generation ?? ""),
+        activityEpoch: Number(row.activity_epoch ?? 0),
+        policyEpoch: Number(row.policy_epoch ?? 0),
+        state: String(row.state ?? ""),
+        payloadDigest: String(row.payload_digest ?? ""),
+        surfacedSessions: String(row.surfaced_sessions ?? "")
+          .split(",")
+          .filter(Boolean),
+      };
+      const current = latest.get(key);
+      if (
+        !current ||
+        candidate.activityEpoch > current.activityEpoch ||
+        (candidate.activityEpoch === current.activityEpoch &&
+          candidate.policyEpoch > current.policyEpoch)
+      ) {
+        latest.set(key, candidate);
+      }
+    }
+    return items.filter((item) => {
+      const source = sources.get(item.feedback_event_id);
+      if (!source) return true;
+      const identity = feedbackSourceIdentity(source);
+      const lifecycle = latest.get(identity.key);
+      if (
+        lifecycle &&
+        lifecycle.payloadDigest === identity.payloadDigest &&
+        sessionId &&
+        lifecycle.surfacedSessions.includes(sessionId)
+      ) {
+        receiptHidden[identity.bucket] += 1;
+        return false;
+      }
+      // projection不在・digest drift・不正stateは安全側表示。正しく一致した非openだけ退避する。
+      const visible =
+        !lifecycle ||
+        lifecycle.payloadDigest !== identity.payloadDigest ||
+        lifecycle.state === "open" ||
+        !["ack", "closed", "superseded"].includes(lifecycle.state);
+      if (!visible) hidden[identity.bucket] += 1;
+      if (visible && lifecycle?.state === "open") {
+        item.surface_source_refs = [`${identity.key}@${lifecycle.sourceGeneration}`];
+      }
+      return visible;
+    });
+  } catch {
+    return items;
+  }
+}
+
 export function renderTakeoverFeedback(result: TakeoverFeedbackResult): string {
-  if (result.total === 0) return "";
+  if (result.total === 0 && !result.lifecycleHidden && !result.sessionReceiptHidden) return "";
   const counts = ["fail", "warn", "info"]
     .filter((sev) => (result.bySeverity[sev] ?? 0) > 0)
     .map((sev) => `${sev}=${result.bySeverity[sev]}`)
@@ -315,6 +565,16 @@ export function renderTakeoverFeedback(result: TakeoverFeedbackResult): string {
       .map(([signal, count]) => `${signal}=${count}`)
       .join(" ");
     lines.push(`  telemetry summarized: ${topTelemetry}`);
+  }
+  if (result.lifecycleHidden) {
+    lines.push(
+      `  lifecycle hidden: gate=${result.lifecycleHidden.gate} actionable=${result.lifecycleHidden.actionable} telemetry=${result.lifecycleHidden.telemetry}`,
+    );
+  }
+  if (result.sessionReceiptHidden) {
+    lines.push(
+      `  session receipt hidden: gate=${result.sessionReceiptHidden.gate} actionable=${result.sessionReceiptHidden.actionable} telemetry=${result.sessionReceiptHidden.telemetry}`,
+    );
   }
   return `${lines.join("\n")}\n`;
 }

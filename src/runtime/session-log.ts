@@ -20,6 +20,12 @@ import {
 } from "node:fs";
 import { dirname, join } from "node:path";
 import { openHarnessDb } from "../state-db";
+import {
+  MEMORY_PROMOTION_WARNING,
+  memoryPromotionNudge,
+  memoryPromotionNudgeEventId,
+  memoryPromotionSessionRef,
+} from "./memory-promotion";
 import { classifyVerificationVerb } from "./verb-classify";
 
 export type SessionEventType =
@@ -30,6 +36,7 @@ export type SessionEventType =
   | "session_end"
   | "skill_injection"
   | "memory_write"
+  | "memory_promotion_nudge"
   | "forced_stop" // 強制停止 (推定、PLAN-L6-04/L7-02 forced-stop-feedback)
   | "user_prompt"; // ユーザー入力 (dangling-turn 推定の活動 marker)
 
@@ -98,6 +105,8 @@ export interface SessionLogDeps {
   headCommit?: () => string | null;
   /** event_id dedupeのread→appendをcross-process直列化する。 */
   withEventLock?<T>(eventId: string, fn: () => T): T;
+  /** Stop のnon-blocking warning surface。未提供時は記録だけ行う。 */
+  emitWarning?: (warning: string) => void;
 }
 
 const BRANCH_PLAN_RE = /^(?:add|design|feature|reverse|hotfix|poc|refactor)\/(.+)$/;
@@ -234,6 +243,7 @@ export function recordEvent(ev: SessionEvent, deps: SessionLogDeps): void {
 export function recordEventResult(
   ev: SessionEvent,
   deps: SessionLogDeps,
+  storageSessionId: string = ev.session_id,
 ): { ok: true; appended: boolean } | { ok: false; reason: string } {
   try {
     const file = join(
@@ -241,7 +251,7 @@ export function recordEventResult(
       ".helix",
       "logs",
       "session",
-      `${safeName(ev.session_id)}.jsonl`,
+      `${safeName(storageSessionId)}.jsonl`,
     );
     const append = (): boolean => {
       if (!ev.event_id) {
@@ -467,7 +477,26 @@ export function onStop(input: SessionHookInput, deps: SessionLogDeps): number {
     const file = join(deps.repoRoot, ".helix", "logs", "session", `${safeName(sid)}.jsonl`);
     const raw = deps.readText(file);
     if (!raw) return 0;
-    const events = parseSessionEvents(raw);
+    let events = parseSessionEvents(raw);
+    if (memoryPromotionNudge(events).shouldNudge) {
+      const eventId = memoryPromotionNudgeEventId(sid);
+      const result = recordEventResult(
+        {
+          event_id: eventId,
+          ts: deps.now(),
+          session_id: memoryPromotionSessionRef(sid),
+          plan_id: input.plan_id ?? resolveActivePlan(deps),
+          event_type: "memory_promotion_nudge",
+          outcome: "ok",
+        },
+        deps,
+        sid,
+      );
+      // warning と event を1:1にする。並行Stop/retryでappendを勝ち取った呼出しだけが表示する。
+      if (result.ok && result.appended) deps.emitWarning?.(MEMORY_PROMOTION_WARNING);
+      // digest は lock 内で追記されたnudgeを含む最新ログから導出する。
+      events = parseSessionEvents(deps.readText(file) ?? raw);
+    }
     const plans = new Set(
       events.map((e) => e.plan_id).filter((p): p is string => p !== null && p !== undefined),
     );
@@ -536,6 +565,7 @@ export function nodeDeps(
       if (existsSync(path)) rmSync(path);
     },
     headCommit: gitHead,
+    emitWarning: (warning) => process.stdout.write(warning),
     withEventLock: (_eventId, fn) => {
       for (let attempt = 0; ; attempt += 1) {
         let db: ReturnType<typeof openHarnessDb> | undefined;

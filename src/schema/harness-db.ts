@@ -21,7 +21,7 @@ export type { ColumnDef, ColumnType, IndexDef, TableDef } from "./harness-db-typ
  * affinity ヒント)。各 table の列・PK・index は §2.7/§9.1/§9.3 に準拠。
  */
 
-export const SCHEMA_VERSION = 31;
+export const SCHEMA_VERSION = 32;
 
 /**
  * SQL 識別子検証 (injection 防止)。table / column / index 名は ? でバインドできず DDL/DML に

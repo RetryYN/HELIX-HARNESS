@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { isAbsolute, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import type { DocumentExportProjectionRows } from "../export/document-export";
@@ -8,6 +8,7 @@ import {
   type CanonicalDocumentFamily,
   parseCanonicalDocumentStructure,
 } from "../export/document-export";
+import { resolveFeedbackLifecycle } from "../feedback/lifecycle";
 import { loadRelationGraphSourceSet } from "../graph/loader";
 import { loadChangedFiles } from "../lint/change-impact";
 import {
@@ -4879,6 +4880,63 @@ function profiled<T>(name: string, onProfile: RebuildHarnessDbInput["onProfile"]
   }
 }
 
+export function projectFeedbackLifecycle(repoRoot: string, db: HarnessDb): void {
+  const path = join(repoRoot, ".helix", "logs", "feedback-lifecycle.jsonl");
+  db.exec("DELETE FROM feedback_lifecycle");
+  db.exec("DELETE FROM feedback_lifecycle_health");
+  if (!existsSync(path)) return;
+  const rows = readFileSync(path, "utf8")
+    .split(/\r?\n/)
+    .filter((line) => line.trim() !== "");
+  const view = resolveFeedbackLifecycle(rows, new Date().toISOString());
+  const eventById = new Map(
+    rows.flatMap((row) => {
+      try {
+        const value = JSON.parse(row) as Record<string, unknown>;
+        return typeof value.eventId === "string" ? [[value.eventId, value] as const] : [];
+      } catch {
+        return [];
+      }
+    }),
+  );
+  for (const projection of view.projections) {
+    const lastEvent = eventById.get(projection.lastEventId);
+    upsertRow(db, {
+      table: "feedback_lifecycle",
+      primaryKey: "lifecycle_key",
+      row: {
+        lifecycle_key: `${projection.sourceTable}:${projection.sourceId}@${projection.sourceGeneration}`,
+        source_table: projection.sourceTable,
+        source_id: projection.sourceId,
+        source_generation: projection.sourceGeneration,
+        activity_epoch: projection.activityEpoch,
+        policy_epoch: projection.policyEpoch,
+        state: projection.state,
+        bucket: projection.bucket,
+        payload_digest: projection.payloadDigest,
+        first_observed_at: projection.firstObservedAt,
+        last_transition_at: projection.lastTransitionAt,
+        last_event_id: projection.lastEventId,
+        actor: String(lastEvent?.actor ?? ""),
+        reason: String(lastEvent?.reason ?? ""),
+        policy_version: projection.policyVersion,
+        surfaced_sessions: projection.surfacedSessions.join(","),
+      },
+    });
+  }
+  upsertRow(db, {
+    table: "feedback_lifecycle_health",
+    primaryKey: "health_id",
+    row: {
+      health_id: "feedback-lifecycle",
+      damaged_count: view.damaged.length,
+      checkpoint_byte_offset: statSync(path).size,
+      checkpoint_event_id: view.projections.at(-1)?.lastEventId ?? "",
+      projected_at: new Date().toISOString(),
+    },
+  });
+}
+
 export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarnessDbResult {
   const repoRoot = input.repoRoot ?? process.cwd();
   const ownsDb = input.db === undefined;
@@ -4938,6 +4996,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       );
       profiled("projectSkillTelemetry", input.onProfile, () => projectSkillTelemetry(db, plans));
       profiled("projectSkillMetrics", input.onProfile, () => projectSkillMetrics(db));
+      profiled("projectFeedbackLifecycle", input.onProfile, () =>
+        projectFeedbackLifecycle(repoRoot, db),
+      );
       profiled("projectSkillEvaluations", input.onProfile, () => projectSkillEvaluations(db));
       profiled("projectPocEvaluations", input.onProfile, () => projectPocEvaluations(db));
       profiled("projectModelEvaluations", input.onProfile, () =>

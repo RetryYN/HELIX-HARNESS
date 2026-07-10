@@ -44,7 +44,14 @@ import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } fr
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
-  renderFeedbackEventRows,
+  ackFeedback,
+  nodeFeedbackLifecycleDeps,
+  reconcileFeedbackLifecycle,
+  recordFeedbackSurface,
+} from "./feedback/lifecycle";
+import { autoAckTelemetry } from "./feedback/lifecycle-surface";
+import {
+  loadFeedbackLifecycleSources,
   renderTakeoverFeedback,
   selectTakeoverFeedback,
 } from "./feedback/surface";
@@ -404,6 +411,7 @@ import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./state-db/
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
 import {
+  projectFeedbackLifecycle,
   projectModelEvaluations,
   projectTokenUsage,
   rebuildHarnessDb,
@@ -940,7 +948,7 @@ function runSessionStartSideEffects(
   } catch {
     // fail-open: lifecycle maintenance must not block the runtime.
   }
-  surfaceTakeoverFeedbackToStdout(repoRoot);
+  surfaceTakeoverFeedbackToStdout(repoRoot, input.session_id);
   surfaceAttemptEscalationToStdout(repoRoot, input.session_id);
 }
 
@@ -975,12 +983,77 @@ function surfaceAttemptEscalationToStdout(repoRoot: string, currentSessionId?: s
  * 正本として feedback を「受け取る」経路。独立した fail-open: Codex の並行 db rebuild と競合して
  * ロックされても、引き継ぎ維持処理 (上) も runtime も阻害しない。
  */
-function surfaceTakeoverFeedbackToStdout(repoRoot: string): void {
+function maintainFeedbackLifecycle(repoRoot: string, db: HarnessDb, sessionId?: string): void {
+  migrate(db);
+  const sources = loadFeedbackLifecycleSources(db);
+  const now = new Date().toISOString();
+  const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot, () => now);
+  const sessionRef = createHash("sha256")
+    .update(`${sessionId ?? "unknown"}:${JSON.stringify(sources)}`)
+    .digest("hex");
+  const reconciled = reconcileFeedbackLifecycle(
+    {
+      sources,
+      mode: "full",
+      completeTables: ["findings", "quality_signals", "feedback_events"],
+      operationId: `session-reconcile:${sessionRef}`,
+    },
+    lifecycleDeps,
+  );
+  if (reconciled.ok) {
+    autoAckTelemetry(
+      {
+        operationId: `ttl:${createHash("sha256")
+          .update(`${now}:${JSON.stringify(sources)}`)
+          .digest("hex")}`,
+        now,
+      },
+      lifecycleDeps,
+    );
+  }
+  projectFeedbackLifecycle(repoRoot, db);
+}
+
+function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): void {
   try {
     const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     try {
-      const block = renderTakeoverFeedback(selectTakeoverFeedback(db));
-      if (block) process.stdout.write(block);
+      maintainFeedbackLifecycle(repoRoot, db, sessionId);
+      const receiptSession = createHash("sha256")
+        .update(sessionId ?? "unknown")
+        .digest("hex")
+        .slice(0, 24);
+      const result = selectTakeoverFeedback(db, { sessionId: receiptSession });
+      const block = renderTakeoverFeedback(result);
+      if (block) {
+        process.stdout.write(block);
+        const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
+        for (const ref of result.items.flatMap((item) => item.surface_source_refs ?? [])) {
+          const separator = ref.indexOf(":");
+          const generationAt = ref.lastIndexOf("@");
+          if (separator <= 0 || generationAt <= separator) continue;
+          const sourceTable = ref.slice(0, separator);
+          if (
+            !(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable)
+          )
+            continue;
+          const sourceId = ref.slice(separator + 1, generationAt);
+          const sourceGeneration = ref.slice(generationAt + 1);
+          recordFeedbackSurface(
+            {
+              sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+              sourceId,
+              sourceGeneration,
+              operationId: `surface:${createHash("sha256")
+                .update(`${receiptSession}:${ref}`)
+                .digest("hex")}`,
+              sessionId: receiptSession,
+            },
+            lifecycleDeps,
+          );
+        }
+        projectFeedbackLifecycle(repoRoot, db);
+      }
     } finally {
       db.close();
     }
@@ -11722,15 +11795,65 @@ feedback
     });
     try {
       if (opts.emit) emitFeedbackEvents(db);
-      const rows = db
-        .prepare("SELECT * FROM feedback_events WHERE status = 'open' ORDER BY created_at")
-        .all();
-      if (opts.json) process.stdout.write(`${JSON.stringify(rows, null, 2)}\n`);
-      else process.stdout.write(renderFeedbackEventRows(rows));
+      maintainFeedbackLifecycle(process.cwd(), db, "feedback-list");
+      const result = selectTakeoverFeedback(db, { limit: 20 });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(renderTakeoverFeedback(result));
     } finally {
       db.close();
     }
   });
+
+feedback
+  .command("ack <source-table> <source-id> <generation>")
+  .description("acknowledge one active feedback lifecycle generation")
+  .requiredOption("--reason <text>", "human acknowledgement reason")
+  .option("--operation-id <id>", "idempotency key")
+  .action(
+    (
+      sourceTable: string,
+      sourceId: string,
+      generation: string,
+      opts: { reason: string; operationId?: string },
+    ) => {
+      if (!(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable)) {
+        process.stderr.write("invalid feedback source table\n");
+        process.exitCode = 1;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const deps = nodeFeedbackLifecycleDeps(repoRoot);
+      const operationId =
+        opts.operationId ??
+        `ack:${createHash("sha256")
+          .update(`${sourceTable}:${sourceId}:${generation}:${opts.reason}`)
+          .digest("hex")}`;
+      const result = ackFeedback(
+        {
+          sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+          sourceId,
+          sourceGeneration: generation,
+          operationId,
+          actor: "human",
+          reason: opts.reason,
+        },
+        deps,
+      );
+      if (!result.ok) {
+        process.stderr.write(`feedback ack rejected: ${result.reason ?? "unknown"}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+      try {
+        migrate(db);
+        projectFeedbackLifecycle(repoRoot, db);
+      } finally {
+        db.close();
+      }
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    },
+  );
 
 feedback
   .command("intake")

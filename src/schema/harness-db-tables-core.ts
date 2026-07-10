@@ -191,6 +191,37 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "feedback_lifecycle",
+    columns: [
+      pk("lifecycle_key"),
+      col("source_table"),
+      col("source_id"),
+      col("source_generation"),
+      col("activity_epoch", "INTEGER"),
+      col("policy_epoch", "INTEGER"),
+      col("state"),
+      col("bucket"),
+      col("payload_digest"),
+      col("first_observed_at"),
+      col("last_transition_at"),
+      col("last_event_id"),
+      col("actor"),
+      col("reason"),
+      col("policy_version"),
+      col("surfaced_sessions"),
+    ],
+  },
+  {
+    name: "feedback_lifecycle_health",
+    columns: [
+      pk("health_id"),
+      col("damaged_count", "INTEGER"),
+      col("checkpoint_byte_offset", "INTEGER"),
+      col("checkpoint_event_id"),
+      col("projected_at"),
+    ],
+  },
+  {
     name: "quality_signals",
     columns: [
       pk("signal_id"),
