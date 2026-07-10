@@ -67,7 +67,8 @@ interface AdapterContextInjection {
 |---|---|---|
 | SessionStart（chat、人間可読） | `maxEntries=12 / maxBodyChars=240`（既定、PLAN-L6-62 §5） | 既存挙動維持 |
 | 委譲 prompt（`helix codex` / `helix claude`） | `DELEGATION_MEMORY_BUDGET = { maxEntries: 6, maxBodyChars: 200 }`（exported policy const） | 委譲 prompt は task 本文 + ブリーフ + skill が主で、recall は補助。token 予算を厳格化 |
-| team run worker / task route / orchestration pair-agent | 本 slice では未注入（follow-up）。注入可否は `composeDelegationInjection` の surface policy（`delegation` のみ有効）として機械固定し、U-MEMX-005 が regression を封じる | 段階導入（blast radius 制御） |
+| team run worker / task route | `DELEGATION_MEMORY_BUDGET` を継承（6 件 / 200 chars。PLAN-L7-414 で解禁）。注入可否は `composeDelegationInjection` の surface policy として機械固定のまま維持し、U-MEMX-005 が全呼出面注入を保証する。team run の member fan-out でも固定 cap のため member あたりの増分は有界 | 段階導入の第 2 段（delegation 面の稼働実測 2026-07-11 後に解禁） |
+| 将来の新呼出面（例: orchestration pair-agent） | 既定 = 非注入。surface policy へ明示追加するまで注入されない | blast radius 制御の恒常則（fail-close 既定） |
 
 ## §5 秘匿・漏洩境界
 
@@ -84,7 +85,7 @@ interface AdapterContextInjection {
 | MEMX-S2 | skill 注入（required/optional）と memory recall が共存し、section 順序（task → brief → lens → skills → memory）が決定論で保たれる。 |
 | MEMX-S3 | 委譲 budget（6 件 / 200 chars）が surfaceMemory 経由で適用され、超過 entry は隠れ件数 footer に集計される。 |
 | MEMX-S4 | skill 0 件 + memory 有りの委譲で context_injection が生成され memory だけが注入される（skill 0 件を理由に memory を落とさない）。 |
-| MEMX-S5 | surface policy: `team_run` / `task_route` 呼出面では memory_lines が機械的に落ち、`delegation` のみ注入される（§4 の段階導入を fail-close で保証）。 |
+| MEMX-S5 | surface policy: `delegation` / `team_run` / `task_route` の全呼出面で memory_lines が注入され、skill 0 件 + memory のみでも section が生成される（§4 第 2 段の解禁、PLAN-L7-414。新呼出面は policy へ明示追加するまで非注入の fail-close 既定を維持）。 |
 
 後続 L7 実装 PLAN（PLAN-L7-406）は MEMX-S1..S4 を `U-MEMX-*` oracle と test citation へ同時に
 具体化する。

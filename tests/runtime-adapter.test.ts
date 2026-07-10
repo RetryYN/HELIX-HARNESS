@@ -187,22 +187,30 @@ describe("runtime adapter plan", () => {
     expect(plan.stdin).not.toContain(ADAPTER_CONTEXT_HEADER);
   });
 
-  it("U-MEMX-005: surface policy drops memory recall for team_run/task_route (blast radius 制御)", () => {
+  it("U-MEMX-005: surface policy injects memory recall on all rollout surfaces (L6-64 §4 解禁、PLAN-L7-414)", () => {
     const skills = { required_paths: ["docs/skills/refactoring.md"], optional_paths: [] };
     const memoryLines = ["- [key-a] recall"];
-    const delegation = composeDelegationInjection({ skills, memoryLines, surface: "delegation" });
-    expect(delegation?.memory_lines).toEqual(memoryLines);
 
-    for (const surface of ["team_run", "task_route"] as const) {
+    for (const surface of ["delegation", "team_run", "task_route"] as const) {
       const injection = composeDelegationInjection({ skills, memoryLines, surface });
-      expect(injection?.memory_lines).toBeUndefined();
+      expect(injection?.memory_lines).toEqual(memoryLines);
       expect(injection?.required_paths).toEqual(skills.required_paths);
     }
-    // skill 0 件 + memory のみでも team_run には注入しない (undefined = section 非生成)。
+    // skill 0 件 + memory のみでも section が生成される (U-MEMX-004 の独立条件が全呼出面で成立)。
+    for (const surface of ["team_run", "task_route"] as const) {
+      expect(
+        composeDelegationInjection({
+          skills: { required_paths: [], optional_paths: [] },
+          memoryLines,
+          surface,
+        })?.memory_lines,
+      ).toEqual(memoryLines);
+    }
+    // skill も memory も空なら従来どおり section 非生成。
     expect(
       composeDelegationInjection({
         skills: { required_paths: [], optional_paths: [] },
-        memoryLines,
+        memoryLines: [],
         surface: "team_run",
       }),
     ).toBeUndefined();

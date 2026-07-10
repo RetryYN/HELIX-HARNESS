@@ -3,12 +3,17 @@ import type { AdapterContextInjection } from "./adapter";
 /**
  * memory recall 注入の呼出面 (L6-64 §4 段階導入)。
  * blast radius 制御のため、memory を載せる面を policy として機械固定する:
- * - `delegation` (helix codex / helix claude): 注入する (PLAN-L7-406 の実装 scope)。
- * - `team_run` / `task_route`: 本 slice では注入しない (follow-up。設計 §4 の宣言どおり)。
+ * - `delegation` (helix codex / helix claude): PLAN-L7-406 で注入開始。
+ * - `team_run` / `task_route`: PLAN-L7-414 で解禁 (設計 §4 の designed follow-up)。
+ * 新しい呼出面を追加する場合は既定 = 非注入 (この集合に入れない) から始める。
  */
 export type MemoryInjectionSurface = "delegation" | "team_run" | "task_route";
 
-const MEMORY_ENABLED_SURFACES: ReadonlySet<MemoryInjectionSurface> = new Set(["delegation"]);
+const MEMORY_ENABLED_SURFACES: ReadonlySet<MemoryInjectionSurface> = new Set([
+  "delegation",
+  "team_run",
+  "task_route",
+]);
 
 export interface SkillInjectionPaths {
   required_paths: string[];
