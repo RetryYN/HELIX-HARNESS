@@ -192,7 +192,14 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
 - Sprint 4: **freeze済み**。provider実体10件 / operations実体4件 / archive実体7件を
   再帰inventory、正規retention、query/export、target filesystem照合、
   phase fence/nonjoinへ束縛し、159 testsと独立レビューblocker 0でfreezeした。
-- Sprint 3/5: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
+- Sprint 5: **shadow slice実装済み・Red再開**。TypeScript AST/symbol/path detector、typed
+  provider/operations/archive allowlist、baseline digest、checkpoint由来mode、doctor負例を
+  `src/lint/handover-resurrection.ts`、`src/doctor/index.ts`、`tests/handover-resurrection.test.ts`へ束縛した。
+  pre-cutoverでは既知findingをtelemetry、新規findingだけをhard failする。独立レビューでscan root、
+  TS generated token、subpath import、composed writer pathの盲点を検出し是正したが、baseline authority、
+  preserve validator由来allowlist、journal由来production enforce、fresh/brownfield/distribution oracleは
+  blockerとして未達であり、Sprint 5 freezeはrejectのままとする。
+- Sprint 3: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 
 ## 4. rollback・escalation境界

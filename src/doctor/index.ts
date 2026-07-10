@@ -167,6 +167,10 @@ import {
 import { analyzeGateConfirm, gateConfirmMessages, loadGateConfirmDocs } from "../lint/gate-confirm";
 import { checkGreenCommandDigests } from "../lint/green-command-digest";
 import {
+  analyzeHandoverResurrectionShadowRepo,
+  resurrectionMessages,
+} from "../lint/handover-resurrection";
+import {
   analyzeHandoverRetirementInventory,
   handoverRetirementInventoryMessages,
 } from "../lint/handover-retirement";
@@ -1281,6 +1285,27 @@ export function checkHandoverRetirementInventory(repoRoot: string): {
   } catch {
     return {
       messages: ["handover-retirement-inventory - violation: live surface scan could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkHandoverResurrection(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["handover-resurrection - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const result = analyzeHandoverResurrectionShadowRepo(repoRoot);
+    return { messages: resurrectionMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["handover-resurrection - violation: detector or baseline could not be read"],
       ok: false,
     };
   }
@@ -6582,6 +6607,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
+  const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
@@ -6743,6 +6769,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       dddTddRules.ok &&
       designLanguage.ok &&
       handoverRetirementInventory.ok &&
+      handoverResurrection.ok &&
       secretScan.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
@@ -6865,6 +6892,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
+      ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
