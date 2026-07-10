@@ -4,7 +4,7 @@ title: "PLAN-L7-416: session handover runtime retirement — event-first continu
 kind: impl
 layer: L7
 drive: be
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-11 /goal — PLAN-REVERSE-344 R4 + PLAN-L6-61 confirmed設計に従い、session/prose handoverをDB continuation projection、bounded memory、feedback lifecycleへ移管し、旧CLI/CURRENT/writer/readerを撤去する。"
@@ -40,6 +40,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/handover-resurrection.test.ts
     artifact_type: test_code
+  - artifact_path: docs/test-design/harness/L8-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L6-61-handover-retirement.md
   requires:
@@ -53,6 +55,24 @@ dependencies:
     - docs/test-design/harness/L9-integration-test-design.md
     - docs/test-design/harness/L9-system-test-design.md
     - src/handover/index.ts
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T07:00:11+09:00"
+    tests_green_at: "2026-07-11T06:59:32+09:00"
+    verdict: approve
+    scope: "Sprint 1のcheckpoint chain、phase edge、journal recovery、typed intent、manifest reconcile、rollback provenanceを独立レビューしfreeze blocker 0を確認。Sprint 2以降と旧surface撤去は未完。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run typecheck && bunx biome check src/runtime/continuation.ts tests/handover-retirement-runtime.test.ts && bun run vitest run tests/handover-retirement-runtime.test.ts tests/handover-retirement.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && bun src/cli.ts plan lint"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T06:59:32+09:00"
+        evidence_path: tests/handover-retirement-runtime.test.ts
+        output_digest: "sha256:d5674058d93db328a75fb2d0e55a02d53ba4f2b81ea8376dc672e08adb6f0781"
 ---
 
 # PLAN-L7-416: session handover実行面の廃止
@@ -119,6 +139,13 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
 - crash全window、同sequence異payload、DB全rebuild、delivery dedupe/receipt再構築がgreen。
 - `retirement-ready=true`、doctor relevant gates、typecheck、Biome、targeted/full verificationがgreen。
 - review_evidenceはworker≠reviewer、green_commandsのexit code・digest・evidence pathを保持する。
+
+## 3.1 実装進捗
+
+- Sprint 1: **freeze済み**。U-HRET-002/004/009/010を`src/runtime/continuation.ts`と
+  `tests/handover-retirement-runtime.test.ts`へ実装した。
+- Sprint 2〜5: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
+- PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 
 ## 4. rollback・escalation境界
 
