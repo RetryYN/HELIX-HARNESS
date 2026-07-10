@@ -16,6 +16,17 @@ PO決定「ハンドオーバーは廃止した」に従い、session間のprose
 | `legacy_archive` | 過去PLAN、監査、成立経緯、旧session記録 | `archive` | 禁止 |
 | `compatibility_only` | complete前rollback専用decoder | 期限・owner・除去checkpoint必須、writer禁止 | 通常時禁止 |
 
+## 保持対象のretention policy
+
+| kind | policy ID | authority | mode | 根拠 |
+|---|---|---|---|---|
+| `provider_evidence` | `provider-audit` | runtime audit | `indefinite` | provider packet原本は監査・cross-runtime provenanceであり、retirement時に期限を推測して削除しない |
+| `operations_transition` | `operations-governance` | operations governance | `indefinite` | L11/L14 authored designは運用移管の正本であり、supersedeまたは別の承認済みretention変更まで保持する |
+
+retention metadataはpreserve manifestへpolicy ID、authority、mode、期限を転記する。`indefinite`では
+`retainUntil=null`とし、期限の捏造を禁止する。policy変更は原本digestを変えずmanifest metadataの
+before/after差分として検出し、operations governanceの承認なしにphase exitしない。
+
 文字列`handover`の一括削除は禁止する。各live参照は`path`、`symbol`、`kind`、`owner`、`replacement`、
 `removal_checkpoint`を持つinventoryへ分類し、未分類をhard failにする。
 

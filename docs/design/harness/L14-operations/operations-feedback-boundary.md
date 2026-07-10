@@ -6,6 +6,9 @@ status: confirmed
 created: 2026-07-04
 updated: 2026-07-05
 owner: Codex
+retention_policy: operations-governance
+retention_authority: operations-governance
+retention_mode: indefinite
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
 ---
 
@@ -20,7 +23,7 @@ L14 は L1 operational test design の実施層であり、L0 価値検証へ fe
 | operational test design | `docs/test-design/harness/L1-operational-test-design.md` |
 | status / objective progress | `./scripts/helix status` |
 | completion decision | `./scripts/helix completion decision-packet --json` |
-| handover 未解決項目 | `.helix/handover/provider/CURRENT.json` / `handover-*` doctor gate |
+| 未解決 feedback / continuation | harness.db feedback lifecycle / continuation read model / `./scripts/helix status` |
 | rename cutover | `./scripts/helix rename plan --json` |
 
 ## L14 blocker
