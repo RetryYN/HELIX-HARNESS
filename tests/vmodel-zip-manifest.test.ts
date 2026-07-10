@@ -154,6 +154,33 @@ describe("V-model ZIP manifest", () => {
     }
   });
 
+  it("正規化後の ZIP source path 重複を fail-close する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-vmodel-zip-duplicate-"));
+    try {
+      const duplicatePath = "hybrid-docgen/docs/107_Vモデル・レベル定義.yaml";
+      writeFileSync(
+        join(root, VMODEL_ZIP_FILENAME),
+        minimalZip([
+          ...VMODEL_ZIP_REQUIRED_PATHS.map((path) => `hybrid-docgen/${path}`),
+          duplicatePath,
+        ]),
+      );
+
+      const result = analyzeVmodelZipManifest(root);
+      expect(result.ok).toBe(false);
+      expect(result.required.every((entry) => entry.present)).toBe(true);
+      expect(result.findings).toContainEqual(
+        expect.objectContaining({
+          code: "duplicate_normalized_path",
+          severity: "error",
+        }),
+      );
+      expect(vmodelZipManifestMessages(result).join("\n")).toContain("duplicate_normalized_path");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("archive が無い場合は advisory skip として扱う", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-vmodel-zip-absent-"));
     try {

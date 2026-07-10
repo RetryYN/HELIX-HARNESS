@@ -362,7 +362,11 @@ export interface VmodelZipManifestResult {
   inventorySignature: VmodelZipInventorySignature;
   required: VmodelZipRequiredEntry[];
   findings: Array<{
-    code: "archive_missing" | "archive_parse_error" | "required_entry_missing";
+    code:
+      | "archive_missing"
+      | "archive_parse_error"
+      | "required_entry_missing"
+      | "duplicate_normalized_path";
     severity: "warn" | "error";
     detail: string;
   }>;
@@ -556,7 +560,15 @@ export function analyzeVmodelZipManifest(
   try {
     const { entries, rootPrefix } = readZipManifestEntries(archivePath);
     const byExtension: Record<string, number> = {};
-    const byNormalizedPath = new Map(entries.map((entry) => [entry.normalizedPath, entry]));
+    const entriesByNormalizedPath = new Map<string, ZipManifestEntry[]>();
+    for (const entry of entries) {
+      const matches = entriesByNormalizedPath.get(entry.normalizedPath) ?? [];
+      matches.push(entry);
+      entriesByNormalizedPath.set(entry.normalizedPath, matches);
+    }
+    const byNormalizedPath = new Map(
+      [...entriesByNormalizedPath].map(([path, matches]) => [path, matches[0]]),
+    );
     for (const entry of entries) {
       byExtension[entry.extension] = (byExtension[entry.extension] ?? 0) + 1;
     }
@@ -568,13 +580,22 @@ export function analyzeVmodelZipManifest(
         actualPath: entry?.path ?? null,
       };
     });
-    const findings = required
-      .filter((entry) => !entry.present)
-      .map((entry) => ({
-        code: "required_entry_missing" as const,
+    const findings: VmodelZipManifestResult["findings"] = [...entriesByNormalizedPath]
+      .filter(([, matches]) => matches.length > 1)
+      .map(([path, matches]) => ({
+        code: "duplicate_normalized_path" as const,
         severity: "error" as const,
-        detail: `required ZIP source is missing: ${entry.path}`,
+        detail: `normalized ZIP source path is duplicated: ${path} (${matches.length} entries)`,
       }));
+    findings.push(
+      ...required
+        .filter((entry) => !entry.present)
+        .map((entry) => ({
+          code: "required_entry_missing" as const,
+          severity: "error" as const,
+          detail: `required ZIP source is missing: ${entry.path}`,
+        })),
+    );
     const inventorySignature = buildVmodelZipInventorySignature({
       present: true,
       rootPrefix,
