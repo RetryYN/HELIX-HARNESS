@@ -114,6 +114,10 @@ Rules:
    PLAN-L7-337）: `【objective】`（`【目的】`）/ `【output format】`（`【出力形式】`）/
    `【tool guidance】`（`【ツール方針】`）/ `【task boundary】`（`【境界】`）。英語・日本語ラベル
    どちらでも可。正本 = `src/runtime/agent-guard-policy.ts` の `DELEGATION_BRIEF_MARKERS`。
+7. fable（apex-tier）model は **fable apex allowlist の subagent のみ**に許可し、frontmatter に
+   fable を宣言しただけの agent の worker 用途利用を block する（Fable advisor 境界 PLAN-L7-306 の
+   機械強制、PLAN-L7-409）。正本 = `src/runtime/agent-guard-policy.ts` の `FABLE_APEX_SUBAGENTS`
+   （現行 `advisor-fable` のみ）。
 
 Allowlist（正本 = `src/runtime/agent-guard-policy.ts` の `SUBAGENT_ALLOWLIST`。本一覧は同期写し）:
 
