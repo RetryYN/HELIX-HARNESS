@@ -28,6 +28,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/runtime/continuation.ts
     artifact_type: source_module
+  - artifact_path: src/runtime/retirement-preserve.ts
+    artifact_type: source_module
   - artifact_path: src/lint/handover-resurrection.ts
     artifact_type: source_module
   - artifact_path: src/cli.ts
@@ -39,6 +41,8 @@ generates:
   - artifact_path: tests/handover-retirement-runtime.test.ts
     artifact_type: test_code
   - artifact_path: tests/continuation-event-first.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/retirement-preserve.test.ts
     artifact_type: test_code
   - artifact_path: tests/handover-resurrection.test.ts
     artifact_type: test_code
@@ -60,6 +64,23 @@ dependencies:
     - docs/test-design/harness/L9-system-test-design.md
     - src/handover/index.ts
 review_evidence:
+  - reviewer: codex-tl-sprint4-audit
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T08:08:20+09:00"
+    tests_green_at: "2026-07-11T08:08:03+09:00"
+    verdict: approve
+    scope: "Sprint 4のprovider real10、operations real4、archive real7、recursive inventory、canonical retention、query/export、target filesystem reconcile、phase fence/nonjoinを独立レビューしblocker 0を確認。Sprint 3/5とproduction orchestration配線は未達。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/retirement-preserve.test.ts tests/handover-retirement-runtime.test.ts tests/handover-retirement.test.ts tests/provider-handover.test.ts tests/continuation-event-first.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && bun src/cli.ts plan lint && bun run typecheck && bunx biome check src/runtime/retirement-preserve.ts tests/retirement-preserve.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T08:08:03+09:00"
+        evidence_path: tests/retirement-preserve.test.ts
+        output_digest: "sha256:ad2e56fd5535811a045fdda5483fcf031aa7ae61a97f154125dda108452567df"
   - reviewer: codex-tl-sprint2-audit
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-11T07:31:57+09:00"
@@ -168,7 +189,10 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
 - Sprint 2: **freeze済み**。event-first writer、DB projection/rebuild、DB precedence、delivery receiptの
   U-HRET-003/005/006/007・IT-CONT-01/02 runtime sliceは、actual 2 process raceを含む177 testsと
   独立レビューblocker 0でfreezeした。production routeは未切替である。
-- Sprint 3〜5: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
+- Sprint 4: **freeze済み**。provider実体10件 / operations実体4件 / archive実体7件を
+  再帰inventory、正規retention、query/export、target filesystem照合、
+  phase fence/nonjoinへ束縛し、159 testsと独立レビューblocker 0でfreezeした。
+- Sprint 3/5: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 
 ## 4. rollback・escalation境界

@@ -91,7 +91,8 @@ PLAN-REVERSE-344がR4へmergeされるまで本節は設計oracleであり、実
 
 実装binding（PLAN-L7-416 Sprint 1〜2）: `U-HRET-002/004/009/010`は
 `tests/handover-retirement-runtime.test.ts`、`U-HRET-003/005/006/007`は
-`tests/continuation-event-first.test.ts`へcitation済み。`U-HRET-008/011..014`は
+`tests/continuation-event-first.test.ts`、`U-HRET-008/009`のpreserve/archive追加oracleは
+`tests/retirement-preserve.test.ts`へcitation済み。`U-HRET-011..014`は
 Sprint 3〜5の未実装oracleであり、現時点のgreenやretirement完了を主張しない。
 
 ## §4 L6 reverse reference 追補
