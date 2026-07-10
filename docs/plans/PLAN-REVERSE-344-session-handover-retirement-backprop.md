@@ -3,7 +3,7 @@ plan_id: PLAN-REVERSE-344-session-handover-retirement-backprop
 title: "PLAN-REVERSE-344: 廃止済みsession handover契約をDB+memory継続状態へfullback"
 kind: reverse
 layer: cross
-workflow_phase: R1
+workflow_phase: R2
 confirmed_reverse_type: fullback
 route_mode: reverse
 drive: agent
@@ -101,6 +101,10 @@ generates:
     artifact_type: test_design
   - artifact_path: docs/test-design/harness/L9-integration-test-design.md
     artifact_type: test_design
+  - artifact_path: src/lint/handover-retirement.ts
+    artifact_type: source_module
+  - artifact_path: tests/handover-retirement.test.ts
+    artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L6-61-handover-retirement.md
   requires: []
@@ -136,7 +140,19 @@ source precedenceを変更波の境界に使い、path/symbolの未分類が1件
 - `provider_evidence`: preserve。runtime invocation/review provenanceでありsession継続の正本にはしない。
 - `operations_transition`: preserve。開発から運用への移管成果物として別型化する。
 - `legacy_archive`: archive。成立経緯は残すがruntime read sourceから除外する。
-- 現状はL0/L1/L3/L4/L5と対向test-designに現役契約が残るため、R2/R3 freezeは不可。
+- `handover-retirement-inventory`はtracked source 1,456 files / 2,765 referencesを分類し、
+  unclassified=0 / conflicts=0 / preserve_boundary=0。
+  `U-HRET-001`とdoctor hard gateで新規未分類・異kind重複・preserve型へのsession継続意味混入をfail-closeする。
+- R1 inventory境界は完了した。ただし`active_session_prose=527 / compatibility_only=513 /
+  retirement-ready=false`であり、L0/L1/L3/L4/L5と対向test-designに現役契約が残るため、R3 freezeは不可。
+
+## R2 判定（進行中）
+
+- machine stateはharness.db、事実trailはappend-only session event、bounded recallはmemory、actionable issueは
+  feedback lifecycleへ割当てる。
+- provider delegation evidenceとoperations transitionはcontinuation sourceへjoinせず、監査・運用artifactとして保持する。
+- 旧CURRENT固有のtakeover noteはprovenance/TTL付きmemoryへ最大1件移管する。DBと競合する値は採用しない。
+- confirmed正本と対向Vペアの二重拘束が残るため、情報欠落・二重正本0の反証完了まではR3へ進めない。
 
 ## 不変境界
 

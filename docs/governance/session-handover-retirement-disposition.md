@@ -69,10 +69,17 @@ terminal遷移は同一`operation_id`でDB projection、feedback lifecycle、必
 ### R1 検証状態
 
 - 2026-07-11時点の既知live surface classは上記14行へ分類した。
-- path/symbol単位の自動scanと`unclassified=0`証跡は未完了である。この証跡が無い間、
-  PLAN-REVERSE-344は`workflow_phase=R1` / `status=draft`を維持する。
-- R1 scannerはprovider/operations/archiveの許可を文字列`handover`だけで判定せず、path + symbol + kindの
-  組合せで分類し、同一symbolの矛盾分類もhard failにする。
+- `src/lint/handover-retirement.ts` がtracked source surfaceをpath/symbol単位で1,456 files・2,765 references
+  scanし、`classified=2765 / unclassified=0 / conflicts=0 / preserve_boundary=0`を確認した。
+- 内訳は`session_prose=2069 / provider_evidence=144 / operations_transition=3 /
+  legacy_archive=36 / compatibility_only=513`である。`active_session_prose=527`かつ
+  `compatibility_only=513`のため、分類境界はgreenでも`retirement-ready=false`である。
+- `tests/handover-retirement.test.ts`の`U-HRET-001`は未分類、異kind重複、preserve型へのsession継続意味混入、
+  実repo回帰を負例込みで検証し、
+  `helix doctor`の`handover-retirement-inventory`へhard gate配線した。
+- provider/operations/archiveの許可は文字列`handover`だけで判定せず、path + symbol + kindの組合せで分類する。
+  新規unclassified、同一symbolの矛盾分類、preserve型へのsession継続意味混入はR2以降をhard failする。
+  このgateはR1 inventoryの完全性を保証するもので、writer撤去やresurrection防止の完了証明ではない。
 
 ## freeze条件
 

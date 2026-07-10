@@ -167,6 +167,10 @@ import {
 import { analyzeGateConfirm, gateConfirmMessages, loadGateConfirmDocs } from "../lint/gate-confirm";
 import { checkGreenCommandDigests } from "../lint/green-command-digest";
 import {
+  analyzeHandoverRetirementInventory,
+  handoverRetirementInventoryMessages,
+} from "../lint/handover-retirement";
+import {
   buildIdentifierRenameCutoverPlan,
   identifierRenameRunbookCommandViolations,
   identifierRenameStateBackupManifestViolations,
@@ -1256,6 +1260,27 @@ export function checkDesignLanguage(repoRoot: string): {
   } catch {
     return {
       messages: ["design-language - violation: design/governance/ADR docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkHandoverRetirementInventory(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["handover-retirement-inventory - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const result = analyzeHandoverRetirementInventory(repoRoot);
+    return { messages: handoverRetirementInventoryMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["handover-retirement-inventory - violation: live surface scan could not run"],
       ok: false,
     };
   }
@@ -6556,6 +6581,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const codingRules = checkCodingRules(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
+  const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
@@ -6716,6 +6742,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       codingRules.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
+      handoverRetirementInventory.ok &&
       secretScan.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
@@ -6837,6 +6864,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
+      ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
