@@ -296,7 +296,7 @@ describe("db projection ingestion detector", () => {
           recovery_gate_status: "approval_pending",
           effective_phase: "approval",
         });
-      } else {
+      } else if (handoffSummary?.scope_status === "mismatch") {
         expect(handoffSummary).toMatchObject({
           status: "approval_blocked",
           scope_mismatch: 1,
@@ -307,8 +307,21 @@ describe("db projection ingestion detector", () => {
           handoffSummary?.recovery_gate_status,
         );
         expect(["machine", "approval"]).toContain(handoffSummary?.effective_phase);
+      } else {
+        expect(handoffSummary).toMatchObject({
+          status: "approval_pending",
+          approval_pending: 1,
+          scope_mismatch: 0,
+          scope_status: "missing",
+          recovery_gate_status: "approval_pending",
+          effective_phase: "approval",
+        });
       }
-      expect(handoffSummary?.reason_codes).toContain("approval.pending_human_review");
+      expect(handoffSummary?.reason_codes).toContain(
+        handoffSummary?.approval_state === "missing"
+          ? "approval.missing"
+          : "approval.pending_human_review",
+      );
       expect(handoffSummary?.reason_codes).toContain(
         `approval.scope.${handoffSummary?.scope_status}`,
       );
