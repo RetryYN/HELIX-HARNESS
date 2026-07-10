@@ -10,11 +10,11 @@ entry_signals:
   - "po_directive:2026-07-11 /goal「ハンドオーバーの課題を突き詰めてハンドオーバーを廃止してハーネスメモリを強化する方向で進めたい」（2026-07-07 の『廃止ではなく DB 導出化で縮小』judgment を PO 自身が廃止へ方向転換）"
 created: 2026-07-11
 updated: 2026-07-11
-backprop_decision: not_required
-backprop_decision_reason: "harness 自身の引き継ぎ機構の retirement 設計。product の外部 requirement / design / test-design contract を変えない。feedback_events 正本地位（PLAN-L7-110）は不変。"
+backprop_decision: required
+backprop_decision_reason: "POがsession/prose handover廃止を再確定したため、handover必須・DB+log+handover 3層原則・CURRENT.json/CLI契約を保持するconfirmed L0-L5正本を、DB+memory継続状態へReverse backpropする必要がある。PLAN-REVERSE-344を先行し、旧契約を残したままL6だけでretirementしない。"
 owner: Claude (Fable) / PO (人間)
 parent_design: docs/design/harness/L6-function-design/handover-db-derivation.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: se
@@ -26,10 +26,13 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L6-function-design/handover-retirement.md
     artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L8-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L6-01-function-spec.md
   requires:
     - docs/plans/PLAN-L6-57-handover-db-derivation.md
+    - docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md
   references:
     - docs/governance/handover-retirement-memory-audit-2026-07-11.md
     - docs/plans/PLAN-L6-62-harness-memory-structure.md
@@ -84,13 +87,16 @@ dependencies:
 - harness memory の構造変更そのもの（PLAN-L6-62）と cross-runtime 注入（PLAN-L6-64）。
 - CLI `helix` / `.helix/` の識別子 rename（PLAN-M-02 の cutover 承認まで凍結）。
 - 実装（後続 L7 PLAN。plan-descent gate に従い本 L6 pair 確定後に起票）。
+- provider delegation evidence、開発から運用への引継ぎ成果物。これらはsession/prose handoverと別型であり、
+  `provider_evidence` / `operations_transition`として保持する。
 
 ## 3. スケジュール（schedule steps）
 
-- step 1 (mode: serial): 受け皿 3 PLAN（L6-62/63/64）の設計確定を待つ（依存順序）。
-- step 2 (mode: serial): L6 機能設計 doc + L7 unit test design pair 追記（撤去 slice ごとの oracle）。
-- step 3 (mode: serial): レビュー（別 runtime または intra_runtime_subagent）→ 是正。
-- step 4 (mode: serial): PO confirmation gate（workflow 規約・adapter marker 変更のため必須）→
+- step 1 (mode: serial): PLAN-REVERSE-344でL0-L5のhandover必須意味をDB+memory継続状態へbackpropする。
+- step 2 (mode: serial): 受け皿 3 PLAN（L6-62/63/64）の設計・実装証拠を確認する（依存順序）。
+- step 3 (mode: serial): L6 機能設計 doc + L8 unit test design pair 追記（撤去 slice ごとの oracle）。
+- step 4 (mode: serial): レビュー（別 runtime または intra_runtime_subagent）→ 是正。
+- step 5 (mode: serial): PO confirmation（2026-07-11「ハンドオーバーは廃止した」）をdecision evidenceとして束縛→
   L7 実装 PLAN 起票。
 
 ## 4. 受入条件
