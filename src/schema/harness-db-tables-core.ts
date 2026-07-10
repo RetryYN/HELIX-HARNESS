@@ -2,6 +2,44 @@ import { col, pk } from "./harness-db-table-builders";
 import type { TableDef } from "./harness-db-types";
 
 export const HARNESS_DB_CORE_TABLES: TableDef[] = [
+  // Reverse-344 / PLAN-L7-416: append-only session logから再構築可能なcontinuation read model。
+  // event_idを物理PKとし、(session_id,event_seq)の意味的一意性とpayload conflictはwriterで
+  // fail-closeする。JSONL appendとSQLite projectionを同一transactionとは見なさない。
+  {
+    name: "session_events",
+    columns: [
+      // registryは単一列PKのみのため、composite (session_id,event_seq) をcanonical event_keyへ符号化。
+      pk("event_key"),
+      col("event_id"),
+      col("schema_version", "INTEGER"),
+      col("operation_id"),
+      col("session_id"),
+      col("event_seq", "INTEGER"),
+      col("plan_id"),
+      col("event_kind"),
+      col("next_action"),
+      col("memory_ref"),
+      col("recorded_at"),
+      col("payload_hash"),
+    ],
+  },
+  {
+    name: "delivery_receipts",
+    columns: [
+      pk("delivery_id"),
+      col("entry_id"),
+      col("consumer_id"),
+      col("payload_digest"),
+      col("status"),
+      col("recorded_at"),
+      col("retention_until"),
+      col("source_retention_until"),
+    ],
+  },
+  {
+    name: "continuation_fences",
+    columns: [pk("scope"), col("fence_token", "INTEGER"), col("owner"), col("acquired_at")],
+  },
   // --- §2.7 基本 7 ---
   {
     name: "plan_registry",

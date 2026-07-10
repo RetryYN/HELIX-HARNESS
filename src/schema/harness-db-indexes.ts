@@ -2,6 +2,29 @@ import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
+    name: "idx_session_events_session_seq",
+    table: "session_events",
+    columns: ["session_id", "event_seq"],
+    unique: true,
+  },
+  {
+    name: "idx_session_events_operation",
+    table: "session_events",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "idx_session_events_event_id",
+    table: "session_events",
+    columns: ["event_id"],
+    unique: true,
+  },
+  {
+    name: "idx_delivery_receipts_entry_consumer",
+    table: "delivery_receipts",
+    columns: ["entry_id", "consumer_id"],
+  },
+  {
     name: "idx_plan_layer_drive_status",
     table: "plan_registry",
     // physical-data §9.3 準拠: (plan_id, layer, drive, status)。plan_id は PK だが doc 宣言に整合させる。

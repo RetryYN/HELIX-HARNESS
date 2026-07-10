@@ -38,9 +38,13 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/handover-retirement-runtime.test.ts
     artifact_type: test_code
+  - artifact_path: tests/continuation-event-first.test.ts
+    artifact_type: test_code
   - artifact_path: tests/handover-resurrection.test.ts
     artifact_type: test_code
   - artifact_path: docs/test-design/harness/L8-unit-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/harness/L9-integration-test-design.md
     artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L6-61-handover-retirement.md
@@ -56,6 +60,23 @@ dependencies:
     - docs/test-design/harness/L9-system-test-design.md
     - src/handover/index.ts
 review_evidence:
+  - reviewer: codex-tl-sprint2-audit
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T07:31:57+09:00"
+    tests_green_at: "2026-07-11T07:31:36+09:00"
+    verdict: approve
+    scope: "Sprint 2のevent-first/fsync/fencing、semantic UNIQUE、crash replay、DB precedence、memory/feedback lifecycle join、delivery journal/receipt/CASを独立レビューしblocker 0を確認。production route切替、Sprint 3以降、IT-CONT-04、retirement-readyは未達。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/continuation-event-first.test.ts tests/handover-retirement-runtime.test.ts tests/state-db.test.ts tests/memory/memory-v2.test.ts tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && bun src/cli.ts plan lint && bun run typecheck && bunx biome check src/runtime/continuation.ts src/state-db/index.ts src/state-db/migration.ts src/schema/harness-db.ts src/schema/harness-db-types.ts src/schema/harness-db-tables-core.ts src/schema/harness-db-indexes.ts tests/continuation-event-first.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T07:31:36+09:00"
+        evidence_path: tests/continuation-event-first.test.ts
+        output_digest: "sha256:dd293d17b523cc7917d3d282fecdf44c5287dfcd5bc258323b5dc16753fb6f30"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-11T07:00:11+09:00"
@@ -144,7 +165,10 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
 
 - Sprint 1: **freeze済み**。U-HRET-002/004/009/010を`src/runtime/continuation.ts`と
   `tests/handover-retirement-runtime.test.ts`へ実装した。
-- Sprint 2〜5: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
+- Sprint 2: **freeze済み**。event-first writer、DB projection/rebuild、DB precedence、delivery receiptの
+  U-HRET-003/005/006/007・IT-CONT-01/02 runtime sliceは、actual 2 process raceを含む177 testsと
+  独立レビューblocker 0でfreezeした。production routeは未切替である。
+- Sprint 3〜5: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 
 ## 4. rollback・escalation境界

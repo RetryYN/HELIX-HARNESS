@@ -21,7 +21,7 @@ export type { ColumnDef, ColumnType, IndexDef, TableDef } from "./harness-db-typ
  * affinity ヒント)。各 table の列・PK・index は §2.7/§9.1/§9.3 に準拠。
  */
 
-export const SCHEMA_VERSION = 32;
+export const SCHEMA_VERSION = 33;
 
 /**
  * SQL 識別子検証 (injection 防止)。table / column / index 名は ? でバインドできず DDL/DML に
@@ -50,7 +50,7 @@ export function createTableSql(table: TableDef): string {
 
 /** CREATE INDEX DDL。 */
 export function createIndexSql(index: IndexDef): string {
-  return `CREATE INDEX IF NOT EXISTS ${index.name} ON ${index.table} (${index.columns.join(", ")})`;
+  return `CREATE ${index.unique ? "UNIQUE " : ""}INDEX IF NOT EXISTS ${index.name} ON ${index.table} (${index.columns.join(", ")})`;
 }
 
 /** schema 全体の DDL 文 (table → index の順、deterministic)。 */

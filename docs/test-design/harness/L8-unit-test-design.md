@@ -89,9 +89,10 @@ PLAN-REVERSE-344がR4へmergeされるまで本節は設計oracleであり、実
 | U-HRET-013 | fresh / brownfield | 旧surfaceなしでactive PLAN・blocker・next authority・feedbackを再開 |
 | U-HRET-014 | residual allowlist | provider/operations/archive以外のlive handover residualを0とする |
 
-実装binding（PLAN-L7-416 Sprint 1）: `U-HRET-002/004/009/010`は
-`tests/handover-retirement-runtime.test.ts`へcitation済み。`U-HRET-003/005..008/011..014`は
-Sprint 2〜5の未実装oracleであり、現時点のgreenやretirement完了を主張しない。
+実装binding（PLAN-L7-416 Sprint 1〜2）: `U-HRET-002/004/009/010`は
+`tests/handover-retirement-runtime.test.ts`、`U-HRET-003/005/006/007`は
+`tests/continuation-event-first.test.ts`へcitation済み。`U-HRET-008/011..014`は
+Sprint 3〜5の未実装oracleであり、現時点のgreenやretirement完了を主張しない。
 
 ## §4 L6 reverse reference 追補
 

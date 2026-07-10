@@ -16,4 +16,5 @@ export interface IndexDef {
   name: string;
   table: string;
   columns: string[];
+  unique?: boolean;
 }

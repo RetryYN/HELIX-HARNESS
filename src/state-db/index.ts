@@ -17,7 +17,7 @@ const nodeRequire = createRequire(import.meta.url);
 
 /** 正規化済み prepared statement。get は行不在で undefined を返す。 */
 export interface HarnessStatement {
-  run(...params: unknown[]): void;
+  run(...params: unknown[]): { changes: number };
   get(...params: unknown[]): Record<string, unknown> | undefined;
   all(...params: unknown[]): Record<string, unknown>[];
 }
@@ -96,7 +96,8 @@ function applyConnectionPragmas(native: NativeDatabase, path: string): void {
 function wrapStatement(stmt: NativeStatement): HarnessStatement {
   return {
     run: (...params: unknown[]) => {
-      stmt.run(...params);
+      const result = stmt.run(...params) as { changes?: number | bigint } | undefined;
+      return { changes: Number(result?.changes ?? 0) };
     },
     get: (...params: unknown[]) =>
       (stmt.get(...params) as Record<string, unknown> | null | undefined) ?? undefined,
