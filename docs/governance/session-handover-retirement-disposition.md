@@ -1,4 +1,4 @@
-# session handover retirement typed disposition
+# session handover 廃止の型付き処分表
 
 ## 目的
 
@@ -19,7 +19,7 @@ PO決定「ハンドオーバーは廃止した」に従い、session間のprose
 文字列`handover`の一括削除は禁止する。各live参照は`path`、`symbol`、`kind`、`owner`、`replacement`、
 `removal_checkpoint`を持つinventoryへ分類し、未分類をhard failにする。
 
-## continuation source precedence
+## 継続状態 source の優先順位
 
 1. authored PLAN・設計・成果物を契約正本とする。
 2. `harness.db`のworkflow/feedback projectionを進捗、active PLAN、blocker、next authorityの機械正本とする。
@@ -36,7 +36,7 @@ terminal遷移は同一`operation_id`でDB projection、feedback lifecycle、必
 |---|---|---|
 | concept / requirements | handover aggregate、3層原則、CURRENT/CLI契約 | authored sources + DB projection + fenced memory |
 | HELIX L1/L3-L5 | HBR/HR/HACとhandover flow | atomic continuation checkpointとsource precedence |
-| harness L4 | aggregate、session module、HandoverPanel | continuation read model / ContinuationPanel |
+| harness L4 | aggregate、session module、HandoverPanel | 継続状態の読みモデル / ContinuationPanel |
 | harness L5 | CURRENT schema、`src/handover` module | 既存DB/memory/session-log/feedbackのjoin |
 | verification design | CURRENT/stale/proseを期待するoracle | absence/resurrection、crash replay、DB優先の正負oracle |
 | provider adapter | provider packet/path | `provider_evidence`として保持 |

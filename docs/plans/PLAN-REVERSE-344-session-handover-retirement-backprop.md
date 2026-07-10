@@ -12,8 +12,6 @@ created: 2026-07-11
 updated: 2026-07-11
 owner: Codex / TL
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
-forward_routing: L6
-promotion_strategy: replace-with-hardening
 entry_signals:
   - "po_directive:2026-07-11『ハンドオーバーは廃止した』— session/prose handoverを廃止済みの正本判断として固定"
 backprop_scope:
@@ -66,7 +64,7 @@ generates:
   - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/session-handover-retirement-disposition.md
-    artifact_type: governance_doc
+    artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L1-requirements/pillar-requirements.md
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
@@ -75,12 +73,30 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L5-detail/pillar-detail-design.md
     artifact_type: design_doc
-  - artifact_path: docs/design/harness/L4-basic-design/
-    artifact_type: design_doc_set
-  - artifact_path: docs/design/harness/L5-detailed-design/
-    artifact_type: design_doc_set
-  - artifact_path: docs/test-design/helix/
-    artifact_type: test_design_set
+  - artifact_path: docs/design/harness/L4-basic-design/architecture.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L4-basic-design/data.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L4-basic-design/external-if.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L4-basic-design/function.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L4-basic-design/ui-standard.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L5-detailed-design/if-detail.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L5-detailed-design/module-decomposition.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L5-detailed-design/physical-data.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L4-pillar-system-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L5-pillar-integration-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+    artifact_type: test_design
   - artifact_path: docs/test-design/harness/L9-system-test-design.md
     artifact_type: test_design
   - artifact_path: docs/test-design/harness/L9-integration-test-design.md

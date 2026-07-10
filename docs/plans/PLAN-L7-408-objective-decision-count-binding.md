@@ -17,6 +17,8 @@ entry_signals:
 backprop_decision: not_required
 backprop_decision_reason: "G-10の既存completion frontier契約を動的に検証する修正で、上位意味は変更しない。"
 agent_slots:
+  - role: aim
+    slot_label: "AIM — troubleshoot起点と再現条件の妥当性確認"
   - role: qa
     slot_label: "QA — stale count/prefix collision/矛盾markerのRed fixture"
   - role: se
@@ -27,7 +29,7 @@ generates:
   - artifact_path: docs/plans/PLAN-L7-408-objective-decision-count-binding.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
-    artifact_type: governance_doc
+    artifact_type: markdown_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design
   - artifact_path: src/lint/objective-evidence-audit.ts

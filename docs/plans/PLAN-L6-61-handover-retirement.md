@@ -10,8 +10,6 @@ entry_signals:
   - "po_directive:2026-07-11 /goal「ハンドオーバーの課題を突き詰めてハンドオーバーを廃止してハーネスメモリを強化する方向で進めたい」（2026-07-07 の『廃止ではなく DB 導出化で縮小』judgment を PO 自身が廃止へ方向転換）"
 created: 2026-07-11
 updated: 2026-07-11
-backprop_decision: required
-backprop_decision_reason: "POがsession/prose handover廃止を再確定したため、handover必須・DB+log+handover 3層原則・CURRENT.json/CLI契約を保持するconfirmed L0-L5正本を、DB+memory継続状態へReverse backpropする必要がある。PLAN-REVERSE-344を先行し、旧契約を残したままL6だけでretirementしない。"
 owner: Claude (Fable) / PO (人間)
 parent_design: docs/design/harness/L6-function-design/handover-db-derivation.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
@@ -32,8 +30,8 @@ dependencies:
   parent: docs/plans/PLAN-L6-01-function-spec.md
   requires:
     - docs/plans/PLAN-L6-57-handover-db-derivation.md
-    - docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md
   references:
+    - docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md
     - docs/governance/handover-retirement-memory-audit-2026-07-11.md
     - docs/plans/PLAN-L6-62-harness-memory-structure.md
     - docs/plans/PLAN-L6-63-feedback-lifecycle.md

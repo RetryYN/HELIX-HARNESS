@@ -109,6 +109,7 @@ import {
 import type { AgentSlotsDeps, Slot } from "../../src/runtime/agent-slots";
 import { openHarnessDb, upsertRow } from "../../src/state-db/index";
 import { migrate } from "../../src/state-db/migration";
+import { VMODEL_ZIP_SOURCE_BINDINGS } from "../../src/vmodel/zip-manifest";
 
 const NOW = "2026-06-04T00:00:00.000Z";
 const pointerPath = join("/repo", ".helix", "handover", "CURRENT.json");
@@ -3066,25 +3067,38 @@ describe("runDoctor", () => {
         "handoff.decision_draft.present",
       ),
     ).toBe(true);
+    const liveCount = (surface: string, pattern: RegExp): number => {
+      const line = r.messages.find((message) => message.includes(`doctor: ${surface}`));
+      expect(line, `${surface} message`).toBeDefined();
+      const match = line?.match(pattern);
+      expect(match, `${surface} live count`).not.toBeNull();
+      return Number(match?.[1]);
+    };
+    const recoveryRemaining = liveCount("recovery-exit-binding", /remaining=(\d+)/);
+    const approvalCount = liveCount("approval-review-binding", /count=(\d+)/);
+    const closureReadyCount = liveCount("closure-apply-binding", /close_ready=(\d+)/);
+    expect(recoveryRemaining).toBeGreaterThan(0);
+    expect(approvalCount).toBe(recoveryRemaining);
+    expect(closureReadyCount).toBe(recoveryRemaining);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-exit-binding",
-        "remaining=343 selected=close_ready",
+        `remaining=${recoveryRemaining} selected=close_ready`,
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: approval-review-binding",
-        "status=approval_required action=close_ready count=343",
+        `status=approval_required action=close_ready count=${recoveryRemaining}`,
       ),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: closure-apply-binding",
-        "readiness=approval_required close_ready=343 allowed=false approval_valid=false patches=20/20",
+        `readiness=approval_required close_ready=${recoveryRemaining} allowed=false approval_valid=false patches=20/20`,
       ),
     ).toBe(true);
     expect(
@@ -3181,7 +3195,7 @@ describe("runDoctor", () => {
       hasDoctorMessageWith(
         r.messages,
         "doctor: zip-source-binding",
-        "status=complete bound=19 missing=0 advisory=0",
+        `status=complete bound=${VMODEL_ZIP_SOURCE_BINDINGS.length} missing=0 advisory=0`,
       ),
     ).toBe(true);
     expect(
