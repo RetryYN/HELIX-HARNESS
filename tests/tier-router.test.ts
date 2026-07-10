@@ -52,7 +52,7 @@ describe("U-TIER: cost-tiered provider router", () => {
     expect(() => resolveModel("se", "T0", "claude")).toThrow(/invariant/);
     expect(() => resolveModel("docs", "T0", "codex")).toThrow(/invariant/);
     expect(resolveModel("se", "T2", "claude")).toBe("claude-haiku-4-5");
-    expect(resolveModel("se", "T1", "codex")).toBe("gpt-5.4");
+    expect(resolveModel("se", "T1", "codex")).toBe("gpt-5.6-terra");
   });
 
   it("U-TIER-004: GPT(Codex) も Claude と対称 (全 role 両 provider・同 archetype)", () => {
@@ -70,7 +70,7 @@ describe("U-TIER: cost-tiered provider router", () => {
     expect([...FRONTIER_ROLES].sort()).toEqual(["qa", "tl", "uiux"]);
   });
 
-  it("U-TIER-005: T0 (opus/gpt-5.5) は明示許可ゲート (fail-close)", () => {
+  it("U-TIER-005: T0 (opus/codex frontier 帯) は明示許可ゲート (fail-close)", () => {
     const d = det("claude-only", "claude");
     const blocked = route({ role: "tl", task: { text: "design the api boundary" } }, d);
     expect(blocked.tier).toBe("T0");
@@ -105,7 +105,7 @@ describe("U-TIER: cost-tiered provider router", () => {
       d,
     );
     expect(hard.tier).toBe("T1");
-    expect(hard.model).toBe("gpt-5.4");
+    expect(hard.model).toBe("gpt-5.6-terra");
   });
 
   it("U-TIER-008: assignCross は hybrid で判断を相手 provider にフリップ", () => {
@@ -237,7 +237,7 @@ describe("U-TIER: cost-tiered provider router", () => {
     // qa=検証=相手(codex)、明示許可ありで T0 ready。
     expect(routings[1].routed).toBe(true);
     expect(routings[1].decision?.provider).toBe("codex");
-    expect(routings[1].decision?.model).toBe("gpt-5.5");
+    expect(routings[1].decision?.model).toBe("gpt-5.6-sol");
     expect(routings[1].decision?.status).toBe("ready");
     // po=router 非対象 → routed=false (engine fallback)。
     expect(routings[2].routed).toBe(false);

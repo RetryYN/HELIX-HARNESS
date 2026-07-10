@@ -30,8 +30,8 @@ export const FAMILY_STANDARD_EFFORT: Record<string, ReasoningEffort> = {
   opus: "high", // lead / 設計: 深い推論が既定
   sonnet: "medium", // worker: PO 指定の標準 (claude-sonnet-5 = medium)
   haiku: "low", // 軽量 / 高速: 浅く速いが既定
-  frontier: "high", // gpt-5.5 (T0 相談・検証)
-  worker: "medium", // gpt-5.4 (T1 専門 worker)
+  frontier: "high", // gpt-5.6-sol (T0 相談・検証)
+  worker: "medium", // gpt-5.6-terra (T1 専門 worker)
   spark: "low", // gpt-5.3-codex-spark (T2 軽量)
 };
 
@@ -43,6 +43,11 @@ export const FAMILY_STANDARD_EFFORT: Record<string, ReasoningEffort> = {
 export const EXACT_MODEL_STANDARD_EFFORT: Record<string, ReasoningEffort> = {
   "claude-sonnet-5": "medium",
   "claude-sonnet-4-6": "high",
+  // gpt-5.6 世代 (PLAN-L7-415)。上流 H4 実測では sol の effort-token 関係は非単調で low でも
+  // 品質が落ちない傾向があるが、固定 pin にはしない (上流 PO 裁定 2026-07-10「型にはめない」)。
+  // 標準は family 既定を維持し、実測に応じて adaptReasoningEffort で調整する。
+  "gpt-5.6-sol": "high",
+  "gpt-5.6-terra": "medium",
   "gpt-5.5": "high",
   "gpt-5.4": "medium",
 };

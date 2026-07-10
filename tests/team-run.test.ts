@@ -163,7 +163,7 @@ describe("team run validation", () => {
             engine: "codex-se",
             task: "implement small docs change",
             difficulty: "critical",
-            model: "gpt-5.4",
+            model: "gpt-5.6-terra",
             effort: "high",
           },
           { role: "tl", engine: "pmo-sonnet", task: "review slice A" },
@@ -176,7 +176,7 @@ describe("team run validation", () => {
     expect(result.members[0].model_selection).toMatchObject({
       difficulty: "critical",
       difficulty_source: "explicit",
-      model: "gpt-5.4",
+      model: "gpt-5.6-terra",
       model_source: "explicit",
       reasoning_effort: "high",
       effort_source: "explicit",
@@ -200,7 +200,7 @@ describe("team run validation", () => {
     const members = recommendation.definition?.members ?? [];
     expect(members.filter((member) => member.model === "gpt-5.4-mini")).toHaveLength(4);
     expect(members.filter((member) => member.model === "gpt-5.3-codex-spark")).toHaveLength(3);
-    expect(members.some((member) => member.model === "gpt-5.5")).toBe(false);
+    expect(members.some((member) => member.model === "gpt-5.6-sol")).toBe(false);
     expect(members.every((member) => member.ownership)).toBe(true);
     expect(members.some((member) => member.engine === "pmo-sonnet")).toBe(true);
 
@@ -488,7 +488,7 @@ describe("team run validation", () => {
     expect(se?.provider).toBe("claude");
     expect(se?.model_selection.model).toBe("claude-haiku-4-5");
     expect(qa?.provider).toBe("codex");
-    expect(qa?.model_selection.model).toBe("gpt-5.5");
+    expect(qa?.model_selection.model).toBe("gpt-5.6-sol");
     expect(se?.provider).not.toBe(qa?.provider);
     expect(se?.adapter?.command).toBe("claude");
     expect(qa?.adapter?.command).toBe("codex");
