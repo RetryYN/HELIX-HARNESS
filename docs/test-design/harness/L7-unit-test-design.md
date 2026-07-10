@@ -1239,3 +1239,33 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-HDRV-002    | `renderCurrentPointer` / `detectPointerDrift` | derived field を毎回上書きし、`takeover_note` を保持する。note 以外への手書き変更は field 単位で検出する。                                                              |
 | U-HDRV-003    | `deriveHandoverSnapshot`                      | db open 失敗 / HEAD 解決失敗は fail-close（pointer を書かない・error 返却）。                                                                                           |
 | U-HDRV-004    | `renderCurrentPointer`                        | 再生成は状態が変わらない限り連続実行で内容が不変（`generated_at` を除く）。                                                                                             |
+
+### harness memory structure v2 計画済み V-pair（PLAN-L6-62）
+
+本表は L6 設計の受入 scenario を L7 unit 粒度へ固定する test-design である。実装前の設計 freeze のため
+`U-*` oracle はまだ宣言しない。後続 L7 実装 PLAN が scenario ごとに `U-MEMV2-*` と test citation を
+同時追加し、oracle-test-trace を green にする。
+
+| Scenario | Unit 対象 | Oracle |
+|---|---|---|
+| MEMV2-S1a | normalizer / resolver | v1/v2混在をv2 viewへ正規化しschema横断supersedeを解決。不正v2はfallbackしない。 |
+| MEMV2-S1b | legacy API adapter | 旧signature/返値/12件/240文字を維持し、旧depsをv2 lifecycleへ誤用させない。 |
+| MEMV2-S2a | schema validator | enum/lifecycle矛盾をfield付きreasonで拒否する。 |
+| MEMV2-S2b | secret/link validator | body/metadata secret、不正/重複linkを拒否しunresolved soft linkは保持する。 |
+| MEMV2-S3 | `compactMemoryV2` | terminal tombstoneを含む前後でnormalized view/lifecycle集計がdeep equal。concurrent writeを同一lockで直列化し消失させない。 |
+| MEMV2-S4a | takeover writer / `expireMemory` | 許可type、7日以内expiryを強制し、期限境界でstable tombstoneを1件だけ生成する。 |
+| MEMV2-S4b | `deliverTakeover` | stdout成功後だけconsumeし、stdout/append失敗とcrashで情報を失わない。 |
+| MEMV2-S5a | `consumeTakeover` | 再consumeは追記ゼロ、未知/expired/他layerはreason付きno-op。 |
+| MEMV2-S5b | concurrent consume | tombstoneをtargetあたり1件にし、lease回収後の旧holderをstale fencing tokenで拒否する。 |
+| MEMV2-S6 | group-first selector | 単一type100件でも別typeを残しhidden/lifecycle集計を一致させる。 |
+| MEMV2-S7a | budget validator | code point境界、breadcrumb予約、oversize skip、0 unlimited、不正値を検証する。 |
+| MEMV2-S7b | deterministic renderer | 同一入力の決定論とmaxBodyChars→maxChars precedenceを保証する。 |
+| MEMV2-S8a | memory write event | append成功時だけbody非包含eventを1件記録する。 |
+| MEMV2-S8b | event failure boundary | event失敗はmemory成功を反転せずdiagnostic、dry-run/validation失敗はeventゼロ。 |
+
+### objective evidence audit の動的 decisionCount 拘束（PLAN-L7-406）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-OBJAUD-001 | `checkCompletionRow` | G-10行の全`decisionCount` markerをtoken境界付きで数値抽出し、live `outstanding.items.length` 以外、marker欠落、prefix collision、正値とstale値の矛盾併記をfail-closeする。 |
+| U-OBJAUD-001b | `checkCompletionRow` negative variants | `decisionCount=7`を`70`で満たした扱いにせず、正値が残っていても異値markerが1件あれば違反にする。 |
