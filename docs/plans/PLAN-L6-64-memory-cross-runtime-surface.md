@@ -4,7 +4,7 @@ title: "PLAN-L6-64 (add-design): harness memory の cross-runtime surface — Co
 kind: add-design
 layer: L6
 drive: be
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-11 /goal「ハーネスメモリの構造を強化して ClaudeCode と Codex 拡張（チャット画面）」— memory surface を Claude Code 片翼から両 runtime 対応へ"
@@ -14,7 +14,7 @@ backprop_decision: not_required
 backprop_decision_reason: "memory surface の到達面を Codex 側へ広げる harness 内部配線の設計。hybrid 運用規約（AGENTS.md / adapter rule markers）の記述更新は伴うが、product の外部 contract を変えない。"
 owner: Claude (Fable)
 parent_design: docs/design/harness/L6-function-design/harness-memory-compaction.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: se
@@ -26,6 +26,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L6-function-design/memory-cross-runtime-surface.md
     artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L8-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L6-01-function-spec.md
   requires:
@@ -36,6 +38,24 @@ dependencies:
     - src/runtime/adapter.ts
     - src/cli.ts
     - .codex/hooks.json
+review_evidence:
+  - reviewer: code-reviewer (claude-sonnet-5)
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T03:25:00+09:00"
+    tests_green_at: "2026-07-11T03:23:47+09:00"
+    verdict: approve_after_fixes
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    scope: "L6 設計（注入経路選定 (a) 動的 command 出力 / 委譲契約 memory_lines / ランタイム別 budget / MEMX-S1..S5）と L7-406 実装の整合レビュー。Important 是正で設計 §4 の段階導入宣言を composeDelegationInjection surface policy として機械固定し、設計へ MEMX-S5 を追補。L8 単体テスト設計へ oracle route（U-MEMX-001..005）を pair 追記済み。実装 green は PLAN-L7-406 の green_commands を参照（同一 run、digest sha256:a3c2aec3d6161fe5506d213450437db1c3585f0ad284f2a4d8023cffa2289bae）。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/runtime-adapter.test.ts tests/feedback-surface.test.ts tests/attempt-escalation.test.ts --project fast"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T03:23:47+09:00"
+        evidence_path: tests/runtime-adapter.test.ts
+        output_digest: "sha256:a3c2aec3d6161fe5506d213450437db1c3585f0ad284f2a4d8023cffa2289bae"
 ---
 
 # PLAN-L6-64 (add-design): harness memory の cross-runtime surface

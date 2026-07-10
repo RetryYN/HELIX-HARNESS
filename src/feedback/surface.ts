@@ -244,7 +244,10 @@ export function selectTakeoverFeedback(
   // group-first cap (PLAN-L7-404): limit は「表示 group 数」の予算。単一 signal_type の大量クラスタが
   // 予算を独占して他の問題種別を不可視化しないよう、bucket:severity:signal_type で畳んでから選定する。
   const nonTelemetry = items.filter((item) => item.bucket !== "telemetry");
-  const groups = new Map<string, { representative: SurfacedFeedback; count: number; planIds: Set<string> }>();
+  const groups = new Map<
+    string,
+    { representative: SurfacedFeedback; count: number; planIds: Set<string> }
+  >();
   for (const item of nonTelemetry) {
     const group = groups.get(feedbackGroupKey(item));
     if (group) {

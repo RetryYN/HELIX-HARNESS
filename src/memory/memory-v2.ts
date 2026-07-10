@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import {
   closeSync,
   existsSync,
@@ -45,6 +46,8 @@ export interface MemoryEntryV2 {
 }
 
 export interface WriteMemoryV2Input {
+  /** retry/crash recoveryを同一論理writeへ束縛するcaller生成id。 */
+  operationId: string;
   layer: MemoryLayerV2;
   key: string;
   body: string;
@@ -57,6 +60,8 @@ export interface WriteMemoryV2Input {
 
 export type MemoryV2Diagnostic =
   | "session_event_persist_failed"
+  | "coordination_commit_unknown_recovered"
+  | "idempotent_replay"
   | "unresolved_link"
   | "damaged_event";
 
@@ -163,6 +168,9 @@ export function validateMemoryEntry(
   isSecret: (value: string) => boolean,
 ): { ok: true } | { ok: false; reason: string; field: string } {
   if (!LAYERS.includes(input.layer)) return invalid("unknown_layer", "layer");
+  if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(input.operationId)) {
+    return invalid("invalid_operation_id", "operationId");
+  }
   if (!input.key.trim()) return invalid("empty_key", "key");
   const type = input.type ?? "reference";
   if (!TYPES.includes(type)) return invalid("unknown_type", "type");
@@ -235,10 +243,23 @@ export function writeMemoryV2(input: WriteMemoryV2Input, deps: MemoryDepsV2): Wr
   const validation = validateMemoryEntry(input, now, deps.isSecret);
   if (!validation.ok) return { ok: false, reason: validation.reason, field: validation.field };
   if (input.dryRun) return { ok: false, reason: "dry_run" };
+  const expectedId = `${input.layer}:${input.key}:op:${input.operationId}`;
   let entry: MemoryEntryV2;
+  let appended = false;
+  let recovered = false;
   try {
     entry = deps.withLayerLock(input.layer, `write:${input.key}`, (fence) => {
-      const view = resolveMemoryView(deps.readEvents(input.layer), now, input.layer);
+      const rawEvents = deps.readEvents(input.layer);
+      const normalized = rawEvents.flatMap((event) => {
+        const result = normalizeMemoryEntry(event, input.layer);
+        return result.ok ? [result.entry] : [];
+      });
+      const existing = normalized.find((candidate) => candidate.id === expectedId);
+      if (existing) {
+        if (!sameWriteIntent(existing, input)) throw new Error("operation_id_conflict");
+        return existing;
+      }
+      const view = resolveMemoryView(rawEvents, now, input.layer);
       const previous = [...view.activeEntries]
         .filter((candidate) => candidate.key === input.key)
         .sort(compareEntries)
@@ -246,7 +267,7 @@ export function writeMemoryV2(input: WriteMemoryV2Input, deps: MemoryDepsV2): Wr
       const type = input.type ?? "reference";
       const created: MemoryEntryV2 = {
         schemaVersion: MEMORY_V2_SCHEMA_VERSION,
-        id: `${deps.stableId(input.layer, input.key, now)}:${fence}`,
+        id: expectedId,
         layer: input.layer,
         key: input.key,
         body: input.body,
@@ -268,12 +289,25 @@ export function writeMemoryV2(input: WriteMemoryV2Input, deps: MemoryDepsV2): Wr
         createdAt: now,
       };
       deps.appendEvent(input.layer, created, fence);
+      appended = true;
       return created;
     });
   } catch (error) {
-    return { ok: false, reason: errorMessage(error) };
+    const existing = deps
+      .readEvents(input.layer)
+      .flatMap((event) => {
+        const result = normalizeMemoryEntry(event, input.layer);
+        return result.ok ? [result.entry] : [];
+      })
+      .find((candidate) => candidate.id === expectedId && sameWriteIntent(candidate, input));
+    if (!existing) return { ok: false, reason: errorMessage(error) };
+    entry = existing;
+    recovered = true;
   }
   const diagnostics: MemoryV2Diagnostic[] = [];
+  if (recovered) diagnostics.push("coordination_commit_unknown_recovered");
+  if (!appended && !recovered) diagnostics.push("idempotent_replay");
+  if (!appended) return { ok: true, entry, diagnostics };
   try {
     deps.writeSessionEvent({
       type: "memory_write",
@@ -306,8 +340,12 @@ export function expireMemory(
           .map((entry) => entry.supersedes)
           .filter((id): id is string => id !== null),
       );
+      const superseded = new Set(
+        normalized.map((entry) => entry.supersedes).filter((id): id is string => id !== null),
+      );
       const candidates = normalized.filter(
-        (entry) => entry.lifecycle.state === "active" && isExpired(entry, now),
+        (entry) =>
+          entry.lifecycle.state === "active" && !superseded.has(entry.id) && isExpired(entry, now),
       );
       return candidates.map((entry) => {
         if (terminalTargets.has(entry.id))
@@ -334,21 +372,29 @@ export function consumeTakeover(
         return result.ok ? [result.entry] : [];
       });
       const byId = new Map(normalized.map((entry) => [entry.id, entry]));
-      const terminalTargets = new Set(
-        normalized
-          .filter((entry) => entry.lifecycle.state !== "active")
-          .map((entry) => entry.supersedes)
-          .filter((id): id is string => id !== null),
+      const terminalTargets = new Map(
+        normalized.flatMap((entry) =>
+          entry.lifecycle.state !== "active" && entry.supersedes
+            ? ([[entry.supersedes, entry.lifecycle.state]] as const)
+            : [],
+        ),
+      );
+      const activeIds = new Set(
+        resolveMemoryView(deps.readEvents("takeover"), deps.now(), "takeover").activeEntries.map(
+          (entry) => entry.id,
+        ),
       );
       const now = deps.now();
       return ids.map((id): ConsumeResult => {
         const entry = byId.get(id);
         if (!entry) return { id, reason: "unknown_id" };
         if (entry.layer !== "takeover") return { id, reason: "wrong_layer" };
-        if (terminalTargets.has(id)) return { id, reason: "already_consumed" };
+        if (terminalTargets.get(id) === "expired") return { id, reason: "expired" };
+        if (terminalTargets.get(id) === "consumed") return { id, reason: "already_consumed" };
         if (isExpired(entry, now)) return { id, reason: "expired" };
+        if (!activeIds.has(id)) return { id, reason: "unknown_id" };
         deps.appendEvent("takeover", terminalEntry(entry, "consumed", now, consumerId), fence);
-        terminalTargets.add(id);
+        terminalTargets.set(id, "consumed");
         return { id, reason: "consumed" };
       });
     });
@@ -365,6 +411,7 @@ export function surfaceMemoryV2(
   const maxChars = validatedBudget(input.maxChars, 0, "maxChars");
   const maxBodyChars = validatedBudget(input.maxBodyChars, 240, "maxBodyChars");
   const perTypeMin = validatedBudget(input.perTypeMin, 1, "perTypeMin");
+  if (perTypeMin === 0) throw new Error("invalid_perTypeMin");
   const now = input.now ?? deps.now();
   const layers = input.layers ?? [...LAYER_PRIORITY];
   const views = new Map(
@@ -400,6 +447,13 @@ export function surfaceMemoryV2(
     }
   }
   const breadcrumbs = renderBreadcrumbs(hidden, lifecycle);
+  if (
+    maxChars > 0 &&
+    breadcrumbs.length > 0 &&
+    codePointLength(breadcrumbs.join("\n")) > maxChars
+  ) {
+    throw new Error("maxChars_too_small_for_breadcrumb");
+  }
   if (maxChars === 0 || codePointLength([...lines, ...breadcrumbs].join("\n")) <= maxChars) {
     lines.push(...breadcrumbs);
   }
@@ -516,7 +570,7 @@ export function nodeMemoryV2Deps(opts: {
       mkdirSync(memoryDir, { recursive: true });
       const fd = openSync(pathFor(layer), "a");
       try {
-        writeSync(fd, `${JSON.stringify(entry)}\n`, undefined, "utf8");
+        writeAllBytes(fd, Buffer.from(`${JSON.stringify(entry)}\n`, "utf8"));
         fsyncSync(fd);
       } finally {
         closeSync(fd);
@@ -542,7 +596,11 @@ export function nodeMemoryV2Deps(opts: {
       renameSync(temp, target);
       const dirFd = openSync(dirname(target), "r");
       try {
-        fsyncSync(dirFd);
+        try {
+          fsyncSync(dirFd);
+        } catch (error) {
+          if (!isUnsupportedDirectorySync(error)) throw error;
+        }
       } finally {
         closeSync(dirFd);
       }
@@ -597,16 +655,35 @@ function validV2Shape(value: Record<string, unknown>): boolean {
   }
   const provenance = value.provenance;
   const lifecycle = value.lifecycle;
+  const links = value.links as unknown[];
   if (
     (provenance.planId !== null && typeof provenance.planId !== "string") ||
     (provenance.sessionId !== null && typeof provenance.sessionId !== "string") ||
     !RUNTIMES.includes(provenance.runtime as MemoryRuntime) ||
     typeof provenance.origin !== "string" ||
     !provenance.origin.trim() ||
+    new Set(links).size !== links.length ||
+    links.some(
+      (link) => typeof link !== "string" || !/^(harness|project|takeover):[^:\s]+$/.test(link),
+    ) ||
     !STATES.includes(lifecycle.state as MemoryLifecycleState) ||
     (lifecycle.expiresAt !== null && typeof lifecycle.expiresAt !== "string") ||
     (lifecycle.consumedAt !== null && typeof lifecycle.consumedAt !== "string") ||
     (lifecycle.consumedBy !== null && typeof lifecycle.consumedBy !== "string")
+  ) {
+    return false;
+  }
+  if (
+    (lifecycle.expiresAt !== null && !Number.isFinite(Date.parse(String(lifecycle.expiresAt)))) ||
+    (lifecycle.consumedAt !== null && !Number.isFinite(Date.parse(String(lifecycle.consumedAt))))
+  ) {
+    return false;
+  }
+  if (
+    value.layer === "takeover" &&
+    lifecycle.state === "active" &&
+    (!(["decision", "constraint", "state"] as MemoryType[]).includes(value.type as MemoryType) ||
+      typeof lifecycle.expiresAt !== "string")
   ) {
     return false;
   }
@@ -746,7 +823,6 @@ function observableDigest(view: MemoryViewV2): string {
   return JSON.stringify({
     active: view.activeEntries,
     tombstones: latestTombstones(view.tombstones),
-    damaged: view.damaged,
     unresolvedLinks: view.unresolvedLinks,
   });
 }
@@ -812,6 +888,58 @@ function invalid(reason: string, field: string) {
 
 function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
+}
+
+export function writeAllBytes(
+  fd: number,
+  bytes: Uint8Array,
+  writer: (fd: number, bytes: Uint8Array, offset: number, length: number) => number = writeSync,
+): void {
+  let offset = 0;
+  while (offset < bytes.length) {
+    const written = writer(fd, bytes, offset, bytes.length - offset);
+    if (written <= 0) throw new Error("memory_jsonl_short_write");
+    offset += written;
+  }
+}
+
+function sameWriteIntent(entry: MemoryEntryV2, input: WriteMemoryV2Input): boolean {
+  const expected = {
+    layer: input.layer,
+    key: input.key,
+    body: input.body,
+    type: input.type ?? "reference",
+    provenance: {
+      planId: input.provenance?.planId ?? null,
+      sessionId: input.provenance?.sessionId ?? null,
+      runtime: input.provenance?.runtime ?? "system",
+      origin: input.provenance?.origin ?? "memory-v2",
+    },
+    expiresAt: input.expiresAt ?? null,
+    links: input.links ?? [],
+  };
+  const actual = {
+    layer: entry.layer,
+    key: entry.key,
+    body: entry.body,
+    type: entry.type,
+    provenance: entry.provenance,
+    expiresAt: entry.lifecycle.expiresAt,
+    links: entry.links,
+  };
+  return digestJson(actual) === digestJson(expected);
+}
+
+function digestJson(value: unknown): string {
+  return createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+
+function isUnsupportedDirectorySync(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    "code" in error &&
+    ["EINVAL", "EPERM", "ENOTSUP", "EISDIR"].includes(String((error as NodeJS.ErrnoException).code))
+  );
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

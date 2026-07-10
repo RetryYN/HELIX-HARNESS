@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { appendFileSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -18,6 +18,7 @@ import {
   resolveMemoryView,
   surfaceMemoryV2,
   validateMemoryEntry,
+  writeAllBytes,
   writeMemoryV2,
 } from "../../src/memory/memory-v2";
 
@@ -65,14 +66,14 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const now = "2026-07-11T00:00:00.000Z";
     expect(
       validateMemoryEntry(
-        { layer: "takeover", key: "x", body: "x", type: "feedback" },
+        { operationId: "invalid-type", layer: "takeover", key: "x", body: "x", type: "feedback" },
         now,
         () => false,
       ),
     ).toMatchObject({ ok: false, reason: "takeover_type_not_allowed", field: "type" });
     expect(
       validateMemoryEntry(
-        { layer: "takeover", key: "x", body: "x", type: "state" },
+        { operationId: "missing-expiry", layer: "takeover", key: "x", body: "x", type: "state" },
         now,
         () => false,
       ),
@@ -83,12 +84,17 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const now = "2026-07-11T00:00:00.000Z";
     const secret = (value: string) => value.includes("SECRET_MARKER");
     expect(
-      validateMemoryEntry({ layer: "harness", key: "x", body: "SECRET_MARKER" }, now, secret),
+      validateMemoryEntry(
+        { operationId: "secret-body", layer: "harness", key: "x", body: "SECRET_MARKER" },
+        now,
+        secret,
+      ),
     ).toMatchObject({ ok: false, reason: "secret_like" });
     expect(
       validateMemoryEntry(
         {
           layer: "harness",
+          operationId: "secret-meta",
           key: "x",
           body: "ok",
           provenance: { origin: "SECRET_MARKER" },
@@ -99,7 +105,13 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     ).toMatchObject({ ok: false, reason: "secret_like" });
     expect(
       validateMemoryEntry(
-        { layer: "harness", key: "x", body: "ok", links: ["harness:a", "harness:a"] },
+        {
+          operationId: "links",
+          layer: "harness",
+          key: "x",
+          body: "ok",
+          links: ["harness:a", "harness:a"],
+        },
         now,
         secret,
       ),
@@ -107,20 +119,68 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(resolveMemoryView([entry({ links: ["project:missing"] })], now).unresolvedLinks).toEqual(
       [{ entryId: "e", link: "project:missing" }],
     );
+    expect(normalizeMemoryEntry({ ...entry(), links: ["bad"] })).toEqual({
+      ok: false,
+      reason: "schema_invalid",
+    });
+    expect(
+      normalizeMemoryEntry({
+        ...entry({ layer: "takeover", type: "state" }),
+        lifecycle: {
+          state: "active",
+          expiresAt: "not-a-date",
+          consumedAt: null,
+          consumedBy: null,
+        },
+      }),
+    ).toEqual({ ok: false, reason: "schema_invalid" });
   });
 
-  it("U-MEMV2-003: compactMemoryV2 preserves active/tombstone observations and rejects stale writers", () => {
+  it("U-MEMV2-003: compactMemoryV2 preserves observations and serializes a concurrent writer", async () => {
     root = mkdtempSync(join(tmpdir(), "helix-memv2-compact-"));
     const clock = { now: "2026-07-11T00:00:00.000Z" };
     const deps = nodeMemoryV2Deps({ root, now: () => clock.now });
-    expect(writeMemoryV2({ layer: "harness", key: "k", body: "old" }, deps).ok).toBe(true);
+    expect(
+      writeMemoryV2({ operationId: "old", layer: "harness", key: "k", body: "old" }, deps).ok,
+    ).toBe(true);
     clock.now = "2026-07-11T00:01:00.000Z";
-    expect(writeMemoryV2({ layer: "harness", key: "k", body: "new" }, deps).ok).toBe(true);
+    expect(
+      writeMemoryV2({ operationId: "new", layer: "harness", key: "k", body: "new" }, deps).ok,
+    ).toBe(true);
     const before = surfaceMemoryV2({ layers: ["harness"], now: clock.now }, deps);
     const result = compactMemoryV2("harness", deps);
     const after = surfaceMemoryV2({ layers: ["harness"], now: clock.now }, deps);
     expect(result).toMatchObject({ applied: true, kept: 1, removed: 1 });
     expect(after).toEqual(before);
+    appendFileSync(join(root, ".helix", "memory", "harness.jsonl"), "not-json\n", "utf8");
+    expect(compactMemoryV2("harness", deps)).toMatchObject({ applied: true, damaged: 1 });
+
+    const writerScript = [
+      'import { nodeMemoryV2Deps, writeMemoryV2 } from "./src/memory/memory-v2.ts";',
+      "const root = process.env.MEMORY_V2_ROOT;",
+      'if (!root) throw new Error("missing root");',
+      'const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:02:00.000Z" });',
+      'const result = writeMemoryV2({ operationId:"concurrent", layer:"harness", key:"concurrent", body:"preserve" }, deps);',
+      "if (!result.ok) throw new Error(result.reason);",
+    ].join("");
+    const compactScript = [
+      'import { compactMemoryV2, nodeMemoryV2Deps } from "./src/memory/memory-v2.ts";',
+      "const root = process.env.MEMORY_V2_ROOT;",
+      'if (!root) throw new Error("missing root");',
+      'const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:02:00.000Z" });',
+      'compactMemoryV2("harness", deps);',
+    ].join("");
+    await Promise.all([
+      runBunChild(writerScript, root, "unused"),
+      runBunChild(compactScript, root, "unused"),
+    ]);
+    expect(
+      resolveMemoryView(
+        deps.readEvents("harness"),
+        "2026-07-11T00:03:00.000Z",
+        "harness",
+      ).activeEntries.map((event) => event.key),
+    ).toContain("concurrent");
   });
 
   it("U-MEMV2-004a: takeover enforces seven-day expiry and materializes one stable expiry tombstone", () => {
@@ -128,20 +188,55 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const exact = "2026-07-18T00:00:00.000Z";
     expect(
       writeMemoryV2(
-        { layer: "takeover", key: "next", body: "continue", type: "state", expiresAt: exact },
+        {
+          operationId: "next",
+          layer: "takeover",
+          key: "next",
+          body: "continue",
+          type: "state",
+          expiresAt: exact,
+        },
         mock,
       ).ok,
     ).toBe(true);
     mock.clock = exact;
     expect(expireMemory("takeover", exact, mock)).toEqual([
-      { id: "takeover:next:2026-07-11T00:00:00.000Z:1", reason: "expired" },
+      { id: "takeover:next:op:next", reason: "expired" },
     ]);
-    expect(expireMemory("takeover", exact, mock)).toEqual([
-      { id: "takeover:next:2026-07-11T00:00:00.000Z:1", reason: "already_expired" },
-    ]);
+    expect(expireMemory("takeover", exact, mock)).toEqual([]);
     expect(
       mock.events.takeover.filter((event) => event.lifecycle.state === "expired"),
     ).toHaveLength(1);
+
+    const superseded = mockDeps("2026-07-11T00:00:00.000Z");
+    const first = writeMemoryV2(
+      {
+        operationId: "same-old",
+        layer: "takeover",
+        key: "same",
+        body: "old",
+        type: "state",
+        expiresAt: exact,
+      },
+      superseded,
+    );
+    superseded.clock = "2026-07-11T00:01:00.000Z";
+    const second = writeMemoryV2(
+      {
+        operationId: "same-new",
+        layer: "takeover",
+        key: "same",
+        body: "new",
+        type: "state",
+        expiresAt: exact,
+      },
+      superseded,
+    );
+    if (!first.ok || !second.ok) throw new Error("takeover fixture write failed");
+    superseded.clock = exact;
+    expect(expireMemory("takeover", exact, superseded)).toEqual([
+      { id: second.entry.id, reason: "expired" },
+    ]);
   });
 
   it("U-MEMV2-004b: delivery consumes only after output and retries after persist failure", () => {
@@ -173,6 +268,13 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(consumeTakeover(["harness-id"], "c", mock)).toEqual([
       { id: "harness-id", reason: "wrong_layer" },
     ]);
+    const expired = takeoverMock();
+    const expiredId = expired.events.takeover[0]?.id ?? "missing";
+    expired.clock = "2026-07-12T00:00:00.000Z";
+    expireMemory("takeover", expired.clock, expired);
+    expect(consumeTakeover([expiredId], "c", expired)).toEqual([
+      { id: expiredId, reason: "expired" },
+    ]);
   });
 
   it("U-MEMV2-005b: stale fences fail and two processes create one consume tombstone", async () => {
@@ -191,6 +293,7 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
 
     const written = writeMemoryV2(
       {
+        operationId: "cross-process",
         layer: "takeover",
         key: "cross-process",
         body: "only once",
@@ -244,6 +347,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(limited.lines.join("\n").length).toBeGreaterThan(0);
     expect(() => surfaceMemoryV2({ maxEntries: -1 }, mock)).toThrow(/invalid_maxEntries/);
     expect(() => surfaceMemoryV2({ maxChars: 1.5 }, mock)).toThrow(/invalid_maxChars/);
+    expect(() => surfaceMemoryV2({ maxChars: 1 }, mock)).toThrow(
+      /maxChars_too_small_for_breadcrumb/,
+    );
+    expect(() => surfaceMemoryV2({ perTypeMin: 0 }, mock)).toThrow(/invalid_perTypeMin/);
   });
 
   it("U-MEMV2-007b: rendering is deterministic and maxBodyChars is applied before maxChars", () => {
@@ -259,7 +366,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
 
   it("U-MEMV2-008a: successful append emits one body-free memory_write event", () => {
     const mock = mockDeps("2026-07-11T00:00:00.000Z");
-    const result = writeMemoryV2({ layer: "harness", key: "k", body: "private body" }, mock);
+    const result = writeMemoryV2(
+      { operationId: "event", layer: "harness", key: "k", body: "private body" },
+      mock,
+    );
     expect(result.ok).toBe(true);
     expect(mock.sessionEvents).toHaveLength(1);
     expect(JSON.stringify(mock.sessionEvents)).not.toContain("private body");
@@ -268,18 +378,51 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
   it("U-MEMV2-008b: event failure preserves memory success while validation/dry-run emit nothing", () => {
     const mock = mockDeps("2026-07-11T00:00:00.000Z");
     mock.failSessionEvent = true;
-    expect(writeMemoryV2({ layer: "harness", key: "k", body: "ok" }, mock)).toMatchObject({
+    expect(
+      writeMemoryV2({ operationId: "ok", layer: "harness", key: "k", body: "ok" }, mock),
+    ).toMatchObject({
       ok: true,
       diagnostics: ["session_event_persist_failed"],
     });
     const count = mock.sessionEvents.length;
-    expect(writeMemoryV2({ layer: "harness", key: "bad", body: "SECRET_MARKER" }, mock).ok).toBe(
-      false,
-    );
-    expect(writeMemoryV2({ layer: "harness", key: "dry", body: "ok", dryRun: true }, mock).ok).toBe(
-      false,
-    );
+    expect(
+      writeMemoryV2(
+        { operationId: "bad", layer: "harness", key: "bad", body: "SECRET_MARKER" },
+        mock,
+      ).ok,
+    ).toBe(false);
+    expect(
+      writeMemoryV2(
+        { operationId: "dry", layer: "harness", key: "dry", body: "ok", dryRun: true },
+        mock,
+      ).ok,
+    ).toBe(false);
     expect(mock.sessionEvents).toHaveLength(count);
+
+    const recovery = mockDeps("2026-07-11T00:00:00.000Z");
+    recovery.failAfterMutation = true;
+    expect(
+      writeMemoryV2(
+        { operationId: "recover", layer: "harness", key: "recover", body: "once" },
+        recovery,
+      ),
+    ).toMatchObject({ ok: true, diagnostics: ["coordination_commit_unknown_recovered"] });
+    recovery.failAfterMutation = false;
+    expect(
+      writeMemoryV2(
+        { operationId: "recover", layer: "harness", key: "recover", body: "once" },
+        recovery,
+      ),
+    ).toMatchObject({ ok: true, diagnostics: ["idempotent_replay"] });
+    expect(recovery.events.harness).toHaveLength(1);
+
+    let writeCalls = 0;
+    writeAllBytes(1, new Uint8Array([1, 2, 3, 4, 5]), (_fd, _bytes, _offset, length) => {
+      writeCalls += 1;
+      return Math.min(2, length);
+    });
+    expect(writeCalls).toBe(3);
+    expect(() => writeAllBytes(1, new Uint8Array([1]), () => 0)).toThrow(/short_write/);
   });
 });
 
@@ -290,6 +433,7 @@ interface MockDeps extends MemoryDepsV2 {
   outputs: string[][];
   failAppend: boolean;
   failSessionEvent: boolean;
+  failAfterMutation: boolean;
 }
 
 function mockDeps(clock: string): MockDeps {
@@ -302,6 +446,7 @@ function mockDeps(clock: string): MockDeps {
     outputs: [],
     failAppend: false,
     failSessionEvent: false,
+    failAfterMutation: false,
     now: () => mock.clock,
     isSecret: (value) => value.includes("SECRET_MARKER"),
     stableId: (layer, key, createdAt) => `${layer}:${key}:${createdAt}`,
@@ -310,7 +455,9 @@ function mockDeps(clock: string): MockDeps {
       fence += 1;
       activeFence = fence;
       try {
-        return fn(fence);
+        const result = fn(fence);
+        if (mock.failAfterMutation) throw new Error("coordination_commit_failed");
+        return result;
       } finally {
         activeFence = 0;
       }
@@ -339,6 +486,7 @@ function takeoverMock(): MockDeps {
   const mock = mockDeps("2026-07-11T00:00:00.000Z");
   const result = writeMemoryV2(
     {
+      operationId: "takeover-next",
       layer: "takeover",
       key: "next",
       body: "continue",

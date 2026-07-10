@@ -154,6 +154,11 @@ import {
   buildProviderInvocation,
   normalizeInvokeResult,
 } from "./runtime/adapter";
+import { DELEGATION_MEMORY_BUDGET } from "./runtime/adapter-policy";
+import {
+  composeDelegationInjection,
+  type MemoryInjectionSurface,
+} from "./runtime/memory-injection";
 import { buildAgentCatalogWatchReport } from "./runtime/agent-catalog-watch";
 import {
   type AgentGuardInput,
@@ -763,16 +768,28 @@ function resolveTaskText(opts: { task?: string; taskFile?: string }): string | n
 
 function resolveSkillContextInjection(
   planId: string | undefined,
+  surface: MemoryInjectionSurface,
 ): AdapterContextInjection | undefined {
-  if (!planId) return undefined;
+  // memory recall の載る面は composeDelegationInjection の surface policy が機械固定する
+  // (L6-64 §4 段階導入: delegation のみ。team_run / task_route は follow-up)。
+  // read は fail-soft (memory 不在 = 空)。
+  return composeDelegationInjection({
+    skills: resolveSkillInjectionPaths(planId),
+    memoryLines: surfaceMemory(fileMemoryDeps({ root: process.cwd() }), DELEGATION_MEMORY_BUDGET),
+    surface,
+  });
+}
+
+function resolveSkillInjectionPaths(planId: string | undefined): {
+  required_paths: string[];
+  optional_paths: string[];
+} {
+  if (!planId) return { required_paths: [], optional_paths: [] };
   const repoRoot = process.cwd();
   const { db } = openSkillSuggestDb(repoRoot, false);
   try {
     const recommendations = recommendSkillsForPlan(db, planId);
     const injection = buildSkillInjectionSet(db, recommendations);
-    if (injection.required_paths.length === 0 && injection.optional_paths.length === 0) {
-      return undefined;
-    }
     return {
       required_paths: injection.required_paths,
       optional_paths: injection.optional_paths,
@@ -9778,7 +9795,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
           return;
         }
         const mode = detectMode().mode;
-        const contextInjection = resolveSkillContextInjection(opts.plan);
+        const contextInjection = resolveSkillContextInjection(opts.plan, "delegation");
         const plan = buildAdapterPlan(
           {
             provider,
@@ -10134,7 +10151,7 @@ task
       const adapterPlan = opts.execute
         ? routeToAdapterPlan(decision, text, {
             mode: detection.mode,
-            contextInjection: resolveSkillContextInjection(planIdFromPath(opts.plan)),
+            contextInjection: resolveSkillContextInjection(planIdFromPath(opts.plan), "task_route"),
           })
         : null;
       if (opts.json) {
@@ -10277,7 +10294,7 @@ team
           execute: Boolean(opts.execute),
           planId: opts.plan,
           placements,
-          contextInjection: resolveSkillContextInjection(opts.plan),
+          contextInjection: resolveSkillContextInjection(opts.plan, "team_run"),
         });
         if (!opts.execute) {
           if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);

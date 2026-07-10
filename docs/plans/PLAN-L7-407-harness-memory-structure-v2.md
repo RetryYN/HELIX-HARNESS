@@ -70,7 +70,7 @@ provenance/lifecycle、決定論surface、情報無損失のfenced compactionを
 
 - MEMV2-S1a..S8bの14 subcaseが実test citation付きでgreen。
 - v1 JSONL、旧API signature/返値、12件/240文字既定、U-MEMC-001..004が退行しない。
-- stdout失敗、append失敗、session event失敗、transaction外/stale fencing tokenをfixtureで再現する。
+- stdout失敗、short append、session event失敗、append後coordination commit不明/retry、transaction外/stale fencing tokenをfixtureで再現する。
 - concurrent write/consume/compactionでentry消失とterminal tombstone重複がない。
 - secret/PII-like metadata、未知enum、矛盾lifecycle、不正linkをfail-closeする。
 - `bun run typecheck`、targeted Vitest、Biome、doctor、PLAN lintがgreen。

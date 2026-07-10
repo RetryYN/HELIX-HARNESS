@@ -60,7 +60,7 @@ interface MemoryEntryV2 {
 | `normalizeMemoryEntry(raw, expectedLayer): NormalizeResult` | v1/v2一行をv2 viewへ変換する純関数。`{ok:true,entry}` または `{ok:false,reason:"parse_error"|"schema_invalid"|"layer_mismatch"}`。明示v2をv1へfallbackしない。 |
 | `validateMemoryEntry(input, now): ValidationResult` | enum、lifecycle、expiry、link、secretを検査する純関数。失敗はfield付きreasonを返す。 |
 | `resolveMemoryView(events, now): MemoryView` | supersede graphを解決し、`activeEntries`、latest terminal `tombstones`、damaged、unresolvedLinksを返す。cycle/未知supersedesはdamagedでfail-close。 |
-| `writeMemoryV2(input, deps): WriteMemoryV2Result` | result=`{ok:true,entry,diagnostics}`または`{ok:false,reason}`。validate後、layer lock内で再読→stable id生成→fenced appendする。lock解放後、append成功時だけbody非包含の`memory_write` eventを記録する。event記録失敗はmemory appendをrollbackせず、ok entry + `session_event_persist_failed` diagnosticを返す。 |
+| `writeMemoryV2(input, deps): WriteMemoryV2Result` | inputはcaller生成`operationId`必須。result=`{ok:true,entry,diagnostics}`または`{ok:false,reason}`。layer lock内で同operation IDを再読し、同一intentなら追記ゼロのidempotent success、異なるintentならfail-close。append後coordination commit不明でもJSONL既存eventを回収する。lock解放後、実append成功時だけbody非包含の`memory_write` eventを記録する。 |
 | `consumeTakeover(ids, consumerId, deps): ConsumeResult[]` | active takeoverだけにdeterministic tombstoneをappend。reason=`consumed|already_consumed|unknown_id|expired|wrong_layer|persist_failed`。同じtargetへの再実行はappendしない。 |
 | `expireMemory(layer, now, deps): ExpireResult[]` | cross-process lock内で再読し、期限到達active entryごとにdeterministic expired tombstoneを最大1件appendする。surface/delivery/compactionの前処理。 |
 | `surfaceMemoryV2(input, deps): SurfaceResult` | normalized viewを§5の決定論で選び、render lines、selected ids、hidden/lifecycle集計を返す純選定。consumeは行わない。 |
@@ -74,6 +74,7 @@ incrementする。SQLiteはcoordination専用でmemory dataを保持せず、JSO
 tokenを受け、`appendEvent`/`replaceEvents`はcommit直前にtransaction内のcurrent token一致を検証する。process crash時は
 SQLiteがtransaction lockを解放し、旧processは再開できない。timeout/busy/stale tokenは副作用ゼロで拒否する。
 write/consume/expire/compactの全mutatorが同じlayer lockを使い、lock内で必ず再readしてからcheck→append/replaceする。
+JSONL appendは全byte write loop→file fsyncを完了してから成功とし、short writeを成功扱いしない。
 
 - `key` は layer 内の論理系列、`id` は immutable event identity。更新は新 entry が旧 `id` を
   `supersedes` する append-only 操作であり、in-place update を禁止する。
@@ -169,7 +170,9 @@ read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。
 ## §7 不変条件と失敗境界
 
 - v1 の key-based supersede、secret 拒否、決定論 ordering を退行させない。
-- `compactMemoryV2`はnormalized observable viewを変えない。takeoverのlatest consumed/expired tombstoneは
+- `compactMemoryV2`はactive/tombstone/unresolved-linkのnormalized observable viewを変えない。破損行は
+  `damaged`件数を結果/auditへ記録して物理除去するため、diagnostic countだけは前後不変の対象外とする。
+  takeoverのlatest consumed/expired tombstoneは
   identity/state/count保持のためJSONLに残し、古いbodyだけredactする。`.helix/logs/`は補助auditであり集計に使わない。
 - parse / persist / consume の失敗は対象行と理由を diagnostics に残し、別 layer や別 key を巻き込まない。
 - memory は harness.db の active PLAN / feedback state を複製しない。矛盾時は DB を優先し、memory の
@@ -183,15 +186,15 @@ read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。
 | MEMV2-S1b | 旧`surfaceMemory` signature/返値/12件/240文字がv1 fixtureと同値。旧depsでtakeover APIは呼べない。 |
 | MEMV2-S2a | 未知enumとlifecycle矛盾をfield付きreasonで拒否。 |
 | MEMV2-S2b | body/metadata secret、不正・重複linkを拒否しsoft unresolved linkはdiagnostic保持。 |
-| MEMV2-S3 | consumed/expiredを含む`compactMemoryV2`前後でnormalized view/lifecycle集計がdeep equal。concurrent writeは同じlockで直列化され消失しない。旧`compactMemory`はv1 active-only。 |
+| MEMV2-S3 | consumed/expiredを含む`compactMemoryV2`前後でactive/tombstone/link viewがdeep equal。damaged行は件数記録後に除去。別process concurrent writeはSQLite coordinationで直列化され消失しない。 |
 | MEMV2-S4a | takeoverは許可type + 7日以内expiryのみ受理。`expireMemory`は期限境界でstable tombstoneを1件だけ生成。 |
 | MEMV2-S4b | stdout成功後だけconsume。stdout/append各失敗とcrash pointで情報を失わず再表示可能。 |
 | MEMV2-S5a | 再consumeは追記ゼロの`already_consumed`、未知/expired/他layerは理由付きno-op。 |
 | MEMV2-S5b | 別processの同時consumeでもSQLite coordinationによりtombstoneがtargetあたり1件。transaction外/旧fencing tokenは追記ゼロ。 |
 | MEMV2-S6 | 単一typeが100件でも別typeを選び、hidden/lifecycle breadcrumbが実数一致。 |
-| MEMV2-S7a | entries/code-points境界、breadcrumb予約、oversize skip、0 unlimited、不正値を検証。 |
+| MEMV2-S7a | entries/code-points境界、breadcrumb予約、oversize skip、0 unlimited、不正値を検証。breadcrumbすら収まらないbudgetはfail-close。 |
 | MEMV2-S7b | 同一入力/clock/budgetの決定論と`maxBodyChars`→`maxChars` precedenceを検証。 |
-| MEMV2-S8a | memory append成功時だけbody非包含の`memory_write` eventを1件記録。 |
-| MEMV2-S8b | session event失敗はmemory成功を反転せずdiagnosticを返し、dry-run/validation失敗はeventゼロ。 |
+| MEMV2-S8a | operationId付きmemory append成功時だけbody非包含の`memory_write` eventを1件記録。short writeは成功にしない。 |
+| MEMV2-S8b | session event失敗はmemory成功を反転せずdiagnostic。append後coordination commit不明のretryは既存eventを回収し自己cycle/重複ゼロ。dry-run/validation失敗はeventゼロ。 |
 
 後続 L7 実装 PLAN は上記14 subcaseを`U-MEMV2-*` oracleとtest citationへ同時に具体化する。
