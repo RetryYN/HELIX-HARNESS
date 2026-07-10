@@ -43,6 +43,37 @@ terminal遷移は同一`operation_id`でDB projection、feedback lifecycle、必
 | release/operations docs | 運用移管artifact | `operations_transition`として保持 |
 | archive | 旧PLAN/判断履歴 | `legacy_archive`として保持、runtime read禁止 |
 
+## R1 現役surface manifest
+
+本表は retirement 対象を文字列一致ではなく、実行責務と所有者で分類する。`path` は exact path または
+明示 glob、`symbol / matcher` は当該 path 内で分類対象になる live symbol を示す。新しい参照がどの行にも
+一致しない場合は `unclassified` とし、R2/R3へ進めない。
+
+| path | symbol / matcher | kind | owner | replacement / preserve境界 | removal checkpoint |
+|---|---|---|---|---|---|
+| `src/cli.ts` | session `handover` / `handover status` route、`runHandover` 呼出し | `session_prose` | CLI/runtime | `status`、completion packet、memory、feedbackのread surfaceへ置換 | `legacy_write_disabled` |
+| `src/handover/**` | `runHandover`、pointer/scaffold/consume/stale/bypass/derivation API | `session_prose` | state/runtime | moduleを撤去し、session-log + state-db + memory + feedbackへ責務移管 | `cleanup` |
+| `src/doctor/index.ts` | `checkHandover*`、CURRENT freshness/discipline/bypass/derived drift | `session_prose` | doctor | continuation health、DB precedence、resurrection、unclassified residual検査へ置換 | `legacy_write_disabled` |
+| `src/runtime/session-log.ts`、Stop/SessionStart配線 | CURRENT/prose snapshot再生成または読取 | `session_prose` | runtime | append-only event、冪等DB projection、bounded recallのみを使う | `legacy_write_disabled` |
+| `src/setup/**`、`docs/templates/**`、`.claude/**`、`.codex/**` | session handover path/command/task/managed marker生成 | `session_prose` | distribution/adapter | memory/evidence/feedback/teams baselineへ置換。旧path/commandを生成しない | `cleanup` |
+| `AGENTS.md`、`CLAUDE.md`、`.claude/CLAUDE.md` | session開始・停止・Adapter Rule Markerの`helix handover`案内 | `session_prose` | governance/adapter | status + DB + memory continuation規約へatomic同期 | `legacy_write_disabled` |
+| `.helix/handover/CURRENT.json` | current pointer、takeover note、derived snapshot | `session_prose` | local runtime state | machine stateはDB直読、noteはprovenance/TTL付きtakeover memoryへ最大1件移管 | `memory_primary` |
+| `docs/handover/session-handover-*.md` | session next action/carry/prose snapshot | `legacy_archive` | governance archive | digest manifest付きarchive。runtime read source禁止 | `cleanup` |
+| `src/runtime/provider-handover.ts`、`.helix/handover/provider/*.json` | `runProviderHandover`、provider invocation/review packet | `provider_evidence` | runtime audit | 監査証跡として保持し、progress/next action/bounded recallへjoinしない | `complete` |
+| `docs/design/**/L11-*`、`docs/design/**/L14-*` | 開発→受入/運用移管のartifact | `operations_transition` | operations governance | 運用設計artifactとして保持し、session continuationと型を共有しない | `complete` |
+| `docs/design/harness/L6-function-design/handover-mechanism.md`、`handover-db-derivation.md` | 旧writer/pointer/DB-derived snapshot契約 | `compatibility_only` | design archive | retirement prerequisiteの比較oracleのみ。writer復活根拠にしない | `cleanup` |
+| `tests/handover*.test.ts`、`tests/handover-db-derivation.test.ts` | 旧CURRENT writer/reader/stale/derivationのgreen期待 | `compatibility_only` | QA | U-HRET/IT-CONTのabsence・resurrection・preserve試験へ置換 | `cleanup` |
+| confirmed L0-L5 design / L3-L9 test-design | session handover/CURRENTを現役正本またはgreen期待にする記述 | `session_prose` | design/verification | Reverse-344 R3変更波でcontinuation契約と対向oracleへatomic置換 | `R3` |
+| `docs/archive/**`、過去PLAN/audit/review evidence | 成立経緯としてのhandover記述 | `legacy_archive` | archive | 変更せず保持。runtime/doctorのlive sourceから除外 | `complete` |
+
+### R1 検証状態
+
+- 2026-07-11時点の既知live surface classは上記14行へ分類した。
+- path/symbol単位の自動scanと`unclassified=0`証跡は未完了である。この証跡が無い間、
+  PLAN-REVERSE-344は`workflow_phase=R1` / `status=draft`を維持する。
+- R1 scannerはprovider/operations/archiveの許可を文字列`handover`だけで判定せず、path + symbol + kindの
+  組合せで分類し、同一symbolの矛盾分類もhard failにする。
+
 ## freeze条件
 
 - 全live参照のtyped inventoryが未分類0である。
