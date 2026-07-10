@@ -62,6 +62,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/db-projection-ingestion.test.ts
     artifact_type: test_code
+  - artifact_path: tests/vmodel-zip-manifest.test.ts
+    artifact_type: test_code
   - artifact_path: tests/visualization-view-model.test.ts
     artifact_type: test_code
   - artifact_path: tests/visualization-treeview.test.ts
