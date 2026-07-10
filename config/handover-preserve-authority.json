@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "handover-preserve-authority.v1",
+  "sourceRevision": "69cc0f02ac1abe815eeb9f653ab2afa9a90df387",
+  "entries": [
+    {
+      "path": ".helix/handover/provider/20260608083025-codex-to-claude-plan-l4-06.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:8a38ea376916426219f3a62fa9bcd3b5761dc6ff6075f31098e781a00e356c87"
+    },
+    {
+      "path": ".helix/handover/provider/20260616084105-codex-to-claude-plan-l7-62-runtime-portability-guard.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:982552a47ac1e0a3a9c96960c6e7fbbbbfafed04eb24e1ef0b42ed5169d880c4"
+    },
+    {
+      "path": ".helix/handover/provider/20260616091932-claude-to-codex-plan-l7-68.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:010dafecbbca73bbd843919fd0f7abeabd5bc69fa42e089e7505179dc1d21be3"
+    },
+    {
+      "path": ".helix/handover/provider/20260616134801-codex-to-claude-plan-l7-68.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:154e868884eacb0f73b1fb3c06ec485efe650f27ec91b371eaf9c54e44f3fea4"
+    },
+    {
+      "path": ".helix/handover/provider/20260617020449-claude-to-codex-plan-l7-68.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:7c27646b8eecbef0cb6f053913702a6bdc1d7981bd7a3272d0a17beab154f7f1"
+    },
+    {
+      "path": ".helix/handover/provider/20260617023105-claude-to-codex-plan-l7-68.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:2239e05b070ae93195999754e4507d446025f1a122f165dea68acd31d44c3341"
+    },
+    {
+      "path": ".helix/handover/provider/20260617031724-claude-to-codex-plan-l7-68.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:2fd8fe39e30272b30bf55bb5409f5310390b9e78a6f66b15e184e7f1ea06ed7d"
+    },
+    {
+      "path": ".helix/handover/provider/20260619062853-codex-to-claude-plan-l7-79.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:74d7c497a937f2debea4ddc8cee2e2f39baebc5cd6cac5e60d06d4875267c55f"
+    },
+    {
+      "path": ".helix/handover/provider/20260628022203-claude-to-codex-plan-l1-06-helix-solo-conversion.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:9f26ba227742853ad585433f6b31b704eca27489b38dcf4b3c903954b379cd0c"
+    },
+    {
+      "path": ".helix/handover/provider/CURRENT.json",
+      "kind": "provider_evidence",
+      "digest": "sha256:9f26ba227742853ad585433f6b31b704eca27489b38dcf4b3c903954b379cd0c"
+    },
+    {
+      "path": "docs/design/harness/L11-uat/uat-evidence-boundary.md",
+      "kind": "operations_transition",
+      "digest": "sha256:7fe1d969d995896f72ead65deaf16fa5b07323067872a97d7e478f8b22333d4a"
+    },
+    {
+      "path": "docs/design/harness/L14-operations/operations-feedback-boundary.md",
+      "kind": "operations_transition",
+      "digest": "sha256:1f4ff8bf2e0a95f016a1e3e4d30cae56c59dce966cb61f21141fe3da89cac670"
+    },
+    {
+      "path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+      "kind": "operations_transition",
+      "digest": "sha256:6e92ffa1941cf58dd44577dbbc32e9d67e3d61003230d200c4966589b0137934"
+    },
+    {
+      "path": "docs/design/helix/L14-operations/operations-feedback-boundary.md",
+      "kind": "operations_transition",
+      "digest": "sha256:e940ef2a1bf2903ffbd953e37d00a37884eb3929697642bfb200ad3ee8934af2"
+    }
+  ]
+}

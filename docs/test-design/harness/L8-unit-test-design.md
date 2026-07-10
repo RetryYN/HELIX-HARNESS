@@ -94,6 +94,8 @@ PLAN-REVERSE-344がR4へmergeされるまで本節は設計oracleであり、実
 `tests/continuation-event-first.test.ts`、`U-HRET-008/009`のpreserve/archive追加oracleは
 `tests/retirement-preserve.test.ts`へcitation済み。`U-HRET-011/012/014`のpre-cutover shadow oracleは
 `tests/handover-resurrection.test.ts`へcitationし、既知baselineをtelemetry、新規findingをhard failする。
+baseline authorityはimmutable Git revision/blob/file/semantic digestとcode pinを一致させ、preserve allowlistは
+R4時点のpath/kind/digest authority、real collector、strict schema/retention/content検証からのみ生成する。
 complete checkpoint後のenforce契約も単体fixtureで検証するが、production mode切替、`U-HRET-013`、
 fresh/brownfield/distribution green、retirement完了はSprint 3とPO confirmation後まで主張しない。
 

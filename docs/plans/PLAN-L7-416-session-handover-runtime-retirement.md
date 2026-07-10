@@ -196,9 +196,11 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
   provider/operations/archive allowlist、baseline digest、checkpoint由来mode、doctor負例を
   `src/lint/handover-resurrection.ts`、`src/doctor/index.ts`、`tests/handover-resurrection.test.ts`へ束縛した。
   pre-cutoverでは既知findingをtelemetry、新規findingだけをhard failする。独立レビューでscan root、
-  TS generated token、subpath import、composed writer pathの盲点を検出し是正したが、baseline authority、
-  preserve validator由来allowlist、journal由来production enforce、fresh/brownfield/distribution oracleは
-  blockerとして未達であり、Sprint 5 freezeはrejectのままとする。
+  TS generated token、subpath import、composed writer pathの盲点を検出し是正した。baselineはimmutable Git
+  revision/blob/file/semantic digestとcode pinの二段ratchet、preserve allowlistはR4時点path/kind/digest authorityと
+  real collector/strict validatorへ束縛し、同時digest更新・provider削除・caller boolean spoofをfail-closeした。
+  journal由来production enforce、fresh/brownfield/distribution oracleはblockerとして未達であり、
+  Sprint 5 freezeはrejectのままとする。
 - Sprint 3: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 

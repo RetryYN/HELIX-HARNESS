@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "handover-resurrection-authority.v1",
+  "baselinePath": "config/handover-resurrection-baseline.json",
+  "sourceRevision": "69cc0f02ac1abe815eeb9f653ab2afa9a90df387",
+  "baselineBlobOid": "8874bc27f24f56331d2e71919a372d2998606865",
+  "baselineFileDigest": "sha256:89b51922804bf4fd376bc681637ec93a5644e39007db2f4af62ada6c46795a1a",
+  "baselineDigest": "sha256:799c0898015b6c6666182f50ab304887eba79d5716c3787061fa712d1e4b568e",
+  "decisionId": "PLAN-L7-416:shadow-baseline:scan-hardening-v1"
+}

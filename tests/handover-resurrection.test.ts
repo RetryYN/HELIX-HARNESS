@@ -1,5 +1,6 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -65,31 +66,54 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
   });
 
   it("IT-CONT-03: doctorはshadow baseline外の旧surfaceをhard failする", () => {
-    const repoRoot = mkdtempSync(join(tmpdir(), "helix-resurrection-doctor-"));
+    const tempRoot = mkdtempSync(join(tmpdir(), "helix-resurrection-doctor-"));
+    const repoRoot = join(tempRoot, "repo");
     try {
-      mkdirSync(join(repoRoot, "config"), { recursive: true });
-      mkdirSync(join(repoRoot, "src"), { recursive: true });
-      const baseline = buildResurrectionBaseline([]);
-      writeFileSync(
-        join(repoRoot, "config", "handover-resurrection-baseline.json"),
-        `${JSON.stringify(
-          {
-            schemaVersion: "handover-resurrection-baseline.v1",
-            policyDigest: resurrectionPolicyDigest(),
-            ...baseline,
-          },
-          null,
-          2,
-        )}\n`,
-      );
+      execFileSync("git", ["clone", "-q", "--shared", process.cwd(), repoRoot]);
+      for (const name of [
+        "handover-resurrection-authority.json",
+        "handover-preserve-authority.json",
+      ]) {
+        writeFileSync(
+          join(repoRoot, "config", name),
+          readFileSync(join(process.cwd(), "config", name), "utf8"),
+        );
+      }
       writeFileSync(join(repoRoot, "src", "legacy.ts"), 'program.command("handover");\n');
 
       const result = checkHandoverResurrection(repoRoot);
       expect(result.ok).toBe(false);
       expect(result.messages.join("\n")).toContain("handover-resurrection");
       expect(result.messages.join("\n")).toContain("src/legacy.ts");
+
+      const providerName = readdirSync(join(repoRoot, ".helix", "handover", "provider")).find(
+        (name) => name !== "CURRENT.json",
+      );
+      if (!providerName) throw new Error("provider fixture missing");
+      const providerPath = join(".helix", "handover", "provider", providerName);
+      rmSync(join(repoRoot, providerPath));
+      expect(checkHandoverResurrection(repoRoot).ok).toBe(false);
+      writeFileSync(join(repoRoot, providerPath), readFileSync(join(process.cwd(), providerPath)));
+
+      const forged = buildResurrectionBaseline([]);
+      writeFileSync(
+        join(repoRoot, "config", "handover-resurrection-baseline.json"),
+        `${JSON.stringify(
+          {
+            schemaVersion: "handover-resurrection-baseline.v1",
+            policyDigest: resurrectionPolicyDigest(),
+            ...forged,
+          },
+          null,
+          2,
+        )}\n`,
+      );
+      expect(checkHandoverResurrection(repoRoot)).toEqual({
+        ok: false,
+        messages: ["handover-resurrection - violation: detector or baseline could not be read"],
+      });
     } finally {
-      rmSync(repoRoot, { recursive: true, force: true });
+      rmSync(tempRoot, { recursive: true, force: true });
     }
   });
   it("U-HRET-012: command/module/schema/panel/path/writerを型別findingにする", () => {
