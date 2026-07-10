@@ -346,6 +346,11 @@ import {
   scrumReverseMessages,
 } from "../lint/scrum-reverse";
 import {
+  analyzeSecretScan,
+  loadSecretScanArtifacts,
+  secretScanMessages,
+} from "../lint/secret-scan";
+import {
   analyzeSemanticFrontierConsistency,
   loadSemanticFrontierConsistencyInput,
   semanticFrontierConsistencyMessages,
@@ -1250,6 +1255,27 @@ export function checkDesignLanguage(repoRoot: string): {
   } catch {
     return {
       messages: ["design-language - violation: design/governance/ADR docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkSecretScan(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["secret-scan - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = analyzeSecretScan(loadSecretScanArtifacts(repoRoot));
+    return { messages: secretScanMessages(r), ok: r.checked > 0 && r.ok };
+  } catch {
+    return {
+      messages: ["secret-scan - violation: docs / runtime state artifacts could not be read"],
       ok: false,
     };
   }
@@ -6544,6 +6570,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const codingRules = checkCodingRules(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
+  const secretScan = checkSecretScan(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
@@ -6703,6 +6730,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       codingRules.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
+      secretScan.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
       gateConfirm.ok &&
@@ -6823,6 +6851,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
+      ...secretScan.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
