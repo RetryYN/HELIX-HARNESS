@@ -90,7 +90,7 @@ const GREEN_COMMAND_ENFORCEMENT_DATE = "2026-06-23";
 const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
 const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
 const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
-const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
+export const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
 
 function reviewViolationReason(issue: CrossAgentModelIssue | undefined): string {
   if (issue === "same_provider") return "same_provider";
@@ -173,7 +173,7 @@ function requiresGreenCommands(plan: ParsedReviewPlan): boolean {
   );
 }
 
-function greenCommandViolationReason(entry: ReviewEntry): string | null {
+export function greenCommandViolationReason(entry: ReviewEntry): string | null {
   // fail は未承認所見でありgreen主張ではない。human判断の扱いはPLAN全entryを見て呼出側で決める。
   if (/^fail$/i.test(entry.verdict ?? "")) return null;
   const commands = entry.green_commands ?? [];

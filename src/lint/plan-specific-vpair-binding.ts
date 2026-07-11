@@ -3,10 +3,16 @@ import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync, statSyn
 import { isAbsolute, join, relative, resolve } from "node:path";
 import ts from "typescript";
 import { parse as parseYaml } from "yaml";
-import { PLAN_SPECIFIC_ORACLE_ID_PATTERN } from "../schema/frontmatter";
+import { checkCrossAgentModelPair, modelProviderFromId } from "../schema";
+import { frontmatterSchema, PLAN_SPECIFIC_ORACLE_ID_PATTERN } from "../schema/frontmatter";
+import {
+  greenCommandViolationReason,
+  type ReviewEntry,
+  TECHNICAL_APPROVAL_VERDICTS,
+} from "./review-evidence";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
-  "plan-specific-vpair-binding-authority.v2" as const;
+  "plan-specific-vpair-binding-authority.v3" as const;
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH =
   "config/plan-specific-vpair-binding-authority.json" as const;
 export const PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST =
@@ -57,6 +63,13 @@ export interface PlanSpecificVpairPlan {
   pair_artifact: unknown;
   verification_bindings?: unknown;
   generates?: unknown;
+  resolves_authority?: unknown;
+  review_evidence?: unknown;
+  title?: unknown;
+  layer?: unknown;
+  drive?: unknown;
+  agent_slots?: unknown;
+  dependencies?: unknown;
   /** Markdown bodyを含むPLAN全文。exact PLAN ID citationの検査対象はtest本文側。 */
   source?: string;
 }
@@ -89,6 +102,7 @@ export interface PlanSpecificVpairAuthorityTombstone {
   fingerprint: string;
   resolved_at: string;
   resolution_plan_id: string;
+  resolution_plan_semantic_digest: string;
   previous_digest: string;
   entry_digest: string;
 }
@@ -108,8 +122,8 @@ export interface PlanSpecificVpairBindingInput {
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
   expectedLegacyIdentityDigest?: string;
-  /** resolution PLANがterminalかを判定するpure dependency。 */
-  isTerminalResolutionPlan?: (planId: string) => boolean;
+  /** resolution PLANの証拠snapshot。repo adapterは全PLANから構築する。 */
+  resolutionPlans?: ReadonlyMap<string, PlanSpecificVpairPlan>;
 }
 
 export interface PlanSpecificVpairBindingResult {
@@ -210,11 +224,121 @@ export function authorityTombstoneDigest(
   previousDigest: string,
   value: Pick<
     PlanSpecificVpairAuthorityTombstone,
-    "fingerprint" | "resolved_at" | "resolution_plan_id"
+    "fingerprint" | "resolved_at" | "resolution_plan_id" | "resolution_plan_semantic_digest"
   >,
 ): string {
   return sha256(
-    `${previousDigest}\n${value.fingerprint}\n${value.resolved_at}\n${value.resolution_plan_id}`,
+    `${previousDigest}\n${value.fingerprint}\n${value.resolved_at}\n${value.resolution_plan_id}\n${value.resolution_plan_semantic_digest}`,
+  );
+}
+
+/** 解消PLANの設計意味とreview証拠をtombstoneへ固定する。 */
+export function resolutionPlanSemanticDigest(plan: PlanSpecificVpairPlan): string {
+  return sha256(
+    JSON.stringify({
+      plan: planSemanticDigest(plan),
+      review_evidence: canonicalizeSemanticValue(plan.review_evidence ?? null),
+    }),
+  );
+}
+
+function validResolutionPlan(input: {
+  plan: PlanSpecificVpairPlan | undefined;
+  tombstone: PlanSpecificVpairAuthorityTombstone;
+  initial: PlanSpecificVpairAuthorityInitial;
+  plansById: ReadonlyMap<string, PlanSpecificVpairPlan>;
+  rawFindings: readonly PlanSpecificVpairFinding[];
+}): boolean {
+  const { plan, tombstone, initial, plansById, rawFindings } = input;
+  if (!plan || plan.status !== "completed" || plan.plan_id !== tombstone.resolution_plan_id)
+    return false;
+  const metadata = plan.resolves_authority;
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return false;
+  const record = metadata as Record<string, unknown>;
+  if (
+    Object.keys(record).sort().join(",") !== "authority_path,fingerprint,reason,target_plan_id" ||
+    record.authority_path !== PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH ||
+    record.fingerprint !== tombstone.fingerprint ||
+    record.target_plan_id !== initial.plan_id ||
+    record.reason !== initial.reason
+  )
+    return false;
+  const target = plansById.get(initial.plan_id);
+  if (
+    !target ||
+    !frontmatterSchema.safeParse(target).success ||
+    !frontmatterSchema.safeParse(plan).success ||
+    target.path !== initial.plan_path ||
+    (target.kind !== "impl" && target.kind !== "add-impl") ||
+    target.status === "archived" ||
+    !Array.isArray(target.verification_bindings) ||
+    target.verification_bindings.length === 0 ||
+    !plansById.has(String(plan.plan_id)) ||
+    !Array.isArray(plan.verification_bindings) ||
+    plan.verification_bindings.length === 0 ||
+    rawFindings.some(
+      (finding) => finding.plan_id === initial.plan_id || finding.plan_id === plan.plan_id,
+    )
+  )
+    return false;
+  if (!Array.isArray(plan.generates)) return false;
+  const generated = new Map(
+    plan.generates.flatMap((raw) => {
+      if (!raw || typeof raw !== "object" || Array.isArray(raw)) return [];
+      const item = raw as Record<string, unknown>;
+      return typeof item.artifact_path === "string" && typeof item.artifact_type === "string"
+        ? ([[item.artifact_path, item.artifact_type]] as const)
+        : [];
+    }),
+  );
+  if (
+    generated.get(PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH) !== "config" ||
+    generated.get(initial.plan_path) !== "markdown_doc"
+  )
+    return false;
+  if (!Array.isArray(plan.review_evidence)) return false;
+  const independentlyReviewed = plan.review_evidence.some((raw) => {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return false;
+    const review = raw as Record<string, unknown>;
+    const kind = review.review_kind;
+    const verdict = typeof review.verdict === "string" ? review.verdict.toLowerCase() : "";
+    const worker = typeof review.worker_model === "string" ? review.worker_model.trim() : "";
+    const reviewer = typeof review.reviewer_model === "string" ? review.reviewer_model.trim() : "";
+    const modelsIndependent =
+      kind === "cross_agent"
+        ? checkCrossAgentModelPair(worker, reviewer).ok
+        : kind === "intra_runtime_subagent" &&
+          modelProviderFromId(worker) !== "unknown" &&
+          modelProviderFromId(reviewer) !== "unknown" &&
+          worker.toLowerCase() !== reviewer.toLowerCase();
+    const reviewedAt = typeof review.reviewed_at === "string" ? review.reviewed_at : "";
+    const testsGreenAt = typeof review.tests_green_at === "string" ? review.tests_green_at : "";
+    const reviewedEpoch = Date.parse(reviewedAt);
+    const testsGreenEpoch = Date.parse(testsGreenAt);
+    const commands = Array.isArray(review.green_commands) ? review.green_commands : [];
+    const commandTimesValid =
+      commands.length > 0 &&
+      commands.every((command) => {
+        if (!command || typeof command !== "object" || Array.isArray(command)) return false;
+        const completedAt = (command as Record<string, unknown>).completed_at;
+        if (typeof completedAt !== "string") return false;
+        const completedEpoch = Date.parse(completedAt);
+        return Number.isFinite(completedEpoch) && completedEpoch <= testsGreenEpoch;
+      });
+    return (
+      modelsIndependent &&
+      TECHNICAL_APPROVAL_VERDICTS.has(verdict) &&
+      Number.isFinite(testsGreenEpoch) &&
+      Number.isFinite(reviewedEpoch) &&
+      testsGreenEpoch <= reviewedEpoch &&
+      commandTimesValid &&
+      greenCommandViolationReason(review as unknown as ReviewEntry) === null
+    );
+  });
+  return (
+    independentlyReviewed &&
+    SHA256.test(tombstone.resolution_plan_semantic_digest) &&
+    resolutionPlanSemanticDigest(plan) === tombstone.resolution_plan_semantic_digest
   );
 }
 
@@ -413,13 +537,14 @@ function validateAuthority(input: {
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
   expectedLegacyIdentityDigest?: string;
-  isTerminal?: (id: string) => boolean;
+  resolutionPlans?: ReadonlyMap<string, PlanSpecificVpairPlan>;
+  plansById: ReadonlyMap<string, PlanSpecificVpairPlan>;
+  rawFindings: readonly PlanSpecificVpairFinding[];
 }): {
   authority: PlanSpecificVpairAuthority | null;
   error: string | null;
   resolved: Set<string>;
 } {
-  const isTerminal = input.isTerminal ?? (() => false);
   if (!input.raw || typeof input.raw !== "object" || Array.isArray(input.raw))
     return { authority: null, error: "authority missing", resolved: new Set() };
   const authority = input.raw as PlanSpecificVpairAuthority;
@@ -478,16 +603,26 @@ function validateAuthority(input: {
   let previous = initialDigest;
   const resolved = new Set<string>();
   for (const tombstone of authority.resolvedTombstones) {
+    const initialEntry = authority.initialAuthority.find(
+      (entry) => entry.fingerprint === tombstone?.fingerprint,
+    );
     if (
       !tombstone ||
       Object.keys(tombstone).sort().join(",") !==
-        "entry_digest,fingerprint,previous_digest,resolution_plan_id,resolved_at" ||
+        "entry_digest,fingerprint,previous_digest,resolution_plan_id,resolution_plan_semantic_digest,resolved_at" ||
       !SHA256.test(tombstone.fingerprint) ||
       !fingerprints.includes(tombstone.fingerprint) ||
       resolved.has(tombstone.fingerprint) ||
       !UTC_INSTANT.test(tombstone.resolved_at) ||
       typeof tombstone.resolution_plan_id !== "string" ||
-      !isTerminal(tombstone.resolution_plan_id) ||
+      !initialEntry ||
+      !validResolutionPlan({
+        plan: input.resolutionPlans?.get(tombstone.resolution_plan_id),
+        tombstone,
+        initial: initialEntry,
+        plansById: input.plansById,
+        rawFindings: input.rawFindings,
+      }) ||
       tombstone.previous_digest !== previous ||
       tombstone.entry_digest !== authorityTombstoneDigest(previous, tombstone)
     )
@@ -656,6 +791,11 @@ export function analyzePlanSpecificVpairBindings(
   }
 
   let currentFindings = uniqueFindings(rawFindings);
+  const activePlansById = new Map(
+    active.flatMap((plan) =>
+      typeof plan.plan_id === "string" ? ([[plan.plan_id, plan]] as const) : [],
+    ),
+  );
   let authority: ReturnType<typeof validateAuthority> | null = null;
   if (
     input.authority !== undefined ||
@@ -668,7 +808,9 @@ export function analyzePlanSpecificVpairBindings(
       expectedInitialDigest: input.expectedInitialDigest,
       expectedTerminalDigest: input.expectedTerminalDigest,
       expectedLegacyIdentityDigest: input.expectedLegacyIdentityDigest,
-      isTerminal: input.isTerminalResolutionPlan,
+      resolutionPlans: input.resolutionPlans,
+      plansById: activePlansById,
+      rawFindings: currentFindings,
     });
     if (authority.error)
       currentFindings.push(finding("<authority>", "baseline_authority_invalid", authority.error));
@@ -676,11 +818,6 @@ export function analyzePlanSpecificVpairBindings(
   const resolved = authority?.resolved ?? new Set<string>();
   const initial = new Set(
     authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ?? [],
-  );
-  const activePlansById = new Map(
-    active.flatMap((plan) =>
-      typeof plan.plan_id === "string" ? ([[plan.plan_id, plan]] as const) : [],
-    ),
   );
   for (const entry of authority?.authority?.initialAuthority ?? []) {
     if (resolved.has(entry.fingerprint)) continue;
@@ -736,7 +873,7 @@ export interface PlanSpecificVpairNodeLoaderOptions {
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
   expectedLegacyIdentityDigest?: string;
-  isTerminalResolutionPlan?: (planId: string) => boolean;
+  resolutionPlans?: ReadonlyMap<string, PlanSpecificVpairPlan>;
 }
 
 /** Node I/O adapter。pure analyzerへfilesystem依存を持ち込まない。 */
@@ -830,12 +967,9 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
     options.loadAuthority !== false && existsSync(authorityPath)
       ? (JSON.parse(readFileSync(authorityPath, "utf8")) as unknown)
       : undefined;
-  const terminalPlans = new Set(
+  const resolutionPlans = new Map(
     plans.flatMap((plan) =>
-      typeof plan.plan_id === "string" &&
-      (plan.status === "confirmed" || plan.status === "completed")
-        ? [plan.plan_id]
-        : [],
+      typeof plan.plan_id === "string" ? ([[plan.plan_id, plan]] as const) : [],
     ),
   );
   return loadPlanSpecificVpairBindingInput(repoRoot, {
@@ -846,7 +980,7 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
     expectedInitialDigest: options.expectedInitialDigest,
     expectedTerminalDigest: options.expectedTerminalDigest,
     expectedLegacyIdentityDigest: options.expectedLegacyIdentityDigest,
-    isTerminalResolutionPlan: (planId) => terminalPlans.has(planId),
+    resolutionPlans,
   });
 }
 

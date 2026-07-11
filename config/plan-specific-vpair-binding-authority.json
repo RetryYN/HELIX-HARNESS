@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "plan-specific-vpair-binding-authority.v2",
+  "schemaVersion": "plan-specific-vpair-binding-authority.v3",
   "initialAuthority": [
     {
       "fingerprint": "sha256:01fd605512d03f41578517502794ebfa638904c730182ffa26d00682526d093f",
