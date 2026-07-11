@@ -122,7 +122,7 @@ describe("PLAN固有Vペアbinding", () => {
   });
 
   it("U-PSPB-012: case単位citation", () => {
-    const forged = `// ${planId}\n// it("${oracle}: comment",()=>{});\nconst x="${oracle}: dead";\nit.skip("${oracle}: skip",()=>{});\nit(\`${oracle}: \${x}\`,()=>{});`;
+    const forged = `// ${planId}\n// it("${oracle}: comment",()=>{});\nconst x="${oracle}: dead";\nit.skip("${oracle}: skip",()=>{});\nit("${oracle}: pending");\nit(\`${oracle}: \${x}\`,()=>{});`;
     expect(extractExecutableOracleCases(forged).size).toBe(0);
     const files = new Map(input().testFiles);
     files.set(testPath, {
@@ -134,6 +134,12 @@ describe("PLAN固有Vペアbinding", () => {
     files.set(testPath, {
       ...requiredEvidence(files, testPath),
       source: `it("${oracle}: real",()=>{});`,
+      executableOracleCases: new Map([[oracle, 1]]),
+    });
+    expect(reasons(input({ testFiles: files }))).toContain("plan_citation_missing");
+    files.set(testPath, {
+      ...requiredEvidence(files, testPath),
+      source: `// X${planId}\nit("${oracle}: real",()=>{});`,
       executableOracleCases: new Map([[oracle, 1]]),
     });
     expect(reasons(input({ testFiles: files }))).toContain("plan_citation_missing");
@@ -292,6 +298,17 @@ describe("PLAN固有Vペアbinding", () => {
     expect(reasons({ ...valid, plans: [plan({ verification_bindings: [] })] })).toContain(
       "resolved_finding_reappeared",
     );
+    const unusedBase = {
+      plan_id: "PLAN-L7-998-preauthorized",
+      reason: "verification_bindings_absent" as const,
+      detail: null,
+    };
+    const unusedAuthority: PlanSpecificVpairAuthority = {
+      schemaVersion: "plan-specific-vpair-binding-authority.v1",
+      initialAuthority: [{ ...unusedBase, fingerprint: findingFingerprint(unusedBase) }],
+      resolvedTombstones: [],
+    };
+    expect(reasons(input({ authority: unusedAuthority }))).toContain("baseline_authority_invalid");
   });
 
   it("U-PSPB-018: 対象境界", () => {

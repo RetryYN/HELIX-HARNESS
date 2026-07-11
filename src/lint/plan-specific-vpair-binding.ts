@@ -242,7 +242,8 @@ export function extractExecutableOracleCases(
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
-      (node.expression.text === "it" || node.expression.text === "test")
+      (node.expression.text === "it" || node.expression.text === "test") &&
+      (ts.isArrowFunction(node.arguments[1]) || ts.isFunctionExpression(node.arguments[1]))
     ) {
       const title = staticTitle(node.arguments[0]);
       const match = title?.match(/^(U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]*):\s+\S/);
@@ -292,19 +293,20 @@ function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
   );
 }
 
-function validateAuthority(
-  raw: unknown,
-  expectedInitialDigest?: string,
-  expectedTerminalDigest?: string,
-  isTerminal: (id: string) => boolean = () => false,
-): {
+function validateAuthority(input: {
+  raw: unknown;
+  expectedInitialDigest?: string;
+  expectedTerminalDigest?: string;
+  isTerminal?: (id: string) => boolean;
+}): {
   authority: PlanSpecificVpairAuthority | null;
   error: string | null;
   resolved: Set<string>;
 } {
-  if (!raw || typeof raw !== "object" || Array.isArray(raw))
+  const isTerminal = input.isTerminal ?? (() => false);
+  if (!input.raw || typeof input.raw !== "object" || Array.isArray(input.raw))
     return { authority: null, error: "authority missing", resolved: new Set() };
-  const authority = raw as PlanSpecificVpairAuthority;
+  const authority = input.raw as PlanSpecificVpairAuthority;
   if (
     authority.schemaVersion !== PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA ||
     !Array.isArray(authority.initialAuthority) ||
@@ -335,7 +337,7 @@ function validateAuthority(
       resolved: new Set(),
     };
   const initialDigest = authorityInitialDigest(authority.initialAuthority);
-  if (expectedInitialDigest && initialDigest !== expectedInitialDigest)
+  if (input.expectedInitialDigest && initialDigest !== input.expectedInitialDigest)
     return {
       authority: null,
       error: "initial authority digest drift",
@@ -363,7 +365,7 @@ function validateAuthority(
     resolved.add(tombstone.fingerprint);
     previous = tombstone.entry_digest;
   }
-  if (expectedTerminalDigest && previous !== expectedTerminalDigest)
+  if (input.expectedTerminalDigest && previous !== input.expectedTerminalDigest)
     return {
       authority: null,
       error: "terminal authority digest drift",
@@ -453,7 +455,8 @@ export function analyzePlanSpecificVpairBindings(
       if (!evidence?.exists || !evidence.regular || evidence.symlink || !evidence.insideRepo) {
         rawFindings.push(finding(planId, "test_path_missing", binding.test_path));
       } else {
-        if (!evidence.source.includes(planId))
+        const escapedPlanId = planId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        if (!new RegExp(`(^|[^A-Za-z0-9-])${escapedPlanId}(?![A-Za-z0-9-])`).test(evidence.source))
           rawFindings.push(finding(planId, "plan_citation_missing", binding.test_path));
         if ((evidence.executableOracleCases.get(binding.oracle_id) ?? 0) !== 1) {
           rawFindings.push(
@@ -488,12 +491,12 @@ export function analyzePlanSpecificVpairBindings(
     input.expectedInitialDigest ||
     input.expectedTerminalDigest
   ) {
-    authority = validateAuthority(
-      input.authority,
-      input.expectedInitialDigest,
-      input.expectedTerminalDigest,
-      input.isTerminalResolutionPlan,
-    );
+    authority = validateAuthority({
+      raw: input.authority,
+      expectedInitialDigest: input.expectedInitialDigest,
+      expectedTerminalDigest: input.expectedTerminalDigest,
+      isTerminal: input.isTerminalResolutionPlan,
+    });
     if (authority.error)
       rawFindings.push(finding("<authority>", "baseline_authority_invalid", authority.error));
   }
@@ -501,6 +504,15 @@ export function analyzePlanSpecificVpairBindings(
   const initial = new Set(
     authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ?? [],
   );
+  const currentFingerprints = new Set(rawFindings.map((item) => item.fingerprint));
+  const unusedActiveExemptions = [...initial].filter(
+    (fingerprint) => !resolved.has(fingerprint) && !currentFingerprints.has(fingerprint),
+  );
+  for (const fingerprint of unusedActiveExemptions) {
+    rawFindings.push(
+      finding("<authority>", "baseline_authority_invalid", `unused exemption ${fingerprint}`),
+    );
+  }
   for (const current of rawFindings) {
     if (resolved.has(current.fingerprint))
       rawFindings.push(
