@@ -676,7 +676,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     '  "allow_deletions": false',
     "}",
     "JSON",
-    'echo "main の branch protection を適用しました: $' + '{REPO} (approve 必須=$' + '{REVIEWS})"',
+    'echo "main の branch protection を適用しました: $' + "{REPO} (approve 必須=$" + '{REVIEWS})"',
     "",
   ].join("\n"),
 };
