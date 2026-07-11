@@ -100,7 +100,7 @@ codeはterminal digestをpinし、正当な追加はresolution PLAN、cross-revi
 chainの削除・置換・並べ替えは次entry/terminal digest不一致となる。active exemptionは`initial - resolved`、
 resolved finding再出現はhard failする。initial外tombstone、重複、非UTC時刻、non-terminal resolution PLANも拒否する。
 
-### §5.3.1 L8 eligible table
+### §5.3.1 L8 検査対象table
 
 oracle宣言として数えるのはheaderがexact `U-ID | 対象 | 反例と期待結果 | test citation`で、U-ID cellが
 単一exact token、test citation cellが単一以上のbacktick付きcanonical `tests/**` pathを持つMarkdown tableだけ。

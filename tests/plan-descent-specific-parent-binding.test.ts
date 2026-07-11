@@ -53,6 +53,19 @@ const input = (
 });
 const reasons = (value: PlanSpecificVpairBindingInput) =>
   analyzePlanSpecificVpairBindings(value).findings.map((f) => f.reason);
+const requiredEvidence = (
+  files: ReadonlyMap<
+    string,
+    PlanSpecificVpairBindingInput["testFiles"] extends ReadonlyMap<string, infer Evidence>
+      ? Evidence
+      : never
+  >,
+  path: string,
+) => {
+  const evidence = files.get(path);
+  if (!evidence) throw new Error(`test evidence missing: ${path}`);
+  return evidence;
+};
 
 describe("PLAN固有Vペアbinding", () => {
   it("U-PSPB-006: 4点happy path", () =>
@@ -113,13 +126,13 @@ describe("PLAN固有Vペアbinding", () => {
     expect(extractExecutableOracleCases(forged).size).toBe(0);
     const files = new Map(input().testFiles);
     files.set(testPath, {
-      ...files.get(testPath)!,
+      ...requiredEvidence(files, testPath),
       source: forged,
       executableOracleCases: extractExecutableOracleCases(forged),
     });
     expect(reasons(input({ testFiles: files }))).toContain("oracle_citation_missing");
     files.set(testPath, {
-      ...files.get(testPath)!,
+      ...requiredEvidence(files, testPath),
       source: `it("${oracle}: real",()=>{});`,
       executableOracleCases: new Map([[oracle, 1]]),
     });
@@ -167,7 +180,7 @@ describe("PLAN固有Vペアbinding", () => {
     });
     const files = new Map(input().testFiles);
     files.set(secondPath, {
-      ...files.get(testPath)!,
+      ...requiredEvidence(files, testPath),
       source: `// PLAN-L7-999-second\nit("${oracle}: second",()=>{});`,
     });
     expect(
@@ -194,7 +207,7 @@ describe("PLAN固有Vペアbinding", () => {
     });
     const files = new Map(input().testFiles);
     files.set(testPath, {
-      ...files.get(testPath)!,
+      ...requiredEvidence(files, testPath),
       source: `// ${planId} PLAN-L7-999-second\nit("${oracle}: one",()=>{});\ntest("${other}: two",()=>{});`,
       executableOracleCases: new Map([
         [oracle, 1],
@@ -215,7 +228,9 @@ describe("PLAN固有Vペアbinding", () => {
   it("U-PSPB-016: exact fingerprint ratchet", () => {
     const base = analyzePlanSpecificVpairBindings(
       input({ plans: [plan({ verification_bindings: [] })] }),
-    ).findings[0]!;
+    ).findings[0];
+    expect(base).toBeDefined();
+    if (!base) return;
     const initial = [
       {
         fingerprint: base.fingerprint,

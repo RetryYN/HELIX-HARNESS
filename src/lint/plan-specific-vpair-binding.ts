@@ -246,7 +246,8 @@ export function extractExecutableOracleCases(
     ) {
       const title = staticTitle(node.arguments[0]);
       const match = title?.match(/^(U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]*):\s+\S/);
-      if (match) counts.set(match[1]!, (counts.get(match[1]!) ?? 0) + 1);
+      const oracleId = match?.[1];
+      if (oracleId) counts.set(oracleId, (counts.get(oracleId) ?? 0) + 1);
     }
     ts.forEachChild(node, visit);
   };
