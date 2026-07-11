@@ -91,6 +91,16 @@ export interface GeneratedResurrectionBaselineFile extends ResurrectionBaseline 
   projectionKinds: ["fresh_setup", "brownfield_setup", "command_contract", "clean_distribution"];
 }
 
+interface GeneratedResurrectionAuthority {
+  schemaVersion: "handover-generated-resurrection-authority.v1";
+  baselinePath: "config/handover-generated-resurrection-baseline.json";
+  sourceRevision: string;
+  baselineBlobOid: string;
+  baselineFileDigest: string;
+  baselineDigest: string;
+  decisionId: string;
+}
+
 export interface ResurrectionBaselineAuthority {
   schemaVersion: "handover-resurrection-authority.v1";
   baselinePath: "config/handover-resurrection-baseline.json";
@@ -190,6 +200,15 @@ const PRESERVE_AUTHORITY_FILE_DIGEST =
   "sha256:dc460288ad0860ac02ec9b11f8265e58798d1f39e754524f7f5ec783e3900c22";
 // PO confirmation前はnull固定。Sprint 3 atomic cutoverで承認済みauthority全体をpinする。
 const ENFORCE_AUTHORITY_PIN: ResurrectionEnforceAuthority | null = null;
+const GENERATED_AUTHORITY_PIN: GeneratedResurrectionAuthority = {
+  schemaVersion: "handover-generated-resurrection-authority.v1",
+  baselinePath: "config/handover-generated-resurrection-baseline.json",
+  sourceRevision: "ee156a5d9c93c691d942fb0c39f1005be5db8c2f",
+  baselineBlobOid: "eff5c3ccf91983289fc26511b275750c21c638dc",
+  baselineFileDigest: "sha256:83bb3c01481b5604e3b36478023ef060e0090a872a783294dd32b3b64ceab7ef",
+  baselineDigest: "sha256:476779d67e3f7190c10dbe1dce5284fed3fee21de23cd94e22b32e7f3ff78b8e",
+  decisionId: "PLAN-L7-416:generated-baseline:all-projections-v2",
+};
 
 function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
@@ -422,6 +441,58 @@ export function parseGeneratedResurrectionBaselineFile(
   return { ...raw, fingerprints, digest } as GeneratedResurrectionBaselineFile;
 }
 
+function parseGeneratedResurrectionAuthority(text: string): GeneratedResurrectionAuthority {
+  const raw = JSON.parse(text) as Partial<GeneratedResurrectionAuthority>;
+  if (
+    raw.schemaVersion !== "handover-generated-resurrection-authority.v1" ||
+    raw.baselinePath !== "config/handover-generated-resurrection-baseline.json" ||
+    typeof raw.sourceRevision !== "string" ||
+    !/^[a-f0-9]{40,64}$/.test(raw.sourceRevision) ||
+    typeof raw.baselineBlobOid !== "string" ||
+    !/^[a-f0-9]{40,64}$/.test(raw.baselineBlobOid) ||
+    typeof raw.baselineFileDigest !== "string" ||
+    !SHA256.test(raw.baselineFileDigest) ||
+    typeof raw.baselineDigest !== "string" ||
+    !SHA256.test(raw.baselineDigest) ||
+    typeof raw.decisionId !== "string" ||
+    !/^PLAN-L7-416:generated-baseline:[a-z0-9-]+$/.test(raw.decisionId) ||
+    canonicalJson(raw) !== canonicalJson(GENERATED_AUTHORITY_PIN)
+  ) {
+    throw new Error("invalid generated resurrection authority");
+  }
+  return raw as GeneratedResurrectionAuthority;
+}
+
+function verifyGeneratedResurrectionAuthority(input: {
+  repoRoot: string;
+  baselineText: string;
+  baseline: GeneratedResurrectionBaselineFile;
+  authority: GeneratedResurrectionAuthority;
+}): void {
+  execFileSync("git", ["merge-base", "--is-ancestor", input.authority.sourceRevision, "HEAD"], {
+    cwd: input.repoRoot,
+    stdio: "ignore",
+  });
+  const revisionPath = `${input.authority.sourceRevision}:${input.authority.baselinePath}`;
+  const blobOid = execFileSync("git", ["rev-parse", revisionPath], {
+    cwd: input.repoRoot,
+    encoding: "utf8",
+  }).trim();
+  const anchoredText = execFileSync("git", ["show", revisionPath], {
+    cwd: input.repoRoot,
+    encoding: "utf8",
+    maxBuffer: 4 * 1024 * 1024,
+  });
+  if (
+    blobOid !== input.authority.baselineBlobOid ||
+    sha256(anchoredText) !== input.authority.baselineFileDigest ||
+    input.baselineText !== anchoredText ||
+    input.baseline.digest !== input.authority.baselineDigest
+  ) {
+    throw new Error("generated resurrection authority mismatch");
+  }
+}
+
 export function parseResurrectionBaselineAuthority(text: string): ResurrectionBaselineAuthority {
   const raw = JSON.parse(text) as Partial<ResurrectionBaselineAuthority>;
   if (
@@ -651,6 +722,23 @@ export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): Resurre
     readFileSync(join(repoRoot, "config", "handover-resurrection-authority.json"), "utf8"),
   );
   verifyResurrectionBaselineAuthority({ repoRoot, baselineText, baseline, authority });
+  const generatedBaselineText = readFileSync(
+    join(repoRoot, "config", "handover-generated-resurrection-baseline.json"),
+    "utf8",
+  );
+  const generatedBaseline = parseGeneratedResurrectionBaselineFile(generatedBaselineText);
+  const generatedAuthority = parseGeneratedResurrectionAuthority(
+    readFileSync(
+      join(repoRoot, "config", "handover-generated-resurrection-authority.json"),
+      "utf8",
+    ),
+  );
+  verifyGeneratedResurrectionAuthority({
+    repoRoot,
+    baselineText: generatedBaselineText,
+    baseline: generatedBaseline,
+    authority: generatedAuthority,
+  });
   const inventory = collectRetirementPreserveInventory(repoRoot);
   const preserveAuthority = parsePreserveAuthority(
     readFileSync(join(repoRoot, "config", "handover-preserve-authority.json"), "utf8"),
@@ -691,7 +779,10 @@ export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): Resurre
       retirementPhase: "shadow_read",
     },
   );
-  const files = loadHandoverResurrectionFiles(repoRoot);
+  const files = [
+    ...loadHandoverResurrectionFiles(repoRoot),
+    ...loadGeneratedResurrectionFiles(repoRoot),
+  ].sort((a, b) => a.path.localeCompare(b.path));
   const filesByPath = new Map(files.map((file) => [file.path, file]));
   const allowedArtifacts = preserve.entries.flatMap((entry): TypedAllowedArtifact[] => {
     const scannedFile = filesByPath.get(entry.path);
@@ -730,7 +821,12 @@ export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): Resurre
   return analyzeHandoverResurrection({
     files,
     allowedArtifacts,
-    baseline,
+    baseline: (() => {
+      const fingerprints = [
+        ...new Set([...baseline.fingerprints, ...generatedBaseline.fingerprints]),
+      ].sort();
+      return { fingerprints, digest: sha256(canonicalJson(fingerprints)) };
+    })(),
     checkpointState: loadResurrectionCheckpointState(repoRoot, preserve.preservedDigest),
   });
 }

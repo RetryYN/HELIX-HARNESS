@@ -192,7 +192,7 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
 - Sprint 4: **freeze済み**。provider実体10件 / operations実体4件 / archive実体7件を
   再帰inventory、正規retention、query/export、target filesystem照合、
   phase fence/nonjoinへ束縛し、159 testsと独立レビューblocker 0でfreezeした。
-- Sprint 5: **shadow slice実装済み・Red再開**。TypeScript AST/symbol/path detector、typed
+- Sprint 5: **pre-cutover shadow slice freeze済み**。TypeScript AST/symbol/path detector、typed
   provider/operations/archive allowlist、baseline digest、checkpoint由来mode、doctor負例を
   `src/lint/handover-resurrection.ts`、`src/doctor/index.ts`、`tests/handover-resurrection.test.ts`へ束縛した。
   pre-cutoverでは既知findingをtelemetry、新規findingだけをhard failする。独立レビューでscan root、
@@ -201,11 +201,13 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
   real collector/strict validatorへ束縛し、同時digest更新・provider削除・caller boolean spoofをfail-closeした。
   production mode loaderはstrict retirement journal、unique complete scope、terminal line digest、preserve digest、
   approval authorityを束縛した。PO confirmation前はenforce authorityのcode pinを`null`固定し、complete journalが
-  先行してもfail-closeする。実cutover pinとfresh/brownfield/distribution oracleはblockerとして未達であり、
-  Sprint 5 freezeはrejectのままとする。
+  先行してもfail-closeする。
   fresh setup、brownfield merge、consumer command contract、clean distribution全artifactは副作用なしrendererから
   `@projection/<kind>/...` namespaceへ投影し、actual surfaceを上書きせず同一policyで走査する。distribution plan不全・
-  source欠落・件数不一致はfail-closeし、v2 debt seedをimmutable commitへ固定してからdoctor code pinへ昇格する。
+  source欠落・件数不一致はfail-closeする。v2 debt seedをimmutable commit `ee156a5d`へ固定し、Git
+  revision/blob/file/semantic digestのcode pinを経てproduction doctorへ統合した。post-cutover旧token 0と
+  consumer実配布greenはSprint 3後まで主張しない。real doctorはactual + 4 projectionで
+  `mode=pre_cutover_shadow / findings=283 / known=283 / new=0 / preconditions=0`、独立レビューblocker 0である。
 - Sprint 3: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 

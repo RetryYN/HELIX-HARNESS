@@ -75,6 +75,7 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
     try {
       execFileSync("git", ["clone", "-q", "--shared", process.cwd(), repoRoot]);
       for (const name of [
+        "handover-generated-resurrection-authority.json",
         "handover-resurrection-authority.json",
         "handover-preserve-authority.json",
       ]) {
@@ -98,6 +99,15 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
       rmSync(join(repoRoot, providerPath));
       expect(checkHandoverResurrection(repoRoot).ok).toBe(false);
       writeFileSync(join(repoRoot, providerPath), readFileSync(join(process.cwd(), providerPath)));
+
+      rmSync(join(repoRoot, "package.json"));
+      expect(() => loadGeneratedResurrectionFiles(repoRoot)).toThrow(
+        "clean distribution source missing",
+      );
+      writeFileSync(
+        join(repoRoot, "package.json"),
+        readFileSync(join(process.cwd(), "package.json")),
+      );
 
       const forged = buildResurrectionBaseline([]);
       writeFileSync(

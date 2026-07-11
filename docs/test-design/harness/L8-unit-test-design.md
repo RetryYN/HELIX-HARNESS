@@ -102,7 +102,8 @@ production loaderはstrict journal terminalとapproval authorityを読むが、P
 `null`であり、complete journalや自己申告authorityが先行した場合はmodeを切り替えずhard failする。
 fresh setup / brownfield merge / command contract / clean distribution全artifactは`renderSetupArtifacts`と
 `renderBrownfieldSetupArtifacts`を起点にnamespace分離して同じresurrection policyで走査し、actual pathとの衝突、
-distribution source欠落、projection件数不一致をfail-closeする。seed commitと後続code pinは分離する。
+distribution source欠落、projection件数不一致をfail-closeする。seed `ee156a5d`と後続code pinを分離し、
+projection baselineの同一差分内自己承認を禁止する。
 
 ## §4 L6 reverse reference 追補
 

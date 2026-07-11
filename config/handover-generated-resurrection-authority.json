@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "handover-generated-resurrection-authority.v1",
+  "baselinePath": "config/handover-generated-resurrection-baseline.json",
+  "sourceRevision": "ee156a5d9c93c691d942fb0c39f1005be5db8c2f",
+  "baselineBlobOid": "eff5c3ccf91983289fc26511b275750c21c638dc",
+  "baselineFileDigest": "sha256:83bb3c01481b5604e3b36478023ef060e0090a872a783294dd32b3b64ceab7ef",
+  "baselineDigest": "sha256:476779d67e3f7190c10dbe1dce5284fed3fee21de23cd94e22b32e7f3ff78b8e",
+  "decisionId": "PLAN-L7-416:generated-baseline:all-projections-v2"
+}
