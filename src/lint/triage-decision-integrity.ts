@@ -66,7 +66,9 @@ export type TriageViolationKind =
   | "residual-mismatch"
   | "residual-not-open"
   | "unresolved-count-unproved"
-  | "unresolved-state-invalid";
+  | "unresolved-state-invalid"
+  | "unresolved-id-invalid"
+  | "unresolved-claim-at-terminal";
 export type TriageViolation = {
   kind: TriageViolationKind;
   item: string;
@@ -77,6 +79,7 @@ export type TriageInput = {
   catalogItems: CatalogItem[];
   backlogStatuses: Map<string, string>;
   artifactExists: (path: string) => boolean;
+  planTerminal?: boolean;
 };
 export type TriageResult = {
   ok: boolean;
@@ -193,7 +196,15 @@ export function analyzeTriageDecisionIntegrity(
       "unenumerated_status_claim.state",
       "未列挙時はblocked固定",
     );
+  if (!["blocked_missing_enumeration", "resolved"].includes(claim?.state ?? ""))
+    add("unresolved-state-invalid", "unenumerated_status_claim.state", "未知state");
+  for (const id of ids) {
+    if (!/^IMP-\d{3}$/.test(id) || !input.backlogStatuses.has(id))
+      add("unresolved-id-invalid", id, "実在するIMP IDが必要");
+  }
   const completionReady = enumerated && claim?.state === "resolved";
+  if (input.planTerminal && !completionReady)
+    add("unresolved-claim-at-terminal", "PLAN-L7-425", "終端statusには10件の列挙完了が必要");
   return { ok: violations.length === 0, completionReady, violations };
 }
 
@@ -216,6 +227,7 @@ export function loadTriageDecisionIntegrityInput(
   let manifest: DecisionManifest | null = null;
   let catalogItems: CatalogItem[] = [];
   let backlogStatuses = new Map<string, string>();
+  let planTerminal = false;
   try {
     manifest = readYaml(TRIAGE_DECISIONS_PATH) as DecisionManifest;
   } catch {
@@ -235,11 +247,18 @@ export function loadTriageDecisionIntegrityInput(
   } catch {
     backlogStatuses = new Map();
   }
+  try {
+    const plan = readFileSync(join(repoRoot, "docs/plans/PLAN-L7-425-system-review-issue-handoff.md"), "utf8");
+    planTerminal = /^status:\s*(completed|confirmed|archived)\s*$/m.test(plan);
+  } catch {
+    planTerminal = true;
+  }
   return {
     manifest,
     catalogItems,
     backlogStatuses,
     artifactExists: (p) => existsSync(join(repoRoot, p)),
+    planTerminal,
   };
 }
 

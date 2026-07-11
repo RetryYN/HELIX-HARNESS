@@ -95,6 +95,17 @@ describe("triage-decision-integrity (PLAN-L7-428)", () => {
       analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind),
     ).toContain("unresolved-count-unproved");
   });
+  it("U-TRIAGE-008: fake IDs and unknown state are rejected", () => {
+    const input = base();
+    input.manifest!.backlog!.unenumerated_status_claim = {
+      expected_count: 10,
+      ids: Array.from({ length: 10 }, (_, i) => `FAKE-${i}`),
+      state: "resolved",
+    };
+    expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-id-invalid");
+    input.manifest!.backlog!.unenumerated_status_claim!.state = "unknown";
+    expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-state-invalid");
+  });
   it("U-TRIAGE-009: missing canonical artifact is rejected", () => {
     const input = base();
     input.artifactExists = (p) => p !== PIN_CATALOG_DONE["unit-test-design"];
@@ -111,10 +122,21 @@ describe("triage-decision-integrity (PLAN-L7-428)", () => {
     expect(
       analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind),
     ).toContain("pinned-set-mismatch");
+    const backlog = base();
+    backlog.manifest!.backlog!.verified_ids = PIN_BACKLOG_VERIFIED.slice(1);
+    backlog.backlogStatuses.delete("IMP-004");
+    expect(analyzeTriageDecisionIntegrity(backlog).violations.map((v) => v.kind)).toContain("pinned-set-mismatch");
   });
   it("U-TRIAGE-011: real repository loader preserves exact pinned sizes", () => {
     const input = base();
     expect(Object.keys(input.manifest!.catalog!.done!)).toHaveLength(3);
     expect(input.manifest!.backlog!.verified_ids).toHaveLength(14);
+  });
+  it("U-TRIAGE-012: terminal PLAN cannot pass with the unenumerated claim", () => {
+    const input = base();
+    input.planTerminal = true;
+    const result = analyzeTriageDecisionIntegrity(input);
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.kind)).toContain("unresolved-claim-at-terminal");
   });
 });
