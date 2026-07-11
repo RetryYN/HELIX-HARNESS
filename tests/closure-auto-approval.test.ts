@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  appendRunnerAttestation,
   applyClosureAutoApprovalAtomic,
   type ClosureAutoApprovalManifest,
   closureAutoApprovalWindows,
@@ -153,6 +154,38 @@ function fixture(count = 1) {
       `INSERT INTO gate_runs (gate_run_id, gate_id, plan_id, status, checked_at, evidence_path)
        VALUES (?, 'G7', ?, 'passed', ?, ?)`,
     ).run(`gate-run:${item.planId}`, item.planId, "2026-07-12T00:01:00Z", gateOutput);
+    appendRunnerAttestation({
+      repoRoot: root,
+      db,
+      receipt: {
+        run_id: `test-run:${item.planId}`,
+        session_id: `session:${item.planId}`,
+        plan_id: item.planId,
+        kind: "test",
+        oracle_id: "U-FIXTURE",
+        command: "bunx vitest run tests/fixture.test.ts",
+        exit_code: 0,
+        status: "passed",
+        evidence_path: testOutput,
+        completed_at: "2026-07-12T00:01:00Z",
+      },
+    });
+    appendRunnerAttestation({
+      repoRoot: root,
+      db,
+      receipt: {
+        run_id: `gate-run:${item.planId}`,
+        session_id: `gate-run:${item.planId}`,
+        plan_id: item.planId,
+        kind: "gate",
+        oracle_id: "G7",
+        command: "helix gate G7",
+        exit_code: 0,
+        status: "passed",
+        evidence_path: gateOutput,
+        completed_at: "2026-07-12T00:01:00Z",
+      },
+    });
   }
   const snapshot = {
     source_clock: "2026-07-12T00:10:00Z",
@@ -238,6 +271,12 @@ describe("closure auto approval authority", () => {
     jsonOnly.db.prepare("DELETE FROM gate_runs").run();
     expect(evaluate(jsonOnly).blockers).toContain(
       `${jsonOnly.queue[0]?.planId}: test-run:${jsonOnly.queue[0]?.planId}: canonical DB runner receipt欠落`,
+    );
+    expect(() => f.db.prepare("UPDATE runner_attestations SET status = 'forged'").run()).toThrow(
+      "runner attestation immutable",
+    );
+    expect(() => f.db.prepare("DELETE FROM runner_attestations").run()).toThrow(
+      "runner attestation immutable",
     );
   });
 
@@ -329,9 +368,11 @@ describe("closure auto approval authority", () => {
       join(f.root, ".helix/state/closure-auto-approval-journal.json"),
       JSON.stringify({
         schema_version: "closure-auto-approval-journal.v1",
-        transaction_id: "11111111-1111-4111-8111-111111111111",
+        transaction_id: auditLines[0]?.transaction_id,
         status: "prepared",
-        started_audit_digest: auditLines[1]?.event_digest,
+        started_audit_digest: auditLines[0]?.event_digest,
+        authority_digest: auditLines[0]?.authority_digest,
+        target_digest: auditLines[0]?.target_digest,
         entries: [
           {
             path: target.sourcePath,

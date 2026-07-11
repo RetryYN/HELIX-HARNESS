@@ -14,6 +14,12 @@ plan: docs/plans/PLAN-L6-71-closure-auto-approval.md
 実行事実はappend-only harness.dbの`test_runs/test_cases/gate_runs`をauthorityとする。typed manifestは
 候補scopeだけを固定し、callerがexpected evidenceやcapabilityを定義できない。DB primary identity、
 session、exact command、oracle、exit/status、output artifact bytes、HEAD、時刻を結合して再計算する。
+runnerは同じreceiptをrepo-owned append-only attestation chainと`runner_attestations`へ同時記録し、
+DB rowとのexact joinを要求する。attestation tableのUPDATE/DELETEはtriggerで拒否する。
+
+ローカル実行には外部暗号trust rootが無く、repository write権限を奪取した攻撃者まで証明対象にしない。
+本境界はaccidental/direct INSERTと通常runtimeの誤投影を検出するもので、外部公開・cutover等は引き続き
+human/action-binding approvalとGitHub required-check authorityへ残す。
 
 ## 2. 契約
 

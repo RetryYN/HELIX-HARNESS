@@ -110,7 +110,18 @@ const manifestSchema = z
         .strict(),
     ),
   })
-  .strict();
+  .strict()
+  .superRefine((value, context) => {
+    const ids = new Set<string>();
+    for (const candidate of value.candidates) {
+      if (ids.has(candidate.plan_id))
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `duplicate candidate ${candidate.plan_id}`,
+        });
+      ids.add(candidate.plan_id);
+    }
+  });
 
 export function parseClosureAutoApprovalManifest(value: unknown): ClosureAutoApprovalManifest {
   return manifestSchema.parse(value) as ClosureAutoApprovalManifest;
@@ -232,6 +243,7 @@ function validateCanonicalRuns(input: {
   seenRunIds: Set<string>;
 }): string[] {
   const errors: string[] = [];
+  ensureRunnerAttestationSchema(input.db);
   const recordPath = `.helix/evidence/closure-runs/${input.planId}.json`;
   const canonical = canonicalFile(input.repoRoot, recordPath);
   if (canonical.error) return [`canonical run record ${canonical.error}`];
@@ -296,6 +308,37 @@ function validateCanonicalRuns(input: {
     } else if (String(dbRow.status ?? "") !== "passed") {
       errors.push(`${run.run_id}: DB gate receipt非green`);
     }
+    const attestation = input.db
+      .prepare("SELECT * FROM runner_attestations WHERE run_id = ?")
+      .get(run.run_id);
+    if (!attestation) errors.push(`${run.run_id}: runner attestation欠落`);
+    else {
+      const latest = input.db
+        .prepare(
+          `SELECT run_id FROM runner_attestations
+           WHERE plan_id = ? AND kind = ? AND oracle_id = ?
+           ORDER BY completed_at DESC, event_digest DESC LIMIT 1`,
+        )
+        .get(input.planId, run.kind, run.oracle_id);
+      if (String(latest?.run_id ?? "") !== run.run_id)
+        errors.push(`${run.run_id}: latest authoritative receiptではない`);
+      const exact =
+        String(attestation.session_id ?? "") === String(dbRow?.session_id ?? run.run_id) &&
+        String(attestation.plan_id ?? "") === input.planId &&
+        String(attestation.kind ?? "") === run.kind &&
+        String(attestation.oracle_id ?? "") === run.oracle_id &&
+        String(attestation.repository_head ?? "") === input.head &&
+        String(attestation.command ?? "")
+          .trim()
+          .replace(/\s+/g, " ") === run.command.trim().replace(/\s+/g, " ") &&
+        Number(attestation.exit_code) === run.exit_code &&
+        String(attestation.status ?? "") === (run.kind === "test" ? "passed" : "passed") &&
+        String(attestation.evidence_path ?? "") === run.output_path &&
+        String(attestation.output_digest ?? "") === run.output_digest &&
+        String(attestation.completed_at ?? "") === run.completed_at &&
+        String(attestation.signature ?? "") === String(attestation.event_digest ?? "");
+      if (!exact) errors.push(`${run.run_id}: runner attestation exact join不一致`);
+    }
     if (input.seenRunIds.has(run.run_id)) errors.push(`run_id重複: ${run.run_id}`);
     input.seenRunIds.add(run.run_id);
     const completedMs = Date.parse(run.completed_at);
@@ -309,8 +352,10 @@ function validateCanonicalRuns(input: {
       run.kind === "test" ? expectedTests.get(run.oracle_id) : expectedGates.get(run.oracle_id);
     if (expectedCommand === undefined) errors.push(`${run.run_id}: oracle binding不正`);
     else if (run.kind === "test") {
-      if (!run.command.includes(expectedCommand))
-        errors.push(`${run.run_id}: test command allowlist不一致`);
+      const command = run.command.trim().replace(/\s+/g, " ");
+      const expectedArgv = `bunx vitest run ${expectedCommand}`;
+      if (!/^bunx? vitest run [A-Za-z0-9_./-]+$/.test(command) || command !== expectedArgv)
+        errors.push(`${run.run_id}: test command exact argv不一致`);
       actualTests.add(run.oracle_id);
     } else {
       if (run.command !== expectedCommand)
@@ -333,11 +378,99 @@ export function currentRepositoryHead(repoRoot: string): string {
   return execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim();
 }
 
+function ensureRunnerAttestationSchema(db: HarnessDb): void {
+  db.exec(`CREATE TABLE IF NOT EXISTS runner_attestations (
+    event_digest TEXT PRIMARY KEY, previous_digest TEXT, run_id TEXT UNIQUE,
+    session_id TEXT, plan_id TEXT, kind TEXT, oracle_id TEXT, repository_head TEXT,
+    command TEXT, exit_code INTEGER, status TEXT, evidence_path TEXT,
+    output_digest TEXT, completed_at TEXT, signature TEXT
+  )`);
+  db.exec(`CREATE TRIGGER IF NOT EXISTS runner_attestations_no_update
+    BEFORE UPDATE ON runner_attestations BEGIN SELECT RAISE(ABORT, 'runner attestation immutable'); END`);
+  db.exec(`CREATE TRIGGER IF NOT EXISTS runner_attestations_no_delete
+    BEFORE DELETE ON runner_attestations BEGIN SELECT RAISE(ABORT, 'runner attestation immutable'); END`);
+}
+
+export interface RunnerAttestationInput {
+  run_id: string;
+  session_id: string;
+  plan_id: string;
+  kind: "test" | "gate";
+  oracle_id: string;
+  command: string;
+  exit_code: number;
+  status: string;
+  evidence_path: string;
+  completed_at: string;
+}
+
+export function appendRunnerAttestation(input: {
+  repoRoot: string;
+  db: HarnessDb;
+  receipt: RunnerAttestationInput;
+}): string {
+  ensureRunnerAttestationSchema(input.db);
+  const path = join(input.repoRoot, ".helix/evidence/runner-attestations.jsonl");
+  mkdirSync(dirname(path), { recursive: true });
+  if (existsSync(path) && lstatSync(path).isSymbolicLink())
+    throw new Error("runner attestation symlinkは禁止");
+  const previousDigest = existsSync(path)
+    ? String(
+        JSON.parse(readFileSync(path, "utf8").trim().split("\n").at(-1) ?? "{}").event_digest ?? "",
+      ) || null
+    : null;
+  const evidence = canonicalFile(input.repoRoot, input.receipt.evidence_path);
+  if (evidence.error) throw new Error(`runner evidence ${evidence.error}`);
+  const payload = {
+    schema_version: "runner-attestation.v1",
+    previous_digest: previousDigest,
+    ...input.receipt,
+    repository_head: currentRepositoryHead(input.repoRoot),
+    output_digest: sha256(readFileSync(evidence.absolute)),
+  };
+  const eventDigest = sha256(JSON.stringify(payload));
+  const event = { ...payload, event_digest: eventDigest, signature: eventDigest };
+  const fd = openSync(path, "a", 0o600);
+  try {
+    appendFileSync(fd, `${JSON.stringify(event)}\n`);
+    fsyncSync(fd);
+  } finally {
+    closeSync(fd);
+  }
+  fsyncPath(dirname(path));
+  input.db
+    .prepare(
+      `INSERT INTO runner_attestations
+       (event_digest, previous_digest, run_id, session_id, plan_id, kind, oracle_id,
+        repository_head, command, exit_code, status, evidence_path, output_digest,
+        completed_at, signature) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .run(
+      eventDigest,
+      previousDigest,
+      input.receipt.run_id,
+      input.receipt.session_id,
+      input.receipt.plan_id,
+      input.receipt.kind,
+      input.receipt.oracle_id,
+      event.repository_head,
+      input.receipt.command,
+      input.receipt.exit_code,
+      input.receipt.status,
+      input.receipt.evidence_path,
+      event.output_digest,
+      input.receipt.completed_at,
+      eventDigest,
+    );
+  return eventDigest;
+}
+
 export function canonicalClosureAuthorityDigest(
   repoRoot: string,
   manifest: ClosureAutoApprovalManifest,
   db: HarnessDb,
 ): `sha256:${string}` {
+  ensureRunnerAttestationSchema(db);
   const materials = manifest.candidates.map((candidate) => {
     const testRows = db
       .prepare(
@@ -349,10 +482,13 @@ export function canonicalClosureAuthorityDigest(
     const gateRows = db
       .prepare("SELECT * FROM gate_runs WHERE plan_id = ? ORDER BY gate_run_id")
       .all(candidate.plan_id);
+    const attestationRows = db
+      .prepare("SELECT * FROM runner_attestations WHERE plan_id = ? ORDER BY event_digest")
+      .all(candidate.plan_id);
     return {
       plan_id: candidate.plan_id,
       plan_digest: sha256(readFileSync(join(repoRoot, candidate.source_path))),
-      db_receipt_digest: sha256(JSON.stringify({ testRows, gateRows })),
+      db_receipt_digest: sha256(JSON.stringify({ testRows, gateRows, attestationRows })),
       output_digests: [...testRows, ...gateRows].map((row) => ({
         run_id: String(row.test_run_id ?? row.gate_run_id ?? ""),
         digest: sha256(readFileSync(join(repoRoot, String(row.evidence_path ?? "")))),
@@ -615,6 +751,8 @@ export function applyClosureAutoApprovalAtomic(input: {
       transaction_id: transactionId,
       status: "prepared",
       started_audit_digest: startedAuditDigest,
+      authority_digest: input.evaluation.authority_digest,
+      target_digest: sha256(JSON.stringify(input.evaluation.target_plan_ids)),
       entries: [...backups].map(([path, content]) => ({
         path: relative(input.repoRoot, path),
         before_content: content,
@@ -632,6 +770,7 @@ export function applyClosureAutoApprovalAtomic(input: {
     } finally {
       closeSync(journalFd);
     }
+    fsyncPath(dirname(journalPath));
     let renamed = 0;
     for (let index = 0; index < input.evaluation.rendered_patches.length; index += 1) {
       const patch = input.evaluation.rendered_patches[index];
@@ -687,6 +826,8 @@ export function recoverClosureAutoApprovalTransaction(
       transaction_id: z.string().uuid(),
       status: z.literal("prepared"),
       started_audit_digest: digestSchema,
+      authority_digest: digestSchema,
+      target_digest: digestSchema,
       entries: z.array(
         z
           .object({
@@ -704,7 +845,19 @@ export function recoverClosureAutoApprovalTransaction(
   const errors: string[] = [];
   const auditPath = join(repoRoot, ".helix/audit/closure-auto-approval.jsonl");
   verifyClosureAuditChain(auditPath);
-  if (!readFileSync(auditPath, "utf8").includes(journal.started_audit_digest))
+  const startedEvent = readFileSync(auditPath, "utf8")
+    .trim()
+    .split("\n")
+    .map((line) => JSON.parse(line) as Record<string, unknown>)
+    .find((event) => event.event_digest === journal.started_audit_digest);
+  if (
+    !startedEvent ||
+    startedEvent.transaction_id !== journal.transaction_id ||
+    startedEvent.phase !== "before" ||
+    startedEvent.status !== "started" ||
+    startedEvent.authority_digest !== journal.authority_digest ||
+    startedEvent.target_digest !== journal.target_digest
+  )
     throw new Error("closure journal started audit pin欠落");
   const auditRecovery = (status: "recovered" | "recovery_failed", detail: unknown) => {
     const payload = {

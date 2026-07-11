@@ -1374,6 +1374,9 @@ program
   .name("helix")
   .description("HELIX-HARNESS (TypeScript core, ADR-001)")
   .version(LOCAL_DISTRIBUTION_PACKAGE_VERSION);
+program.hook("preAction", () => {
+  recoverClosureAutoApprovalTransaction(process.cwd());
+});
 
 program
   .command("status")
@@ -8136,7 +8139,6 @@ closure
         return;
       }
       const repoRoot = process.cwd();
-      recoverClosureAutoApprovalTransaction(repoRoot);
       const db = openHarnessDb(opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:", {
         repoRoot,
       });
