@@ -72,6 +72,28 @@ function writeFakeClaude(binDir: string): string {
 }
 
 describe("runtime hook entrypoints", () => {
+  it("plan use rejects truncated IDs and preserves the active marker", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-plan-use-"));
+    try {
+      mkdirSync(join(cwd, "docs", "plans"), { recursive: true });
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      writeFileSync(
+        join(cwd, "docs", "plans", "PLAN-L7-427-active-plan-selection.md"),
+        "---\nplan_id: PLAN-L7-427-active-plan-selection\nstatus: confirmed\n---\n",
+      );
+      const marker = join(cwd, ".helix", "state", "current-plan");
+      writeFileSync(marker, "PLAN-L7-427-active-plan-selection\nold");
+
+      const rejected = runCli(cwd, ["plan", "use", "PLAN-L7-42"]);
+      expect(rejected.status).toBe(1);
+      expect(rejected.stderr).toContain("unknown PLAN ID");
+      expect(rejected.stderr).toContain("PLAN-L7-427-active-plan-selection");
+      expect(readFileSync(marker, "utf8")).toBe("PLAN-L7-427-active-plan-selection\nold");
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("Claude settings route session-log hooks through the shared HELIX CLI", () => {
     const settings = JSON.parse(readFileSync(join(repoRoot, ".claude", "settings.json"), "utf8"));
     const hooks = settings.hooks;
