@@ -1,3 +1,5 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -249,6 +251,17 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     expect(kinds(input)).toEqual(
       expect.arrayContaining(["invalid-event-order", "gate-repass-not-bound-to-resolution-review"]),
     );
+
+    const failOnly = fixture();
+    const approval = failOnly.plans[1].review_evidence[0];
+    const failReview = structuredClone(approval);
+    failReview.verdict = "fail";
+    failOnly.plans[1].review_evidence = [{ ...approval, green_commands: [] }, failReview];
+    expect(kinds(failOnly)).toContain("gate-repass-not-bound-to-resolution-review");
+
+    const badResolutionOrder = fixture();
+    badResolutionOrder.plans[1].review_evidence[0].tests_green_at = "2026-07-12T10:02:00Z";
+    expect(kinds(badResolutionOrder)).toContain("invalid-event-order");
   });
 
   it("U-CARRY-012: carry review bindingの不存在・digest偽装・非approvalを拒否する", () => {
@@ -272,6 +285,14 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     expect(kinds(input)).toEqual(
       expect.arrayContaining(["duplicate-carry-id", "duplicate-affected-artifact"]),
     );
+
+    const replay = fixture();
+    const second = structuredClone(replay.plans[0]);
+    second.plan_id = "PLAN-L7-431-cross-plan-replay";
+    replay.plans.push(second);
+    expect(kinds(replay)).toEqual(
+      expect.arrayContaining(["duplicate-carry-id", "duplicate-affected-artifact"]),
+    );
   });
 
   it("U-CARRY-014: draftのopen carryは許容しterminalでは拒否する", () => {
@@ -291,10 +312,57 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     const plan = input.plans[0];
     delete plan.left_arm_carry;
     plan.created = "2026-01-01";
-    plan.updated = "2026-07-12";
+    delete plan.updated;
     expect(kinds(input)).toContain("missing-carry-decision");
     plan.legacy_pinned = true;
-    expect(kinds(input)).not.toContain("missing-carry-decision");
+    expect(kinds(input)).toEqual(
+      expect.arrayContaining(["legacy-baseline-drift", "missing-carry-decision"]),
+    );
+
+    const duplicate = fixture();
+    duplicate.plans.push(structuredClone(duplicate.plans[0]));
+    expect(kinds(duplicate)).toContain("legacy-baseline-drift");
+
+    const malformed = fixture();
+    const carry = malformed.plans[0].left_arm_carry;
+    if (!carry) throw new Error("carry fixture missing");
+    carry.entries[0].schema_invalid = true;
+    expect(kinds(malformed)).toContain("invalid-carry-schema");
+
+    const root = mkdtempSync(join(tmpdir(), "helix-carry-malformed-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-malformed-carry.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-999-malformed-carry",
+          "kind: impl",
+          "layer: L7",
+          "status: completed",
+          "created: 2026-07-13",
+          "dependencies: { requires: [] }",
+          "generates: []",
+          "review_evidence: []",
+          "left_arm_carry:",
+          `  schema_version: ${LEFT_ARM_CARRY_SCHEMA}`,
+          "  decision: pushback_resolved",
+          "  assessed_at: 2026-07-13T00:00:00Z",
+          "  review_binding:",
+          "    reviewer: qa",
+          "    reviewed_at: 2026-07-13T00:01:00Z",
+          `    evidence_digest: ${REVIEW}`,
+          "  entries: [malformed]",
+          "---",
+        ].join("\n"),
+      );
+      const loaded = loadLeftArmCarryLogInput(root);
+      loaded.legacyBaselineRequired = false;
+      expect(kinds(loaded)).toContain("invalid-carry-schema");
+      expect(loaded.plans[0].left_arm_carry?.entries).toHaveLength(1);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("U-CARRY-016: real contract surfaceはexact PLAN citationと16 oracleを固定する", () => {
