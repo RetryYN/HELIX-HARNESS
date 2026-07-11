@@ -232,6 +232,47 @@ review_evidence:
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md
         output_digest: "sha256:99d676c690d1aa9b18328d9ac11fc5ee8040b9f8ecf0368f0af886e88bfc9ee5"
+  - reviewer: codex-fe-roster-final-reviewers
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T18:05:40Z"
+    tests_green_at: "2026-07-11T18:05:34Z"
+    verdict: approve_after_fixes
+    worker_model: gpt-5
+    reviewer_model: gpt-5.6
+    scope: "authority v3初回resolution migrationを3系統で敵対レビュー。initial286 identity不変、resolved1、active285、U-PSPB-020 production count regression、terminal/semantic chain、FE U001-U003を確認しblocker/high 0。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/fe-roster-orchestration.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/design-coverage.test.ts tests/l6-completion.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T18:05:34Z"
+        evidence_path: tests/plan-descent-specific-parent-binding.test.ts
+        output_digest: "sha256:2ae0c9479fee1a017cbc61b2f5d2ccbb1dfa99599864c474d8ecd2870738da40"
+      - kind: lint
+        command: "bun src/cli.ts plan lint --gate governance"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-11T18:05:34Z"
+        evidence_path: docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md
+        output_digest: "sha256:b5f5d17da33f4f26f190bee89170245f5ba21f9bee78b4abb82da7fb514e27f9"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-11T18:05:34Z"
+        evidence_path: src/lint/plan-specific-vpair-binding.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-11T18:05:34Z"
+        evidence_path: src/lint/plan-specific-vpair-binding.ts
+        output_digest: "sha256:9c19de96460bd7cb6b0e1b97a2318576a1c58b75cdf2ad00dc65f75655620fc5"
 ---
 
 # PLAN-L7-422: PLAN固有Vペア4点結合gate

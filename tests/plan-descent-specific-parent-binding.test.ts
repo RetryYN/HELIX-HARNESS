@@ -951,10 +951,15 @@ describe("PLAN固有Vペアbinding", () => {
   it("U-PSPB-020: 実repoはPLAN-L7-419と本PLANをactive exemptionなしで4点bindingする", () => {
     const checked = checkPlanSpecificVpairBindings(process.cwd());
     expect(checked.ok, checked.messages.join("\n")).toBe(true);
-    expect(checked.result?.exempted).toHaveLength(286);
+    expect(checked.result?.exempted).toHaveLength(285);
     const productionAuthority = JSON.parse(
       readFileSync("config/plan-specific-vpair-binding-authority.json", "utf8"),
     ) as PlanSpecificVpairAuthority;
+    expect(productionAuthority.initialAuthority).toHaveLength(286);
+    expect(productionAuthority.resolvedTombstones).toHaveLength(1);
+    expect(productionAuthority.resolvedTombstones[0]?.fingerprint).toBe(
+      "sha256:0643481c277923a4d2bb0752c30415d4cf87835a8eeb65b2713ed125fafca068",
+    );
     expect(authorityLegacyIdentityDigest(productionAuthority.initialAuthority)).toBe(
       PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
     );
