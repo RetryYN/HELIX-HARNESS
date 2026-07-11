@@ -6,13 +6,15 @@ import { parse as parseYaml } from "yaml";
 import { PLAN_SPECIFIC_ORACLE_ID_PATTERN } from "../schema/frontmatter";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
-  "plan-specific-vpair-binding-authority.v1" as const;
+  "plan-specific-vpair-binding-authority.v2" as const;
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH =
   "config/plan-specific-vpair-binding-authority.json" as const;
+export const PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST =
+  "sha256:18296bffa4a37adbab68e3602677eaa5008a26807866bff421d52e9597b30786";
 export const PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST =
-  "sha256:18296bffa4a37adbab68e3602677eaa5008a26807866bff421d52e9597b30786";
+  "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1";
 export const PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST =
-  "sha256:18296bffa4a37adbab68e3602677eaa5008a26807866bff421d52e9597b30786";
+  "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1";
 
 export type PlanSpecificVpairReason =
   | "verification_bindings_absent"
@@ -28,6 +30,8 @@ export type PlanSpecificVpairReason =
   | "oracle_citation_missing"
   | "oracle_owned_by_multiple_plans"
   | "duplicate_binding"
+  | "generated_test_unbound"
+  | "baseline_plan_semantic_drift"
   | "baseline_authority_invalid"
   | "resolved_finding_reappeared";
 
@@ -45,6 +49,7 @@ export interface VerificationBinding {
 }
 
 export interface PlanSpecificVpairPlan {
+  path?: unknown;
   plan_id: unknown;
   kind: unknown;
   status: unknown;
@@ -76,6 +81,8 @@ export interface PlanSpecificVpairAuthorityInitial {
   plan_id: string;
   reason: PlanSpecificVpairReason;
   detail: string | null;
+  plan_path: string;
+  plan_semantic_digest: string;
 }
 
 export interface PlanSpecificVpairAuthorityTombstone {
@@ -100,6 +107,7 @@ export interface PlanSpecificVpairBindingInput {
   /** code-side pin。adapter/doctorは必ず指定し、unit testでは省略可能。 */
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
+  expectedLegacyIdentityDigest?: string;
   /** resolution PLANがterminalかを判定するpure dependency。 */
   isTerminalResolutionPlan?: (planId: string) => boolean;
 }
@@ -119,6 +127,60 @@ function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value, "utf8").digest("hex")}`;
 }
 
+function canonicalizeSemanticValue(value: unknown, key = ""): unknown {
+  if (typeof value === "string") return value.normalize("NFC");
+  if (Array.isArray(value)) {
+    const normalized = value.map((entry) => canonicalizeSemanticValue(entry));
+    if (key === "generates")
+      return normalized.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    if (key === "requires" || key === "references")
+      return normalized.sort((a, b) => String(a).localeCompare(String(b)));
+    return normalized;
+  }
+  if (value && typeof value === "object")
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([entryKey, entryValue]) => [
+          entryKey,
+          canonicalizeSemanticValue(entryValue, entryKey),
+        ]),
+    );
+  return value;
+}
+
+function normalizedPlanBody(source: unknown): string {
+  if (typeof source !== "string") return "";
+  const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, "");
+  return `${body
+    .replace(/\r\n?/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/[\t ]+$/g, ""))
+    .join("\n")
+    .trimEnd()
+    .normalize("NFC")}\n`;
+}
+
+/** legacy exemptionをmutableな運用証跡ではなくPLANの設計・実装意味へ固定する。 */
+export function planSemanticDigest(plan: PlanSpecificVpairPlan): string {
+  const frontmatter = { ...(plan as unknown as Record<string, unknown>) };
+  for (const mutable of [
+    "path",
+    "source",
+    "updated",
+    "owner",
+    "review_evidence",
+    "verification_bindings",
+  ])
+    delete frontmatter[mutable];
+  return sha256(
+    JSON.stringify({
+      frontmatter: canonicalizeSemanticValue(frontmatter),
+      body: normalizedPlanBody(plan.source),
+    }),
+  );
+}
+
 export function findingFingerprint(
   value: Pick<PlanSpecificVpairFinding, "plan_id" | "reason" | "detail">,
 ): string {
@@ -132,6 +194,15 @@ export function findingFingerprint(
 }
 
 export function authorityInitialDigest(initial: PlanSpecificVpairAuthorityInitial[]): string {
+  return sha256(
+    `${initial.map((entry) => JSON.stringify(canonicalizeSemanticValue(entry))).join("\n")}\n`,
+  );
+}
+
+/** v1 migration前のexact finding identity集合。v2 full-entry pinとは独立に永続固定する。 */
+export function authorityLegacyIdentityDigest(
+  initial: PlanSpecificVpairAuthorityInitial[],
+): string {
   return sha256(`${initial.map((entry) => entry.fingerprint).join("\n")}\n`);
 }
 
@@ -341,6 +412,7 @@ function validateAuthority(input: {
   raw: unknown;
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
+  expectedLegacyIdentityDigest?: string;
   isTerminal?: (id: string) => boolean;
 }): {
   authority: PlanSpecificVpairAuthority | null;
@@ -368,9 +440,12 @@ function validateAuthority(input: {
     authority.initialAuthority.some(
       (entry) =>
         !entry ||
-        Object.keys(entry).sort().join(",") !== "detail,fingerprint,plan_id,reason" ||
+        Object.keys(entry).sort().join(",") !==
+          "detail,fingerprint,plan_id,plan_path,plan_semantic_digest,reason" ||
         !SHA256.test(entry.fingerprint) ||
         typeof entry.plan_id !== "string" ||
+        entry.plan_path !== `docs/plans/${entry.plan_id}.md` ||
+        !SHA256.test(entry.plan_semantic_digest) ||
         !PLAN_SPECIFIC_VPAIR_REASONS.has(entry.reason) ||
         (entry.detail !== null && typeof entry.detail !== "string") ||
         findingFingerprint(entry) !== entry.fingerprint,
@@ -384,6 +459,16 @@ function validateAuthority(input: {
       resolved: new Set(),
     };
   const initialDigest = authorityInitialDigest(authority.initialAuthority);
+  const legacyIdentityDigest = authorityLegacyIdentityDigest(authority.initialAuthority);
+  if (
+    input.expectedLegacyIdentityDigest &&
+    legacyIdentityDigest !== input.expectedLegacyIdentityDigest
+  )
+    return {
+      authority: null,
+      error: "legacy authority identity drift",
+      resolved: new Set(),
+    };
   if (input.expectedInitialDigest && initialDigest !== input.expectedInitialDigest)
     return {
       authority: null,
@@ -441,6 +526,8 @@ const PLAN_SPECIFIC_VPAIR_REASONS = new Set<PlanSpecificVpairReason>([
   "oracle_citation_missing",
   "oracle_owned_by_multiple_plans",
   "duplicate_binding",
+  "generated_test_unbound",
+  "baseline_plan_semantic_drift",
   "baseline_authority_invalid",
   "resolved_finding_reappeared",
 ]);
@@ -491,6 +578,11 @@ export function analyzePlanSpecificVpairBindings(
     const valid = bindings.filter((entry): entry is VerificationBinding => entry !== null);
     const seen = new Set<string>();
     const generated = generatedTestPaths(plan);
+    const boundTestPaths = new Set(valid.map((entry) => entry.test_path));
+    for (const generatedPath of generated) {
+      if (!boundTestPaths.has(generatedPath))
+        rawFindings.push(finding(planId, "generated_test_unbound", generatedPath));
+    }
     for (const binding of valid) {
       const tuple = `${binding.parent_design}\n${binding.oracle_id}\n${binding.test_path}`;
       if (seen.has(tuple)) rawFindings.push(finding(planId, "duplicate_binding", tuple));
@@ -568,12 +660,14 @@ export function analyzePlanSpecificVpairBindings(
   if (
     input.authority !== undefined ||
     input.expectedInitialDigest ||
-    input.expectedTerminalDigest
+    input.expectedTerminalDigest ||
+    input.expectedLegacyIdentityDigest
   ) {
     authority = validateAuthority({
       raw: input.authority,
       expectedInitialDigest: input.expectedInitialDigest,
       expectedTerminalDigest: input.expectedTerminalDigest,
+      expectedLegacyIdentityDigest: input.expectedLegacyIdentityDigest,
       isTerminal: input.isTerminalResolutionPlan,
     });
     if (authority.error)
@@ -583,6 +677,27 @@ export function analyzePlanSpecificVpairBindings(
   const initial = new Set(
     authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ?? [],
   );
+  const activePlansById = new Map(
+    active.flatMap((plan) =>
+      typeof plan.plan_id === "string" ? ([[plan.plan_id, plan]] as const) : [],
+    ),
+  );
+  for (const entry of authority?.authority?.initialAuthority ?? []) {
+    if (resolved.has(entry.fingerprint)) continue;
+    const plan = activePlansById.get(entry.plan_id);
+    if (!plan) continue;
+    const actualPath = typeof plan.path === "string" ? plan.path : "";
+    const actualDigest = planSemanticDigest(plan);
+    if (actualPath !== entry.plan_path || actualDigest !== entry.plan_semantic_digest) {
+      currentFindings.push(
+        finding(
+          entry.plan_id,
+          "baseline_plan_semantic_drift",
+          `path=${entry.plan_path}/${actualPath || "-"};digest=${entry.plan_semantic_digest}/${actualDigest}`,
+        ),
+      );
+    }
+  }
   const currentFingerprints = new Set(currentFindings.map((item) => item.fingerprint));
   const unusedActiveExemptions = [...initial].filter(
     (fingerprint) => !resolved.has(fingerprint) && !currentFingerprints.has(fingerprint),
@@ -620,6 +735,7 @@ export interface PlanSpecificVpairNodeLoaderOptions {
   authority?: unknown;
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
+  expectedLegacyIdentityDigest?: string;
   isTerminalResolutionPlan?: (planId: string) => boolean;
 }
 
@@ -684,6 +800,7 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
   options: {
     expectedInitialDigest?: string;
     expectedTerminalDigest?: string;
+    expectedLegacyIdentityDigest?: string;
     loadAuthority?: boolean;
   } = {},
 ): PlanSpecificVpairBindingInput {
@@ -694,7 +811,7 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
         .sort()
         .flatMap((name) => {
           const parsed = parsePlanFrontmatter(readFileSync(join(plansDir, name), "utf8"));
-          return parsed ? [parsed] : [];
+          return parsed ? [{ ...parsed, path: `docs/plans/${name}` }] : [];
         })
     : [];
   const pairPaths = plans.flatMap((plan) =>
@@ -728,6 +845,7 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
     authority,
     expectedInitialDigest: options.expectedInitialDigest,
     expectedTerminalDigest: options.expectedTerminalDigest,
+    expectedLegacyIdentityDigest: options.expectedLegacyIdentityDigest,
     isTerminalResolutionPlan: (planId) => terminalPlans.has(planId),
   });
 }
@@ -765,6 +883,7 @@ export function checkPlanSpecificVpairBindings(repoRoot: string): {
       loadPlanSpecificVpairBindingInputFromRepo(repoRoot, {
         expectedInitialDigest: PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST,
         expectedTerminalDigest: PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST,
+        expectedLegacyIdentityDigest: PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
       }),
     );
     return { ok: result.ok, messages: planSpecificVpairBindingMessages(result), result };

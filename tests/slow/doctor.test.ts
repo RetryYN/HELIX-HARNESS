@@ -2194,7 +2194,8 @@ describe("runDoctor", () => {
     expect(hasDoctorMessage(r.messages, "doctor: plan-governance - OK")).toBe(true);
   });
 
-  it("U-PSPB-019: PLAN固有Vペアbindingをdoctor hard gateへ配線する", () => {
+  // PLAN-L7-422-plan-specific-vpair-binding
+  it("U-PSPB-024: PLAN固有Vペアbindingをdoctor hard gateへ配線する", () => {
     const r = liveDoctor();
     expect(hasDoctorMessageWith(r.messages, "doctor: plan-specific-vpair-binding", "OK")).toBe(
       true,

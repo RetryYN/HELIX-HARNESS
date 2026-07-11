@@ -1,15 +1,19 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   analyzePlanSpecificVpairBindings,
   authorityInitialDigest,
+  authorityLegacyIdentityDigest,
   authorityTombstoneDigest,
   checkPlanSpecificVpairBindings,
   extractExecutableOracleCases,
   findingFingerprint,
+  PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
   type PlanSpecificVpairAuthority,
   type PlanSpecificVpairBindingInput,
   type PlanSpecificVpairPlan,
   parseEligibleOracleTable,
+  planSemanticDigest,
   planSpecificVpairBindingMessages,
 } from "../src/lint/plan-specific-vpair-binding";
 import { lintPlanGate } from "../src/plan/lint";
@@ -22,6 +26,7 @@ const oracle = "U-PSPB-006";
 const table = (id = oracle, path = testPath) =>
   `| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| ${id} | 対象 | 反例 | \`${path}\` |`;
 const plan = (overrides: Partial<PlanSpecificVpairPlan> = {}): PlanSpecificVpairPlan => ({
+  path: `docs/plans/${planId}.md`,
   plan_id: planId,
   kind: "impl",
   status: "draft",
@@ -29,7 +34,20 @@ const plan = (overrides: Partial<PlanSpecificVpairPlan> = {}): PlanSpecificVpair
   pair_artifact: pair,
   verification_bindings: [{ parent_design: parent, oracle_id: oracle, test_path: testPath }],
   generates: [{ artifact_path: testPath, artifact_type: "test_code" }],
+  source: `---\nplan_id: ${planId}\n---\n\n# fixture\n`,
   ...overrides,
+});
+const authorityEntry = (
+  base: Pick<
+    PlanSpecificVpairAuthority["initialAuthority"][number],
+    "plan_id" | "reason" | "detail"
+  >,
+  target = plan(),
+): PlanSpecificVpairAuthority["initialAuthority"][number] => ({
+  ...base,
+  fingerprint: findingFingerprint(base),
+  plan_path: String(target.path),
+  plan_semantic_digest: planSemanticDigest(target),
 });
 const input = (
   overrides: Partial<PlanSpecificVpairBindingInput> = {},
@@ -284,16 +302,9 @@ describe("PLAN固有Vペアbinding", () => {
     ).findings[0];
     expect(base).toBeDefined();
     if (!base) return;
-    const initial = [
-      {
-        fingerprint: base.fingerprint,
-        plan_id: base.plan_id,
-        reason: base.reason,
-        detail: base.detail,
-      },
-    ];
+    const initial = [authorityEntry(base, plan({ verification_bindings: [] }))];
     const authority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v1",
+      schemaVersion: "plan-specific-vpair-binding-authority.v2",
       initialAuthority: initial,
       resolvedTombstones: [],
     };
@@ -316,8 +327,8 @@ describe("PLAN固有Vペアbinding", () => {
       reason: "verification_bindings_absent" as const,
       detail: null,
     };
-    const fingerprint = findingFingerprint(absent);
-    const initial = [{ ...absent, fingerprint }];
+    const initial = [authorityEntry(absent, plan({ verification_bindings: [] }))];
+    const fingerprint = initial[0]?.fingerprint ?? "";
     const genesis = authorityInitialDigest(initial);
     const tombstone = {
       fingerprint,
@@ -328,7 +339,7 @@ describe("PLAN固有Vペアbinding", () => {
     };
     tombstone.entry_digest = authorityTombstoneDigest(genesis, tombstone);
     const authority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v1",
+      schemaVersion: "plan-specific-vpair-binding-authority.v2",
       initialAuthority: initial,
       resolvedTombstones: [tombstone],
     };
@@ -351,8 +362,17 @@ describe("PLAN固有Vペアbinding", () => {
       detail: null,
     };
     const unusedAuthority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v1",
-      initialAuthority: [{ ...unusedBase, fingerprint: findingFingerprint(unusedBase) }],
+      schemaVersion: "plan-specific-vpair-binding-authority.v2",
+      initialAuthority: [
+        authorityEntry(
+          unusedBase,
+          plan({
+            plan_id: unusedBase.plan_id,
+            path: `docs/plans/${unusedBase.plan_id}.md`,
+            verification_bindings: [],
+          }),
+        ),
+      ],
       resolvedTombstones: [],
     };
     expect(reasons(input({ authority: unusedAuthority }))).toContain("baseline_authority_invalid");
@@ -406,6 +426,174 @@ describe("PLAN固有Vペアbinding", () => {
     ).toContain("baseline_authority_invalid");
   });
 
+  it("U-PSPB-021: authority semantic pinはlegacy PLANの意味変更を免除しない", () => {
+    const legacyPlan = plan({ verification_bindings: [] });
+    const absent = {
+      plan_id: planId,
+      reason: "verification_bindings_absent" as const,
+      detail: null,
+    };
+    const initial = [authorityEntry(absent, legacyPlan)];
+    const authority: PlanSpecificVpairAuthority = {
+      schemaVersion: "plan-specific-vpair-binding-authority.v2",
+      initialAuthority: initial,
+      resolvedTombstones: [],
+    };
+    const pinned = input({ plans: [legacyPlan], authority });
+    expect(analyzePlanSpecificVpairBindings(pinned).ok).toBe(true);
+
+    for (const changed of [
+      plan({ verification_bindings: [], source: `${legacyPlan.source}\n意味変更\n` }),
+      plan({ verification_bindings: [], parent_design: `${parent}.changed` }),
+      plan({
+        verification_bindings: [],
+        generates: [
+          { artifact_path: testPath, artifact_type: "test_code" },
+          { artifact_path: "tests/added.test.ts", artifact_type: "test_code" },
+        ],
+      }),
+      plan({ verification_bindings: [], semantic_extension: "new-contract" } as never),
+      plan({
+        verification_bindings: [],
+        agent_slots: [{ role: "security", slot_label: "changed execution authority" }],
+      } as never),
+    ]) {
+      expect(reasons({ ...pinned, plans: [changed] })).toContain("baseline_plan_semantic_drift");
+    }
+    expect(
+      analyzePlanSpecificVpairBindings({
+        ...pinned,
+        plans: [
+          plan({
+            verification_bindings: [],
+            owner: "another-runtime",
+            updated: "2026-07-12",
+            review_evidence: [{ verdict: "approve" }],
+          } as never),
+        ],
+      }).ok,
+    ).toBe(true);
+    expect(
+      reasons({
+        ...pinned,
+        authority: { ...authority, schemaVersion: "plan-specific-vpair-binding-authority.v1" },
+      }),
+    ).toContain("baseline_authority_invalid");
+
+    const canonicalA = plan({
+      verification_bindings: [],
+      dependencies: { requires: ["b", "a"], references: ["d", "c"] },
+      generates: [
+        { artifact_path: "tests/z.test.ts", artifact_type: "test_code" },
+        { artifact_path: "tests/a.test.ts", artifact_type: "test_code" },
+      ],
+      source: `---\r\nplan_id: ${planId}\r\n---\r\n\r\nCafe\u0301  \r\n`,
+    } as never);
+    const canonicalB = plan({
+      verification_bindings: [],
+      dependencies: { references: ["c", "d"], requires: ["a", "b"] },
+      generates: [
+        { artifact_type: "test_code", artifact_path: "tests/a.test.ts" },
+        { artifact_type: "test_code", artifact_path: "tests/z.test.ts" },
+      ],
+      source: `---\nplan_id: ${planId}\n---\n\nCafé\n`,
+    } as never);
+    expect(planSemanticDigest(canonicalA)).toBe(planSemanticDigest(canonicalB));
+  });
+
+  it("U-PSPB-022: authority v2 genesisはsemantic pinを含みtombstone chainを再拘束する", () => {
+    const legacyPlan = plan({ verification_bindings: [] });
+    const absent = {
+      plan_id: planId,
+      reason: "verification_bindings_absent" as const,
+      detail: null,
+    };
+    const entry = authorityEntry(absent, legacyPlan);
+    const initial = [entry];
+    const genesis = authorityInitialDigest(initial);
+    expect(authorityLegacyIdentityDigest(initial)).not.toBe(genesis);
+    expect(
+      authorityInitialDigest([{ ...entry, plan_semantic_digest: `sha256:${"1".repeat(64)}` }]),
+    ).not.toBe(genesis);
+    const tombstone = {
+      fingerprint: entry.fingerprint,
+      resolved_at: "2026-07-12T00:00:00Z",
+      resolution_plan_id: "PLAN-L7-999-resolution",
+      previous_digest: genesis,
+      entry_digest: "",
+    };
+    tombstone.entry_digest = authorityTombstoneDigest(genesis, tombstone);
+    const authority: PlanSpecificVpairAuthority = {
+      schemaVersion: "plan-specific-vpair-binding-authority.v2",
+      initialAuthority: initial,
+      resolvedTombstones: [tombstone],
+    };
+    const migrated = input({
+      plans: [],
+      authority,
+      expectedInitialDigest: genesis,
+      expectedTerminalDigest: tombstone.entry_digest,
+      isTerminalResolutionPlan: () => true,
+    });
+    expect(analyzePlanSpecificVpairBindings(migrated).ok).toBe(true);
+    expect(
+      reasons({
+        ...migrated,
+        expectedLegacyIdentityDigest: `sha256:${"3".repeat(64)}`,
+      }),
+    ).toContain("baseline_authority_invalid");
+    expect(
+      reasons(
+        input({
+          authority: undefined,
+          expectedLegacyIdentityDigest: PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
+        }),
+      ),
+    ).toContain("baseline_authority_invalid");
+    expect(
+      reasons({
+        ...migrated,
+        authority: {
+          ...authority,
+          resolvedTombstones: [{ ...tombstone, previous_digest: `sha256:${"2".repeat(64)}` }],
+        },
+      }),
+    ).toContain("baseline_authority_invalid");
+  });
+
+  it("U-PSPB-023: generatesの全test_codeをbinding test pathへ逆包含する", () => {
+    const unboundPath = "tests/unbound.test.ts";
+    const partial = plan({
+      generates: [
+        { artifact_path: testPath, artifact_type: "test_code" },
+        { artifact_path: unboundPath, artifact_type: "test_code" },
+        { artifact_path: "src/example.ts", artifact_type: "source_module" },
+      ],
+    });
+    const result = analyzePlanSpecificVpairBindings(input({ plans: [partial] }));
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ reason: "generated_test_unbound", detail: unboundPath }),
+    );
+    expect(
+      analyzePlanSpecificVpairBindings(
+        input({
+          plans: [
+            plan({
+              generates: [
+                { artifact_path: testPath, artifact_type: "test_code" },
+                { artifact_path: testPath, artifact_type: "test_code" },
+                { artifact_path: "src/example.ts", artifact_type: "source_module" },
+              ],
+            }),
+          ],
+        }),
+      ).ok,
+    ).toBe(true);
+    expect(reasons(input({ plans: [plan({ verification_bindings: [], generates: [] })] }))).toEqual(
+      ["verification_bindings_absent"],
+    );
+  });
+
   it("U-PSPB-018: 対象境界", () => {
     expect(
       analyzePlanSpecificVpairBindings(input({ plans: [plan({ status: "draft" })] })).checkedPlans,
@@ -446,6 +634,13 @@ describe("PLAN固有Vペアbinding", () => {
   it("U-PSPB-020: 実repoはPLAN-L7-419と本PLANをactive exemptionなしで4点bindingする", () => {
     const checked = checkPlanSpecificVpairBindings(process.cwd());
     expect(checked.ok, checked.messages.join("\n")).toBe(true);
+    expect(checked.result?.exempted).toHaveLength(286);
+    const productionAuthority = JSON.parse(
+      readFileSync("config/plan-specific-vpair-binding-authority.json", "utf8"),
+    ) as PlanSpecificVpairAuthority;
+    expect(authorityLegacyIdentityDigest(productionAuthority.initialAuthority)).toBe(
+      PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
+    );
     expect(
       checked.result?.exempted.some(
         (finding) => finding.plan_id === "PLAN-L7-419-skill-mythos-uplift",
@@ -454,6 +649,11 @@ describe("PLAN固有Vペアbinding", () => {
     expect(
       checked.result?.exempted.some(
         (finding) => finding.plan_id === "PLAN-L7-422-plan-specific-vpair-binding",
+      ),
+    ).toBe(false);
+    expect(
+      checked.result?.exempted.some(
+        (finding) => finding.plan_id === "PLAN-L7-423-ci-governance-self-heal",
       ),
     ).toBe(false);
   });
