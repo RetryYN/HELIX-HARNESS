@@ -44,6 +44,9 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-017, test_path: tests/frontmatter.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-018, test_path: tests/slow/doctor.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-019, test_path: tests/gate-static.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-020, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-021, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-022, test_path: tests/left-arm-carry-log.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE - codec、analyzer、doctor/G7配線" }
   - { role: qa, slot_label: "QA - adversarial fixtureとreal repo回帰" }
@@ -80,4 +83,4 @@ dependencies:
 
 ## 1. 完了条件
 
-`U-CARRY-001..019`、PLAN lint、doctor、G7/trace-freeze入口、全回帰がgreenである。
+`U-CARRY-001..022`、PLAN lint、doctor、G7/trace-freeze入口、全回帰がgreenである。

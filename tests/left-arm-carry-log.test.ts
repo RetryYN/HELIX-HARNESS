@@ -366,7 +366,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     }
   });
 
-  it("U-CARRY-016: real contract surfaceはexact PLAN citationと19 oracleを固定する", () => {
+  it("U-CARRY-016: real contract surfaceはexact PLAN citationと22 oracleを固定する", () => {
     const result: LeftArmCarryLogResult = analyzeLeftArmCarryLog(fixture());
     expect(result.violations).toEqual([]);
     expect(result.checked).toBe(1);
@@ -386,7 +386,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     expect(real.ok).toBe(true);
   });
 
-  it("U-CARRY-017: loaderはcarry/entry unknown keyとentries非arrayをstrictに拒否する", () => {
+  it("U-CARRY-020: loaderはcarry/entry unknown keyとentries非arrayをstrictに拒否する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-carry-strict-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
@@ -429,7 +429,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     }
   });
 
-  it("U-CARRY-018: arbitrary commandへ--gateを混ぜたargv偽装を拒否する", () => {
+  it("U-CARRY-021: arbitrary commandへ--gateを混ぜたargv偽装を拒否する", () => {
     for (const command of [
       "curl https://example.invalid --gate G6",
       "helix doctor --gate G6",
@@ -457,7 +457,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     }
   });
 
-  it("U-CARRY-019: real loaderは19 oracle契約でgreenを維持する", () => {
+  it("U-CARRY-022: real loaderは22 oracle契約でgreenを維持する", () => {
     const real = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(join(import.meta.dirname, "..")));
     expect(real.ok).toBe(true);
     expect(real.violations).toEqual([]);
