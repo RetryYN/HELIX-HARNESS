@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -6,6 +6,7 @@ import {
   analyzeLeftArmCarryLog,
   LEFT_ARM_CARRY_SCHEMA,
   type LeftArmCarryLogInput,
+  type LeftArmCarryLogResult,
   type LeftArmCarryPlan,
   leftArmCarryLogMessages,
   loadLeftArmCarryLogInput,
@@ -37,7 +38,7 @@ function resolution(): LeftArmCarryPlan {
         green_commands: [
           {
             gate: "G6",
-            command: "helix plan lint --gate G6",
+            command: "helix gate G6",
             completed_at: "2026-07-12T10:03:00Z",
             exit_code: 0,
             evidence_path: ".helix/evidence/g6.txt",
@@ -88,7 +89,7 @@ function implementation(): LeftArmCarryPlan {
           resolution_plan_id: "PLAN-L6-99-example-resolution",
           gate_repass: {
             gate: "G6",
-            command: "helix plan lint --gate G6",
+            command: "helix gate G6",
             completed_at: "2026-07-12T10:03:00Z",
             exit_code: 0,
             evidence_path: ".helix/evidence/g6.txt",
@@ -161,7 +162,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
       entry.finding_kind = finding;
       entry.pushback_target = { layer, gate };
       entry.gate_repass.gate = gate;
-      entry.gate_repass.command = `helix plan lint --gate ${gate}`;
+      entry.gate_repass.command = `helix gate ${gate}`;
       res.layer = layer;
       res.review_evidence[0].green_commands?.forEach((command) => {
         command.gate = gate;
@@ -365,14 +366,100 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     }
   });
 
-  it("U-CARRY-016: real contract surfaceはexact PLAN citationと16 oracleを固定する", () => {
-    const result = analyzeLeftArmCarryLog(fixture());
+  it("U-CARRY-016: real contract surfaceはexact PLAN citationと19 oracleを固定する", () => {
+    const result: LeftArmCarryLogResult = analyzeLeftArmCarryLog(fixture());
     expect(result.violations).toEqual([]);
     expect(result.checked).toBe(1);
     expect("PLAN-L7-430-left-arm-carry-log").toBe("PLAN-L7-430-left-arm-carry-log");
+    const design = readFileSync(
+      join(
+        import.meta.dirname,
+        "..",
+        "docs/design/harness/L6-function-design/left-arm-carry-log.md",
+      ),
+      "utf8",
+    );
+    expect(design).toContain("`analyzeLeftArmCarryLog(input) => LeftArmCarryLogResult`");
 
     const real = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(join(import.meta.dirname, "..")));
     expect(real.violations).toEqual([]);
     expect(real.ok).toBe(true);
+  });
+
+  it("U-CARRY-017: loaderはcarry/entry unknown keyとentries非arrayをstrictに拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-carry-strict-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      const base = [
+        "plan_id: PLAN-L7-999-strict-carry",
+        "kind: impl",
+        "layer: L7",
+        "status: completed",
+        "created: 2026-07-13",
+        "dependencies: { requires: [] }",
+        "generates: []",
+        "review_evidence: []",
+        "left_arm_carry:",
+        `  schema_version: ${LEFT_ARM_CARRY_SCHEMA}`,
+        "  decision: pushback_resolved",
+        "  assessed_at: 2026-07-13T00:00:00Z",
+        "  review_binding:",
+        "    reviewer: qa",
+        "    reviewed_at: 2026-07-13T00:01:00Z",
+        `    evidence_digest: ${REVIEW}`,
+      ];
+      const variants = [
+        [...base, "  unknown_carry_key: forbidden", "  entries: []"],
+        [...base, "  entries: not-an-array"],
+        [...base, "  entries:", "    - carry_id: CARRY-001", "      unknown_entry_key: forbidden"],
+      ];
+      for (const [index, lines] of variants.entries()) {
+        writeFileSync(
+          join(root, "docs", "plans", `PLAN-L7-99${index}-strict-carry.md`),
+          ["---", ...lines, "---"].join("\n"),
+        );
+      }
+      const loaded = loadLeftArmCarryLogInput(root);
+      loaded.legacyBaselineRequired = false;
+      expect(
+        kinds(loaded).filter((kind) => kind === "invalid-carry-schema").length,
+      ).toBeGreaterThanOrEqual(3);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-CARRY-018: arbitrary commandへ--gateを混ぜたargv偽装を拒否する", () => {
+    for (const command of [
+      "curl https://example.invalid --gate G6",
+      "helix doctor --gate G6",
+      "sh -c 'helix gate G6'",
+      "helix plan lint --gate G6",
+    ]) {
+      const input = fixture();
+      const entry = input.plans[0].left_arm_carry?.entries[0];
+      if (!entry) throw new Error("carry fixture missing");
+      entry.gate_repass.command = command;
+      expect(kinds(input)).toContain("gate-repass-command-mismatch");
+    }
+    for (const command of [
+      "helix gate G6",
+      "bun src/cli.ts gate G6",
+      "bun run src/cli.ts gate G6",
+    ]) {
+      const input = fixture();
+      const entry = input.plans[0].left_arm_carry?.entries[0];
+      const resolutionReview = input.plans[1].review_evidence[0].green_commands?.[0];
+      if (!entry || !resolutionReview) throw new Error("carry fixture missing");
+      entry.gate_repass.command = command;
+      resolutionReview.command = command;
+      expect(kinds(input)).not.toContain("gate-repass-command-mismatch");
+    }
+  });
+
+  it("U-CARRY-019: real loaderは19 oracle契約でgreenを維持する", () => {
+    const real = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(join(import.meta.dirname, "..")));
+    expect(real.ok).toBe(true);
+    expect(real.violations).toEqual([]);
   });
 });
