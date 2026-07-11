@@ -8,6 +8,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { leftArmCarrySchema } from "../schema/frontmatter";
 
 export const LEFT_ARM_CARRY_SCHEMA = "left-arm-carry.v1";
 export const LEFT_ARM_CARRY_ENFORCEMENT_DATE = "2026-07-12";
@@ -66,6 +67,8 @@ export interface LeftArmCarryDecision {
     evidence_digest: string;
   };
   entries: LeftArmCarryEntry[];
+  /** production loaderのstrict schema parse失敗。raw cardinalityはentriesで別途保持する。 */
+  schema_invalid?: boolean;
 }
 
 export interface CarryReviewEntry {
@@ -188,7 +191,9 @@ function matchingReview(
 
 function gateCommandMatches(gate: string, command: string): boolean {
   const escaped = gate.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`(?:^|\\s)(?:--gate\\s+${escaped}|gate\\s+${escaped})(?:\\s|$)`).test(command);
+  return new RegExp(`^(?:helix gate ${escaped}|bun (?:run )?src/cli\\.ts gate ${escaped})$`).test(
+    command.trim().replace(/\s+/g, " "),
+  );
 }
 
 function addViolation(
@@ -219,6 +224,8 @@ function validateDecision(
   if (decision.schema_version !== LEFT_ARM_CARRY_SCHEMA) {
     addViolation(violations, plan.plan_id, "invalid-carry-schema", decision.schema_version);
   }
+  if (decision.schema_invalid)
+    addViolation(violations, plan.plan_id, "invalid-carry-schema", "strict schema parse failed");
   const noPushback = decision.decision === "no_pushback";
   const resolved = decision.decision === "pushback_resolved";
   if (
@@ -665,6 +672,7 @@ function normalizeCarry(value: unknown): LeftArmCarryDecision | undefined {
   const carry = asRecord(value);
   const binding = asRecord(carry?.review_binding);
   if (!carry || !binding) return undefined;
+  const schemaInvalid = !leftArmCarrySchema.safeParse(value).success;
   const rawEntries = Array.isArray(carry.entries) ? carry.entries : [];
   return {
     schema_version: textValue(carry.schema_version),
@@ -676,6 +684,7 @@ function normalizeCarry(value: unknown): LeftArmCarryDecision | undefined {
       evidence_digest: textValue(binding.evidence_digest),
     },
     entries: rawEntries.map((entry) => normalizeCarryEntry(entry) ?? malformedCarryEntry()),
+    ...(schemaInvalid ? { schema_invalid: true } : {}),
   };
 }
 
