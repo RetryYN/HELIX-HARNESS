@@ -12,6 +12,15 @@ updated: 2026-07-12
 owner: Codex
 backprop_decision: not_required
 backprop_decision_reason: "L6 carry log契約をplan codec、doctor、G7へ降下する。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-12T06:14:58+09:00"
+  review_binding:
+    reviewer: codex-independent-reviewer
+    reviewed_at: "2026-07-12T06:15:00+09:00"
+    evidence_digest: "sha256:1e5301a141b5cee482ed0a0c745613c99d6f6a649e4dff27653dc18db8cd5591"
+  entries: []
 parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
