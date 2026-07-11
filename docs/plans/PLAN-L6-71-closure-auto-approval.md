@@ -5,7 +5,9 @@ kind: add-design
 layer: L6
 drive: agent
 status: confirmed
-route_mode: forward
+route_mode: add-feature
+entry_signals:
+  - "po_directive:2026-07-12 PLAN-L7-425 I8 closure自走承認"
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
