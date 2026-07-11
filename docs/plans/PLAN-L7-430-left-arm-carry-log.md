@@ -19,7 +19,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-independent-reviewer
     reviewed_at: "2026-07-11T21:15:00Z"
-    evidence_digest: "sha256:e693dc3c5456d1e9e914b29827d13b7d5f1c5338dbccb7210da8186eff426742"
+    evidence_digest: "sha256:ccdf8676f94ab3c4de78184920d87005fb3628f62c7ac8248879d92cb665151b"
   entries: []
 parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
