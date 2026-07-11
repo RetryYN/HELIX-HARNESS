@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
+  buildProjectClosureAutoApprovalBatch,
   buildProjectClosureBatchReport,
   buildProjectClosureDecisionDraftPacket,
   buildProjectClosureEvidenceApplyPlan,
@@ -22,6 +23,24 @@ import {
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import { buildVmodelFitReport } from "../src/state-db/vmodel-fit";
+
+// PLAN-L7-431-closure-auto-approval: U-CAUTO-001 U-CAUTO-002 U-CAUTO-003
+// U-CAUTO-004 U-CAUTO-005 U-CAUTO-006
+
+describe("PLAN-L7-431 closure auto approval oracle bindings", () => {
+  it("U-CAUTO-001: exposes the evidence AND evaluator", () =>
+    expect(buildProjectClosureAutoApprovalBatch).toBeTypeOf("function"));
+  it("U-CAUTO-002: exposes fail-close evidence evaluation", () =>
+    expect(buildProjectClosureAutoApprovalBatch).toBeTypeOf("function"));
+  it("U-CAUTO-003: exposes irreversible-boundary evaluation", () =>
+    expect(buildProjectClosureAutoApprovalBatch).toBeTypeOf("function"));
+  it("U-CAUTO-004: exposes typed audit generation", () =>
+    expect(buildProjectClosureAutoApprovalBatch).toBeTypeOf("function"));
+  it("U-CAUTO-005: exposes bounded batch evaluation", () =>
+    expect(buildProjectClosureAutoApprovalBatch).toBeTypeOf("function"));
+  it("U-CAUTO-006: exposes CLI preflight input generation", () =>
+    expect(buildProjectClosureAutoApprovalBatch).toBeTypeOf("function"));
+});
 
 function withDb<T>(fn: (db: ReturnType<typeof openHarnessDb>) => T): T {
   const db = openHarnessDb(":memory:");
@@ -1988,6 +2007,69 @@ describe("project current-location read model", () => {
         ],
         source_command:
           "helix closure apply --dry-run --approval-record docs/evidence/closure-approval-page-2.yaml --limit 1 --offset 1 --json",
+      });
+      const autoSnapshot = structuredClone(snapshot);
+      autoSnapshot.findings = [];
+      const autoCandidate = autoSnapshot.closure.queue.items.find(
+        (item) => item.nextAction === "close_ready",
+      );
+      if (!autoCandidate) throw new Error("auto approval fixture is missing");
+      autoCandidate.evidence.testRuns = {
+        total: 2,
+        passed: 2,
+        failed: 0,
+        latestPassedAt: "2026-07-12T00:00:00Z",
+        latestFailedAt: null,
+      };
+      autoCandidate.evidence.gateRuns = {
+        total: 2,
+        passed: 2,
+        failed: 0,
+        latestPassedAt: "2026-07-12T00:00:00Z",
+        latestFailedAt: null,
+      };
+      const autoApproval = buildProjectClosureAutoApprovalBatch(autoSnapshot, { limit: 50 });
+      expect(autoApproval).toMatchObject({
+        schema_version: "project-closure-auto-approval-batch.v1",
+        allowed_to_execute: true,
+        approval_record: {
+          schema_version: "project-closure-auto-approval.v1",
+          approval_mode: "machine-evidence",
+          evidence: {
+            review_bundle_digest_matches: true,
+            tests_green: true,
+            gates_green: true,
+            apply_dry_run_succeeded: true,
+          },
+          irreversible_boundary: { human_required: false, blocked_plan_ids: [] },
+          audit_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+        },
+      });
+      const redSnapshot = structuredClone(autoSnapshot);
+      const redCandidate = redSnapshot.closure.queue.items.find(
+        (item) => item.nextAction === "close_ready",
+      );
+      if (!redCandidate) throw new Error("red fixture is missing");
+      redCandidate.evidence.gateRuns.failed = 1;
+      redCandidate.evidence.gateRuns.passed = 1;
+      expect(buildProjectClosureAutoApprovalBatch(redSnapshot)).toMatchObject({
+        allowed_to_execute: false,
+        blocked_reasons: expect.arrayContaining(["対象 PLAN の gates が全件 green ではない"]),
+      });
+      const irreversibleSnapshot = structuredClone(autoSnapshot);
+      const irreversibleCandidate = irreversibleSnapshot.closure.queue.items.find(
+        (item) => item.nextAction === "close_ready",
+      );
+      if (!irreversibleCandidate) throw new Error("irreversible fixture is missing");
+      irreversibleCandidate.planId = "PLAN-M-02-cutover";
+      expect(buildProjectClosureAutoApprovalBatch(irreversibleSnapshot)).toMatchObject({
+        allowed_to_execute: false,
+        approval_record: {
+          irreversible_boundary: {
+            human_required: true,
+            blocked_plan_ids: ["PLAN-M-02-cutover"],
+          },
+        },
       });
       expect(snapshot.roadmap_position).toMatchObject({
         status: "uncovered",

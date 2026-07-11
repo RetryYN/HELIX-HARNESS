@@ -294,3 +294,15 @@ projection baselineの同一差分内自己承認を禁止する。
 | `feedback-lifecycle.md` | feedback lifecycle状態機械・TTL・surface filter・promotion nudgeの12単体oracle（`U-FLIFE-*`） |
 | `plan-descent-specific-parent-binding.md` | PSPB 系 oracle |
 | `reverse-feedback-closure.md` | reverse feedback 閉塞の単体 oracle |
+| `closure-auto-approval.md` | close_ready機械承認と不可逆境界の`U-CAUTO-*` oracle |
+
+### closure自走承認 oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-CAUTO-001 | evidence AND | digest一致、tests/gates全green、apply dry-run成功だけauto approvalを許可 | `tests/current-location.test.ts` |
+| U-CAUTO-002 | red/未実行 | testまたはgateが0件、failed、passed/total不一致ならfail-close | `tests/current-location.test.ts` |
+| U-CAUTO-003 | 不可逆境界 | PLAN-L7-146、PLAN-M-02、external publish、charter P8混在batchをhumanへ残す | `tests/current-location.test.ts` |
+| U-CAUTO-004 | typed audit | scope、対象、条件真偽、不可逆判定、stable audit digestを記録 | `tests/current-location.test.ts` |
+| U-CAUTO-005 | bounded batch | 361件以上を1..100件windowで欠落・重複なく列挙し全batch先行検証 | `tests/current-location.test.ts` |
+| U-CAUTO-006 | CLI mutation boundary | dry-runは無変更、executeは全preflight green後だけstatus patchを行う | `tests/current-location.test.ts` |

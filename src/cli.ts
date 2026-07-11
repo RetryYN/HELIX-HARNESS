@@ -370,6 +370,7 @@ import {
 import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
+  buildProjectClosureAutoApprovalBatch,
   buildProjectClosureBatchReport,
   buildProjectClosureDecisionDraftPacket,
   buildProjectClosureEvidenceApplyPlan,
@@ -389,6 +390,7 @@ import {
   isProjectClosureQueueNextAction,
   type ProjectArtifactRemapBatchReport,
   type ProjectClosureApplyPlan,
+  type ProjectClosureAutoApprovalBatch,
   type ProjectClosureBatchReport,
   type ProjectClosureDecisionDraftPacket,
   type ProjectClosureEvidenceApplyPlan,
@@ -8075,6 +8077,116 @@ closure
           );
         }
         process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+
+closure
+  .command("auto-approve")
+  .description("machine-evidence closure approval with atomic batch preflight")
+  .option("--dry-run", "validate all selected batches without mutating PLAN files")
+  .option("--execute", "apply status patches only after every selected batch passes preflight")
+  .option("--batch-size <n>", "maximum close_ready candidates per batch", "50")
+  .option("--offset <n>", "zero-based starting offset", "0")
+  .option("--all", "process every close_ready candidate from offset")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      dryRun?: boolean;
+      execute?: boolean;
+      batchSize?: string;
+      offset?: string;
+      all?: boolean;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.dryRun === opts.execute) {
+        process.stderr.write(
+          "closure auto-approve: exactly one of --dry-run or --execute is required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const batchSize = Number.parseInt(opts.batchSize ?? "50", 10);
+      const initialOffset = Number.parseInt(opts.offset ?? "0", 10);
+      if (!Number.isFinite(batchSize) || batchSize < 1 || batchSize > 100) {
+        process.stderr.write("closure auto-approve: batch-size must be between 1 and 100\n");
+        process.exitCode = 2;
+        return;
+      }
+      if (!Number.isFinite(initialOffset) || initialOffset < 0) {
+        process.stderr.write("closure auto-approve: offset must be zero or greater\n");
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const db = openHarnessDb(opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:", {
+        repoRoot,
+      });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const total = snapshot.closure.queue.route_counts.close_ready;
+        const end = opts.all ? total : Math.min(total, initialOffset + batchSize);
+        const batches: ProjectClosureAutoApprovalBatch[] = [];
+        for (let offset = initialOffset; offset < end; offset += batchSize) {
+          batches.push(
+            buildProjectClosureAutoApprovalBatch(snapshot, {
+              limit: Math.min(batchSize, end - offset),
+              offset,
+            }),
+          );
+        }
+        if (batches.length === 0) {
+          batches.push(
+            buildProjectClosureAutoApprovalBatch(snapshot, {
+              limit: batchSize,
+              offset: initialOffset,
+            }),
+          );
+        }
+        const allowed = batches.every((batch) => batch.allowed_to_execute);
+        const applied: Array<{ plan_id: string; source_path: string; next_status: string }> = [];
+        if (opts.execute && allowed) {
+          for (const batch of batches) {
+            for (const patch of batch.apply_plan.patch_candidates) {
+              const path = join(repoRoot, patch.source_path);
+              writeFileSync(
+                path,
+                updatePlanFrontmatterStatus(readFileSync(path, "utf8"), patch.next_status),
+                "utf8",
+              );
+              applied.push({
+                plan_id: patch.plan_id,
+                source_path: patch.source_path,
+                next_status: patch.next_status,
+              });
+            }
+          }
+        }
+        const output = {
+          schema_version: "project-closure-auto-approval-run.v1",
+          dry_run: opts.dryRun === true,
+          executed: opts.execute === true && allowed,
+          atomic_preflight_passed: allowed,
+          total_close_ready: total,
+          selected: batches.reduce((sum, batch) => sum + batch.listed, 0),
+          batch_size: batchSize,
+          batch_count: batches.length,
+          batches,
+          applied_patches: applied,
+          audit_records: batches.map((batch) => batch.approval_record),
+        };
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else
+          process.stdout.write(
+            `closure auto-approve: dry_run=${output.dry_run} executed=${output.executed} preflight=${allowed} selected=${output.selected} batches=${output.batch_count} applied=${applied.length}\n`,
+          );
+        if (!allowed) process.exitCode = 2;
       } finally {
         db.close();
       }
