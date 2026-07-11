@@ -294,3 +294,15 @@ projection baselineの同一差分内自己承認を禁止する。
 | `feedback-lifecycle.md` | feedback lifecycle状態機械・TTL・surface filter・promotion nudgeの12単体oracle（`U-FLIFE-*`） |
 | `plan-descent-specific-parent-binding.md` | PSPB 系 oracle |
 | `reverse-feedback-closure.md` | reverse feedback 閉塞の単体 oracle |
+| `closure-auto-approval.md` | close_ready機械承認と不可逆境界の`U-CAUTO-*` oracle |
+
+### closure自走承認 oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-CAUTO-001 | typed authority AND | HEAD/PLAN/evidence/runを実bytesから検証したmanifestだけ許可 | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-002 | 自己申告排除 | DB集計greenでもevidence bytes driftならfail-close | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-003 | typed不可逆境界 | capability authorityが不可逆ならhumanへ残し、heuristicに依存しない | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-004 | replay/TOCTOU | HEAD、PLAN bytes、evidence bytes、run freshness driftを評価時とwrite直前CASで拒否 | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-005 | atomic apply/audit | rename途中失敗を全rollbackし、失敗before/after auditとdigestを残す | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-006 | bounded batch | 361件を100件以下のwindowで欠落・重複なく評価する | `tests/closure-auto-approval.test.ts` |

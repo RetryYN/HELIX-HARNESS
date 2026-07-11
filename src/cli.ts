@@ -23,6 +23,12 @@ import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
+import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
+import {
+  ciAutoFixGateInputSchema,
+  prReviewRouteInputSchema,
+  releaseAutomationDecisionInputSchema,
+} from "./audit/enforcement-route-input";
 import {
   loadGithubCiStatus,
   loadGithubMergeReadiness,
@@ -37,7 +43,9 @@ import {
   renderGithubOpsGuard,
   renderReleasePublicationPlan,
 } from "./audit/github-ops-guard";
+import { validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
+import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
@@ -107,11 +115,13 @@ import {
 } from "./lint/relation-graph";
 import { buildS4DecisionPackets, loadS4DecisionReadinessInput } from "./lint/s4-decision-readiness";
 import {
+  analyzeVerificationProfileSafety,
   inspectMcpProfile,
   listVerificationProfiles,
   nodeVerificationProbeDeps,
   probeVerificationProfile,
   recommendVerificationProfiles,
+  renderGeneratedMcpConfig,
   runVerificationProfile,
   saveVerificationEvidence,
   verificationRecommendationMermaid,
@@ -359,6 +369,19 @@ import {
   recommendSkillsForText,
   recordSkillRecommendations,
 } from "./skills/recommend";
+import {
+  applyClosureAutoApprovalAtomic,
+  type ClosureAutoApprovalEvaluation,
+  type ClosureAutoApprovalManifest,
+  canonicalClosureAuthorityDigest,
+  closureAutoApprovalWindows,
+  evaluateClosureAutoApproval,
+  loadGithubRequiredCheckReceipt,
+  parseClosureAutoApprovalManifest,
+  parseClosureBatchInteger,
+  recoverClosureAutoApprovalTransaction,
+  refetchGithubRequiredCheckReceipt,
+} from "./state-db/closure-auto-approval";
 import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
@@ -1353,6 +1376,9 @@ program
   .name("helix")
   .description("HELIX-HARNESS (TypeScript core, ADR-001)")
   .version(LOCAL_DISTRIBUTION_PACKAGE_VERSION);
+program.hook("preAction", () => {
+  recoverClosureAutoApprovalTransaction(process.cwd());
+});
 
 program
   .command("status")
@@ -1804,6 +1830,59 @@ mcpProfile
       process.stdout.write(`  - ${check.ok ? "ok" : "missing"} ${check.name}: ${check.message}\n`);
     }
     process.exitCode = result.ready ? 0 : 1;
+  });
+
+mcpProfile
+  .command("safety <name>")
+  .description("evaluate the mandatory verification-profile safety contract")
+  .option("--allow-write-tools", "record explicit human approval for write-capable tools")
+  .option("--docker-available", "record Docker availability")
+  .option("--docker-controls", "record Docker control documentation")
+  .option("--json", "JSON output")
+  .action(
+    (
+      name: string,
+      opts: {
+        allowWriteTools?: boolean;
+        dockerAvailable?: boolean;
+        dockerControls?: boolean;
+        json?: boolean;
+      },
+    ) => {
+      const profile = listVerificationProfiles().find((candidate) => candidate.id === name);
+      if (!profile) {
+        process.stderr.write(`unknown profile: ${name}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      const result = analyzeVerificationProfileSafety({
+        profile,
+        requiresHumanApproval: opts.allowWriteTools === true,
+        dockerAvailable: opts.dockerAvailable === true,
+        dockerControlsDocumented: opts.dockerControls === true,
+      });
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(result, null, 2)}\n`
+          : `profile safety ${name}: ${result.ok ? "ok" : "blocked"}\n`,
+      );
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
+
+mcpProfile
+  .command("config <name...>")
+  .description("render a local generated MCP config after workspace-scope checks")
+  .option("--target <path>", "suggested local target", ".helix/local/mcp.generated.json")
+  .option("--json", "JSON output")
+  .action((names: string[], opts: { target?: string; json?: boolean }) => {
+    const result = renderGeneratedMcpConfig({
+      repoRoot: process.cwd(),
+      selectedProfileIds: names,
+      targetPath: opts.target,
+    });
+    process.stdout.write(opts.json ? `${JSON.stringify(result, null, 2)}\n` : result.content);
+    process.exitCode = result.ok ? 0 : 1;
   });
 
 const memory = program.command("memory").description("shared harness/project memory");
@@ -8020,6 +8099,136 @@ closure
     },
   );
 
+closure
+  .command("auto-approve")
+  .description("typed-evidence closure approval with CAS and atomic rollback")
+  .option("--dry-run", "validate all selected batches without mutating PLAN files")
+  .option("--execute", "apply status patches only after every selected batch passes preflight")
+  .requiredOption("--evidence-manifest <path>", "typed evidence authority manifest JSON")
+  .option("--batch-size <n>", "maximum close_ready candidates per batch", "50")
+  .option("--offset <n>", "zero-based starting offset", "0")
+  .option("--all", "process every close_ready candidate from offset")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      dryRun?: boolean;
+      execute?: boolean;
+      evidenceManifest: string;
+      batchSize?: string;
+      offset?: string;
+      all?: boolean;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.dryRun === opts.execute) {
+        process.stderr.write(
+          "closure auto-approve: exactly one of --dry-run or --execute is required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const batchSize = parseClosureBatchInteger(opts.batchSize ?? "", { min: 1, max: 100 });
+      if (batchSize === null) {
+        process.stderr.write("closure auto-approve: batch-size must be between 1 and 100\n");
+        process.exitCode = 2;
+        return;
+      }
+      const initialOffset = parseClosureBatchInteger(opts.offset ?? "", { min: 0 });
+      if (initialOffset === null) {
+        process.stderr.write("closure auto-approve: offset must be zero or greater\n");
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const db = openHarnessDb(opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:", {
+        repoRoot,
+      });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const manifest = parseClosureAutoApprovalManifest(
+          JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
+        );
+        const total = snapshot.closure.queue.route_counts.close_ready;
+        const windows = closureAutoApprovalWindows({
+          total,
+          batchSize,
+          offset: initialOffset,
+          all: opts.all === true,
+        });
+        const end = windows.at(-1)
+          ? (windows.at(-1)?.offset ?? 0) + (windows.at(-1)?.limit ?? 0)
+          : initialOffset;
+        const batches: ClosureAutoApprovalEvaluation[] = [];
+        for (const window of windows) {
+          batches.push(
+            evaluateClosureAutoApproval({
+              repoRoot,
+              db,
+              snapshot,
+              manifest: {
+                ...manifest,
+                candidates: manifest.candidates.slice(window.offset, window.offset + window.limit),
+              },
+              limit: window.limit,
+              offset: window.offset,
+            }),
+          );
+        }
+        const allowed = batches.length > 0 && batches.every((batch) => batch.allowed);
+        const applied: string[] = [];
+        if (opts.execute && allowed) {
+          const first = batches[0] as ClosureAutoApprovalEvaluation;
+          const selectedManifest: ClosureAutoApprovalManifest = {
+            ...manifest,
+            candidates: manifest.candidates.slice(initialOffset, end),
+          };
+          const transactionEvaluation: ClosureAutoApprovalEvaluation = {
+            ...first,
+            allowed,
+            authority_digest: canonicalClosureAuthorityDigest(repoRoot, selectedManifest, db),
+            target_plan_ids: batches.flatMap((batch) => batch.target_plan_ids),
+            blockers: batches.flatMap((batch) => batch.blockers),
+            rendered_patches: batches.flatMap((batch) => batch.rendered_patches),
+          };
+          const githubReceipt = loadGithubRequiredCheckReceipt(repoRoot);
+          const result = applyClosureAutoApprovalAtomic({
+            repoRoot,
+            evaluation: transactionEvaluation,
+            manifest: selectedManifest,
+            db,
+            githubReceipt,
+            githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
+          });
+          applied.push(...result.applied);
+        }
+        const output = {
+          schema_version: "project-closure-auto-approval-run.v1",
+          dry_run: opts.dryRun === true,
+          executed: opts.execute === true && allowed,
+          atomic_preflight_passed: allowed,
+          total_close_ready: total,
+          selected: batches.reduce((sum, batch) => sum + batch.target_plan_ids.length, 0),
+          batch_size: batchSize,
+          batch_count: batches.length,
+          batches,
+          applied_patches: applied,
+          authority_digests: batches.map((batch) => batch.authority_digest),
+        };
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else
+          process.stdout.write(
+            `closure auto-approve: dry_run=${output.dry_run} executed=${output.executed} preflight=${allowed} selected=${output.selected} batches=${output.batch_count} applied=${applied.length}\n`,
+          );
+        if (!allowed) process.exitCode = 2;
+      } finally {
+        db.close();
+      }
+    },
+  );
+
 const progress = program.command("progress").description("artifact progress read model");
 
 function summarizeArtifactProgressRows(rows: Array<Record<string, unknown>>, color: string | null) {
@@ -11441,6 +11650,42 @@ const github = program
   .description("GitHub operation readiness and PR automation");
 
 github
+  .command("review-route")
+  .description("fail-close PR cross-review route decision")
+  .requiredOption("--input-json <json>", "PrReviewRouteInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = validatePrReviewRoute(
+      prReviewRouteInputSchema.parse(JSON.parse(opts.inputJson)),
+    );
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+github
+  .command("ci-auto-fix-gate")
+  .description("evaluate confidence and attempt circuit breakers before CI repush")
+  .requiredOption("--input-json <json>", "CiAutoFixGateInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const supplied = ciAutoFixGateInputSchema.parse(JSON.parse(opts.inputJson));
+    // CLI callerはpolicy authorityではない。canonical policyを常に適用し、閾値/cap/kindを上書きさせない。
+    const result = gateCiAutoFixRepush({ ...supplied, policy: undefined });
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.allowRepush ? 0 : 1;
+  });
+
+github
+  .command("release-automation-decision")
+  .description("emit the plan-only release automation decision")
+  .requiredOption("--input-json <json>", "ReleaseAutomationDecisionInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = planReleaseAutomationDecision(
+      releaseAutomationDecisionInputSchema.parse(JSON.parse(opts.inputJson)),
+    );
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+github
   .command("guard")
   .description("evaluate branch-type and commit subject guards without GitHub writes")
   .requiredOption("--head <ref>", "head branch/ref")
@@ -11477,17 +11722,40 @@ github
   .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
   .requiredOption("--repo <owner/repo>", "GitHub repository")
   .option("--apply", "mark dryRun=false in the packet; does not execute commands")
+  .option("--decision-input-json <json>", "required release decision evidence for --apply")
   .option("--json", "JSON output")
-  .action((opts: { tag: string; repo: string; apply?: boolean; json?: boolean }) => {
-    const result = buildReleasePublicationPlan({
-      tag: opts.tag,
-      repo: opts.repo,
-      dryRun: opts.apply !== true,
-    });
-    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    else process.stdout.write(renderReleasePublicationPlan(result));
-    process.exitCode = result.ok ? 0 : 1;
-  });
+  .action(
+    (opts: {
+      tag: string;
+      repo: string;
+      apply?: boolean;
+      decisionInputJson?: string;
+      json?: boolean;
+    }) => {
+      if (opts.apply) {
+        const decision = opts.decisionInputJson
+          ? planReleaseAutomationDecision(
+              releaseAutomationDecisionInputSchema.parse(JSON.parse(opts.decisionInputJson)),
+            )
+          : null;
+        if (!decision?.ok) {
+          process.stderr.write(
+            "release-plan --apply rejected: accepted release automation decision evidence is required\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const result = buildReleasePublicationPlan({
+        tag: opts.tag,
+        repo: opts.repo,
+        dryRun: opts.apply !== true,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(renderReleasePublicationPlan(result));
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("merge-readiness")
@@ -11542,28 +11810,49 @@ github
   .option("--base <branch>", "base branch for the pull request", "main")
   .option("--title <title>", "PR title override")
   .option("--apply", "execute gh pr create; default is dry-run")
+  .option("--review-input-json <json>", "required cross-review evidence for --apply")
   .option("--json", "JSON output")
-  .action((opts: { base?: string; title?: string; apply?: boolean; json?: boolean }) => {
-    const result = runGithubPrCreate(process.cwd(), {
-      baseBranch: opts.base ?? "main",
-      title: opts.title,
-      dryRun: opts.apply !== true,
-    });
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    } else {
-      process.stdout.write(
-        `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
-      );
-      process.stdout.write(
-        `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
-      );
-      process.stdout.write(`  - command=${result.command}\n`);
-      if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
-      if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
-    }
-    process.exitCode = result.ok ? 0 : 1;
-  });
+  .action(
+    (opts: {
+      base?: string;
+      title?: string;
+      apply?: boolean;
+      reviewInputJson?: string;
+      json?: boolean;
+    }) => {
+      if (opts.apply) {
+        const review = opts.reviewInputJson
+          ? validatePrReviewRoute(prReviewRouteInputSchema.parse(JSON.parse(opts.reviewInputJson)))
+          : null;
+        if (!review?.ok) {
+          process.stderr.write(
+            "github pr-create --apply rejected: valid cross-review evidence is required\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const result = runGithubPrCreate(process.cwd(), {
+        baseBranch: opts.base ?? "main",
+        title: opts.title,
+        dryRun: opts.apply !== true,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      } else {
+        process.stdout.write(
+          `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
+        );
+        process.stdout.write(
+          `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
+        );
+        process.stdout.write(`  - command=${result.command}\n`);
+        if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
+        if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 const feedback = program
   .command("feedback")

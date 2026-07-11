@@ -58,8 +58,47 @@ close 処理は backlog の status 更新（observed/triaged → verified 等）
 
 ### 留保
 
-(a) 91 件のうち 81 件（status=implemented）は trace 記載を信用した判定で、個別再検証は
-主要 10 件のみ。(b) の IMP-020/021 は「実害」より「層未到達の順序待ち」の性格が強い。
+(a) 91 件のうち未更新だった10件を再導出し、PLAN/source/testの三点証拠で実装済みと確認した。
+対象は `IMP-034/120/121/122/123/124/126/133/134/135`。typed decision manifestへ証拠pathを固定し、
+backlog statusを`implemented`へ更新した。(b) の IMP-020/021 は「実害」より「層未到達の順序待ち」の性格が強い。
+
+### (b) 30件の起票判断（2026-07-12 Codex再監査）
+
+| ID | 判断 | successor / 理由 |
+|---|---|---|
+| IMP-145 | new P0 | L6 screen-spec body Vペアを起票する |
+| IMP-148 | existing-delta P1 | PLAN-L7-243/244/245 familyへedge/visualizes/renderer残差を分割接続 |
+| IMP-111 | existing-delta P1 | relation-impact familyへtest/review scope oracleを追加 |
+| IMP-112 | reverify P1 | L7-53/135/325/382のcatalog/recommend/injection/metricsで残差を再監査 |
+| IMP-113 | existing-delta P1 | team-run familyへrun横断queryを追加 |
+| IMP-114 | new P1 | CI/OS evidence matrix Vペアを起票する |
+| IMP-115 | audit-then-delta P0 | secret-scan残差のPII/human downgrade/raw transcript invariantを監査後に起票 |
+| IMP-116 | new P2 | artifact/review taxonomy meta-audit Vペアを起票する |
+| IMP-136 | existing-delta P1 | verification-profile familyへstructured runner specを追加 |
+| IMP-001 | new P2 | IMP-033 engineを使うdoc-count rule Vペアを起票する |
+| IMP-002 | new P1 | duplicate-ID context rule Vペアを起票する |
+| IMP-003 | existing-delta P1 | PLAN-L7-55のfrontmatter path実在scopeを拡張する |
+| IMP-005 | new P2 | backlog→failure_log projection Vペアを起票する |
+| IMP-007 | defer P2 | raw pre-commit hookは増やさずGitHub CI/review-bundle gateへ統合する |
+| IMP-008 | new P2 | FR registry provenance列のdoc/schema Vペアを起票する |
+| IMP-009 | existing-delta P1 | PLAN-L7-345へverdict先頭化/分割出力契約を追加する |
+| IMP-020 | close P2 | PLAN-L4-14でWCAG 2.2 AAがui-standard/tokensへ着地済み |
+| IMP-021 | defer P3 | L13到達時のsystem/acceptance verification設計へ結合する |
+| IMP-024 | new P1 | ISO 29119-4観点のtest-design governance Vペアを起票する |
+| IMP-027 | defer P3 | business↔L4 section binding確定後に起票する |
+| IMP-030 | new P1 | API-key前提文言guard lint Vペアを起票する |
+| IMP-032 | existing P0 | PLAN-REVERSE-42→Forward mergeへ結合する |
+| IMP-033 | reverify P1 | L6-01/L7-95を実証し残差だけ個別起票する |
+| IMP-036 | reverify P1 | PLAN-REVERSE-01/DISCOVERY-05/roadmap登録を実証する |
+| IMP-040 | new P1 | U-RULE-01を10 rule型の個別oracleへ分割する |
+| IMP-041 | existing-doc P2 | L6-05/06確定signatureをL9 ST-ASSET-04へbackfillする |
+| IMP-072 | new P1 | GateId形式lint Vペアを起票する |
+| IMP-073 | defer P2 | L9本起票時にST-EXT-05/06 postconditionへ結合する |
+| IMP-084 | new P0 | delegated-freeze cross-agent-before-commit Vペアを起票する |
+| IMP-087 | close P2 | PLAN-REVERSE-40で4 orphanとtest traceをbackfill済み |
+
+最優先の新規起票はIMP-145、IMP-084、IMP-115残差の順とする。IMP-032は既存PLANへ結合し、
+層未到達項目は先行孤立testを作らず明示triggerまで保留する。
 
 ## §2 design-coverage（todo 57 件）
 
