@@ -178,4 +178,13 @@ describe("static gates", () => {
     expect(gateRow).not.toContain("gate checks 全量は後続");
     expect(gateRow).not.toContain("部分実装");
   });
+
+  it("U-CARRY-019: G7はcarry resultをANDしmessageへ出す (PLAN-L7-430-left-arm-carry-log)", () => {
+    const source = readFileSync(join(process.cwd(), "src", "gate", "static.ts"), "utf8");
+    expect(source).toContain(
+      "const carry = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(repoRoot))",
+    );
+    expect(source).toContain("...leftArmCarryLogMessages(carry)");
+    expect(source).toContain("impl.ok && oracle.ok && carry.ok && coverage.ok");
+  });
 });
