@@ -32,7 +32,7 @@ agent_slots:
   - { role: se, slot_label: "SE - analyzerとdoctor配線" }
   - { role: qa, slot_label: "QA - adversarial fixture" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-428-triage-decision-integrity.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-429-triage-decision-integrity.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/triage-decision-integrity.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/triage-decision-integrity.test.ts, artifact_type: test_code }
