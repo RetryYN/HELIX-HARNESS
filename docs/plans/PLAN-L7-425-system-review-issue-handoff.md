@@ -23,6 +23,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-425-system-review-issue-handoff.md
     artifact_type: markdown_doc
+  - artifact_path: docs/reference/system-review-triage-2026-07-12.md
+    artifact_type: markdown_doc
 dependencies:
   parent: null
   requires: []
@@ -105,22 +107,45 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 - 事象: 共有ツリー計測で `design-coverage - violation 1 件。総合 43% (done=43 / todo=57 / na=22,
   items=122)`。HEAD 単独 worktree では発生しないため、FE roster レーンの新規設計 doc が todo を
   押し上げている可能性が高い。merge 後 HEAD で再計測し、violation が残る場合のみ本項を実施する。
-- 対応: todo 57 項目を棚卸しし、(a) 実装済みで evidence 欠落 → evidence 補完、(b) 未実装で必要 →
-  個別 PLAN 起票（本 PLAN の successor として）、(c) 対象外 → na 判定の根拠記録、の 3 分類にする。
-  全消化を本 PLAN で claim しない（`coding ≠ substance`）。分類結果は本 PLAN の IMP セクションへ
-  記録し、必要な起票を行った時点で本項目は完了とする。
-- 受け入れ: 57 項目全件に分類が付き、(b) 分類分の PLAN が起票済み。coverage 数値の即時改善は
-  受け入れ条件にしない。
+- **triage 実施済み（2026-07-12、全件結果 = `docs/reference/system-review-triage-2026-07-12.md` §2）**:
+  (a) catalog 記述ミスによる status 更新漏れ 4 件（test-design 4 層。実在 confirmed doc と矛盾、
+  即修正可）、(b) 真正未着手 53 件（うち na 化候補 6 件は製品境界の再定義にあたるため PO 境界）、
+  scrum 系 8 件は検出ロジックだけ実装済みで対象成果物が repo に無い接続不足。
+- 対応: (a) 4 件の catalog status 修正 → (b) の必要性順 PLAN 起票判断 → na 候補 6 件を PO へ
+  escalate。全消化を本 PLAN で claim しない（`coding ≠ substance`）。
+- 受け入れ: (a) 4 件修正で design-coverage 数値が改善し、na 候補 6 件の PO 判断が escalation
+  として記録されている。coverage 全消化は受け入れ条件にしない。
 
-### I5: 衛生項目（低優先・観測のみ）
+### I5: hook orphan の真因修正（`plan use` の ID 未検証バグ — 実装項目へ格上げ）
 
-- `drive-db-registration` の legacy_hook_orphans: gate は OK だが orphan が**現在も増加し続けている**
-  （2026-07-12 の同一日内観測で 4561 → 4600）。つまり過去残渣ではなく、現行 hook event の一部が
-  drive/PLAN へ紐付かず orphan として蓄積される経路が live で存在する。掃除だけでなく
-  「どの event 種別が orphan 化しているか」の分類と、registration 経路の補修 or 恒久 allowlist の
-  方針判断を I4 triage と同時に行う（判断のみ、実装は別 PLAN）。
-- `l14-close-audit` open=7（blocked-human=2）: human 境界 2 件は PO へのエスカレーション対象として
-  残す。AI 側で進められる partial 5 件があれば I4 と同様に分類する。
+- **真因特定済み（2026-07-12、詳細 = `docs/reference/system-review-triage-2026-07-12.md` §4）**:
+  orphan 実測 4344 件は「legacy 残渣」ではなく、全件が截断 plan_id 5 種
+  （`PLAN-L7-41` 等、正式 ID の先頭切れ）に一致する。`helix plan use <id>` が
+  `plan_registry` 照合なしで `.helix/state/current-plan` へ verbatim 書き込みするため、
+  以後の全 hook event が誤 ID で記録され続ける（current-plan の現在値も截断 ID で増加継続中）。
+- 対応: (1) `plan use` に plan_registry 照合を追加（未解決 ID は候補提示 + fail-close）、
+  (2) 既存 orphan は截断→正式 ID の対応が一意なら remap、不定なら cleanup 判断を記録、
+  (3) 截断 ID 拒否 / 正常 ID 受理の regression test を追加（`generates:` に test_code 登録）。
+- 受け入れ: regression test green、`drive-db-registration` の orphan が増加停止
+  （修正後の新規 hook event で orphan 0）。既存分の remap/cleanup は別判断で可。
+
+### I5b: l14-close-audit の残 item 仕分け（判断記録のみ）
+
+- 全 10 item の仕分け済み（annex §3）: AI 進行可 = P5-context-efficiency のみ
+  （PLAN-L7-315 の残スコープ裏取りが着手条件）。PO/human 境界 = P1 / P6 の一部 / P8。
+  別 PLAN 追跡中 = P2 / P3 / P7。closed = P0 / P4 / P9。
+- 対応: P5 の残スコープ確認と着手判断のみ。PO 境界 3 件はエスカレーション対象として残す。
+
+### I7: improvement-backlog open 137 件の全件 triage 反映
+
+- **triage 実施済み（annex §1）**: (a) 対応 PLAN 既存・実装済 91 件（うち 10 件は backlog の
+  status 未更新）、(b) PLAN 起票要の実害 30 件（annex に全件表）、(c) PO 境界 1 件（IMP-031）、
+  (d) 陳腐化・重複 close 候補 15 件（実装実在を確認済み）。
+- 対応: (d) 15 件 + (a) の status 未更新 10 件を `docs/improvement-backlog.md` の status 更新で
+  close する（trace に根拠を追記）。(b) 30 件は必要性順に PLAN 起票判断（一括起票しない）。
+  (c) は PO へ escalate。
+- 受け入れ: backlog の status 更新が完了し `improvement-backlog` gate green 維持。(b) の起票判断
+  結果（起票 or 保留理由）が本 PLAN の IMP 記録または successor PLAN に残る。
 
 ### I6: 左腕差し戻し記録（carry log）の機械強制欠落
 
@@ -145,8 +170,10 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 - step 1 (serial): I1 修正（切り分け → 修正 → doctor green）。
 - step 2 (serial): I2 = PLAN-L7-424 レーン完遂（Codex 自レーン、既存作業の継続）。
 - step 3 (serial, step 2 依存): I3 machine phase（approval draft refresh → collect_evidence 実行）。
-- step 4 (parallel, step 1-3 と独立): I4 design-coverage triage + I5 方針判断。
-- step 5 (parallel, step 1-3 と独立): I6 carry log 機械強制（marker 定義 → lint 新設 → regression test）。
+- step 4 (parallel, step 1-3 と独立): I4 catalog 修正 + na 候補 escalate、I5b P5 裏取り、
+  I7 backlog status 更新（triage 済み annex に基づく処置）。
+- step 5 (parallel, step 1-3 と独立): I5 `plan use` ID 検証バグ修正（照合 + remap/cleanup + test）。
+- step 6 (parallel, step 1-3 と独立): I6 carry log 機械強制（marker 定義 → lint 新設 → regression test）。
 
 ## 完了条件（DoD）
 
@@ -154,7 +181,10 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   `plan-specific-vpair-binding` が OK（I1/I2）。
 - `recovery-runway` machine=0 かつ `recovery-handoff-gate` digest mismatch 解消（I3）。
   approval 361 件と l14 blocked-human 2 件は PO 境界として明示的に残す。
-- design-coverage todo=57 の全件分類と必要 PLAN の起票（I4）。
+- design-coverage catalog 記述ミス 4 件の修正と na 候補 6 件の PO escalation 記録（I4）。
+- `plan use` ID 検証の regression test green と orphan 増加停止（I5）。
+- improvement-backlog の close 候補 25 件（(d)15 + (a)status 未更新 10）の status 更新と
+  gate green 維持（I7）。
 - carry log lint の新設と regression test green（I6。実装ファイル確定時に `generates:` へ
   source_module / test_code を追記する）。
 - 各 step の green command を review_evidence に digest 付きで記録し、cross-runtime review
