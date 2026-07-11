@@ -292,7 +292,10 @@ function parseVisualizationApprovalRecord(
       outcome: null,
       approval_scope_digest: null,
       expected_approval_scope_digest: expectedApprovalScopeDigest,
-      scope_status: "missing",
+      // approval record 不在 = scope は未検査 (vmodel-fit parseVmodelApprovalRecord(null) と同一
+      // セマンティクス。doctor recovery-handoff-binding が gate と DB projection を突合するため
+      // 両経路で一致必須)。
+      scope_status: "not_checked",
       materialize_status: expectedMaterializeStatus,
       reviewed_candidate_count: null,
       valid_for_apply: false,
