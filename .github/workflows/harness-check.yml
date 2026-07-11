@@ -146,5 +146,10 @@ jobs:
       - name: lint (biome)
         run: bun run lint
 
+      # Full regression tests exercise projection writers. Rebuild from source immediately before
+      # doctor so the hard gate compares two views of the same post-test deterministic snapshot.
+      - name: db rebuild (post-test projection refresh)
+        run: bun src/cli.ts db rebuild --json
+
       - name: doctor (governance hard gates)
         run: bun src/cli.ts doctor
