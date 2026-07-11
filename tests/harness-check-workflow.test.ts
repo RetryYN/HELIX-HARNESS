@@ -10,14 +10,23 @@ type Step = {
   run?: string;
   if?: string;
   with?: Record<string, unknown>;
+  "timeout-minutes"?: number;
+  "continue-on-error"?: boolean;
 };
 
-function loadWorkflow(): { steps: Step[]; raw: string } {
+type HarnessJob = {
+  steps?: Step[];
+  "timeout-minutes"?: number;
+  "continue-on-error"?: boolean;
+};
+
+function loadWorkflow(): { job: HarnessJob; steps: Step[]; raw: string } {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
   const parsed = parseYaml(raw) as {
-    jobs?: { "harness-check"?: { steps?: Step[] } };
+    jobs?: { "harness-check"?: HarnessJob };
   };
-  return { raw, steps: parsed.jobs?.["harness-check"]?.steps ?? [] };
+  const job = parsed.jobs?.["harness-check"] ?? {};
+  return { job, raw, steps: job.steps ?? [] };
 }
 
 function stepByName(steps: Step[], name: string): Step {
@@ -83,5 +92,23 @@ describe("source harness-check workflow", () => {
     expect(refreshIndex).toBeGreaterThan(testIndex);
     expect(doctorIndex).toBeGreaterThan(refreshIndex);
     expect(steps[refreshIndex]?.run).toBe("bun src/cli.ts db rebuild --json");
+  });
+
+  it("U-CITIME-001/002/003: bounds the required job and full regression step without fail-open", () => {
+    const { job, steps } = loadWorkflow();
+    const regression = stepByName(steps, "test — 全回帰 (vitest run)");
+
+    expect(job["timeout-minutes"]).toBe(20);
+    expect(regression["timeout-minutes"]).toBe(15);
+    expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
+    expect(job["continue-on-error"]).not.toBe(true);
+    expect(regression["continue-on-error"]).not.toBe(true);
+    expect(regression.run).toBe("bun run test");
+
+    const regressionIndex = steps.indexOf(regression);
+    expect(stepByName(steps, "lint (biome)")).toBe(steps[regressionIndex + 1]);
+    expect(steps.indexOf(stepByName(steps, "doctor (governance hard gates)"))).toBeGreaterThan(
+      regressionIndex,
+    );
   });
 });
