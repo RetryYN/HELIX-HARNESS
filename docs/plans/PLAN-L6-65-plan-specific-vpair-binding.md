@@ -31,7 +31,7 @@ generates:
   - artifact_path: docs/test-design/harness/L8-unit-test-design.md
     artifact_type: test_design
   - artifact_path: docs/design/design-catalog.yaml
-    artifact_type: config
+    artifact_type: design_doc
 dependencies:
   parent: docs/plans/PLAN-L6-60-specific-parent-design-binding.md
   requires:

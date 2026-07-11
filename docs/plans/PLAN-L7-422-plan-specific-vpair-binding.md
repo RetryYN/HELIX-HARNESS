@@ -63,9 +63,9 @@ verification_bindings:
     oracle_id: U-PSPB-020
     test_path: tests/plan-descent-specific-parent-binding.test.ts
 agent_slots:
-  - role: be-logic
+  - role: se
     slot_label: "BE logic — pure analyzer/authority/AST adapter"
-  - role: qa-test
+  - role: qa
     slot_label: "QA — U-PSPB-006..020 red/green/oracle偽装検証"
   - role: tl
     slot_label: "TL — plan lint/doctor wiring・baseline authority・real repo判定"
@@ -73,13 +73,13 @@ generates:
   - artifact_path: docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/plan-specific-vpair-binding.ts
-    artifact_type: typescript_source
+    artifact_type: source_module
   - artifact_path: src/schema/frontmatter.ts
-    artifact_type: typescript_source
+    artifact_type: source_module
   - artifact_path: src/plan/lint.ts
-    artifact_type: typescript_source
+    artifact_type: source_module
   - artifact_path: src/doctor/index.ts
-    artifact_type: typescript_source
+    artifact_type: source_module
   - artifact_path: config/plan-specific-vpair-binding-authority.json
     artifact_type: config
   - artifact_path: docs/plans/PLAN-L7-419-skill-mythos-uplift.md
