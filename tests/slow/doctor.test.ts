@@ -39,6 +39,7 @@ import {
   checkL7Completion,
   checkL12CompatibilityBinding,
   checkL14CloseAudit,
+  checkLeftArmCarryLog,
   checkMergedPlanStatus,
   checkModuleDrift,
   checkObjectiveEvidenceAudit,
@@ -2225,6 +2226,14 @@ describe("runDoctor", () => {
     );
     expect(source).toContain("triageDecisionIntegrity.ok &&");
     expect(source).toContain("...triageDecisionIntegrity.messages.map");
+  });
+
+  it("U-CARRY-016: 左腕carryをdoctor hard gateへ配線する (PLAN-L7-430-left-arm-carry-log)", () => {
+    const green = checkLeftArmCarryLog(process.cwd());
+    expect(green.ok).toBe(true);
+    expect(green.messages[0]).toContain("left-arm-carry-log — OK");
+    const red = checkLeftArmCarryLog(join(process.cwd(), "missing-carry-root"));
+    expect(red.ok).toBe(false);
   });
 
   it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {
