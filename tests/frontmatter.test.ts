@@ -441,6 +441,7 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     expect(shortDigest.success).toBe(false);
   });
 
+  // PLAN-L7-430-left-arm-carry-log
   it("U-CARRY-017: left_arm_carry strict schema accepts canonical evidence and rejects unknown fields", () => {
     const carry = {
       schema_version: "left-arm-carry.v1",
