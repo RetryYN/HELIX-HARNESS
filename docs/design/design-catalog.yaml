@@ -1,0 +1,945 @@
+# design-catalog (PLAN-L7-421)
+# vmodel-docgen (PO 提供 ZIP) catalog.yaml 機構の移植。設計文書種の採用状態の機械正本。
+# status: done=充足(実在 artifact 必須) / todo=未充足(将来対応) / na=対象外(na_reason 必須)
+# coverage 式は ZIP と同一: done / (done + todo)。na は分母に入れない。
+schema_version: design-catalog.v1
+project: HELIX-HARNESS
+profile: cli-harness
+categories:
+  - id: plan
+    name: 企画・要求
+  - id: req
+    name: 要件定義
+  - id: basic
+    name: 基本設計
+  - id: detail
+    name: 詳細設計
+  - id: data
+    name: データ設計
+  - id: std
+    name: 標準・方式
+  - id: sec
+    name: セキュリティ
+  - id: ops
+    name: 運用・可観測性
+  - id: infra
+    name: インフラ・基盤
+  - id: saas
+    name: SaaS事業・課金
+  - id: web
+    name: Webクライアント
+  - id: mobile
+    name: モバイルアプリ
+  - id: desktop
+    name: デスクトップアプリ
+  - id: cli
+    name: CLI・管理ツール
+  - id: apisvc
+    name: API・ヘッドレスサービス
+  - id: domain
+    name: ドメイン(DDD)
+  - id: common
+    name: 共通・拡張・規約
+  - id: agent
+    name: AIエージェント
+  - id: test
+    name: テスト・検証
+  - id: mgmt
+    name: 管理
+  - id: sprint
+    name: スクラム運営(ハイブリッド層)
+items:
+  - id: plan-charter
+    name: 企画書
+    category: plan
+    source: zip-01
+    status: done
+    artifact:
+      - docs/design/helix/L0-charter/helix-charter_v0.1.md
+  - id: requirements-definition
+    name: 要求定義書
+    category: req
+    source: zip-02
+    status: done
+    artifact:
+      - docs/design/harness/L1-requirements/business-requirements.md
+      - docs/design/harness/L1-requirements/functional-requirements.md
+  - id: requirement-spec
+    name: 要件定義書
+    category: req
+    source: zip-03
+    status: done
+    artifact:
+      - docs/design/helix/L3-requirements/pillar-functional-requirements.md
+  - id: basic-design
+    name: 基本設計書
+    category: basic
+    source: zip-04
+    status: done
+    artifact:
+      - docs/design/harness/L4-basic-design/architecture.md
+  - id: detailed-design
+    name: 詳細設計書
+    category: detail
+    source: zip-05
+    status: done
+    artifact:
+      - docs/design/harness/L5-detailed-design/internal-processing.md
+  - id: unit-test-design
+    name: 単体テスト設計書
+    category: test
+    source: zip-06
+    status: todo
+    note: 単体テスト設計書そのもの (テスト対象/条件/ケース/期待結果) は無い。testing skill 群は手順素材
+  - id: integration-test-design
+    name: 結合テスト設計書
+    category: test
+    source: zip-07
+    status: todo
+    note: 結合テスト設計書そのものは無い。g8-integration-workflow.ts は検査 lint であり設計書ではない
+  - id: system-test-design
+    name: 総合テスト設計書
+    category: test
+    source: zip-08
+    status: todo
+    note: 総合テスト設計書そのものは無い。g9-system-workflow.ts は検査 lint であり設計書ではない
+  - id: acceptance-test-design
+    name: 受入テスト設計書
+    category: test
+    source: zip-09
+    status: todo
+    note: 受入テスト設計書そのものは無い。acceptance skill / g10-ux-workflow.ts は素材・lint
+  - id: security-design
+    name: セキュリティ設計書
+    category: sec
+    source: zip-10
+    status: done
+    artifact:
+      - docs/skills/security.md
+      - docs/skills/security-and-hardening.md
+      - docs/skills/threat-model.md
+  - id: operations-design
+    name: 運用設計書
+    category: ops
+    source: zip-11
+    status: done
+    artifact:
+      - docs/design/harness/L14-operations/operations-feedback-boundary.md
+      - docs/skills/incident-runbook.md
+  - id: test-plan
+    name: テスト計画書
+    category: test
+    source: zip-12
+    status: todo
+    note: testing.md/verification.md はあるが「テスト計画書」形式の専用テンプレは無い
+  - id: migration-design
+    name: 移行設計・計画書
+    category: ops
+    source: zip-13
+    status: done
+    artifact:
+      - docs/skills/data-migration.md
+      - docs/skills/deprecation-cutover.md
+  - id: issue-risk-decision-log
+    name: 課題・リスク・意思決定管理
+    category: mgmt
+    source: zip-14
+    status: todo
+    note: improvement-backlog gate はあるがリスク/意思決定ログ専用の正本は無い
+  - id: dev-standards
+    name: 開発標準・規約書
+    category: std
+    source: zip-15
+    status: done
+    artifact:
+      - CLAUDE.md
+      - src/lint/coding-rules.ts
+  - id: batch-design
+    name: バッチ設計書
+    category: detail
+    source: zip-16
+    status: todo
+    note: バッチ処理の実行方式を扱うskill/design/lintが無い
+  - id: design-catalog-index
+    name: 設計一覧・定義集
+    category: detail
+    source: zip-17
+    status: todo
+    note: fr-registry-audit等はあるが項目/コード/ファイル一覧のような網羅カタログ文書は無い
+  - id: application-method-spec
+    name: アプリケーション方式仕様書
+    category: std
+    source: zip-18
+    status: todo
+    note: architecture.md が方式を部分的に扱うが独立した方式仕様書ではない
+  - id: workflow-definition
+    name: ワークフロー定義
+    category: detail
+    source: zip-19
+    status: done
+    artifact:
+      - CLAUDE.md
+    note: HELIX Workflow(Forward/Reverse/Scrum/PoC)節が該当。汎用業務ワークフローではなくharness自身の工程
+  - id: kpi-measurement-design
+    name: 計測・KPI設計書
+    category: ops
+    source: zip-20
+    status: todo
+    note: harness-observability.md はharness自身のKPIのみで汎用プロダクトKPI設計テンプレは無い
+  - id: log-trace-design
+    name: ログ・トレース設計書
+    category: ops
+    source: zip-21
+    status: done
+    artifact:
+      - docs/skills/harness-observability.md
+      - src/lint/telemetry-closure.ts
+  - id: database-design
+    name: データベース設計書
+    category: data
+    source: zip-22
+    status: done
+    artifact:
+      - docs/skills/db.md
+  - id: io-design
+    name: 入出力設計書
+    category: detail
+    source: zip-23
+    status: todo
+    note: api-contract.md/api.md はAPI I/Oのみで汎用I/O設計テンプレは無い
+  - id: logic-design
+    name: ロジック設計書
+    category: detail
+    source: zip-24
+    status: todo
+    note: harness自身のinternal-processing.mdはあるが汎用ロジック設計skillは無い
+  - id: network-design
+    name: ネットワーク設計書
+    category: infra
+    source: zip-25
+    status: na
+    na_reason: ローカルCLI/hookで完結するため、通信要件/FW方式という関心事自体を持たない
+  - id: server-infra-design
+    name: サーバー・インフラ設計書
+    category: infra
+    source: zip-26
+    status: todo
+    note: system-design-sizing.md はあるが冗長化/サイジングの専用設計書は無い
+  - id: domain-model-design
+    name: ドメインモデル設計書
+    category: domain
+    source: zip-27
+    status: done
+    artifact:
+      - src/lint/ddd-tdd-rules.ts
+  - id: verification-design
+    name: 検証設計書
+    category: test
+    source: zip-28
+    status: done
+    artifact:
+      - docs/skills/verification.md
+  - id: acceptance-bdd
+    name: 受入基準・BDDシナリオ
+    category: test
+    source: zip-29
+    status: done
+    artifact:
+      - docs/skills/acceptance-criteria-thinking.md
+  - id: glossary-data-dictionary
+    name: 用語集・データディクショナリ
+    category: data
+    source: zip-30
+    status: done
+    artifact:
+      - docs/design/helix/L3-requirements/glossary-ssot.md
+    note: 用語集は充足。フィールド粒度のデータディクショナリは対象外
+  - id: common-component-design
+    name: 共通部品・クラス設計書
+    category: common
+    source: zip-31
+    status: todo
+    note: code-minimalism.md/code-review-and-quality.md はあるが共通部品カタログは無い
+  - id: externalization-design
+    name: 外部化・差し替え設計書
+    category: common
+    source: zip-32
+    status: done
+    artifact:
+      - src/lint/tool-adapter.ts
+      - src/lint/runtime-portability.ts
+  - id: traceability-id-scheme
+    name: トレーサビリティ・ID体系・紐づけ規約
+    category: common
+    source: zip-33
+    status: done
+    artifact:
+      - src/lint/relation-graph.ts
+      - src/lint/g1-trace.ts
+  - id: maintenance-design
+    name: 保守・メンテナンス設計書
+    category: ops
+    source: zip-34
+    status: todo
+    note: debt-register.md はあるが保守区分/EOL計画の専用設計書は無い
+  - id: reliability-dr-bcp-design
+    name: 信頼性・DR・BCP設計書
+    category: ops
+    source: zip-35
+    status: todo
+    note: 対応するDR/BCP専用設計は無い
+  - id: privacy-design
+    name: プライバシー設計書
+    category: sec
+    source: zip-36
+    status: todo
+    note: PIIはescalation対象として触れるがDPIA/ROPA相当の設計書は無い
+  - id: i18n-accessibility-design
+    name: 国際化・アクセシビリティ設計書
+    category: std
+    source: zip-37
+    status: na
+    na_reason: 多言語UI切替/アクセシビリティ機能という製品関心事自体を持たない(日本語化はコミュニケーション方針であり別concern)
+  - id: cicd-pipeline-design
+    name: CI・CDパイプライン設計書
+    category: ops
+    source: zip-38
+    status: done
+    artifact:
+      - docs/skills/ci-deploy-and-rollback.md
+      - docs/skills/ci-gate-design.md
+  - id: event-message-schema-design
+    name: イベント・メッセージスキーマ設計書
+    category: data
+    source: zip-39
+    status: todo
+    note: 専用のevent/messageスキーマ設計skillは無い
+  - id: ai-agent-design
+    name: AIエージェント設計書
+    category: agent
+    source: zip-40
+    status: done
+    artifact:
+      - docs/skills/agent-design.md
+      - docs/skills/agent-teams.md
+  - id: display-translation-catalog
+    name: 表示名・翻訳カタログ
+    category: detail
+    source: zip-41
+    status: na
+    na_reason: 多言語UI表示名/翻訳カタログという関心事自体を持たない(37と同一構造理由)
+  - id: external-integration-design
+    name: 外部連携設計書
+    category: basic
+    source: zip-42
+    status: todo
+    note: api-and-interface-design.md はあるが外部システム連携(方式/マッピング/監視)の専用設計書は無い
+  - id: requirement-register
+    name: 要求・要件一覧(管理台帳)
+    category: req
+    source: zip-43
+    status: done
+    artifact:
+      - src/lint/fr-registry-audit.ts
+  - id: artifact-index-map
+    name: 成果物インデックス・マップ
+    category: mgmt
+    source: zip-44
+    status: todo
+    note: SKILL_MAP.md はskill専用で成果物全体のインデックスではない
+  - id: directory-structure-design
+    name: ディレクトリ構成・プロジェクト構造設計
+    category: infra
+    source: zip-45
+    status: done
+    artifact:
+      - CLAUDE.md
+      - docs/governance/repository-structure.md
+  - id: seo-public-page-design
+    name: SEO・公開ページ設計
+    category: ops
+    source: zip-46
+    status: na
+    na_reason: 公開Webページやマーケティングページを持たない開発ハーネスである
+  - id: support-escalation-design
+    name: サポート・問い合わせ・エスカレーション設計
+    category: ops
+    source: zip-47
+    status: todo
+    note: 内部escalation境界はCLAUDE.mdにあるが顧客サポート窓口設計は無い
+  - id: user-documentation-design
+    name: ユーザードキュメント設計
+    category: common
+    source: zip-48
+    status: todo
+    note: documentation.md等はあるがエンドユーザー向けガイド/ヘルプ設計は無い
+  - id: ai-output-verification-design
+    name: AI成果物検証設計
+    category: test
+    source: zip-49
+    status: done
+    artifact:
+      - src/lint/objective-evidence-audit.ts
+      - docs/skills/verification.md
+  - id: stop-resume-execution-log-design
+    name: 停止・再開・実行記録設計
+    category: detail
+    source: zip-50
+    status: todo
+    note: handover-resurrection系はharness自身のsession継続用で汎用実行記録設計ではない
+  - id: screen-ui-test-design
+    name: 画面検証(UIテスト)設計
+    category: test
+    source: zip-51
+    status: done
+    artifact:
+      - docs/skills/browser-testing-and-screen-verification.md
+  - id: documentation-tailoring-policy
+    name: 文書化方針・テーラリング設計
+    category: mgmt
+    source: zip-52
+    status: done
+    artifact:
+      - docs/skills/design-tailoring.md
+      - docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md
+  - id: poc-verification-design
+    name: PoC検証設計書
+    category: plan
+    source: zip-53
+    status: done
+    artifact:
+      - docs/skills/poc.md
+  - id: billing-metering-design
+    name: 課金・メータリング設計書
+    category: saas
+    source: zip-54
+    status: na
+    na_reason: 個人開発ハーネスであり、課金/メータリングを行う商用SaaSではない
+  - id: tenant-lifecycle-design
+    name: テナントライフサイクル設計書
+    category: saas
+    source: zip-55
+    status: na
+    na_reason: マルチテナント提供を行わないため、テナントライフサイクルという関心事を持たない
+  - id: supply-chain-security-design
+    name: 供給網セキュリティ設計書
+    category: sec
+    source: zip-56
+    status: todo
+    note: toolchain-pin.ts は部分的にサプライチェーンを扱うがSBOM/SCA相当の設計書は無い
+  - id: secret-key-management-design
+    name: シークレット鍵管理設計書
+    category: sec
+    source: zip-57
+    status: todo
+    note: secret-scan.ts は漏洩検知のみでKMS/鍵ローテーション設計ではない
+  - id: nfr-grid-design
+    name: 非機能要件グリッド設計書
+    category: req
+    source: zip-58
+    status: done
+    artifact:
+      - docs/design/harness/L1-requirements/nfr.md
+      - docs/design/harness/L3-functional/nfr-grade.md
+  - id: region-data-residency-design
+    name: リージョン戦略・データレジデンシー設計書
+    category: saas
+    source: zip-59
+    status: na
+    na_reason: 単一ローカル実行のCLIハーネスであり、複数リージョン展開/データレジデンシーという関心事を持たない
+  - id: rate-limit-quota-design
+    name: レート制限・クォータ設計書
+    category: saas
+    source: zip-60
+    status: na
+    na_reason: 外部提供APIやマルチテナントを持たないため、レート制限/クォータという関心事を持たない
+  - id: release-deploy-strategy-design
+    name: リリース・デプロイ戦略設計書
+    category: ops
+    source: zip-61
+    status: done
+    artifact:
+      - docs/skills/ci-deploy-and-rollback.md
+  - id: incident-postmortem-design
+    name: インシデント管理・ポストモーテム設計書
+    category: ops
+    source: zip-62
+    status: done
+    artifact:
+      - docs/skills/incident-runbook.md
+  - id: capacity-autoscale-design
+    name: キャパシティ計画・オートスケール設計書
+    category: ops
+    source: zip-63
+    status: todo
+    note: system-design-sizing.md は概念のみでキャパシティ計画/オートスケール専用設計は無い
+  - id: cost-finops-design
+    name: コスト設計・FinOps設計書
+    category: ops
+    source: zip-64
+    status: todo
+    note: agent-cost-design.md はAIエージェントコストのみで汎用FinOpsは無い
+  - id: ops-manual-training-plan
+    name: 運用手順書・保守マニュアル・教育計画
+    category: ops
+    source: zip-65
+    status: todo
+    note: incident-runbook.md等はあるが教育/訓練計画までは無い
+  - id: customer-sla-service-catalog
+    name: 顧客SLA・サービスカタログ設計書
+    category: ops
+    source: zip-66
+    status: na
+    na_reason: 顧客向けSLA契約やサービスカタログを持つ商用サービスではない
+  - id: identity-provisioning-design
+    name: アイデンティティ・プロビジョニング設計書
+    category: sec
+    source: zip-67
+    status: todo
+    note: SCIM/JIT相当のプロビジョニング設計は無い
+  - id: compliance-mapping-design
+    name: コンプライアンス対応・統制マッピング設計書
+    category: sec
+    source: zip-68
+    status: todo
+    note: SOC2/ISO27001等の統制マッピングは無い
+  - id: performance-design
+    name: 性能設計書
+    category: basic
+    source: zip-69
+    status: todo
+    note: system-design-sizing.md はあるがキャッシュ/索引/N+1等の専用性能設計書は無い
+  - id: model-governance-ml-bom-design
+    name: モデルガバナンス・ML-BOM設計書
+    category: agent
+    source: zip-70
+    status: todo
+    note: agent-model-ssot.ts はモデル選定SSOTのみでML-BOM/モデルカード相当の設計は無い
+  - id: business-analysis-systemization-plan
+    name: ビジネス分析・システム化計画書
+    category: plan
+    source: zip-71
+    status: todo
+    note: 対応する超上流文書は無い
+  - id: frontend-design
+    name: フロントエンド設計書
+    category: web
+    source: zip-72
+    status: done
+    artifact:
+      - src/lint/frontend-design-coverage.ts
+  - id: browser-responsive-design
+    name: ブラウザ対応・レスポンシブ設計書
+    category: web
+    source: zip-73
+    status: todo
+    note: browser-testing-and-screen-verification.md はテスト観点のみでレスポンシブ設計自体は無い
+  - id: web-performance-design
+    name: Web性能設計書
+    category: web
+    source: zip-74
+    status: todo
+    note: 専用のWeb性能(Core Web Vitals)設計は無い
+  - id: web-session-csrf-cors-design
+    name: Webセッション・CSRF・CORS設計書
+    category: web
+    source: zip-75
+    status: todo
+    note: security.md/security-and-hardening.md は一般的なWebセキュリティに触れるがCSRF/CORS専用設計は無い
+  - id: mobile-app-arch-design
+    name: モバイルアプリアーキ設計書
+    category: mobile
+    source: zip-76
+    status: na
+    na_reason: TS/BunのCLIハーネスであり、モバイルアプリを持たない
+  - id: offline-sync-local-persistence-design
+    name: オフライン・同期・ローカル永続化設計書
+    category: mobile
+    source: zip-77
+    status: na
+    na_reason: モバイルアプリを持たないため、オフライン同期という関心事を持たない
+  - id: push-notification-device-permission-design
+    name: プッシュ通知・デバイス権限設計書
+    category: mobile
+    source: zip-78
+    status: na
+    na_reason: モバイルアプリを持たないため、プッシュ通知/デバイス権限という関心事を持たない
+  - id: app-distribution-signing-store-review-design
+    name: アプリ配布・署名・ストア審査設計書
+    category: mobile
+    source: zip-79
+    status: na
+    na_reason: モバイルアプリストアへの配布を行わない
+  - id: mobile-security-design
+    name: モバイルセキュリティ設計書
+    category: mobile
+    source: zip-80
+    status: na
+    na_reason: モバイルアプリを持たないため、Keychain/証明書ピンニング等の関心事を持たない
+  - id: device-compat-versioning-power-design
+    name: 端末互換・バージョニング・省電力設計書
+    category: mobile
+    source: zip-81
+    status: na
+    na_reason: モバイル端末向け配布を行わないため、端末互換/省電力という関心事を持たない
+  - id: desktop-app-arch-design
+    name: デスクトップアプリアーキ設計書
+    category: desktop
+    source: zip-82
+    status: na
+    na_reason: GUIデスクトップアプリではないターミナルCLIハーネスである
+  - id: packaging-installer-design
+    name: パッケージング・インストーラ設計書
+    category: desktop
+    source: zip-83
+    status: na
+    na_reason: デスクトップGUIアプリのインストーラを持たない
+  - id: auto-update-design
+    name: 自動更新設計書
+    category: desktop
+    source: zip-84
+    status: na
+    na_reason: デスクトップGUIアプリの差分更新/チャネル管理機構を持たない(配布リポジトリのtag/releaseとは別関心事)
+  - id: code-signing-notarization-design
+    name: コード署名・公証設計書
+    category: desktop
+    source: zip-85
+    status: na
+    na_reason: デスクトップGUIアプリのコード署名/公証を行わない
+  - id: os-integration-design
+    name: OS統合設計書
+    category: desktop
+    source: zip-86
+    status: na
+    na_reason: トレイ/ファイル関連付け等のOS統合を行うデスクトップGUIアプリではない
+  - id: desktop-security-local-data-design
+    name: デスクトップセキュリティ・ローカルデータ設計書
+    category: desktop
+    source: zip-87
+    status: na
+    na_reason: デスクトップGUIアプリのサンドボックス/OS資格情報ストア連携という関心事を持たない
+  - id: cli-arch-command-system-design
+    name: CLIアーキ・コマンド体系設計書
+    category: cli
+    source: zip-88
+    status: done
+    artifact:
+      - CLAUDE.md
+  - id: cli-config-auth-output-design
+    name: CLI設定・認証・出力設計書
+    category: cli
+    source: zip-89
+    status: todo
+    note: 設定優先順位/出力形式(table/json)の専用設計書は無い
+  - id: cli-distribution-shell-completion-design
+    name: CLI配布・シェル補完設計書
+    category: cli
+    source: zip-90
+    status: todo
+    note: brew/apt/シェル補完等の配布設計は無い
+  - id: api-governance-versioning-design
+    name: APIガバナンス・バージョニング設計書
+    category: apisvc
+    source: zip-91
+    status: todo
+    note: api-contract.md/api.md はあるがバージョニング/非推奨ポリシーの専用設計は無い
+  - id: api-portal-sdk-design
+    name: APIポータル・SDK設計書
+    category: apisvc
+    source: zip-92
+    status: todo
+    note: 外部公開APIポータル/SDKは無い
+  - id: webhook-event-delivery-design
+    name: Webhook・イベント配信設計書
+    category: apisvc
+    source: zip-93
+    status: todo
+    note: Webhook配信の専用設計は無い
+  - id: domain-impl-value-object-design
+    name: ドメイン実装方針・値オブジェクト設計書
+    category: domain
+    source: zip-94
+    status: done
+    artifact:
+      - src/lint/ddd-tdd-rules.ts
+  - id: class-method-design-convention
+    name: クラス・メソッド設計規約書
+    category: std
+    source: zip-95
+    status: done
+    artifact:
+      - src/lint/coding-rules.ts
+      - docs/skills/code-review-and-quality.md
+  - id: design-principles-seven-pillars
+    name: 設計原則(7つの柱)設計書
+    category: std
+    source: zip-96
+    status: done
+    artifact:
+      - docs/design/helix/L0-charter/helix-charter_v0.1.md
+  - id: spec-driven-trace-closure-design
+    name: スペック駆動開発・トレース閉包設計書
+    category: std
+    source: zip-97
+    status: done
+    artifact:
+      - docs/skills/spec-driven-development.md
+  - id: mesh-vmodel-design-technique
+    name: 編み目式Vモデル設計術
+    category: std
+    source: zip-98
+    status: todo
+    note: vmodel-docgen-adoption-matrix.mdで採用方針は確定済みだがmesh/impact機構自体は未実装
+  - id: typed-spec-auto-detection-design
+    name: 型付きスペック・自動検出設計書
+    category: std
+    source: zip-99
+    status: done
+    artifact:
+      - src/lint/descent-obligation-types.ts
+      - src/lint/verification-profile-types.ts
+  - id: environment-definition
+    name: 環境定義書
+    category: ops
+    source: zip-100
+    status: todo
+    note: toolchain-pin.ts はツールチェーンpinのみでdev/stg/prod環境定義書ではない
+  - id: performance-test-plan
+    name: 性能試験計画書
+    category: test
+    source: zip-101
+    status: todo
+    note: 性能試験の専用計画書は無い
+  - id: security-test-plan-vuln-diagnosis
+    name: セキュリティテスト計画・脆弱性診断書
+    category: test
+    source: zip-102
+    status: todo
+    note: threat-model.md は脅威モデリングのみで脆弱性診断計画は無い
+  - id: project-plan
+    name: プロジェクト計画書
+    category: mgmt
+    source: zip-103
+    status: done
+    artifact:
+      - docs/skills/project-management.md
+      - docs/skills/estimation.md
+  - id: json-type-schema-design
+    name: JSON型・スキーマ設計書
+    category: data
+    source: zip-104
+    status: todo
+    note: harness内部のtyped schemaはあるが汎用JSON型/契約設計skillは無い
+  - id: persistence-mapping-design
+    name: 永続化マッピング設計書
+    category: data
+    source: zip-105
+    status: todo
+    note: db.md はあるがVO⇔カラムマッピングの専用設計は無い
+  - id: ts-python-codegen-appendix
+    name: TS・Pythonコード生成付録
+    category: std
+    source: zip-106
+    status: na
+    na_reason: ADR-001によりPython実装を持ち込まずTS/Bunで再実装する方針のため、Pythonコード生成規約という関心事自体を採用しない
+  - id: vmodel-level-definition
+    name: Vモデル・レベル定義
+    category: std
+    source: zip-107
+    status: done
+    artifact:
+      - docs/design/helix/L12-vmodel/vmodel-layer-coverage.md
+      - CLAUDE.md
+  - id: refactoring-design
+    name: リファクタリング設計書
+    category: common
+    source: zip-108
+    status: done
+    artifact:
+      - docs/skills/refactoring.md
+  - id: qa-diagnosis-quality-checklist
+    name: QA診断・品質チェックリスト
+    category: test
+    source: zip-109
+    status: done
+    artifact:
+      - docs/skills/review-checklist.yaml
+  - id: product-vision-inception-deck
+    name: プロダクトビジョン・インセプションデッキ
+    category: sprint
+    source: zip-110
+    status: todo
+    note: L0-charterはHELIX自身のビジョンで汎用インセプションデッキ形式ではない
+  - id: product-goal-roadmap
+    name: プロダクトゴール・ロードマップ
+    category: sprint
+    source: zip-111
+    status: todo
+    note: roadmap.md等はharness自身のロードマップで汎用テンプレではない
+  - id: product-backlog
+    name: プロダクトバックログ
+    category: sprint
+    source: zip-112
+    status: todo
+    note: docs/plans/のPLAN一覧がbacklog相当だがScrum形式のPBI管理台帳ではない
+  - id: user-story-mapping
+    name: ユーザーストーリーマッピング
+    category: sprint
+    source: zip-113
+    status: todo
+    note: 対応するskill/designは無い
+  - id: estimation-velocity-design
+    name: 見積り・ベロシティ設計
+    category: sprint
+    source: zip-114
+    status: todo
+    note: estimation.md は見積りのみでベロシティ計測は無い
+  - id: release-plan
+    name: リリースプラン
+    category: sprint
+    source: zip-115
+    status: todo
+    note: ci-deploy-and-rollback.md はあるがR定義形式のリリースプランではない
+  - id: sprint-plan
+    name: スプリント計画
+    category: sprint
+    source: zip-116
+    status: done
+    artifact:
+      - CLAUDE.md
+    note: S0-S4 Scrum/PoC workflow節が該当。スプリントゴール/バックログの明細形式ではない
+  - id: dor-dod
+    name: DoR・DoD
+    category: sprint
+    source: zip-117
+    status: done
+    artifact:
+      - src/lint/plan-dod.ts
+  - id: daily-scrum-progress-record
+    name: デイリースクラム・進行記録
+    category: sprint
+    source: zip-118
+    status: todo
+    note: 対応する日次進行記録の仕組みは無い
+  - id: sprint-review-record
+    name: スプリントレビュー記録
+    category: sprint
+    source: zip-119
+    status: todo
+    note: review-evidence.ts は汎用review evidenceでスプリントレビュー特化ではない
+  - id: retrospective-record
+    name: レトロスペクティブ記録
+    category: sprint
+    source: zip-120
+    status: todo
+    note: improvement-backlog.ts は改善項目蓄積のみでレトロスペクティブ形式の記録ではない
+  - id: burndown-velocity-actuals
+    name: バーンダウン・ベロシティ実績
+    category: sprint
+    source: zip-121
+    status: todo
+    note: 対応する実績計測の仕組みは無い
+  - id: team-charter-roles-collaboration
+    name: チーム憲章・役割・協働規約
+    category: sprint
+    source: zip-122
+    status: done
+    artifact:
+      - CLAUDE.md
+      - docs/skills/agent-teams.md
+# baseline: catalog 導入 (2026-07-11) 時点で既存の docs/design 配下 doc の凍結リスト。
+# 以降の新規 design doc は、catalog の item artifact として採否を宣言してから作る。
+baseline:
+  - docs/design/harness/L1-business-requirements.md
+  - docs/design/harness/L1-requirements/screen-requirements.md
+  - docs/design/harness/L1-requirements/technical-requirements.md
+  - docs/design/harness/L10-ux/visual-design.md
+  - docs/design/harness/L11-uat/uat-evidence-boundary.md
+  - docs/design/harness/L12-acceptance/acceptance-evidence-boundary.md
+  - docs/design/harness/L13-post-deploy/post-deploy-evidence-boundary.md
+  - docs/design/harness/L2-screen/README.md
+  - docs/design/harness/L2-screen/business-flow.md
+  - docs/design/harness/L2-screen/screen-detail.md
+  - docs/design/harness/L2-screen/screen-flow.md
+  - docs/design/harness/L2-screen/screen-list.md
+  - docs/design/harness/L2-screen/ui-element.md
+  - docs/design/harness/L2-screen/wireframe.md
+  - docs/design/harness/L3-functional/README.md
+  - docs/design/harness/L3-functional/business-detail.md
+  - docs/design/harness/L3-functional/functional-requirements.md
+  - docs/design/harness/L3-functional/roadmap.md
+  - docs/design/harness/L4-basic-design/data.md
+  - docs/design/harness/L4-basic-design/external-if.md
+  - docs/design/harness/L4-basic-design/function.md
+  - docs/design/harness/L4-basic-design/ui-standard.md
+  - docs/design/harness/L5-detailed-design/if-detail.md
+  - docs/design/harness/L5-detailed-design/module-decomposition.md
+  - docs/design/harness/L5-detailed-design/physical-data.md
+  - docs/design/harness/L6-function-design/agent-context-efficiency.md
+  - docs/design/harness/L6-function-design/agent-slots.md
+  - docs/design/harness/L6-function-design/backfill-pairing.md
+  - docs/design/harness/L6-function-design/cross-review-enforcement.md
+  - docs/design/harness/L6-function-design/delegation-brief-substance.md
+  - docs/design/harness/L6-function-design/descent-obligation.md
+  - docs/design/harness/L6-function-design/edge-case.md
+  - docs/design/harness/L6-function-design/effort-observation.md
+  - docs/design/harness/L6-function-design/feedback-lifecycle.md
+  - docs/design/harness/L6-function-design/forced-stop-feedback.md
+  - docs/design/harness/L6-function-design/fr-unit-coverage.md
+  - docs/design/harness/L6-function-design/function-spec.md
+  - docs/design/harness/L6-function-design/gate-confirm.md
+  - docs/design/harness/L6-function-design/governance-enforcement.md
+  - docs/design/harness/L6-function-design/handover-db-derivation.md
+  - docs/design/harness/L6-function-design/handover-mechanism.md
+  - docs/design/harness/L6-function-design/handover-retirement.md
+  - docs/design/harness/L6-function-design/harness-memory-compaction.md
+  - docs/design/harness/L6-function-design/harness-memory-structure.md
+  - docs/design/harness/L6-function-design/memory-cross-runtime-surface.md
+  - docs/design/harness/L6-function-design/module-drift.md
+  - docs/design/harness/L6-function-design/plan-descent-gate.md
+  - docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md
+  - docs/design/harness/L6-function-design/plan-entry-routing.md
+  - docs/design/harness/L6-function-design/plan-schedule-lint.md
+  - docs/design/harness/L6-function-design/reverse-feedback-closure.md
+  - docs/design/harness/L6-function-design/review-evidence-stale.md
+  - docs/design/harness/L6-function-design/review-evidence.md
+  - docs/design/harness/L6-function-design/session-log.md
+  - docs/design/harness/L6-function-design/setup-solo-team.md
+  - docs/design/harness/L6-function-design/test-before-review.md
+  - docs/design/harness/L6-function-design/vmodel-pair-freeze.md
+  - docs/design/harness/L7-implementation/implementation-evidence-boundary.md
+  - docs/design/harness/L8-integration/integration-evidence-boundary.md
+  - docs/design/harness/L9-system/system-evidence-boundary.md
+  - docs/design/helix/L1-requirements/pillar-requirements.md
+  - docs/design/helix/L10-ux/ux-evidence-boundary.md
+  - docs/design/helix/L11-uat/uat-evidence-boundary.md
+  - docs/design/helix/L12-acceptance/acceptance-evidence-index.md
+  - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
+  - docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md
+  - docs/design/helix/L14-operations/operations-feedback-boundary.md
+  - docs/design/helix/L2-screen/screen-mock-boundary.md
+  - docs/design/helix/L3-requirements/legacy-helix-extension.md
+  - docs/design/helix/L3-requirements/nfr-grade.md
+  - docs/design/helix/L3-requirements/orchestration-memory-runtime.md
+  - docs/design/helix/L3-requirements/orchestration-memory.md
+  - docs/design/helix/L3-requirements/orchestration-runtime-bridge.md
+  - docs/design/helix/L3-requirements/retention-purge-policy.md
+  - docs/design/helix/L3-requirements/upstream-substance-gap.md
+  - docs/design/helix/L3-requirements/visualization-requirements.md
+  - docs/design/helix/L3-requirements/vmodel-docgen-fit.md
+  - docs/design/helix/L4-basic-design/legacy-helix-extension.md
+  - docs/design/helix/L4-basic-design/pillar-basic-design.md
+  - docs/design/helix/L4-basic-design/upstream-substance-gap.md
+  - docs/design/helix/L4-basic-design/visualization-surface-boundary.md
+  - docs/design/helix/L5-detail/legacy-helix-extension.md
+  - docs/design/helix/L5-detail/operation-scope.md
+  - docs/design/helix/L5-detail/pillar-detail-design.md
+  - docs/design/helix/L5-detail/upstream-substance-gap.md
+  - docs/design/helix/L6-function-design/legacy-helix-extension.md
+  - docs/design/helix/L6-function-design/orchestration-memory.md
+  - docs/design/helix/L6-function-design/pillar-function-design.md
+  - docs/design/helix/L6-function-design/upstream-substance-gap.md
+  - docs/design/helix/L6-function-design/visualization-view-model.md
+  - docs/design/helix/L7-implementation/implementation-evidence-index.md
+  - docs/design/helix/L8-integration/integration-evidence-index.md
+  - docs/design/helix/L9-system/system-evidence-index.md
