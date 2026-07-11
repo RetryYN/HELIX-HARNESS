@@ -1,3 +1,4 @@
+// PLAN-L7-426-development-ci-bounded-time
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
@@ -140,7 +141,7 @@ describe("source harness-check workflow", () => {
     expect(steps[refreshIndex]?.run).toBe("bun src/cli.ts db rebuild --json");
   });
 
-  it("U-CITIME-001/002/003: bounds the required job and full regression step without fail-open", () => {
+  it("U-CITIME-001 U-CITIME-002 U-CITIME-003: bounds the required job and full regression step without fail-open", () => {
     const { job, steps, raw } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
