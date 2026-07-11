@@ -1136,6 +1136,11 @@ describe("L7 CLI surface closure", () => {
   it("U-HRET-008: plan complete publishes continuation without CURRENT or prose", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-plan-complete-"));
     try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-fixture.md"),
+        "---\nplan_id: PLAN-L7-fixture\nstatus: confirmed\n---\n",
+      );
       expect(runCliIn(root, ["plan", "use", "PLAN-L7-fixture"]).status).toBe(0);
       const complete = runCliIn(root, ["plan", "complete"]);
       expect(complete.status, complete.stderr).toBe(0);

@@ -19,6 +19,11 @@ import {
   writeFileSync,
 } from "node:fs";
 import { dirname, join } from "node:path";
+import {
+  type ActivePlanSelection,
+  loadCanonicalPlanIds,
+  selectActivePlanId,
+} from "../plan/active-plan-selection";
 import { openHarnessDb } from "../state-db";
 import {
   MEMORY_PROMOTION_WARNING,
@@ -107,6 +112,8 @@ export interface SessionLogDeps {
   withEventLock?<T>(eventId: string, fn: () => T): T;
   /** Stop のnon-blocking warning surface。未提供時は記録だけ行う。 */
   emitWarning?: (warning: string) => void;
+  /** active PLAN writerが参照するcanonical ID集合。production nodeDepsは必ず供給する。 */
+  canonicalPlanIds?: () => string[];
 }
 
 const BRANCH_PLAN_RE = /^(?:add|design|feature|reverse|hotfix|poc|refactor)\/(.+)$/;
@@ -222,6 +229,13 @@ export function setActivePlan(planId: string | null, deps: SessionLogDeps): void
   }
   if (deps.removeFile) deps.removeFile(path);
   else deps.writeText(path, "");
+}
+
+/** 全active PLAN writerの中央validation境界。invalid時はmarkerを変更しない。 */
+export function activatePlan(planId: string, deps: SessionLogDeps): ActivePlanSelection {
+  const selection = selectActivePlanId(planId, deps.canonicalPlanIds?.() ?? []);
+  if (selection.ok) setActivePlan(selection.planId, deps);
+  return selection;
 }
 
 /**
@@ -436,7 +450,14 @@ export function onPostToolUse(input: SessionHookInput, deps: SessionLogDeps): nu
     // `-F -` heredoc は cmd に本文が乗らず inferred=null → no-op。fail-open (throw しない)。
     if (isCommit) {
       const inferred = inferPlanFromCommit(cmd);
-      if (inferred) setActivePlan(inferred, deps);
+      if (inferred) {
+        const activation = activatePlan(inferred, deps);
+        if (!activation.ok) {
+          deps.emitWarning?.(
+            `session-log: inferred PLAN rejected (${inferred}); candidates=${activation.candidates.join(",")}\n`,
+          );
+        }
+      }
     }
     recordEvent(
       {
@@ -566,6 +587,7 @@ export function nodeDeps(
     },
     headCommit: gitHead,
     emitWarning: (warning) => process.stdout.write(warning),
+    canonicalPlanIds: () => loadCanonicalPlanIds(repoRoot),
     withEventLock: (_eventId, fn) => {
       for (let attempt = 0; ; attempt += 1) {
         let db: ReturnType<typeof openHarnessDb> | undefined;

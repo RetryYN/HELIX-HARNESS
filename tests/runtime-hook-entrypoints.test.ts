@@ -90,6 +90,11 @@ describe("runtime hook entrypoints", () => {
   it("shared CLI session/hook commands record a PLAN digest in a temp repo", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-hook-"));
     try {
+      mkdirSync(join(cwd, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(cwd, "docs", "plans", "PLAN-L4-13.md"),
+        "---\nplan_id: PLAN-L4-13\nstatus: confirmed\n---\n",
+      );
       const start = runCli(cwd, ["plan", "use", "PLAN-L4-13"]);
       expect(start.status).toBe(0);
 

@@ -21,10 +21,10 @@ import {
 import { homedir, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
-import { loadCanonicalPlanIds, selectActivePlanId } from "./plan/active-plan-selection";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import {
+  activatePlan,
   loadGithubCiStatus,
   loadGithubMergeReadiness,
   loadGithubPrBodyDraft,
@@ -3781,7 +3781,7 @@ plan
       process.stdout.write("current-plan: cleared\n");
       return;
     }
-    const selection = selectActivePlanId(id as string, loadCanonicalPlanIds(process.cwd()));
+    const selection = activatePlan(id as string, nodeDeps(process.cwd(), gitBranch, gitHead));
     if (!selection.ok) {
       process.stderr.write(`plan use: unknown PLAN ID: ${id}\n`);
       if (selection.candidates.length > 0) {
@@ -3790,7 +3790,6 @@ plan
       process.exitCode = 1;
       return;
     }
-    setActivePlan(selection.planId, nodeDeps(process.cwd(), gitBranch, gitHead));
     process.stdout.write(`current-plan: ${selection.planId}\n`);
   });
 

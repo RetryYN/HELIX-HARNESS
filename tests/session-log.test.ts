@@ -2,6 +2,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { selectActivePlanId } from "../src/plan/active-plan-selection";
 import {
+  activatePlan,
   activePlanStale,
   activePlanUpdatedAt,
   compressPlanDigest,
@@ -80,6 +81,19 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
       reason: "empty",
       candidates: [],
     });
+  });
+
+  it("U-APSEL-004: CLI/commit writer共通境界はinvalid時にmarkerを変更しない", () => {
+    const deps = mockDeps({ canonicalPlanIds: () => ["PLAN-L7-427-active-plan-selection"] });
+    deps.files.set(statePath, "PLAN-L7-427-active-plan-selection\nold");
+
+    expect(activatePlan("PLAN-L7-42", deps)).toMatchObject({ ok: false, reason: "unknown" });
+    expect(deps.files.get(statePath)).toBe("PLAN-L7-427-active-plan-selection\nold");
+    expect(activatePlan("PLAN-L7-427-active-plan-selection", deps)).toEqual({
+      ok: true,
+      planId: "PLAN-L7-427-active-plan-selection",
+    });
+    expect(deps.files.get(statePath)).toContain("2026-06-02T00:00:00.000Z");
   });
 
   it("U-SLOG-001: resolveActivePlan = state 優先 / branch fallback / 解決不能 null", () => {
