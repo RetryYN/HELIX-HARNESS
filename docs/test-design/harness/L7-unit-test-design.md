@@ -1188,6 +1188,10 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-RELDEC-001  | `planReleaseAutomationDecision`               | ADR-008 accepted、Conventional Commits、PR gate、dry-run 要求が揃う場合、Release Please を plan-only 既定として返し、`applyAuthorized=false` を維持する。               |
 | U-RELDEC-002  | `planReleaseAutomationDecision`               | PR gate 必須時に semantic-release を選ぶと fail-close。                                                                                                                 |
 | U-RELDEC-003  | `planReleaseAutomationDecision`               | ADR 未確定、Conventional Commits 不使用、dry-run 不要求は release automation decision を blocked にする。                                                               |
+| U-WIRING-001 | PLAN-L7-428 real CLI routes | PR review、CI repush、release decisionの各circuit breakerが`helix github`実routeから呼ばれ、reject時exit 1になる。 |
+| U-WIRING-002 | function reachability gate | 必須exportのうち1関数だけruntime参照を欠くfixtureを`unwiredExports`として検出し、live repoでは5関数すべてgreenになる。 |
+| U-WIRING-003 | typed cutover false-positive fence | `irreversible_impact: none`のPLANは本文で不可逆/cutover境界を説明してもcutover blockerにならない。 |
+| U-WIRING-004 | typed cutover positive fence | `irreversible_impact: cutover`のPLANは本文の語句に依存せずcutover blockerになる。 |
 | U-APDOC-001   | `deriveArtifactProgressDecision`              | confirmed/completed/archived の doc 系 artifact は test evidence なしで green `verified`（reason に review/pair gates 明記）。                                          |
 | U-APDOC-002   | `deriveArtifactProgressDecision`              | draft/status 不明の doc は yellow のまま（捏造 green を出さない）。                                                                                                     |
 | U-APDOC-003   | `deriveArtifactProgressDecision`              | doc でも open dependency impact は red が最優先（fail-close 維持）。                                                                                                    |

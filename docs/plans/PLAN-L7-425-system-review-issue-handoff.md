@@ -146,9 +146,9 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   status 未更新）、(b) PLAN 起票要の実害 30 件（annex に全件表）、(c) PO 境界 1 件（IMP-031）、
   (d) 陳腐化・重複 close 候補14件（再監査でIMP-118は残差ありと判明）。
 - 対応: (d) 14件を`verified`へ更新する。IMP-118はIMP-148残差によりtriagedを維持する。
-  (a) のstatus未更新10件はIDが未列挙のため、個別IDと証拠が揃うまで更新禁止とし、
-  `docs/improvement-backlog.md` の status 更新で
-  close する（trace に根拠を追記）。(b) 30 件は必要性順に PLAN 起票判断（一括起票しない）。
+  (a) のstatus未更新10件は再導出したexact IDと三点証拠をtyped manifestへ固定し、
+  `docs/improvement-backlog.md` を`implemented`へ更新する。(b) 30 件はannexの全件判断表に
+  successor / 新規Vペア / 保留triggerを記録し、一括起票しない。
   (c) は PO へ escalate。
 - 受け入れ: backlog の status 更新が完了し `improvement-backlog` gate green 維持。(b) の起票判断
   結果（起票 or 保留理由）が本 PLAN の IMP 記録または successor PLAN に残る。
@@ -213,8 +213,8 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 - closure 自走 approve の regression test green と close_ready 361 件の消化、
   後戻り不能系 approval の維持確認（I8。実装ファイル確定時に `generates:` へ追記）。
 - `plan use` ID 検証の regression test green と orphan 増加停止（I5）。
-- improvement-backlog の実証済みclose候補14件のstatus更新、IMP-118残差維持、未列挙10件の
-  completion禁止とgate green維持（I7）。
+- improvement-backlog の実証済みclose候補14件のstatus更新、IMP-118残差維持、exact 10件の
+  implemented証拠、実害30件の起票/結合/保留判断を固定しgate green維持（I7）。
 - carry log lint の新設と regression test green（I6。実装ファイル確定時に `generates:` へ
   source_module / test_code を追記する）。
 - 各 step の green command を review_evidence に digest 付きで記録し、cross-runtime review

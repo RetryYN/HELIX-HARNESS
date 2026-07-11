@@ -15,6 +15,7 @@ import {
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
 } from "../src/lint/outstanding";
+import { frontmatterSchema } from "../src/schema/frontmatter";
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
 
@@ -2110,5 +2111,87 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
       ["PLAN-DISCOVERY-11", "active_draft"],
     ]);
     expect(o.semanticFeatureFrontierRecords).toEqual([]);
+  });
+
+  it("typed irreversible_impact=none は境界語への言及だけを cutover blocker にしない", () => {
+    // U-WIRING-003
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-999",
+          layer: "L7",
+          kind: "troubleshoot",
+          status: "draft",
+          irreversibleImpact: "none",
+          text: "不可逆 cutover はこの PLAN の対象外。境界を説明するだけ。",
+        },
+      ],
+      0,
+    );
+    expect(o.items[0]?.blockers).not.toContain("irreversible_migration_pending");
+  });
+
+  it("typed irreversible_impact=cutover は本文の言い回しに依存せず blocker にする", () => {
+    // U-WIRING-004
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-998",
+          layer: "L7",
+          kind: "implement",
+          status: "draft",
+          irreversibleImpact: "cutover",
+          text: "実施対象を生成する。",
+        },
+      ],
+      0,
+    );
+    expect(o.items[0]?.blockers).toContain("irreversible_migration_pending");
+  });
+
+  it("loaderはunknown irreversible_impactをtyped値として採用しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-typed-cutover-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-invalid.md"),
+        `---
+plan_id: PLAN-L7-999-invalid
+title: invalid typed boundary fixture
+kind: troubleshoot
+drive: agent
+status: draft
+layer: L7
+irreversible_impact: informational
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+不可逆 cutover への説明。
+`,
+      );
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows[0]).toMatchObject({ irreversibleImpact: null, irreversibleImpactDeclared: true });
+      const raw = {
+        plan_id: "PLAN-L7-999-invalid",
+        title: "invalid typed boundary fixture",
+        kind: "troubleshoot",
+        drive: "agent",
+        status: "draft",
+        layer: "L7",
+        irreversible_impact: "informational",
+        agent_slots: [{ role: "se", slot_label: "fixture" }],
+        dependencies: { parent: null, requires: [] },
+      };
+      expect(frontmatterSchema.safeParse(raw).success).toBe(false);
+      const result = analyzeOutstandingWork(rows, 0);
+      expect(result.items[0]?.blockers).not.toContain("irreversible_migration_pending");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
