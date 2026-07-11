@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: forward
 entry_signals:
-  - "PLAN-L6-67 confirmed"
+  - "po_directive:2026-07-12 開発CIの無期限待機を自律的に解消"
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex

@@ -141,7 +141,7 @@ describe("source harness-check workflow", () => {
     expect(steps[refreshIndex]?.run).toBe("bun src/cli.ts db rebuild --json");
   });
 
-  it("U-CITIME-001 U-CITIME-002 U-CITIME-003: bounds the required job and full regression step without fail-open", () => {
+  it("bounds the required job and full regression step without fail-open", () => {
     const { job, steps, raw } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
@@ -158,6 +158,21 @@ describe("source harness-check workflow", () => {
       regressionIndex,
     );
     expect(boundedTimeViolations(raw)).toEqual([]);
+  });
+
+  it("U-CITIME-001: fixes the required job budget at 20 minutes", () => {
+    expect(loadWorkflow().job["timeout-minutes"]).toBe(20);
+  });
+
+  it("U-CITIME-002: keeps the regression budget below the job budget", () => {
+    const { job, steps } = loadWorkflow();
+    const regression = stepByName(steps, "test — 全回帰 (vitest run)");
+    expect(regression["timeout-minutes"]).toBe(15);
+    expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
+  });
+
+  it("U-CITIME-003: rejects fail-open fields and preserves post-test gates", () => {
+    expect(boundedTimeViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
   });
 
   it.each([
