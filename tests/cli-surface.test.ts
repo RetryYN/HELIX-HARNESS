@@ -1141,7 +1141,8 @@ describe("L7 CLI surface closure", () => {
         join(root, "docs", "plans", "PLAN-L7-fixture.md"),
         "---\nplan_id: PLAN-L7-fixture\nstatus: confirmed\n---\n",
       );
-      expect(runCliIn(root, ["plan", "use", "PLAN-L7-fixture"]).status).toBe(0);
+      const use = runCliIn(root, ["plan", "use", "PLAN-L7-fixture"]);
+      expect(use.status, use.stderr || use.stdout).toBe(0);
       const complete = runCliIn(root, ["plan", "complete"]);
       expect(complete.status, complete.stderr).toBe(0);
       expect(complete.stdout).toContain("checkpoint=published current-plan=cleared");

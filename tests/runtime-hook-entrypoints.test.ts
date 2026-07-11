@@ -96,7 +96,7 @@ describe("runtime hook entrypoints", () => {
         "---\nplan_id: PLAN-L4-13\nstatus: confirmed\n---\n",
       );
       const start = runCli(cwd, ["plan", "use", "PLAN-L4-13"]);
-      expect(start.status).toBe(0);
+      expect(start.status, start.stderr || start.stdout).toBe(0);
 
       const sessionStart = runCli(cwd, ["session", "start"], {
         hook_event_name: "SessionStart",

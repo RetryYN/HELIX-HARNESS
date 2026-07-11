@@ -24,7 +24,6 @@ import { Command } from "commander";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import {
-  activatePlan,
   loadGithubCiStatus,
   loadGithubMergeReadiness,
   loadGithubPrBodyDraft,
@@ -287,6 +286,7 @@ import {
   type EgressPolicy,
 } from "./runtime/security-credential-egress-guard";
 import {
+  activatePlan,
   dispatch,
   nodeDeps,
   parseSessionEvents,
