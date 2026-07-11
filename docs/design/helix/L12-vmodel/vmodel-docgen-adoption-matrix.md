@@ -192,7 +192,7 @@ ZIP がある場合は必須 source 不足を violation とする。
 |----|--------------|--------------|----------|
 | HVM-COMP-01 | 設計カバレッジと実行証跡が分離しやすい | harness.db が design、test、runtime、guardrail を同じ現在地へ投影する | current-location は DB projection から答える |
 | HVM-COMP-02 | 生成物中心だと今の矛盾や不足が見えにくい | VSCode Project view が矛盾、closure queue、impact、operation gap、ZIP source binding を動的描画する | view は read-only。値を捏造しない |
-| HVM-COMP-03 | build/check の実行境界が軽い | approval record、review bundle、dry-run、doctor gate で高影響操作を閉じる | correction 2026-07-12: 可逆なclose_ready accepted化はreview digest一致・tests/gates green・apply dry-run成功の機械証跡で自走可。PLAN-L7-146、PLAN-M-02、external publish、charter P8はhuman承認を維持（PLAN-L7-425 I8 / PLAN-L7-431） |
+| HVM-COMP-03 | build/check の実行境界が軽い | approval record、review bundle、dry-run、doctor gate で高影響操作を閉じる | correction 2026-07-12: 可逆なclose_ready accepted化はreview digest一致・tests/gates green・apply dry-run成功の機械証跡で自走可。PLAN-L7-146、PLAN-M-02、external publish、charter P8はhuman承認を維持（PLAN-L7-425 I8 / PLAN-L7-433） |
 
 ## §6 採用しないもの
 

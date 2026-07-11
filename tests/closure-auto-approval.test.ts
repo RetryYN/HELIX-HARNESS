@@ -27,7 +27,7 @@ import type {
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 
-// PLAN-L7-431-closure-auto-approval
+// PLAN-L7-433-closure-auto-approval
 const sha = (value: string | Buffer) =>
   `sha256:${createHash("sha256").update(value).digest("hex")}` as const;
 
