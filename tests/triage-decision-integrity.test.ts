@@ -101,6 +101,15 @@ describe("triage-decision-integrity (PLAN-L7-428-triage-decision-integrity)", ()
       state: "resolved",
     };
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-id-invalid");
+    input.manifest!.backlog!.unenumerated_status_claim = {
+      expected_count: 10,
+      ids: ["IMP-145", "IMP-147", "IMP-125", "IMP-102", "IMP-103", "IMP-104", "IMP-105", "IMP-106", "IMP-107", "IMP-108"],
+      state: "resolved",
+    };
+    input.planTerminal = true;
+    const arbitrary = analyzeTriageDecisionIntegrity(input);
+    expect(arbitrary.ok).toBe(false);
+    expect(arbitrary.violations.map((v) => v.kind)).toContain("unresolved-count-unproved");
     input.manifest!.backlog!.unenumerated_status_claim!.state = "unknown";
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-state-invalid");
     input.manifest!.backlog!.unenumerated_status_claim = {

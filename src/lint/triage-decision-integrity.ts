@@ -33,6 +33,8 @@ export const PIN_BACKLOG_VERIFIED = [
 ] as const;
 export const PIN_RETAINED = { id: "IMP-118", residual: "IMP-148" } as const;
 export const PIN_UNENUMERATED_COUNT = 10;
+/** annexでIDが列挙されるまで空。推測した任意10件でcompletionを偽装させない独立authority pin。 */
+export const PIN_ENUMERATED_IDS: readonly string[] = [];
 
 type CatalogItem = {
   id?: string;
@@ -209,7 +211,21 @@ export function analyzeTriageDecisionIntegrity(
       add("unresolved-id-invalid", id, "既決集合・残差IDの再利用は禁止");
   }
   const completionReady = enumerated && claim?.state === "resolved";
-  if (input.planTerminal && !completionReady)
+  if (claim?.state === "resolved") {
+    if (
+      PIN_ENUMERATED_IDS.length !== PIN_UNENUMERATED_COUNT ||
+      !sameSet(ids, PIN_ENUMERATED_IDS)
+    )
+      add(
+        "unresolved-count-unproved",
+        "unenumerated_status_claim.ids",
+        "exact authority 10件が未確定または不一致",
+      );
+  }
+  const authorityReady =
+    PIN_ENUMERATED_IDS.length === PIN_UNENUMERATED_COUNT &&
+    sameSet(ids, PIN_ENUMERATED_IDS);
+  if (input.planTerminal && !(completionReady && authorityReady))
     add("unresolved-claim-at-terminal", "PLAN-L7-425", "終端statusには10件の列挙完了が必要");
   return { ok: violations.length === 0, completionReady, violations };
 }
