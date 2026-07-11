@@ -124,6 +124,34 @@ const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
     requireTracked: true,
   },
   {
+    requirementId: "G-06",
+    label: "V-model ZIP/L12 redesign artifact",
+    artifacts: [
+      "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+      "src/vmodel/zip-manifest.ts",
+      "src/vmodel/fit.ts",
+      "src/schema/harness-db-tables-design.ts",
+      "src/state-db/projection-writer.ts",
+      "src/lint/db-projection-ingestion.ts",
+      "src/state-db/current-location.ts",
+      "src/state-db/visualization-view-model.ts",
+      "src/runtime/summary-surface-audit.ts",
+      "src/vscode/tree-view-provider.ts",
+      "src/vscode/extension-adapter.ts",
+      "tests/vmodel-zip-manifest.test.ts",
+      "tests/current-location.test.ts",
+      "tests/visualization-treeview.test.ts",
+      "tests/visualization-view-model.test.ts",
+      "tests/summary-surface-audit.test.ts",
+      "tests/vscode-extension-adapter.test.ts",
+      "tests/slow/doctor.test.ts",
+    ],
+  },
+  {
     requirementId: "G-10",
     label: "version-up and cutover blocker artifact",
     artifacts: [
@@ -143,12 +171,12 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
     requirementId: "G-01",
     label: "external source marker",
     markers: [
-      "外部ソース HEAD 確認日: 2026-07-05",
+      "外部ソース HEAD 確認日: 2026-07-10",
       "RetryYN/HELIX-HARNESS",
-      "b828fcf64c204d1cfa65c729fa590ca9562adccc",
+      "e95850d08cfcf0f3ce811659178c0db7522e24d7",
       "RetryYN/HELIX-HARNESS-OS",
       "unpublished",
-      "検証 / 進捗 source basis 再確認日: 2026-07-05",
+      "検証 / 進捗 source basis 再確認日: 2026-07-10",
     ],
   },
   {
@@ -159,6 +187,36 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "C-18",
       "live `semanticFeatureFrontierRecords[]`",
       "prose-only feature list",
+    ],
+  },
+  {
+    requirementId: "G-09",
+    label: "V-model ZIP/L12 objective hard-gate marker",
+    markers: [
+      "zip-source-integrity",
+      "zip-adoption-binding",
+      "project_zip_adoption_decisions",
+      "project_tailoring_decisions",
+      "project_vmodel_regression_guards",
+      "project_vmodel_fit_blockers",
+      "project_vmodel_handoff_summary",
+      "function-design-absorption-binding",
+      "roadmap-current-binding",
+      "project_roadmap_current_actions",
+      "drive-model-binding",
+      "reverse-dependency-closure",
+      "candidate-dependency-closure",
+      "visualization-tree-view-boundary",
+      "vscode-extension-dynamic-binding",
+      "operation-scope-binding",
+      "summary-surface semantic_status=pass",
+      "attention_boundary",
+      "vmodel_zip_source_bindings",
+      "vmodel-zip-source-bindings",
+      "human_approval blocked_by=human_approval",
+      "needs_recovery approval count=343",
+      "view-nodes=observation-gap:6/6",
+      "L0-slide-to-L1-planning",
     ],
   },
 ] as const;
@@ -179,9 +237,9 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     source: "development_repo",
     command: "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
+    observed: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
     latestOfficialStatus: "main branch reachable",
-    sourceStatusDelta: "development repo renamed from old upstream basis",
+    sourceStatusDelta: "development repo advanced since previous audit",
     adoptionDecision: "current HELIX-HARNESS source of truth",
     workflowRouteImpact: "none",
   },
@@ -510,6 +568,18 @@ function checkCompletionRow(
   }
   if (!row.includes(expectedOkMarker)) {
     violations.push(`G-10: completion row must cite ${expectedOkMarker}`);
+  }
+  const expectedDecisionCount = input.outstanding.items.length;
+  const decisionCounts = [...row.matchAll(/\bdecisionCount=(\d+)(?![A-Za-z0-9_])/g)].map((match) =>
+    Number(match[1]),
+  );
+  if (
+    decisionCounts.length === 0 ||
+    decisionCounts.some((decisionCount) => decisionCount !== expectedDecisionCount)
+  ) {
+    violations.push(
+      `G-10: completion row decisionCount markers must all equal ${expectedDecisionCount} (actual=${decisionCounts.join(",") || "missing"})`,
+    );
   }
   for (const blocker of readiness.blockers) {
     if (!row.includes(blocker)) {

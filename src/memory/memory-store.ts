@@ -1,6 +1,6 @@
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { isSecretLike } from "../state-db";
+import { isSecretLike } from "../security/secret-policy";
 import type { MemoryDeps, MemoryEntry, MemoryLayer } from "./memory-types";
 
 interface FileMemoryDepsOptions {

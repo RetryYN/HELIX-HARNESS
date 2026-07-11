@@ -74,6 +74,24 @@ dependencies:
     - docs/design/harness/L6-function-design/function-spec.md
     - docs/test-design/harness/L7-unit-test-design.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:19:40+09:00"
+    tests_green_at: "2026-07-09T18:19:40+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: destructive git command guard / Codex hook adapter / setup template 配布を現行テストで再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/git-command-guard.test.ts tests/codex-hook-adapter.test.ts tests/setup.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:19:40+09:00"
+        evidence_path: tests/git-command-guard.test.ts
+        output_digest: "sha256:f1245aa089a2350a03cc5690c5123b6f8c8374faa33233eee565fc05e7e6903e"
 ---
 
 # PLAN-L7-230: 破壊的 git command guard（destructive git command guard）

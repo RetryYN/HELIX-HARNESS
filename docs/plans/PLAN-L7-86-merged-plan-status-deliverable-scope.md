@@ -10,6 +10,8 @@ updated: 2026-06-19
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: PM (Opus) verification (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -19,6 +21,23 @@ review_evidence:
     scope: "merged-plan-status gate (PLAN-L7-54) の検出穴を根治。gate は『generated artifact が merged なのに owning PLAN が draft 放置』を捕まえる設計だが、generatesSrcPaths が `src/*.ts` のみ filter していたため、L7-71 (draft のまま 7 個の .claude/commands/*.md を merge 済) を素通りさせた = PO が手で PLAN を読むまで埋もれた検出不備。修正: DELIVERABLE_ROOTS=[src/,tests/,scripts/,.claude/] で『出荷物』を判定し、docs/ (V-model 設計成果物) と .helix/ (生成ランタイム状態) を除外 (CLAUDE.md architecture boundary 準拠)。kind filter (impl/add-impl/refactor) は既存ゆえ design/poc/reverse の false-positive は出ない。blast radius 確認: 現存 draft 5 本 (DISCOVERY-03/05=poc, L3-04/05=add-design, RECOVERY-02=recovery) は全て非 artifact-kind ゆえ 0 件 = repo は green 維持。regression test 2 本 (draft impl + merged .claude → flag / PLAN 自身の docs/ artifact は非計上) + design PLAN は docs/ 出荷でも非 flag を追加。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: PLAN-L7-87 で訂正済みの kind filter 誤記は完了主張に含めず、PLAN-L7-86 の有効部分である merged-plan-status の deliverable path-scope 拡張だけが現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/merged-plan-status.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - merged-plan-status deliverable-scope expansion"

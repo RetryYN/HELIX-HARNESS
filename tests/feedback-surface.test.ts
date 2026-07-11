@@ -14,12 +14,22 @@ function insertFinding(
   severity: string,
   subjectId: string,
 ): void {
+  insertFindingWithKind(db, id, "takeover-drift", severity, subjectId);
+}
+
+function insertFindingWithKind(
+  db: ReturnType<typeof openHarnessDb>,
+  id: string,
+  kind: string,
+  severity: string,
+  subjectId: string,
+): void {
   upsertRow(db, {
     table: "findings",
     primaryKey: "finding_id",
     row: {
       finding_id: id,
-      kind: "takeover-drift",
+      kind,
       severity,
       subject_id: subjectId,
       source: "test",
@@ -156,7 +166,7 @@ describe("takeover feedback surface (PLAN-L7-110)", () => {
     }
   });
 
-  it("caps surfaced items and leaves a breadcrumb for the remainder", () => {
+  it("folds a single dominant group into one row with its real count (group-first, PLAN-L7-404)", () => {
     const db = openHarnessDb(":memory:");
     try {
       migrate(db);
@@ -165,8 +175,70 @@ describe("takeover feedback surface (PLAN-L7-110)", () => {
       }
       const result = selectTakeoverFeedback(db, { limit: 2 });
       expect(result.total).toBe(5);
+      // 同一 group は 1 行へ畳まれ、実件数は surface_count が保持する。
+      expect(result.items.length).toBe(1);
+      expect(result.items[0]?.surface_count).toBe(5);
+      expect(result.hidden).toEqual({ groups: 0, items: 0 });
+      const block = renderTakeoverFeedback(result);
+      expect(block).toContain("count=5");
+      expect(block).not.toContain("more actionable");
+      // ヘッダ集計は選定前の実数のまま不変。
+      expect(block).toContain("gate=0 actionable=5 telemetry=0");
+    } finally {
+      db.close();
+    }
+  });
+
+  it("keeps signal-type diversity under a dominant cluster (group-first cap, PLAN-L7-404)", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      for (let i = 0; i < 12; i += 1) {
+        insertFindingWithKind(
+          db,
+          `finding:noisy-cluster:${i}`,
+          "noisy-cluster",
+          "warn",
+          `PLAN-NOISY-${i}`,
+        );
+      }
+      insertFindingWithKind(db, "finding:rare-signal:0", "rare-signal", "warn", "PLAN-RARE");
+
+      const result = selectTakeoverFeedback(db, { limit: 2 });
+      expect(result.total).toBe(13);
+      // 予算は group 単位: 支配クラスタが他 signal_type を追い出さない。
+      expect(result.items.map((item) => item.signal_type).sort()).toEqual([
+        "noisy-cluster",
+        "rare-signal",
+      ]);
+      const noisy = result.items.find((item) => item.signal_type === "noisy-cluster");
+      expect(noisy?.surface_count).toBe(12);
+
+      const block = renderTakeoverFeedback(result);
+      expect(block).toContain("noisy-cluster");
+      expect(block).toContain("count=12");
+      expect(block).toContain("rare-signal");
+      expect(block).toContain("gate=0 actionable=13 telemetry=0");
+    } finally {
+      db.close();
+    }
+  });
+
+  it("caps surfaced groups and leaves a group-aware breadcrumb for the remainder", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      insertFindingWithKind(db, "finding:g1:0", "group-one", "warn", "PLAN-G1-0");
+      insertFindingWithKind(db, "finding:g1:1", "group-one", "warn", "PLAN-G1-1");
+      insertFindingWithKind(db, "finding:g2:0", "group-two", "warn", "PLAN-G2");
+      insertFindingWithKind(db, "finding:g3:0", "group-three", "warn", "PLAN-G3");
+
+      const result = selectTakeoverFeedback(db, { limit: 2 });
+      expect(result.total).toBe(4);
       expect(result.items.length).toBe(2);
-      expect(renderTakeoverFeedback(result)).toContain("+3 more");
+      expect(result.hidden.groups).toBe(1);
+      expect(result.hidden.items).toBe(1);
+      expect(renderTakeoverFeedback(result)).toContain("+1 more actionable in 1 group");
     } finally {
       db.close();
     }

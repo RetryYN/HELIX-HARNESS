@@ -1,7 +1,7 @@
 ---
 description: 実装前に spec-first design を作成する（spec → test design → impl）
 argument-hint: "<feature description>"
-judgment_core: v1
+judgment_core: v2
 ---
 
 HELIX では、code より先に spec/design を書く。`spec-driven-development` と

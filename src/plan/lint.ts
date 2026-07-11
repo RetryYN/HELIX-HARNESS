@@ -14,11 +14,12 @@ import {
   analyzePlanEntryRouting,
   buildPlanEntryRoutingBaseline,
   loadPlanEntryRoutingBaseline,
-  loadPlanEntryRoutingDocs,
   PLAN_ENTRY_ROUTING_BASELINE_PATH,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
+import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
+import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import {
   DB_PROJECTION_BACKPROP_REQUIRED_GENERATES,
   DESIGN_LAYERS_REQUIRING_SUB_DOC,
@@ -819,9 +820,14 @@ export function lintPlanDescent(path?: string, repoRoot: string = process.cwd())
   return { ok: result.ok, messages: planDescentMessages(result) };
 }
 
+export function lintPlanSpecificVpairBinding(repoRoot: string = process.cwd()): LintResult {
+  const checked = checkPlanSpecificVpairBindings(repoRoot);
+  return { ok: checked.ok, messages: checked.messages };
+}
+
 export function lintPlanEntryRouting(path?: string, repoRoot: string = process.cwd()): LintResult {
   const result = analyzePlanEntryRouting(
-    loadPlanEntryRoutingDocs(repoRoot, path),
+    loadPlanEntryRoutingDocsFromDb(repoRoot, path),
     loadPlanEntryRoutingBaseline(repoRoot),
   );
   return { ok: result.ok, messages: planEntryRoutingMessages(result) };
@@ -852,7 +858,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
       };
     }
     const baseline = buildPlanEntryRoutingBaseline(
-      loadPlanEntryRoutingDocs(repoRoot),
+      loadPlanEntryRoutingDocsFromDb(repoRoot),
       new Date().toISOString(),
     );
     writeFileSync(
@@ -868,18 +874,25 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     };
   }
 
-  // 既定 (gate 未指定) は schedule + descent + entry-routing の合成。
+  // 既定 (gate 未指定) は schedule + descent + PLAN固有Vペア + entry-routing の合成。
   if (!gate) {
     const schedule = lintPlan(path, repoRoot);
     const descent = lintPlanDescent(path, repoRoot);
+    const vpairBinding = lintPlanSpecificVpairBinding(repoRoot);
     const entryRouting = lintPlanEntryRouting(path, repoRoot);
     return {
-      ok: schedule.ok && descent.ok && entryRouting.ok,
-      messages: [...schedule.messages, ...descent.messages, ...entryRouting.messages],
+      ok: schedule.ok && descent.ok && vpairBinding.ok && entryRouting.ok,
+      messages: [
+        ...schedule.messages,
+        ...descent.messages,
+        ...vpairBinding.messages,
+        ...entryRouting.messages,
+      ],
     };
   }
   if (gate === "schedule") return lintPlan(path, repoRoot);
   if (gate === "descent") return lintPlanDescent(path, repoRoot);
+  if (gate === "vpair-binding") return lintPlanSpecificVpairBinding(repoRoot);
   if (gate === "entry-routing") return lintPlanEntryRouting(path, repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {

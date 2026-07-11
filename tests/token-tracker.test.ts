@@ -98,6 +98,27 @@ describe("computeCodexCostUsd (OPENAI_PRICING, 公式単価)", () => {
     ).toBeCloseTo(0.0175, 6);
   });
 
+  it("computes cost for the gpt-5.6 generation (sol frontier / terra worker, PLAN-L7-415)", () => {
+    // gpt-5.6-sol = $5/$0.5/$30. 1000*5 + 1000*30 = 35000 / 1e6 = 0.035
+    expect(
+      computeCodexCostUsd({
+        model: "gpt-5.6-sol",
+        inputTokens: 1000,
+        cachedInputTokens: 0,
+        outputTokens: 1000,
+      }),
+    ).toBeCloseTo(0.035, 6);
+    // gpt-5.6-terra = $2.5/$0.25/$15. 1000*2.5 + 1000*15 = 17500 / 1e6 = 0.0175
+    expect(
+      computeCodexCostUsd({
+        model: "gpt-5.6-terra",
+        inputTokens: 1000,
+        cachedInputTokens: 0,
+        outputTokens: 1000,
+      }),
+    ).toBeCloseTo(0.0175, 6);
+  });
+
   it("tolerates a trailing date/version suffix (prefix match to gpt-5.4)", () => {
     expect(
       computeCodexCostUsd({

@@ -65,17 +65,14 @@ describe("readability lint (freeze doc mojibake guard)", () => {
   });
 });
 
-describe("runtime-artifact readability guard (PLAN-L7-69: .helix audit/handover)", () => {
-  it("loader spans .helix/audit markdown + .helix/handover JSON and the real artifacts are mojibake-free", () => {
+describe("runtime-artifact readability guard (PLAN-L7-69: audit/provider evidence)", () => {
+  it("loader spans .helix/audit markdown + provider evidence JSON and real artifacts are mojibake-free", () => {
     const docs = loadRuntimeArtifactReadabilityDocs();
     const paths = docs.map((doc) => doc.path.replaceAll("\\", "/"));
     // Assert on TRACKED runtime evidence only: the A-NNN audit markdown ledger and
     // the cross-agent provider JSON payloads are committed, so they are present in a
-    // fresh CI checkout. CURRENT.json is the handover pointer but is gitignored
-    // (.helix/handover/CURRENT.*) — it exists locally but NOT in CI, so asserting
-    // its presence here was a local-green/CI-red trap. Its handling is covered by the
-    // fixture tests below (clean + replacement-character cases). The loader's
-    // fail-open-on-absence design means an absent CURRENT.json is correct, not a gap.
+    // fresh CI checkout. Session continuation is DB-backed, while provider exchange
+    // evidence remains committed under its preserved evidence namespace.
     expect(paths.some((p) => p.startsWith(".helix/audit/") && p.endsWith(".md"))).toBe(true);
     expect(
       paths.some((p) => p.startsWith(".helix/handover/provider/") && p.endsWith(".json")),
@@ -116,9 +113,9 @@ describe("runtime-artifact readability guard (PLAN-L7-69: .helix audit/handover)
     expect(result.violations.map((v) => v.marker)).toContain("replacement-character");
   });
 
-  it("passes clean ASCII handover JSON and fullwidth-only Japanese audit text", () => {
+  it("passes clean ASCII provider evidence JSON and fullwidth-only Japanese audit text", () => {
     const result = analyzeReadability([
-      { path: ".helix/handover/CURRENT.json", text: '{"active_plan":"PLAN-L7-69","status":"ok"}' },
+      { path: ".helix/handover/provider/clean.json", text: '{"status":"ok"}' },
       { path: ".helix/audit/A-100-clean.md", text: "# 監査\n工程表は直列で実行する。\n" },
     ]);
     expect(result.ok).toBe(true);

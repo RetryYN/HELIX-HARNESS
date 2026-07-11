@@ -51,3 +51,78 @@ L8 単体テスト設計 pair を要求する。しかし今回の外部 agent c
 | U-PSPB-003 | L7 impl PLAN の generates が markdown_doc と test_code のみ → `missing_source_generate` |
 | U-PSPB-004 | 外部 catalog 採用候補を L7 に一時置きし、`forward_descent_debt` と降下先 PLAN がある → advisory only |
 | U-PSPB-005 | 機能固有 L6 design doc を parent に持ち、source/test surface が明示される通常 L7 impl → ok |
+
+## §5 PLAN固有Vペア4点binding（PLAN-L6-65追補）
+
+`analyzePlanSpecificVpairBindings(input) => PlanSpecificVpairBindingResult` は、L7実装PLANが単にL6/L8/testの
+pathを持つだけでなく、同一の検証意図へ結合されていることを判定する純粋contractとする。
+
+### §5.1 入力schema
+
+実装PLANはfrontmatterに次を持つ。
+
+```yaml
+verification_bindings:
+  - parent_design: docs/design/harness/L6-function-design/example.md
+    oracle_id: U-EXAMPLE-001
+    test_path: tests/example.test.ts
+```
+
+4点tupleはtop-level `plan_id`とentryの3 fieldで構成する。entryの`parent_design`はtop-level値と完全一致、
+`oracle_id`は`U-<FAMILY>-<3桁>[小文字suffix任意]`のexact単一token、`test_path`はcanonicalな
+repo-relative `tests/**` pathとする。重複tuple、未知field、絶対path、`..`、backslash、range/shorthandを拒否する。
+
+### §5.2 結合invariant
+
+1. 本analyzerのpreconditionは既存`plan-descent`がgreenであることとし、parent/pairの実在・層・confirmed判定は
+   重複実装しない。lint/doctorは常にplan-descentの後に本gateを実行する。
+2. oracle IDはpair L8の機械可読oracle表にexact 1回だけ宣言され、同じrowのtest citationがtest pathと一致する。
+3. test pathは実在regular fileで、PLAN `generates`の同一pathが`artifact_type: test_code`である。
+4. test本文はexact PLAN IDを持ち、TypeScript AST上の実CallExpressionでcalleeがbare identifier
+   `it`または`test`、第1引数がstatic string `"<oracle_id>: ..."`であるcase titleを一意に持つ。
+   comment、dead string、computed name、`.skip/.todo/.skipIf`、dynamic templateは充足に数えない。
+5. 1 test fileへの複数oracleは許容する。oracle ownershipはL6 designが持ち、non-archived PLAN履歴での再利用を
+   許容するが、同時にactiveな複数test pathへ分岐させない。add-implの挙動deltaは新oracle IDを追加する。
+6. binding 0件、ambiguous row、family要約だけの宣言、部分文字列一致はfail-closeする。
+
+### §5.3 ratchet
+
+authority正本は`config/plan-specific-vpair-binding-authority.json`、schemaは
+`plan-specific-vpair-binding-authority.v1`とする。既存debtはimmutable `initialAuthority[]`へexact
+`{fingerprint, plan_id, reason, detail}`をfingerprint昇順で固定する。fingerprintはUTF-8/LF、key順
+`plan_id,reason,detail`、detail欠落は`null`としたJSONのSHA-256。codeはinitial集合digestをconstantでpinし、
+導入時の機械生成後は追記・置換を許さない。
+
+`resolvedTombstones[]`は `{fingerprint,resolved_at,resolution_plan_id,previous_digest,entry_digest}` のappend-only
+hash chainとする。genesis `previous_digest`はinitial集合digest、各`entry_digest`は
+`sha256(previous_digest + "\n" + fingerprint + "\n" + resolved_at + "\n" + resolution_plan_id)`。
+codeはterminal digestをpinし、正当な追加はresolution PLAN、cross-review、constant更新を同一commitで要求する。
+chainの削除・置換・並べ替えは次entry/terminal digest不一致となる。active exemptionは`initial - resolved`、
+resolved finding再出現はhard failする。initial外tombstone、重複、非UTC時刻、non-terminal resolution PLANも拒否する。
+
+### §5.3.1 L8 検査対象table
+
+oracle宣言として数えるのはheaderがexact `U-ID | 対象 | 反例と期待結果 | test citation`で、U-ID cellが
+単一exact token、test citation cellが単一以上のbacktick付きcanonical `tests/**` pathを持つMarkdown tableだけ。
+family summary、range/shorthand、prose、code fence、別header tableは宣言に数えない。row全体をparseできない
+oracle-like行はschema findingとする。
+
+### §5.4 reason
+
+`verification_bindings_absent` / `binding_schema_invalid` / `binding_parent_mismatch` /
+`oracle_not_declared` / `oracle_ambiguous` / `oracle_table_schema_invalid` / `oracle_test_citation_mismatch` / `test_not_generated` /
+`test_path_missing` / `plan_citation_missing` / `oracle_citation_missing` / `oracle_owned_by_multiple_plans` /
+`duplicate_binding` / `baseline_authority_invalid` / `resolved_finding_reappeared` をtyped reasonとする。
+
+### §5.4.1 schema/path境界
+
+`verificationBindingSchema.strict()`を`src/schema/frontmatter.ts`からexportし、frontmatter baseへ追加する。
+非array/null entry/未知fieldは通常schema違反で先にfailし、raw loaderは例外をgreenへ倒さず
+`binding_schema_invalid`へ正規化する。test pathはNFC正規化後に空segment、`.`、`..`、backslash、絶対pathを拒否し、
+`lstat`でsymlinkを拒否、`realpath`がrepo root内のregular fileであることをadapterで検査する。case titleは
+TypeScript compiler ASTで抽出し、regexによるcomment/dead-string誤認を禁止する。
+
+### §5.5 oracle
+
+詳細はL8正本 `U-PSPB-006..020`。各oracleはparameterized反例を含めて1 case titleへ束縛する。実装testは
+`tests/plan-descent-specific-parent-binding.test.ts`へ1:1 citationし、plan lint単一/全走査とdoctor hard ANDも含む。

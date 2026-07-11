@@ -17,6 +17,23 @@ review_evidence:
     scope: "U-MCPPROFILE-001..012 を green tests に昇格した。Docker MCP Toolkit profile metadata、generated local MCP config rendering、profile safety findings、activation planning は pure functions として実装済み。Critical 0 / Important 0。package installation、MCP server execution、profile enablement、committed .vscode/mcp.json write、inline credential persistence は導入していない。"
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:05:58+09:00"
+    tests_green_at: "2026-07-09T15:05:58+09:00"
+    verdict: approve
+    scope: "PLAN-L7-33 の過去 failed test evidence を削除せず、現行 fast suite の green evidence を追加して MCP profile safety 実装の passed test projection を回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:05:58+09:00"
+        evidence_path: tests/verification-profile.test.ts
+        output_digest: "sha256:7d0cee1ae554c76191023c276a86d4c7de30817e13bfef210199234426869db4"
 agent_slots:
   - role: tl
     slot_label: "TL - MCP profile safety 実装"

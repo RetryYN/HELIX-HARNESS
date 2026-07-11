@@ -1,4 +1,14 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  buildProjectClosureDecisionDraftPacket,
+  buildProjectClosureEvidenceApprovalDraftPacket,
+  buildProjectCurrentLocationSnapshot,
+  closureEvidenceApprovalDraftRefreshPath,
+  type ProjectClosureEvidenceProbeExecution,
+} from "../src/state-db/current-location";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import { buildVisualizationSnapshot } from "../src/state-db/visualization-read-model";
@@ -213,6 +223,21 @@ describe("visualization read model", () => {
       expect(first.evidence.skill_invocations).toEqual({ total: 1, accepted: 1 });
       expect(first.evidence.model_runs.total).toBe(1);
       expect(first.evidence.guardrail_decisions).toMatchObject({ total: 1, allow: 1 });
+      expect(first.project_current_location.current).toMatchObject({
+        layer: "L7",
+        l12_layer: "L6",
+        status: "forward",
+      });
+      expect(first.project_current_location.drive_recommendation.model).toBe("Reverse");
+      expect(first.project_current_location.design_coverage_gate).toMatchObject({
+        status: "needs_design",
+        missing: 12,
+      });
+      expect(first.vmodel_zip_manifest).toMatchObject({
+        present: false,
+        ok: true,
+        entriesTotal: 0,
+      });
       expect(first.warnings).toContain(
         "runtime verification includes non-accepted projection-only or missing-provenance rows",
       );
@@ -230,10 +255,279 @@ describe("visualization read model", () => {
       expect(snapshot.source_clock).toBeNull();
       expect(snapshot.progress.artifacts.total).toBe(0);
       expect(snapshot.progress.plans.by_status).toEqual({});
+      expect(snapshot.project_current_location.current).toMatchObject({
+        layer: null,
+        l12_layer: null,
+        status: "unknown",
+        completion_boundary: "open",
+      });
       expect(snapshot.evidence.runtime_verification.total).toBe(0);
+      expect(snapshot.vmodel_zip_manifest).toMatchObject({
+        present: false,
+        ok: true,
+      });
       expect(snapshot.warnings).toEqual(["artifact_progress is empty; run `helix db rebuild`"]);
     } finally {
       db.close();
+    }
+  });
+
+  it("detects local recovery handoff artifacts when repoRoot is provided", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-visualization-handoff-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-probe-record.json"),
+        JSON.stringify({ schema_version: "project-closure-evidence-probe.v1" }),
+      );
+
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
+      const probe = snapshot.recovery_handoff_artifacts.items.find(
+        (item) => item.action === "repair_failed_evidence" && item.kind === "probe_record",
+      );
+      const draft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) => item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+      );
+
+      expect(snapshot.recovery_handoff_artifacts).toMatchObject({
+        present: 1,
+        missing: 4,
+        unchecked: 0,
+      });
+      expect(probe).toMatchObject({
+        path: ".helix/tmp/closure/repair_failed_evidence-probe-record.json",
+        status: "present",
+        generation_status: "present",
+        generation_command:
+          "helix closure evidence-probe --action repair_failed_evidence --limit 1 --execute --out .helix/tmp/closure/repair_failed_evidence-probe-record.json --json",
+        bytes: expect.any(Number),
+        write_policy: "local-artifact-new-file",
+      });
+      expect(probe?.bytes).toBeGreaterThan(0);
+      expect(probe?.sha256).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(draft).toMatchObject({
+        path: ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml",
+        status: "missing",
+        generation_status: "ready_to_generate",
+        generation_command:
+          "helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
+        bytes: null,
+        sha256: null,
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-VISUAL-003: detects close_ready decision drafts and validates closure approval outcomes", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-visualization-close-ready-draft-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
+      const current = buildProjectCurrentLocationSnapshot(db);
+      const draft = buildProjectClosureDecisionDraftPacket(current, {
+        action: "close_ready",
+        limit: 1,
+        offset: 0,
+      });
+      writeFileSync(
+        join(root, ".helix/tmp/closure/close_ready-decision-draft.yml"),
+        draft.approval_record_text.replace(
+          "outcome: pending_human_review",
+          "outcome: approve_closure_claim",
+        ),
+      );
+
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
+      const decisionDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) => item.action === "close_ready" && item.kind === "decision_draft",
+      );
+
+      expect(decisionDraft).toMatchObject({
+        path: ".helix/tmp/closure/close_ready-decision-draft.yml",
+        status: "present",
+        generation_status: "present",
+        generation_command:
+          "helix closure decision-draft --action close_ready --limit 1 --offset 0 --out .helix/tmp/closure/close_ready-decision-draft.yml --summary-json",
+        write_policy: "local-artifact-new-file",
+        approval_record: {
+          status: "approved",
+          decision_id: "closure-review:close_ready",
+          outcome: "approve_closure_claim",
+          approval_scope_digest: draft.decision.approval_scope_digest,
+          expected_approval_scope_digest: draft.decision.approval_scope_digest,
+          scope_status: "match",
+          reviewed_candidate_count: 0,
+          valid_for_apply: true,
+        },
+      });
+      expect(decisionDraft?.bytes).toBeGreaterThan(0);
+      expect(decisionDraft?.sha256).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(decisionDraft?.approval_record?.reasons).toContain(
+        "approval outcome は approve_closure_claim",
+      );
+      expect(decisionDraft?.approval_record?.reasons).toContain(
+        "approval_scope_digest は current closure review scope と一致",
+      );
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("validates approval draft scope against the current materialize digest", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-visualization-approval-scope-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
+      const execution: ProjectClosureEvidenceProbeExecution = {
+        command: "bun run test:fast",
+        session_id: "session-read-model",
+        correlation_id: "corr-read-model",
+        started_at: "2026-07-08T00:00:00.000Z",
+        completed_at: "2026-07-08T00:01:00.000Z",
+        exit_code: 0,
+        status: "passed",
+        output_digest: "sha256:probe-output",
+        stdout_bytes: 12,
+        stderr_bytes: 0,
+        output_excerpt: {
+          stdout_head: "ok",
+          stdout_tail: "ok",
+          stderr_head: "",
+          stderr_tail: "",
+          truncated: false,
+          limit: 2000,
+        },
+        error_message: null,
+      };
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-probe-record.json"),
+        JSON.stringify({
+          schema_version: "project-closure-evidence-probe.v1",
+          execution,
+        }),
+      );
+      const draft = buildProjectClosureEvidenceApprovalDraftPacket(
+        buildProjectCurrentLocationSnapshot(db),
+        {
+          action: "repair_failed_evidence",
+          limit: 1,
+          probeExecution: execution,
+        },
+      );
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml"),
+        draft.approval_record_text,
+      );
+
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
+      const approvalDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) => item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+      );
+
+      expect(approvalDraft?.approval_record).toMatchObject({
+        status: "pending_human_review",
+        approval_scope_digest: draft.approval.approval_scope_digest,
+        expected_approval_scope_digest: draft.approval.approval_scope_digest,
+        scope_status: "match",
+        valid_for_apply: false,
+      });
+      expect(approvalDraft?.approval_record?.reasons).toContain(
+        "approval_scope_digest は current materialize scope と一致",
+      );
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("detects matching refresh approval drafts without overwriting stale canonical drafts", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-visualization-refresh-scope-"));
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      mkdirSync(join(root, ".helix/tmp/closure"), { recursive: true });
+      const execution: ProjectClosureEvidenceProbeExecution = {
+        command: "bun run test:fast",
+        session_id: "session-refresh-read-model",
+        correlation_id: "corr-refresh-read-model",
+        started_at: "2026-07-09T00:00:00.000Z",
+        completed_at: "2026-07-09T00:01:00.000Z",
+        exit_code: 0,
+        status: "passed",
+        output_digest: "sha256:probe-output-refresh",
+        stdout_bytes: 12,
+        stderr_bytes: 0,
+        output_excerpt: {
+          stdout_head: "ok",
+          stdout_tail: "ok",
+          stderr_head: "",
+          stderr_tail: "",
+          truncated: false,
+          limit: 2000,
+        },
+        error_message: null,
+      };
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-probe-record.json"),
+        JSON.stringify({
+          schema_version: "project-closure-evidence-probe.v1",
+          execution,
+        }),
+      );
+      const draft = buildProjectClosureEvidenceApprovalDraftPacket(
+        buildProjectCurrentLocationSnapshot(db),
+        {
+          action: "repair_failed_evidence",
+          limit: 1,
+          probeExecution: execution,
+        },
+      );
+      writeFileSync(
+        join(root, ".helix/tmp/closure/repair_failed_evidence-approval-draft.yml"),
+        draft.approval_record_text.replace(draft.approval.approval_scope_digest, "sha256:stale"),
+      );
+      const refreshPath = closureEvidenceApprovalDraftRefreshPath(
+        "repair_failed_evidence",
+        draft.approval.approval_scope_digest,
+      );
+      writeFileSync(join(root, refreshPath), draft.approval_record_text);
+
+      const snapshot = buildVisualizationSnapshot(db, { repoRoot: root });
+      const canonicalDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) => item.action === "repair_failed_evidence" && item.kind === "approval_draft",
+      );
+      const refreshDraft = snapshot.recovery_handoff_artifacts.items.find(
+        (item) =>
+          item.action === "repair_failed_evidence" && item.kind === "approval_refresh_draft",
+      );
+
+      expect(canonicalDraft?.approval_record).toMatchObject({
+        approval_scope_digest: "sha256:stale",
+        expected_approval_scope_digest: draft.approval.approval_scope_digest,
+        scope_status: "mismatch",
+      });
+      expect(refreshDraft).toMatchObject({
+        path: refreshPath,
+        status: "present",
+        generation_command: `helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out ${refreshPath} --summary-json`,
+        approval_record: {
+          status: "pending_human_review",
+          approval_scope_digest: draft.approval.approval_scope_digest,
+          expected_approval_scope_digest: draft.approval.approval_scope_digest,
+          scope_status: "match",
+          valid_for_apply: false,
+        },
+      });
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
     }
   });
 });

@@ -4,7 +4,7 @@ description: Tech News Advisor — AI / Dev tools / security / cloud の最新�
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
 model: claude-sonnet-5
 effort: medium
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 20
 ---

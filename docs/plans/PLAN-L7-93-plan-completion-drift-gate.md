@@ -19,6 +19,31 @@ review_evidence:
     scope: "PO『2 はそもそも通過してないとおかしい段階だろ。ただの記載ミスか運用ミスだろ。再発防止に努めろ』(2026-06-22) を受け、PLAN-RECOVERY-02 が freeze-ready (Phase 1-3 完了 + gated downstream L1-*/L3-* 全 confirmed + 機械 trace green) なのに status=draft 放置で毎 session 再報告された完了 bookkeeping drift の再発防止を実装。誘因 = 既存 merged-plan-status gate は src/tests/scripts/.claude の出荷物しか見ず、deliverable が自分の md だけの recovery PLAN を構造的に見逃す。新規 lint plan-completion-drift = plan-dod の欠けた逆方向 (DoD 全消化 ⇒ status 終端) を全 layer に fail-close: dodChecklistState (純関数、checked/unchecked 独立カウント、日本語『完了条件』対応、次 ## で節打切、CRLF 対応) + analyze (checked≥1 かつ unchecked=0 かつ非終端 → violation) + loader (archived 除外) + doctor hard gate。部分チェック WIP (DISCOVERY-03 = S1 のみ消化) / DoD 無し PLAN は false positive を出さない。実リポ非終端 PLAN は RECOVERY-02 (本 session で completed 化) と DISCOVERY-03 (部分チェック) のみ = 修正後 repo green (blast radius 0)。RECOVERY-02 に DoD 節を追加し本 gate の被覆下に置いた。test 16 ケース (dodChecklistState 6 + analyze 5 + loader/check 3 + archived/fail-close 2)。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:25:38+09:00"
+    tests_green_at: "2026-07-09T15:25:38+09:00"
+    verdict: approve
+    scope: "PLAN-L7-93 の execution evidence 欠落を、現行 plan-body-substance / plan-completion-drift / lint-wiring / doctor targeted green と typecheck で補い、PLAN completion-drift gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-body-substance.test.ts tests/plan-completion-drift.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:25:38+09:00"
+        evidence_path: tests/plan-completion-drift.test.ts
+        output_digest: "sha256:2fd68c3da792fca4752576950b7060042a414ddeb31478fbf87b273b9a5afb90"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:25:38+09:00"
+        evidence_path: src/lint/plan-completion-drift.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - PLAN completion-drift gate (DoD↔status bidirectional consistency)"

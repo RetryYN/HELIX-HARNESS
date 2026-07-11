@@ -1,7 +1,7 @@
 ---
 description: frozen spec/test design に基づき HELIX quality gate 付きで実装する
 argument-hint: "<PLAN id or feature>"
-judgment_core: v1
+judgment_core: v2
 ---
 
 HELIX では incrementally に実装する。`incremental-implementation` skill を使う。

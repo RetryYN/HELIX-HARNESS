@@ -4,7 +4,7 @@ description: Senior Staff Engineer 視点で 5軸レビューを実施。実装�
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: high
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 20
 ---

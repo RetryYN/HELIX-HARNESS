@@ -1,5 +1,5 @@
-import type { TableDef } from "./harness-db";
 import { col, pk } from "./harness-db-table-builders";
+import type { TableDef } from "./harness-db-types";
 
 export const HARNESS_DB_EVALUATION_TABLES: TableDef[] = [
   {

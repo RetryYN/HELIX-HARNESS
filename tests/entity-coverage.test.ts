@@ -15,7 +15,7 @@ describe("Entity coverage (DDD entity 整合の機械検証)", () => {
   const business = loadBusiness();
   const result = analyzeEntityCoverage(business);
 
-  it("§10.1 主要業務 entity 12 件 (plan/gate/artifact/pair/mode/drive/agent_slot/handover/sprint/phase/carry/trace)", () => {
+  it("§10.1 主要業務 entity 12 件 (session handover 退役後は continuation を正本とする)", () => {
     const primary = extractPrimaryEntities(business);
     expect(primary.length).toBe(12);
     expect(primary).toContain("plan");
@@ -25,7 +25,8 @@ describe("Entity coverage (DDD entity 整合の機械検証)", () => {
     expect(primary).toContain("mode");
     expect(primary).toContain("drive");
     expect(primary).toContain("agent_slot");
-    expect(primary).toContain("handover");
+    expect(primary).toContain("continuation");
+    expect(primary).not.toContain("handover");
     expect(primary).toContain("sprint");
     expect(primary).toContain("phase");
     expect(primary).toContain("carry");

@@ -1,10 +1,10 @@
 /**
- * outstanding-work surface — 「未了の正の集計シグナル」を status / handover が additive に出すための
+ * outstanding-work surface — 「未了の正の集計シグナル」を status / completion packet が additive に出すための
  * 純関数 + loader (IMP-139)。
  *
- * 動機 (PO 指摘 2026-06-19 self-audit): `helix status` (mode + next のみ) も handover digest
- * (commits/files/failures のみ) も CURRENT.json も「層内の非終端 (draft 等) PLAN 数 / open な
- * explicit-defer 数」を出さない。結果「doctor green = 完了」と誤読され得る (PLAN 完了 ≠ 層完了)。
+ * 動機 (PO 指摘 2026-06-19 self-audit): 旧 `helix status` (mode + next のみ) は
+ * 「層内の非終端 (draft 等) PLAN 数 / open な explicit-defer 数」を出さなかった。結果
+ * 「doctor green = 完了」と誤読され得る (PLAN 完了 ≠ 層完了)。
  * merged-plan-status ([[plan-merged-plan-status]]) / plan-completion-drift ([[plan-completion-drift]]) は
  * drift を fail-close 検出するが、それは「異常」の検出であって「未了の総量」を可視化しない。本 surface は
  * 「完了主張」を機械照合可能にする informational additive サーフェス (gate ではない、非 fail-close)。
@@ -18,7 +18,7 @@
  * の前例に倣う)。既存フィールドは不変。
  *
  * placeholder-deps / shared を再利用するため解析層 (src/lint) に置く (runtime→lint は coding-rules の
- * module-boundary 違反ゆえ、消費側 cli / handover が lint を import する形にする)。
+ * module-boundary 違反ゆえ、消費側 CLI が lint を import する形にする)。
  */
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";

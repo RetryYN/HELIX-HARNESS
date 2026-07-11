@@ -20,6 +20,7 @@ import {
   CODEX_SPAWN_AGENT_TOOL_NAME,
   DELEGATION_BRIEF_HINT,
   DELEGATION_BRIEF_MARKERS,
+  FABLE_APEX_SUBAGENTS,
   SUBAGENT_ALLOWLIST,
 } from "./agent-guard-policy";
 
@@ -190,6 +191,17 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
         `  subagent_type: ${subagentType}\n` +
         `  allowed family: ${family}\n` +
         `  requested model: ${model} (family: ${requested})\n${AGENT_GUARD_BYPASS_HINT}`,
+    );
+  }
+
+  // fable apex 境界 (PLAN-L7-409): frontmatter が fable を宣言していても、apex allowlist 外の
+  // agent には使わせない。fable は advisory 専用 (PLAN-L7-306) で worker 用途を fail-close する。
+  if (requested === "fable" && !FABLE_APEX_SUBAGENTS.has(subagentType)) {
+    return blockOrBypass(
+      `[helix-guard] BLOCK: fable is apex-tier and reserved for advisory subagents.\n` +
+        `  subagent_type: ${subagentType}\n` +
+        `  fable-allowed: ${[...FABLE_APEX_SUBAGENTS].join(", ")} (advisor-fable boundary, PLAN-L7-306)\n` +
+        `${AGENT_GUARD_BYPASS_HINT}`,
     );
   }
 

@@ -4,7 +4,7 @@ description: technology / marketing innovation output を ranked product strateg
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
 model: claude-opus-4-8
 effort: high
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 40
 ---

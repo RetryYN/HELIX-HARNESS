@@ -18,6 +18,7 @@
 import { type Dirent, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { loadRetiredArtifactPaths } from "../lint/artifact-retirement-authority";
 import { loadFrDocs, parseFrRows } from "../lint/fr-registry-audit";
 import { loadImplPlanTraceInput } from "../lint/impl-plan-trace";
 import type {
@@ -239,6 +240,11 @@ function extractFrRefs(content: string): string[] {
  * @param repoRoot  absolute path to repo root (process.cwd() 相当)
  */
 export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourceSet {
+  // PLAN履歴の generates 宣言は監査証跡として保持する一方、承認済み退役 artifact は
+  // live source node/edge へ投影しない。authority の不在は未退役 repo として空集合、
+  // authority の改ざん・binding 不一致は loadRetiredArtifactPaths が fail-close する。
+  const retiredArtifactPaths = loadRetiredArtifactPaths(repoRoot);
+
   // 1. sourceFiles: loadImplPlanTraceInput が src/**/*.ts を収集済み
   const implTrace = loadImplPlanTraceInput(repoRoot);
   const srcFiles = implTrace.srcFiles; // repo-relative "/" 正規化済み
@@ -292,7 +298,12 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
       // generates: src/*.ts artifact のみ抽出 (generates edge = plan→source)
       const generatesSrc = (fm.generates ?? [])
         .map((g) => g.artifact_path ?? "")
-        .filter((p) => p.startsWith("src/") && p.endsWith(".ts"));
+        .filter(
+          (p) =>
+            p.startsWith("src/") &&
+            p.endsWith(".ts") &&
+            !retiredArtifactPaths.has(normalizePath(p)),
+        );
       // requirements: frontmatter dependencies.requires の FR-L1-NN + 本文 FR refs
       const fmRequires = (fm.dependencies?.requires ?? []).filter((r) => /^FR-L\d+-\d+$/.test(r));
       const bodyRefs = extractFrRefs(content);

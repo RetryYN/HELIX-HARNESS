@@ -45,7 +45,7 @@ review_evidence:
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-06T06:45:00+09:00"
     tests_green_at: "2026-07-06T06:45:00+09:00"
-    verdict: approve_after_tests
+    verdict: approve_after_fixes
     scope: "PLAN-L3-07 Step 1/2/3/5/6 と Step 4 AI 側 L3/L12 降下の generated artifacts を確認し、active_draft blocker を閉じる。L1 retention/purge back-merge は charter §3 の人間権限 frontier として残し、本 PLAN の AI 側 terminal 条件から分離する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime

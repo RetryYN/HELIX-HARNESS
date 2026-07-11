@@ -17,6 +17,31 @@ review_evidence:
     scope: "collect+impact 2 機能 (U-RELGRAPH-001..006)。code-reviewer APPROVE / Critical 0。Important I-1 (test-design→paired design の behavioral-contract 逆引き) / I-3 (test-design 変更 oracle 追加) / m-2/m-4/m-5 を同サイクルで反映。hybrid だが Codex CLI が壊れ legacy のため intra_runtime_subagent review (cross-agent 不在を evidence に記録)。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T16:02:33+09:00"
+    tests_green_at: "2026-07-09T16:02:33+09:00"
+    verdict: approve
+    scope: "PLAN-L7-32 の execution evidence 欠落を、現行 ddd-tdd-rules / relation-graph / doctor targeted green と typecheck で補い、cross-artifact relation graph collect/impact の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/ddd-tdd-rules.test.ts tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T16:02:33+09:00"
+        evidence_path: tests/relation-graph.test.ts
+        output_digest: "sha256:bfdf4b24481071c586289c2010d03c34e4020c94a8851e8fe931d2fafc49d40e"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T16:02:33+09:00"
+        evidence_path: src/lint/relation-graph.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - relation graph implementation"

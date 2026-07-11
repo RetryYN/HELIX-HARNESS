@@ -1,7 +1,45 @@
-import type { TableDef } from "./harness-db";
 import { col, pk } from "./harness-db-table-builders";
+import type { TableDef } from "./harness-db-types";
 
 export const HARNESS_DB_CORE_TABLES: TableDef[] = [
+  // Reverse-344 / PLAN-L7-416: append-only session logから再構築可能なcontinuation read model。
+  // event_idを物理PKとし、(session_id,event_seq)の意味的一意性とpayload conflictはwriterで
+  // fail-closeする。JSONL appendとSQLite projectionを同一transactionとは見なさない。
+  {
+    name: "session_events",
+    columns: [
+      // registryは単一列PKのみのため、composite (session_id,event_seq) をcanonical event_keyへ符号化。
+      pk("event_key"),
+      col("event_id"),
+      col("schema_version", "INTEGER"),
+      col("operation_id"),
+      col("session_id"),
+      col("event_seq", "INTEGER"),
+      col("plan_id"),
+      col("event_kind"),
+      col("next_action"),
+      col("memory_ref"),
+      col("recorded_at"),
+      col("payload_hash"),
+    ],
+  },
+  {
+    name: "delivery_receipts",
+    columns: [
+      pk("delivery_id"),
+      col("entry_id"),
+      col("consumer_id"),
+      col("payload_digest"),
+      col("status"),
+      col("recorded_at"),
+      col("retention_until"),
+      col("source_retention_until"),
+    ],
+  },
+  {
+    name: "continuation_fences",
+    columns: [pk("scope"), col("fence_token", "INTEGER"), col("owner"), col("acquired_at")],
+  },
   // --- §2.7 基本 7 ---
   {
     name: "plan_registry",
@@ -188,6 +226,37 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("status"),
       col("next_action"),
       col("created_at"),
+    ],
+  },
+  {
+    name: "feedback_lifecycle",
+    columns: [
+      pk("lifecycle_key"),
+      col("source_table"),
+      col("source_id"),
+      col("source_generation"),
+      col("activity_epoch", "INTEGER"),
+      col("policy_epoch", "INTEGER"),
+      col("state"),
+      col("bucket"),
+      col("payload_digest"),
+      col("first_observed_at"),
+      col("last_transition_at"),
+      col("last_event_id"),
+      col("actor"),
+      col("reason"),
+      col("policy_version"),
+      col("surfaced_sessions"),
+    ],
+  },
+  {
+    name: "feedback_lifecycle_health",
+    columns: [
+      pk("health_id"),
+      col("damaged_count", "INTEGER"),
+      col("checkpoint_byte_offset", "INTEGER"),
+      col("checkpoint_event_id"),
+      col("projected_at"),
     ],
   },
   {

@@ -4,9 +4,9 @@ title: "PLAN-L6-60 (add-design): specific parent design binding — L7 を設計
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-09
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-08:L7-plan-used-as-design-doc"
@@ -33,6 +33,24 @@ dependencies:
   references:
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
     - docs/plans/PLAN-L7-347-plan-descent-gate-impl.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T21:05:00+09:00"
+    tests_green_at: "2026-07-09T21:05:00+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "L7 を設計棚卸し doc にしない specific parent design binding の L6 追加設計を confirmed 化する。実装は既存 PLAN-L7-347 plan descent gate に接続済みで、本 PLAN は設計終端として扱う。"
+    green_commands:
+      - kind: lint
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-60-specific-parent-design-binding.md && bun run src/cli.ts plan lint --gate governance"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T21:02:00+09:00"
+        evidence_path: docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md
+        output_digest: "sha256:fc2ec8c65c8fed0ffae8a0371e5ef79debd8b6deae8081a73134222898a03076"
 ---
 
 # PLAN-L6-60 (add-design): 機能固有 parent design binding

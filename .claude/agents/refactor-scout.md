@@ -4,7 +4,7 @@ description: behavior-invariant refactor opportunity を検出し、triage と P
 tools: Read, Grep, Glob
 model: claude-haiku-4-5-20251001
 effort: low
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 10
 ---

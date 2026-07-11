@@ -130,7 +130,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 - `src/`: TypeScript/Bun harness core
 - `tests/`: Vitest tests
 - `scripts/`: thin OS entrypoints only
-- `.helix/`: HELIX runtime state と audit/handover evidence
+- `.helix/`: HELIX runtime state と audit/provider evidence
 - `.claude/`: Claude Code の runtime / hook policy
 - `legacy local state/`: historical source state。HELIX state ではない。
 
@@ -161,6 +161,19 @@ V-model artifacts は分離を保つ。
 - requested の場合、coherent PLAN / task boundary で push する。
 - CI は `harness-check`: typecheck、Vitest、Biome lint、doctor。
 - applicable な confirmation gates の前には review evidence を必須とする。
+
+### GitHub 自走運用（PO 決定 2026-07-11、PLAN-L7-418）
+
+- main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、
+  **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム
+  review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。
+- main への取り込みは PR 経由。AI は自分で PR を作り (`helix github pr-create` /
+  `gh pr create`)、`gh pr merge --auto --merge` で auto-merge を仕込んでよい
+  (CI green で自動 merge)。repo は auto-merge / delete-branch-on-merge 有効。
+- **CI self-heal (PO 指示)**: 自分の push / PR で `harness-check` が落ちたら、人間に
+  渡さず自分で failure log を取得 (`gh run view --log-failed` / `helix github ci-status`)
+  → 修正 → 再 push まで行う。
+- release publish / tag / cutover / 配布 repo 切替は従来どおり action-binding approval 境界。
 
 ### Hybrid 多ランタイム commit 協調 (Claude ↔ Codex、必須)
 
@@ -193,7 +206,7 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
   測定値が動いたら、相手を疑う前に「自分が動く面を測っていないか」を先に疑う (foreign tree の transient を
   相手の退行と帰責するのは誤り)。
 - **引き継ぎ feedback は harness.db から受け取る** (`feedback_events`、SessionStart で surface、
-  PLAN-L7-110)。stale 化する prose handover を現状把握の正本にしない。CURRENT.json / prose は補助。
+  PLAN-L7-110)。session continuation は `harness.db` の event/projection を正本とし、stale 化する prose を使わない。
 
 ## 正規コマンド
 
@@ -223,7 +236,7 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
-- Handover: `.helix/handover/CURRENT.json` が存在し non-stale なら確認する。
+- Continuation: `harness.db` の continuation projection が non-stale なら確認する。
 
 ## 指示ファイル
 
@@ -242,7 +255,6 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 - セットアップ: `helix setup project`
 - 状態確認: `helix status`
 - 診断: `helix doctor`
-- 引き継ぎ: `helix handover`
 - Codex 委譲: `helix codex --role <role> --task "..."`
 - Claude 委譲: `helix claude --role <role> --task "..."`
 - チーム実行: `helix team run --definition .helix/teams/<team>.yaml`
@@ -255,7 +267,7 @@ repository-local な HELIX command で harness state と delegation を扱う。
 - `helix setup project` は HELIX 対応 project を初期化する現行 setup 入口である。
 - `helix status` は local runtime mode を報告する。
 - `helix doctor` は repository health check を実行する。
-- `helix handover` は cross-runtime handover state を読み書きする。
+- `helix status` は DB-backed continuation を含む local runtime state を報告する。
 - `helix codex --role <role> --task "..."` は Codex へ委譲する。
 - `helix claude --role <role> --task "..."` は Claude へ委譲する。
 

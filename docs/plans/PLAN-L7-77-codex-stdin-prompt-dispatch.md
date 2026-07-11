@@ -10,6 +10,7 @@ updated: 2026-06-19
 backprop_decision: not_required
 backprop_decision_reason: "harness 内部の self-application tooling（lint gate / runtime dispatch / guard / governance mechanism）を強化する変更であり、product の外部 requirement / design / test-design contract は変更しないため、upstream backprop 対象はない。"
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/function-spec.md
 review_evidence:
   - reviewer: claude-opus-4-8
     review_kind: intra_runtime_subagent
@@ -19,6 +20,23 @@ review_evidence:
     scope: "live 再現済み defect: Windows では helix codex --execute が codex を codex.cmd として解決し、buildProviderInvocation が .cmd を単一の shell:true cmd.exe command string に包む。そのため multi-line / metacharacter task prompt は最初の newline で切り詰められる（cmd.exe は newline で分割し、< > | ( ) を operators として扱う）。連続 2 回の live cross-review dispatch で、受信されたのは prompt の先頭行だけだった。root cause は deterministic な buildProviderInvocation probe で検証した。修正: codex prompt は stdin 経由で渡す（codex exec [PROMPT]: '-' または positional なしは stdin を読む）ため、command line には固定 flags のみが載り、cmd.exe wrapper は prompt を壊せない。U-ADAPTER-007 で coverage 済み（Red→Green: prompt は args と wrapped shell command string に現れず、plan.stdin に保持される）。typecheck / Biome / full Vitest / doctor は green。full prompt を受け取る multi-line codex exec で live end-to-end を再確認した。"
     worker_model: claude-opus-4-8
     reviewer_model: gpt-5.5
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: Codex prompt stdin dispatch と argv 非混入 contract が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/runtime-adapter.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - codex stdin prompt dispatch reliability 修正"

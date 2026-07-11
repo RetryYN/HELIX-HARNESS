@@ -74,7 +74,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | **4** | **reopen point から top-down 修正 (fix)** | 特定した点を起点に**上位から下流へ** doc/コードを必要範囲だけ修正 (下流症状だけ繕わない)。起点が要求なら要求→要件→設計、設計なら設計層から。各層で pair/trace 再整合 | reopen point 以下が修正済、孤児 0 |
 | **5** | **fullback** | Forward 中断工程へ合流。②駆動 exit → forward_routing。修正後の層から Forward 再開 | Forward spine に復帰、再発防止 (§3 exit) 登録 |
 
-> ガード機構の検出 (forced_stop / agent-guard block / budget 警告) は Step 1 の trigger source の一部。handover CURRENT.json で逸脱点を把握し、recovery PLAN (本文 7 節構成、kind=recovery) を Step 3 で起票する。
+> ガード機構の検出 (forced_stop / agent-guard block / budget 警告) は Step 1 の trigger source の一部。`harness.db` の continuation projection と session event digest で逸脱点を把握し、recovery PLAN (本文 7 節構成、kind=recovery) を Step 3 で起票する。projection が欠落・不整合なら推測で再開せず fail-close する。
 
 #### reopen point は可変 (毎回 要求ではない)
 
@@ -86,7 +86,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | **L4-L6 (設計)** | **設計の解釈誤り** (要求は正、設計の読み違い) | 当該設計層 → 下流 |
 | **L7 (実装)** | 実装だけの誤り (設計は正) | 実装 + テスト |
 | **git commit のみで足りる** | 既に正しく commit 済 / 軽微で doc 改訂不要 | doc 改訂なし、記録のみ |
-| **gap-only (記録のみ)** | 是正不要だが将来用に記録 | backlog/handover 記録のみ |
+| **gap-only (記録のみ)** | 是正不要だが将来用に記録 | backlog / harness memory 記録のみ |
 
 > 原則: **過剰に上流へ戻さない**。設計解釈誤りを要求からやり直すのは無駄。逆に要求漏れを設計で繕うのも不可 (症状だけ修正 = 再発)。「最小で正常化する点」を Step 3 で見極める。
 

@@ -37,6 +37,31 @@ review_evidence:
     scope: "plan-governance regression gate for progress color DB projection backprop"
     worker_model: codex
     reviewer_model: codex-intra-runtime
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:11:48+09:00"
+    tests_green_at: "2026-07-09T15:11:48+09:00"
+    verdict: approve
+    scope: "PLAN-L7-101 の execution evidence 欠落を、現行 plan-lint / backfill-pairing targeted green と typecheck で補い、DB projection backprop gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:11:48+09:00"
+        evidence_path: tests/plan-lint.test.ts
+        output_digest: "sha256:227aa9fdbe8ceb942b51ab3c9dd5c1f281cd1df115889d08916880286c5df627"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:11:48+09:00"
+        evidence_path: src/plan/lint.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 ## 目的

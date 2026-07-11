@@ -6,8 +6,7 @@ import {
   normalizeRouteMode,
   workflowModeForPlan,
 } from "../schema/mode-catalog";
-import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db/index";
-import { routeSignalToMode } from "../workflow/routing-contracts";
+import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
 
 export const PLAN_ENTRY_ROUTING_BASELINE_PATH = "docs/governance/plan-entry-routing-baseline.json";
 
@@ -57,6 +56,8 @@ export interface PlanEntryRoutingResult {
   ok: boolean;
 }
 
+export type PlanEntrySignalResolver = (entrySignals: string[]) => PlanEntrySignalResolution[];
+
 function stringField(value: unknown): string | null {
   return typeof value === "string" && value.length > 0 ? value : null;
 }
@@ -76,72 +77,18 @@ function markdownFrontmatter(content: string): Record<string, unknown> | null {
   }
 }
 
-function feedbackSignalToken(db: HarnessDb, value: string): string | null {
-  const row = db
-    .prepare(
-      `SELECT signal_type, source_table
-         FROM feedback_events
-        WHERE source_id = ? OR feedback_event_id = ?
-        LIMIT 1`,
-    )
-    .get(value, value);
-  const signalType = stringField(row?.signal_type);
-  const sourceTable = stringField(row?.source_table);
-  return signalType ?? sourceTable;
-}
-
-function issueQueueSignalToken(db: HarnessDb, value: string): string | null {
-  const queue = db
-    .prepare("SELECT source_event_id FROM issue_queue WHERE issue_queue_id = ? LIMIT 1")
-    .get(value);
-  const sourceEventId = stringField(queue?.source_event_id);
-  return sourceEventId ? feedbackSignalToken(db, sourceEventId) : null;
-}
-
-function resolveEntrySignals(
-  repoRoot: string,
-  entrySignals: string[],
-): PlanEntrySignalResolution[] {
-  const dbPath = defaultHarnessDbPath(repoRoot);
-  if (!existsSync(dbPath)) {
-    return entrySignals.map((value) =>
-      value.startsWith("po_directive:")
-        ? { value, token: "po_directive", kind: "po_directive" }
-        : { value, token: null, kind: "unresolvable" },
-    );
-  }
-
-  let db: HarnessDb | null = null;
-  try {
-    db = openHarnessDb(dbPath, { repoRoot });
-    return entrySignals.map((value) => {
-      if (value.startsWith("po_directive:")) {
-        return { value, token: "po_directive", kind: "po_directive" };
-      }
-      const feedbackToken = feedbackSignalToken(db as HarnessDb, value);
-      if (feedbackToken) return { value, token: feedbackToken, kind: "feedback" };
-      const queueToken = issueQueueSignalToken(db as HarnessDb, value);
-      if (queueToken) return { value, token: queueToken, kind: "issue_queue" };
-      return { value, token: null, kind: "unresolvable" };
-    });
-  } catch {
-    return entrySignals.map((value) =>
-      value.startsWith("po_directive:")
-        ? { value, token: "po_directive", kind: "po_directive" }
-        : { value, token: null, kind: "unresolvable" },
-    );
-  } finally {
-    try {
-      db?.close();
-    } catch {
-      // fail-close の判定は上で完了済み。close 失敗は lint 結果へ影響させない。
-    }
-  }
+export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySignalResolution[] {
+  return entrySignals.map((value) =>
+    value.startsWith("po_directive:")
+      ? { value, token: "po_directive", kind: "po_directive" }
+      : { value, token: null, kind: "unresolvable" },
+  );
 }
 
 export function loadPlanEntryRoutingDocs(
   repoRoot: string = process.cwd(),
   target?: string,
+  resolveSignals: PlanEntrySignalResolver = unresolvedPlanEntrySignals,
 ): PlanEntryRoutingDoc[] {
   const plansDir = join(repoRoot, "docs", "plans");
   if (!existsSync(plansDir)) return [];
@@ -167,7 +114,7 @@ export function loadPlanEntryRoutingDocs(
       status: stringField(raw.status),
       routeMode,
       entrySignals,
-      resolvedSignals: resolveEntrySignals(repoRoot, entrySignals),
+      resolvedSignals: resolveSignals(entrySignals),
       workflowMode: workflowModeForPlan({ planId, kind, routeMode }),
     });
   }
@@ -201,6 +148,24 @@ function kindAllowed(mode: string, kind: string | null): boolean {
   return MODE_ALLOWED_KINDS[normalizeRouteMode(mode)]?.has(kind) ?? false;
 }
 
+function routedModeForSignal(signal: string): string | null {
+  const normalized = signal.trim().toLowerCase();
+  return (
+    ROUTE_SIGNAL_MAP.map((entry, index) => ({
+      entry,
+      index,
+      matchLength: Math.max(
+        0,
+        ...entry.tokens.map((token) =>
+          normalized.includes(token.toLowerCase()) ? token.length : 0,
+        ),
+      ),
+    }))
+      .filter((candidate) => candidate.matchLength > 0)
+      .sort((a, b) => b.matchLength - a.matchLength || a.index - b.index)[0]?.entry.mode ?? null
+  );
+}
+
 function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[] {
   const violations: PlanEntryRoutingViolation[] = [];
   if (doc.entrySignals.length === 0) {
@@ -217,7 +182,7 @@ function collectViolations(doc: PlanEntryRoutingDoc): PlanEntryRoutingViolation[
       });
       continue;
     }
-    const routedMode = routeSignalToMode({ signal: signal.token }).candidates[0];
+    const routedMode = routedModeForSignal(signal.token);
     if (!routedMode || !kindAllowed(routedMode, doc.kind)) {
       violations.push({
         planId: doc.planId,

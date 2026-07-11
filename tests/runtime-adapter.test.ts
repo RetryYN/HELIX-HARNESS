@@ -2,6 +2,8 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { surfaceMemory, writeMemory } from "../src/memory";
+import { fileMemoryDeps } from "../src/memory/memory-store";
 import {
   buildAdapterPlan,
   buildProviderInvocation,
@@ -18,8 +20,11 @@ import {
   CLAUDE_STDIN_ARGS,
   CODEX_MODEL_FLAG,
   CODEX_STDIN_ARGS,
+  DELEGATION_MEMORY_BUDGET,
+  MEMORY_RECALL_HEADER,
   REQUIRED_SKILL_LABEL,
 } from "../src/runtime/adapter-policy";
+import { composeDelegationInjection } from "../src/runtime/memory-injection";
 import { ROLE_JUDGMENT_HEADER } from "../src/runtime/role-judgment";
 import { TASK_LENS_HEADER } from "../src/runtime/task-lens";
 
@@ -109,6 +114,125 @@ describe("runtime adapter plan", () => {
       optional_paths: ["docs/skills/review-checklist.yaml"],
     });
     expect(plan.args).not.toContain("docs/skills/refactoring.md");
+  });
+
+  it("U-MEMX-001: injects memory recall header and all lines into delegation stdin (PLAN-L7-406)", () => {
+    const plan = buildAdapterPlan(
+      {
+        provider: "codex",
+        role: "se",
+        task: "implement",
+        planId: "PLAN-L4-99-x",
+        model: "gpt-5.3-codex",
+        effort: "medium",
+        contextInjection: {
+          required_paths: [],
+          optional_paths: [],
+          memory_lines: ["- [key-a] (constraint) 制約本文", "- [key-b] (decision) 判断本文"],
+        },
+      },
+      "hybrid",
+    );
+    expect(plan.stdin).toContain(MEMORY_RECALL_HEADER);
+    expect(plan.stdin).toContain("- [key-a] (constraint) 制約本文");
+    expect(plan.stdin).toContain("- [key-b] (decision) 判断本文");
+  });
+
+  it("U-MEMX-001b: empty/absent memory_lines produce a byte-identical prompt (no-op)", () => {
+    const base = { provider: "codex" as const, role: "se", task: "implement" };
+    const without = buildAdapterPlan(base, "hybrid");
+    const withEmpty = buildAdapterPlan(
+      {
+        ...base,
+        contextInjection: { required_paths: [], optional_paths: [], memory_lines: [] },
+      },
+      "hybrid",
+    );
+    expect(without.stdin).not.toContain(MEMORY_RECALL_HEADER);
+    expect(withEmpty.stdin).toBe(without.stdin);
+  });
+
+  it("U-MEMX-002: skill injection precedes memory recall in a fixed deterministic order", () => {
+    const plan = buildAdapterPlan(
+      {
+        provider: "codex",
+        role: "se",
+        task: "implement",
+        contextInjection: {
+          required_paths: ["docs/skills/refactoring.md"],
+          optional_paths: [],
+          memory_lines: ["- [key-a] recall"],
+        },
+      },
+      "hybrid",
+    );
+    const stdin = plan.stdin ?? "";
+    const skillIndex = stdin.indexOf(ADAPTER_CONTEXT_HEADER);
+    const memoryIndex = stdin.indexOf(MEMORY_RECALL_HEADER);
+    expect(skillIndex).toBeGreaterThanOrEqual(0);
+    expect(memoryIndex).toBeGreaterThan(skillIndex);
+  });
+
+  it("U-MEMX-004: memory-only injection renders recall even with zero skills", () => {
+    const plan = buildAdapterPlan(
+      {
+        provider: "claude",
+        role: "tl",
+        task: "review",
+        contextInjection: { required_paths: [], optional_paths: [], memory_lines: ["- [x] y"] },
+      },
+      "hybrid",
+    );
+    expect(plan.stdin).toContain(MEMORY_RECALL_HEADER);
+    expect(plan.stdin).not.toContain(ADAPTER_CONTEXT_HEADER);
+  });
+
+  it("U-MEMX-005: surface policy injects memory recall on all rollout surfaces (L6-64 §4 解禁、PLAN-L7-414)", () => {
+    const skills = { required_paths: ["docs/skills/refactoring.md"], optional_paths: [] };
+    const memoryLines = ["- [key-a] recall"];
+
+    for (const surface of ["delegation", "team_run", "task_route"] as const) {
+      const injection = composeDelegationInjection({ skills, memoryLines, surface });
+      expect(injection?.memory_lines).toEqual(memoryLines);
+      expect(injection?.required_paths).toEqual(skills.required_paths);
+    }
+    // skill 0 件 + memory のみでも section が生成される (U-MEMX-004 の独立条件が全呼出面で成立)。
+    for (const surface of ["team_run", "task_route"] as const) {
+      expect(
+        composeDelegationInjection({
+          skills: { required_paths: [], optional_paths: [] },
+          memoryLines,
+          surface,
+        })?.memory_lines,
+      ).toEqual(memoryLines);
+    }
+    // skill も memory も空なら従来どおり section 非生成。
+    expect(
+      composeDelegationInjection({
+        skills: { required_paths: [], optional_paths: [] },
+        memoryLines: [],
+        surface: "team_run",
+      }),
+    ).toBeUndefined();
+  });
+
+  it("U-MEMX-003: delegation budget caps surfaced memory lines with a hidden-count footer", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-memx-"));
+    try {
+      const deps = fileMemoryDeps({ root });
+      for (let i = 0; i < 8; i += 1) {
+        writeMemory({ layer: "harness", key: `k${i}`, body: `本文 ${i} ${"x".repeat(300)}` }, deps);
+      }
+      const lines = surfaceMemory(deps, DELEGATION_MEMORY_BUDGET);
+      // 6 entries + 隠れ件数 footer 1 行
+      expect(lines.length).toBe(DELEGATION_MEMORY_BUDGET.maxEntries + 1);
+      expect(lines.at(-1)).toContain("+2 older");
+      for (const line of lines.slice(0, -1)) {
+        expect(line.length).toBeLessThanOrEqual(DELEGATION_MEMORY_BUDGET.maxBodyChars + 24);
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("builds claude command plan with Claude Code print-mode stdin", () => {

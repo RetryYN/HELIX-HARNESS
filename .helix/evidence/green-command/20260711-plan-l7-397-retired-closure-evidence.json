@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "green-command-evidence-retirement-receipt.v1",
+  "planId": "PLAN-L7-397-vmodel-current-location-projection",
+  "recordedAt": "2026-07-11T22:56:34+09:00",
+  "reason": "旧 session/prose handover の退役により一時 closure 出力を恒久証跡として参照できなくなったため、PLAN に記録済みの実行情報と再検証結果を追跡可能な receipt に固定する。元の出力内容を復元したとは主張しない。",
+  "retiredEphemeralPaths": [
+    ".helix/tmp/closure/repair_failed_evidence-approval-draft-20260709-safe-resolution-green.yml",
+    ".helix/tmp/closure/repair_failed_evidence-probe-record-20260709-safe-resolution-green.json",
+    ".helix/tmp/closure/repair_failed_evidence-probe-record.json",
+    ".helix/tmp/closure/verify-approval-boundary-recovery-plan-20260709.json",
+    ".helix/tmp/closure/verify-approval-boundary-vmodel-fit-20260709.json",
+    ".helix/tmp/closure/verify-view-limit-tree-summary-final-20260709.json",
+    ".helix/tmp/closure/verify-view-limit-vmodel-fit-20260709.json",
+    ".helix/tmp/closure/verify-zip-all-vmodel-fit-20260709.json"
+  ],
+  "historicalEvidenceAuthority": "docs/plans/PLAN-L7-397-vmodel-current-location-projection.md#review_evidence",
+  "revalidation": {
+    "commit": "6008c2d4a4c855c20fdbde8c8e539944921c0997",
+    "githubRun": "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/29154951325",
+    "fullRegression": "passed",
+    "lint": "passed",
+    "slowDoctorTests": "86/86 passed",
+    "doctor": "failed only because the eight retired ephemeral paths lacked durable receipts"
+  },
+  "safetyBoundary": "この receipt は approval record ではなく、closure apply または不可逆操作を許可しない。"
+}

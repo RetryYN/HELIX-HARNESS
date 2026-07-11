@@ -59,7 +59,7 @@ PLAN-L7-17 (add-impl, handover 品質増分) の bottom-up build を上位設計
 
 ## §6 用語更新
 
-- **handover bypass 検知** / **active-plan marker stale** を L0 §10 用語集へ back-merge (L6-16 §6 で宣言 → 本 Reverse で merge)。
+- **continuation readiness**: 旧 bypass / stale pointer 用語は session handover 退役で historical となった。現行契約は authored source・append-only event・harness.db projection・bounded memory の整合を検査し、旧 writer / pointer を復活させない（PLAN-REVERSE-344 fullback）。
 
 ## §8 DoD
 

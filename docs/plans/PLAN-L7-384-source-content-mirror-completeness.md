@@ -4,9 +4,9 @@ title: "PLAN-L7-384: source content mirror completeness"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-07
-updated: 2026-07-07
+updated: 2026-07-09
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07:agent-spec-orchestrator-reconciliation"
@@ -25,7 +25,13 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-agent-harness-explicit-repo-all-ref-content-ledger-2026-07-08.tsv
     artifact_type: markdown_doc
+  - artifact_path: src/runtime/source-content-mirror-completeness.ts
+    artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
   - artifact_path: tests/source-content-mirror-completeness.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/helix/L6-function-design/pillar-function-design.md
@@ -34,6 +40,40 @@ dependencies:
     - PLAN-L7-361-agent-catalog-watch
     - PLAN-L7-383-harness-taxonomy-curation-policy
     - docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T17:48:28+09:00"
+    tests_green_at: "2026-07-09T17:48:15+09:00"
+    verdict: approve
+    scope: "PLAN-L7-384 source content mirror completeness。repo ごとの refs/default tree/default branch content/all-ref status/chunk ledger を read-only に検査し、missing digest と incomplete all-ref content は fail-close、retry ledger と chunk resume plan を出し、pending が残る間は completion claim を禁止する。aggregate digest は sorted streaming-style line hash で固定し、重複 object id は dedupe count へ分離した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T17:48:15+09:00"
+        evidence_path: tests/source-content-mirror-completeness.test.ts
+        output_digest: "sha256:aacd5ffe6d9d4108787c6da2eb98cb36386a624776616192928bcac709725a8b"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T17:45:41+09:00"
+        evidence_path: src/runtime/source-content-mirror-completeness.ts
+        output_digest: "sha256:71e408ef639249ee67decd22162fdbc40b9f0042b38fd78107ba80b0ea87ad35"
+      - kind: lint
+        command: "bunx biome check --write src/cli.ts src/runtime/review-feedback-session-intake.ts src/runtime/agent-ssot-runtime-projection.ts src/runtime/skill-efficacy-evaluation.ts src/runtime/harness-taxonomy-curation-policy.ts src/runtime/source-content-mirror-completeness.ts tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T17:45:41+09:00"
+        evidence_path: src/runtime/source-content-mirror-completeness.ts
+        output_digest: "sha256:d882754bdc2f00af7547738d2f103cc9efe10e47156c97ef8c65165c83c7e3eb"
 ---
 
 # PLAN-L7-384: source content mirror completeness 整備

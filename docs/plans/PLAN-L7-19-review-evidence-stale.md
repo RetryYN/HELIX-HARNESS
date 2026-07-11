@@ -15,6 +15,31 @@ review_evidence:
     tests_green_at: "2026-06-12"
     verdict: approve_after_fixes
     scope: "L7 completion audit A-135: U-REVIEW stale approval artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .helix/audit/A-135-l7-completion-review-checklist.yaml."
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:48:30+09:00"
+    tests_green_at: "2026-07-09T15:48:30+09:00"
+    verdict: approve
+    scope: "PLAN-L7-19 の execution evidence 欠落を、現行 review-evidence / plan-lint / trace gates / runtime adapter / doctor targeted green と typecheck で補い、stale approval gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/review-evidence.test.ts tests/plan-lint.test.ts tests/g1-trace.test.ts tests/gate-static.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/session-log.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:48:30+09:00"
+        evidence_path: tests/review-evidence.test.ts
+        output_digest: "sha256:42b5abf78d614ed444d71293375df0343e2c27add5712c97bc5f02504612e806"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:48:30+09:00"
+        evidence_path: src/lint/review-evidence.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - review-evidence analyzer 拡張"

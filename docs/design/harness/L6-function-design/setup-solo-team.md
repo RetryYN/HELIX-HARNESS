@@ -115,9 +115,9 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 
 > **HELIX project setup (L7、2026-07-01)**: HELIX 導入済み VSCode で新規 project を始める入口として
 > `helix setup project` を追加する。これは `runSetup` の solo/team 判定・adapter/hook 投影・branch protection
-> emit-only 境界を再利用し、追加で status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor / rename plan / handover status / team run dry-run を開く `.vscode/tasks.json`、
+> emit-only 境界を再利用し、追加で status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor / rename plan / team run dry-run を開く `.vscode/tasks.json`、
 > `.vscode/settings.json` と
-> `.helix/memory` / `.helix/handover` / `.helix/evidence` / `.helix/teams` の project-local baseline を作る。
+> `.helix/memory` / `.helix/evidence` / `.helix/teams` の project-local baseline を作る。continuationは`harness.db` event/projectionを正本とする。
 > `runHelixProjectSetup` は現行 `.helix` baseline と `helix setup project` canonical commandを
 > `identifierTransition` として同時に返し、PLAN-M-02 cutover/action-binding approval が無い限り
 > `blocked_pending_cutover_approval` / `mustNotApply=true` を出す。
@@ -172,7 +172,7 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 2026-07-03 追補1b: `escalation-stale.yml` も配布 workflow なので、placeholder/noop ではなく schedule 起動の
 > no-write route audit として固定する。workflow は `permissions.contents=read`、`pull_request_target` 不使用、
 > secret 不使用、`actions/checkout@v4` の `persist-credentials=false`、`oven-sh/setup-bun@v2`、固定
-> `bun run helix handover status --json` / `bun run helix completion decision-packet --json` /
+> `bun run helix status --json` / `bun run helix completion decision-packet --json` /
 > `bun run helix completion review-bundle --json` / `bun run helix doctor --profile consumer --json` を持つ場合だけ artifact readiness / consumer doctor を green にする。
 > `echo ... placeholder`、`TODO`、write permission、追加 trigger、余分な command は `fix_consumer_readiness` へ戻す。
 > 2026-07-03 追補2: `consumerReadiness.artifactReadiness` は `harness-check.yml` を YAML として parse し、
@@ -189,17 +189,17 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > read-only smoke 証跡として扱わない。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `helix completion decision-packet --json` /
 > `helix completion review-bundle --json` / `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` / `helix doctor --profile consumer` /
-> `helix rename plan --json` / handover status /
+> `helix rename plan --json` / continuation status /
 > `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` を含む集約リストである。
 > 即時実行できるものは `dryRunVerificationCommands` に分け、投影 artifact が materialize された後に確認する
 > `helix doctor --profile consumer` と team-run dry-run は `postApplyVerificationCommands` に分ける。
-> ready route は active handover または current PLAN route に接続する。
+> ready route は`helix status`のactive PLAN / next authority routeに接続する。
 > `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / vscode-profile-open / status-frontier / github-ci-safety / completion-decision-packet / completion-review-bundle / version-up-dry-run / consumer-doctor /
-> identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / expected / evidence / source、
+> identifier-cutover-packet / continuation-route / team-run-dry-run の phase / command / expected / evidence / source、
 > source metadata として sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision、
 > adoptionDecisionDelta / workflowRouteImpact の各 field に加えて、`availability=dry-run-immediate|post-apply-or-projected|manual-local` と
 > `requiresMaterializedPaths[]` を持つ。VS Code workspace task / profile 起動と
-> Workspace Trust の実行境界、completion decision packet、completion review-bundle の `semanticBundleDigest`、PLAN-M-02 rename packet、HELIX status/handover/team definition contract を初回稼働の検証証跡へ接続し、
+> Workspace Trust の実行境界、completion decision packet、completion review-bundle の `semanticBundleDigest`、PLAN-M-02 rename packet、HELIX status/continuation/team definition contract を初回稼働の検証証跡へ接続し、
 > command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。VS Code Tasks / Workspace Trust の
 > 公式 source は checked date と採用判断を matrix に残し、source 名だけの stale な根拠にしない。text surface は
 > `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
@@ -214,8 +214,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 期待 task 以外の余分な task でも `runOptions.runOn=folderOpen` などの自動実行があれば fail-close する。
 > 2026-07-03 追補: `helix setup project --dry-run --json` の `consumerReadiness.artifactReadiness` も
 > 同じ `.vscode/tasks.json` / `.vscode/settings.json` を JSON として parse し、期待 task 9 本
-> task 対象である status / doctor / completion decision-packet / completion review-bundle / version-up dry-run / rename plan / handover status / setup dry-run / team run dry-run
-> の 9 本について label・command・順序・件数、`type=shell`、`problemMatcher=[]`、task-level `options` 不在、
+> task 対象である status / doctor / completion decision-packet / completion review-bundle / version-up dry-run / rename plan / setup dry-run / team run dry-run
+> の 8 本について label・command・順序・件数、`type=shell`、`problemMatcher=[]`、task-level `options` 不在、
 > `runOptions.runOn` 未指定または `default`、`task.allowAutomaticTasks=off` を満たす場合だけ green にする。
 > 文字列上 required command が含まれていても、余分な task、自動実行 task、構造不正 settings が混じる場合は
 > consumer doctor に先送りせず `fix_consumer_readiness` へ戻す。
@@ -228,14 +228,14 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `githubPlan` は plan-only / remote apply 無し / required check `harness-check` / branch protection
 > `emit_only` を示し、`doctorBaseline` は setup dry-run / status / `helix completion decision-packet --json` /
 > `helix completion review-bundle --json` / `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` / `helix doctor --profile consumer` /
-> `helix rename plan --json` / handover status / team-run dry-run と
-> `.helix/memory|handover|evidence|teams` baseline を示す。被覆 = U-SETUP-019。
+> `helix rename plan --json` / continuation status / team-run dry-run と
+> `.helix/memory|evidence|teams` baselineを示す。被覆 = U-SETUP-019。
 > clean distribution acceptance は `src/cli.ts` 直実行や handmade `helix` shim だけでは閉じない。
 > source / clean artifact の `package.json` は package-local `scripts.helix="bun run src/cli.ts"` を持ち、
 > dogfood repo でも `bun run helix --version` が VSCode task / CI と同じ入口で動く。
 > `bun run build` で `package.json.bin.helix=./dist/helix` の実体を作り、temp-local `BUN_INSTALL` 配下で
 > `bun link` → consumer repo の `bun link helix --no-save` → consumer `node_modules/.bin/helix` の
-> `--version` / setup / status / doctor / handover / team run dry-run を実行して、package/bin 経路が別 project で動くことを証明する。
+> `--version` / setup / status / doctor / team run dry-run を実行して、package/bin 経路が別 project で動くことを証明する。
 > `harness-check.yml` と `consumerReadiness.ci.requires` は GitHub Actions workflow syntax / permissions の公式境界
 > (workflow YAML、`push` / `pull_request`、top-level `permissions`) に合わせ、`push:main` / `pull_request:main`、
 > `permissions: contents: read`、`pull_request_target` 不使用、secret 不要を contract とする。
@@ -245,7 +245,7 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `bun run helix setup project --dry-run --json`、`bun run helix status --json`、
 > `bun run helix completion decision-packet --json`、`bun run helix completion review-bundle --json`、`bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`、
 > `bun run helix doctor --profile consumer --json`、`bun run helix rename plan --json`、
-> `bun run helix handover status --json`、
+> `bun run helix status --json`、
 > `bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` を含め、
 > acceptance は `CONSUMER_CI_RUN_COMMANDS` 全体を consumer repo で実行し、
 > post-setup verification と CI の command set をずらさない。
@@ -311,9 +311,9 @@ U-SETUP-016 追加境界: 生成済み HELIX project への同一内容再実行
 
 2026-07-04 追補5: PLAN-L7-303 では、`consumerReadiness` に `distribution-package-surface` blocking check と `ci.distributionPackageSurface` を追加する。生成 `harness-check.yml` は `bun run helix setup project --dry-run --json` などの package-local CLI surface を要求するため、公開配布 tag の install が成功しても、その tag が生成 CI command を実行できない場合は ready としない。2026-07-04 の外部実測では `HELIX-HARNESS-OS` の `v0.1.0` / `v0.1.4` はどちらも `setup project --dry-run --json` が `unknown option '--json'` で失敗したため、公開 tag をそのまま HELIX first-run ready 証跡に使うことは禁止する。ready は現行 clean artifact の local-link smoke、または version-up activation によって公開配布 tag の CLI surface が更新された実測証跡がある場合だけ許可する。これにより、package.json / lockfile / VSCode task が揃っただけの false green を `fix_consumer_readiness` へ戻す。
 
-U-SETUP-024 追加境界: `common/escalation-stale.yml` は `schedule` 起動の no-write route audit であり、placeholder/noop workflow ではない。built-in fallback、setup artifact readiness、consumer doctor は、workflow 名、weekly cron、top-level `permissions.contents=read`、write permission 不在、`pull_request_target` 不在、checkout credential 非保持、setup-bun 入力不在、custom env / skip / soft-pass / job permission override 不在、secret 参照不在、placeholder/TODO/TBD 不在、固定 handover / completion decision packet / consumer doctor command set を fail-close で検査する。
+U-SETUP-024 追加境界: `common/escalation-stale.yml` は `schedule` 起動の no-write route audit であり、placeholder/noop workflow ではない。built-in fallback、setup artifact readiness、consumer doctor は、workflow 名、weekly cron、top-level `permissions.contents=read`、write permission 不在、`pull_request_target` 不在、checkout credential 非保持、setup-bun 入力不在、custom env / skip / soft-pass / job permission override 不在、secret 参照不在、placeholder/TODO/TBD 不在、固定 status / completion decision packet / consumer doctor command set を fail-close で検査する。
 
-**PLAN-L7-157 distribution addendum**: `buildCleanDistributionPlan(paths, tag, cleanRepo)` は R1/R2/R12/R13 の clean export contract。clean-repo + signed-tarball channel を返し、LICENSE / package / src / adapter templates (Claude/Codex hook、subagent、command templates を含む) を入れる一方、dogfood (`docs/plans`、`docs/design/harness`、`docs/test-design`、`.helix`)、central UI (`src/web/`)、web 専用 test (`tests/web.test.ts`)、frontend asset / dashboard route / dependency residue を clean artifact から除外し、必須 file 欠落または denylist drift で fail-close する (U-SETUP-011)。`buildConsumerReadinessPlan(host/runtime/workspace/tag signals)` は R3/R5/R6/R8/R9/R10/R16/R17 の onboarding/readiness contract で、Bun / git / gh / bare `helix` / runtime preflight、CI self-sufficiency、rollback managed paths、tag-pin/public contracts、monorepo package-root placement、portability smoke scenarios、`objectiveBoundary` を host 非変更で返す (U-SETUP-012)。`objectiveBoundary` は consumer readiness の scope を `consumer_setup_readiness_not_whole_program_completion` に固定し、配布 reference、local package version、local distribution tag、requested tag、配布 target tag、配布 target 採用前の version-up activation requirement、progress 90%、`completionClaimAllowed=false`、completion / review-bundle / version-up / cutover packet command を同じ JSON surface に出す。配布 reference の `mainHead` は `helix audit objective-external --json` が観測する配布レポ `main` の参照 HEAD であり、配布 target tag や local distribution tag の採用済み状態を意味しない。`distribution-version-binding` check は requested tag が local package version 由来 tag と一致する時だけ green にし、配布 target tag など別 tag を指定した distribution plan は version-up activation decision 記録まで fail-close する。生成される Claude/Codex adapter hook は bare `helix ...` を呼ぶため、`helix` が PATH 上で spawn できない (`not spawnable on PATH`) 場合 readiness は fail-close し、install flow は `helix setup` 前に linked/package binary を確立しなければならない。local distribution acceptance smoke (U-SETUP-013 / AT-DIST-001) は planned clean artifact set を temp repo に materialize し、`src/web/` と `tests/web.test.ts` が無いこと、`bun install --frozen-lockfile`、`status --json`、`distribution plan --json`、`typecheck` が通ることを検証する。さらに clean artifact CLI を別の空 consumer repo から `setup project --json` として実行し、fresh import report、readiness ok、`.vscode/tasks.json`、日本語-first adapter / Claude subagent 生成を確認する。fake `helix` は echo ではなく clean artifact CLI へ委譲する shim とし、生成 VSCode task と CI command set は package-local `bun run helix status --json` / `bun run helix completion decision-packet --json` / `bun run helix completion review-bundle --json` / `bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` / `bun run helix doctor --profile consumer --json` / `bun run helix rename plan --json` / `bun run helix handover status --json` / `bun run helix setup project --dry-run --json` / `bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` を consumer repo で実行する。adapter hook/readiness の bare `helix` PATH preflight は別契約として維持し、VSCode task の package-local command へ混ぜない。consumer doctor profile は dogfood PLAN/design/test-design/runtime state を要求せず、setup が投影した adapter / VSCode task / `.helix` baseline を検査する。brownfield consumer では既存 `AGENTS.md` と `.vscode/tasks.json` を置いた状態で setup を 2 回実行し、consumer 行保持、managed block 重複なし、`.vscode/tasks.json` skip、`importReport.nextRoute=review_import_report` を確認する。source repo 用 full `doctor` は clean artifact が dogfood PLAN/design/test-design/runtime state を意図的に除外するため対象外であり、consumer repo では `--profile consumer` を使う。
+**PLAN-L7-157 distribution addendum**: `buildCleanDistributionPlan(paths, tag, cleanRepo)` は R1/R2/R12/R13 の clean export contract。clean-repo + signed-tarball channel を返し、LICENSE / package / src / adapter templates (Claude/Codex hook、subagent、command templates を含む) を入れる一方、dogfood (`docs/plans`、`docs/design/harness`、`docs/test-design`、`.helix`)、central UI (`src/web/`)、web 専用 test (`tests/web.test.ts`)、frontend asset / dashboard route / dependency residue を clean artifact から除外し、必須 file 欠落または denylist drift で fail-close する (U-SETUP-011)。`buildConsumerReadinessPlan(host/runtime/workspace/tag signals)` は R3/R5/R6/R8/R9/R10/R16/R17 の onboarding/readiness contract で、Bun / git / gh / bare `helix` / runtime preflight、CI self-sufficiency、rollback managed paths、tag-pin/public contracts、monorepo package-root placement、portability smoke scenarios、`objectiveBoundary` を host 非変更で返す (U-SETUP-012)。`objectiveBoundary` は consumer readiness の scope を `consumer_setup_readiness_not_whole_program_completion` に固定し、配布 reference、local package version、local distribution tag、requested tag、配布 target tag、配布 target 採用前の version-up activation requirement、progress 90%、`completionClaimAllowed=false`、completion / review-bundle / version-up / cutover packet command を同じ JSON surface に出す。配布 reference の `mainHead` は `helix audit objective-external --json` が観測する配布レポ `main` の参照 HEAD であり、配布 target tag や local distribution tag の採用済み状態を意味しない。`distribution-version-binding` check は requested tag が local package version 由来 tag と一致する時だけ green にし、配布 target tag など別 tag を指定した distribution plan は version-up activation decision 記録まで fail-close する。生成される Claude/Codex adapter hook は bare `helix ...` を呼ぶため、`helix` が PATH 上で spawn できない (`not spawnable on PATH`) 場合 readiness は fail-close し、install flow は `helix setup` 前に linked/package binary を確立しなければならない。local distribution acceptance smoke (U-SETUP-013 / AT-DIST-001) は planned clean artifact set を temp repo に materializeし、`src/web/`と`tests/web.test.ts`が無いこと、`bun install --frozen-lockfile`、`status --json`、`distribution plan --json`、`typecheck`が通ることを検証する。さらにclean artifact CLIを別の空consumer repoから`setup project --json`として実行し、fresh import report、readiness ok、`.vscode/tasks.json`、日本語-first adapter / Claude subagent生成を確認する。生成VSCode taskとCI command setはpackage-local `bun run helix status --json` / completion packet / review bundle / version-up dry-run / consumer doctor / rename plan / setup dry-run / team run dry-runをconsumer repoで実行し、旧session commandやpathを含めない。adapter hook/readinessのbare `helix` PATH preflightは別契約として維持する。consumer doctor profileはdogfood PLAN/design/test-design/runtime stateを要求せず、setupが投影したadapter / VSCode task / `.helix` baselineを検査する。brownfield consumerでは既存consumer-owned artifactを非破壊に保つ。
 
 PLAN-L7-251 addendum: brownfield conflict smoke と idempotent rerun smoke は分けて扱う。既存 consumer-owned `.vscode/tasks.json` は従来どおり `review_import_report` へ送るが、fresh setup 後の同一 generated artifacts は `identicalManagedPaths` として `ready` に戻ることを acceptance に含める。
 

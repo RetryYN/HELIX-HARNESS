@@ -13,6 +13,7 @@ import {
   CODEX_EFFORT_FLAG,
   CODEX_MODEL_FLAG,
   CODEX_STDIN_ARGS,
+  MEMORY_RECALL_HEADER,
   OPTIONAL_SKILL_LABEL,
   REQUIRED_SKILL_LABEL,
   unavailableProviderMessage,
@@ -37,6 +38,8 @@ export interface AdapterIntent {
 export interface AdapterContextInjection {
   required_paths: string[];
   optional_paths: string[];
+  /** surface budget 適用済みの memory recall 行 (read-only、省略/空は section 非生成。PLAN-L7-406)。 */
+  memory_lines?: string[];
 }
 
 export interface AdapterPlan {
@@ -451,6 +454,11 @@ function formatAdapterPrompt(
       ...required.map((path) => `- ${REQUIRED_SKILL_LABEL}: ${path}`),
       ...optional.map((path) => `- ${OPTIONAL_SKILL_LABEL}: ${path}`),
     );
+  }
+  // memory recall は常に末尾 (L6-64 §3: task 本文・判断ブリーフ・skill 注入を変えない追加のみ)。
+  const memoryLines = injection?.memory_lines ?? [];
+  if (memoryLines.length > 0) {
+    sections.push("", MEMORY_RECALL_HEADER, ...memoryLines);
   }
   return sections.join("\n");
 }

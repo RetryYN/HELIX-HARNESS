@@ -15,7 +15,8 @@ function auditText(): string {
 
 describe("HELIX objective evidence audit", () => {
   it("tracks active objective requirements and allows completion only when readiness is true", () => {
-    const text = auditText();
+    const input = loadObjectiveEvidenceAuditInput();
+    const text = input.auditText;
     const provedIds = ["G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09"];
 
     for (const id of provedIds) {
@@ -28,20 +29,28 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow, "G-10 row missing").toBeTruthy();
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
-    expect(completionRow).toContain("decisionCount=2");
+    expect(completionRow).toContain(`decisionCount=${input.outstanding.items.length}`);
 
-    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-05");
-    expect(text).toContain("外部 source ledger (checked 2026-07-05)");
+    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-10");
+    expect(text).toContain("外部 source ledger (checked 2026-07-10)");
     expect(text).toContain(
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     );
     expect(text).toContain(
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
     );
+
+    const l12Coverage = readFileSync(
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "utf8",
+    );
+    expect(l12Coverage).toContain("status: confirmed");
+    expect(l12Coverage).toContain("## §3 機械ゲート対応");
+    expect(l12Coverage).toContain("`recovery_runway` / `approval_review` / `attention_boundary`");
     expect(text).toContain("distribution_latest_tag");
     expect(text).toContain("sourceStatusDelta");
     expect(text).toContain("workflowRouteImpact");
-    expect(text).toContain("b828fcf64c204d1cfa65c729fa590ca9562adccc");
+    expect(text).toContain("e95850d08cfcf0f3ce811659178c0db7522e24d7");
     expect(text).toContain("RetryYN/HELIX-HARNESS");
     expect(text).toContain("RetryYN/HELIX-HARNESS-OS");
     expect(text).toContain("unpublished");
@@ -51,7 +60,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain(
       "version-up activation required before publishing/adopting distribution tag",
     );
-    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-05");
+    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-10");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
@@ -119,6 +128,28 @@ describe("HELIX objective evidence audit", () => {
       "docs/test-design/harness/L9-integration-test-design.md",
       "docs/test-design/harness/L9-system-test-design.md",
       "docs/test-design/harness/proposal-document-coverage-routing.md",
+      "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+      "src/vmodel/zip-manifest.ts",
+      "src/vmodel/fit.ts",
+      "src/schema/harness-db-tables-design.ts",
+      "src/state-db/projection-writer.ts",
+      "src/lint/db-projection-ingestion.ts",
+      "src/state-db/current-location.ts",
+      "src/state-db/visualization-view-model.ts",
+      "src/runtime/summary-surface-audit.ts",
+      "src/vscode/tree-view-provider.ts",
+      "src/vscode/extension-adapter.ts",
+      "tests/vmodel-zip-manifest.test.ts",
+      "tests/current-location.test.ts",
+      "tests/visualization-treeview.test.ts",
+      "tests/visualization-view-model.test.ts",
+      "tests/summary-surface-audit.test.ts",
+      "tests/vscode-extension-adapter.test.ts",
+      "tests/slow/doctor.test.ts",
       "CLAUDE.md",
       "AGENTS.md",
       "src/lint/design-language.ts",
@@ -154,9 +185,9 @@ describe("HELIX objective evidence audit", () => {
 
   it("fails when the external distribution reference repository marker is dropped", () => {
     const text = auditText()
-      .replaceAll("外部ソース HEAD 確認日: 2026-07-05", "外部ソース HEAD 確認日: 2026-06-30")
+      .replaceAll("外部ソース HEAD 確認日: 2026-07-10", "外部ソース HEAD 確認日: 2026-06-30")
       .replaceAll(
-        "外部 source ledger (checked 2026-07-05)",
+        "外部 source ledger (checked 2026-07-10)",
         "外部 source ledger (checked 2026-01-01)",
       )
       .replaceAll("RetryYN/HELIX-HARNESS-OS", "HELIX-HARNESS-OS-missing")
@@ -170,7 +201,7 @@ describe("HELIX objective evidence audit", () => {
         "version-up activation marker missing",
       )
       .replaceAll(
-        "検証 / 進捗 source basis 再確認日: 2026-07-05",
+        "検証 / 進捗 source basis 再確認日: 2026-07-10",
         "検証 / 進捗 source basis 再確認日: 2026-07-01",
       );
 
@@ -183,10 +214,10 @@ describe("HELIX objective evidence audit", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-05",
+        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-10",
         "G-01: missing external source marker RetryYN/HELIX-HARNESS-OS",
         "G-01: missing external source marker unpublished",
-        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-05",
+        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-10",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
         "G-01: 外部 source ledger distribution_repo command missing git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
         "G-01: 外部 source ledger distribution_repo observed missing unpublished",
@@ -204,7 +235,7 @@ describe("HELIX objective evidence audit", () => {
     const ok = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
+        development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
         distribution_repo: "unpublished",
         distribution_latest_tag: "unpublished",
       },
@@ -214,7 +245,7 @@ describe("HELIX objective evidence audit", () => {
     const partial = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
+        development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
       },
     });
 
@@ -229,7 +260,7 @@ describe("HELIX objective evidence audit", () => {
     const drifted = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
+        development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
         distribution_repo: "different-pack-head",
         distribution_latest_tag: "unpublished",
       },
@@ -350,6 +381,126 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
+  it("fails when V-model ZIP/L12 redesign evidence is detached from objective progress", () => {
+    const text = auditText()
+      .replaceAll(
+        "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "docs/design/helix/L12-vmodel/vmodel-layer-coverage-removed.md",
+      )
+      .replaceAll(
+        "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+        "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix-removed.md",
+      )
+      .replaceAll(
+        "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+        "docs/test-design/helix/vmodel-docgen-fit-acceptance-removed.md",
+      )
+      .replaceAll("src/vmodel/zip-manifest.ts", "src/vmodel/zip-manifest-removed.ts")
+      .replaceAll("src/vmodel/fit.ts", "src/vmodel/fit-removed.ts")
+      .replaceAll(
+        "src/schema/harness-db-tables-design.ts",
+        "src/schema/harness-db-tables-design-removed.ts",
+      )
+      .replaceAll("src/state-db/projection-writer.ts", "src/state-db/projection-writer-removed.ts")
+      .replaceAll(
+        "src/lint/db-projection-ingestion.ts",
+        "src/lint/db-projection-ingestion-removed.ts",
+      )
+      .replaceAll("src/state-db/current-location.ts", "src/state-db/current-location-removed.ts")
+      .replaceAll(
+        "src/state-db/visualization-view-model.ts",
+        "src/state-db/visualization-view-model-removed.ts",
+      )
+      .replaceAll(
+        "src/runtime/summary-surface-audit.ts",
+        "src/runtime/summary-surface-audit-removed.ts",
+      )
+      .replaceAll("src/vscode/extension-adapter.ts", "src/vscode/extension-adapter-removed.ts")
+      .replaceAll(
+        "tests/visualization-view-model.test.ts",
+        "tests/visualization-view-model-removed.test.ts",
+      )
+      .replaceAll(
+        "tests/summary-surface-audit.test.ts",
+        "tests/summary-surface-audit-removed.test.ts",
+      )
+      .replaceAll("zip-source-integrity", "zip source integrity removed")
+      .replaceAll("zip-adoption-binding", "zip adoption binding removed")
+      .replaceAll("project_zip_adoption_decisions", "project zip adoption decisions removed")
+      .replaceAll("project_tailoring_decisions", "project tailoring decisions removed")
+      .replaceAll("project_vmodel_regression_guards", "project vmodel regression guards removed")
+      .replaceAll("project_vmodel_fit_blockers", "project vmodel fit blockers removed")
+      .replaceAll("project_vmodel_handoff_summary", "project vmodel handoff summary removed")
+      .replaceAll("vmodel-zip-source-bindings", "vmodel zip source bindings removed")
+      .replaceAll(
+        "function-design-absorption-binding",
+        "function design absorption binding removed",
+      )
+      .replaceAll("roadmap-current-binding", "roadmap current binding removed")
+      .replaceAll("project_roadmap_current_actions", "project roadmap current actions removed")
+      .replaceAll("drive-model-binding", "drive model binding removed")
+      .replaceAll("reverse-dependency-closure", "reverse dependency closure removed")
+      .replaceAll("candidate-dependency-closure", "candidate dependency closure removed")
+      .replaceAll("vscode-extension-dynamic-binding", "vscode extension dynamic binding removed")
+      .replaceAll("operation-scope-binding", "operation scope binding removed")
+      .replaceAll("summary-surface semantic_status=pass", "summary surface semantic status removed")
+      .replaceAll("attention_boundary", "attention boundary removed")
+      .replaceAll("vmodel_zip_source_bindings", "vmodel zip source binding table removed")
+      .replaceAll("human_approval blocked_by=human_approval", "human approval boundary removed")
+      .replaceAll("needs_recovery approval count=343", "needs recovery approval count removed")
+      .replaceAll("view-nodes=observation-gap:6/6", "operation observation gap view nodes removed")
+      .replaceAll("L0-slide-to-L1-planning", "L0 slide to L1 planning removed");
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-06: missing V-model ZIP/L12 redesign artifact citation docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/vmodel/zip-manifest.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/vmodel/fit.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/schema/harness-db-tables-design.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/state-db/projection-writer.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/lint/db-projection-ingestion.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/state-db/current-location.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/state-db/visualization-view-model.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/runtime/summary-surface-audit.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation src/vscode/extension-adapter.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation tests/visualization-view-model.test.ts",
+        "G-06: missing V-model ZIP/L12 redesign artifact citation tests/summary-surface-audit.test.ts",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker zip-source-integrity",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker zip-adoption-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_zip_adoption_decisions",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_tailoring_decisions",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_regression_guards",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_fit_blockers",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_vmodel_handoff_summary",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker vmodel-zip-source-bindings",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker function-design-absorption-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker roadmap-current-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker project_roadmap_current_actions",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker drive-model-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker reverse-dependency-closure",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker candidate-dependency-closure",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker vscode-extension-dynamic-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker operation-scope-binding",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker summary-surface semantic_status=pass",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker attention_boundary",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker vmodel_zip_source_bindings",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker human_approval blocked_by=human_approval",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker needs_recovery approval count=343",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker view-nodes=observation-gap:6/6",
+        "G-09: missing V-model ZIP/L12 objective hard-gate marker L0-slide-to-L1-planning",
+      ]),
+    );
+  });
+
   it("fails when required HELIX L0-L14 coverage artifacts are present but not git tracked", () => {
     const baseInput = loadObjectiveEvidenceAuditInput();
     const trackedFiles = new Set(
@@ -446,10 +597,60 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
+  it("U-OBJAUD-001: fails closed when G-10 decisionCount drifts, collides, or contradicts live outstanding items", () => {
+    const input = loadObjectiveEvidenceAuditInput();
+    const liveMarker = `decisionCount=${input.outstanding.items.length}`;
+    const staleMarker = `decisionCount=${input.outstanding.items.length + 1}`;
+    const driftedAuditText = input.auditText
+      .split("\n")
+      .map((line) =>
+        line.startsWith("| G-10 |") ? line.replaceAll(liveMarker, staleMarker) : line,
+      )
+      .join("\n");
+    const result = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: driftedAuditText,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContain(
+      `G-10: completion row decisionCount markers must all equal ${input.outstanding.items.length} (actual=${input.outstanding.items.length + 1},${input.outstanding.items.length + 1})`,
+    );
+  });
+
+  it("U-OBJAUD-001b: rejects decisionCount prefix collisions and contradictory markers", () => {
+    const input = loadObjectiveEvidenceAuditInput();
+    const expected = input.outstanding.items.length;
+    const liveMarker = `decisionCount=${expected}`;
+    const mutateG10 = (mutate: (line: string) => string): string =>
+      input.auditText
+        .split("\n")
+        .map((line) => (line.startsWith("| G-10 |") ? mutate(line) : line))
+        .join("\n");
+
+    const prefixCollision = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: mutateG10((line) => line.replaceAll(liveMarker, `decisionCount=${expected + 10}`)),
+    });
+    expect(prefixCollision.ok).toBe(false);
+    expect(prefixCollision.violations).toContain(
+      `G-10: completion row decisionCount markers must all equal ${expected} (actual=${expected + 10},${expected + 10})`,
+    );
+
+    const contradictory = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: mutateG10((line) => `${line} decisionCount=${expected + 1}`),
+    });
+    expect(contradictory.ok).toBe(false);
+    expect(contradictory.violations).toContain(
+      `G-10: completion row decisionCount markers must all equal ${expected} (actual=${expected},${expected},${expected + 1})`,
+    );
+  });
+
   it("keeps completion claim blocked when readiness is ready but audit evidence is invalid", () => {
     const readyOutstanding = analyzeOutstandingWork([], 0);
     const invalidText = auditText().replace(
-      "外部ソース HEAD 確認日: 2026-07-05",
+      "外部ソース HEAD 確認日: 2026-07-10",
       "外部ソース HEAD 確認日: missing",
     );
 

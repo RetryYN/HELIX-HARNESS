@@ -114,7 +114,7 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 
 - **対象**: L4 基本設計 / L5 詳細設計 / L6 機能設計 (左腕下段)。
 - **検証**: 観点 B (L4⇔L9 総合TD / L5⇔L8 結合TD / L6⇔L7 単体TD の同粒度) + 観点 A。
-- **現状接地**: L4-L6 設計 PLAN は多数 draft、L6 は一部 confirmed (session-log / forced-stop / setup / handover)。L4/L5 テスト設計 doc は欠落 (要起票)。
+- **現状接地**: L4-L6 設計 PLAN は多数 draft、L6 は一部 confirmed (session-log / forced-stop / setup / continuation)。L4/L5 テスト設計 doc は欠落 (要起票)。
 
 ### 設計検証サイクルゲート (旧 GATE-A) — L0〜L6 総合検証サイクル
 
@@ -129,13 +129,13 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 
 - **対象**: L7 実装 (谷) のうち **harness ワークフロー自動化** = `helix` CLI / hook / `plan lint` / gate・doctor 機械検証 / cross-artifact relation graph / verification profile / dependency-drift / regression expansion / canonical document export。
 - **検証**: 観点 A を**実装で裏付ける** (workflow が doc 上だけでなくコードで動く)。L6⇔L7 単体テスト設計の TDD Red 先行。
-- **現状接地**: src/ に session-log / forced-stop / setup / handover / doctor / agent-guard / plan lint / roadmap registry / review evidence / relation graph / dependency-drift / regression expansion / verification-profile / tool-adapter / document export pure core 実装済。Phase 3 検証サイクルでは、これらが `doctor` / unit test / trace lint で一体に動くかを検証する。DB projection への自動登録・feedback/監査 DB は Cycle P4 / L7-DB。
+- **現状接地**: src/ に session-log / forced-stop / setup / DB continuation / provider evidence / doctor / agent-guard / plan lint / roadmap registry / review evidence / relation graph / dependency-drift / regression expansion / verification-profile / tool-adapter / document export pure core 実装済。Phase 3 検証サイクルでは、これらが `doctor` / unit test / trace lint で一体に動くかを検証する。
 
 ### Cycle P4 — L7 データベース統合の実装 / 改善サイクル
 
-- **対象**: L7 のうち **state DB 統合** = `.helix/state` の二層 schema、V-model 整合 (孤児 0) の機械保証、PLAN/handover/ledger/backlog の state 化。
+- **対象**: L7 のうち **state DB 統合** = `.helix/state` の二層 schema、V-model 整合 (孤児 0) の機械保証、PLAN/continuation/ledger/backlog の state 化。
 - **検証**: 観点 B の機械保証を DB 側で完成させる ([[feedback_vmodel_state_db_completeness]])。doctor / vmodel lint が未充足ペアを fail-close 検知。
-- **現状接地**: handover は CURRENT.json で機械ポインタ化済。state DB 本体・登録トリガ (FR-L1-07 hook) は未。
+- **現状接地**: event-first continuation journal → `harness.db` projection → checkpoint の順序を実装済み。session/prose CURRENT pointer は廃止し、provider evidence の専用 subtree と型を分離している。
 
 ### 実装検証サイクルゲート (旧 GATE-B) — L0〜L7 総合検証サイクル
 
@@ -188,7 +188,7 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 | Phase 1 (L0-L3) | **検証/改善サイクル完了 (4 巡)** | サイクル完了を受けて Forward 側で L0-L3 freeze 済 (gate-design §2: G0.5/G1/G3、2026-06-04、A-100 が正本記録)。本書はそれを反映するのみ。`roadmap.md` 自身は living で draft 維持 (frozen 対象外) |
 | Phase 2 (L4-L6) | **全件見直し完了 / quantitative+qualitative findings fixed+routed** | L4/G4、L5/G5、L6/G6 は gate-design §2 で PASS 再確定済 (A-101〜A-104 / A-109〜A-111 / A-115)。L4⇔L9、L5⇔L8、L6⇔L7 の V-pair は doctor pair-freeze 孤児0、L6 completion は G6 PASS、現行 FR registry 51件は L6 unit contract / U-* oracle に接続。A-110 で L6 substance 指摘が出て、A-111 で blocker 解消を再確認。A-116 は verification readiness と source-isolation hardening、A-117 は no-finding 過剰主張の補正、A-118 は定量 evidence と定性 workflow/substance review を束ねた L4-L6/L7-L9/PLAN 全件レビューの完了記録。A-122 で自動化/UT DB/共通化/マルチ協調の pre-close hardening を追加し、IMP-107..116 として Phase 3 / Cycle P4 carry へ routing 済 |
 | 設計検証サイクルゲート (旧 GATE-A) | **検証サイクル発火可 (機械) / per-layer Forward gate は PO サインオフ済** | L0-L6 全設計層は doctor `verification — 設計検証サイクルゲート [L0-L6] (全設計層) ✅ freeze 完了 → 検証サイクル発火可` を満たす。**per-layer の正規 Forward gate G0.5/G1/G3/G4/G5/G6 は gate-design §2 で PO サインオフ済 (G2 のみ DEFER)** = 受入の着地点はここ。本 band ゲートは検証ロードマップ固有の機械発火であって別建ての手動 accept ceremony は持たない (PO 2026-06-10 是正「フォワードのワークフロー上じゃない？」、PLAN-REVERSE-36)。2026-06-10 セッション跨ぎ再検証 clean (vitest 332 / typecheck・biome・doctor exit 0 / mojibake 0)、L0-L6 freeze 後の退行なし。A-118 で Phase 2 artifacts 全件見直し (stale/overclaim 修正)、残 placeholder_deps / roster / skill catalog / IMP-087/088 は明示 carry routing。A-122 の GreenDefinition / 単体テスト evidence history projection は設計補強済・実装は Phase 3/4 carry |
-| Phase 3 (L7 自動化) | **検証サイクル完了** | src/ に複数機能実装済。`asset-drift`、relation-graph、dependency-drift、regression expansion、MCP profile、tool adapter、doc export pure core は L7 roadmap span で doctor / unit test に接続済。Phase 3 検証サイクルは `docs/handover/phase3-workflow-automation-verification-2026-06-11.md` に証跡化 |
+| Phase 3 (L7 自動化) | **検証サイクル完了** | src/ に複数機能実装済。`asset-drift`、relation-graph、dependency-drift、regression expansion、MCP profile、tool adapter、doc export pure core は L7 roadmap span で doctor / unit test に接続済。Phase 3 検証サイクルの歴史証跡は `docs/archive/handover/phase3-workflow-automation-verification-2026-06-11.md` に保存 |
 | Cycle P4 (L7 DB) | **検証サイクル完了** | harness.db roadmap/review evidence projection は `PLAN-M-01-cutover-backfill` で completed。L8-L14 verification band execution は `PLAN-M-00-verify-cutover` + `.helix/audit/A-132-l8-l14-verification-band-execution.md` に証跡化済。L12/L13 の production / PO signoff は local band 外として `human_required=1` で記録 |
 | 実装検証サイクルゲート (旧 GATE-B) / Phase 5-7 | **検証サイクル発火可 (機械)** | `VERIFICATION_GROUPS` に L0-L7 group 追加済 (PLAN-L7-43)。doctor が `verification — 実装検証サイクルゲート [L0-L7]` を surface |
 

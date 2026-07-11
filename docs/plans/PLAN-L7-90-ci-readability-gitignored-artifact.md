@@ -10,6 +10,8 @@ updated: 2026-06-22
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L6-function-design/module-drift.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: PM (Opus) verification (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -19,6 +21,23 @@ review_evidence:
     scope: "PO 指摘『GitHub harness-check が失敗している』(2026-06-22) の根治。gh run log で失敗は vitest step の tests/readability.test.ts 1 件 = 'expected [...51] to include .helix/handover/CURRENT.json'。原因: PLAN-L7-69 の runtime-artifact readability テスト (commit a571b5d, 2026-06-19) が live tree の `.helix/handover/CURRENT.json` 実在を hard assert していたが、CURRENT.* は .gitignore (line 19) ゆえ fresh CI checkout に不在 → 2026-06-19 12:35 を最後に CI が赤継続 (ローカルは CURRENT.json が在るので green = local-green/CI-red 罠、[[project_codex_branch_ci_verification]])。修正: 当該 assert を撤去し、tracked な evidence (.helix/audit/*.md 42件 / .helix/handover/provider/*.json 9件) の存在 + loader scope (全 path が audit/handover 配下) + mojibake-free のみを検査。CURRENT.json の handling は既存 fixture test (clean/replacement-character) が被覆。doctor の checkRuntimeReadability は fail-open-on-absence ゆえ CI で赤化せず (テストのみが over-assert していた)。typecheck/Biome/Vitest/doctor green + gh CI 緑を確認。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: runtime-readability が gitignored CURRENT.json に依存しない CI-safe contract を現HEADの fast suite で再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/readability.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - CI green recovery: readability test must not require gitignored runtime state"

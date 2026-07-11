@@ -157,6 +157,208 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(r.orphans).toEqual([]);
   });
 
+  it("U-VPAIR-007: designから参照されないtest-designを孤児にする", () => {
+    const r = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/harness/orphan-test-design.md",
+          "L6",
+          "docs/design/harness/L6-function-design/",
+          "confirmed",
+        ),
+        pairFreezeExempt: false,
+        pairFreezeExemptReason: null,
+      },
+    ]);
+
+    expect(r.ok).toBe(false);
+    expect(r.orphans).toContainEqual({
+      path: "docs/test-design/harness/orphan-test-design.md",
+      reason: "test-design-orphan",
+      detail: "対応するdesignからpair_artifactで参照されていない",
+    });
+  });
+
+  it("U-VPAIR-008: test-design exemptionは理由を必須にする", () => {
+    const valid = analyzePairFreeze([
+      doc("docs/design/harness/L2-screen/wireframe.md", "L2", "self"),
+      {
+        ...doc(
+          "docs/test-design/harness/meta-routing.md",
+          "L2",
+          "docs/design/harness/L2-screen/wireframe.md",
+          "confirmed",
+        ),
+        pairFreezeExempt: true,
+        pairFreezeExemptKind: "cross_layer_meta",
+        pairFreezeExemptReason: "複数層routingのmeta文書",
+        pairFreezeExemptTarget: null,
+      },
+    ]);
+    expect(valid.ok).toBe(true);
+
+    const invalid = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/harness/reasonless-shim.md",
+          "L5",
+          "docs/design/harness/L5-detailed-design/",
+          "confirmed",
+        ),
+        pairFreezeExempt: true,
+        pairFreezeExemptKind: "cross_layer_meta",
+        pairFreezeExemptReason: null,
+        pairFreezeExemptTarget: null,
+      },
+    ]);
+    expect(invalid.ok).toBe(false);
+    expect(invalid.orphans[0]?.reason).toBe("pair-exemption-invalid");
+  });
+
+  it("U-VPAIR-008b: reason-only・未知kind・nested orphanをfail-closeする", () => {
+    const reasonOnly = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/harness/reason-only.md",
+          "L5",
+          "docs/design/harness/L5-detailed-design/",
+          "confirmed",
+        ),
+        pairFreezeExempt: false,
+        pairFreezeExemptKind: null,
+        pairFreezeExemptReason: "flag無し理由",
+        pairFreezeExemptTarget: null,
+      },
+    ]);
+    expect(reasonOnly.orphans[0]?.reason).toBe("pair-exemption-invalid");
+
+    const unknownKind = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/harness/unknown-kind.md",
+          "L5",
+          "docs/design/harness/L5-detailed-design/",
+          "confirmed",
+        ),
+        pairFreezeExempt: true,
+        pairFreezeExemptKind: "anything_goes",
+        pairFreezeExemptReason: "不正kind",
+        pairFreezeExemptTarget: null,
+      },
+    ]);
+    expect(unknownKind.orphans[0]?.reason).toBe("pair-exemption-invalid");
+
+    const nested = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/helix/L5/nested-orphan.md",
+          "L5",
+          "docs/design/helix/L5-detail/",
+          "confirmed",
+        ),
+        pairFreezeExempt: false,
+        pairFreezeExemptKind: null,
+        pairFreezeExemptReason: null,
+        pairFreezeExemptTarget: null,
+      },
+    ]);
+    expect(nested.orphans[0]?.reason).toBe("test-design-orphan");
+  });
+
+  it("U-VPAIR-008c: live exemption集合をstaged migration/metaの2件に固定する", () => {
+    const exemptions = loadPairDocs()
+      .filter((item) => item.pairFreezeExempt)
+      .map((item) => `${item.path}:${item.pairFreezeExemptKind}`)
+      .sort();
+
+    expect(exemptions).toEqual([
+      "docs/test-design/harness/L9-integration-test-design.md:layer_migration_staged",
+      "docs/test-design/harness/proposal-document-coverage-routing.md:cross_layer_meta",
+    ]);
+  });
+
+  it("U-VPAIR-008d: parserがtyped exemption frontmatterを保持する", () => {
+    const parsed = parsePairDoc(
+      "docs/test-design/harness/staged.md",
+      `---
+layer: L9
+pair_artifact: docs/design/harness/L5-detailed-design/
+pair_freeze_exempt: true
+pair_freeze_exempt_kind: layer_migration_staged
+pair_freeze_exempt_reason: "atomic migration待ち"
+pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.md
+---`,
+    );
+
+    expect(parsed).toMatchObject({
+      pairFreezeExempt: true,
+      pairFreezeExemptKind: "layer_migration_staged",
+      pairFreezeExemptReason: "atomic migration待ち",
+      pairFreezeExemptTarget: "docs/test-design/harness/L8-integration-test-design.md",
+    });
+  });
+
+  it("U-VPAIR-008e: meta→test-designとexempt target cycleを拒否する", () => {
+    const metaToTest = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/harness/meta.md",
+          "L5",
+          "docs/test-design/harness/current.md",
+          "confirmed",
+        ),
+        pairFreezeExempt: true,
+        pairFreezeExemptKind: "cross_layer_meta",
+        pairFreezeExemptReason: "不正なtest-design参照",
+        pairFreezeExemptTarget: null,
+      },
+      doc(
+        "docs/test-design/harness/current.md",
+        "L5",
+        "docs/design/harness/L5-detailed-design/",
+        "confirmed",
+      ),
+    ]);
+    expect(metaToTest.orphans).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: "docs/test-design/harness/meta.md",
+          reason: "pair-exemption-invalid",
+        }),
+      ]),
+    );
+
+    const cycle = analyzePairFreeze([
+      {
+        ...doc(
+          "docs/test-design/harness/staged-a.md",
+          "L9",
+          "docs/design/harness/L5-detailed-design/",
+          "confirmed",
+        ),
+        pairFreezeExempt: true,
+        pairFreezeExemptKind: "layer_migration_staged",
+        pairFreezeExemptReason: "cycle A",
+        pairFreezeExemptTarget: "docs/test-design/harness/staged-b.md",
+      },
+      {
+        ...doc(
+          "docs/test-design/harness/staged-b.md",
+          "L9",
+          "docs/design/harness/L5-detailed-design/",
+          "confirmed",
+        ),
+        pairFreezeExempt: true,
+        pairFreezeExemptKind: "layer_migration_staged",
+        pairFreezeExemptReason: "cycle B",
+        pairFreezeExemptTarget: "docs/test-design/harness/staged-a.md",
+      },
+    ]);
+    expect(
+      cycle.orphans.filter((orphan) => orphan.reason === "pair-exemption-invalid"),
+    ).toHaveLength(2);
+  });
+
   it("U-VPAIR-005: 実 repo 完全性回帰ガード — 全 V-pair 双方向、孤児0", () => {
     const r = analyzePairFreeze(loadPairDocs());
     if (!r.ok) {
@@ -963,7 +1165,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "FR-L1-51 artifact progress",
       "A-50 で 7 件削減",
       "全行が L4 sub-PLAN 待ちではない",
-      "FR-L1-42 は provider-handover 実装済",
+      "FR-L1-42 は provider delegation evidence として実装済",
       "FR-L1-51 は PLAN-L7-56 / PLAN-REVERSE-56 で扱う",
     ]) {
       expect(combined).toContain(required);

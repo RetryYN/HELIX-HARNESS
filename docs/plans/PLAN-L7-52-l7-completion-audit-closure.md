@@ -41,6 +41,23 @@ review_evidence:
     reviewed_at: "2026-06-15"
     verdict: pass
     scope: "C-1 option C (warn-first guardrail invariant advisory, PO-approved): inspectGuardrailInvariants SSoT relocation to state-db/guardrail-invariants.ts (module-cycle break), projectGuardrailInvariantAdvisories non-blocking projection from committed review_evidence_registry (non-API), plan-id-free hashed advisory subject (readiness decoupling), recordGuardrailDecision behavior-unchanged refactor, and the projectSkillTelemetry skill-map ranking-exclusion regression fix. Adversarial review (36 tool-uses) centered on the non-blocking guarantee (openFindingCount is severity-agnostic / subject_id LIKE matching) — that exact concern is proven green by IT-GUARDRAIL-ADVISORY-01's non-blocking test (passed-gate baseline -> advisory -> still ready); empty-model false-positive guard, cycle break (dependency-drift cycles 0), and non-API adherence all confirmed against code. No Critical surfaced; the agent's final structured verdict line was truncated by the runtime, but every focus area it raised maps to a passing assertion. hard-gate (option A) remains PO-gated."
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:09:41+09:00"
+    tests_green_at: "2026-07-09T18:09:41+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: L7 completion audit cycle-1 risk reduction の guardrail / descent-obligation / coding-rule 回帰網を現行テストで再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/readiness-guardrail.test.ts tests/guardrail-invariant-advisory.test.ts tests/descent-obligation.test.ts tests/coding-rules.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:09:41+09:00"
+        evidence_path: tests/descent-obligation.test.ts
+        output_digest: "sha256:440895be87fb8b480e8ff28a49eb8f0a8f27ce9d058086bcc71685be1bede852"
 agent_slots:
   - role: tl
     slot_label: "TL - close cycle-1 L7 audit risks (dead-code + invariant tests) and register carry"

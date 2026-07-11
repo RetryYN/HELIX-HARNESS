@@ -34,6 +34,31 @@ review_evidence:
     tests_green_at: "2026-06-04"
     verdict: approve
     scope: "code-reviewer 2回 cut-off (diff 規模で truncate、完全 verdict 未取得) → PM 直接検証で補完、実 repo ガード (U-SCRUMREV-005 / U-PROP-004) CI green (handover 2026-06-04 session8 §6)"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:38:46+09:00"
+    tests_green_at: "2026-07-09T15:38:46+09:00"
+    verdict: approve
+    scope: "PLAN-L7-10 の execution evidence 欠落を、現行 backfill-pairing / scrum-reverse / propagation / vmodel-pair / doctor targeted green と typecheck で補い、governance enforcement lints の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/backfill-pairing.test.ts tests/scrum-reverse.test.ts tests/propagation.test.ts tests/vmodel-pair.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:38:46+09:00"
+        evidence_path: tests/scrum-reverse.test.ts
+        output_digest: "sha256:18c2cccef2c8175a3e8c033415184b05ec2e0a21bd9c599c3eef9765c75f7528"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:38:46+09:00"
+        evidence_path: src/lint/scrum-reverse.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-10 (add-impl): governance enforcement lints 実装

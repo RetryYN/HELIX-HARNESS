@@ -23,6 +23,9 @@ const FAMILIES: Record<string, ResolvedFamily> = {
   "refactor-scout": "haiku",
   "pdm-tech-innovation": "opus",
   "code-reviewer": "sonnet",
+  "advisor-fable": "fable",
+  // fable を frontmatter 宣言した非 apex agent (fixture: 密輸検知用)
+  "qa-test": "fable",
 };
 const legacyRuntimeCommand = `${["ut", "tdd"].join("-")} codex`;
 const cliPath = join(process.cwd(), "src", "cli.ts");
@@ -154,6 +157,26 @@ describe("evaluateAgentGuard", () => {
       evaluateAgentGuard(agent({ subagent_type: "pdm-tech-innovation", model: "opus" }), ctx())
         .code,
     ).toBe(0);
+  });
+
+  it("U-AGFA-001: allows fable for the apex advisor (advisor-fable)", () => {
+    expect(
+      evaluateAgentGuard(agent({ subagent_type: "advisor-fable", model: "fable" }), ctx()).code,
+    ).toBe(0);
+  });
+
+  it("U-AGFA-002: blocks fable smuggled via frontmatter on a non-apex agent (PLAN-L7-306 境界)", () => {
+    // fixture: qa-test が frontmatter で fable を宣言しても、apex allowlist 外なら fail-close。
+    const d = evaluateAgentGuard(agent({ subagent_type: "qa-test", model: "fable" }), ctx());
+    expect(d.code).toBe(2);
+    expect(d.message).toContain("fable");
+    expect(d.message).toContain("advisor-fable");
+  });
+
+  it("U-AGFA-003: fable apex block is bypassable only via HELIX_ALLOW_RAW_AGENT (audit 前提)", () => {
+    const d = evaluateAgentGuard(agent({ subagent_type: "qa-test", model: "fable" }), ctx(true));
+    expect(d.code).toBe(0);
+    expect(d.message).toContain("bypassed");
   });
 
   it("blocks an allowlisted subagent whose definition file is missing", () => {

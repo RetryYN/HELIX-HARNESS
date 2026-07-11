@@ -82,16 +82,6 @@ const DEFAULT_DISALLOWED: Record<string, Set<string>> = {
 };
 
 const GRANDFATHERED_MODULE_CYCLE_KEYS = new Set([
-  "export -> lint -> state-db -> export",
-  "export -> lint -> workflow -> state-db -> export",
-  "graph -> lint -> state-db -> graph",
-  "graph -> lint -> workflow -> state-db -> graph",
-  "graph -> vmodel -> lint -> state-db -> graph",
-  "graph -> vmodel -> lint -> workflow -> state-db -> graph",
-  "graph -> vmodel -> plan -> lint -> state-db -> graph",
-  "graph -> vmodel -> plan -> lint -> workflow -> state-db -> graph",
-  "lint -> state-db -> lint",
-  "lint -> workflow -> state-db -> lint",
   "orchestration -> task -> team -> orchestration",
   "orchestration -> team -> orchestration",
 ]);
@@ -128,9 +118,26 @@ function importSpecifiers(doc: DependencyDoc): string[] {
   const specs: string[] = [];
   const visit = (node: ts.Node): void => {
     if (
-      (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+      ts.isImportDeclaration(node) &&
       node.moduleSpecifier != null &&
       ts.isStringLiteral(node.moduleSpecifier)
+    ) {
+      const clause = node.importClause;
+      const namedBindings = clause?.namedBindings;
+      const namedImports = namedBindings && ts.isNamedImports(namedBindings) ? namedBindings : null;
+      const typeOnly =
+        clause?.isTypeOnly === true ||
+        (clause?.name == null &&
+          namedImports != null &&
+          namedImports.elements.length > 0 &&
+          namedImports.elements.every((element) => element.isTypeOnly));
+      if (!typeOnly) specs.push(node.moduleSpecifier.text);
+    }
+    if (
+      ts.isExportDeclaration(node) &&
+      node.moduleSpecifier != null &&
+      ts.isStringLiteral(node.moduleSpecifier) &&
+      !node.isTypeOnly
     ) {
       specs.push(node.moduleSpecifier.text);
     }
@@ -152,6 +159,14 @@ function smokeCoveredModules(doc: DependencyDoc): string[] {
   const modules: string[] = [];
   if (/["']src["']\s*,\s*["']cli\.ts["']/.test(doc.text) || /src[/\\]cli\.ts/.test(doc.text)) {
     modules.push("cli");
+  }
+  // 削除済み module は import できないため、retirement の negative oracle を direct coverage として扱う。
+  // U-HRET citation と resurrection/retirement lint import の両方を要求し、名称だけの test を許可しない。
+  if (
+    /\bU-HRET-(?:00[1-9]|01[0-4])\b/.test(doc.text) &&
+    /src[/\\]lint[/\\]handover-(?:retirement|resurrection)/.test(doc.text)
+  ) {
+    modules.push("handover");
   }
   return modules;
 }

@@ -384,12 +384,17 @@ describe("loadRelationGraphSourceSet", () => {
 // すべて実在し stale-edge == 0 であることを機械保証する (coverage≠substance、PLAN-L7-32 の
 // loader が requirement node を一切 materialize しなかった回帰の再発防止)。
 describe("relation graph real-repo loader (PLAN-L7-142 stale-edge fence)", () => {
-  it("has zero stale-edge findings through the real loader and materializes requirement nodes", () => {
-    const projection = collectRelationGraphProjection(loadRelationGraphSourceSet(process.cwd()));
+  it("has zero stale-edge findings through the real loader and excludes authority-bound retired artifacts", () => {
+    const sourceSet = loadRelationGraphSourceSet(process.cwd());
+    const projection = collectRelationGraphProjection(sourceSet);
     const result = analyzeRelationImpact({ changedPaths: [], projection });
     const staleEdges = result.findings.filter((f) => f.code === "stale-edge");
     // failure surfaces the dangling "from -[kind]-> to" edges directly.
     expect(staleEdges.map((f) => f.message)).toEqual([]);
+    expect((sourceSet.plans ?? []).flatMap((plan) => plan.generates ?? [])).not.toContain(
+      "src/handover/index.ts",
+    );
+    expect(projection.nodes.map((node) => node.id)).not.toContain("source:src/handover/index.ts");
     const requirementNodes = projection.nodes.filter((n) => n.kind === "requirement");
     expect(requirementNodes.length).toBeGreaterThan(0);
     const agentImpact = analyzeRelationImpact({

@@ -30,7 +30,7 @@ data.md (論理ドメインモデル) の §8 state schema を、`.helix/` YAML/
 ├── phase.yaml                            # Workflow 集約 (現工程位置)
 ├── gate_runs/<gate_id>-<ts>.json         # gate 判定証跡 (append)
 ├── mode.yaml                             # 実行 mode (値オブジェクト)
-├── handover/CURRENT.json                 # Handover 集約 (最新 1 件)
+├── audit/session-log.jsonl               # continuation source event (append-only)
 ├── audit/
 │   ├── failure_log.jsonl                 # 監査 (append-only)
 │   ├── agent-invocations/<ts>.json       # agent-guard 記録
@@ -98,14 +98,20 @@ data.md (論理ドメインモデル) の §8 state schema を、`.helix/` YAML/
 | `drive` | enum\|null | 任意 | 既定 drive (`driveSchema`) |
 | `updated` | string(ts) | 必須 | ISO8601 |
 
-### §2.5 Handover (`handover/CURRENT.json`)
+### §2.5 継続状態の読みモデル (`harness.db` + session log + bounded memory)
 
 | フィールド | 型 | 必須/任意 | 制約 |
 |---|---|---|---|
-| `state` | enum | 必須 | `current`/`consumed`/`stale` |
-| `next_action` | string | 必須 | — |
-| `context` | object | 任意 | session 引継ぎ |
-| `created` | string(ts) | 必須 | stale 判定基準 |
+| `session_id` | string | 必須 | append-only event と projection の相関ID |
+| `plan_id` | string\|null | 任意 | active PLANへの参照。proseから推測しない |
+| `next_action` | string\|null | 任意 | DB projectionに保存された構造化次行動 |
+| `event_seq` | integer | 必須 | session内単調増加。再投影の冪等key |
+| `projected_at` | string(ts) | 必須 | DB projectionの鮮度根拠 |
+| `memory_ref` | string\|null | 任意 | bounded breadcrumbへの参照。進捗SSoTではない |
+
+物理不変条件: `handover/CURRENT.json` および同等の単一current prose fileを生成・読込しない。
+crash後はappend-only eventを冪等 replayし、DB projectionを優先する。memory不一致はfindingにし、
+memoryからDBをsilent overwriteしない。provider delegation evidence / operations transition recordは別schema・別lifecycleで保持する。
 
 ### §2.6 評価 (`audit/*.jsonl`、Phase B)
 
@@ -128,6 +134,7 @@ data.md (論理ドメインモデル) の §8 state schema を、`.helix/` YAML/
 | `coverage` | `coverage_id` | `scope`, `subject_id`, `metric`, `value`, `threshold`, `status` | test coverage / trace coverage / plan coverage を保存する |
 | `findings` | `finding_id` | `kind`, `severity`, `subject_id`, `source`, `status`, `evidence_path` | doctor / vmodel lint / review findings を保存する |
 | `gate_runs` | `gate_run_id` | `gate_id`, `plan_id`, `status`, `checked_at`, `evidence_path` | `.helix/gate_runs/*.json`, CI evidence |
+| `session_events` / continuation projection | `(session_id,event_seq)` | `plan_id`, `event_kind`, `next_action`, `recorded_at`, `payload_hash` | append-only session log。DB read modelを再構成可能にする |
 
 物理不変条件: `trace_edges` の orphan 0、`coverage.status=fail` の gate fail-close、`findings.status=open` の severity 別 gate 判定、`model_runs.plan_id` と `plan_registry.plan_id` の参照整合を doctor / vmodel lint が検証する。`plan_registry.source_hash` は PLAN markdown 全文の sha256 で、persisted `harness.db` と現在の `docs/plans/*.md` の fingerprint 不一致は `drive-db-registration` hard gate で stale として扱う。projection は自動生成だが、検出対象の機械 SSoT として扱い、入力 state との不一致は `findings` に保存する。
 

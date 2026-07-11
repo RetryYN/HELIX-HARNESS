@@ -18,6 +18,23 @@ review_evidence:
     reviewed_at: "2026-06-11"
     verdict: pass-with-fixes
     scope: "state-db foundation (adapter/migration/schema/maintenance/IT-DB-01) の正しさ・SQL injection・設計整合・scope 境界・テスト substance。Critical 0。指摘の識別子検証単一正本化・maintenance テスト・userVersion round-trip・index §9.3 整合・orphan guard を反映済。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:09:39+09:00"
+    tests_green_at: "2026-07-09T18:09:39+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: state-db adapter / migration / schema foundation を現行 `tests/state-db.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/state-db.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:09:39+09:00"
+        evidence_path: tests/state-db.test.ts
+        output_digest: "sha256:e8b0f47c941029c6fb1754e2732515ef5b94e7ff4570e358c9085eff635ec37c"
 agent_slots:
   - role: tl
     slot_label: "TL — state-db adapter / migration / schema のレビュー (別 runtime)"

@@ -29,7 +29,5 @@ jobs:
         run: bun run helix doctor --profile consumer --json
       - name: HELIX rename plan
         run: bun run helix rename plan --json
-      - name: HELIX handover status
-        run: bun run helix handover status --json
       - run: bun run typecheck
       - run: bun run test

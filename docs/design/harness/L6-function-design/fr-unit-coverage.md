@@ -43,7 +43,7 @@ Added requirement bundle mapping（追加要求 bundle 対応）:
 | FR-L1-07 | docs/design/harness/L6-function-design/session-log.md | `recordEvent`、`onSessionStart`、`onPostToolUse`、`onStop` は hook/session event と plan digest を fail-open で記録する。 | U-FR-L1-07 |
 | FR-L1-08 | docs/design/harness/L6-function-design/function-spec.md | `routeSignalToMode` は drift/degradation/runaway/incident signal を Recovery/Incident/Reverse/Refactor candidate へ map する。 | U-FR-L1-08 |
 | FR-L1-09 | docs/design/harness/L6-function-design/function-spec.md | `evaluateAgentGuard` は許可されない subagent/model combination を block し、bypass semantics を記録する。 | U-FR-L1-09 |
-| FR-L1-10 | docs/design/harness/L6-function-design/handover-mechanism.md | `runHandover` と cutover boundary contract は restart point、correction history、rollback handoff を保持する。 | U-FR-L1-10 |
+| FR-L1-10 | docs/design/harness/L6-function-design/handover-retirement.md | `writePlanCompletionContinuation` は event-first journal、DB projection、checkpoint の順序を守り、旧 session writer を生成せず restart point と correction history を保持する。 | U-FR-L1-10 |
 | FR-L1-11 | docs/design/harness/L6-function-design/function-spec.md | `recordCrossCuttingEvent` は active mode を block せず interrupt/debt/drift/readiness event を記録する。 | U-FR-L1-11 |
 | FR-L1-12 | docs/design/harness/L6-function-design/function-spec.md | `suggestSkillInjection` は layer/drive/kind skill と command injection candidate を deterministic に解決する。 | U-FR-L1-12 |
 | FR-L1-13 | docs/design/harness/L6-function-design/function-spec.md | `enforceForwardOrder` は PLAN から accept までの Forward gate/order transition を検証する。 | U-FR-L1-13 |
@@ -64,7 +64,7 @@ Added requirement bundle mapping（追加要求 bundle 対応）:
 | FR-L1-28 | docs/design/harness/L6-function-design/function-spec.md | `mergeTwoStageAgentDesign` は Phase 1/Phase 2 merge state と drive=agent handoff を検証する。 | U-FR-L1-28 |
 | FR-L1-29 | docs/design/harness/L6-function-design/function-spec.md | `validateScreenDesignWorkflow` は IA、screen list、flow、wireframe、mock、componentization output を検証する。 | U-FR-L1-29 |
 | FR-L1-30 | docs/design/harness/L6-function-design/function-spec.md | `validateFrontendDesignWorkflow` は visual design、token SSoT、a11y、visual regression、UX polish gate を検証する。 | U-FR-L1-30 |
-| FR-L1-31 | docs/design/harness/L6-function-design/handover-mechanism.md | `checkHandoverDiscipline` は automated restart 向けの context/handover freshness を検出する。 | U-FR-L1-31 |
+| FR-L1-31 | docs/design/harness/L6-function-design/handover-mechanism.md | `queryContinuationIntegration` は automated restart 向けに DB projection と bounded memory の continuation readiness を検証し、DB 不在・不整合を fail-close する。 | U-FR-L1-31 |
 | FR-L1-32 | docs/design/harness/L6-function-design/function-spec.md | `validateFolderRules` は process docs と test placement を HELIX folder policy に照らして検証する。 | U-FR-L1-32 |
 | FR-L1-33 | docs/design/harness/L6-function-design/function-spec.md | `catalogExistingAssets` は command/skill/detector/template/state/hook/doc/test asset を coverage status で分類する。 | U-FR-L1-33 |
 | FR-L1-34 | docs/design/harness/L6-function-design/function-spec.md | `prioritizeCapabilityGaps` は workflow impact と missing route/recover capability で skill/command gap を rank する。 | U-FR-L1-34 |
@@ -76,7 +76,7 @@ Added requirement bundle mapping（追加要求 bundle 対応）:
 | FR-L1-39 | docs/design/harness/L6-function-design/function-spec.md | `scoreTaskComplexity` は size/dependency/uncertainty score を計算し、`classifyProposalDocumentCoverage` は proposal text から additive required design/test-design document pack を導出し、`analyzeProposalDocumentCoverage` は routing/doc-path/guardrail consistency を検証する。 | U-FR-L1-39 |
 | FR-L1-40 | docs/design/harness/L6-function-design/function-spec.md | `resolveDriveStatePartition` は drive を `.helix/drive/<drive>` state と skip_sub_doc behavior に map する。 | U-FR-L1-40 |
 | FR-L1-41 | docs/design/harness/L6-function-design/function-spec.md | `classifyDrive` は PLAN/code/dependency evidence を drive と orchestration mode input に分類する。 | U-FR-L1-41 |
-| FR-L1-42 | docs/design/harness/L6-function-design/function-spec.md | `buildAdapterPlan` と provider handover contract は context、PLAN、budget、provider boundary separation を保持する。 | U-FR-L1-42 |
+| FR-L1-42 | docs/design/harness/L6-function-design/function-spec.md | `buildAdapterPlan` と provider evidence contract は context、PLAN、budget、provider boundary separation を保持し、continuation source と結合しない。preserve 境界の補助 oracle は U-HRET-008 とする。 | U-FR-L1-42 |
 | FR-L1-44 | docs/design/harness/L6-function-design/setup-solo-team.md | `planSetup` と onboarding baseline contract は existing project 向けの harness state を確立する。 | U-FR-L1-44 |
 | FR-L1-45 | docs/design/harness/L6-function-design/review-evidence.md | `analyzeReviewEvidence` は large doc と gate artifact に doc-reviewer/review-tier evidence を要求する。 | U-FR-L1-45 |
 | FR-L1-46 | docs/design/harness/L6-function-design/agent-slots.md | `resolveRosterCapability` と guard integration contract は subagent roster を capability/model class に map する。 | U-FR-L1-46 |

@@ -17,6 +17,31 @@ review_evidence:
     reviewed_at: "2026-06-15"
     verdict: pass
     scope: "plan-artifact-existence hard gate (analyzePlanArtifactExistence 純関数 + loadPlanArtifactExistenceInput loader + checkPlanArtifactExistence doctor 配線 + 6 unit/integration テスト)。検出規則 (status ∈ {confirmed,completed,accepted} かつ generates[].artifact_path が existsSync=false → phantom violation)、draft 等未確定 status の loader pre-filter (false-positive 回避)、artifact_type 非限定 (src/tests/design/test-design 全対象)、fail-open(docs/plans不在)/fail-close(repo root 不在) を検証。merged-plan-status (PLAN-L7-54) との鏡像相補 (実在×未confirm vs 完了×不在) を確認。実 repo 163 完了 PLAN で phantom 0 = green。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:21:26+09:00"
+    tests_green_at: "2026-07-09T15:21:26+09:00"
+    verdict: approve
+    scope: "PLAN-L7-55 の execution evidence 欠落を、現行 plan-artifact-existence / doctor / runtime hook / runtime adapter / plan-supersession targeted green と typecheck で補い、plan-artifact-existence hard gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-artifact-existence.test.ts tests/doctor.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/plan-supersession.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:21:26+09:00"
+        evidence_path: tests/plan-artifact-existence.test.ts
+        output_digest: "sha256:7589bc8dd3802e4ea9bb8badbb1be9e2a0a0deb262cef45451bee0c6915edd11"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:21:26+09:00"
+        evidence_path: src/lint/plan-artifact-existence.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - plan-artifact-existence (phantom/false-completion) gate 設計 + 配線"

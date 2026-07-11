@@ -749,6 +749,61 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).document_export_triggers).toBeGreaterThan(0);
       expect(rowCounts(db).document_export_runs).toBeGreaterThan(0);
       expect(rowCounts(db).document_export_datasets).toBeGreaterThan(0);
+      expect(rowCounts(db).design_declarations).toBeGreaterThan(0);
+      expect(rowCounts(db).design_references).toBeGreaterThan(0);
+      expect(rowCounts(db).design_impact).toBeGreaterThan(0);
+      const vmfitDeclaration = db
+        .prepare(
+          "SELECT defined_id, declaration_kind, source_path FROM design_declarations WHERE defined_id = ?",
+        )
+        .get("HR-FR-VMFIT-01") as
+        | { defined_id: string; declaration_kind: string; source_path: string }
+        | undefined;
+      expect(vmfitDeclaration).toEqual({
+        defined_id: "HR-FR-VMFIT-01",
+        declaration_kind: "機能要件",
+        source_path: "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      });
+      const vmfitReference = db
+        .prepare(
+          "SELECT from_id, to_id, reference_kind, status FROM design_references WHERE from_id = ? AND to_id = ?",
+        )
+        .get("HAT-VMFIT-01", "HR-FR-VMFIT-01") as
+        | { from_id: string; to_id: string; reference_kind: string; status: string }
+        | undefined;
+      expect(vmfitReference).toEqual({
+        from_id: "HAT-VMFIT-01",
+        to_id: "HR-FR-VMFIT-01",
+        reference_kind: "accepts",
+        status: "resolved",
+      });
+      const vmfitImpact = db
+        .prepare(
+          `SELECT root_id, impacted_id, impact_kind, direction, status, root_layer, impacted_layer
+           FROM design_impact
+           WHERE root_id = ? AND impacted_id = ?
+           ORDER BY direction`,
+        )
+        .all("HR-FR-VMFIT-01", "HAT-VMFIT-01") as Array<{
+        root_id: string;
+        impacted_id: string;
+        impact_kind: string;
+        direction: string;
+        status: string;
+        root_layer: string;
+        impacted_layer: string;
+      }>;
+      expect(vmfitImpact).toEqual([
+        {
+          root_id: "HR-FR-VMFIT-01",
+          impacted_id: "HAT-VMFIT-01",
+          impact_kind: "accepts",
+          direction: "reverse",
+          status: "resolved",
+          root_layer: "L3",
+          impacted_layer: "L12",
+        },
+      ]);
       expect(rowCounts(db).test_cases).toBeGreaterThan(0);
       expect(rowCounts(db).test_artifact_edges).toBeGreaterThan(0);
       expect(rowCounts(db).artifact_progress).toBeGreaterThan(0);
@@ -2174,6 +2229,8 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).roadmap_gate_progress).toBeGreaterThan(0);
       expect(rowCounts(db).review_evidence_registry).toBeGreaterThan(0);
       expect(rowCounts(db).descent_obligations).toBeGreaterThan(0);
+      expect(rowCounts(db).design_declarations).toBeGreaterThan(0);
+      expect(rowCounts(db).design_references).toBeGreaterThan(0);
       expect(rowCounts(db).drive_runs).toBeGreaterThan(0);
       expect(rowCounts(db).route_modes).toBeGreaterThan(0);
       const projectedDriveModels = db

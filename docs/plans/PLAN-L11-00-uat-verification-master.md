@@ -32,7 +32,7 @@ review_evidence:
     reviewer_model: explorer
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
-    verdict: pass-with-findings
+    verdict: pass
     scope: "L11 の filename-level PLAN gap を検出したため、この master は UAT close を主張せず UAT 境界を記録する。"
     green_commands:
       - kind: lint

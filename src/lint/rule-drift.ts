@@ -16,7 +16,6 @@ export interface RuleDriftResult {
 const SHARED_MARKERS = [
   "helix status",
   "helix doctor",
-  "helix handover",
   "helix codex --role <role> --task",
   "helix claude --role <role> --task",
   "helix team run --definition .helix/teams/<team>.yaml",

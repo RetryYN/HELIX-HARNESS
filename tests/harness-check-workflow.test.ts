@@ -70,4 +70,18 @@ describe("source harness-check workflow", () => {
     expect(hotfixGuard.if).toContain("startsWith(github.head_ref, 'hotfix/')");
     expect(hotfixGuard.run).toContain("bun src/cli.ts guard pr-context");
   });
+
+  it("U-CIPROJ-001: refreshes the deterministic DB projection after regression tests and before doctor", () => {
+    const { steps } = loadWorkflow();
+    const testIndex = steps.findIndex((step) => step.name === "test — 全回帰 (vitest run)");
+    const refreshIndex = steps.findIndex(
+      (step) => step.name === "db rebuild (post-test projection refresh)",
+    );
+    const doctorIndex = steps.findIndex((step) => step.name === "doctor (governance hard gates)");
+
+    expect(testIndex).toBeGreaterThanOrEqual(0);
+    expect(refreshIndex).toBeGreaterThan(testIndex);
+    expect(doctorIndex).toBeGreaterThan(refreshIndex);
+    expect(steps[refreshIndex]?.run).toBe("bun src/cli.ts db rebuild --json");
+  });
 });

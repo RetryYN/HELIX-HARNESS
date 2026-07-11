@@ -15,6 +15,31 @@ review_evidence:
     tests_green_at: "2026-06-05"
     verdict: pass
     scope: "schema worker_model/reviewer_model + analyzeReviewEvidence crossReviewViolations (cross_agent⟹worker≠reviewer) + extractReviewEntries + doctor hard 連動 + U-XREVIEW-001〜005。pmo-sonnet PASS (Critical 0、正確性/doctor連動/scope OK)。code-reviewer は IMP-009 truncate のため pmo-sonnet 確定。typecheck 0 / vitest 200 / doctor exit 0"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:42:16+09:00"
+    tests_green_at: "2026-07-09T15:42:16+09:00"
+    verdict: approve
+    scope: "PLAN-L7-14 の execution evidence 欠落を、現行 vmodel-pair / review-evidence / doctor targeted green と typecheck で補い、cross-review semantic gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/vmodel-pair.test.ts tests/review-evidence.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:42:16+09:00"
+        evidence_path: tests/review-evidence.test.ts
+        output_digest: "sha256:758fe5e7c147d009635083894b5710e6eb6fef2acad1df9f51a3ac2b33d9c7ac"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:42:16+09:00"
+        evidence_path: src/lint/review-evidence.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL — analyze 純関数の cross_agent distinctness 判定 / 既存 analyzeReviewEvidence 非破壊のレビュー"

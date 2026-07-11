@@ -4,7 +4,7 @@ title: "PLAN-L7-83 (troubleshoot): handover pointer-drift 恒久解消 (marker r
 kind: troubleshoot
 layer: L7
 drive: db
-parent_design: docs/design/harness/L4-basic-design/architecture.md
+parent_design: docs/design/harness/L6-function-design/handover-mechanism.md
 status: confirmed
 created: 2026-06-19
 updated: 2026-06-19
@@ -20,6 +20,23 @@ review_evidence:
     reviewed_at: "2026-06-19"
     verdict: pass
     scope: "handover 機構の 2 defect 修正: (1) runHandover marker reconcile (complete→clear / --plan→sync / plain in_progress 無変更 / dryRun 非破壊) で CURRENT.json⇔current-plan marker の drift を構造的に解消、(2) boundSameDayEntries で同日 entry を MAX_SAME_DAY_ENTRIES=4 へ上限化 (anchor+直近保持・中間 breadcrumb・git 履歴保全)。cross_agent TL(codex-gpt-5.5) 初回 verdict=fail で Important 1件 = boundSameDayEntries が既存 breadcrumb を再 prune 時に anchor slice へ吸収し線形累積する点を指摘。remediate = strip-then-reprune (既存 breadcrumb + 直前 separator を regex 除去後に再 prune) + 決定論 oracle U-HOVER-014 idempotency ケース (2 prune cycle で breadcrumb 1 個・header=MAX-1) で再発防止。clear-on-complete coherence / 保持算術 / breadcrumb header 非該当 / dryRun 非破壊 / 空 marker は No-Finding と評価。再 dispatch 確認は wrapper 出力が grounding trace で途切れたため決定論 test で代替検証。typecheck/biome(175)/全 Vitest 763/doctor EXIT=0 green。evidence=.helix/audit/A-142、review task=.helix/codex-tasks/l783-review.md (+r2)。"
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: handover pointer drift reconcile と same-day accumulation bound が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/handover.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - handover drift reconcile + accumulation bound 設計 + 配線 + cross_agent review"
@@ -35,6 +52,7 @@ dependencies:
   requires:
     - docs/design/harness/L6-function-design/handover-mechanism.md
     - docs/design/harness/L4-basic-design/architecture.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 

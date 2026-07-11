@@ -13,11 +13,13 @@ import { createRequire } from "node:module";
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { assertSqlIdentifier } from "../schema/harness-db";
 
+export { isSecretLike, SECRET_PATTERN } from "../security/secret-policy";
+
 const nodeRequire = createRequire(import.meta.url);
 
 /** 正規化済み prepared statement。get は行不在で undefined を返す。 */
 export interface HarnessStatement {
-  run(...params: unknown[]): void;
+  run(...params: unknown[]): { changes: number };
   get(...params: unknown[]): Record<string, unknown> | undefined;
   all(...params: unknown[]): Record<string, unknown>[];
 }
@@ -45,14 +47,6 @@ export interface HarnessDb {
  * 各 prefix は語境界 (\b) にアンカーし、"task-..."/"risk-..." のような語中の "sk" や
  * hyphenated slug/path 内の部分一致を誤検知しない (実 secret は token 境界で出現する)。
  */
-export const SECRET_PATTERN =
-  /(\bsk-[A-Za-z0-9_-]{16,}|\bghp_[A-Za-z0-9_]{16,}|\bgithub_pat_[A-Za-z0-9_]{16,}|\bxox[baprs]-[A-Za-z0-9-]{16,})/;
-
-/** 文字列が secret 様トークンを含むか (SECRET_PATTERN 単一正本)。 */
-export function isSecretLike(value: string): boolean {
-  return SECRET_PATTERN.test(value);
-}
-
 // bun:sqlite / node:sqlite の最小構造 (型は提供されないため局所定義)。
 interface NativeStatement {
   run(...params: unknown[]): unknown;
@@ -96,7 +90,8 @@ function applyConnectionPragmas(native: NativeDatabase, path: string): void {
 function wrapStatement(stmt: NativeStatement): HarnessStatement {
   return {
     run: (...params: unknown[]) => {
-      stmt.run(...params);
+      const result = stmt.run(...params) as { changes?: number | bigint } | undefined;
+      return { changes: Number(result?.changes ?? 0) };
     },
     get: (...params: unknown[]) =>
       (stmt.get(...params) as Record<string, unknown> | null | undefined) ?? undefined,

@@ -66,7 +66,7 @@ TL へ escalate し、新しい procedure を post-incident action として run
 2. root cause に code/design fix が必要な場合は Recovery PLAN（branch `hotfix/*`）を開く。
    design-level は `add-design`、implementation-only は L7 の `add-impl` として分類し、
    その問題を検出できたはずの regression test を追加する。
-3. session boundary で `helix handover` を実行し、resolution を記録する。
+3. resolution を監査証跡へ記録し、session boundary で `helix status` の continuation projection を確認する。
 
 ## 完了 checklist
 
@@ -75,4 +75,4 @@ TL へ escalate し、新しい procedure を post-incident action として run
 - [ ] Threshold は observability design doc を参照している（SSoT を重複させない）。
 - [ ] Incident timeline が `.helix/audit/` に記録されている。
 - [ ] production change の前に three-party approval が記録されている。
-- [ ] root cause に対して Recovery / add-design PLAN が開かれ、`helix handover` が実行されている。
+- [ ] root cause に対して Recovery / add-design PLAN が開かれ、continuation projection に next action が反映されている。

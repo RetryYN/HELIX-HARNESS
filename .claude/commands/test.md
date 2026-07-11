@@ -1,11 +1,13 @@
 ---
 description: HELIX TDD discipline に従い test-first（Red → Green → Refactor）で進める
 argument-hint: "<unit or behavior under test>"
-judgment_core: v1
+judgment_core: v2
 ---
 
 HELIX では test-first で実装する。`test-driven-development` skill を使い、level/fixture の選択には
 `testing` も使う。oracle 強度の判断規律は `docs/skills/judgment-core.md`（判断コア SSoT）§4 に従う。
+テストケースの中身（壊れ方の視点カタログ・深さ配分・止めどき）は `test-thinking` skill を使う:
+書く前に「この機能はどう壊れるか」を最低 3 通り言語化し、全テストが一発で緑なら喜ばずに疑う。
 
 Target: $ARGUMENTS
 

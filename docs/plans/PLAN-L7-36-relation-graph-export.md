@@ -17,6 +17,31 @@ review_evidence:
     scope: "U-RELGRAPH-007..010 は it.todo から green tests へ昇格済み。exportRelationDiagram と collectVerificationEvidenceProjection は pure deterministic projections として実装済み。Critical 0 / Important 0。外部 adapter 実行は対象外のまま。利用不可の DOT/D2 は findings のみ返す。Raw MCP/tool payload、screenshots、traces、provider transcript、secret-like fields は projection しない。"
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T16:02:33+09:00"
+    tests_green_at: "2026-07-09T16:02:33+09:00"
+    verdict: approve
+    scope: "PLAN-L7-36 の execution evidence 欠落を、現行 ddd-tdd-rules / relation-graph / doctor targeted green と typecheck で補い、relation graph export / verification-evidence projection の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/ddd-tdd-rules.test.ts tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/doctor.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T16:02:33+09:00"
+        evidence_path: tests/relation-graph.test.ts
+        output_digest: "sha256:bfdf4b24481071c586289c2010d03c34e4020c94a8851e8fe931d2fafc49d40e"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T16:02:33+09:00"
+        evidence_path: src/lint/relation-graph.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - relation graph export 実装レビュー (別 runtime)"

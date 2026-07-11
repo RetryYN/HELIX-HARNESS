@@ -24,7 +24,7 @@ function validCodexHooks(): Record<string, unknown> {
     hooks: {
       PreToolUse: [
         {
-          matcher: "spawn_agent|spawn_agents_on_csv",
+          matcher: "spawn_agent|spawn_agents_on_csv|Agent",
           hooks: [
             {
               type: "command",
@@ -34,13 +34,13 @@ function validCodexHooks(): Record<string, unknown> {
           ],
         },
         {
-          matcher: "apply_patch|write_file",
+          matcher: "apply_patch|Write|Edit",
           hooks: [
             { type: "command", command: "bun .claude/hooks/work-guard.ts", blockOnFailure: true },
           ],
         },
         {
-          matcher: "exec_command|local_shell",
+          matcher: "Bash",
           hooks: [
             {
               type: "command",
@@ -50,14 +50,19 @@ function validCodexHooks(): Record<string, unknown> {
           ],
         },
       ],
-      SessionStart: [{ hooks: [{ type: "command", command: "bun src/cli.ts session start" }] }],
+      SessionStart: [
+        { hooks: [{ type: "command", command: "bun src/cli.ts session start", timeout: 90 }] },
+      ],
       PostToolUse: [
         {
-          matcher: "apply_patch|write_file|exec_command|local_shell",
+          matcher: "apply_patch|Write|Edit|Bash",
           hooks: [{ type: "command", command: "bun src/cli.ts hook post-tool-use" }],
         },
       ],
-      Stop: [{ hooks: [{ type: "command", command: "bun src/cli.ts session summary" }] }],
+      SubagentStop: [
+        { hooks: [{ type: "command", command: "bun src/cli.ts hook subagent-stop --quiet" }] },
+      ],
+      Stop: [{ hooks: [{ type: "command", command: "bun src/cli.ts session summary --quiet" }] }],
     },
   };
 }
@@ -116,8 +121,9 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
   });
 
   it("U-CXHOOK-002b: policy prose is mojibake-free", () => {
+    // CODEX_NOT_APPLICABLE は 0.144 で空 (SubagentStop event 実装により N/A 撤回)。
     const policyText = [
-      ...CODEX_NOT_APPLICABLE_POLICY.map((item) => item.reason),
+      ...(CODEX_NOT_APPLICABLE_POLICY as readonly { reason: string }[]).map((item) => item.reason),
       ...CODEX_DEFERRED_SURFACE_POLICY.map((item) => item.reason),
     ].join("\n");
     expect(
@@ -148,10 +154,11 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     );
   });
 
-  it("U-CXHOOK-006: Codex の編集 matcher が Claude 字面のままだと発火しない = fail-close", () => {
+  it("U-CXHOOK-006: Codex の編集 matcher が旧 (0.128) 字面のままだと発火しない = fail-close", () => {
     const broken = validCodexHooks();
-    // 字面コピー (Edit|Write|MultiEdit) は Codex tool 名と一致せず発火しない偽パリティ。
-    preToolEntryByMatcher(broken, "apply_patch|write_file").matcher = "Edit|Write|MultiEdit";
+    // 旧世代の `apply_patch|write_file` は 0.144 canonical (`apply_patch`+alias Write/Edit) と
+    // 一致しない偽パリティ (write_file tool は廃止)。
+    preToolEntryByMatcher(broken, "apply_patch|Write|Edit").matcher = "apply_patch|write_file";
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(r.violations.some((v) => v.hook === "work-guard" && v.reason === "missing_hook")).toBe(
@@ -161,7 +168,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
 
   it("U-CXHOOK-007: work-guard の blockOnFailure 欠落は fail-close", () => {
     const broken = validCodexHooks();
-    preToolEntryByMatcher(broken, "apply_patch|write_file").hooks[0].blockOnFailure = undefined;
+    preToolEntryByMatcher(broken, "apply_patch|Write|Edit").hooks[0].blockOnFailure = undefined;
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(r.violations.some((v) => v.reason === "missing_block_on_failure")).toBe(true);
@@ -169,7 +176,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
 
   it("U-CXHOOK-008: Codex command が $CLAUDE_PROJECT_DIR 依存だと fail-close (repo-relative 原則)", () => {
     const broken = validCodexHooks();
-    preToolEntryByMatcher(broken, "apply_patch|write_file").hooks[0].command =
+    preToolEntryByMatcher(broken, "apply_patch|Write|Edit").hooks[0].command =
       'bun "$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts"';
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
@@ -216,16 +223,20 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     }
   });
 
-  it("U-CXHOOK-012: subagent-stop のみ真の N/A。Codex spawn_agent は agent-guard でガードする", () => {
-    const naEntrypoints = CODEX_NOT_APPLICABLE.map((n) => n.entrypoint);
-    expect(naEntrypoints).toContain("src/cli.ts hook subagent-stop");
-    // 当初 agent-guard を「面が無い N/A」と書いたのは誤り (spawn_agent 族が実在)。N/A から外れていること。
-    expect(naEntrypoints).not.toContain(".claude/hooks/agent-guard.ts");
-    for (const n of CODEX_NOT_APPLICABLE) expect(n.reason.length).toBeGreaterThan(0);
+  it("U-CXHOOK-012: Codex 0.144 で SubagentStop event が実在 — N/A は空で subagent-stop も必須配線", () => {
+    // 旧 0.128 世代では subagent-stop が真の N/A だったが、0.144 で event が実装されたため撤回。
+    expect(CODEX_NOT_APPLICABLE).toEqual([]);
     expect(CODEX_DEFERRED_SURFACE).toEqual([]);
     expect(CODEX_REQUIRED.map((hook) => hook.id)).toContain("agent-guard");
-    // 真の N/A (subagent-stop) のみなので Codex hooks.json に SubagentStop hook が無くても parity は ok。
-    expect(analyzeCodexHookAdapter({ codexHooksJson: json(validCodexHooks()) }).ok).toBe(true);
+    expect(CODEX_REQUIRED.map((hook) => hook.id)).toContain("subagent-stop");
+    // SubagentStop hook を欠くと parity は fail-close。
+    const broken = validCodexHooks() as { hooks: Record<string, unknown> };
+    delete broken.hooks.SubagentStop;
+    const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
+    expect(r.ok).toBe(false);
+    expect(
+      r.violations.some((v) => v.hook === "subagent-stop" && v.reason === "missing_hook"),
+    ).toBe(true);
   });
 
   it("U-CXHOOK-013: 共有 guard ロジックは runtime 非依存 — Codex 発火時も同じ判定になる", () => {
@@ -253,7 +264,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
 
   it("U-CXHOOK-014: 非 command type の hook では guard 充足とみなさない (type==='command' 必須)", () => {
     const broken = validCodexHooks();
-    preToolEntryByMatcher(broken, "apply_patch|write_file").hooks[0].type = "notification";
+    preToolEntryByMatcher(broken, "apply_patch|Write|Edit").hooks[0].type = "notification";
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(r.violations.some((v) => v.hook === "work-guard" && v.reason === "missing_hook")).toBe(
@@ -266,11 +277,64 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
       hooks: { Stop: { hooks: { command: string }[] }[] };
     };
     // 'src/cli.tsx' は 'src/cli.ts' を部分文字列に含むが別ファイル。token 完全一致なら弾ける。
-    broken.hooks.Stop[0].hooks[0].command = "bun src/cli.tsx session summary";
+    broken.hooks.Stop[0].hooks[0].command = "bun src/cli.tsx session summary --quiet";
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(
       r.violations.some((v) => v.hook === "session-summary" && v.reason === "missing_hook"),
+    ).toBe(true);
+  });
+
+  it("U-CXHOOK-016: Stop/SubagentStop の --quiet 欠落は fail-close (Codex 0.144 非 JSON stdout = Failed)", () => {
+    // PLAN-L7-417 cross-review Important: 障害原因 (--quiet 欠落で Stop hook が Failed) の
+    // 再発を doctor が検出できるよう、抑止 flag を必須契約にする。
+    const stopBroken = validCodexHooks() as {
+      hooks: { Stop: { hooks: { command: string }[] }[] };
+    };
+    stopBroken.hooks.Stop[0].hooks[0].command = "bun src/cli.ts session summary";
+    const stopResult = analyzeCodexHookAdapter({ codexHooksJson: json(stopBroken) });
+    expect(stopResult.ok).toBe(false);
+    expect(
+      stopResult.violations.some(
+        (v) => v.hook === "session-summary" && v.reason === "missing_required_token",
+      ),
+    ).toBe(true);
+
+    const subagentBroken = validCodexHooks() as {
+      hooks: { SubagentStop: { hooks: { command: string }[] }[] };
+    };
+    subagentBroken.hooks.SubagentStop[0].hooks[0].command = "bun src/cli.ts hook subagent-stop";
+    const subagentResult = analyzeCodexHookAdapter({ codexHooksJson: json(subagentBroken) });
+    expect(subagentResult.ok).toBe(false);
+    expect(
+      subagentResult.violations.some(
+        (v) => v.hook === "subagent-stop" && v.reason === "missing_required_token",
+      ),
+    ).toBe(true);
+  });
+
+  it("U-CXHOOK-017: SessionStart timeout が 90s 未満へ退行したら fail-close (sandbox 実測 ~44s)", () => {
+    const broken = validCodexHooks() as {
+      hooks: { SessionStart: { hooks: { command: string; timeout?: number }[] }[] };
+    };
+    broken.hooks.SessionStart[0].hooks[0].timeout = 5;
+    const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
+    expect(r.ok).toBe(false);
+    expect(
+      r.violations.some((v) => v.hook === "session-start" && v.reason === "insufficient_timeout"),
+    ).toBe(true);
+
+    // timeout 欠落 (既定 600s に依存しない明示契約) も fail-close。
+    const missing = validCodexHooks() as {
+      hooks: { SessionStart: { hooks: { command: string; timeout?: number }[] }[] };
+    };
+    missing.hooks.SessionStart[0].hooks[0].timeout = undefined;
+    const rMissing = analyzeCodexHookAdapter({ codexHooksJson: json(missing) });
+    expect(rMissing.ok).toBe(false);
+    expect(
+      rMissing.violations.some(
+        (v) => v.hook === "session-start" && v.reason === "insufficient_timeout",
+      ),
     ).toBe(true);
   });
 });

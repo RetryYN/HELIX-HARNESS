@@ -26,6 +26,14 @@ export const SUBAGENT_ALLOWLIST: ReadonlySet<string> = new Set([
 export const AGENT_GUARD_BYPASS_HINT =
   "Set HELIX_ALLOW_RAW_AGENT=1 only with an explicit reason recorded in the final report.";
 
+/**
+ * fable (apex-tier) を使える subagent の allowlist (PLAN-L7-306 の advisor-fable 境界の機械強制、
+ * PLAN-L7-409)。fable は最上位セカンドオピニオン専用であり、frontmatter に fable を宣言しただけの
+ * agent が worker 用途で fable を使うことを fail-close で禁じる。追加は .claude/CLAUDE.md の
+ * Fable advisor 節と PLAN を更新してから行う。上流 UT-TDD PR#44 (fable apex-tier) の概念採取。
+ */
+export const FABLE_APEX_SUBAGENTS: ReadonlySet<string> = new Set(["advisor-fable"]);
+
 export const BRIEF_MARKER_MIN_SUBSTANCE_CHARS = 20;
 
 /**

@@ -31,7 +31,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 | `receiveAlert(payload)` | 観測・監視 (c) | Sentry/Uptime → Incident trigger |
 | `receiveDepAlert(payload)` | 依存管理 (d) | Dependabot → security トリアージ |
 
-> core は `invoke*` の intent だけを発行し、Claude/Codex/gh の差は adapter 実装が吸収する (FR-L1-42 provider 引継ぎの基盤)。
+> core は `invoke*` の intent だけを発行し、Claude/Codex/gh の差は adapter 実装が吸収する (FR-L1-42 provider delegation evidence の基盤)。
 
 ## §2 intent / 結果 / エラー型 (概要、詳細 zod は L7)
 
@@ -103,7 +103,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
   (`src/workflow/routing-contracts.ts#validateDContractDsl`、PLAN-L7-312)。mode-routing / gate-checks は
   read-only に zod validate し、unknown mode、missing gate、next 循環、非 `helix` next_action を
   execution 前に fail-close する。
-- **provider 引継ぎ** (FR-L1-42、context+budget 連携) = `provider-handover.v1` package (`helix handover provider export/status`) と接続
+- **provider delegation evidence** (FR-L1-42、context+budget 連携) = `provider-handover.v1` package と接続する別型証跡。session/prose handover retirementの対象外であり、汎用 continuation state と混同しない
 - **sprint check の VCS 参照** (TDD trace の git changed-files / review scope): `loadChangedFiles` を `verify recommend`、`review --uncommitted`、doctor `change-impact`、`regression-expansion` が共有する。git log/blame の深掘りは optional evidence enrichment とし、L7 完遂の隠れ carry にしない。
 ## Appendix B: DB/Search CLI Contracts (PLAN-L5-08) の契約
 

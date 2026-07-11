@@ -31,8 +31,6 @@ jobs:
         run: bun run helix doctor --profile consumer --json
       - name: HELIX rename plan
         run: bun run helix rename plan --json
-      - name: Handover route
-        run: bun run helix handover status --json
       - name: HELIX team run dry-run
         run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json
       - run: bun run typecheck

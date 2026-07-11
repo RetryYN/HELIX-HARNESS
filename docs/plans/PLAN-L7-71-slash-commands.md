@@ -18,6 +18,23 @@ review_evidence:
     scope: "Phase-1 slash command transplant (.claude/commands/{ship,sdd-review,sdd-plan,spec,test,build,code-simplify}.md、commit 7305fe7) の status drift (draft のまま放置) を解消し confirmed 化。AC を機械再検証: ①7 ファイル全て実在・description frontmatter 有 ②legacy-term scan (helix/HELIX_/ai-dev-kit) = 0 hit ③全ファイルが実在 helix command (review/gate/status/plan lint/doctor) を参照 ④allowlisted subagent のみ参照。typecheck/Biome/Vitest 785/doctor EXIT=0。P2 (innovation-{tech,marketing,synthesize}) は §4 で明示 defer (本 confirmed の scope 外)。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:19:19+09:00"
+    tests_green_at: "2026-07-09T18:19:19+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: `.claude/commands` 由来の non-src deliverable drift 検出を `merged-plan-status` 回帰網で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/merged-plan-status.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:19:19+09:00"
+        evidence_path: tests/merged-plan-status.test.ts
+        output_digest: "sha256:88411fe247de3f81d85e8e4288b08131545cb1fe5dadd63429a6ac8643c3b4c8"
 agent_slots:
   - role: tl
     slot_label: "TL - slash command transplant (HELIX adaptation)"

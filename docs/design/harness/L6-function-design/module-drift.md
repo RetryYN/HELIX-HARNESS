@@ -103,6 +103,8 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 - **error handling**: catch block が明示的な failure state を返す・記録する、または fail-open intent をその場で文書化する場合に限り、fail-open を許可する。未文書化の空 catch と rethrow-only catch block は `structured-error-handling` violations とする。
 - **module boundary**: `lint` は runtime/doctor/CLI feature modules を import してはならない。`runtime` は governance checks を import してはならない。`schema` は feature modules の下位に留める。違反は `module-boundary` とする。
 - **canonical source-boundary matrix**: IMP-105 により禁止 import matrix は `src/lint/shared.ts` の `violatesSourceBoundary` を正本にする。`module-boundary` と `domain-boundary` は同じ matrix を使い、前者は coding-rule SSoT、後者は DDD/TDD strictness gate の観測名として別 rule id を維持する。
+- **projection lint boundary**: DB projection ingestion のような `src/lint/**` gate は、Vモデル ZIP manifest の実装 constant を直接 import せず、DB table 名と projection 契約だけを検査する。ZIP 固有値の読取は `state-db` / `vmodel` 側の projection に閉じ、lint は projection 結果の有無を判定する。
+- **source helper arity**: `src/**` 内のローカル helper も product 関数と同じく 3 引数上限を受ける。Scrum/current-location のように複数値を束ねる場合は input object 化し、DB 現在地 projection の検出ロジックを引数順へ依存させない。
 - **machine-surface language**: machine-facing CLI/doctor/lint/gate/status message は日本語説明を含んでよいが、decision token は安定した ASCII English (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) でなければならない。machine message 行に日本語だけの decision word がある場合は `machine-surface-language` violation とする。**Impl (2026-06-19、A-141)**: `analyzeCodingRules` の `violatesMachineSurfaceLanguage` が machine-surface 行パターン × 非 ASCII 判定語 × ASCII token 不在で検出し、`describe`/`it`/`test` のタイトル literal は除外 (false-positive 回避)。`REQUIRED_RULE_IDS` + SSoT `coding-rules.md` に `machine-surface-language` を登録。oracle U-CODE-010。実 repo violations 0。
 - **scope split**: no-any / no-suppression / file naming は source と tests に適用する。max-params / structured-error-handling / module-boundary は `src/**` のみに適用する。test helper arity は readability と local test design に従う。
 
@@ -113,6 +115,10 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 - **対象**: `docs/adr/`、`docs/design/`、`docs/governance/`、`docs/test-design/`、`docs/process/`、
   `docs/plans/`、`docs/handover/` と adapter ルール markdown。inline code、URL、frontmatter、開発用語、
   コマンド、識別子は除外し、見出し / 説明文が英語 prose のまま増えた場合を検出する。
+- **生成 handover 境界**: `docs/handover/session-handover-YYYY-MM-DD.md` は通常 handover の正本ではなく、
+  セッション再開用に出力される機械生成 packet であり、`.gitignore` 済み runtime artifact として扱う。
+  `loadDesignLanguageDocs` はこの pattern だけを除外する。`docs/handover/SESSION-...` など手書きまたは正本の
+  handover docs は引き続き検査対象に残すため、handover 配下の日本語 prose 規律は維持する。
 - **baseline**: 2026-07-02 の拡張監査で残存する既存英語 prose debt を確認する。現時点では既存 debt を
   一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS` と `DESIGN_LANGUAGE_BASELINE_FINGERPRINT` を固定する。
   件数増加だけでなく、同件数の英語 prose 差し替えも fingerprint drift として fail-close する。純粋な日本語化で

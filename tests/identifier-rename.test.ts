@@ -971,8 +971,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             currentNoWriteProxyCommand: expect.stringContaining("bun run src/cli.ts doctor --json"),
             rollbackTrigger: expect.stringContaining("doctor red"),
           }),
+          expect.objectContaining({
+            phase: "legacy-alias-continuation-and-runtime-logs",
+            commandAfterApproval: "dist/helix doctor && helix status && helix db status",
+            currentNoWriteProxyCommand:
+              "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts status --json && bun run src/cli.ts db status --json",
+            expected: expect.stringContaining("DB continuation projection health"),
+          }),
         ]),
       );
+      expect(monitoringPacket.monitoringPlan.join("\n")).not.toContain("handover");
       expect(plan.stateBackupManifest).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -2252,6 +2260,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(monitoringPayload.probes).toEqual(
         expect.arrayContaining([
+          expect.objectContaining({
+            phase: "legacy-alias-continuation-and-runtime-logs",
+            commandAfterApproval: "dist/helix doctor && helix status && helix db status",
+          }),
           expect.objectContaining({
             phase: "rule-drift-and-feedback-backlog",
             rollbackTrigger: expect.stringContaining("rule-drift"),

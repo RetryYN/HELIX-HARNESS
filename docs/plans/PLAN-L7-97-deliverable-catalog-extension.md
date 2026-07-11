@@ -8,6 +8,8 @@ status: confirmed
 created: 2026-06-22
 updated: 2026-06-22
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L5-detailed-design/physical-data.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: code-reviewer subagent (sonnet) — intra_runtime_subagent
     review_kind: intra_runtime_subagent
@@ -17,6 +19,23 @@ review_evidence:
     scope: "PO『キャリー対応カタログ拡張の完遂 / PO 判断って本当に存在するのか調べろ』を受け、L4 標準成果物カタログ (report/batch/notification/code-value) を VALID_SUB_DOCS へ追加し plan/lint.ts の重複定義を schema 単一正本由来へ一本化。code-reviewer (sonnet) VERDICT=pass・Critical 0・blocking Important 0。Object.fromEntries 派生は撤去前ローカル定義と全 6 層同値・型安全 (Record<string,Set<string>>) と確認、VALID_SUB_DOC_VALUES enum への 4 型同時追加で subDocSchema↔isValidSubDocForLayer 整合、未使用 vocabulary 追加は既存チェックに非波及と判定。Important 1 件 = 本変更が露呈させた既存 doc↔schema drift (要件 §1.10.G.1 の L3 slug `business-requirement` vs schema `business`、L4 `screen` 残留) は本変更前から存在 = 非ブロッカー、IMP-141 へ登録。Minor (grounding コメント冗長) も反映 (2 行 + document-system-map §1b 参照へ短縮)。typecheck / Biome / Vitest 854 / doctor / db rebuild green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: L4 標準成果物カタログ拡張と VALID_SUB_DOCS 単一正本化を、PLAN-REVERSE-46 の back-fill 接続を前提に現HEADの fast suite で再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/frontmatter.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - 標準成果物カタログ拡張 + VALID_SUB_DOCS 単一正本化 (誤 carry 先送りの是正)"
@@ -35,7 +54,10 @@ generates:
     artifact_type: test_code
 dependencies:
   parent: null
-  requires: []
+  requires:
+    - docs/design/harness/L5-detailed-design/physical-data.md
+    - docs/test-design/harness/L7-unit-test-design.md
+    - docs/plans/PLAN-REVERSE-46-deliverable-catalog-extension.md
   references:
     - docs/governance/document-system-map.md
     - docs/governance/helix-harness-requirements_v1.2.md

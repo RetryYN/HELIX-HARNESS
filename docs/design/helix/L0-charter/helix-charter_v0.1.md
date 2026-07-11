@@ -35,7 +35,7 @@
 - **P2 オーケストレーション根本強化＋ループエンジニアリング** — 現ハーネスの弱いオーケストレーションを HELIX の根本強化点とする。サブエージェントを「**プロンプトを複数視点で解釈・検証 → 計画 → 実行 → 検証 → オーケストレーターへ返す**」ループ単位で動かし、orchestrator が統括・統合する。effort／budget 制御を組み込む。設計手法として W モデル（AI エージェントシステムは V を2回）＋型付き内部契約（agent↔tool の request/response 機械検証）を採用検討。
 - **P3 強い検証基盤** — HELIX の第一級の強み。完全自動を許容できる安全性の要。**pair_closure（design⇔test を対で凍結、coverage100% 単独 pass 禁止）／片肺禁止／機械 vs AI 判定境界**。成果を外部の真実に照合する。
 - **P4 自動保守システム** — drift・劣化・不整合を自動検出し自動修復（自走保守）。**検出 → 自動ルーティング循環**（detection-routing）と**学習ループ**（成功 recipe 蓄積／頻出トラブル → 予防ルール=gate/detector へ昇格）。根幹は P7 ハーネスメモリ。
-- **P5 コンテキスト効率向上** — 動的注入・圧縮で「必要分だけ」を渡し、長時間の無人自走を支える。**閾値到達前に handover 要約 → fresh session 移行**、注入予算。
+- **P5 コンテキスト効率向上** — 動的注入・圧縮で「必要分だけ」を渡し、長時間の無人自走を支える。閾値到達前にappend-only eventをdurable appendし、harness.dbへ冪等投影してからbounded memory breadcrumbを残し、fresh sessionはDB-backed next actionから再開する。session/prose handoverは生成しない。注入予算を持つ。
 - **P6 GitHub 運用自動化** — commit/push の**ゲート化**（全 gate PASS で authorized push、raw push は fail-close で deny）／PR クロスレビュー自動ワークフロー／**CI 失敗時に自動改善して上げ直し**／タグによるバージョン管理。CI はゲート証跡の検証に専念。
 - **P7 ハーネスネイティブ・エージェントメモリ（2層）** — Claude Code 内蔵のメモリ機能は使わず**設計の参考のみ**。ハーネスで動くエージェント自身のメモリを 2 層に分離する：
   - **ハーネスメモリ** — ハーネス自身の改善に使う知見。**保守・アップデートの根幹**（P4 の土台）。

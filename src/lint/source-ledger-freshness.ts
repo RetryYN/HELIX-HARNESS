@@ -51,7 +51,7 @@ export function sourceLedgerCheckedDateViolation(
   if (!checkedDate) return null;
 
   const checkedMs = strictDateMs(checkedDate);
-  const nowMs = Date.parse(now);
+  const nowMs = projectDateOnlyMs(now);
   if (Number.isNaN(checkedMs) || Number.isNaN(nowMs)) {
     return `${ledgerLabel} has invalid checked date: ${checkedDate}`;
   }
@@ -72,7 +72,7 @@ export function verificationSourceMetadataViolations(
   const now = input.now ?? new Date().toISOString();
   const violations: VerificationSourceMetadataViolation[] = [];
   const checkedMs = strictDateMs(row.sourceCheckedAt);
-  const nowMs = Date.parse(now);
+  const nowMs = projectDateOnlyMs(now);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(row.sourceCheckedAt) || Number.isNaN(checkedMs)) {
     violations.push({
       subject,
@@ -135,6 +135,14 @@ function strictDateMs(value: string): number {
     return Number.NaN;
   }
   return ms;
+}
+
+/** HELIX の日付台帳は project timezone (Asia/Tokyo, UTC+09:00) の暦日で比較する。 */
+function projectDateOnlyMs(value: string): number {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return Number.NaN;
+  const tokyo = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+  return Date.UTC(tokyo.getUTCFullYear(), tokyo.getUTCMonth(), tokyo.getUTCDate());
 }
 
 function isPlaceholderSourceMetadata(value: string): boolean {

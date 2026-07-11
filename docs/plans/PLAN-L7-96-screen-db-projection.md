@@ -8,6 +8,8 @@ status: confirmed
 created: 2026-06-22
 updated: 2026-06-22
 owner: PM (Opus) / PO (人間)
+parent_design: docs/design/harness/L5-detailed-design/physical-data.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 agent_slots:
   - role: se
     slot_label: "SE — screen projection 実装 (harness-db schema + projection-writer)"
@@ -24,6 +26,8 @@ dependencies:
     - PLAN-L7-44-harness-db-master
     - PLAN-L2-01-screen-list
     - PLAN-L1-03-screen-requirements
+    - docs/design/harness/L5-detailed-design/physical-data.md
+    - docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: pmo-sonnet (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -33,6 +37,23 @@ review_evidence:
     scope: "screen DB projection (IMP-140) 実装レビュー。pmo-sonnet が実コードを読み parser 正確性 (screen-list §1 / screen-requirements §5.5 の cells[1]/cells[2] = BR-UX/FR 両列処理、header/separator 非誤認、§5.5 heading 境界抽出) + 決定論性 (indexed_at=frontmatter 由来、Date.now 不使用、recordProjectionEvent/assertNoSensitivePayload 経由) + §9.8 が db-projection-coverage 正規表現 (9.[134567]) 外で非強制を確認、Critical/Important なし。実証 = real-repo regression test (projection-writer.test IMP-140: screens=15 / PM-06=/project/:case/designs / HM-01→FR-L1-33 / 孤児0) + typecheck(tsc)/biome lint EXIT=0/vitest 8 passed + doctor green (db-projection-coverage OK / doc-consistency screens=15)。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: approve
+    scope: "DB projection closure evidence only。screen entity / screen_trace の harness.db 投影、physical-data §9.8、projection-writer 回帰テストを対象にし、HM-04/HM-01/PM-06 の画面表示 UI や screens.implemented flip は Phase B として除外する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/projection-writer.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 ---
 
 # PLAN-L7-96 (troubleshoot): screen entity を harness.db へ投影 (projection、IMP-140 完遂)

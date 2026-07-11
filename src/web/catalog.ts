@@ -75,7 +75,7 @@ export const SPECIFIC_COMPONENTS: UiComponentSpec[] = [
     states: ALL_STATES,
   },
   {
-    name: "HandoverPanel",
+    name: "ContinuationPanel",
     source: L2_SCREEN_SPECIFIC_SOURCE,
     readOnly: true,
     states: ["ok", "warn", "error"],
@@ -246,13 +246,13 @@ export const SCREEN_SPECS: ScreenSpec[] = [
   ),
   screen(
     "PM-05",
-    "Handover ビュー",
+    "Continuation ビュー",
     "PM",
-    "/project/:case/handover",
+    "/project/:case/continuation",
     "screen §1.PM.05",
-    ["HandoverPanel", "StaleWarningBanner", "CarryDetailList"],
+    ["ContinuationPanel", "StaleWarningBanner", "CarryDetailList"],
     ["NextActionCard", "CopyButton"],
-    "CURRENT handoverのnext_actionを起点に再開する",
+    "harness.db の最新 continuation projection を起点に再開する",
     "warn",
   ),
   screen(

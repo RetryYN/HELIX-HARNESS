@@ -17,6 +17,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
 import { loadReviewPlans, type ParsedReviewPlan } from "./review-evidence";
 
 export interface DigestMismatch {
@@ -41,6 +42,7 @@ export interface DigestAuditDeps {
 export function auditGreenCommandDigests(
   plans: ParsedReviewPlan[],
   deps: DigestAuditDeps,
+  retiredArtifactPaths: ReadonlySet<string> = new Set(),
 ): DigestMismatch[] {
   const mismatches: DigestMismatch[] = [];
   const validDigestPattern = /^sha256:[a-f0-9]{64}$/i;
@@ -76,6 +78,7 @@ export function auditGreenCommandDigests(
         }
         const bytes = deps.readBytes(path);
         if (bytes === null) {
+          if (retiredArtifactPaths.has(path)) continue;
           mismatches.push({
             plan_id: plan.plan_id,
             evidence_path: path,
@@ -140,6 +143,7 @@ export function checkGreenCommandDigests(repoRoot: string = process.cwd()): {
     const mismatches = auditGreenCommandDigests(
       loadReviewPlans(repoRoot),
       nodeDigestAuditDeps(repoRoot),
+      loadRetiredArtifactPaths(repoRoot),
     );
     return {
       messages: greenCommandDigestMessages(mismatches),

@@ -109,7 +109,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     expect(plan.ok).toBe(true);
     expect(plan.reviewKind).toBe("intra_runtime_subagent");
     expect(plan.cross).toMatchObject({ execution: "codex", judgement: "codex" });
-    expect(plan.agents.find((agent) => agent.key === "smart-review-agent")?.model).toBe("gpt-5.5");
+    expect(plan.agents.find((agent) => agent.key === "smart-review-agent")?.model).toBe(
+      "gpt-5.6-sol",
+    );
     expect(plan.agents.find((agent) => agent.key === "light-implementation-agent")?.model).toBe(
       "gpt-5.3-codex-spark",
     );

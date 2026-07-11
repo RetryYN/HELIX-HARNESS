@@ -88,6 +88,28 @@ export const generatesEntrySchema = z.object({
   artifact_type: artifactTypeSchema,
 });
 
+/** PLAN-L6-65: L7実装PLANのL6設計・L8 oracle・生成testを同一tupleへ拘束する。 */
+export const PLAN_SPECIFIC_ORACLE_ID_PATTERN = /^U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]?$/;
+
+export const verificationBindingSchema = z
+  .object({
+    parent_design: z.string().min(1),
+    oracle_id: z.string().regex(PLAN_SPECIFIC_ORACLE_ID_PATTERN),
+    test_path: z
+      .string()
+      .refine(
+        (value) =>
+          value === value.normalize("NFC") &&
+          value.startsWith("tests/") &&
+          !value.includes("\\") &&
+          value
+            .split("/")
+            .every((segment) => segment !== "" && segment !== "." && segment !== ".."),
+        "test_path はNFC正規化済みcanonical tests/** pathのみ",
+      ),
+  })
+  .strict();
+
 /** §1.9 dependencies */
 export const dependenciesSchema = z.object({
   parent: z.string().nullable().default(null),
@@ -117,6 +139,7 @@ const frontmatterBaseSchema = z.object({
   promotion_strategy: promotionStrategySchema.nullable().optional(),
   agent_slots: z.array(agentSlotSchema).min(1, "agent_slots は 1 件以上 (§1.8)"),
   generates: z.array(generatesEntrySchema).default([]),
+  verification_bindings: z.array(verificationBindingSchema).optional(),
   dependencies: dependenciesSchema,
   /** §6.8.2 Issue 起点スパイン: 解決対象 GitHub Issue 番号 (任意、Phase 0-B で recommended)。
    *  feature/hotfix branch の close 漏れ機械検知 + PR `Closes #NN` 連携に使う。 */

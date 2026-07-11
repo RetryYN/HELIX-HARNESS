@@ -3,18 +3,19 @@
  * `.claude/settings.json` のガード hook と **同一 entrypoint** を、Codex の実 tool 名で配線して
  * いることを fail-close 検査する (PLAN-L7-139, orchestrator-rule parity)。
  *
- * 背景: Codex 0.128.0 は Claude 互換の hook 機構を持つ (`hooks.json`,
- * `PreToolUse`/`PostToolUse`/`SessionStart`/`Stop`, payload `tool_name`/`tool_input`/`file_path`,
- * `blockOnFailure`, `permissionDecision: deny`)。ただし **tool 名が Claude と異なる**ため、matcher の
- * 字面コピーは「hooks.json はあるが一度も発火しない偽パリティ」を生む (coverage≠substance)。実機
- * `codex.exe` 文字列で確定した写像:
- *   - 編集系: Claude `Edit|Write|MultiEdit` → Codex `apply_patch|write_file`
- *     (`apply_patch` は freeform で file_path を持たず、パスは patch 本文に埋まる。work-guard 側で抽出)
- *   - shell : Claude `Bash`               → Codex `exec_command|local_shell`
- *     (`git-command-guard` は PreToolUse、session-log は PostToolUse で同じ shell matcher を使う)
- *   - Codex に `SubagentStop` event は無い          → subagent-stop は Codex で真の N/A
- *   - `spawn_agent` 等の sub-agent ツール族は実在    → Claude agent-guard entrypoint を
- *     Codex matcher `spawn_agent|spawn_agents_on_csv` へ配線する (N/A ではない)
+ * 背景: Codex は Claude 互換の hook 機構を持つ (`hooks.json`,
+ * `PreToolUse`/`PostToolUse`/`SessionStart`/`Stop`/`SubagentStop` 等, payload `tool_name`/`tool_input`,
+ * `blockOnFailure`)。ただし **tool 名が Claude と一部異なる**ため、matcher の字面コピーは
+ * 「hooks.json はあるが一度も発火しない偽パリティ」を生む (coverage≠substance)。
+ * Codex 0.144 の canonical 名 (codex-rs core/src/tools/hook_names.rs が正本、2026-07-11 実機検証済):
+ *   - shell : `Bash` (0.128 世代の `exec_command|local_shell` は一致しなくなった)
+ *   - 編集系: `apply_patch` + matcher alias `Write`/`Edit` (旧 `write_file` は廃止。
+ *     `apply_patch` は freeform で file_path を持たず、パスは patch 本文に埋まる。work-guard 側で抽出)
+ *   - sub-agent: `spawn_agent` (+alias `Agent`) / `spawn_agents_on_csv` → agent-guard を配線
+ *   - `SubagentStop` event は 0.144 で実在 → subagent-stop も配線する (旧 N/A を撤回)
+ * さらに 0.144 は hook trust gating を持つ: user/project hooks は `[hooks.state]` の
+ * `trusted_hash` が現ハッシュと一致 (Trusted) しない限り silent skip される。trust は TUI の
+ * startup review か app-server `config/batchWrite` (hooks.state upsert) で永続化する。
  *
  * SSoT: 各ガードの entrypoint (どの TS スクリプトを呼ぶか) は project-hook.ts の `REQUIRED`
  * (Claude 側) と共有する。本 lint は Codex 側が「Claude と同じ entrypoint を、Codex の matcher で」
@@ -32,16 +33,10 @@ export { CODEX_REQUIRED };
 
 /**
  * Claude のガード entrypoint のうち、Codex に **対応 event/面が存在しない** もの (真の N/A)。
- * codex.exe 0.128.0 実機の hook event は PreToolUse/PostToolUse/SessionStart/Stop/UserPromptSubmit のみで、
- * SubagentStop event は無い (バイナリ文字列で確認)。
+ * Codex 0.144 で SubagentStop event が実装されたため現在は空 (旧 0.128 世代では
+ * subagent-stop が N/A だった)。
  */
-export const CODEX_NOT_APPLICABLE = [
-  {
-    entrypoint: "src/cli.ts hook subagent-stop",
-    reason:
-      "Codex に SubagentStop event が無い (codex.exe 0.128.0 の hook event は PreToolUse/PostToolUse/SessionStart/Stop/UserPromptSubmit のみ)",
-  },
-] as const;
+export const CODEX_NOT_APPLICABLE = [] as const;
 
 /**
  * Codex に **面は実在するが本 PLAN ではまだガードしていない** surface (documented follow-up、N/A ではない)。
@@ -71,6 +66,8 @@ export type CodexHookViolationReason =
   | "missing_hook"
   | "hooks_feature_disabled"
   | "missing_block_on_failure"
+  | "missing_required_token"
+  | "insufficient_timeout"
   | "claude_project_dir_in_codex"
   | "global_codex_path"
   | "forbidden_path"
@@ -92,6 +89,7 @@ interface HookCommand {
   type?: string;
   command?: string;
   blockOnFailure?: boolean;
+  timeout?: number;
 }
 
 interface HookEntry {
@@ -217,6 +215,28 @@ export function analyzeCodexHookAdapter(input: {
     if (required.blockOnFailure && !matchingCommands.some((hook) => hook.blockOnFailure === true)) {
       violations.push({ hook: required.id, reason: "missing_block_on_failure" });
     }
+    // Codex 0.144 stdout 契約: Stop/SubagentStop は非 JSON stdout で Failed になるため、
+    // 抑止 flag (--quiet 等) の欠落を fail-close する (PLAN-L7-417)。
+    const requiredTokens = "requiredTokens" in required ? (required.requiredTokens ?? []) : [];
+    if (
+      requiredTokens.length > 0 &&
+      !matchingCommands.some((hook) => {
+        const tokens = (hook.command ?? "").trim().split(/\s+/);
+        return requiredTokens.every((token) => tokens.includes(token));
+      })
+    ) {
+      violations.push({ hook: required.id, reason: "missing_required_token" });
+    }
+    // Codex 0.144 sandbox 実測 (session start 最大 ~44s) に基づく timeout 下限 (PLAN-L7-417)。
+    const minTimeoutSec = "minTimeoutSec" in required ? required.minTimeoutSec : undefined;
+    if (
+      typeof minTimeoutSec === "number" &&
+      !matchingCommands.some(
+        (hook) => typeof hook.timeout === "number" && hook.timeout >= minTimeoutSec,
+      )
+    ) {
+      violations.push({ hook: required.id, reason: "insufficient_timeout" });
+    }
   }
 
   return {
@@ -242,7 +262,7 @@ export function loadCodexHookAdapterInput(repoRoot: string): {
 export function codexHookAdapterMessages(result: CodexHookResult): string[] {
   if (result.ok) {
     return [
-      `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=spawn_agent|apply_patch|write_file|exec_command|local_shell, subagent-stop=N/A)`,
+      `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=spawn_agent|Agent|apply_patch|Write|Edit|Bash (Codex 0.144 canonical), subagent-stop=wired)`,
       "codex-hook-adapter - OK (.codex/config.toml enables [features].hooks=true for direct Codex CLI/IDE sessions)",
       "codex-hook-adapter - note: .codex/hooks.json covers direct Codex CLI/IDE sessions only; hosted API/developer apply_patch tools do not execute through the Codex hook engine and are not repo-enforceable",
     ];

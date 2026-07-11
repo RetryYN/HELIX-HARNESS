@@ -17,6 +17,31 @@ review_evidence:
     reviewed_at: "2026-06-15"
     verdict: pass
     scope: "merged-plan-status hard gate (analyzeMergedPlanStatus 純関数 + loadMergedPlanStatusInput loader + checkMergedPlanStatus doctor 配線 + 6→8 unit/integration テスト)。検出規則 (kind ∈ {impl,add-impl,refactor} かつ status ∉ {confirmed,completed,accepted} かつ generates src 実在 → violation)、fail-open(docs/plans不在)/fail-close(repo root 不在) の使い分け、review-evidence gate との相補 (status 正確性 vs 証跡要求、別関心) を検証。Critical=0、APPROVE。Important I-1 (refactor の kind 集合非対称) / I-2 (accepted 扱い) は意図的 scope 差として merged-plan-status.ts に明文化、Minor (add-impl/refactor/accepted テスト) は追加で対応。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:16:23+09:00"
+    tests_green_at: "2026-07-09T15:16:23+09:00"
+    verdict: approve
+    scope: "PLAN-L7-54 の execution evidence 欠落を、現行 plan-lint / improvement-backlog / gate-confirm / merged-plan-status targeted green と typecheck で補い、merged-plan-status hard gate の passed evidence を harness.db に投影できる状態へ回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T15:16:23+09:00"
+        evidence_path: tests/merged-plan-status.test.ts
+        output_digest: "sha256:e50d9080733a80eafd2463820e4d0e72d7ea2482e71459043e79b8ad2efa72ec"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:16:23+09:00"
+        evidence_path: src/lint/merged-plan-status.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 agent_slots:
   - role: tl
     slot_label: "TL - merged-plan-status integrity gate 設計 + 配線"

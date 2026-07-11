@@ -120,19 +120,32 @@ export function selectPrecedingSessionFile(
   return best?.name ?? null;
 }
 
+/** SessionStart surface 群の一貫予算 (PLAN-L7-404)。0 は明示無制限。 */
+export const DEFAULT_ESCALATION_SURFACE_LIMIT = 10;
+
 /**
  * escalation signals を引き継ぎ surface 向けテキストブロックに整形する。signal が無ければ空文字
  * (出力しない)。文面は「直すな」ではなく「STOP → root cause を疑え → 検証反復を止めろ」へ誘導する。
+ * 表示行は maxSignals (既定 10、0 で無制限) で cap し、超過分は件数 breadcrumb で示す。
  */
-export function renderEscalationSignals(signals: EscalationSignal[]): string {
+export function renderEscalationSignals(
+  signals: EscalationSignal[],
+  opts: { maxSignals?: number } = {},
+): string {
   if (signals.length === 0) return "";
+  const maxSignals = opts.maxSignals ?? DEFAULT_ESCALATION_SURFACE_LIMIT;
+  const shown = maxSignals > 0 ? signals.slice(0, maxSignals) : signals;
   const lines = [
     `attempt-escalation (Iron Law) warning - 直前 session で ${signals.length} 件の連続失敗ループを検出 (STOP / 根本原因を疑え):`,
   ];
-  for (const s of signals) {
+  for (const s of shown) {
     lines.push(
       `  - ${s.subject}: ${s.failureCount} consecutive failures - STOP, question the root cause`,
     );
+  }
+  const hidden = signals.length - shown.length;
+  if (hidden > 0) {
+    lines.push(`  - (+${hidden} more escalation signals - 直前 session log を参照)`);
   }
   return `${lines.join("\n")}\n`;
 }

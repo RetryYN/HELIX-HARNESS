@@ -34,7 +34,7 @@ Forward implementation へ進む前に、decision outcome は PLAN state と `.h
 | S1 plan | PLAN `poc_criteria` field に acceptance criteria を書き、time-box を設定し、`helix plan lint` が 0 で終了 |
 | S2 poc | `tests/poc/` または tagged branch に spike code / integration test を作成し、evidence を収集 |
 | S3 verify | `poc_criteria` に対して PoC evidence を review し、PLAN に対して `helix review --uncommitted` を実行 |
-| S4 decide | `decision_outcome` を `adopt` / `reject` / `defer` に設定し、PLAN を `done` または `cancelled` へ進め、handover を書く |
+| S4 decide | `decision_outcome` を `adopt` / `reject` / `defer` に設定し、PLAN を `done` または `cancelled` へ進め、continuation projection を確認する |
 
 PLAN `status` field は phase を追跡する:
 `draft`（S0-S1） -> `active`（S2） -> `trace-freeze`（S3） -> `done` / `cancelled`（S4）。
@@ -68,7 +68,7 @@ review_evidence: []
 4. [並列] evidence を収集する: timing、logs、error rates
 5. [直列] helix review --uncommitted — poc_criteria に対する findings (S3)
 6. [直列] decision_outcome を設定し、PLAN status を更新し、helix doctor を実行する (S4)
-7. [直列] helix handover — 次 session / agent のために outcome を記録する
+7. [直列] helix status — DB projection に outcome と次 action が反映されたことを確認する
 ```
 
 ## Decision outcomes（判断 outcome）
@@ -77,7 +77,7 @@ review_evidence: []
   new PLAN の `dependencies` から PoC PLAN を link する。
 - **reject**: hypothesis falsified。PLAN は `status: cancelled`。同じ spike を繰り返さないよう、
   理由を `review_evidence` に記録する。
-- **defer**: inconclusive。blocker を `review_evidence` に記録し、handover に TTL を設定する。
+- **defer**: inconclusive。blocker と concrete TTL を PLAN `review_evidence` に記録する。
   blocker 解消後に S1 へ戻る。
 
 `adopt` decision により Reverse back-fill pairing 付きの正式な `add-impl` PLAN が作られるまで、
@@ -89,7 +89,6 @@ review_evidence: []
 helix plan lint            # poc_criteria と decision_outcome を検査する
 helix doctor               # done なのに outcome が空の poc PLAN を flag する
 helix review --uncommitted # S3 gate evidence
-helix handover             # 次 session への S4 baton
 helix status               # stalled Discovery PLANs を surface する
 ```
 

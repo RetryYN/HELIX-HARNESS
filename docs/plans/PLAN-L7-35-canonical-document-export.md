@@ -17,6 +17,23 @@ review_evidence:
     scope: "U-DOCEXPORT-001..012 promoted to green tests. Canonical document parsing, deterministic dataset building, built-in CSV/Markdown rendering, optional renderer readiness findings, artifact projection rows, derived-artifact boundary, and stale source snapshot detection are implemented as pure functions. Critical 0 / Important 0. No package installation, Office renderer invocation, generated artifact gate truth, or canonical doc mutation is introduced."
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T15:05:58+09:00"
+    tests_green_at: "2026-07-09T15:05:58+09:00"
+    verdict: approve
+    scope: "PLAN-L7-35 の過去 failed test evidence を削除せず、現行 fast suite の green evidence を追加して canonical document export 実装の passed test projection を回復した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T15:05:58+09:00"
+        evidence_path: tests/document-export.test.ts
+        output_digest: "sha256:7d0cee1ae554c76191023c276a86d4c7de30817e13bfef210199234426869db4"
 agent_slots:
   - role: tl
     slot_label: "TL - canonical document export implementation"

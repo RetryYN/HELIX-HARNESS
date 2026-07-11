@@ -10,6 +10,7 @@ updated: 2026-06-19
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: Codex TL
+parent_design: docs/design/harness/L6-function-design/function-spec.md
 review_evidence:
   - reviewer: codex-gpt-5
     review_kind: intra_runtime_subagent
@@ -19,6 +20,23 @@ review_evidence:
     scope: "Claude provider dispatch no longer sends task text through `-p <task>`. `buildAdapterPlan` emits fixed Claude argv (`--print --input-format text` plus model/effort flags) and carries the prompt in `AdapterPlan.stdin`, matching the existing Codex stdin transport. Regression coverage proves native ClaudeCode tool markup such as `<invoke name=\"Bash\">...` and multi-line prompt text do not appear in argv or the provider invocation string; fake `helix claude --execute` receives the prompt on stdin while preserving session lifecycle evidence. Follow-up recurrence analysis found an interactive Claude VSCode transcript emitting XML-like pseudo tool calls as assistant text, so repository Claude policy now explicitly forbids `court` / `<invoke>` pseudo tool text and hook status messages are ASCII to avoid adding corrupted context."
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: Claude prompt stdin dispatch と native tool markup の argv 非混入 contract が現HEADの fast suite で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/runtime-adapter.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - claude stdin prompt dispatch reliability fix"

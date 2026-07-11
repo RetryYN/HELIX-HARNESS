@@ -146,10 +146,15 @@ export function rethrowOnly(): void {
         scope: "source",
         text: 'import { runGate } from "../gate/run";\nexport const x = runGate;',
       },
+      {
+        path: "src/lint/bad-vmodel-boundary.ts",
+        scope: "source",
+        text: 'import { VMODEL_ZIP_FILENAME } from "../vmodel/zip-manifest";\nexport const x = VMODEL_ZIP_FILENAME;',
+      },
     ]);
 
     expect(result.ok).toBe(false);
-    expect(result.violations.map((v) => v.rule)).toContain("module-boundary");
+    expect(result.violations.map((v) => v.rule)).toEqual(["module-boundary", "module-boundary"]);
   });
 
   it("U-CODE-010: detects machine-facing status messages without ASCII decision tokens", () => {

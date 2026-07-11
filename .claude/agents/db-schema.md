@@ -4,7 +4,7 @@ description: DBスキーマ設計・マイグレーション。ER図・テーブ
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: high
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 25
 ---

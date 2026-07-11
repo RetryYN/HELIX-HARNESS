@@ -87,7 +87,7 @@ Recovery または Incident 配下の fix PLAN は、次を満たす場合だけ
 - [ ] prevention measure を特定済み。new `helix doctor` gate、lint rule、
       または earlier に捕捉できた design doc update のいずれか。
 - [ ] `helix review --uncommitted` に blocking findings が無い。
-- [ ] Handover が updated または closed（`helix handover`）。
+- [ ] `helix status` が最新の continuation projection と next action を示す。
 
 ## Anti-patterns（避けるパターン）
 

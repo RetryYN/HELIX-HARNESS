@@ -33,6 +33,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
 import { loadReviewPlans } from "./review-evidence";
 import { isTerminalPlanStatus, normalizePath } from "./shared";
 
@@ -119,7 +120,10 @@ function generatesArtifactPaths(content: string): string[] {
     .map((p) => normalizePath(p));
 }
 
-export function loadPlanArtifactExistenceInput(repoRoot: string): PlanArtifactExistenceInput {
+export function loadPlanArtifactExistenceInput(
+  repoRoot: string,
+  retiredArtifactPaths: ReadonlySet<string> = loadRetiredArtifactPaths(repoRoot),
+): PlanArtifactExistenceInput {
   const plans: PlanArtifactRow[] = [];
   let reviewPlans: ReturnType<typeof loadReviewPlans>;
   try {
@@ -139,7 +143,9 @@ export function loadPlanArtifactExistenceInput(repoRoot: string): PlanArtifactEx
       continue;
     }
     const declared = generatesArtifactPaths(content);
-    const missingArtifacts = declared.filter((p) => !existsSync(join(repoRoot, p)));
+    const missingArtifacts = declared.filter(
+      (p) => !existsSync(join(repoRoot, p)) && !retiredArtifactPaths.has(p),
+    );
     const hollowArtifacts = declared.filter(
       (p) => existsSync(join(repoRoot, p)) && isHollowFile(repoRoot, p),
     );

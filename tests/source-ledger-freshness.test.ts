@@ -38,6 +38,23 @@ describe("source ledger freshness", () => {
     ).toBe("S4 decision source ledger has invalid checked date: 2026-04-31");
   });
 
+  it("allows a checked date that matches the local calendar day", () => {
+    expect(
+      sourceLedgerCheckedDateViolation(
+        "S4 decision source ledger (checked 2026-07-10):",
+        "S4 decision source ledger",
+        "2026-07-09T17:04:00.000Z",
+      ),
+    ).toBeNull();
+    expect(
+      sourceLedgerCheckedDateViolation(
+        "S4 decision source ledger (checked 2026-07-10):",
+        "S4 decision source ledger",
+        "2026-07-10T02:04:00+09:00",
+      ),
+    ).toBeNull();
+  });
+
   it("rejects placeholder and future-action verification source metadata", () => {
     const violations = verificationSourceMetadataViolations({
       subject: "PLAN-X.phase",

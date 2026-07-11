@@ -18,6 +18,23 @@ review_evidence:
     scope: "helix task classify CLI は既存 FR-L1-39/41 contracts (scoreTaskComplexity/classifyDrive) と inferTaskDifficulty の上に実装し、kind inference と escalation-risk flags を追加する。PM は tsc、Biome、6 Vitest cases (kind/drive/risk/size/determinism、'author' non-risk guard 含む)、CLI smoke、doctor で検証した。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:10:04+09:00"
+    tests_green_at: "2026-07-09T18:10:04+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: task classify CLI / classifier contract を現行 `tests/task-classify.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/task-classify.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:10:04+09:00"
+        evidence_path: tests/task-classify.test.ts
+        output_digest: "sha256:c8d664db907a9ebc7ebffe2bd92973a3574faa8884b3267cc3b68460fbbd6089"
 agent_slots:
   - role: tl
     slot_label: "TL - 既存 contracts 上の task classify CLI surface"

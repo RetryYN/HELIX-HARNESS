@@ -82,7 +82,7 @@ Sev1 trigger では second opinion を待たず rollback する。extended downt
 rollback は resolution ではない。stable になったら Recovery PLAN（branch `hotfix/*`）を開き、
 root cause を記録し、fix を design-level（`add-design`）または implementation-only（L7 の `add-impl`）
 に分類し、re-deploy 前に failure を捕捉できた regression test を追加する。
-PLAN boundary で `helix handover` を実行する。
+PLAN boundary では `helix status` で `harness.db` continuation projection と next action を確認する。
 
 ## DB migration safety（DB migration 安全性）
 

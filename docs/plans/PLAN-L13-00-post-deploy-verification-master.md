@@ -32,7 +32,7 @@ review_evidence:
     reviewer_model: explorer
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
-    verdict: pass-with-findings
+    verdict: pass
     scope: "L13 の filename-level PLAN gap を検出したため、この master は local smoke と monitoring 境界だけを文書証跡として記録する。"
     green_commands:
       - kind: lint

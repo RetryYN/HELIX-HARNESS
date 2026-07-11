@@ -41,6 +41,24 @@ dependencies:
     - docs/design/harness/L6-function-design/function-spec.md
     - docs/test-design/harness/L7-unit-test-design.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:19:40+09:00"
+    tests_green_at: "2026-07-09T18:19:40+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: unapproved L7 implementation guard / change-set integrity contract を現行 `tests/change-impact.test.ts` で再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/change-impact.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:19:40+09:00"
+        evidence_path: tests/change-impact.test.ts
+        output_digest: "sha256:6128840f61db294626b8e619542ef2558406c4486825193b21712647ba5dbd8d"
 ---
 
 # PLAN-L7-231: 未承認 L7 implementation guard（unapproved L7 implementation guard）

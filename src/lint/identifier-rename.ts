@@ -1477,7 +1477,7 @@ function buildMonitoringPlan(): IdentifierRenameCutoverPlan["monitoringPlan"] {
     "run helix doctor and legacy alias smoke during the quiet window",
     "rebuild harness.db and inspect status/completion decision packet",
     "check rule-drift, hook adapter parity, and green-command digest after cutover",
-    "watch feedback backlog, handover, and runtime logs for path or marker regressions",
+    "watch feedback backlog, continuation projection, and runtime logs for path or marker regressions",
   ];
 }
 
@@ -1708,14 +1708,14 @@ export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitor
         rollbackTrigger: "doctor red, status regression, or completion packet evidence drift",
       },
       {
-        phase: "legacy-alias-and-runtime-logs",
-        commandAfterApproval: "dist/helix doctor && helix handover",
+        phase: "legacy-alias-continuation-and-runtime-logs",
+        commandAfterApproval: "dist/helix doctor && helix status && helix db status",
         currentNoWriteProxyCommand:
-          "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts handover",
+          "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts status --json && bun run src/cli.ts db status --json",
         expected:
-          "legacy alias disposition and handover/runtime log continuity are observable during the quiet window",
+          "legacy alias disposition, DB continuation projection health, and runtime log continuity are observable during the quiet window",
         rollbackTrigger:
-          "alias breakage without approved sunset route or runtime path regression in logs/handover",
+          "alias breakage without approved sunset route, continuation projection regression, or runtime path regression in logs",
       },
       {
         phase: "rule-drift-and-feedback-backlog",

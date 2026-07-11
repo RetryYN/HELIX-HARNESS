@@ -15,12 +15,95 @@ promotion_strategy: reuse-with-hardening
 review_evidence:
   - reviewer: codex-intra-runtime-review
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-11"
-    tests_green_at: "2026-06-11"
+    reviewed_at: "2026-07-09T13:00:19+09:00"
+    tests_green_at: "2026-07-09T13:00:19+09:00"
     verdict: pass
     scope: "U-DEPD-001..003 and U-REGEXP-001..002 promoted to green; doctor scaffold stub replaced by dependency-drift/regression-expansion surface. Critical 0 / Important 0. External import-graph tools remain out of scope."
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:00:19+09:00"
+        evidence_path: src/lint/dependency-drift.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/dependency-drift.test.ts tests/change-impact.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:00:19+09:00"
+        evidence_path: tests/dependency-drift.test.ts
+        output_digest: "sha256:8ac113f7275b68d3e16fae9ef018283cc8894e7752b468dce8126618eb1d3cf3"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T13:00:19+09:00"
+    tests_green_at: "2026-07-09T13:00:19+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "dependency-drift の import graph を runtime edge に厳格化し、`import type` / type-only named import / `export type` を module-cycle の実行時依存から除外した。これにより type-only cycle を誤検出せず、live repo の dependency findings は 19 件から 14 件へ収束し、残りは runtime value import cycle として維持される。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:00:19+09:00"
+        evidence_path: src/lint/dependency-drift.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/dependency-drift.test.ts tests/change-impact.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:00:19+09:00"
+        evidence_path: tests/dependency-drift.test.ts
+        output_digest: "sha256:8ac113f7275b68d3e16fae9ef018283cc8894e7752b468dce8126618eb1d3cf3"
+      - kind: smoke
+        command: "bun -e 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); const messages=r.findings.map(f=>f.message); if (r.findings.length !== 14) throw new Error(`expected 14 findings, got ${r.findings.length}`); for (const gone of [\"state-db -> vscode -> state-db\", \"vmodel -> plan -> lint\"]) { if (messages.some(m=>m.includes(gone))) throw new Error(`type-only cycle still present: ${gone}`); } console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length},null,2));'"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T13:00:19+09:00"
+        evidence_path: src/lint/dependency-drift.ts
+        output_digest: "sha256:d5d73e025cc6b3ecf265be040b300bf3e3318abc6c206c5a893b114c7a5dc324"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T13:16:26+09:00"
+    tests_green_at: "2026-07-09T13:16:26+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex
+    scope: "ハイブリッド L12 適合のため、PLAN entry routing を pure lint + DB input adapter に分離し、Vモデルfit/ZIP manifest/設計宣言抽出を state-db read-model または中立 module へ再配置した。live dependency-drift は 14 件/4 error から 2 件/0 error へ収束し、残りは orchestration/team/task の既存 warn のみ。"
+    green_commands:
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T13:16:26+09:00"
+        evidence_path: src/state-db/vmodel-fit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: unit_test
+        command: "bun run vitest run tests/plan-entry-routing.test.ts tests/dependency-drift.test.ts tests/current-location.test.ts tests/vmodel-zip-manifest.test.ts tests/design-declarations.test.ts tests/goal-evidence-audit.test.ts tests/coding-rules.test.ts tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/projection-writer.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T13:16:26+09:00"
+        evidence_path: tests/dependency-drift.test.ts
+        output_digest: "sha256:f21b53bb1a371126766a3b459467aa1351093454bd9fdd10cf92495d9edede58"
+      - kind: smoke
+        command: "bun -e 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length,findings:r.findings}, null, 2));'"
+        runner: bun
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-07-09T13:16:26+09:00"
+        evidence_path: src/lint/dependency-drift.ts
+        output_digest: "sha256:f6fa5ac850c768a325485423ae0809b688ea5dc6413ba55f8d1ab8df05b9e42e"
 agent_slots:
   - role: tl
     slot_label: "TL - dependency drift / regression expansion reverse close"
@@ -35,6 +118,14 @@ generates:
     artifact_type: test_code
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design
+  - artifact_path: src/state-db/plan-entry-routing-input.ts
+    artifact_type: source_module
+  - artifact_path: src/state-db/vmodel-fit.ts
+    artifact_type: source_module
+  - artifact_path: src/schema/design-declarations.ts
+    artifact_type: source_module
+  - artifact_path: src/schema/hybrid-vmodel-manifest.ts
+    artifact_type: source_module
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 dependencies:
   parent: docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md

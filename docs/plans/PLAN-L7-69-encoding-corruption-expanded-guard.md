@@ -10,6 +10,8 @@ updated: 2026-06-19
 backprop_decision: not_required
 backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
 owner: Codex TL (ticket) / PM (Opus) implementation 2026-06-19
+parent_design: docs/design/harness/L6-function-design/module-drift.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 review_evidence:
   - reviewer: claude-code-reviewer (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
@@ -19,6 +21,23 @@ review_evidence:
     scope: "PLAN-L7-69 §2-3 残スコープ (.helix/audit/**/*.md + .helix/handover/**/*.json provider cross-agent payload) の mojibake guard 実装をレビュー。verdict=pass-with-nits・Critical 0・changes-required なし。4 設計論点を確認: ①raw JSON text を MOJIBAKE_MARKERS で走査 (parse でなく) は JSON.stringify 産物に対し健全 (mojibake 文字は stringify が出さない・clean ASCII/UTF-8 に false-positive なし) ②空/不在 .helix の fail-open (checked>0 不要) は generated state ゆえ妥当・prose band の checked>0 非対称は意図的で安全 ③walkFiles リファクタは walkMarkdown 既存呼出に behavior-preserving ④doctor hard-gate 配線は invocation/ok-chain/messages の 3 点完備。nit disposition: walkFiles の statSync skip は元 walkMarkdown 継承・read 経路は readFileSync→catch で fail-close 維持 (明確化コメント追記済); 残 nit (catch message の言語/live fixture/audit json 除外) は既存パターン整合 or PLAN scoping 意図ゆえ受容。typecheck/Biome/Vitest 785/doctor EXIT=0。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
+  - reviewer: codex-tl-current-location-recovery
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:47:48+09:00"
+    tests_green_at: "2026-07-09T18:47:48+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: expanded encoding-corruption guard と runtime artifact readability が現HEADの fast regression で壊れていないことを再検証する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bun run test:fast"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-09T18:47:48+09:00"
+        evidence_path: tests/readability.test.ts
+        output_digest: "sha256:0a56427fb56ec573beb58350c31ad8ef5b217ae5377bd190e4c3d670b5279403"
 agent_slots:
   - role: tl
     slot_label: "TL - encoding corruption guard expansion"
@@ -40,6 +59,8 @@ dependencies:
   requires:
     - docs/improvement-backlog.md
     - .helix/audit/A-137-unusable-provider-dispatch-audit.md
+    - docs/design/harness/L6-function-design/module-drift.md
+    - docs/test-design/harness/L7-unit-test-design.md
 ---
 
 # PLAN-L7-69: encoding-corruption guard の拡張

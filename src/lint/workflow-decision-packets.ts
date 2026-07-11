@@ -9,7 +9,6 @@ export type WorkflowDecisionPacketCommand =
 export type DecisionPacketSourceCommand =
   | WorkflowDecisionPacketCommand
   | "helix completion review-bundle --json"
-  | "helix handover"
   | "helix status --json";
 
 export interface RelatedDecisionPacket {

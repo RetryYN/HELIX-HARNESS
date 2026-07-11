@@ -22,6 +22,23 @@ review_evidence:
     reviewed_at: "2026-06-15"
     verdict: pass
     scope: "Learning Engine FR-L1-36/38/43 (projectSkillEvaluations/projectPocEvaluations/projectModelEvaluations + harness-db schema v12 + 3 evaluation test suites)。cold-start 不変条件 (0 telemetry/opt-in 無効で 0 行・throw しない) を 3 projection で確認、FR-38 cost-efficiency の explicit_l7_defer (当時 telemetry 未配線・捏造なし、後続 PLAN-L7-57/58 で discharge 済み) 正当性、値の正しさ (skill rating=adoption×success / PoC=confirmed/(confirmed+rejected+pivot) pivot 非成功 / model=success_count/run_count、join=plan_registry.status IN PLAN_SUCCESS_STATUSES) を検証。Critical=0、APPROVE。Important I-1 (poc PK single-row 制約 doc note) は対応、I-2 (unused cutoff 30d 境界テスト) + Minor M-1..3 (asOf 対称性/PLAN_SUCCESS_STATUSES export/index コメント) は §Carry に test-hardening follow-up として記録 (非ブロッカー、green コードへの増分)。V-model closure 用の後追い review (実装は 2026-06-15 同日 merge 済 green、status=draft + review_evidence 空のまま放置されていたのを本クローズで confirmed 化)。"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-09T18:09:41+09:00"
+    tests_green_at: "2026-07-09T18:09:41+09:00"
+    verdict: pass
+    scope: "current-location recovery collect_evidence: learning engine の skill/model/PoC evaluation projection を現行テストで再検証し、review_evidence.green_commands へ投影可能な実行証跡を追加する。"
+    worker_model: codex
+    reviewer_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/skill-evaluation.test.ts tests/model-evaluation.test.ts tests/poc-evaluation.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-09T18:09:41+09:00"
+        evidence_path: tests/skill-evaluation.test.ts
+        output_digest: "sha256:95fe00e4ed73059c4cb9bddfd01a41ef78cecf8c1711473c08e70e942120717e"
 generates:
   # FR-L1-36 (基盤 slice。この PLAN で実装済み)
   - artifact_path: src/schema/harness-db.ts

@@ -36,8 +36,8 @@ describe("team model policy", () => {
     expect(selection).toMatchObject({
       difficulty: "critical",
       model_family: "frontier",
-      // frontier = T0 最上位。tier-router TIER_TABLE.T0.codex (gpt-5.5) と整合 (PLAN-L7-75 reconcile)。
-      model: "gpt-5.5",
+      // frontier = T0 最上位。tier-router TIER_TABLE.T0.codex (gpt-5.6-sol) と整合 (PLAN-L7-75 reconcile)。
+      model: "gpt-5.6-sol",
       reasoning_effort: "high",
     });
   });

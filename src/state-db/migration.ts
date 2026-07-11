@@ -112,7 +112,7 @@ export function migrate(db: HarnessDb): MigrationResult {
   for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
   const addedColumns = addMissingColumns(db);
   ensurePrimaryKeyCompatibilityIndexes(db);
-  for (const ddl of ddls.filter((s) => s.startsWith("CREATE INDEX"))) db.exec(ddl);
+  for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
   if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
   const toVersion = fromVersion > SCHEMA_VERSION ? fromVersion : SCHEMA_VERSION;
   return {

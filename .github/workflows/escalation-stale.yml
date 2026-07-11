@@ -14,8 +14,8 @@ jobs:
           persist-credentials: false
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
-      - name: Handover route
-        run: bun run helix handover status --json
+      - name: HELIX status and continuation
+        run: bun run helix status --json
       - name: HELIX completion decision packet
         run: bun run helix completion decision-packet --json
       - name: HELIX completion review bundle
