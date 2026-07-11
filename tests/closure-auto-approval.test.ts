@@ -10,14 +10,18 @@ import {
   closureAutoApprovalWindows,
   currentRepositoryHead,
   evaluateClosureAutoApproval,
+  isForcedIrreversiblePlanId,
   parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
   recoverClosureAutoApprovalTransaction,
+  verifyClosureAuditChain,
 } from "../src/state-db/closure-auto-approval";
 import type {
   ProjectClosureQueueItem,
   ProjectCurrentLocationSnapshot,
 } from "../src/state-db/current-location";
+import { openHarnessDb } from "../src/state-db/index";
+import { migrate } from "../src/state-db/migration";
 
 // PLAN-L7-431-closure-auto-approval
 const sha = (value: string | Buffer) =>
@@ -89,6 +93,8 @@ function fixture(count = 1) {
     },
   });
   const head = currentRepositoryHead(root);
+  const db = openHarnessDb(":memory:");
+  migrate(db);
   mkdirSync(join(root, ".helix/evidence/closure-runs"), { recursive: true });
   mkdirSync(join(root, ".helix/evidence/outputs"), { recursive: true });
   for (const item of queue) {
@@ -126,6 +132,27 @@ function fixture(count = 1) {
         ],
       }),
     );
+    db.prepare(
+      `INSERT INTO test_runs
+       (test_run_id, session_id, plan_id, command, exit_code, evidence_path, output_digest, completed_at, status)
+       VALUES (?, ?, ?, ?, 0, ?, ?, ?, 'passed')`,
+    ).run(
+      `test-run:${item.planId}`,
+      `session:${item.planId}`,
+      item.planId,
+      "bunx vitest run tests/fixture.test.ts",
+      testOutput,
+      sha(readFileSync(join(root, testOutput))),
+      "2026-07-12T00:01:00Z",
+    );
+    db.prepare(
+      `INSERT INTO test_cases (test_case_id, test_run_id, plan_id, oracle_id, status)
+       VALUES (?, ?, ?, 'U-FIXTURE', 'passed')`,
+    ).run(`case:${item.planId}`, `test-run:${item.planId}`, item.planId);
+    db.prepare(
+      `INSERT INTO gate_runs (gate_run_id, gate_id, plan_id, status, checked_at, evidence_path)
+       VALUES (?, 'G7', ?, 'passed', ?, ?)`,
+    ).run(`gate-run:${item.planId}`, item.planId, "2026-07-12T00:01:00Z", gateOutput);
   }
   const snapshot = {
     source_clock: "2026-07-12T00:10:00Z",
@@ -162,12 +189,13 @@ function fixture(count = 1) {
       source_digest: sha(readFileSync(join(root, item.sourcePath))),
     })),
   };
-  return { root, snapshot, manifest, queue };
+  return { root, db, snapshot, manifest, queue };
 }
 
 const evaluate = (f: ReturnType<typeof fixture>, limit = f.queue.length, offset = 0) =>
   evaluateClosureAutoApproval({
     repoRoot: f.root,
+    db: f.db,
     snapshot: f.snapshot,
     manifest: f.manifest,
     limit,
@@ -184,6 +212,17 @@ describe("closure auto approval authority", () => {
     expect(() =>
       parseClosureAutoApprovalManifest({ ...f.manifest, caller_expected_tests: [] }),
     ).toThrow();
+    f.db
+      .prepare(
+        "INSERT INTO test_cases (test_case_id, test_run_id, plan_id, oracle_id, status) VALUES (?, ?, ?, ?, 'passed')",
+      )
+      .run(
+        "duplicate-oracle-case",
+        `test-run:${f.queue[0]?.planId}`,
+        f.queue[0]?.planId,
+        "U-FIXTURE",
+      );
+    expect(evaluate(f).blockers).toContain(`${f.queue[0]?.planId}: run_id重複: U-FIXTURE`);
   });
 
   it("U-CAUTO-002: DB集計green自己申告でもevidence bytes driftを拒否する", () => {
@@ -193,9 +232,18 @@ describe("closure auto approval authority", () => {
     expect(evaluate(f).blockers).toContain(
       `${f.queue[0]?.planId}: test-run:${f.queue[0]?.planId}: output artifact digest drift`,
     );
+    const jsonOnly = fixture();
+    jsonOnly.db.prepare("DELETE FROM test_cases").run();
+    jsonOnly.db.prepare("DELETE FROM test_runs").run();
+    jsonOnly.db.prepare("DELETE FROM gate_runs").run();
+    expect(evaluate(jsonOnly).blockers).toContain(
+      `${jsonOnly.queue[0]?.planId}: test-run:${jsonOnly.queue[0]?.planId}: canonical DB runner receipt欠落`,
+    );
   });
 
   it("U-CAUTO-003: typed不可逆capabilityはhuman境界へ残す", () => {
+    expect(isForcedIrreversiblePlanId("PLAN-L7-146-serverless-readonly-share-v2")).toBe(true);
+    expect(isForcedIrreversiblePlanId("PLAN-L7-146-lookalike")).toBe(false);
     const f = fixture();
     const authority = f.manifest.candidates[0];
     if (!authority) throw new Error("fixture missing");
@@ -233,6 +281,7 @@ describe("closure auto approval authority", () => {
         repoRoot: toctou.root,
         evaluation: approved,
         manifest: toctou.manifest,
+        db: toctou.db,
         now: new Date("2026-07-12T00:10:00Z"),
       }),
     ).toThrow("write直前manifest CAS不一致");
@@ -247,6 +296,7 @@ describe("closure auto approval authority", () => {
         repoRoot: f.root,
         evaluation,
         manifest: f.manifest,
+        db: f.db,
         failAfterRenameForTest: 1,
         now: new Date("2026-07-12T00:10:00Z"),
       }),
@@ -265,6 +315,11 @@ describe("closure auto approval authority", () => {
       status: "rolled_back",
       previous_digest: auditLines[0]?.event_digest,
     });
+    const auditPath = join(f.root, ".helix/audit/closure-auto-approval.jsonl");
+    const untamperedAudit = readFileSync(auditPath, "utf8");
+    writeFileSync(auditPath, untamperedAudit.replace('"status":"started"', '"status":"forged"'));
+    expect(() => verifyClosureAuditChain(auditPath)).toThrow("hash-chain不正");
+    writeFileSync(auditPath, untamperedAudit);
     const target = f.queue[0];
     if (!target) throw new Error("fixture missing");
     const original = before[0] as string;
@@ -276,8 +331,14 @@ describe("closure auto approval authority", () => {
         schema_version: "closure-auto-approval-journal.v1",
         transaction_id: "11111111-1111-4111-8111-111111111111",
         status: "prepared",
+        started_audit_digest: auditLines[1]?.event_digest,
         entries: [
-          { path: target.sourcePath, before_content: original, before_digest: sha(original) },
+          {
+            path: target.sourcePath,
+            before_content: original,
+            before_digest: sha(original),
+            after_digest: sha("crash-partial\n"),
+          },
         ],
       }),
     );

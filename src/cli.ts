@@ -378,6 +378,7 @@ import {
   evaluateClosureAutoApproval,
   parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
+  recoverClosureAutoApprovalTransaction,
 } from "./state-db/closure-auto-approval";
 import {
   buildProjectArtifactRemapBatchReport,
@@ -8135,6 +8136,7 @@ closure
         return;
       }
       const repoRoot = process.cwd();
+      recoverClosureAutoApprovalTransaction(repoRoot);
       const db = openHarnessDb(opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:", {
         repoRoot,
       });
@@ -8160,6 +8162,7 @@ closure
           batches.push(
             evaluateClosureAutoApproval({
               repoRoot,
+              db,
               snapshot,
               manifest: {
                 ...manifest,
@@ -8181,7 +8184,7 @@ closure
           const transactionEvaluation: ClosureAutoApprovalEvaluation = {
             ...first,
             allowed,
-            authority_digest: canonicalClosureAuthorityDigest(repoRoot, selectedManifest),
+            authority_digest: canonicalClosureAuthorityDigest(repoRoot, selectedManifest, db),
             target_plan_ids: batches.flatMap((batch) => batch.target_plan_ids),
             blockers: batches.flatMap((batch) => batch.blockers),
             rendered_patches: batches.flatMap((batch) => batch.rendered_patches),
@@ -8190,6 +8193,7 @@ closure
             repoRoot,
             evaluation: transactionEvaluation,
             manifest: selectedManifest,
+            db,
           });
           applied.push(...result.applied);
         }
