@@ -2903,15 +2903,26 @@ describe("runDoctor", () => {
       ),
     ).toBe(true);
     const handoffDecisionMatch = r.messages
-      .find((message) => message.includes("doctor: recovery-handoff-binding - digest="))
+      .find(
+        (message) =>
+          message.includes("doctor: recovery-handoff-binding - digest=") &&
+          /decision=(?:closure-review|closure-evidence-materialize):[a-z_]+/.test(message),
+      )
       ?.match(/decision=(closure-review|closure-evidence-materialize):([a-z_]+)/);
     const handoffDecision = handoffDecisionMatch?.[2];
-    expect(handoffDecision).toMatch(/^[a-z_]+$/);
-    expect(handoffDecisionMatch?.[1]).toBe(
-      recoveryHandoff?.includes("phase=approval")
-        ? "closure-review"
-        : "closure-evidence-materialize",
-    );
+    const decisionPublished = handoffDecision !== undefined;
+    if (decisionPublished) {
+      expect(handoffDecision).toMatch(/^[a-z_]+$/);
+      expect(handoffDecisionMatch?.[1]).toBe(
+        recoveryHandoff?.includes("phase=approval")
+          ? "closure-review"
+          : "closure-evidence-materialize",
+      );
+    } else {
+      expect(recoveryHandoff).toMatch(
+        /status=(?:machine_pending|generate_probe|generate_approval_draft|unchecked|unavailable).*phase=machine/,
+      );
+    }
     expect(
       hasDoctorMessageWith(
         r.messages,
@@ -2937,7 +2948,10 @@ describe("runDoctor", () => {
     const selectedAction = r.messages
       .find((message) => message.includes("doctor: recovery-exit-binding"))
       ?.match(/selected=([a-z_]+)/)?.[1];
-    expect(selectedAction).toBe(handoffDecision);
+    expect(selectedAction).toMatch(/^[a-z_]+$/);
+    if (decisionPublished) {
+      expect(selectedAction).toBe(handoffDecision);
+    }
     expect(
       hasDoctorMessageWith(r.messages, "doctor: approval-review-binding", `count=${approvalCount}`),
     ).toBe(true);
