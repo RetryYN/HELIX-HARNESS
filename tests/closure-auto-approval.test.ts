@@ -235,6 +235,15 @@ const evaluate = (f: ReturnType<typeof fixture>, limit = f.queue.length, offset 
     offset,
     now: new Date("2026-07-12T00:10:00Z"),
   });
+const githubReceipt = (f: ReturnType<typeof fixture>) => ({
+  schema_version: "github-required-check-receipt.v1" as const,
+  repository: "RetryYN/HELIX-HARNESS",
+  head: currentRepositoryHead(f.root),
+  check_name: "harness-check" as const,
+  conclusion: "success" as const,
+  run_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456",
+  observed_at: "2026-07-12T00:10:00Z",
+});
 
 describe("closure auto approval authority", () => {
   it("U-CAUTO-001: typed bytes/run authorityだけでdry-runを許可する", () => {
@@ -321,12 +330,24 @@ describe("closure auto approval authority", () => {
         evaluation: approved,
         manifest: toctou.manifest,
         db: toctou.db,
+        githubReceipt: githubReceipt(toctou),
         now: new Date("2026-07-12T00:10:00Z"),
       }),
     ).toThrow("write直前manifest CAS不一致");
   });
 
   it("U-CAUTO-005: rename途中失敗を全PLAN rollbackし失敗auditを残す", () => {
+    const noGithub = fixture();
+    expect(() =>
+      applyClosureAutoApprovalAtomic({
+        repoRoot: noGithub.root,
+        evaluation: evaluate(noGithub),
+        manifest: noGithub.manifest,
+        db: noGithub.db,
+        githubReceipt: null,
+        now: new Date("2026-07-12T00:10:00Z"),
+      }),
+    ).toThrow("dry-run only");
     const f = fixture(2);
     const evaluation = evaluate(f);
     const before = f.queue.map((item) => readFileSync(join(f.root, item.sourcePath), "utf8"));
@@ -336,6 +357,7 @@ describe("closure auto approval authority", () => {
         evaluation,
         manifest: f.manifest,
         db: f.db,
+        githubReceipt: githubReceipt(f),
         failAfterRenameForTest: 1,
         now: new Date("2026-07-12T00:10:00Z"),
       }),
@@ -373,6 +395,7 @@ describe("closure auto approval authority", () => {
         started_audit_digest: auditLines[0]?.event_digest,
         authority_digest: auditLines[0]?.authority_digest,
         target_digest: auditLines[0]?.target_digest,
+        patch_set_digest: auditLines[0]?.patch_set_digest,
         entries: [
           {
             path: target.sourcePath,

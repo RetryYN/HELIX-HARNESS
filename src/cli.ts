@@ -376,6 +376,7 @@ import {
   canonicalClosureAuthorityDigest,
   closureAutoApprovalWindows,
   evaluateClosureAutoApproval,
+  loadGithubRequiredCheckReceipt,
   parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
   recoverClosureAutoApprovalTransaction,
@@ -8196,6 +8197,7 @@ closure
             evaluation: transactionEvaluation,
             manifest: selectedManifest,
             db,
+            githubReceipt: loadGithubRequiredCheckReceipt(repoRoot),
           });
           applied.push(...result.applied);
         }
