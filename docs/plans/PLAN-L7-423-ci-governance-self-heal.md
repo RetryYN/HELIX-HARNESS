@@ -73,10 +73,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-L13-00-post-deploy-verification-master.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L14-00-operations-feedback-master.md, artifact_type: markdown_doc }
   - { artifact_path: tests/ci-governance-self-heal.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/dependency-drift.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/feedback-lifecycle.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/secret-scan.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md
   requires:

@@ -1,1721 +1,2293 @@
 {
-  "schemaVersion": "plan-specific-vpair-binding-authority.v1",
+  "schemaVersion": "plan-specific-vpair-binding-authority.v2",
   "initialAuthority": [
     {
       "fingerprint": "sha256:01fd605512d03f41578517502794ebfa638904c730182ffa26d00682526d093f",
       "plan_id": "PLAN-L7-288-handover-semantic-catalog-anchor",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-288-handover-semantic-catalog-anchor.md",
+      "plan_semantic_digest": "sha256:fb1e76bbe1bef5fda2f98b922806dbbe747fbeff73f04e56f28435b8ba50b3a8"
     },
     {
       "fingerprint": "sha256:0364ac87b62235d441936220e92523ad36c555b2072b99f932d3d37653eb81e4",
       "plan_id": "PLAN-L7-06-handover-enforcement",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-06-handover-enforcement.md",
+      "plan_semantic_digest": "sha256:251d800286fce8c4c2b875eb6fdfbddafaaca83e8c51fdb9a92f246d81e61eca"
     },
     {
       "fingerprint": "sha256:04d1cb59342dd5b72969d15b2c6d5f89c082237c92b9755841f2f7615e2e05ae",
       "plan_id": "PLAN-L7-372-visualization-view-model-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-372-visualization-view-model-impl.md",
+      "plan_semantic_digest": "sha256:13f6762c3aea7871f3c53f617d5c33150d6c3c60cb01e355ae333677cb73631e"
     },
     {
       "fingerprint": "sha256:052cae463c8207e3f339dfcaf5a5111d253242ba6c24abca18af76ccc18977c1",
       "plan_id": "PLAN-L7-208-codex-hook-feature-enable-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-208-codex-hook-feature-enable-gate.md",
+      "plan_semantic_digest": "sha256:7e1ebba09e020fc2c2f5e942bcd9621c8f917c35985cc1d6824a014f9baed2ae"
     },
     {
       "fingerprint": "sha256:054cac9c6fd3bee0ce287e17efa92e1a9b36f6e0ca9a1e8030d14197b169beb0",
       "plan_id": "PLAN-L7-102-web-dashboard-phase-b",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-102-web-dashboard-phase-b.md",
+      "plan_semantic_digest": "sha256:adc092d207312d18443b2ad7ee4607005d1ad8abf45e69b4b60ae8744ebaecab"
     },
     {
       "fingerprint": "sha256:0643481c277923a4d2bb0752c30415d4cf87835a8eeb65b2713ed125fafca068",
       "plan_id": "PLAN-L7-309-fe-roster-orchestration",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-309-fe-roster-orchestration.md",
+      "plan_semantic_digest": "sha256:d099cce78e935bec6c4704eb75011a0b177099e0854f04696cde158b62038dca"
     },
     {
       "fingerprint": "sha256:0823c3f24758e616b078daed481dae3392af3a8ecb9037f4185dbc1d0d47abc9",
       "plan_id": "PLAN-L7-28-invariant-test-trace",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-28-invariant-test-trace.md",
+      "plan_semantic_digest": "sha256:43f4fbc5fa4abeb69212e0cf72fd4fdcb78d21d45c50510eafab9fbcb713e5fe"
     },
     {
       "fingerprint": "sha256:0a043322835c60e02a23621c565ace7ce678f121b24456197c23d726185c1afd",
       "plan_id": "PLAN-L7-56-artifact-progress-state",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-56-artifact-progress-state.md",
+      "plan_semantic_digest": "sha256:6f2ea880cc5a87c6ad889721e721ba06e63c499fdfb76810bdd2cd140e45bd65"
     },
     {
       "fingerprint": "sha256:0aaf1488283fc980bea04ebe9129788e7e01146b9c30724250e674b949b5ccb5",
       "plan_id": "PLAN-L7-51-descent-obligation",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-51-descent-obligation.md",
+      "plan_semantic_digest": "sha256:5385e9bc57b36228b305ca68361ceee5eb97967766572d2bfe2627f5be2dd17d"
     },
     {
       "fingerprint": "sha256:0c452d59ce3e8753af70aef6f6d9802f83b6e6a19bb1348876ad15af480951e6",
       "plan_id": "PLAN-L7-128-route-escalation-boundary-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-128-route-escalation-boundary-gate.md",
+      "plan_semantic_digest": "sha256:158c8dd376f8e9062ce06e6e699c43cd6db7aaa62f435f4ea74ac35ef2d883fe"
     },
     {
       "fingerprint": "sha256:0dbf205d48524de607f73f4b13fdcc09f03c1750ef0f779655f6a4d59e18403c",
       "plan_id": "PLAN-L7-317-skill-scaffold-generator",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-317-skill-scaffold-generator.md",
+      "plan_semantic_digest": "sha256:a7e60fdd0606b316a724e21bfe12757b84e4c8abdc8c2c34a20a246c10907189"
     },
     {
       "fingerprint": "sha256:0e6ffa0fe3df6f50c0ec1a9722d84cb5fddc1753cf1cff8471e34d21bd71ab71",
       "plan_id": "PLAN-L7-01-session-log",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-01-session-log.md",
+      "plan_semantic_digest": "sha256:4143753dbbb6ff105551f1add7e31da95ab3fcf0d9b6614c6cc6ba683762acd6"
     },
     {
       "fingerprint": "sha256:0e88ad75779e27130d72f76a81a93b5e0d79f8c1c1a765f8ec9e64eef0ee7fe5",
       "plan_id": "PLAN-L7-218-version-up-reapproval-triggers",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-218-version-up-reapproval-triggers.md",
+      "plan_semantic_digest": "sha256:01bc83a6f0013ef80b9d0bceca274516802d859124783620fb0632ef9b5a082b"
     },
     {
       "fingerprint": "sha256:0ea5d186bdac5a25344da348c6b1624dec0f000c1902fa0b3295e8c64b260cf4",
       "plan_id": "PLAN-L7-59-detector-hardening",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-59-detector-hardening.md",
+      "plan_semantic_digest": "sha256:c8458f126362127162e998deaa1491cc52c2938e121cbcf93f126eb3d71db7db"
     },
     {
       "fingerprint": "sha256:0fbd878e71e162f65a4e758aa0f04f9b539e907f319e386353c2169c9152635b",
       "plan_id": "PLAN-L7-362-runtime-capability-matrix",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-362-runtime-capability-matrix.md",
+      "plan_semantic_digest": "sha256:c8290abb2d110d9a9c3df259a6bddef599df6b5e929ef17ee2e0610c0e962766"
     },
     {
       "fingerprint": "sha256:12175234ba3f31bb224e076d3f076921f04bf057a17e68c7e471b28d230fe3a4",
       "plan_id": "PLAN-L7-146-serverless-readonly-share",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+      "plan_semantic_digest": "sha256:3dc549a7b8f67313306a296660d7296bf048655bddaecbb011cad00c0a2db4b3"
     },
     {
       "fingerprint": "sha256:1331ad7c6afabf0b0a549011053e3e47e97536c3f9bbe0948c1be6ed94d9728b",
       "plan_id": "PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md",
+      "plan_semantic_digest": "sha256:86027ce9231a4e3e99eee191f3f9adad367989e9a1c34d64c0010e3511d8d8e5"
     },
     {
       "fingerprint": "sha256:1455229702cdf7dfdcb04f5dfee471d835dc900df6ea79303da769a939c499a2",
       "plan_id": "PLAN-L7-365-agent-mailbox-conflict-locks",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-365-agent-mailbox-conflict-locks.md",
+      "plan_semantic_digest": "sha256:8ca01803f0c81c7c1802eb0aff398c9f62b992e53df273c00f4b9d588121053c"
     },
     {
       "fingerprint": "sha256:1613d2e3f62c3fd41094bb708b519940f167776a3e1cddce6df50b31e390de3e",
       "plan_id": "PLAN-L7-369-skill-memory-hygiene",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-369-skill-memory-hygiene.md",
+      "plan_semantic_digest": "sha256:1ab5edcb738dd33d0a9788f8a6156ca6eb149d3e09f31fe05300178f540a3170"
     },
     {
       "fingerprint": "sha256:17237270a4e0f10dbfc1c640209b9c3587e850aea712fa1e253eafd26b3f44d0",
       "plan_id": "PLAN-L7-254-human-review-owner-timing-fields",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-254-human-review-owner-timing-fields.md",
+      "plan_semantic_digest": "sha256:c93eee9823cbe61ba404fdacb911005e097a4d8e51bde52143ab1cde375523c5"
     },
     {
       "fingerprint": "sha256:173c4d85cccd361a9c4ca9444f7ebcee5f5e663ad4f8000c6d63c0dc989cdea6",
       "plan_id": "PLAN-L7-286-status-review-coverage-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-286-status-review-coverage-surface.md",
+      "plan_semantic_digest": "sha256:cca0d8f9c8dff743fd77872a40aee85395012028db37842280313022738ffc0f"
     },
     {
       "fingerprint": "sha256:1927ae4da80ca921995d2d12377f58158df71b7dd5209906f3889382da3c6a39",
       "plan_id": "PLAN-L7-262-branch-protection-script-consumer-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-262-branch-protection-script-consumer-gate.md",
+      "plan_semantic_digest": "sha256:d2d56a98a7ea6356e7c7b8506241c877105bfc3184e522b86692d85c3e11b618"
     },
     {
       "fingerprint": "sha256:1ae0ff8755f8c81546b07b0a334cb579f032724d3997118caef5fa6504861c1a",
       "plan_id": "PLAN-L7-237-ut-history-signal-hardening",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-237-ut-history-signal-hardening.md",
+      "plan_semantic_digest": "sha256:aaca713ac3f88fe11c63464b41d4e7598c9faedcda7636326db41d734837a667"
     },
     {
       "fingerprint": "sha256:1b0ceaa58570c084c48d680c4786136293a7354ffad9f308d95be8a4c16a8c8a",
       "plan_id": "PLAN-L7-07-handover-prefill-scope",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-07-handover-prefill-scope.md",
+      "plan_semantic_digest": "sha256:52ee3cfed2727b0ecbb81d2d60766e676430c54f80389bf1cd9fb49c314b5d2c"
     },
     {
       "fingerprint": "sha256:1bbb8363d0ca2ec2d98125783ef34c2b5fa573d776ca5088c86c1df1c281806c",
       "plan_id": "PLAN-L7-242-db-rebuild-migration-profile-backlog-closure",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-242-db-rebuild-migration-profile-backlog-closure.md",
+      "plan_semantic_digest": "sha256:9c61538640663484bbc1c52d270459bcbed7e440f760b0a06b1b846e75423854"
     },
     {
       "fingerprint": "sha256:1d081d3776b4e9888dd43a9350479544a301fd9e0282d76b4804b1892a249d57",
       "plan_id": "PLAN-L7-382-skill-efficacy-evaluation",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-382-skill-efficacy-evaluation.md",
+      "plan_semantic_digest": "sha256:ed7d3160b11ff4f28ef3633607c48db68e10a6684576b1f776812fb3b4b4e400"
     },
     {
       "fingerprint": "sha256:1d183ee312b149fb105be1c770953834d3d7ec971ec89f0a35006ece91cb52d7",
       "plan_id": "PLAN-L7-313-g9-g10-workflow-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md",
+      "plan_semantic_digest": "sha256:09ab435623dfc581667d819f2cd431e7db5ecd6910abaed6fe2033541fa0cc3b"
     },
     {
       "fingerprint": "sha256:1dc7581e1395f6786301095e4b8e5f793544b26980c5f5ee2e860ec4ac2b90d5",
       "plan_id": "PLAN-L7-206-visualization-read-model-response",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-206-visualization-read-model-response.md",
+      "plan_semantic_digest": "sha256:bbf7f7bea0a2b0d2f21ea24a9e7d1f53ad8c34112dc80e3cfbef9f5a10056f06"
     },
     {
       "fingerprint": "sha256:1e064697dd970e588e54c7f84915650cec3125478a9b3788a3bc93aff8fde4f9",
       "plan_id": "PLAN-L7-26-module-boundary-rule",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-26-module-boundary-rule.md",
+      "plan_semantic_digest": "sha256:7d6ea151f86b2f6bfc2b637eed7086ac86b58ec7421ffc8168dc3c514653abe0"
     },
     {
       "fingerprint": "sha256:1ea1e4e69335c8d9821a86c11bd82feb275e9ca2676e91f2fe8c1df41dd380b5",
       "plan_id": "PLAN-L7-53-learning-engine",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-53-learning-engine.md",
+      "plan_semantic_digest": "sha256:210843aeb12fc863e4318431a3c5f60484794bb2c807c7e5c01923f227de1250"
     },
     {
       "fingerprint": "sha256:20af77d687e88a44596b9cf8c765780a3a4930121586a69f13d706d88990ebec",
       "plan_id": "PLAN-L7-255-human-review-safety-fields",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-255-human-review-safety-fields.md",
+      "plan_semantic_digest": "sha256:f06e13c76158e48e641b41ae5f2f56259432b2b353facc19ee54efc9df4cfb9a"
     },
     {
       "fingerprint": "sha256:23ca444247b6392fa7dc7deb39d7f0c95621e0b5d57e5ffc98ae762db60a51b9",
       "plan_id": "PLAN-L7-209-objective-evidence-audit",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-209-objective-evidence-audit.md",
+      "plan_semantic_digest": "sha256:58bc4799c9ce18381c94e4479873bc51fd304ffa35aafe49b1a9fd1860acb97a"
     },
     {
       "fingerprint": "sha256:2447d9cc97ab4f6a5e125c6b57d991aaa54c7ed128d876f3cfbaafa8dbcdb3d8",
       "plan_id": "PLAN-L7-82-feedback-log-discipline-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-82-feedback-log-discipline-lint.md",
+      "plan_semantic_digest": "sha256:56b8fab633fd8e0c70ea77f5fc637ec974ee665c00044267a81f89f5731b8a4e"
     },
     {
       "fingerprint": "sha256:24f5e79b3bc119441a9d3908591c4721f8ffb4e628bdf117a0521bc44adc7adb",
       "plan_id": "PLAN-L7-244-relation-graph-scope-filter",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-244-relation-graph-scope-filter.md",
+      "plan_semantic_digest": "sha256:c6a4bdda5db92a569f48d6b52545f5e0d5259cb128961ba0248a88a677086320"
     },
     {
       "fingerprint": "sha256:26ba8b3893f8840f8f1c91cb3a1bdc1fdbb143e8a4f0635c3411aa441e31d78f",
       "plan_id": "PLAN-L7-19-review-evidence-stale",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-19-review-evidence-stale.md",
+      "plan_semantic_digest": "sha256:c47615b7c77973d9d47eb747d66d60ff8fc75095eb33d8d92e9516c0624c3b42"
     },
     {
       "fingerprint": "sha256:26f96255dc4aa4378b5df74b7035982915312a1bde3c8b100654f029425f6835",
       "plan_id": "PLAN-L7-16-module-drift",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-16-module-drift.md",
+      "plan_semantic_digest": "sha256:7484780067a05a149cf857e6d8b3c735c9ef2b912c3cffa088cf8da9b76a8b82"
     },
     {
       "fingerprint": "sha256:27ea17fb4f5ec48572741122c44d8dea4f6c5e52f8d01379c57a96dd6bd1294c",
       "plan_id": "PLAN-L7-214-loop-effort-budget",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-214-loop-effort-budget.md",
+      "plan_semantic_digest": "sha256:15429321b88405c943965954ffac3aaed14e943d22e27acfef0b2db2cc0c7ada"
     },
     {
       "fingerprint": "sha256:281b6b7facd8c571d09ab65712f6977ac88ab6835092820405c19631ebb1eaef",
       "plan_id": "PLAN-L7-306-fable-advisor-roster-governance",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-306-fable-advisor-roster-governance.md",
+      "plan_semantic_digest": "sha256:29e8e9ca3b205bf54af54f6aa11e8e416073a7d860ad1b78847ea2343e423110"
     },
     {
       "fingerprint": "sha256:284fa26d7e5e147681de16df4427c814894344bb152f23e0433582e7e3d2fc9b",
       "plan_id": "PLAN-L7-67-team-launch-policy",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-67-team-launch-policy.md",
+      "plan_semantic_digest": "sha256:3625ded0fc995eabb9f616ce6bccc6a85482512d2be6b38c6e7b3c547e9feddc"
     },
     {
       "fingerprint": "sha256:287d30302e6b9b7ef34b34427a2caa7ed2c090926bbde893b73f527652100bca",
       "plan_id": "PLAN-L7-274-objective-external-ledger-refresh",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-274-objective-external-ledger-refresh.md",
+      "plan_semantic_digest": "sha256:264ece9754b4cea5de76b21fd77e623cc7f0aae31d6fcc5f754226c335e65750"
     },
     {
       "fingerprint": "sha256:288c0b02e83e54a64c9a616b6e491ed55e3ecb386dcbb2326181fc58f22308f7",
       "plan_id": "PLAN-L7-293-setup-instruction-japanese-prose",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-293-setup-instruction-japanese-prose.md",
+      "plan_semantic_digest": "sha256:62494530f001f1c0899096258b6c2c55c9d30d2895f1589081d836f087b55627"
     },
     {
       "fingerprint": "sha256:28dfef11fe2430591a41f9dab694fc133cf600ae96c3493ccbf17177e359a750",
       "plan_id": "PLAN-L7-29-red-first-tdd-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-29-red-first-tdd-evidence.md",
+      "plan_semantic_digest": "sha256:81a1dd03d32eb7fae5fdd9f5fdb950851ee918e02b7e533a346a50116d04f56c"
     },
     {
       "fingerprint": "sha256:2a559f15321019b757a2f4ff303282f4c038c2e4fb003fa9f09b7549f9c00ae6",
       "plan_id": "PLAN-L7-249-setup-version-up-adapter-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-249-setup-version-up-adapter-surface.md",
+      "plan_semantic_digest": "sha256:6fad9abfd6a075715df50a816f253d38c26c227bcf2640ad80b53accc8891784"
     },
     {
       "fingerprint": "sha256:2bd8f8ca8980f100606560f0d3f0eb90e9c08c07a5ba8c4fe21563a0299a9655",
       "plan_id": "PLAN-L7-27-domain-boundary-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-27-domain-boundary-lint.md",
+      "plan_semantic_digest": "sha256:ba0b6afcb87985ecc50a6f27a6f25b57634b28864993aab16e23c74f6ede30f1"
     },
     {
       "fingerprint": "sha256:2bd90c2de42fca7310aa6f456cc0fc7da0723109070c22bd1c1d33337674bb95",
       "plan_id": "PLAN-L7-210-l0-l8-design-consistency-audit",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-210-l0-l8-design-consistency-audit.md",
+      "plan_semantic_digest": "sha256:879beb5b880bea13277a2df41b67615033e204961f0aaab059a4562b00d832a3"
     },
     {
       "fingerprint": "sha256:2be5823c62950479846ff0f8cf1ebacd5382ace60b7517a3e257ada2238b50ee",
       "plan_id": "PLAN-L7-263-version-up-dry-run-fail-on-blocked",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-263-version-up-dry-run-fail-on-blocked.md",
+      "plan_semantic_digest": "sha256:71f4c972da35326b9da1fbfe5079aec8843b1e18d3831c08e79fb6ba721a6e7c"
     },
     {
       "fingerprint": "sha256:2cf889c636bf00787fa46ec55881b51f831f8b8187cda9ab68a6247597290410",
       "plan_id": "PLAN-L7-11-vmodel-pair-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-11-vmodel-pair-lint.md",
+      "plan_semantic_digest": "sha256:dee965aa6b8d34446feae051a2de94eb1fe7f3a6bca01b303621109146864d83"
     },
     {
       "fingerprint": "sha256:2f270ddbfdadc29f68a0d2f47d561ab0a30de6007737d7fc0d6a9fd927378a33",
       "plan_id": "PLAN-L7-75-cost-tiered-provider-router",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-75-cost-tiered-provider-router.md",
+      "plan_semantic_digest": "sha256:628b86bbeb6889963370661bfef0d4210130b475b797e609134ddf8ddffc4c8a"
     },
     {
       "fingerprint": "sha256:3317590ff6410be4a9799c6d704e6f75d4ece83aea024313b8ee3167f7c0ffa0",
       "plan_id": "PLAN-L7-61-telemetry-ingestion-metatest",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-61-telemetry-ingestion-metatest.md",
+      "plan_semantic_digest": "sha256:65728f79c12b0820cd68cd362e81c00868ac0a17a444f30a7e8de92d66555cdc"
     },
     {
       "fingerprint": "sha256:342193a2dff0b9df87557ce9fb8c7a1c14d9d663e6a2a071e0fd32e5f8d688d5",
       "plan_id": "PLAN-L7-380-review-feedback-session-intake",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-380-review-feedback-session-intake.md",
+      "plan_semantic_digest": "sha256:24693eceed3786770c24daacf3ab7cee2e3897a8e8544153569e636b88a11dd8"
     },
     {
       "fingerprint": "sha256:34ccdd170ceca5f631ef95ce8e71134862c59dd5ca38497e242ab64dc9ce12c8",
       "plan_id": "PLAN-L7-367-parallel-candidate-verifier-council",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md",
+      "plan_semantic_digest": "sha256:f7f5dd154b0364898b07224ab231803ad77e7e64543ed0a280b87188a1658b55"
     },
     {
       "fingerprint": "sha256:36188c2c8ff58c16116ed06fc4edde98c57ccd627bec0279d50613966349474e",
       "plan_id": "PLAN-L7-125-route-legacy-command-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-125-route-legacy-command-gate.md",
+      "plan_semantic_digest": "sha256:40d0e9073a4f4974cc2aa1983d7ab3162990c7de501cf8dc5b0acb035a80464e"
     },
     {
       "fingerprint": "sha256:366eadb95fdfb6c63f3cc40db4158a5285f7837655763b6a2bdc5e43074300d4",
       "plan_id": "PLAN-L7-357-distribution-sync-pack-commands",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md",
+      "plan_semantic_digest": "sha256:4e55ad20e28fa7d051ede98294b9d9d6f845a84b7c6077a91de0d906c6626874"
     },
     {
       "fingerprint": "sha256:36bcfd9775ca58fc53a578543f680f36a682de673f0e094923741388ae660c2e",
       "plan_id": "PLAN-L7-15-test-before-review",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-15-test-before-review.md",
+      "plan_semantic_digest": "sha256:8949aab59cd5161ffc25f67ade24001f6ce4863bc6d82acea0a039fc38e3c06a"
     },
     {
       "fingerprint": "sha256:38b251f3c227cbab7b17450bde314d47acf4156884f643eea2bed7edcb6c185e",
       "plan_id": "PLAN-L7-94-outstanding-work-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-94-outstanding-work-surface.md",
+      "plan_semantic_digest": "sha256:37ea56dcb227fed7e297e5eb5eee09b2db725b5102f8a0104737fda5828168ab"
     },
     {
       "fingerprint": "sha256:38db3b5a79c5905e2c04810bf62db38bd36f1dc00bc55375cd59106146fadac8",
       "plan_id": "PLAN-L7-127-orchestration-degradation-record",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-127-orchestration-degradation-record.md",
+      "plan_semantic_digest": "sha256:ebb4d8926a54ae52032a3a28d8b28f51638ac68b9b76d5a61a2fdc793bb46459"
     },
     {
       "fingerprint": "sha256:396bd9b13f611e80d8f1793996b01d9ae1c4bbcc4d0e87cfa2b5d412beed4341",
       "plan_id": "PLAN-L7-22-fr-unit-coverage",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-22-fr-unit-coverage.md",
+      "plan_semantic_digest": "sha256:3d19b1b51b7c0812d8d44990935c8497fa38ff1dfa1fa1943098df55f3714ee6"
     },
     {
       "fingerprint": "sha256:398b30c0bcc5e423cf1f5a5a00ea029a002c9387b457ed5fb479116a64da8da0",
       "plan_id": "PLAN-L7-270-judgment-review-japanese-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-270-judgment-review-japanese-evidence.md",
+      "plan_semantic_digest": "sha256:72846afc0786c00c1a0110047d15b65505ba86b133a1854e0dda87574e3b2f56"
     },
     {
       "fingerprint": "sha256:3a5a217b3c9ee39848d60507b68d3c20ac6f5578f94c05c643c43d29aa5d345d",
       "plan_id": "PLAN-L7-104-conditional-backfill-decision-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-104-conditional-backfill-decision-gate.md",
+      "plan_semantic_digest": "sha256:0204ddfd84c14cfbf19326fce216eb700b2659d8799d7e86f017848d197906d2"
     },
     {
       "fingerprint": "sha256:3bb17454220fb037a9cedde1d152cf1e0915a3f9386d0718003ae605eddfd411",
       "plan_id": "PLAN-L7-284-completion-review-bundle-route-id",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-284-completion-review-bundle-route-id.md",
+      "plan_semantic_digest": "sha256:c3fddda8b63534edcd7cf7e066e6ebde5d96502be7f680053bb30775840345d5"
     },
     {
       "fingerprint": "sha256:3c7d698a6acb14a5b3b6d7baea6e61c6afe48c506a6134448b785fbc159d0210",
       "plan_id": "PLAN-L7-03-setup-solo-team",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-03-setup-solo-team.md",
+      "plan_semantic_digest": "sha256:72231e82bf4f98712584d6f16e5255d981df01119523cc0f13afff37970fa339"
     },
     {
       "fingerprint": "sha256:3d94df6c44525f4694a9f348f6c6cb70d4ba97faae5ad7384cf8ed38dcd1724d",
       "plan_id": "PLAN-L7-421-design-coverage-catalog",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-421-design-coverage-catalog.md",
+      "plan_semantic_digest": "sha256:19be8e474801ea2a8010d521791bd7881a6338ec8637e905a224826a72e02737"
     },
     {
       "fingerprint": "sha256:3e4030adfaa04809f17cf4f4c89cffa98eb4e1e0bf06eb0ad1b2c3d75f7a6a70",
       "plan_id": "PLAN-L7-48-readiness-guardrail",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-48-readiness-guardrail.md",
+      "plan_semantic_digest": "sha256:0c803a9ea84a78d1a60c582c98a342f8e0e65ab44eedf3294b85a2dab342b19d"
     },
     {
       "fingerprint": "sha256:3ef739b3d170c83379e102e39a06695adb1c3773cd2566f9f7347b514e84c430",
       "plan_id": "PLAN-L7-123-route-eval-recommended-command",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-123-route-eval-recommended-command.md",
+      "plan_semantic_digest": "sha256:764e350b224aff6704879424d57329158bd12ae9cd14fa2ff168c41de9728366"
     },
     {
       "fingerprint": "sha256:3f6b8d52684ecc6812b18498f6dac6e14f0eb6aac9368e39c6db14153ef7fd8f",
       "plan_id": "PLAN-L7-141-web-dashboard-component-derived",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
+      "plan_semantic_digest": "sha256:a0fa8b06be008726d2c65826599372cfc6efda04152a9768c3f80d4c57e732a4"
     },
     {
       "fingerprint": "sha256:40728f89fc8c1cdabbf29c40a864485fbd95d8c69c2adb7939581cb738459c3a",
       "plan_id": "PLAN-L7-54-merged-plan-status-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-54-merged-plan-status-gate.md",
+      "plan_semantic_digest": "sha256:dbacd9ee197946f109be0e217c717ea69d604f4b2171dad4fa4f91fa0439e676"
     },
     {
       "fingerprint": "sha256:41409396bde612d26fe379815b491f3886f208fc2ad295af9e23e83dd039e6de",
       "plan_id": "PLAN-L7-126-route-config-dependency-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-126-route-config-dependency-gate.md",
+      "plan_semantic_digest": "sha256:95671c522b48a76e42b0520234459a16ddd9913c99db87d8ba60f1001af25358"
     },
     {
       "fingerprint": "sha256:43f7ea3e40fa1488424d36691005c4707485f8be1c865c89df0af7f9b637ce5b",
       "plan_id": "PLAN-L7-250-consumer-doctor-version-up-matrix",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-250-consumer-doctor-version-up-matrix.md",
+      "plan_semantic_digest": "sha256:f8abeb47bc451e871e319089aad91828583353dd33c248cd5cf9ea745149052c"
     },
     {
       "fingerprint": "sha256:46287eef4e17cf71ddc16cde21e7f2c57581f5c7a27c851d80f5bf477a402622",
       "plan_id": "PLAN-L7-134-tdd-drive-fit-classification",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-134-tdd-drive-fit-classification.md",
+      "plan_semantic_digest": "sha256:d410b2eb187e559b7710fe2b41680fc5d24d69132fea231ef7ca959fda9a507b"
     },
     {
       "fingerprint": "sha256:487e74e0518df46947414fe9e759efaaecaa2bb5f69230e0d908b35b6c27e43f",
       "plan_id": "PLAN-L7-36-relation-graph-export",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-36-relation-graph-export.md",
+      "plan_semantic_digest": "sha256:8032fdc788a12f5624cdeb5115c4241937c67738924ec2385baa9952f95e1f5c"
     },
     {
       "fingerprint": "sha256:48f328b0b5f505716641def0284e0f9a523b9dcbe15fa497cb5101a578da6471",
       "plan_id": "PLAN-L7-375-spec-driven-constitution-template-stack",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-375-spec-driven-constitution-template-stack.md",
+      "plan_semantic_digest": "sha256:55fe284d1c09d6216d940769744c419777549977ec6e156397ec755eff19976e"
     },
     {
       "fingerprint": "sha256:49ad3090cd75726dd7395e759c77ded03efddfa636977d3cfef7750bd172a072",
       "plan_id": "PLAN-L7-333-l1-l2-gap-check-readonly",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-333-l1-l2-gap-check-readonly.md",
+      "plan_semantic_digest": "sha256:31a2eb3872b6cf928372d53398c72e1a486ed280f35dcc0e7a6d97205f89357a"
     },
     {
       "fingerprint": "sha256:4a299348bfecaf48cd20fe20871a90ff6539cef55b6ceccd25be28631fdf335a",
       "plan_id": "PLAN-L7-414-memory-injection-surface-rollout",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-414-memory-injection-surface-rollout.md",
+      "plan_semantic_digest": "sha256:7cb3c29ffa17ea8c94f2ccae0514bafc51cc141ca619e0c18018af50d395d2ac"
     },
     {
       "fingerprint": "sha256:4a4c2ac7b2e7d22dd672f2f31808000ab2ea1b39fb00ac04b6605d77a37a453f",
       "plan_id": "PLAN-L7-312-d-contract-dsl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-312-d-contract-dsl.md",
+      "plan_semantic_digest": "sha256:f01344ef4f371891fae67e3699f22abc133e5c680d63ce3ddd3979bae0b6b1af"
     },
     {
       "fingerprint": "sha256:4aeca865ef85f3bf42b9e817ef88ae2f7c9c9ca0b9377193281679f7f6fdf36c",
       "plan_id": "PLAN-L7-10-governance-enforcement",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-10-governance-enforcement.md",
+      "plan_semantic_digest": "sha256:f59f6378c5bea00e796ebb1176471ece0b4c9a09ddcbe8300d894903f509db97"
     },
     {
       "fingerprint": "sha256:4b7ce9ff1e86a63708a85dba68ebb444794cd2586875e293018f6c45ea609f18",
       "plan_id": "PLAN-L7-169-g8-integration-evidence-manifest",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md",
+      "plan_semantic_digest": "sha256:6338e898a841838cc22aaef3ab36944d2c56563edc4c4939b034552acb2a9bdf"
     },
     {
       "fingerprint": "sha256:4b7f4dd29aed1919613912a7b0f05ebbf9d127e8b8bff6ebb36a924a977e4ceb",
       "plan_id": "PLAN-L7-246-source-ledger-refresh-2026-07-03",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-246-source-ledger-refresh-2026-07-03.md",
+      "plan_semantic_digest": "sha256:7219a20508e22979adb6b250c23e16c84ecda0e546e7cd989bbb048b475579ca"
     },
     {
       "fingerprint": "sha256:4e3c64e8832a43f41833c4328dd5addf5093f3464e3fd8327ae0378fbdcf00a6",
       "plan_id": "PLAN-L7-176-helix-orchestration-memory-runtime",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-176-helix-orchestration-memory-runtime.md",
+      "plan_semantic_digest": "sha256:a6401a6bee6ddcfc57c5ceaa2604f0cce4e762e5cbdaf33ddd70ab6ffebfa6e7"
     },
     {
       "fingerprint": "sha256:4e7694a135bca6e3f0453da5471cae4735b47b8426404c48420632e050ef3ec7",
       "plan_id": "PLAN-L7-273-operational-test-status-reconciliation",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-273-operational-test-status-reconciliation.md",
+      "plan_semantic_digest": "sha256:f06c8a272f759d98f6646523bdcd843a24a05427edef4678761c0b5f021b537e"
     },
     {
       "fingerprint": "sha256:50fe22c5452b63080221333471c146adb1cbabb2bb0481c92e5a6c42d3978346",
       "plan_id": "PLAN-L7-264-consumer-hook-artifact-schema-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-264-consumer-hook-artifact-schema-gate.md",
+      "plan_semantic_digest": "sha256:659aa3156b653a99852d5183a0ff8f5b4753bb0bd62e75d4a63076afb59a7d71"
     },
     {
       "fingerprint": "sha256:5180c7b97da56d0a2beeb13a41afc314ca2fd4dc3fae1b0a4e45c0b30a5a5a90",
       "plan_id": "PLAN-L7-259-action-binding-evidence-url-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-259-action-binding-evidence-url-gate.md",
+      "plan_semantic_digest": "sha256:7f15c11b405dfa5582877f164516ad98f3ef933051667482e0d1a5fe04010b9c"
     },
     {
       "fingerprint": "sha256:527efd2afc009cc215c5d0e00525da28d14849a270f0b349c64af8902c319607",
       "plan_id": "PLAN-L7-267-rename-cutover-snapshot-evidence-binding",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-267-rename-cutover-snapshot-evidence-binding.md",
+      "plan_semantic_digest": "sha256:d83d1e92f5f99601a127718110c4b6ef5762b1c8239ebc155fd630754e477378"
     },
     {
       "fingerprint": "sha256:528b7259c476e8b118e8c06ec563a417173eb58df6b6f067daf17d431baa9937",
       "plan_id": "PLAN-L7-368-agent-observability-provenance",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-368-agent-observability-provenance.md",
+      "plan_semantic_digest": "sha256:a0363fc7b7a2b902438b118056256d9a3b14c3818853fddc2689f2b8e0784e8e"
     },
     {
       "fingerprint": "sha256:52c42ebb30ba8ebfac758a6e1cd7fb765287adb91773d81ce2dbbe72cbe1ad91",
       "plan_id": "PLAN-L7-245-relation-graph-physical-edge-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-245-relation-graph-physical-edge-projection.md",
+      "plan_semantic_digest": "sha256:11c783fbb299fa055561ce2b1efeedc28a53114efa7c3fae283762b5915d793f"
     },
     {
       "fingerprint": "sha256:543d44e0a7abb033dbd6766787964be0e042d595e8cb146350f64093fe3c1da0",
       "plan_id": "PLAN-L7-275-completion-schema-and-setup-version-remote",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-275-completion-schema-and-setup-version-remote.md",
+      "plan_semantic_digest": "sha256:a24661ccd69760b14f15a44cfbfa58157d49ebc2c127dd6405582c2ffbcb29c4"
     },
     {
       "fingerprint": "sha256:5758e2558388799f5340236018ec759fb7e21a10a59c15df1e921996d5fa83f1",
       "plan_id": "PLAN-L7-366-autonomous-loop-run-receipts",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-366-autonomous-loop-run-receipts.md",
+      "plan_semantic_digest": "sha256:e4a82aee4b11e7cb01b37ec2a6e07ccfc68e2869dea3aeee1cc372f7ba5743ce"
     },
     {
       "fingerprint": "sha256:57d47a2545a1348bc39e4d163b317c1419e3e24e99c1ce2a96b17d2a7af985a9",
       "plan_id": "PLAN-L7-133-refactor-brush-up-workflow",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-133-refactor-brush-up-workflow.md",
+      "plan_semantic_digest": "sha256:497febd2bd15e43643d45717c98229f39a15383bb7b6164804e84133b674ff6b"
     },
     {
       "fingerprint": "sha256:585700d8d2d15356be5a19d1a6936ad950553836e52b7a53f5bb08e5ef4b6d12",
       "plan_id": "PLAN-L7-45-harness-db-foundation",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-45-harness-db-foundation.md",
+      "plan_semantic_digest": "sha256:18d145b4d42454786ce6e4120bb925b3de040012ec7cf773e1c17dcc579932ab"
     },
     {
       "fingerprint": "sha256:58ada8ae815256114c7aeb5ba26fa5ff0e8a316a15ec447e394b295153fc0677",
       "plan_id": "PLAN-L7-72-task-classify-cli",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-72-task-classify-cli.md",
+      "plan_semantic_digest": "sha256:8b5f16a80da0d00f54ba4aae12d45eca600d405be7ebb538d5f2258004939b50"
     },
     {
       "fingerprint": "sha256:591d6cdbfb6bbc05dd4634c30ca5e90bf0107a0dec2e0ab52bb0875cead349cf",
       "plan_id": "PLAN-L7-223-clean-distribution-no-web",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-223-clean-distribution-no-web.md",
+      "plan_semantic_digest": "sha256:8932427d38e41d6a4a863f9bd5b5ab0f36930e04f18597c14b9d8a396605da56"
     },
     {
       "fingerprint": "sha256:5b84004e18a52853d1eafa59366b8167c7c5ce9438f2edfdf996f5c5e2bb27e1",
       "plan_id": "PLAN-L7-311-model-effort-runtime-wiring",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-311-model-effort-runtime-wiring.md",
+      "plan_semantic_digest": "sha256:6900f1f4f31d684c5cbbd83b56f1ef5c1f419dd00f771af0a63cc1e76a12c1ab"
     },
     {
       "fingerprint": "sha256:5b9a8eba0782b810de7f149fc47940a69fd1abd3bf8a2f565b30c86d6aa023d9",
       "plan_id": "PLAN-L7-253-handover-owner-update",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-253-handover-owner-update.md",
+      "plan_semantic_digest": "sha256:e239df131b328b07f0188e47271af1442a99c275ddd0de2af819b40c6e319a02"
     },
     {
       "fingerprint": "sha256:5cd75a16b35412d823cf36d71ba26062f893643046b1c4a194ac037a8abda537",
       "plan_id": "PLAN-L7-345-agent-context-efficiency",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-345-agent-context-efficiency.md",
+      "plan_semantic_digest": "sha256:814fc5cc01352af3f9fe6d6886e43fe2721ef0681f154cbd7943733e1acd5856"
     },
     {
       "fingerprint": "sha256:5cd954b7f5b3428c403674c4f00b3e863b7cff3db1f2f2b2c7f3ff2ec14de0d0",
       "plan_id": "PLAN-L7-203-legacy-adoption-decisions",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-203-legacy-adoption-decisions.md",
+      "plan_semantic_digest": "sha256:daf466d2fbd8a10a6956ce5b1f784a02c27a82ef11f2264d9c31a7bf5c566ec3"
     },
     {
       "fingerprint": "sha256:5cfa1511d2f4b6120f9114aab9d9bc1b0c5816d86e64867b01d4a1bf49e57c81",
       "plan_id": "PLAN-L7-336-refactor-candidate-triage-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-336-refactor-candidate-triage-surface.md",
+      "plan_semantic_digest": "sha256:8b964be874dbcf0f2d8d03a63e73ebcfecfa15fa33008793a33c8c6394044fc0"
     },
     {
       "fingerprint": "sha256:5df3adc3f1a37076ef75cdd692053c295d7616918818bc92be788858e77ed45e",
       "plan_id": "PLAN-L7-46-projection-writer",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-46-projection-writer.md",
+      "plan_semantic_digest": "sha256:798116efa537cf21fb549be67205ddd2bebc1c35665a3f278481a64c381292a0"
     },
     {
       "fingerprint": "sha256:5e90b6db5d885e5b1e94031b286c4d9e563caa81c6762913e88d9d5966846cc9",
       "plan_id": "PLAN-L7-383-harness-taxonomy-curation-policy",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-383-harness-taxonomy-curation-policy.md",
+      "plan_semantic_digest": "sha256:36dc4dab63d2944186d49468ad36afdd8fe6ccb761429891a7b6d48b6cc15a4b"
     },
     {
       "fingerprint": "sha256:5ed649aed73a41eb248d5ba0565a22aa754a05509af5fbd5e24116534d965500",
       "plan_id": "PLAN-L7-335-judgment-core",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-335-judgment-core.md",
+      "plan_semantic_digest": "sha256:4c2984add4ebd0c99910a57d45df9f78c81551cfbf148fc46e8d77004a361d34"
     },
     {
       "fingerprint": "sha256:5ef7728860be0a8efd35bc45151d6702de7d40f96f0d13c378f5d6fe91c9d5c8",
       "plan_id": "PLAN-L7-295-version-up-workers-pricing-ledger",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-295-version-up-workers-pricing-ledger.md",
+      "plan_semantic_digest": "sha256:c538f9234d6d9897d2f0e8e4a705246307d99f7c180d93929866a42db9e700e4"
     },
     {
       "fingerprint": "sha256:60ccf4359401972b0842e2992ca6cb41a9ba88e366407a8cf25eb3f751fcbbc8",
       "plan_id": "PLAN-L7-109-review-green-command-db-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-109-review-green-command-db-projection.md",
+      "plan_semantic_digest": "sha256:fa11b473682fe3684685ea8f9df3693dfbdccdb4db18bc2cb896502c57c9e595"
     },
     {
       "fingerprint": "sha256:60e7c01d88d10c8a7711083dd5404d187bdcaa15a5cbb097a1949c16b9b67942",
       "plan_id": "PLAN-L7-65-deterministic-model-policy",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-65-deterministic-model-policy.md",
+      "plan_semantic_digest": "sha256:1853b7e65082415b6a6094994ab7fd09864ea02a6b7caa8290fe942c276b2f7d"
     },
     {
       "fingerprint": "sha256:61105b163cfb74fd1920d5fa63f13feb21c12cc7764d55f5c5f83065b68057fa",
       "plan_id": "PLAN-L7-34-tool-adapter-probes",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-34-tool-adapter-probes.md",
+      "plan_semantic_digest": "sha256:4263fb216835d7684ab50588840525723b2aa5771173f81e3b425c40978156a8"
     },
     {
       "fingerprint": "sha256:620ba96a238b1ff1367972ce69dad4599c0d8dc5c325cf07a20965b8fc0f6b3d",
       "plan_id": "PLAN-L7-310-model-standard-effort-adaptive",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-310-model-standard-effort-adaptive.md",
+      "plan_semantic_digest": "sha256:7a33f881b8dd04b04723c187300f10cef133deb33e2d8cae7deeeab2b4e696d4"
     },
     {
       "fingerprint": "sha256:6397d8f4b4efc60a6627dca17084f521c137a7dbcb1f03af3cbc15264db808f6",
       "plan_id": "PLAN-L7-353-reverse-feedback-closure-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-353-reverse-feedback-closure-impl.md",
+      "plan_semantic_digest": "sha256:99b47971fe04cbf3b9d0cd89534968eaff71441d1bc143c49a63284ba2d7d3c5"
     },
     {
       "fingerprint": "sha256:65e8c56dfa894a78ca2e78d30b02d60b6d090d4817071e919978b9740ae3b936",
       "plan_id": "PLAN-L7-101-db-projection-backprop-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-101-db-projection-backprop-gate.md",
+      "plan_semantic_digest": "sha256:35cd3fa7d0b48ebbf761931466c8c4802c3bfd7d58237fb72b96ff836db1a571"
     },
     {
       "fingerprint": "sha256:6632731d30583a31856817815129f397c7a1dc00d394a91a693c5daa89e6b8d1",
       "plan_id": "PLAN-L7-84-status-next-action-field",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-84-status-next-action-field.md",
+      "plan_semantic_digest": "sha256:db1daa2b1c6bff1a962705d574e0e6c7384092995c2e3868641ee0e7e1bd8640"
     },
     {
       "fingerprint": "sha256:6717aa3f58fa4a2d3bb6cecf501de9dd5f17bee0608ef25f1c8f0df59585aca1",
       "plan_id": "PLAN-L7-135-dynamic-skill-injection-materialization",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-135-dynamic-skill-injection-materialization.md",
+      "plan_semantic_digest": "sha256:16d3617c6c9282f72a4b9bf5206e1eefc2b319807be01db88cb0ed202f4ccb64"
     },
     {
       "fingerprint": "sha256:67abde72e55a59eec6698f20957bb66a18d0b0ab600b15c97df4becdd826aa97",
       "plan_id": "PLAN-L7-339-p6-release-automation-descent",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-339-p6-release-automation-descent.md",
+      "plan_semantic_digest": "sha256:656b22f5db7269dccf6351cfe775c443d6494b03b8f1bfa774674fb4760339ee"
     },
     {
       "fingerprint": "sha256:67b03d4cb2695c55947e426e1b7d971b0e9183bec56b3ccef9708db481a6d0dc",
       "plan_id": "PLAN-L7-14-cross-review-enforcement",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-14-cross-review-enforcement.md",
+      "plan_semantic_digest": "sha256:11663dc307c1cefe33d2e321b875205cbca5bda51a2457e6fa729c15273ab991"
     },
     {
       "fingerprint": "sha256:686e021a007add3d3c0bdd635e996bc8756305c60890ac62cdde82c6b0521f8b",
       "plan_id": "PLAN-L7-215-hosted-preflight",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-215-hosted-preflight.md",
+      "plan_semantic_digest": "sha256:2ea0d8d6743240adeef6934ed9bea7de9e29ccd26d45562751d0932f46afda1a"
     },
     {
       "fingerprint": "sha256:6a0c1d1ec70e6f6c019a1992f41d3c1fc2474cc95bfc33a595b391fc9c658252",
       "plan_id": "PLAN-L7-117-kind-layer-governance-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-117-kind-layer-governance-gate.md",
+      "plan_semantic_digest": "sha256:6bcb9afa4807a1ce7ab459494432d9b9f5ebed1e8799c9a52ec32542a76168d0"
     },
     {
       "fingerprint": "sha256:6a195a8e8c578f526c79cd63e58d25b9f630aa86aac5ff15c6e7eb8a6d038e20",
       "plan_id": "PLAN-L7-207-l7-feature-pack-roadmap-definition",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-207-l7-feature-pack-roadmap-definition.md",
+      "plan_semantic_digest": "sha256:66ba24e05b4e9ca186169507e3ad526bcaf7a8408d3ac5cf77aab4b588ad77e0"
     },
     {
       "fingerprint": "sha256:6a9891fde1e0d4b51050b67d2b3b72c506db57beb920031987449403845819e9",
       "plan_id": "PLAN-L7-20-plan-schedule-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-20-plan-schedule-lint.md",
+      "plan_semantic_digest": "sha256:b0a0e59b9ab0e8cd160043b1ac7450b37e701baa573d21e004b715f23526c057"
     },
     {
       "fingerprint": "sha256:6ca12a6725ec1a7943571a55e39d430fe5385a02c68f8ea08cbabbafe5853693",
       "plan_id": "PLAN-L7-60-change-set-integrity",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-60-change-set-integrity.md",
+      "plan_semantic_digest": "sha256:23520b6495c62afbae728ed4d655a4d2bc851e61be0189352a92fb9cf07e1601"
     },
     {
       "fingerprint": "sha256:6d6102464307a517ca8cec7f3fa2963768bf15e303c33348465c15b4aa574993",
       "plan_id": "PLAN-L7-64-team-runner-launch",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-64-team-runner-launch.md",
+      "plan_semantic_digest": "sha256:1c64fc66bceb2d6fcba0e7a3493f95d93822aeed0cc5d99883807154551cb109"
     },
     {
       "fingerprint": "sha256:6dad3785b2702a73c3609098f496fbdce707ba30e1d2d00fef1bda7303992deb",
       "plan_id": "PLAN-L7-63-plan-registry-fingerprint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-63-plan-registry-fingerprint.md",
+      "plan_semantic_digest": "sha256:5ae461d79042966b7e554a580c6ca68e7e4491cbc3bb2c9cb4720d23bd057eaa"
     },
     {
       "fingerprint": "sha256:6fabe402b5890d8c34b969cc661f8257e603305089f1e1ede6f5d5f57641b0f8",
       "plan_id": "PLAN-L7-403-close-ready-decision-draft-view-binding",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md",
+      "plan_semantic_digest": "sha256:c4877e55197fcc67d2a8658c10751a1a082a85fb3519ff6baffac2bcb74653cf"
     },
     {
       "fingerprint": "sha256:700a53cd9ef3feb649ff2d521b2c17c75110bc9c39712b0dc7e7be3fab06c506",
       "plan_id": "PLAN-L7-271-cutover-source-ledger-hardening",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-271-cutover-source-ledger-hardening.md",
+      "plan_semantic_digest": "sha256:2dfeeea2baab8cde52c1c03efbe52050bde0338de2bcd54f144786cfe3d70fd1"
     },
     {
       "fingerprint": "sha256:70ac801a7ad0b061bec6ab21f9d5f66318a163b8432dd44780649c970ada3c51",
       "plan_id": "PLAN-L7-303-distribution-package-surface-readiness",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md",
+      "plan_semantic_digest": "sha256:d0b08956fe9fe0cfbe2ffd6e15f036cde5b2ad76a4fe7926749032cd10e710e7"
     },
     {
       "fingerprint": "sha256:7136af008d51c8f4e90e23c3c1957cd2e3fcb962f4569348ed42c94f819c8ec5",
       "plan_id": "PLAN-L7-213-tool-contract-registry",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-213-tool-contract-registry.md",
+      "plan_semantic_digest": "sha256:fc6301e523165308b81c22774071cf6a785dc24dcaf168f3e570bf98facc6212"
     },
     {
       "fingerprint": "sha256:71b3ceb31ad0c533fcf672c8a1dff13fe4bd18ad6813ab614428fcc35fa90c01",
       "plan_id": "PLAN-L7-412-feedback-lifecycle-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-412-feedback-lifecycle-surface.md",
+      "plan_semantic_digest": "sha256:061864990e3d4596bb54ab55dae657dfea74d01543e34a25d9c429b021dabbe2"
     },
     {
       "fingerprint": "sha256:72cd129d55ce78e21cb7958961cea966d9cb6e13c4a159b2d17dd1777aca8870",
       "plan_id": "PLAN-L7-266-rename-github-repository-source",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-266-rename-github-repository-source.md",
+      "plan_semantic_digest": "sha256:4f0cbbed47c6b6ceeac146fde098e49766cd6924d0e004e6a5ff4227e0e183bd"
     },
     {
       "fingerprint": "sha256:7527473b7827a532e758e4069278758cf539c5925008da52d0d0b1ca50db701c",
       "plan_id": "PLAN-L7-373-change-package-delta-archive",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-373-change-package-delta-archive.md",
+      "plan_semantic_digest": "sha256:19cb2497b77e9870a880f6dc15ec1f5f97ff1bed17c7c6e8d7a8f49ce452816d"
     },
     {
       "fingerprint": "sha256:761697b381f0ddd2dd6f9ba04880621ed53e7b3ab38978401d0d2c93da8e4562",
       "plan_id": "PLAN-L7-221-pair-agent-replay-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-221-pair-agent-replay-evidence.md",
+      "plan_semantic_digest": "sha256:97e351771a8d3e45d22c5aee0d85a84444139b4a8a0c47797358cd3536a9d39f"
     },
     {
       "fingerprint": "sha256:765cb2535fb7de3cb16e2ec97f9e9c12057f8bcfe773b57e99927fe65db147f7",
       "plan_id": "PLAN-L7-326-route-mode-first-class-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-326-route-mode-first-class-projection.md",
+      "plan_semantic_digest": "sha256:636fcec26a37e9628260f83a68ad02d1c699c6bf0b07172ed0628a71e62ec286"
     },
     {
       "fingerprint": "sha256:77ce45eb011eee80f4598793ee5abfeb4fe02bba411225175fe622e439a4ded5",
       "plan_id": "PLAN-L7-299-drive-model-registration-and-review-bundle-alignment",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md",
+      "plan_semantic_digest": "sha256:d9bc30a13d1f3a5cbea982f5a1a03e493f2d9b0083725182a67036a7eeb87e09"
     },
     {
       "fingerprint": "sha256:78a37fd8aa5df04156c8e358f5cde8cfc958b1872348847e80f741575029663b",
       "plan_id": "PLAN-L7-43-implementation-verification-group",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-43-implementation-verification-group.md",
+      "plan_semantic_digest": "sha256:1f3babbfa7facc0c5833d084778493ca837ac1bd15e508f8198e21e1fa82d2a6"
     },
     {
       "fingerprint": "sha256:78aaf66812f9fe72f9761717b3588961f7152057faa8308d6fd44f482f97c70b",
       "plan_id": "PLAN-L7-354-harness-memory-compaction-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-354-harness-memory-compaction-impl.md",
+      "plan_semantic_digest": "sha256:3acdcf46e063c25ae5106b4246587e80ba4a91841549806b63f3edcdeb5ca89e"
     },
     {
       "fingerprint": "sha256:797df6095d61029bcf2adaf26229a9179aaf991f126f65886638bc322a147749",
       "plan_id": "PLAN-L7-35-canonical-document-export",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-35-canonical-document-export.md",
+      "plan_semantic_digest": "sha256:194c79c629b709950db7579ceab3eb768f3c7fb3030d282834a8d31ff1753ef5"
     },
     {
       "fingerprint": "sha256:79e31da1bcbec18d1fce5e0c3a694a1250440c94232f49ec15f4117183600557",
       "plan_id": "PLAN-L7-260-consumer-escalation-workflow-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-260-consumer-escalation-workflow-gate.md",
+      "plan_semantic_digest": "sha256:cdb7108d1699091e41b58f9a8caa8d3b50a657d4d1fde356e44b2ce722fa9b07"
     },
     {
       "fingerprint": "sha256:7afc2969aadc912f953e6d50bb7ba0dd1045f83476314058859fe0db6f8fa9db",
       "plan_id": "PLAN-L7-378-state-machine-template-planner",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-378-state-machine-template-planner.md",
+      "plan_semantic_digest": "sha256:61cf32aab20df5c3ddb5d6f2a128a700136aa051beaa9b91fc25842989ccc37e"
     },
     {
       "fingerprint": "sha256:7bebec5d64527ecc8ef8d010c94822ca32a3bcb5ba39b170acd436b6aea08a37",
       "plan_id": "PLAN-L7-298-setup-bun-package-preflight-source",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-298-setup-bun-package-preflight-source.md",
+      "plan_semantic_digest": "sha256:f3dbb3113f3556dd8d4b8c07c6cebb7050f8e3f594a05856058ed89af8a7dd2e"
     },
     {
       "fingerprint": "sha256:7c4ef71190a72053ce099794c4c6e26973bb94c0fdff0cdb86b688d8f26558d8",
       "plan_id": "PLAN-L7-66-existing-repo-onboarding-readme",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md",
+      "plan_semantic_digest": "sha256:4b17f71aa1e3b53057d0b4535b46325579b393cfd772dc4454f1eb0ffaf06be1"
     },
     {
       "fingerprint": "sha256:7c582d1bb3cee480681787c2d776f33773b47d08f4565fc650589bd1d0a4f230",
       "plan_id": "PLAN-L7-319-upstream-adoption-small-items",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-319-upstream-adoption-small-items.md",
+      "plan_semantic_digest": "sha256:d30bbe6f7869fa904c5e39916f6b3be37b66fff81b65936e9c6f08a5b9a5f2b6"
     },
     {
       "fingerprint": "sha256:7c97d6147e854fd5216338db88853945091d9b6fe1926ebfc3c61dc93aa82986",
       "plan_id": "PLAN-L7-12-verification-trigger",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-12-verification-trigger.md",
+      "plan_semantic_digest": "sha256:cc82df615bc3f198889780ef97c9135837362acbcaabc674fa536d44d7b24aea"
     },
     {
       "fingerprint": "sha256:7ca955a9be49a8d312cc4235e9418aac16480f22f0e80ec82cb547cf2ba07eff",
       "plan_id": "PLAN-L7-119-conditional-backfill-audit-sync",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-119-conditional-backfill-audit-sync.md",
+      "plan_semantic_digest": "sha256:7db026e75165cf542a0e2896fa7615bde93dba69eec7266b4adc84c4445ad751"
     },
     {
       "fingerprint": "sha256:7cae819e6f8c774726e70dd15b521937b9093fe111b5b23f787f7eba3c2a2281",
       "plan_id": "PLAN-L7-347-plan-descent-gate-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-347-plan-descent-gate-impl.md",
+      "plan_semantic_digest": "sha256:cfbf227d1e12c092df8bb0f5e4d7e6aea4e67216b715461698ffae93c9386731"
     },
     {
       "fingerprint": "sha256:7d61d9a904a82ceb7b10217e74064fff729139b47ae3dc4b7cf317880fca706b",
       "plan_id": "PLAN-L7-25-structured-error-handling",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-25-structured-error-handling.md",
+      "plan_semantic_digest": "sha256:56366f1d56fd24a05f816c57901c061a1e2acfb4009556fbf617d2cabb44a2d6"
     },
     {
       "fingerprint": "sha256:7e0166166e70147a1a08bd57de73799df87065435d3b0c01c269ac74cbc445a5",
       "plan_id": "PLAN-L7-124-route-approval-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-124-route-approval-gate.md",
+      "plan_semantic_digest": "sha256:c3c2172b78eafb448550ba332d635048625e01a5fbba0679f9711c224a1fcfb5"
     },
     {
       "fingerprint": "sha256:7eee0446ffc42b18b1c0852beeb8798ec74e668230d42d852af8a518b356ebc5",
       "plan_id": "PLAN-L7-240-reporter-artifact-ut-ingestion",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-240-reporter-artifact-ut-ingestion.md",
+      "plan_semantic_digest": "sha256:7178f774e6d968129b39aca038fc728597d5a021f36ebddade67de1220f6905c"
     },
     {
       "fingerprint": "sha256:7f3894e166002f0c036bc5e828e1fda8fc99e30bfdaabaa9da1cfb0fa0c84a41",
       "plan_id": "PLAN-L7-342-version-up-activation-review-bundle",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-342-version-up-activation-review-bundle.md",
+      "plan_semantic_digest": "sha256:3dacbcbeeea45ae5aba5c51e6a11003c31fe0f2f86a70989284686113e573caa"
     },
     {
       "fingerprint": "sha256:8048fdc03357dc040a1b6eea0147bd12ac3a984d52325753a6a853b9ede93b61",
       "plan_id": "PLAN-L7-384-source-content-mirror-completeness",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-384-source-content-mirror-completeness.md",
+      "plan_semantic_digest": "sha256:dda7aac8efa1cad579c78bfea5b05e72ae147d5695630f06f21a6c92dde7f014"
     },
     {
       "fingerprint": "sha256:80ff1865f09891f5dc1323fb1abb2e4111fff97569b1c6be99971764eff1e915",
       "plan_id": "PLAN-L7-23-l6-completion-readiness",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-23-l6-completion-readiness.md",
+      "plan_semantic_digest": "sha256:b8a88d94227028c68276d0ec8795490861021091ace83222fd2b6467161d97f3"
     },
     {
       "fingerprint": "sha256:83ca927c7688f266f5a45e831966d9747e90c9003a439e9704b0cb6b00a69711",
       "plan_id": "PLAN-L7-324-toolchain-pin-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-324-toolchain-pin-lint.md",
+      "plan_semantic_digest": "sha256:373a8d5538d4fd4c043b451308fb35a2701c30077cb5ee299bdf3f6983a4a0db"
     },
     {
       "fingerprint": "sha256:841ef64998ac4913c66a8b6a43c72e8ffe71139f4230e18669e1199f31d8c21e",
       "plan_id": "PLAN-L7-407-harness-memory-structure-v2",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-407-harness-memory-structure-v2.md",
+      "plan_semantic_digest": "sha256:71ad78bc1addf4cdb949f167ba439fedb71469d73c5001b90bc7c6f764e154df"
     },
     {
       "fingerprint": "sha256:843ab612836a7882a1c432583a85f090a6d877add515e6a763c7412cf6b5f7c0",
       "plan_id": "PLAN-L7-258-cutover-evidence-path-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-258-cutover-evidence-path-gate.md",
+      "plan_semantic_digest": "sha256:07d0e6eabba0d7920d9436473b66b91cb42811eb13bee5a0e0543ddd398e5d0f"
     },
     {
       "fingerprint": "sha256:84eb2cfc24ac8109f96a17df3c6b95802c3db54cdabc0e24c380a1c6040c117a",
       "plan_id": "PLAN-L7-243-relation-graph-db-diagram-projection-hardening",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-243-relation-graph-db-diagram-projection-hardening.md",
+      "plan_semantic_digest": "sha256:85ddd3e49d5ea0f04312461444802e7e70e237f7754e58b16c8b9a59e26f0827"
     },
     {
       "fingerprint": "sha256:8512c1623f48d5ed78a0baff127b54016e1288eb355a68f6230a353e46889b0b",
       "plan_id": "PLAN-L7-130-right-arm-gate-planning",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-130-right-arm-gate-planning.md",
+      "plan_semantic_digest": "sha256:c2a1622afbff33a016efcd2de9a58727309680a4ea93112e28644d08c4125949"
     },
     {
       "fingerprint": "sha256:8633e3d796c49c5e3496d3dc2b3fd378844dd092100dbdcf6d9dbd03efb497b9",
       "plan_id": "PLAN-L7-269-required-evidence-japanese-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-269-required-evidence-japanese-surface.md",
+      "plan_semantic_digest": "sha256:90d030416f2002b5a79e1f121060e45093c9d8dc1a87228f1a48f696f99cc75a"
     },
     {
       "fingerprint": "sha256:879118f0827e698ed38b05da022d230e4914f1c30ff1303b7d546359f1d9726f",
       "plan_id": "PLAN-L7-297-consumer-ci-command-acceptance",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-297-consumer-ci-command-acceptance.md",
+      "plan_semantic_digest": "sha256:1aac13f5915c4fe6238eb9f9d101541c5fb895b8aa67a1f6d11e9b9d85a70de5"
     },
     {
       "fingerprint": "sha256:87e4bc79670f69297c8faa25536a2d4195a40c93a99a33b1cd625f655d8b2837",
       "plan_id": "PLAN-L7-138-quality-branch-audit",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-138-quality-branch-audit.md",
+      "plan_semantic_digest": "sha256:12040c1b81d472216194eea9e42dcaec51c2c12572030a53fb0d362366eaf4eb"
     },
     {
       "fingerprint": "sha256:87f054c301e1f82a5640750e21c3c538ac75e48d3b22d1b26527ab514ab32e7c",
       "plan_id": "PLAN-L7-108-review-green-command-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
+      "plan_semantic_digest": "sha256:7b715a89ffa22570872961344b7500f9c3016cda6baec9059f187f75074dc1a4"
     },
     {
       "fingerprint": "sha256:882bee74aac2814289af0034c5259f1a6345695e3d8c77bffc0c88541e9878ae",
       "plan_id": "PLAN-L7-305-loop-observability-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-305-loop-observability-projection.md",
+      "plan_semantic_digest": "sha256:1a78848b747138f0bf3e9b4095e8694f520883cc9ca5ee633a610207ac6d9d40"
     },
     {
       "fingerprint": "sha256:885c15aeb14ed5f7f32e3dcd084041f6201fe41f86b103e7f4b397adc35986dc",
       "plan_id": "PLAN-L7-175-helix-orchestration-memory-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-175-helix-orchestration-memory-impl.md",
+      "plan_semantic_digest": "sha256:317700e279cdbb7a19471a6ed0780699d3ab2139f8d03ef01cf9798f6c5280d0"
     },
     {
       "fingerprint": "sha256:8b53ddd104c2417bc3c4792474f1cc940cb7da10cd6a11db18ea00e719704f1d",
       "plan_id": "PLAN-L7-302-fresh-consumer-package-bootstrap",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md",
+      "plan_semantic_digest": "sha256:5efeb1c97abde0ffd757d507e0973780a3dd007231d161003c7fcd2b8a8baefc"
     },
     {
       "fingerprint": "sha256:8bbd4993ed29a307cf7179068fcfd37030dabda7dc685405ebce3387be7067be",
       "plan_id": "PLAN-L7-239-structured-ut-evidence-rebuild-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md",
+      "plan_semantic_digest": "sha256:77faac87917e5a93cb96134f0c1e4b40537239be6abcf60c2c8295357a5b4a46"
     },
     {
       "fingerprint": "sha256:8c59bd8e13ab56f01e897aef4e169703d69d0ae87e60015e539f946685bb1209",
       "plan_id": "PLAN-L7-281-review-bundle-self-runnable-and-rename-safety",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-281-review-bundle-self-runnable-and-rename-safety.md",
+      "plan_semantic_digest": "sha256:7e8a9dd24001cba760d42aa0ad70552f5d2b884115f34ae38f93060521fdf189"
     },
     {
       "fingerprint": "sha256:8c6a970c983297b0210e0fc16dbfef9efc6ad27a1031c813af69d33383871714",
       "plan_id": "PLAN-L7-381-agent-ssot-runtime-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md",
+      "plan_semantic_digest": "sha256:b60aee30e15c9e109534c13273e4c768c0f1453366f62b91055f520fe661a1ec"
     },
     {
       "fingerprint": "sha256:8d0473eaa8b9a9258385dfab02bbad18d7143b77741b7e055e506d783c039a36",
       "plan_id": "PLAN-L7-340-p6-release-automation-descent",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-340-p6-release-automation-descent.md",
+      "plan_semantic_digest": "sha256:023206ecccccc0349d331378174d8b2fd8df16c6a4cf1e951d14197eb93366c9"
     },
     {
       "fingerprint": "sha256:8d69d36c7a79f8169276b2d00dacd05ff9110d9509520f3ccae29423a5c3fd03",
       "plan_id": "PLAN-L7-241-duration-trend-quality-signal",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-241-duration-trend-quality-signal.md",
+      "plan_semantic_digest": "sha256:08558e171aaefc5f4b011e41ef46690be1326090c3f907cb54c28f55b30ff440"
     },
     {
       "fingerprint": "sha256:8d92d02f5ca173aef7376383f198f6b6f032e9907a1be31ca08b68a939a6790a",
       "plan_id": "PLAN-L7-289-version-up-cloud-deploy-source-ledger",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-289-version-up-cloud-deploy-source-ledger.md",
+      "plan_semantic_digest": "sha256:1c87ee0f6fb27d84ff40736bded2b40f0f5763f451db0afe4978096bc199dd91"
     },
     {
       "fingerprint": "sha256:8e7250ffc1276b1d536f48a22a2467aaa76da7c41f594e2904335ec8f90c6042",
       "plan_id": "PLAN-L7-132-green-command-digest-integrity",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-132-green-command-digest-integrity.md",
+      "plan_semantic_digest": "sha256:27baaf73c0d5acfc64ad98975c7df6400895793d4baf384fbddae9994a62846f"
     },
     {
       "fingerprint": "sha256:8ebd2086c991ea329a04c8522747ebf23c76a5c5a8b8881b0c3449977a972250",
       "plan_id": "PLAN-L7-107-reverse-fullback-scope-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-107-reverse-fullback-scope-gate.md",
+      "plan_semantic_digest": "sha256:78e7d0c6fe10675406662018c25f5d37ebf88b203607608e75eed1c0bc31191b"
     },
     {
       "fingerprint": "sha256:8ebff62f273a44c280565130099beb5ed8bcd88467ee3fc4726d531d0df6c06b",
       "plan_id": "PLAN-L7-227-design-language-ratchet",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-227-design-language-ratchet.md",
+      "plan_semantic_digest": "sha256:9e63eaee7f1f9903b85f590ff20131981c95d7c6b8a3ce767b38e838ff751fbb"
     },
     {
       "fingerprint": "sha256:8ecec0562cb860ecb25b872d8b96163f96b7e1429ead287793a0b6b0734596f2",
       "plan_id": "PLAN-L7-62-runtime-portability-guard",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-62-runtime-portability-guard.md",
+      "plan_semantic_digest": "sha256:cae93d79130bc04fc0c31e5cfefad6267881271bb6a0b5101afe62328fcd96c3"
     },
     {
       "fingerprint": "sha256:8ed85c3087a049008bb280a1c5f8e7ee33c0ac0297d63c592336c0a5cff6edbe",
       "plan_id": "PLAN-L7-177-helix-orchestration-runtime-bridge",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-177-helix-orchestration-runtime-bridge.md",
+      "plan_semantic_digest": "sha256:cfff108989c7a22485be8b3432ca5c931cc3aecfbad98050015ca5429c4f6b73"
     },
     {
       "fingerprint": "sha256:8ee1142cd0e1d3d246afbe3c61fb13aeced741a1d4af54917681b69f3f4e1092",
       "plan_id": "PLAN-L7-204-upstream-adoption-decisions",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-204-upstream-adoption-decisions.md",
+      "plan_semantic_digest": "sha256:9273e4c9d5da967f4aad0b66a912507e8c1aa45847ba4979ab68297830be36b0"
     },
     {
       "fingerprint": "sha256:905c6f7cf336b862c53ab3adab4d3deac7f18410de697c20a56710ded48987b2",
       "plan_id": "PLAN-L7-44-harness-db-master",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-44-harness-db-master.md",
+      "plan_semantic_digest": "sha256:f920eb5fd0959b76caca77111aba2a6dc790b41dd3c8deea6bc3a13be43956c8"
     },
     {
       "fingerprint": "sha256:907899db0a0fcbd1c3daa8f47509b6d01f3bb005cb7ef74cf845b8909ec8a340",
       "plan_id": "PLAN-L7-371-tool-augmentation-registry",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-371-tool-augmentation-registry.md",
+      "plan_semantic_digest": "sha256:04bf7c0c51de201332275c5f732d4d3069633a27ac5cce578c77f635e93e4f25"
     },
     {
       "fingerprint": "sha256:90deb02db89c73be010ef536096b6eaad150062c76e827f978cc379fdc806af3",
       "plan_id": "PLAN-L7-30-test-oracle-strength",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-30-test-oracle-strength.md",
+      "plan_semantic_digest": "sha256:853013ab3aca15a7c147accb606751a27aa9c145aee2e2e17b932b1026ce98a2"
     },
     {
       "fingerprint": "sha256:9179d9d06439d6c435e21b4949160ca32a00f62d521cfc5409cf588fb94bdd89",
       "plan_id": "PLAN-L7-222-pair-agent-plan-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-222-pair-agent-plan-evidence.md",
+      "plan_semantic_digest": "sha256:560b323d0131d62b3f5c66e42d667303ed24f4b17b6937f1dea309db32945144"
     },
     {
       "fingerprint": "sha256:9183c72824106d2b1e74e1cdb3cb66a9ef150323f3668d360e9a9cc630098e93",
       "plan_id": "PLAN-L7-248-setup-version-up-trace-backfill",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-248-setup-version-up-trace-backfill.md",
+      "plan_semantic_digest": "sha256:cf767607361931f9ef1993a74035aa97f28372d28e2739c079c6d3ad963b33b6"
     },
     {
       "fingerprint": "sha256:962420b3856ca1a84414a3e704e21207e214839d5726c7c3da5d2cf6a47cd6ff",
       "plan_id": "PLAN-L7-406-memory-delegation-injection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-406-memory-delegation-injection.md",
+      "plan_semantic_digest": "sha256:5b295429c75d29cccde714008d2e2235985e8e3a505c6e2d1385f58e160a04cb"
     },
     {
       "fingerprint": "sha256:96a83372f72803875f48c99f89a2a69bc1bb50b785d0071954571fb070cf9e98",
       "plan_id": "PLAN-L7-318-model-override-injection-hardening",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-318-model-override-injection-hardening.md",
+      "plan_semantic_digest": "sha256:c56815c0124d091554ffe08ba73174999507adc626f13c238a1722ec7d67d801"
     },
     {
       "fingerprint": "sha256:97642daac2ec1c391bdfb22503de4fadd83abced2d0b6d94b2820a963c76aa20",
       "plan_id": "PLAN-L7-296-setup-vscode-profile-entrypoint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-296-setup-vscode-profile-entrypoint.md",
+      "plan_semantic_digest": "sha256:b9c9445374723050387a6fb858e9fea16f35e908b8186a463c3c4510d6c974dd"
     },
     {
       "fingerprint": "sha256:992d5a1c49a6cfbe36410f134d9a22a220ffd01101ad265b338464e4b82c7d47",
       "plan_id": "PLAN-L7-257-cutover-blast-radius-source-ledger",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-257-cutover-blast-radius-source-ledger.md",
+      "plan_semantic_digest": "sha256:18a1fa13e42d7b017a2d5d9c1668342684064fd76d932122aeb72e1e3e3c68f0"
     },
     {
       "fingerprint": "sha256:99419796f5e504aa739170b6413ee1d5f96f80b1b08749d4e2985e533ecf9b8a",
       "plan_id": "PLAN-L7-285-review-bundle-blocker-coverage",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-285-review-bundle-blocker-coverage.md",
+      "plan_semantic_digest": "sha256:5919a4440c0b6587a8faeba8a23fdd1d4f129d1ffde0be136de15f83fb47c511"
     },
     {
       "fingerprint": "sha256:99c2c09ac0ab89dc79f64385984df755d24e71ba9eb6c1407c00348f9b0e830b",
       "plan_id": "PLAN-L7-247-setup-version-up-first-run-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-247-setup-version-up-first-run-evidence.md",
+      "plan_semantic_digest": "sha256:69ebc53f978a00d9d3e2489157c679be62f172947e4a190ee2a900394e79d457"
     },
     {
       "fingerprint": "sha256:9a0741055f098dd641c31c7966ab6d0c67a678e076c0cdac19fc2a83ae00733a",
       "plan_id": "PLAN-L7-294-review-bundle-required-fields",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-294-review-bundle-required-fields.md",
+      "plan_semantic_digest": "sha256:f8de32b5697c75607d9f8d38b2eb7504b4e052663c304e113116dca7451edefa"
     },
     {
       "fingerprint": "sha256:9cd5d20738db5098c5de32d62919fa6c999f9f04c0850bc77e513418c8db6e28",
       "plan_id": "PLAN-L7-272-cutover-readiness-ledger-parity",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-272-cutover-readiness-ledger-parity.md",
+      "plan_semantic_digest": "sha256:f1c819cd0119cdc0b77363bad7200f31c43ef31a2141cfbadd6b102850b19875"
     },
     {
       "fingerprint": "sha256:9d09148aef67a0ea6c152cc5f4a3fff7321d4a6bafc03f61f51628ed09548409",
       "plan_id": "PLAN-L7-131-plan-complete-handover",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-131-plan-complete-handover.md",
+      "plan_semantic_digest": "sha256:f64326b3aae175cf8bb08bd623f82cc102d34e6de2a296c308928a031eafbcd8"
     },
     {
       "fingerprint": "sha256:9eeeb02060cdae122e7efe3e02b1db12dd91d0ab523443e1f44d82a7edb10da1",
       "plan_id": "PLAN-L7-105-artifact-type-path-governance-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-105-artifact-type-path-governance-gate.md",
+      "plan_semantic_digest": "sha256:ee996a6c4e497e6cf2869f2505fbcc37d91df41dd0e0b746c2620886bb83c553"
     },
     {
       "fingerprint": "sha256:9f742ef0b5add994c4353effbabf92deee48bd28867fd385f677da907a31c05a",
       "plan_id": "PLAN-L7-268-record-template-japanese-guidance",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-268-record-template-japanese-guidance.md",
+      "plan_semantic_digest": "sha256:f8d2c7880ade811f08b96c7a036602a4d8a7ff242d0cb4ef20322f9c3f16fe36"
     },
     {
       "fingerprint": "sha256:9fbe2e1b60e8c59ad02fa59de229071778a07f6731d5eca33b5acc46e906f142",
       "plan_id": "PLAN-L7-129-incident-route-token-coverage",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+      "plan_semantic_digest": "sha256:61fec621a43109cd488eb6c8d2591fbac48e29880dde29bac5a7645aa6fa1650"
     },
     {
       "fingerprint": "sha256:a2083de1f51599108c151b0874d69a2e312833bdbe2bc3cc1215cb12f055265b",
       "plan_id": "PLAN-L7-361-agent-catalog-watch",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-361-agent-catalog-watch.md",
+      "plan_semantic_digest": "sha256:5c3ee80e341ee2f9b9c599efda682f2d769ca4aa85291089c03c24b464513a1d"
     },
     {
       "fingerprint": "sha256:a46898c145057f921f2034c4bae00b42c3333278b285ce385b56564b8df2fc57",
       "plan_id": "PLAN-L7-112-reverse-r4-claimed-artifact-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-112-reverse-r4-claimed-artifact-gate.md",
+      "plan_semantic_digest": "sha256:5e40de63c60103ec16b29c4ada60a9c939c71f8b362283692e1cac83db89fe93"
     },
     {
       "fingerprint": "sha256:a59028886869083d09b6a6ec5632abb6fea9f8f88d3136a9668f43cca059a83b",
       "plan_id": "PLAN-L7-50-feature-list-residual-closure",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-50-feature-list-residual-closure.md",
+      "plan_semantic_digest": "sha256:83abbdafdcc8738d4ccdc5333d0b35d6cda81cad4497c27dd30d46494508c4b0"
     },
     {
       "fingerprint": "sha256:a5b3f70030093d0eed1d8bf3893a2bdf26ef5dcfd0ceacf410142e5097d57afb",
       "plan_id": "PLAN-L7-31-integration-gwt-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-31-integration-gwt-lint.md",
+      "plan_semantic_digest": "sha256:633489234dc0480880c241fc2523ef3775010bc120b487e9c462f37dbe1bd0dd"
     },
     {
       "fingerprint": "sha256:a6c1a8fc16242cab0f77b3d6bcf13cceebbaacf937167c79a968a3ef52b77655",
       "plan_id": "PLAN-L7-405-test-design-orphan-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md",
+      "plan_semantic_digest": "sha256:9ddac947f1cac3c5759942bee905d499e60de9234717b7435d6081670e0f00a5"
     },
     {
       "fingerprint": "sha256:a8b9e4688cce9c518903b4e8249bab0e4c27d9910293db2c226e638f401ddf5a",
       "plan_id": "PLAN-L7-276-rename-evidence-pack-and-vscode-cutover-source",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-276-rename-evidence-pack-and-vscode-cutover-source.md",
+      "plan_semantic_digest": "sha256:01169aa3273b6c36c068270c7747cfbbc0d49ebc3cee4d0696957bf75b16be99"
     },
     {
       "fingerprint": "sha256:a8fb5f34e4f2ed01d62c01e2f077e6691e9a69fac7729656c91e00d6ab3b0b3f",
       "plan_id": "PLAN-L7-103-reverse-fullback-backprop-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-103-reverse-fullback-backprop-gate.md",
+      "plan_semantic_digest": "sha256:92b936a42e3c495a44ac484c85e3076b4e9ff5b810568f83aff66b6b7796e34f"
     },
     {
       "fingerprint": "sha256:ab32bba2d7ccc2c059da4c99b6c7ff2652365466a519ae82da37682b8761d7b0",
       "plan_id": "PLAN-L7-352-plan-entry-routing-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md",
+      "plan_semantic_digest": "sha256:21bcd20c91289476b359b021fa4a9f2b911b1697812280e869eea5edcf27d451"
     },
     {
       "fingerprint": "sha256:ad46cb1a975e164d1f4b9d0a31068d1cf6d903f9bfc6a89fc68b1b7b31eaf479",
       "plan_id": "PLAN-L7-265-version-up-security-checklist-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-265-version-up-security-checklist-evidence.md",
+      "plan_semantic_digest": "sha256:4fd2429fd1e83500f5079b80a5b5c0b74b708358cb03f7b6fdd56142a35135de"
     },
     {
       "fingerprint": "sha256:ae881a7596331dc63dfed280a7091462d124013d44045b8c8de382a19ea1ff10",
       "plan_id": "PLAN-L7-413-memory-promotion-nudge",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-413-memory-promotion-nudge.md",
+      "plan_semantic_digest": "sha256:645332ec40381f3c1e951c62679ef3c934baa641999e38f4826a1a336ed533c7"
     },
     {
       "fingerprint": "sha256:af1a860c7f2348a251db6b798b75bb8b2d00e41fe33570dc32b94d90154e1dbd",
       "plan_id": "PLAN-L7-355-handover-db-derivation-impl",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-355-handover-db-derivation-impl.md",
+      "plan_semantic_digest": "sha256:fcd53f64041545c0bded7b531c80b99bf42737529a7c1d5e1ba5f27e2002d6d7"
     },
     {
       "fingerprint": "sha256:af80083bb058fd78a1654a93e9cf6a5f73f17db2e9a651a8de59064fc7f28e9e",
       "plan_id": "PLAN-L7-397-vmodel-current-location-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-397-vmodel-current-location-projection.md",
+      "plan_semantic_digest": "sha256:fffd5a276ad5c9776dcb0d2a6c5ef7ff14c3847ad55afa933a7ac53dfbc66456"
     },
     {
       "fingerprint": "sha256:afcced51a606947b25f02f20c239514726d3e4f6d1d5d1ab2443be9fb662849a",
       "plan_id": "PLAN-L7-157-distribution-clean-pull",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
+      "plan_semantic_digest": "sha256:37a2af7e5bfa912cdd4a5ab7f3586b2e6add43921494f6117d2ee8c67d09082c"
     },
     {
       "fingerprint": "sha256:b03c0dd9de7209acb8e11aa5adee7961896fc02678d3d075263d95b57d557dd8",
       "plan_id": "PLAN-L7-21-runtime-adapter-session-lifecycle",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-21-runtime-adapter-session-lifecycle.md",
+      "plan_semantic_digest": "sha256:0947d5d5675d406845fdb4c6dade4857886fd3897473d1210336103b20f3868e"
     },
     {
       "fingerprint": "sha256:b04467c86feeb089a16fd4f126e295bc8a23f317f400062a2a2376fc00d4a98b",
       "plan_id": "PLAN-L7-304-loop-iterations-db-schema",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-304-loop-iterations-db-schema.md",
+      "plan_semantic_digest": "sha256:fff634b6a127b9bab4e3016af169146088422eda7f41b5aa9fb8543f489f028a"
     },
     {
       "fingerprint": "sha256:b1ba9cc21ae41ffab2fa48a55a031c96b91bc49a599d9f4f7b02260f6859ece6",
       "plan_id": "PLAN-L7-211-version-up-readiness-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-211-version-up-readiness-gate.md",
+      "plan_semantic_digest": "sha256:0664cb4b0a34abd1603fb13f42592a4f41b9d27072f63bdedfdaa72a46274d34"
     },
     {
       "fingerprint": "sha256:b34636184f8c08744f2ca65568313c8c02ab31b381732e8e588c56c66fcf68f0",
       "plan_id": "PLAN-L7-277-rename-approval-draft-packet",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-277-rename-approval-draft-packet.md",
+      "plan_semantic_digest": "sha256:61a31164760fab8328e765f8c192a0c32e96dd9927ce966810974aeffd406b75"
     },
     {
       "fingerprint": "sha256:b3c03441dfc48568f0890929b646f8ad93ea0b8f0698c53a96c402770a0c7c94",
       "plan_id": "PLAN-L7-331-reverse-fullback-ledger",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-331-reverse-fullback-ledger.md",
+      "plan_semantic_digest": "sha256:72b9d91ad023069e1f87e02de258c3d329ea8e4c6f91b73e6b5f2778986ef8ee"
     },
     {
       "fingerprint": "sha256:b4fad31b6b94ae5e4056731e649d7a15588ee336b581bce4059104126927c6a5",
       "plan_id": "PLAN-L7-316-runtime-telemetry-provenance",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-316-runtime-telemetry-provenance.md",
+      "plan_semantic_digest": "sha256:f1654401fe8bca74c41a9fc07cff5700c342b945491b0555a59dc657e438f638"
     },
     {
       "fingerprint": "sha256:b613f481fc5eb5124d508739237c5da69188ed760571adefe95749aa2b26e56f",
       "plan_id": "PLAN-L7-17-handover-quality",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-17-handover-quality.md",
+      "plan_semantic_digest": "sha256:d84500638df7374c46455d7a991b5b1a401387d9d82dfe1d617007bc38604a9d"
     },
     {
       "fingerprint": "sha256:b62ef6a18fb001e5523cb6c58aa3b9b32d1e6045bb7fb56b590ad2239c8dcbb6",
       "plan_id": "PLAN-L7-321-completeness-pass-gaps",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-321-completeness-pass-gaps.md",
+      "plan_semantic_digest": "sha256:f4fec8894c95d7658f5a7e4e2c28baf97c63068dee7677ed315cd3541fb8bb49"
     },
     {
       "fingerprint": "sha256:b6c210ddfb0e1e24d175c13323cadb90721d7dc8215a5fc4f0349ab251807314",
       "plan_id": "PLAN-L7-282-status-runtime-completion-next-action",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-282-status-runtime-completion-next-action.md",
+      "plan_semantic_digest": "sha256:45282db19b6fb1fe4403fa0d4652e9b81ce40272f55854d6dbf51d3c29d18378"
     },
     {
       "fingerprint": "sha256:b70fa6652595749816af651588524006353e74d9675abc57f3ae23745a1c1682",
       "plan_id": "PLAN-L7-334-requirements-binding-config",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-334-requirements-binding-config.md",
+      "plan_semantic_digest": "sha256:7d28e8ecc9aa1f21687a8015f8a21b74ee64a8f714e9df4e49a014f0af6b8281"
     },
     {
       "fingerprint": "sha256:b7f1b01a81e538d2f845eb91c8728e0737d4f410c70a08f82ddd52f1a5d2dced",
       "plan_id": "PLAN-L7-238-ut-history-db-signal-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md",
+      "plan_semantic_digest": "sha256:9e2c06b69a545eae7de35fa99bcd302433ac7619cfb2e5b95b200c2790bfe6d0"
     },
     {
       "fingerprint": "sha256:b851ba892436fff6857e285ccfc7a18edd36ae788f53fab3422109a6025389e3",
       "plan_id": "PLAN-L7-71-slash-commands",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-71-slash-commands.md",
+      "plan_semantic_digest": "sha256:078bc668159d4f10ec64d67c62d7e47669a131c716004818b7ab127bfe7806eb"
     },
     {
       "fingerprint": "sha256:b96e0c12bdb3ddfeb6dd97fb0835ed6df2abb7501a7a7f82ae4c478f0b1d383b",
       "plan_id": "PLAN-L7-251-setup-idempotent-import-report",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-251-setup-idempotent-import-report.md",
+      "plan_semantic_digest": "sha256:a65e00939cb07f1c4f457fa3a3e8a248fffa85739f7db7c5543e8ad7b9a98ae6"
     },
     {
       "fingerprint": "sha256:baea221658d70053a51a645bc16bf718c743ff05b423a1032392cb965946fe32",
       "plan_id": "PLAN-L7-337-delegation-brief-role-judgment",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-337-delegation-brief-role-judgment.md",
+      "plan_semantic_digest": "sha256:5b77ef9059278409b5f82d66614f8cb60bcacd338b7de027fb5361335a0c34f8"
     },
     {
       "fingerprint": "sha256:be041185a7046933ce1838646f55cc4ceca73bbdbb162dfb17f41f28d5500916",
       "plan_id": "PLAN-L7-332-plan-filing-completeness",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-332-plan-filing-completeness.md",
+      "plan_semantic_digest": "sha256:e26da75f1716d2000bbc2fed70d4b114802bdabc74a3427135493ef42c257b0a"
     },
     {
       "fingerprint": "sha256:be6dffa917c83d21fb6d49bd5b402a549463f25c52c4b5050aecce87f56748d1",
       "plan_id": "PLAN-L7-280-objective-progress-trust-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-280-objective-progress-trust-surface.md",
+      "plan_semantic_digest": "sha256:b91288bc4ac567ea689d895ebb2f4f15f95fca503158e77817248268093d8924"
     },
     {
       "fingerprint": "sha256:bed427df89476beb72ed7baa6caaf4ca4ff9d1d7e575b6be2a76ee9843d10edb",
       "plan_id": "PLAN-L7-13-review-evidence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-13-review-evidence.md",
+      "plan_semantic_digest": "sha256:5064e7833e49315d7b56502499f4757766213a119792f108fdbe46ee7614ef35"
     },
     {
       "fingerprint": "sha256:bf18ab8bd491f5e181ce1b374ddd3fcd6ac6b0ca5ef195f1c37d057c85900b8e",
       "plan_id": "PLAN-L7-224-pair-agent-difficulty-budget",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-224-pair-agent-difficulty-budget.md",
+      "plan_semantic_digest": "sha256:62d7ce0b6caeae1cd808798cd4dcbf1a31b1393f5b3f6e68b068e4015db3c32c"
     },
     {
       "fingerprint": "sha256:bf9e126a097469532d620aae857bc06f7d6e1e614b3ce37cc53c6eb4ca3421b3",
       "plan_id": "PLAN-L7-261-escalation-distribution-acceptance",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-261-escalation-distribution-acceptance.md",
+      "plan_semantic_digest": "sha256:1c5eaf544e6131057b75d629f2642c0091cd778d621934d9f15d724971bd1451"
     },
     {
       "fingerprint": "sha256:c01aacc02007a1a900abbf887c71e7aacef6dafa9bf3d615878ba36233fedcb7",
       "plan_id": "PLAN-L7-292-setup-project-instruction-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-292-setup-project-instruction-surface.md",
+      "plan_semantic_digest": "sha256:1b224c3cf58ee90a33d77103154e8ad4ef3007fc8c0ee7e731da0acb9a71f394"
     },
     {
       "fingerprint": "sha256:c03ffdc1797e0f238bba0bec190b698f0c55299c7cabdc01f7769dd687b91f5f",
       "plan_id": "PLAN-L7-115-reverse-r4-route-backprop-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-115-reverse-r4-route-backprop-gate.md",
+      "plan_semantic_digest": "sha256:1a930a60a1bac4507ba956f4ff9596899706e1948c5a128e6611a039ced5b115"
     },
     {
       "fingerprint": "sha256:c1813c0d8e3dc7470ecdcbf81c66b3e6bb5bef0c23a0c490f9493b38aff5df71",
       "plan_id": "PLAN-L7-322-harness-quality-tooling-backlog",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-322-harness-quality-tooling-backlog.md",
+      "plan_semantic_digest": "sha256:b7573295b0ffb22e45da7fd5deafd0f14b95bead4df7c3cb20a4f4cce27b7d4b"
     },
     {
       "fingerprint": "sha256:c283d961bb933129fdd0d07e9783ff562a6339a79a5956fdd14297f3ef0c2eb8",
       "plan_id": "PLAN-L7-291-setup-project-template-readiness",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-291-setup-project-template-readiness.md",
+      "plan_semantic_digest": "sha256:289dad2f4acfde7d4cf6a7d45084486476b53740cb3df36bfbe77459aa96836d"
     },
     {
       "fingerprint": "sha256:c3537f41f3d9e95b08fc73cf6b6bed9888c5a74121bb798de34ed10bc0657dc5",
       "plan_id": "PLAN-L7-395-visualization-treeview-prototype",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-395-visualization-treeview-prototype.md",
+      "plan_semantic_digest": "sha256:83e9c84ffc21021030af4fa56ee620eb5686cc4833875630ce1b275183727bb2"
     },
     {
       "fingerprint": "sha256:c4255971e8c44ae7ebb5a9cf98097740c819188b852b682064445161cbd80aac",
       "plan_id": "PLAN-L7-278-completion-review-bundle",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-278-completion-review-bundle.md",
+      "plan_semantic_digest": "sha256:7b884747284777cc3ae832287caa2b477cc3b767f47d4bddff917de0b9242ffb"
     },
     {
       "fingerprint": "sha256:c441fb6147172411dc124e0ebe4fab7fdeeee5cb9fb99f0a459e404aaeab6aa7",
       "plan_id": "PLAN-L7-168-g8-integration-workflow",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-168-g8-integration-workflow.md",
+      "plan_semantic_digest": "sha256:d39fc58e840e6fe0866953f89fa7a0a06839d8caba5edfd07c16c83e4e280539"
     },
     {
       "fingerprint": "sha256:c4d6fd9c530cc6f45e0df7904d34e986b27a14c11a4572a52332147823af6d06",
       "plan_id": "PLAN-L7-55-plan-artifact-existence-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-55-plan-artifact-existence-gate.md",
+      "plan_semantic_digest": "sha256:c2900836f73d43d08d7855029f0fe8bf891431e4c029f0cbaf9e3a1915e278b2"
     },
     {
       "fingerprint": "sha256:c6a5a05f22ce35d08b3bd55317fd931fed37a28d17a16168bbb86a2bb522b07b",
       "plan_id": "PLAN-L7-212-identifier-rename-audit",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-212-identifier-rename-audit.md",
+      "plan_semantic_digest": "sha256:1d0dfe9be7ac6969a9302e4d3822e64fd5997623591be0e2ee9fc943212a8df7"
     },
     {
       "fingerprint": "sha256:c7276f19ed1bc976d372f9724d3e61bd7dd64d684f18331928edf7aa9cb69cfa",
       "plan_id": "PLAN-L7-327-relation-graph-node-scope",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-327-relation-graph-node-scope.md",
+      "plan_semantic_digest": "sha256:5b04733471afd3de79474cbd437f8c5a2461a9e5943b34d1d0aa3dfc7230acd3"
     },
     {
       "fingerprint": "sha256:cbab998ea9dec2ac7f0dc164c77b1af94a7c2174fc5e2b31640dbcc27e124cf7",
       "plan_id": "PLAN-L7-287-handover-review-coverage-anchor",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-287-handover-review-coverage-anchor.md",
+      "plan_semantic_digest": "sha256:d69c8e5275b0a6480e5a17c06754358641fc18559e6bc7b0a422c592bab65bdc"
     },
     {
       "fingerprint": "sha256:cd39f0fd72c690eb56b6a9d8008a6861fb026239abe25301d3f4f7e08889764a",
       "plan_id": "PLAN-L7-416-session-handover-runtime-retirement",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-416-session-handover-runtime-retirement.md",
+      "plan_semantic_digest": "sha256:8d4d51f683048c126a35bc5b30b7fd612c21c408ab46f587c65486d5fb283091"
     },
     {
       "fingerprint": "sha256:cd97ec24e118e87f5dc9bfab6ce0a10454aa3c35ae7ed295767503d41cc47620",
       "plan_id": "PLAN-L7-364-agent-session-command-center",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-364-agent-session-command-center.md",
+      "plan_semantic_digest": "sha256:66456da1e611bb767e5b668afadd48fbd3a9e7c4258cafc9033bfd4981419284"
     },
     {
       "fingerprint": "sha256:ce5bbd600ce157a614f9ba4534401a1a23e6dc39a464dcd5348e328eb364b0e7",
       "plan_id": "PLAN-L7-02-forced-stop-feedback",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-02-forced-stop-feedback.md",
+      "plan_semantic_digest": "sha256:aa79501bb4d1d3c6d84eb937765bff093b1c1b4afbdcd1323c30f05d3151212b"
     },
     {
       "fingerprint": "sha256:cea8666ad4df6e59820b5ca7685b8eaa387d4206260fb53a36758bf0ae1a03dd",
       "plan_id": "PLAN-L7-202-run-debug-runtime-verification",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-202-run-debug-runtime-verification.md",
+      "plan_semantic_digest": "sha256:52913108b5054605ac4c8430d76099c89b1c3d76939bc642fe291bd6621f9bde"
     },
     {
       "fingerprint": "sha256:cecbe712e02117bc286f64f44ea61fbaffa85e74b87ff0c8e9c9512c7880082f",
       "plan_id": "PLAN-L7-377-state-machine-tool-policy",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-377-state-machine-tool-policy.md",
+      "plan_semantic_digest": "sha256:f90d4d25a9a32410034cff395cf22661d372c02dd08a704a2ce4815bdafbdfb5"
     },
     {
       "fingerprint": "sha256:cedd2188c88aea83877d74bd1068de2399ebd462861471acc7817d9f109ee9af",
       "plan_id": "PLAN-L7-122-vmodel-injection-show",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-122-vmodel-injection-show.md",
+      "plan_semantic_digest": "sha256:820f094cc4db0285097a2b0c2f0a35126da4333b90ccdb40b9cd3aad58e7a93a"
     },
     {
       "fingerprint": "sha256:cf67b5a8a21c22fc14f33c3c63b5bca0b0f9e42e4da83cd57666b945bb53215f",
       "plan_id": "PLAN-L7-24-coding-rules-workflow",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-24-coding-rules-workflow.md",
+      "plan_semantic_digest": "sha256:7f5e24a48217d81f1bd5fe963b39d47a8383911cee4114122d938d3324e5fb6d"
     },
     {
       "fingerprint": "sha256:d1491f760c1211a7cb3947fc4cd8afb5e5abf93603faeb314122634648eba3e5",
       "plan_id": "PLAN-L7-52-l7-completion-audit-closure",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-52-l7-completion-audit-closure.md",
+      "plan_semantic_digest": "sha256:f6b27b5123d9a8a3ea74498dacd640c027a4637cf3c466fe30904197a5c01fe1"
     },
     {
       "fingerprint": "sha256:d19b0e10fb34706402670caf537054e50a69b32d4df198d257651859645aa22b",
       "plan_id": "PLAN-L7-420-skill-quality-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-420-skill-quality-gate.md",
+      "plan_semantic_digest": "sha256:0616a947fe8887ebc6f68b31fe988942149caca839e3e1a023611e0e98b598fd"
     },
     {
       "fingerprint": "sha256:d3bc6acf7daf12f01ae715a4ea698fb28da5a66f6c4d9a9161b786e1863efec2",
       "plan_id": "PLAN-L7-370-security-credential-egress-guard",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-370-security-credential-egress-guard.md",
+      "plan_semantic_digest": "sha256:2906670ff3fdbc82bf1c19653d174ec6e4f913f615f2f9f8496c4336827ff908"
     },
     {
       "fingerprint": "sha256:d598b036908cc51698fdec1d79689e79cd2f492dd8663777aa6887d1edea9150",
       "plan_id": "PLAN-L7-110-takeover-feedback-surface",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-110-takeover-feedback-surface.md",
+      "plan_semantic_digest": "sha256:324df9aec24e4951d5b1fad6622b38bc231fe56fa482a0a06c44aa156109a98e"
     },
     {
       "fingerprint": "sha256:d6c95fa380f2977d530b04e0de3b6ad208cfb163f46b48bd693ed2b15ae5cb11",
       "plan_id": "PLAN-L7-344-delegation-brief-substance-guard",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-344-delegation-brief-substance-guard.md",
+      "plan_semantic_digest": "sha256:1748354ffcb07d352c7a9cd78f26826ab6662241d9663b835b2cb14e5242e227"
     },
     {
       "fingerprint": "sha256:d6eb4490a6c4b01618c5d8390100dd6210f5864cb88bd73bace9296fcf4c14e7",
       "plan_id": "PLAN-L7-47-search-metrics-feedback",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md",
+      "plan_semantic_digest": "sha256:852cf2de7360dbd15aea8a881989ade537d1106fea2b3662e2795cc6bd0d9478"
     },
     {
       "fingerprint": "sha256:d7e5e1c9795c2d57ee9d49718aff8f5f88dc3d8c2aa5be4c814f64de1ab13daa",
       "plan_id": "PLAN-L7-106-backprop-classification-backlog-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-106-backprop-classification-backlog-gate.md",
+      "plan_semantic_digest": "sha256:ff1c8af36aca4dc95fe5cb07e63735e9452ec26c023cbfb66532e4262d33e10e"
     },
     {
       "fingerprint": "sha256:d85b8c73f4d4bd47d637fb3951625dded75fc68c8a4153e8129bdee7c136988d",
       "plan_id": "PLAN-L7-111-reverse-fullback-claimed-artifact-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-111-reverse-fullback-claimed-artifact-gate.md",
+      "plan_semantic_digest": "sha256:632f810474e47fa81e94443098f69cb8d49f94095ce8e4d3d15bf6b232811f57"
     },
     {
       "fingerprint": "sha256:da6b97c2a66275856cbed42a513e6e73aea1ff9b2cbae8ac46640188c3827336",
       "plan_id": "PLAN-L7-376-artifact-convergence-analyzer",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-376-artifact-convergence-analyzer.md",
+      "plan_semantic_digest": "sha256:65dc18bc6c3b27f91416ed6083ea656323197bf5f93a5b5958a6bab86e8554ee"
     },
     {
       "fingerprint": "sha256:db2068c4c3bea5f3b33b7773ceea9ff5fd66871ce63fcede068ac3be79b57761",
       "plan_id": "PLAN-L7-320-adapter-runtime-hardening",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-320-adapter-runtime-hardening.md",
+      "plan_semantic_digest": "sha256:eab8cc84a802b8693c215325c1cd7588fa82d7842dd6243c66cd6653f31afae8"
     },
     {
       "fingerprint": "sha256:db9411ca2c4d5b9f25e452fab84ef70629f461b156dcf8f72ceb6f0c0d5b6a92",
       "plan_id": "PLAN-L7-18-gate-confirm",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-18-gate-confirm.md",
+      "plan_semantic_digest": "sha256:c07614b9d80fda1d128a143ee8c8e9b34bb298939cc7b6dc661d60119f7d352b"
     },
     {
       "fingerprint": "sha256:dcfd9fedb1f04774a97f3f093bce9ff5d522ececcd7b7ec4c03227ab8fd31bc8",
       "plan_id": "PLAN-L7-33-mcp-profile-config-safety",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-33-mcp-profile-config-safety.md",
+      "plan_semantic_digest": "sha256:a94d042c5ac2f3019810f2b851a2f9ac4caa21fc3d5fbfa1b0520a9ffa74e7e0"
     },
     {
       "fingerprint": "sha256:ddcb46b779dca55b5a39a4b1be91e05c95db49410a587fbe42f593082daf41ee",
       "plan_id": "PLAN-L7-118-required-backfill-bidirectional-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-118-required-backfill-bidirectional-gate.md",
+      "plan_semantic_digest": "sha256:71c1f6813b4ab72c58b0157d2c77b3d40ada1981edf6ed18eace8ac020060ef7"
     },
     {
       "fingerprint": "sha256:de702c513f1e741486e9a88890f2663aa2104b8ee946ad2f58fd34d7c06f32f7",
       "plan_id": "PLAN-L7-225-approval-snapshot-binding",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-225-approval-snapshot-binding.md",
+      "plan_semantic_digest": "sha256:dcecc00712715cb755ade033ddb1f2955d5fac454a8fec8b4c653ce41ce7781e"
     },
     {
       "fingerprint": "sha256:df934c17edc82cc89f3c99ce880b558338b17600b4c49573046d188f780eb8a6",
       "plan_id": "PLAN-L7-217-pair-agent-consultation-precedence",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-217-pair-agent-consultation-precedence.md",
+      "plan_semantic_digest": "sha256:b1a9b9c3a28052eaeb0d99ee830bcaa0c16d1917a97ee2847d213edc52774368"
     },
     {
       "fingerprint": "sha256:dfe0efc24050713307191a2b02386bd985ba4103c2672cc8e81422b4879c5e66",
       "plan_id": "PLAN-L7-252-completion-human-review-bundle",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-252-completion-human-review-bundle.md",
+      "plan_semantic_digest": "sha256:2c4fcbd5130636e007c696219bcf1977f4c1585251449ab2833d812cfcc2623c"
     },
     {
       "fingerprint": "sha256:e03670476e0de4cdebe7aca49fe2ec0b7dae0a0f5518a7c8a595517803872940",
       "plan_id": "PLAN-L7-279-review-bundle-and-version-target-gates",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-279-review-bundle-and-version-target-gates.md",
+      "plan_semantic_digest": "sha256:21c18979014d165bf4edd23c1661da792a7581454fe461f271033490aacc50b4"
     },
     {
       "fingerprint": "sha256:e0584c12728cee1da2351ed686e6f9048539f542acc36b1a266c6f240650af45",
       "plan_id": "PLAN-L7-363-isolated-worktree-sandbox-runner",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md",
+      "plan_semantic_digest": "sha256:f99d833068560c151bd6e87de99fb426e5ecdbbe23a91fbe6afff300b9a36322"
     },
     {
       "fingerprint": "sha256:e19e742f43c295b4c728c3b392e9d24b4189c86b399657140a2834420ef2dd71",
       "plan_id": "PLAN-L7-314-l14-close-audit",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-314-l14-close-audit.md",
+      "plan_semantic_digest": "sha256:984fab08c9b28b98755c9eed77a349af3aaeefbf74c6c31d7857a09e7c476b4b"
     },
     {
       "fingerprint": "sha256:e214aeb1ec5a3175093f19fcac960561c54ba4ab920b0898d2c5c3c5063723a0",
       "plan_id": "PLAN-L7-300-adapter-readiness-and-approval-source-alignment",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-300-adapter-readiness-and-approval-source-alignment.md",
+      "plan_semantic_digest": "sha256:0455da96418e029bc1e765dcbc834f6eb40941d3a94a6dbd0ae57a4b830aeacf"
     },
     {
       "fingerprint": "sha256:e3275c280f2271346e52cf13bd358815c8e6ad266ea834aee70bfb28d9cbd1e0",
       "plan_id": "PLAN-L7-343-effort-observation-full-wiring",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-343-effort-observation-full-wiring.md",
+      "plan_semantic_digest": "sha256:47b0f224220f37b7d99fd132d82f5c696a8aab304bc39482537e96e64bdf1f3c"
     },
     {
       "fingerprint": "sha256:e33c0b93c74994e477ad08fec558cfea3ad66531904540cf8b5bc55f08c917d3",
       "plan_id": "PLAN-L7-09-backfill-pairing",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-09-backfill-pairing.md",
+      "plan_semantic_digest": "sha256:b4e333543a658fda2fa89e4fa9eeb6bccd789371c6bbb1b06174521ccbb917bf"
     },
     {
       "fingerprint": "sha256:e50dd8d1c6cc775fe7536c5e4f699faaa688efc9524e2007094fdd597c33757a",
       "plan_id": "PLAN-L7-290-setup-project-rollback-command",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-290-setup-project-rollback-command.md",
+      "plan_semantic_digest": "sha256:e60f254ec7a3b577054af5ca9b56a402051bb7dcc7a459efeb70c2c598859595"
     },
     {
       "fingerprint": "sha256:e52174696989b3ed15fb857ed4d9fa1a42192690ba056083912f43366dbbb8b2",
       "plan_id": "PLAN-L7-49-asset-catalog",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-49-asset-catalog.md",
+      "plan_semantic_digest": "sha256:df566ce5bd4eace38e3fe61d6f32e02e4a783712ca25dd91e7cef851d319031a"
     },
     {
       "fingerprint": "sha256:e8c57888c0e90340b3bd8e683fce4e3b6d3265793ec5ef3acf1d6a359ff1ff5e",
       "plan_id": "PLAN-L7-338-task-lens-injection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-338-task-lens-injection.md",
+      "plan_semantic_digest": "sha256:e19daf2a352795b0d36c773c1e56d96670034b3b84585692e228867139979deb"
     },
     {
       "fingerprint": "sha256:e957a6b28dcd76e45a491a18b6b50ce268043d2460e55d775d465c84154320a6",
       "plan_id": "PLAN-L7-256-version-up-provenance-ledger",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-256-version-up-provenance-ledger.md",
+      "plan_semantic_digest": "sha256:4acdb8ef77e209b3676e29cbcf878cacb65b484f336898d95e8793eb848002bd"
     },
     {
       "fingerprint": "sha256:eaba0d79d1f7b6737aeff419adf4d89f16399d379b6e989c9460c831a5fc0df8",
       "plan_id": "PLAN-L7-116-required-agent-role-gate",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-116-required-agent-role-gate.md",
+      "plan_semantic_digest": "sha256:7e3306fd972cb77291fe45952d8be009517663a3b98a717ccceebb70d8d8190a"
     },
     {
       "fingerprint": "sha256:eb238279989ba835c8bbea67a96a84447f24a8dfcc2aae43a6277ccdcd8522da",
       "plan_id": "PLAN-L7-121-branch-kind-check",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-121-branch-kind-check.md",
+      "plan_semantic_digest": "sha256:760cac1f9c3ad2342379decb54b04d4ade421a6041a36a8ec1a397f2ddfd8aa1"
     },
     {
       "fingerprint": "sha256:eb85f01a6ca9af769428666a14106461ca5768ff07e1e071ba677e762f317529",
       "plan_id": "PLAN-L7-216-version-up-activation-readiness",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-216-version-up-activation-readiness.md",
+      "plan_semantic_digest": "sha256:a249cdeecfdd4ade0b407636094741b3485af2deedb396815be8b2e1e7ad7759"
     },
     {
       "fingerprint": "sha256:ebb5dbc65f1b093ffbe274c29b5e9addf225dc0e21a7abec734d7c82dd075e65",
       "plan_id": "PLAN-L7-323-workflow-document-parity",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-323-workflow-document-parity.md",
+      "plan_semantic_digest": "sha256:0ea7ad3aaf6df0056fbb3af0ff31fc910b3039d25ffd039f02f51feaa0256c65"
     },
     {
       "fingerprint": "sha256:ebe39af75ce2d2ef9dbe80a81f75bf66e9770974379887068698de5a7bd72981",
       "plan_id": "PLAN-L7-308-relation-impact-non-graph-path",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-308-relation-impact-non-graph-path.md",
+      "plan_semantic_digest": "sha256:9ca10263b5a004da482abab2bff2d562dc4d29bc0fd62a1d799dfe1fec233c02"
     },
     {
       "fingerprint": "sha256:eebba5ff064fddcc897b91e33281b7ed558d902ff2dd62769d389d1a944ca676",
       "plan_id": "PLAN-L7-57-token-telemetry-tracker",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-57-token-telemetry-tracker.md",
+      "plan_semantic_digest": "sha256:f86df93692aaefcefdfdfdd253e020aedebe1753677e6c0fa259f3f4a7106581"
     },
     {
       "fingerprint": "sha256:ef9e55400637a89d33ee0076cc75af015089e14c32ca1ad67e05705f9d0b4cdf",
       "plan_id": "PLAN-L7-346-test-plan-id-remediation",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md",
+      "plan_semantic_digest": "sha256:4e95f612f942fe139970c371ec7983ccca5cc4c70271fdeba53846de1f47e2a3"
     },
     {
       "fingerprint": "sha256:f12d695448d3db603d9c0c0106364a2ac4878e7ef806a6626bd8faa41a61c2aa",
       "plan_id": "PLAN-L7-226-verification-profile-right-arm-gate-metadata",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-226-verification-profile-right-arm-gate-metadata.md",
+      "plan_semantic_digest": "sha256:ef0ddf0d048785f3dff041fd82ded46f91837ff1a68b5d4f2f62ae91a5d0b2bd"
     },
     {
       "fingerprint": "sha256:f24c89dd6dcf35a3b72f17914ee3ed6c1d428f138fd003f49292379d7f0e0a08",
       "plan_id": "PLAN-L7-411-feedback-lifecycle-journal",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-411-feedback-lifecycle-journal.md",
+      "plan_semantic_digest": "sha256:daabd4c57fd02d1dd5707a6e9872a1796e7bcf3b23b50289d4e6d15485aba63c"
     },
     {
       "fingerprint": "sha256:f29ae82ca224bf139ce33e682f989842eace0a064456b1d1c514cc1063a477eb",
       "plan_id": "PLAN-L7-205-run-debug-db-projection",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-205-run-debug-db-projection.md",
+      "plan_semantic_digest": "sha256:53851c038225d5043cd0e0240bebf774429969042d2c8a9c2b4b0121bbb40477"
     },
     {
       "fingerprint": "sha256:f31189b080354792b0b7d3b97791283cd37405e975b0be82dda73288a832aada",
       "plan_id": "PLAN-L7-315-context-doc-router",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-315-context-doc-router.md",
+      "plan_semantic_digest": "sha256:cf35a717f4edb903501b2ffc87fc7aaa9892dd90f98578214b5505a71028d95e"
     },
     {
       "fingerprint": "sha256:f319665f79c864a8caa3846c6f07b2190059f0242d316ccc33adb9e76f9ef7a2",
       "plan_id": "PLAN-L7-325-skill-injection-session-log-audit",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-325-skill-injection-session-log-audit.md",
+      "plan_semantic_digest": "sha256:c2febf5cca49620f6cdd23177706616bc6ffc4c1f1b24fabca019df4b8868ad7"
     },
     {
       "fingerprint": "sha256:f58d96b94fb4aaa73a494bbccfd52d4e43ec66cbab9a3682da342eb73fc0abb7",
       "plan_id": "PLAN-L7-70-skill-pack-curation",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-70-skill-pack-curation.md",
+      "plan_semantic_digest": "sha256:1f4a668be02b18d36b2203be34c4cb333ccf3b936b627b91da8922d3490c304e"
     },
     {
       "fingerprint": "sha256:f676d4713d02a4ae5d7d18e637f2caf04137a7c41e5e27cd2249b34af5d15853",
       "plan_id": "PLAN-L7-04-handover-mechanism",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-04-handover-mechanism.md",
+      "plan_semantic_digest": "sha256:7a89fc627a12d2417ea52ff9a59e8319495463623f560afdb79ad876d6ee71eb"
     },
     {
       "fingerprint": "sha256:f7007add58bee550fad6ad1ae81f3ea3ed5e16c6ad8a2ca76ee067267d54af7a",
       "plan_id": "PLAN-L7-360-github-ops-guard-parity",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-360-github-ops-guard-parity.md",
+      "plan_semantic_digest": "sha256:34afcbe83839c8e859f0666cf206570afe93b4bdd9dfced10b126552da6a1525"
     },
     {
       "fingerprint": "sha256:f7cab7058fd2f69663d252ea5c5ea839c9b2d7d22d5e9ec6cb55b57eab6f7b2d",
       "plan_id": "PLAN-L7-396-handover-derivation-wiring",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-396-handover-derivation-wiring.md",
+      "plan_semantic_digest": "sha256:66c025d5f7d11e9c3f40d608117ed962e5bcfe9d3f8b698f4d208994703d428d"
     },
     {
       "fingerprint": "sha256:f8153799ce0e786d8159568d1ea65063c9b78be5b060997e796188c9defbf6d6",
       "plan_id": "PLAN-L7-358-distribution-update-check-advisory",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-358-distribution-update-check-advisory.md",
+      "plan_semantic_digest": "sha256:b3c4e67948964b278a56ed3047db0757dfa1c3e80df1020c8cadfb687c21cdbd"
     },
     {
       "fingerprint": "sha256:f9724fb0755902c19e336e5422f584e88b58e68434e9d42dbc2e488da78bc236",
       "plan_id": "PLAN-L7-283-approval-draft-review-route-ja",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-283-approval-draft-review-route-ja.md",
+      "plan_semantic_digest": "sha256:9c0ec17dbe69b9519f484bb2235f940c906621a3834bbd870fe822799f811b56"
     },
     {
       "fingerprint": "sha256:f9dcc3b645170e0a55b7cdb5ed92a9596f11095f286019f8399c54da3e7904c8",
       "plan_id": "PLAN-L7-32-cross-artifact-relation-graph",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md",
+      "plan_semantic_digest": "sha256:104da41447fe953b31bc086b7a148fd9c97c4a1caaaba029ab2cc87fdcbfb5dd"
     },
     {
       "fingerprint": "sha256:fb483e8aff2982a92ed794c0b1c82b6bbbf0786f765a65b2c3f50c56596895e7",
       "plan_id": "PLAN-L7-374-cross-repo-spec-store",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-374-cross-repo-spec-store.md",
+      "plan_semantic_digest": "sha256:9c408173e7c82dd21406b70116a26abe1973e1d46b367af36cbabff27f8bb75d"
     },
     {
       "fingerprint": "sha256:fb8878de802a866090a6804e2e4663c0861d1f77f16dcae3ddb356572bc15f1e",
       "plan_id": "PLAN-L7-08-agent-slots",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-08-agent-slots.md",
+      "plan_semantic_digest": "sha256:efc0778bc2af3df5ce9d7f8427c16dfdbf79a16d219e8c21cd4aa1e1e4efc249"
     },
     {
       "fingerprint": "sha256:fd467121bb04acbc28a641d5c491b32abb55a1b72c94b7dbee2171b1da1fdb67",
       "plan_id": "PLAN-L7-147-refactor-candidate-detector",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-147-refactor-candidate-detector.md",
+      "plan_semantic_digest": "sha256:29aad0756ec06483a0e625bd11b3d2c53c99d4d451701695329e1551443acdf4"
     },
     {
       "fingerprint": "sha256:fdf6822cc8d78cb3a2ddbcb6817bb9772e266d1f3bf99419eba152a2483d0caf",
       "plan_id": "PLAN-L7-58-telemetry-cost-enrichment",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-58-telemetry-cost-enrichment.md",
+      "plan_semantic_digest": "sha256:f72eafe1546b922627ce56d910e4f64809e1f631c56dcccacee82d4ad689634c"
     },
     {
       "fingerprint": "sha256:fe6b3ab53b622420c45c838fd20f1780a43c0e4708c9f4a880e2ac555639230d",
       "plan_id": "PLAN-L7-330-l1-l2-consistency-lint",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-330-l1-l2-consistency-lint.md",
+      "plan_semantic_digest": "sha256:4840260d558b2330fb429fe358def77915f44c338720a0b7be91ea23cb700872"
     },
     {
       "fingerprint": "sha256:ff1784f62479f8eaae362e77a8e1a05050162400ade342b7af499372041e2ee3",
       "plan_id": "PLAN-L7-379-extension-preset-bundle-registry",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-379-extension-preset-bundle-registry.md",
+      "plan_semantic_digest": "sha256:dd611ede3c3d373e5f436f49ad558a2a7095c33cc2280dbe3ecc55cec3d999fb"
     },
     {
       "fingerprint": "sha256:ff77674f694db9f7c033352af542118d6804a2462e6cd5372841ece29b61d540",
       "plan_id": "PLAN-L7-120-backfill-result-doc-sync",
       "reason": "verification_bindings_absent",
-      "detail": null
+      "detail": null,
+      "plan_path": "docs/plans/PLAN-L7-120-backfill-result-doc-sync.md",
+      "plan_semantic_digest": "sha256:3b935023eaaf9b9a47a642b93ffa3196e1d960365e36175267ac20dc660f849b"
     }
   ],
   "resolvedTombstones": []
