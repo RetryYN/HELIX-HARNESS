@@ -86,32 +86,33 @@ items:
     artifact:
       - docs/design/harness/L5-detailed-design/internal-processing.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
+      - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test
     source: zip-06
-    status: todo
-    note: 単体テスト設計書そのもの (テスト対象/条件/ケース/期待結果) は無い。testing skill 群は手順素材
+    status: done
+    artifact: docs/test-design/harness/L8-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
     source: zip-07
-    status: todo
-    note: 結合テスト設計書そのものは無い。g8-integration-workflow.ts は検査 lint であり設計書ではない
+    status: done
+    artifact: docs/test-design/harness/L9-integration-test-design.md
   - id: system-test-design
     name: 総合テスト設計書
     category: test
     source: zip-08
     status: todo
-    note: 総合テスト設計書そのものは無い。g9-system-workflow.ts は検査 lint であり設計書ではない
+    note: 現行正本の総合テスト設計書は未着手。L9-system-test-design.md はlegacy shimでありdone根拠にしない
   - id: acceptance-test-design
     name: 受入テスト設計書
     category: test
     source: zip-09
-    status: todo
-    note: 受入テスト設計書そのものは無い。acceptance skill / g10-ux-workflow.ts は素材・lint
+    status: done
+    artifact: docs/test-design/harness/L3-acceptance-test-design.md
   - id: security-design
     name: セキュリティ設計書
     category: sec

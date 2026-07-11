@@ -75,6 +75,7 @@ import {
   checkTelemetryClosure,
   checkToolContractRegistry,
   checkTrackedCanonical,
+  checkTriageDecisionIntegrity,
   checkVerificationGroupsResult,
   checkVerificationProfile,
   checkVerifierProviderMismatch,
@@ -2209,6 +2210,21 @@ describe("runDoctor", () => {
     expect(coverage.ok).toBe(true);
     expect(coverage.messages[0]).toContain("design-coverage");
     expect(hasDoctorMessageWith(r.messages, "doctor: design-coverage", "OK")).toBe(true);
+  });
+
+  it("U-TRIAGE-012: triage判断整合性をdoctor hard gateへ配線する (PLAN-L7-429-triage-decision-integrity)", () => {
+    const green = checkTriageDecisionIntegrity(process.cwd());
+    expect(green.ok).toBe(true);
+    expect(green.messages[0]).toContain("triage-decision-integrity - OK");
+    const red = checkTriageDecisionIntegrity(join(process.cwd(), "missing-triage-root"));
+    expect(red.ok).toBe(false);
+    expect(red.messages[0]).toContain("violation");
+    const source = readFileSync(join(process.cwd(), "src/doctor/index.ts"), "utf8");
+    expect(source).toContain(
+      "const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot)",
+    );
+    expect(source).toContain("triageDecisionIntegrity.ok &&");
+    expect(source).toContain("...triageDecisionIntegrity.messages.map");
   });
 
   it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {

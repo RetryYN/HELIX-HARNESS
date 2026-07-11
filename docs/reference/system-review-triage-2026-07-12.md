@@ -66,10 +66,9 @@ close 処理は backlog の status 更新（observed/triaged → verified 等）
 catalog = `docs/design/design-catalog.yaml`（122 項目）。
 集計: (a) status 更新漏れ 4 / (b) 未着手 53（うち na 化 6 は下記訂正で AI 判断可） / (c) 即 na 化 0。
 
-- **(a) catalog 記述ミス 4 件（即修正可）**: unit-test-design / integration-test-design /
-  system-test-design / acceptance-test-design。catalog note は「設計書そのものは無い」と
-  記すが、`docs/test-design/harness/` の L7/L8/L9/L3 各 test-design（status: confirmed）が
-  実在し矛盾。catalog の status を done へ更新する（coverage 43%→約 47% に改善見込み）。
+- **(a) catalog 記述ミス 3 件（再監査で是正）**: unit-test-design / integration-test-design /
+  acceptance-test-design は現行confirmed正本が実在するためdoneへ更新する。system-test-designは
+  `L9-system-test-design.md`がlegacy shimであり、新規PLANの現行正本として扱えないためtodoを維持する。
 - **na 化 6 件（訂正 2026-07-12: PO escalate 不要、AI 判断可）**: `server-infra` /
   `capacity-autoscale` / `identity-provisioning` / `compliance-mapping` / `api-portal-sdk` /
   `webhook-event-delivery` の各 design。当初 PO 境界として escalate したが、L0 charter

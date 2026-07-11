@@ -316,7 +316,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.checked).toBe(122);
     expect(result.violations).toEqual([]);
     expect(result.ok).toBe(true);
-    // seed の正直さ pin (2026-07-11 実測、round 1-⑤ でテスト設計書系 4 件を todo へ降格済み)。
-    expect(result.counts).toEqual({ done: 43, todo: 57, na: 22 });
+    // PLAN-L7-425再監査: current canonical 3件だけdone。systemのlegacy shimはtodoを維持する。
+    expect(result.counts).toEqual({ done: 46, todo: 54, na: 22 });
   });
 });
