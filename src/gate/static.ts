@@ -6,6 +6,11 @@ import {
   loadImplPlanTraceInput,
 } from "../lint/impl-plan-trace";
 import {
+  analyzeLeftArmCarryLog,
+  leftArmCarryLogMessages,
+  loadLeftArmCarryLogInput,
+} from "../lint/left-arm-carry-log";
+import {
   analyzeOracleTestTrace,
   loadOracleTestTraceInput,
   oracleTestTraceMessages,
@@ -188,6 +193,7 @@ function evaluateG7(input: StaticGateInput, repoRoot: string): StaticGateResult 
 
   const impl = analyzeImplPlanTrace(loadImplPlanTraceInput(repoRoot));
   const oracle = analyzeOracleTestTrace(loadOracleTestTraceInput(repoRoot));
+  const carry = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(repoRoot));
   const coveragePath =
     input.coverageSummaryPath ?? join(repoRoot, "coverage", "coverage-summary.json");
   const coverage = readCoverageSummary(coveragePath, input.coverageThreshold ?? 80);
@@ -197,9 +203,11 @@ function evaluateG7(input: StaticGateInput, repoRoot: string): StaticGateResult 
     ...(l0l7 ? verificationGroupMessages([l0l7]) : ["g7-static - violation: L0-L7 group missing"]),
     ...implPlanTraceMessages(impl),
     ...oracleTestTraceMessages(oracle),
+    ...leftArmCarryLogMessages(carry),
     coverage.message,
   ];
-  const passed = pair.ok && Boolean(l0l7?.frozen) && impl.ok && oracle.ok && coverage.ok;
+  const passed =
+    pair.ok && Boolean(l0l7?.frozen) && impl.ok && oracle.ok && carry.ok && coverage.ok;
 
   return {
     gate: input.gate,
