@@ -8,6 +8,10 @@ plan: docs/plans/PLAN-L6-69-triage-decision-integrity.md
 
 # システムレビューtriage判断整合性 機能設計
 
+> **L6 contract marker**: `analyzeTriageDecisionIntegrity(input) => TriageDecisionIntegrityResult`。
+> pre: triage manifest、catalog、backlogを読める。post: 判断と実sourceの不一致をviolationへ変換する。
+> invariant: code側の独立pin、legacy system保留、未列挙10件の終端禁止を維持する。
+
 ## 1. 目的
 
 system reviewで確定したcatalog/backlogの判断を機械契約にし、件数だけの完了、legacy成果物による

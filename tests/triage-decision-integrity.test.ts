@@ -1,4 +1,3 @@
-// biome-ignore-all lint/style/noNonNullAssertion: real-repository fixture shape is itself an asserted contract.
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -10,7 +9,29 @@ import {
 } from "../src/lint/triage-decision-integrity";
 
 const root = join(import.meta.dirname, "..");
-const base = () => loadTriageDecisionIntegrityInput(root);
+const base = () => {
+  const input = loadTriageDecisionIntegrityInput(root);
+  const manifest = input.manifest;
+  if (
+    !manifest?.catalog?.done ||
+    !manifest.backlog?.verified_ids ||
+    !manifest.backlog.unenumerated_status_claim
+  ) {
+    throw new Error("real repository triage fixture is incomplete");
+  }
+  return {
+    ...input,
+    manifest: {
+      ...manifest,
+      catalog: { ...manifest.catalog, done: manifest.catalog.done },
+      backlog: {
+        ...manifest.backlog,
+        verified_ids: manifest.backlog.verified_ids,
+        unenumerated_status_claim: manifest.backlog.unenumerated_status_claim,
+      },
+    },
+  };
+};
 
 // PLAN-L7-429-triage-decision-integrity
 describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", () => {
@@ -23,21 +44,22 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
   it("U-TRIAGE-002: missing and bad schema fail closed", () => {
     expect(analyzeTriageDecisionIntegrity({ ...base(), manifest: null }).ok).toBe(false);
     const input = base();
-    input.manifest!.schema_version = "bad";
+    input.manifest.schema_version = "bad";
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "invalid-schema",
     );
   });
   it("U-TRIAGE-003: catalog manifest shrink is rejected by independent pin", () => {
     const input = base();
-    delete input.manifest!.catalog!.done!["unit-test-design"];
+    delete input.manifest.catalog.done["unit-test-design"];
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "pinned-set-mismatch",
     );
   });
   it("U-TRIAGE-004: legacy system artifact cannot become canonical", () => {
     const input = base();
-    const item = input.catalogItems.find((x) => x.id === "system-test-design")!;
+    const item = input.catalogItems.find((x) => x.id === "system-test-design");
+    if (!item) throw new Error("system-test-design fixture is missing");
     item.status = "done";
     item.artifact = PIN_SYSTEM_LEGACY;
     const kinds = analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind);
@@ -51,7 +73,7 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
       [...PIN_BACKLOG_VERIFIED, "IMP-004"],
     ]) {
       const input = base();
-      input.manifest!.backlog!.verified_ids = [...ids];
+      input.manifest.backlog.verified_ids = [...ids];
       expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
         "pinned-set-mismatch",
       );
@@ -74,7 +96,7 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
   });
   it("U-TRIAGE-008: count-only completion and duplicate inflation are rejected", () => {
     const input = base();
-    input.manifest!.backlog!.unenumerated_status_claim = {
+    input.manifest.backlog.unenumerated_status_claim = {
       expected_count: 10,
       ids: [],
       state: "resolved",
@@ -82,7 +104,7 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "unresolved-state-invalid",
     );
-    input.manifest!.backlog!.unenumerated_status_claim = {
+    input.manifest.backlog.unenumerated_status_claim = {
       expected_count: 10,
       ids: Array(10).fill("IMP-001"),
       state: "resolved",
@@ -90,7 +112,7 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "unresolved-count-unproved",
     );
-    input.manifest!.backlog!.unenumerated_status_claim = {
+    input.manifest.backlog.unenumerated_status_claim = {
       expected_count: 10,
       ids: Array.from({ length: 10 }, (_, i) => `FAKE-${i}`),
       state: "resolved",
@@ -98,7 +120,7 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "unresolved-id-invalid",
     );
-    input.manifest!.backlog!.unenumerated_status_claim = {
+    input.manifest.backlog.unenumerated_status_claim = {
       expected_count: 10,
       ids: [
         "IMP-145",
@@ -118,11 +140,11 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
     const arbitrary = analyzeTriageDecisionIntegrity(input);
     expect(arbitrary.ok).toBe(false);
     expect(arbitrary.violations.map((v) => v.kind)).toContain("unresolved-count-unproved");
-    input.manifest!.backlog!.unenumerated_status_claim!.state = "unknown";
+    input.manifest.backlog.unenumerated_status_claim.state = "unknown";
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "unresolved-state-invalid",
     );
-    input.manifest!.backlog!.unenumerated_status_claim = {
+    input.manifest.backlog.unenumerated_status_claim = {
       expected_count: 10,
       ids: PIN_BACKLOG_VERIFIED.slice(0, 10),
       state: "resolved",
@@ -140,13 +162,13 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
   });
   it("U-TRIAGE-010: simultaneous manifest/source shrink still fails code pin", () => {
     const input = base();
-    delete input.manifest!.catalog!.done!["unit-test-design"];
+    delete input.manifest.catalog.done["unit-test-design"];
     input.catalogItems = input.catalogItems.filter((x) => x.id !== "unit-test-design");
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain(
       "pinned-set-mismatch",
     );
     const backlog = base();
-    backlog.manifest!.backlog!.verified_ids = PIN_BACKLOG_VERIFIED.slice(1);
+    backlog.manifest.backlog.verified_ids = PIN_BACKLOG_VERIFIED.slice(1);
     backlog.backlogStatuses.delete("IMP-004");
     expect(analyzeTriageDecisionIntegrity(backlog).violations.map((v) => v.kind)).toContain(
       "pinned-set-mismatch",
@@ -154,8 +176,8 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
   });
   it("U-TRIAGE-011: real repository loader preserves exact pinned sizes", () => {
     const input = base();
-    expect(Object.keys(input.manifest!.catalog!.done!)).toHaveLength(3);
-    expect(input.manifest!.backlog!.verified_ids).toHaveLength(14);
+    expect(Object.keys(input.manifest.catalog.done)).toHaveLength(3);
+    expect(input.manifest.backlog.verified_ids).toHaveLength(14);
   });
   it("terminal PLAN cannot pass with the unenumerated claim", () => {
     const input = base();
