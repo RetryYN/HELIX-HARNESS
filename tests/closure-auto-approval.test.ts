@@ -1,6 +1,6 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { chmodSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -559,8 +559,7 @@ describe("closure auto approval authority", () => {
     ]);
     const f = fixture(361);
     const cliPath = join(process.cwd(), "src/cli.ts");
-    const beforeCli = readFileSync(join(f.root, f.queue[0]?.sourcePath ?? ""), "utf8");
-    const dryCli = spawnSync(
+    const rejectedTestSeam = spawnSync(
       "bun",
       [
         "run",
@@ -569,70 +568,14 @@ describe("closure auto approval authority", () => {
         "auto-approve",
         "--dry-run",
         "--evidence-manifest",
-        ".helix/test-manifest.json",
+        "unused.json",
         "--test-snapshot",
-        ".helix/test-snapshot.json",
-        "--from-db",
-        "--batch-size",
-        "100",
-        "--all",
-        "--json",
+        "forbidden.json",
       ],
-      { cwd: f.root, encoding: "utf8", env: { ...process.env, HELIX_TEST_MODE: "1" } },
+      { cwd: process.cwd(), encoding: "utf8" },
     );
-    expect(dryCli.status, `${dryCli.stderr}\n${dryCli.stdout.slice(0, 4000)}`).toBe(0);
-    expect(JSON.parse(dryCli.stdout)).toMatchObject({
-      selected: 361,
-      batch_count: 4,
-      executed: false,
-    });
-    expect(readFileSync(join(f.root, f.queue[0]?.sourcePath ?? ""), "utf8")).toBe(beforeCli);
-    const bin = join(f.root, "bin");
-    mkdirSync(bin);
-    const ghStub = join(bin, "gh");
-    writeFileSync(
-      ghStub,
-      `#!/bin/sh
-case "$*" in
-  *required_status_checks*) echo '{"checks":[{"context":"harness-check","app_id":15368}]}' ;;
-  *check-runs/123456*) echo '{"id":123456,"head_sha":"${currentRepositoryHead(f.root)}","name":"harness-check","status":"completed","conclusion":"success","completed_at":"2026-07-12T00:09:00Z","app":{"id":15368,"slug":"github-actions","owner":{"login":"github"}},"details_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1","html_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456"}' ;;
-  *commits/*/check-runs*) echo '{"check_runs":[{"id":123456,"head_sha":"${currentRepositoryHead(f.root)}","name":"harness-check","status":"completed","conclusion":"success","completed_at":"2026-07-12T00:09:00Z","app":{"id":15368,"slug":"github-actions","owner":{"login":"github"}},"details_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1","html_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456"}]}' ;;
-  *) exit 2 ;;
-esac
-`,
-    );
-    chmodSync(ghStub, 0o755);
-    const executeCli = spawnSync(
-      "bun",
-      [
-        "run",
-        cliPath,
-        "closure",
-        "auto-approve",
-        "--execute",
-        "--evidence-manifest",
-        ".helix/test-manifest.json",
-        "--test-snapshot",
-        ".helix/test-snapshot.json",
-        "--from-db",
-        "--batch-size",
-        "100",
-        "--all",
-        "--test-fail-after",
-        "1",
-        "--json",
-      ],
-      {
-        cwd: f.root,
-        encoding: "utf8",
-        env: { ...process.env, HELIX_TEST_MODE: "1", PATH: `${bin}:${process.env.PATH}` },
-      },
-    );
-    expect(executeCli.status).not.toBe(0);
-    expect(readFileSync(join(f.root, f.queue[0]?.sourcePath ?? ""), "utf8")).toBe(beforeCli);
-    expect(
-      readFileSync(join(f.root, ".helix/audit/closure-auto-approval.jsonl"), "utf8"),
-    ).toContain('"status":"rolled_back"');
+    expect(rejectedTestSeam.status).not.toBe(0);
+    expect(rejectedTestSeam.stderr).toContain("unknown option '--test-snapshot'");
     const ids = new Set<string>();
     for (let offset = 0; offset < 361; offset += 100) {
       const window = {
