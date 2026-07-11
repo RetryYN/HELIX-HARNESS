@@ -29,6 +29,14 @@ function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.Proce
   });
 }
 
+function writePlanFixture(cwd: string, planId = "PLAN-L4-13"): void {
+  mkdirSync(join(cwd, "docs", "plans"), { recursive: true });
+  writeFileSync(
+    join(cwd, "docs", "plans", `${planId}.md`),
+    `---\nplan_id: ${planId}\nstatus: confirmed\n---\n`,
+  );
+}
+
 function writeFakeCodex(binDir: string): string {
   mkdirSync(binDir, { recursive: true });
   const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", "CODEX"].join("_");
@@ -161,6 +169,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-codex-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
+      writePlanFixture(cwd);
       const fakeCodex = writeFakeCodex(binDir);
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
@@ -196,6 +205,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-codex-task-file-"));
     const binDir = join(cwd, "bin");
     try {
+      writePlanFixture(cwd);
       const fakeCodex = writeFakeCodex(binDir);
       writeFileSync(join(cwd, "task.md"), "implement from task file");
       const env = {
