@@ -137,6 +137,28 @@ describe("PLAN固有Vペアbinding", () => {
       executableOracleCases: new Map([[oracle, 1]]),
     });
     expect(reasons(input({ testFiles: files }))).toContain("plan_citation_missing");
+    for (const shadowed of [
+      `const it=(_title:string,_fn:()=>void)=>{}; it("${oracle}: fake",()=>{});`,
+      `function test(_title:string,_fn:()=>void){}; test("${oracle}: fake",()=>{});`,
+      `import { fake as it } from "vitest"; it("${oracle}: fake",()=>{});`,
+      `import { it } from "other-runner"; it("${oracle}: fake",()=>{});`,
+      `function helper(it: Function){ it("${oracle}: fake",()=>{}); }`,
+      `const helper = function it(){ it("${oracle}: fake",()=>{}); };`,
+      `function helper(){ if(true){ var it=(_t:string,_f:()=>void)=>{}; } it("${oracle}: fake",()=>{}); }`,
+    ]) {
+      expect(extractExecutableOracleCases(shadowed).size).toBe(0);
+    }
+    expect(
+      extractExecutableOracleCases(
+        `import { it } from "vitest"; it("${oracle}: valid",()=>{}); function helper(it: Function){ return it; }`,
+      ).get(oracle),
+    ).toBe(1);
+    for (const scopedBinding of [
+      `for (let it=0; it<1; it+=1) {} it("${oracle}: valid",()=>{});`,
+      `switch (1) { case 1: { let test=()=>{}; test(); break; } } test("${oracle}: valid",()=>{});`,
+    ]) {
+      expect(extractExecutableOracleCases(scopedBinding).get(oracle)).toBe(1);
+    }
     files.set(testPath, {
       ...requiredEvidence(files, testPath),
       source: `// X${planId}\nit("${oracle}: real",()=>{});`,
@@ -167,6 +189,14 @@ describe("PLAN固有Vペアbinding", () => {
       );
     }
     expect(parseEligibleOracleTable(`\`\`\`\n${table()}\n\`\`\``).rows).toEqual([]);
+    expect(parseEligibleOracleTable(table("U-MULTI-PART-001a")).rows).toHaveLength(1);
+    expect(parseEligibleOracleTable(table("U-MULTI-PART-001ab")).rows).toHaveLength(0);
+    expect(extractExecutableOracleCases('it("U-MULTI-PART-001ab: bad",()=>{});').size).toBe(0);
+    expect(
+      extractExecutableOracleCases(
+        `import { it } from "vitest"; it("U-MULTI-PART-001a: valid",()=>{});`,
+      ).get("U-MULTI-PART-001a"),
+    ).toBe(1);
   });
 
   it("U-PSPB-014: 重複/ownership", () => {
@@ -229,6 +259,23 @@ describe("PLAN固有Vペアbinding", () => {
         }),
       ).ok,
     ).toBe(true);
+
+    const malformed = input({
+      plans: [
+        plan({
+          verification_bindings: [
+            { parent_design: parent, oracle_id: oracle, test_path: testPath },
+            { parent_design: parent, oracle_id: other, test_path: testPath },
+          ],
+        }),
+      ],
+      pairDocuments: new Map([[pair, `${table()}\n| ${other} | broken |`]]),
+    });
+    expect(
+      analyzePlanSpecificVpairBindings(malformed).findings.filter(
+        (finding) => finding.reason === "oracle_table_schema_invalid",
+      ),
+    ).toHaveLength(1);
   });
 
   it("U-PSPB-016: exact fingerprint ratchet", () => {
@@ -260,7 +307,7 @@ describe("PLAN固有Vペアbinding", () => {
         input({ plans: [plan({ verification_bindings: null })], authority }),
       ).ok,
     ).toBe(false);
-    expect(analyzePlanSpecificVpairBindings(input({ authority })).ok).toBe(true);
+    expect(analyzePlanSpecificVpairBindings(input({ authority })).ok).toBe(false);
   });
 
   it("U-PSPB-017: baseline authority", () => {
@@ -309,6 +356,54 @@ describe("PLAN固有Vペアbinding", () => {
       resolvedTombstones: [],
     };
     expect(reasons(input({ authority: unusedAuthority }))).toContain("baseline_authority_invalid");
+
+    const invalidAuthorities: unknown[] = [
+      { ...authority, unknown: true },
+      {
+        ...authority,
+        initialAuthority: [{ ...initial[0], reason: "future_reason" }],
+      },
+      {
+        ...authority,
+        initialAuthority: [{ ...initial[0], unknown: true }],
+      },
+      {
+        ...authority,
+        resolvedTombstones: [{ ...tombstone, resolved_at: "2026-07-11T09:00:00+09:00" }],
+      },
+      {
+        ...authority,
+        resolvedTombstones: [{ ...tombstone, previous_digest: `sha256:${"1".repeat(64)}` }],
+      },
+      {
+        ...authority,
+        resolvedTombstones: [{ ...tombstone, fingerprint: `sha256:${"2".repeat(64)}` }],
+      },
+      {
+        ...authority,
+        resolvedTombstones: [tombstone, tombstone],
+      },
+      {
+        ...authority,
+        resolvedTombstones: [{ ...tombstone, unknown: true }],
+      },
+    ];
+    for (const invalidAuthority of invalidAuthorities) {
+      expect(
+        reasons({
+          ...valid,
+          authority: invalidAuthority,
+          expectedTerminalDigest: undefined,
+        }),
+      ).toContain("baseline_authority_invalid");
+    }
+    expect(
+      reasons({
+        ...valid,
+        isTerminalResolutionPlan: () => false,
+        expectedTerminalDigest: undefined,
+      }),
+    ).toContain("baseline_authority_invalid");
   });
 
   it("U-PSPB-018: 対象境界", () => {

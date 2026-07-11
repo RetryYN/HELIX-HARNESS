@@ -3,6 +3,7 @@ import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync, statSyn
 import { isAbsolute, join, relative, resolve } from "node:path";
 import ts from "typescript";
 import { parse as parseYaml } from "yaml";
+import { PLAN_SPECIFIC_ORACLE_ID_PATTERN } from "../schema/frontmatter";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
   "plan-specific-vpair-binding-authority.v1" as const;
@@ -110,7 +111,6 @@ export interface PlanSpecificVpairBindingResult {
   exempted: PlanSpecificVpairFinding[];
 }
 
-const ORACLE_ID = /^U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]*$/;
 const SHA256 = /^sha256:[a-f0-9]{64}$/;
 const UTC_INSTANT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/;
 const ELIGIBLE_HEADER = ["U-ID", "対象", "反例と期待結果", "test citation"];
@@ -204,7 +204,7 @@ export function parseEligibleOracleTable(source: string): {
         continue;
       }
       const oracleId = cells[0] ?? "";
-      if (!ORACLE_ID.test(oracleId)) {
+      if (!PLAN_SPECIFIC_ORACLE_ID_PATTERN.test(oracleId)) {
         if (/U-[A-Z0-9-]+/.test(oracleId)) schemaErrors.push(`line ${j + 1}: invalid oracle id`);
         continue;
       }
@@ -225,29 +225,73 @@ function staticTitle(node: ts.Expression | undefined): string | null {
   return null;
 }
 
+function oracleTypeScriptProgram(source: string, fileName: string): ts.Program {
+  const virtualName = fileName.startsWith("/") ? fileName : `/${fileName}`;
+  const options: ts.CompilerOptions = {
+    noLib: true,
+    noResolve: true,
+    target: ts.ScriptTarget.Latest,
+    module: ts.ModuleKind.ESNext,
+  };
+  const host: ts.CompilerHost = {
+    fileExists: (name) => name === virtualName,
+    readFile: (name) => (name === virtualName ? source : undefined),
+    getSourceFile: (name, languageVersion) =>
+      name === virtualName
+        ? ts.createSourceFile(name, source, languageVersion, true, ts.ScriptKind.TS)
+        : undefined,
+    getDefaultLibFileName: () => "/lib.d.ts",
+    writeFile: () => undefined,
+    getCurrentDirectory: () => "/",
+    getDirectories: () => [],
+    getCanonicalFileName: (name) => name,
+    useCaseSensitiveFileNames: () => true,
+    getNewLine: () => "\n",
+  };
+  return ts.createProgram([virtualName], options, host);
+}
+
+function isVitestOracleSymbol(symbol: ts.Symbol | undefined, callName: string): boolean {
+  if (!symbol) return true;
+  return (symbol.declarations ?? []).some((declaration) => {
+    if (!ts.isImportSpecifier(declaration)) return false;
+    const imported = declaration.propertyName?.text ?? declaration.name.text;
+    const importDeclaration = declaration.parent.parent.parent;
+    return (
+      declaration.name.text === callName &&
+      imported === callName &&
+      ts.isImportDeclaration(importDeclaration) &&
+      ts.isStringLiteral(importDeclaration.moduleSpecifier) &&
+      importDeclaration.moduleSpecifier.text === "vitest"
+    );
+  });
+}
+
 /** comment/dead string/member call/dynamic titleを数えず、実CallExpressionだけを返す。 */
 export function extractExecutableOracleCases(
   source: string,
   fileName = "test.ts",
 ): Map<string, number> {
-  const file = ts.createSourceFile(
-    fileName,
-    source,
-    ts.ScriptTarget.Latest,
-    true,
-    ts.ScriptKind.TS,
-  );
+  const program = oracleTypeScriptProgram(source, fileName);
+  const file = program.getSourceFiles()[0];
+  if (!file) return new Map();
+  const checker = program.getTypeChecker();
   const counts = new Map<string, number>();
   const visit = (node: ts.Node): void => {
+    const callback = ts.isCallExpression(node) ? node.arguments[1] : undefined;
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
       (node.expression.text === "it" || node.expression.text === "test") &&
-      (ts.isArrowFunction(node.arguments[1]) || ts.isFunctionExpression(node.arguments[1]))
+      isVitestOracleSymbol(checker.getSymbolAtLocation(node.expression), node.expression.text) &&
+      callback !== undefined &&
+      (ts.isArrowFunction(callback) || ts.isFunctionExpression(callback))
     ) {
       const title = staticTitle(node.arguments[0]);
-      const match = title?.match(/^(U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]*):\s+\S/);
-      const oracleId = match?.[1];
+      const separator = title?.indexOf(": ") ?? -1;
+      const candidate = separator > 0 ? title?.slice(0, separator) : undefined;
+      const oracleId =
+        candidate && PLAN_SPECIFIC_ORACLE_ID_PATTERN.test(candidate) ? candidate : undefined;
       if (oracleId) counts.set(oracleId, (counts.get(oracleId) ?? 0) + 1);
     }
     ts.forEachChild(node, visit);
@@ -273,7 +317,7 @@ function decodeBinding(raw: unknown): VerificationBinding | null {
     typeof record.parent_design !== "string" ||
     record.parent_design.length === 0 ||
     typeof record.oracle_id !== "string" ||
-    !ORACLE_ID.test(record.oracle_id) ||
+    !PLAN_SPECIFIC_ORACLE_ID_PATTERN.test(record.oracle_id) ||
     !isCanonicalTestPath(record.test_path)
   )
     return null;
@@ -308,6 +352,8 @@ function validateAuthority(input: {
     return { authority: null, error: "authority missing", resolved: new Set() };
   const authority = input.raw as PlanSpecificVpairAuthority;
   if (
+    Object.keys(authority).sort().join(",") !==
+      "initialAuthority,resolvedTombstones,schemaVersion" ||
     authority.schemaVersion !== PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA ||
     !Array.isArray(authority.initialAuthority) ||
     !Array.isArray(authority.resolvedTombstones)
@@ -322,9 +368,10 @@ function validateAuthority(input: {
     authority.initialAuthority.some(
       (entry) =>
         !entry ||
+        Object.keys(entry).sort().join(",") !== "detail,fingerprint,plan_id,reason" ||
         !SHA256.test(entry.fingerprint) ||
         typeof entry.plan_id !== "string" ||
-        typeof entry.reason !== "string" ||
+        !PLAN_SPECIFIC_VPAIR_REASONS.has(entry.reason) ||
         (entry.detail !== null && typeof entry.detail !== "string") ||
         findingFingerprint(entry) !== entry.fingerprint,
     ) ||
@@ -348,6 +395,8 @@ function validateAuthority(input: {
   for (const tombstone of authority.resolvedTombstones) {
     if (
       !tombstone ||
+      Object.keys(tombstone).sort().join(",") !==
+        "entry_digest,fingerprint,previous_digest,resolution_plan_id,resolved_at" ||
       !SHA256.test(tombstone.fingerprint) ||
       !fingerprints.includes(tombstone.fingerprint) ||
       resolved.has(tombstone.fingerprint) ||
@@ -378,12 +427,37 @@ function isEligiblePlan(plan: PlanSpecificVpairPlan): boolean {
   return (plan.kind === "impl" || plan.kind === "add-impl") && plan.status !== "archived";
 }
 
+const PLAN_SPECIFIC_VPAIR_REASONS = new Set<PlanSpecificVpairReason>([
+  "verification_bindings_absent",
+  "binding_schema_invalid",
+  "binding_parent_mismatch",
+  "oracle_not_declared",
+  "oracle_ambiguous",
+  "oracle_table_schema_invalid",
+  "oracle_test_citation_mismatch",
+  "test_not_generated",
+  "test_path_missing",
+  "plan_citation_missing",
+  "oracle_citation_missing",
+  "oracle_owned_by_multiple_plans",
+  "duplicate_binding",
+  "baseline_authority_invalid",
+  "resolved_finding_reappeared",
+]);
+
+function uniqueFindings(items: PlanSpecificVpairFinding[]): PlanSpecificVpairFinding[] {
+  return [...new Map(items.map((item) => [item.fingerprint, item])).values()].sort((a, b) =>
+    a.fingerprint.localeCompare(b.fingerprint),
+  );
+}
+
 export function analyzePlanSpecificVpairBindings(
   input: PlanSpecificVpairBindingInput,
 ): PlanSpecificVpairBindingResult {
   const rawFindings: PlanSpecificVpairFinding[] = [];
   const active = input.plans.filter(isEligiblePlan);
   const ownership = new Map<string, Map<string, Set<string>>>();
+  const pairParseCache = new Map<string, ReturnType<typeof parseEligibleOracleTable>>();
 
   for (const plan of active) {
     const planId = typeof plan.plan_id === "string" ? plan.plan_id : "<invalid-plan-id>";
@@ -431,7 +505,11 @@ export function analyzePlanSpecificVpairBindings(
         );
       }
       const pairPath = typeof plan.pair_artifact === "string" ? plan.pair_artifact : "";
-      const parsed = parseEligibleOracleTable(input.pairDocuments.get(pairPath) ?? "");
+      let parsed = pairParseCache.get(pairPath);
+      if (!parsed) {
+        parsed = parseEligibleOracleTable(input.pairDocuments.get(pairPath) ?? "");
+        pairParseCache.set(pairPath, parsed);
+      }
       if (parsed.schemaErrors.length > 0)
         rawFindings.push(
           finding(planId, "oracle_table_schema_invalid", parsed.schemaErrors.join("; ")),
@@ -485,6 +563,7 @@ export function analyzePlanSpecificVpairBindings(
     }
   }
 
+  let currentFindings = uniqueFindings(rawFindings);
   let authority: ReturnType<typeof validateAuthority> | null = null;
   if (
     input.authority !== undefined ||
@@ -498,31 +577,32 @@ export function analyzePlanSpecificVpairBindings(
       isTerminal: input.isTerminalResolutionPlan,
     });
     if (authority.error)
-      rawFindings.push(finding("<authority>", "baseline_authority_invalid", authority.error));
+      currentFindings.push(finding("<authority>", "baseline_authority_invalid", authority.error));
   }
   const resolved = authority?.resolved ?? new Set<string>();
   const initial = new Set(
     authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ?? [],
   );
-  const currentFingerprints = new Set(rawFindings.map((item) => item.fingerprint));
+  const currentFingerprints = new Set(currentFindings.map((item) => item.fingerprint));
   const unusedActiveExemptions = [...initial].filter(
     (fingerprint) => !resolved.has(fingerprint) && !currentFingerprints.has(fingerprint),
   );
   for (const fingerprint of unusedActiveExemptions) {
-    rawFindings.push(
+    currentFindings.push(
       finding("<authority>", "baseline_authority_invalid", `unused exemption ${fingerprint}`),
     );
   }
-  for (const current of rawFindings) {
+  currentFindings = uniqueFindings(currentFindings);
+  const reappeared: PlanSpecificVpairFinding[] = [];
+  for (const current of currentFindings) {
     if (resolved.has(current.fingerprint))
-      rawFindings.push(
-        finding(current.plan_id, "resolved_finding_reappeared", current.fingerprint),
-      );
+      reappeared.push(finding(current.plan_id, "resolved_finding_reappeared", current.fingerprint));
   }
-  const exempted = rawFindings.filter(
+  const allFindings = uniqueFindings([...currentFindings, ...reappeared]);
+  const exempted = allFindings.filter(
     (item) => initial.has(item.fingerprint) && !resolved.has(item.fingerprint),
   );
-  const findings = rawFindings.filter(
+  const findings = allFindings.filter(
     (item) => !initial.has(item.fingerprint) || resolved.has(item.fingerprint),
   );
   return {

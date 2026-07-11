@@ -37,8 +37,14 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     expect(
       frontmatterSchema.safeParse(implBase({ verification_bindings: [binding] })).success,
     ).toBe(true);
+    expect(
+      frontmatterSchema.safeParse(
+        implBase({ verification_bindings: [{ ...binding, oracle_id: "U-MULTI-PART-001a" }] }),
+      ).success,
+    ).toBe(true);
     for (const bad of [
       { ...binding, oracle_id: "U-EXAMPLE-001..003" },
+      { ...binding, oracle_id: "U-EXAMPLE-001ab" },
       { ...binding, test_path: "tests/../src/example.ts" },
       { ...binding, test_path: "tests\\example.test.ts" },
       { ...binding, unknown: true },

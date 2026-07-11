@@ -101,6 +101,7 @@ import {
   completionReviewBundleForOutstanding,
   computeOutstandingWork,
 } from "../../src/lint/outstanding";
+import { checkPlanSpecificVpairBindings } from "../../src/lint/plan-specific-vpair-binding";
 import {
   buildS4DecisionPackets,
   loadS4DecisionReadinessInput,
@@ -3478,6 +3479,7 @@ describe("runDoctor", () => {
       ["roadmap", checkRoadmap(missingRoot)],
       ["impl-plan-trace", checkImplPlanTrace(missingRoot)],
       ["oracle-test-trace", checkOracleTestTrace(missingRoot)],
+      ["plan-specific-vpair-binding", checkPlanSpecificVpairBindings(missingRoot)],
       ["tracked-canonical", checkTrackedCanonical(missingRoot)],
       ["dependency-drift", checkDependencyDrift(missingRoot)],
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],

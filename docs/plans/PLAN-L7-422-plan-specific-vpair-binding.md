@@ -4,7 +4,7 @@ title: "PLAN-L7-422 (impl): PLAN固有Vペア4点結合gate — L6設計・L8 or
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-11 /goal『設計とテスト設計/検証設計でVペアを作る。抜け漏れ絶対許さない』をPLAN-L6-65 confirmed後に実装へ降下"
@@ -97,6 +97,38 @@ dependencies:
     - docs/plans/PLAN-L7-347-plan-descent-gate-impl.md
   references:
     - docs/plans/PLAN-L7-419-skill-mythos-uplift.md
+review_evidence:
+  - reviewer: codex-vpair-gate-design-reviewer
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-11T14:56:22Z"
+    tests_green_at: "2026-07-11T14:56:22Z"
+    verdict: approve_after_fixes
+    scope: "severity-first独立レビューを4回実施。authority事前許可、PLAN token境界、pending test、oracle regex SSoT、共有L8重複、doctor fail-close、local it/test偽装、lexical scope、var hoist反例を是正し、最終blocker 0。286 exemptionsは完了ではなく凍結legacy debtとして分離追跡する。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/frontmatter.test.ts tests/plan-descent-specific-parent-binding.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T14:56:22Z"
+        evidence_path: tests/plan-descent-specific-parent-binding.test.ts
+        output_digest: "sha256:ff0257214b127e714b3ca6061accfe4ada53535b1f30d1a4a28d9f8f34bef5f0"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-11T14:56:22Z"
+        evidence_path: src/lint/plan-specific-vpair-binding.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-11T14:56:22Z"
+        evidence_path: src/lint/plan-specific-vpair-binding.ts
+        output_digest: "sha256:a10a1f2acf08543574d55798cc140f8199a9f7d184080f9075ecdb60a53f2c12"
 ---
 
 # PLAN-L7-422: PLAN固有Vペア4点結合gate
