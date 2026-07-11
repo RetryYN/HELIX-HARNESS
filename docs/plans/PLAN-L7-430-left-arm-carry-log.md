@@ -58,7 +58,7 @@ review_evidence:
     tests_green_at: "2026-07-12T06:14:58+09:00"
     reviewed_at: "2026-07-11T21:15:00Z"
     verdict: approve_after_fixes
-    scope: "U-CARRY-001..019、strict loader、canonical gate argv、時系列、global replay、legacy exact baseline、doctor/G7配線を再監査した。"
+    scope: "U-CARRY-001..022、strict loader、canonical gate argv、時系列、global replay、legacy exact baseline、doctor/G7配線を再監査した。"
     green_commands:
       - { kind: unit_test, command: "bunx vitest run tests/left-arm-carry-log.test.ts tests/frontmatter.test.ts tests/gate-static.test.ts tests/slow/doctor.test.ts -t 'U-CARRY|G7'", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T06:14:58+09:00", evidence_path: tests/left-arm-carry-log.test.ts, output_digest: "sha256:778b1a6e2385d78d3aa4b418bfb5fa88dc1c1791b2cc562cdc710438a9f3b92f" }
       - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-430-left-arm-carry-log.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T06:14:58+09:00", evidence_path: docs/plans/PLAN-L7-430-left-arm-carry-log.md, output_digest: "sha256:93c52b5c93d1332e54aedae07b0e332aea6aa4a0c00d2ac7d54c4d0b8f42c37f" }

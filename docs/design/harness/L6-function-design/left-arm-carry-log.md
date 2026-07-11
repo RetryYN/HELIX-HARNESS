@@ -47,5 +47,5 @@ left_arm_carry:
 
 ## 4. Vペア
 
-対象検証設計は`docs/test-design/harness/L8-unit-test-design.md`の`U-CARRY-001..019`。
+対象検証設計は`docs/test-design/harness/L8-unit-test-design.md`の`U-CARRY-001..022`。
 実装PLANは`PLAN-L7-430-left-arm-carry-log`、検出器は`src/lint/left-arm-carry-log.ts`とする。
