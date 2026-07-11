@@ -11,7 +11,8 @@ import {
 const root = join(import.meta.dirname, "..");
 const base = () => loadTriageDecisionIntegrityInput(root);
 
-describe("triage-decision-integrity (PLAN-L7-428)", () => {
+// PLAN-L7-428-triage-decision-integrity
+describe("triage-decision-integrity (PLAN-L7-428-triage-decision-integrity)", () => {
   it("U-TRIAGE-001: real contract passes while unenumerated completion remains blocked", () => {
     const r = analyzeTriageDecisionIntegrity(base());
     expect(r.violations).toEqual([]);
@@ -94,9 +95,6 @@ describe("triage-decision-integrity (PLAN-L7-428)", () => {
     expect(
       analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind),
     ).toContain("unresolved-count-unproved");
-  });
-  it("U-TRIAGE-008: fake IDs and unknown state are rejected", () => {
-    const input = base();
     input.manifest!.backlog!.unenumerated_status_claim = {
       expected_count: 10,
       ids: Array.from({ length: 10 }, (_, i) => `FAKE-${i}`),

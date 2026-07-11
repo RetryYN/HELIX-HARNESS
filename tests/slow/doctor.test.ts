@@ -24,6 +24,7 @@ import {
   checkDependencyDrift,
   checkDescentObligation,
   checkDesignCoverage,
+  checkTriageDecisionIntegrity,
   checkDesignLanguage,
   checkDriveDbRegistration,
   checkDriveModelBinding,
