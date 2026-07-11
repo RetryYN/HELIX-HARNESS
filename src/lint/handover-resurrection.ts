@@ -1,19 +1,4 @@
-import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { extname, join, posix } from "node:path";
 import ts from "typescript";
-import {
-  latestCompletedRetirementCheckpoint,
-  parseRetirementJournal,
-} from "../runtime/continuation";
-import {
-  collectPreserveManifest,
-  collectRetirementPreserveInventory,
-  validateOperationsTransitionMarkdown,
-  validateProviderEvidenceJson,
-} from "../runtime/retirement-preserve";
-import { loadAndVerifyHandoverCutoverApproval } from "./handover-cutover-approval";
 
 export type ResurrectionCategory =
   | "command"
@@ -80,7 +65,7 @@ export interface GeneratedResurrectionBaselineFile extends ResurrectionBaseline 
   projectionKinds: ["fresh_setup", "brownfield_setup", "command_contract", "clean_distribution"];
 }
 
-interface GeneratedResurrectionAuthority {
+export interface GeneratedResurrectionAuthority {
   schemaVersion: "handover-generated-resurrection-authority.v1";
   baselinePath: "config/handover-generated-resurrection-baseline.json";
   sourceRevision: string;
@@ -100,7 +85,7 @@ export interface ResurrectionBaselineAuthority {
   decisionId: string;
 }
 
-interface ResurrectionPreserveAuthority {
+export interface ResurrectionPreserveAuthority {
   schemaVersion: "handover-preserve-authority.v1";
   sourceRevision: string;
   entries: Array<{
@@ -110,7 +95,7 @@ interface ResurrectionPreserveAuthority {
   }>;
 }
 
-interface ResurrectionEnforceAuthority {
+export interface ResurrectionEnforceAuthority {
   schemaVersion: "handover-resurrection-enforce-authority.v1";
   operationId: string;
   intentDigest: string;
@@ -187,7 +172,7 @@ const BASELINE_AUTHORITY_PIN: ResurrectionBaselineAuthority = {
 };
 const PRESERVE_AUTHORITY_FILE_DIGEST =
   "sha256:dc460288ad0860ac02ec9b11f8265e58798d1f39e754524f7f5ec783e3900c22";
-const ENFORCE_AUTHORITY_PIN: ResurrectionEnforceAuthority = {
+export const ENFORCE_AUTHORITY_PIN: ResurrectionEnforceAuthority = {
   schemaVersion: "handover-resurrection-enforce-authority.v1",
   operationId: "handover-retirement:2026-07-11-sprint3",
   intentDigest: "sha256:4923d6233832852b31bb5a5d93e38a4fa7c9d1ae47caf01d15969ef71ca7a3f3",
@@ -208,8 +193,68 @@ const GENERATED_AUTHORITY_PIN: GeneratedResurrectionAuthority = {
   decisionId: "PLAN-L7-416:generated-baseline:all-projections-v2",
 };
 
+/** Runtime capabilityを持たないlint境界用の決定的SHA-256。 */
 function sha256(value: string): string {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+  const bytes = new TextEncoder().encode(value);
+  const bitLength = bytes.length * 8;
+  const paddedLength = Math.ceil((bytes.length + 9) / 64) * 64;
+  const padded = new Uint8Array(paddedLength);
+  padded.set(bytes);
+  padded[bytes.length] = 0x80;
+  const view = new DataView(padded.buffer);
+  view.setUint32(paddedLength - 8, Math.floor(bitLength / 0x1_0000_0000), false);
+  view.setUint32(paddedLength - 4, bitLength >>> 0, false);
+  const state = new Uint32Array([
+    0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+  ]);
+  const constants = new Uint32Array([
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+  ]);
+  const words = new Uint32Array(64);
+  const rotateRight = (word: number, amount: number): number =>
+    (word >>> amount) | (word << (32 - amount));
+  for (let offset = 0; offset < paddedLength; offset += 64) {
+    for (let index = 0; index < 16; index += 1) {
+      words[index] = view.getUint32(offset + index * 4, false);
+    }
+    for (let index = 16; index < 64; index += 1) {
+      const word15 = words[index - 15] ?? 0;
+      const word2 = words[index - 2] ?? 0;
+      const sigma0 = rotateRight(word15, 7) ^ rotateRight(word15, 18) ^ (word15 >>> 3);
+      const sigma1 = rotateRight(word2, 17) ^ rotateRight(word2, 19) ^ (word2 >>> 10);
+      words[index] = ((words[index - 16] ?? 0) + sigma0 + (words[index - 7] ?? 0) + sigma1) >>> 0;
+    }
+    let [a, b, c, d, e, f, g, h] = state;
+    for (let index = 0; index < 64; index += 1) {
+      const bigSigma1 = rotateRight(e ?? 0, 6) ^ rotateRight(e ?? 0, 11) ^ rotateRight(e ?? 0, 25);
+      const choose = ((e ?? 0) & (f ?? 0)) ^ (~(e ?? 0) & (g ?? 0));
+      const temporary1 =
+        ((h ?? 0) + bigSigma1 + choose + (constants[index] ?? 0) + (words[index] ?? 0)) >>> 0;
+      const bigSigma0 = rotateRight(a ?? 0, 2) ^ rotateRight(a ?? 0, 13) ^ rotateRight(a ?? 0, 22);
+      const majority = ((a ?? 0) & (b ?? 0)) ^ ((a ?? 0) & (c ?? 0)) ^ ((b ?? 0) & (c ?? 0));
+      const temporary2 = (bigSigma0 + majority) >>> 0;
+      h = g;
+      g = f;
+      f = e;
+      e = ((d ?? 0) + temporary1) >>> 0;
+      d = c;
+      c = b;
+      b = a;
+      a = (temporary1 + temporary2) >>> 0;
+    }
+    const next = [a, b, c, d, e, f, g, h];
+    for (let index = 0; index < state.length; index += 1) {
+      state[index] = ((state[index] ?? 0) + (next[index] ?? 0)) >>> 0;
+    }
+  }
+  return `sha256:${[...state].map((word) => word.toString(16).padStart(8, "0")).join("")}`;
 }
 
 function canonicalJson(value: unknown): string {
@@ -237,7 +282,11 @@ function normalizedPath(path: string): string {
   ) {
     throw new Error(`invalid resurrection path: ${path}`);
   }
-  return posix.normalize(normalized);
+  const result = normalized
+    .split("/")
+    .filter((part) => part.length > 0 && part !== ".")
+    .join("/");
+  return result || ".";
 }
 
 function finding(input: {
@@ -263,70 +312,6 @@ export function buildResurrectionBaseline(
 ): ResurrectionBaseline {
   const fingerprints = [...new Set(findings.map((item) => item.fingerprint))].sort();
   return { fingerprints, digest: sha256(canonicalJson(fingerprints)) };
-}
-
-const ACTIVE_SCAN_ROOTS = [
-  "src",
-  "scripts",
-  ".helix/config",
-  ".helix/handover/provider",
-  ".helix/teams",
-  ".claude",
-  ".codex",
-  ".github",
-  ".vscode",
-  "tests",
-  "dist",
-  "docs/handover",
-  "docs/templates",
-] as const;
-const ACTIVE_TOP_LEVEL_FILES = new Set(["AGENTS.md", "CLAUDE.md", "package.json", "bunfig.toml"]);
-const ACTIVE_EXACT_FILES = [".helix/handover/CURRENT.json"] as const;
-const ACTIVE_SCAN_EXTENSIONS = new Set([
-  ".ts",
-  ".tsx",
-  ".js",
-  ".jsx",
-  ".mjs",
-  ".cjs",
-  ".json",
-  ".yaml",
-  ".yml",
-  ".toml",
-  ".md",
-  ".sh",
-  ".ps1",
-]);
-
-export function loadHandoverResurrectionFiles(repoRoot: string): ResurrectionFile[] {
-  const files: ResurrectionFile[] = [];
-  const walk = (relativeRoot: string): void => {
-    const absolute = join(repoRoot, relativeRoot);
-    if (!existsSync(absolute)) return;
-    for (const entry of readdirSync(absolute, { withFileTypes: true })) {
-      const path = posix.join(relativeRoot.replace(/\\/g, "/"), entry.name);
-      if (entry.isDirectory()) {
-        if (["node_modules", ".git", "tmp"].includes(entry.name)) continue;
-        walk(path);
-        continue;
-      }
-      if (
-        !entry.isFile() ||
-        !ACTIVE_SCAN_EXTENSIONS.has(extname(entry.name)) ||
-        path === "src/lint/handover-resurrection.ts" ||
-        path === "tests/handover-resurrection.test.ts"
-      ) {
-        continue;
-      }
-      files.push({ path, content: readFileSync(join(repoRoot, path), "utf8") });
-    }
-  };
-  for (const root of ACTIVE_SCAN_ROOTS) walk(root);
-  for (const path of [...ACTIVE_TOP_LEVEL_FILES, ...ACTIVE_EXACT_FILES]) {
-    const absolute = join(repoRoot, path);
-    if (existsSync(absolute)) files.push({ path, content: readFileSync(absolute, "utf8") });
-  }
-  return files.sort((a, b) => a.path.localeCompare(b.path));
 }
 
 export function parseResurrectionBaselineFile(text: string): ResurrectionBaselineFile {
@@ -377,7 +362,7 @@ export function parseGeneratedResurrectionBaselineFile(
   return { ...raw, fingerprints, digest } as GeneratedResurrectionBaselineFile;
 }
 
-function parseGeneratedResurrectionAuthority(text: string): GeneratedResurrectionAuthority {
+export function parseGeneratedResurrectionAuthority(text: string): GeneratedResurrectionAuthority {
   const raw = JSON.parse(text) as Partial<GeneratedResurrectionAuthority>;
   if (
     raw.schemaVersion !== "handover-generated-resurrection-authority.v1" ||
@@ -397,36 +382,6 @@ function parseGeneratedResurrectionAuthority(text: string): GeneratedResurrectio
     throw new Error("invalid generated resurrection authority");
   }
   return raw as GeneratedResurrectionAuthority;
-}
-
-function verifyGeneratedResurrectionAuthority(input: {
-  repoRoot: string;
-  baselineText: string;
-  baseline: GeneratedResurrectionBaselineFile;
-  authority: GeneratedResurrectionAuthority;
-}): void {
-  execFileSync("git", ["merge-base", "--is-ancestor", input.authority.sourceRevision, "HEAD"], {
-    cwd: input.repoRoot,
-    stdio: "ignore",
-  });
-  const revisionPath = `${input.authority.sourceRevision}:${input.authority.baselinePath}`;
-  const blobOid = execFileSync("git", ["rev-parse", revisionPath], {
-    cwd: input.repoRoot,
-    encoding: "utf8",
-  }).trim();
-  const anchoredText = execFileSync("git", ["show", revisionPath], {
-    cwd: input.repoRoot,
-    encoding: "utf8",
-    maxBuffer: 4 * 1024 * 1024,
-  });
-  if (
-    blobOid !== input.authority.baselineBlobOid ||
-    sha256(anchoredText) !== input.authority.baselineFileDigest ||
-    input.baselineText !== anchoredText ||
-    input.baseline.digest !== input.authority.baselineDigest
-  ) {
-    throw new Error("generated resurrection authority mismatch");
-  }
 }
 
 export function parseResurrectionBaselineAuthority(text: string): ResurrectionBaselineAuthority {
@@ -453,7 +408,7 @@ export function parseResurrectionBaselineAuthority(text: string): ResurrectionBa
   return raw as ResurrectionBaselineAuthority;
 }
 
-function parsePreserveAuthority(text: string): ResurrectionPreserveAuthority {
+export function parsePreserveAuthority(text: string): ResurrectionPreserveAuthority {
   const raw = JSON.parse(text) as Partial<ResurrectionPreserveAuthority>;
   if (
     sha256(text) !== PRESERVE_AUTHORITY_FILE_DIGEST ||
@@ -486,7 +441,7 @@ function parsePreserveAuthority(text: string): ResurrectionPreserveAuthority {
   return raw as ResurrectionPreserveAuthority;
 }
 
-function parseEnforceAuthority(
+export function parseEnforceAuthority(
   text: string,
   authorityPin: ResurrectionEnforceAuthority | null,
 ): ResurrectionEnforceAuthority {
@@ -518,134 +473,6 @@ function parseEnforceAuthority(
   return raw as ResurrectionEnforceAuthority;
 }
 
-export function evaluateResurrectionCheckpointState(input: {
-  journalText: string;
-  expectedPreserveDigest: string;
-  authorityText: string | null;
-  authorityPin: ResurrectionEnforceAuthority | null;
-}): ResurrectionCheckpointState {
-  const { expectedPreserveDigest, journalText } = input;
-  const pending = {
-    completeCheckpoint: null,
-    expectedOperationId: "journal-derived-after-cutover",
-    expectedIntentDigest: sha256("pending-cutover-intent"),
-    expectedPreserveDigest,
-    expectedArchiveDigest: sha256("pending-archive-digest"),
-  } satisfies ResurrectionCheckpointState;
-  if (!journalText.trim()) return pending;
-  const parsed = parseRetirementJournal(journalText);
-  if (parsed.truncatedTail) throw new Error("retirement journal has truncated tail");
-  const complete = parsed.entries.filter(
-    (entry) => entry.phase === "complete" && entry.status === "completed",
-  );
-  if (complete.length === 0) return pending;
-  const scopes = new Set(complete.map((entry) => `${entry.operationId}\0${entry.intentDigest}`));
-  if (scopes.size !== 1 || complete.length !== 1) {
-    throw new Error("retirement journal complete scope is ambiguous");
-  }
-  if (input.authorityText === null) {
-    throw new Error("handover resurrection enforce authority is missing");
-  }
-  const authority = parseEnforceAuthority(input.authorityText, input.authorityPin);
-  const terminal = complete[0];
-  if (!terminal) throw new Error("retirement complete checkpoint missing");
-  const latest = latestCompletedRetirementCheckpoint(parsed.entries, {
-    operationId: authority.operationId,
-    intentDigest: authority.intentDigest,
-  });
-  const scopedEntries = parsed.entries.filter(
-    (entry) =>
-      entry.operationId === authority.operationId && entry.intentDigest === authority.intentDigest,
-  );
-  const terminalLine = journalText
-    .split(/\r?\n/)
-    .find((line) => line.trim().length > 0 && sha256(line) === authority.journalEntryDigest);
-  if (
-    !terminalLine ||
-    latest !== terminal ||
-    scopedEntries.at(-1) !== terminal ||
-    terminal.operationId !== authority.operationId ||
-    terminal.intentDigest !== authority.intentDigest ||
-    authority.preserveDigest !== expectedPreserveDigest
-  ) {
-    throw new Error("retirement enforce authority does not bind terminal checkpoint");
-  }
-  return {
-    completeCheckpoint: {
-      operationId: terminal.operationId,
-      intentDigest: terminal.intentDigest,
-      preserveDigest: authority.preserveDigest,
-      archiveDigest: authority.archiveDigest,
-    },
-    expectedOperationId: authority.operationId,
-    expectedIntentDigest: authority.intentDigest,
-    expectedPreserveDigest,
-    expectedArchiveDigest: authority.archiveDigest,
-  };
-}
-
-export function loadResurrectionCheckpointState(
-  repoRoot: string,
-  expectedPreserveDigest: string,
-): ResurrectionCheckpointState {
-  const journalPath = join(repoRoot, ".helix", "audit", "session-handover-retirement.jsonl");
-  if (!existsSync(journalPath)) {
-    return evaluateResurrectionCheckpointState({
-      journalText: "",
-      expectedPreserveDigest,
-      authorityText: null,
-      authorityPin: ENFORCE_AUTHORITY_PIN,
-    });
-  }
-  const authorityPath = join(repoRoot, "config", "handover-retirement-enforce-authority.json");
-  const authorityText = existsSync(authorityPath) ? readFileSync(authorityPath, "utf8") : null;
-  if (authorityText !== null) parseEnforceAuthority(authorityText, ENFORCE_AUTHORITY_PIN);
-  const approval = loadAndVerifyHandoverCutoverApproval(repoRoot);
-  if (authorityText !== null) {
-    const authority = JSON.parse(authorityText) as Partial<ResurrectionEnforceAuthority>;
-    if (authority.approvalDecisionId !== approval.decisionId) {
-      throw new Error("handover enforce authority approval decision mismatch");
-    }
-  }
-  return evaluateResurrectionCheckpointState({
-    journalText: readFileSync(journalPath, "utf8"),
-    expectedPreserveDigest,
-    authorityText,
-    authorityPin: ENFORCE_AUTHORITY_PIN,
-  });
-}
-
-export function verifyResurrectionBaselineAuthority(input: {
-  repoRoot: string;
-  baselineText: string;
-  baseline: ResurrectionBaselineFile;
-  authority: ResurrectionBaselineAuthority;
-}): void {
-  const { authority } = input;
-  execFileSync("git", ["merge-base", "--is-ancestor", authority.sourceRevision, "HEAD"], {
-    cwd: input.repoRoot,
-    stdio: "ignore",
-  });
-  const blobOid = execFileSync(
-    "git",
-    ["rev-parse", `${authority.sourceRevision}:${authority.baselinePath}`],
-    { cwd: input.repoRoot, encoding: "utf8" },
-  ).trim();
-  const anchoredText = execFileSync(
-    "git",
-    ["show", `${authority.sourceRevision}:${authority.baselinePath}`],
-    { cwd: input.repoRoot, encoding: "utf8", maxBuffer: 4 * 1024 * 1024 },
-  );
-  if (
-    blobOid !== authority.baselineBlobOid ||
-    sha256(anchoredText) !== authority.baselineFileDigest ||
-    input.baselineText !== anchoredText ||
-    input.baseline.digest !== authority.baselineDigest
-  ) {
-    throw new Error("handover resurrection baseline authority mismatch");
-  }
-}
-
 export function resurrectionMessages(result: ResurrectionAnalysis): string[] {
   const status = result.ok ? "OK" : "violation";
   return [
@@ -657,125 +484,6 @@ export function resurrectionMessages(result: ResurrectionAnalysis): string[] {
       .slice(0, 30)
       .map((item) => `handover-resurrection - violation: ${item.code}=${item.path}:${item.symbol}`),
   ];
-}
-
-export function analyzeHandoverResurrectionRepo(
-  repoRoot: string,
-  generatedFiles: readonly ResurrectionFile[],
-): ResurrectionAnalysis {
-  const baselinePath = join(repoRoot, "config", "handover-resurrection-baseline.json");
-  const baselineText = readFileSync(baselinePath, "utf8");
-  const baseline = parseResurrectionBaselineFile(baselineText);
-  const authority = parseResurrectionBaselineAuthority(
-    readFileSync(join(repoRoot, "config", "handover-resurrection-authority.json"), "utf8"),
-  );
-  verifyResurrectionBaselineAuthority({ repoRoot, baselineText, baseline, authority });
-  const generatedBaselineText = readFileSync(
-    join(repoRoot, "config", "handover-generated-resurrection-baseline.json"),
-    "utf8",
-  );
-  const generatedBaseline = parseGeneratedResurrectionBaselineFile(generatedBaselineText);
-  const generatedAuthority = parseGeneratedResurrectionAuthority(
-    readFileSync(
-      join(repoRoot, "config", "handover-generated-resurrection-authority.json"),
-      "utf8",
-    ),
-  );
-  verifyGeneratedResurrectionAuthority({
-    repoRoot,
-    baselineText: generatedBaselineText,
-    baseline: generatedBaseline,
-    authority: generatedAuthority,
-  });
-  const inventory = collectRetirementPreserveInventory(repoRoot);
-  const preserveAuthority = parsePreserveAuthority(
-    readFileSync(join(repoRoot, "config", "handover-preserve-authority.json"), "utf8"),
-  );
-  const actualPaths = [
-    ...inventory.providerPaths.map((path) => ({ path, kind: "provider_evidence" as const })),
-    ...inventory.operationsPaths.map((path) => ({ path, kind: "operations_transition" as const })),
-  ].sort((a, b) => a.path.localeCompare(b.path));
-  const expectedPaths = preserveAuthority.entries.map(({ path, kind }) => ({ path, kind }));
-  if (canonicalJson(actualPaths) !== canonicalJson(expectedPaths)) {
-    throw new Error("handover preserve inventory drift");
-  }
-  for (const entry of preserveAuthority.entries) {
-    if (sha256(readFileSync(join(repoRoot, entry.path), "utf8")) !== entry.digest) {
-      throw new Error(`handover preserve authority digest mismatch: ${entry.path}`);
-    }
-  }
-  const preserve = collectPreserveManifest(
-    repoRoot,
-    [
-      ...inventory.providerPaths.map((path) => ({
-        path,
-        kind: "provider_evidence" as const,
-        role: path.endsWith("/CURRENT.json") ? ("current_pointer" as const) : ("evidence" as const),
-        owner: "runtime-audit",
-      })),
-      ...inventory.operationsPaths.map((path) => ({
-        path,
-        kind: "operations_transition" as const,
-        role: "operations_design" as const,
-        owner: "operations-governance",
-      })),
-    ],
-    {
-      operationId: "handover-retirement:shadow-resurrection",
-      intentDigest: resurrectionPolicyDigest(),
-      capturedAt: new Date().toISOString(),
-      retirementPhase: "shadow_read",
-    },
-  );
-  const files = [...loadHandoverResurrectionFiles(repoRoot), ...generatedFiles].sort((a, b) =>
-    a.path.localeCompare(b.path),
-  );
-  const filesByPath = new Map(files.map((file) => [file.path, file]));
-  const allowedArtifacts = preserve.entries.flatMap((entry): TypedAllowedArtifact[] => {
-    const scannedFile = filesByPath.get(entry.path);
-    const file = scannedFile ?? {
-      path: entry.path,
-      content: readFileSync(join(repoRoot, entry.path), "utf8"),
-    };
-    const validation =
-      entry.kind === "provider_evidence"
-        ? validateProviderEvidenceJson(file.content)
-        : validateOperationsTransitionMarkdown(file.content);
-    if (
-      !validation.valid ||
-      !entry.schemaValidation.ok ||
-      entry.schemaValidation.exitCode !== 0 ||
-      !entry.query.ok ||
-      entry.query.exitCode !== 0 ||
-      !entry.export.ok ||
-      entry.export.exitCode !== 0 ||
-      sha256(file.content) !== entry.originalDigest
-    ) {
-      throw new Error(`preserve validation failed for resurrection allowlist: ${entry.path}`);
-    }
-    if (!scannedFile) return [];
-    return [
-      {
-        path: entry.path,
-        kind: entry.kind,
-        digest: entry.originalDigest,
-        runtimeReadable: true,
-        schemaValid: true,
-        continuationJoined: false,
-      },
-    ];
-  });
-  return analyzeHandoverResurrection({
-    files,
-    allowedArtifacts,
-    baseline: (() => {
-      const fingerprints = [
-        ...new Set([...baseline.fingerprints, ...generatedBaseline.fingerprints]),
-      ].sort();
-      return { fingerprints, digest: sha256(canonicalJson(fingerprints)) };
-    })(),
-    checkpointState: loadResurrectionCheckpointState(repoRoot, preserve.preservedDigest),
-  });
 }
 
 export function resurrectionPolicyDigest(

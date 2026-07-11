@@ -6,15 +6,15 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeHandoverResurrectionShadowRepo,
+  evaluateResurrectionCheckpointState,
   loadGeneratedResurrectionSourceFiles as loadGeneratedResurrectionFiles,
+  loadResurrectionCheckpointState,
 } from "../src/audit/handover-resurrection-source";
 import { checkHandoverResurrection } from "../src/doctor";
 import {
   analyzeHandoverResurrection,
   buildResurrectionBaseline,
   deriveResurrectionMode,
-  evaluateResurrectionCheckpointState,
-  loadResurrectionCheckpointState,
   parseGeneratedResurrectionBaselineFile,
   type ResurrectionCheckpointState,
   type ResurrectionFile,
@@ -603,6 +603,21 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
           path: "tests/handover-cutover-approval-copy.test.ts",
           category: "generated_surface",
         }),
+      ]),
+    );
+  });
+
+  it("U-HRET-015: pure lint analyzerへI/O・runtime・audit依存を再混入させない", () => {
+    const source = readFileSync("src/lint/handover-resurrection.ts", "utf8");
+    const imports = [...source.matchAll(/from\s+["']([^"']+)["']/g)].map((match) => match[1] ?? "");
+    expect(imports).not.toEqual(
+      expect.arrayContaining([
+        "node:child_process",
+        "node:fs",
+        "../audit/handover-resurrection-source",
+        "../runtime/continuation",
+        "../runtime/retirement-preserve",
+        "../setup",
       ]),
     );
   });

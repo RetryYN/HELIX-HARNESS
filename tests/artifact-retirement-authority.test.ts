@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -15,6 +15,7 @@ describe("artifact-retirement-authority", () => {
     expect(retired.has("src/handover/index.ts")).toBe(true);
     expect(retired.has("tests/handover.test.ts")).toBe(true);
     expect(retired.has("src/cli.ts")).toBe(false);
+    for (const path of retired) expect(existsSync(path), path).toBe(false);
   });
 
   it("fails closed when the retirement authority is not bound to the approved operation", () => {

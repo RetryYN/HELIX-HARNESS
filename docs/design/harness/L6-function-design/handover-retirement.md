@@ -27,6 +27,7 @@ runtime撤去、resurrection detectorがgreenになるまで`retirement-ready=fa
 | continuation migration | `writePlanCompletionContinuation(input, deps) => ContinuationWriteResult` | 受け皿green、validated event、旧writer停止条件を満たす | DB+memory continuationへevent-firstで着地 | CURRENT/prose/旧CLIをread/writeせずDB precedenceを維持 | `U-HRET-003/005/006/007/013` |
 | retirement enforcement | `analyzeHandoverResurrection(input) => ResurrectionAnalysis` | archive/preserve allowlistとenforce authorityが有効 | generated surfaceを含む復活・残存を列挙し新規findingでhard fail | source削除はarchive digest reconcile後だけ許可 | `U-HRET-009/011/012/014` |
 | cutover approval verification | `loadAndVerifyHandoverCutoverApproval(repoRoot) => HandoverCutoverApprovalRecord` | PO decision、approved HEAD、typed manifest、terminal journalが存在 | params/tree/generated-baseline/dry-run digestを再計算しenforce authorityと同一decisionへ束縛 | apply前は期限切れを拒否し、apply後は期限内の`appliedAt`とterminal journal digestへ固定して将来CIで再失効させない | `U-HRET-015` |
+| resurrection input adapter | `analyzeHandoverResurrectionShadowRepo(repoRoot) => ResurrectionAnalysis` | audit層がGit、journal、approval、preserve、setup/distribution projectionを読める | I/Oをaudit層でtyped inputへ変換し、lint層の`analyzeHandoverResurrection`はfile/checkpoint/allowlist入力だけを判定する | lintからruntime/setup/auditへの逆依存を禁止し、同じpure analyzerをfixtureとdoctorで共有する | `U-HRET-012`, `U-HRET-015` |
 
 ## §1 廃止対象と保持対象
 

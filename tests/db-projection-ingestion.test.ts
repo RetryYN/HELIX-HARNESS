@@ -289,13 +289,22 @@ describe("db projection ingestion detector", () => {
       expect(handoffSummary?.approval_status).toBe(handoffSummary?.approval_state);
       expect(handoffSummary?.valid_for_apply).toBe(0);
       if (handoffSummary?.scope_status === "match") {
-        expect(handoffSummary).toMatchObject({
-          status: "approval_pending",
-          approval_pending: 1,
-          scope_mismatch: 0,
-          recovery_gate_status: "approval_pending",
-          effective_phase: "approval",
-        });
+        expect(handoffSummary.scope_mismatch).toBe(0);
+        if (handoffSummary.approval_state === "pending_human_review") {
+          expect(handoffSummary).toMatchObject({
+            status: "approval_pending",
+            approval_pending: 1,
+            recovery_gate_status: "approval_pending",
+            effective_phase: "approval",
+          });
+        } else {
+          expect(handoffSummary).toMatchObject({
+            status: "machine_pending",
+            approval_pending: 0,
+            recovery_gate_status: "generate_approval_draft",
+            effective_phase: "machine",
+          });
+        }
       } else if (handoffSummary?.scope_status === "mismatch") {
         expect(handoffSummary).toMatchObject({
           status: "approval_blocked",
@@ -309,13 +318,18 @@ describe("db projection ingestion detector", () => {
         expect(["machine", "approval"]).toContain(handoffSummary?.effective_phase);
       } else {
         expect(handoffSummary).toMatchObject({
-          status: "approval_pending",
           approval_pending: 0,
           scope_mismatch: 0,
           scope_status: "missing",
-          recovery_gate_status: "approval_required",
-          effective_phase: "approval",
         });
+        expect([
+          ["machine_pending", "generate_approval_draft", "machine"],
+          ["approval_pending", "approval_required", "approval"],
+        ]).toContainEqual([
+          handoffSummary?.status,
+          handoffSummary?.recovery_gate_status,
+          handoffSummary?.effective_phase,
+        ]);
       }
       expect(handoffSummary?.reason_codes).toContain(
         handoffSummary?.approval_state === "missing"

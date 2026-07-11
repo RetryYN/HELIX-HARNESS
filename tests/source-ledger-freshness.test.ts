@@ -46,6 +46,13 @@ describe("source ledger freshness", () => {
         "2026-07-09T17:04:00.000Z",
       ),
     ).toBeNull();
+    expect(
+      sourceLedgerCheckedDateViolation(
+        "S4 decision source ledger (checked 2026-07-10):",
+        "S4 decision source ledger",
+        "2026-07-10T02:04:00+09:00",
+      ),
+    ).toBeNull();
   });
 
   it("rejects placeholder and future-action verification source metadata", () => {
