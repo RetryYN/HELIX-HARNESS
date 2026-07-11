@@ -74,7 +74,8 @@ export interface GithubRequiredCheckReceipt {
   status: "completed";
   conclusion: "success";
   completed_at: string;
-  app: { slug: string; owner: string };
+  app: { id: number; slug: string; owner: string };
+  run_id: number;
   details_url: string;
   run_url: string;
   required: true;
@@ -90,7 +91,14 @@ const githubReceiptSchema = z
     status: z.literal("completed"),
     conclusion: z.literal("success"),
     completed_at: z.string().datetime(),
-    app: z.object({ slug: z.string().min(1), owner: z.string().min(1) }).strict(),
+    app: z
+      .object({
+        id: z.number().int().positive(),
+        slug: z.string().min(1),
+        owner: z.string().min(1),
+      })
+      .strict(),
+    run_id: z.number().int().positive(),
     details_url: z.string().url(),
     run_url: z.string().url(),
     required: z.literal(true),
@@ -352,10 +360,19 @@ function validateCanonicalRuns(input: {
           .replace(/\s+/g, " ") !== run.command.trim().replace(/\s+/g, " ")
       )
         errors.push(`${run.run_id}: DB command不一致`);
-      if (Number(dbRow.exit_code) !== 0 || String(dbRow.output_digest ?? "") !== run.output_digest)
+      if (
+        Number(dbRow.exit_code) !== 0 ||
+        String(dbRow.output_digest ?? "") !== run.output_digest ||
+        String(dbRow.evidence_path ?? "") !== run.output_path ||
+        String(dbRow.completed_at ?? "") !== run.completed_at
+      )
         errors.push(`${run.run_id}: DB green/output digest不一致`);
-    } else if (String(dbRow.status ?? "") !== "passed") {
-      errors.push(`${run.run_id}: DB gate receipt非green`);
+    } else if (
+      String(dbRow.status ?? "") !== "passed" ||
+      String(dbRow.evidence_path ?? "") !== run.output_path ||
+      String(dbRow.completed_at ?? "") !== run.completed_at
+    ) {
+      errors.push(`${run.run_id}: DB gate receipt field不一致`);
     }
     const attestation = input.db
       .prepare("SELECT * FROM runner_attestations WHERE run_id = ?")
@@ -453,14 +470,17 @@ export function loadGithubRequiredCheckReceipt(repoRoot: string): GithubRequired
       ["api", `repos/${repository}/branches/main/protection/required_status_checks`],
       { cwd: repoRoot, encoding: "utf8" },
     ),
-  ) as { contexts?: string[]; checks?: Array<{ context?: string }> };
-  if (
-    !required.contexts?.includes("harness-check") &&
-    !required.checks?.some((row) => row.context === "harness-check")
-  )
-    throw new Error("harness-checkがrequired contextではない");
+  ) as { contexts?: string[]; checks?: Array<{ context?: string; app_id?: number }> };
   const app = check.app as Record<string, unknown> | undefined;
   const owner = app?.owner as Record<string, unknown> | undefined;
+  const appId = Number(app?.id);
+  if (
+    !required.contexts?.includes("harness-check") &&
+    !required.checks?.some((row) => row.context === "harness-check" && Number(row.app_id) === appId)
+  )
+    throw new Error("harness-checkがrequired contextではない");
+  const runUrl = String(check.html_url ?? "");
+  const runId = Number(/\/actions\/runs\/([0-9]+)/.exec(runUrl)?.[1]);
   return {
     schema_version: "github-required-check-receipt.v1",
     repository,
@@ -470,9 +490,10 @@ export function loadGithubRequiredCheckReceipt(repoRoot: string): GithubRequired
     status: "completed",
     conclusion: "success",
     completed_at: String(check.completed_at ?? ""),
-    app: { slug: String(app?.slug ?? ""), owner: String(owner?.login ?? "") },
+    app: { id: appId, slug: String(app?.slug ?? ""), owner: String(owner?.login ?? "") },
+    run_id: runId,
     details_url: String(check.details_url ?? ""),
-    run_url: String(check.html_url ?? ""),
+    run_url: runUrl,
     required: true,
     observed_at: new Date().toISOString(),
   };
@@ -507,8 +528,14 @@ export function validateGithubRequiredCheckReceipt(input: {
   if (!Number.isSafeInteger(receipt.check_run_id) || receipt.check_run_id <= 0)
     errors.push("GitHub check_run_id不正");
   if (!receipt.app.slug || !receipt.app.owner) errors.push("GitHub app identity不正");
-  if (!/^https:\/\/github\.com\/.+\/actions\/runs\/[0-9]+/.test(receipt.run_url))
+  const urlPrefix = `https://github.com/${receipt.repository}/actions/runs/${receipt.run_id}`;
+  if (
+    receipt.run_url !== urlPrefix &&
+    !receipt.run_url.startsWith(`${urlPrefix}/`) &&
+    !receipt.run_url.startsWith(`${urlPrefix}?`)
+  )
     errors.push("GitHub run URL不正");
+  if (!receipt.details_url.startsWith(urlPrefix)) errors.push("GitHub details URL不正");
   const observed = Date.parse(receipt.observed_at);
   const completed = Date.parse(receipt.completed_at);
   if (
@@ -519,6 +546,61 @@ export function validateGithubRequiredCheckReceipt(input: {
   if (!Number.isFinite(completed) || completed > observed || observed - completed > 86_400_000)
     errors.push("GitHub check completion freshness不正");
   return errors;
+}
+
+export function githubReceiptImmutableDigest(
+  receipt: GithubRequiredCheckReceipt,
+): `sha256:${string}` {
+  const { observed_at: _observedAt, ...immutable } = receipt;
+  return sha256(JSON.stringify(immutable));
+}
+
+export function refetchGithubRequiredCheckReceipt(
+  repoRoot: string,
+  initial: GithubRequiredCheckReceipt,
+  deps: {
+    exec?: typeof execFileSync;
+  } = {},
+): GithubRequiredCheckReceipt {
+  const exec = deps.exec ?? execFileSync;
+  const check = JSON.parse(
+    exec("gh", ["api", `repos/${initial.repository}/check-runs/${initial.check_run_id}`], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    }),
+  ) as Record<string, unknown>;
+  const app = check.app as Record<string, unknown> | undefined;
+  const owner = app?.owner as Record<string, unknown> | undefined;
+  const required = JSON.parse(
+    exec(
+      "gh",
+      ["api", `repos/${initial.repository}/branches/main/protection/required_status_checks`],
+      { cwd: repoRoot, encoding: "utf8" },
+    ),
+  ) as { contexts?: string[]; checks?: Array<{ context?: string; app_id?: number }> };
+  const appId = Number(app?.id);
+  const isRequired =
+    required.contexts?.includes("harness-check") === true ||
+    required.checks?.some(
+      (row) => row.context === "harness-check" && Number(row.app_id) === appId,
+    ) === true;
+  const runUrl = String(check.html_url ?? "");
+  return {
+    schema_version: "github-required-check-receipt.v1",
+    repository: initial.repository,
+    check_run_id: Number(check.id),
+    head_sha: String(check.head_sha ?? ""),
+    check_name: "harness-check",
+    status: String(check.status) as "completed",
+    conclusion: String(check.conclusion) as "success",
+    completed_at: String(check.completed_at ?? ""),
+    app: { id: appId, slug: String(app?.slug ?? ""), owner: String(owner?.login ?? "") },
+    run_id: Number(/\/actions\/runs\/([0-9]+)/.exec(runUrl)?.[1]),
+    details_url: String(check.details_url ?? ""),
+    run_url: runUrl,
+    required: isRequired as true,
+    observed_at: new Date().toISOString(),
+  };
 }
 
 function ensureRunnerAttestationSchema(db: HarnessDb): void {
@@ -931,10 +1013,13 @@ export function applyClosureAutoApprovalAtomic(input: {
       now: input.now,
     });
     if (githubErrors.length > 0) throw new Error(githubErrors.join("; "));
-    const refetchedReceipt = input.githubReceiptRefetch?.() ?? input.githubReceipt;
+    const initialReceipt = input.githubReceipt;
+    if (!initialReceipt) throw new Error("GitHub required-check receipt欠落: dry-run only");
+    const refetchedReceipt = input.githubReceiptRefetch?.() ?? initialReceipt;
     if (
       !refetchedReceipt ||
-      sha256(JSON.stringify(refetchedReceipt)) !== sha256(JSON.stringify(input.githubReceipt))
+      githubReceiptImmutableDigest(refetchedReceipt) !==
+        githubReceiptImmutableDigest(initialReceipt)
     )
       throw new Error("GitHub check-run write直前CAS不一致");
     const refetchErrors = validateGithubRequiredCheckReceipt({

@@ -11,10 +11,12 @@ import {
   closureAutoApprovalWindows,
   currentRepositoryHead,
   evaluateClosureAutoApproval,
+  githubReceiptImmutableDigest,
   isForcedIrreversiblePlanId,
   parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
   recoverClosureAutoApprovalTransaction,
+  refetchGithubRequiredCheckReceipt,
   verifyClosureAuditChain,
 } from "../src/state-db/closure-auto-approval";
 import type {
@@ -247,7 +249,8 @@ const githubReceipt = (f: ReturnType<typeof fixture>) => ({
   status: "completed" as const,
   conclusion: "success" as const,
   completed_at: "2026-07-12T00:09:00Z",
-  app: { slug: "github-actions", owner: "github" },
+  app: { id: 15368, slug: "github-actions", owner: "github" },
+  run_id: 123456,
   details_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1",
   run_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456",
   required: true as const,
@@ -346,6 +349,36 @@ describe("closure auto approval authority", () => {
   });
 
   it("U-CAUTO-005: rename途中失敗を全PLAN rollbackし失敗auditを残す", () => {
+    const receiptProbe = fixture();
+    const firstReceipt = githubReceipt(receiptProbe);
+    expect(
+      githubReceiptImmutableDigest({ ...firstReceipt, observed_at: "2026-07-12T00:11:00Z" }),
+    ).toBe(githubReceiptImmutableDigest(firstReceipt));
+    expect(
+      githubReceiptImmutableDigest({ ...firstReceipt, completed_at: "2026-07-12T00:08:00Z" }),
+    ).not.toBe(githubReceiptImmutableDigest(firstReceipt));
+    const calls: string[][] = [];
+    const refetched = refetchGithubRequiredCheckReceipt(receiptProbe.root, firstReceipt, {
+      exec: ((command: string, args: readonly string[]) => {
+        calls.push([command, ...args]);
+        if (args[1]?.includes("required_status_checks"))
+          return JSON.stringify({ checks: [{ context: "harness-check", app_id: 15368 }] });
+        return JSON.stringify({
+          id: 123456,
+          head_sha: firstReceipt.head_sha,
+          status: "completed",
+          conclusion: "success",
+          completed_at: firstReceipt.completed_at,
+          app: { id: 15368, slug: "github-actions", owner: { login: "github" } },
+          details_url: firstReceipt.details_url,
+          html_url: firstReceipt.run_url,
+        });
+      }) as typeof execFileSync,
+    });
+    expect(calls[0]?.join(" ")).toContain("check-runs/123456");
+    expect(githubReceiptImmutableDigest(refetched)).toBe(
+      githubReceiptImmutableDigest(firstReceipt),
+    );
     const noGithub = fixture();
     expect(() =>
       applyClosureAutoApprovalAtomic({

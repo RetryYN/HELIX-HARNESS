@@ -23,6 +23,8 @@ current HEADに対するGitHub required check `harness-check=success` receipt
 （repo、check_run_id、head_sha、status/conclusion/completed_at、app owner/slug、details/run URL、observed_at）
 とし、production `gh api` adapterから取得した15分以内のreceiptを必須ANDする。branch protection APIで
 `harness-check`がrequired contextであることを照合し、write直前に同check-run payloadを再取得してCASする。
+CASはcheck_run_id/head/status/conclusion/completed_at/app id・slug・owner/details URL/run IDのimmutable
+remote fieldsだけを比較し、再観測時刻`observed_at`は除外する。required checksの`app_id`もcheck appと一致させる。
 auth/network/origin/required-status/receiptが利用不能ならlocal評価はdry-run onlyでfail-closeする。
 外部公開・cutover等は引き続きhuman/action-binding approvalへ残す。
 

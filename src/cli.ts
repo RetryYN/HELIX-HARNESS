@@ -380,6 +380,7 @@ import {
   parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
   recoverClosureAutoApprovalTransaction,
+  refetchGithubRequiredCheckReceipt,
 } from "./state-db/closure-auto-approval";
 import {
   buildProjectArtifactRemapBatchReport,
@@ -8192,13 +8193,14 @@ closure
             blockers: batches.flatMap((batch) => batch.blockers),
             rendered_patches: batches.flatMap((batch) => batch.rendered_patches),
           };
+          const githubReceipt = loadGithubRequiredCheckReceipt(repoRoot);
           const result = applyClosureAutoApprovalAtomic({
             repoRoot,
             evaluation: transactionEvaluation,
             manifest: selectedManifest,
             db,
-            githubReceipt: loadGithubRequiredCheckReceipt(repoRoot),
-            githubReceiptRefetch: () => loadGithubRequiredCheckReceipt(repoRoot),
+            githubReceipt,
+            githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
           });
           applied.push(...result.applied);
         }
