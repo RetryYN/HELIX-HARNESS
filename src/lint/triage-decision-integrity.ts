@@ -210,7 +210,7 @@ export function analyzeTriageDecisionIntegrity(
     )
       add("unresolved-id-invalid", id, "既決集合・残差IDの再利用は禁止");
   }
-  const completionReady = enumerated && claim?.state === "resolved";
+  const enumeratedAndResolved = enumerated && claim?.state === "resolved";
   if (claim?.state === "resolved") {
     if (
       PIN_ENUMERATED_IDS.length !== PIN_UNENUMERATED_COUNT ||
@@ -225,7 +225,8 @@ export function analyzeTriageDecisionIntegrity(
   const authorityReady =
     PIN_ENUMERATED_IDS.length === PIN_UNENUMERATED_COUNT &&
     sameSet(ids, PIN_ENUMERATED_IDS);
-  if (input.planTerminal && !(completionReady && authorityReady))
+  const completionReady = enumeratedAndResolved && authorityReady;
+  if (input.planTerminal && !completionReady)
     add("unresolved-claim-at-terminal", "PLAN-L7-425", "終端statusには10件の列挙完了が必要");
   return { ok: violations.length === 0, completionReady, violations };
 }
