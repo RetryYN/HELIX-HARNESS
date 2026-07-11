@@ -440,4 +440,24 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     );
     expect(shortDigest.success).toBe(false);
   });
+
+  // PLAN-L7-430-left-arm-carry-log
+  it("U-CARRY-017: left_arm_carry strict schema accepts canonical evidence and rejects unknown fields", () => {
+    const carry = {
+      schema_version: "left-arm-carry.v1",
+      decision: "no_pushback",
+      assessed_at: "2026-07-12T00:00:00Z",
+      review_binding: {
+        reviewer: "reviewer",
+        reviewed_at: "2026-07-12T00:01:00Z",
+        evidence_digest: "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      },
+      entries: [],
+    };
+    expect(frontmatterSchema.safeParse(implBase({ left_arm_carry: carry })).success).toBe(true);
+    expect(
+      frontmatterSchema.safeParse(implBase({ left_arm_carry: { ...carry, silent_bypass: true } }))
+        .success,
+    ).toBe(false);
+  });
 });

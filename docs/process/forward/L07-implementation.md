@@ -108,6 +108,9 @@ agent_slots:
 | アーキ違反 | L4 (基本設計) → G4 再通過 |
 
 差し戻し記録は PLAN の carry log に残す。
+機械正本はL7 PLAN frontmatterの`left_arm_carry`とし、差し戻し無しも`no_pushback`で明示する。
+global gate ledgerの現在PASSだけではfinding発見後の再通過証拠とみなさず、resolution PLANの
+Vペア差分・green command・technical reviewへ結合する。
 出典: concept v3.1 §3.1.5
 
 ---
