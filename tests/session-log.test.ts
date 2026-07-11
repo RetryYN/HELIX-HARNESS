@@ -1,5 +1,6 @@
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { selectActivePlanId } from "../src/plan/active-plan-selection";
 import {
   activePlanStale,
   activePlanUpdatedAt,
@@ -41,6 +42,46 @@ const statePath = join("/repo", ".helix", "state", "current-plan");
 const sessionPath = (sid: string) => join("/repo", ".helix", "logs", "session", `${sid}.jsonl`);
 
 describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
+  it("U-APSEL-001: canonical PLAN IDのexact matchだけを受理する", () => {
+    expect(
+      selectActivePlanId("PLAN-L7-427-active-plan-selection", [
+        "PLAN-L7-425-system-review-issue-handoff",
+        "PLAN-L7-427-active-plan-selection",
+      ]),
+    ).toEqual({ ok: true, planId: "PLAN-L7-427-active-plan-selection" });
+  });
+
+  it("U-APSEL-002: 截断IDを拒否してprefix候補を決定論的に返す", () => {
+    expect(
+      selectActivePlanId("PLAN-L7-42", [
+        "PLAN-L7-427-active-plan-selection",
+        "PLAN-L7-425-system-review-issue-handoff",
+        "PLAN-L7-426-development-ci-bounded-time",
+      ]),
+    ).toEqual({
+      ok: false,
+      reason: "unknown",
+      candidates: [
+        "PLAN-L7-425-system-review-issue-handoff",
+        "PLAN-L7-426-development-ci-bounded-time",
+        "PLAN-L7-427-active-plan-selection",
+      ],
+    });
+  });
+
+  it("U-APSEL-003: 空registry/空IDをfail-closeする", () => {
+    expect(selectActivePlanId("PLAN-L7-427", [])).toEqual({
+      ok: false,
+      reason: "unknown",
+      candidates: [],
+    });
+    expect(selectActivePlanId("  ", ["PLAN-L7-427-active-plan-selection"])).toEqual({
+      ok: false,
+      reason: "empty",
+      candidates: [],
+    });
+  });
+
   it("U-SLOG-001: resolveActivePlan = state 優先 / branch fallback / 解決不能 null", () => {
     const withState = mockDeps({ currentBranch: () => "add/session-log" });
     withState.files.set(statePath, "PLAN-L7-01-session-log\n");

@@ -28,6 +28,8 @@ generates:
 dependencies:
   parent: null
   requires: []
+  blocks:
+    - docs/plans/PLAN-L7-427-active-plan-selection.md
 ---
 
 # PLAN-L7-425: システム全体レビュー問題提起（Codex 引き継ぎ）
@@ -117,6 +119,8 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   として記録されている。coverage 全消化は受け入れ条件にしない。
 
 ### I5: hook orphan の真因修正（`plan use` の ID 未検証バグ — 実装項目へ格上げ）
+
+- successor Vペア: `PLAN-L6-68-active-plan-selection` → `PLAN-L7-427-active-plan-selection`。
 
 - **真因特定済み（2026-07-12、詳細 = `docs/reference/system-review-triage-2026-07-12.md` §4）**:
   orphan 実測 4344 件は「legacy 残渣」ではなく、全件が截断 plan_id 5 種
