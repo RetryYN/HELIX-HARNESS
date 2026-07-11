@@ -300,9 +300,9 @@ projection baselineの同一差分内自己承認を禁止する。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-CAUTO-001 | evidence AND | digest一致、tests/gates全green、apply dry-run成功だけauto approvalを許可 | `tests/current-location.test.ts` |
-| U-CAUTO-002 | red/未実行 | testまたはgateが0件、failed、passed/total不一致ならfail-close | `tests/current-location.test.ts` |
-| U-CAUTO-003 | 不可逆境界 | PLAN-L7-146、PLAN-M-02、external publish、charter P8混在batchをhumanへ残す | `tests/current-location.test.ts` |
-| U-CAUTO-004 | typed audit | scope、対象、条件真偽、不可逆判定、stable audit digestを記録 | `tests/current-location.test.ts` |
-| U-CAUTO-005 | bounded batch | 361件以上を1..100件windowで欠落・重複なく列挙し全batch先行検証 | `tests/current-location.test.ts` |
-| U-CAUTO-006 | CLI mutation boundary | dry-runは無変更、executeは全preflight green後だけstatus patchを行う | `tests/current-location.test.ts` |
+| U-CAUTO-001 | typed authority AND | HEAD/PLAN/evidence/runを実bytesから検証したmanifestだけ許可 | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-002 | 自己申告排除 | DB集計greenでもevidence bytes driftならfail-close | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-003 | typed不可逆境界 | capability authorityが不可逆ならhumanへ残し、heuristicに依存しない | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-004 | replay/TOCTOU | HEAD、PLAN bytes、evidence bytes、run freshness driftを評価時とwrite直前CASで拒否 | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-005 | atomic apply/audit | rename途中失敗を全rollbackし、失敗before/after auditとdigestを残す | `tests/closure-auto-approval.test.ts` |
+| U-CAUTO-006 | bounded batch | 361件を100件以下のwindowで欠落・重複なく評価する | `tests/closure-auto-approval.test.ts` |

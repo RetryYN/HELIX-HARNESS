@@ -370,9 +370,16 @@ import {
   recordSkillRecommendations,
 } from "./skills/recommend";
 import {
+  applyClosureAutoApprovalAtomic,
+  type ClosureAutoApprovalEvaluation,
+  type ClosureAutoApprovalManifest,
+  closureAutoApprovalWindows,
+  evaluateClosureAutoApproval,
+  parseClosureBatchInteger,
+} from "./state-db/closure-auto-approval";
+import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
-  buildProjectClosureAutoApprovalBatch,
   buildProjectClosureBatchReport,
   buildProjectClosureDecisionDraftPacket,
   buildProjectClosureEvidenceApplyPlan,
@@ -392,7 +399,6 @@ import {
   isProjectClosureQueueNextAction,
   type ProjectArtifactRemapBatchReport,
   type ProjectClosureApplyPlan,
-  type ProjectClosureAutoApprovalBatch,
   type ProjectClosureBatchReport,
   type ProjectClosureDecisionDraftPacket,
   type ProjectClosureEvidenceApplyPlan,
@@ -8087,9 +8093,10 @@ closure
 
 closure
   .command("auto-approve")
-  .description("machine-evidence closure approval with atomic batch preflight")
+  .description("typed-evidence closure approval with CAS and atomic rollback")
   .option("--dry-run", "validate all selected batches without mutating PLAN files")
   .option("--execute", "apply status patches only after every selected batch passes preflight")
+  .requiredOption("--evidence-manifest <path>", "typed evidence authority manifest JSON")
   .option("--batch-size <n>", "maximum close_ready candidates per batch", "50")
   .option("--offset <n>", "zero-based starting offset", "0")
   .option("--all", "process every close_ready candidate from offset")
@@ -8099,6 +8106,7 @@ closure
     (opts: {
       dryRun?: boolean;
       execute?: boolean;
+      evidenceManifest: string;
       batchSize?: string;
       offset?: string;
       all?: boolean;
@@ -8112,14 +8120,14 @@ closure
         process.exitCode = 2;
         return;
       }
-      const batchSize = Number.parseInt(opts.batchSize ?? "50", 10);
-      const initialOffset = Number.parseInt(opts.offset ?? "0", 10);
-      if (!Number.isFinite(batchSize) || batchSize < 1 || batchSize > 100) {
+      const batchSize = parseClosureBatchInteger(opts.batchSize ?? "", { min: 1, max: 100 });
+      if (batchSize === null) {
         process.stderr.write("closure auto-approve: batch-size must be between 1 and 100\n");
         process.exitCode = 2;
         return;
       }
-      if (!Number.isFinite(initialOffset) || initialOffset < 0) {
+      const initialOffset = parseClosureBatchInteger(opts.offset ?? "", { min: 0 });
+      if (initialOffset === null) {
         process.stderr.write("closure auto-approve: offset must be zero or greater\n");
         process.exitCode = 2;
         return;
@@ -8132,43 +8140,58 @@ closure
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
         const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const manifest = JSON.parse(
+          readFileSync(join(repoRoot, opts.evidenceManifest), "utf8"),
+        ) as ClosureAutoApprovalManifest;
         const total = snapshot.closure.queue.route_counts.close_ready;
-        const end = opts.all ? total : Math.min(total, initialOffset + batchSize);
-        const batches: ProjectClosureAutoApprovalBatch[] = [];
-        for (let offset = initialOffset; offset < end; offset += batchSize) {
+        const windows = closureAutoApprovalWindows({
+          total,
+          batchSize,
+          offset: initialOffset,
+          all: opts.all === true,
+        });
+        const end = windows.at(-1)
+          ? (windows.at(-1)?.offset ?? 0) + (windows.at(-1)?.limit ?? 0)
+          : initialOffset;
+        const batches: ClosureAutoApprovalEvaluation[] = [];
+        for (const window of windows) {
           batches.push(
-            buildProjectClosureAutoApprovalBatch(snapshot, {
-              limit: Math.min(batchSize, end - offset),
-              offset,
+            evaluateClosureAutoApproval({
+              repoRoot,
+              snapshot,
+              manifest: {
+                ...manifest,
+                candidates: manifest.candidates.slice(window.offset, window.offset + window.limit),
+              },
+              limit: window.limit,
+              offset: window.offset,
             }),
           );
         }
-        if (batches.length === 0) {
-          batches.push(
-            buildProjectClosureAutoApprovalBatch(snapshot, {
-              limit: batchSize,
-              offset: initialOffset,
-            }),
-          );
-        }
-        const allowed = batches.every((batch) => batch.allowed_to_execute);
-        const applied: Array<{ plan_id: string; source_path: string; next_status: string }> = [];
+        const allowed = batches.length > 0 && batches.every((batch) => batch.allowed);
+        const applied: string[] = [];
         if (opts.execute && allowed) {
-          for (const batch of batches) {
-            for (const patch of batch.apply_plan.patch_candidates) {
-              const path = join(repoRoot, patch.source_path);
-              writeFileSync(
-                path,
-                updatePlanFrontmatterStatus(readFileSync(path, "utf8"), patch.next_status),
-                "utf8",
-              );
-              applied.push({
-                plan_id: patch.plan_id,
-                source_path: patch.source_path,
-                next_status: patch.next_status,
-              });
-            }
-          }
+          const first = batches[0] as ClosureAutoApprovalEvaluation;
+          const selectedManifest: ClosureAutoApprovalManifest = {
+            ...manifest,
+            candidates: manifest.candidates.slice(initialOffset, end),
+          };
+          const transactionEvaluation: ClosureAutoApprovalEvaluation = {
+            ...first,
+            allowed,
+            authority_digest: `sha256:${createHash("sha256")
+              .update(JSON.stringify(selectedManifest))
+              .digest("hex")}`,
+            target_plan_ids: batches.flatMap((batch) => batch.target_plan_ids),
+            blockers: batches.flatMap((batch) => batch.blockers),
+            rendered_patches: batches.flatMap((batch) => batch.rendered_patches),
+          };
+          const result = applyClosureAutoApprovalAtomic({
+            repoRoot,
+            evaluation: transactionEvaluation,
+            manifest: selectedManifest,
+          });
+          applied.push(...result.applied);
         }
         const output = {
           schema_version: "project-closure-auto-approval-run.v1",
@@ -8176,12 +8199,12 @@ closure
           executed: opts.execute === true && allowed,
           atomic_preflight_passed: allowed,
           total_close_ready: total,
-          selected: batches.reduce((sum, batch) => sum + batch.listed, 0),
+          selected: batches.reduce((sum, batch) => sum + batch.target_plan_ids.length, 0),
           batch_size: batchSize,
           batch_count: batches.length,
           batches,
           applied_patches: applied,
-          audit_records: batches.map((batch) => batch.approval_record),
+          authority_digests: batches.map((batch) => batch.authority_digest),
         };
         if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
         else
