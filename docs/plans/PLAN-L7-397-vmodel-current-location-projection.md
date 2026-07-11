@@ -905,7 +905,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T10:49:57+09:00"
-        evidence_path: .helix/tmp/closure/repair_failed_evidence-probe-record-20260709-safe-resolution-green.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:a9bc18fa90ceb65c3ac61d3f322dae4d74da747016ed2170c1f7223ebe7ce865"
       - kind: smoke
         command: "bun src/cli.ts closure evidence-materialize --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record-20260709-safe-resolution-green.json --summary-json"
@@ -913,7 +913,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T10:55:00+09:00"
-        evidence_path: .helix/tmp/closure/repair_failed_evidence-approval-draft-20260709-safe-resolution-green.yml
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:6319931d83ce366476efa910a646af33acdf282ba68b2998da29e2288d9ce989"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -946,7 +946,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T11:30:53+09:00"
-        evidence_path: .helix/tmp/closure/verify-zip-all-vmodel-fit-20260709.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:ec9fdc4100fb6498e54dc675c61989f09c9a7b7fc1a72226fadd1ac2d1fab92f"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -987,7 +987,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T11:39:29+09:00"
-        evidence_path: .helix/tmp/closure/verify-approval-boundary-recovery-plan-20260709.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:3d8acfe9ba8d9cf2b8b496816eb0c1b3643ef06779864451bb7a0f2cdea8133a"
       - kind: smoke
         command: "bun src/cli.ts vmodel fit --summary-json"
@@ -995,7 +995,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T11:39:29+09:00"
-        evidence_path: .helix/tmp/closure/verify-approval-boundary-vmodel-fit-20260709.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:1093614711e624e6a103261b66ec5f7210e11c7c6bef2512bc5af051d478df3e"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -1036,7 +1036,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T11:51:03+09:00"
-        evidence_path: .helix/tmp/closure/verify-view-limit-tree-summary-final-20260709.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:da2fcf9b255a6fe2ddfb0f90fa497b7c405d1da5eeb46eacee46b9b4be1dda52"
       - kind: smoke
         command: "bun src/cli.ts vmodel fit --summary-json"
@@ -1044,7 +1044,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T11:51:03+09:00"
-        evidence_path: .helix/tmp/closure/verify-view-limit-vmodel-fit-20260709.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:e5a946c27a17160c838296350bdb90c5bf08dcd4f2a9a8fe16126a6ba8a717aa"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -1291,7 +1291,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T13:34:28+09:00"
-        evidence_path: .helix/tmp/closure/repair_failed_evidence-probe-record.json
+        evidence_path: .helix/evidence/green-command/20260711-plan-l7-397-retired-closure-evidence.json
         output_digest: "sha256:ed343eadd4087e6df0e5fd8018496826c7c4d486d2866df782f94c8ba83f123d"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
