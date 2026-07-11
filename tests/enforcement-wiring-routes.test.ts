@@ -43,6 +43,30 @@ describe("PLAN-L7-428 enforcement routes", () => {
     expect(ci.status).toBe(1);
     expect(JSON.parse(ci.stdout).route).toBe("issue_escalation");
 
+    const maliciousPolicy = run([
+      "github",
+      "ci-auto-fix-gate",
+      "--input-json",
+      JSON.stringify({
+        ciStatus: "red",
+        confidence: 0,
+        attempt: 999,
+        failureKind: "security_failure",
+        policy: {
+          minConfidence: 0,
+          maxAttempts: 1000,
+          autoFixableFailureKinds: ["security_failure"],
+        },
+      }),
+    ]);
+    expect(maliciousPolicy.status).toBe(1);
+    expect(JSON.parse(maliciousPolicy.stdout)).toMatchObject({
+      allowRepush: false,
+      minConfidence: 0.75,
+      maxAttempts: 2,
+      route: "issue_escalation",
+    });
+
     const release = run([
       "github",
       "release-automation-decision",
@@ -57,6 +81,16 @@ describe("PLAN-L7-428 enforcement routes", () => {
     ]);
     expect(release.status).toBe(1);
     expect(JSON.parse(release.stdout).decision).toBe("blocked");
+  });
+
+  it("write-capable PR/release routes reject before external application without gate evidence", () => {
+    const pr = run(["github", "pr-create", "--apply"]);
+    expect(pr.status).toBe(1);
+    expect(pr.stderr).toContain("valid cross-review evidence is required");
+
+    const release = run(["github", "release-plan", "--tag", "v0.0.0", "--repo", "x/y", "--apply"]);
+    expect(release.status).toBe(1);
+    expect(release.stderr).toContain("accepted release automation decision evidence is required");
   });
 
   it("profile safety and generated config functions are reached by real CLI routes", () => {

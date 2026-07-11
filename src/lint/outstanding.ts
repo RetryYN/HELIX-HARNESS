@@ -23,6 +23,8 @@
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { parse as parseYaml } from "yaml";
+import { frontmatterSchema } from "../schema/frontmatter";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
 import {
@@ -121,6 +123,7 @@ export interface OutstandingPlanRow {
   versionTarget?: string | null;
   /** 不可逆影響の機械判定。本文の境界語はこの宣言を上書きしない。 */
   irreversibleImpact?: "none" | "cutover" | "migration" | null;
+  irreversibleImpactDeclared?: boolean;
   /** frontmatter/body の軽量分類用テキスト。 */
   text?: string;
 }
@@ -799,6 +802,8 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
 function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): boolean {
   if (p.irreversibleImpact === "none") return false;
   if (p.irreversibleImpact === "cutover" || p.irreversibleImpact === "migration") return true;
+  // fieldが存在するがschema不適合ならplan lintがrejectする。本文fallbackで別分類へ化けさせない。
+  if (p.irreversibleImpactDeclared) return false;
   const planId = (p.planId ?? "").trim();
   if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
     return /irreversible|不可逆|state dir|cutover|\.helix\/.*\.helix|atomic migration/i.test(text);
@@ -1038,6 +1043,11 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     } catch {
       continue;
     }
+    const rawFrontmatter = parseYaml(
+      content.match(/^---\s*\n([\s\S]*?)\n---/)?.[1] ?? "",
+    ) as Record<string, unknown> | null;
+    const parsedFrontmatter = frontmatterSchema.safeParse(rawFrontmatter);
+    const irreversibleImpactDeclared = Object.hasOwn(rawFrontmatter ?? {}, "irreversible_impact");
     rows.push({
       planId: fmValue(content, "plan_id") ?? f.replace(/\.md$/, ""),
       layer: fmValue(content, "layer") ?? "unknown",
@@ -1045,9 +1055,10 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
       status: fmValue(content, "status") ?? "unknown",
       workflowPhase: fmValue(content, "workflow_phase") ?? null,
       versionTarget: fmValue(content, "version_target") ?? null,
-      irreversibleImpact:
-        (fmValue(content, "irreversible_impact") as OutstandingPlanRow["irreversibleImpact"]) ??
-        null,
+      irreversibleImpact: parsedFrontmatter.success
+        ? (parsedFrontmatter.data.irreversible_impact ?? null)
+        : null,
+      irreversibleImpactDeclared,
       text: content,
     });
   }

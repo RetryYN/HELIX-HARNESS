@@ -1,3 +1,6 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeLintWiring,
@@ -133,5 +136,29 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     expect(r.ok).toBe(false);
     expect(r.unwiredExports).toEqual(["analyzeVerificationProfileSafety"]);
     expect(lintWiringMessages(r)[0]).toContain("contract export");
+  });
+
+  it("loader does not treat import, re-export, string, or bare identifier as a function call", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-wiring-false-positive-"));
+    try {
+      mkdirSync(join(root, "src", "lint"), { recursive: true });
+      writeFileSync(
+        join(root, "src", "cli.ts"),
+        [
+          'import { analyzeVerificationProfileSafety } from "./lint/contracts";',
+          'export { renderGeneratedMcpConfig } from "./lint/contracts";',
+          'const label = "validatePrReviewRoute gateCiAutoFixRepush planReleaseAutomationDecision";',
+          "void analyzeVerificationProfileSafety;",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "src", "lint", "contracts.ts"),
+        "export function analyzeVerificationProfileSafety() {}\nexport function renderGeneratedMcpConfig() {}\n",
+      );
+      const loaded = loadLintWiringInput(root);
+      expect(loaded.reachableExports).toEqual(new Set());
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

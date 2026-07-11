@@ -2147,4 +2147,38 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     );
     expect(o.items[0]?.blockers).toContain("irreversible_migration_pending");
   });
+
+  it("loaderはunknown irreversible_impactをtyped値として採用しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-typed-cutover-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-999-invalid.md"),
+        `---
+plan_id: PLAN-L7-999-invalid
+title: invalid typed boundary fixture
+kind: troubleshoot
+drive: agent
+status: draft
+layer: L7
+irreversible_impact: informational
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+不可逆 cutover への説明。
+`,
+      );
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows[0]).toMatchObject({ irreversibleImpact: null, irreversibleImpactDeclared: true });
+      const result = analyzeOutstandingWork(rows, 0);
+      expect(result.items[0]?.blockers).not.toContain("irreversible_migration_pending");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

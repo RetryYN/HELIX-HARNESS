@@ -11516,7 +11516,9 @@ github
   .description("evaluate confidence and attempt circuit breakers before CI repush")
   .requiredOption("--input-json <json>", "CiAutoFixGateInput JSON")
   .action((opts: { inputJson: string }) => {
-    const result = gateCiAutoFixRepush(JSON.parse(opts.inputJson) as CiAutoFixGateInput);
+    const supplied = JSON.parse(opts.inputJson) as CiAutoFixGateInput;
+    // CLI callerはpolicy authorityではない。canonical policyを常に適用し、閾値/cap/kindを上書きさせない。
+    const result = gateCiAutoFixRepush({ ...supplied, policy: undefined });
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     process.exitCode = result.allowRepush ? 0 : 1;
   });
@@ -11570,17 +11572,40 @@ github
   .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
   .requiredOption("--repo <owner/repo>", "GitHub repository")
   .option("--apply", "mark dryRun=false in the packet; does not execute commands")
+  .option("--decision-input-json <json>", "required release decision evidence for --apply")
   .option("--json", "JSON output")
-  .action((opts: { tag: string; repo: string; apply?: boolean; json?: boolean }) => {
-    const result = buildReleasePublicationPlan({
-      tag: opts.tag,
-      repo: opts.repo,
-      dryRun: opts.apply !== true,
-    });
-    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    else process.stdout.write(renderReleasePublicationPlan(result));
-    process.exitCode = result.ok ? 0 : 1;
-  });
+  .action(
+    (opts: {
+      tag: string;
+      repo: string;
+      apply?: boolean;
+      decisionInputJson?: string;
+      json?: boolean;
+    }) => {
+      if (opts.apply) {
+        const decision = opts.decisionInputJson
+          ? planReleaseAutomationDecision(
+              JSON.parse(opts.decisionInputJson) as ReleaseAutomationDecisionInput,
+            )
+          : null;
+        if (!decision?.ok) {
+          process.stderr.write(
+            "release-plan --apply rejected: accepted release automation decision evidence is required\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const result = buildReleasePublicationPlan({
+        tag: opts.tag,
+        repo: opts.repo,
+        dryRun: opts.apply !== true,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(renderReleasePublicationPlan(result));
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("merge-readiness")
@@ -11635,28 +11660,49 @@ github
   .option("--base <branch>", "base branch for the pull request", "main")
   .option("--title <title>", "PR title override")
   .option("--apply", "execute gh pr create; default is dry-run")
+  .option("--review-input-json <json>", "required cross-review evidence for --apply")
   .option("--json", "JSON output")
-  .action((opts: { base?: string; title?: string; apply?: boolean; json?: boolean }) => {
-    const result = runGithubPrCreate(process.cwd(), {
-      baseBranch: opts.base ?? "main",
-      title: opts.title,
-      dryRun: opts.apply !== true,
-    });
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    } else {
-      process.stdout.write(
-        `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
-      );
-      process.stdout.write(
-        `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
-      );
-      process.stdout.write(`  - command=${result.command}\n`);
-      if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
-      if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
-    }
-    process.exitCode = result.ok ? 0 : 1;
-  });
+  .action(
+    (opts: {
+      base?: string;
+      title?: string;
+      apply?: boolean;
+      reviewInputJson?: string;
+      json?: boolean;
+    }) => {
+      if (opts.apply) {
+        const review = opts.reviewInputJson
+          ? validatePrReviewRoute(JSON.parse(opts.reviewInputJson) as PrReviewRouteInput)
+          : null;
+        if (!review?.ok) {
+          process.stderr.write(
+            "github pr-create --apply rejected: valid cross-review evidence is required\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const result = runGithubPrCreate(process.cwd(), {
+        baseBranch: opts.base ?? "main",
+        title: opts.title,
+        dryRun: opts.apply !== true,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      } else {
+        process.stdout.write(
+          `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
+        );
+        process.stdout.write(
+          `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
+        );
+        process.stdout.write(`  - command=${result.command}\n`);
+        if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
+        if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 const feedback = program
   .command("feedback")

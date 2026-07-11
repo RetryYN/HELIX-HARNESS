@@ -152,9 +152,11 @@ export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
   for (const rel of reachable) {
     const content = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
     for (const name of REQUIRED_RUNTIME_EXPORTS) {
-      // import / call-site referenceが2回以上なら、単なるexport定義だけではない。
-      const hits = content.match(new RegExp(`\\b${name}\\b`, "g"))?.length ?? 0;
-      if (hits > 0 && !new RegExp(`export\\s+function\\s+${name}\\b`).test(content)) {
+      // 実call expressionだけを配線証拠にする。import/re-export/string/識別子参照は数えない。
+      if (
+        new RegExp(`\\b${name}\\s*\\(`).test(content) &&
+        !new RegExp(`export\\s+function\\s+${name}\\s*\\(`).test(content)
+      ) {
         reachableExports.add(name);
       }
     }
