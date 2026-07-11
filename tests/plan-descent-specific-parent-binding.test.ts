@@ -6,12 +6,13 @@ import {
   checkPlanSpecificVpairBindings,
   extractExecutableOracleCases,
   findingFingerprint,
-  parseEligibleOracleTable,
-  planSpecificVpairBindingMessages,
   type PlanSpecificVpairAuthority,
   type PlanSpecificVpairBindingInput,
   type PlanSpecificVpairPlan,
+  parseEligibleOracleTable,
+  planSpecificVpairBindingMessages,
 } from "../src/lint/plan-specific-vpair-binding";
+import { lintPlanGate } from "../src/plan/lint";
 
 const planId = "PLAN-L7-422-plan-specific-vpair-binding";
 const parent = "docs/design/harness/L6-function-design/example.md";
@@ -20,17 +21,13 @@ const testPath = "tests/example.test.ts";
 const oracle = "U-PSPB-006";
 const table = (id = oracle, path = testPath) =>
   `| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| ${id} | 対象 | 反例 | \`${path}\` |`;
-const plan = (
-  overrides: Partial<PlanSpecificVpairPlan> = {},
-): PlanSpecificVpairPlan => ({
+const plan = (overrides: Partial<PlanSpecificVpairPlan> = {}): PlanSpecificVpairPlan => ({
   plan_id: planId,
   kind: "impl",
   status: "draft",
   parent_design: parent,
   pair_artifact: pair,
-  verification_bindings: [
-    { parent_design: parent, oracle_id: oracle, test_path: testPath },
-  ],
+  verification_bindings: [{ parent_design: parent, oracle_id: oracle, test_path: testPath }],
   generates: [{ artifact_path: testPath, artifact_type: "test_code" }],
   ...overrides,
 });
@@ -62,9 +59,9 @@ describe("PLAN固有Vペアbinding", () => {
     expect(analyzePlanSpecificVpairBindings(input()).ok).toBe(true));
 
   it("U-PSPB-007: binding必須", () => {
-    expect(
-      reasons(input({ plans: [plan({ verification_bindings: [] })] })),
-    ).toContain("verification_bindings_absent");
+    expect(reasons(input({ plans: [plan({ verification_bindings: [] })] }))).toContain(
+      "verification_bindings_absent",
+    );
   });
 
   it("U-PSPB-008: parent一致", () => {
@@ -88,13 +85,11 @@ describe("PLAN固有Vペアbinding", () => {
   });
 
   it("U-PSPB-009: oracle一意宣言", () => {
+    expect(reasons(input({ pairDocuments: new Map([[pair, table("U-PSPB-999")]]) }))).toContain(
+      "oracle_not_declared",
+    );
     expect(
-      reasons(input({ pairDocuments: new Map([[pair, table("U-PSPB-999")]]) })),
-    ).toContain("oracle_not_declared");
-    expect(
-      reasons(
-        input({ pairDocuments: new Map([[pair, `${table()}\n${table()}`]]) }),
-      ),
+      reasons(input({ pairDocuments: new Map([[pair, `${table()}\n${table()}`]]) })),
     ).toContain("oracle_ambiguous");
   });
 
@@ -102,21 +97,15 @@ describe("PLAN固有Vペアbinding", () => {
     expect(
       reasons(
         input({
-          pairDocuments: new Map([
-            [pair, table(oracle, "tests/other.test.ts")],
-          ]),
+          pairDocuments: new Map([[pair, table(oracle, "tests/other.test.ts")]]),
         }),
       ),
     ).toContain("oracle_test_citation_mismatch");
   });
 
   it("U-PSPB-011: generates結合", () => {
-    expect(reasons(input({ plans: [plan({ generates: [] })] }))).toContain(
-      "test_not_generated",
-    );
-    expect(reasons(input({ testFiles: new Map() }))).toContain(
-      "test_path_missing",
-    );
+    expect(reasons(input({ plans: [plan({ generates: [] })] }))).toContain("test_not_generated");
+    expect(reasons(input({ testFiles: new Map() }))).toContain("test_path_missing");
   });
 
   it("U-PSPB-012: case単位citation", () => {
@@ -128,17 +117,13 @@ describe("PLAN固有Vペアbinding", () => {
       source: forged,
       executableOracleCases: extractExecutableOracleCases(forged),
     });
-    expect(reasons(input({ testFiles: files }))).toContain(
-      "oracle_citation_missing",
-    );
+    expect(reasons(input({ testFiles: files }))).toContain("oracle_citation_missing");
     files.set(testPath, {
       ...files.get(testPath)!,
       source: `it("${oracle}: real",()=>{});`,
       executableOracleCases: new Map([[oracle, 1]]),
     });
-    expect(reasons(input({ testFiles: files }))).toContain(
-      "plan_citation_missing",
-    );
+    expect(reasons(input({ testFiles: files }))).toContain("plan_citation_missing");
   });
 
   it("U-PSPB-013: canonical path/schema", () => {
@@ -158,13 +143,11 @@ describe("PLAN固有Vペアbinding", () => {
         extra: true,
       },
     ]) {
-      expect(
-        reasons(input({ plans: [plan({ verification_bindings: [bad] })] })),
-      ).toContain("binding_schema_invalid");
+      expect(reasons(input({ plans: [plan({ verification_bindings: [bad] })] }))).toContain(
+        "binding_schema_invalid",
+      );
     }
-    expect(parseEligibleOracleTable(`\`\`\`\n${table()}\n\`\`\``).rows).toEqual(
-      [],
-    );
+    expect(parseEligibleOracleTable(`\`\`\`\n${table()}\n\`\`\``).rows).toEqual([]);
   });
 
   it("U-PSPB-014: 重複/ownership", () => {
@@ -174,9 +157,7 @@ describe("PLAN固有Vペアbinding", () => {
       test_path: testPath,
     };
     expect(
-      reasons(
-        input({ plans: [plan({ verification_bindings: [binding, binding] })] }),
-      ),
+      reasons(input({ plans: [plan({ verification_bindings: [binding, binding] })] })),
     ).toContain("duplicate_binding");
     const secondPath = "tests/second.test.ts";
     const second = plan({
@@ -194,27 +175,22 @@ describe("PLAN固有Vペアbinding", () => {
         input({
           plans: [plan(), second],
           pairDocuments: new Map([
-            [
-              pair,
-              table(oracle, testPath).replace(" |", `, \`${secondPath}\` |`),
-            ],
+            [pair, table(oracle, testPath).replace(" |", `, \`${secondPath}\` |`)],
           ]),
           testFiles: files,
         }),
       ),
     ).toContain("oracle_owned_by_multiple_plans");
-    expect(
-      reasons(input({ plans: [plan(), { ...second, status: "archived" }] })),
-    ).not.toContain("oracle_owned_by_multiple_plans");
+    expect(reasons(input({ plans: [plan(), { ...second, status: "archived" }] }))).not.toContain(
+      "oracle_owned_by_multiple_plans",
+    );
   });
 
   it("U-PSPB-015: 共有L8", () => {
     const other = "U-PSPB-015";
     const second = plan({
       plan_id: "PLAN-L7-999-second",
-      verification_bindings: [
-        { parent_design: parent, oracle_id: other, test_path: testPath },
-      ],
+      verification_bindings: [{ parent_design: parent, oracle_id: other, test_path: testPath }],
     });
     const files = new Map(input().testFiles);
     files.set(testPath, {
@@ -229,9 +205,7 @@ describe("PLAN固有Vペアbinding", () => {
       analyzePlanSpecificVpairBindings(
         input({
           plans: [plan(), second],
-          pairDocuments: new Map([
-            [pair, `${table()}\n| ${other} | x | y | \`${testPath}\` |`],
-          ]),
+          pairDocuments: new Map([[pair, `${table()}\n| ${other} | x | y | \`${testPath}\` |`]]),
           testFiles: files,
         }),
       ).ok,
@@ -265,9 +239,7 @@ describe("PLAN固有Vペアbinding", () => {
         input({ plans: [plan({ verification_bindings: null })], authority }),
       ).ok,
     ).toBe(false);
-    expect(analyzePlanSpecificVpairBindings(input({ authority })).ok).toBe(
-      true,
-    );
+    expect(analyzePlanSpecificVpairBindings(input({ authority })).ok).toBe(true);
   });
 
   it("U-PSPB-017: baseline authority", () => {
@@ -299,19 +271,17 @@ describe("PLAN固有Vペアbinding", () => {
       isTerminalResolutionPlan: () => true,
     });
     expect(analyzePlanSpecificVpairBindings(valid).ok).toBe(true);
-    expect(
-      reasons({ ...valid, expectedTerminalDigest: "sha256:" + "0".repeat(64) }),
-    ).toContain("baseline_authority_invalid");
-    expect(
-      reasons({ ...valid, plans: [plan({ verification_bindings: [] })] }),
-    ).toContain("resolved_finding_reappeared");
+    expect(reasons({ ...valid, expectedTerminalDigest: `sha256:${"0".repeat(64)}` })).toContain(
+      "baseline_authority_invalid",
+    );
+    expect(reasons({ ...valid, plans: [plan({ verification_bindings: [] })] })).toContain(
+      "resolved_finding_reappeared",
+    );
   });
 
   it("U-PSPB-018: 対象境界", () => {
     expect(
-      analyzePlanSpecificVpairBindings(
-        input({ plans: [plan({ status: "draft" })] }),
-      ).checkedPlans,
+      analyzePlanSpecificVpairBindings(input({ plans: [plan({ status: "draft" })] })).checkedPlans,
     ).toBe(1);
     expect(
       analyzePlanSpecificVpairBindings(
@@ -336,6 +306,14 @@ describe("PLAN固有Vペアbinding", () => {
       ok: false,
       result: null,
     });
+    const lint = lintPlanGate({
+      path: "docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md",
+      repoRoot: process.cwd(),
+    });
+    expect(lint.ok, lint.messages.join("\n")).toBe(true);
+    expect(
+      lint.messages.some((message) => message.includes("plan-specific-vpair-binding - OK")),
+    ).toBe(true);
   });
 
   it("U-PSPB-020: 実repoはPLAN-L7-419と本PLANをactive exemptionなしで4点bindingする", () => {

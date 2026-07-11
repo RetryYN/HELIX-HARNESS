@@ -2193,6 +2193,13 @@ describe("runDoctor", () => {
     expect(hasDoctorMessage(r.messages, "doctor: plan-governance - OK")).toBe(true);
   });
 
+  it("U-PSPB-019: PLAN固有Vペアbindingをdoctor hard gateへ配線する", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessageWith(r.messages, "doctor: plan-specific-vpair-binding", "OK")).toBe(
+      true,
+    );
+  });
+
   it("U-DESIGNCOV-014: design catalog coverage is wired into doctor as a hard gate", () => {
     const coverage = checkDesignCoverage(process.cwd());
     const r = liveDoctor();

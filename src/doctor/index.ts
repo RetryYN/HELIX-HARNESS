@@ -262,6 +262,7 @@ import {
   loadPlanEntryRoutingBaseline,
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
+import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
 import {
   analyzePlanSupersession,
   loadSupersedePlans,
@@ -6623,6 +6624,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const gateConfirm = checkGateConfirm(deps.repoRoot);
   const planSchedule = checkPlanSchedule(deps.repoRoot);
   const planDescent = checkPlanDescent(deps.repoRoot);
+  const planSpecificVpairBinding = checkPlanSpecificVpairBindings(deps.repoRoot);
   const planEntryRouting = checkPlanEntryRouting(deps.repoRoot);
   const planGovernance = checkPlanGovernance(deps.repoRoot);
   const planDod = checkPlanDod(deps.repoRoot);
@@ -6784,6 +6786,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       gateConfirm.ok &&
       planSchedule.ok &&
       planDescent.ok &&
+      planSpecificVpairBinding.ok &&
       planEntryRouting.ok &&
       planGovernance.ok &&
       planDod.ok &&
@@ -6904,6 +6907,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
       ...planSchedule.messages.map((m) => `doctor: ${m}`),
       ...planDescent.messages.map((m) => `doctor: ${m}`),
+      ...planSpecificVpairBinding.messages.map((m) => `doctor: ${m}`),
       ...planEntryRouting.messages.map((m) => `doctor: ${m}`),
       ...planGovernance.messages.map((m) => `doctor: ${m}`),
       ...planDod.messages.map((m) => `doctor: ${m}`),

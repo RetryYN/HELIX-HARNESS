@@ -43,9 +43,9 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
       { ...binding, test_path: "tests\\example.test.ts" },
       { ...binding, unknown: true },
     ]) {
-      expect(
-        frontmatterSchema.safeParse(implBase({ verification_bindings: [bad] })).success,
-      ).toBe(false);
+      expect(frontmatterSchema.safeParse(implBase({ verification_bindings: [bad] })).success).toBe(
+        false,
+      );
     }
   });
 

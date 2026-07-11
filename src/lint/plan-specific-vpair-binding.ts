@@ -1,12 +1,5 @@
 import { createHash } from "node:crypto";
-import {
-  existsSync,
-  lstatSync,
-  readdirSync,
-  readFileSync,
-  realpathSync,
-  statSync,
-} from "node:fs";
+import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import ts from "typescript";
 import { parse as parseYaml } from "yaml";
@@ -15,8 +8,10 @@ export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
   "plan-specific-vpair-binding-authority.v1" as const;
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH =
   "config/plan-specific-vpair-binding-authority.json" as const;
-export const PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST = "__INITIAL_DIGEST_PENDING__";
-export const PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST = "__TERMINAL_DIGEST_PENDING__";
+export const PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST =
+  "sha256:18296bffa4a37adbab68e3602677eaa5008a26807866bff421d52e9597b30786";
+export const PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST =
+  "sha256:18296bffa4a37adbab68e3602677eaa5008a26807866bff421d52e9597b30786";
 
 export type PlanSpecificVpairReason =
   | "verification_bindings_absent"
@@ -136,9 +131,7 @@ export function findingFingerprint(
   );
 }
 
-export function authorityInitialDigest(
-  initial: PlanSpecificVpairAuthorityInitial[],
-): string {
+export function authorityInitialDigest(initial: PlanSpecificVpairAuthorityInitial[]): string {
   return sha256(`${initial.map((entry) => entry.fingerprint).join("\n")}\n`);
 }
 
@@ -167,9 +160,7 @@ export function isCanonicalTestPath(value: unknown): value is string {
   }
   return value
     .split("/")
-    .every(
-      (segment) => segment.length > 0 && segment !== "." && segment !== "..",
-    );
+    .every((segment) => segment.length > 0 && segment !== "." && segment !== "..");
 }
 
 function splitTableRow(line: string): string[] | null {
@@ -198,17 +189,10 @@ export function parseEligibleOracleTable(source: string): {
     }
     if (fenced) continue;
     const header = splitTableRow(line);
-    if (!header || JSON.stringify(header) !== JSON.stringify(ELIGIBLE_HEADER))
-      continue;
+    if (!header || JSON.stringify(header) !== JSON.stringify(ELIGIBLE_HEADER)) continue;
     const separator = splitTableRow(lines[i + 1] ?? "");
-    if (
-      !separator ||
-      separator.length !== 4 ||
-      !separator.every((c) => /^:?-{3,}:?$/.test(c))
-    ) {
-      schemaErrors.push(
-        `line ${i + 1}: eligible header has no canonical separator`,
-      );
+    if (!separator || separator.length !== 4 || !separator.every((c) => /^:?-{3,}:?$/.test(c))) {
+      schemaErrors.push(`line ${i + 1}: eligible header has no canonical separator`);
       continue;
     }
     for (let j = i + 2; j < lines.length; j += 1) {
@@ -221,17 +205,11 @@ export function parseEligibleOracleTable(source: string): {
       }
       const oracleId = cells[0] ?? "";
       if (!ORACLE_ID.test(oracleId)) {
-        if (/U-[A-Z0-9-]+/.test(oracleId))
-          schemaErrors.push(`line ${j + 1}: invalid oracle id`);
+        if (/U-[A-Z0-9-]+/.test(oracleId)) schemaErrors.push(`line ${j + 1}: invalid oracle id`);
         continue;
       }
-      const citations = [...(cells[3] ?? "").matchAll(/`([^`]+)`/g)].map(
-        (m) => m[1] ?? "",
-      );
-      if (
-        citations.length === 0 ||
-        citations.some((path) => !isCanonicalTestPath(path))
-      ) {
+      const citations = [...(cells[3] ?? "").matchAll(/`([^`]+)`/g)].map((m) => m[1] ?? "");
+      if (citations.length === 0 || citations.some((path) => !isCanonicalTestPath(path))) {
         schemaErrors.push(`line ${j + 1}: invalid test citation`);
         continue;
       }
@@ -243,8 +221,7 @@ export function parseEligibleOracleTable(source: string): {
 
 function staticTitle(node: ts.Expression | undefined): string | null {
   if (!node) return null;
-  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node))
-    return node.text;
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
   return null;
 }
 
@@ -268,9 +245,7 @@ export function extractExecutableOracleCases(
       (node.expression.text === "it" || node.expression.text === "test")
     ) {
       const title = staticTitle(node.arguments[0]);
-      const match = title?.match(
-        /^(U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]*):\s+\S/,
-      );
+      const match = title?.match(/^(U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]*):\s+\S/);
       if (match) counts.set(match[1]!, (counts.get(match[1]!) ?? 0) + 1);
     }
     ts.forEachChild(node, visit);
@@ -292,8 +267,7 @@ function decodeBinding(raw: unknown): VerificationBinding | null {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
   const record = raw as Record<string, unknown>;
   if (
-    Object.keys(record).sort().join(",") !==
-      "oracle_id,parent_design,test_path" ||
+    Object.keys(record).sort().join(",") !== "oracle_id,parent_design,test_path" ||
     typeof record.parent_design !== "string" ||
     record.parent_design.length === 0 ||
     typeof record.oracle_id !== "string" ||
@@ -310,8 +284,7 @@ function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
     plan.generates.flatMap((raw) => {
       if (!raw || typeof raw !== "object" || Array.isArray(raw)) return [];
       const item = raw as Record<string, unknown>;
-      return item.artifact_type === "test_code" &&
-        typeof item.artifact_path === "string"
+      return item.artifact_type === "test_code" && typeof item.artifact_path === "string"
         ? [item.artifact_path]
         : [];
     }),
@@ -341,9 +314,7 @@ function validateAuthority(
       error: "authority schema invalid",
       resolved: new Set(),
     };
-  const fingerprints = authority.initialAuthority.map(
-    (entry) => entry?.fingerprint,
-  );
+  const fingerprints = authority.initialAuthority.map((entry) => entry?.fingerprint);
   if (
     authority.initialAuthority.some(
       (entry) =>
@@ -401,10 +372,7 @@ function validateAuthority(
 }
 
 function isEligiblePlan(plan: PlanSpecificVpairPlan): boolean {
-  return (
-    (plan.kind === "impl" || plan.kind === "add-impl") &&
-    plan.status !== "archived"
-  );
+  return (plan.kind === "impl" || plan.kind === "add-impl") && plan.status !== "archived";
 }
 
 export function analyzePlanSpecificVpairBindings(
@@ -415,12 +383,10 @@ export function analyzePlanSpecificVpairBindings(
   const ownership = new Map<string, Map<string, Set<string>>>();
 
   for (const plan of active) {
-    const planId =
-      typeof plan.plan_id === "string" ? plan.plan_id : "<invalid-plan-id>";
+    const planId = typeof plan.plan_id === "string" ? plan.plan_id : "<invalid-plan-id>";
     if (
       plan.verification_bindings === undefined ||
-      (Array.isArray(plan.verification_bindings) &&
-        plan.verification_bindings.length === 0)
+      (Array.isArray(plan.verification_bindings) && plan.verification_bindings.length === 0)
     ) {
       rawFindings.push(finding(planId, "verification_bindings_absent", null));
       continue;
@@ -445,15 +411,12 @@ export function analyzePlanSpecificVpairBindings(
         ),
       );
     }
-    const valid = bindings.filter(
-      (entry): entry is VerificationBinding => entry !== null,
-    );
+    const valid = bindings.filter((entry): entry is VerificationBinding => entry !== null);
     const seen = new Set<string>();
     const generated = generatedTestPaths(plan);
     for (const binding of valid) {
       const tuple = `${binding.parent_design}\n${binding.oracle_id}\n${binding.test_path}`;
-      if (seen.has(tuple))
-        rawFindings.push(finding(planId, "duplicate_binding", tuple));
+      if (seen.has(tuple)) rawFindings.push(finding(planId, "duplicate_binding", tuple));
       seen.add(tuple);
       if (binding.parent_design !== plan.parent_design) {
         rawFindings.push(
@@ -464,76 +427,40 @@ export function analyzePlanSpecificVpairBindings(
           ),
         );
       }
-      const pairPath =
-        typeof plan.pair_artifact === "string" ? plan.pair_artifact : "";
-      const parsed = parseEligibleOracleTable(
-        input.pairDocuments.get(pairPath) ?? "",
-      );
+      const pairPath = typeof plan.pair_artifact === "string" ? plan.pair_artifact : "";
+      const parsed = parseEligibleOracleTable(input.pairDocuments.get(pairPath) ?? "");
       if (parsed.schemaErrors.length > 0)
         rawFindings.push(
-          finding(
-            planId,
-            "oracle_table_schema_invalid",
-            parsed.schemaErrors.join("; "),
-          ),
+          finding(planId, "oracle_table_schema_invalid", parsed.schemaErrors.join("; ")),
         );
-      const rows = parsed.rows.filter(
-        (row) => row.oracleId === binding.oracle_id,
-      );
+      const rows = parsed.rows.filter((row) => row.oracleId === binding.oracle_id);
       if (rows.length === 0)
-        rawFindings.push(
-          finding(planId, "oracle_not_declared", binding.oracle_id),
-        );
-      if (rows.length > 1)
-        rawFindings.push(
-          finding(planId, "oracle_ambiguous", binding.oracle_id),
-        );
-      if (
-        rows.length === 1 &&
-        !rows[0]!.testPaths.includes(binding.test_path)
-      ) {
+        rawFindings.push(finding(planId, "oracle_not_declared", binding.oracle_id));
+      if (rows.length > 1) rawFindings.push(finding(planId, "oracle_ambiguous", binding.oracle_id));
+      if (rows.length === 1 && !rows[0]?.testPaths.includes(binding.test_path)) {
         rawFindings.push(
           finding(
             planId,
             "oracle_test_citation_mismatch",
-            `${binding.oracle_id} -> ${rows[0]!.testPaths.join(",")}`,
+            `${binding.oracle_id} -> ${rows[0]?.testPaths.join(",")}`,
           ),
         );
       }
       if (!generated.has(binding.test_path))
-        rawFindings.push(
-          finding(planId, "test_not_generated", binding.test_path),
-        );
+        rawFindings.push(finding(planId, "test_not_generated", binding.test_path));
       const evidence = input.testFiles.get(binding.test_path);
-      if (
-        !evidence ||
-        !evidence.exists ||
-        !evidence.regular ||
-        evidence.symlink ||
-        !evidence.insideRepo
-      ) {
-        rawFindings.push(
-          finding(planId, "test_path_missing", binding.test_path),
-        );
+      if (!evidence?.exists || !evidence.regular || evidence.symlink || !evidence.insideRepo) {
+        rawFindings.push(finding(planId, "test_path_missing", binding.test_path));
       } else {
         if (!evidence.source.includes(planId))
+          rawFindings.push(finding(planId, "plan_citation_missing", binding.test_path));
+        if ((evidence.executableOracleCases.get(binding.oracle_id) ?? 0) !== 1) {
           rawFindings.push(
-            finding(planId, "plan_citation_missing", binding.test_path),
-          );
-        if (
-          (evidence.executableOracleCases.get(binding.oracle_id) ?? 0) !== 1
-        ) {
-          rawFindings.push(
-            finding(
-              planId,
-              "oracle_citation_missing",
-              `${binding.oracle_id}@${binding.test_path}`,
-            ),
+            finding(planId, "oracle_citation_missing", `${binding.oracle_id}@${binding.test_path}`),
           );
         }
       }
-      const byPath =
-        ownership.get(binding.oracle_id) ?? new Map<string, Set<string>>();
+      const byPath = ownership.get(binding.oracle_id) ?? new Map<string, Set<string>>();
       const owners = byPath.get(binding.test_path) ?? new Set<string>();
       owners.add(planId);
       byPath.set(binding.test_path, owners);
@@ -567,23 +494,16 @@ export function analyzePlanSpecificVpairBindings(
       input.isTerminalResolutionPlan,
     );
     if (authority.error)
-      rawFindings.push(
-        finding("<authority>", "baseline_authority_invalid", authority.error),
-      );
+      rawFindings.push(finding("<authority>", "baseline_authority_invalid", authority.error));
   }
   const resolved = authority?.resolved ?? new Set<string>();
   const initial = new Set(
-    authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ??
-      [],
+    authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ?? [],
   );
   for (const current of rawFindings) {
     if (resolved.has(current.fingerprint))
       rawFindings.push(
-        finding(
-          current.plan_id,
-          "resolved_finding_reappeared",
-          current.fingerprint,
-        ),
+        finding(current.plan_id, "resolved_finding_reappeared", current.fingerprint),
       );
   }
   const exempted = rawFindings.filter(
@@ -619,10 +539,7 @@ export function loadPlanSpecificVpairBindingInput(
   const pairDocuments = new Map<string, string>();
   for (const path of new Set(options.pairPaths)) {
     const absolute = join(root, ...path.split("/"));
-    pairDocuments.set(
-      path,
-      existsSync(absolute) ? readFileSync(absolute, "utf8") : "",
-    );
+    pairDocuments.set(path, existsSync(absolute) ? readFileSync(absolute, "utf8") : "");
   }
   const testFiles = new Map<string, TestFileEvidence>();
   for (const path of new Set(options.testPaths)) {
@@ -639,11 +556,9 @@ export function loadPlanSpecificVpairBindingInput(
       const symbolic = lstatSync(absolute).isSymbolicLink();
       const real = realpathSync(absolute);
       const rel = relative(root, real);
-      const insideRepo =
-        rel !== "" && !rel.startsWith("..") && !isAbsolute(rel);
+      const insideRepo = rel !== "" && !rel.startsWith("..") && !isAbsolute(rel);
       const regular = statSync(real).isFile();
-      const source =
-        !symbolic && insideRepo && regular ? readFileSync(real, "utf8") : "";
+      const source = !symbolic && insideRepo && regular ? readFileSync(real, "utf8") : "";
       evidence = {
         exists: true,
         regular,
@@ -724,9 +639,7 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
   });
 }
 
-export function planSpecificVpairBindingMessages(
-  result: PlanSpecificVpairBindingResult,
-): string[] {
+export function planSpecificVpairBindingMessages(result: PlanSpecificVpairBindingResult): string[] {
   if (result.ok) {
     return [
       `plan-specific-vpair-binding - OK (checked=${result.checkedPlans}, exempted=${result.exempted.length}, findings=0)`,
