@@ -1,3 +1,4 @@
+// PLAN-L7-427-active-plan-selection
 import { randomUUID } from "node:crypto";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -38,6 +39,7 @@ const compliant: DriveDbRegistrationStats = {
   skillInvocationOrphans: 0,
   registeredHookEvents: 3,
   hookOrphans: 99,
+  newHookOrphans: 0,
   modes: REQUIRED_DRIVE_MODELS,
 };
 
@@ -74,6 +76,19 @@ describe("drive DB registration lint", () => {
         "missing_required_mode",
       ]),
     );
+  });
+
+  it("U-APSEL-005: watermark以後の新規hook orphanだけをfail-closeする", () => {
+    expect(
+      analyzeDriveDbRegistration({ ...compliant, hookOrphans: 4_702, newHookOrphans: 0 }).ok,
+    ).toBe(true);
+    const regression = analyzeDriveDbRegistration({
+      ...compliant,
+      hookOrphans: 4_703,
+      newHookOrphans: 1,
+    });
+    expect(regression.ok).toBe(false);
+    expect(regression.violations).toContainEqual({ reason: "new_hook_orphans", count: 1 });
   });
 
   it("U-DDBREG-007: fails when the Forward-spine plus 10 drive-model registration is incomplete", () => {
