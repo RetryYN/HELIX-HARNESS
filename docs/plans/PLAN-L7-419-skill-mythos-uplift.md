@@ -120,6 +120,15 @@ review_evidence:
     scope: "cross-runtime 判定が同一論点 (検出器強度) で 3 round 不収束のため呼出条件 2/5 で諮問。結論 = 条件付き賛成: fence 追加強化は経済合理性を欠く (残反例主体は test 自体を改変可能で repo 内完全化は原理不能)。条件 = 残余リスクの PLAN 実記載 + 攻防記録の evidence 記録 (本 frontmatter と §4 で充足)。"
     worker_model: claude-fable-5
     reviewer_model: claude-fable-5
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/skill-pack-uplift.test.ts tests/judgment-core-coverage.test.ts tests/agent-context-efficiency.test.ts tests/skill-assignment.test.ts tests/skill-recommend.test.ts tests/asset-catalog.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T09:41:23+09:00"
+        evidence_path: tests/skill-pack-uplift.test.ts
+        output_digest: "sha256:509994a89cd23f0ca217c4af1d65f801a046ecda1640cbbbcba5d3152dfd7067"
 ---
 
 # PLAN-L7-419 (impl): skill pack 判断力アップリフト

@@ -517,8 +517,8 @@ review_evidence:
         output_digest: "sha256:428c49605a526c1d6848a30f359bdfb61ae215d0ce8f3de2263139e05909fdc8"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-09T23:54:35+09:00"
-    tests_green_at: "2026-07-09T23:54:35+09:00"
+    reviewed_at: "2026-07-09T23:54:52+09:00"
+    tests_green_at: "2026-07-09T23:54:52+09:00"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
