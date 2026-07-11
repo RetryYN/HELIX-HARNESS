@@ -197,24 +197,30 @@ function gateCommandMatches(gate: string, command: string): boolean {
 }
 
 function addViolation(
-  violations: LeftArmCarryViolation[],
-  planId: string,
-  kind: LeftArmCarryViolationKind,
-  detail: string,
-  carryId?: string,
+  ...[violations, planId, kind, detail, carryId]: [
+    LeftArmCarryViolation[],
+    string,
+    LeftArmCarryViolationKind,
+    string,
+    string?,
+  ]
 ): void {
   violations.push({ kind, plan_id: planId, ...(carryId ? { carry_id: carryId } : {}), detail });
 }
 
-function validateDecision(
-  plan: LeftArmCarryPlan,
-  input: LeftArmCarryLogInput,
-  byId: ReadonlyMap<string, LeftArmCarryPlan>,
-  violations: LeftArmCarryViolation[],
-  globalCarryIds: Set<string>,
-  globalArtifacts: Set<string>,
-  globalFindingEvidence: Set<string>,
-): void {
+interface CarryValidationContext {
+  plan: LeftArmCarryPlan;
+  input: LeftArmCarryLogInput;
+  byId: ReadonlyMap<string, LeftArmCarryPlan>;
+  violations: LeftArmCarryViolation[];
+  globalCarryIds: Set<string>;
+  globalArtifacts: Set<string>;
+  globalFindingEvidence: Set<string>;
+}
+
+function validateDecision(context: CarryValidationContext): void {
+  const { plan, input, byId, violations, globalCarryIds, globalArtifacts, globalFindingEvidence } =
+    context;
   const decision = plan.left_arm_carry;
   if (!decision) {
     if (isEnforced(plan, input))
@@ -510,7 +516,7 @@ export function analyzeLeftArmCarryLog(input: LeftArmCarryLogInput): LeftArmCarr
   const globalArtifacts = new Set<string>();
   const globalFindingEvidence = new Set<string>();
   for (const plan of input.plans)
-    validateDecision(
+    validateDecision({
       plan,
       input,
       byId,
@@ -518,7 +524,7 @@ export function analyzeLeftArmCarryLog(input: LeftArmCarryLogInput): LeftArmCarr
       globalCarryIds,
       globalArtifacts,
       globalFindingEvidence,
-    );
+    });
   const checked = input.plans.filter(
     (plan) => plan.kind === "impl" || plan.kind === "add-impl",
   ).length;
