@@ -1419,6 +1419,31 @@ export function renderSetupArtifacts(
   return renderArtifacts(plan, templates);
 }
 
+/** U-HRET-011/013: confirm=falseのbrownfield最終内容をI/Oなしで投影する。 */
+export function renderBrownfieldSetupArtifacts(
+  plan: SetupPlan,
+  templates: TemplateSet,
+  existing: Readonly<Record<string, string>>,
+): { path: string; content: string; disposition: "generated" | "merged" | "preserved" }[] {
+  return renderArtifacts(plan, templates).map((artifact) => {
+    const current = existing[artifact.path];
+    if (current === undefined) return { ...artifact, disposition: "generated" as const };
+    if (MERGEABLE_PACKAGE_JSON.has(artifact.path)) {
+      const merged = mergeConsumerPackageJson(current, artifact.content);
+      return merged === null
+        ? { path: artifact.path, content: current, disposition: "preserved" as const }
+        : { path: artifact.path, content: merged, disposition: "merged" as const };
+    }
+    if (MERGEABLE_ADAPTER_DOCS.has(artifact.path)) {
+      const merged = mergeManagedBlock(current, artifact.content);
+      return merged === null
+        ? { path: artifact.path, content: current, disposition: "preserved" as const }
+        : { path: artifact.path, content: merged, disposition: "merged" as const };
+    }
+    return { path: artifact.path, content: current, disposition: "preserved" as const };
+  });
+}
+
 function templateNameFor(targetPath: string): string {
   if (targetPath === CODEOWNERS_TARGET) return "team/CODEOWNERS";
   if (targetPath === BP_SCRIPT) return "team/setup-branch-protection.sh";

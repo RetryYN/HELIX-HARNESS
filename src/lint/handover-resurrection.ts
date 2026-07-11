@@ -21,6 +21,7 @@ import {
   cleanDistributionSourcePath,
   loadTemplates,
   planHelixProjectSetup,
+  renderBrownfieldSetupArtifacts,
   renderSetupArtifacts,
   transformCleanDistributionArtifact,
 } from "../setup";
@@ -87,7 +88,7 @@ export interface ResurrectionBaselineFile extends ResurrectionBaseline {
 export interface GeneratedResurrectionBaselineFile extends ResurrectionBaseline {
   schemaVersion: "handover-generated-resurrection-baseline.v1";
   policyDigest: string;
-  projectionKinds: ["fresh_setup", "command_contract", "clean_distribution"];
+  projectionKinds: ["fresh_setup", "brownfield_setup", "command_contract", "clean_distribution"];
 }
 
 export interface ResurrectionBaselineAuthority {
@@ -313,43 +314,64 @@ export function loadHandoverResurrectionFiles(repoRoot: string): ResurrectionFil
 
 export function loadGeneratedResurrectionFiles(repoRoot: string): ResurrectionFile[] {
   const templates = loadTemplates(repoRoot);
-  const fresh = renderSetupArtifacts(planHelixProjectSetup("0-A", { dryRun: true }), templates);
+  const plan = planHelixProjectSetup("0-A", { dryRun: true });
+  const project = (kind: string, path: string): string => `@projection/${kind}/${path}`;
+  const fresh = renderSetupArtifacts(plan, templates).map((file) => ({
+    ...file,
+    path: project("fresh", file.path),
+  }));
+  const brownfield = renderBrownfieldSetupArtifacts(plan, templates, {
+    "AGENTS.md": "# Consumer rules\n\nこの行はconsumer所有。\n",
+    "CLAUDE.md": "# Consumer context\n\nこの行はconsumer所有。\n",
+    "package.json": '{"name":"brownfield-consumer","scripts":{"keep":"true"}}\n',
+    ".vscode/tasks.json":
+      '{"version":"2.0.0","tasks":[{"label":"keep-existing","type":"shell","command":"true"}]}\n',
+  }).map((file) => ({ ...file, path: project("brownfield", file.path) }));
   const commandContracts: ResurrectionFile[] = [
     {
-      path: ".github/workflows/harness-check.yml",
+      path: project("command", ".github/workflows/harness-check.yml"),
       content: JSON.stringify(CONSUMER_CI_RUN_COMMANDS),
     },
     {
-      path: ".github/workflows/escalation-stale.yml",
+      path: project("command", ".github/workflows/escalation-stale.yml"),
       content: JSON.stringify(CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS),
     },
-    { path: ".vscode/tasks.json", content: JSON.stringify(CONSUMER_VSCODE_TASK_COMMANDS) },
+    {
+      path: project("command", ".vscode/tasks.json"),
+      content: JSON.stringify(CONSUMER_VSCODE_TASK_COMMANDS),
+    },
   ];
   const tracked = execFileSync("git", ["ls-files"], { cwd: repoRoot, encoding: "utf8" })
     .split(/\r?\n/)
     .filter(Boolean);
   const distributionPlan = buildCleanDistributionPlan({ paths: tracked });
-  const relevantDistribution = distributionPlan.artifactPaths.filter(
+  if (
+    !distributionPlan.ok ||
+    distributionPlan.missingRequired.length > 0 ||
+    distributionPlan.denylistViolations.length > 0
+  ) {
+    throw new Error("clean distribution plan is incomplete for resurrection scan");
+  }
+  const distributionPaths = distributionPlan.artifactPaths.filter(
     (path) =>
       path !== "src/lint/handover-resurrection.ts" &&
-      path !== "tests/handover-resurrection.test.ts" &&
-      (path === "AGENTS.md" ||
-        path === "CLAUDE.md" ||
-        path === "package.json" ||
-        /^(?:src|scripts|\.claude|\.codex|\.github|\.vscode)\//.test(path)),
+      path !== "tests/handover-resurrection.test.ts",
   );
-  const distribution = relevantDistribution.flatMap((artifactPath): ResurrectionFile[] => {
+  const distribution = distributionPaths.map((artifactPath): ResurrectionFile => {
     const sourcePath = cleanDistributionSourcePath(artifactPath, tracked);
     const absolute = join(repoRoot, sourcePath);
-    if (!existsSync(absolute)) return [];
-    return [
-      {
-        path: artifactPath,
-        content: transformCleanDistributionArtifact(artifactPath, readFileSync(absolute, "utf8")),
-      },
-    ];
+    if (!existsSync(absolute)) {
+      throw new Error(`clean distribution source missing from resurrection scan: ${sourcePath}`);
+    }
+    return {
+      path: project("distribution", artifactPath),
+      content: transformCleanDistributionArtifact(artifactPath, readFileSync(absolute, "utf8")),
+    };
   });
-  return [...fresh, ...commandContracts, ...distribution];
+  if (distribution.length !== distributionPaths.length) {
+    throw new Error("clean distribution resurrection projection is incomplete");
+  }
+  return [...fresh, ...brownfield, ...commandContracts, ...distribution];
 }
 
 export function parseResurrectionBaselineFile(text: string): ResurrectionBaselineFile {
@@ -382,7 +404,12 @@ export function parseGeneratedResurrectionBaselineFile(
     raw.schemaVersion !== "handover-generated-resurrection-baseline.v1" ||
     raw.policyDigest !== resurrectionPolicyDigest() ||
     canonicalJson(raw.projectionKinds) !==
-      canonicalJson(["fresh_setup", "command_contract", "clean_distribution"]) ||
+      canonicalJson([
+        "fresh_setup",
+        "brownfield_setup",
+        "command_contract",
+        "clean_distribution",
+      ]) ||
     !Array.isArray(raw.fingerprints) ||
     raw.fingerprints.some((item) => typeof item !== "string" || !SHA256.test(item)) ||
     new Set(raw.fingerprints).size !== raw.fingerprints.length
@@ -898,7 +925,8 @@ function scanPaths(
   const findings: ResurrectionFinding[] = [];
   for (const file of files) {
     const path = normalizedPath(file.path);
-    const lowerPath = path.toLowerCase();
+    const logicalPath = path.replace(/^@projection\/[^/]+\//, "");
+    const lowerPath = logicalPath.toLowerCase();
     const forbiddenPath = policy.forbidden.paths.some(
       (forbidden) =>
         lowerPath === forbidden.toLowerCase() ||
@@ -906,7 +934,7 @@ function scanPaths(
     );
     if (forbiddenPath) {
       findings.push(finding({ category: "path", path, symbol: path, evidence: path }));
-    } else if (/(?:^|\/)handover(?:\/|[-_.])/i.test(path)) {
+    } else if (/(?:^|\/)handover(?:\/|[-_.])/i.test(logicalPath)) {
       findings.push(finding({ category: "unclassified", path, symbol: path, evidence: path }));
     }
   }

@@ -459,13 +459,36 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
     const baseline = parseGeneratedResurrectionBaselineFile(
       readFileSync("config/handover-generated-resurrection-baseline.json", "utf8"),
     );
+    const files = loadGeneratedResurrectionFiles(process.cwd());
+    expect(files.every((file) => file.path.startsWith("@projection/"))).toBe(true);
+    expect(files.some((file) => file.path.startsWith("@projection/brownfield/"))).toBe(true);
     const result = analyzeHandoverResurrection({
-      files: loadGeneratedResurrectionFiles(process.cwd()),
+      files,
       allowedArtifacts: [],
       baseline,
       checkpointState: shadowState,
     });
     expect(result).toMatchObject({ ok: true, mode: "pre_cutover_shadow", newFindings: [] });
     expect(result.knownFindings.length).toBeGreaterThan(0);
+    const changed = files.map((file) =>
+      file.path === "@projection/fresh/package.json"
+        ? { ...file, content: `${file.content}\nHandoverPanel\n` }
+        : file,
+    );
+    expect(
+      analyzeHandoverResurrection({
+        files: changed,
+        allowedArtifacts: [],
+        baseline,
+        checkpointState: shadowState,
+      }).newFindings,
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: "@projection/fresh/package.json",
+          category: "generated_surface",
+        }),
+      ]),
+    );
   });
 });
