@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -178,6 +179,11 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
     const input = base();
     expect(Object.keys(input.manifest.catalog.done)).toHaveLength(3);
     expect(input.manifest.backlog.verified_ids).toHaveLength(14);
+    const design = readFileSync(
+      join(root, "docs/design/harness/L6-function-design/triage-decision-integrity.md"),
+      "utf8",
+    );
+    expect(design).toContain("analyzeTriageDecisionIntegrity(input) => TriageResult");
   });
   it("terminal PLAN cannot pass with the unenumerated claim", () => {
     const input = base();

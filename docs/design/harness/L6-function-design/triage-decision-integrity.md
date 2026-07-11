@@ -8,7 +8,7 @@ plan: docs/plans/PLAN-L6-69-triage-decision-integrity.md
 
 # システムレビューtriage判断整合性 機能設計
 
-> **L6 contract marker**: `analyzeTriageDecisionIntegrity(input) => TriageDecisionIntegrityResult`。
+> **L6 contract marker**: `analyzeTriageDecisionIntegrity(input) => TriageResult`。
 > pre: triage manifest、catalog、backlogを読める。post: 判断と実sourceの不一致をviolationへ変換する。
 > invariant: code側の独立pin、legacy system保留、未列挙10件の終端禁止を維持する。
 
@@ -19,7 +19,7 @@ done偽装、判断集合の縮退をfail-closeで止める。
 
 ## 2. 契約
 
-`analyzeTriageDecisionIntegrity(input) => TriageDecisionIntegrityResult`
+`analyzeTriageDecisionIntegrity(input) => TriageResult`
 
 | 契約         | 事前条件                            | 事後条件                                              | 不変条件                         |
 | ------------ | ----------------------------------- | ----------------------------------------------------- | -------------------------------- |
