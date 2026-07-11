@@ -8,6 +8,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
 import {
   actionBindingApprovalReadinessMessages,
@@ -160,10 +161,7 @@ import {
 } from "../lint/g10-ux-workflow";
 import { analyzeGateConfirm, gateConfirmMessages, loadGateConfirmDocs } from "../lint/gate-confirm";
 import { checkGreenCommandDigests } from "../lint/green-command-digest";
-import {
-  analyzeHandoverResurrectionShadowRepo,
-  resurrectionMessages,
-} from "../lint/handover-resurrection";
+import { resurrectionMessages } from "../lint/handover-resurrection";
 import {
   analyzeHandoverRetirementInventory,
   handoverRetirementInventoryMessages,

@@ -4,14 +4,16 @@ import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  analyzeHandoverResurrectionShadowRepo,
+  loadGeneratedResurrectionSourceFiles as loadGeneratedResurrectionFiles,
+} from "../src/audit/handover-resurrection-source";
 import { checkHandoverResurrection } from "../src/doctor";
 import {
   analyzeHandoverResurrection,
-  analyzeHandoverResurrectionShadowRepo,
   buildResurrectionBaseline,
   deriveResurrectionMode,
   evaluateResurrectionCheckpointState,
-  loadGeneratedResurrectionFiles,
   loadResurrectionCheckpointState,
   parseGeneratedResurrectionBaselineFile,
   type ResurrectionCheckpointState,

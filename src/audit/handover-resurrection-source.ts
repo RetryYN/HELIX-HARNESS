@@ -2,6 +2,10 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
+  analyzeHandoverResurrectionRepo,
+  type ResurrectionAnalysis,
+} from "../lint/handover-resurrection";
+import {
   latestCompletedRetirementCheckpoint,
   parseRetirementJournal,
 } from "../runtime/continuation";
@@ -99,4 +103,9 @@ export function loadGeneratedResurrectionSourceFiles(
   if (distribution.length !== distributionPaths.length)
     throw new Error("clean distribution resurrection projection is incomplete");
   return [...fresh, ...brownfield, ...commandContracts, ...distribution];
+}
+
+/** repo/runtime/setup inputの構築とpure resurrection analyzerの接続点。 */
+export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): ResurrectionAnalysis {
+  return analyzeHandoverResurrectionRepo(repoRoot, loadGeneratedResurrectionSourceFiles(repoRoot));
 }

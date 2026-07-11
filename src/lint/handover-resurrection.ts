@@ -4,14 +4,15 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { extname, join, posix } from "node:path";
 import ts from "typescript";
 import {
+  latestCompletedRetirementCheckpoint,
+  parseRetirementJournal,
+} from "../runtime/continuation";
+import {
   collectPreserveManifest,
   collectRetirementPreserveInventory,
-  latestCompletedRetirementCheckpoint,
-  loadGeneratedResurrectionSourceFiles,
-  parseRetirementJournal,
   validateOperationsTransitionMarkdown,
   validateProviderEvidenceJson,
-} from "../audit/handover-resurrection-source";
+} from "../runtime/retirement-preserve";
 import { loadAndVerifyHandoverCutoverApproval } from "./handover-cutover-approval";
 
 export type ResurrectionCategory =
@@ -326,10 +327,6 @@ export function loadHandoverResurrectionFiles(repoRoot: string): ResurrectionFil
     if (existsSync(absolute)) files.push({ path, content: readFileSync(absolute, "utf8") });
   }
   return files.sort((a, b) => a.path.localeCompare(b.path));
-}
-
-export function loadGeneratedResurrectionFiles(repoRoot: string): ResurrectionFile[] {
-  return loadGeneratedResurrectionSourceFiles(repoRoot);
 }
 
 export function parseResurrectionBaselineFile(text: string): ResurrectionBaselineFile {
@@ -662,7 +659,10 @@ export function resurrectionMessages(result: ResurrectionAnalysis): string[] {
   ];
 }
 
-export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): ResurrectionAnalysis {
+export function analyzeHandoverResurrectionRepo(
+  repoRoot: string,
+  generatedFiles: readonly ResurrectionFile[],
+): ResurrectionAnalysis {
   const baselinePath = join(repoRoot, "config", "handover-resurrection-baseline.json");
   const baselineText = readFileSync(baselinePath, "utf8");
   const baseline = parseResurrectionBaselineFile(baselineText);
@@ -727,10 +727,9 @@ export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): Resurre
       retirementPhase: "shadow_read",
     },
   );
-  const files = [
-    ...loadHandoverResurrectionFiles(repoRoot),
-    ...loadGeneratedResurrectionFiles(repoRoot),
-  ].sort((a, b) => a.path.localeCompare(b.path));
+  const files = [...loadHandoverResurrectionFiles(repoRoot), ...generatedFiles].sort((a, b) =>
+    a.path.localeCompare(b.path),
+  );
   const filesByPath = new Map(files.map((file) => [file.path, file]));
   const allowedArtifacts = preserve.entries.flatMap((entry): TypedAllowedArtifact[] => {
     const scannedFile = filesByPath.get(entry.path);

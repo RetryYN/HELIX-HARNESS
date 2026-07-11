@@ -3,11 +3,11 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { analyzeHandoverResurrectionShadowRepo } from "../src/audit/handover-resurrection-source";
 import {
   buildHandoverCutoverApprovalEvidence,
   loadAndVerifyHandoverCutoverApproval,
 } from "../src/lint/handover-cutover-approval";
-import { analyzeHandoverResurrectionShadowRepo } from "../src/lint/handover-resurrection";
 
 const root = process.cwd();
 const approvalPath = ".helix/approvals/session-handover-cutover.json";
