@@ -4,7 +4,7 @@ title: "PLAN-L7-419 (impl): skill pack 判断力アップリフト — 安価モ
 kind: impl
 layer: L7
 drive: agent
-parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
+parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 status: confirmed
 route_mode: forward
@@ -15,6 +15,40 @@ backprop_decision_reason: "FR-L1-47 (skill pack curate) / FR-L1-12 (L 単位 文
 created: 2026-07-11
 updated: 2026-07-11
 owner: Claude
+verification_bindings:
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-001
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-002
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-003
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-004
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-005
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-006
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-007
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-008
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-009
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-010
+    test_path: tests/skill-pack-uplift.test.ts
+  - parent_design: docs/design/helix/L6-function-design/skill-pack-uplift.md
+    oracle_id: U-SKUP-011
+    test_path: tests/skill-pack-uplift.test.ts
 agent_slots:
   - role: tl
     slot_label: "TL — skill pack 増強 (新規 5 pack + 既存 brush-up + judgment-core v2)"
@@ -54,6 +88,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-70-skill-pack-curation.md
     - docs/plans/PLAN-L7-335-judgment-core.md
+    - docs/plans/PLAN-L6-65-plan-specific-vpair-binding.md
   references:
     - docs/plans/PLAN-L7-310-model-effort.md
     - docs/plans/PLAN-L7-382-skill-efficacy-evaluation.md

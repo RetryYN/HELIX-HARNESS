@@ -28,6 +28,27 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     }
   });
 
+  it("U-PSPB-013: verification binding はstrictなexact oracle/canonical test pathだけを許す", () => {
+    const binding = {
+      parent_design: "docs/design/harness/L6-function-design/example.md",
+      oracle_id: "U-EXAMPLE-001a",
+      test_path: "tests/example.test.ts",
+    };
+    expect(
+      frontmatterSchema.safeParse(implBase({ verification_bindings: [binding] })).success,
+    ).toBe(true);
+    for (const bad of [
+      { ...binding, oracle_id: "U-EXAMPLE-001..003" },
+      { ...binding, test_path: "tests/../src/example.ts" },
+      { ...binding, test_path: "tests\\example.test.ts" },
+      { ...binding, unknown: true },
+    ]) {
+      expect(
+        frontmatterSchema.safeParse(implBase({ verification_bindings: [bad] })).success,
+      ).toBe(false);
+    }
+  });
+
   it("github_issue_id は optional・正の整数のみ (§6.8.2 Issue スパイン)", () => {
     expect(frontmatterSchema.safeParse(implBase()).success).toBe(true); // 省略可
     const defaulted = frontmatterSchema.safeParse(implBase({ status: undefined }));

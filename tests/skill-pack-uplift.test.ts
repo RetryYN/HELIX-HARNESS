@@ -28,7 +28,7 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     "skill-authoring",
   ];
 
-  it("registers the five new packs with valid skill.v1 routing frontmatter", () => {
+  it("U-SKUP-001: registers the five new packs with valid skill.v1 routing frontmatter", () => {
     const docs = loadSkillAssignmentDocs(repoRoot);
     for (const name of newPacks) {
       const doc = docs.find((d) => d.path === `docs/skills/${name}.md`);
@@ -40,14 +40,14 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     expect(result.violations).toEqual([]);
   });
 
-  it("lists every new pack in the SKILL_MAP trigger table", () => {
+  it("U-SKUP-002: lists every new pack in the SKILL_MAP trigger table", () => {
     const map = skill("SKILL_MAP");
     for (const name of newPacks) {
       expect(map, `SKILL_MAP trigger table に ${name} 行がある`).toContain(name);
     }
   });
 
-  it("carries the core judgment frames in the new packs", () => {
+  it("U-SKUP-003: carries the core judgment frames in the new packs", () => {
     expect(skill("test-thinking")).toContain("壊れ方");
     expect(skill("test-thinking")).toContain("いつ止めるか");
     expect(skill("code-minimalism")).toContain("7 段の問い");
@@ -56,7 +56,7 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     expect(skill("skill-authoring")).toContain("自由度");
   });
 
-  it("keeps the adversarial attacker/defender contract in adversarial-review", () => {
+  it("U-SKUP-004: keeps the adversarial attacker/defender contract in adversarial-review", () => {
     const pack = skill("adversarial-review");
     expect(pack).toContain("攻撃者の規約");
     expect(pack).toContain("防御者の規約");
@@ -64,13 +64,13 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     expect(pack).toContain("PASS-WEAK");
   });
 
-  it("keeps the nine-state matrix in browser-testing-and-screen-verification", () => {
+  it("U-SKUP-005: keeps the nine-state matrix in browser-testing-and-screen-verification", () => {
     const pack = skill("browser-testing-and-screen-verification");
     expect(pack).toContain("9 状態マトリクス");
     expect(pack).toContain("報告の型");
   });
 
-  it("syncs judgment-core v2 across all agent and command markers", () => {
+  it("U-SKUP-006: syncs judgment-core v2 across all agent and command markers", () => {
     const input = loadJudgmentCoreCoverageInput(repoRoot);
     expect(input.ssotVersion).toBe(2);
     const result = analyzeJudgmentCoreCoverage(input);
@@ -88,7 +88,7 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     "estimation",
   ];
 
-  it("references only real helix subcommands in touched packs", () => {
+  it("U-SKUP-007: references only real helix subcommands in touched packs", () => {
     const helpFor = (args: string[]): string =>
       execFileSync("bun", ["src/cli.ts", ...args, "--help"], {
         cwd: repoRoot,
@@ -128,7 +128,7 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     }
   });
 
-  it("keeps the japanese-prose gate green over the packs this PLAN touched (design-language)", () => {
+  it("U-SKUP-008: keeps the japanese-prose gate green over the packs this PLAN touched (design-language)", () => {
     // repo 全体の debt は doctor の design-language gate が正本。ここでは本 PLAN の
     // touched files に英語 prose debt が無いことだけを fail-close で固定する。
     const touchedPaths = new Set([
@@ -170,21 +170,21 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
     expect(testCommand).toContain("壊れ方");
   });
 
-  it("carries license attribution for external sources (CC-BY citation)", () => {
+  it("U-SKUP-009: carries license attribution for external sources (CC-BY citation)", () => {
     const pack = skill("skill-authoring");
     expect(pack).toContain("CC-BY 3.0");
     expect(pack).toContain("https://github.com/google/eng-practices");
     expect(skill("judgment-core")).toContain("CC-BY 3.0");
   });
 
-  it("gives adversarial FLAG priority over self-consistency majority voting", () => {
+  it("U-SKUP-010: gives adversarial FLAG priority over self-consistency majority voting", () => {
     expect(skill("skill-authoring")).toContain(
       "多数決は敵対検証（adversarial-review）の verdict を上書きしない",
     );
     expect(skill("adversarial-review")).toContain("FLAG");
   });
 
-  it("keeps the vertical-slice and progressive-elaboration substance in brushed packs", () => {
+  it("U-SKUP-011: keeps the vertical-slice and progressive-elaboration substance in brushed packs", () => {
     const planning = skill("planning-and-task-breakdown");
     expect(planning).toContain("縦割り（垂直スライス）");
     expect(planning).toContain("前倒しで作り込まない");
