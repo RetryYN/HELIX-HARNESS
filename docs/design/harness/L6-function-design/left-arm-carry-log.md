@@ -25,7 +25,7 @@ enforcement後のterminal `impl/add-impl` PLANは`left_arm_carry`を必須とす
 - `decision=no_pushback`: `entries=[]`だけを許可する。
 - `decision=pushback_resolved`: 1件以上のresolved entry、resolution PLAN、設計とtest-designの
   delta、対象gate green command、technical review bindingを要求する。
-- draft PLANは未解決entryを保持できるが、terminal化時は全entryの再通過証拠を要求する。
+- draft PLANはpresence enforcementの対象外とし、terminal化時に完成したdecisionと再通過証拠を要求する。
 - finding mappingは固定し、自由なlayer/gate指定を拒否する。
 
 ## 3. 機械可読形
@@ -47,5 +47,5 @@ left_arm_carry:
 
 ## 4. Vペア
 
-対象検証設計は`docs/test-design/harness/L8-unit-test-design.md`の`U-CARRY-001..016`。
+対象検証設計は`docs/test-design/harness/L8-unit-test-design.md`の`U-CARRY-001..019`。
 実装PLANは`PLAN-L7-430-left-arm-carry-log`、検出器は`src/lint/left-arm-carry-log.ts`とする。
