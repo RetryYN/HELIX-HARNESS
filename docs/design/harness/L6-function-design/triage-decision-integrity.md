@@ -29,4 +29,4 @@ done偽装、判断集合の縮退をfail-closeで止める。
 ## 3. Vペア
 
 右腕は`docs/test-design/harness/L8-unit-test-design.md`の`U-TRIAGE-001..012`。実装PLANは
-`PLAN-L7-428`、検出器は`src/lint/triage-decision-integrity.ts`、doctorは同じanalyzerをhard gateにする。
+`PLAN-L7-429`、検出器は`src/lint/triage-decision-integrity.ts`、doctorは同じanalyzerをhard gateにする。

@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-428-triage-decision-integrity
-title: "PLAN-L7-428 (impl): triage判断整合性検出器"
+plan_id: PLAN-L7-429-triage-decision-integrity
+title: "PLAN-L7-429 (impl): triage判断整合性検出器"
 kind: impl
 layer: L7
 drive: agent
@@ -55,7 +55,7 @@ review_evidence:
       - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T20:23:00Z", evidence_path: src/lint/triage-decision-integrity.ts, output_digest: "sha256:b22b2fc1692230f659b20acc0db4af0d9894dd8c1fc6d2dbda99892c2d36236c" }
 ---
 
-# PLAN-L7-428 triage判断整合性検出器実装
+# PLAN-L7-429 triage判断整合性検出器実装
 
 ## 1. 目的
 

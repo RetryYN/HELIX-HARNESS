@@ -12,8 +12,8 @@ import {
 const root = join(import.meta.dirname, "..");
 const base = () => loadTriageDecisionIntegrityInput(root);
 
-// PLAN-L7-428-triage-decision-integrity
-describe("triage-decision-integrity (PLAN-L7-428-triage-decision-integrity)", () => {
+// PLAN-L7-429-triage-decision-integrity
+describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", () => {
   it("U-TRIAGE-001: real contract passes while unenumerated completion remains blocked", () => {
     const r = analyzeTriageDecisionIntegrity(base());
     expect(r.violations).toEqual([]);
