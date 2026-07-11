@@ -4,6 +4,10 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { extname, join, posix } from "node:path";
 import ts from "typescript";
 import {
+  latestCompletedRetirementCheckpoint,
+  parseRetirementJournal,
+} from "../runtime/continuation";
+import {
   collectPreserveManifest,
   collectRetirementPreserveInventory,
   validateOperationsTransitionMarkdown,
@@ -89,6 +93,17 @@ interface ResurrectionPreserveAuthority {
   }>;
 }
 
+interface ResurrectionEnforceAuthority {
+  schemaVersion: "handover-resurrection-enforce-authority.v1";
+  operationId: string;
+  intentDigest: string;
+  preserveDigest: string;
+  archiveDigest: string;
+  journalEntryDigest: string;
+  approvalDecisionId: string;
+  approvalStatus: "approved";
+}
+
 export interface ResurrectionCheckpointState {
   completeCheckpoint: {
     operationId: string;
@@ -155,6 +170,8 @@ const BASELINE_AUTHORITY_PIN: ResurrectionBaselineAuthority = {
 };
 const PRESERVE_AUTHORITY_FILE_DIGEST =
   "sha256:dc460288ad0860ac02ec9b11f8265e58798d1f39e754524f7f5ec783e3900c22";
+// PO confirmation前はnull固定。Sprint 3 atomic cutoverで承認済みauthority全体をpinする。
+const ENFORCE_AUTHORITY_PIN: ResurrectionEnforceAuthority | null = null;
 
 function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
@@ -356,6 +373,126 @@ function parsePreserveAuthority(text: string): ResurrectionPreserveAuthority {
   return raw as ResurrectionPreserveAuthority;
 }
 
+function parseEnforceAuthority(
+  text: string,
+  authorityPin: ResurrectionEnforceAuthority | null,
+): ResurrectionEnforceAuthority {
+  const raw = JSON.parse(text) as Partial<ResurrectionEnforceAuthority>;
+  if (
+    raw.schemaVersion !== "handover-resurrection-enforce-authority.v1" ||
+    typeof raw.operationId !== "string" ||
+    !raw.operationId.trim() ||
+    typeof raw.intentDigest !== "string" ||
+    !SHA256.test(raw.intentDigest) ||
+    typeof raw.preserveDigest !== "string" ||
+    !SHA256.test(raw.preserveDigest) ||
+    typeof raw.archiveDigest !== "string" ||
+    !SHA256.test(raw.archiveDigest) ||
+    typeof raw.journalEntryDigest !== "string" ||
+    !SHA256.test(raw.journalEntryDigest) ||
+    typeof raw.approvalDecisionId !== "string" ||
+    !/^handover-retirement-enforce:[a-zA-Z0-9:._-]+$/.test(raw.approvalDecisionId) ||
+    raw.approvalStatus !== "approved"
+  ) {
+    throw new Error("invalid handover resurrection enforce authority");
+  }
+  if (authorityPin === null) {
+    throw new Error("handover resurrection enforce authority is not code-pinned");
+  }
+  if (canonicalJson(raw) !== canonicalJson(authorityPin)) {
+    throw new Error("handover resurrection enforce authority pin mismatch");
+  }
+  return raw as ResurrectionEnforceAuthority;
+}
+
+export function evaluateResurrectionCheckpointState(input: {
+  journalText: string;
+  expectedPreserveDigest: string;
+  authorityText: string | null;
+  authorityPin: ResurrectionEnforceAuthority | null;
+}): ResurrectionCheckpointState {
+  const { expectedPreserveDigest, journalText } = input;
+  const pending = {
+    completeCheckpoint: null,
+    expectedOperationId: "journal-derived-after-cutover",
+    expectedIntentDigest: sha256("pending-cutover-intent"),
+    expectedPreserveDigest,
+    expectedArchiveDigest: sha256("pending-archive-digest"),
+  } satisfies ResurrectionCheckpointState;
+  if (!journalText.trim()) return pending;
+  const parsed = parseRetirementJournal(journalText);
+  if (parsed.truncatedTail) throw new Error("retirement journal has truncated tail");
+  const complete = parsed.entries.filter(
+    (entry) => entry.phase === "complete" && entry.status === "completed",
+  );
+  if (complete.length === 0) return pending;
+  const scopes = new Set(complete.map((entry) => `${entry.operationId}\0${entry.intentDigest}`));
+  if (scopes.size !== 1 || complete.length !== 1) {
+    throw new Error("retirement journal complete scope is ambiguous");
+  }
+  if (input.authorityText === null) {
+    throw new Error("handover resurrection enforce authority is missing");
+  }
+  const authority = parseEnforceAuthority(input.authorityText, input.authorityPin);
+  const terminal = complete[0];
+  if (!terminal) throw new Error("retirement complete checkpoint missing");
+  const latest = latestCompletedRetirementCheckpoint(parsed.entries, {
+    operationId: authority.operationId,
+    intentDigest: authority.intentDigest,
+  });
+  const scopedEntries = parsed.entries.filter(
+    (entry) =>
+      entry.operationId === authority.operationId && entry.intentDigest === authority.intentDigest,
+  );
+  const terminalLine = journalText
+    .split(/\r?\n/)
+    .find((line) => line.trim().length > 0 && sha256(line) === authority.journalEntryDigest);
+  if (
+    !terminalLine ||
+    latest !== terminal ||
+    scopedEntries.at(-1) !== terminal ||
+    terminal.operationId !== authority.operationId ||
+    terminal.intentDigest !== authority.intentDigest ||
+    authority.preserveDigest !== expectedPreserveDigest
+  ) {
+    throw new Error("retirement enforce authority does not bind terminal checkpoint");
+  }
+  return {
+    completeCheckpoint: {
+      operationId: terminal.operationId,
+      intentDigest: terminal.intentDigest,
+      preserveDigest: authority.preserveDigest,
+      archiveDigest: authority.archiveDigest,
+    },
+    expectedOperationId: authority.operationId,
+    expectedIntentDigest: authority.intentDigest,
+    expectedPreserveDigest,
+    expectedArchiveDigest: authority.archiveDigest,
+  };
+}
+
+export function loadResurrectionCheckpointState(
+  repoRoot: string,
+  expectedPreserveDigest: string,
+): ResurrectionCheckpointState {
+  const journalPath = join(repoRoot, ".helix", "audit", "session-handover-retirement.jsonl");
+  if (!existsSync(journalPath)) {
+    return evaluateResurrectionCheckpointState({
+      journalText: "",
+      expectedPreserveDigest,
+      authorityText: null,
+      authorityPin: ENFORCE_AUTHORITY_PIN,
+    });
+  }
+  const authorityPath = join(repoRoot, "config", "handover-retirement-enforce-authority.json");
+  return evaluateResurrectionCheckpointState({
+    journalText: readFileSync(journalPath, "utf8"),
+    expectedPreserveDigest,
+    authorityText: existsSync(authorityPath) ? readFileSync(authorityPath, "utf8") : null,
+    authorityPin: ENFORCE_AUTHORITY_PIN,
+  });
+}
+
 export function verifyResurrectionBaselineAuthority(input: {
   repoRoot: string;
   baselineText: string;
@@ -488,13 +625,7 @@ export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): Resurre
     files,
     allowedArtifacts,
     baseline,
-    checkpointState: {
-      completeCheckpoint: null,
-      expectedOperationId: "journal-derived-after-cutover",
-      expectedIntentDigest: sha256("pending-cutover-intent"),
-      expectedPreserveDigest: sha256("pending-preserve-digest"),
-      expectedArchiveDigest: sha256("pending-archive-digest"),
-    },
+    checkpointState: loadResurrectionCheckpointState(repoRoot, preserve.preservedDigest),
   });
 }
 

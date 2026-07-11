@@ -98,6 +98,8 @@ baseline authorityはimmutable Git revision/blob/file/semantic digestとcode pin
 R4時点のpath/kind/digest authority、real collector、strict schema/retention/content検証からのみ生成する。
 complete checkpoint後のenforce契約も単体fixtureで検証するが、production mode切替、`U-HRET-013`、
 fresh/brownfield/distribution green、retirement完了はSprint 3とPO confirmation後まで主張しない。
+production loaderはstrict journal terminalとapproval authorityを読むが、PO confirmation前のenforce code pinは
+`null`であり、complete journalや自己申告authorityが先行した場合はmodeを切り替えずhard failする。
 
 ## §4 L6 reverse reference 追補
 

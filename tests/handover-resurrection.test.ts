@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -10,6 +10,8 @@ import {
   analyzeHandoverResurrectionShadowRepo,
   buildResurrectionBaseline,
   deriveResurrectionMode,
+  evaluateResurrectionCheckpointState,
+  loadResurrectionCheckpointState,
   type ResurrectionCheckpointState,
   type ResurrectionFile,
   resurrectionPolicyDigest,
@@ -215,6 +217,126 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
         completeCheckpoint: { ...checkpoint, archiveDigest: digest("bad") },
       }),
     ).toMatchObject({ mode: "invalid_precondition", errors: ["archive_digest_mismatch"] });
+  });
+
+  it("U-HRET-012: production modeはPO pinなしのcomplete journalをfail-closeする", () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-resurrection-journal-"));
+    try {
+      const preserveDigest = digest("preserve-authority");
+      expect(
+        loadResurrectionCheckpointState(repoRoot, preserveDigest).completeCheckpoint,
+      ).toBeNull();
+      mkdirSync(join(repoRoot, ".helix", "audit"), { recursive: true });
+      mkdirSync(join(repoRoot, "config"), { recursive: true });
+      const phases = [
+        "prerequisite",
+        "shadow_read",
+        "memory_primary",
+        "legacy_write_disabled",
+        "cleanup",
+        "complete",
+      ] as const;
+      const entries = phases.map((phase, index) => {
+        const prior = index === 0 ? null : phases[index - 1];
+        return {
+          runId: "run-1",
+          operationId: "retire-1",
+          intentDigest: digest("intent-authority"),
+          phase,
+          status: "completed",
+          error: null,
+          checkpoint: prior
+            ? {
+                phase: prior,
+                artifactDigests: {
+                  backup: digest("backup"),
+                  inventory: digest("inventory"),
+                  source: digest("source"),
+                  target: digest("target"),
+                },
+              }
+            : null,
+          backupDigest: digest("backup"),
+          inventoryDigest: digest("inventory"),
+          sourceCount: 1,
+          targetCount: 1,
+          sourceDigest: digest("source"),
+          targetDigest: digest("target"),
+          occurredAt: `2026-07-11T00:0${index}:00Z`,
+        };
+      });
+      const lines = entries.map((entry) => JSON.stringify(entry));
+      writeFileSync(
+        join(repoRoot, ".helix", "audit", "session-handover-retirement.jsonl"),
+        `${lines.join("\n")}\n`,
+      );
+      const authority = {
+        schemaVersion: "handover-resurrection-enforce-authority.v1" as const,
+        operationId: "retire-1",
+        intentDigest: digest("intent-authority"),
+        preserveDigest,
+        archiveDigest: digest("archive-authority"),
+        journalEntryDigest: digest(lines.at(-1) ?? ""),
+        approvalDecisionId: "handover-retirement-enforce:fixture",
+        approvalStatus: "approved" as const,
+      };
+      const authorityText = `${JSON.stringify(authority)}\n`;
+      writeFileSync(
+        join(repoRoot, "config", "handover-retirement-enforce-authority.json"),
+        authorityText,
+      );
+      expect(() => loadResurrectionCheckpointState(repoRoot, preserveDigest)).toThrow(
+        "enforce authority is not code-pinned",
+      );
+      const journalText = `${lines.join("\n")}\n`;
+      expect(
+        evaluateResurrectionCheckpointState({
+          journalText,
+          expectedPreserveDigest: preserveDigest,
+          authorityText,
+          authorityPin: authority,
+        }),
+      ).toMatchObject({
+        completeCheckpoint: {
+          operationId: "retire-1",
+          preserveDigest,
+          archiveDigest: authority.archiveDigest,
+        },
+      });
+      const postComplete = {
+        ...entries.at(-1),
+        status: "failed",
+        error: "must not append after complete",
+        occurredAt: "2026-07-11T00:06:00Z",
+      };
+      expect(() =>
+        evaluateResurrectionCheckpointState({
+          journalText: `${journalText}${JSON.stringify(postComplete)}\n`,
+          expectedPreserveDigest: preserveDigest,
+          authorityText,
+          authorityPin: authority,
+        }),
+      ).toThrow("does not bind terminal checkpoint");
+      const badLineAuthority = { ...authority, journalEntryDigest: digest("wrong-line") };
+      expect(() =>
+        evaluateResurrectionCheckpointState({
+          journalText,
+          expectedPreserveDigest: preserveDigest,
+          authorityText: JSON.stringify(badLineAuthority),
+          authorityPin: badLineAuthority,
+        }),
+      ).toThrow("does not bind terminal checkpoint");
+      expect(() =>
+        evaluateResurrectionCheckpointState({
+          journalText,
+          expectedPreserveDigest: digest("preserve-drift"),
+          authorityText,
+          authorityPin: authority,
+        }),
+      ).toThrow("does not bind terminal checkpoint");
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
   });
 
   it("U-HRET-012: complete後はfinding 1件でもenforce failする", () => {

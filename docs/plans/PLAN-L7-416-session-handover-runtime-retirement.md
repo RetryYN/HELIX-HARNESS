@@ -199,7 +199,9 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
   TS generated token、subpath import、composed writer pathの盲点を検出し是正した。baselineはimmutable Git
   revision/blob/file/semantic digestとcode pinの二段ratchet、preserve allowlistはR4時点path/kind/digest authorityと
   real collector/strict validatorへ束縛し、同時digest更新・provider削除・caller boolean spoofをfail-closeした。
-  journal由来production enforce、fresh/brownfield/distribution oracleはblockerとして未達であり、
+  production mode loaderはstrict retirement journal、unique complete scope、terminal line digest、preserve digest、
+  approval authorityを束縛した。PO confirmation前はenforce authorityのcode pinを`null`固定し、complete journalが
+  先行してもfail-closeする。実cutover pinとfresh/brownfield/distribution oracleはblockerとして未達であり、
   Sprint 5 freezeはrejectのままとする。
 - Sprint 3: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
