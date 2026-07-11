@@ -218,7 +218,7 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     );
   });
 
-  it("U-CARRY-009:元L7のdependencies.requires未結合を拒否する", () => {
+  it("U-CARRY-009: 元L7のdependencies.requires未結合を拒否する", () => {
     const input = fixture();
     input.plans[0].dependencies_requires = [];
     expect(kinds(input)).toContain("resolution-plan-not-required");
