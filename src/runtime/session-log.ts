@@ -212,7 +212,7 @@ function currentPlanPath(repoRoot: string): string {
 }
 
 // PLAN-L6-06 §2.3: ID 単体形 (slug 任意)。commit message 抽出 / handover scope 解決で再利用。
-const PLAN_ID_RE = /PLAN-(?:L(?:[0-9]|1[0-4])|DISCOVERY|REVERSE|RECOVERY|M)-\d{2}(?:-[a-z0-9-]+)?/;
+const PLAN_ID_RE = /PLAN-(?:L(?:[0-9]|1[0-4])|DISCOVERY|REVERSE|RECOVERY|M)-\d+(?:-[a-z0-9-]+)?/;
 
 /**
  * U-HOVER-006: active PLAN を `.helix/state/current-plan` へ書く (Gap B 活性化)。
@@ -236,6 +236,19 @@ export function activatePlan(planId: string, deps: SessionLogDeps): ActivePlanSe
   const selection = selectActivePlanId(planId, deps.canonicalPlanIds?.() ?? []);
   if (selection.ok) setActivePlan(selection.planId, deps);
   return selection;
+}
+
+/** production eventへ付与するPLANもcanonical exact matchだけに限定する。 */
+export function resolveCanonicalEventPlan(
+  explicitPlanId: string | null | undefined,
+  deps: SessionLogDeps,
+): string | null {
+  const candidate = explicitPlanId ?? resolveActivePlan(deps);
+  if (!candidate) return null;
+  // Unit injection/legacy adapterはcanonical loader未提供時だけ従来値を維持する。
+  if (!deps.canonicalPlanIds) return candidate;
+  const selection = selectActivePlanId(candidate, deps.canonicalPlanIds());
+  return selection.ok ? selection.planId : null;
 }
 
 /**
@@ -317,7 +330,7 @@ export function recordSkillInjectionAttempt(
       {
         ts: deps.now(),
         session_id: input.session_id ?? "unknown",
-        plan_id: input.plan_id ?? resolveActivePlan(deps),
+        plan_id: resolveCanonicalEventPlan(input.plan_id, deps),
         event_type: "skill_injection",
         target: skillInjectionTarget(input),
         outcome: input.outcome === "failed" ? "error" : "ok",
@@ -430,7 +443,7 @@ export function onSessionStart(input: SessionHookInput, deps: SessionLogDeps): n
       {
         ts: deps.now(),
         session_id: input.session_id ?? "unknown",
-        plan_id: input.plan_id ?? resolveActivePlan(deps),
+        plan_id: resolveCanonicalEventPlan(input.plan_id, deps),
         event_type: "session_start",
       },
       deps,
@@ -463,7 +476,7 @@ export function onPostToolUse(input: SessionHookInput, deps: SessionLogDeps): nu
       {
         ts: deps.now(),
         session_id: input.session_id ?? "unknown",
-        plan_id: input.plan_id ?? resolveActivePlan(deps),
+        plan_id: resolveCanonicalEventPlan(input.plan_id, deps),
         event_type: isCommit ? "commit" : "tool_use",
         tool: input.tool_name,
         // IMP-078 gap③: commit は HEAD hash を捕捉 (deps.headCommit、PostToolUse は commit 完了後 = 新 HEAD)。
@@ -490,7 +503,7 @@ export function onStop(input: SessionHookInput, deps: SessionLogDeps): number {
       {
         ts: deps.now(),
         session_id: sid,
-        plan_id: input.plan_id ?? resolveActivePlan(deps),
+        plan_id: resolveCanonicalEventPlan(input.plan_id, deps),
         event_type: "session_end",
       },
       deps,
@@ -506,7 +519,7 @@ export function onStop(input: SessionHookInput, deps: SessionLogDeps): number {
           event_id: eventId,
           ts: deps.now(),
           session_id: memoryPromotionSessionRef(sid),
-          plan_id: input.plan_id ?? resolveActivePlan(deps),
+          plan_id: resolveCanonicalEventPlan(input.plan_id, deps),
           event_type: "memory_promotion_nudge",
           outcome: "ok",
         },

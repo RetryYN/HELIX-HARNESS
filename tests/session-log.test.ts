@@ -14,6 +14,7 @@ import {
   recordEvent,
   recordSkillInjectionAttempt,
   resolveActivePlan,
+  resolveCanonicalEventPlan,
   type SessionEvent,
   type SessionHookInput,
   type SessionLogDeps,
@@ -94,6 +95,34 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
       planId: "PLAN-L7-427-active-plan-selection",
     });
     expect(deps.files.get(statePath)).toContain("2026-06-02T00:00:00.000Z");
+
+    const invalidEventDeps = mockDeps({
+      canonicalPlanIds: () => ["PLAN-L7-427-active-plan-selection"],
+    });
+    invalidEventDeps.files.set(statePath, "PLAN-L7-42\nold");
+    expect(resolveCanonicalEventPlan(undefined, invalidEventDeps)).toBeNull();
+    expect(resolveCanonicalEventPlan("PLAN-L7-42", invalidEventDeps)).toBeNull();
+    expect(resolveCanonicalEventPlan("PLAN-L7-427-active-plan-selection", invalidEventDeps)).toBe(
+      "PLAN-L7-427-active-plan-selection",
+    );
+  });
+
+  it("commit inferenceは3桁PLAN IDを截断せず中央activationへ渡す", () => {
+    const deps = mockDeps({
+      canonicalPlanIds: () => ["PLAN-L7-427-active-plan-selection"],
+      headCommit: () => "abc123",
+    });
+    onPostToolUse(
+      {
+        session_id: "s-commit",
+        tool_name: "Bash",
+        tool_input: {
+          command: 'git commit -m "fix: close PLAN-L7-427-active-plan-selection"',
+        },
+      },
+      deps,
+    );
+    expect(resolveActivePlan(deps)).toBe("PLAN-L7-427-active-plan-selection");
   });
 
   it("U-SLOG-001: resolveActivePlan = state 優先 / branch fallback / 解決不能 null", () => {

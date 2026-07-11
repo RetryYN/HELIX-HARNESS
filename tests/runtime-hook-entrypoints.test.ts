@@ -244,6 +244,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-codex-plan-"));
     const binDir = join(cwd, "bin");
     try {
+      writePlanFixture(cwd, "PLAN-L4-77-adapter");
       const fakeCodex = writeFakeCodex(binDir);
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
@@ -290,6 +291,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-claude-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
+      writePlanFixture(cwd, "PLAN-L4-78-adapter");
       const fakeClaude = writeFakeClaude(binDir);
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
@@ -344,6 +346,7 @@ describe("runtime hook entrypoints", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-team-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
+      writePlanFixture(cwd, "PLAN-L4-79-team-wrapper");
       const fakeCodex = writeFakeCodex(binDir);
       const fakeClaude = writeFakeClaude(binDir);
       mkdirSync(join(cwd, ".helix", "teams"), { recursive: true });
