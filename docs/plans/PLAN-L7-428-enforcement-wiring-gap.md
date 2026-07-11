@@ -26,9 +26,13 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/audit/enforcement-route-input.ts
+    artifact_type: source_module
   - artifact_path: src/lint/lint-wiring.ts
     artifact_type: source_module
   - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
+  - artifact_path: src/schema/frontmatter.ts
     artifact_type: source_module
   - artifact_path: tests/enforcement-wiring-routes.test.ts
     artifact_type: test_file
@@ -36,6 +40,21 @@ generates:
     artifact_type: test_file
   - artifact_path: tests/outstanding.test.ts
     artifact_type: test_file
+  - artifact_path: tests/frontmatter.test.ts
+    artifact_type: test_file
+verification_bindings:
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-001
+    test_path: tests/enforcement-wiring-routes.test.ts
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-002
+    test_path: tests/lint-wiring.test.ts
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-003
+    test_path: tests/outstanding.test.ts
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-004
+    test_path: tests/frontmatter.test.ts
 dependencies:
   parent: null
   requires: []

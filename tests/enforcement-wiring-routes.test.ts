@@ -60,12 +60,7 @@ describe("PLAN-L7-428 enforcement routes", () => {
       }),
     ]);
     expect(maliciousPolicy.status).toBe(1);
-    expect(JSON.parse(maliciousPolicy.stdout)).toMatchObject({
-      allowRepush: false,
-      minConfidence: 0.75,
-      maxAttempts: 2,
-      route: "issue_escalation",
-    });
+    expect(maliciousPolicy.stderr).toContain("unrecognized_keys");
 
     const release = run([
       "github",
@@ -81,6 +76,47 @@ describe("PLAN-L7-428 enforcement routes", () => {
     ]);
     expect(release.status).toBe(1);
     expect(JSON.parse(release.stdout).decision).toBe("blocked");
+  });
+
+  it("strict runtime schemas reject unknown, missing, and mistyped route input", () => {
+    const reviewUnknown = run([
+      "github",
+      "review-route",
+      "--input-json",
+      JSON.stringify({
+        workerId: "w",
+        workerRuntime: "codex",
+        workerModel: "gpt",
+        reviewEvidence: [],
+        injected: true,
+      }),
+    ]);
+    expect(reviewUnknown.status).toBe(1);
+    expect(reviewUnknown.stderr).toContain("unrecognized_keys");
+
+    const ciMissing = run([
+      "github",
+      "ci-auto-fix-gate",
+      "--input-json",
+      JSON.stringify({ ciStatus: "red", confidence: 0.9, attempt: 0 }),
+    ]);
+    expect(ciMissing.status).toBe(1);
+    expect(ciMissing.stderr).toContain("failureKind");
+
+    const releaseMistyped = run([
+      "github",
+      "release-automation-decision",
+      "--input-json",
+      JSON.stringify({
+        adrStatus: "accepted",
+        conventionalCommits: "yes",
+        requiresPrReviewGate: true,
+        requiresDryRun: true,
+        mergeQueueEnabled: true,
+      }),
+    ]);
+    expect(releaseMistyped.status).toBe(1);
+    expect(releaseMistyped.stderr).toContain("conventionalCommits");
   });
 
   it("write-capable PR/release routes reject before external application without gate evidence", () => {

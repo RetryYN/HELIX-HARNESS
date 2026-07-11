@@ -15,6 +15,7 @@ import {
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
 } from "../src/lint/outstanding";
+import { frontmatterSchema } from "../src/schema/frontmatter";
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
 
@@ -2175,6 +2176,18 @@ dependencies:
       );
       const rows = loadOutstandingPlanRows(root);
       expect(rows[0]).toMatchObject({ irreversibleImpact: null, irreversibleImpactDeclared: true });
+      const raw = {
+        plan_id: "PLAN-L7-999-invalid",
+        title: "invalid typed boundary fixture",
+        kind: "troubleshoot",
+        drive: "agent",
+        status: "draft",
+        layer: "L7",
+        irreversible_impact: "informational",
+        agent_slots: [{ role: "se", slot_label: "fixture" }],
+        dependencies: { parent: null, requires: [] },
+      };
+      expect(frontmatterSchema.safeParse(raw).success).toBe(false);
       const result = analyzeOutstandingWork(rows, 0);
       expect(result.items[0]?.blockers).not.toContain("irreversible_migration_pending");
     } finally {

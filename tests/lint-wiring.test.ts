@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   analyzeLintWiring,
   DEFERRED_LINTS,
+  extractCalledIdentifiers,
   extractImportSpecs,
   type LintWiringInput,
   lintWiringMessages,
@@ -147,7 +148,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
         [
           'import { analyzeVerificationProfileSafety } from "./lint/contracts";',
           'export { renderGeneratedMcpConfig } from "./lint/contracts";',
-          'const label = "validatePrReviewRoute gateCiAutoFixRepush planReleaseAutomationDecision";',
+          'const label = "validatePrReviewRoute() gateCiAutoFixRepush() planReleaseAutomationDecision()";',
           "void analyzeVerificationProfileSafety;",
         ].join("\n"),
       );
@@ -160,5 +161,17 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("AST call extraction rejects string/property disguises and accepts direct calls", () => {
+    expect(
+      extractCalledIdentifiers(`
+        const text = "validatePrReviewRoute()";
+        api.validatePrReviewRoute();
+        validatePrReviewRoute;
+        validatePrReviewRoute();
+      `),
+    ).toEqual(new Set(["validatePrReviewRoute"]));
+    expect(extractCalledIdentifiers('"validatePrReviewRoute()"')).toEqual(new Set());
   });
 });

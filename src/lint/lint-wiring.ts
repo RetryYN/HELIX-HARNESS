@@ -21,6 +21,7 @@
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
+import ts from "typescript";
 
 const ROOT = process.cwd();
 
@@ -113,6 +114,25 @@ export function extractImportSpecs(content: string): string[] {
   return specs;
 }
 
+/** TypeScript ASTから直接identifier callだけを抽出する。文字列/property access/re-exportは除外。 */
+export function extractCalledIdentifiers(content: string): Set<string> {
+  const source = ts.createSourceFile(
+    "wiring.ts",
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS,
+  );
+  const calls = new Set<string>();
+  const visit = (node: ts.Node): void => {
+    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression))
+      calls.add(node.expression.text);
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return calls;
+}
+
 /** src を走査し import グラフを構築、RUNTIME_ENTRYPOINTS から BFS して到達集合を返す。 */
 export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
   const srcDir = join(repoRoot, "src");
@@ -151,12 +171,10 @@ export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
   const reachableExports = new Set<string>();
   for (const rel of reachable) {
     const content = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
+    const called = extractCalledIdentifiers(content);
     for (const name of REQUIRED_RUNTIME_EXPORTS) {
-      // 実call expressionだけを配線証拠にする。import/re-export/string/識別子参照は数えない。
-      if (
-        new RegExp(`\\b${name}\\s*\\(`).test(content) &&
-        !new RegExp(`export\\s+function\\s+${name}\\s*\\(`).test(content)
-      ) {
+      // AST上の実call expressionだけを配線証拠にする。
+      if (called.has(name)) {
         reachableExports.add(name);
       }
     }

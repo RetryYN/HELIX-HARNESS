@@ -23,7 +23,12 @@ import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
-import { type CiAutoFixGateInput, gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
+import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
+import {
+  ciAutoFixGateInputSchema,
+  prReviewRouteInputSchema,
+  releaseAutomationDecisionInputSchema,
+} from "./audit/enforcement-route-input";
 import {
   loadGithubCiStatus,
   loadGithubMergeReadiness,
@@ -38,12 +43,9 @@ import {
   renderGithubOpsGuard,
   renderReleasePublicationPlan,
 } from "./audit/github-ops-guard";
-import { type PrReviewRouteInput, validatePrReviewRoute } from "./audit/pr-review-route";
+import { validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
-import {
-  planReleaseAutomationDecision,
-  type ReleaseAutomationDecisionInput,
-} from "./audit/release-automation-decision";
+import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
@@ -11618,7 +11620,9 @@ github
   .description("fail-close PR cross-review route decision")
   .requiredOption("--input-json <json>", "PrReviewRouteInput JSON")
   .action((opts: { inputJson: string }) => {
-    const result = validatePrReviewRoute(JSON.parse(opts.inputJson) as PrReviewRouteInput);
+    const result = validatePrReviewRoute(
+      prReviewRouteInputSchema.parse(JSON.parse(opts.inputJson)),
+    );
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     process.exitCode = result.ok ? 0 : 1;
   });
@@ -11628,7 +11632,7 @@ github
   .description("evaluate confidence and attempt circuit breakers before CI repush")
   .requiredOption("--input-json <json>", "CiAutoFixGateInput JSON")
   .action((opts: { inputJson: string }) => {
-    const supplied = JSON.parse(opts.inputJson) as CiAutoFixGateInput;
+    const supplied = ciAutoFixGateInputSchema.parse(JSON.parse(opts.inputJson));
     // CLI callerはpolicy authorityではない。canonical policyを常に適用し、閾値/cap/kindを上書きさせない。
     const result = gateCiAutoFixRepush({ ...supplied, policy: undefined });
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
@@ -11641,7 +11645,7 @@ github
   .requiredOption("--input-json <json>", "ReleaseAutomationDecisionInput JSON")
   .action((opts: { inputJson: string }) => {
     const result = planReleaseAutomationDecision(
-      JSON.parse(opts.inputJson) as ReleaseAutomationDecisionInput,
+      releaseAutomationDecisionInputSchema.parse(JSON.parse(opts.inputJson)),
     );
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     process.exitCode = result.ok ? 0 : 1;
@@ -11697,7 +11701,7 @@ github
       if (opts.apply) {
         const decision = opts.decisionInputJson
           ? planReleaseAutomationDecision(
-              JSON.parse(opts.decisionInputJson) as ReleaseAutomationDecisionInput,
+              releaseAutomationDecisionInputSchema.parse(JSON.parse(opts.decisionInputJson)),
             )
           : null;
         if (!decision?.ok) {
@@ -11784,7 +11788,7 @@ github
     }) => {
       if (opts.apply) {
         const review = opts.reviewInputJson
-          ? validatePrReviewRoute(JSON.parse(opts.reviewInputJson) as PrReviewRouteInput)
+          ? validatePrReviewRoute(prReviewRouteInputSchema.parse(JSON.parse(opts.reviewInputJson)))
           : null;
         if (!review?.ok) {
           process.stderr.write(
