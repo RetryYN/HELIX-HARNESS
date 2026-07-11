@@ -23,6 +23,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-004, test_path: tests/session-log.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-005, test_path: tests/drive-db-registration.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-006, test_path: tests/runtime-hook-entrypoints.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-007, test_path: tests/cli-surface.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE - loaderとplan use配線" }
   - { role: qa, slot_label: "QA - exact/prefix/empty回帰" }
@@ -48,5 +49,5 @@ dependencies:
 
 ## 完了条件
 
-- `U-APSEL-001..006`、CLI/commit integration、post-watermark orphan gate、PLAN lint、typecheck、lint、doctorがgreen。
+- `U-APSEL-001..007`、CLI/commit integration、post-watermark orphan gate、PLAN lint、typecheck、lint、doctorがgreen。
 - 修正後に未知plan_idを持つ新規hook eventを生成できない。

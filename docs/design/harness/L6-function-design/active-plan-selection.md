@@ -34,5 +34,5 @@ orphan PLANへ恒久的に誤登録する経路を閉じる。session hook自体
 ## 3. Vペア
 
 - 右腕正本: `docs/test-design/harness/L8-unit-test-design.md`
-- oracle: `U-APSEL-001..006`
+- oracle: `U-APSEL-001..007`
 - test: `tests/session-log.test.ts`

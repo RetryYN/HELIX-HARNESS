@@ -1154,6 +1154,24 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   }, 15_000);
+
+  it("U-APSEL-007: plan use accepts an exact canonical ID in a fixture repository", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-plan-use-exact-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-fixture.md"),
+        "---\nplan_id: PLAN-L7-fixture\nstatus: confirmed\n---\n",
+      );
+      const use = runCliIn(root, ["plan", "use", "PLAN-L7-fixture"]);
+      expect(use.status, use.stderr || use.stdout).toBe(0);
+      expect(readFileSync(join(root, ".helix", "state", "current-plan"), "utf8")).toMatch(
+        /^PLAN-L7-fixture\n/,
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
   it("exposes whole-program completion readiness on status surfaces", () => {
     const readyRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-ready-"));
     const blockedRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-blocked-"));
@@ -7683,3 +7701,4 @@ describe("PLAN-L7-417 hook-quiet 出力 (Codex 0.144 Stop/SubagentStop stdout �
     expect(loud.stdout).toContain("agent-slots:");
   }, 30_000);
 });
+// PLAN-L7-427-active-plan-selection
