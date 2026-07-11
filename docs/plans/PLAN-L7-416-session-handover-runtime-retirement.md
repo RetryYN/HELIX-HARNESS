@@ -32,6 +32,16 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/handover-resurrection.ts
     artifact_type: source_module
+  - artifact_path: src/audit/handover-resurrection-source.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/artifact-retirement-authority.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/handover-cutover-approval.ts
+    artifact_type: source_module
+  - artifact_path: config/artifact-retirement-authority.json
+    artifact_type: json_config
+  - artifact_path: config/handover-retirement-enforce-authority.json
+    artifact_type: json_config
   - artifact_path: src/cli.ts
     artifact_type: source_module
   - artifact_path: src/doctor/index.ts
@@ -45,6 +55,10 @@ generates:
   - artifact_path: tests/retirement-preserve.test.ts
     artifact_type: test_code
   - artifact_path: tests/handover-resurrection.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/artifact-retirement-authority.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/handover-cutover-approval.test.ts
     artifact_type: test_code
   - artifact_path: docs/test-design/harness/L8-unit-test-design.md
     artifact_type: test_design

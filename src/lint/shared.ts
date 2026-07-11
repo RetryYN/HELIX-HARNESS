@@ -260,7 +260,6 @@ export const SOURCE_BOUNDARY_MODULES = [
   "gate",
   "graph",
   "guardrail",
-  "handover",
   "lint",
   "memory",
   "orchestration",
@@ -302,7 +301,6 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlyS
   gate: EMPTY_BOUNDARY,
   graph: EMPTY_BOUNDARY,
   guardrail: EMPTY_BOUNDARY,
-  handover: EMPTY_BOUNDARY,
   lint: new Set([
     "cli",
     "doctor",
@@ -318,7 +316,7 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlyS
   orchestration: EMPTY_BOUNDARY,
   plan: EMPTY_BOUNDARY,
   roster: EMPTY_BOUNDARY,
-  runtime: new Set(["cli", "doctor", "handover", "lint", "plan", "setup", "team", "vmodel"]),
+  runtime: new Set(["cli", "doctor", "lint", "plan", "setup", "team", "vmodel"]),
   schema: new Set([
     "cli",
     "doctor",
