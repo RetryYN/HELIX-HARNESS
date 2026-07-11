@@ -456,10 +456,13 @@ export function collectRetirementPreserveInventory(repoRoot: string): Retirement
     .map((name) => `.helix/handover/provider/${name}`)
     .sort();
   const operationsPaths = collectOperationsTransitionPaths(repoRoot);
-  const archiveSourcePaths = readdirSync(join(repoRoot, "docs", "handover"))
-    .filter((name) => /^session-handover-.*\.md$/.test(name))
-    .map((name) => `docs/handover/${name}`)
-    .sort();
+  const archiveSourceRoot = join(repoRoot, "docs", "handover");
+  const archiveSourcePaths = existsSync(archiveSourceRoot)
+    ? readdirSync(archiveSourceRoot)
+        .filter((name) => /^session-handover-.*\.md$/.test(name))
+        .map((name) => `docs/handover/${name}`)
+        .sort()
+    : [];
   const basis = { providerPaths, operationsPaths, archiveSourcePaths };
   return { ...basis, digest: retirementPreserveInventoryDigest(basis) };
 }

@@ -261,6 +261,18 @@ describe("PLAN-L7-416 Sprint 4 preserve/archive integrity", () => {
     }
   });
 
+  it("U-HRET-009: fresh cloneで削除済みdocs/handover directoryが無くても空archive inventoryを返す", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-retirement-fresh-clone-"));
+    mkdirSync(join(root, ".helix", "handover", "provider"), { recursive: true });
+
+    const inventory = collectRetirementPreserveInventory(root);
+
+    expect(inventory.providerPaths).toEqual([]);
+    expect(inventory.operationsPaths).toEqual([]);
+    expect(inventory.archiveSourcePaths).toEqual([]);
+    expect(inventory.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
   it("U-HRET-008: collectorはcanonical retentionとcaller/frontmatter driftを拒否する", () => {
     expect(() =>
       collectPreserveManifest(
