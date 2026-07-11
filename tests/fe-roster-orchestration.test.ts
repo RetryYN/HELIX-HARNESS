@@ -69,7 +69,7 @@ describe("FE roster orchestration", () => {
     expect(TIER_TABLE.T1.claude).not.toBe("claude-sonnet-4-6");
   });
 
-  it.todo("U-FEROSTER-003: PLAN固有Vペアのauthority解消をresolution PLANへ結合する", () => {
+  it("U-FEROSTER-003: PLAN固有Vペアのauthority解消をresolution PLANへ結合する", () => {
     const authority = JSON.parse(
       read("config/plan-specific-vpair-binding-authority.json"),
     ) as PlanSpecificVpairAuthority;

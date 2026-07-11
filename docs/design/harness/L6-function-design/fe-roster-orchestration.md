@@ -42,7 +42,7 @@ resolution PLAN、target PLANの結合を検証する。
 
 ## 4.1 DbC
 
-| contract | precondition | postcondition | invariant |
+| 契約 | 事前条件 | 事後条件 | 不変条件 |
 |---|---|---|---|
 | `verifyFeRosterTopology` | agent frontmatterとexported allowlistをparse可能 | lead/worker modelとallowlist membershipがexact、advisor toolsにEdit/Writeなし | 実装責任はfe-lead/fe-uiに残る |
 | `verifyFeModelGeneration` | `MODEL_IDS`、`TIER_TABLE`、`selectTeamModel`、`CLAUDE_PRICING`を読める | 現行Sonnet IDがagent/team/tier/pricingで一致 | `claude-sonnet-4-6`はpricing履歴のみ |
