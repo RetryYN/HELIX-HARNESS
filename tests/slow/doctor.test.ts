@@ -2900,15 +2900,23 @@ describe("runDoctor", () => {
           /status=(?:approval_|machine_)/.test(message),
       ),
     ).toBe(true);
-    const handoffDecision = r.messages
+    const handoffDecisionMatch = r.messages
       .find((message) => message.includes("doctor: recovery-handoff-binding - digest="))
-      ?.match(/decision=closure-review:([a-z_]+)/)?.[1];
+      ?.match(/decision=(closure-review|closure-evidence-materialize):([a-z_]+)/);
+    const handoffDecision = handoffDecisionMatch?.[2];
     expect(handoffDecision).toMatch(/^[a-z_]+$/);
+    expect(handoffDecisionMatch?.[1]).toBe(
+      recoveryHandoff?.includes("phase=approval")
+        ? "closure-review"
+        : "closure-evidence-materialize",
+    );
     expect(
       hasDoctorMessageWith(
         r.messages,
         "doctor: recovery-handoff-binding",
-        "handoff.decision_draft.present",
+        recoveryHandoff?.includes("phase=approval")
+          ? "handoff.decision_draft.present"
+          : "handoff.phase.machine",
       ),
     ).toBe(true);
     const liveCount = (surface: string, pattern: RegExp): number => {
