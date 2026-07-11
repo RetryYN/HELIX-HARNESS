@@ -15,6 +15,10 @@ function input(lintModules: string[], reachableModules: string[]): LintWiringInp
   };
 }
 
+function functionInput(reachableExports: string[]): LintWiringInput {
+  return { lintModules: [], reachable: new Set(), reachableExports: new Set(reachableExports) };
+}
+
 describe("analyzeLintWiring (pure)", () => {
   it("all lint modules reachable from a runtime path = ok, none dead", () => {
     const r = analyzeLintWiring(input(["alpha", "beta"], ["alpha", "beta"]));
@@ -89,6 +93,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     expect(r.staleDeferred).toEqual([]);
     expect(r.deferred).toEqual(["tool-adapter"]);
     expect(r.ok).toBe(true);
+    expect(r.unwiredExports).toEqual([]);
     // The audits this PLAN re-wired into doctor are now genuinely reachable.
     for (const m of [
       "action-binding-approval-readiness",
@@ -113,5 +118,20 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     ]) {
       expect(r.wired).toContain(m);
     }
+  });
+
+  it("fails when a required contract export is only defined/re-exported but not runtime-referenced", () => {
+    // U-WIRING-002
+    const r = analyzeLintWiring(
+      functionInput([
+        "validatePrReviewRoute",
+        "gateCiAutoFixRepush",
+        "planReleaseAutomationDecision",
+        "renderGeneratedMcpConfig",
+      ]),
+    );
+    expect(r.ok).toBe(false);
+    expect(r.unwiredExports).toEqual(["analyzeVerificationProfileSafety"]);
+    expect(lintWiringMessages(r)[0]).toContain("contract export");
   });
 });

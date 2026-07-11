@@ -2111,4 +2111,40 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     ]);
     expect(o.semanticFeatureFrontierRecords).toEqual([]);
   });
+
+  it("typed irreversible_impact=none は境界語への言及だけを cutover blocker にしない", () => {
+    // U-WIRING-003
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-999",
+          layer: "L7",
+          kind: "troubleshoot",
+          status: "draft",
+          irreversibleImpact: "none",
+          text: "不可逆 cutover はこの PLAN の対象外。境界を説明するだけ。",
+        },
+      ],
+      0,
+    );
+    expect(o.items[0]?.blockers).not.toContain("irreversible_migration_pending");
+  });
+
+  it("typed irreversible_impact=cutover は本文の言い回しに依存せず blocker にする", () => {
+    // U-WIRING-004
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-998",
+          layer: "L7",
+          kind: "implement",
+          status: "draft",
+          irreversibleImpact: "cutover",
+          text: "実施対象を生成する。",
+        },
+      ],
+      0,
+    );
+    expect(o.items[0]?.blockers).toContain("irreversible_migration_pending");
+  });
 });

@@ -119,6 +119,8 @@ export interface OutstandingPlanRow {
   workflowPhase?: string | null;
   /** version-up parked マーカー (PLAN-DISCOVERY-09)。null = 通常。 */
   versionTarget?: string | null;
+  /** 不可逆影響の機械判定。本文の境界語はこの宣言を上書きしない。 */
+  irreversibleImpact?: "none" | "cutover" | "migration" | null;
   /** frontmatter/body の軽量分類用テキスト。 */
   text?: string;
 }
@@ -795,6 +797,8 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
 }
 
 function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): boolean {
+  if (p.irreversibleImpact === "none") return false;
+  if (p.irreversibleImpact === "cutover" || p.irreversibleImpact === "migration") return true;
   const planId = (p.planId ?? "").trim();
   if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
     return /irreversible|不可逆|state dir|cutover|\.helix\/.*\.helix|atomic migration/i.test(text);
@@ -1041,6 +1045,9 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
       status: fmValue(content, "status") ?? "unknown",
       workflowPhase: fmValue(content, "workflow_phase") ?? null,
       versionTarget: fmValue(content, "version_target") ?? null,
+      irreversibleImpact:
+        (fmValue(content, "irreversible_impact") as OutstandingPlanRow["irreversibleImpact"]) ??
+        null,
       text: content,
     });
   }

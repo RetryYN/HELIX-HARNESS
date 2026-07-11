@@ -11,6 +11,7 @@ entry_signals:
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
+irreversible_impact: none
 backprop_decision: not_required
 backprop_decision_reason: "既存 confirmed PLAN (PLAN-L7-340/418, PLAN-L6-32) が宣言済みの契約を実行経路へ配線する補修であり、要求・設計の意味変更はない。契約自体の変更が必要と判明した場合はその時点で backprop を再判断する。"
 agent_slots:
@@ -23,6 +24,18 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-428-enforcement-wiring-gap.md
     artifact_type: markdown_doc
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/lint-wiring.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
+  - artifact_path: tests/enforcement-wiring-routes.test.ts
+    artifact_type: test_file
+  - artifact_path: tests/lint-wiring.test.ts
+    artifact_type: test_file
+  - artifact_path: tests/outstanding.test.ts
+    artifact_type: test_file
 dependencies:
   parent: null
   requires: []
@@ -108,6 +121,18 @@ dependencies:
 - W3: 誤分類 fixture / 正分類 fixture の regression test green。
 - 各 step の green command を digest 付きで review_evidence に記録し、cross-runtime review を経て
   confirm する。
+
+## L5詳細設計判断
+
+- W1は`helix github review-route`、`helix github ci-auto-fix-gate`、
+  `helix github release-automation-decision`を判定の正規CLI routeとする。入力はtyped JSON、判定が
+  rejectならexit 1でfail-closeする。外部writeはこのroute自身では実行しない。
+- W2は`helix mcp profile safety`と`helix mcp profile config`を正規routeとし、`lint-wiring`は
+  `REQUIRED_RUNTIME_EXPORTS`に登録された関数名がruntime到達sourceから参照されることをfile単位検査に
+  加えて検査する。re-exportだけでは到達証跡にしない。
+- W3はfrontmatter `irreversible_impact: none | cutover | migration`を正とする。明示`none`は本文の
+  境界説明を分類根拠にせず、`cutover`/`migration`は本文に依存せずblockerにする。既存PLANとの互換性の
+  ためfield欠落時だけ従来regexへfallbackする。
 
 ## 引き継ぎメモ（Codex 向け）
 

@@ -23,6 +23,7 @@ import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
+import { type CiAutoFixGateInput, gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
 import {
   loadGithubCiStatus,
   loadGithubMergeReadiness,
@@ -37,7 +38,12 @@ import {
   renderGithubOpsGuard,
   renderReleasePublicationPlan,
 } from "./audit/github-ops-guard";
+import { type PrReviewRouteInput, validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
+import {
+  planReleaseAutomationDecision,
+  type ReleaseAutomationDecisionInput,
+} from "./audit/release-automation-decision";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
@@ -107,11 +113,13 @@ import {
 } from "./lint/relation-graph";
 import { buildS4DecisionPackets, loadS4DecisionReadinessInput } from "./lint/s4-decision-readiness";
 import {
+  analyzeVerificationProfileSafety,
   inspectMcpProfile,
   listVerificationProfiles,
   nodeVerificationProbeDeps,
   probeVerificationProfile,
   recommendVerificationProfiles,
+  renderGeneratedMcpConfig,
   runVerificationProfile,
   saveVerificationEvidence,
   verificationRecommendationMermaid,
@@ -1804,6 +1812,59 @@ mcpProfile
       process.stdout.write(`  - ${check.ok ? "ok" : "missing"} ${check.name}: ${check.message}\n`);
     }
     process.exitCode = result.ready ? 0 : 1;
+  });
+
+mcpProfile
+  .command("safety <name>")
+  .description("evaluate the mandatory verification-profile safety contract")
+  .option("--allow-write-tools", "record explicit human approval for write-capable tools")
+  .option("--docker-available", "record Docker availability")
+  .option("--docker-controls", "record Docker control documentation")
+  .option("--json", "JSON output")
+  .action(
+    (
+      name: string,
+      opts: {
+        allowWriteTools?: boolean;
+        dockerAvailable?: boolean;
+        dockerControls?: boolean;
+        json?: boolean;
+      },
+    ) => {
+      const profile = listVerificationProfiles().find((candidate) => candidate.id === name);
+      if (!profile) {
+        process.stderr.write(`unknown profile: ${name}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      const result = analyzeVerificationProfileSafety({
+        profile,
+        requiresHumanApproval: opts.allowWriteTools === true,
+        dockerAvailable: opts.dockerAvailable === true,
+        dockerControlsDocumented: opts.dockerControls === true,
+      });
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(result, null, 2)}\n`
+          : `profile safety ${name}: ${result.ok ? "ok" : "blocked"}\n`,
+      );
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
+
+mcpProfile
+  .command("config <name...>")
+  .description("render a local generated MCP config after workspace-scope checks")
+  .option("--target <path>", "suggested local target", ".helix/local/mcp.generated.json")
+  .option("--json", "JSON output")
+  .action((names: string[], opts: { target?: string; json?: boolean }) => {
+    const result = renderGeneratedMcpConfig({
+      repoRoot: process.cwd(),
+      selectedProfileIds: names,
+      targetPath: opts.target,
+    });
+    process.stdout.write(opts.json ? `${JSON.stringify(result, null, 2)}\n` : result.content);
+    process.exitCode = result.ok ? 0 : 1;
   });
 
 const memory = program.command("memory").description("shared harness/project memory");
@@ -11439,6 +11500,38 @@ branch
 const github = program
   .command("github")
   .description("GitHub operation readiness and PR automation");
+
+github
+  .command("review-route")
+  .description("fail-close PR cross-review route decision")
+  .requiredOption("--input-json <json>", "PrReviewRouteInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = validatePrReviewRoute(JSON.parse(opts.inputJson) as PrReviewRouteInput);
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+github
+  .command("ci-auto-fix-gate")
+  .description("evaluate confidence and attempt circuit breakers before CI repush")
+  .requiredOption("--input-json <json>", "CiAutoFixGateInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = gateCiAutoFixRepush(JSON.parse(opts.inputJson) as CiAutoFixGateInput);
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.allowRepush ? 0 : 1;
+  });
+
+github
+  .command("release-automation-decision")
+  .description("emit the plan-only release automation decision")
+  .requiredOption("--input-json <json>", "ReleaseAutomationDecisionInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = planReleaseAutomationDecision(
+      JSON.parse(opts.inputJson) as ReleaseAutomationDecisionInput,
+    );
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.ok ? 0 : 1;
+  });
 
 github
   .command("guard")
