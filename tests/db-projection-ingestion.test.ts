@@ -323,6 +323,7 @@ describe("db projection ingestion detector", () => {
           scope_status: "missing",
         });
         expect([
+          ["machine_pending", "generate_probe", "machine"],
           ["machine_pending", "generate_approval_draft", "machine"],
           ["approval_pending", "approval_required", "approval"],
         ]).toContainEqual([

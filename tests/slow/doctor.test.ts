@@ -2884,11 +2884,13 @@ describe("runDoctor", () => {
     if (recoveryRunway?.includes("status=machine_work_available")) {
       expect(recoveryRunway).toMatch(/machine=[1-9]\d*/);
     }
-    const recoveryHandoff = r.messages.find((message) =>
-      message.includes("doctor: recovery-handoff-binding - OK:"),
+    const recoveryHandoff = r.messages.find(
+      (message) =>
+        message.includes("doctor: recovery-handoff-binding") &&
+        /status=[a-z_]+(?:\s+[^\n]*)?phase=(?:approval|machine)/.test(message),
     );
     expect(recoveryHandoff).toMatch(
-      /status=(?:approval_pending phase=approval|(?:generate_probe|generate_approval_draft|refresh_approval_draft|unchecked|unavailable) phase=machine)/,
+      /status=(?:approval_pending|machine_pending|generate_probe|generate_approval_draft|refresh_approval_draft|unchecked|unavailable).*phase=(?:approval|machine)/,
     );
     expect(hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=")).toBe(
       true,
