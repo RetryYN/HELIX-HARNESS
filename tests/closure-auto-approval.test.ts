@@ -13,6 +13,7 @@ import {
   evaluateClosureAutoApproval,
   githubReceiptImmutableDigest,
   isForcedIrreversiblePlanId,
+  isHarnessCheckRequired,
   parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
   recoverClosureAutoApprovalTransaction,
@@ -266,6 +267,46 @@ describe("closure auto approval authority", () => {
     expect(() =>
       parseClosureAutoApprovalManifest({ ...f.manifest, caller_expected_tests: [] }),
     ).toThrow();
+    const planId = f.queue[0]?.planId as string;
+    const oldOutput = `.helix/evidence/outputs/${planId}-old-test.txt`;
+    writeFileSync(join(f.root, oldOutput), "old failed run\n");
+    f.db
+      .prepare(
+        `INSERT INTO test_runs
+         (test_run_id, session_id, plan_id, command, exit_code, evidence_path, output_digest, completed_at, status)
+         VALUES (?, ?, ?, ?, 1, ?, ?, ?, 'failed')`,
+      )
+      .run(
+        `old-test-run:${planId}`,
+        `old-session:${planId}`,
+        planId,
+        "bunx vitest run tests/fixture.test.ts",
+        oldOutput,
+        sha(readFileSync(join(f.root, oldOutput))),
+        "2026-07-12T00:00:30Z",
+      );
+    f.db
+      .prepare(
+        "INSERT INTO test_cases (test_case_id, test_run_id, plan_id, oracle_id, status) VALUES (?, ?, ?, 'U-FIXTURE', 'failed')",
+      )
+      .run(`old-case:${planId}`, `old-test-run:${planId}`, planId);
+    appendRunnerAttestation({
+      repoRoot: f.root,
+      db: f.db,
+      receipt: {
+        run_id: `old-test-run:${planId}`,
+        session_id: `old-session:${planId}`,
+        plan_id: planId,
+        kind: "test",
+        oracle_id: "U-FIXTURE",
+        command: "bunx vitest run tests/fixture.test.ts",
+        exit_code: 1,
+        status: "failed",
+        evidence_path: oldOutput,
+        completed_at: "2026-07-12T00:00:30Z",
+      },
+    });
+    expect(evaluate(f).allowed).toBe(true);
     f.db
       .prepare(
         "INSERT INTO test_cases (test_case_id, test_run_id, plan_id, oracle_id, status) VALUES (?, ?, ?, ?, 'passed')",
@@ -276,7 +317,9 @@ describe("closure auto approval authority", () => {
         f.queue[0]?.planId,
         "U-FIXTURE",
       );
-    expect(evaluate(f).blockers).toContain(`${f.queue[0]?.planId}: run_id重複: U-FIXTURE`);
+    expect(evaluate(f).blockers).toContain(
+      `${f.queue[0]?.planId}: test-run:${f.queue[0]?.planId}: selected test_case exactly-one違反`,
+    );
   });
 
   it("U-CAUTO-002: DB集計green自己申告でもevidence bytes driftを拒否する", () => {
@@ -349,6 +392,16 @@ describe("closure auto approval authority", () => {
   });
 
   it("U-CAUTO-005: rename途中失敗を全PLAN rollbackし失敗auditを残す", () => {
+    expect(isHarnessCheckRequired({ contexts: ["harness-check"] }, 15368)).toBe(true);
+    expect(
+      isHarnessCheckRequired(
+        { contexts: ["harness-check"], checks: [{ context: "harness-check", app_id: 999 }] },
+        15368,
+      ),
+    ).toBe(false);
+    expect(
+      isHarnessCheckRequired({ checks: [{ context: "harness-check", app_id: 15368 }] }, 15368),
+    ).toBe(true);
     const receiptProbe = fixture();
     const firstReceipt = githubReceipt(receiptProbe);
     expect(

@@ -321,15 +321,6 @@ function validateCanonicalRuns(input: {
       gate.command,
     ]),
   );
-  const duplicateOracleRows = input.db
-    .prepare(
-      `SELECT tc.oracle_id, COUNT(*) AS count
-       FROM test_cases tc JOIN test_runs tr ON tr.test_run_id = tc.test_run_id
-       WHERE tr.plan_id = ? GROUP BY tc.oracle_id HAVING COUNT(*) <> 1`,
-    )
-    .all(input.planId);
-  for (const row of duplicateOracleRows)
-    errors.push(`run_id重複: ${String(row.oracle_id ?? "unknown")}`);
   const actualTests = new Set<string>();
   const actualGates = new Set<string>();
   for (const run of record.runs) {
@@ -352,6 +343,14 @@ function validateCanonicalRuns(input: {
             .get(run.run_id, input.planId, run.oracle_id);
     if (!dbRow) errors.push(`${run.run_id}: canonical DB runner receipt欠落`);
     else if (run.kind === "test") {
+      const selectedCaseCount = Number(
+        input.db
+          .prepare(
+            "SELECT COUNT(*) AS count FROM test_cases WHERE test_run_id = ? AND oracle_id = ?",
+          )
+          .get(run.run_id, run.oracle_id)?.count ?? 0,
+      );
+      if (selectedCaseCount !== 1) errors.push(`${run.run_id}: selected test_case exactly-one違反`);
       if (String(dbRow.session_id ?? "").length < 8)
         errors.push(`${run.run_id}: DB receipt identity不正`);
       if (
@@ -444,6 +443,17 @@ export function currentRepositoryHead(repoRoot: string): string {
   return execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim();
 }
 
+export function isHarnessCheckRequired(
+  policy: { contexts?: string[]; checks?: Array<{ context?: string; app_id?: number }> },
+  appId: number,
+): boolean {
+  if (Array.isArray(policy.checks) && policy.checks.length > 0)
+    return policy.checks.some(
+      (row) => row.context === "harness-check" && Number(row.app_id) === appId,
+    );
+  return policy.contexts?.includes("harness-check") === true;
+}
+
 export function loadGithubRequiredCheckReceipt(repoRoot: string): GithubRequiredCheckReceipt {
   const head = currentRepositoryHead(repoRoot);
   const remote = execFileSync("git", ["remote", "get-url", "origin"], {
@@ -474,10 +484,7 @@ export function loadGithubRequiredCheckReceipt(repoRoot: string): GithubRequired
   const app = check.app as Record<string, unknown> | undefined;
   const owner = app?.owner as Record<string, unknown> | undefined;
   const appId = Number(app?.id);
-  if (
-    !required.contexts?.includes("harness-check") &&
-    !required.checks?.some((row) => row.context === "harness-check" && Number(row.app_id) === appId)
-  )
+  if (!isHarnessCheckRequired(required, appId))
     throw new Error("harness-checkがrequired contextではない");
   const runUrl = String(check.html_url ?? "");
   const runId = Number(/\/actions\/runs\/([0-9]+)/.exec(runUrl)?.[1]);
@@ -579,11 +586,7 @@ export function refetchGithubRequiredCheckReceipt(
     ),
   ) as { contexts?: string[]; checks?: Array<{ context?: string; app_id?: number }> };
   const appId = Number(app?.id);
-  const isRequired =
-    required.contexts?.includes("harness-check") === true ||
-    required.checks?.some(
-      (row) => row.context === "harness-check" && Number(row.app_id) === appId,
-    ) === true;
+  const isRequired = isHarnessCheckRequired(required, appId);
   const runUrl = String(check.html_url ?? "");
   return {
     schema_version: "github-required-check-receipt.v1",

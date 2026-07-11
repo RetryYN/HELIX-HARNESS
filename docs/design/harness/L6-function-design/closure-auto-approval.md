@@ -14,6 +14,8 @@ plan: docs/plans/PLAN-L6-71-closure-auto-approval.md
 実行事実はappend-only harness.dbの`test_runs/test_cases/gate_runs`をauthorityとする。typed manifestは
 候補scopeだけを固定し、callerがexpected evidenceやcapabilityを定義できない。DB primary identity、
 session、exact command、oracle、exit/status、output artifact bytes、HEAD、時刻を結合して再計算する。
+同一oracleの過去run件数は承認を妨げず、attestationの`completed_at,event_digest`順でlatest runを選び、
+そのrunに対応するtest case exactly-oneとlatest greenだけを判定する。
 runnerは同じreceiptをrepo-owned append-only attestation chainと`runner_attestations`へ同時記録し、
 DB rowとのexact joinを要求する。attestation tableのUPDATE/DELETEはtriggerで拒否する。
 
