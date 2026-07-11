@@ -80,7 +80,7 @@ function writeFakeClaude(binDir: string): string {
 }
 
 describe("runtime hook entrypoints", () => {
-  it("plan use rejects truncated IDs and preserves the active marker", () => {
+  it("U-APSEL-006: plan use rejects truncated IDs and preserves the active marker", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-plan-use-"));
     try {
       mkdirSync(join(cwd, "docs", "plans"), { recursive: true });

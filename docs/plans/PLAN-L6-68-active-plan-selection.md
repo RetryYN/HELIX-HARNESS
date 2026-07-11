@@ -26,6 +26,7 @@ generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: tests/session-log.test.ts, artifact_type: test_code }
   - { artifact_path: tests/drive-db-registration.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/runtime-hook-entrypoints.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-67-development-ci-bounded-time.md
   requires: [docs/plans/PLAN-L6-67-development-ci-bounded-time.md]
