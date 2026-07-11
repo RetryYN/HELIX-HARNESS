@@ -2219,6 +2219,10 @@ describe("runDoctor", () => {
     const red = checkTriageDecisionIntegrity(join(process.cwd(), "missing-triage-root"));
     expect(red.ok).toBe(false);
     expect(red.messages[0]).toContain("violation");
+    const source = readFileSync(join(process.cwd(), "src/doctor/index.ts"), "utf8");
+    expect(source).toContain("const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot)");
+    expect(source).toContain("triageDecisionIntegrity.ok &&");
+    expect(source).toContain("...triageDecisionIntegrity.messages.map");
   });
 
   it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {

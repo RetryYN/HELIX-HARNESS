@@ -201,6 +201,12 @@ export function analyzeTriageDecisionIntegrity(
   for (const id of ids) {
     if (!/^IMP-\d{3}$/.test(id) || !input.backlogStatuses.has(id))
       add("unresolved-id-invalid", id, "実在するIMP IDが必要");
+    if (
+      PIN_BACKLOG_VERIFIED.includes(id as (typeof PIN_BACKLOG_VERIFIED)[number]) ||
+      id === PIN_RETAINED.id ||
+      id === PIN_RETAINED.residual
+    )
+      add("unresolved-id-invalid", id, "既決集合・残差IDの再利用は禁止");
   }
   const completionReady = enumerated && claim?.state === "resolved";
   if (input.planTerminal && !completionReady)

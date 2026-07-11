@@ -103,6 +103,12 @@ describe("triage-decision-integrity (PLAN-L7-428-triage-decision-integrity)", ()
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-id-invalid");
     input.manifest!.backlog!.unenumerated_status_claim!.state = "unknown";
     expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-state-invalid");
+    input.manifest!.backlog!.unenumerated_status_claim = {
+      expected_count: 10,
+      ids: PIN_BACKLOG_VERIFIED.slice(0, 10),
+      state: "resolved",
+    };
+    expect(analyzeTriageDecisionIntegrity(input).violations.map((v) => v.kind)).toContain("unresolved-id-invalid");
   });
   it("U-TRIAGE-009: missing canonical artifact is rejected", () => {
     const input = base();
@@ -130,7 +136,7 @@ describe("triage-decision-integrity (PLAN-L7-428-triage-decision-integrity)", ()
     expect(Object.keys(input.manifest!.catalog!.done!)).toHaveLength(3);
     expect(input.manifest!.backlog!.verified_ids).toHaveLength(14);
   });
-  it("U-TRIAGE-012: terminal PLAN cannot pass with the unenumerated claim", () => {
+  it("terminal PLAN cannot pass with the unenumerated claim", () => {
     const input = base();
     input.planTerminal = true;
     const result = analyzeTriageDecisionIntegrity(input);
