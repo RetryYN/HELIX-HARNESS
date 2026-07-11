@@ -4,7 +4,7 @@ title: "PLAN-L7-428 (troubleshoot): 自走ガードの未配線修復 — GitHub
 kind: troubleshoot
 layer: L7
 drive: agent
-status: draft
+status: completed
 route_mode: incident
 entry_signals:
   - "po_directive:2026-07-12 PO 指示「フルチェック」— HEAD 基準の全ゲート実行 + 多角レビュー + 敵対検証で、confirmed PLAN が「実装済み」と称する自走ガード 3 本の実行経路未配線を検出"
@@ -35,13 +35,13 @@ generates:
   - artifact_path: src/schema/frontmatter.ts
     artifact_type: source_module
   - artifact_path: tests/enforcement-wiring-routes.test.ts
-    artifact_type: test_file
+    artifact_type: test_code
   - artifact_path: tests/lint-wiring.test.ts
-    artifact_type: test_file
+    artifact_type: test_code
   - artifact_path: tests/outstanding.test.ts
-    artifact_type: test_file
+    artifact_type: test_code
   - artifact_path: tests/frontmatter.test.ts
-    artifact_type: test_file
+    artifact_type: test_code
 verification_bindings:
   - parent_design: docs/design/harness/L6-function-design/function-spec.md
     oracle_id: U-WIRING-001
@@ -58,6 +58,20 @@ verification_bindings:
 dependencies:
   parent: null
   requires: []
+review_evidence:
+  - reviewer: codex-independent-reviewer
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    tests_green_at: "2026-07-11T23:01:33Z"
+    reviewed_at: "2026-07-11T23:01:40Z"
+    verdict: approve_after_fixes
+    scope: "W1実write route、W2 AST call reachability、W3 typed irreversible authorityを敵対監査し、PLAN-L7-418運用は本配線とCI gateを条件に継続可と判断した。"
+    green_commands:
+      - { kind: unit_test, command: "bunx vitest run tests/closure-auto-approval.test.ts tests/current-location.test.ts tests/enforcement-wiring-routes.test.ts tests/lint-wiring.test.ts tests/outstanding.test.ts tests/frontmatter.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: tests/enforcement-wiring-routes.test.ts, output_digest: "sha256:527663340d7b1ac75ebd7e2ac5830ec7877fa39478080eff7d1063dd3b6f78e1" }
+      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-428-enforcement-wiring-gap.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: docs/plans/PLAN-L7-428-enforcement-wiring-gap.md, output_digest: "sha256:6b3a05038ab49afdd92ad55897948acfc6632d2a72bf056ae227400f26b67443" }
+      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: src/lint/lint-wiring.ts, output_digest: "sha256:10ac809aac6d655e10d534f0c8e5d76e2801cf20cd8a8d86ec8e3425097d897b" }
+      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: src/cli.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 ---
 
 # PLAN-L7-428: 自走ガードの未配線修復
