@@ -64,16 +64,19 @@ close 処理は backlog の status 更新（observed/triaged → verified 等）
 ## §2 design-coverage（todo 57 件）
 
 catalog = `docs/design/design-catalog.yaml`（122 項目）。
-集計: (a) status 更新漏れ 4 / (b) 未着手 53（うち na 化候補 6 は PO 境界） / (c) 即 na 化 0。
+集計: (a) status 更新漏れ 4 / (b) 未着手 53（うち na 化 6 は下記訂正で AI 判断可） / (c) 即 na 化 0。
 
 - **(a) catalog 記述ミス 4 件（即修正可）**: unit-test-design / integration-test-design /
   system-test-design / acceptance-test-design。catalog note は「設計書そのものは無い」と
   記すが、`docs/test-design/harness/` の L7/L8/L9/L3 各 test-design（status: confirmed）が
   実在し矛盾。catalog の status を done へ更新する（coverage 43%→約 47% に改善見込み）。
-- **na 化候補 6 件（PO 判断境界）**: server-infra / capacity-autoscale / identity-provisioning /
-  compliance-mapping / api-portal-sdk / webhook-event-delivery の各 design。
-  「HELIX はローカル CLI 個人開発ハーネスで当該関心事を持たない」という network-design 等と
-  同型の理由で na 化できる可能性があるが、製品境界の再定義にあたるため PO へ escalate。
+- **na 化 6 件（訂正 2026-07-12: PO escalate 不要、AI 判断可）**: server-infra /
+  capacity-autoscale / identity-provisioning / compliance-mapping / api-portal-sdk /
+  webhook-event-delivery の各 design。当初 PO 境界として escalate したが、L0 charter
+  （confirmed）が「超個人開発システム」の製品境界を定義済みであり、catalog の na 化は可逆な
+  文書操作で charter §4 P8 の escalation 境界（本番影響/認証認可/決済/PII/secret/license/
+  schema migration/破壊的操作/外部 API・infra 変更）のいずれにも該当しない。network-design
+  （zip-25）等の既存 na と同型の根拠を記録して **Codex が na 化してよい**。
 - **scrum 系 8 件の未配線検出ロジック**: `product-backlog` / `user-story-mapping` /
   `estimation-velocity` / `release-plan` / `daily-scrum-progress-record` /
   `sprint-review-record` / `retrospective-record` / `burndown-velocity-actuals` の 8 項目は、

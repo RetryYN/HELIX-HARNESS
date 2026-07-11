@@ -8,6 +8,7 @@ status: draft
 route_mode: incident
 entry_signals:
   - "po_directive:2026-07-12 PO 指示「システム全体を見直して、問題提起してプランに残して別レーンで動いている Codex が引き継いで実装できる状態にして」"
+  - "po_directive:2026-07-12 PO が AskUserQuestion で「自走化する」を明示選択 — closure close_ready の承認境界を機械 evidence（review-bundle digest / tests green / dry-run 成功）充足時の自走 approve へ変更。不可逆系（PLAN-L7-146 公開 / PLAN-M-02 cutover / external publish）の human 承認は維持。選択肢と条件は提示のうえの選択であり、汎用指示の拡大解釈ではない"
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
@@ -109,12 +110,16 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   押し上げている可能性が高い。merge 後 HEAD で再計測し、violation が残る場合のみ本項を実施する。
 - **triage 実施済み（2026-07-12、全件結果 = `docs/reference/system-review-triage-2026-07-12.md` §2）**:
   (a) catalog 記述ミスによる status 更新漏れ 4 件（test-design 4 層。実在 confirmed doc と矛盾、
-  即修正可）、(b) 真正未着手 53 件（うち na 化候補 6 件は製品境界の再定義にあたるため PO 境界）、
-  scrum 系 8 件は検出ロジックだけ実装済みで対象成果物が repo に無い接続不足。
-- 対応: (a) 4 件の catalog status 修正 → (b) の必要性順 PLAN 起票判断 → na 候補 6 件を PO へ
-  escalate。全消化を本 PLAN で claim しない（`coding ≠ substance`）。
-- 受け入れ: (a) 4 件修正で design-coverage 数値が改善し、na 候補 6 件の PO 判断が escalation
-  として記録されている。coverage 全消化は受け入れ条件にしない。
+  即修正可）、(b) 真正未着手 53 件、scrum 系 8 件は検出ロジックだけ実装済みで対象成果物が
+  repo に無い接続不足。
+- **訂正（2026-07-12 PO 指摘）**: 当初「na 化候補 6 件は PO 境界」と escalate したが、L0 charter
+  が製品境界（超個人開発・ローカル CLI）を定義済みで、catalog na 化は可逆な文書操作であり
+  charter §4 P8 の escalation 境界に該当しない。**6 件の na 化は charter 引用を根拠に Codex が
+  実施してよい**（annex §2 の訂正記録を参照）。
+- 対応: (a) 4 件の catalog status 修正 → na 6 件の根拠付き na 化 → (b) の必要性順 PLAN 起票判断。
+  全消化を本 PLAN で claim しない（`coding ≠ substance`）。
+- 受け入れ: (a) 4 件修正 + na 6 件の na 化で design-coverage 数値が改善している。
+  coverage 全消化は受け入れ条件にしない。
 
 ### I5: hook orphan の真因修正（`plan use` の ID 未検証バグ — 実装項目へ格上げ）
 
@@ -165,15 +170,37 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   正しい carry_log + gate evidence で pass する regression test が green。既存 PLAN への遡及適用は
   enforcement date 方式（既存 lint と同様）で新規分から適用する。
 
+### I8: closure 承認境界の自走化（PO 明示選択 2026-07-12）
+
+- 背景: charter §3（要件凍結後は完全自動、停止は gate 赤/不可逆のみ）と HVM-COMP-03
+  （accepted 化は approval record 必須）が緊張関係にあり、close_ready 361 件が
+  human approval で滞留している。GitHub merge は PLAN-L7-418 で「CI green のみ、人間 approve
+  不要」を PO 承認済みであり、その延長として **closure も機械 evidence 充足時は自走 approve
+  してよい**と PO が決定した（entry_signals の po_directive を正本とする）。
+- 対応（実装は Codex）:
+  1. 自走条件を機械判定にする: review-bundle digest 一致 + 対象 PLAN の tests/gates green +
+     `helix closure apply --dry-run` 成功を auto-approve 条件として実装する。
+  2. **不可逆操作の human 境界は維持**: version-up activation（PLAN-L7-146）、cutover
+     （PLAN-M-02）、external publish、charter §4 P8 該当操作は自走対象から除外する。
+  3. HVM-COMP-03 の該当判断を「機械 evidence 条件付き自走」へ更新する（adoption-matrix の
+     correction note + 本 PLAN 参照。silent overwrite しない）。
+  4. regression test: 条件充足で auto-approve が通る / 不可逆系 PLAN が混在すると fail-close に
+     なる、の両 fixture を追加する。
+  5. 実装後、滞留中の close_ready 361 件を新 route で消化し、recovery runway の解消
+     （current-location needs_recovery → 正常）まで進める。
+- 受け入れ: regression test green、361 件の消化後 `vmodel-fit` の current-location 矛盾が解消、
+  不可逆系（L7-146 / M-02）が引き続き approval pending のまま残っていること。
+
 ## Schedule
 
 - step 1 (serial): I1 修正（切り分け → 修正 → doctor green）。
 - step 2 (serial): I2 = PLAN-L7-424 レーン完遂（Codex 自レーン、既存作業の継続）。
 - step 3 (serial, step 2 依存): I3 machine phase（approval draft refresh → collect_evidence 実行）。
-- step 4 (parallel, step 1-3 と独立): I4 catalog 修正 + na 候補 escalate、I5b P5 裏取り、
+- step 4 (parallel, step 1-3 と独立): I4 catalog 修正 + na 6 件の根拠付き na 化、I5b P5 裏取り、
   I7 backlog status 更新（triage 済み annex に基づく処置）。
 - step 5 (parallel, step 1-3 と独立): I5 `plan use` ID 検証バグ修正（照合 + remap/cleanup + test）。
 - step 6 (parallel, step 1-3 と独立): I6 carry log 機械強制（marker 定義 → lint 新設 → regression test）。
+- step 7 (serial, step 2-3 の後): I8 closure 自走 approve 実装 → 361 件消化 → recovery 解消。
 
 ## 完了条件（DoD）
 
@@ -181,7 +208,9 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   `plan-specific-vpair-binding` が OK（I1/I2）。
 - `recovery-runway` machine=0 かつ `recovery-handoff-gate` digest mismatch 解消（I3）。
   approval 361 件と l14 blocked-human 2 件は PO 境界として明示的に残す。
-- design-coverage catalog 記述ミス 4 件の修正と na 候補 6 件の PO escalation 記録（I4）。
+- design-coverage catalog 記述ミス 4 件の修正と na 6 件の根拠付き na 化（I4）。
+- closure 自走 approve の regression test green と close_ready 361 件の消化、
+  不可逆系 approval の維持確認（I8。実装ファイル確定時に `generates:` へ追記）。
 - `plan use` ID 検証の regression test green と orphan 増加停止（I5）。
 - improvement-backlog の close 候補 25 件（(d)15 + (a)status 未更新 10）の status 更新と
   gate green 維持（I7）。
