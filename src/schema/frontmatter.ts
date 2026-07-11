@@ -98,7 +98,11 @@ export const verificationBindingSchema = z
       .refine(
         (value) =>
           value === value.normalize("NFC") &&
-          /^tests\/(?!.*(?:^|\/)\.\.?(?:\/|$))(?!.*\/\/)[^\\]+$/.test(value),
+          value.startsWith("tests/") &&
+          !value.includes("\\") &&
+          value
+            .split("/")
+            .every((segment) => segment !== "" && segment !== "." && segment !== ".."),
         "test_path はNFC正規化済みcanonical tests/** pathのみ",
       ),
   })

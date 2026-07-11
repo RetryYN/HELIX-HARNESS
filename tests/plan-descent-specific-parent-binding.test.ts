@@ -3,9 +3,11 @@ import {
   analyzePlanSpecificVpairBindings,
   authorityInitialDigest,
   authorityTombstoneDigest,
+  checkPlanSpecificVpairBindings,
   extractExecutableOracleCases,
   findingFingerprint,
   parseEligibleOracleTable,
+  planSpecificVpairBindingMessages,
   type PlanSpecificVpairAuthority,
   type PlanSpecificVpairBindingInput,
   type PlanSpecificVpairPlan,
@@ -321,5 +323,33 @@ describe("PLAN固有Vペアbinding", () => {
         }),
       ),
     ).toMatchObject({ ok: true, checkedPlans: 0 });
+  });
+
+  it("U-PSPB-019: lint/doctor配線用messageとfail-close wrapperを同一判定へ固定する", () => {
+    const bad = analyzePlanSpecificVpairBindings(
+      input({ plans: [plan({ verification_bindings: [] })] }),
+    );
+    expect(planSpecificVpairBindingMessages(bad).join("\n")).toContain(
+      "plan-specific-vpair-binding - violation",
+    );
+    expect(checkPlanSpecificVpairBindings("/definitely/missing/helix-root")).toMatchObject({
+      ok: false,
+      result: null,
+    });
+  });
+
+  it("U-PSPB-020: 実repoはPLAN-L7-419と本PLANをactive exemptionなしで4点bindingする", () => {
+    const checked = checkPlanSpecificVpairBindings(process.cwd());
+    expect(checked.ok, checked.messages.join("\n")).toBe(true);
+    expect(
+      checked.result?.exempted.some(
+        (finding) => finding.plan_id === "PLAN-L7-419-skill-mythos-uplift",
+      ),
+    ).toBe(false);
+    expect(
+      checked.result?.exempted.some(
+        (finding) => finding.plan_id === "PLAN-L7-422-plan-specific-vpair-binding",
+      ),
+    ).toBe(false);
   });
 });

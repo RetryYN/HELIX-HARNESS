@@ -2,15 +2,21 @@ import { createHash } from "node:crypto";
 import {
   existsSync,
   lstatSync,
+  readdirSync,
   readFileSync,
   realpathSync,
   statSync,
 } from "node:fs";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import ts from "typescript";
+import { parse as parseYaml } from "yaml";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
   "plan-specific-vpair-binding-authority.v1" as const;
+export const PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH =
+  "config/plan-specific-vpair-binding-authority.json" as const;
+export const PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST = "__INITIAL_DIGEST_PENDING__";
+export const PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST = "__TERMINAL_DIGEST_PENDING__";
 
 export type PlanSpecificVpairReason =
   | "verification_bindings_absent"
@@ -650,4 +656,117 @@ export function loadPlanSpecificVpairBindingInput(
     testFiles.set(path, evidence);
   }
   return { ...options, pairDocuments, testFiles };
+}
+
+function parsePlanFrontmatter(source: string): PlanSpecificVpairPlan | null {
+  const match = source.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
+  if (!match) return null;
+  try {
+    const raw = parseYaml(match[1]) as unknown;
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+    return { ...(raw as PlanSpecificVpairPlan), source };
+  } catch {
+    return null;
+  }
+}
+
+/** repo全体を読むadapter。single-target lintでもownership/authorityはglobal snapshotで判定する。 */
+export function loadPlanSpecificVpairBindingInputFromRepo(
+  repoRoot: string,
+  options: {
+    expectedInitialDigest?: string;
+    expectedTerminalDigest?: string;
+    loadAuthority?: boolean;
+  } = {},
+): PlanSpecificVpairBindingInput {
+  const plansDir = join(repoRoot, "docs", "plans");
+  const plans = existsSync(plansDir)
+    ? readdirSync(plansDir)
+        .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
+        .sort()
+        .flatMap((name) => {
+          const parsed = parsePlanFrontmatter(readFileSync(join(plansDir, name), "utf8"));
+          return parsed ? [parsed] : [];
+        })
+    : [];
+  const pairPaths = plans.flatMap((plan) =>
+    typeof plan.pair_artifact === "string" ? [plan.pair_artifact] : [],
+  );
+  const testPaths = plans.flatMap((plan) =>
+    Array.isArray(plan.verification_bindings)
+      ? plan.verification_bindings.flatMap((raw) => {
+          const binding = decodeBinding(raw);
+          return binding ? [binding.test_path] : [];
+        })
+      : [],
+  );
+  const authorityPath = join(repoRoot, PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH);
+  const authority =
+    options.loadAuthority !== false && existsSync(authorityPath)
+      ? (JSON.parse(readFileSync(authorityPath, "utf8")) as unknown)
+      : undefined;
+  const terminalPlans = new Set(
+    plans.flatMap((plan) =>
+      typeof plan.plan_id === "string" &&
+      (plan.status === "confirmed" || plan.status === "completed")
+        ? [plan.plan_id]
+        : [],
+    ),
+  );
+  return loadPlanSpecificVpairBindingInput(repoRoot, {
+    plans,
+    pairPaths,
+    testPaths,
+    authority,
+    expectedInitialDigest: options.expectedInitialDigest,
+    expectedTerminalDigest: options.expectedTerminalDigest,
+    isTerminalResolutionPlan: (planId) => terminalPlans.has(planId),
+  });
+}
+
+export function planSpecificVpairBindingMessages(
+  result: PlanSpecificVpairBindingResult,
+): string[] {
+  if (result.ok) {
+    return [
+      `plan-specific-vpair-binding - OK (checked=${result.checkedPlans}, exempted=${result.exempted.length}, findings=0)`,
+    ];
+  }
+  const sample = result.findings
+    .slice(0, 8)
+    .map((item) => `${item.plan_id}:${item.reason}${item.detail ? `(${item.detail})` : ""}`)
+    .join(", ");
+  return [
+    `plan-specific-vpair-binding - violation ${result.findings.length} 件 (checked=${result.checkedPlans}, exempted=${result.exempted.length})`,
+    `plan-specific-vpair-binding - sample: ${sample}`,
+  ];
+}
+
+export function checkPlanSpecificVpairBindings(repoRoot: string): {
+  ok: boolean;
+  messages: string[];
+  result: PlanSpecificVpairBindingResult | null;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      ok: false,
+      messages: ["plan-specific-vpair-binding - violation: repo root could not be read"],
+      result: null,
+    };
+  }
+  try {
+    const result = analyzePlanSpecificVpairBindings(
+      loadPlanSpecificVpairBindingInputFromRepo(repoRoot, {
+        expectedInitialDigest: PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST,
+        expectedTerminalDigest: PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST,
+      }),
+    );
+    return { ok: result.ok, messages: planSpecificVpairBindingMessages(result), result };
+  } catch {
+    return {
+      ok: false,
+      messages: ["plan-specific-vpair-binding - violation: repository input could not be read"],
+      result: null,
+    };
+  }
 }

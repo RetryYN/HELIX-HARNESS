@@ -1,0 +1,1722 @@
+{
+  "schemaVersion": "plan-specific-vpair-binding-authority.v1",
+  "initialAuthority": [
+    {
+      "fingerprint": "sha256:01fd605512d03f41578517502794ebfa638904c730182ffa26d00682526d093f",
+      "plan_id": "PLAN-L7-288-handover-semantic-catalog-anchor",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0364ac87b62235d441936220e92523ad36c555b2072b99f932d3d37653eb81e4",
+      "plan_id": "PLAN-L7-06-handover-enforcement",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:04d1cb59342dd5b72969d15b2c6d5f89c082237c92b9755841f2f7615e2e05ae",
+      "plan_id": "PLAN-L7-372-visualization-view-model-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:052cae463c8207e3f339dfcaf5a5111d253242ba6c24abca18af76ccc18977c1",
+      "plan_id": "PLAN-L7-208-codex-hook-feature-enable-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:054cac9c6fd3bee0ce287e17efa92e1a9b36f6e0ca9a1e8030d14197b169beb0",
+      "plan_id": "PLAN-L7-102-web-dashboard-phase-b",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0643481c277923a4d2bb0752c30415d4cf87835a8eeb65b2713ed125fafca068",
+      "plan_id": "PLAN-L7-309-fe-roster-orchestration",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0823c3f24758e616b078daed481dae3392af3a8ecb9037f4185dbc1d0d47abc9",
+      "plan_id": "PLAN-L7-28-invariant-test-trace",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0a043322835c60e02a23621c565ace7ce678f121b24456197c23d726185c1afd",
+      "plan_id": "PLAN-L7-56-artifact-progress-state",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0aaf1488283fc980bea04ebe9129788e7e01146b9c30724250e674b949b5ccb5",
+      "plan_id": "PLAN-L7-51-descent-obligation",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0c452d59ce3e8753af70aef6f6d9802f83b6e6a19bb1348876ad15af480951e6",
+      "plan_id": "PLAN-L7-128-route-escalation-boundary-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0dbf205d48524de607f73f4b13fdcc09f03c1750ef0f779655f6a4d59e18403c",
+      "plan_id": "PLAN-L7-317-skill-scaffold-generator",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0e6ffa0fe3df6f50c0ec1a9722d84cb5fddc1753cf1cff8471e34d21bd71ab71",
+      "plan_id": "PLAN-L7-01-session-log",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0e88ad75779e27130d72f76a81a93b5e0d79f8c1c1a765f8ec9e64eef0ee7fe5",
+      "plan_id": "PLAN-L7-218-version-up-reapproval-triggers",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0ea5d186bdac5a25344da348c6b1624dec0f000c1902fa0b3295e8c64b260cf4",
+      "plan_id": "PLAN-L7-59-detector-hardening",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:0fbd878e71e162f65a4e758aa0f04f9b539e907f319e386353c2169c9152635b",
+      "plan_id": "PLAN-L7-362-runtime-capability-matrix",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:12175234ba3f31bb224e076d3f076921f04bf057a17e68c7e471b28d230fe3a4",
+      "plan_id": "PLAN-L7-146-serverless-readonly-share",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1331ad7c6afabf0b0a549011053e3e47e97536c3f9bbe0948c1be6ed94d9728b",
+      "plan_id": "PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1455229702cdf7dfdcb04f5dfee471d835dc900df6ea79303da769a939c499a2",
+      "plan_id": "PLAN-L7-365-agent-mailbox-conflict-locks",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1613d2e3f62c3fd41094bb708b519940f167776a3e1cddce6df50b31e390de3e",
+      "plan_id": "PLAN-L7-369-skill-memory-hygiene",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:17237270a4e0f10dbfc1c640209b9c3587e850aea712fa1e253eafd26b3f44d0",
+      "plan_id": "PLAN-L7-254-human-review-owner-timing-fields",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:173c4d85cccd361a9c4ca9444f7ebcee5f5e663ad4f8000c6d63c0dc989cdea6",
+      "plan_id": "PLAN-L7-286-status-review-coverage-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1927ae4da80ca921995d2d12377f58158df71b7dd5209906f3889382da3c6a39",
+      "plan_id": "PLAN-L7-262-branch-protection-script-consumer-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1ae0ff8755f8c81546b07b0a334cb579f032724d3997118caef5fa6504861c1a",
+      "plan_id": "PLAN-L7-237-ut-history-signal-hardening",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1b0ceaa58570c084c48d680c4786136293a7354ffad9f308d95be8a4c16a8c8a",
+      "plan_id": "PLAN-L7-07-handover-prefill-scope",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1bbb8363d0ca2ec2d98125783ef34c2b5fa573d776ca5088c86c1df1c281806c",
+      "plan_id": "PLAN-L7-242-db-rebuild-migration-profile-backlog-closure",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1d081d3776b4e9888dd43a9350479544a301fd9e0282d76b4804b1892a249d57",
+      "plan_id": "PLAN-L7-382-skill-efficacy-evaluation",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1d183ee312b149fb105be1c770953834d3d7ec971ec89f0a35006ece91cb52d7",
+      "plan_id": "PLAN-L7-313-g9-g10-workflow-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1dc7581e1395f6786301095e4b8e5f793544b26980c5f5ee2e860ec4ac2b90d5",
+      "plan_id": "PLAN-L7-206-visualization-read-model-response",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1e064697dd970e588e54c7f84915650cec3125478a9b3788a3bc93aff8fde4f9",
+      "plan_id": "PLAN-L7-26-module-boundary-rule",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:1ea1e4e69335c8d9821a86c11bd82feb275e9ca2676e91f2fe8c1df41dd380b5",
+      "plan_id": "PLAN-L7-53-learning-engine",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:20af77d687e88a44596b9cf8c765780a3a4930121586a69f13d706d88990ebec",
+      "plan_id": "PLAN-L7-255-human-review-safety-fields",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:23ca444247b6392fa7dc7deb39d7f0c95621e0b5d57e5ffc98ae762db60a51b9",
+      "plan_id": "PLAN-L7-209-objective-evidence-audit",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2447d9cc97ab4f6a5e125c6b57d991aaa54c7ed128d876f3cfbaafa8dbcdb3d8",
+      "plan_id": "PLAN-L7-82-feedback-log-discipline-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:24f5e79b3bc119441a9d3908591c4721f8ffb4e628bdf117a0521bc44adc7adb",
+      "plan_id": "PLAN-L7-244-relation-graph-scope-filter",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:26ba8b3893f8840f8f1c91cb3a1bdc1fdbb143e8a4f0635c3411aa441e31d78f",
+      "plan_id": "PLAN-L7-19-review-evidence-stale",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:26f96255dc4aa4378b5df74b7035982915312a1bde3c8b100654f029425f6835",
+      "plan_id": "PLAN-L7-16-module-drift",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:27ea17fb4f5ec48572741122c44d8dea4f6c5e52f8d01379c57a96dd6bd1294c",
+      "plan_id": "PLAN-L7-214-loop-effort-budget",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:281b6b7facd8c571d09ab65712f6977ac88ab6835092820405c19631ebb1eaef",
+      "plan_id": "PLAN-L7-306-fable-advisor-roster-governance",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:284fa26d7e5e147681de16df4427c814894344bb152f23e0433582e7e3d2fc9b",
+      "plan_id": "PLAN-L7-67-team-launch-policy",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:287d30302e6b9b7ef34b34427a2caa7ed2c090926bbde893b73f527652100bca",
+      "plan_id": "PLAN-L7-274-objective-external-ledger-refresh",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:288c0b02e83e54a64c9a616b6e491ed55e3ecb386dcbb2326181fc58f22308f7",
+      "plan_id": "PLAN-L7-293-setup-instruction-japanese-prose",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:28dfef11fe2430591a41f9dab694fc133cf600ae96c3493ccbf17177e359a750",
+      "plan_id": "PLAN-L7-29-red-first-tdd-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2a559f15321019b757a2f4ff303282f4c038c2e4fb003fa9f09b7549f9c00ae6",
+      "plan_id": "PLAN-L7-249-setup-version-up-adapter-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2bd8f8ca8980f100606560f0d3f0eb90e9c08c07a5ba8c4fe21563a0299a9655",
+      "plan_id": "PLAN-L7-27-domain-boundary-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2bd90c2de42fca7310aa6f456cc0fc7da0723109070c22bd1c1d33337674bb95",
+      "plan_id": "PLAN-L7-210-l0-l8-design-consistency-audit",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2be5823c62950479846ff0f8cf1ebacd5382ace60b7517a3e257ada2238b50ee",
+      "plan_id": "PLAN-L7-263-version-up-dry-run-fail-on-blocked",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2cf889c636bf00787fa46ec55881b51f831f8b8187cda9ab68a6247597290410",
+      "plan_id": "PLAN-L7-11-vmodel-pair-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:2f270ddbfdadc29f68a0d2f47d561ab0a30de6007737d7fc0d6a9fd927378a33",
+      "plan_id": "PLAN-L7-75-cost-tiered-provider-router",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3317590ff6410be4a9799c6d704e6f75d4ece83aea024313b8ee3167f7c0ffa0",
+      "plan_id": "PLAN-L7-61-telemetry-ingestion-metatest",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:342193a2dff0b9df87557ce9fb8c7a1c14d9d663e6a2a071e0fd32e5f8d688d5",
+      "plan_id": "PLAN-L7-380-review-feedback-session-intake",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:34ccdd170ceca5f631ef95ce8e71134862c59dd5ca38497e242ab64dc9ce12c8",
+      "plan_id": "PLAN-L7-367-parallel-candidate-verifier-council",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:36188c2c8ff58c16116ed06fc4edde98c57ccd627bec0279d50613966349474e",
+      "plan_id": "PLAN-L7-125-route-legacy-command-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:366eadb95fdfb6c63f3cc40db4158a5285f7837655763b6a2bdc5e43074300d4",
+      "plan_id": "PLAN-L7-357-distribution-sync-pack-commands",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:36bcfd9775ca58fc53a578543f680f36a682de673f0e094923741388ae660c2e",
+      "plan_id": "PLAN-L7-15-test-before-review",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:38b251f3c227cbab7b17450bde314d47acf4156884f643eea2bed7edcb6c185e",
+      "plan_id": "PLAN-L7-94-outstanding-work-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:38db3b5a79c5905e2c04810bf62db38bd36f1dc00bc55375cd59106146fadac8",
+      "plan_id": "PLAN-L7-127-orchestration-degradation-record",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:396bd9b13f611e80d8f1793996b01d9ae1c4bbcc4d0e87cfa2b5d412beed4341",
+      "plan_id": "PLAN-L7-22-fr-unit-coverage",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:398b30c0bcc5e423cf1f5a5a00ea029a002c9387b457ed5fb479116a64da8da0",
+      "plan_id": "PLAN-L7-270-judgment-review-japanese-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3a5a217b3c9ee39848d60507b68d3c20ac6f5578f94c05c643c43d29aa5d345d",
+      "plan_id": "PLAN-L7-104-conditional-backfill-decision-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3bb17454220fb037a9cedde1d152cf1e0915a3f9386d0718003ae605eddfd411",
+      "plan_id": "PLAN-L7-284-completion-review-bundle-route-id",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3c7d698a6acb14a5b3b6d7baea6e61c6afe48c506a6134448b785fbc159d0210",
+      "plan_id": "PLAN-L7-03-setup-solo-team",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3d94df6c44525f4694a9f348f6c6cb70d4ba97faae5ad7384cf8ed38dcd1724d",
+      "plan_id": "PLAN-L7-421-design-coverage-catalog",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3e4030adfaa04809f17cf4f4c89cffa98eb4e1e0bf06eb0ad1b2c3d75f7a6a70",
+      "plan_id": "PLAN-L7-48-readiness-guardrail",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3ef739b3d170c83379e102e39a06695adb1c3773cd2566f9f7347b514e84c430",
+      "plan_id": "PLAN-L7-123-route-eval-recommended-command",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:3f6b8d52684ecc6812b18498f6dac6e14f0eb6aac9368e39c6db14153ef7fd8f",
+      "plan_id": "PLAN-L7-141-web-dashboard-component-derived",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:40728f89fc8c1cdabbf29c40a864485fbd95d8c69c2adb7939581cb738459c3a",
+      "plan_id": "PLAN-L7-54-merged-plan-status-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:41409396bde612d26fe379815b491f3886f208fc2ad295af9e23e83dd039e6de",
+      "plan_id": "PLAN-L7-126-route-config-dependency-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:43f7ea3e40fa1488424d36691005c4707485f8be1c865c89df0af7f9b637ce5b",
+      "plan_id": "PLAN-L7-250-consumer-doctor-version-up-matrix",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:46287eef4e17cf71ddc16cde21e7f2c57581f5c7a27c851d80f5bf477a402622",
+      "plan_id": "PLAN-L7-134-tdd-drive-fit-classification",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:487e74e0518df46947414fe9e759efaaecaa2bb5f69230e0d908b35b6c27e43f",
+      "plan_id": "PLAN-L7-36-relation-graph-export",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:48f328b0b5f505716641def0284e0f9a523b9dcbe15fa497cb5101a578da6471",
+      "plan_id": "PLAN-L7-375-spec-driven-constitution-template-stack",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:49ad3090cd75726dd7395e759c77ded03efddfa636977d3cfef7750bd172a072",
+      "plan_id": "PLAN-L7-333-l1-l2-gap-check-readonly",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4a299348bfecaf48cd20fe20871a90ff6539cef55b6ceccd25be28631fdf335a",
+      "plan_id": "PLAN-L7-414-memory-injection-surface-rollout",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4a4c2ac7b2e7d22dd672f2f31808000ab2ea1b39fb00ac04b6605d77a37a453f",
+      "plan_id": "PLAN-L7-312-d-contract-dsl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4aeca865ef85f3bf42b9e817ef88ae2f7c9c9ca0b9377193281679f7f6fdf36c",
+      "plan_id": "PLAN-L7-10-governance-enforcement",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4b7ce9ff1e86a63708a85dba68ebb444794cd2586875e293018f6c45ea609f18",
+      "plan_id": "PLAN-L7-169-g8-integration-evidence-manifest",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4b7f4dd29aed1919613912a7b0f05ebbf9d127e8b8bff6ebb36a924a977e4ceb",
+      "plan_id": "PLAN-L7-246-source-ledger-refresh-2026-07-03",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4e3c64e8832a43f41833c4328dd5addf5093f3464e3fd8327ae0378fbdcf00a6",
+      "plan_id": "PLAN-L7-176-helix-orchestration-memory-runtime",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:4e7694a135bca6e3f0453da5471cae4735b47b8426404c48420632e050ef3ec7",
+      "plan_id": "PLAN-L7-273-operational-test-status-reconciliation",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:50fe22c5452b63080221333471c146adb1cbabb2bb0481c92e5a6c42d3978346",
+      "plan_id": "PLAN-L7-264-consumer-hook-artifact-schema-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5180c7b97da56d0a2beeb13a41afc314ca2fd4dc3fae1b0a4e45c0b30a5a5a90",
+      "plan_id": "PLAN-L7-259-action-binding-evidence-url-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:527efd2afc009cc215c5d0e00525da28d14849a270f0b349c64af8902c319607",
+      "plan_id": "PLAN-L7-267-rename-cutover-snapshot-evidence-binding",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:528b7259c476e8b118e8c06ec563a417173eb58df6b6f067daf17d431baa9937",
+      "plan_id": "PLAN-L7-368-agent-observability-provenance",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:52c42ebb30ba8ebfac758a6e1cd7fb765287adb91773d81ce2dbbe72cbe1ad91",
+      "plan_id": "PLAN-L7-245-relation-graph-physical-edge-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:543d44e0a7abb033dbd6766787964be0e042d595e8cb146350f64093fe3c1da0",
+      "plan_id": "PLAN-L7-275-completion-schema-and-setup-version-remote",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5758e2558388799f5340236018ec759fb7e21a10a59c15df1e921996d5fa83f1",
+      "plan_id": "PLAN-L7-366-autonomous-loop-run-receipts",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:57d47a2545a1348bc39e4d163b317c1419e3e24e99c1ce2a96b17d2a7af985a9",
+      "plan_id": "PLAN-L7-133-refactor-brush-up-workflow",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:585700d8d2d15356be5a19d1a6936ad950553836e52b7a53f5bb08e5ef4b6d12",
+      "plan_id": "PLAN-L7-45-harness-db-foundation",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:58ada8ae815256114c7aeb5ba26fa5ff0e8a316a15ec447e394b295153fc0677",
+      "plan_id": "PLAN-L7-72-task-classify-cli",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:591d6cdbfb6bbc05dd4634c30ca5e90bf0107a0dec2e0ab52bb0875cead349cf",
+      "plan_id": "PLAN-L7-223-clean-distribution-no-web",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5b84004e18a52853d1eafa59366b8167c7c5ce9438f2edfdf996f5c5e2bb27e1",
+      "plan_id": "PLAN-L7-311-model-effort-runtime-wiring",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5b9a8eba0782b810de7f149fc47940a69fd1abd3bf8a2f565b30c86d6aa023d9",
+      "plan_id": "PLAN-L7-253-handover-owner-update",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5cd75a16b35412d823cf36d71ba26062f893643046b1c4a194ac037a8abda537",
+      "plan_id": "PLAN-L7-345-agent-context-efficiency",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5cd954b7f5b3428c403674c4f00b3e863b7cff3db1f2f2b2c7f3ff2ec14de0d0",
+      "plan_id": "PLAN-L7-203-legacy-adoption-decisions",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5cfa1511d2f4b6120f9114aab9d9bc1b0c5816d86e64867b01d4a1bf49e57c81",
+      "plan_id": "PLAN-L7-336-refactor-candidate-triage-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5df3adc3f1a37076ef75cdd692053c295d7616918818bc92be788858e77ed45e",
+      "plan_id": "PLAN-L7-46-projection-writer",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5e90b6db5d885e5b1e94031b286c4d9e563caa81c6762913e88d9d5966846cc9",
+      "plan_id": "PLAN-L7-383-harness-taxonomy-curation-policy",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5ed649aed73a41eb248d5ba0565a22aa754a05509af5fbd5e24116534d965500",
+      "plan_id": "PLAN-L7-335-judgment-core",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:5ef7728860be0a8efd35bc45151d6702de7d40f96f0d13c378f5d6fe91c9d5c8",
+      "plan_id": "PLAN-L7-295-version-up-workers-pricing-ledger",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:60ccf4359401972b0842e2992ca6cb41a9ba88e366407a8cf25eb3f751fcbbc8",
+      "plan_id": "PLAN-L7-109-review-green-command-db-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:60e7c01d88d10c8a7711083dd5404d187bdcaa15a5cbb097a1949c16b9b67942",
+      "plan_id": "PLAN-L7-65-deterministic-model-policy",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:61105b163cfb74fd1920d5fa63f13feb21c12cc7764d55f5c5f83065b68057fa",
+      "plan_id": "PLAN-L7-34-tool-adapter-probes",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:620ba96a238b1ff1367972ce69dad4599c0d8dc5c325cf07a20965b8fc0f6b3d",
+      "plan_id": "PLAN-L7-310-model-standard-effort-adaptive",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6397d8f4b4efc60a6627dca17084f521c137a7dbcb1f03af3cbc15264db808f6",
+      "plan_id": "PLAN-L7-353-reverse-feedback-closure-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:65e8c56dfa894a78ca2e78d30b02d60b6d090d4817071e919978b9740ae3b936",
+      "plan_id": "PLAN-L7-101-db-projection-backprop-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6632731d30583a31856817815129f397c7a1dc00d394a91a693c5daa89e6b8d1",
+      "plan_id": "PLAN-L7-84-status-next-action-field",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6717aa3f58fa4a2d3bb6cecf501de9dd5f17bee0608ef25f1c8f0df59585aca1",
+      "plan_id": "PLAN-L7-135-dynamic-skill-injection-materialization",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:67abde72e55a59eec6698f20957bb66a18d0b0ab600b15c97df4becdd826aa97",
+      "plan_id": "PLAN-L7-339-p6-release-automation-descent",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:67b03d4cb2695c55947e426e1b7d971b0e9183bec56b3ccef9708db481a6d0dc",
+      "plan_id": "PLAN-L7-14-cross-review-enforcement",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:686e021a007add3d3c0bdd635e996bc8756305c60890ac62cdde82c6b0521f8b",
+      "plan_id": "PLAN-L7-215-hosted-preflight",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6a0c1d1ec70e6f6c019a1992f41d3c1fc2474cc95bfc33a595b391fc9c658252",
+      "plan_id": "PLAN-L7-117-kind-layer-governance-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6a195a8e8c578f526c79cd63e58d25b9f630aa86aac5ff15c6e7eb8a6d038e20",
+      "plan_id": "PLAN-L7-207-l7-feature-pack-roadmap-definition",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6a9891fde1e0d4b51050b67d2b3b72c506db57beb920031987449403845819e9",
+      "plan_id": "PLAN-L7-20-plan-schedule-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6ca12a6725ec1a7943571a55e39d430fe5385a02c68f8ea08cbabbafe5853693",
+      "plan_id": "PLAN-L7-60-change-set-integrity",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6d6102464307a517ca8cec7f3fa2963768bf15e303c33348465c15b4aa574993",
+      "plan_id": "PLAN-L7-64-team-runner-launch",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6dad3785b2702a73c3609098f496fbdce707ba30e1d2d00fef1bda7303992deb",
+      "plan_id": "PLAN-L7-63-plan-registry-fingerprint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:6fabe402b5890d8c34b969cc661f8257e603305089f1e1ede6f5d5f57641b0f8",
+      "plan_id": "PLAN-L7-403-close-ready-decision-draft-view-binding",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:700a53cd9ef3feb649ff2d521b2c17c75110bc9c39712b0dc7e7be3fab06c506",
+      "plan_id": "PLAN-L7-271-cutover-source-ledger-hardening",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:70ac801a7ad0b061bec6ab21f9d5f66318a163b8432dd44780649c970ada3c51",
+      "plan_id": "PLAN-L7-303-distribution-package-surface-readiness",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7136af008d51c8f4e90e23c3c1957cd2e3fcb962f4569348ed42c94f819c8ec5",
+      "plan_id": "PLAN-L7-213-tool-contract-registry",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:71b3ceb31ad0c533fcf672c8a1dff13fe4bd18ad6813ab614428fcc35fa90c01",
+      "plan_id": "PLAN-L7-412-feedback-lifecycle-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:72cd129d55ce78e21cb7958961cea966d9cb6e13c4a159b2d17dd1777aca8870",
+      "plan_id": "PLAN-L7-266-rename-github-repository-source",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7527473b7827a532e758e4069278758cf539c5925008da52d0d0b1ca50db701c",
+      "plan_id": "PLAN-L7-373-change-package-delta-archive",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:761697b381f0ddd2dd6f9ba04880621ed53e7b3ab38978401d0d2c93da8e4562",
+      "plan_id": "PLAN-L7-221-pair-agent-replay-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:765cb2535fb7de3cb16e2ec97f9e9c12057f8bcfe773b57e99927fe65db147f7",
+      "plan_id": "PLAN-L7-326-route-mode-first-class-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:77ce45eb011eee80f4598793ee5abfeb4fe02bba411225175fe622e439a4ded5",
+      "plan_id": "PLAN-L7-299-drive-model-registration-and-review-bundle-alignment",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:78a37fd8aa5df04156c8e358f5cde8cfc958b1872348847e80f741575029663b",
+      "plan_id": "PLAN-L7-43-implementation-verification-group",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:78aaf66812f9fe72f9761717b3588961f7152057faa8308d6fd44f482f97c70b",
+      "plan_id": "PLAN-L7-354-harness-memory-compaction-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:797df6095d61029bcf2adaf26229a9179aaf991f126f65886638bc322a147749",
+      "plan_id": "PLAN-L7-35-canonical-document-export",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:79e31da1bcbec18d1fce5e0c3a694a1250440c94232f49ec15f4117183600557",
+      "plan_id": "PLAN-L7-260-consumer-escalation-workflow-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7afc2969aadc912f953e6d50bb7ba0dd1045f83476314058859fe0db6f8fa9db",
+      "plan_id": "PLAN-L7-378-state-machine-template-planner",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7bebec5d64527ecc8ef8d010c94822ca32a3bcb5ba39b170acd436b6aea08a37",
+      "plan_id": "PLAN-L7-298-setup-bun-package-preflight-source",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7c4ef71190a72053ce099794c4c6e26973bb94c0fdff0cdb86b688d8f26558d8",
+      "plan_id": "PLAN-L7-66-existing-repo-onboarding-readme",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7c582d1bb3cee480681787c2d776f33773b47d08f4565fc650589bd1d0a4f230",
+      "plan_id": "PLAN-L7-319-upstream-adoption-small-items",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7c97d6147e854fd5216338db88853945091d9b6fe1926ebfc3c61dc93aa82986",
+      "plan_id": "PLAN-L7-12-verification-trigger",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7ca955a9be49a8d312cc4235e9418aac16480f22f0e80ec82cb547cf2ba07eff",
+      "plan_id": "PLAN-L7-119-conditional-backfill-audit-sync",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7cae819e6f8c774726e70dd15b521937b9093fe111b5b23f787f7eba3c2a2281",
+      "plan_id": "PLAN-L7-347-plan-descent-gate-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7d61d9a904a82ceb7b10217e74064fff729139b47ae3dc4b7cf317880fca706b",
+      "plan_id": "PLAN-L7-25-structured-error-handling",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7e0166166e70147a1a08bd57de73799df87065435d3b0c01c269ac74cbc445a5",
+      "plan_id": "PLAN-L7-124-route-approval-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7eee0446ffc42b18b1c0852beeb8798ec74e668230d42d852af8a518b356ebc5",
+      "plan_id": "PLAN-L7-240-reporter-artifact-ut-ingestion",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:7f3894e166002f0c036bc5e828e1fda8fc99e30bfdaabaa9da1cfb0fa0c84a41",
+      "plan_id": "PLAN-L7-342-version-up-activation-review-bundle",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8048fdc03357dc040a1b6eea0147bd12ac3a984d52325753a6a853b9ede93b61",
+      "plan_id": "PLAN-L7-384-source-content-mirror-completeness",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:80ff1865f09891f5dc1323fb1abb2e4111fff97569b1c6be99971764eff1e915",
+      "plan_id": "PLAN-L7-23-l6-completion-readiness",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:83ca927c7688f266f5a45e831966d9747e90c9003a439e9704b0cb6b00a69711",
+      "plan_id": "PLAN-L7-324-toolchain-pin-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:841ef64998ac4913c66a8b6a43c72e8ffe71139f4230e18669e1199f31d8c21e",
+      "plan_id": "PLAN-L7-407-harness-memory-structure-v2",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:843ab612836a7882a1c432583a85f090a6d877add515e6a763c7412cf6b5f7c0",
+      "plan_id": "PLAN-L7-258-cutover-evidence-path-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:84eb2cfc24ac8109f96a17df3c6b95802c3db54cdabc0e24c380a1c6040c117a",
+      "plan_id": "PLAN-L7-243-relation-graph-db-diagram-projection-hardening",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8512c1623f48d5ed78a0baff127b54016e1288eb355a68f6230a353e46889b0b",
+      "plan_id": "PLAN-L7-130-right-arm-gate-planning",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8633e3d796c49c5e3496d3dc2b3fd378844dd092100dbdcf6d9dbd03efb497b9",
+      "plan_id": "PLAN-L7-269-required-evidence-japanese-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:879118f0827e698ed38b05da022d230e4914f1c30ff1303b7d546359f1d9726f",
+      "plan_id": "PLAN-L7-297-consumer-ci-command-acceptance",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:87e4bc79670f69297c8faa25536a2d4195a40c93a99a33b1cd625f655d8b2837",
+      "plan_id": "PLAN-L7-138-quality-branch-audit",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:87f054c301e1f82a5640750e21c3c538ac75e48d3b22d1b26527ab514ab32e7c",
+      "plan_id": "PLAN-L7-108-review-green-command-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:882bee74aac2814289af0034c5259f1a6345695e3d8c77bffc0c88541e9878ae",
+      "plan_id": "PLAN-L7-305-loop-observability-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:885c15aeb14ed5f7f32e3dcd084041f6201fe41f86b103e7f4b397adc35986dc",
+      "plan_id": "PLAN-L7-175-helix-orchestration-memory-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8b53ddd104c2417bc3c4792474f1cc940cb7da10cd6a11db18ea00e719704f1d",
+      "plan_id": "PLAN-L7-302-fresh-consumer-package-bootstrap",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8bbd4993ed29a307cf7179068fcfd37030dabda7dc685405ebce3387be7067be",
+      "plan_id": "PLAN-L7-239-structured-ut-evidence-rebuild-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8c59bd8e13ab56f01e897aef4e169703d69d0ae87e60015e539f946685bb1209",
+      "plan_id": "PLAN-L7-281-review-bundle-self-runnable-and-rename-safety",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8c6a970c983297b0210e0fc16dbfef9efc6ad27a1031c813af69d33383871714",
+      "plan_id": "PLAN-L7-381-agent-ssot-runtime-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8d0473eaa8b9a9258385dfab02bbad18d7143b77741b7e055e506d783c039a36",
+      "plan_id": "PLAN-L7-340-p6-release-automation-descent",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8d69d36c7a79f8169276b2d00dacd05ff9110d9509520f3ccae29423a5c3fd03",
+      "plan_id": "PLAN-L7-241-duration-trend-quality-signal",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8d92d02f5ca173aef7376383f198f6b6f032e9907a1be31ca08b68a939a6790a",
+      "plan_id": "PLAN-L7-289-version-up-cloud-deploy-source-ledger",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8e7250ffc1276b1d536f48a22a2467aaa76da7c41f594e2904335ec8f90c6042",
+      "plan_id": "PLAN-L7-132-green-command-digest-integrity",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8ebd2086c991ea329a04c8522747ebf23c76a5c5a8b8881b0c3449977a972250",
+      "plan_id": "PLAN-L7-107-reverse-fullback-scope-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8ebff62f273a44c280565130099beb5ed8bcd88467ee3fc4726d531d0df6c06b",
+      "plan_id": "PLAN-L7-227-design-language-ratchet",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8ecec0562cb860ecb25b872d8b96163f96b7e1429ead287793a0b6b0734596f2",
+      "plan_id": "PLAN-L7-62-runtime-portability-guard",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8ed85c3087a049008bb280a1c5f8e7ee33c0ac0297d63c592336c0a5cff6edbe",
+      "plan_id": "PLAN-L7-177-helix-orchestration-runtime-bridge",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:8ee1142cd0e1d3d246afbe3c61fb13aeced741a1d4af54917681b69f3f4e1092",
+      "plan_id": "PLAN-L7-204-upstream-adoption-decisions",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:905c6f7cf336b862c53ab3adab4d3deac7f18410de697c20a56710ded48987b2",
+      "plan_id": "PLAN-L7-44-harness-db-master",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:907899db0a0fcbd1c3daa8f47509b6d01f3bb005cb7ef74cf845b8909ec8a340",
+      "plan_id": "PLAN-L7-371-tool-augmentation-registry",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:90deb02db89c73be010ef536096b6eaad150062c76e827f978cc379fdc806af3",
+      "plan_id": "PLAN-L7-30-test-oracle-strength",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9179d9d06439d6c435e21b4949160ca32a00f62d521cfc5409cf588fb94bdd89",
+      "plan_id": "PLAN-L7-222-pair-agent-plan-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9183c72824106d2b1e74e1cdb3cb66a9ef150323f3668d360e9a9cc630098e93",
+      "plan_id": "PLAN-L7-248-setup-version-up-trace-backfill",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:962420b3856ca1a84414a3e704e21207e214839d5726c7c3da5d2cf6a47cd6ff",
+      "plan_id": "PLAN-L7-406-memory-delegation-injection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:96a83372f72803875f48c99f89a2a69bc1bb50b785d0071954571fb070cf9e98",
+      "plan_id": "PLAN-L7-318-model-override-injection-hardening",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:97642daac2ec1c391bdfb22503de4fadd83abced2d0b6d94b2820a963c76aa20",
+      "plan_id": "PLAN-L7-296-setup-vscode-profile-entrypoint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:992d5a1c49a6cfbe36410f134d9a22a220ffd01101ad265b338464e4b82c7d47",
+      "plan_id": "PLAN-L7-257-cutover-blast-radius-source-ledger",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:99419796f5e504aa739170b6413ee1d5f96f80b1b08749d4e2985e533ecf9b8a",
+      "plan_id": "PLAN-L7-285-review-bundle-blocker-coverage",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:99c2c09ac0ab89dc79f64385984df755d24e71ba9eb6c1407c00348f9b0e830b",
+      "plan_id": "PLAN-L7-247-setup-version-up-first-run-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9a0741055f098dd641c31c7966ab6d0c67a678e076c0cdac19fc2a83ae00733a",
+      "plan_id": "PLAN-L7-294-review-bundle-required-fields",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9cd5d20738db5098c5de32d62919fa6c999f9f04c0850bc77e513418c8db6e28",
+      "plan_id": "PLAN-L7-272-cutover-readiness-ledger-parity",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9d09148aef67a0ea6c152cc5f4a3fff7321d4a6bafc03f61f51628ed09548409",
+      "plan_id": "PLAN-L7-131-plan-complete-handover",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9eeeb02060cdae122e7efe3e02b1db12dd91d0ab523443e1f44d82a7edb10da1",
+      "plan_id": "PLAN-L7-105-artifact-type-path-governance-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9f742ef0b5add994c4353effbabf92deee48bd28867fd385f677da907a31c05a",
+      "plan_id": "PLAN-L7-268-record-template-japanese-guidance",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:9fbe2e1b60e8c59ad02fa59de229071778a07f6731d5eca33b5acc46e906f142",
+      "plan_id": "PLAN-L7-129-incident-route-token-coverage",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a2083de1f51599108c151b0874d69a2e312833bdbe2bc3cc1215cb12f055265b",
+      "plan_id": "PLAN-L7-361-agent-catalog-watch",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a46898c145057f921f2034c4bae00b42c3333278b285ce385b56564b8df2fc57",
+      "plan_id": "PLAN-L7-112-reverse-r4-claimed-artifact-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a59028886869083d09b6a6ec5632abb6fea9f8f88d3136a9668f43cca059a83b",
+      "plan_id": "PLAN-L7-50-feature-list-residual-closure",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a5b3f70030093d0eed1d8bf3893a2bdf26ef5dcfd0ceacf410142e5097d57afb",
+      "plan_id": "PLAN-L7-31-integration-gwt-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a6c1a8fc16242cab0f77b3d6bcf13cceebbaacf937167c79a968a3ef52b77655",
+      "plan_id": "PLAN-L7-405-test-design-orphan-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a8b9e4688cce9c518903b4e8249bab0e4c27d9910293db2c226e638f401ddf5a",
+      "plan_id": "PLAN-L7-276-rename-evidence-pack-and-vscode-cutover-source",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:a8fb5f34e4f2ed01d62c01e2f077e6691e9a69fac7729656c91e00d6ab3b0b3f",
+      "plan_id": "PLAN-L7-103-reverse-fullback-backprop-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ab32bba2d7ccc2c059da4c99b6c7ff2652365466a519ae82da37682b8761d7b0",
+      "plan_id": "PLAN-L7-352-plan-entry-routing-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ad46cb1a975e164d1f4b9d0a31068d1cf6d903f9bfc6a89fc68b1b7b31eaf479",
+      "plan_id": "PLAN-L7-265-version-up-security-checklist-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ae881a7596331dc63dfed280a7091462d124013d44045b8c8de382a19ea1ff10",
+      "plan_id": "PLAN-L7-413-memory-promotion-nudge",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:af1a860c7f2348a251db6b798b75bb8b2d00e41fe33570dc32b94d90154e1dbd",
+      "plan_id": "PLAN-L7-355-handover-db-derivation-impl",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:af80083bb058fd78a1654a93e9cf6a5f73f17db2e9a651a8de59064fc7f28e9e",
+      "plan_id": "PLAN-L7-397-vmodel-current-location-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:afcced51a606947b25f02f20c239514726d3e4f6d1d5d1ab2443be9fb662849a",
+      "plan_id": "PLAN-L7-157-distribution-clean-pull",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b03c0dd9de7209acb8e11aa5adee7961896fc02678d3d075263d95b57d557dd8",
+      "plan_id": "PLAN-L7-21-runtime-adapter-session-lifecycle",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b04467c86feeb089a16fd4f126e295bc8a23f317f400062a2a2376fc00d4a98b",
+      "plan_id": "PLAN-L7-304-loop-iterations-db-schema",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b1ba9cc21ae41ffab2fa48a55a031c96b91bc49a599d9f4f7b02260f6859ece6",
+      "plan_id": "PLAN-L7-211-version-up-readiness-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b34636184f8c08744f2ca65568313c8c02ab31b381732e8e588c56c66fcf68f0",
+      "plan_id": "PLAN-L7-277-rename-approval-draft-packet",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b3c03441dfc48568f0890929b646f8ad93ea0b8f0698c53a96c402770a0c7c94",
+      "plan_id": "PLAN-L7-331-reverse-fullback-ledger",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b4fad31b6b94ae5e4056731e649d7a15588ee336b581bce4059104126927c6a5",
+      "plan_id": "PLAN-L7-316-runtime-telemetry-provenance",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b613f481fc5eb5124d508739237c5da69188ed760571adefe95749aa2b26e56f",
+      "plan_id": "PLAN-L7-17-handover-quality",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b62ef6a18fb001e5523cb6c58aa3b9b32d1e6045bb7fb56b590ad2239c8dcbb6",
+      "plan_id": "PLAN-L7-321-completeness-pass-gaps",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b6c210ddfb0e1e24d175c13323cadb90721d7dc8215a5fc4f0349ab251807314",
+      "plan_id": "PLAN-L7-282-status-runtime-completion-next-action",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b70fa6652595749816af651588524006353e74d9675abc57f3ae23745a1c1682",
+      "plan_id": "PLAN-L7-334-requirements-binding-config",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b7f1b01a81e538d2f845eb91c8728e0737d4f410c70a08f82ddd52f1a5d2dced",
+      "plan_id": "PLAN-L7-238-ut-history-db-signal-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b851ba892436fff6857e285ccfc7a18edd36ae788f53fab3422109a6025389e3",
+      "plan_id": "PLAN-L7-71-slash-commands",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:b96e0c12bdb3ddfeb6dd97fb0835ed6df2abb7501a7a7f82ae4c478f0b1d383b",
+      "plan_id": "PLAN-L7-251-setup-idempotent-import-report",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:baea221658d70053a51a645bc16bf718c743ff05b423a1032392cb965946fe32",
+      "plan_id": "PLAN-L7-337-delegation-brief-role-judgment",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:be041185a7046933ce1838646f55cc4ceca73bbdbb162dfb17f41f28d5500916",
+      "plan_id": "PLAN-L7-332-plan-filing-completeness",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:be6dffa917c83d21fb6d49bd5b402a549463f25c52c4b5050aecce87f56748d1",
+      "plan_id": "PLAN-L7-280-objective-progress-trust-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:bed427df89476beb72ed7baa6caaf4ca4ff9d1d7e575b6be2a76ee9843d10edb",
+      "plan_id": "PLAN-L7-13-review-evidence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:bf18ab8bd491f5e181ce1b374ddd3fcd6ac6b0ca5ef195f1c37d057c85900b8e",
+      "plan_id": "PLAN-L7-224-pair-agent-difficulty-budget",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:bf9e126a097469532d620aae857bc06f7d6e1e614b3ce37cc53c6eb4ca3421b3",
+      "plan_id": "PLAN-L7-261-escalation-distribution-acceptance",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c01aacc02007a1a900abbf887c71e7aacef6dafa9bf3d615878ba36233fedcb7",
+      "plan_id": "PLAN-L7-292-setup-project-instruction-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c03ffdc1797e0f238bba0bec190b698f0c55299c7cabdc01f7769dd687b91f5f",
+      "plan_id": "PLAN-L7-115-reverse-r4-route-backprop-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c1813c0d8e3dc7470ecdcbf81c66b3e6bb5bef0c23a0c490f9493b38aff5df71",
+      "plan_id": "PLAN-L7-322-harness-quality-tooling-backlog",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c283d961bb933129fdd0d07e9783ff562a6339a79a5956fdd14297f3ef0c2eb8",
+      "plan_id": "PLAN-L7-291-setup-project-template-readiness",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c3537f41f3d9e95b08fc73cf6b6bed9888c5a74121bb798de34ed10bc0657dc5",
+      "plan_id": "PLAN-L7-395-visualization-treeview-prototype",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c4255971e8c44ae7ebb5a9cf98097740c819188b852b682064445161cbd80aac",
+      "plan_id": "PLAN-L7-278-completion-review-bundle",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c441fb6147172411dc124e0ebe4fab7fdeeee5cb9fb99f0a459e404aaeab6aa7",
+      "plan_id": "PLAN-L7-168-g8-integration-workflow",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c4d6fd9c530cc6f45e0df7904d34e986b27a14c11a4572a52332147823af6d06",
+      "plan_id": "PLAN-L7-55-plan-artifact-existence-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c6a5a05f22ce35d08b3bd55317fd931fed37a28d17a16168bbb86a2bb522b07b",
+      "plan_id": "PLAN-L7-212-identifier-rename-audit",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:c7276f19ed1bc976d372f9724d3e61bd7dd64d684f18331928edf7aa9cb69cfa",
+      "plan_id": "PLAN-L7-327-relation-graph-node-scope",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cbab998ea9dec2ac7f0dc164c77b1af94a7c2174fc5e2b31640dbcc27e124cf7",
+      "plan_id": "PLAN-L7-287-handover-review-coverage-anchor",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cd39f0fd72c690eb56b6a9d8008a6861fb026239abe25301d3f4f7e08889764a",
+      "plan_id": "PLAN-L7-416-session-handover-runtime-retirement",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cd97ec24e118e87f5dc9bfab6ce0a10454aa3c35ae7ed295767503d41cc47620",
+      "plan_id": "PLAN-L7-364-agent-session-command-center",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ce5bbd600ce157a614f9ba4534401a1a23e6dc39a464dcd5348e328eb364b0e7",
+      "plan_id": "PLAN-L7-02-forced-stop-feedback",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cea8666ad4df6e59820b5ca7685b8eaa387d4206260fb53a36758bf0ae1a03dd",
+      "plan_id": "PLAN-L7-202-run-debug-runtime-verification",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cecbe712e02117bc286f64f44ea61fbaffa85e74b87ff0c8e9c9512c7880082f",
+      "plan_id": "PLAN-L7-377-state-machine-tool-policy",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cedd2188c88aea83877d74bd1068de2399ebd462861471acc7817d9f109ee9af",
+      "plan_id": "PLAN-L7-122-vmodel-injection-show",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:cf67b5a8a21c22fc14f33c3c63b5bca0b0f9e42e4da83cd57666b945bb53215f",
+      "plan_id": "PLAN-L7-24-coding-rules-workflow",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d1491f760c1211a7cb3947fc4cd8afb5e5abf93603faeb314122634648eba3e5",
+      "plan_id": "PLAN-L7-52-l7-completion-audit-closure",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d19b0e10fb34706402670caf537054e50a69b32d4df198d257651859645aa22b",
+      "plan_id": "PLAN-L7-420-skill-quality-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d3bc6acf7daf12f01ae715a4ea698fb28da5a66f6c4d9a9161b786e1863efec2",
+      "plan_id": "PLAN-L7-370-security-credential-egress-guard",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d598b036908cc51698fdec1d79689e79cd2f492dd8663777aa6887d1edea9150",
+      "plan_id": "PLAN-L7-110-takeover-feedback-surface",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d6c95fa380f2977d530b04e0de3b6ad208cfb163f46b48bd693ed2b15ae5cb11",
+      "plan_id": "PLAN-L7-344-delegation-brief-substance-guard",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d6eb4490a6c4b01618c5d8390100dd6210f5864cb88bd73bace9296fcf4c14e7",
+      "plan_id": "PLAN-L7-47-search-metrics-feedback",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d7e5e1c9795c2d57ee9d49718aff8f5f88dc3d8c2aa5be4c814f64de1ab13daa",
+      "plan_id": "PLAN-L7-106-backprop-classification-backlog-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:d85b8c73f4d4bd47d637fb3951625dded75fc68c8a4153e8129bdee7c136988d",
+      "plan_id": "PLAN-L7-111-reverse-fullback-claimed-artifact-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:da6b97c2a66275856cbed42a513e6e73aea1ff9b2cbae8ac46640188c3827336",
+      "plan_id": "PLAN-L7-376-artifact-convergence-analyzer",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:db2068c4c3bea5f3b33b7773ceea9ff5fd66871ce63fcede068ac3be79b57761",
+      "plan_id": "PLAN-L7-320-adapter-runtime-hardening",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:db9411ca2c4d5b9f25e452fab84ef70629f461b156dcf8f72ceb6f0c0d5b6a92",
+      "plan_id": "PLAN-L7-18-gate-confirm",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:dcfd9fedb1f04774a97f3f093bce9ff5d522ececcd7b7ec4c03227ab8fd31bc8",
+      "plan_id": "PLAN-L7-33-mcp-profile-config-safety",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ddcb46b779dca55b5a39a4b1be91e05c95db49410a587fbe42f593082daf41ee",
+      "plan_id": "PLAN-L7-118-required-backfill-bidirectional-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:de702c513f1e741486e9a88890f2663aa2104b8ee946ad2f58fd34d7c06f32f7",
+      "plan_id": "PLAN-L7-225-approval-snapshot-binding",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:df934c17edc82cc89f3c99ce880b558338b17600b4c49573046d188f780eb8a6",
+      "plan_id": "PLAN-L7-217-pair-agent-consultation-precedence",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:dfe0efc24050713307191a2b02386bd985ba4103c2672cc8e81422b4879c5e66",
+      "plan_id": "PLAN-L7-252-completion-human-review-bundle",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e03670476e0de4cdebe7aca49fe2ec0b7dae0a0f5518a7c8a595517803872940",
+      "plan_id": "PLAN-L7-279-review-bundle-and-version-target-gates",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e0584c12728cee1da2351ed686e6f9048539f542acc36b1a266c6f240650af45",
+      "plan_id": "PLAN-L7-363-isolated-worktree-sandbox-runner",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e19e742f43c295b4c728c3b392e9d24b4189c86b399657140a2834420ef2dd71",
+      "plan_id": "PLAN-L7-314-l14-close-audit",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e214aeb1ec5a3175093f19fcac960561c54ba4ab920b0898d2c5c3c5063723a0",
+      "plan_id": "PLAN-L7-300-adapter-readiness-and-approval-source-alignment",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e3275c280f2271346e52cf13bd358815c8e6ad266ea834aee70bfb28d9cbd1e0",
+      "plan_id": "PLAN-L7-343-effort-observation-full-wiring",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e33c0b93c74994e477ad08fec558cfea3ad66531904540cf8b5bc55f08c917d3",
+      "plan_id": "PLAN-L7-09-backfill-pairing",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e50dd8d1c6cc775fe7536c5e4f699faaa688efc9524e2007094fdd597c33757a",
+      "plan_id": "PLAN-L7-290-setup-project-rollback-command",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e52174696989b3ed15fb857ed4d9fa1a42192690ba056083912f43366dbbb8b2",
+      "plan_id": "PLAN-L7-49-asset-catalog",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e8c57888c0e90340b3bd8e683fce4e3b6d3265793ec5ef3acf1d6a359ff1ff5e",
+      "plan_id": "PLAN-L7-338-task-lens-injection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:e957a6b28dcd76e45a491a18b6b50ce268043d2460e55d775d465c84154320a6",
+      "plan_id": "PLAN-L7-256-version-up-provenance-ledger",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:eaba0d79d1f7b6737aeff419adf4d89f16399d379b6e989c9460c831a5fc0df8",
+      "plan_id": "PLAN-L7-116-required-agent-role-gate",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:eb238279989ba835c8bbea67a96a84447f24a8dfcc2aae43a6277ccdcd8522da",
+      "plan_id": "PLAN-L7-121-branch-kind-check",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:eb85f01a6ca9af769428666a14106461ca5768ff07e1e071ba677e762f317529",
+      "plan_id": "PLAN-L7-216-version-up-activation-readiness",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ebb5dbc65f1b093ffbe274c29b5e9addf225dc0e21a7abec734d7c82dd075e65",
+      "plan_id": "PLAN-L7-323-workflow-document-parity",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ebe39af75ce2d2ef9dbe80a81f75bf66e9770974379887068698de5a7bd72981",
+      "plan_id": "PLAN-L7-308-relation-impact-non-graph-path",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:eebba5ff064fddcc897b91e33281b7ed558d902ff2dd62769d389d1a944ca676",
+      "plan_id": "PLAN-L7-57-token-telemetry-tracker",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ef9e55400637a89d33ee0076cc75af015089e14c32ca1ad67e05705f9d0b4cdf",
+      "plan_id": "PLAN-L7-346-test-plan-id-remediation",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f12d695448d3db603d9c0c0106364a2ac4878e7ef806a6626bd8faa41a61c2aa",
+      "plan_id": "PLAN-L7-226-verification-profile-right-arm-gate-metadata",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f24c89dd6dcf35a3b72f17914ee3ed6c1d428f138fd003f49292379d7f0e0a08",
+      "plan_id": "PLAN-L7-411-feedback-lifecycle-journal",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f29ae82ca224bf139ce33e682f989842eace0a064456b1d1c514cc1063a477eb",
+      "plan_id": "PLAN-L7-205-run-debug-db-projection",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f31189b080354792b0b7d3b97791283cd37405e975b0be82dda73288a832aada",
+      "plan_id": "PLAN-L7-315-context-doc-router",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f319665f79c864a8caa3846c6f07b2190059f0242d316ccc33adb9e76f9ef7a2",
+      "plan_id": "PLAN-L7-325-skill-injection-session-log-audit",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f58d96b94fb4aaa73a494bbccfd52d4e43ec66cbab9a3682da342eb73fc0abb7",
+      "plan_id": "PLAN-L7-70-skill-pack-curation",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f676d4713d02a4ae5d7d18e637f2caf04137a7c41e5e27cd2249b34af5d15853",
+      "plan_id": "PLAN-L7-04-handover-mechanism",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f7007add58bee550fad6ad1ae81f3ea3ed5e16c6ad8a2ca76ee067267d54af7a",
+      "plan_id": "PLAN-L7-360-github-ops-guard-parity",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f7cab7058fd2f69663d252ea5c5ea839c9b2d7d22d5e9ec6cb55b57eab6f7b2d",
+      "plan_id": "PLAN-L7-396-handover-derivation-wiring",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f8153799ce0e786d8159568d1ea65063c9b78be5b060997e796188c9defbf6d6",
+      "plan_id": "PLAN-L7-358-distribution-update-check-advisory",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f9724fb0755902c19e336e5422f584e88b58e68434e9d42dbc2e488da78bc236",
+      "plan_id": "PLAN-L7-283-approval-draft-review-route-ja",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:f9dcc3b645170e0a55b7cdb5ed92a9596f11095f286019f8399c54da3e7904c8",
+      "plan_id": "PLAN-L7-32-cross-artifact-relation-graph",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:fb483e8aff2982a92ed794c0b1c82b6bbbf0786f765a65b2c3f50c56596895e7",
+      "plan_id": "PLAN-L7-374-cross-repo-spec-store",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:fb8878de802a866090a6804e2e4663c0861d1f77f16dcae3ddb356572bc15f1e",
+      "plan_id": "PLAN-L7-08-agent-slots",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:fd467121bb04acbc28a641d5c491b32abb55a1b72c94b7dbee2171b1da1fdb67",
+      "plan_id": "PLAN-L7-147-refactor-candidate-detector",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:fdf6822cc8d78cb3a2ddbcb6817bb9772e266d1f3bf99419eba152a2483d0caf",
+      "plan_id": "PLAN-L7-58-telemetry-cost-enrichment",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:fe6b3ab53b622420c45c838fd20f1780a43c0e4708c9f4a880e2ac555639230d",
+      "plan_id": "PLAN-L7-330-l1-l2-consistency-lint",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ff1784f62479f8eaae362e77a8e1a05050162400ade342b7af499372041e2ee3",
+      "plan_id": "PLAN-L7-379-extension-preset-bundle-registry",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    },
+    {
+      "fingerprint": "sha256:ff77674f694db9f7c033352af542118d6804a2462e6cd5372841ece29b61d540",
+      "plan_id": "PLAN-L7-120-backfill-result-doc-sync",
+      "reason": "verification_bindings_absent",
+      "detail": null
+    }
+  ],
+  "resolvedTombstones": []
+}
