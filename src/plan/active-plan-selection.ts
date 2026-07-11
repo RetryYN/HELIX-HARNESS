@@ -26,7 +26,9 @@ export function loadCanonicalPlanIds(repoRoot: string): string[] {
   const plansDir = join(repoRoot, "docs", "plans");
   if (!existsSync(plansDir)) return [];
   const ids: string[] = [];
-  for (const name of readdirSync(plansDir).filter((entry) => entry.endsWith(".md")).sort()) {
+  for (const name of readdirSync(plansDir)
+    .filter((entry) => entry.endsWith(".md"))
+    .sort()) {
     const source = readFileSync(join(plansDir, name), "utf8");
     const match = source.match(/^plan_id:\s*["']?([^\s"']+)["']?\s*$/m);
     if (match?.[1]) ids.push(match[1]);
