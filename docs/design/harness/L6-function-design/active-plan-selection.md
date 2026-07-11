@@ -27,10 +27,10 @@ orphan PLANへ恒久的に誤登録する経路を閉じる。session hook自体
 | unavailable registry | canonical集合が空 | exit 1、current-plan非変更 | 検証不能を成功扱いしない |
 | clear | `--clear`を明示 | current-planを削除 | registry照合を要求しない |
 | writer集約 | CLIまたはcommit hookがactivation要求 | `activatePlan`を必ず経由 | invalid inferred IDは警告のみでmarker不変 |
-| historical orphan | fix前watermark以前の曖昧截断event | raw rowを保持しhistorical unresolvedと分類 | 推測remap・削除をしない。watermark以降はnew orphan 0 |
+| historical orphan | fix前watermark以前の曖昧截断event | raw rowを保持しhistorical unresolvedと分類 | 推測remap・削除をしない。`2026-07-11T19:25:50.062Z`以降はnew orphan 0 |
 
 ## 3. Vペア
 
 - 右腕正本: `docs/test-design/harness/L8-unit-test-design.md`
-- oracle: `U-APSEL-001..004`
+- oracle: `U-APSEL-001..005`
 - test: `tests/session-log.test.ts`

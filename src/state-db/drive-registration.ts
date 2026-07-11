@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { DriveDbRegistrationStats } from "../lint/drive-db-registration";
 import { loadReviewPlans } from "../lint/review-evidence";
+import { ACTIVE_PLAN_VALIDATION_ENFORCED_AT } from "../plan/active-plan-selection";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./index";
 import { migrate } from "./migration";
 import { rebuildHarnessDb } from "./projection-writer";
@@ -121,6 +122,13 @@ export function collectDriveDbRegistrationStats(db: HarnessDb): DriveDbRegistrat
        FROM hook_events h
        LEFT JOIN plan_registry p ON p.plan_id = h.plan_id
        WHERE p.plan_id IS NULL`,
+    ),
+    newHookOrphans: count(
+      db,
+      `SELECT COUNT(*) AS value
+       FROM hook_events h
+       LEFT JOIN plan_registry p ON p.plan_id = h.plan_id
+       WHERE p.plan_id IS NULL AND h.occurred_at >= '${ACTIVE_PLAN_VALIDATION_ENFORCED_AT}'`,
     ),
     modes,
   };

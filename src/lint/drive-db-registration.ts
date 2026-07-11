@@ -15,6 +15,7 @@ export interface DriveDbRegistrationStats {
   skillInvocationOrphans: number;
   registeredHookEvents: number;
   hookOrphans: number;
+  newHookOrphans: number;
   modes: string[];
 }
 
@@ -35,6 +36,7 @@ export interface DriveDbRegistrationViolation {
     | "missing_skill_invocations"
     | "skill_invocation_orphans"
     | "missing_registered_hook_events"
+    | "new_hook_orphans"
     | "missing_required_mode";
   count?: number;
   mode?: string;
@@ -111,6 +113,9 @@ export function analyzeDriveDbRegistration(
   }
   if (stats.registeredHookEvents <= 0) {
     violations.push({ reason: "missing_registered_hook_events" });
+  }
+  if (stats.newHookOrphans > 0) {
+    violations.push({ reason: "new_hook_orphans", count: stats.newHookOrphans });
   }
   for (const mode of REQUIRED_DRIVE_MODELS) {
     if (!stats.modes.includes(mode)) violations.push({ reason: "missing_required_mode", mode });

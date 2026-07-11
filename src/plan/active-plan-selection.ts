@@ -5,6 +5,9 @@ export type ActivePlanSelection =
   | { ok: true; planId: string }
   | { ok: false; reason: "empty" | "unknown"; candidates: string[] };
 
+/** 修正適用watermark。以前の曖昧orphanはraw保持し、以後の新規orphanだけをhard failする。 */
+export const ACTIVE_PLAN_VALIDATION_ENFORCED_AT = "2026-07-11T19:25:50.062Z";
+
 /** PLAN-L7-427: canonical PLAN IDのexact matchだけをcurrent-planへ書ける。 */
 export function selectActivePlanId(
   requested: string,

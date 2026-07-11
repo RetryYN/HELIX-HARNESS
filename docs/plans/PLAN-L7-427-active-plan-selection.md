@@ -21,6 +21,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-002, test_path: tests/session-log.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-003, test_path: tests/session-log.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-004, test_path: tests/session-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/active-plan-selection.md, oracle_id: U-APSEL-005, test_path: tests/drive-db-registration.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE - loaderとplan use配線" }
   - { role: qa, slot_label: "QA - exact/prefix/empty回帰" }
@@ -29,6 +30,9 @@ generates:
   - { artifact_path: src/plan/active-plan-selection.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/session-log.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/drive-db-registration.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/drive-registration.ts, artifact_type: source_module }
+  - { artifact_path: tests/drive-db-registration.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-68-active-plan-selection.md
   requires:
@@ -40,5 +44,5 @@ dependencies:
 
 ## 完了条件
 
-- `U-APSEL-001..004`、CLI/commit integration、PLAN lint、typecheck、lint、doctorがgreen。
+- `U-APSEL-001..005`、CLI/commit integration、post-watermark orphan gate、PLAN lint、typecheck、lint、doctorがgreen。
 - 修正後に未知plan_idを持つ新規hook eventを生成できない。
