@@ -8,7 +8,7 @@ plan: docs/plans/PLAN-L6-70-left-arm-carry-log.md
 
 # 左腕差し戻しcarry log 機能設計
 
-> **L6 contract marker**: `analyzeLeftArmCarryLog(input) => LeftArmCarryResult`。
+> **L6 contract marker**: `analyzeLeftArmCarryLog(input) => LeftArmCarryLogResult`。
 > pre: L7 PLAN、review evidence、resolution PLAN、再通過証拠を読める。post: finding単位の
 > 差し戻しと再凍結を検証する。invariant: signature→L6/G6、API/Contract→L5/G5、architecture→L4/G4。
 
