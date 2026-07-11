@@ -54,7 +54,7 @@ verification_bindings:
     test_path: tests/outstanding.test.ts
   - parent_design: docs/design/harness/L6-function-design/function-spec.md
     oracle_id: U-WIRING-004
-    test_path: tests/frontmatter.test.ts
+    test_path: tests/outstanding.test.ts
 dependencies:
   parent: null
   requires: []
