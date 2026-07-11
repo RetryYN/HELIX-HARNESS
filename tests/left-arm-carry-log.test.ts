@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeLeftArmCarryLog,
@@ -5,6 +6,7 @@ import {
   type LeftArmCarryLogInput,
   type LeftArmCarryPlan,
   leftArmCarryLogMessages,
+  loadLeftArmCarryLogInput,
 } from "../src/lint/left-arm-carry-log";
 
 const D1 = `sha256:${"1".repeat(64)}`;
@@ -300,5 +302,9 @@ describe("left-arm-carry-log (PLAN-L7-430-left-arm-carry-log)", () => {
     expect(result.violations).toEqual([]);
     expect(result.checked).toBe(1);
     expect("PLAN-L7-430-left-arm-carry-log").toBe("PLAN-L7-430-left-arm-carry-log");
+
+    const real = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(join(import.meta.dirname, "..")));
+    expect(real.violations).toEqual([]);
+    expect(real.ok).toBe(true);
   });
 });

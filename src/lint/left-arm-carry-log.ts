@@ -4,8 +4,23 @@
  * global gate ledger の現在値は再通過証拠として扱わない。
  */
 
+import { createHash } from "node:crypto";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { basename, join, relative } from "node:path";
+import { parse as parseYaml } from "yaml";
+
 export const LEFT_ARM_CARRY_SCHEMA = "left-arm-carry.v1";
 export const LEFT_ARM_CARRY_ENFORCEMENT_DATE = "2026-07-12";
+/** enforcement導入commit以前に同日terminalだったPLANの凍結pin。loader走査結果からは導出しない。 */
+export const LEFT_ARM_CARRY_LEGACY_PLAN_IDS = new Set([
+  "PLAN-L7-309-fe-roster-orchestration",
+  "PLAN-L7-422-plan-specific-vpair-binding",
+  "PLAN-L7-423-ci-governance-self-heal",
+  "PLAN-L7-424-fe-roster-vpair-resolution",
+  "PLAN-L7-426-development-ci-bounded-time",
+  "PLAN-L7-427-active-plan-selection",
+  "PLAN-L7-429-triage-decision-integrity",
+]);
 
 export type LeftArmFindingKind =
   | "signature_mismatch"
@@ -96,6 +111,8 @@ export interface LeftArmCarryLogInput {
   /** 現行 test-design artifact の集合。resolution PLAN は最低1件を generates する。 */
   testDesignArtifacts: ReadonlySet<string>;
 }
+
+type UnknownRecord = Record<string, unknown>;
 
 export type LeftArmCarryViolationKind =
   | "missing-carry-decision"
@@ -462,4 +479,233 @@ export function leftArmCarryLogMessages(result: LeftArmCarryLogResult): string[]
   return [
     `left-arm-carry-log — violation ${result.violations.length} 件 (${sample}): 左腕差し戻しを対象gate再通過まで解消せよ`,
   ];
+}
+
+function asRecord(value: unknown): UnknownRecord | null {
+  return typeof value === "object" && value !== null && !Array.isArray(value)
+    ? (value as UnknownRecord)
+    : null;
+}
+
+function textValue(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
+
+function stringList(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
+function canonicalize(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  const record = asRecord(value);
+  if (!record) return value;
+  return Object.fromEntries(
+    Object.keys(record)
+      .sort()
+      .map((key) => [key, canonicalize(record[key])]),
+  );
+}
+
+/** review_binding作成側とloaderが共有するreview entry semantic digest。 */
+export function computeCarryReviewSemanticDigest(review: unknown): string {
+  return `sha256:${createHash("sha256")
+    .update(JSON.stringify(canonicalize(review)), "utf8")
+    .digest("hex")}`;
+}
+
+function sha256File(path: string): string {
+  return `sha256:${createHash("sha256").update(readFileSync(path)).digest("hex")}`;
+}
+
+function normalizeGreenCommands(value: unknown): CarryReviewEntry["green_commands"] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((raw) => {
+    const command = asRecord(raw);
+    if (!command) return [];
+    return [
+      {
+        command: textValue(command.command),
+        ...(typeof command.completed_at === "string" ? { completed_at: command.completed_at } : {}),
+        exit_code: typeof command.exit_code === "number" ? command.exit_code : -1,
+        evidence_path: textValue(command.evidence_path),
+        output_digest: textValue(command.output_digest),
+      },
+    ];
+  });
+}
+
+function normalizeReviews(value: unknown): CarryReviewEntry[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((raw) => {
+    const review = asRecord(raw);
+    if (!review) return [];
+    return [
+      {
+        reviewer: textValue(review.reviewer),
+        reviewed_at: textValue(review.reviewed_at),
+        ...(typeof review.tests_green_at === "string"
+          ? { tests_green_at: review.tests_green_at }
+          : {}),
+        verdict: textValue(review.verdict),
+        semantic_digest: computeCarryReviewSemanticDigest(review),
+        green_commands: normalizeGreenCommands(review.green_commands),
+      },
+    ];
+  });
+}
+
+function normalizeCarryEntry(value: unknown): LeftArmCarryEntry | null {
+  const entry = asRecord(value);
+  const findingEvidence = asRecord(entry?.finding_evidence);
+  const target = asRecord(entry?.pushback_target);
+  const repass = asRecord(entry?.gate_repass);
+  if (!entry || !findingEvidence || !target || !repass) return null;
+  return {
+    carry_id: textValue(entry.carry_id),
+    finding_kind: textValue(entry.finding_kind),
+    summary: textValue(entry.summary),
+    detected_at: textValue(entry.detected_at),
+    finding_evidence: {
+      path: textValue(findingEvidence.path),
+      digest: textValue(findingEvidence.digest),
+    },
+    pushback_target: { layer: textValue(target.layer), gate: textValue(target.gate) },
+    affected_artifacts: stringList(entry.affected_artifacts),
+    resolution_plan_id: textValue(entry.resolution_plan_id),
+    gate_repass: {
+      gate: textValue(target.gate),
+      command: textValue(repass.command),
+      completed_at: textValue(repass.completed_at),
+      exit_code: typeof repass.exit_code === "number" ? repass.exit_code : -1,
+      evidence_path: textValue(repass.evidence_path),
+      output_digest: textValue(repass.output_digest),
+    },
+    resolved:
+      repass.exit_code === 0 &&
+      typeof repass.completed_at === "string" &&
+      repass.completed_at.length > 0,
+  };
+}
+
+function normalizeCarry(value: unknown): LeftArmCarryDecision | undefined {
+  const carry = asRecord(value);
+  const binding = asRecord(carry?.review_binding);
+  if (!carry || !binding) return undefined;
+  const rawEntries = Array.isArray(carry.entries) ? carry.entries : [];
+  return {
+    schema_version: textValue(carry.schema_version),
+    decision: textValue(carry.decision),
+    assessed_at: textValue(carry.assessed_at),
+    review_binding: {
+      reviewer: textValue(binding.reviewer),
+      reviewed_at: textValue(binding.reviewed_at),
+      evidence_digest: textValue(binding.evidence_digest),
+    },
+    entries: rawEntries
+      .map(normalizeCarryEntry)
+      .filter((entry): entry is LeftArmCarryEntry => !!entry),
+  };
+}
+
+function normalizePlanRef(value: string): string {
+  const name = basename(value).replace(/\.md$/, "");
+  return name.startsWith("PLAN-") ? name : value;
+}
+
+function normalizePlan(raw: UnknownRecord): LeftArmCarryPlan {
+  const dependencies = asRecord(raw.dependencies);
+  const generates = Array.isArray(raw.generates) ? raw.generates : [];
+  const planId = textValue(raw.plan_id);
+  return {
+    plan_id: planId,
+    kind: textValue(raw.kind),
+    layer: textValue(raw.layer),
+    status: textValue(raw.status),
+    created: textValue(raw.created),
+    ...(typeof raw.updated === "string" ? { updated: raw.updated } : {}),
+    dependencies_requires: stringList(dependencies?.requires).map(normalizePlanRef),
+    generates: generates.flatMap((item) => {
+      const record = asRecord(item);
+      return record && typeof record.artifact_path === "string" ? [record.artifact_path] : [];
+    }),
+    review_evidence: normalizeReviews(raw.review_evidence),
+    ...(LEFT_ARM_CARRY_LEGACY_PLAN_IDS.has(planId) ? { legacy_pinned: true } : {}),
+    ...(raw.left_arm_carry !== undefined
+      ? { left_arm_carry: normalizeCarry(raw.left_arm_carry) }
+      : {}),
+  };
+}
+
+function frontmatter(text: string): UnknownRecord | null {
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!match) return null;
+  const parsed = parseYaml(match[1]);
+  return asRecord(parsed);
+}
+
+function walkFiles(root: string): string[] {
+  if (!existsSync(root)) return [];
+  const files: string[] = [];
+  for (const entry of readdirSync(root)) {
+    const path = join(root, entry);
+    if (statSync(path).isDirectory()) files.push(...walkFiles(path));
+    else files.push(path);
+  }
+  return files;
+}
+
+function malformedPlan(file: string): LeftArmCarryPlan {
+  return {
+    plan_id: `MALFORMED:${basename(file)}`,
+    kind: "impl",
+    layer: "L7",
+    status: "completed",
+    created: "9999-12-31",
+    dependencies_requires: [],
+    generates: [],
+    review_evidence: [],
+  };
+}
+
+/** docs/plansのproduction loader。parse/read不能をsynthetic enforced PLANへ変換してfail-closeする。 */
+export function loadLeftArmCarryLogInput(repoRoot: string): LeftArmCarryLogInput {
+  const plansRoot = join(repoRoot, "docs", "plans");
+  const plans: LeftArmCarryPlan[] = [];
+  for (const file of walkFiles(plansRoot).filter((path) => path.endsWith(".md"))) {
+    try {
+      const parsed = frontmatter(readFileSync(file, "utf8"));
+      if (parsed) plans.push(normalizePlan(parsed));
+      else if (/PLAN-L7-|PLAN-L6-|PLAN-L5-|PLAN-L4-/.test(basename(file)))
+        plans.push(malformedPlan(file));
+    } catch {
+      plans.push(malformedPlan(file));
+    }
+  }
+
+  const referenced = new Set<string>();
+  for (const plan of plans) {
+    for (const path of plan.generates) referenced.add(path);
+    for (const entry of plan.left_arm_carry?.entries ?? []) {
+      referenced.add(entry.finding_evidence.path);
+      referenced.add(entry.gate_repass.evidence_path);
+      for (const path of entry.affected_artifacts) referenced.add(path);
+    }
+  }
+  const fileDigests = new Map<string, string>();
+  for (const path of referenced) {
+    if (!isCanonicalPath(path)) continue;
+    const absolute = join(repoRoot, path);
+    try {
+      if (statSync(absolute).isFile()) fileDigests.set(path, sha256File(absolute));
+    } catch {
+      // analyzerがmissing evidenceとしてfail-closeする。
+    }
+  }
+  const testDesignRoot = join(repoRoot, "docs", "test-design");
+  const testDesignArtifacts = new Set(
+    walkFiles(testDesignRoot).map((path) => relative(repoRoot, path).replaceAll("\\", "/")),
+  );
+  return { plans, fileDigests, testDesignArtifacts };
 }
