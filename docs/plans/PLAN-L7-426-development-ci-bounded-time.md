@@ -37,7 +37,7 @@ review_evidence:
   - reviewer: codex-ci-timeout-final-reviewer
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-11T18:47:15Z"
-    tests_green_at: "2026-07-11T18:46:45Z"
+    tests_green_at: "2026-07-11T18:47:00Z"
     verdict: approve
     worker_model: gpt-5
     reviewer_model: gpt-5.6
