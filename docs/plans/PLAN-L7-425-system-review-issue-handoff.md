@@ -8,7 +8,7 @@ status: draft
 route_mode: incident
 entry_signals:
   - "po_directive:2026-07-12 PO 指示「システム全体を見直して、問題提起してプランに残して別レーンで動いている Codex が引き継いで実装できる状態にして」"
-  - "po_directive:2026-07-12 PO が AskUserQuestion で「自走化する」を明示選択 — closure close_ready の承認境界を機械 evidence（review-bundle digest / tests green / dry-run 成功）充足時の自走 approve へ変更。不可逆系（PLAN-L7-146 公開 / PLAN-M-02 cutover / external publish）の human 承認は維持。選択肢と条件は提示のうえの選択であり、汎用指示の拡大解釈ではない"
+  - "po_directive:2026-07-12 PO が AskUserQuestion で「自走化する」を明示選択 — closure close_ready の承認境界を機械 evidence（review-bundle digest / tests green / dry-run 成功）充足時の自走 approve へ変更。後戻り不能系（PLAN-L7-146 公開 / PLAN-M-02 cutover / external publish）の human 承認は維持。選択肢と条件は提示のうえの選択であり、汎用指示の拡大解釈ではない"
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
@@ -87,15 +87,10 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   （status=refresh_approval_draft, valid=false）を報告している。
 - 対応（machine 境界のみ。approval 361 件の close_ready 判断は human/approval gate であり本 PLAN の
   範囲外として PO へ残す）:
-  1. approval draft を refresh する:
-
-     ```bash
-     helix closure evidence-approval-draft --action collect_evidence --limit 1 \
-       --probe-record .helix/tmp/closure/collect_evidence-probe-record.json \
-       --out .helix/tmp/closure/collect_evidence-approval-draft-refresh-b21ed15e46ff.yml \
-       --summary-json
-     ```
-
+  1. approval draft を refresh する。**出力ファイル名の digest は machine 対象の遷移で変わる**
+     （初回観測時は PLAN-L7-424 起因の `…-b21e….yml` だったが、I2 完遂で対象は本 PLAN 自身へ
+     遷移済み）。固定名を使わず、実行時に `helix doctor` の `recovery-handoff-gate` 行が提示する
+     現行 command（`--out …-refresh-<現行digest>.yml`）をそのまま実行する。
   2. I2 完遂後に collect_evidence を実行する:
 
      ```bash
@@ -176,7 +171,7 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 
 ### I8: closure 承認境界の自走化（PO 明示選択 2026-07-12）
 
-- 背景: charter §3（要件凍結後は完全自動、停止は gate 赤/不可逆のみ）と HVM-COMP-03
+- 背景: charter §3（要件凍結後は完全自動、停止は gate 赤/後戻り不能のみ）と HVM-COMP-03
   （accepted 化は approval record 必須）が緊張関係にあり、close_ready 361 件が
   human approval で滞留している。GitHub merge は PLAN-L7-418 で「CI green のみ、人間 approve
   不要」を PO 承認済みであり、その延長として **closure も機械 evidence 充足時は自走 approve
@@ -184,16 +179,16 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 - 対応（実装は Codex）:
   1. 自走条件を機械判定にする: review-bundle digest 一致 + 対象 PLAN の tests/gates green +
      `helix closure apply --dry-run` 成功を auto-approve 条件として実装する。
-  2. **不可逆操作の human 境界は維持**: version-up activation（PLAN-L7-146）、cutover
+  2. **後戻り不能操作の human 境界は維持**: version-up activation（PLAN-L7-146）、cutover
      （PLAN-M-02）、external publish、charter §4 P8 該当操作は自走対象から除外する。
   3. HVM-COMP-03 の該当判断を「機械 evidence 条件付き自走」へ更新する（adoption-matrix の
      correction note + 本 PLAN 参照。silent overwrite しない）。
-  4. regression test: 条件充足で auto-approve が通る / 不可逆系 PLAN が混在すると fail-close に
+  4. regression test: 条件充足で auto-approve が通る / 後戻り不能系 PLAN が混在すると fail-close に
      なる、の両 fixture を追加する。
   5. 実装後、滞留中の close_ready 361 件を新 route で消化し、recovery runway の解消
      （current-location needs_recovery → 正常）まで進める。
 - 受け入れ: regression test green、361 件の消化後 `vmodel-fit` の current-location 矛盾が解消、
-  不可逆系（L7-146 / M-02）が引き続き approval pending のまま残っていること。
+  後戻り不能系（L7-146 / M-02）が引き続き approval pending のまま残っていること。
 
 ## Schedule
 
@@ -214,7 +209,7 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   approval 361 件と l14 blocked-human 2 件は PO 境界として明示的に残す。
 - design-coverage catalog 記述ミス 4 件の修正と na 6 件の根拠付き na 化（I4）。
 - closure 自走 approve の regression test green と close_ready 361 件の消化、
-  不可逆系 approval の維持確認（I8。実装ファイル確定時に `generates:` へ追記）。
+  後戻り不能系 approval の維持確認（I8。実装ファイル確定時に `generates:` へ追記）。
 - `plan use` ID 検証の regression test green と orphan 増加停止（I5）。
 - improvement-backlog の close 候補 25 件（(d)15 + (a)status 未更新 10）の status 更新と
   gate green 維持（I7）。

@@ -70,9 +70,9 @@ catalog = `docs/design/design-catalog.yaml`（122 項目）。
   system-test-design / acceptance-test-design。catalog note は「設計書そのものは無い」と
   記すが、`docs/test-design/harness/` の L7/L8/L9/L3 各 test-design（status: confirmed）が
   実在し矛盾。catalog の status を done へ更新する（coverage 43%→約 47% に改善見込み）。
-- **na 化 6 件（訂正 2026-07-12: PO escalate 不要、AI 判断可）**: server-infra /
-  capacity-autoscale / identity-provisioning / compliance-mapping / api-portal-sdk /
-  webhook-event-delivery の各 design。当初 PO 境界として escalate したが、L0 charter
+- **na 化 6 件（訂正 2026-07-12: PO escalate 不要、AI 判断可）**: `server-infra` /
+  `capacity-autoscale` / `identity-provisioning` / `compliance-mapping` / `api-portal-sdk` /
+  `webhook-event-delivery` の各 design。当初 PO 境界として escalate したが、L0 charter
   （confirmed）が「超個人開発システム」の製品境界を定義済みであり、catalog の na 化は可逆な
   文書操作で charter §4 P8 の escalation 境界（本番影響/認証認可/決済/PII/secret/license/
   schema migration/破壊的操作/外部 API・infra 変更）のいずれにも該当しない。network-design
