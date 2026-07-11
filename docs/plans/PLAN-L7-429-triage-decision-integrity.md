@@ -43,12 +43,12 @@ dependencies:
 review_evidence:
   - reviewer: codex-active-plan-final-reviewer
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-11T20:21:44Z"
-    tests_green_at: "2026-07-11T20:21:44Z"
+    reviewed_at: "2026-07-11T20:40:19Z"
+    tests_green_at: "2026-07-11T20:39:57Z"
     verdict: approve_after_fixes
     worker_model: gpt-5
     reviewer_model: gpt-5.6
-    scope: "実装・敵対fixture・PLAN固有Vペア・doctor hard gateを4巡監査しblocker/high 0。"
+    scope: "実装・敵対fixture・PLAN固有Vペア・doctor hard gate・L6 exact contractを再監査しblocker/high 0。"
     green_commands:
       - { kind: unit_test, command: "bunx vitest run tests/triage-decision-integrity.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:21:44Z", evidence_path: tests/triage-decision-integrity.test.ts, output_digest: "sha256:33ed5bf76eb85c8cf725d63889f8173733094850ae13dcbafd604bc6664c9be4" }
       - { kind: unit_test, command: "bunx vitest run tests/slow/doctor.test.ts -t U-TRIAGE-012", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:19:09Z", evidence_path: tests/slow/doctor.test.ts, output_digest: "sha256:d92d2265507772c9a9f85a42c19abe3467377d6366c7fd492ec565deced164d7" }

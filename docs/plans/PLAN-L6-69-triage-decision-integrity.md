@@ -29,12 +29,12 @@ dependencies:
 review_evidence:
   - reviewer: codex-active-plan-final-reviewer
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-11T20:21:44Z"
-    tests_green_at: "2026-07-11T20:21:44Z"
+    reviewed_at: "2026-07-11T20:40:19Z"
+    tests_green_at: "2026-07-11T20:39:57Z"
     verdict: approve_after_fixes
     worker_model: gpt-5
     reviewer_model: gpt-5.6
-    scope: "triage exact pin、同時縮退、未列挙10件authority、terminal gate、doctor配線を4巡監査しblocker/high 0。"
+    scope: "triage exact pin、同時縮退、未列挙10件authority、terminal gate、doctor配線、L6 exact contractを再監査しblocker/high 0。"
     green_commands:
       - { kind: unit_test, command: "bunx vitest run tests/triage-decision-integrity.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:21:44Z", evidence_path: tests/triage-decision-integrity.test.ts, output_digest: "sha256:33ed5bf76eb85c8cf725d63889f8173733094850ae13dcbafd604bc6664c9be4" }
       - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T20:21:44Z", evidence_path: src/lint/triage-decision-integrity.ts, output_digest: "sha256:b22b2fc1692230f659b20acc0db4af0d9894dd8c1fc6d2dbda99892c2d36236c" }
