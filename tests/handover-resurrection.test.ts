@@ -569,7 +569,10 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
 
     const regressions = analyze(
       [
-        { path: "src/audit/handover-resurrection-source.ts", content: 'const retired = "helix handover";' },
+        {
+          path: "src/audit/handover-resurrection-source.ts",
+          content: 'const retired = "helix handover";',
+        },
         {
           path: "src/lint/handover-cutover-approval.ts",
           content:
@@ -586,9 +589,18 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
     expect(regressions.ok).toBe(false);
     expect(regressions.findings).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ path: "src/audit/handover-resurrection-source.ts", category: "generated_surface" }),
-        expect.objectContaining({ path: "src/lint/handover-cutover-approval.ts", category: "command" }),
-        expect.objectContaining({ path: "tests/handover-cutover-approval-copy.test.ts", category: "generated_surface" }),
+        expect.objectContaining({
+          path: "src/audit/handover-resurrection-source.ts",
+          category: "generated_surface",
+        }),
+        expect.objectContaining({
+          path: "src/lint/handover-cutover-approval.ts",
+          category: "command",
+        }),
+        expect.objectContaining({
+          path: "tests/handover-cutover-approval-copy.test.ts",
+          category: "generated_surface",
+        }),
       ]),
     );
   });
