@@ -286,6 +286,8 @@ import {
   type EgressPolicy,
 } from "./runtime/security-credential-egress-guard";
 import {
+  activatePlan,
+  clearActivePlan,
   dispatch,
   nodeDeps,
   parseSessionEvents,
@@ -293,7 +295,6 @@ import {
   resolveActivePlan,
   type SessionHookInput,
   safeName,
-  setActivePlan,
 } from "./runtime/session-log";
 import {
   buildSkillEfficacyEvaluationReport,
@@ -3775,8 +3776,21 @@ plan
       process.exitCode = 1;
       return;
     }
-    setActivePlan(opts.clear ? null : (id as string), nodeDeps(process.cwd(), gitBranch, gitHead));
-    process.stdout.write(opts.clear ? "current-plan: cleared\n" : `current-plan: ${id}\n`);
+    if (opts.clear) {
+      clearActivePlan(nodeDeps(process.cwd(), gitBranch, gitHead));
+      process.stdout.write("current-plan: cleared\n");
+      return;
+    }
+    const selection = activatePlan(id as string, nodeDeps(process.cwd(), gitBranch, gitHead));
+    if (!selection.ok) {
+      process.stderr.write(`plan use: unknown PLAN ID: ${id}\n`);
+      if (selection.candidates.length > 0) {
+        process.stderr.write(`candidates: ${selection.candidates.join(", ")}\n`);
+      }
+      process.exitCode = 1;
+      return;
+    }
+    process.stdout.write(`current-plan: ${selection.planId}\n`);
   });
 
 plan
@@ -3803,7 +3817,7 @@ plan
         memoryRef: null,
         recordedAt: new Date().toISOString(),
       },
-      { clearActivePlan: () => setActivePlan(null, sessionDeps) },
+      { clearActivePlan: () => clearActivePlan(sessionDeps) },
     );
     if (!result.ok || !result.published) {
       process.stderr.write(

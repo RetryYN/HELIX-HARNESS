@@ -1,6 +1,8 @@
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { selectActivePlanId } from "../src/policy/active-plan-selection";
 import {
+  activatePlan,
   activePlanStale,
   activePlanUpdatedAt,
   compressPlanDigest,
@@ -12,11 +14,11 @@ import {
   recordEvent,
   recordSkillInjectionAttempt,
   resolveActivePlan,
+  resolveCanonicalEventPlan,
   type SessionEvent,
   type SessionHookInput,
   type SessionLogDeps,
   sanitize,
-  setActivePlan,
   summarize,
 } from "../src/runtime/session-log";
 
@@ -41,6 +43,87 @@ const statePath = join("/repo", ".helix", "state", "current-plan");
 const sessionPath = (sid: string) => join("/repo", ".helix", "logs", "session", `${sid}.jsonl`);
 
 describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
+  it("U-APSEL-001: canonical PLAN IDのexact matchだけを受理する", () => {
+    expect(
+      selectActivePlanId("PLAN-L7-427-active-plan-selection", [
+        "PLAN-L7-425-system-review-issue-handoff",
+        "PLAN-L7-427-active-plan-selection",
+      ]),
+    ).toEqual({ ok: true, planId: "PLAN-L7-427-active-plan-selection" });
+  });
+
+  it("U-APSEL-002: 截断IDを拒否してprefix候補を決定論的に返す", () => {
+    expect(
+      selectActivePlanId("PLAN-L7-42", [
+        "PLAN-L7-427-active-plan-selection",
+        "PLAN-L7-425-system-review-issue-handoff",
+        "PLAN-L7-426-development-ci-bounded-time",
+      ]),
+    ).toEqual({
+      ok: false,
+      reason: "unknown",
+      candidates: [
+        "PLAN-L7-425-system-review-issue-handoff",
+        "PLAN-L7-426-development-ci-bounded-time",
+        "PLAN-L7-427-active-plan-selection",
+      ],
+    });
+  });
+
+  it("U-APSEL-003: 空registry/空IDをfail-closeする", () => {
+    expect(selectActivePlanId("PLAN-L7-427", [])).toEqual({
+      ok: false,
+      reason: "unknown",
+      candidates: [],
+    });
+    expect(selectActivePlanId("  ", ["PLAN-L7-427-active-plan-selection"])).toEqual({
+      ok: false,
+      reason: "empty",
+      candidates: [],
+    });
+  });
+
+  it("U-APSEL-004: CLI/commit writer共通境界はinvalid時にmarkerを変更しない", () => {
+    const deps = mockDeps({ canonicalPlanIds: () => ["PLAN-L7-427-active-plan-selection"] });
+    deps.files.set(statePath, "PLAN-L7-427-active-plan-selection\nold");
+
+    expect(activatePlan("PLAN-L7-42", deps)).toMatchObject({ ok: false, reason: "unknown" });
+    expect(deps.files.get(statePath)).toBe("PLAN-L7-427-active-plan-selection\nold");
+    expect(activatePlan("PLAN-L7-427-active-plan-selection", deps)).toEqual({
+      ok: true,
+      planId: "PLAN-L7-427-active-plan-selection",
+    });
+    expect(deps.files.get(statePath)).toContain("2026-06-02T00:00:00.000Z");
+
+    const invalidEventDeps = mockDeps({
+      canonicalPlanIds: () => ["PLAN-L7-427-active-plan-selection"],
+    });
+    invalidEventDeps.files.set(statePath, "PLAN-L7-42\nold");
+    expect(resolveCanonicalEventPlan(undefined, invalidEventDeps)).toBeNull();
+    expect(resolveCanonicalEventPlan("PLAN-L7-42", invalidEventDeps)).toBeNull();
+    expect(resolveCanonicalEventPlan("PLAN-L7-427-active-plan-selection", invalidEventDeps)).toBe(
+      "PLAN-L7-427-active-plan-selection",
+    );
+  });
+
+  it("commit inferenceは3桁PLAN IDを截断せず中央activationへ渡す", () => {
+    const deps = mockDeps({
+      canonicalPlanIds: () => ["PLAN-L7-427-active-plan-selection"],
+      headCommit: () => "abc123",
+    });
+    onPostToolUse(
+      {
+        session_id: "s-commit",
+        tool_name: "Bash",
+        tool_input: {
+          command: 'git commit -m "fix: close PLAN-L7-427-active-plan-selection"',
+        },
+      },
+      deps,
+    );
+    expect(resolveActivePlan(deps)).toBe("PLAN-L7-427-active-plan-selection");
+  });
+
   it("U-SLOG-001: resolveActivePlan = state 優先 / branch fallback / 解決不能 null", () => {
     const withState = mockDeps({ currentBranch: () => "add/session-log" });
     withState.files.set(statePath, "PLAN-L7-01-session-log\n");
@@ -279,9 +362,9 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
   });
 
   // U-SLOG-006: IMP-078 gap② active-plan marker stale + gap③ commit hash 捕捉。
-  it("U-SLOG-006: setActivePlan は updated_at を 2 行目に刻み activePlanStale が検知 (1 行目は不変)", () => {
-    const deps = mockDeps();
-    setActivePlan("PLAN-L7-16-module-drift", deps);
+  it("U-SLOG-006: activatePlan は updated_at を 2 行目に刻み activePlanStale が検知 (1 行目は不変)", () => {
+    const deps = mockDeps({ canonicalPlanIds: () => ["PLAN-L7-16-module-drift"] });
+    expect(activatePlan("PLAN-L7-16-module-drift", deps).ok).toBe(true);
     // 1 行目 = plan_id (後方互換) / 2 行目 = updated_at
     expect(resolveActivePlan(deps)).toBe("PLAN-L7-16-module-drift");
     expect(activePlanUpdatedAt(deps)).toBe("2026-06-02T00:00:00.000Z");
