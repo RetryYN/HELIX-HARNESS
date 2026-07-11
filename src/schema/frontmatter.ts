@@ -110,6 +110,16 @@ export const verificationBindingSchema = z
   })
   .strict();
 
+/** authority exemption解消を対象findingと機械結合する証拠。 */
+export const resolvesAuthoritySchema = z
+  .object({
+    authority_path: z.literal("config/plan-specific-vpair-binding-authority.json"),
+    fingerprint: z.string().regex(/^sha256:[a-f0-9]{64}$/),
+    target_plan_id: planIdSchema,
+    reason: z.string().min(1),
+  })
+  .strict();
+
 /** §1.9 dependencies */
 export const dependenciesSchema = z.object({
   parent: z.string().nullable().default(null),
@@ -140,6 +150,7 @@ const frontmatterBaseSchema = z.object({
   agent_slots: z.array(agentSlotSchema).min(1, "agent_slots は 1 件以上 (§1.8)"),
   generates: z.array(generatesEntrySchema).default([]),
   verification_bindings: z.array(verificationBindingSchema).optional(),
+  resolves_authority: resolvesAuthoritySchema.optional(),
   dependencies: dependenciesSchema,
   /** §6.8.2 Issue 起点スパイン: 解決対象 GitHub Issue 番号 (任意、Phase 0-B で recommended)。
    *  feature/hotfix branch の close 漏れ機械検知 + PR `Closes #NN` 連携に使う。 */

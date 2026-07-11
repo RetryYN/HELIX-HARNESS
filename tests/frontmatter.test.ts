@@ -55,6 +55,26 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     }
   });
 
+  // PLAN-L7-422-plan-specific-vpair-binding
+  it("U-PSPB-027: resolves_authority はtyped metadataだけを許す", () => {
+    const value = {
+      authority_path: "config/plan-specific-vpair-binding-authority.json",
+      fingerprint: `sha256:${"a".repeat(64)}`,
+      target_plan_id: "PLAN-L7-309-fe-roster-orchestration",
+      reason: "verification_bindings_absent",
+    };
+    expect(frontmatterSchema.safeParse(implBase({ resolves_authority: value })).success).toBe(true);
+    for (const invalid of [
+      { ...value, authority_path: "config/other.json" },
+      { ...value, fingerprint: "sha256:short" },
+      { ...value, target_plan_id: "untyped" },
+      { ...value, unknown: true },
+    ])
+      expect(frontmatterSchema.safeParse(implBase({ resolves_authority: invalid })).success).toBe(
+        false,
+      );
+  });
+
   it("github_issue_id は optional・正の整数のみ (§6.8.2 Issue スパイン)", () => {
     expect(frontmatterSchema.safeParse(implBase()).success).toBe(true); // 省略可
     const defaulted = frontmatterSchema.safeParse(implBase({ status: undefined }));
