@@ -66,10 +66,9 @@ close 処理は backlog の status 更新（observed/triaged → verified 等）
 catalog = `docs/design/design-catalog.yaml`（122 項目）。
 集計: (a) status 更新漏れ 4 / (b) 未着手 53（うち na 化候補 6 は PO 境界） / (c) 即 na 化 0。
 
-- **(a) catalog 記述ミス 4 件（即修正可）**: unit-test-design / integration-test-design /
-  system-test-design / acceptance-test-design。catalog note は「設計書そのものは無い」と
-  記すが、`docs/test-design/harness/` の L7/L8/L9/L3 各 test-design（status: confirmed）が
-  実在し矛盾。catalog の status を done へ更新する（coverage 43%→約 47% に改善見込み）。
+- **(a) catalog 記述ミス 3 件（再監査で是正）**: unit-test-design / integration-test-design /
+  acceptance-test-design は現行confirmed正本が実在するためdoneへ更新する。system-test-designは
+  `L9-system-test-design.md`がlegacy shimであり、新規PLANの現行正本として扱えないためtodoを維持する。
 - **na 化候補 6 件（PO 判断境界）**: server-infra / capacity-autoscale / identity-provisioning /
   compliance-mapping / api-portal-sdk / webhook-event-delivery の各 design。
   「HELIX はローカル CLI 個人開発ハーネスで当該関心事を持たない」という network-design 等と

@@ -110,12 +110,12 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   items=122)`。HEAD 単独 worktree では発生しないため、FE roster レーンの新規設計 doc が todo を
   押し上げている可能性が高い。merge 後 HEAD で再計測し、violation が残る場合のみ本項を実施する。
 - **triage 実施済み（2026-07-12、全件結果 = `docs/reference/system-review-triage-2026-07-12.md` §2）**:
-  (a) catalog 記述ミスによる status 更新漏れ 4 件（test-design 4 層。実在 confirmed doc と矛盾、
-  即修正可）、(b) 真正未着手 53 件（うち na 化候補 6 件は製品境界の再定義にあたるため PO 境界）、
+  (a) catalog 記述ミスによる status 更新漏れ 3 件（unit/integration/acceptance。systemはlegacy shimのため
+  todo維持）、(b) 真正未着手 54 件（うち na 化候補 6 件は製品境界の再定義にあたるため PO 境界）、
   scrum 系 8 件は検出ロジックだけ実装済みで対象成果物が repo に無い接続不足。
-- 対応: (a) 4 件の catalog status 修正 → (b) の必要性順 PLAN 起票判断 → na 候補 6 件を PO へ
+- 対応: (a) 3 件の catalog status 修正 → (b) の必要性順 PLAN 起票判断 → na 候補 6 件を PO へ
   escalate。全消化を本 PLAN で claim しない（`coding ≠ substance`）。
-- 受け入れ: (a) 4 件修正で design-coverage 数値が改善し、na 候補 6 件の PO 判断が escalation
+- 受け入れ: (a) 3 件修正で design-coverage 数値が改善し、na 候補 6 件の PO 判断が escalation
   として記録されている。coverage 全消化は受け入れ条件にしない。
 
 ### I5: hook orphan の真因修正（`plan use` の ID 未検証バグ — 実装項目へ格上げ）
@@ -144,8 +144,10 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 
 - **triage 実施済み（annex §1）**: (a) 対応 PLAN 既存・実装済 91 件（うち 10 件は backlog の
   status 未更新）、(b) PLAN 起票要の実害 30 件（annex に全件表）、(c) PO 境界 1 件（IMP-031）、
-  (d) 陳腐化・重複 close 候補 15 件（実装実在を確認済み）。
-- 対応: (d) 15 件 + (a) の status 未更新 10 件を `docs/improvement-backlog.md` の status 更新で
+  (d) 陳腐化・重複 close 候補14件（再監査でIMP-118は残差ありと判明）。
+- 対応: (d) 14件を`verified`へ更新する。IMP-118はIMP-148残差によりtriagedを維持する。
+  (a) のstatus未更新10件はIDが未列挙のため、個別IDと証拠が揃うまで更新禁止とし、
+  `docs/improvement-backlog.md` の status 更新で
   close する（trace に根拠を追記）。(b) 30 件は必要性順に PLAN 起票判断（一括起票しない）。
   (c) は PO へ escalate。
 - 受け入れ: backlog の status 更新が完了し `improvement-backlog` gate green 維持。(b) の起票判断
@@ -187,8 +189,8 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
   approval 361 件と l14 blocked-human 2 件は PO 境界として明示的に残す。
 - design-coverage catalog 記述ミス 4 件の修正と na 候補 6 件の PO escalation 記録（I4）。
 - `plan use` ID 検証の regression test green と orphan 増加停止（I5）。
-- improvement-backlog の close 候補 25 件（(d)15 + (a)status 未更新 10）の status 更新と
-  gate green 維持（I7）。
+- improvement-backlog の実証済みclose候補14件のstatus更新、IMP-118残差維持、未列挙10件の
+  completion禁止とgate green維持（I7）。
 - carry log lint の新設と regression test green（I6。実装ファイル確定時に `generates:` へ
   source_module / test_code を追記する）。
 - 各 step の green command を review_evidence に digest 付きで記録し、cross-runtime review
