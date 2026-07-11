@@ -114,8 +114,11 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 
 ### I5: 衛生項目（低優先・観測のみ）
 
-- `drive-db-registration` の legacy_hook_orphans=4561: gate は OK だが orphan が累積している。
-  掃除 or 恒久 allowlist の方針判断を I4 triage と同時に検討する（判断のみ、実装は別 PLAN）。
+- `drive-db-registration` の legacy_hook_orphans: gate は OK だが orphan が**現在も増加し続けている**
+  （2026-07-12 の同一日内観測で 4561 → 4600）。つまり過去残渣ではなく、現行 hook event の一部が
+  drive/PLAN へ紐付かず orphan として蓄積される経路が live で存在する。掃除だけでなく
+  「どの event 種別が orphan 化しているか」の分類と、registration 経路の補修 or 恒久 allowlist の
+  方針判断を I4 triage と同時に行う（判断のみ、実装は別 PLAN）。
 - `l14-close-audit` open=7（blocked-human=2）: human 境界 2 件は PO へのエスカレーション対象として
   残す。AI 側で進められる partial 5 件があれば I4 と同様に分類する。
 
