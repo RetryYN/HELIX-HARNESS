@@ -1,7 +1,7 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 plan: docs/plans/PLAN-L6-69-triage-decision-integrity.md
 ---
