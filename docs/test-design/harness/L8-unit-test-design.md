@@ -120,7 +120,7 @@ PLAN-REVERSE-344がR4へmergeされるまで本節は設計oracleであり、実
 | U-HRET-012 | resurrection | complete後の旧CLI/path/import/writer/CURRENT再出現をhard fail |
 | U-HRET-013 | fresh / brownfield | 旧surfaceなしでactive PLAN・blocker・next authority・feedbackを再開 |
 | U-HRET-014 | residual allowlist | provider/operations/archive以外のlive handover residualを0とする |
-| U-HRET-015 | action-binding cutover approval | PO/approved HEAD/typed manifest/target tree/generated baseline/dry-run digestを再計算し、enforce authorityと同一decision、期限内`appliedAt`、terminal journal digestへ束縛する。apply前の期限切れ、digest/decision/HEAD drift、terminal欠落を拒否する。`approved_applied`は適用時刻が期限内なら将来時刻で再失効せず、semantic targetのfinding 0と実resurrection analyzerのactual + 4 projection finding 0をANDする |
+| U-HRET-015 | action-binding cutover approval | PO/approved HEAD/typed manifest/target tree/generated baseline/dry-run digestを再計算し、enforce authorityと同一decision、期限内`appliedAt`、terminal journal digestへ束縛する。apply前の期限切れ、digest/decision/HEAD drift、terminal欠落を拒否する。`approved_applied`は適用時刻が期限内なら将来時刻で再失効せず、semantic targetのfinding 0と実resurrection analyzerのactual + 4 projection finding 0をANDする。retirement meta source/testの除外はexact path・typed role marker・許可finding型の積に限定し、類似path、marker欠落、command/symbol/writer混入は引き続fail-closeする |
 
 `U-REGEXP-004` は削除済み `src/handover/**` を再 import せず、`U-HRET-001..015` citation と
 `handover-retirement` / `handover-resurrection` lint import の積を direct regression coverage として認識する。

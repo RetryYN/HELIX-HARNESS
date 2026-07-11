@@ -66,7 +66,7 @@ review_evidence:
       - kind: typecheck
         command: "bunx tsc --noEmit"
         runner: bun
-        scope: repository
+        scope: full
         exit_code: 0
         completed_at: "2026-07-11T21:38:43+09:00"
         evidence_path: tests/skill-scaffold-cli.test.ts

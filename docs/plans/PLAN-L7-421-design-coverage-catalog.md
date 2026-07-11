@@ -62,7 +62,7 @@ review_evidence:
       - kind: typecheck
         command: "bunx tsc --noEmit"
         runner: bun
-        scope: repository
+        scope: full
         exit_code: 0
         completed_at: "2026-07-11T21:40:19+09:00"
         evidence_path: src/lint/design-coverage.ts
