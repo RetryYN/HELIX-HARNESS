@@ -87,6 +87,7 @@ items:
       - docs/design/harness/L5-detailed-design/internal-processing.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
+      - docs/design/harness/L6-function-design/left-arm-carry-log.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
   - id: unit-test-design
