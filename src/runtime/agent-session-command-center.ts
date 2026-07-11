@@ -1,6 +1,8 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { defaultHarnessDbPath, openHarnessDb } from "../state-db";
 import { DEFAULT_STALE_MINUTES, type Slot } from "./agent-slots";
+import { type ContinuationDbView, queryLatestContinuationReadModel } from "./continuation";
 
 export const AGENT_SESSION_BOARD_SCHEMA_VERSION = "agent-session-command-center.v1";
 
@@ -13,9 +15,9 @@ export type AgentSessionBoardRow = {
   state: "active" | "stale" | "completed" | "failed" | "blocked" | "unknown";
   heartbeat: string | null;
   needs_you_reason: "none" | "stale_session" | "human_escalation" | "gate_red";
-  handover_path: string | null;
+  continuation_ref: string | null;
   next_action: string | null;
-  source: "agent_slot" | "handover_pointer";
+  source: "agent_slot" | "continuation_projection";
 };
 
 export type AgentSessionBoardReport = {
@@ -28,27 +30,25 @@ export type AgentSessionBoardReport = {
   source_command: string;
 };
 
-type HandoverPointerLike = {
-  active_plan?: string;
-  status?: string;
-  updated_at?: string;
-  latest_doc?: string;
-  outstanding?: {
-    items?: Array<{
-      planId?: string;
-      requiredActionJa?: string;
-      requiredAction?: string;
-      blockers?: string[];
-    }>;
-  };
-};
-
 function readJsonFile<T>(path: string): T | null {
   if (!existsSync(path)) return null;
   try {
     return JSON.parse(readFileSync(path, "utf8")) as T;
   } catch {
     return null;
+  }
+}
+
+function readLatestContinuation(repoRoot: string): ContinuationDbView | null {
+  const dbPath = defaultHarnessDbPath(repoRoot);
+  if (!existsSync(dbPath)) return null;
+  const db = openHarnessDb(dbPath, { repoRoot });
+  try {
+    return queryLatestContinuationReadModel(db);
+  } catch {
+    return null;
+  } finally {
+    db.close();
   }
 }
 
@@ -86,9 +86,8 @@ export function buildAgentSessionBoardReport(
   const now = options.now ?? new Date().toISOString();
   const nowMs = Date.parse(now);
   const staleMinutes = options.staleMinutes ?? DEFAULT_STALE_MINUTES;
-  const pointerPath = join(repoRoot, ".helix", "handover", "CURRENT.json");
   const slotPath = join(repoRoot, ".helix", "state", "agent-slots.json");
-  const pointer = readJsonFile<HandoverPointerLike>(pointerPath);
+  const continuation = readLatestContinuation(repoRoot);
   const slots = readJsonFile<Slot[]>(slotPath) ?? [];
   const rows: AgentSessionBoardRow[] = slots.map((slot) => {
     const state = Number.isNaN(nowMs) ? "unknown" : slotState(slot, nowMs, staleMinutes);
@@ -101,40 +100,35 @@ export function buildAgentSessionBoardReport(
       state,
       heartbeat: slot.released_at ?? slot.fired_at,
       needs_you_reason: state === "stale" ? "stale_session" : "none",
-      handover_path: null,
+      continuation_ref: null,
       next_action: null,
       source: "agent_slot",
     };
   });
 
-  const firstOutstanding = pointer?.outstanding?.items?.[0];
-  if (pointer) {
-    const blockers = firstOutstanding?.blockers ?? [];
+  if (continuation) {
     rows.push({
-      session_id: "handover-current",
-      role: "current-location",
-      task: pointer.status ?? null,
-      plan_id: firstOutstanding?.planId ?? pointer.active_plan ?? null,
+      session_id: continuation.sessionId,
+      role: "continuation",
+      task: "latest_projection",
+      plan_id: continuation.planId,
       worktree: repoRoot,
-      state: pointer.status === "in_progress" ? "active" : "blocked",
-      heartbeat: pointer.updated_at ?? null,
-      needs_you_reason: blockers.includes("human_approval_pending")
-        ? "human_escalation"
-        : pointer.status === "in_progress"
-          ? "none"
-          : "gate_red",
-      handover_path: pointer.latest_doc ?? ".helix/handover/CURRENT.json",
-      next_action: firstOutstanding?.requiredActionJa ?? firstOutstanding?.requiredAction ?? null,
-      source: "handover_pointer",
+      state: "active",
+      heartbeat: continuation.recordedAt,
+      needs_you_reason: "none",
+      continuation_ref: `${continuation.provenance}#${continuation.eventId}`,
+      next_action: continuation.nextAction,
+      source: "continuation_projection",
     });
   }
 
   const findings: AgentSessionBoardReport["findings"] = [];
-  if (!pointer) {
+  if (!continuation) {
     findings.push({
-      code: "handover_pointer_missing",
-      severity: "warning",
-      detail: ".helix/handover/CURRENT.json is missing or invalid",
+      code: "continuation_projection_missing",
+      severity: "error",
+      detail:
+        "harness.db has no readable continuation projection; slot-only degradation is forbidden",
     });
   }
   if (rows.some((row) => row.state === "stale")) {

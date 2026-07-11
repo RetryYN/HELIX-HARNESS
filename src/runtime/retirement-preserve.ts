@@ -325,6 +325,7 @@ export function collectPreserveManifest(
         stdio: "ignore",
       });
     } catch {
+      // git ls-files の非0は未追跡を表す正常な分類結果なので、tracked=falseへ明示変換する。
       tracked = false;
     }
     if (tracked) {
@@ -337,8 +338,9 @@ export function collectPreserveManifest(
           cwd: repoRoot,
           stdio: "ignore",
         });
-      } catch {
-        throw new Error(`preserve source is dirty: ${spec.path}`);
+      } catch (error) {
+        const message = `preserve source is dirty: ${spec.path}`;
+        throw new Error(message, { cause: error });
       }
     }
     let artifactRevision = sourceRevision;
@@ -376,20 +378,20 @@ export function collectPreserveManifest(
   };
   const inputs: PreserveArtifactInput[] = raw.map((entry) => {
     const count = counts[entry.spec.kind];
-    const probe = (
-      validatorOrCommand: string,
-      schemaOrQueryVersion: string,
-      ok: boolean,
-      resultCount: number,
-      outputDigest: string,
-    ): PreserveProbeEvidence => ({
-      ok,
-      validatorOrCommand,
-      schemaOrQueryVersion,
+    const probe = (input: {
+      validatorOrCommand: string;
+      schemaOrQueryVersion: string;
+      ok: boolean;
+      resultCount: number;
+      outputDigest: string;
+    }): PreserveProbeEvidence => ({
+      ok: input.ok,
+      validatorOrCommand: input.validatorOrCommand,
+      schemaOrQueryVersion: input.schemaOrQueryVersion,
       checkedAt: context.capturedAt,
-      exitCode: ok ? 0 : 1,
-      resultCount,
-      outputDigest,
+      exitCode: input.ok ? 0 : 1,
+      resultCount: input.resultCount,
+      outputDigest: input.outputDigest,
       evidencePath: entry.spec.path,
     });
     return {
@@ -413,27 +415,30 @@ export function collectPreserveManifest(
         revision: entry.artifactRevision,
         createdAt: entry.createdAt,
       },
-      schemaValidation: probe(
-        "strict in-process schema validator",
-        entry.spec.kind === "provider_evidence" ? "provider-handover.v1" : "operations-markdown.v1",
-        entry.validation.valid,
-        1,
-        sha256(canonicalJson(entry.validation)),
-      ),
-      query: probe(
-        "queryPreserveManifest",
-        "preserve-query.v1",
-        true,
-        count,
-        sha256("pending-query-probe"),
-      ),
-      export: probe(
-        "exportPreserveCollection",
-        "preserve-export.v1",
-        true,
-        count,
-        sha256("pending-export-probe"),
-      ),
+      schemaValidation: probe({
+        validatorOrCommand: "strict in-process schema validator",
+        schemaOrQueryVersion:
+          entry.spec.kind === "provider_evidence"
+            ? "provider-handover.v1"
+            : "operations-markdown.v1",
+        ok: entry.validation.valid,
+        resultCount: 1,
+        outputDigest: sha256(canonicalJson(entry.validation)),
+      }),
+      query: probe({
+        validatorOrCommand: "queryPreserveManifest",
+        schemaOrQueryVersion: "preserve-query.v1",
+        ok: true,
+        resultCount: count,
+        outputDigest: sha256("pending-query-probe"),
+      }),
+      export: probe({
+        validatorOrCommand: "exportPreserveCollection",
+        schemaOrQueryVersion: "preserve-export.v1",
+        ok: true,
+        resultCount: count,
+        outputDigest: sha256("pending-export-probe"),
+      }),
       retention: entry.retention,
     };
   });
@@ -694,6 +699,7 @@ function preserveSemanticEntry(entry: PreserveManifestEntry): unknown {
   const semanticProbe = ({
     checkedAt: _checkedAt,
     evidencePath: _evidencePath,
+    outputDigest: _outputDigest,
     ...probe
   }: PreserveProbeEvidence) => probe;
   const {

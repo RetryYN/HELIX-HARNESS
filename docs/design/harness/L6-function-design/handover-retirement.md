@@ -18,6 +18,16 @@ PLAN-REVERSE-344のR3 fullbackと独立TLレビューが完了したため、本
 ただし設計freezeはruntime撤去完了を意味しない。U-HRET-002..014とIT-CONT/ST-ARCHのL7 test_code、
 runtime撤去、resurrection detectorがgreenになるまで`retirement-ready=false`を維持する。
 
+## §0.1 DbC / Vペア
+
+| 関数 | 署名 | 事前条件 | 事後条件 | 不変条件 | 判定基準 |
+|---|---|---|---|---|---|
+| inventory classification | `classifyHandoverRetirementReferences(references) => RetirementInventory` | repository source rootとtyped ruleが固定済み | 全参照をdispositionへ一意分類し未分類を返す | provider/operations/archiveを旧session runtimeと混同しない | `U-HRET-001/008/014` |
+| retirement transition | `evaluateRetirementTransition(input) => RetirementTransitionResult` | intent digest、直前checkpoint、依存evidenceが妥当 | 隣接forward phaseだけを許可しjournalへappend可能な結果を返す | skip、逆行、complete後rollback、異intent replayを拒否 | `U-HRET-002/004/010` |
+| continuation migration | `writePlanCompletionContinuation(input, deps) => ContinuationWriteResult` | 受け皿green、validated event、旧writer停止条件を満たす | DB+memory continuationへevent-firstで着地 | CURRENT/prose/旧CLIをread/writeせずDB precedenceを維持 | `U-HRET-003/005/006/007/013` |
+| retirement enforcement | `analyzeHandoverResurrection(input) => ResurrectionAnalysis` | archive/preserve allowlistとenforce authorityが有効 | generated surfaceを含む復活・残存を列挙し新規findingでhard fail | source削除はarchive digest reconcile後だけ許可 | `U-HRET-009/011/012/014` |
+| cutover approval verification | `loadAndVerifyHandoverCutoverApproval(repoRoot) => HandoverCutoverApprovalRecord` | PO decision、approved HEAD、typed manifest、terminal journalが存在 | params/tree/generated-baseline/dry-run digestを再計算しenforce authorityと同一decisionへ束縛 | apply前は期限切れを拒否し、apply後は期限内の`appliedAt`とterminal journal digestへ固定して将来CIで再失効させない | `U-HRET-015` |
+
 ## §1 廃止対象と保持対象
 
 | kind | 意味 | disposition |
@@ -143,3 +153,4 @@ CLAUDE.md / .claude/CLAUDE.md / AGENTS.md / setup managed block / rule-drift mar
 | HRET-S12 | complete後のCLI/path/writer/CURRENT復活をhard fail |
 | HRET-S13 | fresh/brownfield consumerが旧surfaceなしでcontinuation可能 |
 | HRET-S14 | provider/operations/archive allowlist以外のlive residual 0 |
+| HRET-S15 | action-binding approvalがPO、approved HEAD、canonical manifest、target tree、generated baseline、dry-run evidence、terminal journalへ束縛され、改ざん・欠落・期限外applyをfail-closeする。期限内apply後はterminal authorityとして時刻に依存せず再検証できる |

@@ -58,15 +58,15 @@ function analyze(
 }
 
 describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
-  it("U-HRET-012: real repo shadow baselineは既知findingのみでgreen", () => {
+  it("U-HRET-012: real repoはterminal authorityによりenforce modeでfinding 0", () => {
     const result = analyzeHandoverResurrectionShadowRepo(process.cwd());
     expect(result).toMatchObject({
       ok: true,
-      mode: "pre_cutover_shadow",
+      mode: "post_complete_enforce",
       newFindings: [],
       preconditionErrors: [],
     });
-    expect(result.knownFindings.length).toBeGreaterThan(0);
+    expect(result.knownFindings).toEqual([]);
   });
 
   it("IT-CONT-03: doctorはshadow baseline外の旧surfaceをhard failする", () => {
@@ -102,7 +102,7 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
 
       rmSync(join(repoRoot, "package.json"));
       expect(() => loadGeneratedResurrectionFiles(repoRoot)).toThrow(
-        "clean distribution source missing",
+        "clean distribution plan is incomplete",
       );
       writeFileSync(
         join(repoRoot, "package.json"),
@@ -231,7 +231,7 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
     ).toMatchObject({ mode: "invalid_precondition", errors: ["archive_digest_mismatch"] });
   });
 
-  it("U-HRET-012: production modeはPO pinなしのcomplete journalをfail-closeする", () => {
+  it("U-HRET-012: production modeはcode pinと異なるcomplete authorityをfail-closeする", () => {
     const repoRoot = mkdtempSync(join(tmpdir(), "helix-resurrection-journal-"));
     try {
       const preserveDigest = digest("preserve-authority");
@@ -289,7 +289,7 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
         preserveDigest,
         archiveDigest: digest("archive-authority"),
         journalEntryDigest: digest(lines.at(-1) ?? ""),
-        approvalDecisionId: "handover-retirement-enforce:fixture",
+        approvalDecisionId: `handover-retirement-cutover:${"1".repeat(64)}`,
         approvalStatus: "approved" as const,
       };
       const authorityText = `${JSON.stringify(authority)}\n`;
@@ -298,7 +298,7 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
         authorityText,
       );
       expect(() => loadResurrectionCheckpointState(repoRoot, preserveDigest)).toThrow(
-        "enforce authority is not code-pinned",
+        "enforce authority pin mismatch",
       );
       const journalText = `${lines.join("\n")}\n`;
       expect(
@@ -465,6 +465,134 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
     expect(result.findings.filter((item) => item.category === "generated_surface")).toHaveLength(4);
   });
 
+  it("U-HRET-014: 退役governance証跡だけを除外し、類似名とlive/generated再導入はfailする", () => {
+    const evidence = analyze(
+      [
+        {
+          path: "docs/governance/session-handover-retirement-disposition.md",
+          content: "廃止対象: helix handover / CURRENT.json / HandoverPanel",
+        },
+        {
+          path: "docs/governance/helix-harness-concept_v3.1.md",
+          content: "禁止契約: helix handover / CURRENT.json",
+        },
+        {
+          path: "docs/governance/helix-harness-requirements_v1.2.md",
+          content: "必須廃止: helix handover / CURRENT.json",
+        },
+        {
+          path: "src/lint/handover-retirement.ts",
+          content: 'const retiredPattern = "helix handover";',
+        },
+      ],
+      completeState,
+    );
+    expect(evidence).toMatchObject({ ok: true, findings: [] });
+
+    const regressions = analyze(
+      [
+        {
+          path: "docs/governance/session-handover-retirement-disposition-copy.md",
+          content: "helix handover",
+        },
+        {
+          path: "docs/governance/helix-harness-requirements_v1.2-copy.md",
+          content: "helix handover",
+        },
+        { path: "src/cli.ts", content: 'program.command("handover");' },
+        { path: "docs/templates/adapter/AGENTS.md", content: "helix handover" },
+        {
+          path: "src/lint/handover-retirement.ts",
+          content: 'program.command("handover"); const retiredPattern = "helix handover";',
+        },
+      ],
+      completeState,
+    );
+    expect(regressions.ok).toBe(false);
+    expect(regressions.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: "docs/governance/session-handover-retirement-disposition-copy.md",
+          category: "generated_surface",
+        }),
+        expect.objectContaining({ path: "src/cli.ts", category: "command" }),
+        expect.objectContaining({
+          path: "docs/templates/adapter/AGENTS.md",
+          category: "generated_surface",
+        }),
+        expect.objectContaining({
+          path: "src/lint/handover-retirement.ts",
+          category: "command",
+        }),
+      ]),
+    );
+  });
+
+  it("U-HRET-014: handover接頭辞の保護moduleは旧src/handover importと混同しない", () => {
+    const result = analyze(
+      [
+        {
+          path: "src/doctor.ts",
+          content:
+            'import { scan } from "./lint/handover-resurrection"; import { old } from "./handover";',
+        },
+      ],
+      completeState,
+    );
+    expect(result.findings.filter((item) => item.category === "module")).toEqual([
+      expect.objectContaining({ symbol: "./handover" }),
+    ]);
+  });
+
+  it("U-HRET-015: retirement metaは役割markerとnegative finding型が一致する場合だけ除外する", () => {
+    const evidence = analyze(
+      [
+        {
+          path: "src/audit/handover-resurrection-source.ts",
+          content:
+            'export function loadGeneratedResurrectionSourceFiles() {}\nthrow new Error("clean distribution resurrection projection is incomplete");\nconst retired = "helix handover";',
+        },
+        {
+          path: "src/lint/handover-cutover-approval.ts",
+          content:
+            'const HANDOVER_CUTOVER_APPROVAL_PIN = {}; const RETIRED_ARTIFACTS = [".helix/handover/CURRENT.json"]; export function loadAndVerifyHandoverCutoverApproval() {}',
+        },
+        {
+          path: "tests/handover-cutover-approval.test.ts",
+          content:
+            'it("U-HRET-015", () => { analyzeHandoverResurrectionShadowRepo(); expect({ findings: [] }); }); const retired = "helix handover";',
+        },
+      ],
+      completeState,
+    );
+    expect(evidence).toMatchObject({ ok: true, findings: [] });
+
+    const regressions = analyze(
+      [
+        { path: "src/audit/handover-resurrection-source.ts", content: 'const retired = "helix handover";' },
+        {
+          path: "src/lint/handover-cutover-approval.ts",
+          content:
+            'const HANDOVER_CUTOVER_APPROVAL_PIN = {}; const RETIRED_ARTIFACTS = []; export function loadAndVerifyHandoverCutoverApproval() {}; program.command("handover");',
+        },
+        {
+          path: "tests/handover-cutover-approval-copy.test.ts",
+          content:
+            'it("U-HRET-015", () => { analyzeHandoverResurrectionShadowRepo(); expect({ findings: [] }); }); const retired = "helix handover";',
+        },
+      ],
+      completeState,
+    );
+    expect(regressions.ok).toBe(false);
+    expect(regressions.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ path: "src/audit/handover-resurrection-source.ts", category: "generated_surface" }),
+        expect.objectContaining({ path: "src/lint/handover-cutover-approval.ts", category: "command" }),
+        expect.objectContaining({ path: "tests/handover-cutover-approval-copy.test.ts", category: "generated_surface" }),
+      ]),
+    );
+  });
+
   it("U-HRET-011: fresh/command/distribution projectionの既知debtをseed baselineへ固定する", () => {
     const baseline = parseGeneratedResurrectionBaselineFile(
       readFileSync("config/handover-generated-resurrection-baseline.json", "utf8"),
@@ -479,7 +607,7 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
       checkpointState: shadowState,
     });
     expect(result).toMatchObject({ ok: true, mode: "pre_cutover_shadow", newFindings: [] });
-    expect(result.knownFindings.length).toBeGreaterThan(0);
+    expect(result.knownFindings).toEqual([]);
     const changed = files.map((file) =>
       file.path === "@projection/fresh/package.json"
         ? { ...file, content: `${file.content}\nHandoverPanel\n` }

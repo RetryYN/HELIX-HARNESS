@@ -27,7 +27,7 @@ RGC を pass しなければならない。
 
 - R4 が完了し、`forward_routing` value が confirmed。
 - Reverse PLAN を `status: done` へ遷移させようとしている。
-- Reverse cycle の終端で handover を書いている。
+- Reverse cycle の終端で continuation state を確定する。
 
 ## RGC checklist（全項目必須）
 
@@ -68,10 +68,10 @@ RGC を pass しなければならない。
 - [ ] `helix doctor` exits 0.
 - [ ] `helix review --uncommitted` が Reverse phase artifacts に対する blocking findings を出さない。
 
-### Handover
+### Continuation
 
-- [ ] `.helix/handover/CURRENT.json` が Reverse closure と次の active task である
-      routing destination PLAN を反映している。
+- [ ] `harness.db` continuation projection が Reverse closure と次の active task である
+      routing destination PLAN を反映し、`helix status` から確認できる。
 
 ## RGC が確認しないこと
 

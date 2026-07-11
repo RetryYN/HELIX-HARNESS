@@ -47,7 +47,6 @@ export const CONSUMER_CI_RUN_COMMANDS = [
   CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
   "bun run helix doctor --profile consumer --json",
   "bun run helix rename plan --json",
-  "bun run helix handover status --json",
   `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   "bun run typecheck",
   "bun run test",
@@ -55,7 +54,7 @@ export const CONSUMER_CI_RUN_COMMANDS = [
 
 export const CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS = [
   "bun install --frozen-lockfile",
-  "bun run helix handover status --json",
+  "bun run helix status --json",
   "bun run helix completion decision-packet --json",
   "bun run helix completion review-bundle --json",
   "bun run helix doctor --profile consumer --json",
@@ -68,7 +67,6 @@ export const CONSUMER_VSCODE_TASK_COMMANDS = [
   ["HELIX: completion review-bundle", "bun run helix completion review-bundle --json"],
   ["HELIX: version-up dry-run", CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND],
   ["HELIX: rename plan", "bun run helix rename plan --json"],
-  ["HELIX: handover status", "bun run helix handover status --json"],
   ["HELIX: setup dry-run", "bun run helix setup project --dry-run"],
   [
     "HELIX: team run dry-run",
@@ -739,13 +737,12 @@ export interface HelixProjectSetupResult extends SetupResult {
     completionReviewBundleTask: "HELIX: completion review-bundle";
     doctorTask: "HELIX: doctor";
     renamePlanTask: "HELIX: rename plan";
-    handoverTask: "HELIX: handover status";
+    continuationTask: "HELIX: status";
     teamRunTask: "HELIX: team run dry-run";
   };
   baseline: {
     statePath: string;
     memoryPath: string;
-    handoverPath: string;
     evidencePath: string;
     teamsPath: string;
   };
@@ -812,10 +809,9 @@ export interface HelixProjectDoctorBaseline {
     "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     "helix doctor --profile consumer",
     "helix rename plan --json",
-    "helix handover status --json",
     "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
   ];
-  stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"];
+  stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"];
   completionClaimAllowed: false;
   nextRouteSource: "postSetupWorkflow.nextRoute";
   evidencePath: ".helix/evidence";
@@ -1228,10 +1224,9 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     "helix doctor --profile consumer",
     "helix rename plan --json",
-    "helix handover status --json",
     `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
-  stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"],
+  stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"],
   completionClaimAllowed: false,
   nextRouteSource: "postSetupWorkflow.nextRoute",
   evidencePath: ".helix/evidence",
@@ -1458,9 +1453,6 @@ function templateNameFor(targetPath: string): string {
   if (targetPath === join(".vscode", "settings.json")) return "project/.vscode/settings.json";
   if (targetPath === join(".helix", "memory", ".gitkeep")) {
     return "project/.helix/memory/.gitkeep";
-  }
-  if (targetPath === join(".helix", "handover", ".gitkeep")) {
-    return "project/.helix/handover/.gitkeep";
   }
   if (targetPath === join(".helix", "evidence", ".gitkeep")) {
     return "project/.helix/evidence/.gitkeep";
@@ -1958,7 +1950,6 @@ export function buildConsumerReadinessPlan(input: {
         "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
         "bun run helix doctor --profile consumer --json",
         "bun run helix rename plan --json",
-        "bun run helix handover status --json",
         `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         "bun run typecheck",
         "bun run test",
@@ -2019,7 +2010,6 @@ function buildConsumerArtifactReadinessPlan(
   const teamPath = CONSUMER_TEAM_DEFINITION_PATH;
   const baselinePaths = [
     join(".helix", "memory", ".gitkeep"),
-    join(".helix", "handover", ".gitkeep"),
     join(".helix", "evidence", ".gitkeep"),
     teamPath,
   ];
@@ -2181,7 +2171,7 @@ function buildConsumerArtifactReadinessPlan(
       path: escalationWorkflowPath,
       ok: hasPath(escalationWorkflowPath) && escalationWorkflowContract.ok,
       message:
-        "escalation-stale workflow must be a scheduled read-only HELIX route audit with no placeholder step, no secret use, and the fixed handover/completion/consumer-doctor command set",
+        "escalation-stale workflow must be a scheduled read-only HELIX route audit with no placeholder step, no secret use, and the fixed status/continuation/completion/consumer-doctor command set",
       evidence:
         ".github/workflows/escalation-stale.yml YAML contract for schedule, read-only permissions, action inputs, placeholder-free commands, and no-write route audit",
     },
@@ -2212,7 +2202,7 @@ function buildConsumerArtifactReadinessPlan(
       path: ".helix",
       ok: baselinePaths.every(hasPath),
       message:
-        "setup must project .helix memory, handover, evidence, and default-hybrid team baselines",
+        "setup must project .helix memory, evidence, and default-hybrid team baselines; continuation remains DB-backed",
       evidence: baselinePaths.join(", "),
     },
     {
@@ -2479,13 +2469,13 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `helix setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix handover status --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `helix setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix handover status --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`helix status --json` を実行する",
@@ -2495,7 +2485,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
             "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
             "`helix doctor --profile consumer` を実行する",
             "`helix rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
-            "`helix handover status --json` を実行し、active handover または current PLAN route から開始する",
+            "`helix status --json` で DB-backed continuation または current PLAN route を確認して開始する",
             `\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を dry-run し、worker/reviewer の provider 分離を確認する`,
           ];
   const blockedUntil = [
@@ -2512,15 +2502,23 @@ function buildHelixProjectPostSetupWorkflow(input: {
     manualDocSearchRequired: false,
     unmetGates,
     nextActions,
-    verificationCommands: verificationMatrix
-      .filter((row) => row.availability !== "manual-local")
-      .map((row) => row.command),
+    verificationCommands: [
+      ...new Set(
+        verificationMatrix
+          .filter((row) => row.availability !== "manual-local")
+          .map((row) => row.command),
+      ),
+    ],
     manualVerificationCommands: verificationMatrix
       .filter((row) => row.availability === "manual-local")
       .map((row) => row.command),
-    dryRunVerificationCommands: verificationMatrix
-      .filter((row) => row.availability === "dry-run-immediate")
-      .map((row) => row.command),
+    dryRunVerificationCommands: [
+      ...new Set(
+        verificationMatrix
+          .filter((row) => row.availability === "dry-run-immediate")
+          .map((row) => row.command),
+      ),
+    ],
     postApplyVerificationCommands: verificationMatrix
       .filter((row) => row.availability === "post-apply-or-projected")
       .map((row) => row.command),
@@ -2700,7 +2698,6 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         ".vscode/tasks.json",
         ".vscode/settings.json",
         ".helix/memory",
-        ".helix/handover",
         ".helix/evidence",
         ".helix/teams",
       ],
@@ -2742,26 +2739,26 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "rename packet drift or accidental ready/apply surface routes back to L14 cutover review before project start",
     },
     {
-      phase: "handover-route",
-      command: "helix handover status --json",
+      phase: "continuation-status",
+      command: "helix status --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
       expected:
-        "returns active handover route or confirms normal start so the first project action is anchored",
-      evidence: "handover status JSON attached to the first-run readiness record",
-      source: "handover route contract",
-      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md#18-u-hover-handover",
+        "returns the DB-backed continuation/current PLAN route or confirms normal start so the first project action is anchored",
+      evidence: "status JSON attached to the first-run readiness record",
+      source: "continuation event/projection contract",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
       sourceCheckedAt: "2026-07-02",
-      latestOfficialStatus: "local handover route contract current at HEAD",
+      latestOfficialStatus: "local continuation projection contract current at HEAD",
       sourceStatusDelta:
-        "none; first action remains anchored by active handover or normal-start evidence",
+        "none; first action remains anchored by DB-backed continuation or normal-start evidence",
       adoptionDecision:
-        "handover status で active handover または通常開始を確認してから最初の HELIX 作業へ入る",
+        "status で DB-backed continuation または通常開始を確認してから最初の HELIX 作業へ入る",
       adoptionDecisionDelta:
-        "none; setup does not invent a work route without handover/status evidence",
+        "changed; setup does not invent a work route without DB continuation/status evidence",
       workflowRouteImpact:
-        "handover route absence keeps the first action in fix_consumer_readiness",
+        "continuation route absence keeps the first action in fix_consumer_readiness",
     },
     {
       phase: "team-run-dry-run",
@@ -2955,13 +2952,12 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       completionReviewBundleTask: "HELIX: completion review-bundle",
       doctorTask: "HELIX: doctor",
       renamePlanTask: "HELIX: rename plan",
-      handoverTask: "HELIX: handover status",
+      continuationTask: "HELIX: status",
       teamRunTask: "HELIX: team run dry-run",
     },
     baseline: {
       statePath: STATE_PATH,
       memoryPath: join(".helix", "memory"),
-      handoverPath: join(".helix", "handover"),
       evidencePath: join(".helix", "evidence"),
       teamsPath: join(".helix", "teams"),
     },

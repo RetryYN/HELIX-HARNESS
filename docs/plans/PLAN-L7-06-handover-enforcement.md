@@ -110,4 +110,4 @@ typecheck 0 / biome CLEAN / `npx vitest run` 全 pass / §6 用語更新。
 
 ## §6 用語更新
 
-- **handover discipline (規律) surface**: PLAN 活動があるのに CURRENT.json が未生成/stale/drift の状態を機械が warn すること。新 FR は起こさず、§6.8.5 の強制側を `checkHandoverDiscipline` で具現化 (用語集追加は REVERSE-06 で back-fill)。
+- **continuation readiness**: 当時の CURRENT freshness warning は historical evidence として保持する。現行は DB continuation projection と bounded memory の整合を fail-close で検査し、`checkHandoverDiscipline` や旧 pointer を current surface として復活させない（PLAN-REVERSE-344 fullback）。

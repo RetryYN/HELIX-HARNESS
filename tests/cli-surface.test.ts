@@ -62,29 +62,6 @@ function runRepoScriptHelix(args: string[]) {
   });
 }
 
-function writeObjectiveAuditFixture(root: string): void {
-  const governanceDir = join(root, "docs", "governance");
-  mkdirSync(governanceDir, { recursive: true });
-  writeFileSync(
-    join(governanceDir, "helix-objective-evidence-audit.md"),
-    [
-      "| ID | Requirement | Status | Evidence | Note |",
-      "|---|---|---|---|---|",
-      "| G-01 | fixture | proved | fixture | fixture |",
-      "| G-02 | fixture | proved | fixture | fixture |",
-      "| G-03 | fixture | proved | fixture | fixture |",
-      "| G-04 | fixture | proved | fixture | fixture |",
-      "| G-05 | fixture | proved | fixture | fixture |",
-      "| G-06 | fixture | proved | fixture | fixture |",
-      "| G-07 | fixture | proved | fixture | fixture |",
-      "| G-08 | fixture | proved | fixture | fixture |",
-      "| G-09 | fixture | proved | fixture | fixture |",
-      "| G-10 | fixture | proved | fixture | outstanding.completionReadiness.ok=true |",
-    ].join("\n"),
-    "utf8",
-  );
-}
-
 function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
   const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", name.toUpperCase()].join("_");
   const reasonEnv = [helixEnvPrefix, "RAW", name.toUpperCase(), "REASON"].join("_");
@@ -269,17 +246,22 @@ describe("L7 CLI surface closure", () => {
     expect(payload.rollback_command).toContain("git worktree remove --force");
   });
 
-  it("exposes the agent session board as a read-only command-center surface", () => {
+  it("fails the agent session board closed when DB continuation is absent", () => {
     const run = runCli(["sessions", "board", "--json"]);
     const payload = JSON.parse(run.stdout);
 
     expect(run.status, run.stderr || run.stdout).toBe(0);
     expect(payload).toMatchObject({
-      ok: true,
+      ok: false,
       schema_version: "agent-session-command-center.v1",
       source_command: "helix sessions board --json",
     });
     expect(Array.isArray(payload.rows)).toBe(true);
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "continuation_projection_missing", severity: "error" }),
+      ]),
+    );
   });
 
   it("exposes agent locks and mailbox dry-run packets", () => {
@@ -1143,279 +1125,29 @@ describe("L7 CLI surface closure", () => {
     ).toContain("PLAN-M-02-helix-identifier-rename");
   }, 40_000);
 
-  it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
-    const root = mkdtempSync(join(tmpdir(), "helix-cli-handover-status-"));
-    try {
-      writeObjectiveAuditFixture(root);
-      const missing = runCliIn(root, ["handover", "status", "--json"]);
-      expect(missing.status).toBe(0);
-      expect(JSON.parse(missing.stdout)).toMatchObject({
-        exists: false,
-        stale: false,
-        stale_reasons: [],
-        active_plan: null,
-      });
-
-      const handoverDir = join(root, ".helix", "handover");
-      const pointerPath = join(handoverDir, "CURRENT.json");
-      mkdirSync(handoverDir, { recursive: true });
-      writeFileSync(pointerPath, "{not json", "utf8");
-      const invalid = runCliIn(root, ["handover", "status", "--json"]);
-      expect(invalid.status).toBe(1);
-      expect(JSON.parse(invalid.stdout)).toMatchObject({
-        exists: true,
-        stale: true,
-        stale_reasons: ["CURRENT.json is unreadable or invalid"],
-      });
-
-      const generated = runCliIn(root, [
-        "handover",
-        "--plan",
-        "PLAN-L7-04-handover-mechanism",
-        "--scope-active",
-      ]);
-      expect(generated.status).toBe(0);
-      expect(generated.stdout).toContain("handover: active=PLAN-L7-04-handover-mechanism");
-
-      const json = runCliIn(root, ["handover", "status", "--json"]);
-      expect(json.status).toBe(0);
-      const payload = JSON.parse(json.stdout);
-      expect(payload).toMatchObject({
-        active_plan: "PLAN-L7-04-handover-mechanism",
-        status: "in_progress",
-        generated_by: "helix-handover",
-        exists: true,
-        stale: false,
-        stale_reasons: [],
-      });
-      expect(payload.latest_doc).toMatch(/^docs[/\\]handover[/\\]session-handover-/);
-      expect(payload.outstanding.completionReadiness).toMatchObject({
-        ok: true,
-        status: "ready",
-      });
-      expect(payload.objectiveProgress).toMatchObject({
-        method: "objective-evidence-audit.v1",
-        percent: 100,
-        completionStatus: "ready",
-        completionClaimAllowed: false,
-        auditOk: false,
-        progressEvidenceTrusted: false,
-      });
-      expect(payload.objectiveProgress.auditViolationCount).toBeGreaterThan(0);
-      expect(payload.completionDecisionPacket).toMatchObject({
-        ok: true,
-        status: "ready",
-        generatedFrom: "outstanding.completionReadiness",
-        sourceCommand: "helix handover",
-        decisionCount: 0,
-      });
-
-      const text = runCliIn(root, ["handover", "status"]);
-      expect(text.status).toBe(0);
-      expect(text.stdout).toContain(
-        "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress owner=- stale=false",
-      );
-      expect(text.stdout).toContain("latest_doc:");
-      expect(text.stdout).toContain("completion: ready");
-      expect(text.stdout).toContain(
-        "objective-progress: 100% (ready; completion-claim-allowed=false; evidence=invalid; audit-ok=false; violations=",
-      );
-      expect(text.stdout).toContain(
-        "objective-progress-evidence: invalid audit-ok=false violations=",
-      );
-
-      const stalePointer = {
-        ...payload,
-        updated_at: "2026-06-01T00:00:00.000Z",
-      };
-      writeFileSync(pointerPath, JSON.stringify(stalePointer), "utf8");
-      const stale = runCliIn(root, ["handover", "status", "--json"]);
-      expect(stale.status).toBe(0);
-      const stalePayload = JSON.parse(stale.stdout);
-      expect(stalePayload).toMatchObject({
-        exists: true,
-        stale: true,
-      });
-      expect(stalePayload.stale_reasons[0]).toContain("updated_at is older than 24h");
-
-      const update = runCliIn(root, ["handover", "update", "--owner", "codex", "--json"]);
-      expect(update.status).toBe(0);
-      const updatePayload = JSON.parse(update.stdout);
-      expect(updatePayload).toMatchObject({
-        ok: true,
-        pointer: {
-          owner: "codex",
-          updated_at: "2026-06-01T00:00:00.000Z",
-        },
-        written: [".helix/handover/CURRENT.json"],
-      });
-      expect(updatePayload.pointer.owner_updated_at).toEqual(expect.any(String));
-
-      const stillStale = runCliIn(root, ["handover", "status", "--json"]);
-      expect(stillStale.status).toBe(0);
-      expect(JSON.parse(stillStale.stdout)).toMatchObject({
-        owner: "codex",
-        stale: true,
-      });
-    } finally {
-      rmSync(root, { recursive: true, force: true });
+  it("U-HRET-007: rejects every retired session handover CLI route", () => {
+    for (const args of [["handover"], ["handover", "status", "--json"], ["handover", "provider"]]) {
+      const result = runCli(args);
+      expect(result.status).not.toBe(0);
+      expect(`${result.stdout}${result.stderr}`).toMatch(/unknown command|error/i);
     }
-  }, 15_000);
+  });
 
-  it("exposes completion decision packet templates through handover status JSON", () => {
-    const root = mkdtempSync(join(tmpdir(), "helix-cli-handover-packet-"));
-    try {
-      mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      writeObjectiveAuditFixture(root);
-      writeFileSync(
-        join(root, "docs", "plans", "PLAN-M-02-fixture.md"),
-        [
-          "---",
-          "plan_id: PLAN-M-02-fixture",
-          "kind: design",
-          "layer: L14",
-          "status: draft",
-          "---",
-          "",
-          "# fixture",
-          "irreversible cutover requires PO signoff and action-binding approval.",
-        ].join("\n"),
-        "utf8",
-      );
-
-      const generated = runCliIn(root, ["handover", "--plan", "PLAN-M-02-fixture"]);
-      expect(generated.status).toBe(0);
-      const pointerPath = join(root, ".helix", "handover", "CURRENT.json");
-      const oldPointer = JSON.parse(readFileSync(pointerPath, "utf8"));
-      delete oldPointer.outstanding?.semanticFeatureFrontierRecords;
-      writeFileSync(pointerPath, JSON.stringify(oldPointer), "utf8");
-
-      const json = runCliIn(root, ["handover", "status", "--json"]);
-      expect(json.status).toBe(0);
-      const payload = JSON.parse(json.stdout);
-      expect(payload.outstanding.completionReadiness).toMatchObject({
-        ok: false,
-        status: "blocked",
-      });
-      expect(payload.completionDecisionPacket).toMatchObject({
-        ok: false,
-        status: "blocked",
-        generatedFrom: "outstanding.completionReadiness",
-        sourceCommand: "helix handover",
-        decisionCount: 1,
-      });
-      expect(payload.completionReviewBundle).toMatchObject({
-        schemaVersion: "completion-review-bundle.v1",
-        sourceCommand: "helix completion review-bundle --json",
-        runnableSourceCommand: "bun run helix completion review-bundle --json",
-        planOnly: true,
-        mustNotDecide: true,
-        mustNotApply: true,
-        completionClaimAllowed: false,
-        humanDecisionRequired: true,
-        decisionCount: 1,
-        reviewCoveredBlockers: ["human_approval_pending", "irreversible_migration_pending"],
-        nonPacketBlockers: ["non_terminal_plans", "semantic_frontier_blocked"],
-      });
-      expect(payload.workflowNextAction).toContain(
-        "obtain explicit PO signoff before irreversible migration/cutover",
-      );
-      expect(payload.workflowNextActions).toMatchObject([
-        {
-          order: 1,
-          planId: "PLAN-M-02-fixture",
-          reason: "irreversible_migration_pending",
-          decisionKind: "irreversible_migration_signoff",
-        },
-      ]);
-      expect(payload.completionDecisionPacket.decisions[0]).toMatchObject({
-        planId: "PLAN-M-02-fixture",
-        decisionKind: "irreversible_migration_signoff",
-      });
-      expect(payload.outstanding.semanticFeatureFrontierRecords).toEqual([
-        expect.objectContaining({
-          recordName: "semantic_feature_frontier_record",
-          planId: "PLAN-M-02-fixture",
-          classification: "approval_gated_cutover",
-          completionClaimAllowed: false,
-        }),
-      ]);
-      expect(payload.completionDecisionPacket.decisions[0].recordTemplates).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            recordName: "cutover_decision_record",
-            yamlLines: expect.arrayContaining([
-              "cutover_decision_record:",
-              '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
-            ]),
-          }),
-          expect.objectContaining({
-            recordName: "action_binding_approval_record",
-            yamlLines: expect.arrayContaining(["action_binding_approval_record:"]),
-          }),
-        ]),
-      );
-      const text = runCliIn(root, ["handover", "status"]);
-      expect(text.status).toBe(0);
-      expect(text.stdout).toContain("completion: blocked");
-      expect(text.stdout).toContain(
-        "authority-blockers=human:human_approval_pending,irreversible_migration_pending workflow-state:non_terminal_plans automation:semantic_frontier_blocked",
-      );
-      expect(text.stdout).toContain("objective-progress:");
-      expect(text.stdout).toContain("completion-claim-allowed=false");
-      expect(text.stdout).toContain("workflow-next:");
-      expect(text.stdout).toContain("workflow-next-actions: 1");
-      expect(text.stdout).toContain("workflow-next-action[1]: PLAN-M-02-fixture");
-      expect(text.stdout).toContain(
-        "packet=helix rename plan --json scoped=helix rename plan --json supporting=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json scoped-supporting=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
-      );
-      expect(text.stdout).toContain(
-        "action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
-      );
-      expect(text.stdout).toContain(
-        "route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
-      );
-      expect(text.stdout).toContain(
-        "completion-decision-packet: helix completion decision-packet --json",
-      );
-      expect(text.stdout).toContain(
-        "completion-review-bundle: helix completion review-bundle --json",
-      );
-      expect(text.stdout).toContain(
-        "runnable-completion-review-bundle: bun run helix completion review-bundle --json",
-      );
-      expect(text.stdout).toContain(
-        "completion-review-coverage: covered=human_approval_pending,irreversible_migration_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
-      );
-      expect(text.stdout).toContain(
-        "supporting-decision-packets: helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json",
-      );
-      expect(text.stdout).toContain(
-        "scoped-supporting-decision-packets: helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
-      );
-      expect(text.stdout).toContain("semantic_frontier_records: 1");
-      expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
-    } finally {
-      rmSync(root, { recursive: true, force: true });
-    }
-  }, 15_000);
-
-  it("exposes plan complete as the completed handover lifecycle entrypoint", () => {
+  it("U-HRET-008: plan complete publishes continuation without CURRENT or prose", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-plan-complete-"));
     try {
-      const use = runCliIn(root, ["plan", "use", "PLAN-L7-04-handover-mechanism"]);
-      expect(use.status).toBe(0);
-
-      const complete = runCliIn(root, ["plan", "complete", "--dry-run"]);
-      expect(complete.status).toBe(0);
-      expect(complete.stdout).toContain("plan complete:");
-      expect(complete.stdout).toContain("status=completed");
-      expect(complete.stdout).toContain("(dry-run)");
+      expect(runCliIn(root, ["plan", "use", "PLAN-L7-fixture"]).status).toBe(0);
+      const complete = runCliIn(root, ["plan", "complete"]);
+      expect(complete.status, complete.stderr).toBe(0);
+      expect(complete.stdout).toContain("checkpoint=published current-plan=cleared");
+      expect(existsSync(join(root, ".helix", "audit", "continuation-events.jsonl"))).toBe(true);
+      expect(existsSync(join(root, ".helix", "state", "continuation-checkpoint.json"))).toBe(true);
+      expect(existsSync(join(root, ".helix", "handover", "CURRENT.json"))).toBe(false);
+      expect(existsSync(join(root, "docs", "handover"))).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
   }, 15_000);
-
   it("exposes whole-program completion readiness on status surfaces", () => {
     const readyRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-ready-"));
     const blockedRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-blocked-"));
@@ -2521,10 +2253,9 @@ describe("L7 CLI surface closure", () => {
           "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           "helix doctor --profile consumer",
           "helix rename plan --json",
-          "helix handover status --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ],
-        stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"],
+        stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"],
         completionClaimAllowed: false,
       },
       branchProtection: { applied: false, reason: "dry-run" },
@@ -2538,12 +2269,11 @@ describe("L7 CLI surface closure", () => {
         completionDecisionPacketTask: "HELIX: completion decision-packet",
         completionReviewBundleTask: "HELIX: completion review-bundle",
         doctorTask: "HELIX: doctor",
-        handoverTask: "HELIX: handover status",
+        continuationTask: "HELIX: status",
         teamRunTask: "HELIX: team run dry-run",
       },
       baseline: {
         memoryPath: join(".helix", "memory"),
-        handoverPath: join(".helix", "handover"),
         teamsPath: join(".helix", "teams"),
       },
       identifierTransition: {
@@ -2567,11 +2297,7 @@ describe("L7 CLI surface closure", () => {
       },
     });
     expect(payload.written).toEqual(
-      expect.arrayContaining([
-        join(".vscode", "tasks.json"),
-        join(".helix", "memory", ".gitkeep"),
-        join(".helix", "handover", ".gitkeep"),
-      ]),
+      expect.arrayContaining([join(".vscode", "tasks.json"), join(".helix", "memory", ".gitkeep")]),
     );
     expect(payload.importReport).toMatchObject({
       schemaVersion: "helix-project-import-report.v1",
@@ -2641,7 +2367,6 @@ describe("L7 CLI surface closure", () => {
       "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       "helix doctor --profile consumer",
       "helix rename plan --json",
-      "helix handover status --json",
       "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
     expect(payload.postSetupWorkflow.verificationMatrix).toEqual(
@@ -2721,7 +2446,6 @@ describe("L7 CLI surface closure", () => {
         "helix completion review-bundle --json",
         "helix doctor --profile consumer",
         "helix rename plan --json",
-        "helix handover status --json",
         "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
@@ -2756,7 +2480,7 @@ describe("L7 CLI surface closure", () => {
       "verification-check: vscode-profile-open availability=manual-local requiresMaterializedPaths=.vscode/tasks.json,.vscode/settings.json writePolicy=no-write command=code --profile HELIX . expected=opens the consumer folder in a named HELIX VS Code profile",
     );
     expect(text.stdout).toContain(
-      "verification-check: consumer-doctor availability=post-apply-or-projected requiresMaterializedPaths=AGENTS.md,CLAUDE.md,.claude/CLAUDE.md,.vscode/tasks.json,.vscode/settings.json,.helix/memory,.helix/handover,.helix/evidence,.helix/teams writePolicy=no-write command=helix doctor --profile consumer expected=passes the consumer profile",
+      "verification-check: consumer-doctor availability=post-apply-or-projected requiresMaterializedPaths=AGENTS.md,CLAUDE.md,.claude/CLAUDE.md,.vscode/tasks.json,.vscode/settings.json,.helix/memory,.helix/evidence,.helix/teams writePolicy=no-write command=helix doctor --profile consumer expected=passes the consumer profile",
     );
     expect(text.stdout).toContain(
       "verification-check: completion-decision-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=helix completion decision-packet --json expected=returns completionStatus=blocked",
@@ -2800,7 +2524,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain(
       "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",
     );
-    expect(text.stdout).toContain("HELIX: handover status");
+    expect(text.stdout).toContain("HELIX: status");
     expect(text.stdout).toContain(
       "vscode-profile: HELIX command=code --profile HELIX . source=https://code.visualstudio.com/docs/configure/command-line checked=2026-07-03",
     );

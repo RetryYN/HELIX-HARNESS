@@ -87,8 +87,8 @@ acceptance-criteria-thinking §2）を含め、特に probing する failure mod
   ID string だけではなく、実在する design doc または test assertion に対応している必要がある。
 - **layer artifact 欠落。** 新しい function に対する L6 test-design doc が欠けている場合、
   L7 code が存在していても open obligation として記録する。
-- **handover 鮮度。** session が runtime boundary をまたぐ場合、
-  `.helix/handover/CURRENT.json` が存在し、stale でなく、carry list が `helix status` output と一致することを確認する。
+- **continuation 整合性。** session が runtime boundary をまたぐ場合、`helix status` が読む
+  `harness.db` continuation projection の active PLAN・next action が、authored sources と一致することを確認する。
 
 ## gate 別 review 手順
 
@@ -112,7 +112,7 @@ acceptance-criteria-thinking §2）を含め、特に probing する failure mod
 1. `helix review --uncommitted` に blocking finding が無い。
 2. すべての G4/G5 condition が引き続き green である。
 3. 該当する ADR が `Accepted` になっている。
-4. Handover が updated または closed である。
+4. `harness.db` continuation projection が最新 event まで投影され、`helix status` と整合している。
 
 ## evidence format（証跡形式）
 

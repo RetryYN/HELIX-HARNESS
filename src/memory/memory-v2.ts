@@ -351,7 +351,11 @@ export function expireMemory(
       return candidates.map((entry) => {
         if (terminalTargets.has(entry.id))
           return { id: entry.id, reason: "already_expired" as const };
-        deps.appendEvent(layer, terminalEntry(entry, "expired", now, null), fence);
+        deps.appendEvent(
+          layer,
+          terminalEntry({ target: entry, state: "expired", at: now, consumerId: null }),
+          fence,
+        );
         return { id: entry.id, reason: "expired" as const };
       });
     });
@@ -394,7 +398,11 @@ export function consumeTakeover(
         if (terminalTargets.get(id) === "consumed") return { id, reason: "already_consumed" };
         if (isExpired(entry, now)) return { id, reason: "expired" };
         if (!activeIds.has(id)) return { id, reason: "unknown_id" };
-        deps.appendEvent("takeover", terminalEntry(entry, "consumed", now, consumerId), fence);
+        deps.appendEvent(
+          "takeover",
+          terminalEntry({ target: entry, state: "consumed", at: now, consumerId }),
+          fence,
+        );
         terminalTargets.set(id, "consumed");
         return { id, reason: "consumed" };
       });
@@ -751,12 +759,15 @@ function detectInvalidSupersedeGraph(
   return invalid;
 }
 
-function terminalEntry(
-  target: MemoryEntryV2,
-  state: "consumed" | "expired",
-  at: string,
-  consumerId: string | null,
-): MemoryEntryV2 {
+interface TerminalEntryInput {
+  target: MemoryEntryV2;
+  state: "consumed" | "expired";
+  at: string;
+  consumerId: string | null;
+}
+
+function terminalEntry(input: TerminalEntryInput): MemoryEntryV2 {
+  const { target, state, at, consumerId } = input;
   return {
     ...target,
     id: state === "consumed" ? `takeover-consumed:${target.id}` : `memory-expired:${target.id}`,

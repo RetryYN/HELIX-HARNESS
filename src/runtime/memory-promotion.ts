@@ -6,7 +6,11 @@
  */
 
 import { createHash } from "node:crypto";
-import type { SessionEvent } from "./session-log";
+
+interface MemoryPromotionEvent {
+  event_type: string;
+  outcome?: "ok" | "error";
+}
 
 export const MEMORY_PROMOTION_WARNING =
   "[helix memory] warning: 成功した commit/plan_switch がありますが、成功した memory_write がありません。\n";
@@ -25,7 +29,7 @@ export interface MemoryPromotionNudgeDecision {
  * 成功 (`outcome=ok`) だけを根拠にし、失敗・dry-run・outcome 不明は memory write 済みと扱わない。
  */
 export function memoryPromotionNudge(
-  events: readonly SessionEvent[],
+  events: readonly MemoryPromotionEvent[],
 ): MemoryPromotionNudgeDecision {
   if (events.some((event) => event.event_type === "memory_promotion_nudge")) {
     return { shouldNudge: false, reason: "nudge_already_recorded" };

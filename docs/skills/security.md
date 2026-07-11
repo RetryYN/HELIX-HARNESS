@@ -66,7 +66,7 @@ agent-guard の挙動を変更する PLAN を review する場合、変更後も
 
 ## Secret and credential hygiene（secret/credential 衛生）
 
-`docs/`、`.helix/`、handover files、audit evidence に触れる commit の前に実行する。
+`docs/`、`.helix/`、memory journal、audit/provider evidence に触れる commit の前に実行する。
 
 ```
 helix guardrail
@@ -75,7 +75,7 @@ helix guardrail
 確認すること:
 - repo 配下の text file に API key patterns と一致する文字列が無い。
 - committed scripts に `HELIX_ALLOW_RAW_AGENT=1` が残っていない（env-only であるべき）。
-- `.helix/handover/CURRENT.json` に credential または session token が無い。
+- `.helix/memory/`、`harness.db` の metadata、provider evidence に credential または session token が無い。
 - committed config file に username や machine name を含む personal absolute path が無い。
 
 発見した pattern を `helix guardrail` が cover していない場合、improvement entry を起票し、

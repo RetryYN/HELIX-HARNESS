@@ -4,27 +4,15 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { extname, join, posix } from "node:path";
 import ts from "typescript";
 import {
-  latestCompletedRetirementCheckpoint,
-  parseRetirementJournal,
-} from "../runtime/continuation";
-import {
   collectPreserveManifest,
   collectRetirementPreserveInventory,
+  latestCompletedRetirementCheckpoint,
+  loadGeneratedResurrectionSourceFiles,
+  parseRetirementJournal,
   validateOperationsTransitionMarkdown,
   validateProviderEvidenceJson,
-} from "../runtime/retirement-preserve";
-import {
-  buildCleanDistributionPlan,
-  CONSUMER_CI_RUN_COMMANDS,
-  CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
-  CONSUMER_VSCODE_TASK_COMMANDS,
-  cleanDistributionSourcePath,
-  loadTemplates,
-  planHelixProjectSetup,
-  renderBrownfieldSetupArtifacts,
-  renderSetupArtifacts,
-  transformCleanDistributionArtifact,
-} from "../setup";
+} from "../audit/handover-resurrection-source";
+import { loadAndVerifyHandoverCutoverApproval } from "./handover-cutover-approval";
 
 export type ResurrectionCategory =
   | "command"
@@ -198,8 +186,17 @@ const BASELINE_AUTHORITY_PIN: ResurrectionBaselineAuthority = {
 };
 const PRESERVE_AUTHORITY_FILE_DIGEST =
   "sha256:dc460288ad0860ac02ec9b11f8265e58798d1f39e754524f7f5ec783e3900c22";
-// PO confirmation前はnull固定。Sprint 3 atomic cutoverで承認済みauthority全体をpinする。
-const ENFORCE_AUTHORITY_PIN: ResurrectionEnforceAuthority | null = null;
+const ENFORCE_AUTHORITY_PIN: ResurrectionEnforceAuthority = {
+  schemaVersion: "handover-resurrection-enforce-authority.v1",
+  operationId: "handover-retirement:2026-07-11-sprint3",
+  intentDigest: "sha256:4923d6233832852b31bb5a5d93e38a4fa7c9d1ae47caf01d15969ef71ca7a3f3",
+  preserveDigest: "sha256:aef799ee30a2dc7ddd05ca6331075bd3f00e042ef70fc3d91eaa84b98732f760",
+  archiveDigest: "sha256:15f9452e5c3f7d3cbb931a86478460046faba048e25dd8f0c4ac2188b3b36d6c",
+  journalEntryDigest: "sha256:6d98446ca84c88286d2eec59f0cdd82f5d837efbdd933185322a031554b3f3eb",
+  approvalDecisionId:
+    "handover-retirement-cutover:d8091478fce674dbac5c5c44953fde7abbea6631f134980c424ff5be9a5f9d39",
+  approvalStatus: "approved",
+};
 const GENERATED_AUTHORITY_PIN: GeneratedResurrectionAuthority = {
   schemaVersion: "handover-generated-resurrection-authority.v1",
   baselinePath: "config/handover-generated-resurrection-baseline.json",
@@ -332,65 +329,7 @@ export function loadHandoverResurrectionFiles(repoRoot: string): ResurrectionFil
 }
 
 export function loadGeneratedResurrectionFiles(repoRoot: string): ResurrectionFile[] {
-  const templates = loadTemplates(repoRoot);
-  const plan = planHelixProjectSetup("0-A", { dryRun: true });
-  const project = (kind: string, path: string): string => `@projection/${kind}/${path}`;
-  const fresh = renderSetupArtifacts(plan, templates).map((file) => ({
-    ...file,
-    path: project("fresh", file.path),
-  }));
-  const brownfield = renderBrownfieldSetupArtifacts(plan, templates, {
-    "AGENTS.md": "# Consumer rules\n\nこの行はconsumer所有。\n",
-    "CLAUDE.md": "# Consumer context\n\nこの行はconsumer所有。\n",
-    "package.json": '{"name":"brownfield-consumer","scripts":{"keep":"true"}}\n',
-    ".vscode/tasks.json":
-      '{"version":"2.0.0","tasks":[{"label":"keep-existing","type":"shell","command":"true"}]}\n',
-  }).map((file) => ({ ...file, path: project("brownfield", file.path) }));
-  const commandContracts: ResurrectionFile[] = [
-    {
-      path: project("command", ".github/workflows/harness-check.yml"),
-      content: JSON.stringify(CONSUMER_CI_RUN_COMMANDS),
-    },
-    {
-      path: project("command", ".github/workflows/escalation-stale.yml"),
-      content: JSON.stringify(CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS),
-    },
-    {
-      path: project("command", ".vscode/tasks.json"),
-      content: JSON.stringify(CONSUMER_VSCODE_TASK_COMMANDS),
-    },
-  ];
-  const tracked = execFileSync("git", ["ls-files"], { cwd: repoRoot, encoding: "utf8" })
-    .split(/\r?\n/)
-    .filter(Boolean);
-  const distributionPlan = buildCleanDistributionPlan({ paths: tracked });
-  if (
-    !distributionPlan.ok ||
-    distributionPlan.missingRequired.length > 0 ||
-    distributionPlan.denylistViolations.length > 0
-  ) {
-    throw new Error("clean distribution plan is incomplete for resurrection scan");
-  }
-  const distributionPaths = distributionPlan.artifactPaths.filter(
-    (path) =>
-      path !== "src/lint/handover-resurrection.ts" &&
-      path !== "tests/handover-resurrection.test.ts",
-  );
-  const distribution = distributionPaths.map((artifactPath): ResurrectionFile => {
-    const sourcePath = cleanDistributionSourcePath(artifactPath, tracked);
-    const absolute = join(repoRoot, sourcePath);
-    if (!existsSync(absolute)) {
-      throw new Error(`clean distribution source missing from resurrection scan: ${sourcePath}`);
-    }
-    return {
-      path: project("distribution", artifactPath),
-      content: transformCleanDistributionArtifact(artifactPath, readFileSync(absolute, "utf8")),
-    };
-  });
-  if (distribution.length !== distributionPaths.length) {
-    throw new Error("clean distribution resurrection projection is incomplete");
-  }
-  return [...fresh, ...brownfield, ...commandContracts, ...distribution];
+  return loadGeneratedResurrectionSourceFiles(repoRoot);
 }
 
 export function parseResurrectionBaselineFile(text: string): ResurrectionBaselineFile {
@@ -568,7 +507,7 @@ function parseEnforceAuthority(
     typeof raw.journalEntryDigest !== "string" ||
     !SHA256.test(raw.journalEntryDigest) ||
     typeof raw.approvalDecisionId !== "string" ||
-    !/^handover-retirement-enforce:[a-zA-Z0-9:._-]+$/.test(raw.approvalDecisionId) ||
+    !/^handover-retirement-cutover:[a-f0-9]{64}$/.test(raw.approvalDecisionId) ||
     raw.approvalStatus !== "approved"
   ) {
     throw new Error("invalid handover resurrection enforce authority");
@@ -662,10 +601,19 @@ export function loadResurrectionCheckpointState(
     });
   }
   const authorityPath = join(repoRoot, "config", "handover-retirement-enforce-authority.json");
+  const authorityText = existsSync(authorityPath) ? readFileSync(authorityPath, "utf8") : null;
+  if (authorityText !== null) parseEnforceAuthority(authorityText, ENFORCE_AUTHORITY_PIN);
+  const approval = loadAndVerifyHandoverCutoverApproval(repoRoot);
+  if (authorityText !== null) {
+    const authority = JSON.parse(authorityText) as Partial<ResurrectionEnforceAuthority>;
+    if (authority.approvalDecisionId !== approval.decisionId) {
+      throw new Error("handover enforce authority approval decision mismatch");
+    }
+  }
   return evaluateResurrectionCheckpointState({
     journalText: readFileSync(journalPath, "utf8"),
     expectedPreserveDigest,
-    authorityText: existsSync(authorityPath) ? readFileSync(authorityPath, "utf8") : null,
+    authorityText,
     authorityPin: ENFORCE_AUTHORITY_PIN,
   });
 }
@@ -911,6 +859,139 @@ function callName(node: ts.CallExpression): string {
   return "";
 }
 
+type ResurrectionExemptionKind =
+  | "retirement_governance"
+  | "retirement_detector_literal"
+  | "provider_pointer_fixture"
+  | "migration_fixture";
+
+interface RetirementMetaRole {
+  path: string;
+  role: "projection_source" | "approval_verifier" | "approval_negative_oracle";
+  requiredMarkers: readonly string[];
+  allowedFindings: readonly string[];
+}
+
+const RETIREMENT_META_ROLES: readonly RetirementMetaRole[] = [
+  {
+    path: "src/audit/handover-resurrection-source.ts",
+    role: "projection_source",
+    requiredMarkers: [
+      "loadGeneratedResurrectionSourceFiles",
+      "clean distribution resurrection projection is incomplete",
+    ],
+    allowedFindings: ["generated_surface:*", "path:*", "unclassified:*"],
+  },
+  {
+    path: "src/lint/handover-cutover-approval.ts",
+    role: "approval_verifier",
+    requiredMarkers: [
+      "HANDOVER_CUTOVER_APPROVAL_PIN",
+      "RETIRED_ARTIFACTS",
+      "loadAndVerifyHandoverCutoverApproval",
+    ],
+    allowedFindings: ["generated_surface:*", "path:*", "unclassified:*", "schema:CURRENT.json"],
+  },
+  {
+    path: "tests/handover-cutover-approval.test.ts",
+    role: "approval_negative_oracle",
+    requiredMarkers: ["U-HRET-015", "analyzeHandoverResurrectionShadowRepo", "findings: []"],
+    allowedFindings: ["generated_surface:*", "path:*", "unclassified:*"],
+  },
+] as const;
+
+const RETIREMENT_GOVERNANCE_FILES = new Set([
+  "docs/governance/handover-retirement-memory-audit-2026-07-11.md",
+  "docs/governance/helix-harness-concept_v3.1.md",
+  "docs/governance/helix-harness-requirements_v1.2.md",
+  "docs/governance/session-handover-atomic-cutover-packet.md",
+  "docs/governance/session-handover-retirement-disposition.md",
+]);
+
+const RETIREMENT_DETECTOR_FILES = new Set([
+  "src/audit/handover-resurrection-source.ts",
+  "src/lint/handover-cutover-approval.ts",
+  "src/lint/handover-retirement.ts",
+  "src/runtime/retirement-preserve.ts",
+  "tests/handover-retirement-runtime.test.ts",
+  "tests/handover-retirement.test.ts",
+  "tests/handover-cutover-approval.test.ts",
+  "tests/retirement-preserve.test.ts",
+]);
+
+function logicalResurrectionPath(path: string): string {
+  return normalizedPath(path).replace(/^@projection\/[^/]+\//, "");
+}
+
+function matchesRetirementMetaRole(
+  item: ResurrectionFinding,
+  contentByPath: ReadonlyMap<string, string>,
+): boolean {
+  const path = logicalResurrectionPath(item.path);
+  const role = RETIREMENT_META_ROLES.find((candidate) => candidate.path === path);
+  if (!role) return false;
+  const content = contentByPath.get(path);
+  if (!content || role.requiredMarkers.some((marker) => !content.includes(marker))) return false;
+  return role.allowedFindings.some((allowed) => {
+    const [category, symbol] = allowed.split(":", 2);
+    return category === item.category && (symbol === "*" || symbol === item.symbol);
+  });
+}
+
+/**
+ * 退役の証明そのものとlive surfaceを区別する型付き境界。
+ * path全体を無条件に除外せず、証跡が必要とするfinding種別だけを落とす。
+ * command/symbol/writerは常に残るため、証跡ファイルへ実装を紛れ込ませてもfailする。
+ */
+function typedResurrectionExemption(
+  item: ResurrectionFinding,
+  contentByPath: ReadonlyMap<string, string>,
+): ResurrectionExemptionKind | null {
+  const path = logicalResurrectionPath(item.path);
+  if (RETIREMENT_GOVERNANCE_FILES.has(path)) return "retirement_governance";
+  if (matchesRetirementMetaRole(item, contentByPath)) return "retirement_detector_literal";
+  if (
+    RETIREMENT_DETECTOR_FILES.has(path) &&
+    !RETIREMENT_META_ROLES.some((role) => role.path === path) &&
+    (["generated_surface", "path", "unclassified"].includes(item.category) ||
+      (path === "src/lint/handover-cutover-approval.ts" &&
+        item.category === "schema" &&
+        item.symbol === "CURRENT.json"))
+  ) {
+    return "retirement_detector_literal";
+  }
+  if (
+    path === "tests/provider-handover.test.ts" &&
+    item.category === "schema" &&
+    item.symbol === "CURRENT.json"
+  ) {
+    return "provider_pointer_fixture";
+  }
+  if (
+    ["tests/cli-surface.test.ts", "tests/doctor.test.ts", "tests/slow/doctor.test.ts"].includes(
+      path,
+    ) &&
+    item.category === "schema" &&
+    item.symbol === "CURRENT.json"
+  ) {
+    return "migration_fixture";
+  }
+  if (
+    path === "src/lint/identifier-rename.ts" &&
+    item.category === "generated_surface" &&
+    item.symbol === "helix handover"
+  ) {
+    return "migration_fixture";
+  }
+  return null;
+}
+
+function isForbiddenHandoverModule(moduleName: string, policy: ResurrectionPolicy): boolean {
+  if (moduleName.includes("provider-handover")) return false;
+  if (policy.forbidden.modules.includes(moduleName)) return true;
+  return /(?:^|\/)handover(?:\/index)?$/.test(moduleName);
+}
+
 function scanTypeScript(file: ResurrectionFile, policy: ResurrectionPolicy): ResurrectionFinding[] {
   const path = normalizedPath(file.path);
   if (path === "src/lint/handover-resurrection.ts") return [];
@@ -934,16 +1015,7 @@ function scanTypeScript(file: ResurrectionFile, policy: ResurrectionPolicy): Res
   const visit = (node: ts.Node): void => {
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const moduleName = node.moduleSpecifier ? stringValue(node.moduleSpecifier) : null;
-      if (
-        moduleName &&
-        !moduleName.includes("provider-handover") &&
-        policy.forbidden.modules.some(
-          (token) =>
-            moduleName === token ||
-            moduleName.includes("/handover") ||
-            moduleName.endsWith(`/${token.replace(/^\.\.\//, "")}`),
-        )
-      ) {
+      if (moduleName && isForbiddenHandoverModule(moduleName, policy)) {
         add("module", moduleName, node.getText(source));
       }
     }
@@ -952,7 +1024,7 @@ function scanTypeScript(file: ResurrectionFile, policy: ResurrectionPolicy): Res
         node.expression.kind === ts.SyntaxKind.ImportKeyword &&
         node.arguments.some((argument) => {
           const moduleName = staticString(argument, constants) ?? "";
-          return policy.forbidden.modules.includes(moduleName) || moduleName.includes("/handover");
+          return isForbiddenHandoverModule(moduleName, policy);
         })
       ) {
         add("module", "dynamic import", node.getText(source));
@@ -1111,7 +1183,13 @@ export function analyzeHandoverResurrection(input: {
       ...(/\.[cm]?[jt]sx?$/.test(file.path) ? scanTypeScript(file, policy) : []),
     ]),
   ];
-  const unique = [...new Map(findings.map((item) => [item.fingerprint, item])).values()].sort(
+  const contentByPath = new Map(
+    input.files.map((file) => [logicalResurrectionPath(file.path), file.content]),
+  );
+  const policyFindings = findings.filter(
+    (item) => typedResurrectionExemption(item, contentByPath) === null,
+  );
+  const unique = [...new Map(policyFindings.map((item) => [item.fingerprint, item])).values()].sort(
     (a, b) => a.path.localeCompare(b.path) || a.code.localeCompare(b.code),
   );
   const baselineSet = new Set(input.baseline.fingerprints);

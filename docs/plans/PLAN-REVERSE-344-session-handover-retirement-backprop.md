@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: R4
 confirmed_reverse_type: fullback
 route_mode: reverse
-forward_routing: L6
+forward_routing: L5
 promotion_strategy: reuse-with-hardening
 drive: agent
 status: confirmed
@@ -26,14 +26,10 @@ backprop_scope:
     evidence_path: docs/governance/helix-harness-concept_v3.1.md
     reason: "Handover aggregateをDB+memory continuationへ置換する。"
   - layer: requirements
-    decision: update_required
-    evidence_path: docs/design/helix/L1-requirements/pillar-requirements.md
-    reason: "HBR/HNFRのprose handover契約をatomic continuation checkpointへ置換する。"
-  - layer: requirements
-    decision: update_required
+    decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "handover必須、3層原則、CLI/CURRENT.json契約を廃止する。"
-  - layer: requirements
+  - layer: L3-requirements
     decision: update_required
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     reason: "session continuationをstatus/DB/memoryへ置換する。"
@@ -50,12 +46,12 @@ backprop_scope:
     evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
     reason: "mergeAnchoredHandoverとhandover resume/setup契約をevent-first continuation関数へ置換する。"
   - layer: L4-basic-design
-    decision: update_required
-    evidence_path: docs/design/harness/L4-basic-design/
+    decision: updated
+    evidence_path: docs/design/harness/L4-basic-design/architecture.md
     reason: "Handover aggregate/module/UIをcontinuation read modelへ置換する。"
   - layer: L5-detailed-design
-    decision: update_required
-    evidence_path: docs/design/harness/L5-detailed-design/
+    decision: updated
+    evidence_path: docs/design/harness/L5-detailed-design/module-decomposition.md
     reason: "CURRENT物理schemaとsrc/handover moduleを廃止する。"
   - layer: verification-design
     decision: update_required
@@ -76,6 +72,8 @@ generates:
   - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/session-handover-retirement-disposition.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/governance/handover-retirement-memory-audit-2026-07-11.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L1-requirements/pillar-requirements.md
     artifact_type: design_doc
@@ -102,6 +100,8 @@ generates:
   - artifact_path: docs/design/harness/L5-detailed-design/module-decomposition.md
     artifact_type: design_doc
   - artifact_path: docs/design/harness/L5-detailed-design/physical-data.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L6-function-design/harness-memory-structure.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
     artifact_type: test_design

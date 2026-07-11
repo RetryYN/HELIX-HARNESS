@@ -38,7 +38,7 @@
 | instructions | project-owned instruction を保持し、HELIX managed block を重複させない |
 | hooks | global config へ書かず、repo-local `.claude/` / `.codex/` surface に限定する |
 | CI | `harness-check` は read-only smoke とし、secret を要求しない |
-| handover | `.helix/handover/CURRENT.json` は runtime pointer。手書き bypass を正本にしない |
+| continuation | `harness.db` の event/projection を正本とし、bounded memory は breadcrumb に限定する。旧 session/prose pointer は生成しない |
 | rename | `.helix` / `helix` 物理 rename は承認済み cutover runbook が揃うまで行わない |
 
 ## 5. 検証 command

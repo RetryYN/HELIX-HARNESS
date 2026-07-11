@@ -127,7 +127,6 @@ export interface RecordTemplateContractViolation {
 const SCHEMA_VERSION = "completion-decision-packet.v1";
 const POLICY = "decision-packet-freshness.v1";
 const ALLOWED_SOURCE_COMMANDS = new Set([
-  "helix handover",
   "helix status --json",
   "helix completion decision-packet --json",
 ]);

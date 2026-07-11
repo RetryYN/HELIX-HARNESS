@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "artifact-retirement-authority.v1",
+  "operationId": "handover-retirement:2026-07-11-sprint3",
+  "intentDigest": "sha256:4923d6233832852b31bb5a5d93e38a4fa7c9d1ae47caf01d15969ef71ca7a3f3",
+  "approvalDecisionId": "handover-retirement-cutover:d8091478fce674dbac5c5c44953fde7abbea6631f134980c424ff5be9a5f9d39",
+  "artifacts": [
+    { "path": "docs/handover/handover-mechanical-explicit.md", "disposition": "retired_deleted" },
+    { "path": "src/handover/handover-constants.ts", "disposition": "retired_deleted" },
+    { "path": "src/handover/handover-derivation.ts", "disposition": "retired_deleted" },
+    { "path": "src/handover/handover-types.ts", "disposition": "retired_deleted" },
+    { "path": "src/handover/index.ts", "disposition": "retired_deleted" },
+    { "path": "tests/handover-completion-wording.test.ts", "disposition": "retired_deleted" },
+    { "path": "tests/handover-db-derivation.test.ts", "disposition": "retired_deleted" },
+    { "path": "tests/handover-derivation-wiring.test.ts", "disposition": "retired_deleted" },
+    { "path": "tests/handover.test.ts", "disposition": "retired_deleted" }
+  ]
+}

@@ -231,4 +231,20 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
     const result = checkPlanArtifactExistence(join(tmpdir(), "helix-plan-artifact-nope-zzz"));
     expect(result.ok).toBe(false);
   });
+
+  it("does not resurrect an artifact covered by typed retirement, but still flags an unlisted missing path", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-retired-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writePlan(root, "PLAN-TEST-97-retired.md", "completed", "src/retired.ts");
+      writePlan(root, "PLAN-TEST-98-unlisted.md", "completed", "src/unlisted.ts");
+      const input = loadPlanArtifactExistenceInput(root, new Set(["src/retired.ts"]));
+      const result = analyzePlanArtifactExistence(input);
+      expect(result.ok).toBe(false);
+      expect(result.violations.map((v) => v.planId)).not.toContain("PLAN-TEST-97-retired");
+      expect(result.violations.map((v) => v.planId)).toContain("PLAN-TEST-98-unlisted");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

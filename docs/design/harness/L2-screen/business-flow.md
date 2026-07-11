@@ -26,7 +26,7 @@ updated: 2026-06-24
 | Lane（レーン） | Actor（主体） | 責務 | UI Surface（UI 面） |
 |---|---|---|---|
 | PO | Product owner または decision maker | gate を承認し、next action を確認し、scope と progress を確認する。 | PM-01, PM-03, PM-05, PM-06 |
-| TL / Operator | Human technical lead または harness operator | command を実行し、doctor / audit / recovery を確認し、runtime handover を調整する。 | PM-02, PM-04, HM-01..HM-08 |
+| TL / Operator | Human technical lead または harness operator | command を実行し、doctor / audit / recovery を確認し、runtime continuation を検証する。 | PM-02, PM-04, HM-01..HM-08 |
 | AI Runtime | Codex / Claude Code process | CLI-mediated task を通じて design、implementation、review、verification の output を作る。 | 直接 UI 操作なし |
 | HELIX Core | CLI, validators, doctor, plan lint, vmodel lint, projection writers | workflow を強制し、machine evidence を生成し、drift 時は fail-close する。 | PM/HM 画面に反映 |
 | Repository / GitHub | Git history, PR, checks, actions, review evidence | canonical artifact と CI evidence を永続化する。 | PM-03, HM-05, GD-01 |
@@ -38,7 +38,7 @@ updated: 2026-06-24
 |---|---|---|---|---|
 | BF-01 | Forward 設計から実装へのレビュー | plan が Forward `plan -> pair-freeze -> implement -> trace-freeze -> review -> accept` を進む。 | PM-01, PM-02, PM-03, PM-04, PM-06 | Gate pass/fail と next action。 |
 | BF-02 | Gate failure（gate 失敗）の切り分け | gate、doctor check、lint、review のいずれかが失敗する。 | PM-03, HM-05, HM-07, GD-01 | 人間が読める blocker と remediation command text。 |
-| BF-03 | Handover and resume（引き継ぎと再開） | Runtime が切り替わる、session が再開する、または stale handover が検出される。 | PM-05, PM-02, PM-03, HM-05 | stale ではない next action と resumed work context。 |
+| BF-03 | Continuation and resume（継続と再開） | Runtime が切り替わる、session が再開する、または continuation projection の欠落・stale が検出される。 | PM-05, PM-02, PM-03, HM-05 | DB で検証済みの next action と resumed work context。 |
 | BF-04 | Recovery / incident correction（復旧・incident 是正） | incorrect claim、interrupted run、broken state、rollback candidate のいずれかが現れる。 | HM-06, PM-03, HM-05, HM-07 | recovery decision、resume point、または escalation。 |
 | BF-05 | Coverage gap discovery（coverage gap 検出） | coverage / trace / implementation status が弱い artifact または欠落 artifact を示す。 | HM-02, HM-01, PM-04, PM-06 | 新しい plan / task candidate と trace target。 |
 | BF-06 | Design document review（設計文書レビュー） | PO / TL が gate decision 前に canonical design docs を確認する必要がある。 | PM-06, PM-04, GD-01 | Doc review outcome と trace confirmation。 |
@@ -86,13 +86,13 @@ flowchart LR
   F --> G[PM-03 gate recheck]
 ```
 
-### BF-03 Handover と resume
+### BF-03 Continuation と resume
 
 | 手順 | PO | TL / Operator | AI Runtime | HELIX Core | Docs / DB | Screen |
 |---:|---|---|---|---|---|---|
-| 1 | current session state を開く。 | handover が stale かどうかを確認する。 | previous runtime が CURRENT.json を作っている場合がある。 | handover pointer と session digest を読む。 | CURRENT.json と archive を保存する。 | PM-05 |
-| 2 | 次の work target を確認する。 | target layer / gate へ移動する。 | new runtime は CLI / session context 経由で handover を消費する。 | next_action target を解決する。 | plan / doc link を提供する。 | PM-05 -> PM-02/PM-03 |
-| 3 | work を継続する。 | continuation 後の evidence を検証する。 | assigned role 経由で変更を作る。 | log / projection を更新する。 | handover / audit を更新する。 | PM-03, HM-05 |
+| 1 | current continuation state を開く。 | projection の freshness と source event を確認する。 | previous runtime の session event は journal から DB へ投影済みである。 | `harness.db` の continuation projection と session digest を読む。 | event / projection / audit を保存する。 | PM-05 |
+| 2 | 次の work target を確認する。 | target layer / gate へ移動する。 | new runtime は SessionStart context 経由で DB projection を消費する。 | next_action target を解決し、projection 欠落時は fail-close する。 | plan / doc link を提供する。 | PM-05 -> PM-02/PM-03 |
+| 3 | work を継続する。 | continuation 後の evidence を検証する。 | assigned role 経由で変更を作る。 | event / projection を更新する。 | continuation / audit evidence を更新する。 | PM-03, HM-05 |
 
 ### BF-04 Recovery / incident correction の判断
 

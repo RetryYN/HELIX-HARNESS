@@ -169,4 +169,38 @@ describe("dependency-drift and regression expansion (PLAN-REVERSE-42)", () => {
     expect(scope.ok).toBe(true);
     expect(scope.testPaths).toEqual(["tests/runtime-hook-entrypoints.test.ts"]);
   });
+
+  it("U-REGEXP-004: retired handover module is covered by negative retirement oracles", () => {
+    const drift = analyzeDependencyDrift({
+      sourceDocs: [{ path: "src/runtime/continuation.ts", text: "export const active = true;" }],
+      testDocs: [
+        {
+          path: "tests/handover-resurrection.test.ts",
+          text: 'import { analyzeHandoverResurrection } from "../src/lint/handover-resurrection"; // U-HRET-012',
+        },
+      ],
+    });
+    const scope = expandRegressionScope(drift, ["src/handover/index.ts"]);
+
+    expect(scope.ok).toBe(true);
+    expect(scope.testPaths).toEqual(["tests/handover-resurrection.test.ts"]);
+  });
+
+  it("U-REGEXP-004: a name-only retirement test cannot satisfy deleted-module coverage", () => {
+    const drift = analyzeDependencyDrift({
+      sourceDocs: [],
+      testDocs: [
+        {
+          path: "tests/handover-retirement.test.ts",
+          text: "// handover was retired, but no executable U-HRET contract is bound",
+        },
+      ],
+    });
+    const scope = expandRegressionScope(drift, ["src/handover/index.ts"]);
+
+    expect(scope.ok).toBe(false);
+    expect(scope.findings).toContainEqual(
+      expect.objectContaining({ code: "missing-regression-test", module: "handover" }),
+    );
+  });
 });

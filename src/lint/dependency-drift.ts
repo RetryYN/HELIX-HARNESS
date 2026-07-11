@@ -170,6 +170,14 @@ function smokeCoveredModules(doc: DependencyDoc): string[] {
   if (/["']src["']\s*,\s*["']cli\.ts["']/.test(doc.text) || /src[/\\]cli\.ts/.test(doc.text)) {
     modules.push("cli");
   }
+  // 削除済み module は import できないため、retirement の negative oracle を direct coverage として扱う。
+  // U-HRET citation と resurrection/retirement lint import の両方を要求し、名称だけの test を許可しない。
+  if (
+    /\bU-HRET-(?:00[1-9]|01[0-4])\b/.test(doc.text) &&
+    /src[/\\]lint[/\\]handover-(?:retirement|resurrection)/.test(doc.text)
+  ) {
+    modules.push("handover");
+  }
   return modules;
 }
 

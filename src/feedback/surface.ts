@@ -296,14 +296,14 @@ export function selectTakeoverFeedback(
     directKeys.add(identity.key);
   }
 
-  items = filterByLifecycleProjection(
+  items = filterByLifecycleProjection({
     db,
     items,
-    lifecycleSources,
-    lifecycleHidden,
-    sessionReceiptHidden,
-    opts.sessionId,
-  );
+    sources: lifecycleSources,
+    hidden: lifecycleHidden,
+    receiptHidden: sessionReceiptHidden,
+    sessionId: opts.sessionId,
+  });
 
   items.sort(
     (a, b) =>
@@ -454,14 +454,17 @@ export function loadFeedbackLifecycleSources(db: HarnessDb): FeedbackSourceLike[
   return sources;
 }
 
-function filterByLifecycleProjection(
-  db: HarnessDb,
-  items: SurfacedFeedback[],
-  sources: ReadonlyMap<string, FeedbackSourceLike>,
-  hidden: Record<FeedbackSurfaceBucket, number>,
-  receiptHidden: Record<FeedbackSurfaceBucket, number>,
-  sessionId?: string,
-): SurfacedFeedback[] {
+interface FilterByLifecycleProjectionInput {
+  db: HarnessDb;
+  items: SurfacedFeedback[];
+  sources: ReadonlyMap<string, FeedbackSourceLike>;
+  hidden: Record<FeedbackSurfaceBucket, number>;
+  receiptHidden: Record<FeedbackSurfaceBucket, number>;
+  sessionId?: string;
+}
+
+function filterByLifecycleProjection(params: FilterByLifecycleProjectionInput): SurfacedFeedback[] {
+  const { db, items, sources, hidden, receiptHidden, sessionId } = params;
   try {
     const health = db
       .prepare(

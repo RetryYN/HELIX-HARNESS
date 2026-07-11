@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -155,7 +155,13 @@ describe("design-language lint", () => {
       encoding: "utf8",
     })
       .stdout.split(/\r?\n/)
-      .filter((path) => path && !/(^|\/)readme\.md$/i.test(path));
+      .filter(
+        (path) =>
+          path &&
+          existsSync(path) &&
+          !/(^|\/)readme\.md$/i.test(path) &&
+          !path.startsWith("docs/archive/handover/"),
+      );
     const auditedPaths = new Set(loadDesignLanguageDocs().map((doc) => doc.path));
 
     const missing = trackedMarkdown.filter((path) => !auditedPaths.has(path));
@@ -163,10 +169,11 @@ describe("design-language lint", () => {
     expect(missing).toEqual([]);
   });
 
-  it("U-DESLANG-010: ignores generated session handover markdown while keeping hand-authored handover docs", () => {
+  it("U-DESLANG-010: ignores generated and byte-preserved handover history while keeping live authored docs", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-design-language-handover-"));
     try {
       mkdirSync(join(root, "docs", "handover"), { recursive: true });
+      mkdirSync(join(root, "docs", "archive", "handover"), { recursive: true });
       writeFileSync(
         join(root, "docs", "handover", "session-handover-2026-07-08.md"),
         "# Generated Handover\n\nThis generated packet contains machine field names only.\n",
@@ -175,6 +182,11 @@ describe("design-language lint", () => {
       writeFileSync(
         join(root, "docs", "handover", "SESSION-2026-07-08-handover.md"),
         "# 引き継ぎ\n\n本文は日本語で記録する。\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "archive", "handover", "legacy.md"),
+        "# Historical Handover\n\nThis file is retained byte-for-byte as retirement evidence.\n",
         "utf8",
       );
 

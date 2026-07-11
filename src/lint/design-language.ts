@@ -118,7 +118,10 @@ function isReadmeLike(path: string): boolean {
 
 function isGeneratedDoc(path: string): boolean {
   const normalized = normalizeRel(path);
-  return /^docs\/handover\/session-handover-\d{4}-\d{2}-\d{2}\.md$/.test(normalized);
+  return (
+    /^docs\/handover\/session-handover-\d{4}-\d{2}-\d{2}\.md$/.test(normalized) ||
+    normalized.startsWith("docs/archive/handover/")
+  );
 }
 
 function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]): void {

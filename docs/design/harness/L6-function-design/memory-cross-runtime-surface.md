@@ -34,12 +34,19 @@ harness memory の到達面は現在 Claude Code SessionStart と `helix memory 
 | (b) AGENTS.md managed block へ生成 snapshot を埋め込み | 不採用（保留）。生成時刻からの stale 化を再導入し、handover markdown と同型の drift 面を作る。(a) が使えない環境の fallback として将来再評価 |
 | (c) `.codex/hooks.json` の session-start hook | 現時点で Codex hook engine に SessionStart 相当が無い（実測）。提供され次第 (a) の呼出を hook 化する追随のみ |
 
-- AGENTS.md の session start 手順（現行: CURRENT.json 確認）の書き換えは handover 撤去と同一
-  変更セット（PLAN-L6-61 §1.4、rule-drift marker 同期）で行い、本設計では手順文言を確定するだけ:
-  「session 初回に `helix session start` の出力（feedback surface + harness-memory）を確認する」。
+- AGENTS.md の session start 手順は session/prose pointer を参照せず、`harness.db` continuation projection と
+  memory journal を正本として確認する。`helix session start` の出力（feedback surface + harness-memory）は
+  この live 導出を表示し、projection 欠落時は推測で next action を補わない。
 - `helix memory show` は memory v2 の surface（PLAN-L6-62 §5）へ自動追随する（同一関数を呼ぶ）。
 
 ## §3 委譲 prompt 注入契約（helix codex / helix claude / subagent 委譲）
+
+### §3.1 DbC / Vペア
+
+| 関数 | 署名 | 事前条件 | 事後条件 | 不変条件 | 判定基準 |
+|---|---|---|---|---|---|
+| prompt composition | `buildAdapterPlan(input, injection) => AdapterPlan` | `memory_lines`はmemory surfaceでbudget適用済み | 非空時だけread-only recall sectionをstdin末尾へ追加 | task、brief、lens、skillの既存順序と空入力byte列を変えない | `U-MEMX-001/001b/002/004` |
+| delegation injection | `composeDelegationInjection(surface, memory) => AdapterContextInjection` | surface policyが呼出面を明示しmemory行はsecret拒否済み | delegation/team_run/task_routeへ同じbounded recallを渡す | 新呼出面はpolicy追加まで非注入のfail-close | `U-MEMX-003/005` |
 
 - `AdapterContextInjection` を拡張する:
 

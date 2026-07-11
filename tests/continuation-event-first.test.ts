@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -13,6 +13,7 @@ import {
   type ContinuationEvent,
   parseContinuationEventLog,
   parseDeliveryJournal,
+  planCompletionContinuationPaths,
   planLegacyNoteMigration,
   projectContinuationEvent,
   projectDeliveryEvent,
@@ -22,6 +23,7 @@ import {
   resolveContinuationPrecedence,
   writeContinuationEvent,
   writeDeliveryEvent,
+  writePlanCompletionContinuation,
 } from "../src/runtime/continuation";
 import { type HarnessDb, openHarnessDb } from "../src/state-db";
 import { migrate } from "../src/state-db/migration";
@@ -74,6 +76,83 @@ function event(overrides: Partial<ContinuationEvent> = {}): ContinuationEvent {
 }
 
 describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
+  it("IT-CONT-03: PLAN complete adapterはcanonical pathへevent-firstで公開後のみactive planをclearする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-complete-"));
+    const clears: string[] = [];
+    const input = {
+      repoRoot: root,
+      sessionId: "session-complete-1",
+      operationId: "plan-complete:PLAN-L7-416:commit-abc",
+      completedPlanId: "PLAN-L7-416",
+      nextAction: "review",
+      memoryRef: null,
+      recordedAt: "2026-07-11T01:00:00Z",
+    };
+    try {
+      const paths = planCompletionContinuationPaths(root);
+      expect(paths).toEqual({
+        journal: join(root, ".helix", "audit", "continuation-events.jsonl"),
+        checkpoint: join(root, ".helix", "state", "continuation-checkpoint.json"),
+        database: join(root, ".helix", "harness.db"),
+      });
+      const first = writePlanCompletionContinuation(input, {
+        clearActivePlan: () => clears.push("clear"),
+      });
+      expect(first).toMatchObject({
+        ok: true,
+        projected: true,
+        published: true,
+      });
+      expect(clears).toEqual(["clear"]);
+      expect(parseContinuationEventLog(readFileSync(paths.journal, "utf8"))).toEqual([first.event]);
+      expect(JSON.parse(readFileSync(paths.checkpoint, "utf8"))).toMatchObject({
+        schemaVersion: 1,
+        eventId: first.event.eventId,
+        eventSeq: first.event.eventSeq,
+        payloadHash: first.event.payloadHash,
+      });
+
+      const replay = writePlanCompletionContinuation(input, {
+        clearActivePlan: () => clears.push("clear"),
+      });
+      expect(replay.event).toEqual(first.event);
+      expect(parseContinuationEventLog(readFileSync(paths.journal, "utf8"))).toHaveLength(1);
+      expect(clears).toEqual(["clear", "clear"]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("IT-CONT-04: checkpoint publish失敗時はactive planをclearしない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-complete-fail-"));
+    const clears: string[] = [];
+    try {
+      mkdirSync(join(root, ".helix"), { recursive: true });
+      writeFileSync(join(root, ".helix", "state"), "checkpoint parent collision");
+      const result = writePlanCompletionContinuation(
+        {
+          repoRoot: root,
+          sessionId: "session-complete-fail",
+          operationId: "plan-complete:PLAN-L7-416:commit-fail",
+          completedPlanId: "PLAN-L7-416",
+          nextAction: null,
+          memoryRef: null,
+          recordedAt: "2026-07-11T01:01:00Z",
+        },
+        { clearActivePlan: () => clears.push("clear") },
+      );
+      expect(result).toMatchObject({
+        ok: false,
+        projected: true,
+        published: false,
+        findings: ["checkpoint_publish_failed"],
+      });
+      expect(clears).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("IT-CONT-02: continuation semantic keysのUNIQUE indexを実migrationが作成する", () => {
     const database = db();
     const indexes = database.prepare("PRAGMA index_list(session_events)").all();
@@ -231,7 +310,11 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
     });
     expect(result.ok).toBe(true);
     expect(checkpoints).toEqual([
-      expect.objectContaining({ eventId: "evt-1", eventSeq: 1, byteOffset: 4096 }),
+      expect.objectContaining({
+        eventId: "evt-1",
+        eventSeq: 1,
+        byteOffset: 4096,
+      }),
     ]);
   });
 
@@ -249,8 +332,15 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
       },
       publishCheckpoint: () => checkpoints.push("unexpected"),
     });
-    expect(first).toMatchObject({ ok: false, projected: false, published: false });
-    expect(rebuildContinuationProjection(database, log)).toEqual({ inserted: 1, deduped: 0 });
+    expect(first).toMatchObject({
+      ok: false,
+      projected: false,
+      published: false,
+    });
+    expect(rebuildContinuationProjection(database, log)).toEqual({
+      inserted: 1,
+      deduped: 0,
+    });
 
     const replay = writeContinuationEvent(event(), {
       appendEvent: () => ({ byteOffset: 128, appended: false }),
@@ -360,14 +450,27 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
         sessionId: "session-1",
         eventSeq: 2,
         recordedAt: "2026-07-11T09:00:00+09:00",
-        payload: { planId: null, eventKind: "checkpoint", nextAction: null, memoryRef: null },
+        payload: {
+          planId: null,
+          eventKind: "checkpoint",
+          nextAction: null,
+          memoryRef: null,
+        },
       }),
     ).toThrow(/timestamp/);
   });
 
   it("U-HRET-006 / IT-CONT-01: DB precedenceを維持しmemory競合をfinding化する", () => {
-    const dbView = { planId: "PLAN-L7-416", nextAction: "review", sourceEventSeq: 4 };
-    const memory = { planId: "PLAN-OLD", nextAction: "legacy", sourceEventSeq: 3 };
+    const dbView = {
+      planId: "PLAN-L7-416",
+      nextAction: "review",
+      sourceEventSeq: 4,
+    };
+    const memory = {
+      planId: "PLAN-OLD",
+      nextAction: "legacy",
+      sourceEventSeq: 3,
+    };
     expect(resolveContinuationPrecedence({ db: dbView, memory })).toEqual({
       value: dbView,
       findings: ["db_memory_conflict"],
@@ -493,9 +596,18 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
     };
     const result = planLegacyNoteMigration(
       [
-        { ...valid, sourceDigest: "broken", body: "token=secret", expiresAt: null },
+        {
+          ...valid,
+          sourceDigest: "broken",
+          body: "token=secret",
+          expiresAt: null,
+        },
         valid,
-        { ...valid, sourceDigest: `sha256:${"f".repeat(64)}`, body: "second valid note" },
+        {
+          ...valid,
+          sourceDigest: `sha256:${"f".repeat(64)}`,
+          body: "second valid note",
+        },
       ],
       {
         now: "2026-07-11T00:00:00Z",
@@ -524,7 +636,11 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
     const result = planLegacyNoteMigration(
       [
         { ...base, body: "token=abc", expiresAt: "2026-07-12T00:00:00Z" },
-        { ...base, body: "person@example.com", expiresAt: "2026-07-12T00:00:00Z" },
+        {
+          ...base,
+          body: "person@example.com",
+          expiresAt: "2026-07-12T00:00:00Z",
+        },
         { ...base, body: "missing", expiresAt: null },
         { ...base, body: "too long", expiresAt: "2026-07-19T00:00:00Z" },
       ],
@@ -618,15 +734,25 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
     }
     projectDeliveryEvent(
       database,
-      buildDeliveryEvent({ ...common, consumerId: "consumer-a", status: "acknowledged" }),
+      buildDeliveryEvent({
+        ...common,
+        consumerId: "consumer-a",
+        status: "acknowledged",
+      }),
     );
     expect(
       database
         .prepare("SELECT consumer_id, status FROM delivery_receipts ORDER BY consumer_id")
         .all(),
     ).toEqual([
-      expect.objectContaining({ consumer_id: "consumer-a", status: "acknowledged" }),
-      expect.objectContaining({ consumer_id: "consumer-b", status: "delivered" }),
+      expect.objectContaining({
+        consumer_id: "consumer-a",
+        status: "acknowledged",
+      }),
+      expect.objectContaining({
+        consumer_id: "consumer-b",
+        status: "delivered",
+      }),
     ]);
   });
 
@@ -699,8 +825,16 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
     } as const;
     const events = [
       buildDeliveryEvent({ ...base, status: "pending" }),
-      buildDeliveryEvent({ ...base, status: "delivered", recordedAt: "2026-07-11T00:01:00Z" }),
-      buildDeliveryEvent({ ...base, status: "expired", recordedAt: "2026-07-18T00:00:00Z" }),
+      buildDeliveryEvent({
+        ...base,
+        status: "delivered",
+        recordedAt: "2026-07-11T00:01:00Z",
+      }),
+      buildDeliveryEvent({
+        ...base,
+        status: "expired",
+        recordedAt: "2026-07-18T00:00:00Z",
+      }),
     ];
     const database = db();
     expect(rebuildDeliveryReceipts(database, events)).toEqual({
@@ -733,8 +867,12 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
       }),
     });
     try {
-      expect(appendDeliveryJournalFile(path, pending, coordinationDb)).toEqual({ appended: true });
-      expect(appendDeliveryJournalFile(path, pending, coordinationDb)).toEqual({ appended: false });
+      expect(appendDeliveryJournalFile(path, pending, coordinationDb)).toEqual({
+        appended: true,
+      });
+      expect(appendDeliveryJournalFile(path, pending, coordinationDb)).toEqual({
+        appended: false,
+      });
       const parsed = parseDeliveryJournal(readFileSync(path, "utf8"));
       expect(parsed).toHaveLength(1);
       expect(rebuildDeliveryReceipts(db(), parsed)).toEqual({
@@ -781,7 +919,15 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
         throw new Error("db unavailable");
       },
     });
-    expect(failedProjection).toMatchObject({ ok: false, appended: true, projected: false });
-    expect(rebuildDeliveryReceipts(db(), journal)).toEqual({ inserted: 1, updated: 0, deduped: 0 });
+    expect(failedProjection).toMatchObject({
+      ok: false,
+      appended: true,
+      projected: false,
+    });
+    expect(rebuildDeliveryReceipts(db(), journal)).toEqual({
+      inserted: 1,
+      updated: 0,
+      deduped: 0,
+    });
   });
 });

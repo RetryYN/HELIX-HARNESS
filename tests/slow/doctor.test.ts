@@ -23,6 +23,7 @@ import {
   checkDddTddRules,
   checkDependencyDrift,
   checkDescentObligation,
+  checkDesignCoverage,
   checkDesignLanguage,
   checkDriveDbRegistration,
   checkDriveModelBinding,
@@ -31,8 +32,6 @@ import {
   checkFunctionDesignAbsorptionBinding,
   checkGateConfirm,
   checkGuardrailInvariants,
-  checkHandover,
-  checkHandoverDisciplineMessages,
   checkImplPlanTrace,
   checkJudgmentCoreCoverage,
   checkL6Completion,
@@ -112,10 +111,7 @@ import { migrate } from "../../src/state-db/migration";
 import { VMODEL_ZIP_SOURCE_BINDINGS } from "../../src/vmodel/zip-manifest";
 
 const NOW = "2026-06-04T00:00:00.000Z";
-const pointerPath = join("/repo", ".helix", "handover", "CURRENT.json");
 const slotStatePath = join("/repo", ".helix", "state", "agent-slots.json");
-const currentPlanPath = join("/repo", ".helix", "state", "current-plan");
-const digestDir = join("/repo", ".helix", "logs", "plan");
 
 function codexWrapperParityFiles(root: string, overrides: Record<string, string> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
@@ -126,6 +122,7 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
         '  "hooks": {',
         '    "SessionStart": [{ "hooks": [{ "command": "bun \\"$CLAUDE_PROJECT_DIR/src/cli.ts\\" session start" }] }],',
         '    "PostToolUse": [{ "hooks": [{ "command": "bun \\"$CLAUDE_PROJECT_DIR/src/cli.ts\\" hook post-tool-use" }] }],',
+        '    "SubagentStop": [{ "hooks": [{ "type": "command", "command": "helix hook subagent-stop --quiet" }] }],',
         '    "Stop": [{ "hooks": [{ "command": "bun \\"$CLAUDE_PROJECT_DIR/src/cli.ts\\" session summary" }] }]',
         "  }",
         "}",
@@ -332,12 +329,12 @@ function consumerProjectSetupStateTemplate(): string {
       evidence: "first-run rename packet JSON",
     },
     {
-      phase: "handover-route",
-      command: "helix handover status --json",
+      phase: "continuation-status",
+      command: "helix status --json",
       writePolicy: "no-write",
       requiresMaterializedPaths: [],
-      expected: "handover status anchors the first project route",
-      evidence: "first-run handover status JSON",
+      expected: "continuation status anchors the first project route",
+      evidence: "first-run continuation status JSON",
     },
     {
       phase: "team-run-dry-run",
@@ -361,9 +358,13 @@ function consumerProjectSetupStateTemplate(): string {
     postSetupWorkflow: {
       nextRoute: "ready",
       readinessOk: true,
-      verificationCommands: verificationMatrix
-        .filter((row) => row.phase !== "vscode-profile-open")
-        .map((row) => row.command),
+      verificationCommands: [
+        ...new Set(
+          verificationMatrix
+            .filter((row) => row.phase !== "vscode-profile-open")
+            .map((row) => row.command),
+        ),
+      ],
       manualVerificationCommands: verificationMatrix
         .filter((row) => row.phase === "vscode-profile-open")
         .map((row) => row.command),
@@ -423,7 +424,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       '      { "matcher": "Edit|Write|MultiEdit", "hooks": [{ "type": "command", "command": "helix hook work-guard", "blockOnFailure": true }] },',
       '      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "helix hook git-command-guard", "blockOnFailure": true }] }',
       "    ],",
-      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "helix session start" }] }],',
+      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "helix session start", "timeout": 90 }] }],',
       '    "PostToolUse": [{ "matcher": "Edit|Write|MultiEdit|Bash", "hooks": [{ "type": "command", "command": "helix hook post-tool-use" }] }],',
       '    "Stop": [{ "hooks": [{ "type": "command", "command": "helix session summary" }] }],',
       '    "SubagentStop": [{ "hooks": [{ "type": "command", "command": "helix hook subagent-stop" }] }]',
@@ -447,13 +448,14 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "{",
       '  "hooks": {',
       '    "PreToolUse": [',
-      '      { "matcher": "spawn_agent|spawn_agents_on_csv", "hooks": [{ "type": "command", "command": "helix hook agent-guard", "blockOnFailure": true }] },',
-      '      { "matcher": "apply_patch|write_file", "hooks": [{ "type": "command", "command": "helix hook work-guard", "blockOnFailure": true }] },',
-      '      { "matcher": "exec_command|local_shell", "hooks": [{ "type": "command", "command": "helix hook git-command-guard", "blockOnFailure": true }] }',
+      '      { "matcher": "spawn_agent|spawn_agents_on_csv|Agent", "hooks": [{ "type": "command", "command": "helix hook agent-guard", "blockOnFailure": true }] },',
+      '      { "matcher": "apply_patch|Write|Edit", "hooks": [{ "type": "command", "command": "helix hook work-guard", "blockOnFailure": true }] },',
+      '      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "helix hook git-command-guard", "blockOnFailure": true }] }',
       "    ],",
-      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "helix session start" }] }],',
-      '    "PostToolUse": [{ "matcher": "apply_patch|write_file|exec_command|local_shell", "hooks": [{ "type": "command", "command": "helix hook post-tool-use" }] }],',
-      '    "Stop": [{ "hooks": [{ "type": "command", "command": "helix session summary" }] }]',
+      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "helix session start", "timeout": 90 }] }],',
+      '    "PostToolUse": [{ "matcher": "apply_patch|Write|Edit|Bash", "hooks": [{ "type": "command", "command": "helix hook post-tool-use" }] }],',
+      '    "SubagentStop": [{ "hooks": [{ "type": "command", "command": "helix hook subagent-stop --quiet" }] }],',
+      '    "Stop": [{ "hooks": [{ "type": "command", "command": "helix session summary --quiet" }] }]',
       "  }",
       "}",
     ].join("\n"),
@@ -495,12 +497,6 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
           label: "HELIX: rename plan",
           type: "shell",
           command: "bun run helix rename plan --json",
-          problemMatcher: [],
-        },
-        {
-          label: "HELIX: handover status",
-          type: "shell",
-          command: "bun run helix handover status --json",
           problemMatcher: [],
         },
         {
@@ -553,8 +549,6 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "        run: bun run helix doctor --profile consumer --json",
       "      - name: HELIX rename plan",
       "        run: bun run helix rename plan --json",
-      "      - name: Handover route",
-      "        run: bun run helix handover status --json",
       "      - name: HELIX team run dry-run",
       "        run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       "      - run: bun run typecheck",
@@ -577,8 +571,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "          persist-credentials: false",
       "      - uses: oven-sh/setup-bun@v2",
       "      - run: bun install --frozen-lockfile",
-      "      - name: Handover route",
-      "        run: bun run helix handover status --json",
+      "      - name: HELIX status",
+      "        run: bun run helix status --json",
       "      - name: HELIX completion decision packet",
       "        run: bun run helix completion decision-packet --json",
       "      - name: HELIX completion review bundle",
@@ -658,7 +652,6 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "",
     ].join("\n"),
     ".helix/memory/.gitkeep": "",
-    ".helix/handover/.gitkeep": "",
     ".helix/evidence/.gitkeep": "",
     ".helix/state/project-setup.json": consumerProjectSetupStateTemplate(),
     ".helix/teams/default-hybrid.yaml": consumerTeamDefinitionTemplate(),
@@ -683,7 +676,7 @@ describe("runConsumerDoctor", () => {
   it("passes with generated consumer setup artifacts without requiring dogfood design docs", () => {
     const result = runConsumerDoctor(deps({ files: consumerDoctorFiles() }));
 
-    expect(result.ok).toBe(true);
+    expect(result.ok, result.messages.join("\n")).toBe(true);
     expect(hasDoctorMessage(result.messages, "doctor: profile=consumer")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
@@ -890,7 +883,7 @@ describe("runConsumerDoctor", () => {
                 "helix completion decision-packet --json",
                 "helix doctor --profile consumer",
                 "helix rename plan --json",
-                "helix handover status --json",
+                "helix status --json",
                 "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
               ],
             },
@@ -995,12 +988,6 @@ describe("runConsumerDoctor", () => {
             problemMatcher: [],
           },
           {
-            label: "HELIX: handover status",
-            type: "shell",
-            command: "bun run helix handover status --json",
-            problemMatcher: [],
-          },
-          {
             label: "HELIX: setup dry-run",
             type: "shell",
             command: "bun run helix setup project --dry-run",
@@ -1033,12 +1020,6 @@ describe("runConsumerDoctor", () => {
             type: "shell",
             command: "bun run helix doctor --profile consumer",
             problemMatcher: ["$tsc"],
-          },
-          {
-            label: "HELIX: handover status",
-            type: "shell",
-            command: "bun run helix handover status --json",
-            problemMatcher: [],
           },
           {
             label: "HELIX: setup dry-run",
@@ -1199,7 +1180,6 @@ describe("runConsumerDoctor", () => {
         "      - run: bun run helix completion decision-packet --json",
         "      - run: bun run helix doctor --profile consumer --json",
         "      - run: bun run helix rename plan --json",
-        "      - run: bun run helix handover status --json",
         "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
@@ -1250,7 +1230,7 @@ describe("runConsumerDoctor", () => {
         "      - run: bun run helix rename plan --json",
         "        env:",
         "          HELIX_CI_MODE: read-only",
-        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix status --json",
         "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
@@ -1319,7 +1299,7 @@ describe("runConsumerDoctor", () => {
         "      - run: bun run helix rename plan --json",
         "        if: $" + "{{ false }}",
         "        continue-on-error: true",
-        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix status --json",
         "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
@@ -1383,7 +1363,7 @@ describe("runConsumerDoctor", () => {
         "        shell: bash",
         "        timeout-minutes: 1",
         "        working-directory: .",
-        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix status --json",
         "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
@@ -1447,7 +1427,7 @@ describe("runConsumerDoctor", () => {
         "      - run: bun run helix rename plan --json",
         "        env:",
         "          TOKEN: $" + "{{ secrets [ 'API_TOKEN' ] }}",
-        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix status --json",
         "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
@@ -1846,7 +1826,7 @@ describe("runConsumerDoctor", () => {
                   hooks: [{ type: "command", command: "helix hook post-tool-use" }],
                 },
               ],
-              Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
+              Stop: [{ hooks: [{ type: "command", command: "helix session summary --quiet" }] }],
               SubagentStop: [{ hooks: [{ type: "command", command: "helix hook subagent-stop" }] }],
             },
           }),
@@ -1854,7 +1834,7 @@ describe("runConsumerDoctor", () => {
             hooks: {
               PreToolUse: [
                 {
-                  matcher: "spawn_agent|spawn_agents_on_csv",
+                  matcher: "spawn_agent|spawn_agents_on_csv|Agent",
                   hooks: [
                     {
                       type: "command",
@@ -1864,7 +1844,7 @@ describe("runConsumerDoctor", () => {
                   ],
                 },
                 {
-                  matcher: "apply_patch|write_file",
+                  matcher: "apply_patch|Write|Edit",
                   hooks: [
                     {
                       type: "command",
@@ -1874,7 +1854,7 @@ describe("runConsumerDoctor", () => {
                   ],
                 },
                 {
-                  matcher: "exec_command|local_shell",
+                  matcher: "Bash",
                   hooks: [
                     {
                       type: "command",
@@ -1887,11 +1867,11 @@ describe("runConsumerDoctor", () => {
               SessionStart: [{ hooks: [{ type: "command", command: "helix session start" }] }],
               PostToolUse: [
                 {
-                  matcher: "apply_patch|write_file|exec_command|local_shell",
+                  matcher: "apply_patch|Write|Edit|Bash",
                   hooks: [{ type: "command", command: "helix hook post-tool-use" }],
                 },
               ],
-              Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
+              Stop: [{ hooks: [{ type: "command", command: "helix session summary --quiet" }] }],
             },
           }),
         }),
@@ -1934,151 +1914,6 @@ describe("runConsumerDoctor", () => {
 function hasDoctorMessageWith(messages: string[], ...fragments: string[]): boolean {
   return messages.some((m) => fragments.every((fragment) => m.includes(fragment)));
 }
-
-describe("checkHandover (doctor handover staleness surface)", () => {
-  it("missing CURRENT.json prompts generation without failing", () => {
-    expect(checkHandover(deps())).toContain("CURRENT.json");
-  });
-
-  it("fresh pointer returns OK and includes active plan", () => {
-    const files = new Map([
-      [
-        pointerPath,
-        JSON.stringify({
-          active_plan: "PLAN-X",
-          status: "in_progress",
-          latest_doc: null,
-          digest_summary: null,
-          updated_at: "2026-06-03T18:00:00.000Z",
-        }),
-      ],
-    ]);
-    const msg = checkHandover(deps({ files }));
-    expect(msg).toContain("OK");
-    expect(msg).toContain("PLAN-X");
-  });
-
-  it("older than 24h returns stale warning", () => {
-    const files = new Map([
-      [pointerPath, JSON.stringify({ updated_at: "2026-06-01T00:00:00.000Z" })],
-    ]);
-    expect(checkHandover(deps({ files }))).toContain("stale");
-  });
-
-  it("broken JSON prompts regeneration without throwing", () => {
-    const files = new Map([[pointerPath, "{not json"]]);
-    expect(() => checkHandover(deps({ files }))).not.toThrow();
-    expect(checkHandover(deps({ files }))).toContain("CURRENT.json");
-  });
-
-  it("runDoctor fails closed when blocked handover pointer lacks completionDecisionPacket", () => {
-    const files = new Map([
-      [
-        pointerPath,
-        JSON.stringify({
-          active_plan: null,
-          status: "in_progress",
-          latest_doc: null,
-          digest_summary: null,
-          updated_at: NOW,
-          generated_by: "helix-handover",
-          outstanding: {
-            nonTerminalPlansByLayer: { cross: 1 },
-            nonTerminalPlansTotal: 1,
-            versionUpParked: 0,
-            activeDraftTotal: 1,
-            openDefers: 0,
-            blockersByKind: { po_decision_pending: 1 },
-            items: [
-              {
-                planId: "PLAN-S3",
-                layer: "cross",
-                kind: "poc",
-                status: "draft",
-                workflowPhase: "S3",
-                versionTarget: null,
-                reason: "po_decision_pending",
-                blockers: ["po_decision_pending"],
-                requiredAction: "record the PO/S4 decision before promotion",
-                requiredActions: ["record the PO/S4 decision before promotion"],
-                requiredEvidence: ["s4_decision_record"],
-              },
-            ],
-            completionReadiness: {
-              ok: false,
-              status: "blocked",
-              reason: "whole-program completion is blocked",
-              blockers: ["po_decision_pending"],
-              requiredActions: ["record the PO/S4 decision before promotion"],
-            },
-          },
-        }),
-      ],
-    ]);
-    const r = runDoctor(deps({ files }));
-
-    expect(r.ok).toBe(false);
-    expect(
-      hasDoctorMessageWith(r.messages, "handover-decision-packet", "completionDecisionPacket"),
-    ).toBe(true);
-  });
-});
-
-describe("checkHandoverDisciplineMessages", () => {
-  it("fresh CURRENT still surfaces drift when active_plan differs from current plan", () => {
-    const files = new Map([
-      [currentPlanPath, "PLAN-L5-08-harness-db-feedback\n2026-06-03T23:50:00.000Z"],
-      [
-        join(digestDir, "PLAN-L5-08-harness-db-feedback.digest.json"),
-        JSON.stringify({
-          plan_id: "PLAN-L5-08-harness-db-feedback",
-          sessions: ["s1"],
-          commits: [],
-          files_touched: ["docs/plans/PLAN-L5-08-harness-db-feedback.md"],
-          failures: [],
-          updated_at: "2026-06-03T23:55:00.000Z",
-        }),
-      ],
-      [
-        pointerPath,
-        JSON.stringify({
-          active_plan: "PLAN-L5-00-master",
-          status: "completed",
-          latest_doc: null,
-          digest_summary: { commits: 0, files: 0, failures: 0 },
-          updated_at: "2026-06-03T23:59:00.000Z",
-          generated_by: "helix-handover",
-          doc_entry_count: 0,
-        }),
-      ],
-    ]);
-    const messages = checkHandoverDisciplineMessages(deps({ files }));
-    expect(messages.some((m) => m.includes("drift"))).toBe(true);
-  });
-
-  it("runDoctor surfaces handover discipline as warning-only", () => {
-    const files = new Map([
-      [currentPlanPath, "PLAN-L5-08-harness-db-feedback\n2026-06-03T23:50:00.000Z"],
-      [
-        join(digestDir, "PLAN-L5-08-harness-db-feedback.digest.json"),
-        JSON.stringify({
-          plan_id: "PLAN-L5-08-harness-db-feedback",
-          sessions: ["s1"],
-          commits: [],
-          files_touched: ["docs/plans/PLAN-L5-08-harness-db-feedback.md"],
-          failures: [],
-          updated_at: "2026-06-03T23:55:00.000Z",
-        }),
-      ],
-    ]);
-    const r = runDoctor(deps({ files }));
-    expect(r.ok).toBe(false);
-    expect(r.messages.some((m) => m.includes("handover-discipline"))).toBe(true);
-    expect(
-      r.messages.some((m) => m.includes("verification") && m.includes("design doc なし")),
-    ).toBe(true);
-  });
-});
 
 describe("checkAgentSlots (doctor agent-slots surface, IMP-050)", () => {
   function slotDeps(slots: Slot[] | null, now = "2026-06-04T00:10:00.000Z"): AgentSlotsDeps {
@@ -2356,6 +2191,15 @@ describe("runDoctor", () => {
     expect(governance.messages[0]).toContain("plan-governance - OK");
     expect(hasDoctorMessageWith(r.messages, "doctor: plan-schedule", "OK")).toBe(true);
     expect(hasDoctorMessage(r.messages, "doctor: plan-governance - OK")).toBe(true);
+  });
+
+  it("U-DESIGNCOV-014: design catalog coverage is wired into doctor as a hard gate", () => {
+    const coverage = checkDesignCoverage(process.cwd());
+    const r = liveDoctor();
+
+    expect(coverage.ok).toBe(true);
+    expect(coverage.messages[0]).toContain("design-coverage");
+    expect(hasDoctorMessageWith(r.messages, "doctor: design-coverage", "OK")).toBe(true);
   });
 
   it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {
@@ -3556,6 +3400,7 @@ describe("runDoctor", () => {
       ["change-set-integrity", checkChangeSetIntegrity(missingRoot)],
       ["verification-profile", checkVerificationProfile(missingRoot)],
       ["coding-rules", checkCodingRules(missingRoot)],
+      ["design-coverage", checkDesignCoverage(missingRoot)],
       ["ddd-tdd-rules", checkDddTddRules(missingRoot)],
       ["design-language", checkDesignLanguage(missingRoot)],
       ["runtime-portability", checkRuntimePortability(missingRoot)],
@@ -3876,7 +3721,6 @@ describe("runDoctor", () => {
       "rightArmVerificationStrategy",
       "versionUpReadiness",
       "completionDecisionPacket",
-      "handoverDecisionPacket",
       "objectiveEvidenceAudit",
       "regressionExpansion",
     ];

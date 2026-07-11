@@ -36,10 +36,7 @@ generates:
 dependencies:
   parent: docs/design/harness/L6-function-design/handover-mechanism.md
   requires:
-    - src/handover/index.ts
-    - src/handover/handover-types.ts
     - src/cli.ts
-    - tests/handover.test.ts
     - tests/cli-surface.test.ts
     - docs/design/harness/L6-function-design/handover-mechanism.md
     - docs/test-design/harness/L7-unit-test-design.md

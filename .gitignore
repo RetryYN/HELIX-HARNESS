@@ -16,13 +16,6 @@ credentials.json
 !.helix/cache/.gitkeep
 .helix/state/*
 !.helix/state/.gitkeep
-.helix/handover/CURRENT.*
-.helix/handover/*.bak
-# Auto-generated CURRENT handover prose (regenerated each `helix handover`, mirrors the
-# gitignored CURRENT.json, and currently embeds absolute local paths in its digest). It is
-# runtime scratch — the canonical handover is harness.db feedback_events. Already-tracked
-# historical handover docs stay tracked (gitignore never untracks). PLAN-L7-144 follow-up.
-docs/handover/session-handover-*.md
 .helix/logs/
 .helix/adapters/local*.yaml
 .helix/teams/local*.yaml
@@ -39,6 +32,16 @@ downloads/
 
 # HELIX runtime state
 .helix/
+
+# Atomic handover retirement authority is product evidence, not rebuildable runtime state.
+!.helix/
+.helix/*
+!.helix/audit/
+.helix/audit/*
+!.helix/audit/session-handover-retirement.jsonl
+!.helix/approvals/
+.helix/approvals/*
+!.helix/approvals/session-handover-cutover.json
 
 # Python bytecode (旧 W1-W3a port の残骸。ADR-001 で TS rebuild、念のため残置)
 __pycache__/

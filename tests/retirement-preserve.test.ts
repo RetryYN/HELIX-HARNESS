@@ -1,4 +1,14 @@
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -9,7 +19,6 @@ import {
   buildArchiveManifest,
   buildPreserveManifest as buildPreserveManifestWithContext,
   canDeleteArchivedSources,
-  collectArchivedTargets,
   collectOperationsTransitionPaths,
   collectPreserveManifest,
   collectRetirementPreserveInventory,
@@ -127,13 +136,11 @@ describe("PLAN-L7-416 Sprint 4 preserve/archive integrity", () => {
       .sort();
     expect(providerPaths).toHaveLength(10);
     const inventory = collectRetirementPreserveInventory(process.cwd());
-    expect(inventory).toMatchObject({
-      providerPaths: expect.arrayContaining(providerPaths),
-      operationsPaths: expect.any(Array),
-      archiveSourcePaths: expect.any(Array),
-    });
+    expect(inventory.providerPaths).toEqual(expect.arrayContaining(providerPaths));
+    expect(Array.isArray(inventory.operationsPaths)).toBe(true);
+    expect(Array.isArray(inventory.archiveSourcePaths)).toBe(true);
     expect(inventory.operationsPaths).toHaveLength(4);
-    expect(inventory.archiveSourcePaths).toHaveLength(7);
+    expect(inventory.archiveSourcePaths).toEqual([]);
     const provider = readProviderHandoverCurrent({
       repoRoot: process.cwd(),
       readText: (path) => readFileSync(path, "utf8"),
@@ -342,9 +349,18 @@ describe("PLAN-L7-416 Sprint 4 preserve/archive integrity", () => {
           schemaValidation: {
             ...base.schemaValidation,
             checkedAt: "2026-07-12T00:00:00Z",
+            outputDigest: digest("a"),
           },
-          query: { ...base.query, checkedAt: "2026-07-12T00:00:00Z" },
-          export: { ...base.export, checkedAt: "2026-07-12T00:00:00Z" },
+          query: {
+            ...base.query,
+            checkedAt: "2026-07-12T00:00:00Z",
+            outputDigest: digest("b"),
+          },
+          export: {
+            ...base.export,
+            checkedAt: "2026-07-12T00:00:00Z",
+            outputDigest: digest("c"),
+          },
         },
       ],
       {
@@ -492,48 +508,111 @@ describe("PLAN-L7-416 Sprint 4 preserve/archive integrity", () => {
     });
   });
 
-  it("U-HRET-009: real legacy archive 7件をsource→target bijectionで照合する", () => {
-    const sourcePaths = readdirSync("docs/handover")
-      .filter((name) => /^session-handover-.*\.md$/.test(name))
-      .map((name) => `docs/handover/${name}`)
-      .sort();
-    expect(sourcePaths).toHaveLength(7);
-    const manifest = buildArchiveManifest(
-      sourcePaths.map((sourcePath) => ({
-        sourcePath,
-        archivePath: sourcePath.replace("docs/handover/", "docs/archive/handover/"),
-        logicalPath: sourcePath.slice("docs/".length),
-        content: readFileSync(sourcePath),
-        kind: "legacy_archive",
-        mode: 0o644,
-        tracked: false,
-        symlink: false,
-        archiveReason: "session prose retirement",
-        archivedAt: capturedAt,
-        operationId: `archive:${sourcePath}`,
-        restoreInstructions: "restore sourcePath from archivePath after digest verification",
-      })),
+  it("U-HRET-009/U-HRET-013: post-cutover archive 15件を固定digest・byte count・modeで照合する", () => {
+    const expected = [
+      [
+        "G1-readiness-report-2026-05-28.md",
+        "0f866aec4102b224575db3e3e7283e1b23c177810f5888ee1d354548759208aa",
+        16542,
+        0o755,
+      ],
+      [
+        "G3-readiness-report-2026-05-28.md",
+        "5a71c7b88474a48fb1cc627dfdecece1d2629b6440c608ee9d94047c97bd2ef0",
+        11294,
+        0o755,
+      ],
+      [
+        "SESSION-2026-05-22-handover.md",
+        "a7533559c3f51876a4ade3ee0ad4ff432525eb58dfacdf45c44bc55aa8641ed5",
+        11121,
+        0o755,
+      ],
+      [
+        "SESSION-2026-05-27-handover.md",
+        "32e09c22bfcb53a5e7265f9ddfe15c901794ecb9165e30b2f03c195afa037655",
+        7694,
+        0o755,
+      ],
+      [
+        "SESSION-2026-05-27b-handover.md",
+        "b0fac90fba5aa821963b29e494a62ae02a71eeb46985f2103339b18eb80964f8",
+        7496,
+        0o755,
+      ],
+      [
+        "SESSION-2026-05-27c-handover.md",
+        "754a5636c8d9bc2e1807a10abdc833531b4a24237bdfeeb382e774a142fe06ea",
+        7251,
+        0o755,
+      ],
+      [
+        "handover-mechanical-explicit.md",
+        "41b1c5c4180f73d8528128fcc10ee92e69a651410ea9bc30e5b7433378a9717c",
+        2326,
+        0o755,
+      ],
+      [
+        "phase3-workflow-automation-verification-2026-06-11.md",
+        "ba79b59df5099e1f29a6981f82d8c1a473aa353191d1731303cccc58039851a6",
+        8955,
+        0o755,
+      ],
+      [
+        "session-handover-2026-07-02.md",
+        "528b2e3a30b317bd9ce981eb67a76d3e0f4ad7ba005fec254161313b68fd3a8f",
+        26478,
+        0o644,
+      ],
+      [
+        "session-handover-2026-07-03.md",
+        "6fba20e00711bb950be287637b0a6ac55a8bbdfecbbfbdfcfbee2ae14e4bc2ce",
+        143251,
+        0o644,
+      ],
+      [
+        "session-handover-2026-07-04.md",
+        "08425eeac7accee4483ee2ad22cf2e8ba75c9944ff5e6f7acbf78d844eb3931b",
+        1958,
+        0o644,
+      ],
+      [
+        "session-handover-2026-07-05.md",
+        "6148cdd63eecbdbab7118d694293c4a3098f93bd5251912c83c9172a11988467",
+        30330,
+        0o644,
+      ],
+      [
+        "session-handover-2026-07-06.md",
+        "b73d0faa8c406583332e5b8c38ddffff55fd2c95dfcae15d7ba636e280dc1fce",
+        5221,
+        0o644,
+      ],
+      [
+        "session-handover-2026-07-08.md",
+        "fd31150dc01105cafff2bfc85e68344f245d8394fc40dfb39c016ca7b3ef0ead",
+        52648,
+        0o644,
+      ],
+      [
+        "session-handover-2026-07-10.md",
+        "f129371ec1466f7631bfe804773e082fa3ca72d197e4f0d360e3116bfbf415d3",
+        41121,
+        0o644,
+      ],
+    ] as const;
+    expect(existsSync("docs/handover") ? readdirSync("docs/handover") : []).toEqual([]);
+    expect(readdirSync("docs/archive/handover").sort()).toEqual(
+      expected.map(([name]) => name).sort(),
     );
-    const targetRoot = mkdtempSync(join(tmpdir(), "helix-archive-target-"));
-    try {
-      for (const entry of manifest) {
-        const target = join(targetRoot, entry.archivePath);
-        mkdirSync(join(target, ".."), { recursive: true });
-        writeFileSync(target, readFileSync(entry.sourcePath), { mode: entry.mode });
-      }
-      const archived = collectArchivedTargets(targetRoot, manifest);
-      expect(archived).toHaveLength(7);
-      expect(canDeleteArchivedSources({ manifest, archived }).ok).toBe(true);
-      expect(
-        canDeleteArchivedSources({
-          manifest,
-          archived: archived.map((entry, index) =>
-            index === 0 ? { ...entry, tracked: true } : entry,
-          ),
-        }).ok,
-      ).toBe(false);
-    } finally {
-      rmSync(targetRoot, { recursive: true, force: true });
+    for (const [name, expectedDigest, expectedBytes, expectedMode] of expected) {
+      const path = join("docs/archive/handover", name);
+      const content = readFileSync(path);
+      expect(content.byteLength, `${name}: byte count`).toBe(expectedBytes);
+      expect(createHash("sha256").update(content).digest("hex"), `${name}: digest`).toBe(
+        expectedDigest,
+      );
+      expect(statSync(path).mode & 0o777, `${name}: mode`).toBe(expectedMode);
     }
   });
 

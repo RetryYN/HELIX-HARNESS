@@ -99,7 +99,7 @@ HELIX では `.helix/` 配下に以下の二層構造でデータを保持する
 | state | 内容 |
 |-------|------|
 | `mode.yaml` | 現在の mode 位置 |
-| `handover/CURRENT.json` | セッション間引き継ぎ状態 |
+| `harness.db` continuation projection | event journal から投影したセッション継続状態。projection 欠落・不整合時は fail-close |
 | `recovery_log/` | Recovery ワークフローの再開ポイント・認識訂正履歴 |
 | `drive/` | drive 別 state 分離管理。skip_sub_doc 機械強制連動 (FR-L1-40) |
 

@@ -394,7 +394,6 @@ describe("clean distribution local acceptance smoke", () => {
           "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           "helix doctor --profile consumer",
           "helix rename plan --json",
-          "helix handover status --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ];
         const expectedDryRunVerificationCommands = expectedPostSetupVerificationCommands.filter(
@@ -463,7 +462,7 @@ describe("clean distribution local acceptance smoke", () => {
           "version-up-dry-run",
           "consumer-doctor",
           "identifier-cutover-packet",
-          "handover-route",
+          "continuation-status",
           "team-run-dry-run",
         ]);
         expect(setupJson.consumerReadiness.ci.requires).toEqual([
@@ -515,7 +514,7 @@ describe("clean distribution local acceptance smoke", () => {
             "HELIX: status",
             "HELIX: doctor",
             "HELIX: rename plan",
-            "HELIX: handover status",
+            "HELIX: status",
             "HELIX: team run dry-run",
           ]),
         );
@@ -559,7 +558,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("bun run helix completion review-bundle --json");
         expect(workflow).toContain("bun run helix doctor --profile consumer --json");
         expect(workflow).toContain("bun run helix rename plan --json");
-        expect(workflow).toContain("bun run helix handover status --json");
+        expect(workflow).toContain("bun run helix status --json");
         expect(workflow).toContain(
           "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         );
@@ -641,7 +640,10 @@ describe("clean distribution local acceptance smoke", () => {
           ["doctor", "--profile", "consumer", "--json"],
           linkedEnv,
         );
-        expect(doctorFromGeneratedPath.status, doctorFromGeneratedPath.stderr).toBe(0);
+        expect(
+          doctorFromGeneratedPath.status,
+          doctorFromGeneratedPath.stderr || doctorFromGeneratedPath.stdout,
+        ).toBe(0);
         expect(JSON.parse(doctorFromGeneratedPath.stdout)).toMatchObject({ ok: true });
 
         const renamePlanFromGeneratedPath = runCommand(
@@ -657,14 +659,16 @@ describe("clean distribution local acceptance smoke", () => {
           mustNotApply: true,
         });
 
-        const handoverFromGeneratedPath = runCommand(
+        const continuationFromGeneratedPath = runCommand(
           consumerRoot,
           "helix",
-          ["handover", "status", "--json"],
+          ["status", "--json"],
           linkedEnv,
         );
-        expect(handoverFromGeneratedPath.status, handoverFromGeneratedPath.stderr).toBe(0);
-        expect(JSON.parse(handoverFromGeneratedPath.stdout)).toMatchObject({ exists: false });
+        expect(continuationFromGeneratedPath.status, continuationFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(continuationFromGeneratedPath.stdout)).toHaveProperty(
+          "availableRuntimes",
+        );
 
         const teamRunFromGeneratedPath = runCommand(
           consumerRoot,

@@ -60,12 +60,12 @@ agent call path を追加する場合は次を確認する。
 - [ ] run metadata（runtime、model、role、drive、plan_id、timings）を `model_runs` に記録する。
 - [ ] metadata だけを保存する。prompt text、response text、credentials、PII は絶対に保存しない。
 
-## Session log と handover
+## Session log と continuation
 
 `SessionStart` と `Stop` hook は各 session を bracket し（`src/runtime/session-log.ts`）、
-event を PLAN digest に圧縮する。session boundary では `helix handover` を実行し、
-`.helix/handover/CURRENT.json` を flush する。handover carry は truth ではなく claim として扱う。
-依拠する前に `git log` と `helix doctor` で検証する。
+event を PLAN digest に圧縮する。session boundary では durable event から `harness.db` continuation
+projection を冪等更新し、`helix status` で active PLAN と next action を確認する。memory breadcrumb は
+projection を上書きしない。依拠する前に authored sources、`git log`、`helix doctor` と照合する。
 
 ## Redaction boundary（redaction 境界）
 

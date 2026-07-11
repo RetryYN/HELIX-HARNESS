@@ -1,7 +1,17 @@
 import { createHash } from "node:crypto";
-import { closeSync, fsyncSync, openSync, readFileSync, writeSync } from "node:fs";
+import {
+  closeSync,
+  fsyncSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  renameSync,
+  writeSync,
+} from "node:fs";
+import { dirname, join } from "node:path";
 import { type MemoryEntryV2, resolveMemoryView } from "../memory/memory-v2";
-import type { HarnessDb } from "../state-db";
+import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
+import { migrate } from "../state-db/migration";
 
 export type RetirementPhase =
   | "prerequisite"
@@ -261,7 +271,11 @@ export function evaluateRetirementTransition(input: RetirementTransitionInput): 
     ALLOWED_FORWARD_EDGE[input.currentPhase] === input.targetPhase ||
     (input.targetPhase === "rolled_back" && ROLLBACK_PHASES.has(input.currentPhase));
   if (!allowed) reasons.push("invalid_phase_transition");
-  return { ok: reasons.length === 0, replay: false, reasons: [...new Set(reasons)] };
+  return {
+    ok: reasons.length === 0,
+    replay: false,
+    reasons: [...new Set(reasons)],
+  };
 }
 
 function requiredString(record: Record<string, unknown>, key: string): string {
@@ -522,7 +536,10 @@ export type ContinuationFinding =
   | "invalid_event_log";
 
 export interface ContinuationWriteDeps {
-  appendEvent(event: ContinuationEvent): { byteOffset: number; appended: boolean };
+  appendEvent(event: ContinuationEvent): {
+    byteOffset: number;
+    appended: boolean;
+  };
   projectEvent(event: ContinuationEvent): "inserted" | "deduped";
   publishCheckpoint(checkpoint: ContinuationCheckpoint): void;
   writeMemoryBreadcrumb?(event: ContinuationEvent): void;
@@ -580,7 +597,12 @@ export function writeContinuationEvent(
   event: ContinuationEvent,
   deps: ContinuationWriteDeps,
 ): ContinuationWriteResult {
-  const base = { event, published: false, projected: false, memoryWritten: false };
+  const base = {
+    event,
+    published: false,
+    projected: false,
+    memoryWritten: false,
+  };
   let appendResult: { byteOffset: number; appended: boolean };
   try {
     appendResult = deps.appendEvent(event);
@@ -627,6 +649,127 @@ export function writeContinuationEvent(
       published: true,
       findings: ["memory_breadcrumb_failed"],
     };
+  }
+}
+
+export interface PlanCompletionContinuationInput {
+  repoRoot: string;
+  sessionId: string;
+  operationId: string;
+  completedPlanId: string;
+  nextAction: string | null;
+  memoryRef: string | null;
+  recordedAt: string;
+}
+
+export interface PlanCompletionContinuationPaths {
+  journal: string;
+  checkpoint: string;
+  database: string;
+}
+
+export interface PlanCompletionContinuationDeps {
+  db?: HarnessDb;
+  clearActivePlan(): void;
+}
+
+/**
+ * productionで使うcontinuation path。既存session-logとはschemaが異なるためjournalを分離する。
+ * checkpointはharness.db SSoTを置換しないreplay cursorである。
+ */
+export function planCompletionContinuationPaths(repoRoot: string): PlanCompletionContinuationPaths {
+  return {
+    journal: join(repoRoot, ".helix", "audit", "continuation-events.jsonl"),
+    checkpoint: join(repoRoot, ".helix", "state", "continuation-checkpoint.json"),
+    database: defaultHarnessDbPath(repoRoot),
+  };
+}
+
+function atomicPublishContinuationCheckpoint(
+  path: string,
+  checkpoint: ContinuationCheckpoint,
+): void {
+  mkdirSync(dirname(path), { recursive: true });
+  const temporary = `${path}.tmp-${process.pid}`;
+  const handle = openSync(temporary, "w", 0o600);
+  try {
+    const bytes = Buffer.from(`${JSON.stringify({ schemaVersion: 1, ...checkpoint })}\n`);
+    let written = 0;
+    while (written < bytes.length) written += writeSync(handle, bytes, written);
+    fsyncSync(handle);
+  } finally {
+    closeSync(handle);
+  }
+  renameSync(temporary, path);
+  const directory = openSync(dirname(path), "r");
+  try {
+    fsyncSync(directory);
+  } finally {
+    closeSync(directory);
+  }
+}
+
+/**
+ * PLAN completeのproduction adapter。
+ * durable JSONL -> harness.db -> atomic replay cursorの全段成功後だけactive PLANをclearする。
+ * operationId replayはjournal内の同一eventを再利用し、sequenceとpayloadを固定する。
+ */
+export function writePlanCompletionContinuation(
+  input: PlanCompletionContinuationInput,
+  deps: PlanCompletionContinuationDeps,
+): ContinuationWriteResult {
+  const paths = planCompletionContinuationPaths(input.repoRoot);
+  mkdirSync(dirname(paths.journal), { recursive: true });
+  const ownedDb = deps.db ? null : openHarnessDb(paths.database, { repoRoot: input.repoRoot });
+  const database = deps.db ?? ownedDb;
+  if (!database) throw new Error("continuation database unavailable");
+  try {
+    migrate(database);
+    let journalEvents: ContinuationEvent[] = [];
+    try {
+      journalEvents = parseContinuationEventLog(readFileSync(paths.journal, "utf8"));
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    }
+    const replay = journalEvents.find((candidate) => candidate.operationId === input.operationId);
+    const payload: ContinuationEventPayload = {
+      planId: input.completedPlanId,
+      eventKind: "plan_complete",
+      nextAction: input.nextAction,
+      memoryRef: input.memoryRef,
+    };
+    const payloadHash = sha256(canonicalJson(payload));
+    if (replay && replay.sessionId !== input.sessionId) {
+      throw new Error("continuation operation session conflict");
+    }
+    if (replay && replay.payloadHash !== payloadHash) {
+      throw new Error("continuation operation intent conflict");
+    }
+    const projectedWatermark = database
+      .prepare("SELECT MAX(event_seq) AS event_seq FROM session_events WHERE session_id = ?")
+      .get(input.sessionId);
+    const journalWatermark = journalEvents
+      .filter((candidate) => candidate.sessionId === input.sessionId)
+      .reduce((max, candidate) => Math.max(max, candidate.eventSeq), -1);
+    const event =
+      replay ??
+      buildContinuationEvent({
+        eventId: `continuation-${sha256(input.operationId).slice("sha256:".length)}`,
+        operationId: input.operationId,
+        sessionId: input.sessionId,
+        eventSeq: Math.max(Number(projectedWatermark?.event_seq ?? -1), journalWatermark) + 1,
+        recordedAt: input.recordedAt,
+        payload,
+      });
+    const result = writeContinuationEvent(event, {
+      appendEvent: (value) => appendContinuationEventFile(paths.journal, value, database),
+      projectEvent: (value) => projectContinuationEvent(database, value),
+      publishCheckpoint: (value) => atomicPublishContinuationCheckpoint(paths.checkpoint, value),
+    });
+    if (result.ok && result.published) deps.clearActivePlan();
+    return result;
+  } finally {
+    ownedDb?.close();
   }
 }
 
@@ -703,21 +846,26 @@ export function appendContinuationEventFile(
   coordinationDb: HarnessDb,
 ): { byteOffset: number; appended: boolean } {
   return withContinuationFence(
-    coordinationDb,
-    "continuation-journal",
-    event.operationId,
-    event.recordedAt,
+    {
+      db: coordinationDb,
+      scope: "continuation-journal",
+      owner: event.operationId,
+      acquiredAt: event.recordedAt,
+    },
     () => appendContinuationEventFileLocked(path, event),
   );
 }
 
 function withContinuationFence<T>(
-  db: HarnessDb,
-  scope: string,
-  owner: string,
-  acquiredAt: string,
+  input: {
+    db: HarnessDb;
+    scope: string;
+    owner: string;
+    acquiredAt: string;
+  },
   fn: () => T,
 ): T {
+  const { acquiredAt, db, owner, scope } = input;
   db.exec("BEGIN IMMEDIATE");
   try {
     db.prepare(
@@ -790,7 +938,10 @@ function appendContinuationEventFileLocked(
   } finally {
     closeSync(handle);
   }
-  return { byteOffset: Buffer.byteLength(existing) + Buffer.byteLength(line), appended: true };
+  return {
+    byteOffset: Buffer.byteLength(existing) + Buffer.byteLength(line),
+    appended: true,
+  };
 }
 
 export interface LegacyContinuationNote {
@@ -1000,6 +1151,16 @@ export function queryContinuationReadModel(
   };
 }
 
+/** 全sessionの最新continuationをDB provenance付きで返す。file fallbackは持たない。 */
+export function queryLatestContinuationReadModel(db: HarnessDb): ContinuationDbView | null {
+  const latest = db
+    .prepare(
+      "SELECT session_id FROM session_events ORDER BY recorded_at DESC, event_seq DESC, event_id DESC LIMIT 1",
+    )
+    .get();
+  return latest ? queryContinuationReadModel(db, String(latest.session_id)) : null;
+}
+
 export function joinContinuationReadModel(input: {
   db: ContinuationDbView | null;
   memory: ContinuationMemoryView | null;
@@ -1010,7 +1171,10 @@ export function joinContinuationReadModel(input: {
   feedback: ContinuationFeedbackView[];
   findings: string[];
 } {
-  const precedence = resolveContinuationPrecedence({ db: input.db, memory: input.memory });
+  const precedence = resolveContinuationPrecedence({
+    db: input.db,
+    memory: input.memory,
+  });
   return {
     continuation: input.db,
     memoryRef: input.db?.memoryRef ?? null,
@@ -1067,7 +1231,11 @@ export function resolveContinuationPrecedence(input: {
   db: ContinuationMemoryView | null;
   memory: ContinuationMemoryView | null;
 }): { value: ContinuationMemoryView | null; findings: string[] } {
-  if (!input.db) return { value: null, findings: input.memory ? ["db_projection_missing"] : [] };
+  if (!input.db)
+    return {
+      value: null,
+      findings: input.memory ? ["db_projection_missing"] : [],
+    };
   if (!input.memory) return { value: input.db, findings: ["memory_breadcrumb_missing"] };
   const conflict =
     input.db.planId !== input.memory.planId ||
@@ -1201,10 +1369,12 @@ export function appendDeliveryJournalFile(
   coordinationDb: HarnessDb,
 ): { appended: boolean } {
   return withContinuationFence(
-    coordinationDb,
-    "delivery-journal",
-    event.operationId,
-    event.recordedAt,
+    {
+      db: coordinationDb,
+      scope: "delivery-journal",
+      owner: event.operationId,
+      acquiredAt: event.recordedAt,
+    },
     () => appendDeliveryJournalFileLocked(path, event),
   );
 }
@@ -1250,7 +1420,12 @@ export function writeDeliveryEvent(
   try {
     appended = deps.appendEvent(event).appended;
   } catch {
-    return { ok: false, appended: false, projected: false, reason: "delivery_append_failed" };
+    return {
+      ok: false,
+      appended: false,
+      projected: false,
+      reason: "delivery_append_failed",
+    };
   }
   try {
     deps.projectEvent(event);

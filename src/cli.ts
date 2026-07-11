@@ -63,18 +63,6 @@ import {
 import { evaluateStaticGate } from "./gate/static";
 import { loadRelationGraphSourceSet } from "./graph/loader";
 import {
-  checkHandoverBypass,
-  checkHandoverDerivedPointerDrift,
-  checkHandoverDiscipline,
-  handoverStale,
-  latestSessionId,
-  nodeHandoverDeps,
-  readPointer,
-  runHandover,
-  setActivePlanCli,
-  updatePointerOwner,
-} from "./handover/index";
-import {
   buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
 } from "./lint/action-binding-approval-readiness";
@@ -222,6 +210,7 @@ import {
   buildConstitutionTemplateStackReport,
   type TemplateSourceKind,
 } from "./runtime/constitution-template-stack";
+import { writePlanCompletionContinuation } from "./runtime/continuation";
 import {
   buildCrossRepoSpecStoreReport,
   type SpecStoreOperation,
@@ -304,6 +293,7 @@ import {
   resolveActivePlan,
   type SessionHookInput,
   safeName,
+  setActivePlan,
 } from "./runtime/session-log";
 import {
   buildSkillEfficacyEvaluationReport,
@@ -924,17 +914,6 @@ function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[
   return extractEditTargets({ input: patchText }).map((target) =>
     normalizeRepoRelative(target, repoRoot),
   );
-}
-
-function writeHandoverWarnings(): void {
-  const hdeps = nodeHandoverDeps(process.cwd());
-  for (const w of [
-    ...checkHandoverDiscipline(hdeps),
-    ...checkHandoverBypass(hdeps),
-    ...checkHandoverDerivedPointerDrift(hdeps),
-  ]) {
-    process.stderr.write(`[helix handover] ${w}\n`);
-  }
 }
 
 function runSessionStartSideEffects(
@@ -1843,23 +1822,26 @@ memory
   .option("--dry-run", "validate without persisting")
   .action(
     (
-      layer: string,
-      key: string,
-      body: string,
-      opts: {
-        v2?: boolean;
-        legacyV1?: boolean;
-        operationId?: string;
-        type?: string;
-        planId?: string;
-        sessionId?: string;
-        runtime?: string;
-        origin?: string;
-        expiresAt?: string;
-        link?: string[];
-        dryRun?: boolean;
-      },
+      ...args: [
+        string,
+        string,
+        string,
+        {
+          v2?: boolean;
+          legacyV1?: boolean;
+          operationId?: string;
+          type?: string;
+          planId?: string;
+          sessionId?: string;
+          runtime?: string;
+          origin?: string;
+          expiresAt?: string;
+          link?: string[];
+          dryRun?: boolean;
+        },
+      ]
     ) => {
+      const [layer, key, body, opts] = args;
       if (opts.v2 && opts.legacyV1) {
         process.stderr.write("rejected: --v2 and --legacy-v1 are mutually exclusive\n");
         process.exitCode = 1;
@@ -3426,7 +3408,6 @@ session
   .action((opts: { session?: string; quiet?: boolean }) => {
     const input = readHookInput("Stop", opts.session);
     dispatch(input, nodeDeps(process.cwd(), gitBranch, gitHead), "Stop");
-    writeHandoverWarnings();
     if (!opts.quiet) {
       process.stdout.write(`session-log: summary ${input.session_id ?? "helix-cli"}\n`);
     }
@@ -3794,256 +3775,53 @@ plan
       process.exitCode = 1;
       return;
     }
-    setActivePlanCli(process.cwd(), opts.clear ? null : (id as string), gitBranch);
+    setActivePlan(opts.clear ? null : (id as string), nodeDeps(process.cwd(), gitBranch, gitHead));
     process.stdout.write(opts.clear ? "current-plan: cleared\n" : `current-plan: ${id}\n`);
   });
 
 plan
   .command("complete [id]")
-  .description("active PLAN を completed handover として記録し、current-plan を clear")
-  .option("--dry-run", "handover を生成するが書き込まない")
-  .option("--scope-active", "active plan family の digest のみで handover を生成")
-  .action((id: string | undefined, opts: { dryRun?: boolean; scopeActive?: boolean }) => {
-    const date = new Date().toISOString().slice(0, 10);
-    const deps = nodeHandoverDeps(process.cwd());
-    const r = runHandover(
-      {
-        date,
-        dryRun: Boolean(opts.dryRun),
-        complete: true,
-        scopeToActive: Boolean(opts.scopeActive),
-        ...(id ? { planId: id } : {}),
-      },
-      deps,
-    );
-    process.stdout.write(
-      `plan complete: active=${r.pointer.active_plan ?? "-"} status=${r.pointer.status}${opts.dryRun ? " (dry-run)" : ""}\n`,
-    );
-    for (const w of r.written) process.stdout.write(`  + ${w}\n`);
-  });
-
-const handover = program
-  .command("handover")
-  .description(
-    "session-log PLAN digest から handover を生成 (機械ポインタ CURRENT.json + 人間判断 markdown scaffold、要件 §6.8.5)",
-  )
-  .option("--dry-run", "書き込まず内容のみ表示")
-  .option("--complete", "status=completed として記録 (PLAN 完了時)")
-  .option("--plan <id>", "明示 active PLAN (省略時 current-plan/branch から解決)")
-  .option("--scope-active", "§1-§2 を active plan family の digest のみへ絞る (IMP-048 ノイズ低減)")
-  .option(
-    "--scope-session",
-    "§1-§2 を直近 session が触れた digest のみへ絞る (IMP-078 gap④ 前 session 混入排除)",
-  )
-  .option(
-    "--session <id>",
-    "session scope に使う session_id を明示 (省略時 --scope-session で直近を推定)",
-  )
-  .action(
-    (opts: {
-      dryRun?: boolean;
-      complete?: boolean;
-      plan?: string;
-      scopeActive?: boolean;
-      scopeSession?: boolean;
-      session?: string;
-    }) => {
-      const date = new Date().toISOString().slice(0, 10);
-      const deps = nodeHandoverDeps(process.cwd());
-      // IMP-078 gap④: --session 明示 > --scope-session 推定 (latestSessionId) > なし。
-      const sessionId =
-        opts.session ?? (opts.scopeSession ? (latestSessionId(deps) ?? undefined) : undefined);
-      const r = runHandover(
-        {
-          date,
-          dryRun: Boolean(opts.dryRun),
-          complete: Boolean(opts.complete),
-          scopeToActive: Boolean(opts.scopeActive),
-          ...(sessionId ? { sessionId } : {}),
-          ...(opts.plan ? { planId: opts.plan } : {}),
-        },
-        deps,
-      );
-      process.stdout.write(
-        `handover: active=${r.pointer.active_plan ?? "-"} status=${r.pointer.status}${opts.dryRun ? " (dry-run)" : ""}\n`,
-      );
-      for (const w of r.written) process.stdout.write(`  + ${w}\n`);
-      if (opts.dryRun) process.stdout.write(`\n--- scaffold ---\n${r.content}\n`);
-    },
-  );
-
-handover
-  .command("status")
-  .description("show current session handover pointer")
-  .option("--json", "JSON output")
-  .action((opts: { json?: boolean }) => {
+  .description("PLAN 完了をevent-first continuationへ記録し、成功後にcurrent-planをclear")
+  .action((id: string | undefined) => {
     const repoRoot = process.cwd();
-    const pointerPath = join(repoRoot, ".helix", "handover", "CURRENT.json");
-    const currentExists = existsSync(pointerPath);
-    const pointer = readPointer(nodeHandoverDeps(repoRoot));
-    if (!pointer) {
-      const status = {
-        exists: currentExists,
-        stale: currentExists,
-        stale_reasons: currentExists ? ["CURRENT.json is unreadable or invalid"] : [],
-        active_plan: null,
-        status: null,
-        latest_doc: null,
-        digest_summary: null,
-        updated_at: null,
-      };
-      if (opts.json) {
-        process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
-        process.exitCode = currentExists ? 1 : 0;
-      } else {
-        process.stdout.write(
-          currentExists
-            ? "handover status: exists=true stale=true reason=CURRENT.json is unreadable or invalid\n"
-            : "handover status: exists=false stale=false\n",
-        );
-        process.exitCode = currentExists ? 1 : 0;
-      }
+    const sessionDeps = nodeDeps(repoRoot, gitBranch, gitHead);
+    const planId = id ?? resolveActivePlan(sessionDeps);
+    if (!planId) {
+      process.stderr.write("plan complete requires <id> or active current-plan\n");
+      process.exitCode = 1;
       return;
     }
-    const stale = handoverStale(pointer.updated_at, new Date().toISOString());
-    const liveOutstanding = computeOutstandingWork(repoRoot);
-    const liveCompletionDecisionPacket = completionDecisionPacketForOutstanding(liveOutstanding, {
-      sourceCommand: "helix handover",
-    });
-    const liveCompletionReviewBundle = completionReviewBundleForOutstanding(liveOutstanding);
-    const workflowNextAction = workflowNextActionForOutstanding(liveOutstanding);
-    const workflowNextActions = workflowNextActionsForOutstanding(liveOutstanding);
-    const objectiveProgress = loadObjectiveProgress(repoRoot, liveOutstanding);
-    const status = {
-      ...pointer,
-      outstanding: liveOutstanding,
-      completionDecisionPacket: liveCompletionDecisionPacket,
-      completionReviewBundle: liveCompletionReviewBundle,
-      workflowNextAction,
-      workflowNextActions,
-      ...(objectiveProgress ? { objectiveProgress } : {}),
-      exists: true,
-      stale,
-      stale_reasons: stale ? [`updated_at is older than 24h: ${pointer.updated_at}`] : [],
-    };
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
+    const head = gitHead() ?? "unknown";
+    const operationId = `plan-complete:${createHash("sha256").update(`${planId}:${head}`).digest("hex")}`;
+    const result = writePlanCompletionContinuation(
+      {
+        repoRoot,
+        sessionId: `plan-${planId}`,
+        operationId,
+        completedPlanId: planId,
+        nextAction: "helix status",
+        memoryRef: null,
+        recordedAt: new Date().toISOString(),
+      },
+      { clearActivePlan: () => setActivePlan(null, sessionDeps) },
+    );
+    if (!result.ok || !result.published) {
+      process.stderr.write(
+        `plan complete failed: ${result.findings.join(",") || "continuation_not_published"}\n`,
+      );
+      process.exitCode = 1;
       return;
     }
     process.stdout.write(
-      `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} owner=${pointer.owner ?? "-"} stale=${stale} updated_at=${pointer.updated_at}\n`,
+      `plan complete: plan=${planId} event=${result.event.eventId} checkpoint=published current-plan=cleared\n`,
     );
-    if (pointer.owner_updated_at)
-      process.stdout.write(`owner_updated_at: ${pointer.owner_updated_at}\n`);
-    for (const reason of status.stale_reasons) process.stdout.write(`stale_reason: ${reason}\n`);
-    if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
-    process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
-    process.stdout.write(`${completionReadinessLine(liveOutstanding)}\n`);
-    process.stdout.write(`${semanticMeaningSummaryLine(liveOutstanding)}\n`);
-    if (objectiveProgress) {
-      process.stdout.write(
-        `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed}; evidence=${objectiveProgress.progressEvidenceTrusted ? "trusted" : "invalid"}; audit-ok=${objectiveProgress.auditOk}; violations=${objectiveProgress.auditViolationCount})\n`,
-      );
-      if (!objectiveProgress.progressEvidenceTrusted) {
-        process.stdout.write(
-          `objective-progress-evidence: invalid audit-ok=${objectiveProgress.auditOk} violations=${objectiveProgress.auditViolationCount} reason=${objectiveProgress.evidenceTrustReason}\n`,
-        );
-      }
-    }
-    process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
-    if (workflowNextActions.length > 0) {
-      process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
-      for (const item of workflowNextActions) {
-        process.stdout.write(
-          `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredActionJa} action-id=${item.requiredAction} route=${item.nextWorkflowRouteJa} route-id=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
-        );
-        process.stdout.write(
-          `  runnable-workflow-next-action[${item.order}]: ${item.planId} packet=${item.runnableDecisionPacketCommand} scoped=${item.runnableScopedDecisionPacketCommand} supporting=${item.runnablePacketCommands.join(" | ")} scoped-supporting=${item.runnableScopedPacketCommands.join(" | ")}\n`,
-        );
-        for (const summary of item.supportingPacketSummaries) {
-          process.stdout.write(`  packet-summary[${item.order}]: ${packetSummaryText(summary)}\n`);
-        }
-      }
-    }
-    if (!liveCompletionDecisionPacket.ok) {
-      const packetCommands = [
-        ...new Set(
-          liveCompletionDecisionPacket.decisions.flatMap((decision) => decision.packetCommands),
-        ),
-      ];
-      const scopedPacketCommands = [
-        ...new Set(
-          liveCompletionDecisionPacket.decisions.flatMap(
-            (decision) => decision.scopedPacketCommands,
-          ),
-        ),
-      ];
-      process.stdout.write("completion-decision-packet: helix completion decision-packet --json\n");
-      process.stdout.write("completion-review-bundle: helix completion review-bundle --json\n");
-      process.stdout.write(
-        "runnable-completion-review-bundle: bun run helix completion review-bundle --json\n",
-      );
-      process.stdout.write(
-        `completion-review-coverage: covered=${liveCompletionReviewBundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${liveCompletionReviewBundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
-      );
-      if (packetCommands.length > 0) {
-        process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
-        process.stdout.write(
-          `runnable-supporting-decision-packets: ${liveCompletionDecisionPacket.decisions
-            .flatMap((decision) => decision.runnablePacketCommands)
-            .filter((value, index, array) => array.indexOf(value) === index)
-            .join(" | ")}\n`,
-        );
-      }
-      if (scopedPacketCommands.length > 0) {
-        process.stdout.write(
-          `scoped-supporting-decision-packets: ${scopedPacketCommands.join(" | ")}\n`,
-        );
-        process.stdout.write(
-          `runnable-scoped-supporting-decision-packets: ${liveCompletionDecisionPacket.decisions
-            .flatMap((decision) => decision.runnableScopedPacketCommands)
-            .filter((value, index, array) => array.indexOf(value) === index)
-            .join(" | ")}\n`,
-        );
-      }
-    }
   });
 
-handover
-  .command("update")
-  .description(
-    "update the machine handover pointer without regenerating the human markdown scaffold",
-  )
-  .option("--owner <owner>", "runtime/actor that currently owns the handover baton")
-  .option("--json", "JSON output")
-  .action((opts: { owner?: string; json?: boolean }) => {
-    if (!opts.owner) {
-      process.stderr.write("handover update requires --owner <owner>\n");
-      process.exitCode = 1;
-      return;
-    }
-    try {
-      const result = updatePointerOwner(opts.owner, nodeHandoverDeps(process.cwd()));
-      if (opts.json) {
-        process.stdout.write(`${JSON.stringify({ ok: true, ...result }, null, 2)}\n`);
-        return;
-      }
-      process.stdout.write(
-        `handover update: owner=${result.pointer.owner} owner_updated_at=${result.pointer.owner_updated_at}\n`,
-      );
-      for (const w of result.written) process.stdout.write(`  + ${w}\n`);
-    } catch (error) {
-      process.stderr.write(
-        `handover update failed: ${error instanceof Error ? error.message : String(error)}\n`,
-      );
-      process.exitCode = 1;
-    }
-  });
-
-const providerHandover = handover.command("provider").description("Claude/Codex provider handover");
+const provider = program.command("provider").description("provider evidence operations");
+const providerHandover = provider.command("evidence").description("Claude/Codex provider evidence");
 providerHandover
   .command("export")
-  .description("write provider handover package under .helix/handover/provider")
+  .description("write provider evidence package under .helix/handover/provider")
   .requiredOption("--from <runtime>", "claude or codex")
   .requiredOption("--to <runtime>", "claude or codex")
   .requiredOption("--summary <text>", "handover context summary")
@@ -4078,7 +3856,7 @@ providerHandover
         chainPlan ??
         resolveActivePlan(nodeDeps(process.cwd(), gitBranch));
       if (!planId) {
-        process.stderr.write("provider handover requires --plan or active current-plan\n");
+        process.stderr.write("provider evidence requires --plan or active current-plan\n");
         process.exitCode = 1;
         return;
       }
@@ -4107,19 +3885,19 @@ providerHandover
 
 providerHandover
   .command("status")
-  .description("show latest provider handover package")
+  .description("show latest provider evidence package")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const current = readProviderHandoverCurrent(nodeProviderHandoverDeps(process.cwd()));
     if (!current) {
-      process.stderr.write("provider handover: CURRENT.json not found\n");
+      process.stderr.write("provider evidence: CURRENT.json not found\n");
       process.exitCode = 1;
       return;
     }
     if (opts.json) process.stdout.write(`${JSON.stringify(current, null, 2)}\n`);
     else {
       process.stdout.write(
-        `provider handover: ${current.handover_id} ${current.from}->${current.to} plan=${current.active_plan}\n`,
+        `provider evidence: ${current.handover_id} ${current.from}->${current.to} plan=${current.active_plan}\n`,
       );
     }
   });
@@ -8698,6 +8476,12 @@ skill
           .split(",")
           .map((part) => part.trim())
           .filter(Boolean);
+      const skillDir = join(process.cwd(), "docs", "skills");
+      const existingSlugs = existsSync(skillDir)
+        ? readdirSync(skillDir)
+            .filter((entry) => entry.endsWith(".md") && entry !== "SKILL_MAP.md")
+            .map((entry) => entry.replace(/\.md$/, ""))
+        : [];
       const result = scaffoldSkill({
         name: opts.name,
         category: opts.category,
@@ -8705,14 +8489,19 @@ skill
         driveModels: split(opts.driveModels),
         domainTags: split(opts.domainTags),
         description: opts.description,
+        existingSlugs,
       });
+      const nextActions = [
+        "SKILL_MAP trigger table に生成した pack の行を追加する",
+        "全ての <!-- 記入: ... --> marker を埋めるまで helix doctor は red のままにする",
+      ];
       let written = false;
       if (result.ok && opts.write) {
         if (existsSync(result.path) && !opts.force) {
           const message = `skill create refused to overwrite existing file: ${result.path}\n`;
           if (opts.json) {
             process.stdout.write(
-              `${JSON.stringify({ ...result, ok: false, written, error: message.trim() }, null, 2)}\n`,
+              `${JSON.stringify({ ...result, ok: false, written, nextActions, error: message.trim() }, null, 2)}\n`,
             );
           } else process.stderr.write(message);
           process.exitCode = 1;
@@ -8723,7 +8512,7 @@ skill
         written = true;
       }
       if (opts.json) {
-        process.stdout.write(`${JSON.stringify({ ...result, written }, null, 2)}\n`);
+        process.stdout.write(`${JSON.stringify({ ...result, written, nextActions }, null, 2)}\n`);
       } else {
         process.stdout.write(
           `${result.ok ? "skill create" : "skill create rejected"}: ${result.path}\n`,
@@ -8731,6 +8520,7 @@ skill
         for (const finding of result.findings) {
           process.stdout.write(`  ${finding.field}: ${finding.message}\n`);
         }
+        for (const action of nextActions) process.stdout.write(`  next: ${action}\n`);
         if (written) process.stdout.write("  written=true\n");
         else process.stdout.write("  written=false\n");
       }
@@ -10189,7 +9979,6 @@ function runtimeCommand(provider: AdapterProvider): Command {
           deps,
           "Stop",
         );
-        writeHandoverWarnings();
         if (jsonOut) {
           // 実行が起きたことを正直に反映する実行結果 JSON。plan.dry_run は execute=true ゆえ false。
           // signal 終了時は exit_code=null になるため signal も併記する (機械判定が exit/signal を区別できる)。
@@ -10677,7 +10466,6 @@ team
               child.on("close", (code) => finish(code));
             }),
         });
-        writeHandoverWarnings();
         if (opts.json) process.stdout.write(`${JSON.stringify(execution, null, 2)}\n`);
         else {
           process.stdout.write(
@@ -11821,51 +11609,45 @@ feedback
   .description("acknowledge one active feedback lifecycle generation")
   .requiredOption("--reason <text>", "human acknowledgement reason")
   .option("--operation-id <id>", "idempotency key")
-  .action(
-    (
-      sourceTable: string,
-      sourceId: string,
-      generation: string,
-      opts: { reason: string; operationId?: string },
-    ) => {
-      if (!(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable)) {
-        process.stderr.write("invalid feedback source table\n");
-        process.exitCode = 1;
-        return;
-      }
-      const repoRoot = process.cwd();
-      const deps = nodeFeedbackLifecycleDeps(repoRoot);
-      const operationId =
-        opts.operationId ??
-        `ack:${createHash("sha256")
-          .update(`${sourceTable}:${sourceId}:${generation}:${opts.reason}`)
-          .digest("hex")}`;
-      const result = ackFeedback(
-        {
-          sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
-          sourceId,
-          sourceGeneration: generation,
-          operationId,
-          actor: "human",
-          reason: opts.reason,
-        },
-        deps,
-      );
-      if (!result.ok) {
-        process.stderr.write(`feedback ack rejected: ${result.reason ?? "unknown"}\n`);
-        process.exitCode = 1;
-        return;
-      }
-      const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
-      try {
-        migrate(db);
-        projectFeedbackLifecycle(repoRoot, db);
-      } finally {
-        db.close();
-      }
-      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    },
-  );
+  .action((...args: [string, string, string, { reason: string; operationId?: string }]) => {
+    const [sourceTable, sourceId, generation, opts] = args;
+    if (!(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable)) {
+      process.stderr.write("invalid feedback source table\n");
+      process.exitCode = 1;
+      return;
+    }
+    const repoRoot = process.cwd();
+    const deps = nodeFeedbackLifecycleDeps(repoRoot);
+    const operationId =
+      opts.operationId ??
+      `ack:${createHash("sha256")
+        .update(`${sourceTable}:${sourceId}:${generation}:${opts.reason}`)
+        .digest("hex")}`;
+    const result = ackFeedback(
+      {
+        sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+        sourceId,
+        sourceGeneration: generation,
+        operationId,
+        actor: "human",
+        reason: opts.reason,
+      },
+      deps,
+    );
+    if (!result.ok) {
+      process.stderr.write(`feedback ack rejected: ${result.reason ?? "unknown"}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+    try {
+      migrate(db);
+      projectFeedbackLifecycle(repoRoot, db);
+    } finally {
+      db.close();
+    }
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  });
 
 feedback
   .command("intake")
@@ -12141,7 +11923,7 @@ setupCommand
       `doctor-baseline: ${r.doctorBaseline.schemaVersion} completionClaimAllowed=${r.doctorBaseline.completionClaimAllowed} commands=${r.doctorBaseline.baselineCommands.length}\n`,
     );
     process.stdout.write(
-      `vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask}, ${r.vscode.handoverTask})\n`,
+      `vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask}, ${r.vscode.continuationTask})\n`,
     );
     process.stdout.write(
       `vscode-profile: ${r.vscode.profileName} command=${r.vscode.profileOpenCommand} source=${r.vscode.profileSourceUrl} checked=${r.vscode.profileSourceCheckedAt}\n`,

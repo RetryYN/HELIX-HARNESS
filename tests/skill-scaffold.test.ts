@@ -27,7 +27,68 @@ describe("skill scaffold generator", () => {
     });
     expect(result.content).toContain("schema_version: skill.v1");
     expect(result.content).toContain('skill_type: "quality-gate-review"');
-    expect(result.content).toContain("## この skill を読む条件");
+    // 品質 skeleton (PLAN-L7-420): skill-authoring 準拠の節構成と穴埋め marker を持つ。
+    expect(result.content).toContain("## §0 出発点となる態度");
+    expect(result.content).toContain("## §1 判断フレーム");
+    expect(result.content).toContain("## §3 アンチパターン");
+    expect(result.content).toContain("<!-- 記入:");
+    expect(result.content).toContain("SKILL_MAP");
+  });
+
+  it("blocks slug collisions and flags near-name overlap against the existing catalog", () => {
+    const collision = scaffoldSkill({
+      name: "test-thinking",
+      category: "testing",
+      layers: ["L7"],
+      driveModels: ["Forward"],
+      existingSlugs: ["test-thinking", "code-minimalism"],
+    });
+    expect(collision.ok).toBe(false);
+    expect(collision.findings.map((f) => f.field)).toContain("duplicate-slug");
+
+    // hyphen 語境界の包含は advisory (api / api-contract 型の正当な責務分離を block しない)。
+    const nearName = scaffoldSkill({
+      name: "test-thinking-advanced",
+      category: "testing",
+      layers: ["L7"],
+      driveModels: ["Forward"],
+      existingSlugs: ["test-thinking"],
+    });
+    expect(nearName.ok).toBe(true);
+    const risk = nearName.findings.find((f) => f.field === "duplicate-risk");
+    expect(risk?.advisory).toBe(true);
+
+    // 語境界を跨がない部分文字列 (api ⊂ rapid) は近似名として扱わない。
+    const unrelated = scaffoldSkill({
+      name: "api",
+      category: "design-contract",
+      layers: ["L4"],
+      driveModels: ["Forward"],
+      existingSlugs: ["rapid-prototyping"],
+    });
+    expect(unrelated.ok).toBe(true);
+    expect(unrelated.findings).toEqual([]);
+
+    // 中間位置の語境界包含 (advanced-api-contract-guide ⊃ api-contract) も advisory を出す。
+    const middle = scaffoldSkill({
+      name: "api-contract",
+      category: "design-contract",
+      layers: ["L4"],
+      driveModels: ["Forward"],
+      existingSlugs: ["advanced-api-contract-guide"],
+    });
+    expect(middle.ok).toBe(true);
+    expect(middle.findings.find((f) => f.field === "duplicate-risk")?.advisory).toBe(true);
+
+    const clean = scaffoldSkill({
+      name: "incident-drill",
+      category: "process",
+      layers: ["L12"],
+      driveModels: ["Incident"],
+      existingSlugs: ["test-thinking", "code-minimalism"],
+    });
+    expect(clean.ok).toBe(true);
+    expect(clean.findings).toEqual([]);
   });
 
   it("self-lints invalid category, layer, and drive model through the assignment SSoT", () => {

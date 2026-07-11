@@ -113,6 +113,29 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches[0]?.actual).toBe("");
   });
 
+  it("U-GREENCMD-003: accepts only missing evidence covered by typed retirement", () => {
+    const retired = auditGreenCommandDigests(
+      [
+        plan("PLAN-RETIRED", [
+          { evidence_path: "tests/retired.test.ts", output_digest: realDigest },
+        ]),
+      ],
+      deps,
+      new Set(["tests/retired.test.ts"]),
+    );
+    const unlisted = auditGreenCommandDigests(
+      [
+        plan("PLAN-UNLISTED", [
+          { evidence_path: "tests/unlisted.test.ts", output_digest: realDigest },
+        ]),
+      ],
+      deps,
+      new Set(["tests/retired.test.ts"]),
+    );
+    expect(retired).toEqual([]);
+    expect(unlisted[0]?.reason).toBe("file-missing");
+  });
+
   it("U-GREENCMD-001: skips entries with empty path or digest", () => {
     const mismatches = auditGreenCommandDigests(
       [plan("PLAN-EMPTY", [{ evidence_path: "", output_digest: "" }])],

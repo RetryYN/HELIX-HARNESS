@@ -96,7 +96,7 @@ standalone debt PLAN の discharge steps:
 4. [並列] `bun run typecheck && bun run lint && bun run test` を green にする
 5. [直列] `helix doctor` で新規 governance failure が無いことを確認する
 6. [直列] `helix review --uncommitted` で debt PLAN `review_evidence` を埋める
-7. [直列] `status: done` にし、session boundary なら `helix handover` を実行する
+7. [直列] `status: done` にし、session boundary なら `helix status` で continuation projection を確認する
 ```
 
 ## implicit のままにしてはいけない debt

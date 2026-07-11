@@ -105,6 +105,14 @@ upstream identityをcloseしない。
 
 ## §4 公開関数契約
 
+### §4.1 DbC / Vペア
+
+| 関数 | 署名 | 事前条件 | 事後条件 | 不変条件 | 判定基準 |
+|---|---|---|---|---|---|
+| lifecycle journal | `reconcileFeedbackLifecycle(sources, mode, deps) => ReconcileResult` | source identity、scan completeness、operation intentを検証済み | 必要な遷移だけをappendし、同intent replayは追記0 | terminal generationを同世代の再投影でopenへ戻さない | `U-FLIFE-001..005` |
+| lifecycle surface | `selectFeedbackWithLifecycle(sources, lifecycle, sessionId, budget) => FeedbackSurface` | sourceとjournalをcanonical aliasへ正規化可能 | lifecycle filter、dedupe、hidden理由を同時に返す | damaged時も未解決sourceを隠さない | `U-FLIFE-006..010` |
+| promotion nudge | `memoryPromotionNudge(events) => PromotionNudgeResult` | session eventは有効行だけを入力 | 条件一致時だけdeterministic nudgeを最大1件返す | body、diff、secretを読まずStopをblockしない | `U-FLIFE-011..012` |
+
 | 関数 | 契約 |
 |---|---|
 | `feedbackSourceIdentity(source)` | upstream aliasを正規化しcanonical identity/bucket/sanitized payload digestを決定論生成 |

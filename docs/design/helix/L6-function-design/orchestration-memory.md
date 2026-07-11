@@ -121,6 +121,19 @@ interface MemoryEntry {
 | `listMemory` | `(layer: MemoryLayer, deps: MemoryDeps) => MemoryEntry[]` | 指定層の有効 entry（superseded 除く）を `createdAt` 昇順で返す。**純読取**、書込なし |
 | `surfaceMemory` | `(deps: MemoryDeps, budget?: SurfaceBudget) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない。**context 圧迫対策**: 直近 `maxEntries`(既定 12) 件のみ・各 body は `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — helix memory list harness)` フッタに集約（無制限注入を禁止） |
 
+### §2.3.1 設計 catalog coverage 契約（PLAN-L7-421）
+
+| 関数 | signature | DbC |
+|------|-----------|-----|
+| `loadDesignCoverageInput` | `(repoRoot?: string) => DesignCoverageInput` | `docs/design/design-catalog.yaml` を読み、`docs/design/**/*.md` の実在集合、ZIP 期待 trace `zip-01..zip-122`、code-side baseline fingerprint pin を必ず注入する。catalog 不在・parse 不能は `catalog=null` として後段を fail-close する |
+| `isCanonicalRepoRelativePath` | `(path: string) => boolean` | 絶対 path、drive prefix、backslash、`.` / `..` / 空 segment を拒否する。許可 root の lexical prefix 判定より先に適用し、`docs/../package.json` 等の traversal で done artifact を偽装できない |
+| `analyzeDesignCoverage` | `(input: DesignCoverageInput) => DesignCoverageResult` | schema/status/category/id/source の整合、`zip-01..122` 完全一致・一意性、`na_reason` の実質性、done artifact の正規 path・許可 root・実在、catalog 外 design doc、stale baseline、baseline fingerprint drift、全件 na 空洞化を検査する。coverage は ZIP と同じ `done/(done+todo)`（na は分母外）で総合・category別・todo残を返す |
+| `checkDesignCoverage` | `(repoRoot: string) => {messages: string[]; ok: boolean}` | loader/analyzer の例外を violation に変換し、結果 `ok` を `runFullDoctor.ok` の AND と message surface の双方へ接続する。証明不能時は hard gate red |
+
+機械正本は `docs/design/design-catalog.yaml` とし、122 item は `source: zip-NN` で PO 提供 ZIP の文書種へ
+1:1 trace する。既存文書 baseline は catalog 単独変更では増やせず、fingerprint pin のコードレビューを伴う。
+新規 design doc は catalog item の artifact として採否を宣言してから追加する。
+
 ### §2.4 既存機構との接続（改修 delta）
 
 | 既存 | 改修 | 不変条件 |
@@ -129,7 +142,7 @@ interface MemoryEntry {
 | `src/runtime/agent-guard.ts` | BLOCKED_SELF_DELEGATION を `selectVerifier` 経由へ集約（重複ロジック排除） | guard の allowlist/model 照合は不変 |
 | `src/state-db/projection-writer.ts` | `loop_iterations` / `jobs` / memory 2 表への projection 関数追加（既存 `recordProjectionEvent` 再利用） | 既存 projection の冪等性・secret strip 不変 |
 | `src/lint/asset-drift.ts` | `.claude/agent-memory/` scan を除去（silo 廃止に伴う） | 他 asset-drift 検査は不変 |
-| `src/doctor/index.ts` | `verifier-provider-mismatch`（hybrid 自己評価検出）/ `agent-memory-silo`（旧 silo 残存検出）を hard gate 追加 | 既存 gate の ok 集約規約に従う |
+| `src/doctor/index.ts` | `verifier-provider-mismatch`（hybrid 自己評価検出）/ `agent-memory-silo`（旧 silo 残存検出）/ `design-coverage`（ZIP 122 文書種の採否・実在・無断追加検出）を hard gate 追加 | 既存 gate の ok 集約規約に従う |
 | `src/cli.ts` | `helix loop run --plan` / `helix memory write/list/show/supersede` subcommand | 既存 subcommand の引数規約に従い、loop は dry-run 非 dispatch・once 1 tick・通常 tick 周回を分離する |
 | `src/schema/harness-db-*` | `loop_iterations` / `jobs` / `harness_memory_entries` / `project_memory_entries` 追加 + `SCHEMA_VERSION` bump | 既存テーブル/インデックスは不変、migrate は前方互換 |
 

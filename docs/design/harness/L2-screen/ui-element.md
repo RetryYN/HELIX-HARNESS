@@ -28,7 +28,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 | **DataTable** | raw data 粒度の詳細テーブル (サマリのみ禁止) | `columns[]` / `rows[]` / `sortable` / `filterable` | sort 列・方向 / filter 条件 (URL query 同期) | `onRowClick(rowId)` → 遷移 / `onSort` / `onFilter` | CC3 詳細データテーブル必須 |
 | **StatusBadge** | 正常/警告/失敗の即視認 | `level: 'ok'\|'warn'\|'error'\|'empty'\|'loading'` / `label` | — (純表示) | — | CC3 問題箇所視覚化 (緑/黄/赤) |
 | **CopyButton** | AI 指示テキスト / CLI コマンド文字列のワンクリックコピー | `text` (生成済文字列) / `label` | copied (一時 feedback) | `onCopy()` → clipboard 書込のみ (副作用 API なし) | CC2 / S5=b (UI 直接実行禁止) |
-| **NextActionCard** | gate fail / handover / Recovery で「次にすること」を 1 アクション強調 | `action` / `targetUrl` / `emphasis` | — | `onNavigate(targetUrl)` (read-only 遷移) | UX-03 next_action 明示 |
+| **NextActionCard** | gate fail / continuation / Recovery で「次にすること」を 1 アクション強調 | `action` / `targetUrl` / `emphasis` | — | `onNavigate(targetUrl)` (read-only 遷移) | UX-03 next authority 明示 |
 | **FilterBar** | mode/phase/status/drive 絞り込み (URL query 同期) | `facets[]` / `value` | filter 値 (URL query) | `onChange(filter)` | BR-06 / screen §3.2 フィルタリング |
 | **Breadcrumb** | カテゴリ内 (PM 内/HM 内) 戻り経路 | `trail[]` | — | `onNavigate` | screen-flow §4 戻る挙動 |
 | **PollingIndicator** | 最終更新時刻 + 30 秒ポーリング状態 | `intervalSec` (30 default) / `lastUpdated` | tick / lastUpdated (client local) | `onManualRefresh()` | S2=b / B8 ≤5 分 |
@@ -51,7 +51,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 | **PM-02** | `LayerTemplate` (L0-L14 共通工程テンプレ) + `ProgressBar` + `StaleBadge` + `CarryList` + `ScrumStateRow` (drive=scrum S0-S4) | sub-doc 一覧 / stale PLAN / carry 件数展開 / S-phase 1 行表示 (L3 carry) | §1.PM.02 |
 | **PM-03** | `GateResultPanel` (pass/fail/bypass 色分け) + `TroubleTable` (種別/検出時刻/影響範囲/next_action 横断) + `InterruptCopyButton` (`helix interrupt`/`resume` 文字列コピー) | gate ID/証跡リンク/サインオフ者 / `CopyButton`(next_action・AI 指示) / interrupt は CLI 受付 (S5=b) | §1.PM.03 |
 | **PM-04** | `TraceGraph` (上流→下流ノード+エッジ、デグレ赤ハイライト) + `VPairStatusTable` (L1↔L14…L6↔L7 freeze 状態) | ノードクリック→対象 doc / trace 切れ・未 freeze 行を DataTable | §1.PM.04 |
-| **PM-05** | `HandoverPanel` (CURRENT.json 構造化表示) + `StaleWarningBanner` (30 日超) + `CarryDetailList` | next_action 強調 / 起動時 auto 表示 (S6=a) / archive 期限表示 | §1.PM.05 |
+| **PM-05** | `ContinuationPanel` (`harness.db` projection 構造化表示) + `ProjectionHealthBanner` + `FeedbackList` | active PLAN / blocker / next authority 強調 / 起動時 bounded 表示 (S6=a) / DB優先 conflict表示 | §1.PM.05 |
 | **PM-06** | `DesignDocTree` (L0-L14 layer×sub-doc、status/pair-freeze バッジ) + `DocPreview` (`MarkdownRenderer` 本文 + `YamlFrontmatterView` + `MermaidRenderer` + ASCII 図) + `DocToc` (目次) | ツリーノードクリック→プレビュー / layer・status・drive フィルタ / 目次ジャンプ / 内部リンクナビ / PM-04 trace deep-link / `CopyButton`(doc パス) / read-only (S5=b、編集なし) | §1.PM.06 |
 
 ### §2.HM HM 画面群

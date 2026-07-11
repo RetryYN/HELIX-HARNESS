@@ -1165,7 +1165,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "FR-L1-51 artifact progress",
       "A-50 で 7 件削減",
       "全行が L4 sub-PLAN 待ちではない",
-      "FR-L1-42 は provider-handover 実装済",
+      "FR-L1-42 は provider delegation evidence として実装済",
       "FR-L1-51 は PLAN-L7-56 / PLAN-REVERSE-56 で扱う",
     ]) {
       expect(combined).toContain(required);

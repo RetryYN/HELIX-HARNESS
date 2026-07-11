@@ -92,9 +92,9 @@ harness implementation language とは独立である。
 ## Session Start（開始確認）
 
 1. 上記 Core Reads が存在することを確認する。
-2. `.helix/handover/CURRENT.json` が存在する場合は確認し、stale でない next action に従う。
+2. `harness.db` の continuation projection と memory journal を確認し、stale でない next action に従う。
 3. `legacy local state/` が存在する場合は historical source state として扱い、HELIX state とは扱わない。
-4. active handover が無ければ通常開始し、次を宣言する。
+4. active continuation が無ければ通常開始し、次を宣言する。
    `OK: HELIX session initialized`.
 
 ## TL Driven Mode（TL 主導）
@@ -116,7 +116,7 @@ gate decision まで担えるという意味である。
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
 - Additive change: 既存 design を保ち、`add-design` / `add-impl` で delta を追加する。
-- Handover: `.helix/handover/` を session / cross-runtime handover source として使う。
+- Continuation: `harness.db` の event/projection を session / cross-runtime continuation source として使う。
 
 ## Codex / Claude Code Harness（実行面）
 
@@ -139,7 +139,6 @@ Runtime modes（実行モード）:
 - タスク分類: `helix task classify --text "..."` / `helix task estimate --plan <path>`
 - スキル推薦: `helix skill suggest --plan <path>`
 - レビュー packet: `helix review --uncommitted`
-- 引き継ぎ: `helix handover`
 - 状態確認: `helix status`
 - 診断: `helix doctor`
 
@@ -279,7 +278,6 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 - セットアップ: `helix setup project`
 - 状態確認: `helix status`
 - 診断: `helix doctor`
-- 引き継ぎ: `helix handover`
 - Codex 委譲: `helix codex --role <role> --task "..."`
 - Claude 委譲: `helix claude --role <role> --task "..."`
 - チーム実行: `helix team run --definition .helix/teams/<team>.yaml`
@@ -292,7 +290,6 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 - セットアップ: `helix setup project`
 - 状態確認: `helix status`
 - 診断: `helix doctor`
-- 引き継ぎ: `helix handover`
 - Codex 委譲: `helix codex --role <role> --task "..."`
 - Claude 委譲: `helix claude --role <role> --task "..."`
 - チーム実行: `helix team run --definition .helix/teams/<team>.yaml`

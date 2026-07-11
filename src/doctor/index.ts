@@ -1,7 +1,7 @@
 /**
  * 統合検証 doctor (requirements_v1.2 §7 / §7.8.5)。
  * 多数の検出器 (back-fill / review-evidence / asset-drift / cycle-p4-verification / roadmap 等) を集約し、
- * gate 判定群を runDoctor.ok に連動させて fail-close する。handover / agent-slots は warning surface。
+ * gate 判定群を runDoctor.ok に連動させて fail-close する。agent-slots は warning surface。
  */
 
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
@@ -9,17 +9,6 @@ import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
-import {
-  checkHandoverBypass,
-  checkHandoverCompletionDecisionPacket,
-  checkHandoverCompletionWording,
-  checkHandoverDiscipline,
-  checkHandoverNextActionAnchor,
-  checkHandoverOutstandingAnchor,
-  type HandoverDeps,
-  type HandoverPointer,
-  handoverStale,
-} from "../handover/index";
 import {
   actionBindingApprovalReadinessMessages,
   actionBindingApprovalVerificationCommandViolations,
@@ -107,6 +96,11 @@ import {
   loadFrUnitCoverageOracles,
   loadTraceKeyedArtifacts,
 } from "../lint/descent-obligation";
+import {
+  analyzeDesignCoverage,
+  designCoverageMessages,
+  loadDesignCoverageInput,
+} from "../lint/design-coverage";
 import {
   analyzeDesignLanguage,
   designLanguageMessages,
@@ -370,6 +364,11 @@ import {
   skillAssignmentMessages,
 } from "../lint/skill-assignment";
 import {
+  analyzeSkillQuality,
+  loadSkillQualityInput,
+  skillQualityMessages,
+} from "../lint/skill-quality";
+import {
   analyzeSubDocCatalogDrift,
   loadSubDocCatalogDriftInput,
   subDocCatalogDriftMessages,
@@ -513,51 +512,12 @@ import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-vi
 import { collectDoctorCheckRun } from "./check-registry";
 import type { DoctorOptions, DoctorResult } from "./result";
 
-/** I/O・clock 注入 (test 可能、handover staleness 検査用)。 */
+/** I/O・clock 注入 (test 可能)。 */
 export interface DoctorDeps {
   repoRoot: string;
   now: string;
   readText: (path: string) => string | null;
   listDir: (dir: string) => string[];
-}
-
-function handoverDeps(deps: DoctorDeps): HandoverDeps {
-  return {
-    repoRoot: deps.repoRoot,
-    now: () => deps.now,
-    readText: deps.readText,
-    listDir: deps.listDir,
-    writeText: () => {
-      throw new Error("doctor is read-only and must not write handover state");
-    },
-  };
-}
-
-export function checkHandoverDisciplineMessages(deps: DoctorDeps): string[] {
-  const hd = handoverDeps(deps);
-  return [
-    ...checkHandoverDiscipline(hd),
-    ...checkHandoverBypass(hd),
-    ...checkHandoverCompletionWording(hd),
-  ];
-}
-
-/**
- * handover 機械ポインタ (CURRENT.json) の鮮度を surface (§5.3 / §6.8.5、warning レベル)。
- * 不在・stale・壊れは message で示すのみ (doctor.ok は落とさない = §5.3 exit 0 warning)。
- */
-export function checkHandover(deps: DoctorDeps): string {
-  const raw = deps.readText(join(deps.repoRoot, ".helix", "handover", "CURRENT.json"));
-  if (!raw) return "doctor: handover — CURRENT.json なし (helix handover で生成、§6.8.5)";
-  let p: HandoverPointer;
-  try {
-    p = JSON.parse(raw) as HandoverPointer;
-  } catch {
-    return "doctor: handover — ⚠ CURRENT.json が壊れています (helix handover で再生成)";
-  }
-  return handoverStale(p.updated_at, deps.now)
-    ? `doctor: handover — ⚠ stale (updated_at=${p.updated_at}、24h 超。helix handover で更新)`
-    : `doctor: handover — OK (active=${p.active_plan ?? "-"}, updated_at=${p.updated_at})`;
 }
 
 /**
@@ -1043,6 +1003,27 @@ export function checkSkillAssignment(repoRoot: string): {
   }
 }
 
+export function checkSkillQuality(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["skill-quality - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const result = analyzeSkillQuality(loadSkillQualityInput(repoRoot));
+    return { messages: skillQualityMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["skill-quality - violation: skill catalog could not be read"],
+      ok: false,
+    };
+  }
+}
+
 export function checkDescentObligation(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -1222,6 +1203,31 @@ export function checkCodingRules(repoRoot: string): {
   } catch {
     return {
       messages: ["coding-rules — violation: TS coding rule lint could not run"],
+      ok: false,
+    };
+  }
+}
+
+/**
+ * PLAN-L7-421: ZIP 文書種 catalog と実在 artifact の coverage を doctor hard gate に接続する。
+ * catalog 不在・parse 不能・走査不能はいずれも設計採否を証明できないため fail-close とする。
+ */
+export function checkDesignCoverage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["design-coverage - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = analyzeDesignCoverage(loadDesignCoverageInput(repoRoot));
+    return { messages: designCoverageMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["design-coverage - violation: design catalog coverage lint could not run"],
       ok: false,
     };
   }
@@ -5345,7 +5351,6 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ...expectedClaudeCommandPaths,
     CONSUMER_TEAM_DEFINITION_PATH,
     ".helix/memory/.gitkeep",
-    ".helix/handover/.gitkeep",
     ".helix/evidence/.gitkeep",
     ".helix/state/project-setup.json",
   ];
@@ -5471,15 +5476,19 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     },
     { phase: "consumer-doctor", command: "helix doctor --profile consumer" },
     { phase: "identifier-cutover-packet", command: "helix rename plan --json" },
-    { phase: "handover-route", command: "helix handover status --json" },
+    { phase: "continuation-status", command: "helix status --json" },
     {
       phase: "team-run-dry-run",
       command: `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     },
   ];
-  const expectedFirstRunCommands = expectedFirstRunRows
-    .filter((row) => row.phase !== "vscode-profile-open")
-    .map((row) => row.command);
+  const expectedFirstRunCommands = [
+    ...new Set(
+      expectedFirstRunRows
+        .filter((row) => row.phase !== "vscode-profile-open")
+        .map((row) => row.command),
+    ),
+  ];
   const completionReviewMatrixRow = projectSetupVerificationMatrix.find(
     (row) => row?.phase === "completion-review-bundle",
   );
@@ -6598,12 +6607,14 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const allowlistSync = checkAllowlistSync(deps.repoRoot);
   const judgmentCoreCoverage = checkJudgmentCoreCoverage(deps.repoRoot);
   const skillAssignment = checkSkillAssignment(deps.repoRoot);
+  const skillQuality = checkSkillQuality(deps.repoRoot);
   const descentObligation = checkDescentObligation(deps.repoRoot);
   const changeImpact = checkChangeImpact(deps.repoRoot);
   const changeSetIntegrity = checkChangeSetIntegrity(deps.repoRoot);
   const verificationProfile = checkVerificationProfile(deps.repoRoot);
   const branchKind = checkBranchKind(deps.repoRoot);
   const codingRules = checkCodingRules(deps.repoRoot);
+  const designCoverage = checkDesignCoverage(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
@@ -6726,9 +6737,6 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
-  const handoverNextAction = checkHandoverNextActionAnchor(handoverDeps(deps));
-  const handoverOutstanding = checkHandoverOutstandingAnchor(handoverDeps(deps));
-  const handoverDecisionPacket = checkHandoverCompletionDecisionPacket(handoverDeps(deps));
   // fail-close: green_command digest が evidence_path 実 hash と一致するか (fake substance 防止、PLAN-L7-132)。
   const greenCommandDigest = checkGreenCommandDigests(deps.repoRoot);
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
@@ -6760,12 +6768,14 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       allowlistSync.ok &&
       judgmentCoreCoverage.ok &&
       skillAssignment.ok &&
+      skillQuality.ok &&
       descentObligation.ok &&
       changeImpact.ok &&
       changeSetIntegrity.ok &&
       verificationProfile.ok &&
       branchKind.ok &&
       codingRules.ok &&
+      designCoverage.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
       handoverRetirementInventory.ok &&
@@ -6860,14 +6870,9 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       completionReviewBundle.ok &&
       objectiveEvidenceAudit.ok &&
       semanticFrontierConsistency.ok &&
-      forwardConvergenceAudit.ok &&
-      handoverNextAction.ok &&
-      handoverOutstanding.ok &&
-      handoverDecisionPacket.ok,
+      forwardConvergenceAudit.ok,
     messages: [
       `doctor: mode=${d.mode} (claude=${d.claude}, codex=${d.codex})`,
-      checkHandover(deps),
-      ...checkHandoverDisciplineMessages(deps).map((m) => `doctor: handover-discipline — ${m}`),
       checkAgentSlots(doctorSlotsDeps(deps)),
       ...backfill.messages.map((m) => `doctor: ${m}`),
       ...scrumRev.messages.map((m) => `doctor: ${m}`),
@@ -6883,12 +6888,14 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...allowlistSync.messages.map((m) => `doctor: ${m}`),
       ...judgmentCoreCoverage.messages.map((m) => `doctor: ${m}`),
       ...skillAssignment.messages.map((m) => `doctor: ${m}`),
+      ...skillQuality.messages.map((m) => `doctor: ${m}`),
       ...descentObligation.messages.map((m) => `doctor: ${m}`),
       ...changeImpact.messages.map((m) => `doctor: ${m}`),
       ...changeSetIntegrity.messages.map((m) => `doctor: ${m}`),
       ...verificationProfile.messages.map((m) => `doctor: ${m}`),
       ...branchKind.messages.map((m) => `doctor: ${m}`),
       ...codingRules.messages.map((m) => `doctor: ${m}`),
+      ...designCoverage.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
@@ -6976,9 +6983,6 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
-      ...handoverNextAction.messages.map((m) => `doctor: ${m}`),
-      ...handoverOutstanding.messages.map((m) => `doctor: ${m}`),
-      ...handoverDecisionPacket.messages.map((m) => `doctor: ${m}`),
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),

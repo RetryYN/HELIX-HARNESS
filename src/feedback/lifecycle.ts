@@ -335,13 +335,13 @@ export function reconcileFeedbackLifecycle(
         const operationEvents = validEvents(beforeRaw).filter(
           (event) => event.operationId === input.operationId,
         );
-        const expected = expectedOperationEvents(
-          beforeRaw,
+        const expected = expectedOperationEvents({
+          allRaw: beforeRaw,
           input,
           actor,
           policyVersion,
-          operationEvents[0]?.occurredAt ?? deps.now(),
-        );
+          now: operationEvents[0]?.occurredAt ?? deps.now(),
+        });
         if (isSemanticPrefix(operationEvents, expected)) {
           const missing = expected.slice(operationEvents.length);
           for (const event of missing) deps.appendEvent(event, fence);
@@ -360,7 +360,14 @@ export function reconcileFeedbackLifecycle(
           reason: "operation_intent_conflict",
         };
       }
-      planned = planReconcileEvents(input, before, deps.now(), actor, policyVersion, diagnostics);
+      planned = planReconcileEvents({
+        input,
+        before,
+        occurredAt: deps.now(),
+        actor,
+        policyVersion,
+        diagnostics,
+      });
       for (const event of planned) deps.appendEvent(event, fence);
       return { ok: true, appended: planned, diagnostics, recovered: false };
     });
@@ -569,14 +576,17 @@ export function recordFeedbackSurface(
   }
 }
 
-function planReconcileEvents(
-  input: ReconcileFeedbackLifecycleInput,
-  before: ResolveFeedbackLifecycleResult,
-  occurredAt: string,
-  actor: string,
-  policyVersion: string,
-  diagnostics: string[],
-): FeedbackLifecycleEventV1[] {
+interface PlanReconcileEventsInput {
+  input: ReconcileFeedbackLifecycleInput;
+  before: ResolveFeedbackLifecycleResult;
+  occurredAt: string;
+  actor: string;
+  policyVersion: string;
+  diagnostics: string[];
+}
+
+function planReconcileEvents(params: PlanReconcileEventsInput): FeedbackLifecycleEventV1[] {
+  const { input, before, occurredAt, actor, policyVersion, diagnostics } = params;
   if (!isIsoUtc(occurredAt)) throw new Error("invalid_occurred_at");
   const result: FeedbackLifecycleEventV1[] = [];
   const activeSourceKeys = new Set<string>();
@@ -909,25 +919,28 @@ function validEvents(raws: readonly unknown[]): FeedbackLifecycleEventV1[] {
   });
 }
 
-function expectedOperationEvents(
-  allRaw: readonly unknown[],
-  input: ReconcileFeedbackLifecycleInput,
-  actor: string,
-  policyVersion: string,
-  now: string,
-): FeedbackLifecycleEventV1[] {
+interface ExpectedOperationEventsInput {
+  allRaw: readonly unknown[];
+  input: ReconcileFeedbackLifecycleInput;
+  actor: string;
+  policyVersion: string;
+  now: string;
+}
+
+function expectedOperationEvents(params: ExpectedOperationEventsInput): FeedbackLifecycleEventV1[] {
+  const { allRaw, input, actor, policyVersion, now } = params;
   const priorRaw = allRaw.filter((raw) => {
     const decoded = decodeFeedbackLifecycleEvent(raw);
     return !decoded.ok || decoded.event.operationId !== input.operationId;
   });
-  return planReconcileEvents(
+  return planReconcileEvents({
     input,
-    resolveFeedbackLifecycle(priorRaw, now),
-    now,
+    before: resolveFeedbackLifecycle(priorRaw, now),
+    occurredAt: now,
     actor,
     policyVersion,
-    [],
-  );
+    diagnostics: [],
+  });
 }
 
 function isSemanticPrefix(
