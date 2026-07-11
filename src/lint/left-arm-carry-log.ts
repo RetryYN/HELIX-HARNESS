@@ -11,16 +11,9 @@ import { parse as parseYaml } from "yaml";
 
 export const LEFT_ARM_CARRY_SCHEMA = "left-arm-carry.v1";
 export const LEFT_ARM_CARRY_ENFORCEMENT_DATE = "2026-07-12";
-/** enforcement導入commit以前に同日terminalだったPLANの凍結pin。loader走査結果からは導出しない。 */
-export const LEFT_ARM_CARRY_LEGACY_PLAN_IDS = new Set([
-  "PLAN-L7-309-fe-roster-orchestration",
-  "PLAN-L7-422-plan-specific-vpair-binding",
-  "PLAN-L7-423-ci-governance-self-heal",
-  "PLAN-L7-424-fe-roster-vpair-resolution",
-  "PLAN-L7-426-development-ci-bounded-time",
-  "PLAN-L7-427-active-plan-selection",
-  "PLAN-L7-429-triage-decision-integrity",
-]);
+/** enforcement導入時のterminal L7 impl/add-impl集合を固定するsorted ID fingerprint。 */
+export const LEFT_ARM_CARRY_LEGACY_FINGERPRINT =
+  "sha256:d7b91a6a0cc3390b58fc8dbeb3def0559c6d1e750d7e363c15ceb3d62fe9c2b8";
 
 export type LeftArmFindingKind =
   | "signature_mismatch"
@@ -59,6 +52,8 @@ export interface LeftArmCarryEntry {
     output_digest: string;
   };
   resolved?: boolean;
+  /** loaderがraw entryを捨てずcardinalityを保持したままparse失敗を伝える。 */
+  schema_invalid?: boolean;
 }
 
 export interface LeftArmCarryDecision {
@@ -110,6 +105,8 @@ export interface LeftArmCarryLogInput {
   fileDigests: ReadonlyMap<string, string>;
   /** 現行 test-design artifact の集合。resolution PLAN は最低1件を generates する。 */
   testDesignArtifacts: ReadonlySet<string>;
+  /** production loaderだけtrue。凍結legacy集合の欠落もfail-closeする。 */
+  legacyBaselineRequired?: boolean;
 }
 
 type UnknownRecord = Record<string, unknown>;
@@ -172,12 +169,10 @@ function isCanonicalPath(path: string): boolean {
   );
 }
 
-function isEnforced(plan: LeftArmCarryPlan): boolean {
+function isEnforced(plan: LeftArmCarryPlan, input: LeftArmCarryLogInput): boolean {
   if (!new Set(["impl", "add-impl"]).has(plan.kind) || plan.layer !== "L7") return false;
   if (!TERMINAL.has(plan.status)) return false;
-  if (plan.legacy_pinned) return false;
-  const date = plan.updated ?? plan.created;
-  return !date || date >= LEFT_ARM_CARRY_ENFORCEMENT_DATE;
+  return !(plan.legacy_pinned && input.legacyBaselineRequired === true);
 }
 
 function matchingReview(
@@ -211,10 +206,13 @@ function validateDecision(
   input: LeftArmCarryLogInput,
   byId: ReadonlyMap<string, LeftArmCarryPlan>,
   violations: LeftArmCarryViolation[],
+  globalCarryIds: Set<string>,
+  globalArtifacts: Set<string>,
+  globalFindingEvidence: Set<string>,
 ): void {
   const decision = plan.left_arm_carry;
   if (!decision) {
-    if (isEnforced(plan))
+    if (isEnforced(plan, input))
       addViolation(violations, plan.plan_id, "missing-carry-decision", "terminal L7 PLAN");
     return;
   }
@@ -256,14 +254,13 @@ function validateDecision(
     }
   }
 
-  const carryIds = new Set<string>();
-  const usedArtifacts = new Set<string>();
-  const usedFindingEvidence = new Set<string>();
   for (const entry of decision.entries) {
     const carryId = entry.carry_id;
-    if (carryIds.has(carryId))
+    if (entry.schema_invalid)
+      addViolation(violations, plan.plan_id, "invalid-carry-schema", carryId, carryId);
+    if (globalCarryIds.has(carryId))
       addViolation(violations, plan.plan_id, "duplicate-carry-id", carryId, carryId);
-    carryIds.add(carryId);
+    globalCarryIds.add(carryId);
     const expected = LEFT_ARM_PUSHBACK_MAP[entry.finding_kind as LeftArmFindingKind];
     if (!expected) {
       addViolation(violations, plan.plan_id, "invalid-finding-kind", entry.finding_kind, carryId);
@@ -304,7 +301,7 @@ function validateDecision(
         carryId,
       );
     }
-    if (usedFindingEvidence.has(entry.finding_evidence.path))
+    if (globalFindingEvidence.has(entry.finding_evidence.path))
       addViolation(
         violations,
         plan.plan_id,
@@ -312,7 +309,7 @@ function validateDecision(
         "finding evidence再利用",
         carryId,
       );
-    usedFindingEvidence.add(entry.finding_evidence.path);
+    globalFindingEvidence.add(entry.finding_evidence.path);
 
     const localArtifacts = new Set<string>();
     for (const artifact of entry.affected_artifacts) {
@@ -321,10 +318,10 @@ function validateDecision(
         !artifact.startsWith(`docs/design/harness/${expected?.layer ?? "invalid"}`)
       )
         addViolation(violations, plan.plan_id, "invalid-affected-artifact", artifact, carryId);
-      if (localArtifacts.has(artifact) || usedArtifacts.has(artifact))
+      if (localArtifacts.has(artifact) || globalArtifacts.has(artifact))
         addViolation(violations, plan.plan_id, "duplicate-affected-artifact", artifact, carryId);
       localArtifacts.add(artifact);
-      usedArtifacts.add(artifact);
+      globalArtifacts.add(artifact);
     }
     if (entry.affected_artifacts.length === 0)
       addViolation(violations, plan.plan_id, "invalid-affected-artifact", "empty", carryId);
@@ -379,17 +376,19 @@ function validateDecision(
           entry.resolution_plan_id,
           carryId,
         );
-      const repassBound = resolution.review_evidence.some((candidate) =>
-        candidate.green_commands?.some(
-          (command) =>
-            command.command === entry.gate_repass.command &&
-            command.completed_at === entry.gate_repass.completed_at &&
-            command.evidence_path === entry.gate_repass.evidence_path &&
-            command.output_digest === entry.gate_repass.output_digest &&
-            command.exit_code === entry.gate_repass.exit_code,
-        ),
+      const repassReview = resolution.review_evidence.find(
+        (candidate) =>
+          TECHNICAL_APPROVAL.has(candidate.verdict.toLowerCase()) &&
+          candidate.green_commands?.some(
+            (command) =>
+              command.command === entry.gate_repass.command &&
+              command.completed_at === entry.gate_repass.completed_at &&
+              command.evidence_path === entry.gate_repass.evidence_path &&
+              command.output_digest === entry.gate_repass.output_digest &&
+              command.exit_code === entry.gate_repass.exit_code,
+          ),
       );
-      if (!repassBound)
+      if (!repassReview) {
         addViolation(
           violations,
           plan.plan_id,
@@ -397,6 +396,19 @@ function validateDecision(
           entry.resolution_plan_id,
           carryId,
         );
+      } else if (
+        !repassReview.tests_green_at ||
+        entry.gate_repass.completed_at > repassReview.tests_green_at ||
+        repassReview.tests_green_at > repassReview.reviewed_at
+      ) {
+        addViolation(
+          violations,
+          plan.plan_id,
+          "invalid-event-order",
+          "resolution repass > tests_green > review",
+          carryId,
+        );
+      }
     }
     if (!plan.dependencies_requires.includes(entry.resolution_plan_id))
       addViolation(
@@ -461,8 +473,45 @@ function validateDecision(
 
 export function analyzeLeftArmCarryLog(input: LeftArmCarryLogInput): LeftArmCarryLogResult {
   const violations: LeftArmCarryViolation[] = [];
-  const byId = new Map(input.plans.map((plan) => [plan.plan_id, plan]));
-  for (const plan of input.plans) validateDecision(plan, input, byId, violations);
+  const byId = new Map<string, LeftArmCarryPlan>();
+  const counts = new Map<string, number>();
+  for (const plan of input.plans) {
+    counts.set(plan.plan_id, (counts.get(plan.plan_id) ?? 0) + 1);
+    if (!byId.has(plan.plan_id)) byId.set(plan.plan_id, plan);
+    if (plan.legacy_pinned && input.legacyBaselineRequired !== true)
+      addViolation(violations, plan.plan_id, "legacy-baseline-drift", "legacy pin spoof");
+  }
+  for (const [planId, count] of counts) {
+    if (count !== 1)
+      addViolation(violations, planId, "legacy-baseline-drift", `duplicate plan_id count=${count}`);
+  }
+  if (input.legacyBaselineRequired) {
+    const pinned = input.plans
+      .filter((plan) => plan.legacy_pinned)
+      .map((plan) => plan.plan_id)
+      .sort();
+    const fingerprint = `sha256:${createHash("sha256").update(pinned.join("\n"), "utf8").digest("hex")}`;
+    if (fingerprint !== LEFT_ARM_CARRY_LEGACY_FINGERPRINT)
+      addViolation(
+        violations,
+        "legacy-baseline",
+        "legacy-baseline-drift",
+        `actual=${fingerprint}, count=${pinned.length}`,
+      );
+  }
+  const globalCarryIds = new Set<string>();
+  const globalArtifacts = new Set<string>();
+  const globalFindingEvidence = new Set<string>();
+  for (const plan of input.plans)
+    validateDecision(
+      plan,
+      input,
+      byId,
+      violations,
+      globalCarryIds,
+      globalArtifacts,
+      globalFindingEvidence,
+    );
   const checked = input.plans.filter(
     (plan) => plan.kind === "impl" || plan.kind === "add-impl",
   ).length;
@@ -589,6 +638,29 @@ function normalizeCarryEntry(value: unknown): LeftArmCarryEntry | null {
   };
 }
 
+function malformedCarryEntry(): LeftArmCarryEntry {
+  return {
+    carry_id: "",
+    finding_kind: "",
+    summary: "",
+    detected_at: "",
+    finding_evidence: { path: "", digest: "" },
+    pushback_target: { layer: "", gate: "" },
+    affected_artifacts: [],
+    resolution_plan_id: "",
+    gate_repass: {
+      gate: "",
+      command: "",
+      completed_at: "",
+      exit_code: -1,
+      evidence_path: "",
+      output_digest: "",
+    },
+    resolved: false,
+    schema_invalid: true,
+  };
+}
+
 function normalizeCarry(value: unknown): LeftArmCarryDecision | undefined {
   const carry = asRecord(value);
   const binding = asRecord(carry?.review_binding);
@@ -603,9 +675,7 @@ function normalizeCarry(value: unknown): LeftArmCarryDecision | undefined {
       reviewed_at: textValue(binding.reviewed_at),
       evidence_digest: textValue(binding.evidence_digest),
     },
-    entries: rawEntries
-      .map(normalizeCarryEntry)
-      .filter((entry): entry is LeftArmCarryEntry => !!entry),
+    entries: rawEntries.map((entry) => normalizeCarryEntry(entry) ?? malformedCarryEntry()),
   };
 }
 
@@ -631,7 +701,6 @@ function normalizePlan(raw: UnknownRecord): LeftArmCarryPlan {
       return record && typeof record.artifact_path === "string" ? [record.artifact_path] : [];
     }),
     review_evidence: normalizeReviews(raw.review_evidence),
-    ...(LEFT_ARM_CARRY_LEGACY_PLAN_IDS.has(planId) ? { legacy_pinned: true } : {}),
     ...(raw.left_arm_carry !== undefined
       ? { left_arm_carry: normalizeCarry(raw.left_arm_carry) }
       : {}),
@@ -683,6 +752,16 @@ export function loadLeftArmCarryLogInput(repoRoot: string): LeftArmCarryLogInput
       plans.push(malformedPlan(file));
     }
   }
+  for (const plan of plans) {
+    if (
+      new Set(["impl", "add-impl"]).has(plan.kind) &&
+      plan.layer === "L7" &&
+      TERMINAL.has(plan.status) &&
+      plan.left_arm_carry === undefined
+    ) {
+      plan.legacy_pinned = true;
+    }
+  }
 
   const referenced = new Set<string>();
   for (const plan of plans) {
@@ -707,5 +786,5 @@ export function loadLeftArmCarryLogInput(repoRoot: string): LeftArmCarryLogInput
   const testDesignArtifacts = new Set(
     walkFiles(testDesignRoot).map((path) => relative(repoRoot, path).replaceAll("\\", "/")),
   );
-  return { plans, fileDigests, testDesignArtifacts };
+  return { plans, fileDigests, testDesignArtifacts, legacyBaselineRequired: true };
 }
