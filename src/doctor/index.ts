@@ -103,11 +103,6 @@ import {
   loadDesignCoverageInput,
 } from "../lint/design-coverage";
 import {
-  analyzeTriageDecisionIntegrity,
-  loadTriageDecisionIntegrityInput,
-  triageDecisionIntegrityMessages,
-} from "../lint/triage-decision-integrity";
-import {
   analyzeDesignLanguage,
   designLanguageMessages,
   loadDesignLanguageDocs,
@@ -397,6 +392,11 @@ import {
   loadTrackedCanonicalInput,
   trackedCanonicalMessages,
 } from "../lint/tracked-canonical";
+import {
+  analyzeTriageDecisionIntegrity,
+  loadTriageDecisionIntegrityInput,
+  triageDecisionIntegrityMessages,
+} from "../lint/triage-decision-integrity";
 import {
   analyzeVerificationProfileGate,
   loadVerificationRecommendation,
@@ -1238,7 +1238,10 @@ export function checkDesignCoverage(repoRoot: string): {
 }
 
 /** PLAN-L7-428: system reviewのtriage判断と実sourceの同時縮退を独立pinでfail-closeする。 */
-export function checkTriageDecisionIntegrity(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkTriageDecisionIntegrity(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["triage-decision-integrity - violation: repo root could not be read"],

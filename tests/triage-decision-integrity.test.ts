@@ -1,5 +1,5 @@
-import { join } from "node:path";
 // biome-ignore-all lint/style/noNonNullAssertion: real-repository fixture shape is itself an asserted contract.
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeTriageDecisionIntegrity,

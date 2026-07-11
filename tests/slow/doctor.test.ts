@@ -24,7 +24,6 @@ import {
   checkDependencyDrift,
   checkDescentObligation,
   checkDesignCoverage,
-  checkTriageDecisionIntegrity,
   checkDesignLanguage,
   checkDriveDbRegistration,
   checkDriveModelBinding,
@@ -76,6 +75,7 @@ import {
   checkTelemetryClosure,
   checkToolContractRegistry,
   checkTrackedCanonical,
+  checkTriageDecisionIntegrity,
   checkVerificationGroupsResult,
   checkVerificationProfile,
   checkVerifierProviderMismatch,
@@ -2220,7 +2220,9 @@ describe("runDoctor", () => {
     expect(red.ok).toBe(false);
     expect(red.messages[0]).toContain("violation");
     const source = readFileSync(join(process.cwd(), "src/doctor/index.ts"), "utf8");
-    expect(source).toContain("const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot)");
+    expect(source).toContain(
+      "const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot)",
+    );
     expect(source).toContain("triageDecisionIntegrity.ok &&");
     expect(source).toContain("...triageDecisionIntegrity.messages.map");
   });
