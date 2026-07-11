@@ -17,12 +17,29 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-001, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-002, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-003, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-004, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-005, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-006, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-007, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-008, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-009, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-010, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-011, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-012, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-013, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-014, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-015, test_path: tests/left-arm-carry-log.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md, oracle_id: U-CARRY-016, test_path: tests/left-arm-carry-log.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE - codec、analyzer、doctor/G7配線" }
   - { role: qa, slot_label: "QA - adversarial fixtureとreal repo回帰" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-430-left-arm-carry-log.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/left-arm-carry-log.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/frontmatter.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/left-arm-carry-log.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-70-left-arm-carry-log.md
