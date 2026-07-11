@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -10,7 +10,9 @@ import {
   closureAutoApprovalWindows,
   currentRepositoryHead,
   evaluateClosureAutoApproval,
+  parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
+  recoverClosureAutoApprovalTransaction,
 } from "../src/state-db/closure-auto-approval";
 import type {
   ProjectClosureQueueItem,
@@ -27,14 +29,13 @@ function fixture(count = 1) {
   execFileSync("git", ["config", "user.email", "test@example.invalid"], { cwd: root });
   execFileSync("git", ["config", "user.name", "HELIX Test"], { cwd: root });
   mkdirSync(join(root, "docs/plans"), { recursive: true });
-  mkdirSync(join(root, "evidence"), { recursive: true });
   const queue: ProjectClosureQueueItem[] = [];
   for (let index = 0; index < count; index += 1) {
     const planId = `PLAN-L7-${9000 + index}-fixture`;
     const sourcePath = `docs/plans/${planId}.md`;
     writeFileSync(
       join(root, sourcePath),
-      `---\nplan_id: ${planId}\nstatus: completed\n---\n# fixture\n`,
+      `---\nplan_id: ${planId}\nstatus: completed\nverification_bindings:\n  - { oracle_id: U-FIXTURE, test_path: tests/fixture.test.ts }\nclosure_auto_authority:\n  irreversible_impact: false\n  capabilities: [local_plan_status]\n  required_gates:\n    - { gate_id: G7, command: "helix gate G7" }\n---\n# fixture\n`,
     );
     queue.push({
       planId,
@@ -78,10 +79,54 @@ function fixture(count = 1) {
       reasons: [],
     });
   }
-  writeFileSync(join(root, "evidence/test.json"), '{"exit_code":0,"kind":"test"}\n');
-  writeFileSync(join(root, "evidence/gate.json"), '{"exit_code":0,"kind":"gate"}\n');
-  execFileSync("git", ["add", "docs", "evidence"], { cwd: root });
-  execFileSync("git", ["commit", "-qm", "fixture"], { cwd: root });
+  execFileSync("git", ["add", "docs"], { cwd: root });
+  execFileSync("git", ["commit", "-qm", "fixture"], {
+    cwd: root,
+    env: {
+      ...process.env,
+      GIT_AUTHOR_DATE: "2026-07-12T00:00:00Z",
+      GIT_COMMITTER_DATE: "2026-07-12T00:00:00Z",
+    },
+  });
+  const head = currentRepositoryHead(root);
+  mkdirSync(join(root, ".helix/evidence/closure-runs"), { recursive: true });
+  mkdirSync(join(root, ".helix/evidence/outputs"), { recursive: true });
+  for (const item of queue) {
+    const testOutput = `.helix/evidence/outputs/${item.planId}-test.txt`;
+    const gateOutput = `.helix/evidence/outputs/${item.planId}-gate.txt`;
+    writeFileSync(join(root, testOutput), "test green\n");
+    writeFileSync(join(root, gateOutput), "gate green\n");
+    writeFileSync(
+      join(root, `.helix/evidence/closure-runs/${item.planId}.json`),
+      JSON.stringify({
+        schema_version: "closure-run-record.v1",
+        plan_id: item.planId,
+        repository_head: head,
+        runs: [
+          {
+            run_id: `test-run:${item.planId}`,
+            kind: "test",
+            oracle_id: "U-FIXTURE",
+            command: "bunx vitest run tests/fixture.test.ts",
+            exit_code: 0,
+            output_path: testOutput,
+            output_digest: sha(readFileSync(join(root, testOutput))),
+            completed_at: "2026-07-12T00:01:00Z",
+          },
+          {
+            run_id: `gate-run:${item.planId}`,
+            kind: "gate",
+            oracle_id: "G7",
+            command: "helix gate G7",
+            exit_code: 0,
+            output_path: gateOutput,
+            output_digest: sha(readFileSync(join(root, gateOutput))),
+            completed_at: "2026-07-12T00:01:00Z",
+          },
+        ],
+      }),
+    );
+  }
   const snapshot = {
     source_clock: "2026-07-12T00:10:00Z",
     current: {},
@@ -106,32 +151,15 @@ function fixture(count = 1) {
       },
     },
   } as unknown as ProjectCurrentLocationSnapshot;
-  const completedAt = "2026-07-12T00:00:00Z";
-  const evidence = (kind: "test" | "gate", path: string) => ({
-    evidence_id: `${kind}:fixture`,
-    path,
-    content_digest: sha(readFileSync(join(root, path))),
-    run: {
-      run_id: `${kind}-run:12345678`,
-      command: `helix ${kind}`,
-      exit_code: 0 as const,
-      output_digest: sha(`${kind}-output`),
-      completed_at: completedAt,
-    },
-  });
   const manifest: ClosureAutoApprovalManifest = {
     schema_version: "closure-auto-approval-manifest.v1",
-    repository_head: currentRepositoryHead(root),
+    repository_head: head,
     generated_at: "2026-07-12T00:05:00Z",
     expires_at: "2026-07-12T00:30:00Z",
     candidates: queue.map((item) => ({
       plan_id: item.planId,
       source_path: item.sourcePath,
       source_digest: sha(readFileSync(join(root, item.sourcePath))),
-      irreversible_impact: false,
-      capabilities: ["local_plan_status"],
-      expected_tests: [evidence("test", "evidence/test.json")],
-      expected_gates: [evidence("gate", "evidence/gate.json")],
     })),
   };
   return { root, snapshot, manifest, queue };
@@ -153,13 +181,17 @@ describe("closure auto approval authority", () => {
     const result = evaluate(f);
     expect(result.allowed).toBe(true);
     expect(result.rendered_patches).toHaveLength(1);
+    expect(() =>
+      parseClosureAutoApprovalManifest({ ...f.manifest, caller_expected_tests: [] }),
+    ).toThrow();
   });
 
   it("U-CAUTO-002: DB集計green自己申告でもevidence bytes driftを拒否する", () => {
     const f = fixture();
-    writeFileSync(join(f.root, "evidence/test.json"), "tampered\n");
+    const output = `.helix/evidence/outputs/${f.queue[0]?.planId}-test.txt`;
+    writeFileSync(join(f.root, output), "tampered\n");
     expect(evaluate(f).blockers).toContain(
-      `${f.queue[0]?.planId}: test evidence/test.json: content digest drift`,
+      `${f.queue[0]?.planId}: test-run:${f.queue[0]?.planId}: output artifact digest drift`,
     );
   });
 
@@ -167,8 +199,14 @@ describe("closure auto approval authority", () => {
     const f = fixture();
     const authority = f.manifest.candidates[0];
     if (!authority) throw new Error("fixture missing");
-    authority.irreversible_impact = true;
-    authority.capabilities = ["external_publish"];
+    const path = join(f.root, authority.source_path);
+    writeFileSync(
+      path,
+      readFileSync(path, "utf8")
+        .replace("irreversible_impact: false", "irreversible_impact: true")
+        .replace("capabilities: [local_plan_status]", "capabilities: [external_publish]"),
+    );
+    authority.source_digest = sha(readFileSync(path));
     expect(evaluate(f)).toMatchObject({
       allowed: false,
       blockers: [`${authority.plan_id}: human approval必須`],
@@ -186,7 +224,10 @@ describe("closure auto approval authority", () => {
     expect(evaluate(replay).blockers).toContain("manifest freshness不正");
     const toctou = fixture();
     const approved = evaluate(toctou);
-    writeFileSync(join(toctou.root, "evidence/gate.json"), "drift-after-evaluation\n");
+    writeFileSync(
+      join(toctou.root, `.helix/evidence/outputs/${toctou.queue[0]?.planId}-gate.txt`),
+      "drift-after-evaluation\n",
+    );
     expect(() =>
       applyClosureAutoApprovalAtomic({
         repoRoot: toctou.root,
@@ -194,7 +235,7 @@ describe("closure auto approval authority", () => {
         manifest: toctou.manifest,
         now: new Date("2026-07-12T00:10:00Z"),
       }),
-    ).toThrow("write直前evidence bytes CAS不一致");
+    ).toThrow("write直前manifest CAS不一致");
   });
 
   it("U-CAUTO-005: rename途中失敗を全PLAN rollbackし失敗auditを残す", () => {
@@ -213,12 +254,64 @@ describe("closure auto approval authority", () => {
     expect(f.queue.map((item) => readFileSync(join(f.root, item.sourcePath), "utf8"))).toEqual(
       before,
     );
-    expect(
-      readFileSync(join(f.root, ".helix/audit/closure-auto-approval.jsonl"), "utf8"),
-    ).toContain('"status":"rolled_back"');
+    const auditLines = readFileSync(
+      join(f.root, ".helix/audit/closure-auto-approval.jsonl"),
+      "utf8",
+    )
+      .trim()
+      .split("\n")
+      .map((line) => JSON.parse(line));
+    expect(auditLines[1]).toMatchObject({
+      status: "rolled_back",
+      previous_digest: auditLines[0]?.event_digest,
+    });
+    const target = f.queue[0];
+    if (!target) throw new Error("fixture missing");
+    const original = before[0] as string;
+    mkdirSync(join(f.root, ".helix/state"), { recursive: true });
+    writeFileSync(join(f.root, target.sourcePath), "crash-partial\n");
+    writeFileSync(
+      join(f.root, ".helix/state/closure-auto-approval-journal.json"),
+      JSON.stringify({
+        schema_version: "closure-auto-approval-journal.v1",
+        transaction_id: "11111111-1111-4111-8111-111111111111",
+        status: "prepared",
+        entries: [
+          { path: target.sourcePath, before_content: original, before_digest: sha(original) },
+        ],
+      }),
+    );
+    expect(recoverClosureAutoApprovalTransaction(f.root)).toEqual([target.sourcePath]);
+    expect(readFileSync(join(f.root, target.sourcePath), "utf8")).toBe(original);
   });
 
   it("U-CAUTO-006: 361件を100件以下のwindowで欠落・重複なく評価する", () => {
+    const missingManifest = spawnSync(
+      "bun",
+      ["run", "src/cli.ts", "closure", "auto-approve", "--dry-run"],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    expect(missingManifest.status).not.toBe(0);
+    expect(missingManifest.stderr).toContain(
+      "required option '--evidence-manifest <path>' not specified",
+    );
+    const invalidNumeric = spawnSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "closure",
+        "auto-approve",
+        "--dry-run",
+        "--evidence-manifest",
+        "unused.json",
+        "--batch-size",
+        "01",
+      ],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    expect(invalidNumeric.status).toBe(2);
+    expect(invalidNumeric.stderr).toContain("batch-size must be between 1 and 100");
     expect(parseClosureBatchInteger("01", { min: 0 })).toBeNull();
     expect(parseClosureBatchInteger("1e2", { min: 0 })).toBeNull();
     expect(parseClosureBatchInteger("101", { min: 1, max: 100 })).toBeNull();

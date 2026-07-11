@@ -373,8 +373,10 @@ import {
   applyClosureAutoApprovalAtomic,
   type ClosureAutoApprovalEvaluation,
   type ClosureAutoApprovalManifest,
+  canonicalClosureAuthorityDigest,
   closureAutoApprovalWindows,
   evaluateClosureAutoApproval,
+  parseClosureAutoApprovalManifest,
   parseClosureBatchInteger,
 } from "./state-db/closure-auto-approval";
 import {
@@ -8140,9 +8142,9 @@ closure
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
         const snapshot = buildProjectCurrentLocationSnapshot(db);
-        const manifest = JSON.parse(
-          readFileSync(join(repoRoot, opts.evidenceManifest), "utf8"),
-        ) as ClosureAutoApprovalManifest;
+        const manifest = parseClosureAutoApprovalManifest(
+          JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
+        );
         const total = snapshot.closure.queue.route_counts.close_ready;
         const windows = closureAutoApprovalWindows({
           total,
@@ -8179,9 +8181,7 @@ closure
           const transactionEvaluation: ClosureAutoApprovalEvaluation = {
             ...first,
             allowed,
-            authority_digest: `sha256:${createHash("sha256")
-              .update(JSON.stringify(selectedManifest))
-              .digest("hex")}`,
+            authority_digest: canonicalClosureAuthorityDigest(repoRoot, selectedManifest),
             target_plan_ids: batches.flatMap((batch) => batch.target_plan_ids),
             blockers: batches.flatMap((batch) => batch.blockers),
             rendered_patches: batches.flatMap((batch) => batch.rendered_patches),

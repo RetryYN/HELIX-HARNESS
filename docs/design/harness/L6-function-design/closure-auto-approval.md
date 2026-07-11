@@ -23,8 +23,9 @@ run ID、command、exit code、output digest、実行時刻、有効期限を固
   (`version_activation/state_cutover/external_publish/charter_p8`)の一致を要求する。
 - dry-runはcanonical path、symlink禁止、read/write可否、strict frontmatter、全render digestを検証する。
 - apply直前にHEAD・manifest・PLAN bytes・evidence bytes・期限をCAS再検証する。
-- 全patchをtempへrender/検証後、単一transactionでrenameする。途中失敗は全before bytesへrollbackし、
-  成功・失敗ともbefore/after durable audit eventとevent digestを残す。
+- 全patchをtempへrender/検証後、journaled compensating transactionでrenameする。multi-file filesystem
+  atomicityは主張せず、途中失敗は全before bytesへrollbackし、process crashは次回startupでjournalから
+  recoveryする。成功・失敗ともfsync済みbefore/after audit eventをhash-chainで残す。
 - `--batch-size 1..100 --all`で361件以上をbounded windowとして列挙できる。executeは全windowの
   preflight成功後だけ行う。`--batch-size`と`--offset`はcanonical decimalだけを受理する。
 

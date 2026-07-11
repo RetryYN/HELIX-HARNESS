@@ -3,10 +3,13 @@ import { createHash, randomUUID } from "node:crypto";
 import {
   accessSync,
   appendFileSync,
+  closeSync,
   existsSync,
   constants as fsConstants,
+  fsyncSync,
   lstatSync,
   mkdirSync,
+  openSync,
   readFileSync,
   realpathSync,
   renameSync,
@@ -14,6 +17,8 @@ import {
   writeFileSync,
 } from "node:fs";
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
+import { parse as parseYaml } from "yaml";
+import { z } from "zod";
 import {
   buildProjectClosureApplyPlan,
   buildProjectClosureReviewBundle,
@@ -28,29 +33,10 @@ export type ClosureCapability =
   | "external_publish"
   | "charter_p8";
 
-export interface ClosureRunAuthority {
-  run_id: string;
-  command: string;
-  exit_code: 0;
-  output_digest: `sha256:${string}`;
-  completed_at: string;
-}
-
-export interface ClosureEvidenceAuthority {
-  evidence_id: string;
-  path: string;
-  content_digest: `sha256:${string}`;
-  run: ClosureRunAuthority;
-}
-
 export interface ClosureCandidateAuthority {
   plan_id: string;
   source_path: string;
   source_digest: `sha256:${string}`;
-  irreversible_impact: boolean;
-  capabilities: ClosureCapability[];
-  expected_tests: ClosureEvidenceAuthority[];
-  expected_gates: ClosureEvidenceAuthority[];
 }
 
 export interface ClosureAutoApprovalManifest {
@@ -88,6 +74,50 @@ const IRREVERSIBLE = new Set<ClosureCapability>([
   "external_publish",
   "charter_p8",
 ]);
+const digestSchema = z.string().regex(HEX_DIGEST);
+const manifestSchema = z
+  .object({
+    schema_version: z.literal("closure-auto-approval-manifest.v1"),
+    repository_head: z.string().regex(/^[0-9a-f]{40}$/),
+    generated_at: z.string().datetime(),
+    expires_at: z.string().datetime(),
+    candidates: z.array(
+      z
+        .object({
+          plan_id: z.string().regex(/^PLAN-[A-Z0-9]+-[A-Za-z0-9-]+$/),
+          source_path: z.string().min(1),
+          source_digest: digestSchema,
+        })
+        .strict(),
+    ),
+  })
+  .strict();
+
+export function parseClosureAutoApprovalManifest(value: unknown): ClosureAutoApprovalManifest {
+  return manifestSchema.parse(value) as ClosureAutoApprovalManifest;
+}
+
+const runRecordSchema = z
+  .object({
+    schema_version: z.literal("closure-run-record.v1"),
+    plan_id: z.string(),
+    repository_head: z.string().regex(/^[0-9a-f]{40}$/),
+    runs: z.array(
+      z
+        .object({
+          run_id: z.string().regex(SAFE_RUN_ID),
+          kind: z.enum(["test", "gate"]),
+          oracle_id: z.string().min(1),
+          command: z.string().min(1),
+          exit_code: z.literal(0),
+          output_path: z.string().min(1),
+          output_digest: digestSchema,
+          completed_at: z.string().datetime(),
+        })
+        .strict(),
+    ),
+  })
+  .strict();
 
 export function parseClosureBatchInteger(
   raw: string,
@@ -141,36 +171,126 @@ function renderAccepted(source: string): string {
   return rendered;
 }
 
-function validateEvidence(
-  repoRoot: string,
-  evidence: ClosureEvidenceAuthority,
-  kind: "test" | "gate",
-  nowMs: number,
-  generatedMs: number,
-): string[] {
+function planAuthority(source: string) {
+  const match = /^---\n([\s\S]*?)\n---\n/.exec(source);
+  if (!match?.[1]) throw new Error("strict frontmatterが無い");
+  const parsed = z
+    .object({
+      plan_id: z.string(),
+      status: z.enum(["completed", "confirmed"]),
+      verification_bindings: z.array(
+        z.object({ oracle_id: z.string(), test_path: z.string() }).passthrough(),
+      ),
+      closure_auto_authority: z
+        .object({
+          irreversible_impact: z.boolean(),
+          capabilities: z.array(
+            z.enum([
+              "local_plan_status",
+              "version_activation",
+              "state_cutover",
+              "external_publish",
+              "charter_p8",
+            ]),
+          ),
+          required_gates: z.array(z.object({ gate_id: z.string(), command: z.string() }).strict()),
+        })
+        .strict(),
+    })
+    .passthrough()
+    .parse(parseYaml(match[1]));
+  return parsed;
+}
+
+function validateCanonicalRuns(input: {
+  repoRoot: string;
+  planId: string;
+  head: string;
+  authority: ReturnType<typeof planAuthority>;
+  planCommitMs: number;
+  nowMs: number;
+  seenRunIds: Set<string>;
+}): string[] {
   const errors: string[] = [];
-  if (!evidence.evidence_id.startsWith(`${kind}:`)) errors.push(`${kind} evidence_id型不一致`);
-  if (!HEX_DIGEST.test(evidence.content_digest)) errors.push(`${kind} content_digest不正`);
-  if (!SAFE_RUN_ID.test(evidence.run.run_id)) errors.push(`${kind} run_id不正`);
-  if (!HEX_DIGEST.test(evidence.run.output_digest)) errors.push(`${kind} output_digest不正`);
-  if (evidence.run.exit_code !== 0) errors.push(`${kind} exit_code非green`);
-  if (evidence.run.command.trim().length === 0) errors.push(`${kind} command欠落`);
-  const completedMs = Date.parse(evidence.run.completed_at);
-  if (
-    !Number.isFinite(completedMs) ||
-    completedMs > generatedMs ||
-    nowMs - completedMs > 86_400_000
-  )
-    errors.push(`${kind} run freshness不正`);
-  const canonical = canonicalFile(repoRoot, evidence.path);
-  if (canonical.error) errors.push(`${kind} ${evidence.path}: ${canonical.error}`);
-  else if (sha256(readFileSync(canonical.absolute)) !== evidence.content_digest)
-    errors.push(`${kind} ${evidence.path}: content digest drift`);
+  const recordPath = `.helix/evidence/closure-runs/${input.planId}.json`;
+  const canonical = canonicalFile(input.repoRoot, recordPath);
+  if (canonical.error) return [`canonical run record ${canonical.error}`];
+  let record: z.infer<typeof runRecordSchema>;
+  try {
+    record = runRecordSchema.parse(JSON.parse(readFileSync(canonical.absolute, "utf8")));
+  } catch {
+    return ["canonical run record schema不正"];
+  }
+  if (record.plan_id !== input.planId) errors.push("run record plan_id不一致");
+  if (record.repository_head !== input.head) errors.push("run record HEAD不一致");
+  const expectedTests = new Map(
+    input.authority.verification_bindings.map((binding) => [binding.oracle_id, binding.test_path]),
+  );
+  const expectedGates = new Map(
+    input.authority.closure_auto_authority.required_gates.map((gate) => [
+      gate.gate_id,
+      gate.command,
+    ]),
+  );
+  const actualTests = new Set<string>();
+  const actualGates = new Set<string>();
+  for (const run of record.runs) {
+    if (input.seenRunIds.has(run.run_id)) errors.push(`run_id重複: ${run.run_id}`);
+    input.seenRunIds.add(run.run_id);
+    const completedMs = Date.parse(run.completed_at);
+    if (
+      completedMs < input.planCommitMs ||
+      completedMs > input.nowMs ||
+      input.nowMs - completedMs > 86_400_000
+    )
+      errors.push(`${run.run_id}: run freshness不正`);
+    const expectedCommand =
+      run.kind === "test" ? expectedTests.get(run.oracle_id) : expectedGates.get(run.oracle_id);
+    if (expectedCommand === undefined) errors.push(`${run.run_id}: oracle binding不正`);
+    else if (run.kind === "test") {
+      if (!run.command.includes(expectedCommand))
+        errors.push(`${run.run_id}: test command allowlist不一致`);
+      actualTests.add(run.oracle_id);
+    } else {
+      if (run.command !== expectedCommand)
+        errors.push(`${run.run_id}: gate command allowlist不一致`);
+      actualGates.add(run.oracle_id);
+    }
+    const output = canonicalFile(input.repoRoot, run.output_path);
+    if (output.error) errors.push(`${run.run_id}: output ${output.error}`);
+    else if (sha256(readFileSync(output.absolute)) !== run.output_digest)
+      errors.push(`${run.run_id}: output artifact digest drift`);
+  }
+  if ([...expectedTests.keys()].sort().join("\n") !== [...actualTests].sort().join("\n"))
+    errors.push("expected test集合 exact不一致");
+  if ([...expectedGates.keys()].sort().join("\n") !== [...actualGates].sort().join("\n"))
+    errors.push("expected gate集合 exact不一致");
   return errors;
 }
 
 export function currentRepositoryHead(repoRoot: string): string {
   return execFileSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" }).trim();
+}
+
+export function canonicalClosureAuthorityDigest(
+  repoRoot: string,
+  manifest: ClosureAutoApprovalManifest,
+): `sha256:${string}` {
+  const materials = manifest.candidates.map((candidate) => {
+    const runPath = `.helix/evidence/closure-runs/${candidate.plan_id}.json`;
+    const runBytes = readFileSync(join(repoRoot, runPath));
+    const record = runRecordSchema.parse(JSON.parse(runBytes.toString("utf8")));
+    return {
+      plan_id: candidate.plan_id,
+      plan_digest: sha256(readFileSync(join(repoRoot, candidate.source_path))),
+      run_record_digest: sha256(runBytes),
+      output_digests: record.runs.map((run) => ({
+        run_id: run.run_id,
+        digest: sha256(readFileSync(join(repoRoot, run.output_path))),
+      })),
+    };
+  });
+  return sha256(JSON.stringify({ manifest, materials }));
 }
 
 export function evaluateClosureAutoApproval(input: {
@@ -192,6 +312,12 @@ export function evaluateClosureAutoApproval(input: {
   });
   const blockers: string[] = [];
   const head = currentRepositoryHead(repoRoot);
+  const headCommitMs = Date.parse(
+    execFileSync("git", ["show", "-s", "--format=%cI", "HEAD"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    }).trim(),
+  );
   if (manifest.schema_version !== "closure-auto-approval-manifest.v1")
     blockers.push("schema不一致");
   if (manifest.repository_head !== head) blockers.push("repository HEAD drift");
@@ -206,6 +332,7 @@ export function evaluateClosureAutoApproval(input: {
   if (manifest.candidates.length !== bundle.candidates.length)
     blockers.push("candidate cardinality不一致");
   const seen = new Set<string>();
+  const seenRunIds = new Set<string>();
   for (const candidate of bundle.candidates) {
     const authority = manifest.candidates.find((item) => item.plan_id === candidate.planId);
     if (!authority) {
@@ -218,30 +345,52 @@ export function evaluateClosureAutoApproval(input: {
       blockers.push(`${candidate.planId}: source path不一致`);
     const source = canonicalFile(repoRoot, authority.source_path);
     if (source.error) blockers.push(`${candidate.planId}: ${source.error}`);
-    else if (sha256(readFileSync(source.absolute)) !== authority.source_digest)
-      blockers.push(`${candidate.planId}: PLAN bytes drift`);
-    const typedIrreversible = authority.capabilities.some((value) => IRREVERSIBLE.has(value));
-    if (authority.irreversible_impact !== typedIrreversible)
-      blockers.push(`${candidate.planId}: irreversible typed authority矛盾`);
-    if (authority.irreversible_impact) blockers.push(`${candidate.planId}: human approval必須`);
-    if (authority.expected_tests.length === 0)
-      blockers.push(`${candidate.planId}: expected tests空`);
-    if (authority.expected_gates.length === 0)
-      blockers.push(`${candidate.planId}: expected gates空`);
-    for (const evidence of authority.expected_tests)
-      blockers.push(
-        ...validateEvidence(repoRoot, evidence, "test", nowMs, generatedMs).map(
-          (error) => `${candidate.planId}: ${error}`,
-        ),
-      );
-    for (const evidence of authority.expected_gates)
-      blockers.push(
-        ...validateEvidence(repoRoot, evidence, "gate", nowMs, generatedMs).map(
-          (error) => `${candidate.planId}: ${error}`,
-        ),
-      );
+    else {
+      const sourceText = readFileSync(source.absolute, "utf8");
+      if (sha256(sourceText) !== authority.source_digest)
+        blockers.push(`${candidate.planId}: PLAN bytes drift`);
+      try {
+        const plan = planAuthority(sourceText);
+        if (plan.plan_id !== candidate.planId) blockers.push(`${candidate.planId}: plan_id不一致`);
+        const capabilityIrreversible = plan.closure_auto_authority.capabilities.some((value) =>
+          IRREVERSIBLE.has(value),
+        );
+        const forcedIrreversible =
+          candidate.planId === "PLAN-L7-146" || candidate.planId.startsWith("PLAN-M-02");
+        if (plan.closure_auto_authority.irreversible_impact !== capabilityIrreversible)
+          blockers.push(`${candidate.planId}: irreversible typed authority矛盾`);
+        if (capabilityIrreversible || forcedIrreversible)
+          blockers.push(`${candidate.planId}: human approval必須`);
+        const planCommitMs = Date.parse(
+          execFileSync("git", ["log", "-1", "--format=%cI", "--", authority.source_path], {
+            cwd: repoRoot,
+            encoding: "utf8",
+          }).trim(),
+        );
+        blockers.push(
+          ...validateCanonicalRuns({
+            repoRoot,
+            planId: candidate.planId,
+            head,
+            authority: plan,
+            planCommitMs: Math.max(planCommitMs, headCommitMs),
+            nowMs,
+            seenRunIds,
+          }).map((error) => `${candidate.planId}: ${error}`),
+        );
+      } catch (error) {
+        blockers.push(
+          `${candidate.planId}: PLAN authority schema不正: ${error instanceof Error ? error.message : String(error)}`,
+        );
+      }
+    }
   }
-  const authorityDigest = sha256(JSON.stringify(manifest));
+  let authorityDigest = sha256(JSON.stringify(manifest));
+  try {
+    authorityDigest = canonicalClosureAuthorityDigest(repoRoot, manifest);
+  } catch {
+    blockers.push("canonical authority digestを構築できない");
+  }
   const approvalText = [
     "decision_id: closure-review:close_ready",
     "outcome: approve_closure_claim",
@@ -305,6 +454,15 @@ export function applyClosureAutoApprovalAtomic(input: {
     input.auditPath ?? ".helix/audit/closure-auto-approval.jsonl",
   );
   mkdirSync(dirname(auditPath), { recursive: true });
+  if (realpathSync(dirname(auditPath)) !== resolve(dirname(auditPath)))
+    throw new Error("closure audit parent canonical path不一致");
+  if (existsSync(auditPath) && lstatSync(auditPath).isSymbolicLink())
+    throw new Error("closure audit symlinkは禁止");
+  const journalPath = join(input.repoRoot, ".helix/state/closure-auto-approval-journal.json");
+  mkdirSync(dirname(journalPath), { recursive: true });
+  if (realpathSync(dirname(journalPath)) !== resolve(dirname(journalPath)))
+    throw new Error("closure journal parent canonical path不一致");
+  recoverClosureAutoApprovalTransaction(input.repoRoot, journalPath);
   const transactionId = randomUUID();
   const audit = (phase: string, status: string, detail: Record<string, unknown> = {}) =>
     (() => {
@@ -319,11 +477,23 @@ export function applyClosureAutoApprovalAtomic(input: {
         at: new Date().toISOString(),
         ...detail,
       };
-      appendFileSync(
-        auditPath,
-        `${JSON.stringify({ ...payload, event_digest: sha256(JSON.stringify(payload)) })}\n`,
-        "utf8",
-      );
+      const prior = existsSync(auditPath)
+        ? readFileSync(auditPath, "utf8").trim().split("\n").at(-1)
+        : undefined;
+      const previousDigest = prior
+        ? ((JSON.parse(prior).event_digest as string | undefined) ?? null)
+        : null;
+      const chained = { ...payload, previous_digest: previousDigest };
+      const fd = openSync(auditPath, "a", 0o600);
+      try {
+        appendFileSync(
+          fd,
+          `${JSON.stringify({ ...chained, event_digest: sha256(JSON.stringify(chained)) })}\n`,
+        );
+        fsyncSync(fd);
+      } finally {
+        closeSync(fd);
+      }
     })();
   audit("before", "started", { targets: input.evaluation.target_plan_ids });
   const backups = new Map<string, string>();
@@ -332,7 +502,10 @@ export function applyClosureAutoApprovalAtomic(input: {
     if (!input.evaluation.allowed) throw new Error(input.evaluation.blockers.join("; "));
     if (currentRepositoryHead(input.repoRoot) !== input.manifest.repository_head)
       throw new Error("write直前HEAD CAS不一致");
-    if (sha256(JSON.stringify(input.manifest)) !== input.evaluation.authority_digest)
+    if (
+      canonicalClosureAuthorityDigest(input.repoRoot, input.manifest) !==
+      input.evaluation.authority_digest
+    )
       throw new Error("write直前manifest CAS不一致");
     if ((input.now ?? new Date()).getTime() > Date.parse(input.manifest.expires_at))
       throw new Error("write直前manifest期限切れ");
@@ -340,11 +513,6 @@ export function applyClosureAutoApprovalAtomic(input: {
       const source = canonicalFile(input.repoRoot, authority.source_path);
       if (source.error || sha256(readFileSync(source.absolute)) !== authority.source_digest)
         throw new Error(`${authority.plan_id}: write直前PLAN bytes CAS不一致`);
-      for (const evidence of [...authority.expected_tests, ...authority.expected_gates]) {
-        const file = canonicalFile(input.repoRoot, evidence.path);
-        if (file.error || sha256(readFileSync(file.absolute)) !== evidence.content_digest)
-          throw new Error(`${authority.plan_id}: write直前evidence bytes CAS不一致`);
-      }
     }
     for (const patch of input.evaluation.rendered_patches) {
       const absolute = join(input.repoRoot, patch.path);
@@ -358,6 +526,23 @@ export function applyClosureAutoApprovalAtomic(input: {
       backups.set(absolute, before);
       temps.push(temp);
     }
+    const journal = {
+      schema_version: "closure-auto-approval-journal.v1",
+      transaction_id: transactionId,
+      status: "prepared",
+      entries: [...backups].map(([path, content]) => ({
+        path: relative(input.repoRoot, path),
+        before_content: content,
+        before_digest: sha256(content),
+      })),
+    };
+    const journalFd = openSync(journalPath, "w", 0o600);
+    try {
+      writeFileSync(journalFd, `${JSON.stringify(journal)}\n`);
+      fsyncSync(journalFd);
+    } finally {
+      closeSync(journalFd);
+    }
     let renamed = 0;
     for (let index = 0; index < input.evaluation.rendered_patches.length; index += 1) {
       const patch = input.evaluation.rendered_patches[index];
@@ -367,13 +552,64 @@ export function applyClosureAutoApprovalAtomic(input: {
       if (input.failAfterRenameForTest === renamed) throw new Error("injected partial failure");
     }
     audit("after", "committed", { targets: input.evaluation.target_plan_ids });
+    rmSync(journalPath);
     return { applied: [...input.evaluation.target_plan_ids], transaction_id: transactionId };
   } catch (error) {
-    for (const [path, content] of backups) writeFileSync(path, content, "utf8");
+    const rollbackErrors: string[] = [];
+    for (const [path, content] of backups) {
+      try {
+        writeFileSync(path, content, "utf8");
+      } catch (rollbackError) {
+        rollbackErrors.push(
+          rollbackError instanceof Error ? rollbackError.message : String(rollbackError),
+        );
+      }
+    }
     for (const temp of temps) if (existsSync(temp)) rmSync(temp);
     audit("after", "rolled_back", {
       error: error instanceof Error ? error.message : String(error),
+      rollback_errors: rollbackErrors,
     });
+    if (existsSync(journalPath) && rollbackErrors.length === 0) rmSync(journalPath);
     throw error;
   }
+}
+
+export function recoverClosureAutoApprovalTransaction(
+  repoRoot: string,
+  journalPath = join(repoRoot, ".helix/state/closure-auto-approval-journal.json"),
+): string[] {
+  if (!existsSync(journalPath)) return [];
+  if (lstatSync(journalPath).isSymbolicLink()) throw new Error("closure journal symlinkは禁止");
+  const journal = z
+    .object({
+      schema_version: z.literal("closure-auto-approval-journal.v1"),
+      transaction_id: z.string().uuid(),
+      status: z.literal("prepared"),
+      entries: z.array(
+        z
+          .object({ path: z.string(), before_content: z.string(), before_digest: digestSchema })
+          .strict(),
+      ),
+    })
+    .strict()
+    .parse(JSON.parse(readFileSync(journalPath, "utf8")));
+  const restored: string[] = [];
+  const errors: string[] = [];
+  for (const entry of journal.entries) {
+    try {
+      if (sha256(entry.before_content) !== entry.before_digest)
+        throw new Error("journal digest不一致");
+      const absolute = resolve(repoRoot, entry.path);
+      if (relative(repoRoot, absolute).startsWith(".."))
+        throw new Error("journal path repository外");
+      writeFileSync(absolute, entry.before_content, "utf8");
+      restored.push(entry.path);
+    } catch (error) {
+      errors.push(error instanceof Error ? error.message : String(error));
+    }
+  }
+  if (errors.length > 0) throw new Error(`closure journal recovery失敗: ${errors.join("; ")}`);
+  rmSync(journalPath);
+  return restored;
 }
