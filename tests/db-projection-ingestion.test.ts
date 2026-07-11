@@ -317,10 +317,11 @@ describe("db projection ingestion detector", () => {
         );
         expect(["machine", "approval"]).toContain(handoffSummary?.effective_phase);
       } else {
+        // approval record 不在 = scope not_checked (vmodel-fit / read-model 整合、CI self-heal 2026-07-11)。
         expect(handoffSummary).toMatchObject({
           approval_pending: 0,
           scope_mismatch: 0,
-          scope_status: "missing",
+          scope_status: "not_checked",
         });
         expect([
           ["machine_pending", "generate_probe", "machine"],
