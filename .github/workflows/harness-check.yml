@@ -25,6 +25,7 @@ concurrency:
 jobs:
   harness-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: checkout
         uses: actions/checkout@v5
@@ -141,6 +142,7 @@ jobs:
         run: bun src/cli.ts db rebuild --json
 
       - name: test — 全回帰 (vitest run)
+        timeout-minutes: 15
         run: bun run test
 
       - name: lint (biome)
