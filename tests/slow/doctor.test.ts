@@ -2898,7 +2898,7 @@ describe("runDoctor", () => {
         /status=[a-z_]+(?:\s+[^\n]*)?phase=(?:approval|machine)/.test(message),
     );
     expect(recoveryHandoff).toMatch(
-      /status=(?:approval_pending|machine_pending|generate_probe|generate_approval_draft|refresh_approval_draft|unchecked|unavailable).*phase=(?:approval|machine)/,
+      /status=(?:approval_required|approval_pending|machine_pending|generate_probe|generate_approval_draft|refresh_approval_draft|unchecked|unavailable).*phase=(?:approval|machine)/,
     );
     expect(hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=")).toBe(
       true,
@@ -2927,8 +2927,10 @@ describe("runDoctor", () => {
           : "closure-evidence-materialize",
       );
     } else {
+      // decision 未公開: machine phase の生成前段、または approval phase で decision draft が
+      // まだ生成されていない clean-env 変種 (fresh clone は .helix/tmp の draft を持たない)。
       expect(recoveryHandoff).toMatch(
-        /status=(?:machine_pending|generate_probe|generate_approval_draft|unchecked|unavailable).*phase=machine/,
+        /status=(?:machine_pending|generate_probe|generate_approval_draft|unchecked|unavailable).*phase=machine|status=approval_required.*phase=approval/,
       );
     }
     expect(
@@ -2936,7 +2938,9 @@ describe("runDoctor", () => {
         r.messages,
         "doctor: recovery-handoff-binding",
         recoveryHandoff?.includes("phase=approval")
-          ? "handoff.decision_draft.present"
+          ? decisionPublished
+            ? "handoff.decision_draft.present"
+            : "handoff.decision_draft.missing"
           : "handoff.phase.machine",
       ),
     ).toBe(true);
