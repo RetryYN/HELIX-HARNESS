@@ -2841,6 +2841,61 @@ export function requiresPublishedApprovalHandoff(input: {
   );
 }
 
+export interface MissingDraftApprovalHandoff {
+  effective_phase: string;
+  reason_codes: readonly string[];
+  status: string;
+  handoff_missing: number;
+  handoff_present: number;
+  approval_state: string;
+  approval_status: string | null;
+  scope_status: string | null;
+  approval_scope_digest: string | null;
+  expected_approval_scope_digest: string | null;
+  decision_id: string | null;
+  reviewed_candidate_count: number | null;
+  valid_for_apply: boolean;
+  command: string;
+}
+
+/** decision draft未生成frontierにも、公開済みapprovalとは別のfail-close不変条件を課す。 */
+export function missingDraftApprovalHandoffViolations(
+  input: MissingDraftApprovalHandoff,
+): string[] {
+  const isMissingDraftFrontier =
+    input.effective_phase === "approval" &&
+    input.reason_codes.includes("handoff.decision_draft.missing");
+  if (!isMissingDraftFrontier) return [];
+
+  const violations: string[] = [];
+  if (input.status !== "approval_required") violations.push(`missing_draft.status=${input.status}`);
+  if (input.handoff_missing < 1)
+    violations.push(`missing_draft.handoff_missing=${input.handoff_missing}`);
+  if (input.handoff_present !== 0)
+    violations.push(`missing_draft.handoff_present=${input.handoff_present}`);
+  if (input.reason_codes.includes("handoff.decision_draft.present"))
+    violations.push("missing_draft.present_reason=true");
+  if (input.approval_state !== "missing")
+    violations.push(`missing_draft.approval_state=${input.approval_state}`);
+  if (input.approval_status !== "missing")
+    violations.push(`missing_draft.approval_status=${input.approval_status ?? "-"}`);
+  if (input.scope_status !== "not_checked")
+    violations.push(`missing_draft.scope_status=${input.scope_status ?? "-"}`);
+  if (input.approval_scope_digest !== null)
+    violations.push(`missing_draft.approval_scope_digest=${input.approval_scope_digest}`);
+  if (input.expected_approval_scope_digest !== null)
+    violations.push(
+      `missing_draft.expected_approval_scope_digest=${input.expected_approval_scope_digest}`,
+    );
+  if (input.decision_id !== null) violations.push(`missing_draft.decision_id=${input.decision_id}`);
+  if ((input.reviewed_candidate_count ?? 0) !== 0)
+    violations.push(`missing_draft.reviewed_candidate_count=${input.reviewed_candidate_count}`);
+  if (input.valid_for_apply) violations.push("missing_draft.valid_for_apply=true");
+  if (!input.command.includes("closure decision-draft --action close_ready"))
+    violations.push(`missing_draft.command=${input.command}`);
+  return violations;
+}
+
 export function checkRecoveryHandoffBinding(
   repoRoot: string,
   prebuiltDb?: HarnessDb,
@@ -2885,6 +2940,7 @@ export function checkRecoveryHandoffBinding(
         | undefined;
       const violations: string[] = [];
       const approvalPhase = requiresPublishedApprovalHandoff(handoff);
+      violations.push(...missingDraftApprovalHandoffViolations(handoff));
       if (!handoffDbRow) {
         violations.push("db_row=missing");
       } else {

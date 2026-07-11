@@ -1,7 +1,13 @@
 // PLAN-L7-423-ci-governance-self-heal
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { checkDependencyDrift, checkL6Completion, checkReviewEvidence } from "../src/doctor/index";
+import {
+  checkDependencyDrift,
+  checkL6Completion,
+  checkReviewEvidence,
+  missingDraftApprovalHandoffViolations,
+  requiresPublishedApprovalHandoff,
+} from "../src/doctor/index";
 import { nodeFeedbackLifecycleDeps as compatibilityNodeDeps } from "../src/feedback/lifecycle";
 import { nodeFeedbackLifecycleDeps } from "../src/feedback/lifecycle-node";
 import { analyzeDependencyDrift } from "../src/lint/dependency-drift";
@@ -115,5 +121,60 @@ describe("CI governance self-heal", () => {
       'from "../policy/feedback-lifecycle"',
     );
     expect(readFileSync("src/cli.ts", "utf8")).toContain('from "./feedback/lifecycle-node"');
+  });
+
+  it("U-CISELF-008: fresh cloneのdecision draft未生成はapproval hard violationにしない", () => {
+    const missingDraft = {
+      effective_phase: "approval",
+      reason_codes: ["handoff.status.approval_required", "handoff.decision_draft.missing"],
+      status: "approval_required",
+      handoff_missing: 1,
+      handoff_present: 0,
+      approval_state: "missing",
+      approval_status: "missing",
+      scope_status: "not_checked",
+      approval_scope_digest: null,
+      expected_approval_scope_digest: null,
+      decision_id: null,
+      reviewed_candidate_count: null,
+      valid_for_apply: false,
+      command:
+        "helix closure decision-draft --action close_ready --limit 20 --offset 0 --out draft.yml --summary-json",
+    } as const;
+    expect(
+      requiresPublishedApprovalHandoff({
+        effective_phase: missingDraft.effective_phase,
+        reason_codes: missingDraft.reason_codes,
+      }),
+    ).toBe(false);
+    expect(missingDraftApprovalHandoffViolations(missingDraft)).toEqual([]);
+    for (const unsafe of [
+      { ...missingDraft, valid_for_apply: true },
+      { ...missingDraft, handoff_present: 1 },
+      {
+        ...missingDraft,
+        reason_codes: [...missingDraft.reason_codes, "handoff.decision_draft.present"],
+      },
+      { ...missingDraft, status: "approval_pending" },
+      { ...missingDraft, approval_status: "approved" },
+      { ...missingDraft, scope_status: "match" },
+      { ...missingDraft, approval_scope_digest: `sha256:${"0".repeat(64)}` },
+      { ...missingDraft, reviewed_candidate_count: 1 },
+      { ...missingDraft, command: "helix closure review-bundle --action close_ready" },
+    ]) {
+      expect(missingDraftApprovalHandoffViolations(unsafe).length).toBeGreaterThan(0);
+    }
+    expect(
+      requiresPublishedApprovalHandoff({
+        effective_phase: "approval",
+        reason_codes: ["handoff.status.approval_pending", "handoff.decision_draft.present"],
+      }),
+    ).toBe(true);
+    expect(
+      requiresPublishedApprovalHandoff({
+        effective_phase: "machine",
+        reason_codes: ["handoff.decision_draft.missing"],
+      }),
+    ).toBe(false);
   });
 });
