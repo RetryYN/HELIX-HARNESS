@@ -33,6 +33,9 @@ function fixture(count = 1) {
   execFileSync("git", ["init", "-q"], { cwd: root });
   execFileSync("git", ["config", "user.email", "test@example.invalid"], { cwd: root });
   execFileSync("git", ["config", "user.name", "HELIX Test"], { cwd: root });
+  execFileSync("git", ["remote", "add", "origin", "https://github.com/RetryYN/HELIX-HARNESS.git"], {
+    cwd: root,
+  });
   mkdirSync(join(root, "docs/plans"), { recursive: true });
   const queue: ProjectClosureQueueItem[] = [];
   for (let index = 0; index < count; index += 1) {
@@ -238,10 +241,16 @@ const evaluate = (f: ReturnType<typeof fixture>, limit = f.queue.length, offset 
 const githubReceipt = (f: ReturnType<typeof fixture>) => ({
   schema_version: "github-required-check-receipt.v1" as const,
   repository: "RetryYN/HELIX-HARNESS",
-  head: currentRepositoryHead(f.root),
+  check_run_id: 123456,
+  head_sha: currentRepositoryHead(f.root),
   check_name: "harness-check" as const,
+  status: "completed" as const,
   conclusion: "success" as const,
+  completed_at: "2026-07-12T00:09:00Z",
+  app: { slug: "github-actions", owner: "github" },
+  details_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1",
   run_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456",
+  required: true as const,
   observed_at: "2026-07-12T00:10:00Z",
 });
 
@@ -385,28 +394,33 @@ describe("closure auto approval authority", () => {
     if (!target) throw new Error("fixture missing");
     const original = before[0] as string;
     mkdirSync(join(f.root, ".helix/state"), { recursive: true });
-    writeFileSync(join(f.root, target.sourcePath), "crash-partial\n");
+    for (const patch of evaluation.rendered_patches)
+      writeFileSync(join(f.root, patch.path), patch.rendered);
+    const recoveryJournal = {
+      schema_version: "closure-auto-approval-journal.v1",
+      transaction_id: auditLines[0]?.transaction_id,
+      status: "prepared",
+      started_audit_digest: auditLines[0]?.event_digest,
+      authority_digest: auditLines[0]?.authority_digest,
+      target_digest: auditLines[0]?.target_digest,
+      patch_set_digest: auditLines[0]?.patch_set_digest,
+      entries: evaluation.rendered_patches.map((patch, index) => ({
+        path: patch.path,
+        before_content: before[index],
+        before_digest: patch.before_digest,
+        after_digest: patch.after_digest,
+      })),
+    };
+    const recoveryPath = join(f.root, ".helix/state/closure-auto-approval-journal.json");
     writeFileSync(
-      join(f.root, ".helix/state/closure-auto-approval-journal.json"),
-      JSON.stringify({
-        schema_version: "closure-auto-approval-journal.v1",
-        transaction_id: auditLines[0]?.transaction_id,
-        status: "prepared",
-        started_audit_digest: auditLines[0]?.event_digest,
-        authority_digest: auditLines[0]?.authority_digest,
-        target_digest: auditLines[0]?.target_digest,
-        patch_set_digest: auditLines[0]?.patch_set_digest,
-        entries: [
-          {
-            path: target.sourcePath,
-            before_content: original,
-            before_digest: sha(original),
-            after_digest: sha("crash-partial\n"),
-          },
-        ],
-      }),
+      recoveryPath,
+      JSON.stringify({ ...recoveryJournal, entries: recoveryJournal.entries.slice(1) }),
     );
-    expect(recoverClosureAutoApprovalTransaction(f.root)).toEqual([target.sourcePath]);
+    expect(() => recoverClosureAutoApprovalTransaction(f.root)).toThrow("entry集合digest不一致");
+    writeFileSync(recoveryPath, JSON.stringify(recoveryJournal));
+    expect(recoverClosureAutoApprovalTransaction(f.root)).toEqual(
+      evaluation.rendered_patches.map((patch) => patch.path),
+    );
     expect(readFileSync(join(f.root, target.sourcePath), "utf8")).toBe(original);
   });
 

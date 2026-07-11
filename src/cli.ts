@@ -8198,6 +8198,7 @@ closure
             manifest: selectedManifest,
             db,
             githubReceipt: loadGithubRequiredCheckReceipt(repoRoot),
+            githubReceiptRefetch: () => loadGithubRequiredCheckReceipt(repoRoot),
           });
           applied.push(...result.applied);
         }

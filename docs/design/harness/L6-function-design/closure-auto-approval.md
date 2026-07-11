@@ -20,8 +20,10 @@ DB rowとのexact joinを要求する。attestation tableのUPDATE/DELETEはtrig
 ローカル実行には外部暗号trust rootが無く、repository write権限を奪取した攻撃者まで証明対象にしない。
 本境界はaccidental/direct INSERTと通常runtimeの誤投影を検出する。production executeの外部trust rootは
 current HEADに対するGitHub required check `harness-check=success` receipt
-（repo/head/check/conclusion/run URL/observed_at）とし、production `gh api` adapterから取得した15分以内の
-receiptを必須ANDする。auth/network/origin/receiptが利用不能ならlocal評価はdry-run onlyでfail-closeする。
+（repo、check_run_id、head_sha、status/conclusion/completed_at、app owner/slug、details/run URL、observed_at）
+とし、production `gh api` adapterから取得した15分以内のreceiptを必須ANDする。branch protection APIで
+`harness-check`がrequired contextであることを照合し、write直前に同check-run payloadを再取得してCASする。
+auth/network/origin/required-status/receiptが利用不能ならlocal評価はdry-run onlyでfail-closeする。
 外部公開・cutover等は引き続きhuman/action-binding approvalへ残す。
 
 ## 2. 契約

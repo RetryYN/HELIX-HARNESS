@@ -68,12 +68,35 @@ export interface ClosureAutoApprovalEvaluation {
 export interface GithubRequiredCheckReceipt {
   schema_version: "github-required-check-receipt.v1";
   repository: string;
-  head: string;
+  check_run_id: number;
+  head_sha: string;
   check_name: "harness-check";
+  status: "completed";
   conclusion: "success";
+  completed_at: string;
+  app: { slug: string; owner: string };
+  details_url: string;
   run_url: string;
+  required: true;
   observed_at: string;
 }
+const githubReceiptSchema = z
+  .object({
+    schema_version: z.literal("github-required-check-receipt.v1"),
+    repository: z.string().regex(/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/),
+    check_run_id: z.number().int().positive(),
+    head_sha: z.string().regex(/^[0-9a-f]{40}$/),
+    check_name: z.literal("harness-check"),
+    status: z.literal("completed"),
+    conclusion: z.literal("success"),
+    completed_at: z.string().datetime(),
+    app: z.object({ slug: z.string().min(1), owner: z.string().min(1) }).strict(),
+    details_url: z.string().url(),
+    run_url: z.string().url(),
+    required: z.literal(true),
+    observed_at: z.string().datetime(),
+  })
+  .strict();
 
 const sha256 = (value: string | Buffer): `sha256:${string}` =>
   `sha256:${createHash("sha256").update(value).digest("hex")}`;
@@ -84,6 +107,17 @@ function fsyncPath(path: string): void {
   } finally {
     closeSync(fd);
   }
+}
+function patchSetDigest(
+  patches: Array<{ path: string; before_digest: string; after_digest: string }>,
+): `sha256:${string}` {
+  return sha256(
+    JSON.stringify(
+      [...patches]
+        .map(({ path, before_digest, after_digest }) => ({ path, before_digest, after_digest }))
+        .sort((left, right) => left.path.localeCompare(right.path)),
+    ),
+  );
 }
 const HEX_DIGEST = /^sha256:[0-9a-f]{64}$/;
 const SAFE_RUN_ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$/;
@@ -409,16 +443,37 @@ export function loadGithubRequiredCheckReceipt(repoRoot: string): GithubRequired
     }),
   ) as { check_runs?: Array<Record<string, unknown>> };
   const check = response.check_runs?.find(
-    (row) => row.name === "harness-check" && row.conclusion === "success",
+    (row) =>
+      row.name === "harness-check" && row.status === "completed" && row.conclusion === "success",
   );
   if (!check) throw new Error("current HEADのharness-check green receiptが無いためdry-run only");
+  const required = JSON.parse(
+    execFileSync(
+      "gh",
+      ["api", `repos/${repository}/branches/main/protection/required_status_checks`],
+      { cwd: repoRoot, encoding: "utf8" },
+    ),
+  ) as { contexts?: string[]; checks?: Array<{ context?: string }> };
+  if (
+    !required.contexts?.includes("harness-check") &&
+    !required.checks?.some((row) => row.context === "harness-check")
+  )
+    throw new Error("harness-checkがrequired contextではない");
+  const app = check.app as Record<string, unknown> | undefined;
+  const owner = app?.owner as Record<string, unknown> | undefined;
   return {
     schema_version: "github-required-check-receipt.v1",
     repository,
-    head,
+    check_run_id: Number(check.id),
+    head_sha: String(check.head_sha ?? ""),
     check_name: "harness-check",
+    status: "completed",
     conclusion: "success",
+    completed_at: String(check.completed_at ?? ""),
+    app: { slug: String(app?.slug ?? ""), owner: String(owner?.login ?? "") },
+    details_url: String(check.details_url ?? ""),
     run_url: String(check.html_url ?? ""),
+    required: true,
     observed_at: new Date().toISOString(),
   };
 }
@@ -431,18 +486,38 @@ export function validateGithubRequiredCheckReceipt(input: {
   const receipt = input.receipt;
   if (!receipt) return ["GitHub required-check receipt欠落: dry-run only"];
   const errors: string[] = [];
-  if (receipt.head !== currentRepositoryHead(input.repoRoot))
+  if (!githubReceiptSchema.safeParse(receipt).success)
+    errors.push("GitHub receipt strict schema不正");
+  const remote = execFileSync("git", ["remote", "get-url", "origin"], {
+    cwd: input.repoRoot,
+    encoding: "utf8",
+  }).trim();
+  const origin = /github\.com[/:]([^/]+)\/([^/.]+)(?:\.git)?$/.exec(remote);
+  if (!origin || receipt.repository !== `${origin[1]}/${origin[2]}`)
+    errors.push("GitHub receipt repository不一致");
+  if (receipt.head_sha !== currentRepositoryHead(input.repoRoot))
     errors.push("GitHub receipt HEAD不一致");
-  if (receipt.check_name !== "harness-check" || receipt.conclusion !== "success")
+  if (
+    receipt.check_name !== "harness-check" ||
+    receipt.status !== "completed" ||
+    receipt.conclusion !== "success" ||
+    receipt.required !== true
+  )
     errors.push("GitHub harness-check非green");
+  if (!Number.isSafeInteger(receipt.check_run_id) || receipt.check_run_id <= 0)
+    errors.push("GitHub check_run_id不正");
+  if (!receipt.app.slug || !receipt.app.owner) errors.push("GitHub app identity不正");
   if (!/^https:\/\/github\.com\/.+\/actions\/runs\/[0-9]+/.test(receipt.run_url))
     errors.push("GitHub run URL不正");
   const observed = Date.parse(receipt.observed_at);
+  const completed = Date.parse(receipt.completed_at);
   if (
     !Number.isFinite(observed) ||
     Math.abs((input.now ?? new Date()).getTime() - observed) > 900_000
   )
     errors.push("GitHub receipt freshness不正");
+  if (!Number.isFinite(completed) || completed > observed || observed - completed > 86_400_000)
+    errors.push("GitHub check completion freshness不正");
   return errors;
 }
 
@@ -465,9 +540,11 @@ export function verifyRunnerAttestationChain(repoRoot: string, db: HarnessDb): s
   if (!existsSync(path)) return null;
   if (lstatSync(path).isSymbolicLink()) throw new Error("runner attestation symlinkは禁止");
   let previous: string | null = null;
+  const fileDigests = new Set<string>();
   for (const line of readFileSync(path, "utf8").trim().split("\n").filter(Boolean)) {
     const event = JSON.parse(line) as Record<string, unknown>;
     const digest = String(event.event_digest ?? "");
+    fileDigests.add(digest);
     const signature = String(event.signature ?? "");
     const payload = { ...event };
     delete payload.event_digest;
@@ -503,6 +580,17 @@ export function verifyRunnerAttestationChain(repoRoot: string, db: HarnessDb): s
       throw new Error("runner attestation DB equality不正");
     previous = digest;
   }
+  const dbDigests = new Set(
+    db
+      .prepare("SELECT event_digest FROM runner_attestations")
+      .all()
+      .map((row) => String(row.event_digest ?? "")),
+  );
+  if (
+    fileDigests.size !== dbDigests.size ||
+    [...fileDigests].some((digest) => !dbDigests.has(digest))
+  )
+    throw new Error("runner attestation JSONL/DB set不一致");
   return previous;
 }
 
@@ -784,6 +872,7 @@ export function applyClosureAutoApprovalAtomic(input: {
   manifest: ClosureAutoApprovalManifest;
   db: HarnessDb;
   githubReceipt: GithubRequiredCheckReceipt | null;
+  githubReceiptRefetch?: () => GithubRequiredCheckReceipt;
   auditPath?: string;
   failAfterRenameForTest?: number;
   now?: Date;
@@ -812,7 +901,7 @@ export function applyClosureAutoApprovalAtomic(input: {
         status,
         head: currentRepositoryHead(input.repoRoot),
         authority_digest: input.evaluation.authority_digest,
-        target_digest: sha256(JSON.stringify(input.evaluation.target_plan_ids)),
+        target_digest: sha256(JSON.stringify([...input.evaluation.target_plan_ids].sort())),
         at: new Date().toISOString(),
         ...detail,
       };
@@ -830,15 +919,7 @@ export function applyClosureAutoApprovalAtomic(input: {
     })();
   const startedAuditDigest = audit("before", "started", {
     targets: input.evaluation.target_plan_ids,
-    patch_set_digest: sha256(
-      JSON.stringify(
-        input.evaluation.rendered_patches.map(({ path, before_digest, after_digest }) => ({
-          path,
-          before_digest,
-          after_digest,
-        })),
-      ),
-    ),
+    patch_set_digest: patchSetDigest(input.evaluation.rendered_patches),
   });
   const backups = new Map<string, string>();
   const temps: string[] = [];
@@ -850,6 +931,18 @@ export function applyClosureAutoApprovalAtomic(input: {
       now: input.now,
     });
     if (githubErrors.length > 0) throw new Error(githubErrors.join("; "));
+    const refetchedReceipt = input.githubReceiptRefetch?.() ?? input.githubReceipt;
+    if (
+      !refetchedReceipt ||
+      sha256(JSON.stringify(refetchedReceipt)) !== sha256(JSON.stringify(input.githubReceipt))
+    )
+      throw new Error("GitHub check-run write直前CAS不一致");
+    const refetchErrors = validateGithubRequiredCheckReceipt({
+      repoRoot: input.repoRoot,
+      receipt: refetchedReceipt,
+      now: input.now,
+    });
+    if (refetchErrors.length > 0) throw new Error(refetchErrors.join("; "));
     if (currentRepositoryHead(input.repoRoot) !== input.manifest.repository_head)
       throw new Error("write直前HEAD CAS不一致");
     if (
@@ -883,16 +976,8 @@ export function applyClosureAutoApprovalAtomic(input: {
       status: "prepared",
       started_audit_digest: startedAuditDigest,
       authority_digest: input.evaluation.authority_digest,
-      target_digest: sha256(JSON.stringify(input.evaluation.target_plan_ids)),
-      patch_set_digest: sha256(
-        JSON.stringify(
-          input.evaluation.rendered_patches.map(({ path, before_digest, after_digest }) => ({
-            path,
-            before_digest,
-            after_digest,
-          })),
-        ),
-      ),
+      target_digest: sha256(JSON.stringify([...input.evaluation.target_plan_ids].sort())),
+      patch_set_digest: patchSetDigest(input.evaluation.rendered_patches),
       entries: [...backups].map(([path, content]) => ({
         path: relative(input.repoRoot, path),
         before_content: content,
@@ -1001,6 +1086,18 @@ export function recoverClosureAutoApprovalTransaction(
     startedEvent.patch_set_digest !== journal.patch_set_digest
   )
     throw new Error("closure journal started audit pin欠落");
+  const derivedTargets = journal.entries
+    .map((entry) => /\/(PLAN-[A-Za-z0-9-]+)\.md$/.exec(entry.path)?.[1] ?? "")
+    .sort();
+  const derivedPatchSet = journal.entries
+    .map(({ path, before_digest, after_digest }) => ({ path, before_digest, after_digest }))
+    .sort((left, right) => left.path.localeCompare(right.path));
+  if (
+    new Set(derivedTargets).size !== journal.entries.length ||
+    sha256(JSON.stringify(derivedTargets)) !== journal.target_digest ||
+    sha256(JSON.stringify(derivedPatchSet)) !== journal.patch_set_digest
+  )
+    throw new Error("closure journal entry集合digest不一致");
   const auditRecovery = (status: "recovered" | "recovery_failed", detail: unknown) => {
     const payload = {
       schema_version: "closure-auto-approval-audit.v1",
