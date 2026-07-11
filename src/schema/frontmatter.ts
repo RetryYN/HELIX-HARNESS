@@ -128,6 +128,56 @@ export const dependenciesSchema = z.object({
   references: z.array(z.string()).default([]),
 });
 
+const sha256Schema = z.string().regex(/^sha256:[a-f0-9]{64}$/i);
+const carryEvidenceSchema = z
+  .object({
+    path: z.string().min(1),
+    digest: sha256Schema,
+  })
+  .strict();
+const carryGateRepassSchema = z
+  .object({
+    command: z.string().min(1),
+    completed_at: z.string().datetime(),
+    exit_code: z.literal(0),
+    evidence_path: z.string().min(1),
+    output_digest: sha256Schema,
+  })
+  .strict();
+const leftArmCarryEntrySchema = z
+  .object({
+    carry_id: z.string().regex(/^CARRY-\d{3}$/),
+    finding_kind: z.enum(["signature_mismatch", "api_contract_drift", "architecture_violation"]),
+    summary: z.string().min(10),
+    detected_at: z.string().datetime(),
+    finding_evidence: carryEvidenceSchema,
+    pushback_target: z
+      .object({
+        layer: z.enum(["L4", "L5", "L6"]),
+        gate: z.enum(["G4", "G5", "G6"]),
+      })
+      .strict(),
+    affected_artifacts: z.array(z.string().min(1)).min(1),
+    resolution_plan_id: planIdSchema,
+    gate_repass: carryGateRepassSchema,
+  })
+  .strict();
+export const leftArmCarrySchema = z
+  .object({
+    schema_version: z.literal("left-arm-carry.v1"),
+    decision: z.enum(["no_pushback", "pushback_resolved"]),
+    assessed_at: z.string().datetime(),
+    review_binding: z
+      .object({
+        reviewer: z.string().min(1),
+        reviewed_at: z.string().datetime(),
+        evidence_digest: sha256Schema,
+      })
+      .strict(),
+    entries: z.array(leftArmCarryEntrySchema),
+  })
+  .strict();
+
 /** §1.1 全 variant 共通フィールド (variant 固有制約は superRefine で fail-close) */
 const frontmatterBaseSchema = z.object({
   plan_id: planIdSchema,
@@ -151,6 +201,8 @@ const frontmatterBaseSchema = z.object({
   generates: z.array(generatesEntrySchema).default([]),
   verification_bindings: z.array(verificationBindingSchema).optional(),
   resolves_authority: resolvesAuthoritySchema.optional(),
+  /** PLAN-L6-70: L7 reviewで発見した左腕矛盾と再凍結証拠をfinding単位で結合する。 */
+  left_arm_carry: leftArmCarrySchema.optional(),
   dependencies: dependenciesSchema,
   /** §6.8.2 Issue 起点スパイン: 解決対象 GitHub Issue 番号 (任意、Phase 0-B で recommended)。
    *  feature/hotfix branch の close 漏れ機械検知 + PR `Closes #NN` 連携に使う。 */
