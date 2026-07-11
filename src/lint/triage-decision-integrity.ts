@@ -2,19 +2,15 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 
-export const TRIAGE_DECISIONS_PATH =
-  "docs/governance/system-review-triage-decisions.yaml";
+export const TRIAGE_DECISIONS_PATH = "docs/governance/system-review-triage-decisions.yaml";
 export const TRIAGE_SCHEMA = "system-review-triage-decisions.v1";
 export const PIN_CATALOG_DONE = {
   "unit-test-design": "docs/test-design/harness/L8-unit-test-design.md",
-  "integration-test-design":
-    "docs/test-design/harness/L9-integration-test-design.md",
-  "acceptance-test-design":
-    "docs/test-design/harness/L3-acceptance-test-design.md",
+  "integration-test-design": "docs/test-design/harness/L9-integration-test-design.md",
+  "acceptance-test-design": "docs/test-design/harness/L3-acceptance-test-design.md",
 } as const;
 export const PIN_SYSTEM_TODO = "system-test-design";
-export const PIN_SYSTEM_LEGACY =
-  "docs/test-design/harness/L9-system-test-design.md";
+export const PIN_SYSTEM_LEGACY = "docs/test-design/harness/L9-system-test-design.md";
 export const PIN_BACKLOG_VERIFIED = [
   "IMP-004",
   "IMP-013",
@@ -91,8 +87,7 @@ export type TriageResult = {
 
 const sorted = (xs: readonly string[]) => [...xs].sort();
 const sameSet = (a: readonly string[], b: readonly string[]) =>
-  a.length === new Set(a).size &&
-  JSON.stringify(sorted(a)) === JSON.stringify(sorted(b));
+  a.length === new Set(a).size && JSON.stringify(sorted(a)) === JSON.stringify(sorted(b));
 const artifacts = (item: CatalogItem | undefined) =>
   item === undefined
     ? []
@@ -102,9 +97,7 @@ const artifacts = (item: CatalogItem | undefined) =>
         ? [item.artifact]
         : [];
 
-export function analyzeTriageDecisionIntegrity(
-  input: TriageInput,
-): TriageResult {
+export function analyzeTriageDecisionIntegrity(input: TriageInput): TriageResult {
   const violations: TriageViolation[] = [];
   const add = (kind: TriageViolationKind, item: string, detail: string) =>
     violations.push({ kind, item, detail });
@@ -131,8 +124,7 @@ export function analyzeTriageDecisionIntegrity(
     if (m.catalog?.done?.[id] !== path)
       add("canonical-artifact-mismatch", id, "manifest artifactがpinと不一致");
     const source = input.catalogItems.find((x) => x.id === id);
-    if (source?.status !== "done")
-      add("source-status-drift", id, "catalog statusがdoneではない");
+    if (source?.status !== "done") add("source-status-drift", id, "catalog statusがdoneではない");
     if (!artifacts(source).includes(path))
       add("canonical-artifact-mismatch", id, "catalog artifactがpinと不一致");
     if (!input.artifactExists(path)) add("artifact-not-found", id, path);
@@ -142,15 +134,8 @@ export function analyzeTriageDecisionIntegrity(
     add("source-status-drift", PIN_SYSTEM_TODO, "system testはtodo維持が必要");
   if (artifacts(system).includes(PIN_SYSTEM_LEGACY))
     add("legacy-artifact-as-canonical", PIN_SYSTEM_TODO, PIN_SYSTEM_LEGACY);
-  if (
-    m.catalog?.retained_todo?.[PIN_SYSTEM_TODO]?.excluded_legacy_artifact !==
-    PIN_SYSTEM_LEGACY
-  )
-    add(
-      "canonical-artifact-mismatch",
-      PIN_SYSTEM_TODO,
-      "legacy除外宣言が不一致",
-    );
+  if (m.catalog?.retained_todo?.[PIN_SYSTEM_TODO]?.excluded_legacy_artifact !== PIN_SYSTEM_LEGACY)
+    add("canonical-artifact-mismatch", PIN_SYSTEM_TODO, "legacy除外宣言が不一致");
 
   const verified = m.backlog?.verified_ids ?? [];
   if (!sameSet(verified, PIN_BACKLOG_VERIFIED))
@@ -159,45 +144,25 @@ export function analyzeTriageDecisionIntegrity(
     if (input.backlogStatuses.get(id) !== "verified")
       add("source-status-drift", id, "backlog statusがverifiedではない");
   const retained = m.backlog?.retained_triaged;
-  if (
-    retained?.id !== PIN_RETAINED.id ||
-    retained?.residual !== PIN_RETAINED.residual
-  )
+  if (retained?.id !== PIN_RETAINED.id || retained?.residual !== PIN_RETAINED.residual)
     add("residual-mismatch", PIN_RETAINED.id, "IMP-148残差宣言が不一致");
   if (input.backlogStatuses.get(PIN_RETAINED.id) !== "triaged")
     add("source-status-drift", PIN_RETAINED.id, "triaged維持が必要");
   const residualStatus = input.backlogStatuses.get(PIN_RETAINED.residual);
   if (!residualStatus || ["verified", "closed"].includes(residualStatus))
-    add(
-      "residual-not-open",
-      PIN_RETAINED.residual,
-      residualStatus ?? "missing",
-    );
+    add("residual-not-open", PIN_RETAINED.residual, residualStatus ?? "missing");
 
   const claim = m.backlog?.unenumerated_status_claim;
   if (claim?.expected_count !== PIN_UNENUMERATED_COUNT)
-    add(
-      "unresolved-count-unproved",
-      "unenumerated_status_claim",
-      "expected_countは10固定",
-    );
+    add("unresolved-count-unproved", "unenumerated_status_claim", "expected_countは10固定");
   const ids = claim?.ids ?? [];
   const unique = new Set(ids);
   const enumerated =
-    ids.length === PIN_UNENUMERATED_COUNT &&
-    unique.size === PIN_UNENUMERATED_COUNT;
+    ids.length === PIN_UNENUMERATED_COUNT && unique.size === PIN_UNENUMERATED_COUNT;
   if (ids.length > 0 && !enumerated)
-    add(
-      "unresolved-count-unproved",
-      "unenumerated_status_claim.ids",
-      "10個の一意なIDが必要",
-    );
+    add("unresolved-count-unproved", "unenumerated_status_claim.ids", "10個の一意なIDが必要");
   if (!enumerated && claim?.state !== "blocked_missing_enumeration")
-    add(
-      "unresolved-state-invalid",
-      "unenumerated_status_claim.state",
-      "未列挙時はblocked固定",
-    );
+    add("unresolved-state-invalid", "unenumerated_status_claim.state", "未列挙時はblocked固定");
   if (!["blocked_missing_enumeration", "resolved"].includes(claim?.state ?? ""))
     add("unresolved-state-invalid", "unenumerated_status_claim.state", "未知state");
   for (const id of ids) {
@@ -212,10 +177,7 @@ export function analyzeTriageDecisionIntegrity(
   }
   const enumeratedAndResolved = enumerated && claim?.state === "resolved";
   if (claim?.state === "resolved") {
-    if (
-      PIN_ENUMERATED_IDS.length !== PIN_UNENUMERATED_COUNT ||
-      !sameSet(ids, PIN_ENUMERATED_IDS)
-    )
+    if (PIN_ENUMERATED_IDS.length !== PIN_UNENUMERATED_COUNT || !sameSet(ids, PIN_ENUMERATED_IDS))
       add(
         "unresolved-count-unproved",
         "unenumerated_status_claim.ids",
@@ -223,8 +185,7 @@ export function analyzeTriageDecisionIntegrity(
       );
   }
   const authorityReady =
-    PIN_ENUMERATED_IDS.length === PIN_UNENUMERATED_COUNT &&
-    sameSet(ids, PIN_ENUMERATED_IDS);
+    PIN_ENUMERATED_IDS.length === PIN_UNENUMERATED_COUNT && sameSet(ids, PIN_ENUMERATED_IDS);
   const completionReady = enumeratedAndResolved && authorityReady;
   if (input.planTerminal && !completionReady)
     add("unresolved-claim-at-terminal", "PLAN-L7-425", "終端statusには10件の列挙完了が必要");
@@ -234,19 +195,14 @@ export function analyzeTriageDecisionIntegrity(
 function parseBacklogStatuses(markdown: string): Map<string, string> {
   const out = new Map<string, string>();
   for (const line of markdown.split(/\r?\n/)) {
-    const m = line.match(
-      /^\| \*\*(IMP-\d{3})\*\* \|(?:[^|]*\|){4}\s*([^|]+?)\s*\|/,
-    );
+    const m = line.match(/^\| \*\*(IMP-\d{3})\*\* \|(?:[^|]*\|){4}\s*([^|]+?)\s*\|/);
     if (m) out.set(m[1], m[2].trim());
   }
   return out;
 }
 
-export function loadTriageDecisionIntegrityInput(
-  repoRoot: string,
-): TriageInput {
-  const readYaml = (rel: string): unknown =>
-    parseYaml(readFileSync(join(repoRoot, rel), "utf8"));
+export function loadTriageDecisionIntegrityInput(repoRoot: string): TriageInput {
+  const readYaml = (rel: string): unknown => parseYaml(readFileSync(join(repoRoot, rel), "utf8"));
   let manifest: DecisionManifest | null = null;
   let catalogItems: CatalogItem[] = [];
   let backlogStatuses = new Map<string, string>();
@@ -258,8 +214,7 @@ export function loadTriageDecisionIntegrityInput(
   }
   try {
     catalogItems =
-      (readYaml("docs/design/design-catalog.yaml") as { items?: CatalogItem[] })
-        .items ?? [];
+      (readYaml("docs/design/design-catalog.yaml") as { items?: CatalogItem[] }).items ?? [];
   } catch {
     catalogItems = [];
   }
@@ -271,7 +226,10 @@ export function loadTriageDecisionIntegrityInput(
     backlogStatuses = new Map();
   }
   try {
-    const plan = readFileSync(join(repoRoot, "docs/plans/PLAN-L7-425-system-review-issue-handoff.md"), "utf8");
+    const plan = readFileSync(
+      join(repoRoot, "docs/plans/PLAN-L7-425-system-review-issue-handoff.md"),
+      "utf8",
+    );
     planTerminal = /^status:\s*(completed|confirmed|archived)\s*$/m.test(plan);
   } catch {
     planTerminal = true;
@@ -285,15 +243,10 @@ export function loadTriageDecisionIntegrityInput(
   };
 }
 
-export function triageDecisionIntegrityMessages(
-  result: TriageResult,
-): string[] {
+export function triageDecisionIntegrityMessages(result: TriageResult): string[] {
   if (result.ok)
-    return [
-      `triage-decision-integrity - OK (completion_ready=${result.completionReady})`,
-    ];
+    return [`triage-decision-integrity - OK (completion_ready=${result.completionReady})`];
   return result.violations.map(
-    (v) =>
-      `triage-decision-integrity - violation: ${v.kind} ${v.item}: ${v.detail}`,
+    (v) => `triage-decision-integrity - violation: ${v.kind} ${v.item}: ${v.detail}`,
   );
 }
