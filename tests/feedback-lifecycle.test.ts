@@ -2,16 +2,16 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+import { nodeFeedbackLifecycleDeps } from "../src/feedback/lifecycle-node";
 import {
   decodeFeedbackLifecycleEvent,
   type FeedbackLifecycleDeps,
   type FeedbackLifecycleEventV1,
   type FeedbackSourceLike,
   feedbackSourceIdentity,
-  nodeFeedbackLifecycleDeps,
   reconcileFeedbackLifecycle,
   resolveFeedbackLifecycle,
-} from "../src/feedback/lifecycle";
+} from "../src/policy/feedback-lifecycle";
 import { openHarnessDb } from "../src/state-db";
 import { migrate } from "../src/state-db/migration";
 import { projectFeedbackLifecycle } from "../src/state-db/projection-writer";

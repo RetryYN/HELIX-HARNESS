@@ -37,9 +37,17 @@ v2_import: docs/migration/v2-import-ledger.md
 
 実行時検証の型、分類、ログ行生成、完全性検査は `src/schema/runtime-verification.ts`
 を純粋 SSoT とする。`src/runtime/run-debug.ts` は追記専用 JSONL への I/O 端点だけを持ち、同じ純粋契約を
-再公開する。`src/state-db/projection-writer.ts` は schema SSoT だけを import し、runtime module へ戻らない。
+再公開する。`src/state-db/projection-writer.ts` は schema SSoT と runtime 非依存 policy だけを import し、runtime module へ戻らない。secret 判定は `src/security/secret-policy.ts`、feedback lifecycle の codec / reconcile / resolve は `src/policy/feedback-lifecycle.ts` を正本とし、Node/SQLite adapter は `src/feedback/lifecycle-node.ts` に分離する。
 これにより `runtime -> state-db -> runtime` の import cycle を作らず、実行時主張の検証規則を CLI 追記経路と
 DB 投影経路で共有する。
+
+### CI強制ゲート自己修復の契約
+
+- feedback lifecycleのpure codec/reconcile/resolveは`src/policy/`、Node/SQLite I/Oはadapterへ分離し、旧import surfaceは互換shimとして維持する。
+- secret判定は`src/security/`の単一正本をlint/state-db/auditが一方向参照する。
+- 解消済みdependency cycleはgrandfatherから削除し、復活時はerrorとする。
+- human action-binding判断は技術reviewを代替しない。別entryに構造化green commandがある場合だけ、human entryへの同一command重複を要求しない。
+- L6 completionは全L6 docのliteral逆traceをL8に要求し、directory集合参照だけで完了扱いしない。
 | `loadRelationGraphSourceSet` | `(repoRoot: string) => RelationGraphSourceSet` | repo root 配下の docs/src/tests/config が読める。個別 root 不在や optional file 不在は fail-open とする | 既存 design/test/source/PLAN node に加え、`docs/adr/**/*.md`、`docs/governance/document-system-map.md`、`docs/skills/**/*.md`、`.codex/hooks.json` を design node として materialize する。`isGraphTrackedPath` も同じ path class を graph 対象にし、対象 path の node 欠落は `missing-projection`、対象外 path は `non-graph-path` として区別する |
 | `analyzeRightArmVerificationStrategy` | `(input: RightArmVerificationStrategyInput) => RightArmVerificationStrategyResult` | gates.md と L08-L14 verification strategy が現行 process source として与えられている | G8-G14 verification が concept-only のまま、evidence-profile row 欠落、verification source ledger の必須 official source row/column/HTTPS URL/adoption decision 欠落、または `gate impact` が既知の G8-G14/S3/S4/action-binding route に写像できない場合は fail-close する。NIST/Scrum/ISTQB/OWASP/NASA、W3C WCAG 2.2、Playwright browser/a11y source を必須集合に含め、screenshot-only や automated-a11y-only で G10/G11 claim を通さない |
 | `loadOutstandingPlanRows` / `computeOutstandingWork` | `(repoRoot: string) => OutstandingPlanRow[]` / `(repoRoot: string) => OutstandingWork` | repo root は `docs/plans` を持つ source repo、または `.helix/state/project-setup.json` を持つ bootstrapped consumer repo でよい。positive state が無い場合に限り optional source 欠落は fail-open | `docs/plans` の非 terminal PLAN row と HELIX project setup state を読む。`objectiveBoundary.scope=consumer_setup_readiness_not_whole_program_completion` かつ `completionClaimAllowed=false` の場合は `CONSUMER-SETUP-BOUNDARY` を合成し、実 PLAN/continuation route と first-run evidence まで whole-program completion を許可しない |

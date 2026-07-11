@@ -4,6 +4,7 @@ import {
   loadSecretScanArtifacts,
   secretScanMessages,
 } from "../src/lint/secret-scan";
+import { isSecretLike, SECRET_PATTERN } from "../src/security/secret-policy";
 
 // 検査対象の secret 様 token は実 credential と誤認されないよう連結で組み立てる
 // (fixture 専用、not-a-secret。scanner の走査対象は docs/.helix であり tests/ は含まれない)。
@@ -15,6 +16,11 @@ const fakeAssignment = `api_key = "${"k".repeat(16)}"`;
 const fakePrivateKey = "-----BEGIN RSA PRIVATE KEY-----";
 
 describe("secret-scan lint", () => {
+  it("U-SSCAN-000: security policyはnarrow secret tokenの単一正本を直接公開する", () => {
+    expect(SECRET_PATTERN.test(fakeNarrow)).toBe(true);
+    expect(isSecretLike(fakeNarrow)).toBe(true);
+    expect(isSecretLike("planning-and-task-breakdown")).toBe(false);
+  });
   it("U-SSCAN-001: 各 marker の secret 様 token を path/line/marker 付きで violation 報告する", () => {
     const result = analyzeSecretScan([
       { path: "docs/a.md", text: `# doc\n${fakeNarrow}\n` },

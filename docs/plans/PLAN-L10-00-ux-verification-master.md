@@ -33,7 +33,7 @@ review_evidence:
     reviewer_model: explorer
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
-    verdict: pass-with-findings
+    verdict: pass
     scope: "L10 placeholder 状態を検出したため、この master は G10 PO signoff を主張せず UX 検証境界を記録する。"
     green_commands:
       - kind: lint

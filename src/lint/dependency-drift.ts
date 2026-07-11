@@ -82,16 +82,6 @@ const DEFAULT_DISALLOWED: Record<string, Set<string>> = {
 };
 
 const GRANDFATHERED_MODULE_CYCLE_KEYS = new Set([
-  "export -> lint -> state-db -> export",
-  "export -> lint -> workflow -> state-db -> export",
-  "graph -> lint -> state-db -> graph",
-  "graph -> lint -> workflow -> state-db -> graph",
-  "graph -> vmodel -> lint -> state-db -> graph",
-  "graph -> vmodel -> lint -> workflow -> state-db -> graph",
-  "graph -> vmodel -> plan -> lint -> state-db -> graph",
-  "graph -> vmodel -> plan -> lint -> workflow -> state-db -> graph",
-  "lint -> state-db -> lint",
-  "lint -> workflow -> state-db -> lint",
   "orchestration -> task -> team -> orchestration",
   "orchestration -> team -> orchestration",
 ]);

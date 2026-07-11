@@ -45,10 +45,10 @@ import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
-  nodeFeedbackLifecycleDeps,
   reconcileFeedbackLifecycle,
   recordFeedbackSurface,
 } from "./feedback/lifecycle";
+import { nodeFeedbackLifecycleDeps } from "./feedback/lifecycle-node";
 import { autoAckTelemetry } from "./feedback/lifecycle-surface";
 import {
   loadFeedbackLifecycleSources,

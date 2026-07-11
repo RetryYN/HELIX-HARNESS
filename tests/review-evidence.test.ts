@@ -21,6 +21,17 @@ const plan = (o: Partial<ParsedReviewPlan>): ParsedReviewPlan => ({
   ...o,
 });
 
+const technicalCommand = {
+  kind: "unit_test",
+  command: "bun test tests/review-evidence.test.ts",
+  runner: "bun",
+  scope: "targeted",
+  exit_code: 0,
+  evidence_path: "tests/review-evidence.test.ts",
+  output_digest: `sha256:${"0".repeat(64)}`,
+  completed_at: "2026-06-23",
+};
+
 describe("green command evidence (IMP-108)", () => {
   it("U-GREENDEF-001: legacy timestamp-only review evidence remains valid before enforcement", () => {
     const r = analyzeReviewEvidence([
@@ -51,6 +62,7 @@ describe("green command evidence (IMP-108)", () => {
         crossEntries: [
           {
             review_kind: "intra_runtime_subagent",
+            verdict: "approve",
             reviewed_at: "2026-06-23",
             tests_green_at: "2026-06-23",
           },
@@ -64,6 +76,149 @@ describe("green command evidence (IMP-108)", () => {
     expect(r.ok).toBe(false);
   });
 
+  it("U-GREENDEF-002b: human判断は別の技術greenがある場合だけcommand重複を免除する", () => {
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-NON-TECHNICAL-REVIEW",
+        updated: "2026-06-23",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "fail",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+          },
+          {
+            review_kind: "human",
+            verdict: "approve",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+          },
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "approve",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+            green_commands: [
+              {
+                kind: "unit_test",
+                command: "bun test tests/review-evidence.test.ts",
+                runner: "bun",
+                scope: "targeted",
+                exit_code: 0,
+                evidence_path: "tests/review-evidence.test.ts",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+                completed_at: "2026-06-23",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+
+    expect(result.greenCommandViolations).toEqual([]);
+    expect(result.ok).toBe(true);
+
+    const humanOnly = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-HUMAN-ONLY-BYPASS",
+        updated: "2026-06-23",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "human",
+            verdict: "approve",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+          },
+        ],
+      }),
+    ]);
+    expect(humanOnly.greenCommandViolations).toEqual([
+      { plan_id: "PLAN-HUMAN-ONLY-BYPASS", reason: "missing_green_commands" },
+    ]);
+    expect(humanOnly.ok).toBe(false);
+
+    for (const verdict of ["reject", "request_changes", "unknown", undefined]) {
+      const planId = `PLAN-NON-APPROVAL-${verdict ?? "missing"}`;
+      const rejectedTechnical = analyzeReviewEvidence([
+        plan({
+          plan_id: planId,
+          updated: "2026-06-23",
+          hasEvidence: true,
+          crossEntries: [
+            {
+              review_kind: "human",
+              verdict: "approve",
+              reviewed_at: "2026-06-23",
+              tests_green_at: "2026-06-23",
+            },
+            {
+              review_kind: "intra_runtime_subagent",
+              ...(verdict ? { verdict } : {}),
+              reviewed_at: "2026-06-23",
+              tests_green_at: "2026-06-23",
+              green_commands: [technicalCommand],
+            },
+          ],
+        }),
+      ]);
+      expect(rejectedTechnical.greenCommandViolations).toContainEqual({
+        plan_id: planId,
+        reason: "missing_green_commands",
+      });
+      expect(rejectedTechnical.ok).toBe(false);
+    }
+
+    for (const verdict of ["fail", "reject", "request_changes"]) {
+      const result = analyzeReviewEvidence([
+        plan({
+          plan_id: `PLAN-${verdict.toUpperCase()}-ONLY`,
+          updated: "2026-06-23",
+          hasEvidence: true,
+          crossEntries: [
+            {
+              review_kind: "intra_runtime_subagent",
+              verdict,
+              reviewed_at: "2026-06-23",
+              tests_green_at: "2026-06-23",
+              ...(verdict === "fail" ? {} : { green_commands: [technicalCommand] }),
+            },
+          ],
+        }),
+      ]);
+      expect(result.greenCommandViolations[0]?.reason).toBe("missing_technical_approval");
+      expect(result.ok).toBe(false);
+    }
+
+    const failThenApprove = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-FAIL-THEN-APPROVE",
+        updated: "2026-06-23",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "fail",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+          },
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "approve_after_fixes",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+            green_commands: [technicalCommand],
+          },
+        ],
+      }),
+    ]);
+    expect(failThenApprove.greenCommandViolations).toEqual([]);
+    expect(failThenApprove.ok).toBe(true);
+  });
+
   it("U-GREENDEF-003: new confirmed review evidence accepts structured green command evidence", () => {
     const r = analyzeReviewEvidence([
       plan({
@@ -73,6 +228,7 @@ describe("green command evidence (IMP-108)", () => {
         crossEntries: [
           {
             review_kind: "intra_runtime_subagent",
+            verdict: "approve",
             reviewed_at: "2026-06-23",
             tests_green_at: "2026-06-23",
             green_commands: [
@@ -106,6 +262,7 @@ describe("green command evidence (IMP-108)", () => {
         crossEntries: [
           {
             review_kind: "intra_runtime_subagent",
+            verdict: "approve",
             reviewed_at: "2026-06-23",
             tests_green_at: "2026-06-23",
             green_commands: [
@@ -141,6 +298,7 @@ describe("green command evidence (IMP-108)", () => {
         crossEntries: [
           {
             review_kind: "intra_runtime_subagent",
+            verdict: "approve",
             reviewed_at: "2026-06-23",
             tests_green_at: "2026-06-23",
             green_commands: [
@@ -176,6 +334,7 @@ describe("green command evidence (IMP-108)", () => {
         crossEntries: [
           {
             review_kind: "intra_runtime_subagent",
+            verdict: "approve",
             reviewed_at: "2026-06-23",
             tests_green_at: "2026-06-23",
             green_commands: [

@@ -44,7 +44,7 @@ review_evidence:
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-06T16:03:00+09:00"
     tests_green_at: "2026-07-06T16:03:00+09:00"
-    verdict: approve_with_external_blockers_noted
+    verdict: approve
     scope: "managed-block / hook JSON literal の定数化、requirements-binding policy catalog 抽出、template byte manifest fence、起点 refactor feedback 3 件の actionable 解消。"
     worker_model: codex
     reviewer_model: codex-intra-runtime

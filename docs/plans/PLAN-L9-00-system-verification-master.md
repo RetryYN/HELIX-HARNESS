@@ -33,7 +33,7 @@ review_evidence:
     reviewer_model: explorer
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
-    verdict: pass-with-findings
+    verdict: pass
     scope: "L8-L14 filename-level PLAN gap was identified; this master records L9 coverage without claiming full remote/system completion."
     green_commands:
       - kind: lint

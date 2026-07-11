@@ -50,6 +50,23 @@ review_evidence:
     scope: "PO が AskUserQuestion で「A: CI green のみ (人間レビュー必須なし)」を明示選択。auto-merge / delete-branch-on-merge / branch protection (harness-check required, strict, enforce_admins, approve 0) の適用を承認。"
     worker_model: claude-fable-5
     reviewer_model: human
+  - reviewer: codex-independent-reviewer
+    review_kind: cross_agent
+    reviewed_at: "2026-07-11T15:35:48Z"
+    tests_green_at: "2026-07-11T15:35:15Z"
+    verdict: approve
+    scope: "PLAN-L7-418のbranch protection/auto-merge/setup contractを独立技術レビューした。repo/builtin setup scriptがrequired check=harness-check(strict)、enforce_admins=true、approve既定0、force-push/deletion禁止を同一JSONで生成し、gh auth/admin preflight、dry-run no-write、consumer readinessのapply-capable検査へ接続されることを確認した。PR運用で生じるGit標準Merge/Revert subjectだけをcommitlint対象外とし、手書き非規約subjectは引き続きblockする。CLAUDE/AGENTSのauto-merge・CI self-heal規律とrelease/tag/cutoverのaction-binding境界にも退行なし。既存human entryはPOの外部適用承認として保持し、本entryは技術greenを独立に担う。"
+    worker_model: claude-fable-5
+    reviewer_model: gpt-5.6
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run --project fast tests/setup.test.ts tests/branch-kind.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-11T15:35:15Z"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:322d571b63f00370db08a5e3428f47d8a6f56a8922b271cee6666acfb633a832"
 ---
 
 # PLAN-L7-418: GitHub 自走運用の実効化

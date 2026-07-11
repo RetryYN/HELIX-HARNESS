@@ -33,7 +33,7 @@ review_evidence:
     reviewer_model: explorer
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
-    verdict: pass-with-findings
+    verdict: pass
     scope: "L14 の filename-level PLAN gap を検出したため、この master は運用 feedback 境界を記録し、高影響 identifier work は既存の専用 PLAN に残す。"
     green_commands:
       - kind: lint

@@ -90,6 +90,7 @@ const GREEN_COMMAND_ENFORCEMENT_DATE = "2026-06-23";
 const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
 const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
 const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
+const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
 
 function reviewViolationReason(issue: CrossAgentModelIssue | undefined): string {
   if (issue === "same_provider") return "same_provider";
@@ -173,6 +174,8 @@ function requiresGreenCommands(plan: ParsedReviewPlan): boolean {
 }
 
 function greenCommandViolationReason(entry: ReviewEntry): string | null {
+  // fail は未承認所見でありgreen主張ではない。human判断の扱いはPLAN全entryを見て呼出側で決める。
+  if (/^fail$/i.test(entry.verdict ?? "")) return null;
   const commands = entry.green_commands ?? [];
   if (commands.length === 0) return "missing_green_commands";
   for (const command of commands) {
@@ -253,7 +256,25 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
       }
     }
     if (requiresGreenCommands(p)) {
+      const hasTechnicalApproval = (p.crossEntries ?? []).some((entry) =>
+        TECHNICAL_APPROVAL_VERDICTS.has((entry.verdict ?? "").toLowerCase()),
+      );
+      const hasTechnicalGreen = (p.crossEntries ?? []).some(
+        (entry) =>
+          TECHNICAL_APPROVAL_VERDICTS.has((entry.verdict ?? "").toLowerCase()) &&
+          greenCommandViolationReason(entry) === null,
+      );
+      if (!hasTechnicalApproval) {
+        greenCommandViolations.push({
+          plan_id: p.plan_id,
+          reason: "missing_technical_approval",
+        });
+        continue;
+      }
       for (const e of p.crossEntries ?? []) {
+        // human action-binding判断は技術reviewを代替しない。別entryの技術greenがある場合だけ
+        // command重複を要求せず、human-only approvalによるgate迂回は拒否する。
+        if (e.review_kind === "human" && hasTechnicalGreen) continue;
         const reason = greenCommandViolationReason(e);
         if (reason) {
           greenCommandViolations.push({ plan_id: p.plan_id, reason });

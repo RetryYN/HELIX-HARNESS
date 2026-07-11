@@ -8,7 +8,6 @@ import {
   type CanonicalDocumentFamily,
   parseCanonicalDocumentStructure,
 } from "../export/document-export";
-import { resolveFeedbackLifecycle } from "../feedback/lifecycle";
 import { loadRelationGraphSourceSet } from "../graph/loader";
 import { loadChangedFiles } from "../lint/change-impact";
 import {
@@ -38,6 +37,7 @@ import {
   catalogVerificationProfiles,
   recommendVerificationProfiles,
 } from "../lint/verification-profile";
+import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import {
   HARNESS_DB_TABLE_BY_NAME,

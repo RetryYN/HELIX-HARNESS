@@ -173,6 +173,8 @@ PLAN-L5-08 は既存の lint/rule modules を置き換えず、DB-centered な r
 |---|---|---|---|
 | `state-db` | `src/state-db/` | SQLite connection、migration、projection upsert、docs/state/logs からの rebuild を担う。 | `state-db -> schema`; CLI adapters から import しない。 |
 | `projection-writer` | `src/state-db/projection-writer.ts` | PLAN、artifact、gate、hook、model、skill、finding records を `harness.db` rows へ変換する。 | loaders 由来の normalized records を消費し、provider transcripts は parse しない。 |
+| `policy/feedback-lifecycle` | `src/policy/feedback-lifecycle.ts` | feedback lifecycle の codec、reconcile、resolve を runtime 非依存の純粋 policy として保持する。 | `state-db` を import せず、Node/SQLite journal adapter は `src/feedback/lifecycle-node.ts` に分離する。 |
+| `security/secret-policy` | `src/security/secret-policy.ts` | secret 様 token の pattern と判定関数を runtime 非依存の単一正本として保持する。 | `lint` / `feedback` / `state-db` から一方向に参照し、DB module への逆依存を作らない。 |
 | `search-index` | `src/search/` | `search_index` を保守し、PLAN/artifact/finding/skill/model/session を横断する `helix find` queries を提供する。 | projection DB を読む。rebuild 時だけ loaders を呼んでよい。 |
 | `feedback-engine` | `src/feedback/` | repeated findings、unresolved dependencies、stale approvals、skill firing rates、model selection signals を集約する。 | DB projections を読み、`feedback_events` を emit する。source docs は変更しない。 |
 | `automation-readiness` | `src/workflow/readiness.ts` | workflow/gate/doctor/CI projections を join し、ready/blocked/human-required automation states を分類する。 | DB projections と gate docs を読む。workflow steps は実行しない。 |

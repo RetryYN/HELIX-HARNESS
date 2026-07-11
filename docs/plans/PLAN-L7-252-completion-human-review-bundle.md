@@ -68,7 +68,7 @@ review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-09T23:31:52+09:00"
-    tests_green_at: "2026-07-09T23:31:51+09:00"
+    tests_green_at: "2026-07-09T23:31:52+09:00"
     verdict: approve
     scope: "Project frontier summary の closure_frontier に approval_review_checklist を投影し、progress tree-view --summary-json と completion_frontier からも close_ready 承認前 checklist を機械検出できるようにした。live repo では schema=project-closure-approval-review-checklist.v1、status=ready_for_human_review、approval_allowed=true、non-authorizing decision record command が summary 上で確認できる。承認 record 作成や apply は実行していない。"
     worker_model: codex

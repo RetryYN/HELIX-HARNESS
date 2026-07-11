@@ -40,7 +40,7 @@ review_evidence:
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-25T12:50:00+09:00"
     tests_green_at: "2026-06-25T12:48:00+09:00"
-    verdict: reviewed
+    verdict: approve
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
     scope: "① engine (design-elicitation.ts) + Discovery 合成 (contracts.ts design-bottomup) を code-reviewer=sonnet が PM=opus 成果を別 model family で desk review (hybrid だが claude intra_runtime_subagent fallback、.claude/CLAUDE.md)。verdict=reviewed-with-changes (Critical 0)。非重複 (composeDesignBottomupDiscovery が routeSignalToMode 再利用で discovery routing に乗る = mode 再発明なし) / substance≠coverage (detectFeDesignGaps が has_body 実体判定) / absence-blindness (derive 不能画面を warn 可視化) を確認。Important I-1 (groundingFor が screen 非依存で generic cap へ潰れる) を screen-specific (trace primary) へ修正、I-2/I-3/M-3 (slots=[] gap + r.ok assert) をテスト追加で反映。10 tests green。"

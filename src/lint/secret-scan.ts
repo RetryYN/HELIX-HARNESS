@@ -12,7 +12,7 @@
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { SECRET_PATTERN } from "../state-db/index";
+import { SECRET_PATTERN } from "../security/secret-policy";
 
 export interface SecretScanArtifact {
   path: string;

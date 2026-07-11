@@ -1,5 +1,6 @@
+import { isSecretLike } from "../security/secret-policy";
 import type { HarnessDb } from "../state-db/index";
-import { isSecretLike, upsertRow } from "../state-db/index";
+import { upsertRow } from "../state-db/index";
 
 export interface SearchReferenceRow {
   subject_type: string;

@@ -11,7 +11,8 @@ import {
   writeSync,
 } from "node:fs";
 import { dirname, join } from "node:path";
-import { type HarnessDb, isSecretLike, openHarnessDb } from "../state-db";
+import { isSecretLike } from "../security/secret-policy";
+import { type HarnessDb, openHarnessDb } from "../state-db";
 
 export const MEMORY_V2_SCHEMA_VERSION = 2 as const;
 export const TAKEOVER_MAX_TTL_MS = 7 * 24 * 60 * 60 * 1000;
