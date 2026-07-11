@@ -50,6 +50,8 @@ generates:
     artifact_type: test_design
   - artifact_path: docs/test-design/harness/L9-integration-test-design.md
     artifact_type: test_design
+  - artifact_path: docs/governance/session-handover-atomic-cutover-packet.md
+    artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L6-61-handover-retirement.md
   requires:
