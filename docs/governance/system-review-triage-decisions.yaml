@@ -29,5 +29,17 @@ backlog:
     residual: IMP-148
   unenumerated_status_claim:
     expected_count: 10
-    ids: []
-    state: blocked_missing_enumeration
+    ids: [IMP-034, IMP-120, IMP-121, IMP-122, IMP-123, IMP-124, IMP-126, IMP-133, IMP-134, IMP-135]
+    state: resolved
+    target_status: implemented
+    evidence:
+      IMP-034: [docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md, src/lint/asset-drift.ts, tests/asset-drift.test.ts]
+      IMP-120: [docs/plans/PLAN-L7-34-tool-adapter-probes.md, src/lint/tool-adapter.ts, tests/tool-adapter.test.ts]
+      IMP-121: [docs/plans/PLAN-L7-33-mcp-profile-config-safety.md, src/lint/verification-profile.ts, tests/verification-profile.test.ts]
+      IMP-122: [docs/plans/PLAN-L7-33-mcp-profile-config-safety.md, src/lint/verification-profile.ts, tests/verification-profile.test.ts]
+      IMP-123: [docs/plans/PLAN-L7-33-mcp-profile-config-safety.md, src/lint/verification-profile.ts, tests/verification-profile.test.ts]
+      IMP-124: [docs/plans/PLAN-L7-33-mcp-profile-config-safety.md, src/lint/verification-profile.ts, tests/verification-profile.test.ts]
+      IMP-126: [docs/plans/PLAN-L7-35-canonical-document-export.md, src/export/document-export.ts, tests/document-export.test.ts]
+      IMP-133: [docs/plans/PLAN-L3-04-upstream-schedule-reconciliation.md, src/lint/fr-roadmap-coverage.ts, tests/fr-roadmap-coverage.test.ts]
+      IMP-134: [docs/plans/PLAN-L3-05-harness-telemetry-closure.md, src/lint/telemetry-closure.ts, tests/telemetry-closure.test.ts]
+      IMP-135: [docs/plans/PLAN-L7-69-encoding-corruption-expanded-guard.md, src/lint/readability.ts, tests/readability.test.ts]
