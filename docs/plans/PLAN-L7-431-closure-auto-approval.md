@@ -15,6 +15,15 @@ agent_slots:
   - { role: qa, slot_label: "QA - GitHub trust rootと361件敵対検証" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-71の機械証跡AND条件と不可逆境界を実装へ降下する。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-11T23:01:39Z"
+  review_binding:
+    reviewer: codex-independent-reviewer
+    reviewed_at: "2026-07-11T23:01:40Z"
+    evidence_digest: "sha256:58db919c819a6af633283ba1ac5e03b3767047f7ade5a50d4bc880c2f95ac486"
+  entries: []
 parent_design: docs/design/harness/L6-function-design/closure-auto-approval.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
