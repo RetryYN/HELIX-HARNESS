@@ -20,7 +20,7 @@ export const PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST =
 export const PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST =
   "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1";
 export const PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST =
-  "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1";
+  "sha256:e4597b9cee47d583ac999c0da8f827e069c25c7d87f339e0ba1c31ed201283a2";
 
 export type PlanSpecificVpairReason =
   | "verification_bindings_absent"
