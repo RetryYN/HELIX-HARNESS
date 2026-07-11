@@ -18,8 +18,8 @@ left_arm_carry:
   assessed_at: "2026-07-11T21:14:58Z"
   review_binding:
     reviewer: codex-independent-reviewer
-    reviewed_at: "2026-07-11T21:15:00Z"
-    evidence_digest: "sha256:ccdf8676f94ab3c4de78184920d87005fb3628f62c7ac8248879d92cb665151b"
+    reviewed_at: "2026-07-11T21:28:40Z"
+    evidence_digest: "sha256:98183c78bef782df69edbfa3fa61425e7dbf4d240fb217fd2a92bcb72ac101eb"
   entries: []
 parent_design: docs/design/harness/L6-function-design/left-arm-carry-log.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
@@ -55,15 +55,15 @@ review_evidence:
     review_kind: intra_runtime_subagent
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    tests_green_at: "2026-07-12T06:14:58+09:00"
-    reviewed_at: "2026-07-11T21:15:00Z"
+    tests_green_at: "2026-07-11T21:28:29Z"
+    reviewed_at: "2026-07-11T21:28:40Z"
     verdict: approve_after_fixes
     scope: "U-CARRY-001..022、strict loader、canonical gate argv、時系列、global replay、legacy exact baseline、doctor/G7配線を再監査した。"
     green_commands:
-      - { kind: unit_test, command: "bunx vitest run tests/left-arm-carry-log.test.ts tests/frontmatter.test.ts tests/gate-static.test.ts tests/slow/doctor.test.ts -t 'U-CARRY|G7'", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T06:14:58+09:00", evidence_path: tests/left-arm-carry-log.test.ts, output_digest: "sha256:778b1a6e2385d78d3aa4b418bfb5fa88dc1c1791b2cc562cdc710438a9f3b92f" }
-      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-430-left-arm-carry-log.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T06:14:58+09:00", evidence_path: docs/plans/PLAN-L7-430-left-arm-carry-log.md, output_digest: "sha256:93c52b5c93d1332e54aedae07b0e332aea6aa4a0c00d2ac7d54c4d0b8f42c37f" }
-      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T06:14:58+09:00", evidence_path: src/lint/left-arm-carry-log.ts, output_digest: "sha256:73b7c51f604ca34516b5fde0268a75b906e0eea651b662f9878e22a715ffcbd4" }
-      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T06:14:58+09:00", evidence_path: src/lint/left-arm-carry-log.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: unit_test, command: "bunx vitest run tests/left-arm-carry-log.test.ts tests/frontmatter.test.ts tests/gate-static.test.ts tests/slow/doctor.test.ts tests/coding-rules.test.ts -t 'U-CARRY|G6|G7|real repo guard'", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T21:28:29Z", evidence_path: tests/left-arm-carry-log.test.ts, output_digest: "sha256:99b298447211e3550e0fa570d2a55959ac68282ec78bf98427fba90e8ed19657" }
+      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-430-left-arm-carry-log.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T21:28:29Z", evidence_path: docs/plans/PLAN-L7-430-left-arm-carry-log.md, output_digest: "sha256:93c52b5c93d1332e54aedae07b0e332aea6aa4a0c00d2ac7d54c4d0b8f42c37f" }
+      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T21:28:29Z", evidence_path: src/lint/left-arm-carry-log.ts, output_digest: "sha256:4661ed739cefa02fbd7eeab1d14207d4720cfa257cb848e50940434b9a2ccfa5" }
+      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T21:28:29Z", evidence_path: src/lint/left-arm-carry-log.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-430-left-arm-carry-log.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/left-arm-carry-log.ts, artifact_type: source_module }
