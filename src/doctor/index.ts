@@ -2827,6 +2827,20 @@ export function checkRecoveryRunwayBinding(
   }
 }
 
+/**
+ * approval invariant は decision draft が公開され、review対象が固定された後だけ適用する。
+ * fresh clone の draft 未生成状態は machine action を案内する正常な approval-required frontier。
+ */
+export function requiresPublishedApprovalHandoff(input: {
+  effective_phase: string;
+  reason_codes: readonly string[];
+}): boolean {
+  return (
+    input.effective_phase === "approval" &&
+    !input.reason_codes.includes("handoff.decision_draft.missing")
+  );
+}
+
 export function checkRecoveryHandoffBinding(
   repoRoot: string,
   prebuiltDb?: HarnessDb,
@@ -2870,7 +2884,7 @@ export function checkRecoveryHandoffBinding(
           }
         | undefined;
       const violations: string[] = [];
-      const approvalPhase = handoff.effective_phase === "approval";
+      const approvalPhase = requiresPublishedApprovalHandoff(handoff);
       if (!handoffDbRow) {
         violations.push("db_row=missing");
       } else {
