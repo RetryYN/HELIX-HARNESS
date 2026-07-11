@@ -212,6 +212,11 @@ import {
   l14CloseAuditMessages,
   loadL14CloseAuditInput,
 } from "../lint/l14-close-audit";
+import {
+  analyzeLeftArmCarryLog,
+  leftArmCarryLogMessages,
+  loadLeftArmCarryLogInput,
+} from "../lint/left-arm-carry-log";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
 import {
   analyzeMergedPlanStatus,
@@ -1234,6 +1239,19 @@ export function checkDesignCoverage(repoRoot: string): {
       messages: ["design-coverage - violation: design catalog coverage lint could not run"],
       ok: false,
     };
+  }
+}
+
+/** PLAN-L7-430: L7左腕差し戻しをresolution V-pairとgate再通過証拠までhard gateする。 */
+export function checkLeftArmCarryLog(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return { messages: ["left-arm-carry-log — violation: repo root could not be read"], ok: false };
+  }
+  try {
+    const result = analyzeLeftArmCarryLog(loadLeftArmCarryLogInput(repoRoot));
+    return { messages: leftArmCarryLogMessages(result), ok: result.ok };
+  } catch {
+    return { messages: ["left-arm-carry-log — violation: check could not run"], ok: false };
   }
 }
 
@@ -6711,6 +6729,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const branchKind = checkBranchKind(deps.repoRoot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const designCoverage = checkDesignCoverage(deps.repoRoot);
+  const leftArmCarryLog = checkLeftArmCarryLog(deps.repoRoot);
   const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
@@ -6874,6 +6893,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       branchKind.ok &&
       codingRules.ok &&
       designCoverage.ok &&
+      leftArmCarryLog.ok &&
       triageDecisionIntegrity.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
@@ -6996,6 +7016,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...branchKind.messages.map((m) => `doctor: ${m}`),
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...designCoverage.messages.map((m) => `doctor: ${m}`),
+      ...leftArmCarryLog.messages.map((m) => `doctor: ${m}`),
       ...triageDecisionIntegrity.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
