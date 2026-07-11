@@ -119,12 +119,31 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 - `l14-close-audit` open=7（blocked-human=2）: human 境界 2 件は PO へのエスカレーション対象として
   残す。AI 側で進められる partial 5 件があれば I4 と同様に分類する。
 
+### I6: 左腕差し戻し記録（carry log）の機械強制欠落
+
+- 事象: `docs/process/forward/L07-implementation.md` §6 は、3 点レビュー / G7 で設計矛盾を発見した
+  場合の差し戻し先（signature 不整合→L6/G6、API/Contract 乖離→L5/G5、アーキ違反→L4/G4）と
+  「差し戻し記録は PLAN の carry log に残す」を規定するが、対応する lint / doctor gate が存在しない
+  （`src/lint/` の carry 検査は g3-trace の FR carry 宣言用で別物）。差し戻しが記録されない、
+  または差し戻し先 gate の再通過がスキップされても機械検出できない。
+- 対応（document-first plus machine enforcement 原則に従う）:
+  1. carry log の記録形式を定義する（PLAN frontmatter または本文の機械可読 marker。
+     例: `carry_log:` に `finding` / `pushback_target_layer` / `gate` / `resolved` を持たせる）。
+  2. lint を新設する: carry_log entry が差し戻し先 gate（G4/G5/G6）の再通過 evidence を持つまで
+     当該 PLAN の trace-freeze / confirm を fail-close にする。
+  3. `docs/process/forward/L07-implementation.md` §6 に機械強制の正本参照を追記し、
+     regression test（`tests/` に test_code artifact として `generates:` 登録）を追加する。
+- 受け入れ: 差し戻し記録の無い gate 再通過スキップを再現する fixture で lint が fail し、
+  正しい carry_log + gate evidence で pass する regression test が green。既存 PLAN への遡及適用は
+  enforcement date 方式（既存 lint と同様）で新規分から適用する。
+
 ## Schedule
 
 - step 1 (serial): I1 修正（切り分け → 修正 → doctor green）。
 - step 2 (serial): I2 = PLAN-L7-424 レーン完遂（Codex 自レーン、既存作業の継続）。
 - step 3 (serial, step 2 依存): I3 machine phase（approval draft refresh → collect_evidence 実行）。
 - step 4 (parallel, step 1-3 と独立): I4 design-coverage triage + I5 方針判断。
+- step 5 (parallel, step 1-3 と独立): I6 carry log 機械強制（marker 定義 → lint 新設 → regression test）。
 
 ## 完了条件（DoD）
 
@@ -133,6 +152,8 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 - `recovery-runway` machine=0 かつ `recovery-handoff-gate` digest mismatch 解消（I3）。
   approval 361 件と l14 blocked-human 2 件は PO 境界として明示的に残す。
 - design-coverage todo=57 の全件分類と必要 PLAN の起票（I4）。
+- carry log lint の新設と regression test green（I6。実装ファイル確定時に `generates:` へ
+  source_module / test_code を追記する）。
 - 各 step の green command を review_evidence に digest 付きで記録し、cross-runtime review
   （hybrid: 反対 runtime / model family）を経て confirm する。
 
