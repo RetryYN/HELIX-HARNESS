@@ -27,6 +27,7 @@ orphan PLANへ恒久的に誤登録する経路を閉じる。session hook自体
 | unavailable registry | canonical集合が空 | exit 1、current-plan非変更 | 検証不能を成功扱いしない |
 | clear | `--clear`を明示 | current-planを削除 | registry照合を要求しない |
 | writer集約 | CLIまたはcommit hookがactivation要求 | `activatePlan`を必ず経由 | invalid inferred IDは警告のみでmarker不変 |
+| raw writer非公開 | module利用者がPLAN markerを変更 | `activatePlan`または`clearActivePlan`だけを公開 | 未検証文字列を書けるAPIを公開しない |
 | event attribution | explicit/state/branchからPLAN候補を得る | productionではcanonical exact matchだけをeventへ付与。不正値は`null` | orphan IDを新規生成しない |
 | historical orphan | fix前watermark以前の曖昧截断event | raw rowを保持しhistorical unresolvedと分類 | 推測remap・削除をしない。`2026-07-11T19:25:50.062Z`以降はnew orphan 0 |
 

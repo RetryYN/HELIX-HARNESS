@@ -220,7 +220,7 @@ const PLAN_ID_RE = /PLAN-(?:L(?:[0-9]|1[0-4])|DISCOVERY|REVERSE|RECOVERY|M)-\d+(
  * (resolveActivePlan は空文字を trim で falsy 判定し branch fallback→null へ落とす = 実質 clear)。
  * resolveActivePlan の解決ロジックは不変。
  */
-export function setActivePlan(planId: string | null, deps: SessionLogDeps): void {
+function writeActivePlanMarker(planId: string | null, deps: SessionLogDeps): void {
   const path = currentPlanPath(deps.repoRoot);
   if (planId !== null) {
     // IMP-078 gap②: 2 行目に updated_at を刻む (stale 検知用)。1 行目 = plan_id は不変 (後方互換)。
@@ -234,8 +234,13 @@ export function setActivePlan(planId: string | null, deps: SessionLogDeps): void
 /** 全active PLAN writerの中央validation境界。invalid時はmarkerを変更しない。 */
 export function activatePlan(planId: string, deps: SessionLogDeps): ActivePlanSelection {
   const selection = selectActivePlanId(planId, deps.canonicalPlanIds?.() ?? []);
-  if (selection.ok) setActivePlan(selection.planId, deps);
+  if (selection.ok) writeActivePlanMarker(selection.planId, deps);
   return selection;
+}
+
+/** clearはIDを書かないためcanonical validation不要の専用API。 */
+export function clearActivePlan(deps: SessionLogDeps): void {
+  writeActivePlanMarker(null, deps);
 }
 
 /** production eventへ付与するPLANもcanonical exact matchだけに限定する。 */

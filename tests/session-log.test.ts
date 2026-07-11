@@ -19,7 +19,6 @@ import {
   type SessionHookInput,
   type SessionLogDeps,
   sanitize,
-  setActivePlan,
   summarize,
 } from "../src/runtime/session-log";
 
@@ -363,9 +362,9 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
   });
 
   // U-SLOG-006: IMP-078 gap② active-plan marker stale + gap③ commit hash 捕捉。
-  it("U-SLOG-006: setActivePlan は updated_at を 2 行目に刻み activePlanStale が検知 (1 行目は不変)", () => {
-    const deps = mockDeps();
-    setActivePlan("PLAN-L7-16-module-drift", deps);
+  it("U-SLOG-006: activatePlan は updated_at を 2 行目に刻み activePlanStale が検知 (1 行目は不変)", () => {
+    const deps = mockDeps({ canonicalPlanIds: () => ["PLAN-L7-16-module-drift"] });
+    expect(activatePlan("PLAN-L7-16-module-drift", deps).ok).toBe(true);
     // 1 行目 = plan_id (後方互換) / 2 行目 = updated_at
     expect(resolveActivePlan(deps)).toBe("PLAN-L7-16-module-drift");
     expect(activePlanUpdatedAt(deps)).toBe("2026-06-02T00:00:00.000Z");

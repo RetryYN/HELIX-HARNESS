@@ -287,6 +287,7 @@ import {
 } from "./runtime/security-credential-egress-guard";
 import {
   activatePlan,
+  clearActivePlan,
   dispatch,
   nodeDeps,
   parseSessionEvents,
@@ -294,7 +295,6 @@ import {
   resolveActivePlan,
   type SessionHookInput,
   safeName,
-  setActivePlan,
 } from "./runtime/session-log";
 import {
   buildSkillEfficacyEvaluationReport,
@@ -3777,7 +3777,7 @@ plan
       return;
     }
     if (opts.clear) {
-      setActivePlan(null, nodeDeps(process.cwd(), gitBranch, gitHead));
+      clearActivePlan(nodeDeps(process.cwd(), gitBranch, gitHead));
       process.stdout.write("current-plan: cleared\n");
       return;
     }
@@ -3817,7 +3817,7 @@ plan
         memoryRef: null,
         recordedAt: new Date().toISOString(),
       },
-      { clearActivePlan: () => setActivePlan(null, sessionDeps) },
+      { clearActivePlan: () => clearActivePlan(sessionDeps) },
     );
     if (!result.ok || !result.published) {
       process.stderr.write(
