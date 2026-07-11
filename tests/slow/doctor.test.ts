@@ -2212,6 +2212,15 @@ describe("runDoctor", () => {
     expect(hasDoctorMessageWith(r.messages, "doctor: design-coverage", "OK")).toBe(true);
   });
 
+  it("U-TRIAGE-012: triage判断整合性をdoctor hard gateへ配線する (PLAN-L7-428-triage-decision-integrity)", () => {
+    const green = checkTriageDecisionIntegrity(process.cwd());
+    expect(green.ok).toBe(true);
+    expect(green.messages[0]).toContain("triage-decision-integrity - OK");
+    const red = checkTriageDecisionIntegrity(join(process.cwd(), "missing-triage-root"));
+    expect(red.ok).toBe(false);
+    expect(red.messages[0]).toContain("violation");
+  });
+
   it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: dependency-drift")).toBe(true);
