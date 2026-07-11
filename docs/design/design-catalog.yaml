@@ -85,6 +85,7 @@ items:
     status: done
     artifact:
       - docs/design/harness/L5-detailed-design/internal-processing.md
+      - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
   - id: unit-test-design
     name: 単体テスト設計書
@@ -882,7 +883,6 @@ baseline:
   - docs/design/harness/L6-function-design/backfill-pairing.md
   - docs/design/harness/L6-function-design/cross-review-enforcement.md
   - docs/design/harness/L6-function-design/delegation-brief-substance.md
-  - docs/design/harness/L6-function-design/development-ci-bounded-time.md
   - docs/design/harness/L6-function-design/descent-obligation.md
   - docs/design/harness/L6-function-design/edge-case.md
   - docs/design/harness/L6-function-design/effort-observation.md
