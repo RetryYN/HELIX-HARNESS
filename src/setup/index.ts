@@ -1408,6 +1408,17 @@ function renderArtifacts(
   return out;
 }
 
+/**
+ * U-HRET-011: setup生成内容を副作用なしでresurrection/distribution検査へ渡す公開seam。
+ * emitSetupと同じ内部rendererだけを呼び、filesystemへ書き込まない。
+ */
+export function renderSetupArtifacts(
+  plan: SetupPlan,
+  templates: TemplateSet,
+): { path: string; content: string }[] {
+  return renderArtifacts(plan, templates);
+}
+
 function templateNameFor(targetPath: string): string {
   if (targetPath === CODEOWNERS_TARGET) return "team/CODEOWNERS";
   if (targetPath === BP_SCRIPT) return "team/setup-branch-protection.sh";

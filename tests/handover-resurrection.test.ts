@@ -11,7 +11,9 @@ import {
   buildResurrectionBaseline,
   deriveResurrectionMode,
   evaluateResurrectionCheckpointState,
+  loadGeneratedResurrectionFiles,
   loadResurrectionCheckpointState,
+  parseGeneratedResurrectionBaselineFile,
   type ResurrectionCheckpointState,
   type ResurrectionFile,
   resurrectionPolicyDigest,
@@ -451,5 +453,19 @@ describe("PLAN-L7-416 Sprint 5 handover resurrection shadow detector", () => {
     const result = analyze(files);
     expect(result.ok).toBe(false);
     expect(result.findings.filter((item) => item.category === "generated_surface")).toHaveLength(4);
+  });
+
+  it("U-HRET-011: fresh/command/distribution projectionの既知debtをseed baselineへ固定する", () => {
+    const baseline = parseGeneratedResurrectionBaselineFile(
+      readFileSync("config/handover-generated-resurrection-baseline.json", "utf8"),
+    );
+    const result = analyzeHandoverResurrection({
+      files: loadGeneratedResurrectionFiles(process.cwd()),
+      allowedArtifacts: [],
+      baseline,
+      checkpointState: shadowState,
+    });
+    expect(result).toMatchObject({ ok: true, mode: "pre_cutover_shadow", newFindings: [] });
+    expect(result.knownFindings.length).toBeGreaterThan(0);
   });
 });

@@ -100,6 +100,8 @@ complete checkpoint後のenforce契約も単体fixtureで検証するが、produ
 fresh/brownfield/distribution green、retirement完了はSprint 3とPO confirmation後まで主張しない。
 production loaderはstrict journal terminalとapproval authorityを読むが、PO confirmation前のenforce code pinは
 `null`であり、complete journalや自己申告authorityが先行した場合はmodeを切り替えずhard failする。
+fresh setup / command contract / clean distributionは`renderSetupArtifacts`を起点に同じresurrection policyで走査し、
+seed baseline commitと後続code pinを分離して同一差分内のbaseline自己承認を禁止する。
 
 ## §4 L6 reverse reference 追補
 

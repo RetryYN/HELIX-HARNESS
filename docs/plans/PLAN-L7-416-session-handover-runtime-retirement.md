@@ -203,6 +203,8 @@ IT-CONT-01..04、fresh/brownfield consumer、distribution、resurrection detecto
   approval authorityを束縛した。PO confirmation前はenforce authorityのcode pinを`null`固定し、complete journalが
   先行してもfail-closeする。実cutover pinとfresh/brownfield/distribution oracleはblockerとして未達であり、
   Sprint 5 freezeはrejectのままとする。
+  fresh setup、consumer command contract、clean distributionは副作用なしrendererから同一projection baselineを
+  生成済みで、既存debt seedをimmutable commitへ固定してからdoctor code pinへ昇格する二段ratchet中である。
 - Sprint 3: **未着手**。PO confirmation前に旧`helix handover` surfaceを削除しない。
 - PLAN全体のretirement完了、`retirement-ready=true`、acceptは未達である。
 

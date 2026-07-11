@@ -13,6 +13,17 @@ import {
   validateOperationsTransitionMarkdown,
   validateProviderEvidenceJson,
 } from "../runtime/retirement-preserve";
+import {
+  buildCleanDistributionPlan,
+  CONSUMER_CI_RUN_COMMANDS,
+  CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
+  CONSUMER_VSCODE_TASK_COMMANDS,
+  cleanDistributionSourcePath,
+  loadTemplates,
+  planHelixProjectSetup,
+  renderSetupArtifacts,
+  transformCleanDistributionArtifact,
+} from "../setup";
 
 export type ResurrectionCategory =
   | "command"
@@ -71,6 +82,12 @@ export interface ResurrectionBaseline {
 export interface ResurrectionBaselineFile extends ResurrectionBaseline {
   schemaVersion: "handover-resurrection-baseline.v1";
   policyDigest: string;
+}
+
+export interface GeneratedResurrectionBaselineFile extends ResurrectionBaseline {
+  schemaVersion: "handover-generated-resurrection-baseline.v1";
+  policyDigest: string;
+  projectionKinds: ["fresh_setup", "command_contract", "clean_distribution"];
 }
 
 export interface ResurrectionBaselineAuthority {
@@ -294,6 +311,47 @@ export function loadHandoverResurrectionFiles(repoRoot: string): ResurrectionFil
   return files.sort((a, b) => a.path.localeCompare(b.path));
 }
 
+export function loadGeneratedResurrectionFiles(repoRoot: string): ResurrectionFile[] {
+  const templates = loadTemplates(repoRoot);
+  const fresh = renderSetupArtifacts(planHelixProjectSetup("0-A", { dryRun: true }), templates);
+  const commandContracts: ResurrectionFile[] = [
+    {
+      path: ".github/workflows/harness-check.yml",
+      content: JSON.stringify(CONSUMER_CI_RUN_COMMANDS),
+    },
+    {
+      path: ".github/workflows/escalation-stale.yml",
+      content: JSON.stringify(CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS),
+    },
+    { path: ".vscode/tasks.json", content: JSON.stringify(CONSUMER_VSCODE_TASK_COMMANDS) },
+  ];
+  const tracked = execFileSync("git", ["ls-files"], { cwd: repoRoot, encoding: "utf8" })
+    .split(/\r?\n/)
+    .filter(Boolean);
+  const distributionPlan = buildCleanDistributionPlan({ paths: tracked });
+  const relevantDistribution = distributionPlan.artifactPaths.filter(
+    (path) =>
+      path !== "src/lint/handover-resurrection.ts" &&
+      path !== "tests/handover-resurrection.test.ts" &&
+      (path === "AGENTS.md" ||
+        path === "CLAUDE.md" ||
+        path === "package.json" ||
+        /^(?:src|scripts|\.claude|\.codex|\.github|\.vscode)\//.test(path)),
+  );
+  const distribution = relevantDistribution.flatMap((artifactPath): ResurrectionFile[] => {
+    const sourcePath = cleanDistributionSourcePath(artifactPath, tracked);
+    const absolute = join(repoRoot, sourcePath);
+    if (!existsSync(absolute)) return [];
+    return [
+      {
+        path: artifactPath,
+        content: transformCleanDistributionArtifact(artifactPath, readFileSync(absolute, "utf8")),
+      },
+    ];
+  });
+  return [...fresh, ...commandContracts, ...distribution];
+}
+
 export function parseResurrectionBaselineFile(text: string): ResurrectionBaselineFile {
   const raw = JSON.parse(text) as Partial<ResurrectionBaselineFile>;
   if (
@@ -314,6 +372,27 @@ export function parseResurrectionBaselineFile(text: string): ResurrectionBaselin
     fingerprints,
     digest,
   };
+}
+
+export function parseGeneratedResurrectionBaselineFile(
+  text: string,
+): GeneratedResurrectionBaselineFile {
+  const raw = JSON.parse(text) as Partial<GeneratedResurrectionBaselineFile>;
+  if (
+    raw.schemaVersion !== "handover-generated-resurrection-baseline.v1" ||
+    raw.policyDigest !== resurrectionPolicyDigest() ||
+    canonicalJson(raw.projectionKinds) !==
+      canonicalJson(["fresh_setup", "command_contract", "clean_distribution"]) ||
+    !Array.isArray(raw.fingerprints) ||
+    raw.fingerprints.some((item) => typeof item !== "string" || !SHA256.test(item)) ||
+    new Set(raw.fingerprints).size !== raw.fingerprints.length
+  ) {
+    throw new Error("invalid generated resurrection baseline");
+  }
+  const fingerprints = [...raw.fingerprints].sort();
+  const digest = sha256(canonicalJson(fingerprints));
+  if (raw.digest !== digest) throw new Error("generated resurrection baseline digest mismatch");
+  return { ...raw, fingerprints, digest } as GeneratedResurrectionBaselineFile;
 }
 
 export function parseResurrectionBaselineAuthority(text: string): ResurrectionBaselineAuthority {
