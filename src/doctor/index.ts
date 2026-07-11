@@ -103,6 +103,11 @@ import {
   loadDesignCoverageInput,
 } from "../lint/design-coverage";
 import {
+  analyzeTriageDecisionIntegrity,
+  loadTriageDecisionIntegrityInput,
+  triageDecisionIntegrityMessages,
+} from "../lint/triage-decision-integrity";
+import {
   analyzeDesignLanguage,
   designLanguageMessages,
   loadDesignLanguageDocs,
@@ -1227,6 +1232,25 @@ export function checkDesignCoverage(repoRoot: string): {
   } catch {
     return {
       messages: ["design-coverage - violation: design catalog coverage lint could not run"],
+      ok: false,
+    };
+  }
+}
+
+/** PLAN-L7-428: system reviewのtriage判断と実sourceの同時縮退を独立pinでfail-closeする。 */
+export function checkTriageDecisionIntegrity(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["triage-decision-integrity - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const result = analyzeTriageDecisionIntegrity(loadTriageDecisionIntegrityInput(repoRoot));
+    return { messages: triageDecisionIntegrityMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["triage-decision-integrity - violation: check could not run"],
       ok: false,
     };
   }
@@ -6684,6 +6708,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const branchKind = checkBranchKind(deps.repoRoot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const designCoverage = checkDesignCoverage(deps.repoRoot);
+  const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
   const designLanguage = checkDesignLanguage(deps.repoRoot);
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
@@ -6846,6 +6871,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       branchKind.ok &&
       codingRules.ok &&
       designCoverage.ok &&
+      triageDecisionIntegrity.ok &&
       dddTddRules.ok &&
       designLanguage.ok &&
       handoverRetirementInventory.ok &&
@@ -6967,6 +6993,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...branchKind.messages.map((m) => `doctor: ${m}`),
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...designCoverage.messages.map((m) => `doctor: ${m}`),
+      ...triageDecisionIntegrity.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
       ...designLanguage.messages.map((m) => `doctor: ${m}`),
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),

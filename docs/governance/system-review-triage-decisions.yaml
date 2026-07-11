@@ -1,0 +1,33 @@
+schema_version: system-review-triage-decisions.v1
+catalog:
+  done:
+    unit-test-design: docs/test-design/harness/L8-unit-test-design.md
+    integration-test-design: docs/test-design/harness/L9-integration-test-design.md
+    acceptance-test-design: docs/test-design/harness/L3-acceptance-test-design.md
+  retained_todo:
+    system-test-design:
+      excluded_legacy_artifact: docs/test-design/harness/L9-system-test-design.md
+      reason: 現行正本ではなくlegacy shimのため
+backlog:
+  verified_ids:
+    - IMP-004
+    - IMP-013
+    - IMP-014
+    - IMP-017
+    - IMP-018
+    - IMP-019
+    - IMP-022
+    - IMP-023
+    - IMP-025
+    - IMP-026
+    - IMP-029
+    - IMP-035
+    - IMP-086
+    - IMP-088
+  retained_triaged:
+    id: IMP-118
+    residual: IMP-148
+  unenumerated_status_claim:
+    expected_count: 10
+    ids: []
+    state: blocked_missing_enumeration
