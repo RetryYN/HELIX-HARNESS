@@ -3,7 +3,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { DriveDbRegistrationStats } from "../lint/drive-db-registration";
 import { loadReviewPlans } from "../lint/review-evidence";
-import { ACTIVE_PLAN_VALIDATION_ENFORCED_AT } from "../plan/active-plan-selection";
+import { ACTIVE_PLAN_VALIDATION_ENFORCED_AT } from "../policy/active-plan-selection";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./index";
 import { migrate } from "./migration";
 import { rebuildHarnessDb } from "./projection-writer";

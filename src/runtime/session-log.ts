@@ -23,7 +23,7 @@ import {
   type ActivePlanSelection,
   loadCanonicalPlanIds,
   selectActivePlanId,
-} from "../plan/active-plan-selection";
+} from "../policy/active-plan-selection";
 import { openHarnessDb } from "../state-db";
 import {
   MEMORY_PROMOTION_WARNING,

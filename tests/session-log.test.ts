@@ -1,6 +1,6 @@
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { selectActivePlanId } from "../src/plan/active-plan-selection";
+import { selectActivePlanId } from "../src/policy/active-plan-selection";
 import {
   activatePlan,
   activePlanStale,
