@@ -2290,5 +2290,14 @@
       "plan_semantic_digest": "sha256:3b935023eaaf9b9a47a642b93ffa3196e1d960365e36175267ac20dc660f849b"
     }
   ],
-  "resolvedTombstones": []
+  "resolvedTombstones": [
+    {
+      "fingerprint": "sha256:0643481c277923a4d2bb0752c30415d4cf87835a8eeb65b2713ed125fafca068",
+      "resolved_at": "2026-07-11T18:03:20Z",
+      "resolution_plan_id": "PLAN-L7-424-fe-roster-vpair-resolution",
+      "resolution_plan_semantic_digest": "sha256:81b22ae106c2d579359f6f770d4788a8cca6262a122eaab550461ef3760b6c79",
+      "previous_digest": "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1",
+      "entry_digest": "sha256:e4597b9cee47d583ac999c0da8f827e069c25c7d87f339e0ba1c31ed201283a2"
+    }
+  ]
 }
