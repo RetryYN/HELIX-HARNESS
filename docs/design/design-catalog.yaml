@@ -322,6 +322,7 @@ items:
     artifact:
       - docs/skills/agent-design.md
       - docs/skills/agent-teams.md
+      - docs/design/helix/L6-function-design/skill-pack-uplift.md
   - id: display-translation-catalog
     name: 表示名・翻訳カタログ
     category: detail
