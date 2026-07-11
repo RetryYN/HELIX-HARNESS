@@ -8110,6 +8110,8 @@ closure
   .option("--all", "process every close_ready candidate from offset")
   .option("--json", "JSON output")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .option("--test-snapshot <path>", "test-only current-location snapshot fixture")
+  .option("--test-fail-after <n>", "test-only injected rename failure")
   .action(
     (opts: {
       dryRun?: boolean;
@@ -8120,6 +8122,8 @@ closure
       all?: boolean;
       json?: boolean;
       fromDb?: boolean;
+      testSnapshot?: string;
+      testFailAfter?: string;
     }) => {
       if (opts.dryRun === opts.execute) {
         process.stderr.write(
@@ -8147,7 +8151,13 @@ closure
       try {
         if (opts.fromDb) migrate(db);
         else rebuildHarnessDb({ repoRoot, db });
-        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        if ((opts.testSnapshot || opts.testFailAfter) && process.env.HELIX_TEST_MODE !== "1")
+          throw new Error("test-only closure options require HELIX_TEST_MODE=1");
+        const snapshot = opts.testSnapshot
+          ? (JSON.parse(
+              readFileSync(join(repoRoot, opts.testSnapshot), "utf8"),
+            ) as ProjectCurrentLocationSnapshot)
+          : buildProjectCurrentLocationSnapshot(db);
         const manifest = parseClosureAutoApprovalManifest(
           JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
         );
@@ -8201,6 +8211,9 @@ closure
             db,
             githubReceipt,
             githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
+            failAfterRenameForTest: opts.testFailAfter
+              ? (parseClosureBatchInteger(opts.testFailAfter, { min: 1 }) ?? undefined)
+              : undefined,
           });
           applied.push(...result.applied);
         }

@@ -1,6 +1,6 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -33,6 +33,11 @@ const sha = (value: string | Buffer) =>
 
 function fixture(count = 1) {
   const root = mkdtempSync(join(tmpdir(), "helix-closure-auto-"));
+  const nowMs = Date.now();
+  const commitAt = new Date(nowMs - 20 * 60_000).toISOString();
+  const completedAt = new Date(nowMs - 10 * 60_000).toISOString();
+  const generatedAt = new Date(nowMs - 5 * 60_000).toISOString();
+  const expiresAt = new Date(nowMs + 30 * 60_000).toISOString();
   execFileSync("git", ["init", "-q"], { cwd: root });
   execFileSync("git", ["config", "user.email", "test@example.invalid"], { cwd: root });
   execFileSync("git", ["config", "user.name", "HELIX Test"], { cwd: root });
@@ -95,12 +100,13 @@ function fixture(count = 1) {
     cwd: root,
     env: {
       ...process.env,
-      GIT_AUTHOR_DATE: "2026-07-12T00:00:00Z",
-      GIT_COMMITTER_DATE: "2026-07-12T00:00:00Z",
+      GIT_AUTHOR_DATE: commitAt,
+      GIT_COMMITTER_DATE: commitAt,
     },
   });
   const head = currentRepositoryHead(root);
-  const db = openHarnessDb(":memory:");
+  mkdirSync(join(root, ".helix"), { recursive: true });
+  const db = openHarnessDb(join(root, ".helix/harness.db"), { repoRoot: root });
   migrate(db);
   mkdirSync(join(root, ".helix/evidence/closure-runs"), { recursive: true });
   mkdirSync(join(root, ".helix/evidence/outputs"), { recursive: true });
@@ -124,7 +130,7 @@ function fixture(count = 1) {
             exit_code: 0,
             output_path: testOutput,
             output_digest: sha(readFileSync(join(root, testOutput))),
-            completed_at: "2026-07-12T00:01:00Z",
+            completed_at: completedAt,
           },
           {
             run_id: `gate-run:${item.planId}`,
@@ -134,7 +140,7 @@ function fixture(count = 1) {
             exit_code: 0,
             output_path: gateOutput,
             output_digest: sha(readFileSync(join(root, gateOutput))),
-            completed_at: "2026-07-12T00:01:00Z",
+            completed_at: completedAt,
           },
         ],
       }),
@@ -150,7 +156,7 @@ function fixture(count = 1) {
       "bunx vitest run tests/fixture.test.ts",
       testOutput,
       sha(readFileSync(join(root, testOutput))),
-      "2026-07-12T00:01:00Z",
+      completedAt,
     );
     db.prepare(
       `INSERT INTO test_cases (test_case_id, test_run_id, plan_id, oracle_id, status)
@@ -159,7 +165,7 @@ function fixture(count = 1) {
     db.prepare(
       `INSERT INTO gate_runs (gate_run_id, gate_id, plan_id, status, checked_at, evidence_path)
        VALUES (?, 'G7', ?, 'passed', ?, ?)`,
-    ).run(`gate-run:${item.planId}`, item.planId, "2026-07-12T00:01:00Z", gateOutput);
+    ).run(`gate-run:${item.planId}`, item.planId, completedAt, gateOutput);
     appendRunnerAttestation({
       repoRoot: root,
       db,
@@ -173,7 +179,7 @@ function fixture(count = 1) {
         exit_code: 0,
         status: "passed",
         evidence_path: testOutput,
-        completed_at: "2026-07-12T00:01:00Z",
+        completed_at: completedAt,
       },
     });
     appendRunnerAttestation({
@@ -189,7 +195,7 @@ function fixture(count = 1) {
         exit_code: 0,
         status: "passed",
         evidence_path: gateOutput,
-        completed_at: "2026-07-12T00:01:00Z",
+        completed_at: completedAt,
       },
     });
   }
@@ -220,14 +226,16 @@ function fixture(count = 1) {
   const manifest: ClosureAutoApprovalManifest = {
     schema_version: "closure-auto-approval-manifest.v1",
     repository_head: head,
-    generated_at: "2026-07-12T00:05:00Z",
-    expires_at: "2026-07-12T00:30:00Z",
+    generated_at: generatedAt,
+    expires_at: expiresAt,
     candidates: queue.map((item) => ({
       plan_id: item.planId,
       source_path: item.sourcePath,
       source_digest: sha(readFileSync(join(root, item.sourcePath))),
     })),
   };
+  writeFileSync(join(root, ".helix/test-snapshot.json"), JSON.stringify(snapshot));
+  writeFileSync(join(root, ".helix/test-manifest.json"), JSON.stringify(manifest));
   return { root, db, snapshot, manifest, queue };
 }
 
@@ -239,7 +247,7 @@ const evaluate = (f: ReturnType<typeof fixture>, limit = f.queue.length, offset 
     manifest: f.manifest,
     limit,
     offset,
-    now: new Date("2026-07-12T00:10:00Z"),
+    now: new Date(),
   });
 const githubReceipt = (f: ReturnType<typeof fixture>) => ({
   schema_version: "github-required-check-receipt.v1" as const,
@@ -249,13 +257,13 @@ const githubReceipt = (f: ReturnType<typeof fixture>) => ({
   check_name: "harness-check" as const,
   status: "completed" as const,
   conclusion: "success" as const,
-  completed_at: "2026-07-12T00:09:00Z",
+  completed_at: new Date(Date.now() - 60_000).toISOString(),
   app: { id: 15368, slug: "github-actions", owner: "github" },
   run_id: 123456,
   details_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1",
   run_url: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456",
   required: true as const,
-  observed_at: "2026-07-12T00:10:00Z",
+  observed_at: new Date().toISOString(),
 });
 
 describe("closure auto approval authority", () => {
@@ -269,6 +277,7 @@ describe("closure auto approval authority", () => {
     ).toThrow();
     const planId = f.queue[0]?.planId as string;
     const oldOutput = `.helix/evidence/outputs/${planId}-old-test.txt`;
+    const oldCompletedAt = new Date(Date.now() - 15 * 60_000).toISOString();
     writeFileSync(join(f.root, oldOutput), "old failed run\n");
     f.db
       .prepare(
@@ -283,7 +292,7 @@ describe("closure auto approval authority", () => {
         "bunx vitest run tests/fixture.test.ts",
         oldOutput,
         sha(readFileSync(join(f.root, oldOutput))),
-        "2026-07-12T00:00:30Z",
+        oldCompletedAt,
       );
     f.db
       .prepare(
@@ -303,7 +312,7 @@ describe("closure auto approval authority", () => {
         exit_code: 1,
         status: "failed",
         evidence_path: oldOutput,
-        completed_at: "2026-07-12T00:00:30Z",
+        completed_at: oldCompletedAt,
       },
     });
     expect(evaluate(f).allowed).toBe(true);
@@ -371,7 +380,7 @@ describe("closure auto approval authority", () => {
     expect(result.allowed).toBe(false);
     expect(result.blockers).toContain(`${f.queue[0]?.planId}: PLAN bytes drift`);
     const replay = fixture();
-    replay.manifest.expires_at = "2026-07-12T00:09:59Z";
+    replay.manifest.expires_at = new Date(Date.now() - 1).toISOString();
     expect(evaluate(replay).blockers).toContain("manifest freshness不正");
     const toctou = fixture();
     const approved = evaluate(toctou);
@@ -386,7 +395,7 @@ describe("closure auto approval authority", () => {
         manifest: toctou.manifest,
         db: toctou.db,
         githubReceipt: githubReceipt(toctou),
-        now: new Date("2026-07-12T00:10:00Z"),
+        now: new Date(),
       }),
     ).toThrow("write直前manifest CAS不一致");
   });
@@ -440,7 +449,7 @@ describe("closure auto approval authority", () => {
         manifest: noGithub.manifest,
         db: noGithub.db,
         githubReceipt: null,
-        now: new Date("2026-07-12T00:10:00Z"),
+        now: new Date(),
       }),
     ).toThrow("dry-run only");
     const f = fixture(2);
@@ -454,7 +463,7 @@ describe("closure auto approval authority", () => {
         db: f.db,
         githubReceipt: githubReceipt(f),
         failAfterRenameForTest: 1,
-        now: new Date("2026-07-12T00:10:00Z"),
+        now: new Date(),
       }),
     ).toThrow("injected partial failure");
     expect(f.queue.map((item) => readFileSync(join(f.root, item.sourcePath), "utf8"))).toEqual(
@@ -549,6 +558,81 @@ describe("closure auto approval authority", () => {
       { offset: 300, limit: 61 },
     ]);
     const f = fixture(361);
+    const cliPath = join(process.cwd(), "src/cli.ts");
+    const beforeCli = readFileSync(join(f.root, f.queue[0]?.sourcePath ?? ""), "utf8");
+    const dryCli = spawnSync(
+      "bun",
+      [
+        "run",
+        cliPath,
+        "closure",
+        "auto-approve",
+        "--dry-run",
+        "--evidence-manifest",
+        ".helix/test-manifest.json",
+        "--test-snapshot",
+        ".helix/test-snapshot.json",
+        "--from-db",
+        "--batch-size",
+        "100",
+        "--all",
+        "--json",
+      ],
+      { cwd: f.root, encoding: "utf8", env: { ...process.env, HELIX_TEST_MODE: "1" } },
+    );
+    expect(dryCli.status, `${dryCli.stderr}\n${dryCli.stdout.slice(0, 4000)}`).toBe(0);
+    expect(JSON.parse(dryCli.stdout)).toMatchObject({
+      selected: 361,
+      batch_count: 4,
+      executed: false,
+    });
+    expect(readFileSync(join(f.root, f.queue[0]?.sourcePath ?? ""), "utf8")).toBe(beforeCli);
+    const bin = join(f.root, "bin");
+    mkdirSync(bin);
+    const ghStub = join(bin, "gh");
+    writeFileSync(
+      ghStub,
+      `#!/bin/sh
+case "$*" in
+  *required_status_checks*) echo '{"checks":[{"context":"harness-check","app_id":15368}]}' ;;
+  *check-runs/123456*) echo '{"id":123456,"head_sha":"${currentRepositoryHead(f.root)}","name":"harness-check","status":"completed","conclusion":"success","completed_at":"2026-07-12T00:09:00Z","app":{"id":15368,"slug":"github-actions","owner":{"login":"github"}},"details_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1","html_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456"}' ;;
+  *commits/*/check-runs*) echo '{"check_runs":[{"id":123456,"head_sha":"${currentRepositoryHead(f.root)}","name":"harness-check","status":"completed","conclusion":"success","completed_at":"2026-07-12T00:09:00Z","app":{"id":15368,"slug":"github-actions","owner":{"login":"github"}},"details_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456/job/1","html_url":"https://github.com/RetryYN/HELIX-HARNESS/actions/runs/123456"}]}' ;;
+  *) exit 2 ;;
+esac
+`,
+    );
+    chmodSync(ghStub, 0o755);
+    const executeCli = spawnSync(
+      "bun",
+      [
+        "run",
+        cliPath,
+        "closure",
+        "auto-approve",
+        "--execute",
+        "--evidence-manifest",
+        ".helix/test-manifest.json",
+        "--test-snapshot",
+        ".helix/test-snapshot.json",
+        "--from-db",
+        "--batch-size",
+        "100",
+        "--all",
+        "--test-fail-after",
+        "1",
+        "--json",
+      ],
+      {
+        cwd: f.root,
+        encoding: "utf8",
+        env: { ...process.env, HELIX_TEST_MODE: "1", PATH: `${bin}:${process.env.PATH}` },
+      },
+    );
+    expect(executeCli.status).not.toBe(0);
+    expect(readFileSync(join(f.root, f.queue[0]?.sourcePath ?? ""), "utf8")).toBe(beforeCli);
+    expect(
+      readFileSync(join(f.root, ".helix/audit/closure-auto-approval.jsonl"), "utf8"),
+    ).toContain('"status":"rolled_back"');
     const ids = new Set<string>();
     for (let offset = 0; offset < 361; offset += 100) {
       const window = {
