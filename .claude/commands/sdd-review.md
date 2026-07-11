@@ -1,7 +1,7 @@
 ---
 description: five-axis code review — correctness, readability, architecture, security, performance
 argument-hint: "[optional file/scope]"
-judgment_core: v1
+judgment_core: v2
 ---
 
 レビュー規律（adversarial framing・false positive 抑制・severity-first）の正本は

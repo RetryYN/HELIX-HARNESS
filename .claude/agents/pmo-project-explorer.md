@@ -4,7 +4,7 @@ description: implementation 前に code、docs、config、API、DB、design alig
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: medium
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 20
 ---

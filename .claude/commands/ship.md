@@ -1,7 +1,7 @@
 ---
 description: 出荷前 fan-out — code-reviewer / security-audit / qa-test を並列実行し、rollback plan 付きで go/no-go を統合判断する
 argument-hint: "[任意の scope note]"
-judgment_core: v1
+judgment_core: v2
 ---
 
 判断規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT。委譲 4 点セットは §5、

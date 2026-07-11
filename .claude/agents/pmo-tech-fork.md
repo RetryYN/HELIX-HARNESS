@@ -4,7 +4,7 @@ description: Tech Fork Manager — OSS/plugin/library を GitHub から探索、
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
 model: claude-sonnet-5
 effort: medium
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 20
 ---

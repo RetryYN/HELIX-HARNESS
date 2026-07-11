@@ -19,8 +19,8 @@ applies_to:
 
 # planning and task breakdown（計画と task 分解）
 
-feature または requirement を PLAN hierarchy と schedule steps に分解する方法を扱う。
-steps は agents に delegate するか、deterministically に実行できる粒度へ分ける
+feature や requirement を PLAN 階層と工程 step へ分解する方法を扱う。
+step は agent へ委譲できるか、決定的に実行できる粒度まで分ける
 （FR-L1-01 PLAN management、FR-L1-13 Forward workflow）。
 
 ## この skill を読む条件
@@ -67,9 +67,25 @@ schedule steps は numbered にし、execution mode を注釈する。
 6. [直列] accept: helix review --uncommitted (no blocking findings)
 ```
 
-`[並列]` steps は agents 間で concurrently に実行できる。`[直列]` steps は順番に complete する必要があり、
-各 step が gate である。pair-freeze と trace-freeze の周辺に serial gate steps が無い schedule は
-decomposition error。
+`[並列]` step は複数 agent が同時並行で実行できる。`[直列]` step は順番に完了させる必要があり、
+各 step が gate である。pair-freeze と trace-freeze の周辺に直列 gate step が無い工程表は
+分解の誤りである。
+
+## 分割の向き — 縦割り優先・横割り禁止
+
+step / child PLAN の切り方は**縦割り（垂直スライス）**を優先する: 1 step が薄くても
+end-to-end で検証可能な振る舞いを届ける単位で切る。「DB 層」「API 層」「画面層」のような
+**横割りは task であって独立検証可能な step ではない** — 横割りの step は単体では accept 判定が
+できず、「垂直スライスの偽装」（デモは通るが裏が繋がっていない。acceptance-criteria-thinking §2）
+を生む温床になる。分割してもなお 1 step が大きすぎる（design doc + test design の pair に
+収まらない）なら、それは分割の失敗ではなく理解の不足の信号 — design へ戻る。
+
+## 前倒しで作り込まない（漸進的詳細化）
+
+まだ着手しない将来 step の受入条件・詳細設計を先に埋めない。粒度を粗いまま置くのは正しい
+（skip 扱いにするのとは違う）。前倒しで書いた詳細は、着手時点で要件が動いて書き直しになるか、
+書き直されずに乖離したまま正本を汚す。詳細化するのは「次に着手する step」だけである
+（design-tailoring §3 の粒度基準と同一原則）。
 
 ## WBS の rule
 

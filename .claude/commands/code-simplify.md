@@ -1,7 +1,7 @@
 ---
 description: regression fence の下で behavior-invariant refactor / simplification を行う
 argument-hint: "[optional file/scope]"
-judgment_core: v1
+judgment_core: v2
 ---
 
 HELIX では behavior を変えずに simplify / refactor する。`refactoring` skill を使う。

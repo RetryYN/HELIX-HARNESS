@@ -1,7 +1,7 @@
 ---
 description: 作業を machine-checkable な PLAN step に分解する（requirement 単位、parallel/serial marker 付き）
 argument-hint: "<feature or task description>"
-judgment_core: v1
+judgment_core: v2
 ---
 
 task を verifiable step を持つ HELIX PLAN へ分解する。`planning-and-task-breakdown` と

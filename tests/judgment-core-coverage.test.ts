@@ -57,7 +57,7 @@ describe("U-JUDG: judgment-core-coverage (PLAN-L7-335)", () => {
 
   it("U-JUDG-005: 実 repo の agents/commands 全件が SSoT と同期している (real-repo regression)", () => {
     const input = loadJudgmentCoreCoverageInput(process.cwd());
-    expect(input.ssotVersion).toBe(1);
+    expect(input.ssotVersion).toBe(2);
     expect(input.docs.length).toBeGreaterThan(0);
     const result = analyzeJudgmentCoreCoverage(input);
     expect(result.violations).toEqual([]);

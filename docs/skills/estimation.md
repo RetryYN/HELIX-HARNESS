@@ -19,9 +19,10 @@ applies_to:
 # estimation（見積もり）
 
 schedule commitment 前に HELIX PLAN の complexity / effort を score する手順
-（FR-L1-39 task complexity / effort）。現時点では `helix task classify` や
-`helix task estimate` CLI はまだ無く、scoring は PLAN author が PLAN 作成時に行い、
-PLAN body に記録する。
+（FR-L1-39 task complexity / effort）。機械分類は `helix task classify`
+（kind / drive / size / complexity / risk）が使える。本 pack の 3 軸 scoring は
+PLAN author が PLAN 作成時に行い、PLAN body に記録する（classify の出力と食い違う場合は
+食い違いの理由を書く）。
 
 ## この skill を読む条件
 
@@ -43,6 +44,11 @@ PLAN body に記録する。
 3 つの score と合計を PLAN body に記録する（例: `[2+1+2=5]`）。
 Total 3-4 は one session に収まる。Total 5-6 は split または timebox。
 Total 7-9 は scheduling 前に child PLANs へ decompose する必要がある。
+
+**見積もりは予測ではなく会話の道具である。** 複数の見積もり（別 agent / 別 runtime / PO）が
+ばらけたら、それは見積もりの失敗ではなく**理解の相違を見つけた成功**。数字を平均せず、
+ばらけの原因（前提・scope 解釈の差）を特定してから再 score する。Uncertainty=3 のまま
+commit するのは判断の先送りであり、先に research / PoC PLAN へ切り出す。
 
 ## Drive-model adjustments（drive model 別補正）
 

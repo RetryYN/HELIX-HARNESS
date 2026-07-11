@@ -4,7 +4,7 @@ description: Project Repository Scout — 現在の project (cwd 配下) の cod
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-haiku-4-5-20251001
 effort: low
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 10
 ---

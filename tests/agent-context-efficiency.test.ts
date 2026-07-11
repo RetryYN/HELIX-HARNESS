@@ -75,7 +75,7 @@ describe("agent context efficiency", () => {
     const input = loadJudgmentCoreCoverageInput(repoRoot);
     const result = analyzeJudgmentCoreCoverage(input);
 
-    expect(input.ssotVersion).toBe(1);
+    expect(input.ssotVersion).toBe(2);
     expect(result.violations).toEqual([]);
     expect(result.ok).toBe(true);
   });

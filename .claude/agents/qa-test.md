@@ -4,7 +4,7 @@ description: QAテスト設計・実行。テスト戦略・カバレッジ・E2
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: medium
-judgment_core: v1
+judgment_core: v2
 memory: project
 maxTurns: 25
 ---
