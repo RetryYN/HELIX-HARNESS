@@ -25,17 +25,18 @@ function boundedTimeViolations(raw: string): string[] {
   try { parsed = parseYaml(raw) as typeof parsed; } catch { return ["workflow_yaml_invalid"]; }
   const job = parsed.jobs?.["harness-check"];
   if (!job || !Array.isArray(job.steps)) return ["harness_job_missing"];
+  const steps = job.steps;
   const findings: string[] = [];
   if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 20) findings.push("job_timeout_invalid");
   if (job["continue-on-error"] !== undefined) findings.push("job_fail_open_field");
-  const regressions = job.steps.filter((step) => step.name === "test — 全回帰 (vitest run)" && step.run === "bun run test");
+  const regressions = steps.filter((step) => step.name === "test — 全回帰 (vitest run)" && step.run === "bun run test");
   if (regressions.length !== 1) return [...findings, "regression_step_not_unique"];
   const regression = regressions[0] as Step;
   if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 15) findings.push("regression_timeout_invalid");
   if (typeof regression["timeout-minutes"] === "number" && typeof job["timeout-minutes"] === "number" && regression["timeout-minutes"] >= job["timeout-minutes"]) findings.push("timeout_budget_inverted");
   if (regression["continue-on-error"] !== undefined || regression.if !== undefined) findings.push("regression_fail_open_field");
-  const indexes = ["lint (biome)", "db rebuild (post-test projection refresh)", "doctor (governance hard gates)"].map((name) => job.steps.findIndex((step) => step.name === name));
-  if (!(job.steps.indexOf(regression) < indexes[0]! && indexes[0]! < indexes[1]! && indexes[1]! < indexes[2]!)) findings.push("post_test_gate_order_invalid");
+  const indexes = ["lint (biome)", "db rebuild (post-test projection refresh)", "doctor (governance hard gates)"].map((name) => steps.findIndex((step) => step.name === name));
+  if (!(steps.indexOf(regression) < indexes[0]! && indexes[0]! < indexes[1]! && indexes[1]! < indexes[2]!)) findings.push("post_test_gate_order_invalid");
   return findings;
 }
 
