@@ -4,7 +4,7 @@
  *
  * `git reset` / destructive checkout / restore / revert / force-push は hybrid runtime で
  * 相手 runtime の commit や未共有作業を壊し得るため、理由付き override なしでは block する。
- * 内部エラーは fail-open。block は危険操作を確証できた時のみ。
+ * 入力解析・transaction・adapter内部エラーはfail-closeする。
  */
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -24,7 +24,8 @@ let input: { tool_input?: unknown; session_id?: string };
 try {
   input = JSON.parse((await readStdin()) || "{}");
 } catch {
-  process.exit(0);
+  process.stderr.write("[helix-guard] BLOCK: hook input parse failed\n");
+  process.exit(2);
 }
 
 try {
@@ -45,5 +46,6 @@ try {
   }
   process.exit(0);
 } catch {
-  process.exit(0);
+  process.stderr.write("[helix-guard] BLOCK: guard adapter failed\n");
+  process.exit(2);
 }

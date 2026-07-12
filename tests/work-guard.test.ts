@@ -245,10 +245,11 @@ describe("foreign-edit override resolution (PLAN-L7-114 correction)", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-env-"));
     try {
       execFileSync("git", ["init"], { cwd, stdio: "ignore" });
-      writeFileSync(join(cwd, "foreign.ts"), "export const x = 1;\n");
+      const foreignTarget = "alice@example.com-private.ts";
+      writeFileSync(join(cwd, foreignTarget), "export const x = 1;\n");
       const rawInput = JSON.stringify({
         session_id: "s-env",
-        tool_input: { file_path: "foreign.ts" },
+        tool_input: { file_path: foreignTarget },
       });
       const run = () =>
         runWorkGuardCore({
@@ -278,12 +279,13 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
     try {
       // git repo + untracked foreign file = このセッションが触っていない uncommitted ファイル。
       execFileSync("git", ["init"], { cwd, stdio: "ignore" });
-      writeFileSync(join(cwd, "foreign.ts"), "export const x = 1;\n");
+      const foreignTarget = "alice@example.com-private.ts";
+      writeFileSync(join(cwd, foreignTarget), "export const x = 1;\n");
       const markerPath = join(cwd, ".helix", "state", "foreign-edit-override");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
-      writeFileSync(markerPath, "completing Codex orphan-impl per review\n");
+      writeFileSync(markerPath, "reviewed recovery for /home/alice/private-project\n");
 
-      const input = { session_id: "s-test", tool_input: { file_path: "foreign.ts" } };
+      const input = { session_id: "s-test", tool_input: { file_path: foreignTarget } };
 
       // 1回目: marker により foreign 編集を許可 (exit 0) し、marker を消費する。
       const first = runWorkGuardHook(cwd, input);
@@ -300,11 +302,16 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
         status: "committed",
         operation_class: "foreign uncommitted edit",
       });
-      expect(JSON.stringify(rows)).not.toContain("completing Codex orphan-impl per review");
-      expect(JSON.stringify(rows)).not.toContain("foreign.ts");
+      expect(JSON.stringify(rows)).not.toContain(
+        "reviewed recovery for /home/alice/private-project",
+      );
+      expect(JSON.stringify(rows)).not.toContain("alice@example.com");
+      expect(JSON.stringify(rows)).not.toContain(foreignTarget);
       const dbBytes = readFileSync(defaultHarnessDbPath(cwd)).toString("utf8");
-      expect(dbBytes).not.toContain("completing Codex orphan-impl per review");
-      expect(dbBytes).not.toContain("foreign.ts");
+      expect(dbBytes).not.toContain("reviewed recovery for /home/alice/private-project");
+      expect(dbBytes).not.toContain("/home/alice/private-project");
+      expect(dbBytes).not.toContain("alice@example.com");
+      expect(dbBytes).not.toContain(foreignTarget);
 
       // 2回目: marker は消費済み → bypass 無し → 同じ foreign 編集が block される (exit 2)。
       const second = runWorkGuardHook(cwd, input);

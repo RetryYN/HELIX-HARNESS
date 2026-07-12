@@ -246,6 +246,22 @@ describe("git-command-guard", () => {
     expect(pass.stdout).toContain("git-command-guard: pass");
   });
 
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007] dev adapter fails closed on malformed stdin", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-malformed-"));
+    try {
+      const result = spawnSync("bun", [hookPath], {
+        cwd,
+        encoding: "utf8",
+        env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+        input: "{not-json",
+      });
+      expect(result.status).toBe(2);
+      expect(result.stderr).toContain("BLOCK");
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("U-GITGUARD-002: hook marker override is one-shot and audited", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-marker-"));
     try {
