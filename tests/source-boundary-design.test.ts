@@ -123,14 +123,24 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
 
-  it("U-SBOUND-001", () => expect(l8).toContain("state-db→vscode"));
-  it("U-SBOUND-002", () => expect(l8).toContain("vscode→state-db"));
-  it("U-SBOUND-003", () => expect(l8).toContain("missing owner default"));
-  it("U-SBOUND-004", () => expect(l8).toContain("write/child-process"));
-  it("U-SBOUND-005", () => expect(l8).toContain("VS Code command constant"));
-  it("U-SBOUND-006", () => expect(l8).toContain("timeout/nonzero/missing binary"));
-  it("U-SBOUND-007", () => expect(l8).toContain("owner/rationale/review trigger"));
-  it("U-SBOUND-008", () => expect(l8).toContain("direct/type-only/re-export/dynamic"));
-  it("U-SBOUND-009", () => expect(l8).toContain("capability/authority/snapshot/idempotency"));
-  it("U-SBOUND-010", () => expect(l8).toContain("port throw/partial write/CAS drift"));
+  it("U-SBOUND-001: state-dbからpresentationを分離する", () =>
+    expect(l8).toContain("state-db→vscode"));
+  it("U-SBOUND-002: presentationからpersistence実装を分離する", () =>
+    expect(l8).toContain("vscode→state-db"));
+  it("U-SBOUND-003: 未指定policyをfail-closeする", () =>
+    expect(l8).toContain("missing owner default"));
+  it("U-SBOUND-004: analyzerからeffect authorityを除く", () =>
+    expect(l8).toContain("write/child-process"));
+  it("U-SBOUND-005: projectorをadapter-neutralにする", () =>
+    expect(l8).toContain("VS Code command constant"));
+  it("U-SBOUND-006: probe failureをtyped receiptにする", () =>
+    expect(l8).toContain("timeout/nonzero/missing binary"));
+  it("U-SBOUND-007: policy metadata欠落を検出する", () =>
+    expect(l8).toContain("owner/rationale/review trigger"));
+  it("U-SBOUND-008: source edgeを一意に正規化する", () =>
+    expect(l8).toContain("direct/type-only/re-export/dynamic"));
+  it("U-SBOUND-009: stale authorityのeffectを拒否する", () =>
+    expect(l8).toContain("capability/authority/snapshot/idempotency"));
+  it("U-SBOUND-010: partial materializeをacceptedにしない", () =>
+    expect(l8).toContain("port throw/partial write/CAS drift"));
 });
