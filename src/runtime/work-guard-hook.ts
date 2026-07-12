@@ -10,7 +10,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { defaultHarnessDbPath, openHarnessDb } from "../state-db";
-import { migrate } from "../state-db/migration";
+import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import { createGuardOverrideAuditPort, guardOverrideDigest } from "./git-command-guard-hook";
 import { commitOverrideUse } from "./guard-override-transaction";
 import {
@@ -129,7 +129,7 @@ export function runWorkGuardHook(opts: {
     if (override.source === "env") {
       const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
       try {
-        migrate(db);
+        if (db.userVersion() < SCHEMA_VERSION) migrate(db);
         const transaction = commitOverrideUse({
           nonce: guardOverrideDigest(
             `env:foreign_edit:${input.session_id ?? "unknown"}:${guardOverrideDigest(targets.join("\n"))}`,
@@ -157,7 +157,7 @@ export function runWorkGuardHook(opts: {
     );
     const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
     try {
-      migrate(db);
+      if (db.userVersion() < SCHEMA_VERSION) migrate(db);
       const transaction = commitOverrideUse({
         nonce,
         reason: override.reason,

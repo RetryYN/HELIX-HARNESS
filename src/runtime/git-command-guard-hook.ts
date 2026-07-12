@@ -10,7 +10,7 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
-import { migrate } from "../state-db/migration";
+import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import {
   evaluateGitCommandGuard,
   extractShellCommand,
@@ -100,7 +100,7 @@ export function runGitCommandGuardHook(opts: {
     try {
       const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
       try {
-        migrate(db);
+        if (db.userVersion() < SCHEMA_VERSION) migrate(db);
         const result = commitOverrideUse({
           nonce: guardOverrideDigest(
             `env:git:${input.session_id ?? "unknown"}:${guardOverrideDigest(command)}`,
@@ -128,7 +128,7 @@ export function runGitCommandGuardHook(opts: {
   try {
     const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
     try {
-      migrate(db);
+      if (db.userVersion() < SCHEMA_VERSION) migrate(db);
       const markerStat = statSync(markerPath);
       const nonce = guardOverrideDigest(
         `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
