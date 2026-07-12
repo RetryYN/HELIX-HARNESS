@@ -103,9 +103,7 @@ describe("PLAN-L7-449 node durable epoch port", () => {
   it("IT-DUR-004: O_EXCL permits at most one live claim", () => {
     const repo = root();
     expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
-    expect(() => nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toThrow(
-      "release proof is invalid",
-    );
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(false);
   });
 
   it("IT-DUR-003/004: releasing-only crash blocks writers and converges under authority", () => {
@@ -122,7 +120,9 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     })}\n`;
     writeFileSync(paths.claim, staleText);
     renameSync(paths.claim, paths.releasingClaim);
-    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(false);
+    expect(() => nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toThrow(
+      "release proof is invalid",
+    );
     expect(
       recoverStaleLoopClaim(
         repo,
