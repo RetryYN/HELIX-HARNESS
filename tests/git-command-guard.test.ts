@@ -1,5 +1,6 @@
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -211,6 +212,46 @@ describe("git-command-guard", () => {
       const audit = readFileSync(join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl"), "utf8");
       expect(audit.trim().split("\n")).toHaveLength(1);
       expect(existsSync(markerPath)).toBe(false);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-009/IT-GITGUARD-003] blocks restart reuse after audit reservation", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-restart-"));
+    try {
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      const auditPath = join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      writeFileSync(markerPath, "reviewed crash recovery");
+      const markerStat = statSync(markerPath);
+      const nonce = createHash("sha256")
+        .update(`${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:reviewed crash recovery`)
+        .digest("hex");
+      mkdirSync(`${auditPath}.nonces`, { recursive: true });
+      writeFileSync(join(`${auditPath}.nonces`, nonce), "");
+      const result = runCliGuard({ tool_input: { command: "git clean -f" } }, cwd);
+      expect(result.status).toBe(2);
+      expect(result.stderr).toContain("blocked_reuse");
+      expect(existsSync(markerPath)).toBe(true);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-009/IT-GITGUARD-002] fails closed on torn audit framing", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-torn-"));
+    try {
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      const auditPath = join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      mkdirSync(join(cwd, ".helix", "logs"), { recursive: true });
+      writeFileSync(markerPath, "reviewed recovery");
+      writeFileSync(auditPath, '{"schemaVersion":"guard-override-audit.v1"');
+      const result = runCliGuard({ tool_input: { command: "git clean -f" } }, cwd);
+      expect(result.status).toBe(2);
+      expect(result.stderr).toContain("blocked_audit_failure");
+      expect(existsSync(markerPath)).toBe(true);
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }

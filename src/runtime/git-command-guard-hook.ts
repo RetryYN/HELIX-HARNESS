@@ -18,6 +18,16 @@ function auditPort(auditPath: string): OverrideAuditPort {
   return {
     commit(input) {
       mkdirSync(dirname(auditPath), { recursive: true });
+      if (existsSync(auditPath)) {
+        for (const line of readFileSync(auditPath, "utf8").split("\n")) {
+          if (!line) continue;
+          try {
+            JSON.parse(line);
+          } catch {
+            throw new Error("invalid audit framing");
+          }
+        }
+      }
       const reservationDir = `${auditPath}.nonces`;
       mkdirSync(reservationDir, { recursive: true });
       const reservationPath = join(reservationDir, input.nonce.replace(/^sha256:/, ""));
