@@ -41,6 +41,7 @@ export type StaleLoopClaimRecoveryPacket = {
   approvedBy: string;
   auditId: string;
 };
+type RecoveryClaimMetadata = ClaimMetadata & { packetDigest: string };
 export interface StaleLoopClaimRecoveryAuthority {
   verify(packet: StaleLoopClaimRecoveryPacket): boolean;
 }
@@ -159,6 +160,8 @@ export function loopEpochPaths(root: string, planId: string) {
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
     recoveryClaim: join(directory, `${safe}.epoch.recovery.claim`),
+    recoveryClaimTombstoneFor: (recoveryId: string) =>
+      join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.stale.json`),
     recoveryAuditTempFor: (recoveryId: string) =>
       join(directory, `${safe}.${recoveryId}.recovery-audit.tmp`),
     claimTombstoneFor: (recoveryId: string) =>
@@ -263,7 +266,13 @@ export function recoverStaleLoopClaim(
 } {
   const planId = assertLoopPlanId(packet.planId);
   const value = loopEpochPaths(root, planId);
-  if (!packet.approvedBy.trim() || !packet.auditId.trim() || !authority.verify(packet))
+  let authorityVerified = false;
+  try {
+    authorityVerified = authority.verify(packet);
+  } catch {
+    return { status: "rejected", reason: "authority_unavailable" };
+  }
+  if (!packet.approvedBy.trim() || !packet.auditId.trim() || !authorityVerified)
     return { status: "rejected", reason: "authority_missing" };
   mkdirSync(value.directory, { recursive: true });
   let acquired = false;
@@ -273,17 +282,50 @@ export function recoverStaleLoopClaim(
     recoveryId?: string;
   } = { status: "durability_uncertain", reason: "recovery_not_started" };
   try {
-    let recoveryFd: number;
-    try {
-      recoveryFd = openSync(value.recoveryClaim, "wx", 0o600);
-      acquired = true;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === "EEXIST")
-        return { status: "conflict", reason: "recovery_claim_conflict" };
-      throw error;
+    let recoveryFd: number | null = null;
+    for (let attempt = 0; attempt < 2 && recoveryFd === null; attempt += 1) {
+      try {
+        recoveryFd = openSync(value.recoveryClaim, "wx", 0o600);
+        acquired = true;
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+        const residualText = readIfExists(value.recoveryClaim);
+        if (residualText === null) continue;
+        if (claimStatus(residualText) !== "stale")
+          return { status: "conflict", reason: "recovery_claim_conflict" };
+        const residual = JSON.parse(residualText) as Partial<RecoveryClaimMetadata>;
+        if (
+          typeof residual.claimId !== "string" ||
+          !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+            residual.claimId,
+          ) ||
+          typeof residual.packetDigest !== "string"
+        )
+          return { status: "conflict", reason: "recovery_claim_untrusted" };
+        try {
+          renameSync(value.recoveryClaim, value.recoveryClaimTombstoneFor(randomUUID()));
+          fsyncDirectory(value.directory);
+        } catch (renameError) {
+          if ((renameError as NodeJS.ErrnoException).code !== "ENOENT") throw renameError;
+        }
+      }
     }
+    if (recoveryFd === null) return { status: "conflict", reason: "recovery_claim_conflict" };
     try {
-      writeFileSync(recoveryFd, `${JSON.stringify(packet)}\n`);
+      const pointerText = readIfExists(value.manifest);
+      writeFileSync(
+        recoveryFd,
+        `${JSON.stringify({
+          claimId: randomUUID(),
+          pid: process.pid,
+          bootIdentity: bootIdentity(),
+          processStartToken: processStartToken(process.pid),
+          leaseDeadlineUptimeMs: uptime() * 1000 + 60_000,
+          pointerDigest: sha256Digest(pointerText ?? ""),
+          manifestDigest: packet.manifestDigest,
+          packetDigest: sha256Digest(JSON.stringify(packet)),
+        } satisfies RecoveryClaimMetadata)}\n`,
+      );
       fsyncSync(recoveryFd);
     } finally {
       closeSync(recoveryFd);
