@@ -61,12 +61,14 @@ export function readProcessIdentity(pid: number): string {
   if (!Number.isSafeInteger(pid) || pid <= 0) throw new Error(`invalid process pid=${pid}`);
   if (platform() === "linux") return linuxProcessStartId(pid);
   if (platform() === "win32") {
-    const script = `(Get-Process -Id ${pid} -ErrorAction Stop).StartTime.ToUniversalTime().Ticks`;
-    const ticks = execFileSync("powershell", ["-NoProfile", "-Command", script], {
-      encoding: "utf8",
-    }).trim();
-    if (!/^\d+$/.test(ticks)) throw new Error(`process identity malformed pid=${pid}`);
-    return `win32:${ticks}`;
+    const output = execFileSync(
+      "wmic.exe",
+      ["process", "where", `ProcessId=${pid}`, "get", "CreationDate", "/value"],
+      { encoding: "utf8" },
+    );
+    const created = output.match(/CreationDate=([^\r\n]+)/)?.[1]?.trim();
+    if (!created) throw new Error(`process identity malformed pid=${pid}`);
+    return `win32:${created}`;
   }
   const started = execFileSync("ps", ["-p", String(pid), "-o", "lstart="], {
     encoding: "utf8",

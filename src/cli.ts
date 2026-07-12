@@ -7380,7 +7380,7 @@ closure
   .option("--concurrency <n>", "typed runner concurrency (1..4)", "1")
   .option("--json", "JSON output")
   .action(
-    (opts: {
+    async (opts: {
       dryRun?: boolean;
       execute?: boolean;
       fromDb?: boolean;
@@ -7490,7 +7490,7 @@ closure
           },
         };
         migrate(db);
-        const result = materializeClosureEvidence({
+        const result = await materializeClosureEvidence({
           repoRoot,
           db,
           repositoryHead,

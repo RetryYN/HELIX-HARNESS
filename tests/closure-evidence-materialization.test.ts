@@ -141,28 +141,32 @@ function fixture() {
 }
 
 describe("closure evidence materialization transaction", () => {
-  it("U-CMAT-003: scope・HEAD・clean境界をfail-closeする", () => {
+  it("U-CMAT-003: scope・HEAD・clean境界をfail-closeする", async () => {
     const { input } = fixture();
-    expect(() => materializeClosureEvidence({ ...input, reviewBundlePlanIds: [] })).toThrow(
+    await expect(materializeClosureEvidence({ ...input, reviewBundlePlanIds: [] })).rejects.toThrow(
       /scope\/order/,
     );
-    expect(() => materializeClosureEvidence({ ...input, clean: false })).toThrow(/clean/);
+    await expect(materializeClosureEvidence({ ...input, clean: false })).rejects.toThrow(/clean/);
   });
 
-  it("multi-process lockはrunner開始前に同時materializationを拒否する", () => {
+  it("multi-process lockはrunner開始前に同時materializationを拒否する", async () => {
     const { root, input } = fixture();
     const lock = acquireClosureMaterializationLock(root);
     try {
-      expect(() => materializeClosureEvidence(input)).toThrow(/already running/);
+      await expect(materializeClosureEvidence(input)).rejects.toThrow(/already running/);
     } finally {
       releaseClosureMaterializationLock(lock);
     }
   });
 
-  it("U-CMAT-009: windowとconcurrencyの上限をfail-closeする", () => {
+  it("U-CMAT-009: windowとconcurrencyの上限をfail-closeする", async () => {
     const { root, db, input, createRunner } = fixture();
-    expect(() => materializeClosureEvidence({ ...input, windowSize: 101 })).toThrow(/1\.\.100/);
-    expect(() => materializeClosureEvidence({ ...input, concurrency: 5 })).toThrow(/1\.\.4/);
+    await expect(materializeClosureEvidence({ ...input, windowSize: 101 })).rejects.toThrow(
+      /1\.\.100/,
+    );
+    await expect(materializeClosureEvidence({ ...input, concurrency: 5 })).rejects.toThrow(
+      /1\.\.4/,
+    );
     const base = input.registry.authorities[0];
     if (!base) throw new Error("fixture authority missing");
     const authorities = Array.from({ length: 361 }, (_, index) => {
@@ -189,7 +193,7 @@ describe("closure evidence materialization transaction", () => {
     }).trim();
     execFileSync("git", ["update-ref", "refs/remotes/origin/main", head], { cwd: root });
     const candidates = authorities.map(({ plan_id, source_path }) => ({ plan_id, source_path }));
-    const result = materializeClosureEvidence({
+    const result = await materializeClosureEvidence({
       ...input,
       repositoryHead: head,
       originMainHead: head,
@@ -207,6 +211,13 @@ describe("closure evidence materialization transaction", () => {
     expect(result.run_count).toBe(722);
     expect(db.prepare("SELECT COUNT(*) AS n FROM test_runs").get()?.n).toBe(361);
     expect(db.prepare("SELECT COUNT(*) AS n FROM gate_runs").get()?.n).toBe(361);
+    expect(db.prepare("SELECT COUNT(*) AS n FROM closure_process_receipts").get()?.n).toBe(2);
+    expect(
+      db.prepare("SELECT COUNT(DISTINCT process_receipt_key) AS n FROM test_runs").get()?.n,
+    ).toBe(1);
+    expect(
+      db.prepare("SELECT COUNT(DISTINCT process_receipt_key) AS n FROM gate_runs").get()?.n,
+    ).toBe(1);
     const manifest = JSON.parse(readFileSync(join(root, result.manifest_path ?? ""), "utf8"));
     expect(manifest.candidates).toHaveLength(361);
     expect(new Set(manifest.candidates.map((row: { plan_id: string }) => row.plan_id)).size).toBe(
@@ -214,23 +225,27 @@ describe("closure evidence materialization transaction", () => {
     );
   });
 
-  it("U-CMAT-010: authority不在はdefault humanとしてstatusを変更しない", () => {
+  it("U-CMAT-010: authority不在はdefault humanとしてstatusを変更しない", async () => {
     const { input } = fixture();
     expect(
-      materializeClosureEvidence({
-        ...input,
-        registry: parseClosureAuthorityRegistry({
-          schema_version: "closure-authority-registry.v1",
-          authorities: [],
-        }),
-      }).status,
+      (
+        await materializeClosureEvidence({
+          ...input,
+          registry: parseClosureAuthorityRegistry({
+            schema_version: "closure-authority-registry.v1",
+            authorities: [],
+          }),
+        })
+      ).status,
     ).toBe("classified");
   });
 
-  it("U-CMAT-006: 未commit失敗はDB/JSONL/files/manifestをall-or-none rollbackする", () => {
+  it("U-CMAT-006: 未commit失敗はDB/JSONL/files/manifestをall-or-none rollbackする", async () => {
     for (const crashAt of ["before-db" as const]) {
       const { root, db, input } = fixture();
-      expect(() => materializeClosureEvidence({ ...input, crashAt })).toThrow(/injected crash/);
+      await expect(materializeClosureEvidence({ ...input, crashAt })).rejects.toThrow(
+        /injected crash/,
+      );
       expect(db.prepare("SELECT COUNT(*) AS n FROM closure_materializations").get()?.n).toBe(0);
       expect(
         db.prepare("SELECT COUNT(*) AS n FROM test_runs WHERE session_id=?").get(input.id())?.n,
@@ -241,11 +256,11 @@ describe("closure evidence materialization transaction", () => {
     }
   });
 
-  it("U-CMAT-007: run record・DB・attestation・manifestのexact joinを保つ", () => {
+  it("U-CMAT-007: run record・DB・attestation・manifestのexact joinを保つ", async () => {
     const { root, db, input } = fixture();
-    expect(() =>
+    await expect(
       materializeClosureEvidence({ ...input, crashAt: "after-db-before-manifest" }),
-    ).toThrow(/after-db-before-manifest/);
+    ).rejects.toThrow(/after-db-before-manifest/);
     const marker = db
       .prepare("SELECT status FROM closure_materializations WHERE materialization_id=?")
       .get(input.id());
@@ -268,11 +283,19 @@ describe("closure evidence materialization transaction", () => {
     expect(test?.command).toContain("vitest");
     expect(test?.output_digest).toBe(record.runs[0].output_digest);
     expect(db.prepare("SELECT COUNT(*) AS n FROM runner_attestations").get()?.n).toBe(2);
+    expect(db.prepare("SELECT COUNT(*) AS n FROM closure_process_receipts").get()?.n).toBe(2);
+    expect(
+      db
+        .prepare(
+          "SELECT COUNT(*) AS n FROM runner_attestations WHERE process_receipt_key IS NOT NULL",
+        )
+        .get()?.n,
+    ).toBe(2);
   });
 
-  it("materialized production manifestは既存auto-approve dry-runでallowedになる", () => {
+  it("materialized production manifestは既存auto-approve dry-runでallowedになる", async () => {
     const { root, db, input } = fixture();
-    const result = materializeClosureEvidence(input);
+    const result = await materializeClosureEvidence(input);
     const manifest = parseClosureAutoApprovalManifest(
       JSON.parse(readFileSync(join(root, result.manifest_path ?? ""), "utf8")),
     );
@@ -353,26 +376,40 @@ describe("closure evidence materialization transaction", () => {
     });
     expect(evaluation.blockers).toEqual([]);
     expect(evaluation.allowed).toBe(true);
+    const receipt = db.prepare("SELECT stdout_path FROM closure_process_receipts LIMIT 1").get();
+    writeFileSync(join(root, String(receipt?.stdout_path ?? "")), "tampered\n");
+    const tampered = evaluateClosureAutoApproval({
+      repoRoot: root,
+      db,
+      snapshot,
+      manifest,
+      limit: 1,
+      offset: 0,
+      now: new Date("2026-07-12T00:05:00Z"),
+      authorityRegistry: input.registry,
+    });
+    expect(tampered.allowed).toBe(false);
+    expect(tampered.blockers.join("\n")).toContain("physical process receipt exact join不一致");
   });
 
-  it("U-CMAT-008: committed markerからcrash recoveryを再開しpartial manifestを残さない", () => {
+  it("U-CMAT-008: committed markerからcrash recoveryを再開しpartial manifestを残さない", async () => {
     const { root, db, input } = fixture();
-    expect(() =>
+    await expect(
       materializeClosureEvidence({ ...input, crashAt: "after-db-before-manifest" }),
-    ).toThrow(/after-db-before-manifest/);
+    ).rejects.toThrow(/after-db-before-manifest/);
     recoverClosureEvidenceMaterialization(root, db);
     expect(
       existsSync(join(root, `.helix/evidence/closure-auto-approval-manifest-${input.id()}.json`)),
     ).toBe(true);
 
     const afterManifest = fixture();
-    expect(() =>
+    await expect(
       materializeClosureEvidence({
         ...afterManifest.input,
         id: () => "materialization-fixture-0002",
         crashAt: "after-manifest",
       }),
-    ).toThrow(/after-manifest/);
+    ).rejects.toThrow(/after-manifest/);
     const journal = JSON.parse(
       readFileSync(
         join(afterManifest.root, ".helix/evidence/closure-materialization-journal.json"),
@@ -390,18 +427,18 @@ describe("closure evidence materialization transaction", () => {
     ).toBe(true);
   });
 
-  it("rerun crashは既存canonical run recordをbefore bytesへ復元する", () => {
+  it("rerun crashは既存canonical run recordをbefore bytesへ復元する", async () => {
     const { root, input } = fixture();
-    materializeClosureEvidence(input);
+    await materializeClosureEvidence(input);
     const recordPath = join(root, `.helix/evidence/closure-runs/${PLAN}.json`);
     const before = readFileSync(recordPath);
-    expect(() =>
+    await expect(
       materializeClosureEvidence({
         ...input,
         id: () => "materialization-fixture-rerun",
         crashAt: "after-files-before-commit",
       }),
-    ).toThrow(/after-files-before-commit/);
+    ).rejects.toThrow(/after-files-before-commit/);
     expect(readFileSync(recordPath)).toEqual(before);
   });
 });

@@ -26,7 +26,12 @@ import {
   classifyClosureAuthorities,
 } from "../policy/closure-authority-registry";
 import { verifyRunnerAttestationChain } from "./closure-auto-approval";
-import type { ClosureEvidenceRunner, ClosureProcessReceipt } from "./closure-evidence-runner";
+import {
+  type ClosureEvidenceRunner,
+  type ClosureProcessReceipt,
+  closureCommandDedupeKey,
+  type TypedClosureCommand,
+} from "./closure-evidence-runner";
 import {
   acquireClosureMaterializationLock,
   releaseClosureMaterializationLock,
@@ -143,7 +148,8 @@ function readJournal(path: string): Journal {
         !file.staged.startsWith(stagePrefix) ||
         (file.before !== undefined && !file.before.path.startsWith(stagePrefix)) ||
         (!file.final.startsWith(".helix/evidence/outputs/") &&
-          !file.final.startsWith(".helix/evidence/closure-runs/")),
+          !file.final.startsWith(".helix/evidence/closure-runs/") &&
+          !file.final.startsWith(".helix/evidence/process-receipts/")),
     )
   )
     throw new Error("materialization journal path境界不正");
@@ -311,9 +317,9 @@ export function recoverClosureEvidenceMaterialization(repoRoot: string, db: Harn
   rmSync(join(repoRoot, journal.staged_manifest), { force: true });
   rmSync(journalPath, { force: true });
 }
-function materializeClosureEvidenceUnlocked(
+async function materializeClosureEvidenceUnlocked(
   input: ClosureEvidenceMaterializationInput,
-): ClosureEvidenceMaterializationResult {
+): Promise<ClosureEvidenceMaterializationResult> {
   recoverClosureEvidenceMaterialization(input.repoRoot, input.db);
   ensureSchema(input.db);
   const { authorities, classifications } = preflight(input);
@@ -337,8 +343,23 @@ function materializeClosureEvidenceUnlocked(
   const stageRoot = join(input.repoRoot, stageRel);
   mkdirSync(stageRoot, { recursive: true });
   const runs: Run[] = [];
+  const receiptCache = new Map<string, ClosureProcessReceipt>();
   try {
-    for (let offset = 0; offset < authorities.length; offset += windowSize)
+    for (let offset = 0; offset < authorities.length; offset += windowSize) {
+      const planned: Array<
+        | {
+            kind: "test";
+            authority: ClosureAuthority;
+            oracleIds: string[];
+            command: TypedClosureCommand;
+          }
+        | {
+            kind: "gate";
+            authority: ClosureAuthority;
+            gateId: string;
+            command: TypedClosureCommand;
+          }
+      > = [];
       for (const authority of authorities.slice(offset, offset + windowSize)) {
         const grouped = new Map<string, string[]>();
         for (const binding of authority.bindings)
@@ -346,39 +367,67 @@ function materializeClosureEvidenceUnlocked(
             ...(grouped.get(binding.test_path) ?? []),
             binding.oracle_id,
           ]);
-        for (const [testPath, oracleIds] of grouped) {
-          const result = input.runner.runTest({ testPath, oracleIds });
-          for (const proof of result.proofs) {
-            const runId = `test-run:${sha256(JSON.stringify([id, authority.plan_id, proof.oracle_id])).slice(7, 55)}`;
-            const stagedOutput = join(stageRoot, `${runId.replace(":", "-")}.txt`);
-            durable(stagedOutput, result.receipt.stdout);
-            runs.push({
-              runId,
-              planId: authority.plan_id,
-              kind: "test",
-              oracleId: proof.oracle_id,
-              gateId: "",
-              receipt: result.receipt,
-              outputPath: `.helix/evidence/outputs/${id}-${runId.replace(":", "-")}.txt`,
-              stagedOutput,
-              completedAt: result.receipt.completed_at,
-            });
-          }
-        }
+        for (const [testPath, oracleIds] of grouped)
+          planned.push({
+            kind: "test",
+            authority,
+            oracleIds,
+            command: input.runner.prepareTestCommand({ testPath, oracleIds }),
+          });
         for (const gate of authority.gates) {
           const declaredCommand = input.gateCommands[gate.command_id];
           if (!declaredCommand || declaredCommand !== gate.command)
             throw new Error(`gate command authority missing: ${gate.command_id}`);
-          const receipt = input.runner.runGate({ gateId: gate.gate_id, declaredCommand });
-          const runId = `gate-run:${sha256(JSON.stringify([id, authority.plan_id, gate.gate_id])).slice(7, 55)}`;
+          planned.push({
+            kind: "gate",
+            authority,
+            gateId: gate.gate_id,
+            command: input.runner.prepareGateCommand({
+              gateId: gate.gate_id,
+              declaredCommand,
+            }),
+          });
+        }
+      }
+      const missing = planned
+        .map((item) => item.command)
+        .filter(
+          (command) => !receiptCache.has(closureCommandDedupeKey(input.repositoryHead, command)),
+        );
+      const executed = await input.runner.runTypedCommands(missing, { concurrency });
+      for (const receipt of executed) receiptCache.set(receipt.dedupe_key, receipt);
+      for (const item of planned) {
+        const receipt = receiptCache.get(
+          closureCommandDedupeKey(input.repositoryHead, item.command),
+        );
+        if (!receipt) throw new Error("bounded runner receipt missing");
+        if (item.kind === "test") {
+          for (const proof of input.runner.proveTestReceipt(receipt, item.oracleIds)) {
+            const runId = `test-run:${sha256(JSON.stringify([id, item.authority.plan_id, proof.oracle_id])).slice(7, 55)}`;
+            const stagedOutput = join(stageRoot, `${runId.replace(":", "-")}.txt`);
+            durable(stagedOutput, receipt.stdout);
+            runs.push({
+              runId,
+              planId: item.authority.plan_id,
+              kind: "test",
+              oracleId: proof.oracle_id,
+              gateId: "",
+              receipt,
+              outputPath: `.helix/evidence/outputs/${id}-${runId.replace(":", "-")}.txt`,
+              stagedOutput,
+              completedAt: receipt.completed_at,
+            });
+          }
+        } else {
+          const runId = `gate-run:${sha256(JSON.stringify([id, item.authority.plan_id, item.gateId])).slice(7, 55)}`;
           const stagedOutput = join(stageRoot, `${runId.replace(":", "-")}.txt`);
           durable(stagedOutput, receipt.stdout);
           runs.push({
             runId,
-            planId: authority.plan_id,
+            planId: item.authority.plan_id,
             kind: "gate",
-            oracleId: gate.gate_id,
-            gateId: gate.gate_id,
+            oracleId: item.gateId,
+            gateId: item.gateId,
             receipt,
             outputPath: `.helix/evidence/outputs/${id}-${runId.replace(":", "-")}.txt`,
             stagedOutput,
@@ -386,6 +435,7 @@ function materializeClosureEvidenceUnlocked(
           });
         }
       }
+    }
     const postRun = preflight(input);
     if (
       JSON.stringify(
@@ -400,6 +450,21 @@ function materializeClosureEvidenceUnlocked(
       final: run.outputPath,
       digest: sha256(readFileSync(run.stagedOutput)),
     }));
+    const processReceipts = [...receiptCache.values()].sort((a, b) =>
+      a.dedupe_key.localeCompare(b.dedupe_key),
+    );
+    for (const receipt of processReceipts) {
+      const basename = receipt.dedupe_key.slice(7);
+      for (const [stream, bytes] of [
+        ["stdout", receipt.stdout],
+        ["stderr", receipt.stderr],
+      ] as const) {
+        const staged = `${stageRel}/process-receipts/${basename}.${stream}`;
+        const final = `.helix/evidence/process-receipts/${basename}.${stream}`;
+        durable(join(input.repoRoot, staged), bytes);
+        files.push({ staged, final, digest: sha256(bytes) });
+      }
+    }
     for (const authority of authorities) {
       const planRuns = runs
         .filter((run) => run.planId === authority.plan_id)
@@ -411,6 +476,7 @@ function materializeClosureEvidenceUnlocked(
           exit_code: 0,
           output_path: run.outputPath,
           output_digest: sha256(readFileSync(run.stagedOutput)),
+          process_receipt_key: run.receipt.dedupe_key,
           completed_at: run.completedAt,
         }));
       const staged = `${stageRel}/${authority.plan_id}.json`;
@@ -497,6 +563,7 @@ function materializeClosureEvidenceUnlocked(
         status: "passed",
         evidence_path: run.outputPath,
         output_digest: sha256(readFileSync(run.stagedOutput)),
+        process_receipt_key: run.receipt.dedupe_key,
         completed_at: run.completedAt,
       };
       const event_digest = sha256(JSON.stringify(payload));
@@ -505,13 +572,58 @@ function materializeClosureEvidenceUnlocked(
     });
     input.db.exec("BEGIN IMMEDIATE");
     try {
+      for (const receipt of processReceipts) {
+        const basename = receipt.dedupe_key.slice(7);
+        input.db
+          .prepare(
+            `INSERT OR IGNORE INTO closure_process_receipts
+             (process_receipt_key,schema_version,materialization_id,kind,repository_head,
+              executable,argv_json,dedupe_key,exit_code,signal,timed_out,stdout_digest,
+              stderr_digest,stdout_path,stderr_path,completed_at)
+             VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+          )
+          .run(
+            receipt.dedupe_key,
+            receipt.schema_version,
+            id,
+            receipt.kind,
+            receipt.repository_head,
+            receipt.executable,
+            JSON.stringify(receipt.argv),
+            receipt.dedupe_key,
+            receipt.exit_code,
+            receipt.signal,
+            receipt.timed_out ? 1 : 0,
+            receipt.stdout_digest,
+            receipt.stderr_digest,
+            `.helix/evidence/process-receipts/${basename}.stdout`,
+            `.helix/evidence/process-receipts/${basename}.stderr`,
+            receipt.completed_at,
+          );
+        const stored = input.db
+          .prepare(
+            "SELECT repository_head,kind,executable,argv_json,exit_code,stdout_digest,stderr_digest FROM closure_process_receipts WHERE process_receipt_key=?",
+          )
+          .get(receipt.dedupe_key);
+        if (
+          !stored ||
+          stored.repository_head !== receipt.repository_head ||
+          stored.kind !== receipt.kind ||
+          stored.executable !== receipt.executable ||
+          stored.argv_json !== JSON.stringify(receipt.argv) ||
+          Number(stored.exit_code) !== receipt.exit_code ||
+          stored.stdout_digest !== receipt.stdout_digest ||
+          stored.stderr_digest !== receipt.stderr_digest
+        )
+          throw new Error(`physical process receipt immutable mismatch: ${receipt.dedupe_key}`);
+      }
       for (const [index, run] of runs.entries()) {
         const event = events[index];
         if (!event) throw new Error("receipt join missing");
         if (run.kind === "test") {
           input.db
             .prepare(
-              "INSERT INTO test_runs(test_run_id,session_id,plan_id,command,started_at,completed_at,exit_code,evidence_path,output_digest,status) VALUES(?,?,?,?,?,?,?,?,?,?)",
+              "INSERT INTO test_runs(test_run_id,session_id,plan_id,command,started_at,completed_at,exit_code,evidence_path,output_digest,status,process_receipt_key) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
             )
             .run(
               run.runId,
@@ -524,6 +636,7 @@ function materializeClosureEvidenceUnlocked(
               run.outputPath,
               event.output_digest,
               "passed",
+              run.receipt.dedupe_key,
             );
           input.db
             .prepare(
@@ -540,7 +653,7 @@ function materializeClosureEvidenceUnlocked(
         } else
           input.db
             .prepare(
-              "INSERT INTO gate_runs(gate_run_id,gate_id,plan_id,status,checked_at,evidence_path,session_id,command,exit_code,output_digest,materialization_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+              "INSERT INTO gate_runs(gate_run_id,gate_id,plan_id,status,checked_at,evidence_path,session_id,command,exit_code,output_digest,materialization_id,process_receipt_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
             )
             .run(
               run.runId,
@@ -554,10 +667,11 @@ function materializeClosureEvidenceUnlocked(
               0,
               event.output_digest,
               id,
+              run.receipt.dedupe_key,
             );
         input.db
           .prepare(
-            "INSERT INTO runner_attestations(event_digest,previous_digest,run_id,session_id,plan_id,kind,oracle_id,repository_head,command,exit_code,status,evidence_path,output_digest,completed_at,signature) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO runner_attestations(event_digest,previous_digest,run_id,session_id,plan_id,kind,oracle_id,repository_head,command,exit_code,status,evidence_path,output_digest,completed_at,signature,process_receipt_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
           )
           .run(
             event.event_digest,
@@ -575,6 +689,7 @@ function materializeClosureEvidenceUnlocked(
             event.output_digest,
             event.completed_at,
             event.signature,
+            run.receipt.dedupe_key,
           );
       }
       mkdirSync(dirname(jsonlPath), { recursive: true });
@@ -637,12 +752,12 @@ function materializeClosureEvidenceUnlocked(
   }
 }
 
-export function materializeClosureEvidence(
+export async function materializeClosureEvidence(
   input: ClosureEvidenceMaterializationInput,
-): ClosureEvidenceMaterializationResult {
+): Promise<ClosureEvidenceMaterializationResult> {
   const lock = acquireClosureMaterializationLock(input.repoRoot);
   try {
-    return materializeClosureEvidenceUnlocked(input);
+    return await materializeClosureEvidenceUnlocked(input);
   } finally {
     releaseClosureMaterializationLock(lock);
   }

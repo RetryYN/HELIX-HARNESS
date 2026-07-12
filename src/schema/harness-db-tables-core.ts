@@ -145,6 +145,29 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("exit_code", "INTEGER"),
       col("output_digest"),
       col("materialization_id"),
+      // OS subprocess が返した物理 receipt への参照。legacy/projected row は NULL を許す。
+      col("process_receipt_key"),
+    ],
+  },
+  {
+    name: "closure_process_receipts",
+    columns: [
+      pk("process_receipt_key"),
+      col("schema_version"),
+      col("materialization_id"),
+      col("kind"),
+      col("repository_head"),
+      col("executable"),
+      col("argv_json"),
+      col("dedupe_key"),
+      col("exit_code", "INTEGER"),
+      col("signal"),
+      col("timed_out", "INTEGER"),
+      col("stdout_digest"),
+      col("stderr_digest"),
+      col("stdout_path"),
+      col("stderr_path"),
+      col("completed_at"),
     ],
   },
   {
@@ -165,6 +188,7 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("output_digest"),
       col("completed_at"),
       col("signature"),
+      col("process_receipt_key"),
     ],
   },
   {
@@ -327,6 +351,8 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("output_digest"),
       col("green_definition_id"),
       col("status"),
+      // closure materialization以外の既存test projectionとの互換性のためnullable。
+      col("process_receipt_key"),
     ],
   },
   {

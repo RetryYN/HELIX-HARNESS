@@ -195,6 +195,7 @@ const runRecordSchema = z
           exit_code: z.literal(0),
           output_path: z.string().min(1),
           output_digest: digestSchema,
+          process_receipt_key: digestSchema.optional(),
           completed_at: z.string().datetime(),
         })
         .strict(),
@@ -359,7 +360,8 @@ function validateCanonicalRuns(input: {
         ? input.db
             .prepare(
               `SELECT tr.test_run_id AS run_id, tr.session_id, tr.command, tr.exit_code,
-                      tr.evidence_path, tr.output_digest, tr.completed_at, tc.oracle_id
+                      tr.evidence_path, tr.output_digest, tr.completed_at,
+                      tr.process_receipt_key, tc.oracle_id
                FROM test_runs tr JOIN test_cases tc ON tc.test_run_id = tr.test_run_id
                WHERE tr.test_run_id = ? AND tr.plan_id = ? AND tc.oracle_id = ?`,
             )
@@ -367,7 +369,8 @@ function validateCanonicalRuns(input: {
         : input.db
             .prepare(
               `SELECT gate_run_id AS run_id, gate_id AS oracle_id, session_id, command,
-                      exit_code, status, evidence_path, output_digest, checked_at AS completed_at
+                      exit_code, status, evidence_path, output_digest, checked_at AS completed_at,
+                      process_receipt_key
                FROM gate_runs WHERE gate_run_id = ? AND plan_id = ? AND gate_id = ?`,
             )
             .get(run.run_id, input.planId, run.oracle_id);
@@ -408,6 +411,42 @@ function validateCanonicalRuns(input: {
       )
         errors.push(`${run.run_id}: DB gate receipt field不一致`);
     }
+    if (run.process_receipt_key !== undefined) {
+      if (String(dbRow?.process_receipt_key ?? "") !== run.process_receipt_key)
+        errors.push(`${run.run_id}: logical/physical receipt key不一致`);
+      const physical = input.db
+        .prepare("SELECT * FROM closure_process_receipts WHERE process_receipt_key = ?")
+        .get(run.process_receipt_key);
+      if (!physical) errors.push(`${run.run_id}: physical process receipt欠落`);
+      else {
+        let argv: unknown = null;
+        try {
+          argv = JSON.parse(String(physical.argv_json ?? ""));
+        } catch {
+          // fail-closed: malformed physical argv cannot establish typed command provenance.
+        }
+        const command = Array.isArray(argv)
+          ? [String(physical.executable ?? ""), ...argv.map(String)].join(" ")
+          : "";
+        const stdout = canonicalFile(input.repoRoot, String(physical.stdout_path ?? ""));
+        const stderr = canonicalFile(input.repoRoot, String(physical.stderr_path ?? ""));
+        if (
+          String(physical.repository_head ?? "") !== input.head ||
+          String(physical.kind ?? "") !== run.kind ||
+          Number(physical.exit_code) !== 0 ||
+          Number(physical.timed_out) !== 0 ||
+          physical.signal !== null ||
+          command !== run.command ||
+          stdout.error !== null ||
+          stderr.error !== null ||
+          (stdout.error === null &&
+            sha256(readFileSync(stdout.absolute)) !== String(physical.stdout_digest ?? "")) ||
+          (stderr.error === null &&
+            sha256(readFileSync(stderr.absolute)) !== String(physical.stderr_digest ?? ""))
+        )
+          errors.push(`${run.run_id}: physical process receipt exact join不一致`);
+      }
+    }
     const attestation = input.db
       .prepare("SELECT * FROM runner_attestations WHERE run_id = ?")
       .get(run.run_id);
@@ -438,6 +477,11 @@ function validateCanonicalRuns(input: {
         String(attestation.completed_at ?? "") === run.completed_at &&
         String(attestation.signature ?? "") === String(attestation.event_digest ?? "");
       if (!exact) errors.push(`${run.run_id}: runner attestation exact join不一致`);
+      if (
+        run.process_receipt_key !== undefined &&
+        String(attestation.process_receipt_key ?? "") !== run.process_receipt_key
+      )
+        errors.push(`${run.run_id}: attestation/physical receipt key不一致`);
     }
     if (input.seenRunIds.has(run.run_id)) errors.push(`run_id重複: ${run.run_id}`);
     input.seenRunIds.add(run.run_id);

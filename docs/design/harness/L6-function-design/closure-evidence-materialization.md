@@ -79,9 +79,12 @@ write直前CASを満たす場合だけ許可する。
 
 - 361 candidateを最大100件のbounded windowで扱うが、runner commandは重複test pathをHEAD+command単位で共有する。
 - concurrencyは既定1、明示上限4。DB/JSONL publishは単一writerとする。
+- `closure_process_receipts`はHEAD+typed argvごとの物理processをexactly-oneで保持し、複数PLAN/oracleの
+  論理runは`process_receipt_key`で1:N参照する。stdout/stderrは共有artifactとdigestを永続化し、
+  logical run、attestation、artifactとのjoin不一致をapproval gateで拒否する。
 - 全候補をメモリへ無制限保持せず、分類・実行・record生成をwindow単位で行う。
 
 ## 4. Vペア
 
-`docs/test-design/harness/L8-unit-test-design.md`の`U-CMAT-001..010`をoracleとし、fixture repository、
+`docs/test-design/harness/L8-unit-test-design.md`の`U-CMAT-001..012`をoracleとし、fixture repository、
 fake runner、crash injection、persistent DB integrationで検証する。

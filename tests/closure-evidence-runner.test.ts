@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import {
+  type ClosureAsyncSpawn,
   ClosureEvidenceRunner,
   type ClosureSpawn,
   closureCommandDedupeKey,
@@ -36,6 +37,101 @@ function json(assertions: Array<{ fullName: string; title?: string; status: stri
 }
 
 describe("closure evidence typed subprocess runner", () => {
+  it("async FIFO poolはconcurrency 1..4を実際のactive process数へ強制する", async () => {
+    const { root } = fixture();
+    let active = 0;
+    let maxActive = 0;
+    const started: string[] = [];
+    const asyncSpawn: ClosureAsyncSpawn = async ({ argv }) => {
+      active += 1;
+      maxActive = Math.max(maxActive, active);
+      started.push(argv[0] ?? "");
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      active -= 1;
+      return {
+        exitCode: 0,
+        signal: null,
+        stdout: argv[0] ?? "green",
+        stderr: "",
+        timedOut: false,
+      };
+    };
+    const runner = new ClosureEvidenceRunner({
+      repoRoot: root,
+      repositoryHead: HEAD,
+      gateAllowlist: {},
+      asyncSpawn,
+    });
+    const commands = Array.from({ length: 8 }, (_, index) => ({
+      kind: "gate" as const,
+      executable: "gate",
+      argv: [`${index}`],
+    }));
+    const receipts = await runner.runTypedCommands(commands, { concurrency: 3 });
+    expect(maxActive).toBeLessThanOrEqual(3);
+    expect(started.slice(0, 3)).toEqual(["0", "1", "2"]);
+    expect(receipts.map((receipt) => receipt.stdout)).toEqual(commands.map((c) => c.argv[0]));
+    await expect(runner.runTypedCommands(commands, { concurrency: 0 })).rejects.toThrow(/1\.\.4/);
+    await expect(runner.runTypedCommands(commands, { concurrency: 5 })).rejects.toThrow(/1\.\.4/);
+  });
+
+  it("async FIFO poolはHEAD+argv重複を1 spawnへdedupeする", async () => {
+    const { root } = fixture();
+    const asyncSpawn = vi.fn<ClosureAsyncSpawn>(async () => ({
+      exitCode: 0,
+      signal: null,
+      stdout: "green",
+      stderr: "",
+      timedOut: false,
+    }));
+    const runner = new ClosureEvidenceRunner({
+      repoRoot: root,
+      repositoryHead: HEAD,
+      gateAllowlist: {},
+      asyncSpawn,
+    });
+    const command = { kind: "gate" as const, executable: "bun", argv: ["--version"] };
+    const receipts = await runner.runTypedCommands([command, command, command], {
+      concurrency: 4,
+    });
+    expect(asyncSpawn).toHaveBeenCalledTimes(1);
+    expect(receipts[0]).toBe(receipts[1]);
+    expect(receipts[1]).toBe(receipts[2]);
+  });
+
+  it("async FIFO poolは最初のfailure観測後に未dispatch commandを開始しない", async () => {
+    const { root } = fixture();
+    const started: string[] = [];
+    let releaseSecond: (() => void) | undefined;
+    const second = new Promise<void>((resolve) => {
+      releaseSecond = resolve;
+    });
+    const asyncSpawn: ClosureAsyncSpawn = async ({ argv }) => {
+      const id = argv[0] ?? "";
+      started.push(id);
+      if (id === "0")
+        return { exitCode: 2, signal: null, stdout: "failed", stderr: "", timedOut: false };
+      await second;
+      return { exitCode: 0, signal: null, stdout: "green", stderr: "", timedOut: false };
+    };
+    const runner = new ClosureEvidenceRunner({
+      repoRoot: root,
+      repositoryHead: HEAD,
+      gateAllowlist: {},
+      asyncSpawn,
+    });
+    const commands = Array.from({ length: 5 }, (_, index) => ({
+      kind: "gate" as const,
+      executable: "gate",
+      argv: [`${index}`],
+    }));
+    const result = runner.runTypedCommands(commands, { concurrency: 2 });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    releaseSecond?.();
+    await expect(result).rejects.toThrow(/exited 2/);
+    expect(started).toEqual(["0", "1"]);
+  });
+
   it("U-CMAT-004: single canonical test pathをtyped Vitest argvへ固定しshell入力を拒否する", () => {
     const { root, testPath } = fixture();
     const spawn = vi.fn<ClosureSpawn>(() => ({

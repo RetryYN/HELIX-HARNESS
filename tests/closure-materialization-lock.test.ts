@@ -8,7 +8,7 @@ import {
   releaseClosureMaterializationLock,
 } from "../src/state-db/closure-materialization-lock";
 
-// PLAN-L7-434-closure-evidence-materialization / U-CMAT-006 / U-CMAT-009
+// PLAN-L7-434-closure-evidence-materialization / U-CMAT-012
 
 function repository(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-materialization-lock-"));
@@ -17,7 +17,7 @@ function repository(): string {
 }
 
 describe("closure materialization atomic lock", () => {
-  it("live process identityのlockは二重取得を拒否し、正当ownerだけが解放する", () => {
+  it("U-CMAT-012: live process identityのlockは二重取得を拒否し、正当ownerだけが解放する", () => {
     const root = repository();
     const lock = acquireClosureMaterializationLock(root);
     expect(() => acquireClosureMaterializationLock(root)).toThrow(/already running/);
@@ -56,6 +56,7 @@ describe("closure materialization atomic lock", () => {
       }),
     );
     const recovered = acquireClosureMaterializationLock(root);
+    expect(recovered.path).toBe(lockPath);
     releaseClosureMaterializationLock(recovered);
   });
 

@@ -142,6 +142,12 @@ function ensureGateRunReceiptImmutability(db: HarnessDb): void {
 }
 
 function ensureClosureEvidenceImmutability(db: HarnessDb): void {
+  if (tableNames(db).includes("closure_process_receipts")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipts_no_update
+      BEFORE UPDATE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'closure process receipt immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipts_no_delete
+      BEFORE DELETE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'closure process receipt immutable'); END`);
+  }
   if (tableNames(db).includes("runner_attestations")) {
     db.exec(`CREATE TRIGGER IF NOT EXISTS runner_attestations_no_update
       BEFORE UPDATE ON runner_attestations BEGIN SELECT RAISE(ABORT, 'runner attestation immutable'); END`);
