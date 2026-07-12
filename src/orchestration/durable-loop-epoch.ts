@@ -104,7 +104,18 @@ export function commitLoopEpoch(input: {
   port: DurableEpochPort;
 }): LoopEpochCommitResult {
   const planId = assertLoopPlanId(input.planId);
-  if (!input.port.acquireExclusiveClaim(planId)) {
+  let claimAcquired = false;
+  try {
+    claimAcquired = input.port.acquireExclusiveClaim(planId);
+  } catch {
+    return {
+      status: "durability_uncertain",
+      manifest: null,
+      intentCapability: null,
+      reason: "claim_acquisition_failed",
+    };
+  }
+  if (!claimAcquired) {
     return {
       status: "concurrent_conflict",
       manifest: null,

@@ -265,7 +265,8 @@ export function nodeDurableEpochPort(
       const value = paths(planId);
       mkdirSync(value.directory, { recursive: true });
       if (existsSync(value.releasingClaim) || existsSync(value.releaseProof)) {
-        if (!validReleaseProof(value, planId)) return false;
+        if (!validReleaseProof(value, planId))
+          throw new Error("loop claim release proof is invalid");
         unlinkSync(value.releasingClaim);
         unlinkSync(value.releaseProof);
         fsyncDirectory(value.directory);
