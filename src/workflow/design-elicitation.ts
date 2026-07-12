@@ -11,6 +11,8 @@
  * ③ Forward 降下 = Forward 本線 + Discovery 合流点、は既存機構を合成する (再発明しない)。
  * 合成は contracts.ts の routeSignalToMode (既存 Discovery routing) を再利用して担保する。
  */
+
+import { uniqueSorted } from "../shared/collection-utils";
 import { type ContractResult, type Finding, routeSignalToMode } from "./contracts";
 
 export interface BackendCapability {
@@ -111,10 +113,6 @@ function finding(
 
 function result(findings: Finding[], evidence_paths: string[] = []): ContractResult {
   return { ok: findings.every((f) => f.severity !== "error"), findings, evidence_paths };
-}
-
-function uniqueSorted(values: string[]): string[] {
-  return [...new Set(values)].sort();
 }
 
 /**

@@ -982,3 +982,14 @@ schema/lint callerは独自実装を持たない。正規表現meta characterだ
 | 関数 | pre | post | invariant | oracle |
 |---|---|---|---|---|
 | `escapeRegExp` | 任意文字列 | regex literal fragment | production定義1件、非meta文字不変 | U-STRUTIL-001..002 |
+
+### unique sort意味分離（PLAN-L7-433 Q8）
+
+machine ID/path用`uniqueSorted`はlocale非依存のcode-unit順、人間向けproposal語彙用
+`uniqueLocaleSorted`はruntime locale collation順とする。両者を別名契約にして、従来の暗黙な
+`.sort()` / `localeCompare`差を保持・可視化する。callerは目的に合う関数を明示する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `uniqueSorted` | string tokens | 重複なしcode-unit昇順 | locale非依存、入力非破壊 | U-COLUTIL-001..002 |
+| `uniqueLocaleSorted` | 人間向け表示語 | 重複なしlocale昇順 | locale semanticsを別名で明示 | U-COLUTIL-002 |

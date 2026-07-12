@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { uniqueLocaleSorted } from "../shared/collection-utils";
 import {
   DEFAULT_PROPOSAL_COVERAGE_SCENARIOS,
   PROPOSAL_ROUTING_DOC_PATH,
@@ -73,10 +74,6 @@ export function loadProposalDocumentCoverageLintInput(
     classifyCoverage,
     routingDocText: existsSync(routingDoc) ? readFileSync(routingDoc, "utf8") : null,
   };
-}
-
-function uniqueSorted(values: string[]): string[] {
-  return [...new Set(values)].sort((a, b) => a.localeCompare(b));
 }
 
 function existsRepoPath(repoRoot: string, repoRelativePath: string): boolean {
@@ -197,7 +194,7 @@ export function analyzeProposalDocumentCoverage(
   }
 
   if (input.routingDocText !== null) {
-    for (const pattern of uniqueSorted(checkedPatterns)) {
+    for (const pattern of uniqueLocaleSorted(checkedPatterns)) {
       if (!input.routingDocText.includes(`\`${pattern}\``)) {
         violations.push({
           kind: "missing-routing-marker",
@@ -238,7 +235,7 @@ export function analyzeProposalDocumentCoverage(
   return {
     ok: violations.length === 0,
     checkedScenarios: scenarios.length,
-    checkedPatterns: uniqueSorted(checkedPatterns),
+    checkedPatterns: uniqueLocaleSorted(checkedPatterns),
     violations,
   };
 }

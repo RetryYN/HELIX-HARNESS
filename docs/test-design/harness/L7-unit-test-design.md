@@ -1282,3 +1282,6 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 
 | U-STRUTIL-001 | `escapeRegExp` | 全meta characterを含む入力が生成regexで完全literal matchする。 |
 | U-STRUTIL-002 | production definition inventory | 対象5 module中の`escapeRegExp`定義がsharedの1件だけである。 |
+
+| U-COLUTIL-001 | `uniqueSorted` | 重複を除き、数字・大文字・小文字をcode-unit順に固定する。 |
+| U-COLUTIL-002 | sort意味分離 | locale順を別名契約で保持し、対象5 module中の`uniqueSorted`定義をshared 1件にする。 |
