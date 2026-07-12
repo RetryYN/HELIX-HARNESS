@@ -8,7 +8,7 @@ plan: docs/plans/PLAN-L6-74-closure-authority-production-route.md
 
 # closure authority本番経路 テスト・検証設計
 
-| oracle | 対象 | 反証条件 | test path |
+| U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-CABF-011 | public API surface | 3 public exportの欠落、CLI/verifierのprivate fork、同名local shadowを拒否する | `tests/closure-authority-backfill-production-route.test.ts` |
 | U-CABF-012 | run保存則とwindow | 362件の全bundleと最大100件の連続windowを生成し、missing/excess/duplicate/order/window digest driftを拒否する | `tests/closure-authority-backfill-production-route.test.ts` |

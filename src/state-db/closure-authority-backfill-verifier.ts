@@ -48,6 +48,12 @@ function verifyTrackedHeadFile(input: {
     encoding: "utf8",
   }).trim();
   if (tracked !== path) throw new Error(`repo-owned tracked path mismatch: ${path}`);
+  const tree = execFileSync("git", ["ls-tree", head, "--", path], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  }).trim();
+  if (!tree.startsWith("100644 blob ") || !tree.endsWith(`\t${path}`))
+    throw new Error(`tracked regular blob required: ${path}`);
   const bytes = execFileSync("git", ["show", `${head}:${path}`], { cwd: repoRoot });
   if (sha256(bytes) !== digest) throw new Error(`tracked HEAD blob digest mismatch: ${path}`);
 }
@@ -341,7 +347,7 @@ function loadTypedAuthorityBlock(input: {
   };
 }
 
-function rebuildCandidate(input: {
+export function buildCurrentClosureAuthorityCandidate(input: {
   repoRoot: string;
   db: HarnessDb;
   head: string;
@@ -511,7 +517,7 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
       const planPath = paths[index];
       if (!planId || !planPath) throw new Error("review scope plan/path cardinality mismatch");
       rebuiltCandidates.push(
-        rebuildCandidate({
+        buildCurrentClosureAuthorityCandidate({
           repoRoot: input.repoRoot,
           db: input.db,
           head: bundle.repository_head,

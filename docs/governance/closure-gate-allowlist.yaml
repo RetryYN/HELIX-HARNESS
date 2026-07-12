@@ -1,0 +1,4 @@
+schema_version: closure-gate-allowlist.v1
+# 現時点でrepo-owned typed gate inventoryから安全に確定できるentryは0件。
+# emptyはauthorityを推測しないための正規状態であり、候補はneeds_gate_authorityとしてForwardへ戻す。
+gates: {}

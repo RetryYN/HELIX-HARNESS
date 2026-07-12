@@ -375,6 +375,11 @@ import {
   recordSkillRecommendations,
 } from "./skills/recommend";
 import {
+  buildCurrentClosureAuthorityBackfillRun,
+  ClosureAuthorityBackfillInputError,
+  loadCurrentClosureAuthorityBackfillInput,
+} from "./state-db/closure-authority-backfill-production";
+import {
   applyClosureAutoApprovalAtomic,
   type ClosureAutoApprovalEvaluation,
   type ClosureAutoApprovalManifest,
@@ -431,7 +436,12 @@ import {
   type ProjectRoadmapCurrentReport,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
-import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./state-db/index";
+import {
+  defaultHarnessDbPath,
+  type HarnessDb,
+  openHarnessDb,
+  openHarnessDbReadOnly,
+} from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
 import {
@@ -7365,6 +7375,66 @@ closure
       }
     },
   );
+closure
+  .command("authority-backfill")
+  .description("build the current-main closure authority proposal bundle without mutation")
+  .option("--dry-run", "required read-only mode")
+  .option("--from-db", "read persistent harness.db (required)")
+  .option("--expected-head <sha>", "expected current local origin/main SHA")
+  .option("--json", "emit one JSON document")
+  .action((opts: { dryRun?: boolean; fromDb?: boolean; expectedHead?: string; json?: boolean }) => {
+    if (!opts.dryRun || !opts.fromDb || !opts.expectedHead || !opts.json) {
+      process.stderr.write(
+        "closure authority-backfill: --dry-run --from-db --expected-head <sha> --json are required\n",
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const repoRoot = process.cwd();
+    const dbPath = defaultHarnessDbPath(repoRoot);
+    if (!existsSync(dbPath)) {
+      process.stderr.write("closure authority-backfill: persistent harness.db does not exist\n");
+      process.exitCode = 2;
+      return;
+    }
+    let db: HarnessDb;
+    try {
+      db = openHarnessDbReadOnly(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(
+        `closure authority-backfill: internal DB open failure: ${String(error)}\n`,
+      );
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      for (const table of ["plan_registry", "closure_process_receipts"]) {
+        if (
+          !db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").get(table)
+        ) {
+          process.stderr.write(
+            `closure authority-backfill: persistent DB schema missing ${table}\n`,
+          );
+          process.exitCode = 2;
+          return;
+        }
+      }
+      const run = buildCurrentClosureAuthorityBackfillRun(
+        loadCurrentClosureAuthorityBackfillInput({
+          repoRoot,
+          db,
+          expected_head_sha: opts.expectedHead,
+          now: new Date().toISOString(),
+        }),
+      );
+      process.stdout.write(`${JSON.stringify(run)}\n`);
+    } catch (error) {
+      process.stderr.write(`closure authority-backfill: ${String(error)}\n`);
+      process.exitCode = error instanceof ClosureAuthorityBackfillInputError ? 2 : 1;
+    } finally {
+      db.close();
+    }
+  });
 closure
   .command("authority-materialize")
   .description("classify or materialize current-main close_ready evidence from repo authority")

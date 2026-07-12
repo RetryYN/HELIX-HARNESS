@@ -335,3 +335,11 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-CABF-008 | post-apply再分類 | registry hard gateと全候補再分類を実行し、失敗時before bytesを復元して、件数保存則、対象eligible化、非対象不変、materializer generation CASを確認する | `tests/closure-authority-backfill-transaction.test.ts` |
 | U-CABF-009 | incremental convergence | 361件を100件以下のwindowで処理し、canonical append-only digest chainへreason backlog/cycle差分をidempotent保存し、registry commit後のledger失敗を決定論的に回復する | `tests/closure-authority-backfill-transaction.test.ts` |
 | U-CABF-010 | human/closure境界 | backfillはclosure status、approval、不可逆actionを変更せず、human/action-binding authorityを維持する | `tests/closure-authority-backfill-transaction.test.ts` |
+| U-CABF-011 | production public API | 3 public exportと共有candidate builderを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-012 | production run/window | 全候補保存則と最大100件windowを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-013 | production HEAD provenance | expected HEADとlocal origin/mainを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-014 | production source boundary | dirty、case-fold、symlink、submoduleを拒否する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-015 | production allowlist | canonical strict allowlistを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-016 | production CLI | 必須optionとJSON/exit contractを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-017 | production read-only | 全経路でmutationが無いことを検証する | `tests/closure-authority-backfill-production-route.test.ts` |
+| U-CABF-018 | production builder/verifier parity | 初回生成と再構築の同型性を検証する | `tests/closure-authority-backfill-production-route.test.ts` |

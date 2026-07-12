@@ -47,14 +47,13 @@ export function readVerifiedRepoFile(
   return { bytes, digest: sha256(bytes) };
 }
 
+const gateIdSchema = z.string().regex(/^[a-z][a-z0-9-]*$/);
 const allowlistSchema = z
   .object({
     schema_version: z.literal("closure-gate-allowlist.v1"),
     gates: z.record(
-      z.string().regex(/^[a-z][a-z0-9-]*$/),
-      z
-        .object({ command_id: z.string().regex(/^[a-z][a-z0-9-]*$/), command: z.string().min(1) })
-        .strict(),
+      gateIdSchema,
+      z.object({ command_id: gateIdSchema, command: z.string().trim().min(1) }).strict(),
     ),
   })
   .strict();
@@ -68,6 +67,10 @@ export function loadRepoOwnedGateAllowlist(input: {
     throw new Error(`gate allowlist path must be ${CLOSURE_GATE_ALLOWLIST_PATH}`);
   const source = readVerifiedRepoFile(input.repoRoot, input.path);
   const parsed = allowlistSchema.parse(parseYaml(source.bytes.toString("utf8")));
+  for (const [gateId, entry] of Object.entries(parsed.gates)) {
+    if (entry.command_id !== gateId)
+      throw new Error(`gate allowlist command_id must equal gate id: ${gateId}`);
+  }
   return {
     source_path: input.path,
     source_digest: source.digest,
