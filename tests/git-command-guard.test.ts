@@ -157,6 +157,38 @@ describe("git-command-guard", () => {
     }
   });
 
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] preserves the block invariant for generated seed transformations", () => {
+    const seeds = [
+      "clean -f",
+      "branch -D feature",
+      "stash clear",
+      "reset --hard HEAD",
+      "restore src/cli.ts",
+      "push --force origin main",
+    ];
+    const globalOptions = ["", "--no-pager ", "-cfoo.bar=baz ", "-C repo "];
+    const wrap = (gitCommand: string) => [
+      gitCommand,
+      `env -i ${gitCommand}`,
+      `command -- ${gitCommand}`,
+      `echo safe; ${gitCommand}`,
+      `bash -c '${gitCommand}'`,
+      `echo \$(${gitCommand})`,
+      `echo \`${gitCommand}\``,
+      `(${gitCommand})`,
+    ];
+    let generated = 0;
+    for (const seed of seeds) {
+      for (const option of globalOptions) {
+        for (const command of wrap(`git ${option}${seed}`)) {
+          generated += 1;
+          expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+        }
+      }
+    }
+    expect(generated).toBe(seeds.length * globalOptions.length * 8);
+  });
+
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] fails closed on incomplete backtick substitution", () => {
     expect(evaluateGitCommandGuard({ command: "echo `git clean -f" }).decision).toBe("block");
   });

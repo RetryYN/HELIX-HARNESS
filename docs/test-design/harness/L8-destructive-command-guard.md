@@ -21,7 +21,7 @@ plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 env overrideはGit/foreign-editの両adapterで初回だけDB audit付きallow、同一session/subjectの2回目を
 `blocked_reuse`とする。raw command、target、reasonをrowへ保存しない。
 
-property testはdestructive seedへ安全なprefix/suffix/global option/quote変形を生成し、block不変を検査する。
+property testは6 destructive seed × 4 global option × 8 shell wrapper（192変形）を生成し、block不変を検査する。
 process競合は2 childを起動してstdin barrierを同時releaseし、allow/block各1件とDB row 1件を検査する。
 failure oracleはin-memory fakeだけでなくtemp repositoryのDB open failure、実SQLite write-lockによるtransaction
 commit failure、marker remove failureを使う。lock中はmarker保持でblockし、rollback/release後のretryだけをallowする。
