@@ -210,7 +210,7 @@ function parseRecord(text: string): Record<string, unknown> | null {
   }
 }
 
-function parseManifest(text: string): LoopEpochManifest | null {
+export function parseLoopEpochManifest(text: string): LoopEpochManifest | null {
   const value = parseRecord(text);
   if (
     value?.schema !== LOOP_EPOCH_SCHEMA ||
@@ -238,7 +238,7 @@ function parseManifest(text: string): LoopEpochManifest | null {
   return value as LoopEpochManifest;
 }
 
-function parsePayload(text: string, planId: string): LoopEpochPayload | null {
+export function parseLoopEpochPayload(text: string, planId: string): LoopEpochPayload | null {
   const value = parseRecord(text);
   const state = value?.state;
   const stateRecord =
