@@ -1,6 +1,7 @@
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
+  chmodSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
@@ -173,7 +174,7 @@ describe("git-command-guard", () => {
       `command -- ${gitCommand}`,
       `echo safe; ${gitCommand}`,
       `bash -c '${gitCommand}'`,
-      `echo \$(${gitCommand})`,
+      `echo $(${gitCommand})`,
       `echo \`${gitCommand}\``,
       `(${gitCommand})`,
     ];
@@ -438,6 +439,31 @@ describe("git-command-guard", () => {
       rmSync(cwd, { recursive: true, force: true });
     }
   }, 15_000);
+
+  it.skipIf(process.platform === "win32" || (process.getuid?.() ?? 0) === 0)(
+    "[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-006] fails closed when the real marker cannot be removed",
+    () => {
+      const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-marker-permission-"));
+      const stateDir = join(cwd, ".helix", "state");
+      const markerPath = join(stateDir, "destructive-git-override");
+      try {
+        mkdirSync(stateDir, { recursive: true });
+        writeFileSync(markerPath, "reviewed recovery with protected marker");
+        chmodSync(stateDir, 0o500);
+        const result = runCliGuard(
+          { session_id: "s-permission", tool_input: { command: "git clean -f" } },
+          cwd,
+        );
+        expect(result.status).toBe(2);
+        expect(result.stderr).toContain("blocked_consume_failure");
+        expect(existsSync(markerPath)).toBe(true);
+        expect(overrideRows(cwd)[0]).toMatchObject({ status: "consume_failed" });
+      } finally {
+        chmodSync(stateDir, 0o700);
+        rmSync(cwd, { recursive: true, force: true });
+      }
+    },
+  );
 
   it("S3: Bash write to a foreign uncommitted file is blocked", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-bash-workguard-"));
