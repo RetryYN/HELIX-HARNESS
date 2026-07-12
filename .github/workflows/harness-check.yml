@@ -45,9 +45,14 @@ jobs:
 
   harness-check:
     needs: windows-durability-smoke
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      - name: require Windows durability smoke
+        if: ${{ needs.windows-durability-smoke.result != 'success' }}
+        run: exit 1
+
       - name: checkout
         uses: actions/checkout@v5
         with:
