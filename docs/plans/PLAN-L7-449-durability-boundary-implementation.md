@@ -4,6 +4,8 @@ title: "PLAN-L7-449 (add-impl): diagnostic redaction / autonomous-loop durabilit
 kind: add-impl
 layer: L7
 drive: agent
+parent_design: docs/design/harness/L6-function-design/durability-boundaries.md
+pair_artifact: docs/test-design/harness/L8-durability-boundaries.md
 status: draft
 route_mode: add-feature
 entry_signals:
@@ -13,6 +15,22 @@ entry_signals:
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+verification_bindings:
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-001,
+      test_path: tests/doctor-cause-digest.test.ts,
+    }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-003,
+      test_path: tests/doctor-cause-digest-contract.test.ts,
+    }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-004,
+      test_path: tests/loop-store-durability.test.ts,
+    }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-78でL5/L6 contractとL8/L9 Vペアへbackprop済み。"
 generates:
