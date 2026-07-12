@@ -12,6 +12,7 @@ import {
 } from "node:fs";
 import { platform, uptime } from "node:os";
 import { join } from "node:path";
+import { sha256Digest } from "../runtime/digest";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
 import {
   classifyLoopEpochFiles,
@@ -19,7 +20,6 @@ import {
   LOOP_EPOCH_POINTER_SCHEMA,
   type LoopEpochReadResult,
 } from "./durable-loop-epoch";
-import { sha256Digest } from "../runtime/digest";
 
 type ClaimMetadata = {
   pid: number;
@@ -133,11 +133,15 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
       const value = paths(planId);
       const pointerText = readIfExists(value.manifest);
       if (pointerText === null) return null;
-      const pointer = JSON.parse(pointerText) as { manifestFile?: unknown; manifestDigest?: unknown };
+      const pointer = JSON.parse(pointerText) as {
+        manifestFile?: unknown;
+        manifestDigest?: unknown;
+      };
       if (
         typeof pointer.manifestFile !== "string" ||
         !/^[A-Za-z0-9._-]+\.manifest\.json$/.test(pointer.manifestFile)
-      ) return null;
+      )
+        return null;
       const manifestText = readIfExists(value.manifestFor(pointer.manifestFile));
       return manifestText !== null && sha256Digest(manifestText) === pointer.manifestDigest
         ? manifestText
@@ -163,7 +167,11 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
     renameManifest: (planId, tempId, manifestFile) =>
       renameSync(paths(planId).manifestTempFor(tempId), paths(planId).manifestFor(manifestFile)),
     writePointerTemp: (planId, tempId, text) =>
-      writeFileSync(paths(planId).pointerTempFor(tempId), text, { encoding: "utf8", flag: "wx", mode: 0o600 }),
+      writeFileSync(paths(planId).pointerTempFor(tempId), text, {
+        encoding: "utf8",
+        flag: "wx",
+        mode: 0o600,
+      }),
     fsyncPointerTemp: (planId, tempId) => fsyncPath(paths(planId).pointerTempFor(tempId)),
     renamePointer: (planId, tempId) =>
       renameSync(paths(planId).pointerTempFor(tempId), paths(planId).manifest),
@@ -175,20 +183,83 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
 export function readLoopEpochFromFs(root: string, planId: string): LoopEpochReadResult {
   const paths = loopEpochPaths(root, planId);
   try {
-    const manifestText = readIfExists(paths.manifest);
+    const pointerText = readIfExists(paths.manifest);
     const claimText = readIfExists(paths.claim);
+    let manifestText: string | null = null;
+    let previousManifestText: string | null | undefined;
+    let conflictingManifestText: string | null = null;
     let payloadText: string | null = null;
-    if (manifestText !== null) {
+    if (pointerText !== null) {
       try {
-        const manifest = JSON.parse(manifestText) as { payloadFile?: unknown };
+        const pointer = JSON.parse(pointerText) as {
+          schema?: unknown;
+          planId?: unknown;
+          epochId?: unknown;
+          manifestFile?: unknown;
+          manifestDigest?: unknown;
+        };
+        if (
+          pointer.schema !== LOOP_EPOCH_POINTER_SCHEMA ||
+          pointer.planId !== planId ||
+          !Number.isSafeInteger(pointer.epochId) ||
+          typeof pointer.manifestFile !== "string" ||
+          !pointer.manifestFile.startsWith(`${assertLoopPlanId(planId)}.epoch-`) ||
+          !pointer.manifestFile.endsWith(".manifest.json") ||
+          typeof pointer.manifestDigest !== "string"
+        )
+          return { status: "corrupt", manifest: null, payload: null, reason: "pointer_invalid" };
+        manifestText = readIfExists(paths.manifestFor(pointer.manifestFile));
+        if (manifestText === null || sha256Digest(manifestText) !== pointer.manifestDigest)
+          return {
+            status: "corrupt",
+            manifest: null,
+            payload: null,
+            reason: "pointer_digest_mismatch",
+          };
+        const manifest = JSON.parse(manifestText) as {
+          epochId?: unknown;
+          previousManifestDigest?: unknown;
+          payloadFile?: unknown;
+        };
         if (
           typeof manifest.payloadFile === "string" &&
           /^[A-Za-z0-9._-]+\.payload\.json$/.test(manifest.payloadFile)
         ) {
           payloadText = readIfExists(paths.payloadFor(manifest.payloadFile));
         }
+        const history = readdirSync(paths.directory).filter(
+          (name) =>
+            name.startsWith(`${assertLoopPlanId(planId)}.epoch-`) &&
+            name.endsWith(".manifest.json") &&
+            name !== pointer.manifestFile,
+        );
+        if (manifest.epochId === 0) previousManifestText = null;
+        else if (typeof manifest.previousManifestDigest === "string")
+          previousManifestText =
+            history
+              .map((name) => readIfExists(paths.manifestFor(name)))
+              .find(
+                (text): text is string =>
+                  text !== null && sha256Digest(text) === manifest.previousManifestDigest,
+              ) ?? null;
+        conflictingManifestText =
+          history
+            .map((name) => readIfExists(paths.manifestFor(name)))
+            .find((text) => {
+              if (text === null) return false;
+              try {
+                return (JSON.parse(text) as { epochId?: unknown }).epochId === manifest.epochId;
+              } catch {
+                return false;
+              }
+            }) ?? null;
       } catch {
-        payloadText = null;
+        return {
+          status: "corrupt",
+          manifest: null,
+          payload: null,
+          reason: "pointer_or_manifest_invalid",
+        };
       }
     } else if (existsSync(paths.directory)) {
       const orphan = readdirSync(paths.directory).find(
@@ -202,6 +273,8 @@ export function readLoopEpochFromFs(root: string, planId: string): LoopEpochRead
       manifestText,
       payloadText,
       claimStatus: claimStatus(claimText),
+      previousManifestText,
+      conflictingManifestText,
     });
   } catch {
     return {

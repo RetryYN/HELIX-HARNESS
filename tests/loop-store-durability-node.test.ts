@@ -49,7 +49,8 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     expect(result.status).toBe("committed");
     expect(existsSync(paths.manifest)).toBe(true);
     expect(existsSync(paths.claim)).toBe(false);
-    const manifest = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    const pointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    const manifest = JSON.parse(readFileSync(paths.manifestFor(pointer.manifestFile), "utf8"));
     expect(manifest.planId).toBe(PLAN);
     expect(existsSync(paths.payloadFor(manifest.payloadFile))).toBe(true);
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
@@ -94,8 +95,10 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     });
     expect(first.status).toBe("committed");
     const paths = loopEpochPaths(repo, PLAN);
-    const previousManifestText = readFileSync(paths.manifest, "utf8");
-    const previousManifest = JSON.parse(previousManifestText);
+    const previousPointerText = readFileSync(paths.manifest, "utf8");
+    const previousManifestText = firstPort.readManifestText(PLAN);
+    expect(previousManifestText).not.toBeNull();
+    const previousManifest = JSON.parse(previousManifestText as string);
     const previousPayloadText = readFileSync(
       paths.payloadFor(previousManifest.payloadFile),
       "utf8",
@@ -111,13 +114,13 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     });
     const second = commitLoopEpoch({
       planId: PLAN,
-      previousManifestText,
+      previousManifestText: previousManifestText as string,
       payload: { state: { ...state, iteration: 1 }, iteration: null },
       sideEffectPhase: "not_started",
       port: faultPort,
     });
     expect(second.status).toBe("durability_uncertain");
-    expect(readFileSync(paths.manifest, "utf8")).toBe(previousManifestText);
+    expect(readFileSync(paths.manifest, "utf8")).toBe(previousPointerText);
     expect(readFileSync(paths.payloadFor(previousManifest.payloadFile), "utf8")).toBe(
       previousPayloadText,
     );
