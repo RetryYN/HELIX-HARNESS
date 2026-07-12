@@ -56,9 +56,10 @@ function shellTokens(command: string): { tokens: string[]; complete: boolean } {
         tokens.push(current);
         current = "";
       }
+      if (ch === "\n" || ch === "\r") tokens.push(";");
       continue;
     }
-    if (quote === null && (ch === ";" || ch === "|" || ch === "&")) {
+    if (quote === null && (ch === ";" || ch === "|" || ch === "&" || ch === "(" || ch === ")")) {
       if (current) {
         tokens.push(current);
         current = "";
@@ -82,13 +83,22 @@ function gitSlices(tokens: string[]): string[][] {
   const slices: string[][] = [];
   for (let i = 0; i < tokens.length; i++) {
     if (tokens[i] !== "git") continue;
-    let commandStart = i === 0 || /^(?:&&|\|\||;|\|)$/.test(tokens[i - 1] ?? "");
+    let commandStart = i === 0 || /^(?:&&|\|\||;|\||\()$/.test(tokens[i - 1] ?? "");
     if (!commandStart) {
       let start = i - 1;
-      while (start > 0 && !/^(?:&&|\|\||;|\|)$/.test(tokens[start - 1] ?? "")) start -= 1;
+      while (start > 0 && !/^(?:&&|\|\||;|\||\()$/.test(tokens[start - 1] ?? "")) start -= 1;
       const prefix = tokens.slice(start, i);
-      if (prefix[0] === "command") prefix.shift();
-      if (prefix[0] === "env") prefix.shift();
+      if (prefix[0] === "command") {
+        prefix.shift();
+        if (prefix[0] === "--") prefix.shift();
+      }
+      if (prefix[0] === "env") {
+        prefix.shift();
+        while (prefix[0]?.startsWith("-")) {
+          const option = prefix.shift();
+          if ((option === "-u" || option === "--unset") && prefix.length > 0) prefix.shift();
+        }
+      }
       while (prefix.length > 0 && /^[A-Za-z_][A-Za-z0-9_]*=.*/.test(prefix[0] ?? "")) {
         prefix.shift();
       }
@@ -98,7 +108,7 @@ function gitSlices(tokens: string[]): string[][] {
     const slice: string[] = [];
     for (let j = i + 1; j < tokens.length; j++) {
       const token = tokens[j] ?? "";
-      if (/^(?:&&|\|\||;|\|)$/.test(token)) break;
+      if (/^(?:&&|\|\||;|\||\))$/.test(token)) break;
       slice.push(token);
     }
     slices.push(slice);
@@ -158,6 +168,10 @@ function withoutGlobalOptions(args: string[]): string[] {
     }
     if (head === "--git-dir" || head === "--work-tree") {
       out.splice(0, 2);
+      continue;
+    }
+    if (["--no-pager", "--paginate", "--no-replace-objects", "--bare"].includes(head)) {
+      out.shift();
       continue;
     }
     break;

@@ -133,6 +133,20 @@ describe("git-command-guard", () => {
     }
   });
 
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] preserves blocking across supported shell and global-option transformations", () => {
+    for (const command of [
+      "echo ok\ngit clean -f",
+      "env -i git clean -f",
+      "env -u HOME git clean -f",
+      "command -- git clean -f",
+      "(git clean -f)",
+      "git --no-pager clean -f",
+      "git --paginate stash clear",
+    ]) {
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+    }
+  });
+
   it("U-GITGUARD-002: extracts Claude and Codex shell command payload shapes", () => {
     expect(extractShellCommand({ command: "git reset --hard" })).toBe("git reset --hard");
     expect(extractShellCommand({ cmd: "git status" })).toBe("git status");
