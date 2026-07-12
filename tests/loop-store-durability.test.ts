@@ -129,17 +129,53 @@ describe("PLAN-L7-449 loop epoch reader", () => {
     ]);
     let effects = 0;
     expect(
-      authorizeLoopSideEffect(null, () => {
+      authorizeLoopSideEffect(null, PLAN, () => {
         effects += 1;
       }),
     ).toEqual({ allowed: false });
     expect(
-      authorizeLoopSideEffect(committed.intentCapability, () => {
+      authorizeLoopSideEffect(committed.intentCapability, PLAN, () => {
         effects += 1;
         return "ok";
       }),
     ).toEqual({ allowed: true, value: "ok" });
+    expect(authorizeLoopSideEffect(committed.intentCapability, PLAN, () => "replay")).toEqual({
+      allowed: false,
+    });
     expect(effects).toBe(1);
+  });
+
+  it("U-DUR-005/007: rejects wrong-plan capability use and phase-only forks", () => {
+    const port = new Proxy({} as DurableEpochPort, {
+      get: (_target, name) => {
+        if (name === "acquireExclusiveClaim") return () => true;
+        if (name === "readManifestText") return () => null;
+        return () => undefined;
+      },
+    });
+    const committed = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: JSON.parse(payload),
+      sideEffectPhase: "intent_recorded",
+      port,
+    });
+    expect(
+      authorizeLoopSideEffect(
+        committed.intentCapability,
+        "PLAN-L7-448-qs4-test-infra-inventory",
+        () => "unsafe",
+      ),
+    ).toEqual({ allowed: false });
+    expect(
+      classifyLoopEpochFiles({
+        planId: PLAN,
+        manifestText: manifest("intent_recorded"),
+        payloadText: payload,
+        claimStatus: "absent",
+        conflictingManifestText: manifest("completed"),
+      }).status,
+    ).toBe("concurrent_conflict");
   });
 
   it("U-DUR-006/007: fails closed on claim conflict and every durability fault", () => {

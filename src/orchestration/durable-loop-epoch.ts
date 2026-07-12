@@ -53,6 +53,7 @@ export interface DurableEpochPort {
 }
 
 const INTENT_CAPABILITY = Symbol("helix.loop.intent-capability");
+const CONSUMED_INTENT_CAPABILITIES = new WeakSet<object>();
 export type DurableIntentCapability = {
   readonly [INTENT_CAPABILITY]: true;
   readonly planId: string;
@@ -92,7 +93,7 @@ export function commitLoopEpoch(input: {
       };
     }
     const previous = input.previousManifestText ? parseManifest(input.previousManifestText) : null;
-    if (input.previousManifestText && previous === null) {
+    if (input.previousManifestText && (previous === null || previous.planId !== planId)) {
       input.port.unlinkClaim(planId);
       input.port.fsyncClaimDirectory(planId);
       return {
@@ -152,9 +153,17 @@ export function commitLoopEpoch(input: {
 
 export function authorizeLoopSideEffect<T>(
   capability: DurableIntentCapability | null,
+  planId: string,
   effect: () => T,
 ): { allowed: boolean; value?: T } {
-  if (capability?.[INTENT_CAPABILITY] !== true) return { allowed: false };
+  if (
+    capability?.[INTENT_CAPABILITY] !== true ||
+    capability.planId !== assertLoopPlanId(planId) ||
+    CONSUMED_INTENT_CAPABILITIES.has(capability)
+  ) {
+    return { allowed: false };
+  }
+  CONSUMED_INTENT_CAPABILITIES.add(capability);
   return { allowed: true, value: effect() };
 }
 
@@ -296,7 +305,7 @@ export function classifyLoopEpochFiles(input: {
       conflicting.planId === manifest.planId &&
       conflicting.epochId === manifest.epochId &&
       conflicting.previousManifestDigest === manifest.previousManifestDigest &&
-      conflicting.payloadDigest !== manifest.payloadDigest
+      input.conflictingManifestText !== input.manifestText
     ) {
       return { status: "concurrent_conflict", manifest, payload, reason: "forked_epoch" };
     }

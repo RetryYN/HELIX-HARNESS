@@ -70,6 +70,10 @@ generates:
       artifact_path: src/orchestration/durable-loop-epoch.ts,
       artifact_type: source_module,
     }
+  - {
+      artifact_path: src/orchestration/durable-loop-epoch-node.ts,
+      artifact_type: source_module,
+    }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - {
       artifact_path: src/orchestration/loop-store.ts,
@@ -89,6 +93,10 @@ generates:
     }
   - {
       artifact_path: tests/loop-store-durability.test.ts,
+      artifact_type: test_code,
+    }
+  - {
+      artifact_path: tests/loop-store-durability-node.test.ts,
       artifact_type: test_code,
     }
 dependencies:
