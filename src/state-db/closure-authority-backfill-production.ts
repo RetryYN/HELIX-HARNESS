@@ -59,7 +59,7 @@ function git(repoRoot: string, ...args: string[]): string {
 
 export function verifyTrackedHeadBlob(repoRoot: string, head: string, path: string): void {
   const row = git(repoRoot, "ls-tree", head, "--", path);
-  if (!row.startsWith("100644 blob ") || !row.endsWith(`\t${path}`))
+  if (!/^100(?:644|755) blob [0-9a-f]{40}\t/.test(row) || !row.endsWith(`\t${path}`))
     throw new Error(`tracked canonical blob required: ${path}`);
   const source = readVerifiedRepoFile(repoRoot, path);
   const blob = execFileSync("git", ["show", `${head}:${path}`], { cwd: repoRoot });

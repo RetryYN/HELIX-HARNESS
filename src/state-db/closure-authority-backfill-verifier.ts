@@ -52,7 +52,7 @@ function verifyTrackedHeadFile(input: {
     cwd: repoRoot,
     encoding: "utf8",
   }).trim();
-  if (!tree.startsWith("100644 blob ") || !tree.endsWith(`\t${path}`))
+  if (!/^100(?:644|755) blob [0-9a-f]{40}\t/.test(tree) || !tree.endsWith(`\t${path}`))
     throw new Error(`tracked regular blob required: ${path}`);
   const bytes = execFileSync("git", ["show", `${head}:${path}`], { cwd: repoRoot });
   if (sha256(bytes) !== digest) throw new Error(`tracked HEAD blob digest mismatch: ${path}`);

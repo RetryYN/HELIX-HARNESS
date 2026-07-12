@@ -1,6 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
+  chmodSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
@@ -125,7 +126,7 @@ function productionFixture() {
     "2026-07-12T00:40:00.000Z",
   );
   db.close();
-  return { root, head, planId };
+  return { root, head, planId, planPath };
 }
 
 function runCli(root: string, head: string) {
@@ -342,6 +343,14 @@ describe("closure authority production route", () => {
     expect(() =>
       loadRepoOwnedGateAllowlist({ repoRoot: root, path: "override.yaml", repositoryHead: HEAD }),
     ).toThrow(/path must be/);
+
+    const executable = productionFixture();
+    chmodSync(join(executable.root, executable.planPath), 0o755);
+    execFileSync("git", ["add", executable.planPath], { cwd: executable.root });
+    const executableHead = commitFixture(executable.root, "regular executable plan blob");
+    expect(() =>
+      verifyTrackedHeadBlob(executable.root, executableHead, executable.planPath),
+    ).not.toThrow();
 
     const assertTrackedBlobRejected = (
       mutate: (fixture: ReturnType<typeof productionFixture>) => string,
