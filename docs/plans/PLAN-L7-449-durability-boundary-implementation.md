@@ -15,6 +15,10 @@ entry_signals:
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+agent_slots:
+  - { role: aim, slot_label: "AIM — incident scopeとrecovery authority" }
+  - { role: se, slot_label: "SE — cause digest/epoch store実装" }
+  - { role: qa, slot_label: "QA — failure injectionとprocess oracle" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-78でL5/L6 contractとL8/L9 Vペアへbackprop済み。"
 generates:

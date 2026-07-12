@@ -11,6 +11,10 @@ entry_signals:
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
+agent_slots:
+  - { role: aim, slot_label: "AIM — durability threatと権限境界" }
+  - { role: se, slot_label: "SE — redaction/epoch transaction DbC" }
+  - { role: qa, slot_label: "QA — crash/corruption Vペア監査" }
 backprop_decision: not_required
 backprop_decision_reason: "既存doctor/loop contractのfail-close化でありL0-L4 capability境界を変更しない。"
 pair_artifact: docs/test-design/harness/L8-durability-boundaries.md
