@@ -4,7 +4,7 @@ title: "PLAN-L7-435 (impl): closure authority backfill"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-12 PLAN-L6-73 confirmed authority backfill implementation"
@@ -41,6 +41,19 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L6-73-closure-authority-backfill.md
   requires: [docs/plans/PLAN-L6-73-closure-authority-backfill.md]
+review_evidence:
+  - reviewer: codex-independent-reviewer
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    tests_green_at: "2026-07-12T03:19:00Z"
+    reviewed_at: "2026-07-12T03:20:00Z"
+    verdict: approve_after_fixes
+    scope: "7回の敵対reviewでauthority偽造、scope縮小、source provenance、process競合、crash recovery、ledger収束を監査し、最終BLOCKER/HIGH/MEDIUM 0を確認した。"
+    green_commands:
+      - { kind: unit_test, command: "bun run test", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T03:19:00Z", evidence_path: tests/closure-authority-backfill-production-e2e.test.ts, output_digest: "sha256:dce7a019cc9b4b8542387dc62b1c7044b824bd0a6ad755a23e6d6ef28a989874" }
+      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T03:19:00Z", evidence_path: src/state-db/closure-authority-backfill.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T03:19:00Z", evidence_path: src/state-db/closure-authority-backfill-verifier.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 ---
 
 # PLAN-L7-435: closure authority backfill（authority補完）
