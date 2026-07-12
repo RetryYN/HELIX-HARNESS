@@ -24,17 +24,17 @@ async function waitUntil(predicate: () => boolean): Promise<void> {
   }
 }
 
+function child(repo: string, mode: string, id: string) {
+  const process = spawn("bun", [fixture, repo, mode, id], { stdio: "pipe" });
+  const exited = new Promise<number | null>((resolve) => process.once("exit", resolve));
+  return { process, exited };
+}
+
 describe("PLAN-L7-449 actual process durability", () => {
   it("IT-DUR-004/007: two child processes dispatch the same worker at most once", async () => {
     const repo = root();
-    const first = Bun.spawn(["bun", fixture, repo, "barrier", "first"], {
-      stdout: "pipe",
-      stderr: "pipe",
-    });
-    const second = Bun.spawn(["bun", fixture, repo, "barrier", "second"], {
-      stdout: "pipe",
-      stderr: "pipe",
-    });
+    const first = child(repo, "barrier", "first");
+    const second = child(repo, "barrier", "second");
     await waitUntil(
       () => existsSync(join(repo, "ready-first")) && existsSync(join(repo, "ready-second")),
     );
@@ -49,16 +49,10 @@ describe("PLAN-L7-449 actual process durability", () => {
     "IT-DUR-005: SIGKILL inside the callback leaves ambiguous intent and restart callback zero",
     async () => {
       const repo = root();
-      const killed = Bun.spawn(["bun", fixture, repo, "kill", "killed"], {
-        stdout: "pipe",
-        stderr: "pipe",
-      });
+      const killed = child(repo, "kill", "killed");
       expect(await killed.exited).not.toBe(0);
       expect(readLoopEpochFromFs(repo, PLAN).status).toBe("ambiguous_side_effect");
-      const retry = Bun.spawn(["bun", fixture, repo, "retry", "retry"], {
-        stdout: "pipe",
-        stderr: "pipe",
-      });
+      const retry = child(repo, "retry", "retry");
       expect(await retry.exited).not.toBe(0);
       expect(readFileSync(join(repo, "effects.log"), "utf8").trim().split(/\r?\n/)).toEqual([
         "killed",
@@ -66,3 +60,5 @@ describe("PLAN-L7-449 actual process durability", () => {
     },
   );
 });
+
+import { spawn } from "node:child_process";
