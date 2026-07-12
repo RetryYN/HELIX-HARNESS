@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync } from "node:fs";
+import { appendFileSync, closeSync, existsSync, mkdirSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { commitOverrideUse, type OverrideAuditPort } from "./guard-override-transaction";
 import { evaluateGitCommandGuard, extractShellCommand, resolveDestructiveGitOverride } from "./git-command-guard";
@@ -18,25 +18,31 @@ function auditPort(auditPath: string): OverrideAuditPort {
   return {
     commit(input) {
       mkdirSync(dirname(auditPath), { recursive: true });
-      if (existsSync(auditPath)) {
-        for (const line of readFileSync(auditPath, "utf8").split("\n")) {
-          if (!line) continue;
-          try {
-            if ((JSON.parse(line) as { nonce?: string }).nonce === input.nonce) return { status: "reused" };
-          } catch {
-            throw new Error("invalid audit framing");
-          }
-        }
+      const reservationDir = `${auditPath}.nonces`;
+      mkdirSync(reservationDir, { recursive: true });
+      const reservationPath = join(reservationDir, input.nonce.replace(/^sha256:/, ""));
+      let reservationFd: number;
+      try {
+        reservationFd = openSync(reservationPath, "wx", 0o600);
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "EEXIST") return { status: "reused" };
+        throw error;
       }
-      appendFileSync(auditPath, `${JSON.stringify({
-        schemaVersion: "guard-override-audit.v1",
-        nonce: input.nonce,
-        guardKind: input.classification.guardKind,
-        operationClass: input.classification.operationClass,
-        subjectDigest: input.classification.subjectDigest,
-        reasonDigest: digest(input.reason),
-      })}\n`, { flush: true });
-      return { status: "committed" };
+      closeSync(reservationFd);
+      try {
+        appendFileSync(auditPath, `${JSON.stringify({
+          schemaVersion: "guard-override-audit.v1",
+          nonce: input.nonce,
+          guardKind: input.classification.guardKind,
+          operationClass: input.classification.operationClass,
+          subjectDigest: input.classification.subjectDigest,
+          reasonDigest: digest(input.reason),
+        })}\n`, { flush: true });
+        return { status: "committed" };
+      } catch (error) {
+        rmSync(reservationPath, { force: true });
+        throw error;
+      }
     },
     abort(input) {
       appendFileSync(auditPath, `${JSON.stringify({

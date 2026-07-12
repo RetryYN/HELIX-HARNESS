@@ -1,4 +1,4 @@
-import { spawnSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -190,6 +190,29 @@ describe("git-command-guard", () => {
       } finally {
         rmSync(cwd, { recursive: true, force: true });
       }
+    }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-008/IT-GITGUARD-001] allows at most one of two competing processes", async () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-cas-"));
+    try {
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      writeFileSync(markerPath, "reviewed concurrent recovery");
+      const input = JSON.stringify({ session_id: "s-cas", tool_input: { command: "git clean -f" } });
+      const run = () => new Promise<number | null>((resolve) => {
+        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], { cwd, stdio: ["pipe", "ignore", "ignore"] });
+        child.stdin.end(input);
+        child.once("close", resolve);
+      });
+      const statuses = await Promise.all([run(), run()]);
+      expect(statuses.filter((status) => status === 0)).toHaveLength(1);
+      expect(statuses.filter((status) => status === 2)).toHaveLength(1);
+      const audit = readFileSync(join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl"), "utf8");
+      expect(audit.trim().split("\n")).toHaveLength(1);
+      expect(existsSync(markerPath)).toBe(false);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
     }
   });
 
