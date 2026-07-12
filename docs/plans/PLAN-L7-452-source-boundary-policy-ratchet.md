@@ -33,7 +33,7 @@ dependencies:
     - docs/plans/PLAN-L7-428-function-reachability.md
 ---
 
-# PLAN-L7-452: source boundary total-decision ratchet
+# PLAN-L7-452: source boundary全域判定の段階的強化
 
 ## 実装境界
 

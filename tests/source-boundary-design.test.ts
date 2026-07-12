@@ -41,12 +41,17 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
 
   it("binds every public contract to a negative oracle", () => {
     const contractOracles: Record<string, string[]> = {
-      "projectVisualization(view: VisualizationViewModel): GenericTreeNode[]": [
+      "buildVisualizationTree(view: VisualizationContract): GenericTree": [
         "U-SBOUND-001",
         "U-SBOUND-002",
         "U-SBOUND-005",
       ],
-      "buildEvidenceProjection(rows: MetricRow[]): EvidenceProjection": ["U-SBOUND-001"],
+      "decorateVscodeTree(tree: GenericTree, commands: CommandCatalog): VscodeTree": [
+        "U-SBOUND-002",
+        "U-SBOUND-005",
+      ],
+      "projectVisualizationEvidence(view: VisualizationContract, summary: TreeSummary): ProjectionRows":
+        ["U-SBOUND-001"],
       "analyzeSnapshot<T>(snapshot: T, rules: AnalyzerRules<T>): Finding[]": ["U-SBOUND-004"],
       "runProbe(intent: ProbeIntent, port: ProbePort): ProbeReceipt": [
         "U-SBOUND-006",
@@ -74,7 +79,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
 
   it("assigns one exact extractor owner and treats PLAN-L7-428 as provenance", () => {
     expect(l5).toContain("`src/lint/source-edge-extractor.ts`");
-    expect(l6).toContain("PLAN-L7-452が`src/lint/source-edge-extractor.ts`を単一owner");
+    expect(l6).toContain("452が`src/lint/source-edge-extractor.ts`を単一owner");
     expect(l8).toContain("U-SBOUND-008");
   });
 
