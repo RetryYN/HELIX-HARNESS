@@ -32,6 +32,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-425-system-review-issue-handoff.md
   requires: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — incident境界とevidence authorityを監査" }
   - { role: se, slot_label: "SE — bounded output captureとdigest/verdict実装" }
   - { role: qa, slot_label: "QA — missing/FAIL/PASS/truncation oracle" }
 ---
