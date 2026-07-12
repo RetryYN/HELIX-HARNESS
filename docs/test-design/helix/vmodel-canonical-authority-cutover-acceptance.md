@@ -2,7 +2,7 @@
 title: "ZIP L1-L12 canonical authority cutover 受入・検証設計"
 layer: L11
 kind: acceptance-test-design
-status: draft
+status: confirmed
 created: 2026-07-13
 updated: 2026-07-13
 owner: QA
@@ -37,4 +37,3 @@ pair_artifact: docs/design/helix/L3-requirements/vmodel-canonical-authority-cuto
 
 既存L0-L14 artifactの量が大きく、単純件数greenではsemantic remapの正しさを証明できない。各artifactのtyped ID、
 pair relation、runtime evidenceを照合し、未分類を0件にするまでcompatibility削除を許可しない。
-

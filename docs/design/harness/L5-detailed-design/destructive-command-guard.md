@@ -1,7 +1,7 @@
 ---
 layer: L5
 sub_doc: module-decomposition
-status: draft
+status: confirmed
 pair_artifact: docs/test-design/harness/L9-destructive-command-guard-integration.md
 plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 ---

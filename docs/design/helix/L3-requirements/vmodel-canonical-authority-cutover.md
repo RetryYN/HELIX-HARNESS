@@ -2,7 +2,7 @@
 title: "HELIX L3要件 — ZIP L1-L12 canonical authority cutover"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
@@ -13,11 +13,11 @@ related_l12: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
 pair_artifact: docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md
 spec:
   defines:
-    - { id: HR-FR-VMCUT-01, kind: 正本権限, title: canonical authority precedence, layer: L3, owner: TL, status: draft }
-    - { id: HR-FR-VMCUT-02, kind: 層移行, title: L0-L14 to L1-L12 exact remap, layer: L3, owner: TL, status: draft }
-    - { id: HR-FR-VMCUT-03, kind: 成果物移行, title: independent L6 transition, layer: L3, owner: TL, status: draft }
-    - { id: HR-FR-VMCUT-04, kind: 互換性, title: compatibility window and rollback, layer: L3, owner: TL, status: draft }
-    - { id: HR-FR-VMCUT-05, kind: 検出, title: authority drift fail-close gate, layer: L3, owner: QA, status: draft }
+    - { id: HR-FR-VMCUT-01, kind: 正本権限, title: canonical authority precedence, layer: L3, owner: TL, status: confirmed }
+    - { id: HR-FR-VMCUT-02, kind: 層移行, title: L0-L14 to L1-L12 exact remap, layer: L3, owner: TL, status: confirmed }
+    - { id: HR-FR-VMCUT-03, kind: 成果物移行, title: independent L6 transition, layer: L3, owner: TL, status: confirmed }
+    - { id: HR-FR-VMCUT-04, kind: 互換性, title: compatibility window and rollback, layer: L3, owner: TL, status: confirmed }
+    - { id: HR-FR-VMCUT-05, kind: 検出, title: authority drift fail-close gate, layer: L3, owner: QA, status: confirmed }
 ---
 
 # HELIX L3要件 — ZIP L1-L12 canonical authority cutover

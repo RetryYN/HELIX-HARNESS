@@ -1,7 +1,7 @@
 ---
 layer: L9
 sub_doc: integration-test-design
-status: draft
+status: confirmed
 pair_artifact: docs/design/harness/L5-detailed-design/destructive-command-guard.md
 plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 ---
