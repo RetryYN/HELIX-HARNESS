@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { readPackageVersion } from "../runtime/repo-info";
+import { readPackageVersion } from "../shared/repo-info";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
 import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 

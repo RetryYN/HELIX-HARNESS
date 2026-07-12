@@ -312,7 +312,6 @@ import {
   type SessionHookInput,
   safeName,
 } from "./runtime/session-log";
-import { shellQuote } from "./runtime/shell-quote";
 import {
   buildSkillEfficacyEvaluationReport,
   type SkillEfficacyEvalInput,
@@ -368,6 +367,7 @@ import {
   UPDATE_CHECK_DISABLE_ENV,
   updateCheckDisabled,
 } from "./setup/update-check";
+import { shellQuote } from "./shared/shell-quote";
 import { scaffoldSkill } from "./skill-engine/scaffold";
 import {
   bucketRecommendations,

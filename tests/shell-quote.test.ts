@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { shellQuote } from "../src/runtime/shell-quote";
+import { shellQuote } from "../src/shared/shell-quote";
 
 describe("PLAN-L7-433 Q6 shell quote SSoT", () => {
   it("U-SHQUOTE-001: preserves the explicit safe token alphabet", () => {

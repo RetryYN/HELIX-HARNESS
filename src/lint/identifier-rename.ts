@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
-import { readRepoHeadSha } from "../runtime/repo-info";
+import { readRepoHeadSha } from "../shared/repo-info";
 import {
   CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
   REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS,

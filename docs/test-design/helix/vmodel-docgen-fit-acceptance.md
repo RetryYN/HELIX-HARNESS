@@ -323,5 +323,5 @@ spec:
 | HR-FR-VMFIT-05 | HAT-VMFIT-05 | 現在地 / 駆動モデル |
 | HR-FR-VMFIT-06 | HAT-VMFIT-06 | VSCode 表示 |
 | HR-FR-VMFIT-07 | HAT-VMFIT-07 | 運用後検証 / log / KPI |
-| HR-FR-VMFIT-08 | HAT-VMFIT-08 | drive model / workflow / layer skill binding |
+| HR-FR-VMFIT-08 | HAT-VMFIT-08 | 駆動モデル / workflow / layer の skill binding |
 | HR-FR-VMFIT-02 | HAT-VMFIT-L7-CLOSURE | L7 TDD 閉鎖 / trace 閉鎖 |

@@ -45,7 +45,7 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/sqlite-error.test.ts
     artifact_type: test_code
-  - artifact_path: src/runtime/shell-quote.ts
+  - artifact_path: src/shared/shell-quote.ts
     artifact_type: source_module
   - artifact_path: src/audit/github-merge-readiness.ts
     artifact_type: source_module
@@ -53,7 +53,7 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/shell-quote.test.ts
     artifact_type: test_code
-  - artifact_path: src/runtime/repo-info.ts
+  - artifact_path: src/shared/repo-info.ts
     artifact_type: source_module
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
@@ -63,6 +63,8 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/repo-info.test.ts
     artifact_type: test_code
+  - artifact_path: config/digest-canonicalization-inventory.json
+    artifact_type: config
 dependencies:
   parent: null
   requires: []

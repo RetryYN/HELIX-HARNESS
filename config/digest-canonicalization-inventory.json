@@ -46,7 +46,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 554,
+      "line": 555,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -63,7 +63,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 563,
+      "line": 564,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 591,
+      "line": 592,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 598,
+      "line": 599,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1037,
+      "line": 1033,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1052,
+      "line": 1048,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1068,
+      "line": 1064,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::surfaceTakeoverFeedbackToStdout:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1093,
+      "line": 1089,
       "symbol": "surfaceTakeoverFeedbackToStdout",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1155,
+      "line": 1151,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2028,
+      "line": 2024,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 3931,
+      "line": 3983,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6076,
+      "line": 6128,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 7441,
+      "line": 7493,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 8248,
+      "line": 8300,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 8625,
+      "line": 8677,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 12767,
+      "line": 12819,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 13522,
+      "line": 13574,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -369,7 +369,7 @@
     {
       "hit_id": "src/lint/action-binding-approval-readiness.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/action-binding-approval-readiness.ts",
-      "line": 1150,
+      "line": 1127,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -522,7 +522,7 @@
     {
       "hit_id": "src/lint/identifier-rename.ts::readEvidenceArtifacts:createHash(sha256)::1",
       "path": "src/lint/identifier-rename.ts",
-      "line": 2364,
+      "line": 2353,
       "symbol": "readEvidenceArtifacts",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -539,7 +539,7 @@
     {
       "hit_id": "src/lint/identifier-rename.ts::fileSha256ForRenameHit:createHash(sha256)::1",
       "path": "src/lint/identifier-rename.ts",
-      "line": 2712,
+      "line": 2701,
       "symbol": "fileSha256ForRenameHit",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -556,7 +556,7 @@
     {
       "hit_id": "src/lint/identifier-rename.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/identifier-rename.ts",
-      "line": 2858,
+      "line": 2847,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -573,7 +573,7 @@
     {
       "hit_id": "src/lint/identifier-rename.ts::sha256Text:createHash(sha256)::1",
       "path": "src/lint/identifier-rename.ts",
-      "line": 2862,
+      "line": 2851,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -726,7 +726,7 @@
     {
       "hit_id": "src/lint/version-up-readiness.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/version-up-readiness.ts",
-      "line": 2094,
+      "line": 2073,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",

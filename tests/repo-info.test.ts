@@ -3,7 +3,7 @@ import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { readPackageVersion, readRepoHeadSha } from "../src/runtime/repo-info";
+import { readPackageVersion, readRepoHeadSha } from "../src/shared/repo-info";
 
 describe("PLAN-L7-433 Q5 repo info SSoT", () => {
   it("U-REPOINFO-001: returns only a canonical 40-hex git HEAD", () => {

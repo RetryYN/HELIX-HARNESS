@@ -1,8 +1,8 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { readPackageVersion, readRepoHeadSha } from "../runtime/repo-info";
-import { shellQuote } from "../runtime/shell-quote";
+import { readPackageVersion, readRepoHeadSha } from "../shared/repo-info";
+import { shellQuote } from "../shared/shell-quote";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
   type CompletionDecisionRecordTemplate,

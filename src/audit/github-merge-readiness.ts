@@ -1,7 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { shellQuote } from "../runtime/shell-quote";
+import { shellQuote } from "../shared/shell-quote";
 
 export interface GithubMergeReadinessInput {
   baseBranch: string;
