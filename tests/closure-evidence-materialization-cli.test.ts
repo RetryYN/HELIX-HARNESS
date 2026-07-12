@@ -57,7 +57,7 @@ describe("closure authority-materialize CLI", () => {
     }
   });
 
-  it("dry-run classifies a clean current-main fixture without changing DB or starting runners", () => {
+  it("dry-run fail-closes a clean current-main fixture with unresolved N without changing DB or starting runners", () => {
     const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-authority-cli-"));
     const fixture = join(fixtureRoot, "repo");
     execFileSync("git", ["clone", "--shared", "--quiet", repoRoot, fixture]);
@@ -89,15 +89,16 @@ describe("closure authority-materialize CLI", () => {
     const digest = () => createHash("sha256").update(readFileSync(dbPath)).digest("hex");
     const before = digest();
     const result = run(["--dry-run", "--from-db", "--json"], fixture);
-    expect(result.status, result.stderr).toBe(0);
+    expect(result.status, result.stderr).toBe(2);
     const payload = JSON.parse(result.stdout) as {
       status: string;
       executed: boolean;
       classifications: unknown[];
     };
-    expect(payload.status).toBe("classified");
+    expect(payload.status).toBe("target_blocked");
     expect(payload.executed).toBe(false);
     expect(payload.classifications.length).toBeGreaterThan(0);
+    expect(result.stdout).toContain("N=0 precondition failed");
     expect(digest()).toBe(before);
   }, 60_000);
 });
