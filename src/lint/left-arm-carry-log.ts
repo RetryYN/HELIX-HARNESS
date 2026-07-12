@@ -14,7 +14,7 @@ export const LEFT_ARM_CARRY_SCHEMA = "left-arm-carry.v1";
 export const LEFT_ARM_CARRY_ENFORCEMENT_DATE = "2026-07-12";
 /** enforcement導入時のterminal L7 impl/add-impl集合を固定するsorted ID fingerprint。 */
 export const LEFT_ARM_CARRY_LEGACY_FINGERPRINT =
-  "sha256:d7b91a6a0cc3390b58fc8dbeb3def0559c6d1e750d7e363c15ceb3d62fe9c2b8";
+  "sha256:1e1a27e2658f831900ce73b7a206b73c209e5ce0663524df4a91f6ad3985af5a";
 
 export type LeftArmFindingKind =
   | "signature_mismatch"
