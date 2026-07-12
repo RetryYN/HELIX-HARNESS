@@ -183,7 +183,7 @@ describe("runtime hook entrypoints", () => {
         undefined,
         env,
       );
-      expect(run.status).toBe(0);
+      expect(run.status, run.stderr || run.stdout).toBe(0);
 
       const digest = JSON.parse(
         readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
