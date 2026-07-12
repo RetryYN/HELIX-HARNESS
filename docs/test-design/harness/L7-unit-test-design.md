@@ -1285,3 +1285,4 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 
 | U-COLUTIL-001 | `uniqueSorted` | 重複を除き、数字・大文字・小文字をcode-unit順に固定する。 |
 | U-COLUTIL-002 | sort意味分離 | locale順を別名契約で保持し、対象5 module中の`uniqueSorted`定義をshared 1件にする。 |
+| U-TIMEUTIL-001 | `nowIso` | UTC ISO-8601 millisecond形式を返し、対象6 module中の定義をshared 1件にする。 |

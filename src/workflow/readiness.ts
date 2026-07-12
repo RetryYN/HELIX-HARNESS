@@ -1,3 +1,4 @@
+import { nowIso } from "../shared/time-utils";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
 
@@ -10,10 +11,6 @@ export interface AutomationReadinessRow {
   blocked_reason: string;
   human_required: number;
   checked_at: string;
-}
-
-function nowIso(): string {
-  return new Date().toISOString();
 }
 
 function openFindingCount(db: HarnessDb, planId: string): number {

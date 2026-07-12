@@ -59,6 +59,7 @@ import {
   type RuntimeVerificationLogEvent,
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
+import { nowIso } from "../shared/time-utils";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
@@ -295,10 +296,6 @@ function tableDef(name: string): TableDef {
   const table = HARNESS_DB_TABLE_BY_NAME.get(name);
   if (!table) throw new Error(`unknown harness.db projection table: ${name}`);
   return table;
-}
-
-function nowIso(): string {
-  return new Date().toISOString();
 }
 
 function stableId(prefix: string, value: string): string {

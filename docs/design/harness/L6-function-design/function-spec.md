@@ -993,3 +993,12 @@ machine ID/path用`uniqueSorted`はlocale非依存のcode-unit順、人間向け
 |---|---|---|---|---|
 | `uniqueSorted` | string tokens | 重複なしcode-unit昇順 | locale非依存、入力非破壊 | U-COLUTIL-001..002 |
 | `uniqueLocaleSorted` | 人間向け表示語 | 重複なしlocale昇順 | locale semanticsを別名で明示 | U-COLUTIL-002 |
+
+### current timestamp単一正本（PLAN-L7-433 Q8）
+
+`nowIso()`は`src/shared/time-utils.ts`に置き、現在時刻をUTC ISO-8601 millisecond形式で返す。
+feedback / guardrail / skill / projection / workflowは独自clock wrapperを持たない。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `nowIso` | なし | UTC ISO-8601 timestamp | production定義1件、末尾Z、millisecondあり | U-TIMEUTIL-001 |

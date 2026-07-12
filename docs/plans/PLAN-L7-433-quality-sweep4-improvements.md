@@ -85,6 +85,10 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/collection-utils.test.ts
     artifact_type: test_code
+  - artifact_path: src/shared/time-utils.ts
+    artifact_type: source_module
+  - artifact_path: tests/time-utils.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
