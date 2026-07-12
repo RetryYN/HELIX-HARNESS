@@ -192,6 +192,72 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     expect(existsSync(join(repo, ".helix", "state", "escape"))).toBe(false);
   });
 
+  it("IT-DUR-004/U-DUR-007: fails closed when authority verification is unavailable", () => {
+    const repo = root();
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest("claim"),
+          pointerDigest: sha256Digest(""),
+          manifestDigest: null,
+          approvedBy: "authority",
+          auditId: "audit",
+        },
+        {
+          verify: () => {
+            throw new Error("authority store unavailable");
+          },
+        },
+      ),
+    ).toEqual({ status: "rejected", reason: "authority_unavailable" });
+  });
+
+  it("IT-DUR-004/U-DUR-007: an authorized retry tombstones a stale recovery mutex", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const claim = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleClaimText = `${JSON.stringify({
+      ...claim,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleClaimText);
+    writeFileSync(
+      paths.recoveryClaim,
+      `${JSON.stringify({
+        ...claim,
+        claimId: "123e4567-e89b-42d3-a456-426614174000",
+        pid: 999_999_999,
+        bootIdentity: "different-boot",
+        processStartToken: "missing",
+        leaseDeadlineUptimeMs: 0,
+        packetDigest: sha256Digest("old-packet"),
+      })}\n`,
+    );
+    const recovered = recoverStaleLoopClaim(
+      repo,
+      {
+        planId: PLAN,
+        claimDigest: sha256Digest(staleClaimText),
+        pointerDigest: claim.pointerDigest,
+        manifestDigest: claim.manifestDigest,
+        approvedBy: "authority",
+        auditId: "retry-after-crash",
+      },
+      { verify: () => true },
+    );
+    expect(recovered.status).toBe("recovered");
+    expect(existsSync(paths.recoveryClaim)).toBe(false);
+    expect(
+      readFileSync(paths.directory, { encoding: "utf8", flag: "r" }),
+    ).toBeDefined();
+  });
+
   it("IT-DUR-003: a second-epoch C4 crash preserves the previous committed payload", () => {
     const repo = root();
     const firstPort = nodeDurableEpochPort(repo);
