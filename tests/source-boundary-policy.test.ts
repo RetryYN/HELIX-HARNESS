@@ -173,7 +173,7 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
     ).toHaveLength(2);
     expect(result.violations.map((violation) => violation.message)).toEqual(
       expect.arrayContaining([
-        expect.stringContaining("canonical module boundary prohibition"),
+        expect.stringContaining("owner default deny"),
         expect.stringContaining("computed dynamic import"),
       ]),
     );

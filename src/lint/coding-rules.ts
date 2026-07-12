@@ -7,7 +7,6 @@ import {
   normalizePath,
   SOURCE_BOUNDARY_MODULES,
   sourceModule,
-  violatesSourceBoundary,
 } from "./shared";
 import {
   type BoundaryPolicy,
