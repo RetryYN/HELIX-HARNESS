@@ -91,6 +91,7 @@ items:
       - docs/design/harness/L6-function-design/closure-auto-approval.md
       - docs/design/harness/L6-function-design/closure-evidence-materialization.md
       - docs/design/harness/L6-function-design/closure-authority-backfill.md
+      - docs/design/harness/L6-function-design/historical-vpair-migration-authority.md
       - docs/design/harness/L6-function-design/closure-authority-production-route.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
