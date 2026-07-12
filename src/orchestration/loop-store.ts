@@ -1,6 +1,7 @@
 import { join } from "node:path";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
 import {
+  authorizeLoopSideEffect,
   commitLoopEpoch,
   type LoopEpochPayload,
   parseLoopEpochPayload,
@@ -13,6 +14,7 @@ export interface LoopStore {
   read(planId: string): LoopState | null;
   write(state: LoopState): void;
   recordIteration(rec: LoopIterationRecord): void;
+  runSideEffect<T>(state: LoopState, effect: () => Promise<T>): Promise<T>;
 }
 
 export function fileLoopStore(deps: {
@@ -45,6 +47,7 @@ export function fileLoopStore(deps: {
       const current = deps.readText(path) ?? "";
       deps.writeText(path, `${current}${JSON.stringify(rec)}\n`);
     },
+    runSideEffect: async (_state, effect) => effect(),
   };
 }
 
@@ -109,6 +112,34 @@ export function durableFileLoopStore(deps: {
       if (committed.status !== "committed")
         throw new Error(`loop epoch commit failed: ${planId}:${committed.reason}`);
       pendingIterations.delete(planId);
+    },
+    runSideEffect: async (state, effect) => {
+      const planId = assertLoopPlanId(state.planId);
+      const beforeIntent = port.readManifestText(planId);
+      const intent = commitLoopEpoch({
+        planId,
+        previousManifestText: beforeIntent,
+        payload: { state, iteration: null },
+        sideEffectPhase: "intent_recorded",
+        port,
+      });
+      if (intent.status !== "committed" || intent.intentCapability === null)
+        throw new Error(`loop intent commit failed: ${planId}:${intent.reason}`);
+      const authorized = authorizeLoopSideEffect(intent.intentCapability, planId, effect);
+      if (!authorized.allowed || authorized.value === undefined)
+        throw new Error(`loop side effect authorization failed: ${planId}`);
+      const value = await authorized.value;
+      const intentManifestText = port.readManifestText(planId);
+      const completed = commitLoopEpoch({
+        planId,
+        previousManifestText: intentManifestText,
+        payload: { state, iteration: null },
+        sideEffectPhase: "completed",
+        port,
+      });
+      if (completed.status !== "committed")
+        throw new Error(`loop side effect completion failed: ${planId}:${completed.reason}`);
+      return value;
     },
   };
 }

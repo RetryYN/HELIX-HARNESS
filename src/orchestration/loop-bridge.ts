@@ -192,7 +192,7 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
         );
       }
       const execInput: ExecAdapterInput = { provider, purpose: "worker", role, state, plan };
-      const result = await execAdapter(execInput);
+      const result = await input.store.runSideEffect(state, () => execAdapter(execInput));
       assertAdapterSucceeded(execInput, result);
     },
     runVerifier: async (provider: Provider, state: LoopState) => {
@@ -211,7 +211,7 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
         );
       }
       const execInput: ExecAdapterInput = { provider, purpose: "verifier", role, state, plan };
-      const result = await execAdapter(execInput);
+      const result = await input.store.runSideEffect(state, () => execAdapter(execInput));
       return interpretVerifierVerdict(result);
     },
     recordIteration: (record) => input.store.recordIteration(record),
