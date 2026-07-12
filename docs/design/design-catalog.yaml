@@ -94,6 +94,7 @@ items:
       - docs/design/harness/L6-function-design/historical-vpair-migration-authority.md
       - docs/design/harness/L6-function-design/digest-canonicalization-authority.md
       - docs/design/harness/L6-function-design/closure-authority-production-route.md
+      - docs/design/harness/L6-function-design/closure-authority-convergence.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
   - id: unit-test-design
@@ -103,6 +104,7 @@ items:
     status: done
     artifact:
       - docs/test-design/harness/L8-unit-test-design.md
+      - docs/test-design/harness/closure-authority-convergence.md
       - docs/test-design/harness/closure-authority-production-route.md
   - id: integration-test-design
     name: 結合テスト設計書

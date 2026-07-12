@@ -173,6 +173,10 @@ FE roster レーン（PLAN-L6-66 / PLAN-L7-309 / PLAN-L7-424）は Codex が in-
 
 ### I8: closure 承認境界の自走化（PO 明示選択 2026-07-12）
 
+- successor設計: `PLAN-L6-77-closure-authority-convergence`。PLAN-L6-73/74とPLAN-L7-435/436の
+  atomic writer・window ledger・production loaderを単一正本として再利用し、proposal保存、独立review producer、
+  production CLI sequencing、I8終端保存則だけを差分設計する。L7 successorはpair-freeze後に起票する。
+
 - 背景: charter §3（要件凍結後は完全自動、停止は gate 赤/後戻り不能のみ）と HVM-COMP-03
   （accepted 化は approval record 必須）が緊張関係にあり、close_ready 361 件が
   human approval で滞留している。GitHub merge は PLAN-L7-418 で「CI green のみ、人間 approve
