@@ -125,6 +125,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(ratchet.dependencies?.references).toContain(
       "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md",
     );
+    expect(existsSync("docs/plans/PLAN-L7-428-enforcement-wiring-gap.md")).toBe(true);
     expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
 
