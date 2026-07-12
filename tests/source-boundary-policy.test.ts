@@ -35,7 +35,7 @@ const policy = {
   ],
 };
 
-describe("PLAN-L7-452 source boundary behavior", () => {
+describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
   it("U-SBOUND-003: unknown owner/default/edge decisionをunspecifiedにする", () => {
     const [edge] = extractSourceEdges([
       { path: "src/unknown/a.ts", source: 'import "../vscode/x";' },
