@@ -87,16 +87,23 @@ describe("PLAN-L7-449 production durable loop store", () => {
     const repo = root();
     const store = durableFileLoopStore({ root: repo });
     expect(store.read(PLAN)).toBeNull();
-    store.recordIteration({
+    return store.runSideEffect(state, "worker", async () => null).then(async () => {
+      await store.runSideEffect(state, "verifier", async () => "pass");
+      store.recordIteration({
       planId: PLAN,
-      iteration: 1,
+      iteration: 0,
       workerProvider: "codex",
       verifierProvider: "claude",
       verdict: "pass",
       stopReason: null,
       blockedReason: null,
-    });
-    store.write({ ...state, iteration: 1, lastVerdict: "pass" });
+      });
+      store.write({
+        ...state,
+        iteration: 1,
+        lastVerdict: "pass",
+        verifierProvider: "claude",
+      });
     const snapshot = readLoopEpochFromFs(repo, PLAN);
     expect(snapshot.status).toBe("committed");
     expect(snapshot.payload?.iteration?.iteration).toBe(1);
@@ -104,6 +111,7 @@ describe("PLAN-L7-449 production durable loop store", () => {
     expect(loopEpochPaths(repo, PLAN).durabilityCapability).toMatch(
       /^(posix_dir_fsync|file_fsync_same_volume_rename)$/,
     );
+    });
   });
 
   it("IT-DUR-005: persists ambiguous intent before dispatch and blocks restart after a crash", async () => {

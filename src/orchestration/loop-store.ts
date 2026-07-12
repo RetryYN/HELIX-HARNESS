@@ -137,10 +137,10 @@ export function durableFileLoopStore(deps: {
     } catch {
       throw new Error(`legacy loop state is corrupt: ${planId}`);
     }
-    const payload: LoopEpochPayload = { state, iteration: null };
+    const sourceDigest = sha256Digest(text);
+    const payload: LoopEpochPayload = { state, iteration: null, legacySourceDigest: sourceDigest };
     if (parseLoopEpochPayload(JSON.stringify(payload), planId) === null)
       throw new Error(`legacy loop state is invalid: ${planId}`);
-    const sourceDigest = sha256Digest(text);
     let sourcePath = existingSource;
     if (sourcePath === null) {
       if (!existsSync(rawPath))
@@ -181,8 +181,16 @@ export function durableFileLoopStore(deps: {
           `loop epoch is not readable: ${planId}:${snapshot.status}:${snapshot.reason}`,
         );
       const source = sourceMarkerFor(planId);
-      if (source !== null && !existsSync(doneMarkerFor(planId)))
-        publishDoneMarker(planId, sha256Digest(readFileSync(source, "utf8")));
+      if (source !== null && !existsSync(doneMarkerFor(planId))) {
+        const sourceDigest = sha256Digest(readFileSync(source, "utf8"));
+        const digestFromName = /\.legacy-source-([a-f0-9]{64})\.json$/.exec(source)?.[1];
+        if (
+          snapshot.payload.legacySourceDigest !== sourceDigest ||
+          digestFromName !== sourceDigest.slice(7)
+        )
+          throw new Error(`legacy loop provenance mismatch: ${planId}`);
+        publishDoneMarker(planId, sourceDigest);
+      }
       return snapshot.payload.state;
     },
     recordIteration: (record) => {
@@ -211,6 +219,23 @@ export function durableFileLoopStore(deps: {
           throw new Error(`invalid loop stage finalization: ${planId}`);
       } else if (snapshot.status !== "missing" && snapshot.status !== "committed") {
         throw new Error(`loop epoch cannot be overwritten: ${planId}:${snapshot.status}`);
+      } else if (snapshot.status === "missing") {
+        if (state.iteration !== 0 || pendingIterations.has(planId))
+          throw new Error(`invalid initial loop state commit: ${planId}`);
+      } else if (snapshot.payload !== null) {
+        const previous = snapshot.payload.state;
+        const iteration = pendingIterations.get(planId);
+        if (
+          state.status !== "stopped" ||
+          state.iteration !== previous.iteration ||
+          iteration === undefined ||
+          iteration.iteration !== state.iteration ||
+          iteration.workerProvider !== state.workerProvider ||
+          iteration.verifierProvider !== state.verifierProvider ||
+          iteration.verdict !== state.lastVerdict ||
+          iteration.blockedReason !== state.blockedReason
+        )
+          throw new Error(`invalid stage-less loop transition: ${planId}`);
       }
       const previousManifestText = port.readManifestText(planId);
       const iteration = pendingIterations.get(planId) ?? null;

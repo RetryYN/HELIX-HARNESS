@@ -44,6 +44,42 @@ describe("autonomous loop run receipts", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-"));
     try {
       const store = durableFileLoopStore({ root });
+      await store.runSideEffect(
+        {
+          planId: "PLAN-L7-366",
+          status: "running",
+          iteration: 0,
+          maxIterations: 3,
+          lastVerdict: "pending",
+          workerProvider: "codex",
+          verifierProvider: null,
+          blockedReason: null,
+          windowOpensAt: "2026-07-09T09:00:00.000Z",
+          windowClosesAt: "2026-07-09T11:00:00.000Z",
+          costUsd: 0,
+          updatedAt: "2026-07-09T10:00:00.000Z",
+        },
+        "worker",
+        async () => null,
+      );
+      await store.runSideEffect(
+        {
+          planId: "PLAN-L7-366",
+          status: "running",
+          iteration: 0,
+          maxIterations: 3,
+          lastVerdict: "pending",
+          workerProvider: "codex",
+          verifierProvider: null,
+          blockedReason: null,
+          windowOpensAt: "2026-07-09T09:00:00.000Z",
+          windowClosesAt: "2026-07-09T11:00:00.000Z",
+          costUsd: 0,
+          updatedAt: "2026-07-09T10:00:00.000Z",
+        },
+        "verifier",
+        async () => "pending",
+      );
       store.recordIteration({
         planId: "PLAN-L7-366",
         iteration: 0,
@@ -109,7 +145,7 @@ describe("autonomous loop run receipts", () => {
     }
   });
 
-  it("IT-DUR-005: rejects a receipt whose verdict does not match the durable state", () => {
+  it("IT-DUR-005: rejects a state commit whose verdict does not match its receipt", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-mismatch-"));
     try {
       const store = durableFileLoopStore({ root });
@@ -122,7 +158,7 @@ describe("autonomous loop run receipts", () => {
         stopReason: null,
         blockedReason: null,
       });
-      store.write({
+      expect(() => store.write({
         planId: "PLAN-L7-366",
         status: "running",
         iteration: 1,
@@ -135,10 +171,7 @@ describe("autonomous loop run receipts", () => {
         windowClosesAt: "2026-07-09T11:00:00.000Z",
         costUsd: 0,
         updatedAt: "2026-07-09T10:00:00.000Z",
-      });
-      const report = buildAutonomousLoopRunReceipt(root, "PLAN-L7-366");
-      expect(report.ok).toBe(false);
-      expect(report.findings[0]?.code).toBe("iteration_receipt_mismatch");
+      })).toThrow("invalid initial loop state commit");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

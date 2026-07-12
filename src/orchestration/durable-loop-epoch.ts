@@ -22,6 +22,7 @@ export type LoopEpochReadStatus =
 export type LoopEpochPayload = {
   state: LoopState;
   iteration: LoopIterationRecord | null;
+  legacySourceDigest?: Sha256Digest | null;
   orchestrationStage?: {
     iteration: number;
     purpose: "worker" | "verifier";
@@ -262,6 +263,7 @@ export function parseLoopEpochPayload(text: string, planId: string): LoopEpochPa
     typeof state === "object" && state !== null ? (state as Record<string, unknown>) : null;
   const iteration = value?.iteration;
   const orchestrationStage = value?.orchestrationStage;
+  const legacySourceDigest = value?.legacySourceDigest;
   const stageRecord =
     typeof orchestrationStage === "object" && orchestrationStage !== null
       ? (orchestrationStage as Record<string, unknown>)
@@ -291,6 +293,11 @@ export function parseLoopEpochPayload(text: string, planId: string): LoopEpochPa
     !Number.isFinite(Date.parse(stateRecord.updatedAt)) ||
     !("iteration" in value) ||
     !validIterationRecord(iteration, planId, Number(stateRecord.iteration)) ||
+    !(
+      legacySourceDigest === undefined ||
+      legacySourceDigest === null ||
+      (typeof legacySourceDigest === "string" && /^sha256:[a-f0-9]{64}$/.test(legacySourceDigest))
+    ) ||
     !(
       orchestrationStage === undefined ||
       orchestrationStage === null ||
