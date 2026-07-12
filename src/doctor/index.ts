@@ -532,6 +532,7 @@ import {
 } from "../vscode/extension-manifest";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { collectDoctorCheckRun } from "./check-registry";
+import { doctorFailure, doctorFailureMessage } from "./failure";
 import type { DoctorOptions, DoctorResult } from "./result";
 
 /** I/O・clock 注入 (test 可能)。 */
@@ -1411,9 +1412,10 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
       ],
     };
   } catch (error) {
+    const failure = doctorFailure("digest-inventory", "read_failed", error);
     return {
       ok: false,
-      messages: [`digest-inventory - violation: ${String(error)}`],
+      messages: [doctorFailureMessage("digest-inventory - violation", failure)],
     };
   }
 }
@@ -2110,10 +2112,9 @@ export function checkVscodeExtensionDynamicBinding(
       if (!prebuiltDb) db.close();
     }
   } catch (error) {
+    const failure = doctorFailure("vscode-extension-dynamic-binding", "check_failed", error);
     return {
-      messages: [
-        `vscode-extension-dynamic-binding - violation: VSCode dynamic tree binding could not run (${String(error)})`,
-      ],
+      messages: [doctorFailureMessage("vscode-extension-dynamic-binding - violation", failure)],
       ok: false,
     };
   }
@@ -6230,9 +6231,9 @@ export function checkClosureAuthorityRegistry(repoRoot: string): {
     const result = analyzeClosureAuthorityRegistry(loadClosureAuthorityRegistryLintInput(repoRoot));
     return { messages: closureAuthorityRegistryMessages(result), ok: result.ok };
   } catch (error) {
-    const detail = error instanceof Error ? error.message : "unknown registry error";
+    const failure = doctorFailure("closure-authority-registry", "read_failed", error);
     return {
-      messages: [`closure-authority-registry - violation: strict registry load failed: ${detail}`],
+      messages: [doctorFailureMessage("closure-authority-registry - violation", failure)],
       ok: false,
     };
   }

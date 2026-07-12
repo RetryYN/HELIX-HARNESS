@@ -30,6 +30,11 @@ verification_bindings:
       oracle_id: U-DUR-002,
       test_path: tests/doctor-cause-digest.test.ts,
     }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-003,
+      test_path: tests/doctor-cause-digest-contract.test.ts,
+    }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-78でL5/L6 contractとL8/L9 Vペアへbackprop済み。"
 generates:
@@ -56,6 +61,10 @@ generates:
     }
   - {
       artifact_path: tests/doctor-cause-digest.test.ts,
+      artifact_type: test_code,
+    }
+  - {
+      artifact_path: tests/doctor-cause-digest-contract.test.ts,
       artifact_type: test_code,
     }
 dependencies:
