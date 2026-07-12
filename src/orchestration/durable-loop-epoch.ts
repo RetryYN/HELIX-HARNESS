@@ -32,6 +32,7 @@ export type LoopEpochManifest = {
   payloadDigest: Sha256Digest;
   payloadFile: string;
   sideEffectPhase: LoopSideEffectPhase;
+  durabilityCapability: "posix_dir_fsync" | "file_fsync_same_volume_rename";
 };
 
 export type LoopEpochPointer = {
@@ -50,6 +51,7 @@ export type LoopEpochReadResult = {
 };
 
 export interface DurableEpochPort {
+  readonly durabilityCapability?: "posix_dir_fsync" | "file_fsync_same_volume_rename";
   acquireExclusiveClaim(planId: string): boolean;
   readManifestText(planId: string): string | null;
   writePayloadTemp(planId: string, tempId: string, text: string): void;
@@ -144,6 +146,10 @@ export function commitLoopEpoch(input: {
       payloadDigest,
       payloadFile,
       sideEffectPhase: input.sideEffectPhase,
+      durabilityCapability:
+        input.port.durabilityCapability === "file_fsync_same_volume_rename"
+          ? "file_fsync_same_volume_rename"
+          : "posix_dir_fsync",
     };
     const manifestText = JSON.stringify(manifest);
     const manifestFile = `${planId}.epoch-${epochId}-${randomUUID()}.manifest.json`;
@@ -228,7 +234,10 @@ export function parseLoopEpochManifest(text: string): LoopEpochManifest | null {
     typeof value.payloadFile !== "string" ||
     value.payloadFile !==
       `${value.planId}.epoch-${value.epochId}-${value.payloadDigest.slice(7)}.payload.json` ||
-    !["not_started", "intent_recorded", "completed"].includes(String(value.sideEffectPhase))
+    !["not_started", "intent_recorded", "completed"].includes(String(value.sideEffectPhase)) ||
+    !["posix_dir_fsync", "file_fsync_same_volume_rename"].includes(
+      String(value.durabilityCapability),
+    )
   ) {
     return null;
   }

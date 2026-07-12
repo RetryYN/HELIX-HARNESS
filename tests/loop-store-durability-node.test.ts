@@ -52,6 +52,9 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     const pointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
     const manifest = JSON.parse(readFileSync(paths.manifestFor(pointer.manifestFile), "utf8"));
     expect(manifest.planId).toBe(PLAN);
+    expect(manifest.durabilityCapability).toMatch(
+      /^(posix_dir_fsync|file_fsync_same_volume_rename)$/,
+    );
     expect(existsSync(paths.payloadFor(manifest.payloadFile))).toBe(true);
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
   });

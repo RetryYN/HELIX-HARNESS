@@ -123,10 +123,23 @@ function fsyncPath(path: string): void {
   }
 }
 
+function fsyncDirectory(path: string): void {
+  try {
+    fsyncPath(path);
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (platform() === "win32" && ["EINVAL", "EPERM", "ENOTSUP", "EISDIR"].includes(code ?? ""))
+      return;
+    throw error;
+  }
+}
+
 export function loopEpochPaths(root: string, planId: string) {
   const safe = assertLoopPlanId(planId);
   const directory = join(root, ".helix", "state", "loop");
   return {
+    durabilityCapability:
+      platform() === "win32" ? "file_fsync_same_volume_rename" : "posix_dir_fsync",
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
     manifest: join(directory, `${safe}.epoch.current.json`),
@@ -160,7 +173,7 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
         } finally {
           closeSync(fd);
         }
-        fsyncPath(value.directory);
+        fsyncDirectory(value.directory);
         return true;
       } catch (error) {
         if ((error as NodeJS.ErrnoException).code === "EEXIST") return false;
@@ -182,7 +195,7 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
     fsyncPayloadTemp: (planId, tempId) => fsyncPath(paths(planId).payloadTempFor(tempId)),
     renamePayload: (planId, tempId, payloadFile) =>
       renameSync(paths(planId).payloadTempFor(tempId), paths(planId).payloadFor(payloadFile)),
-    fsyncStateDirectory: (planId) => fsyncPath(paths(planId).directory),
+    fsyncStateDirectory: (planId) => fsyncDirectory(paths(planId).directory),
     writeManifestTemp: (planId, tempId, text) =>
       writeFileSync(paths(planId).manifestTempFor(tempId), text, {
         encoding: "utf8",
@@ -202,7 +215,7 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
     renamePointer: (planId, tempId) =>
       renameSync(paths(planId).pointerTempFor(tempId), paths(planId).manifest),
     unlinkClaim: (planId) => unlinkSync(paths(planId).claim),
-    fsyncClaimDirectory: (planId) => fsyncPath(paths(planId).directory),
+    fsyncClaimDirectory: (planId) => fsyncDirectory(paths(planId).directory),
   };
 }
 

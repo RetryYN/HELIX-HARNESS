@@ -36,6 +36,7 @@ function manifest(phase: "not_started" | "intent_recorded" | "completed" = "comp
     payloadDigest: sha256Digest(payload),
     payloadFile: `${PLAN}.epoch-1-${sha256Digest(payload).slice(7)}.payload.json`,
     sideEffectPhase: phase,
+    durabilityCapability: "posix_dir_fsync",
   });
 }
 
