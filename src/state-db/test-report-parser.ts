@@ -1,4 +1,5 @@
 import { normalizePath } from "../lint/shared";
+import { isRecord } from "../shared/value-guards";
 
 type TestCaseEvidence = {
   oracle_id?: string;
@@ -324,8 +325,4 @@ function asFiniteNumber(value: unknown): number | null {
     return Number.isFinite(parsed) ? parsed : null;
   }
   return null;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
 }

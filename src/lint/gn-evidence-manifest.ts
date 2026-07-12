@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { isAbsolute, relative, resolve } from "node:path";
+import { isRecord } from "../shared/value-guards";
 
 export interface GateEvidenceCommand {
   command_id: string;
@@ -47,12 +48,6 @@ export interface GateEvidenceConfig {
   itemPrefix: string;
   doctorCheck: string;
   requireAdvisorEvidence?: boolean;
-}
-
-type JsonRecord = Record<string, unknown>;
-
-function isRecord(value: unknown): value is JsonRecord {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function stringArray(value: unknown): string[] {

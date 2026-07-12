@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, lstatSync, readdirSync, readFileSync } from "node:fs";
 import { isAbsolute, join, posix } from "node:path";
+import { isRecord } from "../shared/value-guards";
 import { canonicalJson as canonicalJsonValue, sha256Digest } from "./digest";
 
 export type PreservedArtifactKind = "provider_evidence" | "operations_transition";
@@ -186,10 +187,6 @@ function validProbe(value: PreserveProbeEvidence): boolean {
     SHA256.test(value.outputDigest) &&
     validPath(value.evidencePath)
   );
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 export function validateProviderEvidenceJson(content: string): {

@@ -1,4 +1,5 @@
 import { parse as parseYaml } from "yaml";
+import { isRecord } from "../shared/value-guards";
 
 export type DesignDeclarationSource = "frontmatter" | "fenced_yaml";
 
@@ -59,10 +60,6 @@ export interface DesignDeclarationAnalysis {
 interface SpecBlock {
   source: DesignDeclarationSource;
   value: unknown;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function stringField(value: unknown, key: string): string | undefined {

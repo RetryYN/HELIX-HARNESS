@@ -73,6 +73,10 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/frontmatter-shared.test.ts
     artifact_type: test_code
+  - artifact_path: src/shared/value-guards.ts
+    artifact_type: source_module
+  - artifact_path: tests/value-guards.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []

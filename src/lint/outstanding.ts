@@ -20,11 +20,13 @@
  * placeholder-deps / shared を再利用するため解析層 (src/lint) に置く (runtime→lint は coding-rules の
  * module-boundary 違反ゆえ、消費側 CLI が lint を import する形にする)。
  */
+
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { frontmatterSchema } from "../schema/frontmatter";
+import { isRecord } from "../shared/value-guards";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
 import {
@@ -1094,10 +1096,6 @@ function consumerSetupBoundaryPlanRow(repoRoot: string): OutstandingPlanRow | nu
       "setup readiness is first-run evidence, not L14 or whole-program completion",
     ].join("\n"),
   };
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 /** repo から outstanding work を集計する (I/O 失敗は fail-open でゼロ寄せ、informational surface)。 */

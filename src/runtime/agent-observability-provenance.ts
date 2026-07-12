@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, join } from "node:path";
+import { isRecord } from "../shared/value-guards";
 import type { RunUsage } from "../state-db/token-tracker";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "../state-db/token-tracker";
 
@@ -62,10 +63,6 @@ function safeJson(line: string): unknown | null {
   } catch {
     return null;
   }
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function listJsonl(dir: string): string[] {

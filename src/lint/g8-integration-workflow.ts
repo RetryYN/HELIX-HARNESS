@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { isAbsolute, relative, resolve } from "node:path";
+import { isRecord } from "../shared/value-guards";
 
 export interface G8IntegrationWorkflowInput {
   repoRoot?: string;
@@ -81,8 +82,6 @@ const EVIDENCE_MANIFEST_SCHEMA = "g8-integration-evidence-v1";
 const EVIDENCE_DIR = ".helix/evidence/g8-integration";
 const ALLOWED_EVIDENCE_PREFIXES = [".helix/evidence/", "docs/", "src/", "tests/"] as const;
 
-type JsonRecord = Record<string, unknown>;
-
 export function loadG8IntegrationWorkflowInput(
   repoRoot = process.cwd(),
 ): G8IntegrationWorkflowInput {
@@ -99,10 +98,6 @@ export function loadG8IntegrationWorkflowInput(
 
 function missingMarkers(text: string, markers: readonly string[]): string[] {
   return markers.filter((marker) => !text.includes(marker));
-}
-
-function isRecord(value: unknown): value is JsonRecord {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function stringArray(value: unknown): string[] {

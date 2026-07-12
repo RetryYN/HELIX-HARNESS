@@ -1272,3 +1272,10 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-ID | 対象 | Oracle |
 |---|---|---|
 | U-REPOINFO-003 | `readRepoHeadSha` | 注入git出力の39/41桁、非hex、大文字を`null`にし、40桁lowercaseのみ受理する。 |
+
+### plain record guard単一正本（PLAN-L7-433 Q8）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-VGUARD-001 | `isRecord` | objectを受理し、array/null/primitiveを拒否する。 |
+| U-VGUARD-002 | production definition inventory | 対象13 module中の`isRecord`定義がsharedの1件だけである。 |

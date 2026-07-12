@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { isSecretLike } from "../security/secret-policy";
+import { isRecord } from "../shared/value-guards";
 
 export const FEEDBACK_LIFECYCLE_SCHEMA_VERSION = 1 as const;
 export const FEEDBACK_LIFECYCLE_POLICY_VERSION = "feedback-lifecycle.v1";
@@ -937,8 +938,4 @@ function isIsoUtc(value: unknown): value is string {
   if (!Number.isFinite(parsed)) return false;
   const canonical = new Date(parsed).toISOString();
   return value === canonical || value === canonical.replace(".000Z", "Z");
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

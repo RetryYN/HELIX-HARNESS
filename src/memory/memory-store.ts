@@ -1,6 +1,7 @@
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { isSecretLike } from "../security/secret-policy";
+import { isRecord } from "../shared/value-guards";
 import type { MemoryDeps, MemoryEntry, MemoryLayer } from "./memory-types";
 
 interface FileMemoryDepsOptions {
@@ -81,10 +82,6 @@ function parseMemoryEntry(line: string): MemoryEntry | null {
     supersedes: value.supersedes,
     createdAt: value.createdAt,
   };
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function isNodeError(error: unknown): error is NodeJS.ErrnoException {
