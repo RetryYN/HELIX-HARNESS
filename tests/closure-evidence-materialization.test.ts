@@ -13,7 +13,7 @@ import {
   materializeClosureEvidence,
   recoverClosureEvidenceMaterialization,
 } from "../src/state-db/closure-evidence-materialization";
-import { ClosureEvidenceRunner } from "../src/state-db/closure-evidence-runner";
+import { ClosureEvidenceRunner, type ClosureSpawn } from "../src/state-db/closure-evidence-runner";
 import {
   acquireClosureMaterializationLock,
   releaseClosureMaterializationLock,
@@ -85,7 +85,7 @@ function fixture() {
     schema_version: "closure-authority-registry.v1",
     authorities: [authority],
   });
-  const createRunner = (repositoryHead: string) =>
+  const createRunner = (repositoryHead: string, suppliedSpawn?: ClosureSpawn) =>
     new ClosureEvidenceRunner({
       repoRoot: root,
       repositoryHead,
@@ -96,30 +96,32 @@ function fixture() {
           argv: ["gate", "harness-check"],
         },
       },
-      spawn: ({ executable }) => ({
-        exitCode: 0,
-        signal: null,
-        timedOut: false,
-        stderr: "",
-        stdout:
-          executable === "bunx"
-            ? JSON.stringify({
-                success: true,
-                testResults: [
-                  {
-                    name: "fixture",
-                    assertionResults: [
-                      {
-                        fullName: "U-CMAT-007 exact join",
-                        title: "U-CMAT-007",
-                        status: "passed",
-                      },
-                    ],
-                  },
-                ],
-              })
-            : "gate green\n",
-      }),
+      spawn:
+        suppliedSpawn ??
+        (({ executable }) => ({
+          exitCode: 0,
+          signal: null,
+          timedOut: false,
+          stderr: "",
+          stdout:
+            executable === "bunx"
+              ? JSON.stringify({
+                  success: true,
+                  testResults: [
+                    {
+                      name: "fixture",
+                      assertionResults: [
+                        {
+                          fullName: "U-CMAT-007 exact join",
+                          title: "U-CMAT-007",
+                          status: "passed",
+                        },
+                      ],
+                    },
+                  ],
+                })
+              : "gate green\n",
+        })),
       now: () => "2026-07-12T00:00:00.000Z",
     });
   const runner = createRunner(head);
@@ -376,6 +378,24 @@ describe("closure evidence materialization transaction", () => {
     });
     expect(evaluation.blockers).toEqual([]);
     expect(evaluation.allowed).toBe(true);
+    const runRecordPath = join(root, `.helix/evidence/closure-runs/${PLAN}.json`);
+    const runRecordBytes = readFileSync(runRecordPath);
+    const withoutPhysicalKey = JSON.parse(runRecordBytes.toString("utf8"));
+    for (const run of withoutPhysicalKey.runs) delete run.process_receipt_key;
+    writeFileSync(runRecordPath, JSON.stringify(withoutPhysicalKey));
+    const bypass = evaluateClosureAutoApproval({
+      repoRoot: root,
+      db,
+      snapshot,
+      manifest,
+      limit: 1,
+      offset: 0,
+      now: new Date("2026-07-12T00:05:00Z"),
+      authorityRegistry: input.registry,
+    });
+    expect(bypass.allowed).toBe(false);
+    expect(bypass.blockers.join("\n")).toContain("run record physical receipt key欠落");
+    writeFileSync(runRecordPath, runRecordBytes);
     const receipt = db.prepare("SELECT stdout_path FROM closure_process_receipts LIMIT 1").get();
     writeFileSync(join(root, String(receipt?.stdout_path ?? "")), "tampered\n");
     const tampered = evaluateClosureAutoApproval({
@@ -428,17 +448,24 @@ describe("closure evidence materialization transaction", () => {
   });
 
   it("rerun crashは既存canonical run recordをbefore bytesへ復元する", async () => {
-    const { root, input } = fixture();
+    const { root, input, createRunner } = fixture();
     await materializeClosureEvidence(input);
     const recordPath = join(root, `.helix/evidence/closure-runs/${PLAN}.json`);
     const before = readFileSync(recordPath);
+    let respawned = 0;
+    const noRespawn = createRunner(input.repositoryHead, () => {
+      respawned += 1;
+      throw new Error("same HEAD receipt must be reused");
+    });
     await expect(
       materializeClosureEvidence({
         ...input,
+        runner: noRespawn,
         id: () => "materialization-fixture-rerun",
         crashAt: "after-files-before-commit",
       }),
     ).rejects.toThrow(/after-files-before-commit/);
+    expect(respawned).toBe(0);
     expect(readFileSync(recordPath)).toEqual(before);
   });
 });

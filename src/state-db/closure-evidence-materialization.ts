@@ -389,6 +389,51 @@ async function materializeClosureEvidenceUnlocked(
           });
         }
       }
+      for (const item of planned) {
+        const key = closureCommandDedupeKey(input.repositoryHead, item.command);
+        if (receiptCache.has(key)) continue;
+        const stored = input.db
+          .prepare("SELECT * FROM closure_process_receipts WHERE process_receipt_key=?")
+          .get(key);
+        if (!stored) continue;
+        const stdoutPath = String(stored.stdout_path ?? "");
+        const stderrPath = String(stored.stderr_path ?? "");
+        canonicalRegular(input.repoRoot, stdoutPath);
+        canonicalRegular(input.repoRoot, stderrPath);
+        const stdout = readFileSync(join(input.repoRoot, stdoutPath), "utf8");
+        const stderr = readFileSync(join(input.repoRoot, stderrPath), "utf8");
+        const argv = JSON.parse(String(stored.argv_json ?? ""));
+        if (
+          stored.schema_version !== "closure-process-receipt.v1" ||
+          stored.repository_head !== input.repositoryHead ||
+          stored.kind !== item.command.kind ||
+          stored.executable !== item.command.executable ||
+          !Array.isArray(argv) ||
+          JSON.stringify(argv) !== JSON.stringify(item.command.argv) ||
+          Number(stored.exit_code) !== 0 ||
+          stored.signal !== null ||
+          Number(stored.timed_out) !== 0 ||
+          stored.stdout_digest !== sha256(stdout) ||
+          stored.stderr_digest !== sha256(stderr)
+        )
+          throw new Error(`persistent physical process receipt不一致: ${key}`);
+        receiptCache.set(key, {
+          schema_version: "closure-process-receipt.v1",
+          kind: item.command.kind,
+          repository_head: input.repositoryHead,
+          executable: item.command.executable,
+          argv: [...item.command.argv],
+          dedupe_key: key,
+          exit_code: 0,
+          signal: null,
+          timed_out: false,
+          stdout,
+          stderr,
+          stdout_digest: sha256(stdout),
+          stderr_digest: sha256(stderr),
+          completed_at: String(stored.completed_at ?? ""),
+        });
+      }
       const missing = planned
         .map((item) => item.command)
         .filter(

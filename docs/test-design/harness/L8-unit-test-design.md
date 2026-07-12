@@ -323,4 +323,4 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-CMAT-009 | bounded production | 361件を100件以下のwindow、実worker pool concurrency上限4、HEAD+argv横断dedupe、single DB writerで欠落・重複なく処理する | `tests/closure-evidence-materialization.test.ts`、`tests/closure-evidence-runner.test.ts` |
 | U-CMAT-010 | trust/human境界 | materializationはstatusを変更せず、executeはfresh required-check CASと不可逆human境界を維持する | `tests/closure-evidence-materialization.test.ts` |
 | U-CMAT-011 | physical receipt schema | 旧DB rowを保存したadditive migrationで物理receiptをimmutable exactly-one化し、論理run参照はlegacy互換nullableとする | `tests/closure-process-receipt-schema.test.ts` |
-| U-CMAT-012 | atomic process lock | 完全なowner directoryだけをatomic claimし、process birth identityでlive/stale/PID再利用を判定し、torn・symlink・異owner releaseをfail-closeする | `tests/closure-materialization-lock.test.ts` |
+| U-CMAT-012 | atomic process lock | 完全なowner directoryだけをatomic claimし、2 child同時barrierのwinnerをexactly-one化する。process birth identityでlive/stale/PID再利用を判定し、torn・symlink・異owner releaseをfail-closeする | `tests/closure-materialization-lock.test.ts` |

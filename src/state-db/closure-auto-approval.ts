@@ -411,8 +411,11 @@ function validateCanonicalRuns(input: {
       )
         errors.push(`${run.run_id}: DB gate receipt field不一致`);
     }
+    const dbProcessReceiptKey = String(dbRow?.process_receipt_key ?? "");
+    if (dbProcessReceiptKey && run.process_receipt_key === undefined)
+      errors.push(`${run.run_id}: run record physical receipt key欠落`);
     if (run.process_receipt_key !== undefined) {
-      if (String(dbRow?.process_receipt_key ?? "") !== run.process_receipt_key)
+      if (dbProcessReceiptKey !== run.process_receipt_key)
         errors.push(`${run.run_id}: logical/physical receipt key不一致`);
       const physical = input.db
         .prepare("SELECT * FROM closure_process_receipts WHERE process_receipt_key = ?")
@@ -437,6 +440,7 @@ function validateCanonicalRuns(input: {
           Number(physical.timed_out) !== 0 ||
           physical.signal !== null ||
           command !== run.command ||
+          String(physical.stdout_digest ?? "") !== run.output_digest ||
           stdout.error !== null ||
           stderr.error !== null ||
           (stdout.error === null &&

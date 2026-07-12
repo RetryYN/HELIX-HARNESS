@@ -35,6 +35,9 @@ export interface ClosureMaterializationLock {
 }
 
 function fsyncDirectory(path: string): void {
+  // Windows does not expose a portable directory fsync through Node. File fsync + same-volume
+  // atomic rename is the supported durability boundary there; POSIX additionally fsyncs parent dirs.
+  if (platform() === "win32") return;
   const fd = openSync(path, "r");
   try {
     fsyncSync(fd);
@@ -61,12 +64,12 @@ export function readProcessIdentity(pid: number): string {
   if (!Number.isSafeInteger(pid) || pid <= 0) throw new Error(`invalid process pid=${pid}`);
   if (platform() === "linux") return linuxProcessStartId(pid);
   if (platform() === "win32") {
-    const output = execFileSync(
-      "wmic.exe",
-      ["process", "where", `ProcessId=${pid}`, "get", "CreationDate", "/value"],
-      { encoding: "utf8" },
-    );
-    const created = output.match(/CreationDate=([^\r\n]+)/)?.[1]?.trim();
+    const script = `(Get-Process -Id ${pid} -ErrorAction Stop).StartTime.ToUniversalTime().Ticks`;
+    const created = execFileSync(
+      "powershell.exe",
+      ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
+      { encoding: "utf8", windowsHide: true },
+    ).trim();
     if (!created) throw new Error(`process identity malformed pid=${pid}`);
     return `win32:${created}`;
   }
@@ -164,7 +167,9 @@ export function acquireClosureMaterializationLock(repoRoot: string): ClosureMate
       return { path, token, processStartId };
     } catch (error) {
       const code = (error as NodeJS.ErrnoException).code;
-      if (code !== "EEXIST" && code !== "ENOTEMPTY") {
+      const windowsCollision =
+        platform() === "win32" && (code === "EPERM" || code === "EACCES") && existsSync(path);
+      if (code !== "EEXIST" && code !== "ENOTEMPTY" && !windowsCollision) {
         removeClaim(claim, stateDir);
         throw error;
       }
