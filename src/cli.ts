@@ -153,6 +153,7 @@ import {
 } from "./memory";
 import { compactMemory, nodeMemoryCompactionDeps } from "./memory/memory-compaction";
 import { fileMemoryDeps } from "./memory/memory-store";
+import { buildAutonomousLoopRunReceipt } from "./orchestration/autonomous-loop-run-receipts";
 import { selectVerifier } from "./orchestration/cross-verifier";
 import { nodeTickDeps } from "./orchestration/loop-bridge";
 import { canResume, tick } from "./orchestration/loop-runner";
@@ -216,7 +217,6 @@ import {
   renderEscalationSignals,
   selectPrecedingSessionFile,
 } from "./runtime/attempt-escalation";
-import { buildAutonomousLoopRunReceipt } from "./runtime/autonomous-loop-run-receipts";
 import {
   buildChangePackageDeltaArchiveReport,
   type ChangePackageStatus,

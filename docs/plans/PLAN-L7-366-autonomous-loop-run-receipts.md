@@ -23,7 +23,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-366-autonomous-loop-run-receipts.md
     artifact_type: markdown_doc
-  - artifact_path: src/runtime/autonomous-loop-run-receipts.ts
+  - artifact_path: src/orchestration/autonomous-loop-run-receipts.ts
     artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
@@ -62,15 +62,15 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T16:34:00+09:00"
-        evidence_path: src/runtime/autonomous-loop-run-receipts.ts
+        evidence_path: src/orchestration/autonomous-loop-run-receipts.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bunx biome check src/cli.ts src/runtime/agent-session-command-center.ts src/runtime/agent-mailbox-conflict-locks.ts src/runtime/autonomous-loop-run-receipts.ts src/runtime/parallel-candidate-verifier-council.ts tests/agent-session-command-center.test.ts tests/agent-mailbox-conflict-locks.test.ts tests/autonomous-loop-run-receipts.test.ts tests/parallel-candidate-verifier-council.test.ts tests/cli-surface.test.ts"
+        command: "bunx biome check src/cli.ts src/runtime/agent-session-command-center.ts src/runtime/agent-mailbox-conflict-locks.ts src/orchestration/autonomous-loop-run-receipts.ts src/runtime/parallel-candidate-verifier-council.ts tests/agent-session-command-center.test.ts tests/agent-mailbox-conflict-locks.test.ts tests/autonomous-loop-run-receipts.test.ts tests/parallel-candidate-verifier-council.test.ts tests/cli-surface.test.ts"
         runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:36:23+09:00"
-        evidence_path: src/runtime/autonomous-loop-run-receipts.ts
+        evidence_path: src/orchestration/autonomous-loop-run-receipts.ts
         output_digest: "sha256:6a0b2f2edd1b67893754cb7200712a15817aa1133f4c51e47d8f83edc64eb6a8"
 ---
 

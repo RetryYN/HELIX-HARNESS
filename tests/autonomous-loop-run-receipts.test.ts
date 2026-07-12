@@ -2,9 +2,9 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { buildAutonomousLoopRunReceipt } from "../src/orchestration/autonomous-loop-run-receipts";
 import { loopEpochPaths } from "../src/orchestration/durable-loop-epoch-node";
 import { durableFileLoopStore } from "../src/orchestration/loop-store";
-import { buildAutonomousLoopRunReceipt } from "../src/runtime/autonomous-loop-run-receipts";
 
 describe("autonomous loop run receipts", () => {
   it("fails closed when an autonomous loop claim has no receipt", () => {

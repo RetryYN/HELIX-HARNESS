@@ -66,14 +66,14 @@ function writeFakeClaude(binDir: string): string {
     const path = join(binDir, "claude.cmd");
     writeFileSync(
       path,
-      `@echo off\r\necho %* > claude-called.txt\r\nfindstr "^" > claude-stdin.txt\r\n(echo raw=%${rawEnv}%)> claude-env.txt\r\n(echo reason=%${reasonEnv}%)>> claude-env.txt\r\nexit /b 0\r\n`,
+      `@echo off\r\necho %* > claude-called.txt\r\nfindstr "^" > claude-stdin.txt\r\n(echo raw=%${rawEnv}%)> claude-env.txt\r\n(echo reason=%${reasonEnv}%)>> claude-env.txt\r\necho VERDICT: PASS\r\nexit /b 0\r\n`,
     );
     return path;
   }
   const path = join(binDir, "claude");
   writeFileSync(
     path,
-    `#!/bin/sh\necho "$@" > claude-called.txt\ncat > claude-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > claude-env.txt\nexit 0\n`,
+    `#!/bin/sh\necho "$@" > claude-called.txt\ncat > claude-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > claude-env.txt\nprintf "VERDICT: PASS\\n"\nexit 0\n`,
   );
   chmodSync(path, 0o755);
   return path;

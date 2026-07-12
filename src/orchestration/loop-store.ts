@@ -100,7 +100,8 @@ export function durableFileLoopStore(deps: {
         throw new Error("invalid marker");
       return true;
     } catch {
-      throw new Error(`legacy loop import marker is corrupt: ${planId}`);
+      const safeReason = `legacy loop import marker is corrupt: ${planId}`;
+      throw new Error(safeReason);
     }
   }
 
@@ -159,7 +160,8 @@ export function durableFileLoopStore(deps: {
     try {
       state = JSON.parse(text) as LoopState;
     } catch {
-      throw new Error(`legacy loop state is corrupt: ${planId}`);
+      const safeReason = `legacy loop state is corrupt: ${planId}`;
+      throw new Error(safeReason);
     }
     const sourceDigest = sha256Digest(text);
     const payload: LoopEpochPayload = { state, iteration: null, legacySourceDigest: sourceDigest };

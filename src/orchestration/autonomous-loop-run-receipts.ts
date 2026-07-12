@@ -1,6 +1,6 @@
-import { loopEpochPaths, readLoopEpochFromFs } from "../orchestration/durable-loop-epoch-node";
-import type { LoopState } from "../orchestration/loop-state";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
+import { loopEpochPaths, readLoopEpochFromFs } from "./durable-loop-epoch-node";
+import type { LoopState } from "./loop-state";
 
 export const AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION = "autonomous-loop-run-receipts.v1";
 

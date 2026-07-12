@@ -91,7 +91,7 @@ generates:
       artifact_type: source_module,
     }
   - {
-      artifact_path: src/runtime/autonomous-loop-run-receipts.ts,
+      artifact_path: src/orchestration/autonomous-loop-run-receipts.ts,
       artifact_type: source_module,
     }
   - {
