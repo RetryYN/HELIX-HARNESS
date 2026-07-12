@@ -1,0 +1,89 @@
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
+import { loopEpochPaths, readLoopEpochFromFs } from "../src/orchestration/durable-loop-epoch-node";
+import { durableFileLoopStore } from "../src/orchestration/loop-store";
+
+const PLAN = "PLAN-L7-449-durability-boundary-implementation";
+const roots: string[] = [];
+const root = () => {
+  const value = mkdtempSync(join(tmpdir(), "helix-product-loop-"));
+  roots.push(value);
+  return value;
+};
+afterEach(() => {
+  for (const value of roots.splice(0)) rmSync(value, { recursive: true, force: true });
+});
+
+const state = {
+  planId: PLAN,
+  status: "running" as const,
+  iteration: 0,
+  maxIterations: 3,
+  lastVerdict: "pending" as const,
+  workerProvider: "codex" as const,
+  verifierProvider: null,
+  blockedReason: null,
+  windowOpensAt: "2026-07-13T00:00:00.000Z",
+  windowClosesAt: "2026-07-13T12:00:00.000Z",
+  costUsd: 0,
+  updatedAt: "2026-07-13T00:00:00.000Z",
+};
+
+describe("PLAN-L7-449 production durable loop store", () => {
+  it("IT-DUR-003/004: imports valid legacy state once and restarts from epoch zero", () => {
+    const repo = root();
+    const legacy = join(repo, ".helix", "state", "loop", `${PLAN}.json`);
+    mkdirSync(dirname(legacy), { recursive: true });
+    writeFileSync(legacy, JSON.stringify(state));
+    const makeStore = () =>
+      durableFileLoopStore({
+        root: repo,
+        readLegacyText: (path) => {
+          try {
+            return readFileSync(path, "utf8");
+          } catch {
+            return null;
+          }
+        },
+      });
+
+    expect(makeStore().read(PLAN)).toEqual(state);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    writeFileSync(legacy, "{");
+    expect(makeStore().read(PLAN)).toEqual(state);
+  });
+
+  it("IT-DUR-002: refuses corrupt legacy state instead of mapping it to missing", () => {
+    const repo = root();
+    const legacy = join(repo, ".helix", "state", "loop", `${PLAN}.json`);
+    mkdirSync(dirname(legacy), { recursive: true });
+    writeFileSync(legacy, "{");
+    const store = durableFileLoopStore({ root: repo, readLegacyText: () => "{" });
+    expect(() => store.read(PLAN)).toThrow("legacy loop state is corrupt");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("missing");
+  });
+
+  it("IT-DUR-003/005: commits iteration and next state as one restart-readable epoch", () => {
+    const repo = root();
+    const store = durableFileLoopStore({ root: repo });
+    expect(store.read(PLAN)).toBeNull();
+    store.recordIteration({
+      planId: PLAN,
+      iteration: 1,
+      workerProvider: "codex",
+      verifierProvider: "claude",
+      verdict: "pass",
+      blockedReason: null,
+    });
+    store.write({ ...state, iteration: 1, lastVerdict: "pass" });
+    const snapshot = readLoopEpochFromFs(repo, PLAN);
+    expect(snapshot.status).toBe("committed");
+    expect(snapshot.payload?.iteration?.iteration).toBe(1);
+    expect(durableFileLoopStore({ root: repo }).read(PLAN)?.iteration).toBe(1);
+    expect(loopEpochPaths(repo, PLAN).durabilityCapability).toMatch(
+      /^(posix_dir_fsync|file_fsync_same_volume_rename)$/,
+    );
+  });
+});
