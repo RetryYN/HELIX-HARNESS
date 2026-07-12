@@ -8,9 +8,19 @@ export type StableCauseDigest = {
   truncated: boolean;
 };
 
+const FALLBACK_DIGEST: StableCauseDigest = {
+  causeKind: "inaccessible",
+  digest: "sha256:6cf9c013c17f18e7d5374a090c9130af0d8a5d26c4d0a155daebca543cb476f6",
+  truncated: false,
+};
+
 function digest(kind: StableCauseKind, safeClass: string, truncated = false): StableCauseDigest {
-  const canonical = `helix.doctor.cause.v1\0${kind}\0${safeClass}`;
-  return { causeKind: kind, digest: sha256Digest(canonical), truncated };
+  try {
+    const canonical = `helix.doctor.cause.v1\0${kind}\0${safeClass}`;
+    return { causeKind: kind, digest: sha256Digest(canonical), truncated };
+  } catch {
+    return FALLBACK_DIGEST;
+  }
 }
 
 const ERROR_NAMES = new Set(["Error", "TypeError", "SyntaxError", "RangeError", "ReferenceError"]);
@@ -72,6 +82,6 @@ export function stableCauseDigest(cause: unknown): StableCauseDigest {
     }
     return digest("object", primitiveType === "function" ? "function" : "object");
   } catch {
-    return digest("inaccessible", "unknown");
+    return FALLBACK_DIGEST;
   }
 }

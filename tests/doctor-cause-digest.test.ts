@@ -33,15 +33,22 @@ describe("PLAN-L7-449 stable cause digest", () => {
     });
     const cyclic: { self?: unknown } = {};
     cyclic.self = cyclic;
+    const revoked = Proxy.revocable({}, {});
+    revoked.revoke();
 
     expect(() => stableCauseDigest(proxy)).not.toThrow();
     expect(stableCauseDigest(proxy).causeKind).toBe("inaccessible");
+    expect(() => stableCauseDigest(revoked.proxy)).not.toThrow();
+    expect(stableCauseDigest(revoked.proxy).causeKind).toBe("inaccessible");
     expect(() => stableCauseDigest(throwingError)).not.toThrow();
     expect(stableCauseDigest(throwingError).causeKind).toBe("error");
     expect(stableCauseDigest(cyclic).causeKind).toBe("object");
     const huge = stableCauseDigest("x".repeat(100_000));
     expect(huge.truncated).toBe(false);
     expect(huge.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    for (const cause of [proxy, revoked.proxy, throwingError, cyclic, huge, null, 1, Symbol("x")]) {
+      expect(stableCauseDigest(cause).truncated).toBe(false);
+    }
   });
 
   it("U-DUR-001: distinguishes scalar types without invoking object coercion", () => {
