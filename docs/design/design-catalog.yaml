@@ -103,6 +103,8 @@ items:
       - docs/design/harness/L6-function-design/destructive-command-guard.md
       - docs/design/harness/L5-detailed-design/durability-boundaries.md
       - docs/design/harness/L6-function-design/durability-boundaries.md
+      - docs/design/harness/L5-detailed-design/source-boundary-architecture.md
+      - docs/design/harness/L6-function-design/source-boundary-contracts.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test
@@ -114,6 +116,7 @@ items:
       - docs/test-design/harness/closure-authority-production-route.md
       - docs/test-design/harness/closure-evidence-semantic-authority.md
       - docs/test-design/harness/L8-durability-boundaries.md
+      - docs/test-design/harness/L8-source-boundary-contracts.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
@@ -122,6 +125,7 @@ items:
     artifact:
       - docs/test-design/harness/L9-integration-test-design.md
       - docs/test-design/harness/L9-durability-boundaries-integration.md
+      - docs/test-design/harness/L9-source-boundary-integration.md
   - id: system-test-design
     name: 総合テスト設計書
     category: test
