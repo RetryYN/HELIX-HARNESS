@@ -41,6 +41,9 @@ export type StaleLoopClaimRecoveryPacket = {
   approvedBy: string;
   auditId: string;
 };
+export interface StaleLoopClaimRecoveryAuthority {
+  verify(packet: StaleLoopClaimRecoveryPacket): boolean;
+}
 const MAX_MANIFEST_HISTORY = 4096;
 
 function resolvePointerManifest(
@@ -106,11 +109,12 @@ function claimStatus(text: string | null): "absent" | "live" | "stale" {
       return "live";
     const currentBoot = bootIdentity();
     if (claim.bootIdentity && currentBoot && claim.bootIdentity !== currentBoot) return "stale";
-    if (uptime() * 1000 > claim.leaseDeadlineUptimeMs) return "stale";
     const currentToken = processStartToken(claim.pid);
+    if (claim.processStartToken && currentToken === claim.processStartToken) return "live";
     if (claim.processStartToken && currentToken && claim.processStartToken !== currentToken)
       return "stale";
     if (platform() === "linux" && currentToken === null) return "stale";
+    if (uptime() * 1000 > claim.leaseDeadlineUptimeMs) return "stale";
     return "live";
   } catch {
     return "live";
@@ -155,8 +159,10 @@ export function loopEpochPaths(root: string, planId: string) {
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
     recoveryClaim: join(directory, `${safe}.epoch.recovery.claim`),
-    claimTombstoneFor: (claimId: string) =>
-      join(directory, `${safe}.${claimId}.epoch.claim.recovered`),
+    recoveryAuditTempFor: (recoveryId: string) =>
+      join(directory, `${safe}.${recoveryId}.recovery-audit.tmp`),
+    claimTombstoneFor: (recoveryId: string) =>
+      join(directory, `${safe}.${recoveryId}.epoch.claim.recovered.json`),
     manifest: join(directory, `${safe}.epoch.current.json`),
     manifestFor: (manifestFile: string) => join(directory, manifestFile),
     payloadFor: (payloadFile: string) => join(directory, payloadFile),
@@ -249,28 +255,40 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
 export function recoverStaleLoopClaim(
   root: string,
   packet: StaleLoopClaimRecoveryPacket,
-): { status: "recovered" | "rejected" | "conflict"; reason: string } {
+  authority: StaleLoopClaimRecoveryAuthority,
+): {
+  status: "recovered" | "rejected" | "conflict" | "durability_uncertain";
+  reason: string;
+  recoveryId?: string;
+} {
   const planId = assertLoopPlanId(packet.planId);
   const value = loopEpochPaths(root, planId);
-  if (!packet.approvedBy.trim() || !packet.auditId.trim())
+  if (!packet.approvedBy.trim() || !packet.auditId.trim() || !authority.verify(packet))
     return { status: "rejected", reason: "authority_missing" };
   mkdirSync(value.directory, { recursive: true });
-  let recoveryFd: number;
+  let acquired = false;
+  let result: {
+    status: "recovered" | "rejected" | "conflict" | "durability_uncertain";
+    reason: string;
+    recoveryId?: string;
+  } = { status: "durability_uncertain", reason: "recovery_not_started" };
   try {
-    recoveryFd = openSync(value.recoveryClaim, "wx", 0o600);
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "EEXIST")
-      return { status: "conflict", reason: "recovery_claim_conflict" };
-    throw error;
-  }
-  try {
-    writeFileSync(recoveryFd, `${JSON.stringify(packet)}\n`);
-    fsyncSync(recoveryFd);
-  } finally {
-    closeSync(recoveryFd);
-  }
-  fsyncDirectory(value.directory);
-  try {
+    let recoveryFd: number;
+    try {
+      recoveryFd = openSync(value.recoveryClaim, "wx", 0o600);
+      acquired = true;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "EEXIST")
+        return { status: "conflict", reason: "recovery_claim_conflict" };
+      throw error;
+    }
+    try {
+      writeFileSync(recoveryFd, `${JSON.stringify(packet)}\n`);
+      fsyncSync(recoveryFd);
+    } finally {
+      closeSync(recoveryFd);
+    }
+    fsyncDirectory(value.directory);
     const claimText = readIfExists(value.claim);
     if (claimText === null || claimStatus(claimText) !== "stale")
       return { status: "rejected", reason: "claim_not_provably_stale" };
@@ -281,6 +299,9 @@ export function recoverStaleLoopClaim(
       manifestDigest = sha256Digest(resolvePointerManifest(value, planId, pointerText));
     if (
       typeof claim.claimId !== "string" ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+        claim.claimId,
+      ) ||
       claim.pointerDigest !== sha256Digest(pointerText ?? "") ||
       claim.manifestDigest !== manifestDigest ||
       packet.claimDigest !== sha256Digest(claimText) ||
@@ -288,15 +309,37 @@ export function recoverStaleLoopClaim(
       packet.manifestDigest !== claim.manifestDigest
     )
       return { status: "rejected", reason: "snapshot_digest_mismatch" };
-    renameSync(value.claim, value.claimTombstoneFor(claim.claimId));
+    const recoveryId = randomUUID();
+    const auditText = `${JSON.stringify({
+      schema: "helix.loop-claim-recovery.v1",
+      recoveryId,
+      packet,
+      packetDigest: sha256Digest(JSON.stringify(packet)),
+      claim: JSON.parse(claimText),
+      claimDigest: sha256Digest(claimText),
+      recoveredAt: new Date().toISOString(),
+    })}\n`;
+    const auditTemp = value.recoveryAuditTempFor(recoveryId);
+    writeFileSync(auditTemp, auditText, { encoding: "utf8", flag: "wx", mode: 0o600 });
+    fsyncPath(auditTemp);
+    renameSync(auditTemp, value.claimTombstoneFor(recoveryId));
     fsyncDirectory(value.directory);
-    return { status: "recovered", reason: "stale_claim_tombstoned" };
+    unlinkSync(value.claim);
+    fsyncDirectory(value.directory);
+    result = { status: "recovered", reason: "stale_claim_tombstoned", recoveryId };
   } catch {
-    return { status: "rejected", reason: "recovery_verification_failed" };
+    result = { status: "durability_uncertain", reason: "recovery_verification_failed" };
   } finally {
-    unlinkSync(value.recoveryClaim);
-    fsyncDirectory(value.directory);
+    if (acquired) {
+      try {
+        unlinkSync(value.recoveryClaim);
+        fsyncDirectory(value.directory);
+      } catch {
+        result = { status: "durability_uncertain", reason: "recovery_cleanup_failed" };
+      }
+    }
   }
+  return result;
 }
 
 export function readLoopEpochFromFs(root: string, planId: string): LoopEpochReadResult {
