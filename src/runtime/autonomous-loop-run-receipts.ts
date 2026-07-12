@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { LoopState } from "../orchestration/loop-state";
-import { assertLoopPlanId } from "../util/loop-plan-id";
+import { assertLoopPlanId } from "../schema/loop-plan-id";
 
 export const AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION = "autonomous-loop-run-receipts.v1";
 

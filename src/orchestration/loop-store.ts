@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import { assertLoopPlanId } from "../util/loop-plan-id";
+import { assertLoopPlanId } from "../schema/loop-plan-id";
 import type { LoopIterationRecord } from "./loop-runner";
 import type { LoopState } from "./loop-state";
 
