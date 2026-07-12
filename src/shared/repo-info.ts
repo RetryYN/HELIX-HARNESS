@@ -2,12 +2,24 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
-export function readRepoHeadSha(repoRoot: string): string | null {
-  try {
-    const head = execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
+export interface RepoHeadDeps {
+  readHead(repoRoot: string): string;
+}
+
+const nodeRepoHeadDeps: RepoHeadDeps = {
+  readHead: (repoRoot) =>
+    execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
+    }),
+};
+
+export function readRepoHeadSha(
+  repoRoot: string,
+  deps: RepoHeadDeps = nodeRepoHeadDeps,
+): string | null {
+  try {
+    const head = deps.readHead(repoRoot).trim();
     return /^[a-f0-9]{40}$/.test(head) ? head : null;
   } catch {
     return null;

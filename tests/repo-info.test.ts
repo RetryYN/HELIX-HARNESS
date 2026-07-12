@@ -20,6 +20,15 @@ describe("PLAN-L7-433 Q5 repo info SSoT", () => {
     expect(readRepoHeadSha(join(root, "missing"))).toBeNull();
   });
 
+  it("U-REPOINFO-003: version-up caller と同じ境界で malformed git output を拒否する", () => {
+    const read = (head: string) => readRepoHeadSha("/repo", { readHead: () => head });
+    expect(read(`${"a".repeat(40)}\n`)).toBe("a".repeat(40));
+    expect(read("a".repeat(39))).toBeNull();
+    expect(read("a".repeat(41))).toBeNull();
+    expect(read("g".repeat(40))).toBeNull();
+    expect(read("A".repeat(40))).toBeNull();
+  });
+
   it("U-REPOINFO-002: trims a package version and rejects empty or invalid JSON", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-package-info-"));
     writeFileSync(join(root, "package.json"), JSON.stringify({ version: " 1.2.3 " }));
