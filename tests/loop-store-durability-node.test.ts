@@ -118,19 +118,78 @@ describe("PLAN-L7-449 node durable epoch port", () => {
       approvedBy: "test-recovery-authority",
       auditId: "IT-DUR-004",
     };
+    const authority = { verify: () => true };
     expect(
-      recoverStaleLoopClaim(repo, { ...packet, claimDigest: sha256Digest("tampered") }),
+      recoverStaleLoopClaim(repo, { ...packet, claimDigest: sha256Digest("tampered") }, authority),
     ).toEqual({ status: "rejected", reason: "snapshot_digest_mismatch" });
-    expect(recoverStaleLoopClaim(repo, packet)).toEqual({
-      status: "recovered",
-      reason: "stale_claim_tombstoned",
+    expect(recoverStaleLoopClaim(repo, packet, { verify: () => false })).toEqual({
+      status: "rejected",
+      reason: "authority_missing",
     });
+    const recovered = recoverStaleLoopClaim(repo, packet, authority);
+    expect(recovered.status).toBe("recovered");
+    expect(recovered.reason).toBe("stale_claim_tombstoned");
     expect(existsSync(paths.claim)).toBe(false);
-    expect(existsSync(paths.claimTombstoneFor(live.claimId))).toBe(true);
-    expect(recoverStaleLoopClaim(repo, packet)).toEqual({
+    expect(existsSync(paths.claimTombstoneFor(recovered.recoveryId as string))).toBe(true);
+    expect(recoverStaleLoopClaim(repo, packet, authority)).toEqual({
       status: "rejected",
       reason: "claim_not_provably_stale",
     });
+  });
+
+  it("IT-DUR-004/U-DUR-007: rejects an expired lease while the original process is live", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const live = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const expiredText = `${JSON.stringify({ ...live, leaseDeadlineUptimeMs: 0 })}\n`;
+    writeFileSync(paths.claim, expiredText);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("live_claim");
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest(expiredText),
+          pointerDigest: live.pointerDigest,
+          manifestDigest: live.manifestDigest,
+          approvedBy: "test-recovery-authority",
+          auditId: "IT-DUR-004-live-owner",
+        },
+        { verify: () => true },
+      ),
+    ).toEqual({ status: "rejected", reason: "claim_not_provably_stale" });
+  });
+
+  it("IT-DUR-004/U-DUR-007: rejects malicious claim identifiers before path construction", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const claim = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const maliciousText = `${JSON.stringify({
+      ...claim,
+      claimId: "../../escape",
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, maliciousText);
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest(maliciousText),
+          pointerDigest: claim.pointerDigest,
+          manifestDigest: claim.manifestDigest,
+          approvedBy: "test-recovery-authority",
+          auditId: "IT-DUR-004-malicious",
+        },
+        { verify: () => true },
+      ),
+    ).toEqual({ status: "rejected", reason: "snapshot_digest_mismatch" });
+    expect(existsSync(join(repo, ".helix", "state", "escape"))).toBe(false);
   });
 
   it("IT-DUR-003: a second-epoch C4 crash preserves the previous committed payload", () => {
