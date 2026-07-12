@@ -44,7 +44,7 @@ export type StaleLoopClaimRecoveryPacket = {
 };
 type RecoveryClaimMetadata = ClaimMetadata & { packetDigest: string };
 export type RecoveryMutexObservation = {
-  action: "acquire" | "quarantine_invalid_mutex" | "replace_stale_mutex";
+  action: "acquire" | "observe_live_mutex" | "quarantine_invalid_mutex" | "replace_stale_mutex";
   mutexDigest: string | null;
 };
 export interface StaleLoopClaimRecoveryAuthority {
@@ -313,13 +313,29 @@ export function recoverStaleLoopClaim(
   const value = loopEpochPaths(root, planId);
   mkdirSync(value.directory, { recursive: true });
   const observedMutexText = readIfExists(value.recoveryClaim);
+  let observedMutexValid = false;
+  if (observedMutexText !== null) {
+    try {
+      const parsed = JSON.parse(observedMutexText) as Partial<RecoveryClaimMetadata>;
+      observedMutexValid =
+        typeof parsed.claimId === "string" &&
+        /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+          parsed.claimId,
+        ) &&
+        typeof parsed.packetDigest === "string";
+    } catch {
+      observedMutexValid = false;
+    }
+  }
   const mutexObservation: RecoveryMutexObservation = {
     action:
       observedMutexText === null
         ? "acquire"
-        : claimStatus(observedMutexText) === "stale"
-          ? "replace_stale_mutex"
-          : "quarantine_invalid_mutex",
+        : !observedMutexValid
+          ? "quarantine_invalid_mutex"
+          : claimStatus(observedMutexText) === "stale"
+            ? "replace_stale_mutex"
+            : "observe_live_mutex",
     mutexDigest: observedMutexText === null ? null : sha256Digest(observedMutexText),
   };
   let authorityVerified = false;

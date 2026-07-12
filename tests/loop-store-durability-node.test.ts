@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { commitLoopEpoch } from "../src/orchestration/durable-loop-epoch";
 import {
+  actionBindingLoopRecoveryAuthority,
   loopEpochPaths,
   nodeDurableEpochPort,
   readLoopEpochFromFs,
@@ -212,6 +213,32 @@ describe("PLAN-L7-449 node durable epoch port", () => {
         },
       ),
     ).toEqual({ status: "rejected", reason: "authority_unavailable" });
+  });
+
+  it("IT-DUR-004/U-DUR-007: concrete authority binds scope, mutex digest, and expiry", () => {
+    const packet = {
+      planId: PLAN,
+      claimDigest: sha256Digest("claim"),
+      pointerDigest: sha256Digest("pointer"),
+      manifestDigest: null,
+      approvedBy: "release-authority",
+      auditId: "approval-row-1",
+    };
+    const observation = { action: "acquire" as const, mutexDigest: null };
+    const authority = actionBindingLoopRecoveryAuthority(
+      { ...packet, ...observation, expiresAt: "2026-07-14T00:00:00.000Z" },
+      () => new Date("2026-07-13T00:00:00.000Z"),
+    );
+    expect(authority.verify(packet, observation)).toBe(true);
+    expect(authority.verify(packet, { ...observation, mutexDigest: sha256Digest("mutex") })).toBe(
+      false,
+    );
+    expect(
+      actionBindingLoopRecoveryAuthority(
+        { ...packet, ...observation, expiresAt: "2026-07-12T00:00:00.000Z" },
+        () => new Date("2026-07-13T00:00:00.000Z"),
+      ).verify(packet, observation),
+    ).toBe(false);
   });
 
   it("IT-DUR-004/U-DUR-007: an authorized retry tombstones a stale recovery mutex", () => {
