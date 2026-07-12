@@ -279,6 +279,7 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
     const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-malformed-"));
     try {
       expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "{not-json" }).exitCode).toBe(2);
+      expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "" }).exitCode).toBe(2);
       const standalone = spawnSync("bun", [workGuardHook], {
         cwd,
         encoding: "utf8",

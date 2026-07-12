@@ -83,6 +83,9 @@ export function runWorkGuardHook(opts: {
 }): WorkGuardHookOutcome {
   const env = opts.env ?? process.env;
   let input: { tool_input?: unknown; session_id?: string };
+  if (!opts.rawInput.trim()) {
+    return { exitCode: 2, message: "[helix-work-guard] BLOCK: empty hook input" };
+  }
   try {
     input = JSON.parse(opts.rawInput || "{}");
   } catch {
