@@ -127,7 +127,10 @@ export function runWorkGuardHook(opts: {
     }
     if (!blocked) return { exitCode: 0 };
     if (override.source === "env") {
-      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
+        repoRoot: opts.repoRoot,
+        skipPersistentPragmas: true,
+      });
       try {
         if (db.userVersion() < SCHEMA_VERSION) migrate(db);
         const transaction = commitOverrideUse({
@@ -155,7 +158,10 @@ export function runWorkGuardHook(opts: {
     const nonce = guardOverrideDigest(
       `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${override.reason}`,
     );
-    const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+    const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
+      repoRoot: opts.repoRoot,
+      skipPersistentPragmas: true,
+    });
     try {
       if (db.userVersion() < SCHEMA_VERSION) migrate(db);
       const transaction = commitOverrideUse({

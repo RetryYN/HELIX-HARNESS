@@ -98,7 +98,10 @@ export function runGitCommandGuardHook(opts: {
   }
   if (override.source === "env") {
     try {
-      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
+        repoRoot: opts.repoRoot,
+        skipPersistentPragmas: true,
+      });
       try {
         if (db.userVersion() < SCHEMA_VERSION) migrate(db);
         const result = commitOverrideUse({
@@ -126,7 +129,10 @@ export function runGitCommandGuardHook(opts: {
   if (override.source !== "marker" || markerReason === null)
     return { exitCode: 2, message: base.message };
   try {
-    const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+    const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
+      repoRoot: opts.repoRoot,
+      skipPersistentPragmas: true,
+    });
     try {
       if (db.userVersion() < SCHEMA_VERSION) migrate(db);
       const markerStat = statSync(markerPath);
