@@ -49,7 +49,9 @@ interface RequiredProjectHook {
 export const REQUIRED = [
   {
     event: "PreToolUse",
-    matcher: "Agent",
+    // Claude Code の Agent tool は旧称 Task で呼ぶ harness もあるため両名を張る
+    // (policy 正本 AGENT_TOOL_NAMES と consumer template に一致、PLAN-L7-433 C2)。
+    matcher: "Agent|Task",
     commandParts: [".claude/hooks/agent-guard.ts"],
     blockOnFailure: true,
   },

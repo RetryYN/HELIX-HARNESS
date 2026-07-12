@@ -344,6 +344,7 @@ import {
   normalizeRepoRelative,
   resolveForeignEditOverride,
 } from "./runtime/work-guard";
+import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { findReference } from "./search/index";
 import {
   buildCleanDistributionPlan,
@@ -3627,6 +3628,25 @@ hook
       process.stdout.write(`git-command-guard: pass (${result.reason})\n`);
     }
     process.exitCode = result.decision === "block" ? 2 : 0;
+  });
+
+hook
+  .command("work-guard")
+  .description("block edits to foreign uncommitted files (hybrid runtime collision guard)")
+  .action(() => {
+    // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
+    // 実行本体は dev repo hook (.claude/hooks/work-guard.ts) と共有。fail-open 方針は共有 runner 側。
+    const raw = process.stdin.isTTY ? "" : readStdin();
+    const outcome = runWorkGuardHook({
+      repoRoot: process.cwd(),
+      rawInput: raw,
+      env: process.env,
+    });
+    if (outcome.message) process.stderr.write(`${outcome.message}\n`);
+    if (outcome.exitCode === 0) {
+      process.stdout.write("work-guard: pass\n");
+    }
+    process.exitCode = outcome.exitCode;
   });
 
 hook
