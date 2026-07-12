@@ -190,6 +190,27 @@ describe("PLAN-L7-449 loop epoch reader", () => {
     ).toBe("concurrent_conflict");
   });
 
+  it("U-DUR-006/007: rejects an invalid payload and durably releases its claim", () => {
+    const calls: string[] = [];
+    const port = new Proxy({} as DurableEpochPort, {
+      get: (_target, name) => {
+        if (name === "acquireExclusiveClaim") return () => true;
+        if (name === "readManifestText") return () => null;
+        return () => calls.push(String(name));
+      },
+    });
+    const result = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: { state: { planId: PLAN } as never, iteration: null },
+      sideEffectPhase: "not_started",
+      port,
+    });
+    expect(result.status).toBe("corrupt");
+    expect(result.intentCapability).toBeNull();
+    expect(calls).toEqual(["unlinkClaim", "fsyncClaimDirectory"]);
+  });
+
   it("U-DUR-004: distinguishes live/stale claims and residual-claim uncertainty", () => {
     expect(
       classifyLoopEpochFiles({

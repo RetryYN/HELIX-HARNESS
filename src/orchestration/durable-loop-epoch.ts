@@ -58,7 +58,7 @@ export type DurableIntentCapability = {
   readonly planId: string;
 };
 export type LoopEpochCommitResult = {
-  status: "committed" | "concurrent_conflict" | "durability_uncertain";
+  status: "committed" | "corrupt" | "concurrent_conflict" | "durability_uncertain";
   manifest: LoopEpochManifest | null;
   intentCapability: DurableIntentCapability | null;
   reason: string;
@@ -82,6 +82,8 @@ export function commitLoopEpoch(input: {
   }
   try {
     if (input.port.readManifestText(planId) !== input.previousManifestText) {
+      input.port.unlinkClaim(planId);
+      input.port.fsyncClaimDirectory(planId);
       return {
         status: "concurrent_conflict",
         manifest: null,
@@ -91,6 +93,8 @@ export function commitLoopEpoch(input: {
     }
     const previous = input.previousManifestText ? parseManifest(input.previousManifestText) : null;
     if (input.previousManifestText && previous === null) {
+      input.port.unlinkClaim(planId);
+      input.port.fsyncClaimDirectory(planId);
       return {
         status: "concurrent_conflict",
         manifest: null,
@@ -99,6 +103,16 @@ export function commitLoopEpoch(input: {
       };
     }
     const payloadText = JSON.stringify(input.payload);
+    if (parsePayload(payloadText, planId) === null) {
+      input.port.unlinkClaim(planId);
+      input.port.fsyncClaimDirectory(planId);
+      return {
+        status: "corrupt",
+        manifest: null,
+        intentCapability: null,
+        reason: "invalid_payload",
+      };
+    }
     const manifest: LoopEpochManifest = {
       schema: LOOP_EPOCH_SCHEMA,
       planId,
