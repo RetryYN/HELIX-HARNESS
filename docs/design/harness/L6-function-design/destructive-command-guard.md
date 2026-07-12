@@ -60,6 +60,11 @@ audit recordとnonce reservationを単一atomic commitにする。durable commit
 許可する。commit成功後からmarker consumeまでにcrashした場合、rowは予約済みのためrestart後のretryを`blocked_reuse`にする。
 JSONL/nonce directory等の別storeへの二重書込みは禁止する。
 
+`BEGIN IMMEDIATE`/INSERT/COMMITの`SQLITE_BUSY`または`SQLITE_LOCKED`は最大5 attemptsだけ再実行し、
+10/20/30/40msのlinear backoffを置く。各失敗attemptはROLLBACKを試みる。busy以外は即時
+`blocked_audit_failure`、5 attempts exhaustionも`blocked_audit_failure`とする。retry中に同nonce rowが
+commit済みになった場合はINSERT OR IGNOREのchanges=0を`blocked_reuse`へ写す。
+
 ## 4. adapter 同値性
 
 `.claude/hooks/git-command-guard.ts`、`src/runtime/work-guard-hook.ts`、CLI/consumer hook は同じ結果codeを

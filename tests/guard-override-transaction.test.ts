@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
+import { createGuardOverrideAuditPort } from "../src/runtime/git-command-guard-hook";
 import { commitOverrideUse } from "../src/runtime/guard-override-transaction";
+import type { HarnessDb } from "../src/state-db";
 
 const classification = {
   guardKind: "git" as const,
@@ -8,6 +10,48 @@ const classification = {
 };
 
 describe("guard override transaction", () => {
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-006/008] bounds busy retry and does not retry non-busy failures", () => {
+    const fakeDb = (failures: Error[]): { db: HarnessDb; begins: () => number } => {
+      let beginCount = 0;
+      return {
+        begins: () => beginCount,
+        db: {
+          path: ":memory:",
+          driver: "node",
+          exec: (sql) => {
+            if (sql === "BEGIN IMMEDIATE") {
+              beginCount += 1;
+              const failure = failures.shift();
+              if (failure) throw failure;
+            }
+          },
+          prepare: () => ({
+            run: () => ({ changes: 1 }),
+            get: () => undefined,
+            all: () => [],
+          }),
+          userVersion: () => 38,
+          setUserVersion: () => undefined,
+          close: () => undefined,
+        },
+      };
+    };
+    const input = { nonce: "n-retry", reason: "reviewed", classification };
+    const recovered = fakeDb([new Error("database is locked"), new Error("SQLITE_BUSY")]);
+    expect(createGuardOverrideAuditPort(recovered.db).commit(input)).toEqual({
+      status: "committed",
+    });
+    expect(recovered.begins()).toBe(3);
+
+    const exhausted = fakeDb(Array.from({ length: 5 }, () => new Error("database is locked")));
+    expect(() => createGuardOverrideAuditPort(exhausted.db).commit(input)).toThrow("locked");
+    expect(exhausted.begins()).toBe(5);
+
+    const nonBusy = fakeDb([new Error("disk I/O error")]);
+    expect(() => createGuardOverrideAuditPort(nonBusy.db).commit(input)).toThrow("disk I/O error");
+    expect(nonBusy.begins()).toBe(1);
+  });
+
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-005] commits audit before one-shot consume", () => {
     const order: string[] = [];
     const result = commitOverrideUse({

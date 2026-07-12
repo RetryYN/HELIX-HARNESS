@@ -61,6 +61,10 @@ raw secret、credential、PII、個人absolute pathはauditへ保存しない。
 同じrowにguard kind、operation class、subject/reason digest、状態を永続化し、audit JSONLやnonce sidecarへ
 二重書込みしない。競合とprocess restart後の再利用は`blocked_reuse`としてallow回数を1以下に保つ。
 
+SQLite `BUSY` / `LOCKED`だけはbounded retry対象とし、最大5 attempts、attempt間10/20/30/40ms
+（connection `busy_timeout`とは別の上限付きbackoff）とする。winner commit後のretryは一意rowを読み
+`blocked_reuse`へ収束する。5 attempts exhaustionとnon-busy errorはfail-closeし、markerを保持する。
+
 ## 5. 移行境界
 
 `evaluateGitCommandGuard` は compatibility façade として維持する。`.claude` hook、Codex/consumer adapter、
