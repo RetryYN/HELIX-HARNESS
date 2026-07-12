@@ -267,8 +267,9 @@ export function nodeDurableEpochPort(
       if (existsSync(value.releasingClaim) || existsSync(value.releaseProof)) {
         if (!validReleaseProof(value, planId))
           throw new Error("loop claim release proof is invalid");
-        unlinkSync(value.releasingClaim);
         unlinkSync(value.releaseProof);
+        fsyncDirectory(value.directory);
+        unlinkSync(value.releasingClaim);
         fsyncDirectory(value.directory);
       }
       try {
@@ -561,6 +562,12 @@ export function recoverStaleLoopClaim(
     renameSync(auditTemp, value.claimTombstoneFor(recoveryId));
     fsyncDirectory(value.directory);
     if (claimPath === null) return { status: "rejected", reason: "claim_not_provably_stale" };
+    if (claimPath === value.releasingClaim && existsSync(value.releaseProof)) {
+      if (!validReleaseProof(value, planId))
+        return { status: "rejected", reason: "release_proof_invalid" };
+      unlinkSync(value.releaseProof);
+      fsyncDirectory(value.directory);
+    }
     unlinkSync(claimPath);
     fsyncDirectory(value.directory);
     result = { status: "recovered", reason: "stale_claim_tombstoned", recoveryId };
