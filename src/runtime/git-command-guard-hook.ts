@@ -126,6 +126,12 @@ export function runGitCommandGuardHook(opts: {
         audit: createGuardOverrideAuditPort(db),
         marker: {
           consume(expectedNonce) {
+            if (
+              (opts.env ?? process.env).NODE_ENV === "test" &&
+              (opts.env ?? process.env).HELIX_GUARD_TEST_FAULT === "pause_after_audit"
+            ) {
+              Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 30_000);
+            }
             const current = readFileSync(markerPath, "utf8");
             const currentStat = statSync(markerPath);
             const actual = guardOverrideDigest(

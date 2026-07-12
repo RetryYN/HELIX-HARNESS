@@ -391,6 +391,50 @@ describe("git-command-guard", () => {
     }
   });
 
+  it.skipIf(process.platform === "win32")(
+    "[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-009/IT-GITGUARD-003] blocks restart after a real process crash between commit and consume",
+    async () => {
+      const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-real-crash-"));
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      try {
+        mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+        writeFileSync(markerPath, "reviewed crash recovery");
+        const input = JSON.stringify({
+          session_id: "s-real-crash",
+          tool_input: { command: "git clean -f" },
+        });
+        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+          cwd,
+          stdio: ["pipe", "ignore", "ignore"],
+          env: {
+            ...process.env,
+            NODE_ENV: "test",
+            HELIX_GUARD_TEST_FAULT: "pause_after_audit",
+          },
+        });
+        child.stdin.end(input);
+        let committed = false;
+        for (let attempt = 0; attempt < 200 && !committed; attempt += 1) {
+          await new Promise((resolve) => setTimeout(resolve, 10));
+          try {
+            committed = overrideRows(cwd).length === 1;
+          } catch {}
+        }
+        expect(committed).toBe(true);
+        child.kill("SIGKILL");
+        await new Promise((resolve) => child.once("close", resolve));
+        expect(existsSync(markerPath)).toBe(true);
+        const restarted = runCliGuard(JSON.parse(input), cwd);
+        expect(restarted.status).toBe(2);
+        expect(restarted.stderr).toContain("blocked_reuse");
+        expect(existsSync(markerPath)).toBe(true);
+      } finally {
+        rmSync(cwd, { recursive: true, force: true });
+      }
+    },
+    15_000,
+  );
+
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-009/IT-GITGUARD-002] fails closed on corrupt transaction store", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-torn-"));
     try {
