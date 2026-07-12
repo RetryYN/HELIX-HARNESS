@@ -207,6 +207,8 @@ export function loopEpochPaths(root: string, planId: string) {
       join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.tmp`),
     recoveryClaimTombstoneFor: (recoveryId: string) =>
       join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.stale.json`),
+    recoveryClaimApprovalFor: (recoveryId: string) =>
+      join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.approval.json`),
     recoveryAuditTempFor: (recoveryId: string) =>
       join(directory, `${safe}.${recoveryId}.recovery-audit.tmp`),
     claimTombstoneFor: (recoveryId: string) =>
@@ -398,7 +400,23 @@ export function recoverStaleLoopClaim(
         if (residualTrusted && claimStatus(residualText) !== "stale")
           return { status: "conflict", reason: "recovery_claim_conflict" };
         try {
-          renameSync(value.recoveryClaim, value.recoveryClaimTombstoneFor(randomUUID()));
+          const cleanupId = randomUUID();
+          writeFileSync(
+            value.recoveryClaimApprovalFor(cleanupId),
+            `${JSON.stringify({
+              schema: "helix.loop-recovery-mutex-cleanup.v1",
+              cleanupId,
+              packet,
+              packetDigest: sha256Digest(JSON.stringify(packet)),
+              mutexObservation,
+              observedMutexDigest: sha256Digest(residualText),
+              cleanedAt: new Date().toISOString(),
+            })}\n`,
+            { encoding: "utf8", flag: "wx", mode: 0o600 },
+          );
+          fsyncPath(value.recoveryClaimApprovalFor(cleanupId));
+          fsyncDirectory(value.directory);
+          renameSync(value.recoveryClaim, value.recoveryClaimTombstoneFor(cleanupId));
           fsyncDirectory(value.directory);
         } catch (renameError) {
           if ((renameError as NodeJS.ErrnoException).code !== "ENOENT") throw renameError;
