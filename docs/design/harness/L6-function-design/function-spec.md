@@ -1007,9 +1007,11 @@ feedback / guardrail / skill / projection / workflowは独自clock wrapperを持
 
 `walkFiles(root, repoRoot, extensions)`はrecursive inventoryの低位契約である。directory entryを安定順に
 辿り、readdir後に消えたentryのstat failureはskipし、通常fileかつ指定extensionだけを返す。
-relative pathは常にPOSIX separatorへ正規化する。readabilityとsecret-scanは同じinventoryを使い、
-選択後のread failureは各gateへ伝播してfail-closeを維持する。他walkerは用途差を確認後に段階統合する。
+relative pathは常にPOSIX separatorへ正規化する。readability、secret-scan、design-language、gate-confirm、
+L7 completion、placeholder-deps、left-arm carry inventoryは同じrecursive inventoryを使う。用途固有の
+README/generated除外やfrontmatter parseはinventory取得後に適用し、選択後のread failureは各gateへ
+伝播してfail-closeを維持する。
 
 | 関数 | pre | post | invariant | oracle |
 |---|---|---|---|---|
-| `walkFiles` | existing root、repo root、extension集合 | absolute/POSIX-relative file inventory | 安定順、stat race skip、directory非返却 | U-FWALK-001 |
+| `walkFiles` | root、repo root、extension集合 | absolute/POSIX-relative file inventory | 安定順、missing rootは空、stat race skip、directory非返却、対象gate独自readdirなし | U-FWALK-001..002 |

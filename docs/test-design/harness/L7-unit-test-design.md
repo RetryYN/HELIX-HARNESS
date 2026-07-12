@@ -1287,3 +1287,4 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-COLUTIL-002 | sort意味分離 | locale順を別名契約で保持し、対象5 module中の`uniqueSorted`定義をshared 1件にする。 |
 | U-TIMEUTIL-001 | `nowIso` | UTC ISO-8601 millisecond形式を返し、対象6 module中の定義をshared 1件にする。 |
 | U-FWALK-001 | `walkFiles` | nested temp treeでextension filter、安定順、POSIX relative pathを固定する。 |
+| U-FWALK-002 | recursive inventory caller | 対象7 gateが独自`readdirSync`を持たずshared walkerへ集約されている。 |

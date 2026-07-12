@@ -1,6 +1,7 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join, relative } from "node:path";
-import { fmValue, normalizePath } from "./shared";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { walkFiles } from "../shared/file-walk";
+import { fmValue } from "./shared";
 
 export interface PlaceholderDepsDoc {
   path: string;
@@ -34,23 +35,10 @@ const KNOWN_LAYERS = new Set(
 const DESIGN_WAIT_LAYERS = new Set(["L1", "L2", "L3", "L4", "L5", "L6"]);
 
 function walkMarkdown(root: string, repoRoot: string): PlaceholderDepsDoc[] {
-  if (!existsSync(root)) return [];
-  const docs: PlaceholderDepsDoc[] = [];
-  for (const entry of readdirSync(root, { withFileTypes: true })) {
-    const full = join(root, entry.name);
-    if (entry.isDirectory()) {
-      docs.push(...walkMarkdown(full, repoRoot));
-      continue;
-    }
-    if (!entry.name.endsWith(".md")) continue;
-    const text = readFileSync(full, "utf8");
-    docs.push({
-      path: normalizePath(relative(repoRoot, full)),
-      status: fmValue(text, "status") ?? "",
-      text,
-    });
-  }
-  return docs;
+  return walkFiles(root, repoRoot, [".md"]).map((file) => {
+    const text = readFileSync(file.absolutePath, "utf8");
+    return { path: file.relativePath, status: fmValue(text, "status") ?? "", text };
+  });
 }
 
 export function loadPlaceholderDepsDocs(root = process.cwd()): PlaceholderDepsDoc[] {

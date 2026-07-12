@@ -5,10 +5,11 @@
  */
 
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import { basename, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { leftArmCarrySchema } from "../schema/frontmatter";
+import { walkFiles as walkSharedFiles } from "../shared/file-walk";
 
 export const LEFT_ARM_CARRY_SCHEMA = "left-arm-carry.v1";
 export const LEFT_ARM_CARRY_ENFORCEMENT_DATE = "2026-07-12";
@@ -730,14 +731,7 @@ function frontmatter(text: string): UnknownRecord | null {
 }
 
 function walkFiles(root: string): string[] {
-  if (!existsSync(root)) return [];
-  const files: string[] = [];
-  for (const entry of readdirSync(root)) {
-    const path = join(root, entry);
-    if (statSync(path).isDirectory()) files.push(...walkFiles(path));
-    else files.push(path);
-  }
-  return files;
+  return walkSharedFiles(root, root, []).map((file) => file.absolutePath);
 }
 
 function malformedPlan(file: string): LeftArmCarryPlan {

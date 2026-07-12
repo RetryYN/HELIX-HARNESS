@@ -1,4 +1,4 @@
-import { readdirSync, statSync } from "node:fs";
+import { existsSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 export interface WalkedFile {
@@ -15,6 +15,7 @@ export function walkFiles(
   repoRoot: string,
   extensions: readonly string[],
 ): WalkedFile[] {
+  if (!existsSync(root)) return [];
   const files: WalkedFile[] = [];
   const visit = (dir: string): void => {
     for (const name of readdirSync(dir).sort()) {
@@ -27,7 +28,10 @@ export function walkFiles(
       }
       if (stat.isDirectory()) {
         visit(absolutePath);
-      } else if (stat.isFile() && extensions.some((extension) => name.endsWith(extension))) {
+      } else if (
+        stat.isFile() &&
+        (extensions.length === 0 || extensions.some((extension) => name.endsWith(extension)))
+      ) {
         files.push({
           absolutePath,
           relativePath: relative(repoRoot, absolutePath).replaceAll("\\", "/"),
