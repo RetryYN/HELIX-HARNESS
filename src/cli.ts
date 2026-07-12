@@ -436,6 +436,7 @@ import {
   type ProjectRoadmapCurrentReport,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
+import { runHistoricalVpairMigrationDryRun } from "./state-db/historical-vpair-migration-authority";
 import {
   defaultHarnessDbPath,
   type HarnessDb,
@@ -7370,6 +7371,53 @@ closure
           );
         }
         process.stdout.write(`  postcheck=${packet.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("historical-vpair-migration")
+  .description("verify historical V-pair migration authority without product-state mutation")
+  .requiredOption("--run <path>")
+  .requiredOption("--review <path>")
+  .requiredOption("--expected-head <sha>")
+  .option("--dry-run")
+  .option("--from-db")
+  .option("--json")
+  .action(
+    (opts: {
+      run: string;
+      review: string;
+      expectedHead: string;
+      dryRun?: boolean;
+      fromDb?: boolean;
+      json?: boolean;
+    }) => {
+      if (!opts.dryRun || !opts.fromDb || !opts.json) {
+        process.stderr.write(
+          "closure historical-vpair-migration: --dry-run --from-db --json are required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) {
+        process.stderr.write(
+          "closure historical-vpair-migration: persistent harness.db does not exist\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const db = openHarnessDbReadOnly(dbPath, { repoRoot });
+      try {
+        process.stdout.write(
+          `${JSON.stringify(runHistoricalVpairMigrationDryRun({ repoRoot, db, expectedRepositoryHead: opts.expectedHead, runPath: opts.run, reviewPath: opts.review, now: new Date().toISOString() }))}\n`,
+        );
+      } catch (error) {
+        process.stderr.write(`closure historical-vpair-migration: ${String(error)}\n`);
+        process.exitCode = 2;
       } finally {
         db.close();
       }
