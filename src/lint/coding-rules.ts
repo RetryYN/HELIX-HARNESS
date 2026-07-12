@@ -103,10 +103,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   workflow: ["schema", "shared", "state-db", "workflow"],
 };
 
-const TEMPORARY_SOURCE_DIRECTIONS = [
-  { from: "state-db", to: "vscode" },
-  { from: "vscode", to: "state-db" },
-] as const;
+const TEMPORARY_SOURCE_DIRECTIONS = [{ from: "vscode", to: "state-db" }] as const;
 
 export const SOURCE_MODULE_POLICY: BoundaryPolicy = {
   defaults: Object.fromEntries(SOURCE_BOUNDARY_MODULES.map((owner) => [owner, "deny"])),
