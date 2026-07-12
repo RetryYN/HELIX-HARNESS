@@ -49,7 +49,7 @@ function memoryLoopStore(records: LoopIterationRecord[] = []): LoopStore {
     recordIteration: vi.fn((record: LoopIterationRecord) => {
       records.push(record);
     }),
-    runSideEffect: async <T>(_state: LoopState, effect: () => Promise<T>) => effect(),
+    runSideEffect: async (_state, _purpose, effect) => effect(),
   };
 }
 

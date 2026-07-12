@@ -8,13 +8,17 @@ import {
 } from "./durable-loop-epoch";
 import { nodeDurableEpochPort, readLoopEpochFromFs } from "./durable-loop-epoch-node";
 import type { LoopIterationRecord } from "./loop-runner";
-import type { LoopState } from "./loop-state";
+import type { LoopState, Verdict } from "./loop-state";
 
 export interface LoopStore {
   read(planId: string): LoopState | null;
   write(state: LoopState): void;
   recordIteration(rec: LoopIterationRecord): void;
-  runSideEffect<T>(state: LoopState, effect: () => Promise<T>): Promise<T>;
+  runSideEffect(
+    state: LoopState,
+    purpose: "worker" | "verifier",
+    effect: () => Promise<Verdict | null>,
+  ): Promise<Verdict | null>;
 }
 
 export function fileLoopStore(deps: {
@@ -47,7 +51,7 @@ export function fileLoopStore(deps: {
       const current = deps.readText(path) ?? "";
       deps.writeText(path, `${current}${JSON.stringify(rec)}\n`);
     },
-    runSideEffect: async (_state, effect) => effect(),
+    runSideEffect: async (_state, _purpose, effect) => effect(),
   };
 }
 
@@ -113,13 +117,32 @@ export function durableFileLoopStore(deps: {
         throw new Error(`loop epoch commit failed: ${planId}:${committed.reason}`);
       pendingIterations.delete(planId);
     },
-    runSideEffect: async (state, effect) => {
+    runSideEffect: async (state, purpose, effect) => {
       const planId = assertLoopPlanId(state.planId);
+      const current = readLoopEpochFromFs(deps.root, planId);
+      const stage = current.payload?.orchestrationStage;
+      if (
+        current.status === "committed" &&
+        stage?.iteration === state.iteration &&
+        stage.status === "completed"
+      ) {
+        if (purpose === "worker" && ["worker", "verifier"].includes(stage.purpose)) return null;
+        if (purpose === "verifier" && stage.purpose === "verifier") return stage.result;
+      }
       const beforeIntent = port.readManifestText(planId);
       const intent = commitLoopEpoch({
         planId,
         previousManifestText: beforeIntent,
-        payload: { state, iteration: null },
+        payload: {
+          state,
+          iteration: null,
+          orchestrationStage: {
+            iteration: state.iteration,
+            purpose,
+            status: "intent",
+            result: null,
+          },
+        },
         sideEffectPhase: "intent_recorded",
         port,
       });
@@ -133,7 +156,16 @@ export function durableFileLoopStore(deps: {
       const completed = commitLoopEpoch({
         planId,
         previousManifestText: intentManifestText,
-        payload: { state, iteration: null },
+        payload: {
+          state,
+          iteration: null,
+          orchestrationStage: {
+            iteration: state.iteration,
+            purpose,
+            status: "completed",
+            result: value,
+          },
+        },
         sideEffectPhase: "completed",
         port,
       });

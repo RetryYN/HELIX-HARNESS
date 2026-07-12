@@ -22,6 +22,12 @@ export type LoopEpochReadStatus =
 export type LoopEpochPayload = {
   state: LoopState;
   iteration: LoopIterationRecord | null;
+  orchestrationStage?: {
+    iteration: number;
+    purpose: "worker" | "verifier";
+    status: "intent" | "completed";
+    result: "pass" | "fail" | "error" | "pending" | null;
+  } | null;
 };
 
 export type LoopEpochManifest = {
@@ -255,6 +261,11 @@ export function parseLoopEpochPayload(text: string, planId: string): LoopEpochPa
   const stateRecord =
     typeof state === "object" && state !== null ? (state as Record<string, unknown>) : null;
   const iteration = value?.iteration;
+  const orchestrationStage = value?.orchestrationStage;
+  const stageRecord =
+    typeof orchestrationStage === "object" && orchestrationStage !== null
+      ? (orchestrationStage as Record<string, unknown>)
+      : null;
   if (
     value === null ||
     stateRecord === null ||
@@ -279,7 +290,20 @@ export function parseLoopEpochPayload(text: string, planId: string): LoopEpochPa
     typeof stateRecord.updatedAt !== "string" ||
     !Number.isFinite(Date.parse(stateRecord.updatedAt)) ||
     !("iteration" in value) ||
-    !validIterationRecord(iteration, planId, Number(stateRecord.iteration))
+    !validIterationRecord(iteration, planId, Number(stateRecord.iteration)) ||
+    !(
+      orchestrationStage === undefined ||
+      orchestrationStage === null ||
+      (stageRecord !== null &&
+        Number.isSafeInteger(stageRecord.iteration) &&
+        Number(stageRecord.iteration) === Number(stateRecord.iteration) &&
+        ["worker", "verifier"].includes(String(stageRecord.purpose)) &&
+        ["intent", "completed"].includes(String(stageRecord.status)) &&
+        (stageRecord.result === null ||
+          ["pass", "fail", "error", "pending"].includes(String(stageRecord.result))) &&
+        (stageRecord.purpose === "worker" ? stageRecord.result === null : true) &&
+        (stageRecord.status === "intent" ? stageRecord.result === null : true))
+    )
   ) {
     return null;
   }

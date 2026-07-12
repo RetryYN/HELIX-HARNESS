@@ -92,7 +92,7 @@ describe("PLAN-L7-449 production durable loop store", () => {
     const repo = root();
     const store = durableFileLoopStore({ root: repo });
     await expect(
-      store.runSideEffect(state, async () => {
+      store.runSideEffect(state, "worker", async () => {
         throw new Error("simulated provider crash");
       }),
     ).rejects.toThrow("simulated provider crash");
@@ -105,7 +105,7 @@ describe("PLAN-L7-449 production durable loop store", () => {
   it("IT-DUR-005: records completed side effects before allowing the next transition", async () => {
     const repo = root();
     const store = durableFileLoopStore({ root: repo });
-    await expect(store.runSideEffect(state, async () => "done")).resolves.toBe("done");
+    await expect(store.runSideEffect(state, "verifier", async () => "pass")).resolves.toBe("pass");
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
     expect(durableFileLoopStore({ root: repo }).read(PLAN)).toEqual(state);
   });
