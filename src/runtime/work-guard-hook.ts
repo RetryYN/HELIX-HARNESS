@@ -3,9 +3,8 @@
  * `helix hook work-guard` (PLAN-L7-433 C1) が共有する orchestration runner。
  *
  * 判定純関数は work-guard.ts。ここは stdin JSON の解釈、git status / session log の収集、
- * override marker の one-shot 消費と audit を担う。方針は hook 側 docstring と同一:
- * 内部エラー (git 失敗 / parse 失敗 / state 不明) は **fail-open** (exit 0)、block は
- * 「衝突を確実に検知できた時」のみ。
+ * override marker のone-shot消費とauditを担う。入力解析、git、state、transactionを検証できない場合は
+ * fail-closeし、adapterが例外をpassへ縮退させない。
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, rmSync, statSync } from "node:fs";
@@ -87,7 +86,7 @@ export function runWorkGuardHook(opts: {
   try {
     input = JSON.parse(opts.rawInput || "{}");
   } catch {
-    return { exitCode: 0 };
+    return { exitCode: 2, message: "[helix-work-guard] BLOCK: invalid hook input" };
   }
   try {
     // apply_patch は複数ファイルを 1 patch で編集しうる。全対象を評価し、1 つでも foreign なら block。

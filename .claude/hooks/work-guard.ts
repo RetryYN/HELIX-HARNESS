@@ -17,8 +17,8 @@
  *   foreign-edit-override` に非空の理由を書く marker。marker は **one-shot**: foreign 編集を伴う
  *   1 tool-call で消費 (削除) する。古い marker が残って「今回だけの例外」が「以後ずっと例外」に
  *   ならないようにする (env override は人間管理ゆえ消費しない)。
- * 内部エラー (git 失敗 / parse 失敗 / state 不明) は **fail-open** (exit 0): ガードの不調で
- * 全 Edit を止めない。block は「衝突を確実に検知できた時」のみ。
+ * 入力解析、git、state、transactionの内部エラーは **fail-close** (exit 2) とし、guard不調を
+ * foreign editの許可へ縮退させない。
  */
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -37,7 +37,8 @@ let raw = "";
 try {
   raw = await readStdin();
 } catch {
-  process.exit(0);
+  process.stderr.write("[helix-work-guard] BLOCK: hook input read failed\n");
+  process.exit(2);
 }
 const outcome = runWorkGuardHook({ repoRoot, rawInput: raw, env: process.env });
 if (outcome.message) process.stderr.write(`${outcome.message}\n`);

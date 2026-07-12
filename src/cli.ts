@@ -3590,7 +3590,7 @@ hook
   .description("block edits to foreign uncommitted files (hybrid runtime collision guard)")
   .action(() => {
     // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
-    // 実行本体は dev repo hook (.claude/hooks/work-guard.ts) と共有。fail-open 方針は共有 runner 側。
+    // 実行本体はdev repo hook (.claude/hooks/work-guard.ts)と共有し、入力/transaction failureはfail-closeする。
     const raw = process.stdin.isTTY ? "" : readStdin();
     const outcome = runWorkGuardHook({
       repoRoot: process.cwd(),

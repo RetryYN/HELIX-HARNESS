@@ -16,6 +16,7 @@ import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 
 const hookRepoRoot = process.cwd();
 const workGuardHook = join(hookRepoRoot, ".claude", "hooks", "work-guard.ts");
+const cliPath = join(hookRepoRoot, "src", "cli.ts");
 
 /** work-guard hook を temp repo の cwd で spawn する (win32 は System32 canonical な cmd 経由)。 */
 function runWorkGuardHook(cwd: string, input: unknown) {
@@ -274,6 +275,30 @@ describe("foreign-edit override resolution (PLAN-L7-114 correction)", () => {
 });
 
 describe("work-guard hook marker is one-shot (stale marker は恒久バイパスしない)", () => {
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007] shared, standalone, and consumer adapters fail closed on malformed input", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-malformed-"));
+    try {
+      expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "{not-json" }).exitCode).toBe(2);
+      const standalone = spawnSync("bun", [workGuardHook], {
+        cwd,
+        encoding: "utf8",
+        env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+        input: "{not-json",
+      });
+      expect(standalone.status).toBe(2);
+      expect(standalone.stderr).toContain("BLOCK");
+      const consumer = spawnSync("bun", [cliPath, "hook", "work-guard"], {
+        cwd,
+        encoding: "utf8",
+        input: "{not-json",
+      });
+      expect(consumer.status).toBe(2);
+      expect(consumer.stderr).toContain("BLOCK");
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("consumes the override marker after one foreign edit; the next identical edit re-blocks", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-marker-"));
     try {
