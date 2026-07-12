@@ -108,4 +108,39 @@ describe("autonomous loop run receipts", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("IT-DUR-005: rejects a receipt whose verdict does not match the durable state", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-mismatch-"));
+    try {
+      const store = durableFileLoopStore({ root });
+      store.recordIteration({
+        planId: "PLAN-L7-366",
+        iteration: 0,
+        workerProvider: "codex",
+        verifierProvider: "claude",
+        verdict: "fail",
+        stopReason: null,
+        blockedReason: null,
+      });
+      store.write({
+        planId: "PLAN-L7-366",
+        status: "running",
+        iteration: 1,
+        maxIterations: 3,
+        lastVerdict: "pending",
+        workerProvider: "codex",
+        verifierProvider: "claude",
+        blockedReason: null,
+        windowOpensAt: "2026-07-09T09:00:00.000Z",
+        windowClosesAt: "2026-07-09T11:00:00.000Z",
+        costUsd: 0,
+        updatedAt: "2026-07-09T10:00:00.000Z",
+      });
+      const report = buildAutonomousLoopRunReceipt(root, "PLAN-L7-366");
+      expect(report.ok).toBe(false);
+      expect(report.findings[0]?.code).toBe("iteration_receipt_mismatch");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

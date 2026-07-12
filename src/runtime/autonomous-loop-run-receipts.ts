@@ -139,7 +139,12 @@ export function buildAutonomousLoopRunReceipt(
   const iterationEvidenceMatches =
     state.iteration === 0
       ? latestIteration === null
-      : latestIteration !== null && latestIteration.iteration === state.iteration - 1;
+      : latestIteration !== null &&
+        latestIteration.iteration === state.iteration - 1 &&
+        latestIteration.workerProvider === state.workerProvider &&
+        latestIteration.verifierProvider === state.verifierProvider &&
+        latestIteration.verdict === state.lastVerdict &&
+        latestIteration.blockedReason === state.blockedReason;
   const iterationCount = iterationEvidenceMatches ? state.iteration : 0;
   const kind = stopKind(state);
   const remainingIterations = Math.max(0, state.maxIterations - state.iteration);
