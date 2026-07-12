@@ -131,9 +131,22 @@ describe("PLAN-L7-449 production durable loop store", () => {
   it("IT-DUR-005: records completed side effects before allowing the next transition", async () => {
     const repo = root();
     const store = durableFileLoopStore({ root: repo });
+    await expect(store.runSideEffect(state, "worker", async () => null)).resolves.toBeNull();
     await expect(store.runSideEffect(state, "verifier", async () => "pass")).resolves.toBe("pass");
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
     expect(durableFileLoopStore({ root: repo }).read(PLAN)).toEqual(state);
+  });
+
+  it("IT-DUR-005: rejects verifier-first execution", async () => {
+    const repo = root();
+    let calls = 0;
+    await expect(
+      durableFileLoopStore({ root: repo }).runSideEffect(state, "verifier", async () => {
+        calls += 1;
+        return "pass";
+      }),
+    ).rejects.toThrow("requires completed worker stage");
+    expect(calls).toBe(0);
   });
 
   it("IT-DUR-005: restart skips completed worker and reuses the durable verifier result", async () => {
@@ -181,6 +194,16 @@ describe("PLAN-L7-449 production durable loop store", () => {
     const repo = root();
     const store = durableFileLoopStore({ root: repo });
     await store.runSideEffect(state, "worker", async () => null);
+    expect(() => store.write({ ...state, iteration: 1, lastVerdict: "pass" })).toThrow(
+      "invalid loop stage finalization",
+    );
+  });
+
+  it("IT-DUR-005: refuses finalization without a matching iteration receipt", async () => {
+    const repo = root();
+    const store = durableFileLoopStore({ root: repo });
+    await store.runSideEffect(state, "worker", async () => null);
+    await store.runSideEffect(state, "verifier", async () => "pass");
     expect(() => store.write({ ...state, iteration: 1, lastVerdict: "pass" })).toThrow(
       "invalid loop stage finalization",
     );

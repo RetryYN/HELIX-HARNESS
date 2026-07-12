@@ -150,6 +150,14 @@ export function durableFileLoopStore(deps: {
       renameSync(rawPath, sourcePath);
       port.fsyncClaimDirectory(planId);
     }
+    const retiredText = readFileSync(sourcePath, "utf8");
+    const digestFromName = /\.legacy-source-([a-f0-9]{64})\.json$/.exec(sourcePath)?.[1];
+    if (
+      retiredText !== text ||
+      sha256Digest(retiredText) !== sourceDigest ||
+      digestFromName !== sourceDigest.slice(7)
+    )
+      throw new Error(`legacy loop migration source changed: ${planId}`);
     const committed = commitLoopEpoch({
       planId,
       previousManifestText: null,
@@ -185,13 +193,20 @@ export function durableFileLoopStore(deps: {
       const snapshot = readLoopEpochFromFs(deps.root, planId);
       const stage = snapshot.payload?.orchestrationStage;
       if (stage) {
+        const iteration = pendingIterations.get(planId);
         if (
           snapshot.status !== "committed" ||
           stage.purpose !== "verifier" ||
           stage.status !== "completed" ||
           stage.result === null ||
           state.iteration !== stage.iteration + 1 ||
-          state.lastVerdict !== stage.result
+          state.lastVerdict !== stage.result ||
+          iteration === undefined ||
+          iteration.iteration !== stage.iteration ||
+          iteration.workerProvider !== state.workerProvider ||
+          iteration.verifierProvider !== state.verifierProvider ||
+          iteration.verdict !== state.lastVerdict ||
+          iteration.blockedReason !== state.blockedReason
         )
           throw new Error(`invalid loop stage finalization: ${planId}`);
       } else if (snapshot.status !== "missing" && snapshot.status !== "committed") {
@@ -221,6 +236,8 @@ export function durableFileLoopStore(deps: {
       )
         throw new Error(`loop side effect state snapshot mismatch: ${planId}`);
       const stage = current.payload?.orchestrationStage;
+      if (purpose === "verifier" && stage?.purpose !== "worker" && stage?.purpose !== "verifier")
+        throw new Error(`loop verifier requires completed worker stage: ${planId}`);
       if (
         current.status === "committed" &&
         stage?.iteration === state.iteration &&
