@@ -78,6 +78,7 @@ function parsePayload(text: string, planId: string): LoopEpochPayload | null {
   const value = parseRecord(text);
   const state = value?.state;
   if (
+    value === null ||
     typeof state !== "object" ||
     state === null ||
     (state as { planId?: unknown }).planId !== planId ||
