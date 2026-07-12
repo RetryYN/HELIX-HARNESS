@@ -1,5 +1,5 @@
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
+import { sha256Digest } from "../src/runtime/digest";
 import { stableCauseDigest } from "../src/runtime/stable-cause-digest";
 
 describe("PLAN-L7-449 stable cause digest", () => {
@@ -12,7 +12,7 @@ describe("PLAN-L7-449 stable cause digest", () => {
     expect(first.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(JSON.stringify(first)).not.toContain(secret);
     expect(JSON.stringify(first)).not.toContain("/home/alice");
-    expect(first.digest).not.toBe(`sha256:${createHash("sha256").update(secret).digest("hex")}`);
+    expect(first.digest).not.toBe(sha256Digest(secret));
     expect(stableCauseDigest(new Error("different path and token"))).toEqual(first);
   });
 
@@ -49,5 +49,17 @@ describe("PLAN-L7-449 stable cause digest", () => {
     expect(stableCauseDigest(1)).toEqual(stableCauseDigest(99));
     expect(stableCauseDigest(null).causeKind).toBe("primitive");
     expect(stableCauseDigest(Symbol("x")).digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
+  it("U-DUR-001: preserves finite diagnostic classes without message-dependent identity", () => {
+    const missing = Object.assign(new Error("/tmp/a missing"), { code: "ENOENT" });
+    const denied = Object.assign(new Error("/different/path denied"), { code: "EACCES" });
+    expect(stableCauseDigest(missing)).not.toEqual(stableCauseDigest(denied));
+    expect(stableCauseDigest(new SyntaxError("token at /tmp/a"))).not.toEqual(
+      stableCauseDigest(new TypeError("token at /tmp/b")),
+    );
+    expect(stableCauseDigest(Object.assign(new Error("one"), { code: "ENOENT" }))).toEqual(
+      stableCauseDigest(Object.assign(new Error("two"), { code: "ENOENT" })),
+    );
   });
 });

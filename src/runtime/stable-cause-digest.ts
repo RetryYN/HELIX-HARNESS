@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256Digest } from "./digest";
 
 export type StableCauseKind = "error" | "string" | "object" | "primitive" | "inaccessible";
 
@@ -10,8 +10,30 @@ export type StableCauseDigest = {
 
 function digest(kind: StableCauseKind, safeClass: string, truncated = false): StableCauseDigest {
   const canonical = `helix.doctor.cause.v1\0${kind}\0${safeClass}`;
-  const hash = createHash("sha256").update(canonical, "utf8").digest("hex");
-  return { causeKind: kind, digest: `sha256:${hash}`, truncated };
+  return { causeKind: kind, digest: sha256Digest(canonical), truncated };
+}
+
+const ERROR_NAMES = new Set(["Error", "TypeError", "SyntaxError", "RangeError", "ReferenceError"]);
+const ERROR_CODES = new Set([
+  "ENOENT",
+  "EACCES",
+  "EPERM",
+  "SQLITE_BUSY",
+  "SQLITE_LOCKED",
+  "ERR_SQLITE_ERROR",
+]);
+
+function safeErrorClass(error: Error): string | null {
+  try {
+    const nameValue: unknown = error.name;
+    const codeValue: unknown = (error as Error & { code?: unknown }).code;
+    const name =
+      typeof nameValue === "string" && ERROR_NAMES.has(nameValue) ? nameValue : "OtherError";
+    const code = typeof codeValue === "string" && ERROR_CODES.has(codeValue) ? codeValue : "other";
+    return `${name}:${code}`;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -40,7 +62,10 @@ export function stableCauseDigest(cause: unknown): StableCauseDigest {
     }
     try {
       if (cause instanceof Error) {
-        return digest("error", "error");
+        const safeClass = safeErrorClass(cause);
+        return safeClass === null
+          ? digest("inaccessible", "error-metadata")
+          : digest("error", safeClass);
       }
     } catch {
       return digest("inaccessible", "object", false);

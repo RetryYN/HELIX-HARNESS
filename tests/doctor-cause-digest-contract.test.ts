@@ -7,12 +7,15 @@ describe("PLAN-L7-449 doctor failure contract", () => {
   it("U-DUR-003: emits only allowlisted identity, reason, and finite cause metadata", () => {
     const raw = "/home/alice/private token=secret SELECT password FROM users";
     const failure = doctorFailure("digest-inventory", "read_failed", new Error(raw));
-    const message = doctorFailureMessage("digest-inventory - violation", failure);
+    const message = doctorFailureMessage(failure);
     expect(message).toContain("reason=read_failed");
     expect(message).toContain("cause_kind=error");
     expect(message).toMatch(/cause_digest=sha256:[a-f0-9]{64}$/);
     expect(message).not.toContain(raw);
     expect(doctorFailure("../../unsafe", "check_failed", raw).checkId).toBe("invalid-check-id");
+    expect(doctorFailureMessage(doctorFailure("../../secret", "check_failed", raw))).not.toContain(
+      "../../secret",
+    );
   });
 
   it("U-DUR-003: ratchets doctor raw-cause exposure and anonymous catches", () => {

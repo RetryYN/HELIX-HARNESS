@@ -20,6 +20,6 @@ export function doctorFailure(
   };
 }
 
-export function doctorFailureMessage(prefix: string, failure: DoctorFailure): string {
-  return `${prefix}: reason=${failure.reasonCode} cause_kind=${failure.cause.causeKind} cause_digest=${failure.cause.digest}`;
+export function doctorFailureMessage(failure: DoctorFailure): string {
+  return `${failure.checkId} - violation: reason=${failure.reasonCode} cause_kind=${failure.cause.causeKind} cause_digest=${failure.cause.digest}`;
 }

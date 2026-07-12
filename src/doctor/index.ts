@@ -1415,7 +1415,7 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
     const failure = doctorFailure("digest-inventory", "read_failed", error);
     return {
       ok: false,
-      messages: [doctorFailureMessage("digest-inventory - violation", failure)],
+      messages: [doctorFailureMessage(failure)],
     };
   }
 }
@@ -2114,7 +2114,7 @@ export function checkVscodeExtensionDynamicBinding(
   } catch (error) {
     const failure = doctorFailure("vscode-extension-dynamic-binding", "check_failed", error);
     return {
-      messages: [doctorFailureMessage("vscode-extension-dynamic-binding - violation", failure)],
+      messages: [doctorFailureMessage(failure)],
       ok: false,
     };
   }
@@ -6233,7 +6233,7 @@ export function checkClosureAuthorityRegistry(repoRoot: string): {
   } catch (error) {
     const failure = doctorFailure("closure-authority-registry", "read_failed", error);
     return {
-      messages: [doctorFailureMessage("closure-authority-registry - violation", failure)],
+      messages: [doctorFailureMessage(failure)],
       ok: false,
     };
   }

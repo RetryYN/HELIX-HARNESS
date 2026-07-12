@@ -1183,6 +1183,23 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/runtime/stable-cause-digest.ts::digest:sha256Digest()::1",
+      "path": "src/runtime/stable-cause-digest.ts",
+      "line": 13,
+      "symbol": "digest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/stable-cause-digest.ts digest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/runtime/source-content-mirror-completeness.ts::hash:createHash(sha256)::1",
       "path": "src/runtime/source-content-mirror-completeness.ts",
       "line": 44,
