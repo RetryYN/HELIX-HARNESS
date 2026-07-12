@@ -21,6 +21,8 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 
 ## 2. DbC
 
+analyzerからwrite/child-process authorityへ直接到達できないことを全contractの共通不変条件とする。
+
 | contract | pre | post | invariant |
 |---|---|---|---|
 | tree build | validated DTO | deterministic generic tree | VS Code symbol/import 0 |

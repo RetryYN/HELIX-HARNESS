@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: add-feature
 entry_signals:
-  - "PLAN-L5-79のownership/effect architectureをDbCとL8 negative oracleへ具体化"
+  - "po_directive:2026-07-13 PLAN-L5-79のownership/effect architectureをDbCとL8 negative oracleへ具体化"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
@@ -22,6 +22,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L6-79-source-boundary-contracts.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/source-boundary-contracts.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-source-boundary-contracts.md, artifact_type: test_design }
+  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-79-source-boundary-architecture.md
   requires: []

@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: add-feature
 entry_signals:
-  - "PLAN-L7-446 QS4-BOUNDARY #11/#13/#15 inventoryでstate-db⇄vscode循環、lint effect混在、29 EMPTY boundaryを実測"
+  - "po_directive:2026-07-13 PLAN-L7-446 QS4-BOUNDARY #11/#13/#15 inventoryでstate-db⇄vscode循環、lint effect混在、29 EMPTY boundaryを実測"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
@@ -22,6 +22,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L5-79-source-boundary-architecture.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L5-detailed-design/source-boundary-architecture.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L9-source-boundary-integration.md, artifact_type: test_design }
+  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-446-qs4-boundary-inventory.md
   requires: []
