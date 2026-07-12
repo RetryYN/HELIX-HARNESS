@@ -1,13 +1,13 @@
 ---
 plan_id: PLAN-L7-449-durability-boundary-implementation
-title: "PLAN-L7-449 (add-impl): diagnostic redaction / autonomous-loop durability実装"
-kind: add-impl
+title: "PLAN-L7-449 (troubleshoot): diagnostic redaction / autonomous-loop durability実装"
+kind: troubleshoot
 layer: L7
 drive: agent
 parent_design: docs/design/harness/L6-function-design/durability-boundaries.md
 pair_artifact: docs/test-design/harness/L8-durability-boundaries.md
 status: draft
-route_mode: add-feature
+route_mode: incident
 entry_signals:
   [
     "po_directive:2026-07-13 /goal『バグがあればその場で是正し検出力を強化』に基づくPLAN-L7-445 #29/#30実装slice",

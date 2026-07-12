@@ -14,9 +14,9 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 | U-DUR-002 | hostile cause         | Proxy trap、throwing getter/toString、cycle、巨大値でもthrowせず`inaccessible`またはbounded digest   | `tests/doctor-cause-digest.test.ts`          |
 | U-DUR-003 | static ratchet        | doctorのanonymous cause-dropping catchとraw cause interpolationをallowlist外で0件にする              | `tests/doctor-cause-digest-contract.test.ts` |
 | U-DUR-004 | read classification   | absent、invalid JSON/schema、digest mismatch、orphan payloadをmissing/corrupt/uncommittedへexact分類 | `tests/loop-store-durability.test.ts`        |
-| U-DUR-005 | side-effect ambiguity | intent後・completion証明前のrestartを`ambiguous_side_effect`として自動retryしない                    | `tests/loop-store-durability.test.ts`        |
+| U-DUR-005 | side-effect gate      | durable intent前/C5 uncertain時callback 0。gate後・completion前restartはambiguousで自動retry 0       | `tests/loop-store-durability.test.ts`        |
 | U-DUR-006 | fault points          | C0-C6各境界のfailure/restartがL5 matrixどおりで未commitをauthoritativeにしない                       | `tests/loop-store-durability.test.ts`        |
-| U-DUR-007 | claim/CAS concurrency | `O_EXCL` claim同時到達でcommit 1件以下、lost update 0。stale claimを自動奪取しない                   | `tests/loop-store-durability.test.ts`        |
+| U-DUR-007 | claim/CAS concurrency | commit 1件以下。boot/PID/lease/digest変異と同時recoveryで奪取1件以下、通常writerの自動奪取0          | `tests/loop-store-durability.test.ts`        |
 
 redaction oracleはterminal/JSON/DB/artifact bytesをsecret、credential、PII、個人absolute path、raw SQL seedでscanする。
 static ratchetの例外はcleanup fail-open markerと理由を同じ行に要求し、件数baselineではなく構文契約で管理する。
