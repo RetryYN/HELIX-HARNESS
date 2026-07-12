@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import {
   AUTOMATIC_DB_PROJECTION_REQUIREMENTS,
@@ -7,6 +8,13 @@ import {
 } from "../src/lint/db-projection-ingestion";
 import { openHarnessDb } from "../src/state-db/index";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
+import { buildVisualizationSnapshot } from "../src/state-db/visualization-read-model";
+import { buildVisualizationViewModel } from "../src/state-db/visualization-view-model";
+import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";
+
+function countTreeNodes(nodes: readonly TreeViewNode[]): number {
+  return nodes.reduce((sum, node) => sum + 1 + countTreeNodes(node.children), 0);
+}
 
 describe("db projection ingestion detector", () => {
   it("passes when rebuildHarnessDb auto-populates catalog and graph projection tables", () => {
@@ -41,6 +49,27 @@ describe("db projection ingestion detector", () => {
       expect(result.rowCounts.vmodel_zip_source_bindings).toBeGreaterThanOrEqual(8);
       expect(result.rowCounts.visualization_view_model).toBeGreaterThan(0);
       expect(result.rowCounts.visualization_tree_view).toBeGreaterThan(0);
+      const tree = buildVisualizationTreeView(
+        buildVisualizationViewModel(buildVisualizationSnapshot(db, { repoRoot: process.cwd() })),
+      );
+      const projectedTree = db
+        .prepare(
+          `SELECT schema_version, source_clock, root_ids, root_count, node_count, warnings_count, snapshot_hash
+           FROM visualization_tree_view WHERE tree_view_id = ?`,
+        )
+        .get("visualization-tree-view:latest") as Record<string, unknown> | undefined;
+      expect(projectedTree).toEqual({
+        schema_version: tree.schema_version,
+        source_clock: tree.source_clock ?? "",
+        root_ids: tree.roots
+          .map((root) => root.id)
+          .sort()
+          .join(","),
+        root_count: tree.roots.length,
+        node_count: countTreeNodes(tree.roots),
+        warnings_count: tree.warnings.length,
+        snapshot_hash: `sha256:${createHash("sha256").update(JSON.stringify(tree)).digest("hex")}`,
+      });
       const l12Coverage = db
         .prepare(
           `SELECT zip_source_binding_ids, tailoring_rule_ids, tailoring_detail_levels
