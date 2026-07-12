@@ -296,6 +296,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | `reverse-feedback-closure.md` | reverse feedback 閉塞の単体 oracle |
 | `closure-auto-approval.md` | close_ready機械承認と不可逆境界の`U-CAUTO-*` oracle |
 | `closure-evidence-materialization.md` | production authority registryと証跡生成transactionの`U-CMAT-*` oracle |
+| `closure-authority-backfill.md` | Vペア由来authority補完とrecoverable applyの`U-CABF-*` oracle |
 
 ### closure自走承認 oracle
 
@@ -324,3 +325,13 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-CMAT-010 | trust/human境界 | materializationはstatusを変更せず、executeはfresh required-check CASと不可逆human境界を維持する | `tests/closure-evidence-materialization.test.ts` |
 | U-CMAT-011 | physical receipt schema | 旧DB rowを保存したadditive migrationで物理receiptをimmutable exactly-one化し、論理run参照はlegacy互換nullableとする | `tests/closure-process-receipt-schema.test.ts` |
 | U-CMAT-012 | atomic process lock | 完全なowner directoryだけをatomic claimし、2 child同時barrierのwinnerをexactly-one化する。process birth identityでlive/stale/PID再利用を判定し、torn・symlink・異owner releaseをfail-closeする | `tests/closure-materialization-lock.test.ts` |
+| U-CABF-001 | census保存則 | current review-bundleの361件をexactly-once分類し、missing/excess/duplicate/order driftを拒否する | `tests/closure-authority-backfill.test.ts` |
+| U-CABF-002 | Vペア三者join | PLAN binding、L8 row、canonical non-symlink Vitest collected fullNameの`[PLAN/ORACLE]` markerが同じPLAN+oracle+pathへ一意joinする場合だけproposalを作り、comment-only・skip/todo・duplicateを拒否する | `tests/closure-authority-backfill.test.ts` |
+| U-CABF-003 | authority非推測 | green command、review prose、類似file名、prefix oracle、単独test citationからbinding/gate/capabilityを生成しない | `tests/closure-authority-backfill.test.ts` |
+| U-CABF-004 | typed gate/capability | confirmed designを第一、PLANを第二とする同値authority blockだけからsource pointer/digest付きgate/capabilityを採用し、conflict/unknownはinvalid、irreversibleはhuman_onlyにする | `tests/closure-authority-backfill.test.ts` |
+| U-CABF-005 | read-only bundle | bundle生成はHEAD、scope、registry、source digestへ束縛し、registry/PLAN/test/DBを変更しない | `tests/closure-authority-backfill.test.ts` |
+| U-CABF-006 | independent review | append-only receiptへ異なるworker/reviewer identity、expiry、HEAD/scope/registry/proposal/recompute digest、exactly-one verdictを束縛し、自己申告・偽造・stale・重複を拒否する | `tests/closure-authority-backfill-transaction.test.ts` |
+| U-CABF-007 | recoverable atomic apply | governance mutation lockで2 writerをexactly-one化し、prospective preverify、before-image/journal fsync、rename+dir fsync、commit marker、crash recoveryを通じall-or-none適用する | `tests/closure-authority-backfill-transaction.test.ts` |
+| U-CABF-008 | post-apply再分類 | registry hard gateと全候補再分類を実行し、失敗時before bytesを復元して、件数保存則、対象eligible化、非対象不変、materializer generation CASを確認する | `tests/closure-authority-backfill-transaction.test.ts` |
+| U-CABF-009 | incremental convergence | 361件を100件以下のwindowで処理し、canonical append-only digest chainへreason backlog/cycle差分をidempotent保存し、registry commit後のledger失敗を決定論的に回復する | `tests/closure-authority-backfill-transaction.test.ts` |
+| U-CABF-010 | human/closure境界 | backfillはclosure status、approval、不可逆actionを変更せず、human/action-binding authorityを維持する | `tests/closure-authority-backfill-transaction.test.ts` |
