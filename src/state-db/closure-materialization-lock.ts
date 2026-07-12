@@ -7,10 +7,12 @@ import {
   lstatSync,
   mkdirSync,
   openSync,
+  readdirSync,
   readFileSync,
   realpathSync,
   renameSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from "node:fs";
 import { hostname, platform } from "node:os";
@@ -120,6 +122,17 @@ function removeClaim(path: string, stateDir: string): void {
   fsyncDirectory(stateDir);
 }
 
+function cleanupOrphanClaims(stateDir: string, nowMs = Date.now()): void {
+  for (const name of readdirSync(stateDir)) {
+    if (!name.startsWith(".closure-materialization.claim-")) continue;
+    const path = join(stateDir, name);
+    const link = lstatSync(path);
+    if (link.isSymbolicLink() || !link.isDirectory()) continue;
+    if (nowMs - statSync(path).mtimeMs < 86_400_000) continue;
+    removeClaim(path, stateDir);
+  }
+}
+
 function ownerIsActive(owner: LockOwner, repoRoot: string): boolean {
   if (owner.host !== hostname()) throw new Error("remote host materialization lockは回収不可");
   if (owner.repository_realpath !== realpathSync(repoRoot))
@@ -138,6 +151,7 @@ export function acquireClosureMaterializationLock(repoRoot: string): ClosureMate
   mkdirSync(stateDir, { recursive: true });
   if (lstatSync(stateDir).isSymbolicLink())
     throw new Error("materialization lock dir symlinkは禁止");
+  cleanupOrphanClaims(stateDir);
   const path = join(stateDir, "closure-materialization.lock");
   const token = randomUUID();
   const processStartId = readProcessIdentity(process.pid);

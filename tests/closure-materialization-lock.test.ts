@@ -1,5 +1,13 @@
 import { spawn } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  symlinkSync,
+  utimesSync,
+  writeFileSync,
+} from "node:fs";
 import { hostname, tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -92,41 +100,75 @@ describe("closure materialization atomic lock", () => {
     releaseClosureMaterializationLock(lock);
   });
 
+  it("24時間を超えたorphan claimだけを安全に清掃する", () => {
+    const root = repository();
+    const orphan = join(root, ".helix/state/.closure-materialization.claim-orphan");
+    mkdirSync(orphan, { recursive: true });
+    writeFileSync(join(orphan, "owner.json.tmp"), "partial");
+    utimesSync(orphan, new Date(0), new Date(0));
+    const lock = acquireClosureMaterializationLock(root);
+    expect(existsSync(orphan)).toBe(false);
+    releaseClosureMaterializationLock(lock);
+  });
+
   it("2 child同時barrierではatomic claim winnerがexactly-oneになる", async () => {
     const root = repository();
     const barrier = join(root, "barrier");
+    const release = join(root, "release");
     const moduleUrl = pathToFileURL(
       join(import.meta.dirname, "../src/state-db/closure-materialization-lock.ts"),
     ).href;
     const script = `
       import { existsSync } from "node:fs";
       import { acquireClosureMaterializationLock, releaseClosureMaterializationLock } from ${JSON.stringify(moduleUrl)};
-      const [root, barrier] = process.argv.slice(1);
+      const [root, barrier, release] = process.argv.slice(1);
       while (!existsSync(barrier)) await Bun.sleep(5);
       try {
         const lock = acquireClosureMaterializationLock(root);
         console.log("WON");
-        await Bun.sleep(150);
+        while (!existsSync(release)) await Bun.sleep(5);
         releaseClosureMaterializationLock(lock);
       } catch { console.log("LOST"); }
     `;
-    const runChild = (): Promise<string> =>
-      new Promise((resolveOutput, reject) => {
-        const child = spawn("bun", ["-e", script, root, barrier], {
+    const runChild = (): { first: Promise<string>; done: Promise<void> } => {
+      let resolveFirst: (value: string) => void = () => undefined;
+      let rejectFirst: (error: Error) => void = () => undefined;
+      const first = new Promise<string>((resolve, reject) => {
+        resolveFirst = resolve;
+        rejectFirst = reject;
+      });
+      const done = new Promise<void>((resolveDone, rejectDone) => {
+        const child = spawn("bun", ["-e", script, root, barrier, release], {
           stdio: ["ignore", "pipe", "pipe"],
         });
         let stdout = "";
         let stderr = "";
-        child.stdout.on("data", (chunk: Buffer) => (stdout += chunk.toString("utf8")));
+        child.stdout.on("data", (chunk: Buffer) => {
+          stdout += chunk.toString("utf8");
+          const line = stdout.trim();
+          if (line === "WON" || line === "LOST") resolveFirst(line);
+        });
         child.stderr.on("data", (chunk: Buffer) => (stderr += chunk.toString("utf8")));
-        child.once("error", reject);
-        child.once("close", (code) =>
-          code === 0 ? resolveOutput(stdout.trim()) : reject(new Error(stderr)),
-        );
+        child.once("error", (error) => {
+          rejectFirst(error);
+          rejectDone(error);
+        });
+        child.once("close", (code) => {
+          if (code === 0) resolveDone();
+          else {
+            const error = new Error(stderr);
+            rejectFirst(error);
+            rejectDone(error);
+          }
+        });
       });
+      return { first, done };
+    };
     const children = [runChild(), runChild()];
     writeFileSync(barrier, "go\n");
-    const results = await Promise.all(children);
+    const results = await Promise.all(children.map((child) => child.first));
+    writeFileSync(release, "release\n");
+    await Promise.all(children.map((child) => child.done));
     expect(results.filter((value) => value === "WON")).toHaveLength(1);
     expect(results.filter((value) => value === "LOST")).toHaveLength(1);
   });

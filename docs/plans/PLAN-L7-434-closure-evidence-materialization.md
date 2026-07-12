@@ -15,7 +15,7 @@ agent_slots:
   - { role: se, slot_label: "SE - authority registry、runner、transaction実装" }
   - { role: qa, slot_label: "QA - crash/replay/361件敵対検証" }
 backprop_decision: not_required
-backprop_decision_reason: "confirmed PLAN-L6-72とU-CMAT-001..010を実装へ降下する。"
+backprop_decision_reason: "confirmed PLAN-L6-72とU-CMAT-001..012を実装へ降下する。"
 parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
@@ -66,5 +66,5 @@ dependencies:
 
 ## 2. 完了条件
 
-`U-CMAT-001..010`、PLAN lint、TypeScript、Biome、全fast suite、独立adversarial reviewがgreenである。
+`U-CMAT-001..012`、PLAN lint、TypeScript、Biome、全fast suite、独立adversarial reviewがgreenである。
 実361件へのexecuteはmain merge後のproduction cycleへ残す。
