@@ -14,6 +14,7 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 - `doctorFailure(checkId: string, reasonCode: DoctorReasonCode, cause: unknown): DoctorFailure`
 - `readLoopEpoch(planId: string): LoopEpochReadResult`
 - `commitLoopEpoch(input: LoopEpochCommitInput, port: DurableEpochPort): LoopEpochCommitResult`
+- `classifyLoopRecovery(read: LoopEpochReadResult): LoopRecoveryDecision`
 
 `StableCauseDigest`は有限`causeKind`、`sha256:<64 lower hex>`、`truncated`だけを持つ。`DoctorFailure`はallowlist
 fieldのみでraw causeを持たない。`LoopEpochReadResult`は `missing | committed | uncommitted | corrupt |
@@ -32,21 +33,22 @@ post: `committed`ならstate/receipt/manifestのdigestが一致し、restart rea
 publish前のfailureは新epochをauthoritativeにしない。invariant: corruption、I/O exception、CAS conflict、曖昧な
 side effectをmissing/successへ縮退しない。
 
-publish順は payload temp write -> file fsync -> payload rename -> directory durability -> manifest temp write -> manifest
+publish前にplan-scoped exclusive claimをatomic createし、取得後にprevious digestを再検査する。publish順は payload temp write -> file fsync -> payload rename -> directory durability -> manifest temp write -> manifest
 fsync -> manifest rename -> directory durability とする。commit時はprevious digest CASを再検査する。platformがdirectory
 fsyncを提供しない場合はcapabilityを明示し、file fsync + same-volume renameより強い保証を表示しない。
 
 ## 4. recovery decision
 
 `missing`だけがfresh start可能である。`uncommitted`は安全に無視できるが診断を残す。`corrupt`と
-`concurrent_conflict`はfail-closeする。`ambiguous_side_effect`は自動retryせず、plan、epoch、safe digestを含む
+`concurrent_conflict`はfail-closeする。`ambiguous_side_effect`は`classifyLoopRecovery`が`block_and_escalate`へ写し、自動retryせず、plan、epoch、safe digestを含む
 recovery packetへ送る。readerは破損artifactを変更しない。
 
 ## 5. DbC trace
 
-| 公開関数            | pre                            | post                        | invariant                           | oracle                        |
-| ------------------- | ------------------------------ | --------------------------- | ----------------------------------- | ----------------------------- |
-| `stableCauseDigest` | unknown value                  | finite kind + typed SHA-256 | throw/raw leakなし                  | U-DUR-001/002                 |
-| `doctorFailure`     | check/reason allowlist         | bounded safe failure        | raw interpolationなし               | U-DUR-003、IT-DUR-001         |
-| `readLoopEpoch`     | canonical plan ID              | 6状態を区別                 | corrupt≠missing                     | U-DUR-004/005、IT-DUR-002     |
-| `commitLoopEpoch`   | snapshot-bound previous digest | manifest後だけcommitted     | partial/concurrentをsuccess化しない | U-DUR-006/007、IT-DUR-003/004 |
+| 公開関数               | pre                            | post                        | invariant                           | oracle                        |
+| ---------------------- | ------------------------------ | --------------------------- | ----------------------------------- | ----------------------------- |
+| `stableCauseDigest`    | unknown value                  | finite kind + typed SHA-256 | throw/raw leakなし                  | U-DUR-001/002                 |
+| `doctorFailure`        | check/reason allowlist         | bounded safe failure        | raw interpolationなし               | U-DUR-003、IT-DUR-001         |
+| `readLoopEpoch`        | canonical plan ID              | 6状態を区別                 | corrupt≠missing                     | U-DUR-004/005、IT-DUR-002     |
+| `commitLoopEpoch`      | snapshot-bound previous digest | manifest後だけcommitted     | partial/concurrentをsuccess化しない | U-DUR-006/007、IT-DUR-003/004 |
+| `classifyLoopRecovery` | exact read classification      | retry/start/block           | ambiguousをretryへ写さない          | U-DUR-005、IT-DUR-005         |

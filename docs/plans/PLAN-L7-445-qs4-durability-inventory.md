@@ -53,9 +53,9 @@ dependencies:
 
 ## inventory結果とexact successor
 
-| QS4 | 実装観測                                                                                                                         | exact successor                         | Vペア                                                                                     |
-| --- | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------- |
-| #29 | `src/doctor/index.ts`のcatchがcauseを失い、一部経路はraw causeを文字列化し得る                                                   | `PLAN-L6-78-durability-boundary-design` | `L6-function-design/durability-boundaries.md` ↔ `L8-durability-boundaries.md`             |
-| #30 | `loop-store.ts`がcorrupt JSONをmissingへ縮退し、state direct writeとiteration whole-file rewriteにcrash/lost-update windowがある | `PLAN-L6-78-durability-boundary-design` | `L5-detailed-design/durability-boundaries.md` ↔ `L9-durability-boundaries-integration.md` |
+| QS4 | 実装観測                                                                                     | exact successor                          | Vペア                                                                                     |
+| --- | -------------------------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------- |
+| #29 | `src/doctor/index.ts`のcause消失/raw文字列化                                                 | design `PLAN-L6-78` / impl `PLAN-L7-449` | `L6-function-design/durability-boundaries.md` ↔ `L8-durability-boundaries.md`             |
+| #30 | `loop-store.ts`と`autonomous-loop-run-receipts.ts`のcorrupt→missing、direct/whole-file write | design `PLAN-L6-78` / impl `PLAN-L7-449` | `L5-detailed-design/durability-boundaries.md` ↔ `L9-durability-boundaries-integration.md` |
 
 successorは診断redactionとloop epoch durabilityを別contractとして保持し、共通atomic file primitiveだけを共有する。
