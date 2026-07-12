@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -254,8 +254,8 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     expect(recovered.status).toBe("recovered");
     expect(existsSync(paths.recoveryClaim)).toBe(false);
     expect(
-      readFileSync(paths.directory, { encoding: "utf8", flag: "r" }),
-    ).toBeDefined();
+      readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.stale.json")),
+    ).toHaveLength(1);
   });
 
   it("IT-DUR-003: a second-epoch C4 crash preserves the previous committed payload", () => {
