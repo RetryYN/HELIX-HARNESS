@@ -120,10 +120,10 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     }
     const ratchet = frontmatter(successorPaths[2]);
     expect(ratchet.dependencies?.requires).not.toContain(
-      "docs/plans/PLAN-L7-428-function-reachability.md",
+      "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md",
     );
     expect(ratchet.dependencies?.references).toContain(
-      "docs/plans/PLAN-L7-428-function-reachability.md",
+      "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md",
     );
     expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
@@ -142,8 +142,10 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l8).toContain("timeout/nonzero/missing binary"));
   it("U-SBOUND-007: policy metadata欠落を検出する", () =>
     expect(l8).toContain("owner/rationale/review trigger"));
-  it("U-SBOUND-008: source edgeを一意に正規化する", () =>
-    expect(l8).toContain("direct/type-only/re-export/dynamic"));
+  it("U-SBOUND-008: source edgeを一意に正規化する", () => {
+    expect(l8).toContain("literal require/import-equals");
+    expect(l8).toContain("computed requireをunknownで拒否");
+  });
   it("U-SBOUND-009: stale authorityのeffectを拒否する", () =>
     expect(l8).toContain("capability/authority/snapshot/idempotency"));
   it("U-SBOUND-010: partial materializeをacceptedにしない", () =>

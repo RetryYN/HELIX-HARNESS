@@ -14,7 +14,7 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
   `state-db/visualization-view-model.ts`へ戻る2-node architecture cycle。
 - #13: lint配下にrepo write、external process probe、git subprocessがanalyzerと同居する。
 - #15: source boundary 32 module中29 moduleがEMPTYで、未設計方向を暗黙allowする。
-- #14: `PLAN-L7-428` W2は要求provenanceとして参照するが、その実装はfunction reachabilityでありshared edge
+- #14: `PLAN-L7-428-enforcement-wiring-gap` W2は要求provenanceとして参照するが、その実装はfunction reachabilityでありshared edge
   extractorではない。source-boundary用extractorは`PLAN-L7-452`が`src/lint/source-edge-extractor.ts`に単一実装する。
 
 ## 2. ownership
@@ -51,8 +51,9 @@ architecture ownershipを結合するため同じedgeとして扱う。
 
 boundary policyは各source ownerにdefault `deny`を必須とし、許可方向だけをexplicit allowとして列挙する。これにより
 catalog内の全directed pairはdefaultまたはexceptionのどちらかでtotal decisionされる。missing owner default、EMPTY、未知from、
-未知toは`unspecified`としてfail-closeし、allow-allと同義にしない。type-only/re-export/dynamic importも同じdirected edgeへ
-正規化する。移行中の例外はowner、rationale、expiry、successor PLANを必須にする。
+未知toは`unspecified`としてfail-closeし、allow-allと同義にしない。type-only/re-export/dynamic import、static string literal
+`require()`、TypeScript import-equalsも同じdirected edgeへ正規化する。computed/nonliteral requireは
+`unknown_edge_kind`としてfail-closeする。移行中の例外はowner、rationale、expiry、successor PLANを必須にする。
 
 ## 4. effect実行権限
 

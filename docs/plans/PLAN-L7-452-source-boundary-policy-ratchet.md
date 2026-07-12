@@ -30,7 +30,7 @@ dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: []
   references:
-    - docs/plans/PLAN-L7-428-function-reachability.md
+    - docs/plans/PLAN-L7-428-enforcement-wiring-gap.md
     - docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md
     - docs/plans/PLAN-L7-451-lint-effect-port-separation.md
 ---
@@ -39,9 +39,10 @@ dependencies:
 
 ## 実装境界
 
-`src/lint/source-edge-extractor.ts`をdirect/type-only/re-export/dynamic importの単一extractor ownerとする。
+`src/lint/source-edge-extractor.ts`をdirect/type-only/re-export/dynamic import、literal `require()`、import-equalsの
+単一extractor ownerとする。computed/nonliteral requireはunknown edgeとしてfail-closeする。
 全ownerのdefault denyとexplicit allowでlive edgeをtotal decisionし、未知module・未知edge kind・default欠落をfail-closeする。
-`PLAN-L7-428` W2はreachability要求のprovenanceであり、shared extractor dependencyではない。
+`PLAN-L7-428-enforcement-wiring-gap` W2はreachability要求のprovenanceであり、shared extractor dependencyではない。
 
 ## 完了条件
 
