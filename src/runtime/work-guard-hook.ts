@@ -17,6 +17,7 @@ import { commitOverrideUse } from "./guard-override-transaction";
 import {
   evaluateWorkGuard,
   extractEditTargets,
+  extractShellWriteTargets,
   normalizeRepoRelative,
   resolveForeignEditOverride,
   type WorkGuardResult,
@@ -90,7 +91,16 @@ export function runWorkGuardHook(opts: {
   }
   try {
     // apply_patch は複数ファイルを 1 patch で編集しうる。全対象を評価し、1 つでも foreign なら block。
-    const targets = extractEditTargets(input.tool_input)
+    const editTargets = extractEditTargets(input.tool_input);
+    const command =
+      input.tool_input && typeof input.tool_input === "object"
+        ? String(
+            (input.tool_input as Record<string, unknown>).command ??
+              (input.tool_input as Record<string, unknown>).cmd ??
+              "",
+          )
+        : "";
+    const targets = (editTargets.length > 0 ? editTargets : extractShellWriteTargets(command))
       .map((t) => normalizeRepoRelative(t, opts.repoRoot))
       .filter((t) => t.length > 0);
     const override = resolveForeignEditOverride({
@@ -137,7 +147,7 @@ export function runWorkGuardHook(opts: {
             const current = readFileSync(markerPath, "utf8");
             const currentStat = statSync(markerPath);
             const actual = guardOverrideDigest(
-              `${currentStat.dev}:${currentStat.ino}:${currentStat.mtimeMs}:${current}`,
+              `${currentStat.dev}:${currentStat.ino}:${currentStat.mtimeMs}:${current.trim()}`,
             );
             if (actual !== expectedNonce) return false;
             rmSync(markerPath);

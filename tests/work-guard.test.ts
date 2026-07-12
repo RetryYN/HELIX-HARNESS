@@ -250,7 +250,7 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
       writeFileSync(join(cwd, "foreign.ts"), "export const x = 1;\n");
       const markerPath = join(cwd, ".helix", "state", "foreign-edit-override");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
-      writeFileSync(markerPath, "completing Codex orphan-impl per review");
+      writeFileSync(markerPath, "completing Codex orphan-impl per review\n");
 
       const input = { session_id: "s-test", tool_input: { file_path: "foreign.ts" } };
 
