@@ -35,6 +35,16 @@ generates:
     artifact_type: test_design
   - artifact_path: .claude/settings.json
     artifact_type: config
+  - artifact_path: src/runtime/sqlite-error.ts
+    artifact_type: source_module
+  - artifact_path: src/orchestration/job-queue.ts
+    artifact_type: source_module
+  - artifact_path: src/runtime/session-log.ts
+    artifact_type: source_module
+  - artifact_path: src/feedback/lifecycle-node.ts
+    artifact_type: source_module
+  - artifact_path: tests/sqlite-error.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []

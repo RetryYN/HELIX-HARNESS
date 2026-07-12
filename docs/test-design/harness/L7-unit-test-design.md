@@ -318,6 +318,8 @@ fail-close する。
 | U-SETUP-040 | `helix hook work-guard` | 実git fixtureでforeign uncommitted targetはexit 2、clean targetはexit 0となり、配布CLI経路がshared work-guard判定へ実到達する。 |
 | U-SETUP-041 | consumer Claude/Codex hook templates / `helix hook --help` | 両templateが宣言する全 `helix hook <subcommand>` がCLI helpに実在する。command文字列の構造検査だけで、存在しないsubcommandをready扱いしない。 |
 | U-SETUP-042 | dev `.claude/settings.json` / `AGENT_TOOL_NAMES` / consumer Claude template | agent-guard matcherは三面すべて `Agent|Task` と一致し、Task runtimeだけdev guardを迂回するdriftを許さない。 |
+| U-SQLBUSY-001 | `isSqliteBusy` | Bunの`code=SQLITE_BUSY`とnode:sqliteの`message=database is locked`をともにtrueへ正規化する。 |
+| U-SQLBUSY-002 | `isSqliteBusy` | unrelated Errorと非Error値をfalseにし、busy以外の障害をretry/nullへ隠蔽しない。 |
 
 ### §1.8 U-HRET（session handover の退役）
 

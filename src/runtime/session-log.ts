@@ -31,6 +31,7 @@ import {
   memoryPromotionNudgeEventId,
   memoryPromotionSessionRef,
 } from "./memory-promotion";
+import { isSqliteBusy } from "./sqlite-error";
 import { classifyVerificationVerb } from "./verb-classify";
 
 export type SessionEventType =
@@ -629,12 +630,4 @@ export function nodeDeps(
       }
     },
   };
-}
-
-function isSqliteBusy(error: unknown): boolean {
-  return (
-    error instanceof Error &&
-    (String((error as Error & { code?: unknown }).code).includes("SQLITE_BUSY") ||
-      /database is locked|SQLITE_BUSY/i.test(error.message))
-  );
 }

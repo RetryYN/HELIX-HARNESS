@@ -1,4 +1,5 @@
 import { createRequire } from "node:module";
+import { isSqliteBusy } from "../runtime/sqlite-error";
 import type { Provider } from "./loop-state";
 
 const nodeRequire = createRequire(import.meta.url);
@@ -58,12 +59,6 @@ function openNative(path: string): NativeDatabase {
     DatabaseSync: new (p: string) => NativeDatabase;
   };
   return new DatabaseSync(path);
-}
-
-function isSqliteBusy(error: unknown): boolean {
-  if (!(error instanceof Error)) return false;
-  const withCode = error as Error & { code?: unknown };
-  return withCode.code === "SQLITE_BUSY" || error.message.includes("SQLITE_BUSY");
 }
 
 function rowToJob(row: JobRow): Job {
