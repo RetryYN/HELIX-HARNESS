@@ -108,6 +108,33 @@ export function buildAutonomousLoopRunReceipt(
     };
   }
   const state = snapshot.payload.state;
+  if (snapshot.payload.orchestrationStage) {
+    return {
+      schema_version: AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION,
+      ok: false,
+      plan_id: planId,
+      status: "blocked",
+      loop_state: state,
+      iteration_count: state.iteration,
+      stop_kind: "blocker_stop",
+      restartable_next_action: null,
+      retry: {
+        allowed: false,
+        max_iterations: state.maxIterations,
+        reason: `orchestration_stage_${snapshot.payload.orchestrationStage.purpose}_${snapshot.payload.orchestrationStage.status}`,
+      },
+      evidence_paths: [paths.manifest, paths.payloadFor(snapshot.manifest?.payloadFile ?? "")],
+      findings: [
+        {
+          code: "receipt_orchestration_stage_incomplete",
+          severity: "error",
+          detail:
+            "durable side-effect stage requires controlled loop resume before a receipt claim",
+        },
+      ],
+      source_command: options.sourceCommand ?? "helix loop receipt --json",
+    };
+  }
   const latestIteration = snapshot.payload.iteration;
   const iterationEvidenceMatches =
     state.iteration === 0

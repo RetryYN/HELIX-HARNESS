@@ -109,4 +109,33 @@ describe("PLAN-L7-449 production durable loop store", () => {
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
     expect(durableFileLoopStore({ root: repo }).read(PLAN)).toEqual(state);
   });
+
+  it("IT-DUR-005: restart skips completed worker and reuses the durable verifier result", async () => {
+    const repo = root();
+    let workerCalls = 0;
+    let verifierCalls = 0;
+    await durableFileLoopStore({ root: repo }).runSideEffect(state, "worker", async () => {
+      workerCalls += 1;
+      return null;
+    });
+    await durableFileLoopStore({ root: repo }).runSideEffect(state, "worker", async () => {
+      workerCalls += 1;
+      return null;
+    });
+    expect(workerCalls).toBe(1);
+    await expect(
+      durableFileLoopStore({ root: repo }).runSideEffect(state, "verifier", async () => {
+        verifierCalls += 1;
+        return "fail";
+      }),
+    ).resolves.toBe("fail");
+    await expect(
+      durableFileLoopStore({ root: repo }).runSideEffect(state, "verifier", async () => {
+        verifierCalls += 1;
+        return "pass";
+      }),
+    ).resolves.toBe("fail");
+    expect(verifierCalls).toBe(1);
+    expect(workerCalls).toBe(1);
+  });
 });
