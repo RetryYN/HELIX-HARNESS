@@ -11,8 +11,8 @@ entry_signals:
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
-backprop_decision: required
-backprop_decision_reason: "既存の『明示verdictなしをacceptしない』契約をteam run実行結果へ具体化し、L6関数契約とL7 test-designを同時更新する。"
+backprop_decision: not_required
+backprop_decision_reason: "既存の『明示verdictなしをacceptしない』契約をL5/L6とtest-designへ同一PLAN内でbackprop済みのため、追加の上位backprop PLANは不要。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-444-team-review-evidence-capture.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/agent-slots.md, artifact_type: design_doc }

@@ -3,6 +3,7 @@ plan_id: PLAN-L6-77-destructive-command-guard-design
 title: "PLAN-L6-77 (design): 破壊的command guard transaction Vペア設計"
 kind: design
 layer: L6
+sub_doc: function-spec
 drive: agent
 status: confirmed
 route_mode: forward
@@ -14,6 +15,9 @@ owner: Codex / TL
 backprop_decision: not_required
 backprop_decision_reason: "L5 threat model、L6 transaction contract、L8/L9 oracleを既存要求のsilent bypass禁止へ接続する設計是正。"
 pair_artifact: docs/test-design/harness/L8-destructive-command-guard.md
+agent_slots:
+  - { role: se, slot_label: "SE — guard transaction DbC設計" }
+  - { role: qa, slot_label: "QA — negative oracleとVペア監査" }
 generates:
   - { artifact_path: docs/plans/PLAN-L6-77-destructive-command-guard-design.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L5-detailed-design/destructive-command-guard.md, artifact_type: design_doc }
