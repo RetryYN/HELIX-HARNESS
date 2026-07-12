@@ -13,6 +13,15 @@ owner: Codex
 agent_slots:
   - { role: se, slot_label: "SE - materializer fail-close実装" }
   - { role: qa, slot_label: "QA - semantic provenance独立review" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-12T13:18:10Z"
+  review_binding:
+    reviewer: codex-independent-reviewer
+    reviewed_at: "2026-07-12T13:18:10Z"
+    evidence_digest: "sha256:4213648457c38eb01236a5fab80a156496e338618e93fc34a94945d3c615a896"
+  entries: []
 review_evidence:
   - reviewer: codex-independent-reviewer
     review_kind: intra_runtime_subagent
