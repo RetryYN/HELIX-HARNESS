@@ -18,6 +18,9 @@ plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 | U-GITGUARD-008 | concurrent CAS | 同一nonceへbarrier付き2並行呼出しを行い、allowが1以下、敗者が`blocked_reuse`、restart後も再利用不可 | `tests/guard-override-transaction.test.ts` |
 | U-GITGUARD-009 | crash point | durable commit前のtorn recordはquarantine・marker保持・retry可、commit後consume前crashはrestart後`blocked_reuse` | `tests/guard-override-transaction.test.ts` |
 
+env overrideはGit/foreign-editの両adapterで初回だけDB audit付きallow、同一session/subjectの2回目を
+`blocked_reuse`とする。raw command、target、reasonをrowへ保存しない。
+
 property testはdestructive seedへ安全なprefix/suffix/global option/quote変形を生成し、block不変を検査する。
 failure oracleはin-memory fakeだけでなくtemp repositoryのDB open/transaction failure、marker remove failureを使う。
 raw command中のsecret/pathがaudit bytesへ現れないことも検査する。

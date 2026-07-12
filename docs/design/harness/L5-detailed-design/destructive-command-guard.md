@@ -50,6 +50,10 @@ destructive Git slice の可能性を排除できない parser state は fail-cl
 6. auditまたはconsumeが失敗した場合はblockする。audit失敗時はmarkerを保持する。
 7. consume失敗時はabort監査を残し、同じtransaction IDの再試行をallow済みとして扱わない。
 
+環境変数による明示overrideは互換surfaceとして維持するが、silent bypassにはしない。markerの代わりに
+`guard kind + session + subject digest`をvirtual one-shot capabilityとしてconsumeし、同じsession/subjectの
+2回目は`blocked_reuse`にする。初回もDB audit commit失敗時はblockする。
+
 raw secret、credential、PII、個人absolute pathはauditへ保存しない。transaction IDでretryを識別し、
 同一markerの二重allowを拒否する。
 

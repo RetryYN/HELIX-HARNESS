@@ -124,7 +124,29 @@ export function runWorkGuardHook(opts: {
       }
     }
     if (!blocked) return { exitCode: 0 };
-    if (override.source === "env") return { exitCode: 0 };
+    if (override.source === "env") {
+      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+      try {
+        migrate(db);
+        const transaction = commitOverrideUse({
+          nonce: guardOverrideDigest(
+            `env:foreign_edit:${input.session_id ?? "unknown"}:${guardOverrideDigest(targets.join("\n"))}`,
+          ),
+          reason: override.reason,
+          classification: {
+            guardKind: "foreign_edit",
+            operationClass: "foreign uncommitted edit",
+            subjectDigest: guardOverrideDigest(targets.join("\n")),
+          },
+          audit: createGuardOverrideAuditPort(db),
+          marker: { consume: () => true },
+        });
+        if (transaction.status === "allowed") return { exitCode: 0 };
+        return { exitCode: 2, message: `${blocked.message} override=${transaction.status}` };
+      } finally {
+        db.close();
+      }
+    }
     if (override.source !== "marker") return { exitCode: 2, message: blocked.message };
     const markerPath = join(opts.repoRoot, ".helix", "state", "foreign-edit-override");
     const markerStat = statSync(markerPath);

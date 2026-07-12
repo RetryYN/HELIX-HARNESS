@@ -152,6 +152,29 @@ describe("git-command-guard", () => {
     ).toMatchObject({ bypass: true, source: "marker" });
   });
 
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-005/IT-GITGUARD-004] audits env override as a virtual one-shot capability", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-env-"));
+    try {
+      const input = { session_id: "s-env", tool_input: { command: "git clean -f" } };
+      const run = () =>
+        spawnSync("bun", [cliPath, "hook", "git-command-guard"], {
+          cwd,
+          encoding: "utf8",
+          env: { ...process.env, HELIX_ALLOW_DESTRUCTIVE_GIT: "1" },
+          input: JSON.stringify(input),
+        });
+      expect(run().status).toBe(0);
+      const second = run();
+      expect(second.status).toBe(2);
+      expect(second.stderr).toContain("blocked_reuse");
+      const rows = overrideRows(cwd);
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({ guard_kind: "git", status: "committed" });
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("U-GITGUARD-002: exposes a blocking CLI hook surface", () => {
     const blocked = runCliGuard({ tool_input: { command: "git reset --hard HEAD" } });
     expect(blocked.status).toBe(2);

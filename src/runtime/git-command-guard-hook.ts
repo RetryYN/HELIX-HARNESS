@@ -58,7 +58,7 @@ export function runGitCommandGuardHook(opts: {
   rawInput: string;
   env?: NodeJS.ProcessEnv;
 }): GitCommandGuardHookOutcome {
-  let input: { tool_input?: unknown };
+  let input: { tool_input?: unknown; session_id?: string };
   try {
     input = JSON.parse(opts.rawInput || "{}");
   } catch {
@@ -78,7 +78,33 @@ export function runGitCommandGuardHook(opts: {
     env: (opts.env ?? process.env).HELIX_ALLOW_DESTRUCTIVE_GIT,
     markerReason,
   });
-  if (override.source === "env") return { exitCode: 0, reason: "bypass" };
+  if (override.source === "env") {
+    try {
+      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+      try {
+        migrate(db);
+        const result = commitOverrideUse({
+          nonce: guardOverrideDigest(
+            `env:git:${input.session_id ?? "unknown"}:${guardOverrideDigest(command)}`,
+          ),
+          reason: override.reason,
+          classification: {
+            guardKind: "git",
+            operationClass: base.destructiveOperation ?? "indeterminate",
+            subjectDigest: guardOverrideDigest(command),
+          },
+          audit: createGuardOverrideAuditPort(db),
+          marker: { consume: () => true },
+        });
+        if (result.status === "allowed") return { exitCode: 0, reason: "bypass" };
+        return { exitCode: 2, message: `${base.message} override=${result.status}` };
+      } finally {
+        db.close();
+      }
+    } catch {
+      return { exitCode: 2, message: `${base.message} override=blocked_audit_failure` };
+    }
+  }
   if (override.source !== "marker" || markerReason === null)
     return { exitCode: 2, message: base.message };
   try {

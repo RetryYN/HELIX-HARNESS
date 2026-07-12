@@ -11,6 +11,7 @@ import {
   normalizeRepoRelative,
   resolveForeignEditOverride,
 } from "../src/runtime/work-guard";
+import { runWorkGuardHook as runWorkGuardCore } from "../src/runtime/work-guard-hook";
 import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 
 const hookRepoRoot = process.cwd();
@@ -238,6 +239,36 @@ describe("foreign-edit override resolution (PLAN-L7-114 correction)", () => {
   it("prefers env over marker as the source when both are present", () => {
     const r = resolveForeignEditOverride({ env: "1", markerReason: "marker reason" });
     expect(r.source).toBe("env");
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007/IT-GITGUARD-004] audits env bypass once per session and subject", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-env-"));
+    try {
+      execFileSync("git", ["init"], { cwd, stdio: "ignore" });
+      writeFileSync(join(cwd, "foreign.ts"), "export const x = 1;\n");
+      const rawInput = JSON.stringify({
+        session_id: "s-env",
+        tool_input: { file_path: "foreign.ts" },
+      });
+      const run = () =>
+        runWorkGuardCore({
+          repoRoot: cwd,
+          rawInput,
+          env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "1" },
+        });
+      expect(run().exitCode).toBe(0);
+      const second = run();
+      expect(second.exitCode).toBe(2);
+      expect(second.message).toContain("blocked_reuse");
+      const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      const rows = db
+        .prepare("SELECT * FROM guard_override_transactions WHERE guard_kind='foreign_edit'")
+        .all();
+      db.close();
+      expect(rows).toHaveLength(1);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
   });
 });
 
