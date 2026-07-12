@@ -28,7 +28,7 @@ dependencies:
   requires: []
 ---
 
-# PLAN-L6-79: source boundary contracts
+# PLAN-L6-79: source boundary contract設計
 
 ## 工程表
 

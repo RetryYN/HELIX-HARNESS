@@ -23,14 +23,14 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 
 analyzerからwrite/child-process authorityへ直接到達できないことを全contractの共通不変条件とする。
 
-| contract | pre | post | invariant |
+| contract | 事前条件 | 事後条件 | 不変条件 |
 |---|---|---|---|
-| tree build | validated DTO | deterministic generic tree | VS Code symbol/import 0 |
-| decoration | generic tree + catalog | adapter tree | state-db import 0 |
-| evidence projection | view + verified summary | rows | presentation builder import 0 |
-| analyzer | immutable snapshot | findings | write/process callback 0 |
+| tree build | 検証済みDTO | deterministicなgeneric tree | VS Code symbol/import 0 |
+| decoration | generic tree + catalog | adapter用tree | state-db import 0 |
+| evidence projection | view + 検証済みsummary | rows | presentation builder import 0 |
+| analyzer | immutable snapshot | finding一覧 | write/process callback 0 |
 | probe/materialize | typed intent + explicit port | bounded receipt | timeout/nonzeroをsuccess化しない |
-| boundary evaluate | normalized direct/type edge | allow/deny/unspecified | unspecified≠allow |
+| boundary evaluate | 正規化済みdirect/type edge | allow/deny/unspecified | unspecified≠allow |
 | policy coverage | canonical module set | missing/EMPTY/unknown findings | new moduleを黙認しない |
 
 ## 3. receipt

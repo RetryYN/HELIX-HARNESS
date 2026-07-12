@@ -28,7 +28,7 @@ dependencies:
   requires: []
 ---
 
-# PLAN-L5-79: source boundary architecture
+# PLAN-L5-79: source boundary architecture設計
 
 ## 工程表
 

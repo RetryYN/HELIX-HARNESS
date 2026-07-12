@@ -10,12 +10,12 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 
 | oracle | 反例 | 期待結果 |
 |---|---|---|
-| U-SBOUND-001 | state-db→vscode direct/type-only edge | deny |
-| U-SBOUND-002 | vscode→state-db implementation edge | deny |
-| U-SBOUND-003 | missing/EMPTY/new module policy | unspecified error |
+| U-SBOUND-001 | state-db→vscodeのdirect/type-only edge | deny |
+| U-SBOUND-002 | vscode→state-dbのimplementation edge | deny |
+| U-SBOUND-003 | missing/EMPTY/new moduleのpolicy | unspecifiedエラー |
 | U-SBOUND-004 | lint analyzerにwrite/child-process import | violation |
 | U-SBOUND-005 | generic projectorにVS Code command constant | violation |
-| U-SBOUND-006 | probe timeout/nonzero/missing binary | typed blocked receipt |
+| U-SBOUND-006 | probeのtimeout/nonzero/missing binary | typed blocked receipt |
 | U-SBOUND-007 | policy owner/rationale/review trigger欠落 | coverage violation |
 | U-SBOUND-008 | re-export/dynamic edge fixture | `PLAN-L7-428` W2 extractorへ一意委譲 |
 

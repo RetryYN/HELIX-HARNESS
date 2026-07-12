@@ -48,7 +48,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l9).toContain("IT-SBOUND-003");
     expect(l9).toContain("write set 0、child process 0");
     expect(l9).toContain("IT-SBOUND-004");
-    expect(l9).toContain("child process exactly 1");
+    expect(l9).toContain("child process 1回");
   });
 
   it("IT-SBOUND-005/006: freezes real graph coverage and mutation detection", () => {

@@ -20,7 +20,7 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 
 | owner | 所有するもの | 禁止するもの |
 |---|---|---|
-| state-db | persistence、projection、adapter-neutral view data | vscode/cli/doctor presentation import |
+| state-db | persistence、projection、adapter-neutralなview data | vscode/cli/doctorのpresentation import |
 | visualization-contract | 最小DTO、generic tree contract | I/O、command ID、extension API |
 | visualization-projector | DTO→generic treeのpure変換 | VS Code decoration、DB write |
 | vscode | generic tree→command/manifest decoration | state-db直接import、projection rebuild |
@@ -28,7 +28,7 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 | executor/materializer | typed intent→receipt | finding判定、silent retry |
 | composition root | owner間の配線とlifecycle | domain contractの再定義 |
 
-## 3. dependency rule
+## 3. 依存規則
 
 依存はcontractへ向かう一方向とし、presentation→application→contract、persistence→contractを許可する。
 persistence→presentation、analyzer→executor、adapter→persistence実装への直接edgeは禁止する。type-only importも
@@ -37,7 +37,7 @@ architecture ownershipを結合するため同じedgeとして扱う。
 boundary policyはmodule pairごとに`allow | deny`、owner、rationale、review triggerを持つ。missing、EMPTY、未知moduleは
 `unspecified`としてfail-closeし、allow-allと同義にしない。移行中の例外は期限とsuccessor PLANを必須にする。
 
-## 4. effect authority
+## 4. effect実行権限
 
 read snapshotはloader/portが一度構築しanalyzerへ渡す。write/process/git probeは明示commandだけがexecutorを呼び、
 timeout、exit、stdout/stderr digest、provenance、snapshot bindingを持つreceiptを返す。doctor/lintのread-only routeは
