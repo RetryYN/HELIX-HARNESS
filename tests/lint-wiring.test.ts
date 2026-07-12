@@ -1,7 +1,11 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeLintWiring,
   DEFERRED_LINTS,
+  extractCalledIdentifiers,
   extractImportSpecs,
   type LintWiringInput,
   lintWiringMessages,
@@ -13,6 +17,10 @@ function input(lintModules: string[], reachableModules: string[]): LintWiringInp
     lintModules,
     reachable: new Set(reachableModules.map((m) => `src/lint/${m}.ts`)),
   };
+}
+
+function functionInput(reachableExports: string[]): LintWiringInput {
+  return { lintModules: [], reachable: new Set(), reachableExports: new Set(reachableExports) };
 }
 
 describe("analyzeLintWiring (pure)", () => {
@@ -89,11 +97,13 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     expect(r.staleDeferred).toEqual([]);
     expect(r.deferred).toEqual(["tool-adapter"]);
     expect(r.ok).toBe(true);
+    expect(r.unwiredExports).toEqual([]);
     // The audits this PLAN re-wired into doctor are now genuinely reachable.
     for (const m of [
       "action-binding-approval-readiness",
       "cutover-readiness",
       "completion-decision-packet",
+      "closure-authority-registry",
       "doc-consistency",
       "entity-coverage",
       "fr-registry-audit",
@@ -113,5 +123,56 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     ]) {
       expect(r.wired).toContain(m);
     }
+  });
+
+  it("fails when a required contract export is only defined/re-exported but not runtime-referenced", () => {
+    // U-WIRING-002
+    const r = analyzeLintWiring(
+      functionInput([
+        "validatePrReviewRoute",
+        "gateCiAutoFixRepush",
+        "planReleaseAutomationDecision",
+        "renderGeneratedMcpConfig",
+      ]),
+    );
+    expect(r.ok).toBe(false);
+    expect(r.unwiredExports).toEqual(["analyzeVerificationProfileSafety"]);
+    expect(lintWiringMessages(r)[0]).toContain("contract export");
+  });
+
+  it("loader does not treat import, re-export, string, or bare identifier as a function call", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-wiring-false-positive-"));
+    try {
+      mkdirSync(join(root, "src", "lint"), { recursive: true });
+      writeFileSync(
+        join(root, "src", "cli.ts"),
+        [
+          'import { analyzeVerificationProfileSafety } from "./lint/contracts";',
+          'export { renderGeneratedMcpConfig } from "./lint/contracts";',
+          'const label = "validatePrReviewRoute() gateCiAutoFixRepush() planReleaseAutomationDecision()";',
+          "void analyzeVerificationProfileSafety;",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "src", "lint", "contracts.ts"),
+        "export function analyzeVerificationProfileSafety() {}\nexport function renderGeneratedMcpConfig() {}\n",
+      );
+      const loaded = loadLintWiringInput(root);
+      expect(loaded.reachableExports).toEqual(new Set());
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("AST call extraction rejects string/property disguises and accepts direct calls", () => {
+    expect(
+      extractCalledIdentifiers(`
+        const text = "validatePrReviewRoute()";
+        api.validatePrReviewRoute();
+        validatePrReviewRoute;
+        validatePrReviewRoute();
+      `),
+    ).toEqual(new Set(["validatePrReviewRoute"]));
+    expect(extractCalledIdentifiers('"validatePrReviewRoute()"')).toEqual(new Set());
   });
 });

@@ -2618,7 +2618,11 @@ describe("project current-location read model", () => {
               operation: "append_yaml_frontmatter",
               preview_digest: expect.stringMatching(/^sha256:/),
               placeholder_count: expect.any(Number),
-              unresolved_placeholders: expect.arrayContaining(["<green command>", "<iso8601>"]),
+              unresolved_placeholders: expect.arrayContaining([
+                "<green command>",
+                "<probe_completed_at>",
+                "<reviewed_at>",
+              ]),
               real_evidence_required: true,
             }),
             expect.objectContaining({
@@ -2715,9 +2719,13 @@ describe("project current-location read model", () => {
             projection_target_tables: ["review_evidence_registry", "test_runs"],
             preview_digest: expect.stringMatching(/^sha256:/),
             placeholder_count: expect.any(Number),
-            unresolved_placeholders: expect.arrayContaining(["<green command>", "<iso8601>"]),
+            unresolved_placeholders: expect.arrayContaining([
+              "<green command>",
+              "<probe_completed_at>",
+              "<reviewed_at>",
+            ]),
             real_evidence_required: true,
-            rollback_note: expect.stringContaining("review_evidence entry"),
+            rollback_note: expect.stringMatching(/supersede|compensation/),
             postcheck_commands: [
               "helix db rebuild",
               "helix closure batch --action repair_failed_evidence --json",
@@ -2728,7 +2736,7 @@ describe("project current-location read model", () => {
           expect.objectContaining({
             artifact_path: "docs/evidence/PLAN-L7-778-label-only-test.json",
             operation: "create_json_artifact",
-            rollback_note: expect.stringContaining("evidence artifact"),
+            rollback_note: expect.stringMatching(/supersede|compensation/),
           }),
           expect.objectContaining({
             artifact_path: "docs/evidence/PLAN-L7-778-label-only-runtime.json",
@@ -2756,7 +2764,7 @@ describe("project current-location read model", () => {
         },
         placeholder_resolution: {
           fillable_placeholders: [],
-          remaining_placeholders: ["<green command>", "<iso8601>", "<output>"],
+          remaining_placeholders: ["<green command>", "<probe_completed_at>", "<output>"],
         },
         write_policy: "read-only",
         source_command: "helix closure evidence-probe --json",
@@ -2800,19 +2808,21 @@ describe("project current-location read model", () => {
           },
         },
         placeholder_resolution: {
-          fillable_placeholders: [
-            "<green command>",
-            "<iso8601>",
-            "<oracle_id>",
-            "<output>",
+          fillable_placeholders: ["<green command>", "<probe_completed_at>", "<output>"],
+          remaining_placeholders: [
             "<reviewer>",
-            "<requirement_id>",
-            "<runtime verification claim>",
+            "<reviewed_at>",
+            "<oracle_id>",
             "<test case name>",
+            "<recorded_at>",
+            "<requirement_id>",
             "<test_oracle_id>",
+            "<runtime verification claim>",
+            "<runtime_occurred_at>",
             "<timestamp>",
+            "<session_id>",
+            "<correlation_id>",
           ],
-          remaining_placeholders: ["<session_id>", "<correlation_id>"],
         },
         apply_readiness: {
           status: "needs_artifact_values",
@@ -2841,8 +2851,8 @@ describe("project current-location read model", () => {
         materialize_readiness: {
           status: "blocked_placeholders",
           allowed_to_apply: false,
-          remaining_placeholder_count: 2,
-          blocked_candidate_count: 1,
+          remaining_placeholder_count: 12,
+          blocked_candidate_count: 3,
           execute_command: null,
         },
         approval: {
@@ -2855,18 +2865,15 @@ describe("project current-location read model", () => {
       });
       expect(materialize.materialized_candidates[0]).toMatchObject({
         candidate_id: "PLAN-L7-778-label-only:plan_review_evidence:1",
-        filled_placeholders: ["<green command>", "<iso8601>", "<output>", "<reviewer>"],
-        remaining_placeholders: [],
-        ready_for_approval: true,
+        filled_placeholders: expect.arrayContaining([
+          "<green command>",
+          "<probe_completed_at>",
+          "<output>",
+        ]),
+        remaining_placeholders: expect.arrayContaining(["<reviewer>", "<reviewed_at>"]),
+        ready_for_approval: false,
         materialized_preview_digest: expect.stringMatching(/^sha256:/),
       });
-      expect(materialize.materialized_candidates[0]?.placeholder_resolution_sources).toContainEqual(
-        {
-          placeholder: "<reviewer>",
-          source: "deterministic_closure_rule",
-          value_digest: expect.stringMatching(/^sha256:/),
-        },
-      );
       expect(
         materialize.materialized_candidates[0]?.materialized_preview_lines.join("\n"),
       ).toContain("bun run test:fast");
@@ -2896,16 +2903,20 @@ describe("project current-location read model", () => {
       });
       expect(materializeWithProvenance).toMatchObject({
         materialize_readiness: {
-          status: "ready_for_approval",
+          status: "blocked_placeholders",
           allowed_to_apply: false,
-          remaining_placeholder_count: 0,
-          blocked_candidate_count: 0,
+          remaining_placeholder_count: 10,
+          blocked_candidate_count: 3,
         },
       });
       expect(materializeWithProvenance.materialized_candidates[2]).toMatchObject({
         filled_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
-        remaining_placeholders: [],
-        ready_for_approval: true,
+        remaining_placeholders: expect.arrayContaining([
+          "<requirement_id>",
+          "<test_oracle_id>",
+          "<runtime verification claim>",
+        ]),
+        ready_for_approval: false,
       });
       expect(
         materializeWithProvenance.materialized_candidates[2]?.materialized_preview_lines.join("\n"),
@@ -2938,7 +2949,7 @@ describe("project current-location read model", () => {
         approval_allowed: false,
         apply_authorized: false,
         materialize_readiness: {
-          status: "ready_for_approval",
+          status: "blocked_placeholders",
         },
         materialized_candidate_count: 3,
         approval: {
@@ -2978,8 +2989,10 @@ describe("project current-location read model", () => {
       expect(applyPlan).toMatchObject({
         schema_version: "project-closure-evidence-apply-plan.v1",
         selected_action: "repair_failed_evidence",
-        allowed_to_apply: true,
-        blocked_reasons: [],
+        allowed_to_apply: false,
+        blocked_reasons: expect.arrayContaining([
+          "materialize_readiness が ready_for_approval ではない: blocked_placeholders",
+        ]),
         approval: {
           record_path: "approval.yaml",
           valid: true,
@@ -2990,22 +3003,11 @@ describe("project current-location read model", () => {
         source_command: "helix closure evidence-apply --dry-run --json",
       });
       expect(applyPlan.patch_candidates).toHaveLength(3);
-      expect(applyPlan.patch_candidates).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            candidate_id: "PLAN-L7-778-label-only:plan_review_evidence:1",
-            operation: "append_yaml_frontmatter",
-          }),
-          expect.objectContaining({
-            artifact_path: "docs/evidence/PLAN-L7-778-label-only-test.json",
-            operation: "create_json_artifact",
-          }),
-          expect.objectContaining({
-            artifact_path: "docs/evidence/PLAN-L7-778-label-only-runtime.json",
-            operation: "create_json_artifact",
-          }),
-        ]),
-      );
+      expect(
+        applyPlan.patch_candidates.every((candidate) =>
+          /supersede|compensation/.test(candidate.rollback_note),
+        ),
+      ).toBe(true);
     }));
 
   it("safe resolutionが無いlabel-only commandはneeds_command_resolutionに留める", () =>

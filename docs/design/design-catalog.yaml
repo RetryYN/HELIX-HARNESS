@@ -88,6 +88,14 @@ items:
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
+      - docs/design/harness/L6-function-design/closure-auto-approval.md
+      - docs/design/harness/L6-function-design/closure-evidence-materialization.md
+      - docs/design/harness/L6-function-design/closure-evidence-semantic-authority.md
+      - docs/design/harness/L6-function-design/closure-authority-backfill.md
+      - docs/design/harness/L6-function-design/historical-vpair-migration-authority.md
+      - docs/design/harness/L6-function-design/digest-canonicalization-authority.md
+      - docs/design/harness/L6-function-design/closure-authority-production-route.md
+      - docs/design/harness/L6-function-design/closure-authority-convergence.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
   - id: unit-test-design
@@ -95,7 +103,11 @@ items:
     category: test
     source: zip-06
     status: done
-    artifact: docs/test-design/harness/L8-unit-test-design.md
+    artifact:
+      - docs/test-design/harness/L8-unit-test-design.md
+      - docs/test-design/harness/closure-authority-convergence.md
+      - docs/test-design/harness/closure-authority-production-route.md
+      - docs/test-design/harness/closure-evidence-semantic-authority.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
@@ -228,8 +240,8 @@ items:
     name: サーバー・インフラ設計書
     category: infra
     source: zip-26
-    status: todo
-    note: system-design-sizing.md はあるが冗長化/サイジングの専用設計書は無い
+    status: na
+    na_reason: L0 §1/§4はローカルCLI上のハーネスを製品境界とし、常設サーバーや冗長化基盤を運用対象に含めない
   - id: domain-model-design
     name: ドメインモデル設計書
     category: domain
@@ -477,8 +489,8 @@ items:
     name: キャパシティ計画・オートスケール設計書
     category: ops
     source: zip-63
-    status: todo
-    note: system-design-sizing.md は概念のみでキャパシティ計画/オートスケール専用設計は無い
+    status: na
+    na_reason: L0 §1/§4のローカル実行基盤は常設サービスを持たず、サーバー台数の自動増減という関心事が存在しない
   - id: cost-finops-design
     name: コスト設計・FinOps設計書
     category: ops
@@ -501,14 +513,14 @@ items:
     name: アイデンティティ・プロビジョニング設計書
     category: sec
     source: zip-67
-    status: todo
-    note: SCIM/JIT相当のプロビジョニング設計は無い
+    status: na
+    na_reason: L0 §3/§6は単一開発者のローカル利用を製品境界とし、組織ユーザー向けSCIM/JITプロビジョニングを持たない
   - id: compliance-mapping-design
     name: コンプライアンス対応・統制マッピング設計書
     category: sec
     source: zip-68
-    status: todo
-    note: SOC2/ISO27001等の統制マッピングは無い
+    status: na
+    na_reason: L0 §6の超個人開発境界では組織認証取得を製品成果に含めず、SOC2等の統制マッピングを要求しない
   - id: performance-design
     name: 性能設計書
     category: basic
@@ -653,14 +665,14 @@ items:
     name: APIポータル・SDK設計書
     category: apisvc
     source: zip-92
-    status: todo
-    note: 外部公開APIポータル/SDKは無い
+    status: na
+    na_reason: L0 §1/§4はローカルCLIとruntime adapterを提供面とし、外部顧客向け公開APIポータルやSDKを提供しない
   - id: webhook-event-delivery-design
     name: Webhook・イベント配信設計書
     category: apisvc
     source: zip-93
-    status: todo
-    note: Webhook配信の専用設計は無い
+    status: na
+    na_reason: L0 §1/§4のローカルCLI境界は外部顧客へのWebhook配信サービスを持たず、イベント配送基盤を運用しない
   - id: domain-impl-value-object-design
     name: ドメイン実装方針・値オブジェクト設計書
     category: domain
@@ -887,6 +899,7 @@ baseline:
   - docs/design/harness/L6-function-design/cross-review-enforcement.md
   - docs/design/harness/L6-function-design/delegation-brief-substance.md
   - docs/design/harness/L6-function-design/descent-obligation.md
+  - docs/design/harness/L6-function-design/digest-canonicalization-authority.md
   - docs/design/harness/L6-function-design/edge-case.md
   - docs/design/harness/L6-function-design/effort-observation.md
   - docs/design/harness/L6-function-design/feedback-lifecycle.md

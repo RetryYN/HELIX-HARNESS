@@ -14,6 +14,7 @@ export interface L6CompletionInputs {
   l6Docs: L6CompletionDoc[];
   l6Plans: L6CompletionDoc[];
   l7Text: string;
+  unitTestDesignStatuses: Record<string, string | null>;
   gateText: string;
 }
 
@@ -36,8 +37,7 @@ export interface L6CompletionResult {
 const STATUS_RE = /^status:\s*([^\s#]+)/m;
 const PLAN_ID_RE = /^plan_id:\s*([^\s#]+)/m;
 const DOC_PLAN_RE = /^plan:\s*([^\s#]+)/m;
-const PAIR_ARTIFACT_RE =
-  /^pair_artifact:\s*docs\/test-design\/harness\/L[78]-unit-test-design\.md\s*$/m;
+const PAIR_ARTIFACT_RE = /^pair_artifact:\s*(docs\/test-design\/harness\/[^\s#]+\.md)\s*$/m;
 const DESIGN_KIND_RE = /^kind:\s*design$/m;
 const UNIT_TEST_DESIGN_PATHS = [
   join("docs", "test-design", "harness", "L8-unit-test-design.md"),
@@ -54,6 +54,10 @@ function planIdOf(text: string, path: string): string {
 
 function docPlanOf(text: string): string | null {
   return text.match(DOC_PLAN_RE)?.[1] ?? null;
+}
+
+function pairArtifactOf(text: string): string | null {
+  return text.match(PAIR_ARTIFACT_RE)?.[1] ?? null;
 }
 
 function hasUnitContractSubstance(text: string): boolean {
@@ -105,7 +109,14 @@ export function analyzeL6Completion(inputs: L6CompletionInputs): L6CompletionRes
     .map((doc) => `${doc.path} -> ${docPlanOf(doc.text)}`)
     .sort();
   const missingDocPairArtifacts = inputs.l6Docs
-    .filter((doc) => !PAIR_ARTIFACT_RE.test(doc.text))
+    .filter((doc) => {
+      const pair = pairArtifactOf(doc.text);
+      return (
+        pair === null ||
+        inputs.unitTestDesignStatuses[pair] !== "confirmed" ||
+        (!UNIT_TEST_DESIGN_PATHS.includes(pair) && !inputs.l7Text.includes(`PAIR_PATH:${pair}`))
+      );
+    })
     .map((doc) => doc.path)
     .sort();
   const missingL7DocRefs = inputs.l6Docs
@@ -185,12 +196,30 @@ export function loadL6CompletionInputs(repoRoot: string): L6CompletionInputs {
       const path = join(planDir, name);
       return { path: `docs/plans/${name}`, text: readFileSync(path, "utf8") };
     });
+  const testDesignDir = join(repoRoot, "docs", "test-design", "harness");
+  const unitDesignTexts = readdirSync(testDesignDir)
+    .filter((name) => name.endsWith(".md"))
+    .map((name) => {
+      const path = join(testDesignDir, name);
+      const text = readFileSync(path, "utf8");
+      const canonical = name === "L8-unit-test-design.md" || name === "L7-unit-test-design.md";
+      const dedicated =
+        /^layer:\s*L8\s*$/m.test(text) && /^sub_doc:\s*unit-test-design\s*$/m.test(text);
+      return canonical || dedicated ? `PAIR_PATH:docs/test-design/harness/${name}\n${text}` : null;
+    })
+    .filter((text): text is string => text !== null);
+  const unitTestDesignStatuses = Object.fromEntries(
+    unitDesignTexts.map((text) => {
+      const pairPath = text.match(/^PAIR_PATH:(.+)$/m)?.[1];
+      if (!pairPath) throw new Error("unit test design pair path marker missing");
+      return [pairPath, statusOf(text)];
+    }),
+  );
   return {
     l6Docs,
     l6Plans,
-    l7Text: UNIT_TEST_DESIGN_PATHS.map((path) => readFileSync(join(repoRoot, path), "utf8")).join(
-      "\n",
-    ),
+    l7Text: unitDesignTexts.join("\n"),
+    unitTestDesignStatuses,
     gateText: readFileSync(join(repoRoot, "docs", "governance", "gate-design.md"), "utf8"),
   };
 }

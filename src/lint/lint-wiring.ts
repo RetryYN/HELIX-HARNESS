@@ -21,6 +21,7 @@
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
+import ts from "typescript";
 
 const ROOT = process.cwd();
 
@@ -41,6 +42,8 @@ export interface LintWiringInput {
   lintModules: string[];
   /** RUNTIME_ENTRYPOINTS から推移的に到達する src-relative file 集合。 */
   reachable: Set<string>;
+  /** runtime entrypoint から到達する source が実際に参照する契約 export。 */
+  reachableExports?: Set<string>;
 }
 
 export interface LintWiringResult {
@@ -50,8 +53,18 @@ export interface LintWiringResult {
   unwired: string[];
   /** DEFERRED 登録済みだが実は到達可能 = stale 申告 (violation)。 */
   staleDeferred: string[];
+  unwiredExports: string[];
   ok: boolean;
 }
+
+/** PLAN-L7-428: file import だけではなく、安全上必須の関数契約そのものを監視する。 */
+export const REQUIRED_RUNTIME_EXPORTS = [
+  "validatePrReviewRoute",
+  "gateCiAutoFixRepush",
+  "planReleaseAutomationDecision",
+  "analyzeVerificationProfileSafety",
+  "renderGeneratedMcpConfig",
+] as const;
 
 function toPosix(p: string): string {
   return p.split(sep).join("/");
@@ -101,6 +114,25 @@ export function extractImportSpecs(content: string): string[] {
   return specs;
 }
 
+/** TypeScript ASTから直接identifier callだけを抽出する。文字列/property access/re-exportは除外。 */
+export function extractCalledIdentifiers(content: string): Set<string> {
+  const source = ts.createSourceFile(
+    "wiring.ts",
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS,
+  );
+  const calls = new Set<string>();
+  const visit = (node: ts.Node): void => {
+    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression))
+      calls.add(node.expression.text);
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return calls;
+}
+
 /** src を走査し import グラフを構築、RUNTIME_ENTRYPOINTS から BFS して到達集合を返す。 */
 export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
   const srcDir = join(repoRoot, "src");
@@ -136,7 +168,18 @@ export function loadLintWiringInput(repoRoot: string = ROOT): LintWiringInput {
     .map((f) => f.replace(/\.ts$/, ""))
     .sort();
 
-  return { lintModules, reachable };
+  const reachableExports = new Set<string>();
+  for (const rel of reachable) {
+    const content = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
+    const called = extractCalledIdentifiers(content);
+    for (const name of REQUIRED_RUNTIME_EXPORTS) {
+      // AST上の実call expressionだけを配線証拠にする。
+      if (called.has(name)) {
+        reachableExports.add(name);
+      }
+    }
+  }
+  return { lintModules, reachable, reachableExports };
 }
 
 export function analyzeLintWiring(input: LintWiringInput): LintWiringResult {
@@ -144,6 +187,9 @@ export function analyzeLintWiring(input: LintWiringInput): LintWiringResult {
   const deferred: string[] = [];
   const unwired: string[] = [];
   const staleDeferred: string[] = [];
+  const unwiredExports = input.reachableExports
+    ? REQUIRED_RUNTIME_EXPORTS.filter((name) => !input.reachableExports?.has(name))
+    : [];
 
   for (const m of input.lintModules) {
     const reachable = input.reachable.has(`src/lint/${m}.ts`);
@@ -163,7 +209,8 @@ export function analyzeLintWiring(input: LintWiringInput): LintWiringResult {
     deferred,
     unwired,
     staleDeferred,
-    ok: unwired.length === 0 && staleDeferred.length === 0,
+    unwiredExports,
+    ok: unwired.length === 0 && staleDeferred.length === 0 && unwiredExports.length === 0,
   };
 }
 
@@ -186,6 +233,9 @@ export function lintWiringMessages(result: LintWiringResult): string[] {
     parts.push(
       `stale-deferred (到達可能なのに DEFERRED 申告)=${result.staleDeferred.length}: ${result.staleDeferred.join(", ")}`,
     );
+  }
+  if (result.unwiredExports.length > 0) {
+    parts.push(`未配線 contract export=${result.unwiredExports.join(", ")}`);
   }
   return [
     `lint-wiring — violation: ${parts.join("; ")}。各 src/lint/<name>.ts は runtime 経路 (cli→doctor/plan-lint 等) から到達するよう配線するか、DEFERRED_LINTS に理由付きで登録せよ (IMP-006)`,

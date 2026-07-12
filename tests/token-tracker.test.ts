@@ -6,7 +6,7 @@
  * - Codex: token_count は session 累積 → 連続差分で per-turn を復元、cost は OPENAI_PRICING で計算 (公式単価未掲載モデルは null)。
  * projectTokenUsage が model_runs へ投入し、projectModelEvaluations が token 効率を集計する。
  */
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -14,6 +14,7 @@ import { type HarnessDb, openHarnessDb, upsertRow } from "../src/state-db/index"
 import { migrate } from "../src/state-db/migration";
 import { projectModelEvaluations, projectTokenUsage } from "../src/state-db/projection-writer";
 import {
+  clearRuntimeSessionUsageCache,
   computeClaudeCostUsd,
   computeCodexCostUsd,
   loadRuntimeSessionUsage,
@@ -401,6 +402,51 @@ describe("loadRuntimeSessionUsage (file scan, no CLI invocation)", () => {
       expect(loadRuntimeSessionUsage({})).toEqual([]);
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("reuses unchanged mtime+size entries and invalidates changed session files", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-token-cache-"));
+    try {
+      clearRuntimeSessionUsageCache();
+      const file = join(root, "s.jsonl");
+      writeFileSync(
+        file,
+        JSON.stringify({
+          type: "assistant",
+          message: { model: "claude-haiku-4-5", usage: { input_tokens: 1, output_tokens: 1 } },
+        }),
+      );
+      expect(loadRuntimeSessionUsage({ claudeDirs: [root] })).toHaveLength(1);
+      expect(loadRuntimeSessionUsage({ claudeDirs: [root] })).toHaveLength(1);
+      writeFileSync(
+        file,
+        `${readFileSync(file, "utf8")}\n${JSON.stringify({ type: "assistant", message: { model: "claude-haiku-4-5", usage: { input_tokens: 2, output_tokens: 2 } } })}`,
+      );
+      expect(loadRuntimeSessionUsage({ claudeDirs: [root] })).toHaveLength(2);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+      clearRuntimeSessionUsageCache();
+    }
+  });
+
+  it("invalidates a same-size session rewrite", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-token-cache-same-size-"));
+    try {
+      clearRuntimeSessionUsageCache();
+      const file = join(root, "s.jsonl");
+      const line = (tokens: number) =>
+        JSON.stringify({
+          type: "assistant",
+          message: { model: "claude-haiku-4-5", usage: { input_tokens: tokens, output_tokens: 1 } },
+        });
+      writeFileSync(file, line(1));
+      expect(loadRuntimeSessionUsage({ claudeDirs: [root] })[0]?.inputTokens).toBe(1);
+      writeFileSync(file, line(2));
+      expect(loadRuntimeSessionUsage({ claudeDirs: [root] })[0]?.inputTokens).toBe(2);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+      clearRuntimeSessionUsageCache();
     }
   });
 });

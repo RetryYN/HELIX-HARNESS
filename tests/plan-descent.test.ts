@@ -37,7 +37,7 @@ function makeRepo(): string {
   );
   writeFileSync(
     join(root, "docs", "test-design", "harness", "L8-unit-test-design.md"),
-    "# L8 unit test design\n",
+    "---\nlayer: L8\nsub_doc: unit-test-design\n---\n# L8 unit test design\n",
   );
   return root;
 }
@@ -179,6 +179,38 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     const result = analyze(root);
     const bad = result.newViolations.filter((v) => v.planId === "PLAN-L7-908-l7-pair");
     expect(bad.map((v) => v.reason)).toContain("pair_artifact_not_l8_unit_test_design");
+  });
+
+  it.each([
+    ["L7", "unit-test-design"],
+    ["L8", "unknown"],
+    ["L8", null],
+  ])("L8 pairの非canonical frontmatter layer=%s sub_doc=%sを拒否", (layer, subDoc) => {
+    const root = makeRepo();
+    writeFileSync(
+      join(root, "docs", "test-design", "harness", "L8-unit-test-design.md"),
+      `---\nlayer: ${layer}\n${subDoc ? `sub_doc: ${subDoc}\n` : ""}---\n`,
+    );
+    writePlan(root, { planId: `PLAN-L7-bad-${layer}-${subDoc ?? "missing"}` });
+    expect(analyze(root).newViolations.map((v) => v.reason)).toContain(
+      "pair_artifact_not_l8_unit_test_design",
+    );
+  });
+
+  it("任意pathのL8風filenameを拒否", () => {
+    const root = makeRepo();
+    mkdirSync(join(root, "arbitrary"), { recursive: true });
+    writeFileSync(
+      join(root, "arbitrary", "L8-unit-test-design.md"),
+      "---\nlayer: L8\nsub_doc: unit-test-design\n---\n",
+    );
+    writePlan(root, {
+      planId: "PLAN-L7-arbitrary-pair",
+      pairArtifact: "arbitrary/L8-unit-test-design.md",
+    });
+    expect(analyze(root).newViolations.map((v) => v.reason)).toContain(
+      "pair_artifact_not_test_design",
+    );
   });
 
   it("U-PDESC-007b: 2026-07-08 より前の legacy L7 unit pair は date grandfather する", () => {

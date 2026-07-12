@@ -354,6 +354,12 @@ function forwardCurrentLocation(): ProjectCurrentLocationSnapshot {
       ],
       docDependencies: ["docs/plans", "docs/design/**", "docs/test-design/**"],
       implementationDependencies: ["plan_registry", "design_declarations", "design_references"],
+      terminal_boundaries: {
+        items: [],
+        open: 0,
+        resolved: 0,
+        whole_program_blockers: 0,
+      },
       remediation: {
         done: 1,
         missing: 0,
@@ -888,6 +894,12 @@ function unknownCurrentLocation(): ProjectCurrentLocationSnapshot {
       required_evidence: [],
       docDependencies: [],
       implementationDependencies: [],
+      terminal_boundaries: {
+        items: [],
+        open: 0,
+        resolved: 0,
+        whole_program_blockers: 0,
+      },
       remediation: {
         done: 0,
         missing: 0,

@@ -60,7 +60,8 @@ coding 前に L5 doc を読み、implementation questions（実装上の疑問�
 - Boolean return values は `is*` / `has*` / `can*` prefixes を使う。
 - File names は primary export と一致させる。
   `projection-writer.ts` は `ProjectionWriter` または `writeProjection` を export する。
-- source に導入した new terms（新規用語）は、同じ commit で `docs/design/L0-glossary.md` に追加する。
+- source に導入した new terms（新規用語）は、同じ commitで
+  `docs/design/helix/L3-requirements/glossary-ssot.md`へ追加する。
 
 ## Function design constraints（関数設計制約）
 

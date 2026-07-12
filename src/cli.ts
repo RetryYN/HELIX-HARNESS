@@ -23,6 +23,12 @@ import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
+import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
+import {
+  ciAutoFixGateInputSchema,
+  prReviewRouteInputSchema,
+  releaseAutomationDecisionInputSchema,
+} from "./audit/enforcement-route-input";
 import {
   loadGithubCiStatus,
   loadGithubMergeReadiness,
@@ -37,7 +43,9 @@ import {
   renderGithubOpsGuard,
   renderReleasePublicationPlan,
 } from "./audit/github-ops-guard";
+import { validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
+import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
@@ -107,11 +115,13 @@ import {
 } from "./lint/relation-graph";
 import { buildS4DecisionPackets, loadS4DecisionReadinessInput } from "./lint/s4-decision-readiness";
 import {
+  analyzeVerificationProfileSafety,
   inspectMcpProfile,
   listVerificationProfiles,
   nodeVerificationProbeDeps,
   probeVerificationProfile,
   recommendVerificationProfiles,
+  renderGeneratedMcpConfig,
   runVerificationProfile,
   saveVerificationEvidence,
   verificationRecommendationMermaid,
@@ -157,6 +167,11 @@ import {
   runPairAgentTddPlan,
 } from "./orchestration/pair-agent";
 import { lintPlanWithGateOptions } from "./plan/lint";
+import {
+  analyzeClosureAuthorityDrift,
+  classifyClosureAuthorities,
+  loadClosureAuthorityRegistry,
+} from "./policy/closure-authority-registry";
 import {
   type AdapterContextInjection,
   type AdapterProvider,
@@ -243,6 +258,7 @@ import {
   validateAdapterParityMap,
 } from "./runtime/hosted-preflight";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
+import { inspectLane } from "./runtime/lane-hygiene";
 import {
   composeDelegationInjection,
   type MemoryInjectionSurface,
@@ -360,6 +376,49 @@ import {
   recordSkillRecommendations,
 } from "./skills/recommend";
 import {
+  buildClosureAuthorityBackfillWindow,
+  readCompletedClosureAuthorityBackfillWindow,
+  recoverClosureAuthorityBackfill,
+} from "./state-db/closure-authority-backfill";
+import {
+  buildCurrentClosureAuthorityBackfillRun,
+  ClosureAuthorityBackfillInputError,
+  loadCurrentClosureAuthorityBackfillInput,
+} from "./state-db/closure-authority-backfill-production";
+import {
+  appendClosureTerminalBoundaryEvent,
+  buildClosureConvergenceTargetSet,
+  terminalBoundaryClassificationForAuthority,
+} from "./state-db/closure-authority-convergence-epoch";
+import {
+  applyClosureAuthorityConvergenceWindow,
+  createClosureAuthorityReviewDraft,
+  loadClosureAuthorityProposal,
+  loadClosureAuthorityReviewDraft,
+  loadClosureAuthorityReviewReceipt,
+  loadClosureAuthorityReviewTaskEvidence,
+  persistClosureAuthorityProposal,
+  recordClosureAuthorityReview,
+} from "./state-db/closure-authority-convergence-production";
+import {
+  applyClosureAutoApprovalAtomic,
+  type ClosureAutoApprovalEvaluation,
+  type ClosureAutoApprovalManifest,
+  canonicalClosureAuthorityDigest,
+  closureAutoApprovalWindows,
+  evaluateClosureAutoApproval,
+  loadGithubRequiredCheckReceipt,
+  parseClosureAutoApprovalManifest,
+  parseClosureBatchInteger,
+  recoverClosureAutoApprovalTransaction,
+  refetchGithubRequiredCheckReceipt,
+} from "./state-db/closure-auto-approval";
+import { materializeClosureEvidence } from "./state-db/closure-evidence-materialization";
+import {
+  ClosureEvidenceRunner,
+  type ClosureGateAllowlistEntry,
+} from "./state-db/closure-evidence-runner";
+import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
   buildProjectClosureBatchReport,
@@ -398,7 +457,13 @@ import {
   type ProjectRoadmapCurrentReport,
 } from "./state-db/current-location";
 import { refreshPersistedDriveDbRegistrationStats } from "./state-db/drive-registration";
-import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./state-db/index";
+import { runHistoricalVpairMigrationDryRun } from "./state-db/historical-vpair-migration-authority";
+import {
+  defaultHarnessDbPath,
+  type HarnessDb,
+  openHarnessDb,
+  openHarnessDbReadOnly,
+} from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
 import {
@@ -408,6 +473,7 @@ import {
   rebuildHarnessDb,
 } from "./state-db/projection-writer";
 import { collectReverseCandidates } from "./state-db/reverse-candidates";
+import { compactHarnessDb, databaseFreelist, gcTmp } from "./state-db/state-hygiene";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
 import { buildVisualizationSnapshot } from "./state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "./state-db/visualization-view-model";
@@ -1353,6 +1419,9 @@ program
   .name("helix")
   .description("HELIX-HARNESS (TypeScript core, ADR-001)")
   .version(LOCAL_DISTRIBUTION_PACKAGE_VERSION);
+program.hook("preAction", () => {
+  recoverClosureAutoApprovalTransaction(process.cwd());
+});
 
 program
   .command("status")
@@ -1804,6 +1873,59 @@ mcpProfile
       process.stdout.write(`  - ${check.ok ? "ok" : "missing"} ${check.name}: ${check.message}\n`);
     }
     process.exitCode = result.ready ? 0 : 1;
+  });
+
+mcpProfile
+  .command("safety <name>")
+  .description("evaluate the mandatory verification-profile safety contract")
+  .option("--allow-write-tools", "record explicit human approval for write-capable tools")
+  .option("--docker-available", "record Docker availability")
+  .option("--docker-controls", "record Docker control documentation")
+  .option("--json", "JSON output")
+  .action(
+    (
+      name: string,
+      opts: {
+        allowWriteTools?: boolean;
+        dockerAvailable?: boolean;
+        dockerControls?: boolean;
+        json?: boolean;
+      },
+    ) => {
+      const profile = listVerificationProfiles().find((candidate) => candidate.id === name);
+      if (!profile) {
+        process.stderr.write(`unknown profile: ${name}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      const result = analyzeVerificationProfileSafety({
+        profile,
+        requiresHumanApproval: opts.allowWriteTools === true,
+        dockerAvailable: opts.dockerAvailable === true,
+        dockerControlsDocumented: opts.dockerControls === true,
+      });
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(result, null, 2)}\n`
+          : `profile safety ${name}: ${result.ok ? "ok" : "blocked"}\n`,
+      );
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
+
+mcpProfile
+  .command("config <name...>")
+  .description("render a local generated MCP config after workspace-scope checks")
+  .option("--target <path>", "suggested local target", ".helix/local/mcp.generated.json")
+  .option("--json", "JSON output")
+  .action((names: string[], opts: { target?: string; json?: boolean }) => {
+    const result = renderGeneratedMcpConfig({
+      repoRoot: process.cwd(),
+      selectedProfileIds: names,
+      targetPath: opts.target,
+    });
+    process.stdout.write(opts.json ? `${JSON.stringify(result, null, 2)}\n` : result.content);
+    process.exitCode = result.ok ? 0 : 1;
   });
 
 const memory = program.command("memory").description("shared harness/project memory");
@@ -3962,6 +4084,76 @@ db.command("rebuild")
       "  note: plans / roadmap rollups / review evidence / optional Phase3 outputs を projection\n",
     );
   });
+db.command("gc")
+  .description("期限超過した .helix/tmp 生成物を明示的に掃除（audit evidence は対象外）")
+  .option("--max-age-hours <hours>", "保持時間", "168")
+  .option("--apply", "候補を削除（省略時 dry-run）")
+  .option("--json", "JSON output")
+  .action((opts: { maxAgeHours: string; apply?: boolean; json?: boolean }) => {
+    const hours = Number(opts.maxAgeHours);
+    if (!Number.isFinite(hours) || hours < 0) throw new Error("max-age-hours must be non-negative");
+    const result = gcTmp({
+      root: join(process.cwd(), ".helix", "tmp"),
+      nowMs: Date.now(),
+      maxAgeMs: hours * 3_600_000,
+      apply: opts.apply === true,
+    });
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(result, null, 2)}\n`
+        : `db gc: candidates=${result.candidates.length} removed=${result.removed} apply=${result.apply}\n`,
+    );
+  });
+db.command("compact")
+  .description("harness.db compact preflight（--execute 明示時のみ backup + exclusive VACUUM）")
+  .option("--execute", "backup/preflight後に明示実行")
+  .option("--json", "JSON output")
+  .action((opts: { execute?: boolean; json?: boolean }) => {
+    const result = compactHarnessDb({ repoRoot: process.cwd(), execute: opts.execute === true });
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(result, null, 2)}\n`
+        : `db compact: ok=${result.ok} executed=${result.executed} reason=${result.reason}\n`,
+    );
+    if (!result.ok) process.exitCode = 1;
+  });
+db.command("hygiene")
+  .description("harness.db freelist 比を read-only 表示")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const handle = openHarnessDbReadOnly(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
+    try {
+      const result = databaseFreelist(handle);
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(result, null, 2)}\n`
+          : `db hygiene: pages=${result.pageCount} freelist=${result.freelistCount} ratio=${(result.ratio * 100).toFixed(1)}%\n`,
+      );
+    } finally {
+      handle.close();
+    }
+  });
+
+const lane = program.command("lane").description("multi-runtime git lane hygiene");
+lane
+  .command("status")
+  .option("--base <ref>", "comparison base", "origin/main")
+  .option("--json", "JSON output")
+  .action((opts: { base: string; json?: boolean }) => {
+    const result = inspectLane(process.cwd(), opts.base);
+    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    else {
+      process.stdout.write(
+        `lane status: ${result.branch || "(detached)"} ${result.state} unique=${result.unique} equivalent=${result.equivalent}\n`,
+      );
+      for (const row of result.prunableWorktrees)
+        process.stdout.write(
+          `  warning: prunable worktree ${row.path} (${row.reason}) — run git worktree prune explicitly\n`,
+        );
+    }
+  });
 
 function summarizeRecoveryHandoffGateForCli(gate: VmodelFitReport["recovery_handoff_gate"] | null) {
   if (!gate) return null;
@@ -5819,6 +6011,98 @@ const closure = program
   .command("closure")
   .description("Project closure read-only automation surfaces");
 
+function closureAuthorityFailureExitCode(error: unknown): 1 | 2 {
+  if (error instanceof Error && error.name === "ZodError") return 2;
+  const code = (error as { code?: unknown } | null)?.code;
+  if (code === "ENOENT" || code === "EEXIST") return 2;
+  const message = error instanceof Error ? error.message : String(error);
+  return /(?:invalid|missing|must|required|forbidden|self-approval|binding mismatch|TTL|digest mismatch|drift|CAS mismatch|replay|offset gap|outside repository|symlink|already exists|provenance mismatch|candidate order|cardinality)/i.test(
+    message,
+  )
+    ? 2
+    : 1;
+}
+
+function closureConvergenceTargetFromSnapshot(
+  snapshot: ProjectCurrentLocationSnapshot,
+  automatablePlanIds: string[],
+  additionalNeeds: string[] = [],
+) {
+  const boundaries = snapshot.closure.terminal_boundaries.items.filter(
+    (row) => row.whole_program_blocker,
+  );
+  const human = boundaries
+    .filter((row) => row.classification === "human_only")
+    .map((row) => row.plan_id)
+    .sort();
+  const invalid = boundaries
+    .filter((row) => row.classification === "invalid_escalated")
+    .map((row) => row.plan_id)
+    .sort();
+  const automatable = [...new Set(automatablePlanIds)].sort();
+  const needs = [
+    ...snapshot.closure.queue.items
+      .filter((item) => item.nextAction !== "close_ready")
+      .map((item) => item.planId),
+    ...additionalNeeds,
+  ]
+    .filter((id) => !automatable.includes(id))
+    .sort();
+  const initial = [...new Set([...automatable, ...needs, ...human, ...invalid])].sort();
+  return buildClosureConvergenceTargetSet({
+    initialPlanIds: initial,
+    eligiblePlanIds: automatable,
+    needsPlanIds: needs,
+    humanOnlyPlanIds: human,
+    invalidEscalatedPlanIds: invalid,
+    terminalBoundaryEventDigests: boundaries.map((row) => row.event_digest as `sha256:${string}`),
+  });
+}
+
+function recordClosureWindowTerminalBoundaries(input: {
+  repoRoot: string;
+  run: ReturnType<typeof loadClosureAuthorityProposal>;
+  offset: number;
+  limit: number;
+  cycleDigest: `sha256:${string}`;
+  registryDigest: `sha256:${string}`;
+}) {
+  const windowLength = input.run.candidate_plan_ids.slice(
+    input.offset,
+    input.offset + input.limit,
+  ).length;
+  if (input.offset + windowLength !== input.run.candidate_plan_ids.length) return [];
+  const selected = input.run.bundle.decisions;
+  const initialSetDigest = `sha256:${createHash("sha256")
+    .update(JSON.stringify(input.run.candidate_plan_ids))
+    .digest("hex")}` as const;
+  const recorded: string[] = [];
+  for (const decision of selected) {
+    if (decision.classification !== "human_only" && decision.classification !== "invalid") continue;
+    appendClosureTerminalBoundaryEvent({
+      repoRoot: input.repoRoot,
+      path: "docs/governance/closure-terminal-boundaries.jsonl",
+      event: {
+        event_kind: "boundary_opened",
+        authority_head: input.run.bundle.repository_head,
+        initial_set_digest: initialSetDigest,
+        cycle_digest: input.cycleDigest,
+        registry_generation: input.registryDigest,
+        plan_id: decision.plan_id,
+        classification:
+          decision.classification === "human_only" ? "human_only" : "invalid_escalated",
+        reason: decision.reason,
+        owner: decision.classification === "human_only" ? "PO" : "HELIX governance",
+        next_decision_route: decision.required_action,
+        automation_terminal: true,
+        whole_program_blocker: true,
+      },
+    });
+    recorded.push(decision.plan_id);
+  }
+  return recorded;
+}
+
 function updatePlanFrontmatterStatus(content: string, nextStatus: string): string {
   if (!content.startsWith("---\n")) {
     throw new Error("frontmatter が見つからないため status を更新できない");
@@ -6692,7 +6976,14 @@ closure
 
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
-    const db = openHarnessDb(dbPath, { repoRoot });
+    let db: HarnessDb;
+    try {
+      db = openHarnessDb(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(`closure authority-review-record: ${String(error)}\n`);
+      process.exitCode = 1;
+      return;
+    }
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
@@ -7237,7 +7528,6 @@ closure
         process.exitCode = 2;
         return;
       }
-
       const repoRoot = process.cwd();
       const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
       const db = openHarnessDb(dbPath, { repoRoot });
@@ -7272,6 +7562,586 @@ closure
           );
         }
         process.stdout.write(`  postcheck=${packet.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("historical-vpair-migration")
+  .description("verify historical V-pair migration authority without product-state mutation")
+  .requiredOption("--run <path>")
+  .requiredOption("--review <path>")
+  .requiredOption("--expected-head <sha>")
+  .option("--dry-run")
+  .option("--from-db")
+  .option("--json")
+  .action(
+    (opts: {
+      run: string;
+      review: string;
+      expectedHead: string;
+      dryRun?: boolean;
+      fromDb?: boolean;
+      json?: boolean;
+    }) => {
+      if (!opts.dryRun || !opts.fromDb || !opts.json) {
+        process.stderr.write(
+          "closure historical-vpair-migration: --dry-run --from-db --json are required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) {
+        process.stderr.write(
+          "closure historical-vpair-migration: persistent harness.db does not exist\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const db = openHarnessDbReadOnly(dbPath, { repoRoot });
+      try {
+        process.stdout.write(
+          `${JSON.stringify(runHistoricalVpairMigrationDryRun({ repoRoot, db, expectedRepositoryHead: opts.expectedHead, runPath: opts.run, reviewPath: opts.review, now: new Date().toISOString() }))}\n`,
+        );
+      } catch (error) {
+        process.stderr.write(`closure historical-vpair-migration: ${String(error)}\n`);
+        process.exitCode = 2;
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("authority-backfill")
+  .description("build the current-main closure authority proposal bundle without mutation")
+  .option("--dry-run", "required read-only mode")
+  .option("--from-db", "read persistent harness.db (required)")
+  .option("--expected-head <sha>", "expected current local origin/main SHA")
+  .option("--out <path>", "atomically persist the proposal at a new repository-relative path")
+  .option("--json", "emit one JSON document")
+  .action(
+    (opts: {
+      dryRun?: boolean;
+      fromDb?: boolean;
+      expectedHead?: string;
+      out?: string;
+      json?: boolean;
+    }) => {
+      if (!opts.dryRun || !opts.fromDb || !opts.expectedHead || !opts.json) {
+        process.stderr.write(
+          "closure authority-backfill: --dry-run --from-db --expected-head <sha> --json are required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) {
+        process.stderr.write("closure authority-backfill: persistent harness.db does not exist\n");
+        process.exitCode = 2;
+        return;
+      }
+      let db: HarnessDb;
+      try {
+        db = openHarnessDbReadOnly(dbPath, { repoRoot });
+      } catch (error) {
+        process.stderr.write(
+          `closure authority-backfill: internal DB open failure: ${String(error)}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      try {
+        for (const table of ["plan_registry", "closure_process_receipts"]) {
+          if (
+            !db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").get(table)
+          ) {
+            process.stderr.write(
+              `closure authority-backfill: persistent DB schema missing ${table}\n`,
+            );
+            process.exitCode = 2;
+            return;
+          }
+        }
+        const run = buildCurrentClosureAuthorityBackfillRun(
+          loadCurrentClosureAuthorityBackfillInput({
+            repoRoot,
+            db,
+            expected_head_sha: opts.expectedHead,
+            now: new Date().toISOString(),
+          }),
+        );
+        const output = opts.out
+          ? {
+              schema_version: "closure-authority-backfill-persist-result.v1",
+              run,
+              persisted: persistClosureAuthorityProposal({ repoRoot, outPath: opts.out, run }),
+            }
+          : run;
+        process.stdout.write(`${JSON.stringify(output)}\n`);
+      } catch (error) {
+        process.stderr.write(`closure authority-backfill: ${String(error)}\n`);
+        process.exitCode = error instanceof ClosureAuthorityBackfillInputError ? 2 : 1;
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("authority-review-draft")
+  .description("create a non-authorizing independent review task draft")
+  .requiredOption("--proposal <path>", "persisted closure authority proposal")
+  .requiredOption("--out <path>", "new repository-relative draft path")
+  .option("--worker-identity <id>", "worker identity", `worker-${process.pid}`)
+  .option("--task-identity <id>", "review task identity", `review-task-${process.pid}`)
+  .option("--json", "emit one JSON document")
+  .action(
+    (opts: {
+      proposal: string;
+      out: string;
+      workerIdentity: string;
+      taskIdentity: string;
+      json?: boolean;
+    }) => {
+      if (!opts.json) {
+        process.stderr.write("closure authority-review-draft: --json is required\n");
+        process.exitCode = 2;
+        return;
+      }
+      try {
+        const result = createClosureAuthorityReviewDraft({
+          repoRoot: process.cwd(),
+          outPath: opts.out,
+          proposalPath: opts.proposal,
+          workerIdentity: opts.workerIdentity,
+          taskIdentity: opts.taskIdentity,
+          now: new Date().toISOString(),
+        });
+        process.stdout.write(`${JSON.stringify(result)}\n`);
+      } catch (error) {
+        process.stderr.write(`closure authority-review-draft: ${String(error)}\n`);
+        process.exitCode = closureAuthorityFailureExitCode(error);
+      }
+    },
+  );
+closure
+  .command("authority-review-record")
+  .description("record independent task evidence as an authority review receipt")
+  .requiredOption("--draft <path>", "non-authorizing review draft")
+  .requiredOption("--review-evidence <path>", "independent task completion artifact")
+  .requiredOption("--out <path>", "new repository-relative receipt path")
+  .option("--json", "emit one JSON document")
+  .action((opts: { draft: string; reviewEvidence: string; out: string; json?: boolean }) => {
+    if (!opts.json) {
+      process.stderr.write("closure authority-review-record: --json is required\n");
+      process.exitCode = 2;
+      return;
+    }
+    const repoRoot = process.cwd();
+    const dbPath = defaultHarnessDbPath(repoRoot);
+    if (!existsSync(dbPath)) {
+      process.stderr.write(
+        "closure authority-review-record: persistent harness.db does not exist\n",
+      );
+      process.exitCode = 2;
+      return;
+    }
+    let db: HarnessDb;
+    try {
+      db = openHarnessDb(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(`closure authority-review-record: ${String(error)}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      const result = recordClosureAuthorityReview({
+        repoRoot,
+        outPath: opts.out,
+        draft: loadClosureAuthorityReviewDraft(repoRoot, opts.draft),
+        taskEvidence: loadClosureAuthorityReviewTaskEvidence(repoRoot, opts.reviewEvidence),
+        now: new Date().toISOString(),
+        db,
+      });
+      process.stdout.write(`${JSON.stringify(result)}\n`);
+    } catch (error) {
+      process.stderr.write(`closure authority-review-record: ${String(error)}\n`);
+      process.exitCode = closureAuthorityFailureExitCode(error);
+    } finally {
+      db.close();
+    }
+  });
+closure
+  .command("authority-backfill-apply")
+  .description("apply one independently reviewed authority backfill window")
+  .option("--execute", "execute the reviewed mutation")
+  .option("--from-db", "use persistent harness.db")
+  .requiredOption("--proposal <path>", "persisted full proposal run")
+  .requiredOption("--review-receipt <path>", "independent review receipt")
+  .requiredOption("--expected-head <sha>", "expected repository HEAD")
+  .requiredOption("--offset <n>", "ledger-derived window offset")
+  .requiredOption("--limit <n>", "window size (1..100)")
+  .option("--resume", "resume an exactly matching committed window")
+  .option("--failpoint <name>", "test-only crash injection")
+  .option("--json", "emit one JSON document")
+  .action(
+    (opts: {
+      execute?: boolean;
+      fromDb?: boolean;
+      proposal: string;
+      reviewReceipt: string;
+      expectedHead: string;
+      offset: string;
+      limit: string;
+      resume?: boolean;
+      failpoint?: string;
+      json?: boolean;
+    }) => {
+      const offset = /^(?:0|[1-9][0-9]*)$/.test(opts.offset) ? Number(opts.offset) : -1;
+      const limit = /^[1-9][0-9]*$/.test(opts.limit) ? Number(opts.limit) : -1;
+      const failpoints = [
+        "after-journal",
+        "after-rename",
+        "after-postverify",
+        "before-marker",
+        "after-marker",
+        "before-ledger",
+        "partial-ledger",
+      ] as const;
+      if (
+        !opts.execute ||
+        !opts.fromDb ||
+        !opts.json ||
+        !Number.isSafeInteger(offset) ||
+        offset < 0 ||
+        !Number.isSafeInteger(limit) ||
+        limit < 1 ||
+        limit > 100 ||
+        (opts.failpoint !== undefined &&
+          !failpoints.includes(opts.failpoint as (typeof failpoints)[number]))
+      ) {
+        process.stderr.write(
+          "closure authority-backfill-apply: --execute --from-db --json, offset >= 0, limit 1..100, and a known failpoint are required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) {
+        process.stderr.write(
+          "closure authority-backfill-apply: persistent harness.db does not exist\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      let db: HarnessDb;
+      try {
+        db = openHarnessDb(dbPath, { repoRoot });
+      } catch (error) {
+        process.stderr.write(`closure authority-backfill-apply: ${String(error)}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      try {
+        const run = loadClosureAuthorityProposal(repoRoot, opts.proposal);
+        const head = execFileSync("git", ["rev-parse", "HEAD"], {
+          cwd: repoRoot,
+          encoding: "utf8",
+        }).trim();
+        if (head !== opts.expectedHead || run.bundle.repository_head !== head)
+          throw new Error("expected HEAD/proposal provenance mismatch");
+        if (opts.resume) {
+          recoverClosureAuthorityBackfill(repoRoot);
+          const completed = readCompletedClosureAuthorityBackfillWindow({
+            repoRoot,
+            bundle: run.bundle,
+            offset,
+            limit,
+          });
+          if (completed) {
+            const terminalBoundaries = recordClosureWindowTerminalBoundaries({
+              repoRoot,
+              run,
+              offset,
+              limit,
+              cycleDigest: completed.cycle_digest,
+              registryDigest: completed.registry_digest,
+            });
+            process.stdout.write(
+              `${JSON.stringify({ ...completed, resumed: true, terminal_boundary_plan_ids: terminalBoundaries })}\n`,
+            );
+            return;
+          }
+        }
+        const window = buildClosureAuthorityBackfillWindow({
+          repoRoot,
+          registryPath: "docs/governance/closure-authority-registry.yaml",
+          bundle: run.bundle,
+          offset,
+          limit,
+        });
+        const result = applyClosureAuthorityConvergenceWindow({
+          repoRoot,
+          db,
+          bundle: run.bundle,
+          receipt: loadClosureAuthorityReviewReceipt(repoRoot, opts.reviewReceipt),
+          now: new Date().toISOString(),
+          cycleId: `authority-window-${offset}`,
+          failpoint: opts.failpoint as (typeof failpoints)[number] | undefined,
+          window,
+        });
+        const terminalBoundaries = recordClosureWindowTerminalBoundaries({
+          repoRoot,
+          run,
+          offset,
+          limit,
+          cycleDigest: result.cycle_digest,
+          registryDigest: result.registry_digest,
+        });
+        process.stdout.write(
+          `${JSON.stringify({ ...result, resumed: false, terminal_boundary_plan_ids: terminalBoundaries })}\n`,
+        );
+      } catch (error) {
+        process.stderr.write(`closure authority-backfill-apply: ${String(error)}\n`);
+        process.exitCode = closureAuthorityFailureExitCode(error);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("convergence-targets")
+  .description("derive the exact automatable/H/X closure target partition from persistent state")
+  .option("--from-db", "read persistent harness.db")
+  .option("--json", "emit one JSON document")
+  .action((opts: { fromDb?: boolean; json?: boolean }) => {
+    if (!opts.fromDb || !opts.json) {
+      process.stderr.write("closure convergence-targets: --from-db --json are required\n");
+      process.exitCode = 2;
+      return;
+    }
+    const repoRoot = process.cwd();
+    const dbPath = defaultHarnessDbPath(repoRoot);
+    if (!existsSync(dbPath)) {
+      process.stderr.write("closure convergence-targets: persistent harness.db does not exist\n");
+      process.exitCode = 2;
+      return;
+    }
+    let db: HarnessDb;
+    try {
+      db = openHarnessDbReadOnly(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(`closure convergence-targets: ${String(error)}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const automatable = snapshot.closure.queue.items
+        .filter((item) => item.nextAction === "close_ready")
+        .map((item) => item.planId);
+      const target = closureConvergenceTargetFromSnapshot(snapshot, automatable);
+      process.stdout.write(`${JSON.stringify(target)}\n`);
+    } catch (error) {
+      process.stderr.write(`closure convergence-targets: ${String(error)}\n`);
+      process.exitCode = closureAuthorityFailureExitCode(error);
+    } finally {
+      db.close();
+    }
+  });
+closure
+  .command("authority-materialize")
+  .description("classify or materialize current-main close_ready evidence from repo authority")
+  .option("--dry-run", "classify only; never start a runner or persist evidence")
+  .option("--execute", "materialize only when every candidate is eligible")
+  .option("--from-db", "read the persistent harness.db (required)")
+  .option(
+    "--authority-registry <path>",
+    "canonical repo-owned authority registry",
+    "docs/governance/closure-authority-registry.yaml",
+  )
+  .option("--batch-size <n>", "bounded materialization window (1..100)", "100")
+  .option("--concurrency <n>", "typed runner concurrency (1..4)", "1")
+  .option("--json", "JSON output")
+  .action(
+    async (opts: {
+      dryRun?: boolean;
+      execute?: boolean;
+      fromDb?: boolean;
+      authorityRegistry: string;
+      batchSize: string;
+      concurrency: string;
+      json?: boolean;
+    }) => {
+      const canonicalRegistry = "docs/governance/closure-authority-registry.yaml";
+      const parseBoundedInteger = (value: string, maximum: number): number | null =>
+        /^(?:0|[1-9][0-9]*)$/.test(value) &&
+        Number.isSafeInteger(Number(value)) &&
+        Number(value) >= 1 &&
+        Number(value) <= maximum
+          ? Number(value)
+          : null;
+      if (opts.dryRun === opts.execute) {
+        process.stderr.write(
+          "closure authority-materialize: exactly one of --dry-run or --execute is required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      if (!opts.fromDb) {
+        process.stderr.write("closure authority-materialize: --from-db is required\n");
+        process.exitCode = 2;
+        return;
+      }
+      if (opts.authorityRegistry !== canonicalRegistry) {
+        process.stderr.write(
+          `closure authority-materialize: --authority-registry must be ${canonicalRegistry}\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const batchSize = parseBoundedInteger(opts.batchSize, 100);
+      const concurrency = parseBoundedInteger(opts.concurrency, 4);
+      if (batchSize === null || concurrency === null) {
+        process.stderr.write(
+          "closure authority-materialize: --batch-size must be 1..100 and --concurrency must be 1..4\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const git = (...args: string[]) =>
+        execFileSync("git", args, {
+          cwd: repoRoot,
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "pipe"],
+        }).trim();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) throw new Error("persistent harness.db does not exist");
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        const repositoryHead = git("rev-parse", "HEAD");
+        const originMainHead = git("rev-parse", "origin/main");
+        const clean = git("status", "--porcelain=v1", "--untracked-files=normal") === "";
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const bundle = buildProjectClosureReviewBundle(snapshot, {
+          action: "close_ready",
+          limit: Math.max(1, snapshot.closure.queue.route_counts.close_ready),
+          offset: 0,
+        });
+        const candidates = bundle.candidates.map((candidate) => ({
+          plan_id: candidate.planId,
+          source_path: candidate.sourcePath,
+        }));
+        const registry = loadClosureAuthorityRegistry({
+          repositoryRoot: repoRoot,
+          registryPath: canonicalRegistry,
+        });
+        const classifications = classifyClosureAuthorities({
+          candidatePlanIds: candidates.map((candidate) => candidate.plan_id),
+          registry,
+          drifts: analyzeClosureAuthorityDrift({ repositoryRoot: repoRoot, registry }),
+        });
+        const eligiblePlanIds = classifications
+          .filter((row) => row.classification === "eligible")
+          .map((row) => row.plan_id);
+        const terminalByPlanId = new Map(
+          snapshot.closure.terminal_boundaries.items
+            .filter((row) => row.whole_program_blocker)
+            .map((row) => [row.plan_id, row.classification] as const),
+        );
+        const noneligiblePlanIds = classifications
+          .filter((row) => {
+            if (row.classification === "eligible") return false;
+            const boundary = terminalByPlanId.get(row.plan_id);
+            const expectedBoundary = terminalBoundaryClassificationForAuthority(row.classification);
+            return expectedBoundary === null || boundary !== expectedBoundary;
+          })
+          .map((row) => row.plan_id);
+        let targetSet: ReturnType<typeof buildClosureConvergenceTargetSet> | null = null;
+        try {
+          targetSet = closureConvergenceTargetFromSnapshot(
+            snapshot,
+            eligiblePlanIds,
+            noneligiblePlanIds,
+          );
+        } catch (error) {
+          const payload = {
+            status: "target_blocked",
+            executed: false,
+            classifications,
+            blocker: error instanceof Error ? error.message : String(error),
+          };
+          process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+          process.exitCode = 2;
+          return;
+        }
+        if (repositoryHead !== originMainHead || !clean)
+          throw new Error("current HEAD must equal origin/main and working tree must be clean");
+        const allEligible =
+          classifications.length > 0 &&
+          classifications.every((row) => row.classification === "eligible");
+        if (opts.execute && !allEligible) {
+          const payload = {
+            status: "classified",
+            executed: false,
+            classifications,
+            target_set_digest: targetSet.target_set_digest,
+          };
+          process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+          process.exitCode = 2;
+          return;
+        }
+        if (opts.dryRun) {
+          const payload = {
+            status: "classified",
+            executed: false,
+            classifications,
+            target_set_digest: targetSet.target_set_digest,
+          };
+          process.stdout.write(
+            opts.json
+              ? `${JSON.stringify(payload, null, 2)}\n`
+              : `closure authority-materialize: status=classified candidates=${classifications.length} eligible=${classifications.filter((row) => row.classification === "eligible").length} executed=false\n`,
+          );
+          return;
+        }
+        migrate(db);
+        const gateCommands: Readonly<Record<string, string>> = {
+          "harness-check": "bun src/cli.ts gate harness-check",
+        };
+        const gateAllowlist: Readonly<Record<string, ClosureGateAllowlistEntry>> = {
+          "harness-check": {
+            command: gateCommands["harness-check"] ?? "",
+            executable: "bun",
+            argv: ["src/cli.ts", "gate", "harness-check"],
+          },
+        };
+        migrate(db);
+        const result = await materializeClosureEvidence({
+          repoRoot,
+          db,
+          repositoryHead,
+          originMainHead,
+          clean,
+          candidates,
+          reviewBundlePlanIds: bundle.review_scope.plan_ids,
+          registry,
+          runner: new ClosureEvidenceRunner({ repoRoot, repositoryHead, gateAllowlist }),
+          gateCommands,
+          windowSize: batchSize,
+          concurrency,
+          convergenceTarget: targetSet,
+        });
+        process.stdout.write(
+          opts.json
+            ? `${JSON.stringify({ ...result, executed: result.status === "published", target_set_digest: targetSet.target_set_digest }, null, 2)}\n`
+            : `closure authority-materialize: status=${result.status} candidates=${result.classifications.length} runs=${result.run_count} manifest=${result.manifest_path ?? "-"}\n`,
+        );
       } finally {
         db.close();
       }
@@ -8014,6 +8884,186 @@ closure
           );
         }
         process.stdout.write(`  postcheck=${plan.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+
+closure
+  .command("auto-approve")
+  .description("typed-evidence closure approval with CAS and atomic rollback")
+  .option("--dry-run", "validate all selected batches without mutating PLAN files")
+  .option("--execute", "apply status patches only after every selected batch passes preflight")
+  .requiredOption("--evidence-manifest <path>", "typed evidence authority manifest JSON")
+  .option("--batch-size <n>", "maximum close_ready candidates per batch", "50")
+  .option("--offset <n>", "zero-based starting offset", "0")
+  .option("--all", "process every close_ready candidate from offset")
+  .option("--json", "JSON output")
+  .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
+  .action(
+    (opts: {
+      dryRun?: boolean;
+      execute?: boolean;
+      evidenceManifest: string;
+      batchSize?: string;
+      offset?: string;
+      all?: boolean;
+      json?: boolean;
+      fromDb?: boolean;
+    }) => {
+      if (opts.dryRun === opts.execute) {
+        process.stderr.write(
+          "closure auto-approve: exactly one of --dry-run or --execute is required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const batchSize = parseClosureBatchInteger(opts.batchSize ?? "", { min: 1, max: 100 });
+      if (batchSize === null) {
+        process.stderr.write("closure auto-approve: batch-size must be between 1 and 100\n");
+        process.exitCode = 2;
+        return;
+      }
+      const initialOffset = parseClosureBatchInteger(opts.offset ?? "", { min: 0 });
+      if (initialOffset === null) {
+        process.stderr.write("closure auto-approve: offset must be zero or greater\n");
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const db = openHarnessDb(opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:", {
+        repoRoot,
+      });
+      try {
+        if (opts.fromDb) migrate(db);
+        else rebuildHarnessDb({ repoRoot, db });
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const manifest = parseClosureAutoApprovalManifest(
+          JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
+        );
+        const automatablePlanIds = snapshot.closure.queue.items
+          .filter((item) => item.nextAction === "close_ready")
+          .map((item) => item.planId)
+          .sort();
+        let targetSet: ReturnType<typeof buildClosureConvergenceTargetSet>;
+        try {
+          targetSet = closureConvergenceTargetFromSnapshot(snapshot, automatablePlanIds);
+        } catch (error) {
+          process.stderr.write(
+            `closure auto-approve: convergence target blocked: ${String(error)}\n`,
+          );
+          process.exitCode = 2;
+          return;
+        }
+        const manifestIds = manifest.candidates.map((row) => row.plan_id).sort();
+        if (
+          !manifest.target_set_digest ||
+          manifest.target_set_digest !== targetSet.target_set_digest ||
+          manifest.initial_set_digest !== targetSet.initial_set_digest ||
+          manifest.terminal_boundary_digest !== targetSet.terminal_boundary_digest ||
+          JSON.stringify(manifest.initial_plan_ids) !==
+            JSON.stringify(targetSet.initial_plan_ids) ||
+          JSON.stringify(manifest.automatable_plan_ids) !==
+            JSON.stringify(targetSet.automatable_plan_ids) ||
+          JSON.stringify(manifest.human_only_plan_ids) !==
+            JSON.stringify(targetSet.human_only_plan_ids) ||
+          JSON.stringify(manifest.invalid_escalated_plan_ids) !==
+            JSON.stringify(targetSet.invalid_escalated_plan_ids)
+        ) {
+          process.stderr.write("closure auto-approve: sealed convergence target drift\n");
+          process.exitCode = 2;
+          return;
+        }
+        if (JSON.stringify(manifestIds) !== JSON.stringify(targetSet.automatable_plan_ids)) {
+          process.stderr.write(
+            "closure auto-approve: manifest/convergence target exact-set drift\n",
+          );
+          process.exitCode = 2;
+          return;
+        }
+        const authorityRegistry = loadClosureAuthorityRegistry({
+          repositoryRoot: repoRoot,
+          registryPath: "docs/governance/closure-authority-registry.yaml",
+        });
+        const total = snapshot.closure.queue.route_counts.close_ready;
+        const windows = closureAutoApprovalWindows({
+          total,
+          batchSize,
+          offset: initialOffset,
+          all: opts.all === true,
+        });
+        const end = windows.at(-1)
+          ? (windows.at(-1)?.offset ?? 0) + (windows.at(-1)?.limit ?? 0)
+          : initialOffset;
+        const batches: ClosureAutoApprovalEvaluation[] = [];
+        for (const window of windows) {
+          batches.push(
+            evaluateClosureAutoApproval({
+              repoRoot,
+              db,
+              snapshot,
+              manifest: {
+                ...manifest,
+                candidates: manifest.candidates.slice(window.offset, window.offset + window.limit),
+              },
+              limit: window.limit,
+              offset: window.offset,
+              authorityRegistry,
+            }),
+          );
+        }
+        const allowed = batches.length > 0 && batches.every((batch) => batch.allowed);
+        const applied: string[] = [];
+        if (opts.execute && allowed) {
+          const first = batches[0] as ClosureAutoApprovalEvaluation;
+          const selectedManifest: ClosureAutoApprovalManifest = {
+            ...manifest,
+            candidates: manifest.candidates.slice(initialOffset, end),
+          };
+          const transactionEvaluation: ClosureAutoApprovalEvaluation = {
+            ...first,
+            allowed,
+            authority_digest: canonicalClosureAuthorityDigest(repoRoot, selectedManifest, db),
+            target_plan_ids: batches.flatMap((batch) => batch.target_plan_ids),
+            blockers: batches.flatMap((batch) => batch.blockers),
+            rendered_patches: batches.flatMap((batch) => batch.rendered_patches),
+          };
+          const githubReceipt = loadGithubRequiredCheckReceipt(repoRoot);
+          const result = applyClosureAutoApprovalAtomic({
+            repoRoot,
+            evaluation: transactionEvaluation,
+            manifest: selectedManifest,
+            db,
+            githubReceipt,
+            githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
+            expectedConvergenceTargetDigest: closureConvergenceTargetFromSnapshot(
+              buildProjectCurrentLocationSnapshot(db),
+              automatablePlanIds,
+            ).target_set_digest,
+          });
+          applied.push(...result.applied);
+        }
+        const output = {
+          schema_version: "project-closure-auto-approval-run.v1",
+          dry_run: opts.dryRun === true,
+          executed: opts.execute === true && allowed,
+          atomic_preflight_passed: allowed,
+          total_close_ready: total,
+          selected: batches.reduce((sum, batch) => sum + batch.target_plan_ids.length, 0),
+          batch_size: batchSize,
+          batch_count: batches.length,
+          batches,
+          applied_patches: applied,
+          authority_digests: batches.map((batch) => batch.authority_digest),
+          target_set_digest: targetSet.target_set_digest,
+        };
+        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+        else
+          process.stdout.write(
+            `closure auto-approve: dry_run=${output.dry_run} executed=${output.executed} preflight=${allowed} selected=${output.selected} batches=${output.batch_count} applied=${applied.length}\n`,
+          );
+        if (!allowed) process.exitCode = 2;
       } finally {
         db.close();
       }
@@ -11441,6 +12491,42 @@ const github = program
   .description("GitHub operation readiness and PR automation");
 
 github
+  .command("review-route")
+  .description("fail-close PR cross-review route decision")
+  .requiredOption("--input-json <json>", "PrReviewRouteInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = validatePrReviewRoute(
+      prReviewRouteInputSchema.parse(JSON.parse(opts.inputJson)),
+    );
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+github
+  .command("ci-auto-fix-gate")
+  .description("evaluate confidence and attempt circuit breakers before CI repush")
+  .requiredOption("--input-json <json>", "CiAutoFixGateInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const supplied = ciAutoFixGateInputSchema.parse(JSON.parse(opts.inputJson));
+    // CLI callerはpolicy authorityではない。canonical policyを常に適用し、閾値/cap/kindを上書きさせない。
+    const result = gateCiAutoFixRepush({ ...supplied, policy: undefined });
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.allowRepush ? 0 : 1;
+  });
+
+github
+  .command("release-automation-decision")
+  .description("emit the plan-only release automation decision")
+  .requiredOption("--input-json <json>", "ReleaseAutomationDecisionInput JSON")
+  .action((opts: { inputJson: string }) => {
+    const result = planReleaseAutomationDecision(
+      releaseAutomationDecisionInputSchema.parse(JSON.parse(opts.inputJson)),
+    );
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+github
   .command("guard")
   .description("evaluate branch-type and commit subject guards without GitHub writes")
   .requiredOption("--head <ref>", "head branch/ref")
@@ -11477,17 +12563,40 @@ github
   .requiredOption("--tag <tag>", "release tag, e.g. v0.1.0")
   .requiredOption("--repo <owner/repo>", "GitHub repository")
   .option("--apply", "mark dryRun=false in the packet; does not execute commands")
+  .option("--decision-input-json <json>", "required release decision evidence for --apply")
   .option("--json", "JSON output")
-  .action((opts: { tag: string; repo: string; apply?: boolean; json?: boolean }) => {
-    const result = buildReleasePublicationPlan({
-      tag: opts.tag,
-      repo: opts.repo,
-      dryRun: opts.apply !== true,
-    });
-    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    else process.stdout.write(renderReleasePublicationPlan(result));
-    process.exitCode = result.ok ? 0 : 1;
-  });
+  .action(
+    (opts: {
+      tag: string;
+      repo: string;
+      apply?: boolean;
+      decisionInputJson?: string;
+      json?: boolean;
+    }) => {
+      if (opts.apply) {
+        const decision = opts.decisionInputJson
+          ? planReleaseAutomationDecision(
+              releaseAutomationDecisionInputSchema.parse(JSON.parse(opts.decisionInputJson)),
+            )
+          : null;
+        if (!decision?.ok) {
+          process.stderr.write(
+            "release-plan --apply rejected: accepted release automation decision evidence is required\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const result = buildReleasePublicationPlan({
+        tag: opts.tag,
+        repo: opts.repo,
+        dryRun: opts.apply !== true,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else process.stdout.write(renderReleasePublicationPlan(result));
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("merge-readiness")
@@ -11542,28 +12651,49 @@ github
   .option("--base <branch>", "base branch for the pull request", "main")
   .option("--title <title>", "PR title override")
   .option("--apply", "execute gh pr create; default is dry-run")
+  .option("--review-input-json <json>", "required cross-review evidence for --apply")
   .option("--json", "JSON output")
-  .action((opts: { base?: string; title?: string; apply?: boolean; json?: boolean }) => {
-    const result = runGithubPrCreate(process.cwd(), {
-      baseBranch: opts.base ?? "main",
-      title: opts.title,
-      dryRun: opts.apply !== true,
-    });
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    } else {
-      process.stdout.write(
-        `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
-      );
-      process.stdout.write(
-        `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
-      );
-      process.stdout.write(`  - command=${result.command}\n`);
-      if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
-      if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
-    }
-    process.exitCode = result.ok ? 0 : 1;
-  });
+  .action(
+    (opts: {
+      base?: string;
+      title?: string;
+      apply?: boolean;
+      reviewInputJson?: string;
+      json?: boolean;
+    }) => {
+      if (opts.apply) {
+        const review = opts.reviewInputJson
+          ? validatePrReviewRoute(prReviewRouteInputSchema.parse(JSON.parse(opts.reviewInputJson)))
+          : null;
+        if (!review?.ok) {
+          process.stderr.write(
+            "github pr-create --apply rejected: valid cross-review evidence is required\n",
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const result = runGithubPrCreate(process.cwd(), {
+        baseBranch: opts.base ?? "main",
+        title: opts.title,
+        dryRun: opts.apply !== true,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      } else {
+        process.stdout.write(
+          `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
+        );
+        process.stdout.write(
+          `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
+        );
+        process.stdout.write(`  - command=${result.command}\n`);
+        if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
+        if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 const feedback = program
   .command("feedback")

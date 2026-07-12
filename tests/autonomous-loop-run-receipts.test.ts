@@ -15,6 +15,15 @@ describe("autonomous loop run receipts", () => {
     );
   });
 
+  it("S2: rejects traversal before resolving loop state paths", () => {
+    expect(() => buildAutonomousLoopRunReceipt("/tmp", "../../escape")).toThrow(
+      "invalid loop plan id",
+    );
+    expect(() => buildAutonomousLoopRunReceipt("/tmp", "PLAN-L7-431/../../escape")).toThrow(
+      "invalid loop plan id",
+    );
+  });
+
   it("surfaces restartable next action and iteration evidence", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-"));
     try {
