@@ -1,7 +1,7 @@
 ---
 layer: L8
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/durability-boundaries.md
 plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 ---

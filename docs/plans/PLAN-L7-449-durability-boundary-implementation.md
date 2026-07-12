@@ -85,6 +85,7 @@ generates:
       artifact_type: source_module,
     }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/failure.ts, artifact_type: source_module }
   - {
       artifact_path: src/orchestration/loop-store.ts,
       artifact_type: source_module,

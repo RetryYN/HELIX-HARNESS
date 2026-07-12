@@ -4,7 +4,7 @@ title: "PLAN-L6-78 (add-design): diagnostic redaction / autonomous-loop durabili
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-13 /goal『設計とテスト設計/検証設計でVペアを作る』に基づきPLAN-L7-445 inventoryでQS4 #29/#30の実装反例を確認"
@@ -42,6 +42,24 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-445-qs4-durability-inventory.md
   requires: []
+review_evidence:
+  - reviewer: audit_442_successors
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-13T06:42:28+09:00"
+    tests_green_at: "2026-07-13T06:41:55+09:00"
+    verdict: pass
+    scope: "L5/L6とL8/L9のC5/C6、claim release durability、9-state read model、side-effect gate、stale claim recoveryを独立再監査しBlocker/High 0。"
+    worker_model: codex
+    reviewer_model: codex-fresh-subagent
+    green_commands:
+      - kind: integration_test
+        command: "bun run test:fast -- tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-13T06:41:55+09:00"
+        evidence_path: tests/durable-loop-process.test.ts
+        output_digest: "sha256:7e9abd94a0a448c376b11f64b65472f7995672d07198f6a2d0f66736de12e03c"
 ---
 
 # PLAN-L6-78: diagnostic redaction / autonomous-loop durability Vペア設計

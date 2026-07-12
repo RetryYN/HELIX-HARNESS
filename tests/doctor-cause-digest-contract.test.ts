@@ -32,7 +32,7 @@ function anonymousCatchOwnerDigest(source: string): { count: number; digest: str
   return { count: owners.length, digest: sha256Digest(JSON.stringify(counts)) };
 }
 
-describe("PLAN-L7-449 doctor failure contract", () => {
+describe("PLAN-L7-449 doctor failure contract (IT-DUR-001)", () => {
   it("U-DUR-003: emits only allowlisted identity, reason, and finite cause metadata", () => {
     const raw = "/home/alice/private token=secret SELECT password FROM users";
     const failure = doctorFailure("digest-inventory", "read_failed", new Error(raw));

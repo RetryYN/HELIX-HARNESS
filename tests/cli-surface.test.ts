@@ -340,11 +340,13 @@ describe("L7 CLI surface closure", () => {
       const run = runCliIn(root, ["loop", "receipt", "--plan", "PLAN-L7-366", "--json"]);
       const payload = JSON.parse(run.stdout);
 
-      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(run.status, run.stderr || run.stdout).toBe(1);
       expect(payload).toMatchObject({
-        ok: true,
+        ok: false,
         schema_version: "autonomous-loop-run-receipts.v1",
-        restartable_next_action: "helix loop run --plan PLAN-L7-366 --once",
+        status: "blocked",
+        restartable_next_action: "helix loop run --plan PLAN-L7-366 --dry-run",
+        retry: { allowed: false, reason: "legacy_state_requires_import" },
       });
     } finally {
       rmSync(root, { recursive: true, force: true });
