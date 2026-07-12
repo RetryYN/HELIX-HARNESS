@@ -343,12 +343,6 @@ export function recoverStaleLoopClaim(
           typeof residual.packetDigest === "string";
         if (residualTrusted && claimStatus(residualText) !== "stale")
           return { status: "conflict", reason: "recovery_claim_conflict" };
-        if (
-          residualTrusted &&
-          residual !== null &&
-          residual.packetDigest !== sha256Digest(JSON.stringify(packet))
-        )
-          return { status: "conflict", reason: "recovery_claim_scope_mismatch" };
         try {
           renameSync(value.recoveryClaim, value.recoveryClaimTombstoneFor(randomUUID()));
           fsyncDirectory(value.directory);

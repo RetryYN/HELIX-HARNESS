@@ -258,6 +258,39 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     ).toHaveLength(1);
   });
 
+  it("IT-DUR-004/U-DUR-007: atomically replaces an authorized partial legacy mutex", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const claim = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleClaimText = `${JSON.stringify({
+      ...claim,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleClaimText);
+    writeFileSync(paths.recoveryClaim, "{");
+    const recovered = recoverStaleLoopClaim(
+      repo,
+      {
+        planId: PLAN,
+        claimDigest: sha256Digest(staleClaimText),
+        pointerDigest: claim.pointerDigest,
+        manifestDigest: claim.manifestDigest,
+        approvedBy: "authority",
+        auditId: "partial-mutex-recovery",
+      },
+      { verify: () => true },
+    );
+    expect(recovered.status).toBe("recovered");
+    expect(existsSync(paths.recoveryClaim)).toBe(false);
+    expect(
+      readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.stale.json")),
+    ).toHaveLength(1);
+  });
+
   it("IT-DUR-003: a second-epoch C4 crash preserves the previous committed payload", () => {
     const repo = root();
     const firstPort = nodeDurableEpochPort(repo);
