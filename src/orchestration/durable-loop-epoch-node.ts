@@ -259,6 +259,7 @@ export function nodeDurableEpochPort(
   hooks: { afterBoundary?: (boundary: DurableEpochBoundary) => void } = {},
 ): DurableEpochPort {
   const paths = (planId: string) => loopEpochPaths(root, planId);
+  let releaseProofPending = false;
   return {
     acquireExclusiveClaim: (planId) => {
       const value = paths(planId);
@@ -380,9 +381,15 @@ export function nodeDurableEpochPort(
       );
       fsyncPath(value.releaseProofTemp);
       renameSync(value.releaseProofTemp, value.releaseProof);
-      hooks.afterBoundary?.("release_proof_published");
+      releaseProofPending = true;
     },
-    fsyncClaimDirectory: (planId) => fsyncDirectory(paths(planId).directory),
+    fsyncClaimDirectory: (planId) => {
+      fsyncDirectory(paths(planId).directory);
+      if (releaseProofPending) {
+        releaseProofPending = false;
+        hooks.afterBoundary?.("release_proof_published");
+      }
+    },
   };
 }
 

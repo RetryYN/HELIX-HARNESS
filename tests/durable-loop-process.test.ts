@@ -81,6 +81,14 @@ describe("PLAN-L7-449 actual process durability", () => {
         const snapshot = readLoopEpochFromFs(repo, PLAN);
         expect(snapshot.status, boundary).toBe("durability_uncertain");
       }
+      const releasedRepo = root();
+      const released = child(
+        releasedRepo,
+        "publish:release_proof_published",
+        "release_proof_published",
+      );
+      expect(await released.exited).not.toBe(0);
+      expect(readLoopEpochFromFs(releasedRepo, PLAN).status).toBe("committed");
     },
     30_000,
   );
