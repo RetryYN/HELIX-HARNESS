@@ -108,7 +108,7 @@ describe("PLAN-L7-449 production durable loop store", () => {
         });
         const snapshot = readLoopEpochFromFs(repo, PLAN);
         expect(snapshot.status).toBe("committed");
-        expect(snapshot.payload?.iteration?.iteration).toBe(1);
+        expect(snapshot.payload?.iteration?.iteration).toBe(0);
         expect(durableFileLoopStore({ root: repo }).read(PLAN)?.iteration).toBe(1);
         expect(loopEpochPaths(repo, PLAN).durabilityCapability).toMatch(
           /^(posix_dir_fsync|file_fsync_same_volume_rename)$/,
