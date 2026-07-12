@@ -45,6 +45,16 @@ verification_bindings:
       oracle_id: U-DUR-005,
       test_path: tests/loop-store-durability.test.ts,
     }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-006,
+      test_path: tests/loop-store-durability.test.ts,
+    }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-007,
+      test_path: tests/loop-store-durability.test.ts,
+    }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-78でL5/L6 contractとL8/L9 Vペアへbackprop済み。"
 generates:

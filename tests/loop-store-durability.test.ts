@@ -176,7 +176,9 @@ describe("PLAN-L7-449 loop epoch reader", () => {
       expect(result.status).toBe("durability_uncertain");
       expect(result.intentCapability).toBeNull();
     }
-    const conflictPort = { acquireExclusiveClaim: () => false } as DurableEpochPort;
+    const conflictPort = {
+      acquireExclusiveClaim: () => false,
+    } as unknown as DurableEpochPort;
     expect(
       commitLoopEpoch({
         planId: PLAN,
