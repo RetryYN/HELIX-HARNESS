@@ -24,10 +24,21 @@ import {
 } from "./durable-loop-epoch";
 
 type ClaimMetadata = {
+  claimId: string;
   pid: number;
   bootIdentity: string | null;
   processStartToken: string | null;
   leaseDeadlineUptimeMs: number;
+  pointerDigest: string;
+  manifestDigest: string | null;
+};
+export type StaleLoopClaimRecoveryPacket = {
+  planId: string;
+  claimDigest: string;
+  pointerDigest: string;
+  manifestDigest: string | null;
+  approvedBy: string;
+  auditId: string;
 };
 const MAX_MANIFEST_HISTORY = 4096;
 
@@ -142,6 +153,9 @@ export function loopEpochPaths(root: string, planId: string) {
       platform() === "win32" ? "file_fsync_same_volume_rename" : "posix_dir_fsync",
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
+    recoveryClaim: join(directory, `${safe}.epoch.recovery.claim`),
+    claimTombstoneFor: (claimId: string) =>
+      join(directory, `${safe}.${claimId}.epoch.claim.recovered`),
     manifest: join(directory, `${safe}.epoch.current.json`),
     manifestFor: (manifestFile: string) => join(directory, manifestFile),
     payloadFor: (payloadFile: string) => join(directory, payloadFile),
@@ -160,13 +174,22 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
       try {
         const fd = openSync(value.claim, "wx", 0o600);
         try {
+          const pointerText = readIfExists(value.manifest);
+          let manifestDigest: string | null = null;
+          if (pointerText !== null) {
+            const manifestText = resolvePointerManifest(value, planId, pointerText);
+            manifestDigest = sha256Digest(manifestText);
+          }
           writeFileSync(
             fd,
             `${JSON.stringify({
+              claimId: crypto.randomUUID(),
               pid: process.pid,
               bootIdentity: bootIdentity(),
               processStartToken: processStartToken(process.pid),
               leaseDeadlineUptimeMs: uptime() * 1000 + 60_000,
+              pointerDigest: sha256Digest(pointerText ?? ""),
+              manifestDigest,
             } satisfies ClaimMetadata)}\n`,
           );
           fsyncSync(fd);
@@ -217,6 +240,58 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
     unlinkClaim: (planId) => unlinkSync(paths(planId).claim),
     fsyncClaimDirectory: (planId) => fsyncDirectory(paths(planId).directory),
   };
+}
+
+export function recoverStaleLoopClaim(
+  root: string,
+  packet: StaleLoopClaimRecoveryPacket,
+): { status: "recovered" | "rejected" | "conflict"; reason: string } {
+  const planId = assertLoopPlanId(packet.planId);
+  const value = loopEpochPaths(root, planId);
+  if (!packet.approvedBy.trim() || !packet.auditId.trim())
+    return { status: "rejected", reason: "authority_missing" };
+  mkdirSync(value.directory, { recursive: true });
+  let recoveryFd: number;
+  try {
+    recoveryFd = openSync(value.recoveryClaim, "wx", 0o600);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST")
+      return { status: "conflict", reason: "recovery_claim_conflict" };
+    throw error;
+  }
+  try {
+    writeFileSync(recoveryFd, `${JSON.stringify(packet)}\n`);
+    fsyncSync(recoveryFd);
+  } finally {
+    closeSync(recoveryFd);
+  }
+  fsyncDirectory(value.directory);
+  try {
+    const claimText = readIfExists(value.claim);
+    if (claimText === null || claimStatus(claimText) !== "stale")
+      return { status: "rejected", reason: "claim_not_provably_stale" };
+    const claim = JSON.parse(claimText) as Partial<ClaimMetadata>;
+    const pointerText = readIfExists(value.manifest);
+    let manifestDigest: string | null = null;
+    if (pointerText !== null) manifestDigest = sha256Digest(resolvePointerManifest(value, planId, pointerText));
+    if (
+      typeof claim.claimId !== "string" ||
+      claim.pointerDigest !== sha256Digest(pointerText ?? "") ||
+      claim.manifestDigest !== manifestDigest ||
+      packet.claimDigest !== sha256Digest(claimText) ||
+      packet.pointerDigest !== claim.pointerDigest ||
+      packet.manifestDigest !== claim.manifestDigest
+    )
+      return { status: "rejected", reason: "snapshot_digest_mismatch" };
+    renameSync(value.claim, value.claimTombstoneFor(claim.claimId));
+    fsyncDirectory(value.directory);
+    return { status: "recovered", reason: "stale_claim_tombstoned" };
+  } catch {
+    return { status: "rejected", reason: "recovery_verification_failed" };
+  } finally {
+    unlinkSync(value.recoveryClaim);
+    fsyncDirectory(value.directory);
+  }
 }
 
 export function readLoopEpochFromFs(root: string, planId: string): LoopEpochReadResult {
