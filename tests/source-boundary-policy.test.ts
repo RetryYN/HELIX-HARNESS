@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { analyzeCodingRules } from "../src/lint/coding-rules";
 import {
   evaluateSourceBoundary,
   type ModuleCatalog,
@@ -155,6 +156,26 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
       }),
     ).toEqual(
       expect.objectContaining({ decision: "deny", reason: "exception review trigger fired" }),
+    );
+  });
+
+  it("U-SBOUND-012: production coding gateがliteral/computed迂回を拒否する", () => {
+    const result = analyzeCodingRules([
+      {
+        path: "src/lint/forbidden-require.ts",
+        scope: "source",
+        text: 'require("../runtime/adapter");',
+      },
+      { path: "src/lint/computed-import.ts", scope: "source", text: "import(target);" },
+    ]);
+    expect(
+      result.violations.filter((violation) => violation.rule === "module-boundary"),
+    ).toHaveLength(2);
+    expect(result.violations.map((violation) => violation.message)).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("canonical module boundary prohibition"),
+        expect.stringContaining("computed dynamic import"),
+      ]),
     );
   });
 });

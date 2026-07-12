@@ -22,6 +22,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-007, test_path: tests/source-boundary-policy.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-008, test_path: tests/source-boundary-policy.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-011, test_path: tests/source-boundary-policy.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-012, test_path: tests/source-boundary-policy.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-452-source-boundary-policy-ratchet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/source-edge-extractor.ts, artifact_type: source_module }
@@ -47,4 +48,4 @@ dependencies:
 
 ## 完了条件
 
-`U-SBOUND-003/007/008/011`と`IT-SBOUND-005/006`、実repo graph、mutation test、independent reviewがgreenである。
+`U-SBOUND-003/007/008/011/012`と`IT-SBOUND-005/006`、実repo graph、mutation test、independent reviewがgreenである。

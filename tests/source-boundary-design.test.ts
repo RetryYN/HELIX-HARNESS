@@ -112,7 +112,13 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     const expected: Record<string, string[]> = {
       [successorPaths[0]]: ["U-SBOUND-001", "U-SBOUND-002", "U-SBOUND-005"],
       [successorPaths[1]]: ["U-SBOUND-004", "U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"],
-      [successorPaths[2]]: ["U-SBOUND-003", "U-SBOUND-007", "U-SBOUND-008", "U-SBOUND-011"],
+      [successorPaths[2]]: [
+        "U-SBOUND-003",
+        "U-SBOUND-007",
+        "U-SBOUND-008",
+        "U-SBOUND-011",
+        "U-SBOUND-012",
+      ],
     };
     for (const [path, ids] of Object.entries(expected)) {
       const plan = frontmatter(path);
