@@ -59,6 +59,31 @@ describe("PLAN-L7-449 actual process durability", () => {
       ]);
     },
   );
+
+  it.skipIf(process.platform === "win32")(
+    "IT-DUR-003: C1-C6 child SIGKILL matrix never exposes an authoritative transition",
+    async () => {
+      const boundaries = [
+        "claim_acquired",
+        "payload_temp_written",
+        "payload_temp_fsynced",
+        "payload_renamed",
+        "manifest_temp_written",
+        "manifest_temp_fsynced",
+        "manifest_renamed",
+        "pointer_renamed",
+        "claim_unlinked",
+      ] as const;
+      for (const boundary of boundaries) {
+        const repo = root();
+        const killed = child(repo, `publish:${boundary}`, boundary);
+        expect(await killed.exited, boundary).not.toBe(0);
+        const snapshot = readLoopEpochFromFs(repo, PLAN);
+        expect(snapshot.status, boundary).toBe("durability_uncertain");
+      }
+    },
+    30_000,
+  );
 });
 
 import { spawn } from "node:child_process";

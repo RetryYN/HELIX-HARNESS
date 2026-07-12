@@ -212,6 +212,7 @@ export function loopEpochPaths(root: string, planId: string) {
       platform() === "win32" ? "file_fsync_same_volume_rename" : "posix_dir_fsync",
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
+    releasingClaim: join(directory, `${safe}.epoch.claim.releasing`),
     recoveryClaim: join(directory, `${safe}.epoch.recovery.claim`),
     recoveryClaimTempFor: (recoveryId: string) =>
       join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.tmp`),
@@ -328,9 +329,10 @@ export function nodeDurableEpochPort(
       hooks.afterBoundary?.("pointer_renamed");
     },
     unlinkClaim: (planId) => {
-      unlinkSync(paths(planId).claim);
+      renameSync(paths(planId).claim, paths(planId).releasingClaim);
       hooks.afterBoundary?.("claim_unlinked");
     },
+    finalizeClaimRelease: (planId) => unlinkSync(paths(planId).releasingClaim),
     fsyncClaimDirectory: (planId) => fsyncDirectory(paths(planId).directory),
   };
 }
@@ -518,7 +520,7 @@ export function readLoopEpochFromFs(root: string, planId: string): LoopEpochRead
   const paths = loopEpochPaths(root, planId);
   try {
     const pointerText = readIfExists(paths.manifest);
-    const claimText = readIfExists(paths.claim);
+    const claimText = readIfExists(paths.claim) ?? readIfExists(paths.releasingClaim);
     let manifestText: string | null = null;
     let previousManifestText: string | null | undefined;
     let conflictingManifestText: string | null = null;

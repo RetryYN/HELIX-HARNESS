@@ -72,6 +72,7 @@ export interface DurableEpochPort {
   fsyncPointerTemp(planId: string, tempId: string): void;
   renamePointer(planId: string, tempId: string): void;
   unlinkClaim(planId: string): void;
+  finalizeClaimRelease(planId: string): void;
   fsyncClaimDirectory(planId: string): void;
 }
 
@@ -180,6 +181,8 @@ export function commitLoopEpoch(input: {
     input.port.renamePointer(planId, tempId);
     input.port.fsyncStateDirectory(planId);
     input.port.unlinkClaim(planId);
+    input.port.fsyncClaimDirectory(planId);
+    input.port.finalizeClaimRelease(planId);
     input.port.fsyncClaimDirectory(planId);
     return {
       status: "committed",

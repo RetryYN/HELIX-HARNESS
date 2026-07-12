@@ -101,6 +101,7 @@ describe("PLAN-L7-449 loop epoch reader", () => {
         "fsyncPointerTemp",
         "renamePointer",
         "unlinkClaim",
+        "finalizeClaimRelease",
         "fsyncClaimDirectory",
       ].map((name) => [
         name,
@@ -134,6 +135,8 @@ describe("PLAN-L7-449 loop epoch reader", () => {
       "renamePointer",
       "fsyncStateDirectory",
       "unlinkClaim",
+      "fsyncClaimDirectory",
+      "finalizeClaimRelease",
       "fsyncClaimDirectory",
     ]);
     let effects = 0;
