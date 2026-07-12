@@ -9,6 +9,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { dirname, join } from "node:path";
+import { isRecord } from "../shared/value-guards";
 import type { MemoryDeps, MemoryEntry, MemoryLayer } from "./memory-types";
 
 export const MEMORY_COMPACTION_THRESHOLDS = {
@@ -240,10 +241,6 @@ function linesOf(value: string): string[] {
 
 function safeTimestamp(value: string): string {
   return value.replace(/[^0-9A-Za-z_-]/g, "-");
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function isNodeError(error: unknown): error is NodeJS.ErrnoException {

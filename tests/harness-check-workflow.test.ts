@@ -19,6 +19,9 @@ type HarnessJob = {
   steps?: Step[];
   "timeout-minutes"?: number;
   "continue-on-error"?: boolean;
+  if?: string;
+  needs?: string;
+  "runs-on"?: string;
 };
 
 function boundedTimeViolations(raw: string): string[] {
@@ -67,13 +70,23 @@ function boundedTimeViolations(raw: string): string[] {
   return findings;
 }
 
-function loadWorkflow(): { job: HarnessJob; steps: Step[]; raw: string } {
+function loadWorkflow(): {
+  job: HarnessJob;
+  windowsJob: HarnessJob;
+  steps: Step[];
+  raw: string;
+} {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
   const parsed = parseYaml(raw) as {
-    jobs?: { "harness-check"?: HarnessJob };
+    jobs?: { "harness-check"?: HarnessJob; "windows-durability-smoke"?: HarnessJob };
   };
   const job = parsed.jobs?.["harness-check"] ?? {};
-  return { job, raw, steps: job.steps ?? [] };
+  return {
+    job,
+    windowsJob: parsed.jobs?.["windows-durability-smoke"] ?? {},
+    raw,
+    steps: job.steps ?? [],
+  };
 }
 
 function stepByName(steps: Step[], name: string): Step {
@@ -83,6 +96,24 @@ function stepByName(steps: Step[], name: string): Step {
 }
 
 describe("source harness-check workflow", () => {
+  it("U-DUR-007: propagates the actual Windows durability result into the single required check", () => {
+    const { job, windowsJob, steps } = loadWorkflow();
+    const aggregate = stepByName(steps, "require Windows durability smoke");
+    const smoke = stepByName(windowsJob.steps ?? [], "Windows durability smoke");
+
+    expect(windowsJob["runs-on"]).toBe("windows-latest");
+    expect(windowsJob["timeout-minutes"]).toBe(8);
+    expect(windowsJob["continue-on-error"]).not.toBe(true);
+    expect(smoke.run).toBe(
+      "bun run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts",
+    );
+    expect(smoke["continue-on-error"]).not.toBe(true);
+    expect(job.needs).toBe("windows-durability-smoke");
+    expect(job.if).toBe(`\${{ always() }}`);
+    expect(aggregate.if).toBe(`\${{ needs.windows-durability-smoke.result != 'success' }}`);
+    expect(aggregate.run).toBe("exit 1");
+  });
+
   it("keeps the source workflow read-only and fetches enough history for PR gates", () => {
     const { steps, raw } = loadWorkflow();
     const checkout = steps.find((step) => step.uses?.startsWith("actions/checkout@"));
@@ -198,7 +229,7 @@ describe("source harness-check workflow", () => {
     ],
     [
       "command soft-pass",
-      (raw: string) => raw.replace("run: bun run test", "run: bun run test || true"),
+      (raw: string) => raw.replace("run: bun run test\n", "run: bun run test || true\n"),
     ],
     [
       "同名ダミー",

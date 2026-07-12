@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { parse as parseYaml } from "yaml";
+import { parseMarkdownFrontmatter } from "./shared";
 
 /**
  * plan-descent gate (PLAN-L6-54 / PLAN-L7-347)。
@@ -72,22 +72,11 @@ function stringField(value: unknown): string | null {
   return typeof value === "string" && value.length > 0 ? value : null;
 }
 
-function markdownFrontmatter(content: string): Record<string, unknown> | null {
-  const match = content.match(/^---\n([\s\S]*?)\n---(\n|$)/);
-  if (!match) return null;
-  try {
-    const parsed = parseYaml(match[1]);
-    return parsed && typeof parsed === "object" ? (parsed as Record<string, unknown>) : null;
-  } catch {
-    return null;
-  }
-}
-
 function docStatus(repoRoot: string, relPath: string): string | null {
   const abs = join(repoRoot, relPath);
   if (!existsSync(abs)) return null;
   try {
-    const raw = markdownFrontmatter(readFileSync(abs, "utf-8"));
+    const raw = parseMarkdownFrontmatter(readFileSync(abs, "utf-8"));
     return raw ? stringField(raw.status) : null;
   } catch {
     return null;
@@ -109,12 +98,12 @@ export function loadPlanDescentDocs(
   for (const rel of files) {
     const abs = join(repoRoot, rel);
     if (!existsSync(abs)) continue;
-    const raw = markdownFrontmatter(readFileSync(abs, "utf-8"));
+    const raw = parseMarkdownFrontmatter(readFileSync(abs, "utf-8"));
     if (!raw) continue;
     const parentDesign = stringField(raw.parent_design);
     const pairArtifact = stringField(raw.pair_artifact);
     const pairMeta = pairArtifact
-      ? markdownFrontmatter(
+      ? parseMarkdownFrontmatter(
           existsSync(join(repoRoot, pairArtifact))
             ? readFileSync(join(repoRoot, pairArtifact), "utf-8")
             : "",

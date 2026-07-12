@@ -29,7 +29,7 @@ orphan PLANへ恒久的に誤登録する経路を閉じる。session hook自体
 | writer集約 | CLIまたはcommit hookがactivation要求 | `activatePlan`を必ず経由 | invalid inferred IDは警告のみでmarker不変 |
 | raw writer非公開 | module利用者がPLAN markerを変更 | `activatePlan`または`clearActivePlan`だけを公開 | 未検証文字列を書けるAPIを公開しない |
 | event attribution | explicit/state/branchからPLAN候補を得る | productionではcanonical exact matchだけをeventへ付与。不正値は`null` | orphan IDを新規生成しない |
-| historical orphan | fix前watermark以前の曖昧截断event | raw rowを保持しhistorical unresolvedと分類 | 推測remap・削除をしない。`2026-07-11T19:25:50.062Z`以降はnew orphan 0 |
+| historical orphan | fix前または validation 最終 green 前に起動済みの旧 writer が残した曖昧截断event | raw rowを保持しhistorical unresolvedと分類 | 推測remap・削除をしない。既知の最終旧 writer 行 (`2026-07-11T20:08:47.791Z`) 直後の `2026-07-11T20:08:47.792Z` 以降はnew orphan 0 |
 
 ## 3. Vペア
 

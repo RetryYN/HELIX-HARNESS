@@ -153,11 +153,12 @@ import {
 } from "./memory";
 import { compactMemory, nodeMemoryCompactionDeps } from "./memory/memory-compaction";
 import { fileMemoryDeps } from "./memory/memory-store";
+import { buildAutonomousLoopRunReceipt } from "./orchestration/autonomous-loop-run-receipts";
 import { selectVerifier } from "./orchestration/cross-verifier";
 import { nodeTickDeps } from "./orchestration/loop-bridge";
 import { canResume, tick } from "./orchestration/loop-runner";
 import type { Provider as LoopProvider, LoopState } from "./orchestration/loop-state";
-import { fileLoopStore } from "./orchestration/loop-store";
+import { durableFileLoopStore } from "./orchestration/loop-store";
 import {
   buildPairAgentAdapterPlans,
   buildPairAgentTddPlan,
@@ -216,7 +217,6 @@ import {
   renderEscalationSignals,
   selectPrecedingSessionFile,
 } from "./runtime/attempt-escalation";
-import { buildAutonomousLoopRunReceipt } from "./runtime/autonomous-loop-run-receipts";
 import {
   buildChangePackageDeltaArchiveReport,
   type ChangePackageStatus,
@@ -244,11 +244,7 @@ import {
   recordFeedback,
   scanDanglingStops,
 } from "./runtime/forced-stop";
-import {
-  evaluateGitCommandGuard,
-  extractShellCommand,
-  resolveDestructiveGitOverride,
-} from "./runtime/git-command-guard";
+import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
 import {
   buildHarnessTaxonomyCurationReport,
   type HarnessTaxonomySource,
@@ -368,6 +364,7 @@ import {
   UPDATE_CHECK_DISABLE_ENV,
   updateCheckDisabled,
 } from "./setup/update-check";
+import { shellQuote } from "./shared/shell-quote";
 import { scaffoldSkill } from "./skill-engine/scaffold";
 import {
   bucketRecommendations,
@@ -727,11 +724,6 @@ function gitHead(): string | null {
   }
 }
 
-function shellQuote(value: string): string {
-  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
-  return `'${value.replace(/'/g, "'\\''")}'`;
-}
-
 /** review-guard 用: loadChangedFiles を fail-open でラップ (非 git / 一時失敗で委譲を壊さない、IMP-137)。 */
 function safeLoadChangedFiles(repoRoot: string): string[] {
   try {
@@ -967,17 +959,6 @@ function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undef
   return touched;
 }
 
-function readOneShotMarker(path: string): string | null {
-  try {
-    if (!existsSync(path)) return null;
-    const reason = readFileSync(path, "utf8");
-    rmSync(path, { force: true });
-    return reason;
-  } catch {
-    return null;
-  }
-}
-
 function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[] {
   return extractEditTargets({ input: patchText }).map((target) =>
     normalizeRepoRelative(target, repoRoot),
@@ -1122,15 +1103,11 @@ function parseLoopProvider(provider: string): LoopProvider | null {
 }
 
 function loopStoreForRoot(root: string) {
-  return fileLoopStore({
+  return durableFileLoopStore({
     root,
-    readText: (path: string) => {
+    readLegacyText: (path: string) => {
       if (!existsSync(path)) return null;
       return readFileSync(path, "utf8");
-    },
-    writeText: (path: string, content: string) => {
-      mkdirSync(dirname(path), { recursive: true });
-      writeFileSync(path, content, "utf8");
     },
   });
 }
@@ -3588,46 +3565,20 @@ hook
   .command("git-command-guard")
   .description("block destructive git history/worktree operations before shell execution")
   .action(() => {
-    const input = readStrictHookInput();
-    if (input === null) {
+    const rawInput = process.stdin.isTTY ? "" : readStdin();
+    if (!rawInput.trim()) {
       process.stderr.write(
         "[helix-git-command-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
       );
       process.exitCode = 2;
       return;
     }
-    const override = resolveDestructiveGitOverride({
-      env: process.env.HELIX_ALLOW_DESTRUCTIVE_GIT,
-      markerReason: readOneShotMarker(
-        join(process.cwd(), ".helix", "state", "destructive-git-override"),
-      ),
-    });
-    const result = evaluateGitCommandGuard({
-      command: extractShellCommand(input.tool_input),
-      bypass: override.bypass,
-    });
-    if (override.source === "marker") {
-      const auditPath = join(process.cwd(), ".helix", "logs", "destructive-git-overrides.jsonl");
-      try {
-        mkdirSync(dirname(auditPath), { recursive: true });
-        appendFileSync(
-          auditPath,
-          `${JSON.stringify({
-            ts: new Date().toISOString(),
-            command: extractShellCommand(input.tool_input),
-            reason: override.reason,
-            sessionId: (input as { session_id?: string }).session_id ?? "helix-cli",
-          })}\n`,
-        );
-      } catch {
-        // Override audit is best-effort; the explicit marker reason is still required.
-      }
+    const outcome = runGitCommandGuardHook({ repoRoot: process.cwd(), rawInput, env: process.env });
+    if (outcome.message) process.stderr.write(`${outcome.message}\n`);
+    if (outcome.exitCode === 0) {
+      process.stdout.write(`git-command-guard: pass (${outcome.reason ?? "safe-git"})\n`);
     }
-    if (result.message) process.stderr.write(`${result.message}\n`);
-    if (result.decision === "pass") {
-      process.stdout.write(`git-command-guard: pass (${result.reason})\n`);
-    }
-    process.exitCode = result.decision === "block" ? 2 : 0;
+    process.exitCode = outcome.exitCode;
   });
 
 hook
@@ -3635,7 +3586,7 @@ hook
   .description("block edits to foreign uncommitted files (hybrid runtime collision guard)")
   .action(() => {
     // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
-    // 実行本体は dev repo hook (.claude/hooks/work-guard.ts) と共有。fail-open 方針は共有 runner 側。
+    // 実行本体はdev repo hook (.claude/hooks/work-guard.ts)と共有し、入力/transaction failureはfail-closeする。
     const raw = process.stdin.isTTY ? "" : readStdin();
     const outcome = runWorkGuardHook({
       repoRoot: process.cwd(),
@@ -11504,14 +11455,25 @@ team
                 command,
                 args,
               });
-              const ioMode = opts.json ? "ignore" : "inherit";
+              const captureLimitBytes = 1024 * 1024;
+              let captured = Buffer.alloc(0);
+              let observedBytes = 0;
+              let outputTruncated = false;
+              const capture = (chunk: Buffer, destination: NodeJS.WriteStream) => {
+                observedBytes += chunk.length;
+                if (!opts.json) destination.write(chunk);
+                const remaining = captureLimitBytes - captured.length;
+                if (remaining > 0)
+                  captured = Buffer.concat([captured, chunk.subarray(0, remaining)]);
+                if (chunk.length > remaining) outputTruncated = true;
+              };
               const child = spawn(invocation.command, invocation.args, {
                 cwd: repoRoot,
                 env: adapterExecutionEnv(provider, env),
                 // Provider prompts are passed through stdin; argv carries only fixed
                 // command flags so shell metacharacters and tool markup stay inert.
                 // codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。
-                stdio: stdin === undefined ? ioMode : ["pipe", ioMode, ioMode],
+                stdio: stdin === undefined ? ["ignore", "pipe", "pipe"] : ["pipe", "pipe", "pipe"],
                 shell: invocation.shell ?? false,
                 windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
               });
@@ -11519,6 +11481,8 @@ team
                 child.stdin?.write(stdin);
                 child.stdin?.end();
               }
+              child.stdout?.on("data", (chunk: Buffer) => capture(chunk, process.stdout));
+              child.stderr?.on("data", (chunk: Buffer) => capture(chunk, process.stderr));
               let finalized = false;
               const finish = (exitCode: number | null) => {
                 if (finalized) return;
@@ -11544,12 +11508,62 @@ team
                   sessionDeps,
                   "Stop",
                 );
-                resolve({ exitCode });
+                resolve({
+                  exitCode,
+                  output: captured.toString("utf8"),
+                  outputBytes: observedBytes,
+                  outputTruncated,
+                });
               };
               child.on("error", () => finish(null));
               child.on("close", (code) => finish(code));
             }),
         });
+        const receiptDb = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+        try {
+          migrate(receiptDb);
+          receiptDb.exec("BEGIN IMMEDIATE");
+          const insertReceipt = receiptDb.prepare(`INSERT INTO team_member_run_receipts
+            (receipt_id, team_run_id, plan_id, team, member_index, role, engine, provider, model,
+             repository_head, slot_id, exit_code, status, verdict, verdict_status, output_digest,
+             output_bytes, output_truncated, completed_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+          const completedAt = new Date().toISOString();
+          for (const member of execution.executions) {
+            const launch = result.members.find((candidate) => candidate.index === member.index);
+            insertReceipt.run(
+              `${execution.team_run_id}:${member.index}`,
+              execution.team_run_id,
+              opts.plan ?? null,
+              execution.team,
+              member.index,
+              member.role,
+              member.engine,
+              member.provider,
+              launch?.model_selection.model ?? null,
+              gitHead(),
+              member.slot_id,
+              member.exit_code,
+              member.status,
+              member.evidence.verdict,
+              member.evidence.verdict_status,
+              member.evidence.output_digest,
+              member.evidence.output_bytes,
+              member.evidence.output_truncated ? 1 : 0,
+              completedAt,
+            );
+          }
+          receiptDb.exec("COMMIT");
+        } catch (error) {
+          try {
+            receiptDb.exec("ROLLBACK");
+          } catch {
+            // fail-close: preserve the persistence error; rollback is best-effort cleanup.
+          }
+          throw new Error(`team review evidence persistence failed: ${String(error)}`);
+        } finally {
+          receiptDb.close();
+        }
         if (opts.json) process.stdout.write(`${JSON.stringify(execution, null, 2)}\n`);
         else {
           process.stdout.write(

@@ -1,15 +1,81 @@
 // A-120 共通化: lint / vmodel が各自コピペしていた frontmatter / DbC / TS module 判定を単一正本化する。
 // 配置 = src/lint (domain-boundary: lint 内 import と vmodel→lint import は許可)。
-import { basename } from "node:path";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { basename, join } from "node:path";
 import type ts from "typescript";
+import { parse as parseYaml } from "yaml";
 
 /**
- * frontmatter 1 行 `key: value` の value を取り出す。
- * 末尾の YAML inline コメント (` # ...`) は値に含めない (scrum-reverse 版を canonical 採用)。
- * 値なし / key 不在は undefined。
+ * Markdown の先頭 YAML frontmatter 本文を CRLF/LF 共通で抽出する単一正本。
+ * opening/closing delimiter が欠ける入力や文書途中の delimiter は受理しない。
+ */
+export function markdownFrontmatter(content: string): string | null {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  return match?.[1]?.replaceAll("\r\n", "\n") ?? null;
+}
+
+/** frontmatter を plain mapping として読む。invalid YAML / sequence / scalar は null。 */
+export function parseMarkdownFrontmatter(content: string): Record<string, unknown> | null {
+  const raw = markdownFrontmatter(content);
+  if (raw === null) return null;
+  try {
+    const parsed = parseYaml(raw);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export interface LoadedPlanDoc {
+  file: string;
+  content: string;
+}
+
+/** readiness gate 群が共有する canonical PLAN snapshot loader。PLAN-*.md だけを安定順で読む。 */
+export function loadPlanDocs(repoRoot: string = process.cwd()): LoadedPlanDoc[] {
+  const plansDir = join(repoRoot, "docs", "plans");
+  if (!existsSync(plansDir)) return [];
+  return readdirSync(plansDir)
+    .filter((file) => file.startsWith("PLAN-") && file.endsWith(".md"))
+    .sort()
+    .map((file) => ({ file, content: readFileSync(join(plansDir, file), "utf8") }));
+}
+
+/** frontmatter scalar の quote 外にある YAML inline comment を除く。 */
+function stripInlineYamlComment(value: string): string {
+  let quote: '"' | "'" | null = null;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if ((char === '"' || char === "'") && (index === 0 || value[index - 1] !== "\\")) {
+      quote = quote === char ? null : (quote ?? char);
+    } else if (
+      char === "#" &&
+      quote === null &&
+      (index === 0 || /\s/.test(value[index - 1] ?? ""))
+    ) {
+      return value.slice(0, index).trim();
+    }
+  }
+  return value.trim();
+}
+
+/**
+ * frontmatter 1 行 `key: value` の scalar value を取り出す単一正本。
+ * quote 外の inline comment を除き、対になった単一/二重 quote を外す。値なし / key 不在は undefined。
  */
 export function fmValue(content: string, key: string): string | undefined {
-  return content.match(new RegExp(`^${key}:\\s*(.+?)\\s*(?:#.*)?$`, "m"))?.[1]?.trim();
+  const raw = content.match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"))?.[1];
+  if (raw === undefined) return undefined;
+  const withoutComment = stripInlineYamlComment(raw);
+  const quoted = withoutComment.match(/^(["'])([\s\S]*)\1$/);
+  return (quoted?.[2] ?? withoutComment).trim();
+}
+
+/** empty-string contract を持つ legacy caller 用adapter。scalar解釈は fmValue にのみ委ねる。 */
+export function fmValueOrEmpty(content: string, key: string): string {
+  return fmValue(content, key) ?? "";
 }
 
 /**
@@ -270,6 +336,7 @@ export const SOURCE_BOUNDARY_MODULES = [
   "schema",
   "search",
   "security",
+  "shared",
   "setup",
   "skill-engine",
   "skills",
@@ -334,6 +401,7 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlyS
   ]),
   search: EMPTY_BOUNDARY,
   security: EMPTY_BOUNDARY,
+  shared: EMPTY_BOUNDARY,
   setup: EMPTY_BOUNDARY,
   "skill-engine": EMPTY_BOUNDARY,
   skills: EMPTY_BOUNDARY,

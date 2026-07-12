@@ -14,6 +14,7 @@
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { escapeRegExp } from "../shared/string-utils";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..", "..");
@@ -256,10 +257,6 @@ export function checkHelixSetupVersionUpTargetConsistency(docs: {
       .map((match) => `${sourceId}-stale-version-up-target-${match[1]}`),
   );
   return { missing: [...missing, ...stale] };
-}
-
-function escapeRegExp(text: string): string {
-  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 export interface DocConsistencyResult {

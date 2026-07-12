@@ -368,7 +368,7 @@ import {
   loadSemanticFrontierConsistencyInput,
   semanticFrontierConsistencyMessages,
 } from "../lint/semantic-frontier-consistency";
-import { fmValue } from "../lint/shared";
+import { fmValue, parseMarkdownFrontmatter } from "../lint/shared";
 import {
   analyzeSkillAssignments,
   loadSkillAssignmentDocs,
@@ -485,7 +485,12 @@ import {
   type GuardrailDecisionInput,
   inspectGuardrailInvariants,
 } from "../state-db/guardrail-invariants";
-import { type HarnessDb, openHarnessDb } from "../state-db/index";
+import {
+  defaultHarnessDbPath,
+  type HarnessDb,
+  openHarnessDb,
+  openHarnessDbReadOnly,
+} from "../state-db/index";
 import { rowCounts } from "../state-db/migration";
 import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
@@ -527,6 +532,7 @@ import {
 } from "../vscode/extension-manifest";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { collectDoctorCheckRun } from "./check-registry";
+import { doctorFailure, doctorFailureMessage } from "./failure";
 import type { DoctorOptions, DoctorResult } from "./result";
 
 /** I/O・clock 注入 (test 可能)。 */
@@ -1406,9 +1412,10 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
       ],
     };
   } catch (error) {
+    const failure = doctorFailure("digest-inventory", "read_failed", error);
     return {
       ok: false,
-      messages: [`digest-inventory - violation: ${String(error)}`],
+      messages: [doctorFailureMessage(failure)],
     };
   }
 }
@@ -1481,6 +1488,51 @@ export function checkVerifierProviderMismatch(repoRoot: string): {
       ],
       ok: false,
     };
+  }
+}
+
+export function checkTeamReviewReceipts(repoRoot: string): { messages: string[]; ok: boolean } {
+  let db: HarnessDb | undefined;
+  try {
+    db = openHarnessDbReadOnly(defaultHarnessDbPath(repoRoot), { repoRoot });
+    const invalidCompleted = db
+      .prepare(`SELECT COUNT(*) AS n FROM team_member_run_receipts
+        WHERE role IN ('tl','qa','uiux') AND status='completed'
+          AND (exit_code IS NOT 0 OR verdict IS NOT 'pass' OR verdict_status IS NOT 'accepted')`)
+      .get()?.n as number | undefined;
+    const missingCrossWorker = db
+      .prepare(`SELECT COUNT(*) AS n FROM team_member_run_receipts reviewer
+        WHERE reviewer.role IN ('tl','qa','uiux') AND reviewer.status='completed'
+          AND NOT EXISTS (
+            SELECT 1 FROM team_member_run_receipts worker
+            WHERE worker.team_run_id=reviewer.team_run_id
+              AND worker.role NOT IN ('tl','qa','uiux')
+              AND worker.status='completed'
+              AND worker.provider<>reviewer.provider
+              AND worker.repository_head=reviewer.repository_head
+              AND reviewer.repository_head IS NOT NULL
+          )`)
+      .get()?.n as number | undefined;
+    const violations = (invalidCompleted ?? 0) + (missingCrossWorker ?? 0);
+    return {
+      ok: violations === 0,
+      messages: [
+        violations === 0
+          ? "team-review-receipts - OK (completed reviewer receipts are explicit PASS and cross-provider bound)"
+          : `team-review-receipts - violation: invalid_completed=${invalidCompleted ?? 0} missing_cross_worker=${missingCrossWorker ?? 0}`,
+      ],
+    };
+  } catch {
+    return {
+      ok: false,
+      messages: ["team-review-receipts - violation: canonical receipt table could not be read"],
+    };
+  } finally {
+    try {
+      db?.close();
+    } catch {
+      // fail-open: closing a read-only diagnostic handle cannot change the completed check result.
+    }
   }
 }
 
@@ -2060,10 +2112,9 @@ export function checkVscodeExtensionDynamicBinding(
       if (!prebuiltDb) db.close();
     }
   } catch (error) {
+    const failure = doctorFailure("vscode-extension-dynamic-binding", "check_failed", error);
     return {
-      messages: [
-        `vscode-extension-dynamic-binding - violation: VSCode dynamic tree binding could not run (${String(error)})`,
-      ],
+      messages: [doctorFailureMessage(failure)],
       ok: false,
     };
   }
@@ -5475,17 +5526,6 @@ function stringList(value: unknown): string[] {
     : [];
 }
 
-function markdownFrontmatter(text: string): Record<string, unknown> | null {
-  if (!text.startsWith("---\n")) return null;
-  const end = text.indexOf("\n---", 4);
-  if (end === -1) return null;
-  try {
-    return recordValue(parseYaml(text.slice(4, end)));
-  } catch {
-    return null;
-  }
-}
-
 export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const messages: string[] = ["doctor: profile=consumer"];
   const expectedClaudeAgentPaths = CONSUMER_CLAUDE_AGENT_NAMES.map(
@@ -5763,7 +5803,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
 
   const invalidAgentTemplates = expectedClaudeAgentPaths.filter((path) => {
     const text = consumerFile(deps, path) ?? "";
-    const fm = markdownFrontmatter(text);
+    const fm = parseMarkdownFrontmatter(text);
     const expectedName = basename(path, ".md");
     return !(
       fm?.name === expectedName &&
@@ -5786,7 +5826,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   });
   const invalidCommandTemplates = expectedClaudeCommandPaths.filter((path) => {
     const text = consumerFile(deps, path) ?? "";
-    const fm = markdownFrontmatter(text);
+    const fm = parseMarkdownFrontmatter(text);
     return !(
       typeof fm?.description === "string" &&
       fm.description.trim().length > 0 &&
@@ -6191,9 +6231,9 @@ export function checkClosureAuthorityRegistry(repoRoot: string): {
     const result = analyzeClosureAuthorityRegistry(loadClosureAuthorityRegistryLintInput(repoRoot));
     return { messages: closureAuthorityRegistryMessages(result), ok: result.ok };
   } catch (error) {
-    const detail = error instanceof Error ? error.message : "unknown registry error";
+    const failure = doctorFailure("closure-authority-registry", "read_failed", error);
     return {
-      messages: [`closure-authority-registry - violation: strict registry load failed: ${detail}`],
+      messages: [doctorFailureMessage(failure)],
       ok: false,
     };
   }
@@ -6906,6 +6946,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     // fail-open: in-memory 共有 projection の close 失敗は検査結果へ影響しないため無視する
   }
   const verifierProviderMismatch = checkVerifierProviderMismatch(deps.repoRoot);
+  const teamReviewReceipts = checkTeamReviewReceipts(deps.repoRoot);
   const agentModelSsot = checkAgentModelSsot(deps.repoRoot);
   const docConsistency = checkDocConsistency(deps.repoRoot);
   const entityCoverage = checkEntityCoverage(deps.repoRoot);
@@ -7035,6 +7076,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       vmodelZipManifest.ok &&
       vmodelFit.ok &&
       verifierProviderMismatch.ok &&
+      teamReviewReceipts.ok &&
       agentModelSsot.ok &&
       docConsistency.ok &&
       entityCoverage.ok &&
@@ -7165,6 +7207,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...vmodelZipManifest.messages.map((m) => `doctor: ${m}`),
       ...vmodelFit.messages.map((m) => `doctor: ${m}`),
       ...verifierProviderMismatch.messages.map((m) => `doctor: ${m}`),
+      ...teamReviewReceipts.messages.map((m) => `doctor: ${m}`),
       ...agentModelSsot.messages.map((m) => `doctor: ${m}`),
       ...docConsistency.messages.map((m) => `doctor: ${m}`),
       ...entityCoverage.messages.map((m) => `doctor: ${m}`),

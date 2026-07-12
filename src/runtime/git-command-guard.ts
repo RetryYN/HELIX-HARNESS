@@ -27,12 +27,13 @@ export interface GitCommandGuardResult {
   message: string;
 }
 
-function shellTokens(command: string): string[] {
+function shellTokens(command: string): { tokens: string[]; complete: boolean } {
   const tokens: string[] = [];
   let current = "";
   let quote: "'" | '"' | null = null;
   let escaped = false;
-  for (const ch of command) {
+  for (let index = 0; index < command.length; index += 1) {
+    const ch = command[index] ?? "";
     if (escaped) {
       current += ch;
       escaped = false;
@@ -55,22 +56,59 @@ function shellTokens(command: string): string[] {
         tokens.push(current);
         current = "";
       }
+      if (ch === "\n" || ch === "\r") tokens.push(";");
+      continue;
+    }
+    if (quote === null && (ch === ";" || ch === "|" || ch === "&" || ch === "(" || ch === ")")) {
+      if (current) {
+        tokens.push(current);
+        current = "";
+      }
+      const next = command[index + 1];
+      if ((ch === "|" || ch === "&") && next === ch) {
+        tokens.push(`${ch}${ch}`);
+        index += 1;
+      } else {
+        tokens.push(ch);
+      }
       continue;
     }
     current += ch;
   }
   if (current) tokens.push(current);
-  return tokens;
+  return { tokens, complete: quote === null && !escaped };
 }
 
 function gitSlices(tokens: string[]): string[][] {
   const slices: string[][] = [];
   for (let i = 0; i < tokens.length; i++) {
     if (tokens[i] !== "git") continue;
+    let commandStart = i === 0 || /^(?:&&|\|\||;|\||\()$/.test(tokens[i - 1] ?? "");
+    if (!commandStart) {
+      let start = i - 1;
+      while (start > 0 && !/^(?:&&|\|\||;|\||\()$/.test(tokens[start - 1] ?? "")) start -= 1;
+      const prefix = tokens.slice(start, i);
+      if (prefix[0] === "command") {
+        prefix.shift();
+        if (prefix.at(0) === "--") prefix.shift();
+      }
+      if (prefix[0] === "env") {
+        prefix.shift();
+        while (prefix[0]?.startsWith("-")) {
+          const option = prefix.shift();
+          if ((option === "-u" || option === "--unset") && prefix.length > 0) prefix.shift();
+        }
+      }
+      while (prefix.length > 0 && /^[A-Za-z_][A-Za-z0-9_]*=.*/.test(prefix[0] ?? "")) {
+        prefix.shift();
+      }
+      commandStart = prefix.length === 0;
+    }
+    if (!commandStart) continue;
     const slice: string[] = [];
     for (let j = i + 1; j < tokens.length; j++) {
       const token = tokens[j] ?? "";
-      if (/^(?:&&|\|\||;|\|)$/.test(token)) break;
+      if (/^(?:&&|\|\||;|\||\))$/.test(token)) break;
       slice.push(token);
     }
     slices.push(slice);
@@ -80,7 +118,7 @@ function gitSlices(tokens: string[]): string[][] {
 
 function nestedShellCommands(command: string): string[] {
   const nested: string[] = [];
-  const tokens = shellTokens(command);
+  const tokens = shellTokens(command).tokens;
   for (let i = 0; i < tokens.length; i += 1) {
     const token = tokens[i] ?? "";
     const executable = token.split(/[\\/]/).at(-1) ?? token;
@@ -100,16 +138,26 @@ function nestedShellCommands(command: string): string[] {
     });
     if (!found) break;
   }
+  for (const match of command.matchAll(/`([^`]*)`/g)) {
+    if (match[1]) nested.push(match[1]);
+  }
   return nested;
 }
 
-function commandGitSlices(command: string, depth = 0): string[][] {
-  if (depth > 4) return [];
-  const direct = gitSlices(shellTokens(command));
-  const nested = nestedShellCommands(command).flatMap((payload) =>
+function commandGitSlices(command: string, depth = 0): { slices: string[][]; complete: boolean } {
+  if (depth > 4) return { slices: [], complete: false };
+  const tokenized = shellTokens(command);
+  const direct = gitSlices(tokenized.tokens);
+  const nestedResults = nestedShellCommands(command).map((payload) =>
     commandGitSlices(payload, depth + 1),
   );
-  return [...direct, ...nested];
+  return {
+    slices: [...direct, ...nestedResults.flatMap((result) => result.slices)],
+    complete:
+      tokenized.complete &&
+      (command.match(/`/g)?.length ?? 0) % 2 === 0 &&
+      nestedResults.every((result) => result.complete),
+  };
 }
 
 function withoutGlobalOptions(args: string[]): string[] {
@@ -120,12 +168,20 @@ function withoutGlobalOptions(args: string[]): string[] {
       out.splice(0, 2);
       continue;
     }
+    if (head.startsWith("-c") && head.length > 2) {
+      out.shift();
+      continue;
+    }
     if (head.startsWith("--git-dir=") || head.startsWith("--work-tree=")) {
       out.shift();
       continue;
     }
     if (head === "--git-dir" || head === "--work-tree") {
       out.splice(0, 2);
+      continue;
+    }
+    if (["--no-pager", "--paginate", "--no-replace-objects", "--bare"].includes(head)) {
+      out.shift();
       continue;
     }
     break;
@@ -182,6 +238,29 @@ function destructiveOperation(args: string[]): string | null {
     if (isStagedOnlyRestore(rest)) return null;
     return "git restore";
   }
+  if (sub === "clean") {
+    const dryRun = rest.some((arg) => arg === "-n" || arg === "--dry-run" || /^-[^-]*n/.test(arg));
+    const force = rest.some(
+      (arg) =>
+        arg === "--force" || (arg.startsWith("-") && !arg.startsWith("--") && arg.includes("f")),
+    );
+    if (force && !dryRun) return "git clean --force";
+    return null;
+  }
+  if (
+    sub === "branch" &&
+    (rest.some(
+      (arg) => arg === "-D" || (/^-[^-]+$/.test(arg) && arg.includes("d") && arg.includes("f")),
+    ) ||
+      (rest.some((arg) => arg === "-d" || arg === "--delete") &&
+        rest.some((arg) => arg === "-f" || arg === "--force")))
+  ) {
+    return "git branch --delete --force";
+  }
+  if (sub === "stash") {
+    const action = rest.find((arg) => !arg.startsWith("-"));
+    if (action === "drop" || action === "clear") return `git stash ${action}`;
+  }
   return null;
 }
 
@@ -200,7 +279,17 @@ export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommand
   const command = input.command.trim();
   if (!command) return { decision: "pass", reason: "no-command", message: "" };
   if (input.bypass) return { decision: "pass", reason: "bypass", message: "" };
-  const slices = commandGitSlices(command);
+  const parsed = commandGitSlices(command);
+  if (!parsed.complete) {
+    return {
+      decision: "block",
+      reason: "destructive-git",
+      destructiveOperation: "indeterminate shell command",
+      message:
+        "[helix-git-command-guard] BLOCK: shell command を完全に解析できないため fail-close しました。",
+    };
+  }
+  const slices = parsed.slices;
   if (slices.length === 0) return { decision: "pass", reason: "non-git", message: "" };
   for (const slice of slices) {
     const op = destructiveOperation(slice);

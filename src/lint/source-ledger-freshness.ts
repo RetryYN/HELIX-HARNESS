@@ -1,3 +1,5 @@
+import { escapeRegExp } from "../shared/string-utils";
+
 export const SOURCE_LEDGER_MAX_AGE_DAYS = 90;
 
 export interface VerificationSourceMetadataRow {
@@ -150,8 +152,4 @@ function isPlaceholderSourceMetadata(value: string): boolean {
   if (!trimmed || /^(TBD|TODO|N\/A|-|placeholder)$/i.test(trimmed)) return true;
   if (/^<[^>]+>$/.test(trimmed)) return true;
   return /\b(record later|to be recorded|fill in|must cite|cite before approval)\b/i.test(trimmed);
-}
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }

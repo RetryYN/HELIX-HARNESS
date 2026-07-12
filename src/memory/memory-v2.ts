@@ -12,6 +12,7 @@ import {
 } from "node:fs";
 import { dirname, join } from "node:path";
 import { isSecretLike } from "../security/secret-policy";
+import { isRecord } from "../shared/value-guards";
 import { type HarnessDb, openHarnessDb } from "../state-db";
 
 export const MEMORY_V2_SCHEMA_VERSION = 2 as const;
@@ -977,8 +978,4 @@ function isIsoUtc(value: string): boolean {
   if (!Number.isFinite(parsed)) return false;
   const canonical = new Date(parsed).toISOString();
   return value === canonical || value === canonical.replace(".000Z", "Z");
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

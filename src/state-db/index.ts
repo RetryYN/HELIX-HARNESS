@@ -89,13 +89,27 @@ function openNativeReadOnly(path: string, driver: "bun" | "node"): NativeDatabas
   return new DatabaseSync(path, { readOnly: true });
 }
 
-function applyConnectionPragmas(native: NativeDatabase, path: string): void {
+function applyConnectionPragmas(
+  native: NativeDatabase,
+  path: string,
+  options: { skipPersistentPragmas?: boolean } = {},
+): void {
   native.exec("PRAGMA busy_timeout = 5000");
-  if (path !== ":memory:") {
+  if (path !== ":memory:" && !options.skipPersistentPragmas) {
     // WAL allows read-only status/doctor probes to keep seeing the last committed
     // projection while a rebuild transaction is in progress.
-    native.exec("PRAGMA journal_mode = WAL");
-    native.exec("PRAGMA synchronous = NORMAL");
+    const journal = native.prepare("PRAGMA journal_mode").get() as
+      | { journal_mode?: string }
+      | undefined;
+    if (String(journal?.journal_mode ?? "").toLowerCase() !== "wal") {
+      native.exec("PRAGMA journal_mode = WAL");
+    }
+    const synchronous = native.prepare("PRAGMA synchronous").get() as
+      | { synchronous?: number }
+      | undefined;
+    if (Number(synchronous?.synchronous ?? -1) !== 1) {
+      native.exec("PRAGMA synchronous = NORMAL");
+    }
   }
   native.exec("PRAGMA foreign_keys = ON");
 }
@@ -135,14 +149,17 @@ export function defaultHarnessDbPath(repoRoot: string = process.cwd()): string {
  * harness.db を開く。`:memory:` または `.helix/` 配下のみ許可。
  * repoRoot は path guard 用 (`:memory:` 時は無視)。
  */
-export function openHarnessDb(path: string, options: { repoRoot?: string } = {}): HarnessDb {
+export function openHarnessDb(
+  path: string,
+  options: { repoRoot?: string; skipPersistentPragmas?: boolean } = {},
+): HarnessDb {
   const repoRoot = options.repoRoot ?? process.cwd();
   assertWithinHelixStateDir(path, repoRoot);
   if (path !== ":memory:") mkdirSync(dirname(resolve(repoRoot, path)), { recursive: true });
   const driver = currentDriver();
   const native = openNative(path, driver);
   // 参照整合・外部キー強制 + concurrent doctor/status probes と rebuild の競合緩和。
-  applyConnectionPragmas(native, path);
+  applyConnectionPragmas(native, path, options);
   return {
     path,
     driver,

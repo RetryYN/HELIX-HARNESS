@@ -32,7 +32,11 @@ import {
   loadRoadmaps,
   PARKED_BANDS,
 } from "../lint/roadmap-registry";
-import { normalizePath } from "../lint/shared";
+import {
+  fmValueOrEmpty as frontmatterValue,
+  markdownFrontmatter,
+  normalizePath,
+} from "../lint/shared";
 import {
   catalogVerificationProfiles,
   recommendVerificationProfiles,
@@ -55,6 +59,7 @@ import {
   type RuntimeVerificationLogEvent,
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
+import { nowIso } from "../shared/time-utils";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
@@ -293,10 +298,6 @@ function tableDef(name: string): TableDef {
   return table;
 }
 
-function nowIso(): string {
-  return new Date().toISOString();
-}
-
 function stableId(prefix: string, value: string): string {
   return `${prefix}:${value.replace(/[^A-Za-z0-9._:-]+/g, "-")}`;
 }
@@ -457,38 +458,8 @@ function markdownFiles(dir: string): string[] {
     .sort();
 }
 
-function frontmatterValue(content: string, key: string): string {
-  const match = content.match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"));
-  return match ? unquoteFrontmatterValue(stripInlineYamlComment(match[1])) : "";
-}
-
-function stripInlineYamlComment(value: string): string {
-  let quote: '"' | "'" | null = null;
-  for (let index = 0; index < value.length; index += 1) {
-    const char = value[index];
-    if ((char === '"' || char === "'") && (index === 0 || value[index - 1] !== "\\")) {
-      quote = quote === char ? null : (quote ?? char);
-      continue;
-    }
-    if (char === "#" && quote === null && (index === 0 || /\s/.test(value[index - 1] ?? ""))) {
-      return value.slice(0, index).trim();
-    }
-  }
-  return value.trim();
-}
-
-function unquoteFrontmatterValue(value: string): string {
-  return value.replace(/^"|"$/g, "").replace(/^'|'$/g, "").trim();
-}
-
-function markdownFrontmatter(content: string): string {
-  if (!content.startsWith("---")) return "";
-  const end = content.indexOf("\n---", 3);
-  return end < 0 ? "" : content.slice(3, end);
-}
-
 function metadataFromContent(path: string, content: string): Record<string, unknown> {
-  const raw = /\.md$/i.test(path) ? markdownFrontmatter(content) : content;
+  const raw = /\.md$/i.test(path) ? (markdownFrontmatter(content) ?? "") : content;
   if (!raw.trim()) return {};
   const parsed = parseYaml(raw);
   return parsed && typeof parsed === "object" && !Array.isArray(parsed)
@@ -564,7 +535,7 @@ function workflowModesForPlan(planId: string, kind: string, content: string): st
     addUniqueMode(modes, "Add-feature");
   }
 
-  const frontmatter = markdownFrontmatter(content);
+  const frontmatter = markdownFrontmatter(content) ?? "";
   const modeDocRegex = /docs\/process\/modes\/[a-z-]+\.md/g;
   for (const match of frontmatter.matchAll(modeDocRegex)) {
     addUniqueMode(modes, modeFromProcessModeDoc(match[0]));

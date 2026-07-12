@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
@@ -11,6 +11,7 @@ import {
   allowedOutcomeSetViolation,
   fmValue,
   isClosedPlanStatus,
+  loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
@@ -147,7 +148,6 @@ function parsePlan(file: string, content: string): CutoverReadinessPlan {
 }
 
 export function loadCutoverReadinessInput(repoRoot = process.cwd()): CutoverReadinessInput {
-  const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
   const renameCutoverPlan = buildIdentifierRenameCutoverPlan(
     repoRoot,
@@ -164,9 +164,7 @@ export function loadCutoverReadinessInput(repoRoot = process.cwd()): CutoverRead
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
     currentCutoverSnapshotId,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
-    plans: readdirSync(plansDir)
-      .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
-      .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
+    plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
   };
 }
 

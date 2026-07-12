@@ -3,16 +3,20 @@
  * `helix hook work-guard` (PLAN-L7-433 C1) が共有する orchestration runner。
  *
  * 判定純関数は work-guard.ts。ここは stdin JSON の解釈、git status / session log の収集、
- * override marker の one-shot 消費と audit を担う。方針は hook 側 docstring と同一:
- * 内部エラー (git 失敗 / parse 失敗 / state 不明) は **fail-open** (exit 0)、block は
- * 「衝突を確実に検知できた時」のみ。
+ * override marker のone-shot消費とauditを担う。入力解析、git、state、transactionを検証できない場合は
+ * fail-closeし、adapterが例外をpassへ縮退させない。
  */
 import { execFileSync } from "node:child_process";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { existsSync, readFileSync, rmSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { defaultHarnessDbPath, openHarnessDb } from "../state-db";
+import { migrate, SCHEMA_VERSION } from "../state-db/migration";
+import { createGuardOverrideAuditPort, guardOverrideDigest } from "./git-command-guard-hook";
+import { commitOverrideUse } from "./guard-override-transaction";
 import {
   evaluateWorkGuard,
   extractEditTargets,
+  extractShellWriteTargets,
   normalizeRepoRelative,
   resolveForeignEditOverride,
   type WorkGuardResult,
@@ -66,32 +70,6 @@ function readOverrideMarker(repoRoot: string): string | null {
   }
 }
 
-/** marker 経由 override を durable log へ追記 (silent bypass を許さない = 証跡を残す)。 */
-function auditOverride(
-  repoRoot: string,
-  entry: { target: string; reason: string; sessionId: string },
-): void {
-  try {
-    const auditPath = join(repoRoot, ".helix", "logs", "foreign-edit-overrides.jsonl");
-    mkdirSync(dirname(auditPath), { recursive: true });
-    appendFileSync(auditPath, `${JSON.stringify({ ts: new Date().toISOString(), ...entry })}\n`);
-  } catch {
-    // audit 失敗は override 自体を妨げない (fail-open)。
-  }
-}
-
-/**
- * marker を one-shot 消費する (使用後に削除)。stale marker が以後の foreign edit を
- * 恒久バイパスし続けるのを防ぐ。次の foreign 編集には新しい理由 marker が要る。
- */
-function consumeOverrideMarker(repoRoot: string): void {
-  try {
-    rmSync(join(repoRoot, ".helix", "state", "foreign-edit-override"), { force: true });
-  } catch {
-    // 削除失敗は block 判断に影響させない (fail-open)。audit は残る。
-  }
-}
-
 /**
  * work-guard hook を 1 回評価する。rawInput は hook stdin の生テキスト。
  * fail-open: 検証不能 (stdin/JSON/git/state) は exit 0。block は衝突を確証できた時のみ。
@@ -105,16 +83,29 @@ export function runWorkGuardHook(opts: {
 }): WorkGuardHookOutcome {
   const env = opts.env ?? process.env;
   let input: { tool_input?: unknown; session_id?: string };
+  if (!opts.rawInput.trim()) {
+    return { exitCode: 2, message: "[helix-work-guard] BLOCK: empty hook input" };
+  }
   try {
     input = JSON.parse(opts.rawInput || "{}");
   } catch {
-    return { exitCode: 0 };
+    return { exitCode: 2, message: "[helix-work-guard] BLOCK: invalid hook input" };
   }
   try {
     // apply_patch は複数ファイルを 1 patch で編集しうる。全対象を評価し、1 つでも foreign なら block。
-    const targets = extractEditTargets(input.tool_input)
+    const editTargets = extractEditTargets(input.tool_input);
+    const command =
+      input.tool_input && typeof input.tool_input === "object"
+        ? String(
+            (input.tool_input as Record<string, unknown>).command ??
+              (input.tool_input as Record<string, unknown>).cmd ??
+              "",
+          )
+        : "";
+    const targets = (editTargets.length > 0 ? editTargets : extractShellWriteTargets(command))
       .map((t) => normalizeRepoRelative(t, opts.repoRoot))
       .filter((t) => t.length > 0);
+    if (targets.length === 0) return { exitCode: 0 };
     const override = resolveForeignEditOverride({
       env: env.HELIX_ALLOW_FOREIGN_EDIT,
       markerReason: readOverrideMarker(opts.repoRoot),
@@ -122,45 +113,85 @@ export function runWorkGuardHook(opts: {
     const uncommitted = gitUncommittedFiles(opts.repoRoot);
     const touched = sessionTouchedFiles(opts.repoRoot, input.session_id ?? "unknown");
     let blocked: WorkGuardResult | null = null;
-    let wouldBlock = false;
     for (const target of targets) {
-      if (
-        evaluateWorkGuard({
-          targetPath: target,
-          uncommittedFiles: uncommitted,
-          sessionTouchedFiles: touched,
-          bypass: false,
-        }).decision === "block"
-      ) {
-        wouldBlock = true;
-      }
       const result = evaluateWorkGuard({
         targetPath: target,
         uncommittedFiles: uncommitted,
         sessionTouchedFiles: touched,
-        bypass: override.bypass,
+        bypass: false,
       });
       if (result.decision === "block") {
         blocked = result;
         break;
       }
     }
-    if (override.source === "marker" && wouldBlock) {
-      // agent-accessible override は silent にせず durable に audit する (証跡を残す)。
-      auditOverride(opts.repoRoot, {
-        target: targets.join(", "),
-        reason: override.reason,
-        sessionId: input.session_id ?? "unknown",
+    if (!blocked) return { exitCode: 0 };
+    if (override.source === "env") {
+      const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
+        repoRoot: opts.repoRoot,
+        skipPersistentPragmas: true,
       });
-      // 使用したら marker を消費 (one-shot)。残置による恒久バイパスを防ぐ。
-      consumeOverrideMarker(opts.repoRoot);
+      try {
+        if (db.userVersion() < SCHEMA_VERSION) migrate(db);
+        const transaction = commitOverrideUse({
+          nonce: guardOverrideDigest(
+            `env:foreign_edit:${input.session_id ?? "unknown"}:${guardOverrideDigest(targets.join("\n"))}`,
+          ),
+          reason: override.reason,
+          classification: {
+            guardKind: "foreign_edit",
+            operationClass: "foreign uncommitted edit",
+            subjectDigest: guardOverrideDigest(targets.join("\n")),
+          },
+          audit: createGuardOverrideAuditPort(db),
+          marker: { consume: () => true },
+        });
+        if (transaction.status === "allowed") return { exitCode: 0 };
+        return { exitCode: 2, message: `${blocked.message} override=${transaction.status}` };
+      } finally {
+        db.close();
+      }
     }
-    if (blocked) {
-      return { exitCode: 2, message: blocked.message };
+    if (override.source !== "marker") return { exitCode: 2, message: blocked.message };
+    const markerPath = join(opts.repoRoot, ".helix", "state", "foreign-edit-override");
+    const markerStat = statSync(markerPath);
+    const nonce = guardOverrideDigest(
+      `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${override.reason}`,
+    );
+    const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
+      repoRoot: opts.repoRoot,
+      skipPersistentPragmas: true,
+    });
+    try {
+      if (db.userVersion() < SCHEMA_VERSION) migrate(db);
+      const transaction = commitOverrideUse({
+        nonce,
+        reason: override.reason,
+        classification: {
+          guardKind: "foreign_edit",
+          operationClass: "foreign uncommitted edit",
+          subjectDigest: guardOverrideDigest(targets.join("\n")),
+        },
+        audit: createGuardOverrideAuditPort(db),
+        marker: {
+          consume(expectedNonce) {
+            const current = readFileSync(markerPath, "utf8");
+            const currentStat = statSync(markerPath);
+            const actual = guardOverrideDigest(
+              `${currentStat.dev}:${currentStat.ino}:${currentStat.mtimeMs}:${current.trim()}`,
+            );
+            if (actual !== expectedNonce) return false;
+            rmSync(markerPath);
+            return !existsSync(markerPath);
+          },
+        },
+      });
+      if (transaction.status === "allowed") return { exitCode: 0 };
+      return { exitCode: 2, message: `${blocked.message} override=${transaction.status}` };
+    } finally {
+      db.close();
     }
-    return { exitCode: 0 };
   } catch {
-    // git 不在 / 権限 / その他 I/O 失敗 → ガードを諦めて通す (作業を止めない)。
-    return { exitCode: 0 };
+    return { exitCode: 2, message: "[helix-work-guard] BLOCK: guard transaction failed" };
   }
 }

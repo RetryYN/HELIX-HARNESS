@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadChangedFiles } from "./change-impact";
-import { normalizePath } from "./shared";
+import { markdownFrontmatter, normalizePath } from "./shared";
 
 export type BranchKind =
   | "feature"
@@ -181,11 +181,6 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
     findings,
     ok: !findings.some((f) => f.severity === "error"),
   };
-}
-
-function markdownFrontmatter(content: string): string | null {
-  const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  return m ? m[1] : null;
 }
 
 export function loadPlanDoc(repoRoot: string, file: string): BranchPlanDoc | null {

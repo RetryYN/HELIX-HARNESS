@@ -524,3 +524,21 @@ IMP-140: 15 screens (PM/HM/GD) と FR/BR→screen trace は `screen-list.md` / `
 - すべての `screen_trace.screen_id` は `screens.screen_id` を参照する (orphan trace edge なし)。
 - src/web (Phase B) までは `screens.implemented=0` とする。変更には NFR-08 implementation-truthfulness evidence が必要である。
 - Source of truth は docs のままである。この projection は `helix db rebuild` で deterministic に rebuild される derived read model であり、別 authoring surface は持たない。
+
+### §9.9 チームメンバーレビュー証跡 (PLAN-L7-444)
+
+| table | primary key | 必須列 | 目的 |
+|---|---|---|---|
+| `team_member_run_receipts` | `receipt_id` | `team_run_id`, `plan_id`, `team`, `member_index`, `role`, `engine`, `provider`, `model`, `repository_head`, `slot_id`, `exit_code`, `status`, `verdict`, `verdict_status`, `output_digest`, `output_bytes`, `output_truncated`, `completed_at` | `helix team run --execute` のmember単位の物理実行とreview判定を同一runへ束縛する。 |
+
+必須 indexes:
+
+- unique `idx_team_member_receipts_run_member(team_run_id, member_index)`。
+- `idx_team_member_receipts_plan_completed(plan_id, completed_at)`。
+
+不変条件:
+
+- receiptはappend-onlyとし、`UPDATE` / `DELETE`をtriggerで拒否する。
+- raw provider stdout/stderr、secret、PII、credentialは保存しない。保存可能なのはSHA-256 digest、観測byte数、truncation、strict parserで正規化したverdictだけである。
+- reviewer roleは`exit_code=0`かつ`verdict=pass`かつ`verdict_status=accepted`の場合だけ`status=completed`になれる。
+- 同一`team_run_id`のworker/reviewer providerが異なることとrepository HEAD bindingを、cross-runtime review evidence採用時に検査する。

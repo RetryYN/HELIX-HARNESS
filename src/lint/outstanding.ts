@@ -20,11 +20,13 @@
  * placeholder-deps / shared を再利用するため解析層 (src/lint) に置く (runtime→lint は coding-rules の
  * module-boundary 違反ゆえ、消費側 CLI が lint を import する形にする)。
  */
+
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { frontmatterSchema } from "../schema/frontmatter";
+import { deepFreeze, isRecord } from "../shared/value-guards";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
 import {
@@ -1096,12 +1098,32 @@ function consumerSetupBoundaryPlanRow(repoRoot: string): OutstandingPlanRow | nu
   };
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+const outstandingRunCache = new Map<string, OutstandingWork>();
+let outstandingRunCacheClearScheduled = false;
+
+function scheduleOutstandingRunCacheClear(): void {
+  if (outstandingRunCacheClearScheduled) return;
+  outstandingRunCacheClearScheduled = true;
+  queueMicrotask(() => {
+    outstandingRunCache.clear();
+    outstandingRunCacheClearScheduled = false;
+  });
 }
 
-/** repo から outstanding work を集計する (I/O 失敗は fail-open でゼロ寄せ、informational surface)。 */
+/** test/明示run境界用。通常はmicrotask境界で自動clearされる。 */
+export function clearOutstandingWorkRunCache(): void {
+  outstandingRunCache.clear();
+}
+
+/**
+ * repo から outstanding work を集計する。同一同期run内はrepoRoot単位でsnapshotを共有し、
+ * microtask境界で破棄するため次command/非同期filesystem更新へstale値を持ち越さない。
+ * I/O 失敗は従来どおりfail-openでゼロ寄せする。
+ */
 export function computeOutstandingWork(repoRoot: string): OutstandingWork {
+  const cacheKey = resolve(repoRoot);
+  const cached = outstandingRunCache.get(cacheKey);
+  if (cached) return cached;
   const plans = loadOutstandingPlanRows(repoRoot);
   let openDefers = 0;
   try {
@@ -1109,7 +1131,10 @@ export function computeOutstandingWork(repoRoot: string): OutstandingWork {
   } catch {
     openDefers = 0;
   }
-  return analyzeOutstandingWork(plans, openDefers);
+  const result = deepFreeze(analyzeOutstandingWork(plans, openDefers)) as OutstandingWork;
+  outstandingRunCache.set(cacheKey, result);
+  scheduleOutstandingRunCacheClear();
+  return result;
 }
 
 /** status text / doctor 向け 1 行サマリ。 */

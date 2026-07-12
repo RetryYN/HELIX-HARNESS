@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { uniqueSorted } from "../shared/collection-utils";
 import { loadChangedFiles } from "./change-impact";
 import {
   expectedVerificationSourceLedgerBinding,
@@ -342,10 +343,6 @@ export function inspectMcpProfile(
           .filter((check) => !check.ok && !check.name.endsWith(":activation"))
           .map((check) => check.message),
   };
-}
-
-function uniqueSorted<T extends string>(values: T[]): T[] {
-  return [...new Set(values)].sort();
 }
 
 const RIGHT_ARM_GATES: VerificationGate[] = ["G8", "G9", "G10", "G11", "G12", "G13", "G14"];

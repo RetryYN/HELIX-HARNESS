@@ -5,8 +5,11 @@ export type ActivePlanSelection =
   | { ok: true; planId: string }
   | { ok: false; reason: "empty" | "unknown"; candidates: string[] };
 
-/** 修正適用watermark。以前の曖昧orphanはraw保持し、以後の新規orphanだけをhard failする。 */
-export const ACTIVE_PLAN_VALIDATION_ENFORCED_AT = "2026-07-11T19:25:50.062Z";
+/**
+ * 修正適用 watermark。validation 最終 green 前に起動済みだった旧 writer の最終汚染行
+ * (2026-07-11T20:08:47.791Z) までは raw 保持し、その直後以降の新規 orphan だけを hard fail する。
+ */
+export const ACTIVE_PLAN_VALIDATION_ENFORCED_AT = "2026-07-11T20:08:47.792Z";
 
 /** PLAN-L7-427: canonical PLAN IDのexact matchだけをcurrent-planへ書ける。 */
 export function selectActivePlanId(

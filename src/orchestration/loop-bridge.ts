@@ -192,8 +192,11 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
         );
       }
       const execInput: ExecAdapterInput = { provider, purpose: "worker", role, state, plan };
-      const result = await execAdapter(execInput);
-      assertAdapterSucceeded(execInput, result);
+      await input.store.runSideEffect(state, "worker", async () => {
+        const result = await execAdapter(execInput);
+        assertAdapterSucceeded(execInput, result);
+        return null;
+      });
     },
     runVerifier: async (provider: Provider, state: LoopState) => {
       const role = adapterRole(provider, "verifier", input);
@@ -211,8 +214,11 @@ export function nodeTickDeps(input: NodeTickDepsInput): TickDeps {
         );
       }
       const execInput: ExecAdapterInput = { provider, purpose: "verifier", role, state, plan };
-      const result = await execAdapter(execInput);
-      return interpretVerifierVerdict(result);
+      const verdict = await input.store.runSideEffect(state, "verifier", async () => {
+        const result = await execAdapter(execInput);
+        return interpretVerifierVerdict(result);
+      });
+      return verdict ?? "pending";
     },
     recordIteration: (record) => input.store.recordIteration(record),
   };

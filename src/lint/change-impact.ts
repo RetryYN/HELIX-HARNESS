@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { uniqueSorted } from "../shared/collection-utils";
 import type { DependencyDriftResult } from "./dependency-drift";
 import { fmValue } from "./shared";
 
@@ -104,10 +105,6 @@ function sourceModule(path: string): string | null {
   const first = parts[1];
   if (first.endsWith(".ts") || first.endsWith(".tsx")) return first.replace(/\.(ts|tsx)$/, "");
   return first;
-}
-
-function uniqueSorted(values: string[]): string[] {
-  return [...new Set(values)].sort();
 }
 
 const L7_SOURCE_PLAN_KINDS = new Set(["impl", "add-impl", "refactor", "retrofit", "troubleshoot"]);

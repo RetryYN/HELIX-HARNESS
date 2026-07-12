@@ -315,6 +315,15 @@ fail-close する。
 | U-L1L2-001..006 | `analyzeL1L2Consistency` / `loadL1L2ConsistencyInput` / `l1L2ConsistencyMessages` / `runDoctor` | [l1-l2-consistency L6 addendum](../../design/harness/L6-function-design/l1-l2-consistency.md) の oracle。L1 `screen-requirements.md` と L2 `screen-list.md` の画面 ID 双方向被覆、screen-list 全画面の `ui-element.md` 固有行、`screen-flow.md` / `wireframe.md` / `ui-element.md` の dangling screen ID、`wireframe.md` frontmatter `pair_artifact` を fail-close で検査する。IMP-039 self-pair と G2 PASS 済み Low-Fi 縮約は充足扱いで、現行 live repo 15 画面が green であることを固定する。doctor は `l1-l2-consistency - OK` / `violation` を hard gate に出す。 |
 | U-SETUP-037 | `runHelixProjectSetup` / `bootstrapProjectPackageLockfile` | fresh consumer repo で `helix setup project` を wet run した場合、`package.json` と `bun.lock` を生成し、`bun install --lockfile-only` を package root で実行する。生成 `package.json` は `scripts.helix="helix"`、`scripts.typecheck="bun run helix status --json"`、`scripts.test="bun run helix completion review-bundle --json"`、`devDependencies.helix=github:RetryYN/HELIX-HARNESS`、`devDependencies.typescript=^5.6.3`、`private=true` を持つ。`consumerReadiness.ok=true`、`cliResolution.packageScriptAvailable=true`、`postSetupWorkflow.nextRoute=ready` を返し、VSCode task / CI が package-local `bun run helix ...` を実行できる surface を持たない fresh repo を ready にしない。 |
 | U-SETUP-038 | `mergeConsumerPackageJson` / `bootstrapProjectPackageLockfile` | brownfield consumer repo で既存 `package.json` に必須 script または dependency を merge した場合、既存 `bun.lock` があっても `bun install --lockfile-only` を実行して lockfile を更新する。既存 script は上書きせず、欠落している `typecheck` / `test`、`devDependencies.helix`、`devDependencies.typescript` を追加する。`importReport.mode=brownfield` だが mergeable package surface のみなら `requiresReview=false` / `nextRoute=ready` とし、stale lockfile のまま `bun install --frozen-lockfile` が落ちる状態を consumer readiness green にしない。 |
+| U-SETUP-040 | `helix hook work-guard` | 実git fixtureでforeign uncommitted targetはexit 2、clean targetはexit 0となり、配布CLI経路がshared work-guard判定へ実到達する。 |
+| U-SETUP-041 | consumer Claude/Codex hook templates / `helix hook --help` | 両templateが宣言する全 `helix hook <subcommand>` がCLI helpに実在する。command文字列の構造検査だけで、存在しないsubcommandをready扱いしない。 |
+| U-SETUP-042 | dev `.claude/settings.json` / `AGENT_TOOL_NAMES` / consumer Claude template | agent-guard matcherは三面すべて `Agent|Task` と一致し、Task runtimeだけdev guardを迂回するdriftを許さない。 |
+| U-SQLBUSY-001 | `isSqliteBusy` | Bunの`code=SQLITE_BUSY`とnode:sqliteの`message=database is locked`をともにtrueへ正規化する。 |
+| U-SQLBUSY-002 | `isSqliteBusy` | unrelated Errorと非Error値をfalseにし、busy以外の障害をretry/nullへ隠蔽しない。 |
+| U-SHQUOTE-001 | `shellQuote` | 明示safe alphabetのtokenをbyte同一で保持する。 |
+| U-SHQUOTE-002 | `shellQuote` | 空白、apostrophe、改行、空文字をPOSIX single-tokenとして安全にquoteする。 |
+| U-REPOINFO-001 | `readRepoHeadSha` | 実git fixtureのHEADを40-hexで返し、非repo/path不正はnullとしてsnapshot bindingをfail-close側へ渡す。 |
+| U-REPOINFO-002 | `readPackageVersion` | version文字列をtrimし、空白だけ・不正JSON・欠落をnullにする。 |
 
 ### §1.8 U-HRET（session handover の退役）
 
@@ -728,6 +737,7 @@ fail-close する。
 | U-TEAMRUN-001 | `validateTeamRun` / `buildTeamRunPlan`     | hybrid 以外は fail / hybrid で worker(se) と reviewer(tl/qa) が別 provider なら pass。member prompt header は role/team/engine だけでなく、placement override 後の実効 `provider`、difficulty、model_family、selected_model、reasoning_effort、selection_evidence を含む                                                                          |
 | U-TEAMRUN-002 | `validateTeamRun`                          | 同一 role/provider 重複、worker/reviewer 同一 provider は fail                                                                                                                                                                                                                                                                                    |
 | U-TEAMRUN-003 | `recommendTeamLaunch` + `buildTeamRunPlan` | `team suggest` が返す critical definition は `se -> tl -> qa` の依存順へ正規化され、全 member が high effort selection を持つ                                                                                                                                                                                                                     |
+| U-TEAMRUN-004 | `executeTeamRunPlan` / `helix team run --execute` | provider exit 0でもreviewer出力に明示`VERDICT: PASS`が無ければfail-closeし、`VERDICT: FAIL`もfailedとする。PASS時だけcompleted。JSONはraw本文を含めず、SHA-256 digest、観測byte数、1 MiB上限のtruncated flag、正規化verdictを返す。workerはverdict不要だがreviewer失敗をteam成功へ読み替えない。 |
 | U-ADAPTER-001 | `buildAdapterPlan`                         | `helix codex` / `helix claude` dry-run command plan を mode に基づき available 判定 / Codex provider args は `exec -`、Claude provider args は Claude Code print-mode の `--print --input-format text` / 両 provider とも prompt 本文は `plan.stdin` に保持し argv へ渡さない / `--plan` は harness metadata として保持し provider CLI へ渡さない |
 
 ### §1.22 U-DESC (descent-obligation ledger 由来、PLAN-L6-35 add-design / descent-obligation.md §1-§4、FR-L1-03)
@@ -1237,3 +1247,46 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 |---|---|---|
 | U-OBJAUD-001 | `checkCompletionRow` | G-10行の全`decisionCount` markerをtoken境界付きで数値抽出し、live `outstanding.items.length` 以外、marker欠落、prefix collision、正値とstale値の矛盾併記をfail-closeする。 |
 | U-OBJAUD-001b | `checkCompletionRow` negative variants | `decisionCount=7`を`70`で満たした扱いにせず、正値が残っていても異値markerが1件あれば違反にする。 |
+
+### frontmatter 単一正本（PLAN-L7-433 Q1）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-FMSH-001 | `markdownFrontmatter` / `parseMarkdownFrontmatter` | 同じ mapping の LF/CRLF 入力が同一結果になる。 |
+| U-FMSH-002 | delimiter / YAML shape | delimiter 欠落、途中 delimiter、sequence を `null` にする。 |
+| U-FMSH-003 | production definition inventory | 対象9 module中の extractor 定義が `src/lint/shared.ts` の1件だけである。 |
+
+### readiness PLAN snapshot 共通化（PLAN-L7-433 Q3）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-PLDOC-001 | `loadPlanDocs` | temp repoで `PLAN-*.md` だけをfilename昇順に読み、README/非Markdownを除外する。 |
+
+### frontmatter scalar 単一正本（PLAN-L7-433 Q4）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-FMSC-001 | `fmValue` | quoted scalar、inline comment、quote内hash、不在keyのsnapshotを固定する。 |
+
+### repository identity境界（PLAN-L7-433 Q5）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-REPOINFO-003 | `readRepoHeadSha` | 注入git出力の39/41桁、非hex、大文字を`null`にし、40桁lowercaseのみ受理する。 |
+
+### plain record guard単一正本（PLAN-L7-433 Q8）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-VGUARD-001 | `isRecord` | objectを受理し、array/null/primitiveを拒否する。 |
+| U-VGUARD-002 | production definition inventory | 対象13 module中の`isRecord`定義がsharedの1件だけである。 |
+
+| U-STRUTIL-001 | `escapeRegExp` | 全meta characterを含む入力が生成regexで完全literal matchする。 |
+| U-STRUTIL-002 | production definition inventory | 対象5 module中の`escapeRegExp`定義がsharedの1件だけである。 |
+
+| U-COLUTIL-001 | `uniqueSorted` | 重複を除き、数字・大文字・小文字をcode-unit順に固定する。 |
+| U-COLUTIL-002 | sort意味分離 | locale順を別名契約で保持し、対象5 module中の`uniqueSorted`定義をshared 1件にする。 |
+| U-TIMEUTIL-001 | `nowIso` | UTC ISO-8601 millisecond形式を返し、対象6 module中の定義をshared 1件にする。 |
+| U-FWALK-001 | `walkFiles` | nested temp treeでextension filter、安定順、POSIX relative pathを固定する。 |
+| U-FWALK-002 | recursive inventory caller | 対象7 gateが独自`readdirSync`を持たずshared walkerへ集約されている。 |
+| U-OUTSNAP-001 | `computeOutstandingWork` | 同期2呼出は同一参照、microtask後は再計算した同値別参照になる。 |

@@ -17,6 +17,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, readSync, writeFileSync } from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, sep } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { isRecord } from "../shared/value-guards";
 import {
   BUILTIN_GITHUB_TEMPLATES,
   COMMON_FILES,
@@ -99,10 +100,6 @@ function parseJsonRecord(text: string): Record<string, unknown> | null {
   } catch {
     return null;
   }
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
 function problemMatcherIsEmpty(value: unknown): boolean {

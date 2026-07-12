@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { readPackageVersion } from "../shared/repo-info";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
 import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
@@ -171,12 +172,12 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
     requirementId: "G-01",
     label: "external source marker",
     markers: [
-      "外部ソース HEAD 確認日: 2026-07-10",
+      "外部ソース HEAD 確認日: 2026-07-13",
       "RetryYN/HELIX-HARNESS",
-      "e95850d08cfcf0f3ce811659178c0db7522e24d7",
+      "6624ae45874e1fabdca26fada7327c5544bb1264",
       "RetryYN/HELIX-HARNESS-OS",
       "unpublished",
-      "検証 / 進捗 source basis 再確認日: 2026-07-10",
+      "検証 / 進捗 source basis 再確認日: 2026-07-13",
     ],
   },
   {
@@ -237,7 +238,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     source: "development_repo",
     command: "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
+    observed: "6624ae45874e1fabdca26fada7327c5544bb1264",
     latestOfficialStatus: "main branch reachable",
     sourceStatusDelta: "development repo advanced since previous audit",
     adoptionDecision: "current HELIX-HARNESS source of truth",
@@ -485,17 +486,6 @@ function checkDistributionVersionBinding(
     if (!input.auditText.includes(marker)) {
       violations.push(`G-01: missing distribution version binding marker ${marker}`);
     }
-  }
-}
-
-function readPackageVersion(repoRoot: string): string | null {
-  try {
-    const parsed = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
-      version?: unknown;
-    };
-    return typeof parsed.version === "string" && parsed.version.length > 0 ? parsed.version : null;
-  } catch {
-    return null;
   }
 }
 

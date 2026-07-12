@@ -66,14 +66,14 @@ function writeFakeClaude(binDir: string): string {
     const path = join(binDir, "claude.cmd");
     writeFileSync(
       path,
-      `@echo off\r\necho %* > claude-called.txt\r\nfindstr "^" > claude-stdin.txt\r\n(echo raw=%${rawEnv}%)> claude-env.txt\r\n(echo reason=%${reasonEnv}%)>> claude-env.txt\r\nexit /b 0\r\n`,
+      `@echo off\r\necho %* > claude-called.txt\r\nfindstr "^" > claude-stdin.txt\r\n(echo raw=%${rawEnv}%)> claude-env.txt\r\n(echo reason=%${reasonEnv}%)>> claude-env.txt\r\necho VERDICT: PASS\r\nexit /b 0\r\n`,
     );
     return path;
   }
   const path = join(binDir, "claude");
   writeFileSync(
     path,
-    `#!/bin/sh\necho "$@" > claude-called.txt\ncat > claude-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > claude-env.txt\nexit 0\n`,
+    `#!/bin/sh\necho "$@" > claude-called.txt\ncat > claude-stdin.txt\nprintf "raw=%s\\nreason=%s\\n" "$${rawEnv}" "$${reasonEnv}" > claude-env.txt\nprintf "VERDICT: PASS\\n"\nexit 0\n`,
   );
   chmodSync(path, 0o755);
   return path;
@@ -183,7 +183,7 @@ describe("runtime hook entrypoints", () => {
         undefined,
         env,
       );
-      expect(run.status).toBe(0);
+      expect(run.status, run.stderr || run.stdout).toBe(0);
 
       const digest = JSON.parse(
         readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
@@ -388,7 +388,7 @@ describe("runtime hook entrypoints", () => {
         undefined,
         env,
       );
-      expect(run.status).toBe(0);
+      expect(run.status, run.stderr || run.stdout).toBe(0);
 
       const digest = JSON.parse(
         readFileSync(

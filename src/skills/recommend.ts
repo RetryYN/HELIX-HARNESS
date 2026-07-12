@@ -1,3 +1,4 @@
+import { nowIso } from "../shared/time-utils";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
 import { classifyTask } from "../task/classify";
@@ -151,10 +152,6 @@ export interface SkillInvocation {
 
 function stableId(prefix: string, value: string): string {
   return `${prefix}:${value.replace(/[^A-Za-z0-9._:-]+/g, "-")}`;
-}
-
-function nowIso(): string {
-  return new Date().toISOString();
 }
 
 function workflowModeForPlan(planId: string): string {

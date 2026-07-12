@@ -1,7 +1,7 @@
-import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { readPackageVersion, readRepoHeadSha } from "../shared/repo-info";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
 import {
@@ -20,6 +20,7 @@ import {
   allowedOutcomeSetViolation,
   fmValue,
   isClosedPlanStatus,
+  loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
@@ -217,7 +218,6 @@ function parsePlan(file: string, content: string): ActionBindingApprovalPlan {
 export function loadActionBindingApprovalReadinessInput(
   repoRoot = process.cwd(),
 ): ActionBindingApprovalReadinessInput {
-  const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
   return {
     rightArmMd: readFileSync(
@@ -233,9 +233,7 @@ export function loadActionBindingApprovalReadinessInput(
     currentVersion: readPackageVersion(repoRoot) ?? undefined,
     currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
-    plans: readdirSync(plansDir)
-      .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
-      .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
+    plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
   };
 }
 
@@ -1107,29 +1105,6 @@ function versionUpSnapshotValidationMissing(
   input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc" | "repoHeadSha">,
 ): boolean {
   return requiresVersionUpSnapshot(plan) && Boolean(input.versionUpModeDoc) && !input.repoHeadSha;
-}
-
-function readRepoHeadSha(repoRoot: string): string | null {
-  try {
-    const head = execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
-    return /^[a-f0-9]{40}$/.test(head) ? head : null;
-  } catch {
-    return null;
-  }
-}
-
-function readPackageVersion(repoRoot: string): string | null {
-  try {
-    const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
-      version?: unknown;
-    };
-    return typeof pkg.version === "string" && pkg.version.trim() ? pkg.version.trim() : null;
-  } catch {
-    return null;
-  }
 }
 
 function record(plan: ActionBindingApprovalPlan, field: string): string {

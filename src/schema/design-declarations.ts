@@ -1,4 +1,6 @@
 import { parse as parseYaml } from "yaml";
+import { escapeRegExp } from "../shared/string-utils";
+import { isRecord } from "../shared/value-guards";
 
 export type DesignDeclarationSource = "frontmatter" | "fenced_yaml";
 
@@ -61,10 +63,6 @@ interface SpecBlock {
   value: unknown;
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
 function stringField(value: unknown, key: string): string | undefined {
   if (!isRecord(value)) return undefined;
   const raw = value[key];
@@ -88,10 +86,6 @@ function bodyWithoutDeclarationBlocks(content: string): string {
   return content
     .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, "\n")
     .replace(/```ya?ml\r?\n[\s\S]*?\r?\n```/gi, "\n");
-}
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function bodyHasId(body: string, id: string): boolean {

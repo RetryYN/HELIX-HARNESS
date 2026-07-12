@@ -9,15 +9,8 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import type { FeedbackLifecycleDeps } from "../policy/feedback-lifecycle";
+import { isSqliteBusy } from "../runtime/sqlite-error";
 import { type HarnessDb, openHarnessDb } from "../state-db";
-
-function isSqliteBusy(error: unknown): boolean {
-  return (
-    error instanceof Error &&
-    (String((error as Error & { code?: unknown }).code).includes("SQLITE_BUSY") ||
-      /database is locked|SQLITE_BUSY/i.test(error.message))
-  );
-}
 
 function readJsonLines(path: string): unknown[] {
   if (!existsSync(path)) return [];

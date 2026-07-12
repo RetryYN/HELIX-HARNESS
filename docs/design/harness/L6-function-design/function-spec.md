@@ -355,6 +355,10 @@ module-decomposition の公開 IF に**関数 signature・pseudocode・型・WBS
 | `judgmentReviewPlanForMode` (gate/review-tier) | `(mode: ExecutionMode) => JudgmentReviewPlan` | mode 確定済 | `helix status --json` の additive `judgmentReview` を構築する。hybrid は `requiredReviewKind=cross_agent`、worker/reviewer model と provider 相異を要求し、単一 runtime は `intra_runtime_subagent` + checklist、standalone は human approval を要求する。`gateCommandTemplate` と `requiredEvidence[]` を出し、`nextAction` の人間可読 guidance だけに判断ゲート手順を閉じない。 |
 | `isReadOnlyDelegationRole` / `detectWorkingTreeMutation` / `assessReviewSession` / `reviewGuardMessages` / `summarizeStagedReview` (review-guard) | `assessReviewSession({role,before,after}) => ReviewSessionAssessment` 他 | before/after は git status --porcelain 由来の path 配列 (純関数・git/fs 端点なし、I/O は cli の loadChangedFiles/loadStagedFiles) | 委譲レビューの非破壊性強制 (IMP-137、PLAN-L7-85)。read-only (相談/検証 archetype = tl/qa/uiux + review エイリアス) が working tree を変更したら `violation=true` で検知。`helix <provider> --role <read-only> --execute` が spawn 前後の変更を assess し warning surface (exit 不変=fail-open)、`helix review --staged` が staged 集合を doctor と共に確認し混入を fail-close。worker/未知ロールは対象外 (誤検知回避) |
 | `extractShellCommand` / `evaluateGitCommandGuard` / `resolveDestructiveGitOverride` (git-command-guard) | `evaluateGitCommandGuard({ command, bypass? }) => GitCommandGuardResult` | `command` は Claude `tool_input.command` / Codex `tool_input.cmd` / 文字列 payload から抽出済み。hook I/O は `.claude/hooks/git-command-guard.ts` または `helix hook git-command-guard` が担う | hybrid 多ランタイムで相手 runtime の commit / branch を破壊し得る destructive `git reset`、destructive `git checkout`、worktree `git restore`、`git revert`、`git push --force` / `--force-with-lease` を `decision=block` / `reason=destructive-git` で fail-close する。`git status` / `diff` / `log` / 通常 `push` / `checkout -b` / `checkout <branch>` / `reset HEAD <path>` / `restore --staged <path>` は pass。override は `HELIX_ALLOW_DESTRUCTIVE_GIT=1` または `.helix/state/destructive-git-override` の非空理由のみで、marker は one-shot 消費して `.helix/logs/destructive-git-overrides.jsonl` に audit する。Claude `PreToolUse(Bash)` と Codex `PreToolUse(exec_command\|local_shell)` の双方で同じ純関数を使い、IMP-142 の reset/revert/checkout/force-push 再発を運用記憶でなく機械で止める |
+| `extractEditTargets` / `evaluateWorkGuardTargets` / `resolveForeignEditOverride` (work-guard) | `evaluateWorkGuardTargets({ targetPaths, uncommittedFiles, sessionTouchedFiles, bypass }) => WorkGuardTargetsResult` | hook payload は Claude `file_path` または Codex apply_patch header を持つ。I/O entrypoint は repo-local shim と配布 binary の `helix hook work-guard` の双方で同じ純関数を呼ぶ | 他session由来のuncommitted pathをexit 2でblockし、cleanまたは自session touch済みpathをpassする。stdin解析不能は既存work-guard方針どおりfail-open。marker overrideは実際にblock対象をbypassした時だけone-shot消費しauditする。consumer templateが宣言する全 `helix hook <subcommand>` は配布CLIの `hook --help` に実在しなければならない |
+| `isSqliteBusy` | `(error: unknown) => boolean` | Bun/node:sqliteのdriver差を吸収するpure error classifier | Error codeの`SQLITE_BUSY`またはmessageの`database is locked`/`SQLITE_BUSY`をbusyとする。job queue、session coordination、feedback lifecycleは同一正本を使い、node:sqlite locked例外だけthrowへ漏らさない。非Errorと無関係なErrorはfalse。 |
+| `shellQuote` | `(value: string) => string` | POSIX shell commandを表示・packet化する際の単一token quoting。実行可能な経路は`execFile`系を優先する | safe alphabet `[A-Za-z0-9_./:@+=,-]` はそのまま、その他はsingle quoteで囲み、内部apostropheを安全に分割する。CLI、version-up、GitHub merge readinessは同一正本を使う。用途の異なるpath専用quotingは本契約へ混在させない。 |
+| `readRepoHeadSha` / `readPackageVersion` | `(repoRoot: string) => string | null` | repo snapshot・version bindingを作るread-only情報取得。git不在、path不正、JSON不正はnull | HEADはlowercase 40-hexだけを採用し、short/raw/不正値をsnapshot bindingへ流さない。package versionは非空stringをtrimして返す。identifier rename、action-binding、version-up、objective auditは同一正本を使う。 |
 | `normalizeModelFamily` | `(raw: string \| null \| undefined) => ModelFamily \| null` | — | family ∈ {opus,sonnet,haiku} or `null` (判定不能・曖昧は fail-close) |
 | `evaluateAgentGuard` | `(input: AgentGuardInput, ctx: AgentGuardContext) => GuardDecision` | `tool_name` が Claude `Agent` または標準 `Task` の場合は `input.subagent_type` 存在 / ctx に `resolveAgentFamily` + `allowRaw` 提供。Codex `spawn_agent|spawn_agents_on_csv` は Codex branch で判定 | `decision.code ∈ {0,2}` を**返す**。`Agent` と `Task` は同じ Claude subagent fail-close path で allowlist/model family を検査する。`code=2` の exit 実行は hook shim (`.claude/hooks/agent-guard.ts`) の責務 — 本関数は純粋 (process.exit しない)。bypass は `bypassed=true` + message warn |
 | `resolveActivePlan` / `recordEvent` / `compressPlanDigest` / `onStop` (session-log) | `session-log.md §3` 参照 | — | **fail-OPEN** (常に 0、guard と逆)。`compressPlanDigest` は純関数・idempotent。詳細は `session-log.md` (PLAN-L6-03 add-design 差分) |
@@ -912,3 +916,113 @@ surface するだけである。
 CLI `helix l1-l2 gap-check --json` が repo-local read-only surface であり、構造 gap がある場合は exit 1、
 現行 live repo の構造被覆 green では exit 0 を返す。content review は packet の
 `contentReviewRequired=true` として残し、completion evidence へ混ぜない。
+
+## 2026-07-13 frontmatter 単一正本追補 (PLAN-L7-433 Q1)
+
+`markdownFrontmatter(content)` は Markdown 先頭の YAML frontmatter 本文を抽出する唯一の production
+実装とする。LF/CRLF を同値として扱い、opening/closing delimiter 欠落または文書途中の delimiter は
+`null` とする。`parseMarkdownFrontmatter(content)` は同じ抽出結果だけを YAML mapping へ変換し、
+invalid YAML、sequence、scalar を `null` とする。consumer doctor、PLAN lint、descent/routing gate、
+asset/skill catalog、projection writer は独自 delimiter parser を持たず、この契約を参照する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `markdownFrontmatter` | 任意の Markdown text | 先頭の閉じた frontmatter 本文、または `null` | LF/CRLF 同値、途中 delimiter 非受理 | U-FMSH-001..003 |
+| `parseMarkdownFrontmatter` | `markdownFrontmatter` の入力 | plain mapping、または `null` | YAML parse error / array / scalar を通さない | U-FMSH-001..002 |
+
+## 2026-07-13 readiness PLAN snapshot 共通化追補 (PLAN-L7-433 Q3)
+
+`loadPlanDocs(repoRoot)` は `docs/plans/PLAN-*.md` のみを filename 昇順で一度読み、`{file, content}`
+snapshot を返す。directory 不在は空配列とし、README、非Markdown、非PLAN文書を混入させない。
+cutover / S4 / version-up / action-binding readiness loader は独自走査を禁止し、この共通 snapshot を
+各 domain plan 型へ map する。これにより同一 run 内の対象集合と filter semantics を一致させる。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `loadPlanDocs` | repo root | filename昇順の canonical PLAN snapshot | filterは `PLAN-*.md` の1系統、sourceを書き換えない | U-PLDOC-001 |
+
+## 2026-07-13 frontmatter scalar 単一正本追補 (PLAN-L7-433 Q4)
+
+`fmValue(content, key)` は frontmatter scalar の唯一の解釈実装とする。quote 外の空白開始 `#`
+comment を除き、全体を囲む対の単一/二重 quote を外す。quote 内の `#` は値として保持し、不在は
+`undefined` とする。empty-string が必要な既存 caller は `fmValueOrEmpty` adapterを使い、独自regexを
+持たない。asset catalog、drive registration、DDD/TDD gate、projection writerをこの正本へ統合する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `fmValue` | frontmatter textとkey | normalized scalarまたは`undefined` | quote内hash保持、quote外comment除去、unquote順序固定 | U-FMSC-001 |
+
+## 2026-07-13 repository identity境界追補 (PLAN-L7-433 Q5)
+
+`readRepoHeadSha(repoRoot, deps?)` はgit出力をtrim後、lowercase 40-hexに完全一致する場合だけ返す。
+39/41桁、非hex、大文字、command failureは`null`とし、version-up / identifier rename /
+action-bindingの全callerで同一境界を使う。testはgit I/Oを注入し、malformed出力分岐を直接固定する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `readRepoHeadSha` | repo root、任意のreadHead依存 | canonical SHAまたは`null` | lowercase 40-hex以外を通さない | U-REPOINFO-001, U-REPOINFO-003 |
+
+## 2026-07-13 plain record guard単一正本追補 (PLAN-L7-433 Q8)
+
+`isRecord(value)` は層横断の低位pure utilityとして`src/shared/value-guards.ts`に置く。objectかつ
+non-nullかつ非arrayの場合だけ`Record<string, unknown>`へnarrowし、schema / policy / memory / setup /
+lint / runtime / state-dbは独自type guardを持たない。特にtest-report JSONのarrayをrecordとして
+誤受理しない。上位moduleをimportせず、dependency directionの末端を維持する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `isRecord` | unknown | plain recordならtrue | null/array/primitiveはfalse、production定義1件 | U-VGUARD-001..002 |
+
+### regex literal escape単一正本（PLAN-L7-433 Q8）
+
+`escapeRegExp(value)` は`src/shared/string-utils.ts`の低位pure utilityとし、dynamic regexを組む
+schema/lint callerは独自実装を持たない。正規表現meta characterだけをescapeし、入力文字列との
+完全literal matchを保証する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `escapeRegExp` | 任意文字列 | regex literal fragment | production定義1件、非meta文字不変 | U-STRUTIL-001..002 |
+
+### unique sort意味分離（PLAN-L7-433 Q8）
+
+machine ID/path用`uniqueSorted`はlocale非依存のcode-unit順、人間向けproposal語彙用
+`uniqueLocaleSorted`はruntime locale collation順とする。両者を別名契約にして、従来の暗黙な
+`.sort()` / `localeCompare`差を保持・可視化する。callerは目的に合う関数を明示する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `uniqueSorted` | string tokens | 重複なしcode-unit昇順 | locale非依存、入力非破壊 | U-COLUTIL-001..002 |
+| `uniqueLocaleSorted` | 人間向け表示語 | 重複なしlocale昇順 | locale semanticsを別名で明示 | U-COLUTIL-002 |
+
+### current timestamp単一正本（PLAN-L7-433 Q8）
+
+`nowIso()`は`src/shared/time-utils.ts`に置き、現在時刻をUTC ISO-8601 millisecond形式で返す。
+feedback / guardrail / skill / projection / workflowは独自clock wrapperを持たない。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `nowIso` | なし | UTC ISO-8601 timestamp | production定義1件、末尾Z、millisecondあり | U-TIMEUTIL-001 |
+
+## 2026-07-13 recursive file inventory共通化追補 (PLAN-L7-433 Q7)
+
+`walkFiles(root, repoRoot, extensions)`はrecursive inventoryの低位契約である。directory entryを安定順に
+辿り、readdir後に消えたentryのstat failureはskipし、通常fileかつ指定extensionだけを返す。
+relative pathは常にPOSIX separatorへ正規化する。readability、secret-scan、design-language、gate-confirm、
+L7 completion、placeholder-deps、left-arm carry inventoryは同じrecursive inventoryを使う。用途固有の
+README/generated除外やfrontmatter parseはinventory取得後に適用し、選択後のread failureは各gateへ
+伝播してfail-closeを維持する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `walkFiles` | root、repo root、extension集合 | absolute/POSIX-relative file inventory | 安定順、missing rootは空、stat race skip、directory非返却、対象gate独自readdirなし | U-FWALK-001..002 |
+
+## 2026-07-13 outstanding run snapshot追補 (PLAN-L7-433 C3)
+
+`computeOutstandingWork(repoRoot)`は同じ同期run/microtask内の同一resolved repo rootに対して同じ
+immutable snapshotを返す。cacheはmicrotask境界で自動破棄し、次commandや非同期filesystem更新へ
+持ち越さない。これによりcompletion packetがnested readiness builderを呼ぶ際のPLAN全走査重複を
+除きつつ、永続cacheによるstale判定を作らない。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `computeOutstandingWork` | repo root | 同期run内共有snapshot | microtask後再計算、repo root別、I/O fail-open維持 | U-OUTSNAP-001 |

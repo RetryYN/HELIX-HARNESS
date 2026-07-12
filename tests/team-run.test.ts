@@ -373,7 +373,7 @@ describe("team run validation", () => {
         slots: deps,
         runCommand: async ({ command, args }) => {
           commands.push(`${command} ${args[0]}`);
-          return { exitCode: 0 };
+          return { exitCode: 0, output: command === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
         },
       });
 
@@ -457,7 +457,7 @@ describe("team run validation", () => {
           started.push(`${command} ${args[0]}`);
           await new Promise((resolve) => setTimeout(resolve, 10));
           active -= 1;
-          return { exitCode: 0 };
+          return { exitCode: 0, output: command === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
         },
       });
 
@@ -465,6 +465,60 @@ describe("team run validation", () => {
       expect(peak).toBe(2);
       expect(started).toEqual(["codex exec", "claude --print", "claude --print"]);
       expect(loadSlots(deps).every((slot) => slot.released_at !== null)).toBe(true);
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  it("[U-TEAMRUN-004] requires exactly one explicit PASS verdict from reviewers", async () => {
+    const repo = mkdtempSync(join(tmpdir(), "helix-team-review-evidence-"));
+    try {
+      const plan = buildTeamRunPlan(
+        {
+          name: "review-team",
+          strategy: "sequential",
+          max_parallel: 8,
+          members: [
+            { role: "se", engine: "codex-se", task: "implement" },
+            { role: "tl", engine: "pmo-sonnet", task: "review", serialize_after: "se" },
+          ],
+        },
+        "hybrid",
+        { execute: true },
+      );
+      for (const [reviewOutput, expectedStatus] of [
+        ["looks good", "missing"],
+        ["VERDICT: FAIL\n", "rejected"],
+        ["VERDICT: PASS\nVERDICT: FAIL\n", "ambiguous"],
+      ] as const) {
+        const execution = await executeTeamRunPlan(plan, {
+          slots: nodeAgentSlotsDeps(repo),
+          runCommand: async ({ command }) => ({
+            exitCode: 0,
+            output: command === "claude" ? reviewOutput : "worker ok",
+          }),
+        });
+        expect(execution.ok).toBe(false);
+        expect(execution.executions[1]?.evidence.verdict_status).toBe(expectedStatus);
+      }
+      const truncated = await executeTeamRunPlan(plan, {
+        slots: nodeAgentSlotsDeps(repo),
+        runCommand: async ({ command }) => ({
+          exitCode: 0,
+          output: command === "claude" ? "VERDICT: PASS\n" : "worker ok",
+          outputBytes: 2_000_000,
+          outputTruncated: true,
+        }),
+      });
+      expect(truncated.ok).toBe(false);
+      expect(truncated.executions[1]?.evidence).toMatchObject({
+        verdict: null,
+        verdict_status: "ambiguous",
+        output_bytes: 2_000_000,
+        output_truncated: true,
+      });
+      expect(truncated.executions[1]?.evidence.output_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(JSON.stringify(truncated)).not.toContain("VERDICT: PASS");
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }

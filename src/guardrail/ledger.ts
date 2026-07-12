@@ -1,3 +1,4 @@
+import { nowIso } from "../shared/time-utils";
 import {
   type GuardrailDecisionInput,
   type GuardrailDecisionValue,
@@ -29,10 +30,6 @@ export interface GuardrailDecisionRow {
   human_signoff_required: number;
   evidence_path: string;
   decided_at: string;
-}
-
-function nowIso(): string {
-  return new Date().toISOString();
 }
 
 function decisionId(input: GuardrailDecisionInput): string {

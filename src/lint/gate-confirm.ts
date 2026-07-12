@@ -1,5 +1,6 @@
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { walkFiles } from "../shared/file-walk";
 import { fmValue } from "./shared";
 
 export interface GateStatus {
@@ -78,26 +79,15 @@ export function parseConfirmDoc(
   };
 }
 
-function walkMarkdown(dir: string): string[] {
-  const out: string[] = [];
-  for (const entry of readdirSync(dir)) {
-    const p = join(dir, entry);
-    const s = statSync(p);
-    if (s.isDirectory()) out.push(...walkMarkdown(p));
-    else if (entry.endsWith(".md")) out.push(p);
-  }
-  return out;
-}
-
 export function loadGateConfirmDocs(repoRoot: string = process.cwd()): GateConfirmDocs {
   const gateText = readFileSync(join(repoRoot, "docs", "governance", "gate-design.md"), "utf8");
   const designRoot = join(repoRoot, "docs", "design", "harness");
   const testRoot = join(repoRoot, "docs", "test-design", "harness");
   const docs: ConfirmDoc[] = [];
-  for (const p of walkMarkdown(designRoot)) {
+  for (const { absolutePath: p } of walkFiles(designRoot, repoRoot, [".md"])) {
     docs.push(parseConfirmDoc(p, readFileSync(p, "utf8"), "design"));
   }
-  for (const p of walkMarkdown(testRoot)) {
+  for (const { absolutePath: p } of walkFiles(testRoot, repoRoot, [".md"])) {
     docs.push(parseConfirmDoc(p, readFileSync(p, "utf8"), "test-design"));
   }
   return { gateText, docs };

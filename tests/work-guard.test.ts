@@ -11,9 +11,12 @@ import {
   normalizeRepoRelative,
   resolveForeignEditOverride,
 } from "../src/runtime/work-guard";
+import { runWorkGuardHook as runWorkGuardCore } from "../src/runtime/work-guard-hook";
+import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 
 const hookRepoRoot = process.cwd();
 const workGuardHook = join(hookRepoRoot, ".claude", "hooks", "work-guard.ts");
+const cliPath = join(hookRepoRoot, "src", "cli.ts");
 
 /** work-guard hook を temp repo の cwd で spawn する (win32 は System32 canonical な cmd 経由)。 */
 function runWorkGuardHook(cwd: string, input: unknown) {
@@ -238,31 +241,103 @@ describe("foreign-edit override resolution (PLAN-L7-114 correction)", () => {
     const r = resolveForeignEditOverride({ env: "1", markerReason: "marker reason" });
     expect(r.source).toBe("env");
   });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007/IT-GITGUARD-004] audits env bypass once per session and subject", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-env-"));
+    try {
+      execFileSync("git", ["init"], { cwd, stdio: "ignore" });
+      const foreignTarget = "alice@example.com-private.ts";
+      writeFileSync(join(cwd, foreignTarget), "export const x = 1;\n");
+      const rawInput = JSON.stringify({
+        session_id: "s-env",
+        tool_input: { file_path: foreignTarget },
+      });
+      const run = () =>
+        runWorkGuardCore({
+          repoRoot: cwd,
+          rawInput,
+          env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "1" },
+        });
+      expect(run().exitCode).toBe(0);
+      const second = run();
+      expect(second.exitCode).toBe(2);
+      expect(second.message).toContain("blocked_reuse");
+      const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      const rows = db
+        .prepare("SELECT * FROM guard_override_transactions WHERE guard_kind='foreign_edit'")
+        .all();
+      db.close();
+      expect(rows).toHaveLength(1);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
 });
 
 describe("work-guard hook marker is one-shot (stale marker は恒久バイパスしない)", () => {
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-007] shared, standalone, and consumer adapters fail closed on malformed input", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-malformed-"));
+    try {
+      expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "{not-json" }).exitCode).toBe(2);
+      expect(runWorkGuardCore({ repoRoot: cwd, rawInput: "" }).exitCode).toBe(2);
+      const standalone = spawnSync("bun", [workGuardHook], {
+        cwd,
+        encoding: "utf8",
+        env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+        input: "{not-json",
+      });
+      expect(standalone.status).toBe(2);
+      expect(standalone.stderr).toContain("BLOCK");
+      const consumer = spawnSync("bun", [cliPath, "hook", "work-guard"], {
+        cwd,
+        encoding: "utf8",
+        input: "{not-json",
+      });
+      expect(consumer.status).toBe(2);
+      expect(consumer.stderr).toContain("BLOCK");
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("consumes the override marker after one foreign edit; the next identical edit re-blocks", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-marker-"));
     try {
       // git repo + untracked foreign file = このセッションが触っていない uncommitted ファイル。
       execFileSync("git", ["init"], { cwd, stdio: "ignore" });
-      writeFileSync(join(cwd, "foreign.ts"), "export const x = 1;\n");
+      const foreignTarget = "alice@example.com-private.ts";
+      writeFileSync(join(cwd, foreignTarget), "export const x = 1;\n");
       const markerPath = join(cwd, ".helix", "state", "foreign-edit-override");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
-      writeFileSync(markerPath, "completing Codex orphan-impl per review");
+      writeFileSync(markerPath, "reviewed recovery for /home/alice/private-project\n");
 
-      const input = { session_id: "s-test", tool_input: { file_path: "foreign.ts" } };
+      const input = { session_id: "s-test", tool_input: { file_path: foreignTarget } };
 
       // 1回目: marker により foreign 編集を許可 (exit 0) し、marker を消費する。
       const first = runWorkGuardHook(cwd, input);
       expect(first.status).toBe(0);
       expect(existsSync(markerPath)).toBe(false); // one-shot 消費
-      // audit 証跡は残す (silent bypass を許さない)。
-      const audit = readFileSync(
-        join(cwd, ".helix", "logs", "foreign-edit-overrides.jsonl"),
-        "utf8",
+      // audit 証跡はraw reason/pathを残さずharness.dbへ収束する。
+      const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      const rows = db
+        .prepare("SELECT * FROM guard_override_transactions WHERE guard_kind='foreign_edit'")
+        .all();
+      db.close();
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({
+        status: "committed",
+        operation_class: "foreign uncommitted edit",
+      });
+      expect(JSON.stringify(rows)).not.toContain(
+        "reviewed recovery for /home/alice/private-project",
       );
-      expect(audit).toContain("completing Codex orphan-impl per review");
+      expect(JSON.stringify(rows)).not.toContain("alice@example.com");
+      expect(JSON.stringify(rows)).not.toContain(foreignTarget);
+      const dbBytes = readFileSync(defaultHarnessDbPath(cwd)).toString("utf8");
+      expect(dbBytes).not.toContain("reviewed recovery for /home/alice/private-project");
+      expect(dbBytes).not.toContain("/home/alice/private-project");
+      expect(dbBytes).not.toContain("alice@example.com");
+      expect(dbBytes).not.toContain(foreignTarget);
 
       // 2回目: marker は消費済み → bypass 無し → 同じ foreign 編集が block される (exit 2)。
       const second = runWorkGuardHook(cwd, input);

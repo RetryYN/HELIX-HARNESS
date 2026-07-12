@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { basename, join, relative } from "node:path";
+import { existsSync, readFileSync, statSync } from "node:fs";
+import { basename, join } from "node:path";
+import { walkFiles } from "../shared/file-walk";
 
 export interface DesignLanguageDoc {
   path: string;
@@ -125,17 +126,9 @@ function isGeneratedDoc(path: string): boolean {
 }
 
 function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]): void {
-  for (const entry of readdirSync(absDir, { withFileTypes: true })) {
-    const abs = join(absDir, entry.name);
-    if (entry.isDirectory()) {
-      walkMarkdown(abs, repoRoot, acc);
-      continue;
-    }
-    if (!entry.isFile() || !entry.name.endsWith(".md") || isReadmeLike(entry.name)) continue;
-    if (!statSync(abs).isFile()) continue;
-    const rel = normalizeRel(relative(repoRoot, abs));
-    if (isGeneratedDoc(rel)) continue;
-    acc.push({ path: rel, text: readFileSync(abs, "utf8") });
+  for (const file of walkFiles(absDir, repoRoot, [".md"])) {
+    if (isReadmeLike(file.relativePath) || isGeneratedDoc(file.relativePath)) continue;
+    acc.push({ path: file.relativePath, text: readFileSync(file.absolutePath, "utf8") });
   }
 }
 

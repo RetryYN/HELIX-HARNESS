@@ -1,0 +1,486 @@
+import {
+  existsSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
+import { commitLoopEpoch } from "../src/orchestration/durable-loop-epoch";
+import {
+  actionBindingLoopRecoveryAuthority,
+  loopEpochPaths,
+  nodeDurableEpochPort,
+  readLoopEpochFromFs,
+  recoverStaleLoopClaim,
+} from "../src/orchestration/durable-loop-epoch-node";
+import { sha256Digest } from "../src/runtime/digest";
+
+const PLAN = "PLAN-L7-449-durability-boundary-implementation";
+const roots: string[] = [];
+const root = () => {
+  const value = mkdtempSync(join(tmpdir(), "helix-loop-epoch-"));
+  roots.push(value);
+  return value;
+};
+afterEach(() => {
+  for (const value of roots.splice(0)) rmSync(value, { recursive: true, force: true });
+});
+
+const state = {
+  planId: PLAN,
+  status: "running" as const,
+  iteration: 0,
+  maxIterations: 3,
+  lastVerdict: "pending" as const,
+  workerProvider: "codex" as const,
+  verifierProvider: null,
+  blockedReason: null,
+  windowOpensAt: "2026-07-13T00:00:00.000Z",
+  windowClosesAt: "2026-07-13T12:00:00.000Z",
+  costUsd: 0,
+  updatedAt: "2026-07-13T00:00:00.000Z",
+};
+
+describe("PLAN-L7-449 node durable epoch port", () => {
+  it("IT-DUR-003/004: publishes payload+manifest and removes the exclusive claim", () => {
+    const repo = root();
+    const result = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: { state, iteration: null },
+      sideEffectPhase: "not_started",
+      port: nodeDurableEpochPort(repo),
+    });
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(result.status).toBe("committed");
+    expect(existsSync(paths.manifest)).toBe(true);
+    expect(existsSync(paths.claim)).toBe(false);
+    const pointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    const manifest = JSON.parse(readFileSync(paths.manifestFor(pointer.manifestFile), "utf8"));
+    expect(manifest.planId).toBe(PLAN);
+    expect(manifest.durabilityCapability).toMatch(
+      /^(posix_dir_fsync|file_fsync_same_volume_rename)$/,
+    );
+    expect(existsSync(paths.payloadFor(manifest.payloadFile))).toBe(true);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+  });
+
+  it("IT-DUR-002/004: filesystem reader distinguishes corrupt, live, and provably stale claims", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("missing");
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("live_claim");
+    writeFileSync(
+      paths.claim,
+      `${JSON.stringify({
+        pid: 999_999_999,
+        bootIdentity: "different-boot",
+        processStartToken: "missing",
+        leaseDeadlineUptimeMs: 0,
+      })}\n`,
+    );
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("stale_claim");
+    rmSync(paths.claim);
+    writeFileSync(paths.manifest, "{");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("corrupt");
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: { state, iteration: null },
+        sideEffectPhase: "not_started",
+        port: nodeDurableEpochPort(repo),
+      }).status,
+    ).toBe("durability_uncertain");
+  });
+
+  it("IT-DUR-004: O_EXCL permits at most one live claim", () => {
+    const repo = root();
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(false);
+  });
+
+  it("IT-DUR-003/004: releasing-only crash blocks writers and converges under authority", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const live = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleText = `${JSON.stringify({
+      ...live,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleText);
+    renameSync(paths.claim, paths.releasingClaim);
+    expect(() => nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toThrow(
+      "release proof is invalid",
+    );
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest(staleText),
+          pointerDigest: live.pointerDigest,
+          manifestDigest: live.manifestDigest,
+          approvedBy: "test-authority",
+          auditId: "release-convergence",
+        },
+        { verify: () => true },
+      ).status,
+    ).toBe("recovered");
+    expect(existsSync(paths.releasingClaim)).toBe(false);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+  });
+
+  it("IT-DUR-004/U-DUR-007: recovery is authority-bound, snapshot-bound, and tombstones one stale claim", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const live = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleText = `${JSON.stringify({
+      ...live,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleText);
+    const packet = {
+      planId: PLAN,
+      claimDigest: sha256Digest(staleText),
+      pointerDigest: live.pointerDigest,
+      manifestDigest: live.manifestDigest,
+      approvedBy: "test-recovery-authority",
+      auditId: "IT-DUR-004",
+    };
+    const authority = { verify: () => true };
+    expect(
+      recoverStaleLoopClaim(repo, { ...packet, claimDigest: sha256Digest("tampered") }, authority),
+    ).toEqual({ status: "rejected", reason: "snapshot_digest_mismatch" });
+    expect(recoverStaleLoopClaim(repo, packet, { verify: () => false })).toEqual({
+      status: "rejected",
+      reason: "authority_missing",
+    });
+    const recovered = recoverStaleLoopClaim(repo, packet, authority);
+    expect(recovered.status).toBe("recovered");
+    expect(recovered.reason).toBe("stale_claim_tombstoned");
+    expect(existsSync(paths.claim)).toBe(false);
+    expect(existsSync(paths.claimTombstoneFor(recovered.recoveryId as string))).toBe(true);
+    expect(recoverStaleLoopClaim(repo, packet, authority)).toEqual({
+      status: "rejected",
+      reason: "claim_not_provably_stale",
+    });
+  });
+
+  it("IT-DUR-004/U-DUR-007: rejects an expired lease while the original process is live", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const live = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const expiredText = `${JSON.stringify({ ...live, leaseDeadlineUptimeMs: 0 })}\n`;
+    writeFileSync(paths.claim, expiredText);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("live_claim");
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest(expiredText),
+          pointerDigest: live.pointerDigest,
+          manifestDigest: live.manifestDigest,
+          approvedBy: "test-recovery-authority",
+          auditId: "IT-DUR-004-live-owner",
+        },
+        { verify: () => true },
+      ),
+    ).toEqual({ status: "rejected", reason: "claim_not_provably_stale" });
+  });
+
+  it("IT-DUR-004/U-DUR-007: rejects malicious claim identifiers before path construction", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const claim = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const maliciousText = `${JSON.stringify({
+      ...claim,
+      claimId: "../../escape",
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, maliciousText);
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest(maliciousText),
+          pointerDigest: claim.pointerDigest,
+          manifestDigest: claim.manifestDigest,
+          approvedBy: "test-recovery-authority",
+          auditId: "IT-DUR-004-malicious",
+        },
+        { verify: () => true },
+      ),
+    ).toEqual({ status: "rejected", reason: "snapshot_digest_mismatch" });
+    expect(existsSync(join(repo, ".helix", "state", "escape"))).toBe(false);
+  });
+
+  it("IT-DUR-004/U-DUR-007: fails closed when authority verification is unavailable", () => {
+    const repo = root();
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest("claim"),
+          pointerDigest: sha256Digest(""),
+          manifestDigest: null,
+          approvedBy: "authority",
+          auditId: "audit",
+        },
+        {
+          verify: () => {
+            throw new Error("authority store unavailable");
+          },
+        },
+      ),
+    ).toEqual({ status: "rejected", reason: "authority_unavailable" });
+  });
+
+  it("IT-DUR-004/U-DUR-007: concrete authority binds scope, mutex digest, and expiry", () => {
+    const packet = {
+      planId: PLAN,
+      claimDigest: sha256Digest("claim"),
+      pointerDigest: sha256Digest("pointer"),
+      manifestDigest: null,
+      approvedBy: "release-authority",
+      auditId: "approval-row-1",
+    };
+    const observation = { action: "acquire" as const, mutexDigest: null };
+    const authority = actionBindingLoopRecoveryAuthority(
+      { ...packet, ...observation, expiresAt: "2026-07-14T00:00:00.000Z" },
+      () => new Date("2026-07-13T00:00:00.000Z"),
+    );
+    expect(authority.verify(packet, observation)).toBe(true);
+    expect(authority.verify(packet, { ...observation, mutexDigest: sha256Digest("mutex") })).toBe(
+      false,
+    );
+    expect(
+      actionBindingLoopRecoveryAuthority(
+        { ...packet, ...observation, expiresAt: "2026-07-12T00:00:00.000Z" },
+        () => new Date("2026-07-13T00:00:00.000Z"),
+      ).verify(packet, observation),
+    ).toBe(false);
+  });
+
+  it("IT-DUR-004/U-DUR-007: an authorized retry tombstones a stale recovery mutex", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const claim = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleClaimText = `${JSON.stringify({
+      ...claim,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleClaimText);
+    writeFileSync(
+      paths.recoveryClaim,
+      `${JSON.stringify({
+        ...claim,
+        claimId: "123e4567-e89b-42d3-a456-426614174000",
+        pid: 999_999_999,
+        bootIdentity: "different-boot",
+        processStartToken: "missing",
+        leaseDeadlineUptimeMs: 0,
+        packetDigest: sha256Digest("old-packet"),
+      })}\n`,
+    );
+    const recovered = recoverStaleLoopClaim(
+      repo,
+      {
+        planId: PLAN,
+        claimDigest: sha256Digest(staleClaimText),
+        pointerDigest: claim.pointerDigest,
+        manifestDigest: claim.manifestDigest,
+        approvedBy: "authority",
+        auditId: "retry-after-crash",
+      },
+      { verify: () => true },
+    );
+    expect(recovered.status).toBe("recovered");
+    expect(existsSync(paths.recoveryClaim)).toBe(false);
+    expect(
+      readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.stale.json")),
+    ).toHaveLength(1);
+    expect(
+      readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.approval.json")),
+    ).toHaveLength(1);
+  });
+
+  it("IT-DUR-004/U-DUR-007: atomically replaces an authorized partial legacy mutex", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const claim = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleClaimText = `${JSON.stringify({
+      ...claim,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleClaimText);
+    writeFileSync(paths.recoveryClaim, "{");
+    const recovered = recoverStaleLoopClaim(
+      repo,
+      {
+        planId: PLAN,
+        claimDigest: sha256Digest(staleClaimText),
+        pointerDigest: claim.pointerDigest,
+        manifestDigest: claim.manifestDigest,
+        approvedBy: "authority",
+        auditId: "partial-mutex-recovery",
+      },
+      { verify: () => true },
+    );
+    expect(recovered.status).toBe("recovered");
+    expect(existsSync(paths.recoveryClaim)).toBe(false);
+    expect(
+      readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.stale.json")),
+    ).toHaveLength(1);
+  });
+
+  it("IT-DUR-003: a second-epoch C4 crash preserves the previous committed payload", () => {
+    const repo = root();
+    const firstPort = nodeDurableEpochPort(repo);
+    const first = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: { state, iteration: null },
+      sideEffectPhase: "not_started",
+      port: firstPort,
+    });
+    expect(first.status).toBe("committed");
+    const paths = loopEpochPaths(repo, PLAN);
+    const previousPointerText = readFileSync(paths.manifest, "utf8");
+    const previousManifestText = firstPort.readManifestText(PLAN);
+    expect(previousManifestText).not.toBeNull();
+    const previousManifest = JSON.parse(previousManifestText as string);
+    const previousPayloadText = readFileSync(
+      paths.payloadFor(previousManifest.payloadFile),
+      "utf8",
+    );
+    const realPort = nodeDurableEpochPort(repo);
+    const faultPort = new Proxy(realPort, {
+      get: (target, name, receiver) =>
+        name === "writeManifestTemp"
+          ? () => {
+              throw new Error("C4 fault");
+            }
+          : Reflect.get(target, name, receiver),
+    });
+    const second = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: previousManifestText as string,
+      payload: { state: { ...state, iteration: 1 }, iteration: null },
+      sideEffectPhase: "not_started",
+      port: faultPort,
+    });
+    expect(second.status).toBe("durability_uncertain");
+    expect(readFileSync(paths.manifest, "utf8")).toBe(previousPointerText);
+    expect(readFileSync(paths.payloadFor(previousManifest.payloadFile), "utf8")).toBe(
+      previousPayloadText,
+    );
+  });
+
+  it("IT-DUR-002/003: restart verifies immutable previous-manifest history", () => {
+    const repo = root();
+    const port = nodeDurableEpochPort(repo);
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: { state, iteration: null },
+        sideEffectPhase: "not_started",
+        port,
+      }).status,
+    ).toBe("committed");
+    const paths = loopEpochPaths(repo, PLAN);
+    const firstPointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    const previousManifestText = port.readManifestText(PLAN);
+    expect(previousManifestText).not.toBeNull();
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: previousManifestText as string,
+        payload: { state: { ...state, iteration: 1 }, iteration: null },
+        sideEffectPhase: "completed",
+        port,
+      }).status,
+    ).toBe("committed");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    const secondManifestText = port.readManifestText(PLAN);
+    expect(secondManifestText).not.toBeNull();
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: secondManifestText as string,
+        payload: { state: { ...state, iteration: 2 }, iteration: null },
+        sideEffectPhase: "completed",
+        port,
+      }).status,
+    ).toBe("committed");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    writeFileSync(paths.manifestFor(firstPointer.manifestFile), "{}");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("concurrent_conflict");
+  });
+
+  it("IT-DUR-002: writer refuses to heal a corrupt pointer envelope", () => {
+    const repo = root();
+    const port = nodeDurableEpochPort(repo);
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: { state, iteration: null },
+        sideEffectPhase: "not_started",
+        port,
+      }).status,
+    ).toBe("committed");
+    const paths = loopEpochPaths(repo, PLAN);
+    const validPointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    for (const patch of [
+      { schema: "tampered" },
+      { planId: "PLAN-L7-448-qs4-test-infra-inventory" },
+      { epochId: 99 },
+    ]) {
+      const tampered = `${JSON.stringify({ ...validPointer, ...patch })}\n`;
+      writeFileSync(paths.manifest, tampered);
+      expect(
+        commitLoopEpoch({
+          planId: PLAN,
+          previousManifestText: null,
+          payload: { state, iteration: null },
+          sideEffectPhase: "not_started",
+          port: nodeDurableEpochPort(repo),
+        }).status,
+      ).toBe("durability_uncertain");
+      expect(readFileSync(paths.manifest, "utf8")).toBe(tampered);
+      rmSync(paths.claim, { force: true });
+    }
+  });
+});

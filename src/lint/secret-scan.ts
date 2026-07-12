@@ -10,9 +10,10 @@
  *
  * 純関数 (analyzeSecretScan) + I/O loader (loadSecretScanArtifacts) を分離 (lint 共通様式)。
  */
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative, sep } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { SECRET_PATTERN } from "../security/secret-policy";
+import { walkFiles } from "../shared/file-walk";
 
 export interface SecretScanArtifact {
   path: string;
@@ -85,36 +86,8 @@ export function analyzeSecretScan(artifacts: readonly SecretScanArtifact[]): Sec
   return { checked: artifacts.length, violations, ok: violations.length === 0 };
 }
 
-function toPosix(p: string): string {
-  return p.split(sep).join("/");
-}
-
 function readArtifact(fullPath: string, relPath: string): SecretScanArtifact {
-  return { path: toPosix(relPath), text: readFileSync(fullPath, "utf8") };
-}
-
-interface WalkContext {
-  repoRoot: string;
-  extensions: readonly string[];
-  acc: SecretScanArtifact[];
-}
-
-function walkFiles(dir: string, ctx: WalkContext): void {
-  for (const name of readdirSync(dir)) {
-    const full = join(dir, name);
-    let st: ReturnType<typeof statSync>;
-    try {
-      st = statSync(full);
-    } catch {
-      continue;
-    }
-    if (st.isDirectory()) {
-      walkFiles(full, ctx);
-      continue;
-    }
-    if (!ctx.extensions.some((ext) => name.endsWith(ext))) continue;
-    ctx.acc.push(readArtifact(full, relative(ctx.repoRoot, full)));
-  }
+  return { path: relPath, text: readFileSync(fullPath, "utf8") };
 }
 
 const DOC_EXTENSIONS = [".md", ".json", ".yaml", ".yml"] as const;
@@ -140,7 +113,13 @@ export function loadSecretScanArtifacts(repoRoot: string = process.cwd()): Secre
   const acc: SecretScanArtifact[] = [];
   for (const { rel, extensions } of SECRET_SCAN_DIRS) {
     const dir = join(repoRoot, rel);
-    if (existsSync(dir)) walkFiles(dir, { repoRoot, extensions, acc });
+    if (existsSync(dir)) {
+      acc.push(
+        ...walkFiles(dir, repoRoot, extensions).map((file) =>
+          readArtifact(file.absolutePath, file.relativePath),
+        ),
+      );
+    }
   }
   for (const rel of ROOT_SECRET_SCAN_DOCS) {
     const full = join(repoRoot, rel);

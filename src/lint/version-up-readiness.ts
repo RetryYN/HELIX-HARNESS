@@ -1,7 +1,8 @@
-import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { readPackageVersion, readRepoHeadSha } from "../shared/repo-info";
+import { shellQuote } from "../shared/shell-quote";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
   type CompletionDecisionRecordTemplate,
@@ -18,6 +19,7 @@ import {
 import {
   allowedOutcomeSetViolation,
   fmValue,
+  loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
@@ -908,36 +910,11 @@ function parsePlan(file: string, content: string): VersionUpReadinessPlan {
   };
 }
 
-function readRepoHeadSha(repoRoot: string): string | null {
-  try {
-    return execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
-  } catch {
-    return null;
-  }
-}
-
-function readPackageVersion(repoRoot: string): string | null {
-  try {
-    const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
-      version?: unknown;
-    };
-    return typeof pkg.version === "string" && pkg.version.trim() ? pkg.version.trim() : null;
-  } catch {
-    return null;
-  }
-}
-
 export function loadVersionUpReadinessInput(
   repoRoot: string = process.cwd(),
 ): VersionUpReadinessInput {
-  const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
-  const plans = readdirSync(plansDir)
-    .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
-    .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8")));
+  const plans = loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content));
 
   return {
     charter: readFileSync(
@@ -2118,11 +2095,6 @@ function buildVersionUpActivationDryRunEvidence(
 
 function buildVersionUpDryRunReviewCommand(currentVersion: string, targetVersion: string): string {
   return `bun run src/cli.ts version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`;
-}
-
-function shellQuote(value: string): string {
-  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
-  return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
 function versionUpDryRunTarget(plan: VersionUpReadinessPlan): string {

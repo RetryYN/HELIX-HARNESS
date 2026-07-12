@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
@@ -15,6 +15,7 @@ import {
 import {
   allowedOutcomeSetViolation,
   fmValue,
+  loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
@@ -218,16 +219,13 @@ function parsePlan(file: string, content: string): S4DecisionPlan {
 }
 
 export function loadS4DecisionReadinessInput(repoRoot = process.cwd()): S4DecisionReadinessInput {
-  const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
   return {
     discoveryMd: readFileSync(join(repoRoot, "docs", "process", "modes", "discovery.md"), "utf8"),
     scrumMd: readFileSync(join(repoRoot, "docs", "process", "modes", "scrum.md"), "utf8"),
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
-    plans: readdirSync(plansDir)
-      .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
-      .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
+    plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
   };
 }
 

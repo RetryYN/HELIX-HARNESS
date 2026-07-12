@@ -1,3 +1,4 @@
+import { nowIso } from "../shared/time-utils";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
 
@@ -17,10 +18,6 @@ export interface FeedbackEvent {
   status: string;
   next_action: string;
   created_at: string;
-}
-
-function nowIso(): string {
-  return new Date().toISOString();
 }
 
 function metricKey(planId: string, skillId: string, metric: string): string {

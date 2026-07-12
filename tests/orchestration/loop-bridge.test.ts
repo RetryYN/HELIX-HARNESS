@@ -11,6 +11,7 @@ import {
 import { tmpdir } from "node:os";
 import { delimiter, join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
+import { readLoopEpochFromFs } from "../../src/orchestration/durable-loop-epoch-node";
 import { type ExecAdapterInput, nodeTickDeps } from "../../src/orchestration/loop-bridge";
 import type { LoopIterationRecord } from "../../src/orchestration/loop-runner";
 import { tick } from "../../src/orchestration/loop-runner";
@@ -48,6 +49,7 @@ function memoryLoopStore(records: LoopIterationRecord[] = []): LoopStore {
     recordIteration: vi.fn((record: LoopIterationRecord) => {
       records.push(record);
     }),
+    runSideEffect: async (_state, _purpose, effect) => effect(),
   };
 }
 
@@ -200,9 +202,9 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
       expect(run.status).toBe(0);
       expect(run.stdout).toContain("ticks=1");
       expect(run.stdout).toContain("iteration=2");
-      const state = JSON.parse(
-        readFileSync(join(loopDir, "PLAN-L7-177.json"), "utf8"),
-      ) as LoopState;
+      const snapshot = readLoopEpochFromFs(cwd, "PLAN-L7-177");
+      expect(snapshot.status).toBe("committed");
+      const state = snapshot.payload?.state as LoopState;
       expect(state.iteration).toBe(2);
       expect(state.lastVerdict).toBe("fail");
       expect(readFileSync(join(cwd, "codex-calls.txt"), "utf8").trim().split(/\r?\n/)).toHaveLength(
@@ -211,11 +213,10 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
       expect(
         readFileSync(join(cwd, "claude-calls.txt"), "utf8").trim().split(/\r?\n/),
       ).toHaveLength(2);
-      const iterations = readFileSync(join(loopDir, "PLAN-L7-177.iterations.jsonl"), "utf8")
-        .trim()
-        .split(/\r?\n/)
-        .map((line) => JSON.parse(line) as LoopIterationRecord);
-      expect(iterations.map((record) => record.verifierProvider)).toEqual(["claude", "claude"]);
+      expect(snapshot.payload?.iteration).toMatchObject({
+        iteration: 1,
+        verifierProvider: "claude",
+      });
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }

@@ -1,3 +1,4 @@
+import { createHash, randomUUID } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 import {
@@ -107,12 +108,24 @@ export interface TeamMemberExecution {
   slot_id: string | null;
   exit_code: number | null;
   status: SlotStatus;
+  evidence: TeamMemberExecutionEvidence;
   skipped_reason?: string;
+}
+
+export type TeamReviewVerdict = "pass" | "fail" | "error" | "pending";
+
+export interface TeamMemberExecutionEvidence {
+  output_digest: string;
+  output_bytes: number;
+  output_truncated: boolean;
+  verdict: TeamReviewVerdict | null;
+  verdict_status: "not_required" | "accepted" | "missing" | "ambiguous" | "rejected";
 }
 
 export interface TeamRunExecution {
   ok: boolean;
   dry_run: false;
+  team_run_id: string;
   team: string;
   strategy: TeamDefinition["strategy"];
   executions: TeamMemberExecution[];
@@ -128,7 +141,45 @@ export interface TeamRunnerDeps {
     env?: Record<string, string>;
     /** codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。 */
     stdin?: string;
-  }) => Promise<{ exitCode: number | null }>;
+  }) => Promise<{
+    exitCode: number | null;
+    output?: string;
+    outputBytes?: number;
+    outputTruncated?: boolean;
+  }>;
+}
+
+const REVIEW_ROLES = new Set(["tl", "qa", "uiux"]);
+
+export function parseStrictTeamReviewVerdict(output: string): {
+  verdict: TeamReviewVerdict | null;
+  status: "accepted" | "missing" | "ambiguous" | "rejected";
+} {
+  const matches = [...output.matchAll(/^\s*VERDICT:\s*(PASS|FAIL|ERROR|PENDING)\s*$/gim)].map(
+    (match) => match[1]?.toLowerCase() as TeamReviewVerdict,
+  );
+  if (matches.length === 0) return { verdict: null, status: "missing" };
+  if (matches.length !== 1) return { verdict: null, status: "ambiguous" };
+  return { verdict: matches[0] ?? null, status: matches[0] === "pass" ? "accepted" : "rejected" };
+}
+
+function executionEvidence(
+  role: string,
+  run: { output?: string; outputBytes?: number; outputTruncated?: boolean },
+): TeamMemberExecutionEvidence {
+  const output = run.output ?? "";
+  const parsed = REVIEW_ROLES.has(role)
+    ? run.outputTruncated
+      ? { verdict: null, status: "ambiguous" as const }
+      : parseStrictTeamReviewVerdict(output)
+    : { verdict: null, status: "not_required" as const };
+  return {
+    output_digest: `sha256:${createHash("sha256").update(output).digest("hex")}`,
+    output_bytes: run.outputBytes ?? Buffer.byteLength(output),
+    output_truncated: run.outputTruncated ?? false,
+    verdict: parsed.verdict,
+    verdict_status: parsed.status,
+  };
 }
 
 export function providerFromEngine(engine: string): TeamProvider {
@@ -406,6 +457,7 @@ async function executeMember(
   member: TeamMemberLaunch,
   deps: TeamRunnerDeps,
 ): Promise<TeamMemberExecution> {
+  const emptyEvidence = executionEvidence(member.role, {});
   if (!member.adapter || !member.executable) {
     return {
       index: member.index,
@@ -417,6 +469,7 @@ async function executeMember(
       slot_id: null,
       exit_code: null,
       status: "failed",
+      evidence: emptyEvidence,
     };
   }
   let slot: Slot | null = null;
@@ -432,7 +485,9 @@ async function executeMember(
       env: member.adapter.env,
       stdin: member.adapter.stdin,
     });
-    const status: SlotStatus = run.exitCode === 0 ? "completed" : "failed";
+    const evidence = executionEvidence(member.role, run);
+    const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";
+    const status: SlotStatus = run.exitCode === 0 && reviewAccepted ? "completed" : "failed";
     releaseSlot({ slotId: slot.slot_id, status, exitCode: run.exitCode }, deps.slots);
     return {
       index: member.index,
@@ -444,6 +499,7 @@ async function executeMember(
       slot_id: slot.slot_id,
       exit_code: run.exitCode,
       status,
+      evidence,
     };
   } catch {
     if (slot) releaseSlot({ slotId: slot.slot_id, status: "failed", exitCode: null }, deps.slots);
@@ -457,6 +513,7 @@ async function executeMember(
       slot_id: slot?.slot_id ?? null,
       exit_code: null,
       status: "failed",
+      evidence: emptyEvidence,
     };
   }
 }
@@ -465,10 +522,12 @@ export async function executeTeamRunPlan(
   plan: TeamRunPlan,
   deps: TeamRunnerDeps,
 ): Promise<TeamRunExecution> {
+  const teamRunId = randomUUID();
   if (plan.dry_run) {
     return {
       ok: false,
       dry_run: false,
+      team_run_id: teamRunId,
       team: plan.team,
       strategy: plan.strategy,
       executions: [],
@@ -479,6 +538,7 @@ export async function executeTeamRunPlan(
     return {
       ok: false,
       dry_run: false,
+      team_run_id: teamRunId,
       team: plan.team,
       strategy: plan.strategy,
       executions: [],
@@ -506,6 +566,7 @@ export async function executeTeamRunPlan(
           slot_id: null,
           exit_code: null,
           status: "failed",
+          evidence: executionEvidence(member.role, {}),
           skipped_reason: dependencyFailedMessage(member.serialize_after),
         });
         failedDependencies.add(member.role);
@@ -524,6 +585,7 @@ export async function executeTeamRunPlan(
   return {
     ok: executions.every((execution) => execution.status === "completed"),
     dry_run: false,
+    team_run_id: teamRunId,
     team: plan.team,
     strategy: plan.strategy,
     executions,
