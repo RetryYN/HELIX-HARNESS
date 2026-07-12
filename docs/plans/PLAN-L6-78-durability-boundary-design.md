@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: add-feature
 entry_signals:
-  - "PLAN-L7-445 inventoryでQS4 #29/#30の実装上の反例を確認"
+  - "po_directive:2026-07-13 /goal『設計とテスト設計/検証設計でVペアを作る』に基づきPLAN-L7-445 inventoryでQS4 #29/#30の実装反例を確認"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
