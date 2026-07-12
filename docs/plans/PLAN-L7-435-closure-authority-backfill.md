@@ -4,7 +4,7 @@ title: "PLAN-L7-435 (impl): closure authority backfill"
 kind: impl
 layer: L7
 drive: agent
-status: active
+status: draft
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-12 PLAN-L6-73 confirmed authority backfill implementation"
