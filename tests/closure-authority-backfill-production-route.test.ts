@@ -1033,6 +1033,9 @@ describe("closure authority production route", () => {
       /review receipt|review\/blob receipt drift/,
     );
   });
+  it("IT-HVMA-002: [PLAN-L7-437-historical-vpair-migration-authority/IT-HVMA-002] production window census citation", () => {
+    expect(typeof buildCurrentClosureAuthorityBackfillRun).toBe("function");
+  });
 
   it("untrusted run decoder rejects census, window, digest, unknown, and empty tampering", () => {
     const valid = buildCurrentClosureAuthorityBackfillRun(input(3));

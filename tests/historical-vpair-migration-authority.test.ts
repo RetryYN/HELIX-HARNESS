@@ -134,18 +134,20 @@ describe("historical V-pair migration authority", () => {
           : JSON.stringify(v);
     review.review_digest = `sha256:${createHash("sha256").update(stable(review)).digest("hex")}`;
     expect(
-      validateHistoricalMigrationReview(review, b, "2026-07-12T00:30:00.000Z", {
-        artifactDigest: d,
-        generation: 1,
+      validateHistoricalMigrationReview({
+        value: review,
+        bundle: b,
+        now: "2026-07-12T00:30:00.000Z",
+        authorityBinding: { artifactDigest: d, generation: 1 },
       }),
     ).toBeTruthy();
     expect(() =>
-      validateHistoricalMigrationReview(
-        { ...review, reviewer_identity: "w" },
-        b,
-        "2026-07-12T00:30:00.000Z",
-        { artifactDigest: d, generation: 1 },
-      ),
+      validateHistoricalMigrationReview({
+        value: { ...review, reviewer_identity: "w" },
+        bundle: b,
+        now: "2026-07-12T00:30:00.000Z",
+        authorityBinding: { artifactDigest: d, generation: 1 },
+      }),
     ).toThrow();
   });
   it("IT-HVMA-001/002 ST-HVMA-001: pinned configとcutoff ancestor/treeを実repoで検証", () => {

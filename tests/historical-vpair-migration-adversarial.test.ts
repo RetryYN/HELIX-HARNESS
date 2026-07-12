@@ -519,7 +519,14 @@ describe("historical migration adversarial boundaries", () => {
       writeFileSync(join(reviewDir, "00000002.json"), JSON.stringify(second));
     };
     writeChain(r1, r2);
-    expect(() => loadHistoricalReviewChainTip(root, bundle, r2.payload as never, a2)).not.toThrow();
+    expect(() =>
+      loadHistoricalReviewChainTip({
+        repoRoot: root,
+        bundle,
+        review: r2.payload as never,
+        authorityTip: a2,
+      }),
+    ).not.toThrow();
     for (const mutate of [
       (p: Record<string, unknown>) => {
         p.bundle_digest = digest("other-bundle");
@@ -543,7 +550,12 @@ describe("historical migration adversarial boundaries", () => {
       const attacked2 = artifact("review", 2, attacked1.artifact_digest, p2);
       writeChain(attacked1, attacked2);
       expect(() =>
-        loadHistoricalReviewChainTip(root, bundle, attacked2.payload as never, a2),
+        loadHistoricalReviewChainTip({
+          repoRoot: root,
+          bundle,
+          review: attacked2.payload as never,
+          authorityTip: a2,
+        }),
       ).toThrow(/prefix/);
     }
   });

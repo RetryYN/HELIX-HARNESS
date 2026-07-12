@@ -207,12 +207,13 @@ const reviewSchema = z
 export function parseHistoricalMigrationReview(value: unknown) {
   return reviewSchema.parse(value);
 }
-export function validateHistoricalMigrationReview(
-  value: unknown,
-  bundle: HistoricalBundle,
-  now: string,
-  authorityBinding: { artifactDigest: string; generation: number },
-) {
+export function validateHistoricalMigrationReview(input: {
+  value: unknown;
+  bundle: HistoricalBundle;
+  now: string;
+  authorityBinding: { artifactDigest: string; generation: number };
+}) {
+  const { value, bundle, now, authorityBinding } = input;
   const r = parseHistoricalMigrationReview(value);
   const { review_digest, ...reviewBody } = r;
   if (review_digest !== sha(stable(reviewBody))) throw new Error("review digest mismatch");

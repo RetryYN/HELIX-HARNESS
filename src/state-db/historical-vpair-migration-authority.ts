@@ -86,7 +86,8 @@ export function canonicalRepositoryIdentity(value: string): string {
   let url: URL;
   try {
     url = new URL(trimmed);
-  } catch {
+  } catch (error) {
+    void error;
     throw new Error("unsupported repository identity");
   }
   if (!["https:", "ssh:", "file:"].includes(url.protocol))
@@ -127,7 +128,8 @@ export function auditHistoricalTempArtifacts(input: {
     let names: string[] = [];
     try {
       names = readdirSync(dir);
-    } catch {
+    } catch (error) {
+      void error;
       continue;
     }
     for (const name of names) {
@@ -137,7 +139,8 @@ export function auditHistoricalTempArtifacts(input: {
       let live = true;
       try {
         process.kill(pid, 0);
-      } catch {
+      } catch (error) {
+        void error;
         live = false;
       }
       const path = join(dir, name);
@@ -242,7 +245,8 @@ export function sealHistoricalAuthorityGeneration(input: {
       return readdirSync(reviewDir)
         .filter((name) => /^\d{8}\.json$/.test(name))
         .sort();
-    } catch {
+    } catch (error) {
+      void error;
       return [];
     }
   })();
@@ -260,12 +264,12 @@ export function sealHistoricalAuthorityGeneration(input: {
     const parsedExisting = parseHistoricalMigrationReview(existingTip.payload);
     if (stableJson(parsedExisting) !== stableJson(validatedReview))
       throw new Error("historical seal idempotency payload conflict");
-    const validatedTip = loadHistoricalReviewChainTip(
-      input.repoRoot,
-      input.bundle,
-      validatedReview,
-      input.authorityTip,
-    );
+    const validatedTip = loadHistoricalReviewChainTip({
+      repoRoot: input.repoRoot,
+      bundle: input.bundle,
+      review: validatedReview,
+      authorityTip: input.authorityTip,
+    });
     if (
       validatedTip.artifact_digest !== existingTip.artifact_digest ||
       validatedTip.repository_head !== input.repositoryHead ||
@@ -397,7 +401,9 @@ function appendHistoricalChainArtifact(input: {
   } catch (error) {
     try {
       if (readFileSync(target, "utf8") === bytes) return artifact;
-    } catch {}
+    } catch (readError) {
+      void readError;
+    }
     throw error;
   } finally {
     rmSync(temp, { force: true });
@@ -592,7 +598,9 @@ export function loadHistoricalCandidate(input: {
   try {
     cutoff = git("show", `${input.cutoffCommit}:${input.planPath}`);
     oid = git("rev-parse", `${input.cutoffCommit}:${input.planPath}`);
-  } catch {}
+  } catch (error) {
+    void error;
+  }
   const cutoffFm = cutoff
     ? (parseYaml(cutoff.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? "") ?? {})
     : {};
@@ -739,12 +747,7 @@ export function validateHistoricalMigrationReviewWithDb(input: {
   now: string;
   authorityBinding: { artifactDigest: string; generation: number };
 }) {
-  const review = validateHistoricalMigrationReview(
-    input.value,
-    input.bundle,
-    input.now,
-    input.authorityBinding,
-  );
+  const review = validateHistoricalMigrationReview(input);
   verifyHistoricalTerminationEvent({ db: input.db, review });
   return review;
 }
@@ -801,12 +804,13 @@ export function loadHistoricalAuthorityChainTip(
     throw new Error("authority chain tip bundle join failed");
   return previous;
 }
-export function loadHistoricalReviewChainTip(
-  repoRoot: string,
-  bundle: HistoricalBundle,
-  review: ReturnType<typeof validateHistoricalMigrationReview>,
-  authorityTip: HistoricalChainArtifact,
-): HistoricalChainArtifact {
+export function loadHistoricalReviewChainTip(input: {
+  repoRoot: string;
+  bundle: HistoricalBundle;
+  review: ReturnType<typeof validateHistoricalMigrationReview>;
+  authorityTip: HistoricalChainArtifact;
+}): HistoricalChainArtifact {
+  const { repoRoot, bundle, review, authorityTip } = input;
   const authorityDir = join(repoRoot, HISTORICAL_EVIDENCE_DIR, "authority");
   const authorityChain = readdirSync(authorityDir)
     .filter((name) => /^\d{8}\.json$/.test(name))
@@ -906,7 +910,12 @@ export function runHistoricalVpairMigrationDryRun(input: {
       generation: authorityTip.sequence,
     },
   });
-  const reviewTip = loadHistoricalReviewChainTip(input.repoRoot, bundle, review, authorityTip);
+  const reviewTip = loadHistoricalReviewChainTip({
+    repoRoot: input.repoRoot,
+    bundle,
+    review,
+    authorityTip,
+  });
   const activeReceiptPath = `config/historical-vpair-migration-authority.reviews/${activeManifest.review_digest?.slice(7)}.json`;
   const activeReceipt = manifestReviewReceiptSchema.parse(
     JSON.parse(

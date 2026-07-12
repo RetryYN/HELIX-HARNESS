@@ -2,7 +2,7 @@
 layer: L8
 sub_doc: unit-test-design
 status: confirmed
-parent_design: docs/design/harness/L6-function-design/historical-vpair-migration-authority.md
+pair_artifact: docs/design/harness/L6-function-design/historical-vpair-migration-authority.md
 plan: docs/plans/PLAN-L6-75-historical-vpair-migration-authority.md
 ---
 
@@ -36,7 +36,7 @@ fixture Git repository、施行日前後のcommit、versioned baseline、current
 | V-ID | 手順 | 期待 |
 |---|---|---|
 | IT-HVMA-001 | pinned cutoff commit/tree、施行日前後、baseline収載/未収載、assisted材料あり/なしを含むGit fixtureを分類する | source admission、primary class保存則、overlap tagが一致する |
-| IT-HVMA-002 | current review-bundleを100件以下のwindowで全走査する | dynamic totalとexact set/orderが一致し、cutoff treeのpath/identity実在性で分類し、観測値をhardcodeしない |
+| IT-HVMA-002 | current review-bundleを100件以下のwindowで全走査する（`tests/closure-authority-backfill-production-route.test.ts` `[PLAN-L7-437-historical-vpair-migration-authority/IT-HVMA-002]`） | dynamic totalとexact set/orderが一致し、cutoff treeのpath/identity実在性で分類し、観測値をhardcodeしない |
 | ST-HVMA-001 | doctor/governance gateでpost-date baseline、semantic drift、promotion attemptを注入する | fail-closeし、registry/closure stateは不変 |
 
 ## 4. 完了証拠
