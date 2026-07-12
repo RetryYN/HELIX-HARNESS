@@ -44,7 +44,7 @@ review_evidence:
     worker_model: codex
     reviewer_model: codex-fresh-subagent
     green_commands:
-      - kind: regression_test
+      - kind: unit_test
         command: "bunx vitest run tests/guard-override-transaction.test.ts tests/work-guard.test.ts tests/hook-contract.test.ts --reporter=dot"
         runner: bun
         scope: targeted

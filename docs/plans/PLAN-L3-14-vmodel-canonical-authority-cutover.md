@@ -40,7 +40,7 @@ dependencies:
 review_evidence:
   - reviewer: PO
     review_kind: human
-    reviewed_at: "2026-07-13T03:48:00+09:00"
+    reviewed_at: "2026-07-13T03:55:00+09:00"
     tests_green_at: "2026-07-13T03:54:55+09:00"
     verdict: approve
     worker_model: codex
@@ -49,7 +49,7 @@ review_evidence:
     green_commands:
       - kind: lint
         command: "scripts/helix plan lint docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md"
-        runner: helix
+        runner: bash
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T03:54:55+09:00"

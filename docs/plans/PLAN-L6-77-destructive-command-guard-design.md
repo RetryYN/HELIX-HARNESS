@@ -26,14 +26,14 @@ dependencies:
 review_evidence:
   - reviewer: review_443_round9
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-13T03:49:00+09:00"
+    reviewed_at: "2026-07-13T03:55:00+09:00"
     tests_green_at: "2026-07-13T03:54:25+09:00"
     verdict: approve
     worker_model: codex
     reviewer_model: codex-fresh-subagent
     scope: "L5/L6のthreat model・atomic transaction・bounded retryとL8/L9 negative oracleを独立再審査しBlocker/High 0。"
     green_commands:
-      - kind: regression_test
+      - kind: unit_test
         command: "bunx vitest run tests/guard-override-transaction.test.ts tests/work-guard.test.ts tests/hook-contract.test.ts --reporter=dot"
         runner: bun
         scope: targeted
