@@ -1,5 +1,6 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { basename, join, relative } from "node:path";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { basename, join } from "node:path";
+import { walkFiles } from "../shared/file-walk";
 
 export interface ReadabilityDoc {
   path: string;
@@ -85,38 +86,13 @@ export function loadFreezeReadabilityDocs(repoRoot: string = process.cwd()): Rea
   return [...l6Docs, ...pmReviewPlans];
 }
 
-interface WalkContext {
-  repoRoot: string;
-  extensions: readonly string[];
-  acc: ReadabilityDoc[];
-}
-
-function walkFiles(dir: string, ctx: WalkContext): void {
-  for (const name of readdirSync(dir)) {
-    const full = join(dir, name);
-    let st: ReturnType<typeof statSync>;
-    try {
-      st = statSync(full);
-    } catch {
-      // A statSync failure here is a transient race on live generated state
-      // (entry deleted between readdir and statSync) — skip rather than crash
-      // the whole gate, matching the original walkMarkdown contract. This does
-      // NOT weaken fail-close: any file we DO select is read with readFileSync
-      // below, whose failure propagates to checkRuntimeReadability's catch and
-      // turns the gate red.
-      continue;
-    }
-    if (st.isDirectory()) {
-      walkFiles(full, ctx);
-      continue;
-    }
-    if (!ctx.extensions.some((ext) => name.endsWith(ext))) continue;
-    ctx.acc.push({ path: relative(ctx.repoRoot, full), text: readFileSync(full, "utf8") });
-  }
-}
-
 function walkMarkdown(dir: string, repoRoot: string, acc: ReadabilityDoc[]): void {
-  walkFiles(dir, { repoRoot, extensions: [".md"], acc });
+  acc.push(
+    ...walkFiles(dir, repoRoot, [".md"]).map((file) => ({
+      path: file.relativePath,
+      text: readFileSync(file.absolutePath, "utf8"),
+    })),
+  );
 }
 
 // Canonical instruction prose outside docs/ that must also stay mojibake-free.
@@ -177,7 +153,14 @@ export function loadRuntimeArtifactReadabilityDocs(
   const acc: ReadabilityDoc[] = [];
   for (const { rel, extensions } of RUNTIME_READABILITY_DIRS) {
     const dir = join(repoRoot, rel);
-    if (existsSync(dir)) walkFiles(dir, { repoRoot, extensions, acc });
+    if (existsSync(dir)) {
+      acc.push(
+        ...walkFiles(dir, repoRoot, extensions).map((file) => ({
+          path: file.relativePath,
+          text: readFileSync(file.absolutePath, "utf8"),
+        })),
+      );
+    }
   }
   return acc.sort((a, b) => a.path.localeCompare(b.path));
 }

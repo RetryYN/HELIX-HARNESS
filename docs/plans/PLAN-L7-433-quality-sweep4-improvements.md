@@ -89,6 +89,10 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/time-utils.test.ts
     artifact_type: test_code
+  - artifact_path: src/shared/file-walk.ts
+    artifact_type: source_module
+  - artifact_path: tests/file-walk.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
