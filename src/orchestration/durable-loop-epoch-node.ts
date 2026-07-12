@@ -178,8 +178,11 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
           const pointerText = readIfExists(value.manifest);
           let manifestDigest: string | null = null;
           if (pointerText !== null) {
-            const manifestText = resolvePointerManifest(value, planId, pointerText);
-            manifestDigest = sha256Digest(manifestText);
+            try {
+              manifestDigest = sha256Digest(resolvePointerManifest(value, planId, pointerText));
+            } catch {
+              manifestDigest = null;
+            }
           }
           writeFileSync(
             fd,
