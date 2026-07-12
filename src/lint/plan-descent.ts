@@ -44,6 +44,7 @@ export interface PlanDescentDoc {
   pairArtifactExists: boolean;
   pairArtifactLayer?: string | null;
   pairArtifactSubDoc?: string | null;
+  pairArtifactType?: string | null;
   generatesArtifactTypes: string[];
 }
 
@@ -133,6 +134,7 @@ export function loadPlanDescentDocs(
       pairArtifactExists: pairArtifact ? existsSync(join(repoRoot, pairArtifact)) : false,
       pairArtifactLayer: pairMeta ? stringField(pairMeta.layer) : null,
       pairArtifactSubDoc: pairMeta ? stringField(pairMeta.sub_doc) : null,
+      pairArtifactType: pairMeta ? stringField(pairMeta.artifact_type) : null,
       generatesArtifactTypes: generates
         .map((g) =>
           g && typeof g === "object"
@@ -171,9 +173,12 @@ function isL8PairEnforced(doc: PlanDescentDoc): boolean {
 
 function isL8UnitTestDesign(doc: PlanDescentDoc): boolean {
   return (
-    doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) === true &&
-    doc.pairArtifactLayer === "L8" &&
-    doc.pairArtifactSubDoc === "unit-test-design"
+    (doc.pairArtifact === "docs/test-design/harness/L8-unit-test-design.md" &&
+      doc.pairArtifactLayer === "L8" &&
+      doc.pairArtifactType === "test_design") ||
+    (doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) === true &&
+      doc.pairArtifactLayer === "L8" &&
+      doc.pairArtifactSubDoc === "unit-test-design")
   );
 }
 

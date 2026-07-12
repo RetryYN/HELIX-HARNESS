@@ -54,7 +54,7 @@ review_evidence:
       - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-436-closure-authority-production-route.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T04:35:00Z", evidence_path: docs/plans/PLAN-L7-436-closure-authority-production-route.md, output_digest: "sha256:a4b466f7331fd4d2478a9a00973e19392fff4915321bf8152907bfdec629f2db" }
 ---
 
-# PLAN-L7-436: closure authority production route
+# PLAN-L7-436: closure authority本番経路
 
 ## 1. 目的
 
