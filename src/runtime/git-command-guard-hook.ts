@@ -53,9 +53,13 @@ export function createGuardOverrideAuditPort(db: HarnessDb): OverrideAuditPort {
             db.exec("ROLLBACK");
           } catch {}
           const code = String((error as NodeJS.ErrnoException).code ?? "");
-          const message = String(error).toLowerCase();
+          const message = String(error).toUpperCase();
           const busy =
-            code.includes("BUSY") || code.includes("LOCKED") || message.includes("locked");
+            code.includes("BUSY") ||
+            code.includes("LOCKED") ||
+            message.includes("SQLITE_BUSY") ||
+            message.includes("SQLITE_LOCKED") ||
+            message.includes("DATABASE IS LOCKED");
           if (!busy || attempt === 4) throw error;
           Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10 * (attempt + 1));
         }
