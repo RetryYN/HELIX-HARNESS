@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { LoopState } from "../orchestration/loop-state";
+import { assertLoopPlanId } from "../orchestration/loop-store";
 
 export const AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION = "autonomous-loop-run-receipts.v1";
 
@@ -53,8 +54,15 @@ export function buildAutonomousLoopRunReceipt(
   planId: string,
   options: { sourceCommand?: string } = {},
 ): AutonomousLoopRunReceipt {
-  const statePath = join(repoRoot, ".helix", "state", "loop", `${planId}.json`);
-  const iterationsPath = join(repoRoot, ".helix", "state", "loop", `${planId}.iterations.jsonl`);
+  const safePlanId = assertLoopPlanId(planId);
+  const statePath = join(repoRoot, ".helix", "state", "loop", `${safePlanId}.json`);
+  const iterationsPath = join(
+    repoRoot,
+    ".helix",
+    "state",
+    "loop",
+    `${safePlanId}.iterations.jsonl`,
+  );
   const state = readJson<LoopState>(statePath);
   if (!state) {
     return {

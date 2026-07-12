@@ -49,6 +49,7 @@ import {
   codexHookAdapterMessages,
   loadCodexHookAdapterInput,
 } from "../lint/codex-hook-adapter";
+import { codexHookTrustMessages, loadCodexHookTrust } from "../lint/codex-hook-trust";
 import {
   analyzeCodingRules,
   codingRulesMessages,
@@ -446,6 +447,7 @@ import {
   peakParallel,
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
+import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
 import {
   buildSummarySurfaceCommandAudit,
   buildSummarySurfaceContractPayloads,
@@ -4670,6 +4672,23 @@ export function checkCodexHookAdapter(repoRoot: string): {
   }
 }
 
+export function checkCodexHookTrust(repoRoot: string): { messages: string[]; ok: boolean } {
+  const result = loadCodexHookTrust(repoRoot);
+  return { messages: codexHookTrustMessages(result), ok: result.ok };
+}
+
+export function checkMemoryCommitHygiene(repoRoot: string): { messages: string[]; ok: true } {
+  const result = inspectMemoryCommitHygiene(repoRoot);
+  return {
+    ok: true,
+    messages: result.warning
+      ? [
+          `memory-commit-hygiene - warning: ${result.path} is uncommitted for ${Math.floor(result.ageMs / 3_600_000)}h; include it in the lane terminal commit`,
+        ]
+      : ["memory-commit-hygiene - OK"],
+  };
+}
+
 export function checkToolContractRegistry(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -6795,6 +6814,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const cycleP4Verification = checkCycleP4Verification(deps.repoRoot);
   const projectHooks = checkProjectHooks(deps.repoRoot);
   const codexHookAdapter = checkCodexHookAdapter(deps.repoRoot);
+  const codexHookTrust = checkCodexHookTrust(deps.repoRoot);
+  const memoryCommitHygiene = checkMemoryCommitHygiene(deps.repoRoot);
   const toolContractRegistry = checkToolContractRegistry(deps.repoRoot);
   const codexWrapperParity = checkCodexWrapperParity(deps);
   const l6FrCoverage = checkL6FrCoverage(deps.repoRoot);
@@ -6947,6 +6968,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       feedbackLog.ok &&
       projectHooks.ok &&
       codexHookAdapter.ok &&
+      codexHookTrust.ok &&
       toolContractRegistry.ok &&
       codexWrapperParity.ok &&
       l6Completion.ok &&
@@ -7067,6 +7089,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...cycleP4Verification.messages.map((m) => `doctor: ${m}`),
       ...projectHooks.messages.map((m) => `doctor: ${m}`),
       ...codexHookAdapter.messages.map((m) => `doctor: ${m}`),
+      ...codexHookTrust.messages.map((m) => `doctor: ${m}`),
+      ...memoryCommitHygiene.messages.map((m) => `doctor: ${m}`),
       ...toolContractRegistry.messages.map((m) => `doctor: ${m}`),
       ...codexWrapperParity.messages.map((m) => `doctor: ${m}`),
       ...l6FrCoverage.messages.map((m) => `doctor: ${m}`),

@@ -673,4 +673,22 @@ describe("test→review 順序強制 (IMP-077)", () => {
     expect(r.testBeforeReviewViolations).toEqual([]);
     expect(r.ok).toBe(true);
   });
+
+  it("U-TORDER-006: timezone表記が混在してもepochで正順を判定する", () => {
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-T6",
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            reviewed_at: "2026-07-12T10:30:00+09:00",
+            tests_green_at: "2026-07-12T01:00:00Z",
+          },
+        ],
+        hasEvidence: true,
+      }),
+    ]);
+    expect(r.testBeforeReviewViolations).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
 });

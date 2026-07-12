@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { validateMemoryEntry } from "../src/memory/memory-v2";
 import {
@@ -221,11 +221,12 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
   });
 
   it("IT-CONT-02: 2 SQLite connectionのfenceでparallel replayを1 logical appendへ収束する", () => {
-    const root = mkdtempSync(join(process.cwd(), ".helix", "continuation-race-"));
-    const dbPath = join(root, "coordination.db");
+    const root = join(mkdtempSync(join(tmpdir(), "helix-continuation-race-")), ".helix");
+    mkdirSync(root, { recursive: true });
+    const dbPath = join(root, "harness.db");
     const journal = join(root, "session-log.jsonl");
-    const first = openHarnessDb(dbPath);
-    const second = openHarnessDb(dbPath);
+    const first = openHarnessDb(dbPath, { repoRoot: dirname(root) });
+    const second = openHarnessDb(dbPath, { repoRoot: dirname(root) });
     migrate(first);
     migrate(second);
     dbs.push(first, second);
@@ -242,32 +243,35 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
       second.close();
       dbs.splice(dbs.indexOf(first), 1);
       dbs.splice(dbs.indexOf(second), 1);
-      rmSync(root, { recursive: true, force: true });
+      rmSync(dirname(root), { recursive: true, force: true });
     }
   });
 
   it("IT-CONT-02: 2 processが同intentを同時appendしても1 eventへ収束する", async () => {
-    const root = mkdtempSync(join(process.cwd(), ".helix", "continuation-process-race-"));
-    const dbPath = join(root, "coordination.db");
+    const root = join(mkdtempSync(join(tmpdir(), "helix-continuation-process-race-")), ".helix");
+    mkdirSync(root, { recursive: true });
+    const dbPath = join(root, "harness.db");
     const journal = join(root, "session-log.jsonl");
-    const setup = openHarnessDb(dbPath);
+    const setup = openHarnessDb(dbPath, { repoRoot: dirname(root) });
     migrate(setup);
     setup.close();
     const script = [
       'import { openHarnessDb } from "./src/state-db/index.ts";',
       'import { appendContinuationEventFile } from "./src/runtime/continuation.ts";',
-      "const db=openHarnessDb(process.env.TEST_DB);",
+      "const db=openHarnessDb(process.env.TEST_DB,{repoRoot:process.env.TEST_REPO_ROOT});",
       "try { console.log(JSON.stringify(appendContinuationEventFile(process.env.TEST_JOURNAL, JSON.parse(process.env.TEST_EVENT), db))); } finally { db.close(); }",
     ].join("");
     try {
       const outputs = await Promise.all([
         runBun(script, {
           TEST_DB: dbPath,
+          TEST_REPO_ROOT: dirname(root),
           TEST_JOURNAL: journal,
           TEST_EVENT: JSON.stringify(event()),
         }),
         runBun(script, {
           TEST_DB: dbPath,
+          TEST_REPO_ROOT: dirname(root),
           TEST_JOURNAL: journal,
           TEST_EVENT: JSON.stringify(event()),
         }),
@@ -275,7 +279,7 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
       expect(outputs.map((value) => JSON.parse(value).appended).sort()).toEqual([false, true]);
       expect(parseContinuationEventLog(readFileSync(journal, "utf8"))).toHaveLength(1);
     } finally {
-      rmSync(root, { recursive: true, force: true });
+      rmSync(dirname(root), { recursive: true, force: true });
     }
   });
   it("U-HRET-007: append失敗時はprojection/checkpoint/memoryを一切公開しない", () => {
@@ -757,9 +761,10 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
   });
 
   it("U-HRET-005: acknowledged/expiredの2 process terminal競合は一方だけへCAS収束する", async () => {
-    const root = mkdtempSync(join(process.cwd(), ".helix", "delivery-terminal-race-"));
-    const dbPath = join(root, "coordination.db");
-    const setup = openHarnessDb(dbPath);
+    const root = join(mkdtempSync(join(tmpdir(), "helix-delivery-terminal-race-")), ".helix");
+    mkdirSync(root, { recursive: true });
+    const dbPath = join(root, "harness.db");
+    const setup = openHarnessDb(dbPath, { repoRoot: dirname(root) });
     migrate(setup);
     const common = {
       entryId: "entry-terminal",
@@ -775,13 +780,14 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
     const script = [
       'import { openHarnessDb } from "./src/state-db/index.ts";',
       'import { projectDeliveryEvent } from "./src/runtime/continuation.ts";',
-      "const db=openHarnessDb(process.env.TEST_DB);",
+      "const db=openHarnessDb(process.env.TEST_DB,{repoRoot:process.env.TEST_REPO_ROOT});",
       "try { try { console.log(projectDeliveryEvent(db, JSON.parse(process.env.TEST_DELIVERY))); } catch (error) { console.log('error:' + error.message); } } finally { db.close(); }",
     ].join("");
     try {
       const [ack, expired] = await Promise.all([
         runBun(script, {
           TEST_DB: dbPath,
+          TEST_REPO_ROOT: dirname(root),
           TEST_DELIVERY: JSON.stringify(
             buildDeliveryEvent({
               ...common,
@@ -792,6 +798,7 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
         }),
         runBun(script, {
           TEST_DB: dbPath,
+          TEST_REPO_ROOT: dirname(root),
           TEST_DELIVERY: JSON.stringify(
             buildDeliveryEvent({
               ...common,
@@ -803,14 +810,14 @@ describe("PLAN-L7-416 Sprint 2 event-first continuation", () => {
       ]);
       expect([ack, expired].filter((value) => value === "updated")).toHaveLength(1);
       expect([ack, expired].filter((value) => value.startsWith("error:"))).toHaveLength(1);
-      const verify = openHarnessDb(dbPath);
+      const verify = openHarnessDb(dbPath, { repoRoot: dirname(root) });
       const row = verify
         .prepare("SELECT status FROM delivery_receipts WHERE delivery_id = ?")
         .get("entry-terminal:consumer-race");
       verify.close();
       expect(["acknowledged", "expired"]).toContain(row?.status);
     } finally {
-      rmSync(root, { recursive: true, force: true });
+      rmSync(dirname(root), { recursive: true, force: true });
     }
   });
 

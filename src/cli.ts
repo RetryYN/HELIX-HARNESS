@@ -258,6 +258,7 @@ import {
   validateAdapterParityMap,
 } from "./runtime/hosted-preflight";
 import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-runner";
+import { inspectLane } from "./runtime/lane-hygiene";
 import {
   composeDelegationInjection,
   type MemoryInjectionSurface,
@@ -452,6 +453,7 @@ import {
   rebuildHarnessDb,
 } from "./state-db/projection-writer";
 import { collectReverseCandidates } from "./state-db/reverse-candidates";
+import { compactHarnessDb, databaseFreelist, gcTmp } from "./state-db/state-hygiene";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
 import { buildVisualizationSnapshot } from "./state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "./state-db/visualization-view-model";
@@ -4061,6 +4063,76 @@ db.command("rebuild")
     process.stdout.write(
       "  note: plans / roadmap rollups / review evidence / optional Phase3 outputs を projection\n",
     );
+  });
+db.command("gc")
+  .description("期限超過した .helix/tmp 生成物を明示的に掃除（audit evidence は対象外）")
+  .option("--max-age-hours <hours>", "保持時間", "168")
+  .option("--apply", "候補を削除（省略時 dry-run）")
+  .option("--json", "JSON output")
+  .action((opts: { maxAgeHours: string; apply?: boolean; json?: boolean }) => {
+    const hours = Number(opts.maxAgeHours);
+    if (!Number.isFinite(hours) || hours < 0) throw new Error("max-age-hours must be non-negative");
+    const result = gcTmp(
+      join(process.cwd(), ".helix", "tmp"),
+      Date.now(),
+      hours * 3_600_000,
+      opts.apply === true,
+    );
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(result, null, 2)}\n`
+        : `db gc: candidates=${result.candidates.length} removed=${result.removed} apply=${result.apply}\n`,
+    );
+  });
+db.command("compact")
+  .description("harness.db compact preflight（--execute 明示時のみ backup + exclusive VACUUM）")
+  .option("--execute", "backup/preflight後に明示実行")
+  .option("--json", "JSON output")
+  .action((opts: { execute?: boolean; json?: boolean }) => {
+    const result = compactHarnessDb({ repoRoot: process.cwd(), execute: opts.execute === true });
+    process.stdout.write(
+      opts.json
+        ? `${JSON.stringify(result, null, 2)}\n`
+        : `db compact: ok=${result.ok} executed=${result.executed} reason=${result.reason}\n`,
+    );
+    if (!result.ok) process.exitCode = 1;
+  });
+db.command("hygiene")
+  .description("harness.db freelist 比を read-only 表示")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const handle = openHarnessDbReadOnly(defaultHarnessDbPath(process.cwd()), {
+      repoRoot: process.cwd(),
+    });
+    try {
+      const result = databaseFreelist(handle);
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(result, null, 2)}\n`
+          : `db hygiene: pages=${result.pageCount} freelist=${result.freelistCount} ratio=${(result.ratio * 100).toFixed(1)}%\n`,
+      );
+    } finally {
+      handle.close();
+    }
+  });
+
+const lane = program.command("lane").description("multi-runtime git lane hygiene");
+lane
+  .command("status")
+  .option("--base <ref>", "comparison base", "origin/main")
+  .option("--json", "JSON output")
+  .action((opts: { base: string; json?: boolean }) => {
+    const result = inspectLane(process.cwd(), opts.base);
+    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    else {
+      process.stdout.write(
+        `lane status: ${result.branch || "(detached)"} ${result.state} unique=${result.unique} equivalent=${result.equivalent}\n`,
+      );
+      for (const row of result.prunableWorktrees)
+        process.stdout.write(
+          `  warning: prunable worktree ${row.path} (${row.reason}) — run git worktree prune explicitly\n`,
+        );
+    }
   });
 
 function summarizeRecoveryHandoffGateForCli(gate: VmodelFitReport["recovery_handoff_gate"] | null) {

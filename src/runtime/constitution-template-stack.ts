@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256Digest } from "./digest";
 
 export const CONSTITUTION_TEMPLATE_STACK_SCHEMA_VERSION = "constitution-template-stack.v1";
 
@@ -28,10 +28,6 @@ export interface ConstitutionTemplateStackReport {
   findings: Array<{ code: string; severity: ConstitutionSeverity; detail: string }>;
   source_command: string;
   read_only: true;
-}
-
-function sha256(value: string): string {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }
 
 function sourceRank(source: TemplateSourceKind): number {
@@ -84,7 +80,7 @@ export function buildConstitutionTemplateStackReport(
       selected_source: winner.source,
       selected_priority: winner.priority,
       resolver_source: `${winner.source}:${winner.priority}`,
-      digest: sha256(winner.content),
+      digest: sha256Digest(winner.content),
     });
   }
 

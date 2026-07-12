@@ -61,6 +61,57 @@ describe("secret-scan lint", () => {
     expect(result.violations).toEqual([]);
   });
 
+  it("S5: detects common provider token formats", () => {
+    const samples = [
+      ["stripe-live-key", `sk_live_${"a".repeat(24)}`],
+      ["npm-token", `npm_${"b".repeat(36)}`],
+      [
+        "slack-webhook",
+        `https://hooks.slack.com/services/${"A".repeat(10)}/${"B".repeat(10)}/${"c".repeat(24)}`,
+      ],
+      ["jwt", `eyJ${"a".repeat(12)}.${"b".repeat(12)}.${"c".repeat(12)}`],
+      [
+        "azure-connection-string",
+        `DefaultEndpointsProtocol=https;AccountKey=${"d".repeat(32)};EndpointSuffix=core.windows.net`,
+      ],
+    ] as const;
+    for (const [marker, token] of samples) {
+      const result = analyzeSecretScan([{ path: "docs/provider.md", text: token }]);
+      expect(
+        result.violations.some((violation) => violation.marker === marker),
+        marker,
+      ).toBe(true);
+    }
+  });
+
+  it("S5: provider markers honor explicit allow markers and reject prefix-like examples", () => {
+    const providerLike = [
+      `sk_live_${"a".repeat(24)}`,
+      `npm_${"b".repeat(36)}`,
+      `https://hooks.slack.com/services/${"A".repeat(10)}/${"B".repeat(10)}/${"c".repeat(24)}`,
+      `eyJ${"a".repeat(12)}.${"b".repeat(12)}.${"c".repeat(12)}`,
+      `AccountKey=${"d".repeat(32)};`,
+    ];
+    expect(
+      analyzeSecretScan(
+        providerLike.map((token, index) => ({
+          path: `docs/allow-${index}.md`,
+          text: `redacted ${token}`,
+        })),
+      ).ok,
+    ).toBe(true);
+    const falsePositives = [
+      "sk_live_short",
+      "npm_install_command",
+      "https://hooks.slack.com/services/T/B/short",
+      "eyJ.not-a-jwt",
+      "AccountKey=short;",
+    ];
+    expect(
+      analyzeSecretScan(falsePositives.map((text) => ({ path: "docs/example.md", text }))).ok,
+    ).toBe(true);
+  });
+
   it("U-SSCAN-003: clean な artifact 集合は ok=true で OK message 1 行を返す", () => {
     const result = analyzeSecretScan([
       {

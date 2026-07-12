@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
 import { existsSync, lstatSync, readdirSync, readFileSync } from "node:fs";
 import { isAbsolute, join, posix } from "node:path";
+import { canonicalJson as canonicalJsonValue, sha256Digest } from "./digest";
 
 export type PreservedArtifactKind = "provider_evidence" | "operations_transition";
 export type RetirementSourceKind =
@@ -150,22 +150,11 @@ const LEGACY_PROVIDER_KIND_MISSING_IDS = new Set([
 ]);
 
 function sha256(value: string | Uint8Array): string {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+  return sha256Digest(value);
 }
 
 function canonicalJson(value: unknown): string {
-  if (value === null || typeof value === "boolean" || typeof value === "string") {
-    return JSON.stringify(value);
-  }
-  if (typeof value === "number" && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
-  if (typeof value !== "object") throw new Error("preserve manifest contains non-JSON value");
-  return `{${Object.keys(value as Record<string, unknown>)
-    .sort()
-    .map(
-      (key) => `${JSON.stringify(key)}:${canonicalJson((value as Record<string, unknown>)[key])}`,
-    )
-    .join(",")}}`;
+  return canonicalJsonValue(value, "preserve manifest contains non-JSON value");
 }
 
 function validPath(path: string): boolean {

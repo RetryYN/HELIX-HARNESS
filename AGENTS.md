@@ -136,7 +136,7 @@ Runtime modes（実行モード）:
 - Codex 実行: `helix codex --role <role> --task "..."`
 - Claude prompt 生成: `helix claude --role <role> --task "..." --dry-run`
 - チーム委譲: `helix team run --definition .helix/teams/<team>.yaml`
-- タスク分類: `helix task classify --text "..."` / `helix task estimate --plan <path>`
+- タスク分類: `helix task classify --text "..."`（`task estimate`は未実装のため正規経路に含めない）
 - スキル推薦: `helix skill suggest --plan <path>`
 - レビュー packet: `helix review --uncommitted`
 - 状態確認: `helix status`
@@ -237,6 +237,9 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 - **commit 直前に `git status` + `git diff --staged` (or `helix review --staged` /
   `--uncommitted`)** で、authored した意図ファイルのみが staged であることを検証する。
 - push 済み履歴は破壊しない。
+- `.helix/memory/harness.jsonl` などの共有 memory を変更した場合は、レーン終端の意図 commit に
+  明示 path で含める。doctor の memory age warning を放置せず、foreign change と競合する場合は
+  勝手に混載せず所有 runtime と調整して commit/push 済 HEAD へ収束させる。
 - **引き継ぎ・検証の基準点は commit/push 済 HEAD ただ一つ**。hybrid では working tree を
   相手ランタイムが常時書き換えるため、full tree の計測値は transient で非正本。検証は HEAD
   (+ 自分の意図変更のみ) に固定し、測定値が動いたら相手を疑う前に自分の baseline を疑う

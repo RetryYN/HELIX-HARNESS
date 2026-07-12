@@ -4,18 +4,18 @@ import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { REQUIRED_DRIVE_MODELS } from "../src/lint/drive-db-registration";
-import type { RelationGraphProjection } from "../src/lint/relation-graph";
-import { deriveArtifactProgressDecision } from "../src/state-db/artifact-progress-decision";
-import { projectRefactorCandidateSignals } from "../src/state-db/feedback-projections";
-import { type HarnessDb, isSecretLike, openHarnessDb } from "../src/state-db/index";
-import { migrate, rowCounts } from "../src/state-db/migration";
-import { rebuildHarnessDb, recordProjectionEvent } from "../src/state-db/projection-writer";
+import { REQUIRED_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
+import type { RelationGraphProjection } from "../../src/lint/relation-graph";
+import { deriveArtifactProgressDecision } from "../../src/state-db/artifact-progress-decision";
+import { projectRefactorCandidateSignals } from "../../src/state-db/feedback-projections";
+import { type HarnessDb, isSecretLike, openHarnessDb } from "../../src/state-db/index";
+import { migrate, rowCounts } from "../../src/state-db/migration";
+import { rebuildHarnessDb, recordProjectionEvent } from "../../src/state-db/projection-writer";
 import {
   REFACTOR_CANDIDATE_THRESHOLDS,
   REFACTOR_POLICY_TERMS,
-} from "../src/state-db/refactor-candidate-policy";
-import { analyzeRefactorCandidates } from "../src/state-db/refactor-candidates";
+} from "../../src/state-db/refactor-candidate-policy";
+import { analyzeRefactorCandidates } from "../../src/state-db/refactor-candidates";
 
 interface VerificationWorkflowRow {
   phase: string;

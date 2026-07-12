@@ -304,6 +304,43 @@ function listJsonl(dir: string): string[] {
   return acc;
 }
 
+type SessionCacheEntry = {
+  mtimeMs: number;
+  ctimeMs: number;
+  ino: number;
+  size: number;
+  usages: RunUsage[];
+};
+const sessionUsageCache = new Map<string, SessionCacheEntry>();
+
+export function clearRuntimeSessionUsageCache(): void {
+  sessionUsageCache.clear();
+}
+
+function cachedSessionUsage(file: string, runtime: RuntimeKind): RunUsage[] {
+  const stat = statSync(file);
+  const cached = sessionUsageCache.get(`${runtime}:${file}`);
+  if (
+    cached &&
+    cached.mtimeMs === stat.mtimeMs &&
+    cached.ctimeMs === stat.ctimeMs &&
+    cached.ino === stat.ino &&
+    cached.size === stat.size
+  )
+    return cached.usages;
+  const text = readFileSync(file, "utf8");
+  const usages =
+    runtime === "claude" ? parseClaudeSessionUsage(text, file) : parseCodexSessionUsage(text, file);
+  sessionUsageCache.set(`${runtime}:${file}`, {
+    mtimeMs: stat.mtimeMs,
+    ctimeMs: stat.ctimeMs,
+    ino: stat.ino,
+    size: stat.size,
+    usages,
+  });
+  return usages;
+}
+
 export interface SessionScanDirs {
   /** Claude Code transcript ディレクトリ群 (例: ~/.claude/projects)。 */
   claudeDirs?: string[];
@@ -320,7 +357,7 @@ export function loadRuntimeSessionUsage(dirs: SessionScanDirs): RunUsage[] {
   for (const dir of dirs.claudeDirs ?? []) {
     for (const file of listJsonl(dir)) {
       try {
-        out.push(...parseClaudeSessionUsage(readFileSync(file, "utf8"), file));
+        out.push(...cachedSessionUsage(file, "claude"));
       } catch {
         // 読めない 1 ファイルで全体を落とさない
       }
@@ -329,7 +366,7 @@ export function loadRuntimeSessionUsage(dirs: SessionScanDirs): RunUsage[] {
   for (const dir of dirs.codexDirs ?? []) {
     for (const file of listJsonl(dir)) {
       try {
-        out.push(...parseCodexSessionUsage(readFileSync(file, "utf8"), file));
+        out.push(...cachedSessionUsage(file, "codex"));
       } catch {
         // 同上
       }
