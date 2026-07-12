@@ -299,11 +299,31 @@ export function recoverStaleLoopClaim(
     recoveryId?: string;
   } = { status: "durability_uncertain", reason: "recovery_not_started" };
   try {
-    let recoveryFd: number | null = null;
-    for (let attempt = 0; attempt < 2 && recoveryFd === null; attempt += 1) {
+    const mutexId = randomUUID();
+    const mutexTemp = value.recoveryClaimTempFor(mutexId);
+    const pointerTextAtClaim = readIfExists(value.manifest);
+    writeFileSync(
+      mutexTemp,
+      `${JSON.stringify({
+        claimId: mutexId,
+        pid: process.pid,
+        bootIdentity: bootIdentity(),
+        processStartToken: processStartToken(process.pid),
+        leaseDeadlineUptimeMs: uptime() * 1000 + 60_000,
+        pointerDigest: sha256Digest(pointerTextAtClaim ?? ""),
+        manifestDigest: packet.manifestDigest,
+        packetDigest: sha256Digest(JSON.stringify(packet)),
+      } satisfies RecoveryClaimMetadata)}\n`,
+      { encoding: "utf8", flag: "wx", mode: 0o600 },
+    );
+    fsyncPath(mutexTemp);
+    let recoveryClaimCreated = false;
+    for (let attempt = 0; attempt < 2 && !recoveryClaimCreated; attempt += 1) {
       try {
-        recoveryFd = openSync(value.recoveryClaim, "wx", 0o600);
+        linkSync(mutexTemp, value.recoveryClaim);
         acquired = true;
+        recoveryClaimCreated = true;
+        fsyncDirectory(value.directory);
       } catch (error) {
         if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
         const residualText = readIfExists(value.recoveryClaim);
@@ -327,27 +347,9 @@ export function recoverStaleLoopClaim(
         }
       }
     }
-    if (recoveryFd === null) return { status: "conflict", reason: "recovery_claim_conflict" };
-    try {
-      const pointerText = readIfExists(value.manifest);
-      writeFileSync(
-        recoveryFd,
-        `${JSON.stringify({
-          claimId: randomUUID(),
-          pid: process.pid,
-          bootIdentity: bootIdentity(),
-          processStartToken: processStartToken(process.pid),
-          leaseDeadlineUptimeMs: uptime() * 1000 + 60_000,
-          pointerDigest: sha256Digest(pointerText ?? ""),
-          manifestDigest: packet.manifestDigest,
-          packetDigest: sha256Digest(JSON.stringify(packet)),
-        } satisfies RecoveryClaimMetadata)}\n`,
-      );
-      fsyncSync(recoveryFd);
-    } finally {
-      closeSync(recoveryFd);
-    }
+    unlinkSync(mutexTemp);
     fsyncDirectory(value.directory);
+    if (!recoveryClaimCreated) return { status: "conflict", reason: "recovery_claim_conflict" };
     const claimText = readIfExists(value.claim);
     if (claimText === null || claimStatus(claimText) !== "stale")
       return { status: "rejected", reason: "claim_not_provably_stale" };
