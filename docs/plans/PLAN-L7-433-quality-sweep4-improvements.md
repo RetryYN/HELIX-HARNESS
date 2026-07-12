@@ -25,6 +25,14 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/reference/quality-sweep4-2026-07-12.md
     artifact_type: markdown_doc
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
+  - artifact_path: tests/consumer-hook-command.test.ts
+    artifact_type: test_code
+  - artifact_path: docs/design/harness/L6-function-design/function-spec.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: null
   requires: []

@@ -3584,6 +3584,62 @@ hook
   });
 
 hook
+  .command("work-guard")
+  .description("block edits to foreign uncommitted files before execution")
+  .action(() => {
+    const repoRoot = process.cwd();
+    const input = readStrictHookInput();
+    if (input === null) {
+      // work-guard は既存 hook shim と同じく、検証不能時は作業停止を避ける fail-open 契約。
+      process.exitCode = 0;
+      return;
+    }
+    const sessionId = (input as { session_id?: string }).session_id;
+    const targetPaths = extractEditTargets(input.tool_input).map((target) =>
+      normalizeRepoRelative(target, repoRoot),
+    );
+    const markerPath = join(repoRoot, ".helix", "state", "foreign-edit-override");
+    const markerReason = existsSync(markerPath) ? readFileSync(markerPath, "utf8") : null;
+    const override = resolveForeignEditOverride({
+      env: process.env.HELIX_ALLOW_FOREIGN_EDIT,
+      markerReason,
+    });
+    const result = evaluateWorkGuardTargets({
+      targetPaths,
+      uncommittedFiles: loadChangedFiles(repoRoot),
+      sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, sessionId),
+      bypass: override.bypass,
+    });
+    if (override.source === "marker") {
+      const withoutBypass = evaluateWorkGuardTargets({
+        targetPaths,
+        uncommittedFiles: loadChangedFiles(repoRoot),
+        sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, sessionId),
+        bypass: false,
+      });
+      if (withoutBypass.decision === "block") {
+        const auditPath = join(repoRoot, ".helix", "logs", "foreign-edit-overrides.jsonl");
+        mkdirSync(dirname(auditPath), { recursive: true });
+        appendFileSync(
+          auditPath,
+          `${JSON.stringify({
+            ts: new Date().toISOString(),
+            target: targetPaths.join(", "),
+            reason: override.reason,
+            sessionId: sessionId ?? "helix-cli",
+          })}\n`,
+        );
+        rmSync(markerPath, { force: true });
+      }
+    }
+    if (result.blocked?.message) process.stderr.write(`${result.blocked.message}\n`);
+    if (result.decision === "pass") {
+      process.stdout.write(`work-guard: pass (${result.reason})\n`);
+    }
+    process.exitCode = result.decision === "block" ? 2 : 0;
+  });
+
+hook
   .command("git-command-guard")
   .description("block destructive git history/worktree operations before shell execution")
   .action(() => {
