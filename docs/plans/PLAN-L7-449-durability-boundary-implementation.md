@@ -19,6 +19,17 @@ agent_slots:
   - { role: aim, slot_label: "AIM — incident scopeとrecovery authority" }
   - { role: se, slot_label: "SE — cause digest/epoch store実装" }
   - { role: qa, slot_label: "QA — failure injectionとprocess oracle" }
+verification_bindings:
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-001,
+      test_path: tests/doctor-cause-digest.test.ts,
+    }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-002,
+      test_path: tests/doctor-cause-digest.test.ts,
+    }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-78でL5/L6 contractとL8/L9 Vペアへbackprop済み。"
 generates:
@@ -42,6 +53,10 @@ generates:
   - {
       artifact_path: src/runtime/autonomous-loop-run-receipts.ts,
       artifact_type: source_module,
+    }
+  - {
+      artifact_path: tests/doctor-cause-digest.test.ts,
+      artifact_type: test_code,
     }
 dependencies:
   { parent: docs/plans/PLAN-L6-78-durability-boundary-design.md, requires: [] }

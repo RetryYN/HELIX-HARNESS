@@ -1,0 +1,49 @@
+import { describe, expect, it } from "vitest";
+import { stableCauseDigest } from "../src/runtime/stable-cause-digest";
+
+describe("PLAN-L7-449 stable cause digest", () => {
+  it("U-DUR-001: returns a stable finite kind and typed SHA-256 without raw cause", () => {
+    const secret = "/home/alice/private token=super-secret SELECT * FROM credentials";
+    const first = stableCauseDigest(new Error(secret));
+    const second = stableCauseDigest(new Error(secret));
+    expect(first).toEqual(second);
+    expect(first.causeKind).toBe("error");
+    expect(first.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(JSON.stringify(first)).not.toContain(secret);
+    expect(JSON.stringify(first)).not.toContain("/home/alice");
+  });
+
+  it("U-DUR-002: never throws for proxy traps, cycles, throwing getters, or huge values", () => {
+    const proxy = new Proxy(
+      {},
+      {
+        getPrototypeOf: () => {
+          throw new Error("trap secret");
+        },
+      },
+    );
+    const throwingError = new Error("safe");
+    Object.defineProperty(throwingError, "message", {
+      get: () => {
+        throw new Error("getter secret");
+      },
+    });
+    const cyclic: { self?: unknown } = {};
+    cyclic.self = cyclic;
+
+    expect(() => stableCauseDigest(proxy)).not.toThrow();
+    expect(stableCauseDigest(proxy).causeKind).toBe("inaccessible");
+    expect(() => stableCauseDigest(throwingError)).not.toThrow();
+    expect(stableCauseDigest(throwingError).causeKind).toBe("inaccessible");
+    expect(stableCauseDigest(cyclic).causeKind).toBe("object");
+    const huge = stableCauseDigest("x".repeat(100_000));
+    expect(huge.truncated).toBe(true);
+    expect(huge.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+
+  it("U-DUR-001: distinguishes scalar types without invoking object coercion", () => {
+    expect(stableCauseDigest(1)).not.toEqual(stableCauseDigest("1"));
+    expect(stableCauseDigest(null).causeKind).toBe("primitive");
+    expect(stableCauseDigest(Symbol("x")).digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  });
+});
