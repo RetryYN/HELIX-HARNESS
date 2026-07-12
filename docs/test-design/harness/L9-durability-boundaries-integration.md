@@ -16,7 +16,7 @@ restart classificationを検査する。
 | ---------- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------- |
 | IT-DUR-001 | doctor checkがsecret/path/SQLを含むError/Proxyをthrow | nonzero/safe reason、raw bytes漏洩0、stable digestあり  | check単位で継続またはfail-close |
 | IT-DUR-002 | state/manifest tamper、truncated JSON                 | corrupt、missing扱い0、artifact自動変更0                | explicit repair packet          |
-| IT-DUR-003 | C1-C6 publish各境界でprocess SIGKILL                  | POSIX C5はuncertain block、他platformはcapability-bound | deterministic restart           |
+| IT-DUR-003 | C1-C6 publish各境界でprocess SIGKILL                  | C5/C6残留claimは共にuncertain、release durable後だけnew | deterministic restart           |
 | IT-DUR-004 | 同一planの`O_EXCL` claimへbarrier付き2 process commit | winner 1以下、lost receipt 0、stale/live claimを区別    | conflict packet                 |
 | IT-DUR-005 | intent commit前/後とeffect callback内でSIGKILL        | commit前callback 0、effect後restart自動再実行0          | human/escalation                |
 

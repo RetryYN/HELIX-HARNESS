@@ -50,15 +50,18 @@ live claimはblockし、stale claimはowner liveness、bounded lease、manifest 
 - `intent_recorded`後で外部side effect完了証明が無いC0曖昧状態は自動retryせずhuman/escalation routeへ送る。
 - iteration historyはwhole-file read/modify/writeを廃止し、epoch payloadまたはappend lock/CASでlost updateを防ぐ。
 
-| window | fault point                         | restart classification                                                                                                                          |
-| ------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| C0     | side-effect intent後、結果証明前    | `ambiguous_side_effect`、自動retry禁止                                                                                                          |
-| C1     | claim取得前/直後                    | 旧epoch、またはlive/stale claim診断                                                                                                             |
-| C2     | payload temp write中                | 旧epoch + `uncommitted`                                                                                                                         |
-| C3     | payload fsync後、rename前           | 旧epoch + `uncommitted`                                                                                                                         |
-| C4     | payload rename後、manifest前        | 旧epoch + orphan payload                                                                                                                        |
-| C5     | manifest rename後、dir durability前 | POSIXは`durability_uncertain`でblock。dir fsync非対応platformはmanifestに記録したfile fsync + same-volume rename保証内でdigest一致時だけ新epoch |
-| C6     | manifest durable後、claim release前 | 新epoch + 残留claim診断                                                                                                                         |
+| window | fault point                           | restart classification                                                                                                                          |
+| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| C0     | side-effect intent後、結果証明前      | `ambiguous_side_effect`、自動retry禁止                                                                                                          |
+| C1     | claim取得前/直後                      | 旧epoch、またはlive/stale claim診断                                                                                                             |
+| C2     | payload temp write中                  | 旧epoch + `uncommitted`                                                                                                                         |
+| C3     | payload fsync後、rename前             | 旧epoch + `uncommitted`                                                                                                                         |
+| C4     | payload rename後、manifest前          | 旧epoch + orphan payload                                                                                                                        |
+| C5     | manifest rename後、dir durability前   | POSIXは`durability_uncertain`でblock。dir fsync非対応platformはmanifestに記録したfile fsync + same-volume rename保証内でdigest一致時だけ新epoch |
+| C6     | manifest dir fsync後、claim release前 | C5と識別不能なため`durability_uncertain`でblock                                                                                                 |
+
+claim releaseとparent directory durabilityが完了し残留claimが無い場合だけ新epochをcommittedとして採用する。
+readerは推測でC5/C6を分離しない。
 
 quarantineは診断分類であり、readerが自動move/deleteしてはならない。repairは別の明示commandとapproval境界を持つ。
 

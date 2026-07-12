@@ -20,7 +20,8 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 
 `StableCauseDigest`は有限`causeKind`、`sha256:<64 lower hex>`、`truncated`だけを持つ。`DoctorFailure`はallowlist
 fieldのみでraw causeを持たない。`LoopEpochReadResult`は `missing | committed | uncommitted | corrupt |
-concurrent_conflict | ambiguous_side_effect` を区別する。
+concurrent_conflict | ambiguous_side_effect | live_claim | stale_claim | durability_uncertain` を区別する。
+digest-valid manifestでも残留claimがあればuncertainで、claim release durable完了後だけcommittedとなる。
 
 ## 2. cause digest DbC
 
@@ -55,7 +56,7 @@ monotonic lease、manifest/claim digest、authority/auditを検証し、recovery
 | ------------------------- | -------------------------------- | --------------------------- | ----------------------------------- | ----------------------------- |
 | `stableCauseDigest`       | unknown value                    | finite kind + typed SHA-256 | throw/raw leakなし                  | U-DUR-001/002                 |
 | `doctorFailure`           | check/reason allowlist           | bounded safe failure        | raw interpolationなし               | U-DUR-003、IT-DUR-001         |
-| `readLoopEpoch`           | canonical plan ID                | 6状態を区別                 | corrupt≠missing                     | U-DUR-004/005、IT-DUR-002     |
+| `readLoopEpoch`           | canonical plan ID                | 9状態を区別                 | corrupt/claim/uncertain≠missing     | U-DUR-004/005、IT-DUR-002     |
 | `commitLoopEpoch`         | snapshot-bound previous digest   | manifest後だけcommitted     | partial/concurrentをsuccess化しない | U-DUR-006/007、IT-DUR-003/004 |
 | `classifyLoopRecovery`    | exact read classification        | retry/start/block           | ambiguousをretryへ写さない          | U-DUR-005、IT-DUR-005         |
 | `authorizeLoopSideEffect` | durable intent + verified digest | gate後だけeffectを呼ぶ      | effect-before-intent禁止            | U-DUR-005、IT-DUR-005         |
