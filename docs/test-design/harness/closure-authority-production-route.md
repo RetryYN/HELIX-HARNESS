@@ -1,7 +1,7 @@
 ---
 layer: L8
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/closure-authority-production-route.md
 plan: docs/plans/PLAN-L6-74-closure-authority-production-route.md
 ---
