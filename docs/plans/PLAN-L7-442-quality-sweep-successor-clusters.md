@@ -38,7 +38,7 @@ dependencies:
 successorへ束ねる。本PLANはresearch/triageであり実装しない。各clusterはinventory再測定、L5/L6設計、
 test-design oracle、個別impl/refactor PLANの順で降下する。一括big-bang変更は禁止する。
 
-## cluster registry
+## cluster 登録表
 
 | cluster | annex # | 優先度 | 設計入口 | impl起票条件 |
 |---|---|---|---|---|

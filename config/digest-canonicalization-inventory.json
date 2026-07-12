@@ -369,7 +369,7 @@
     {
       "hit_id": "src/lint/action-binding-approval-readiness.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/action-binding-approval-readiness.ts",
-      "line": 1127,
+      "line": 1125,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -437,7 +437,7 @@
     {
       "hit_id": "src/lint/design-language.ts::sha256Text:createHash(sha256)::1",
       "path": "src/lint/design-language.ts",
-      "line": 172,
+      "line": 165,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -590,7 +590,7 @@
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::fingerprint:createHash(sha256)::1",
       "path": "src/lint/left-arm-carry-log.ts",
-      "line": 506,
+      "line": 507,
       "symbol": "fingerprint",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -607,7 +607,7 @@
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::canonicalize:FunctionDeclaration canonicalize::1",
       "path": "src/lint/left-arm-carry-log.ts",
-      "line": 562,
+      "line": 563,
       "symbol": "canonicalize",
       "algorithm": "canonical-json",
       "input_kind": "string",
@@ -624,7 +624,7 @@
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::computeCarryReviewSemanticDigest:createHash(sha256)::1",
       "path": "src/lint/left-arm-carry-log.ts",
-      "line": 575,
+      "line": 576,
       "symbol": "computeCarryReviewSemanticDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -641,7 +641,7 @@
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::sha256File:createHash(sha256)::1",
       "path": "src/lint/left-arm-carry-log.ts",
-      "line": 581,
+      "line": 582,
       "symbol": "sha256File",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -658,7 +658,7 @@
     {
       "hit_id": "src/lint/outstanding.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/outstanding.ts",
-      "line": 1684,
+      "line": 1709,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -726,7 +726,7 @@
     {
       "hit_id": "src/lint/version-up-readiness.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/version-up-readiness.ts",
-      "line": 2073,
+      "line": 2071,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -743,7 +743,7 @@
     {
       "hit_id": "src/memory/memory-v2.ts::digestJson:createHash(sha256)::1",
       "path": "src/memory/memory-v2.ts",
-      "line": 963,
+      "line": 964,
       "symbol": "digestJson",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -760,7 +760,7 @@
     {
       "hit_id": "src/plan/lint.ts::sha256:createHash(sha256)::1",
       "path": "src/plan/lint.ts",
-      "line": 199,
+      "line": 195,
       "symbol": "sha256",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -828,7 +828,7 @@
     {
       "hit_id": "src/policy/feedback-lifecycle.ts::digest:createHash(sha256)::1",
       "path": "src/policy/feedback-lifecycle.ts",
-      "line": 911,
+      "line": 912,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -896,7 +896,7 @@
     {
       "hit_id": "src/runtime/agent-observability-provenance.ts::sha256:createHash(sha256)::1",
       "path": "src/runtime/agent-observability-provenance.ts",
-      "line": 54,
+      "line": 55,
       "symbol": "sha256",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1117,7 +1117,7 @@
     {
       "hit_id": "src/runtime/retirement-preserve.ts::sha256:sha256Digest()::1",
       "path": "src/runtime/retirement-preserve.ts",
-      "line": 153,
+      "line": 154,
       "symbol": "sha256",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1134,7 +1134,7 @@
     {
       "hit_id": "src/runtime/retirement-preserve.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
       "path": "src/runtime/retirement-preserve.ts",
-      "line": 156,
+      "line": 157,
       "symbol": "canonicalJson",
       "algorithm": "canonical-json",
       "input_kind": "string",
@@ -1644,7 +1644,7 @@
     {
       "hit_id": "src/state-db/drive-registration.ts::stableHash:createHash(sha256)::1",
       "path": "src/state-db/drive-registration.ts",
-      "line": 17,
+      "line": 18,
       "symbol": "stableHash",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1712,7 +1712,7 @@
     {
       "hit_id": "src/state-db/projection-writer.ts::stableHash:createHash(sha256)::1",
       "path": "src/state-db/projection-writer.ts",
-      "line": 305,
+      "line": 306,
       "symbol": "stableHash",
       "algorithm": "sha256",
       "input_kind": "string",
