@@ -14,7 +14,7 @@ plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 | U-GITGUARD-004 | taxonomy | force clean、branch force delete、stash drop/clearをblockし、clean dry-run、branch safe delete、stash list/showをpassする | `tests/git-command-guard.test.ts` |
 | U-GITGUARD-005 | audit-before-consume | audit commit成功前またはmarker consume成功前にallowしない。成功時だけexactly one audit/consumeとなる | `tests/guard-override-transaction.test.ts` |
 | U-GITGUARD-006 | failure injection | append/fsync/consume/crash/retryの各failureでexit 2、audit失敗時marker保持、二重allow 0を証明する | `tests/guard-override-transaction.test.ts` |
-| U-GITGUARD-007 | adapter parity | dev hook、work guard、CLI、consumer templateが同じtransaction primitiveとclassificationを使う | `tests/hook-contract.test.ts` |
+| U-GITGUARD-007 | adapter parity | dev hook、work guard、CLI、consumer templateが同じtransaction primitiveとclassificationを使い、foreign-editもDB rowへredacted auditする | `tests/hook-contract.test.ts`、`tests/work-guard.test.ts` |
 | U-GITGUARD-008 | concurrent CAS | 同一nonceへbarrier付き2並行呼出しを行い、allowが1以下、敗者が`blocked_reuse`、restart後も再利用不可 | `tests/guard-override-transaction.test.ts` |
 | U-GITGUARD-009 | crash point | durable commit前のtorn recordはquarantine・marker保持・retry可、commit後consume前crashはrestart後`blocked_reuse` | `tests/guard-override-transaction.test.ts` |
 

@@ -16,11 +16,11 @@ export interface GitCommandGuardHookOutcome {
   reason?: string;
 }
 
-function digest(value: string): string {
+export function guardOverrideDigest(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }
 
-function auditPort(db: HarnessDb): OverrideAuditPort {
+export function createGuardOverrideAuditPort(db: HarnessDb): OverrideAuditPort {
   return {
     commit(input) {
       db.exec("BEGIN IMMEDIATE");
@@ -34,7 +34,7 @@ function auditPort(db: HarnessDb): OverrideAuditPort {
             input.classification.guardKind,
             input.classification.operationClass,
             input.classification.subjectDigest,
-            digest(input.reason),
+            guardOverrideDigest(input.reason),
             new Date().toISOString(),
           );
         db.exec("COMMIT");
@@ -86,7 +86,7 @@ export function runGitCommandGuardHook(opts: {
     try {
       migrate(db);
       const markerStat = statSync(markerPath);
-      const nonce = digest(
+      const nonce = guardOverrideDigest(
         `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
       );
       const result = commitOverrideUse({
@@ -95,14 +95,14 @@ export function runGitCommandGuardHook(opts: {
         classification: {
           guardKind: "git",
           operationClass: base.destructiveOperation ?? "indeterminate",
-          subjectDigest: digest(command),
+          subjectDigest: guardOverrideDigest(command),
         },
-        audit: auditPort(db),
+        audit: createGuardOverrideAuditPort(db),
         marker: {
           consume(expectedNonce) {
             const current = readFileSync(markerPath, "utf8");
             const currentStat = statSync(markerPath);
-            const actual = digest(
+            const actual = guardOverrideDigest(
               `${currentStat.dev}:${currentStat.ino}:${currentStat.mtimeMs}:${current}`,
             );
             if (actual !== expectedNonce) return false;

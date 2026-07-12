@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -11,6 +11,7 @@ import {
   normalizeRepoRelative,
   resolveForeignEditOverride,
 } from "../src/runtime/work-guard";
+import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 
 const hookRepoRoot = process.cwd();
 const workGuardHook = join(hookRepoRoot, ".claude", "hooks", "work-guard.ts");
@@ -257,12 +258,19 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
       const first = runWorkGuardHook(cwd, input);
       expect(first.status).toBe(0);
       expect(existsSync(markerPath)).toBe(false); // one-shot 消費
-      // audit 証跡は残す (silent bypass を許さない)。
-      const audit = readFileSync(
-        join(cwd, ".helix", "logs", "foreign-edit-overrides.jsonl"),
-        "utf8",
-      );
-      expect(audit).toContain("completing Codex orphan-impl per review");
+      // audit 証跡はraw reason/pathを残さずharness.dbへ収束する。
+      const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      const rows = db
+        .prepare("SELECT * FROM guard_override_transactions WHERE guard_kind='foreign_edit'")
+        .all();
+      db.close();
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({
+        status: "committed",
+        operation_class: "foreign uncommitted edit",
+      });
+      expect(JSON.stringify(rows)).not.toContain("completing Codex orphan-impl per review");
+      expect(JSON.stringify(rows)).not.toContain("foreign.ts");
 
       // 2回目: marker は消費済み → bypass 無し → 同じ foreign 編集が block される (exit 2)。
       const second = runWorkGuardHook(cwd, input);

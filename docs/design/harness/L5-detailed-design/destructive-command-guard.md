@@ -60,5 +60,6 @@ raw secret、credential、PII、個人absolute pathはauditへ保存しない。
 ## 5. 移行境界
 
 `evaluateGitCommandGuard` は compatibility façade として維持する。`.claude` hook、Codex/consumer adapter、
-`work-guard-hook` は同じ transaction primitive を使用する。CLI monolith分割や一般 shell parser置換は
+`work-guard-hook` は同じ`guard_override_transactions` transaction primitiveを使用し、raw target/reason/sessionを
+sidecarへ保存しない。CLI monolith分割や一般 shell parser置換は
 混載せず、unsupported grammar は明示 classification と property oracle で閉じる。

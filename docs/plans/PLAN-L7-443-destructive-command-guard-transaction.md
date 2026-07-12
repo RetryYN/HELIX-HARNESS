@@ -29,6 +29,7 @@ generates:
   - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
   - { artifact_path: tests/hook-contract.test.ts, artifact_type: test_code }
   - { artifact_path: tests/guard-override-transaction.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/work-guard.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md
   requires: []
