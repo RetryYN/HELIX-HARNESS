@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { stableCauseDigest } from "../src/runtime/stable-cause-digest";
 
@@ -11,6 +12,8 @@ describe("PLAN-L7-449 stable cause digest", () => {
     expect(first.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(JSON.stringify(first)).not.toContain(secret);
     expect(JSON.stringify(first)).not.toContain("/home/alice");
+    expect(first.digest).not.toBe(`sha256:${createHash("sha256").update(secret).digest("hex")}`);
+    expect(stableCauseDigest(new Error("different path and token"))).toEqual(first);
   });
 
   it("U-DUR-002: never throws for proxy traps, cycles, throwing getters, or huge values", () => {
@@ -37,12 +40,13 @@ describe("PLAN-L7-449 stable cause digest", () => {
     expect(stableCauseDigest(throwingError).causeKind).toBe("inaccessible");
     expect(stableCauseDigest(cyclic).causeKind).toBe("object");
     const huge = stableCauseDigest("x".repeat(100_000));
-    expect(huge.truncated).toBe(true);
+    expect(huge.truncated).toBe(false);
     expect(huge.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
   });
 
   it("U-DUR-001: distinguishes scalar types without invoking object coercion", () => {
     expect(stableCauseDigest(1)).not.toEqual(stableCauseDigest("1"));
+    expect(stableCauseDigest(1)).toEqual(stableCauseDigest(99));
     expect(stableCauseDigest(null).causeKind).toBe("primitive");
     expect(stableCauseDigest(Symbol("x")).digest).toMatch(/^sha256:[a-f0-9]{64}$/);
   });

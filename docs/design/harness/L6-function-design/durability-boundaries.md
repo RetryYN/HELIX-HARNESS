@@ -26,7 +26,7 @@ digest-valid manifestでも残留claimがあればuncertainで、claim release d
 ## 2. cause digest DbC
 
 pre: causeは任意のJavaScript value。post: helperはthrowせず、boundedな有限kind/digestを返す。invariant: raw
-message、stack、path、SQL、secret、PIIを返却・永続化しない。同じcanonical safe inputは同じdigestとなる。
+message、stack、path、SQL、secret、PIIをhash入力・返却・永続化しない。同じallowlist分類は同じdigestとなる。
 property access、string coercion、serializationがthrowした場合は`inaccessible`へ収束する。
 
 ## 3. loop epoch DbC

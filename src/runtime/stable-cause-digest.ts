@@ -8,19 +8,9 @@ export type StableCauseDigest = {
   truncated: boolean;
 };
 
-const MAX_SCALAR_BYTES = 4096;
-
-function boundedUtf8(value: string): { value: string; truncated: boolean } {
-  const bytes = Buffer.from(value, "utf8");
-  if (bytes.byteLength <= MAX_SCALAR_BYTES) return { value, truncated: false };
-  return {
-    value: bytes.subarray(0, MAX_SCALAR_BYTES).toString("utf8"),
-    truncated: true,
-  };
-}
-
-function digest(kind: StableCauseKind, scalar: string, truncated: boolean): StableCauseDigest {
-  const hash = createHash("sha256").update(`${kind}\0${scalar}`, "utf8").digest("hex");
+function digest(kind: StableCauseKind, safeClass: string, truncated = false): StableCauseDigest {
+  const canonical = `helix.doctor.cause.v1\0${kind}\0${safeClass}`;
+  const hash = createHash("sha256").update(canonical, "utf8").digest("hex");
   return { causeKind: kind, digest: `sha256:${hash}`, truncated };
 }
 
@@ -30,28 +20,33 @@ function digest(kind: StableCauseKind, scalar: string, truncated: boolean): Stab
 export function stableCauseDigest(cause: unknown): StableCauseDigest {
   try {
     if (typeof cause === "string") {
-      const bounded = boundedUtf8(cause);
-      return digest("string", bounded.value, bounded.truncated);
+      const bucket = cause.length === 0 ? "empty" : cause.length <= 64 ? "short" : "long";
+      return digest("string", bucket);
     }
-    if (cause === null || cause === undefined || typeof cause !== "object") {
-      const bounded = boundedUtf8(`${typeof cause}:${String(cause)}`);
-      return digest("primitive", bounded.value, bounded.truncated);
+    if (cause === null) return digest("primitive", "null");
+    const primitiveType = typeof cause;
+    if (primitiveType !== "object" && primitiveType !== "function") {
+      const safeClass =
+        primitiveType === "number"
+          ? Number.isNaN(cause)
+            ? "number:nan"
+            : cause === Number.POSITIVE_INFINITY
+              ? "number:pos_inf"
+              : cause === Number.NEGATIVE_INFINITY
+                ? "number:neg_inf"
+                : "number:finite"
+          : primitiveType;
+      return digest("primitive", safeClass);
     }
     try {
       if (cause instanceof Error) {
-        const name = boundedUtf8(typeof cause.name === "string" ? cause.name : "Error");
-        const message = boundedUtf8(typeof cause.message === "string" ? cause.message : "");
-        return digest(
-          "error",
-          `${name.value}\0${message.value}`,
-          name.truncated || message.truncated,
-        );
+        return digest("error", "error");
       }
     } catch {
       return digest("inaccessible", "object", false);
     }
-    return digest("object", "object", false);
+    return digest("object", primitiveType === "function" ? "function" : "object");
   } catch {
-    return digest("inaccessible", "unknown", false);
+    return digest("inaccessible", "unknown");
   }
 }
