@@ -55,6 +55,16 @@ verification_bindings:
       oracle_id: U-DUR-007,
       test_path: tests/loop-store-durability.test.ts,
     }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-005,
+      test_path: tests/durable-loop-store.test.ts,
+    }
+  - {
+      parent_design: docs/design/harness/L6-function-design/durability-boundaries.md,
+      oracle_id: U-DUR-007,
+      test_path: tests/durable-loop-process.test.ts,
+    }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-78でL5/L6 contractとL8/L9 Vペアへbackprop済み。"
 generates:
@@ -99,6 +109,25 @@ generates:
       artifact_path: tests/loop-store-durability-node.test.ts,
       artifact_type: test_code,
     }
+  - { artifact_path: tests/durable-loop-store.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/durable-loop-process.test.ts, artifact_type: test_code }
+  - {
+      artifact_path: tests/fixtures/durable-loop-process-child.ts,
+      artifact_type: test_code,
+    }
+  - {
+      artifact_path: tests/autonomous-loop-run-receipts.test.ts,
+      artifact_type: test_code,
+    }
+  - {
+      artifact_path: tests/orchestration/loop-bridge.test.ts,
+      artifact_type: test_code,
+    }
+  - {
+      artifact_path: tests/harness-check-workflow.test.ts,
+      artifact_type: test_code,
+    }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: ci_config }
 dependencies:
   { parent: docs/plans/PLAN-L6-78-durability-boundary-design.md, requires: [] }
 ---
