@@ -17,6 +17,11 @@ exact joinできる場合だけmaterializeする。
 
 ## 2. 契約
 
+> **L6 contract marker**: `materializePreviewLines(candidate, action, execution) => MaterializedPreview`。
+> pre: `execution.status=passed`かつprobe receiptの物理fieldがschema-valid。
+> post: process authorityで証明できるplaceholderだけを置換し、semantic authority欠落candidateはblockする。
+> invariant: U-CESA-001〜U-CESA-005、authority非推測、時刻provenance非混線、append-only compensation。
+
 - probe receiptだけを入力した場合、`<reviewer>`、`<oracle_id>`、`<test case name>`、`<requirement_id>`、
   `<test_oracle_id>`、`<runtime verification claim>`を未解決のまま残し、`blocked_placeholders`でfail-closeする。
 - review evidenceはprobe完了後の独立review receiptへidentity・時刻・scope・verdictをexact joinする。
