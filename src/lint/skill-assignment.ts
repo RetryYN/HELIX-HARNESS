@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { markdownFrontmatter } from "./shared";
 
 export const VALID_SKILL_LAYERS = [
   "L0",
@@ -79,15 +80,9 @@ function skillFiles(dir: string): string[] {
   return out.sort();
 }
 
-function markdownFrontmatter(content: string): string {
-  if (!content.startsWith("---")) return "";
-  const end = content.indexOf("\n---", 3);
-  return end < 0 ? "" : content.slice(3, end);
-}
-
 function parseMetadata(path: string): Record<string, unknown> {
   const content = readFileSync(path, "utf8");
-  const raw = /\.md$/i.test(path) ? markdownFrontmatter(content) : content;
+  const raw = /\.md$/i.test(path) ? (markdownFrontmatter(content) ?? "") : content;
   if (!raw.trim()) return {};
   const parsed = parseYaml(raw);
   return parsed && typeof parsed === "object" && !Array.isArray(parsed)

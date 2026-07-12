@@ -18,6 +18,7 @@ import {
   planEntryRoutingMessages,
 } from "../lint/plan-entry-routing";
 import { checkPlanSpecificVpairBindings } from "../lint/plan-specific-vpair-binding";
+import { markdownFrontmatter } from "../lint/shared";
 import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
 import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import {
@@ -147,11 +148,6 @@ export function planScheduleMessages(result: PlanScheduleResult): string[] {
   return [
     `plan-schedule — ⚠ §工程表 violation ${result.violations.length} 件 (${sample})。Step の [並列]/[直列]、直列理由、review Step、§3.1 実装計画を確認 (IMP-081)`,
   ];
-}
-
-function markdownFrontmatter(content: string): string | null {
-  const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  return m ? m[1] : null;
 }
 
 function parsePlanFrontmatter(doc: PlanGovernanceDoc): Record<string, unknown> | null {

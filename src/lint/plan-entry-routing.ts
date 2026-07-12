@@ -1,12 +1,12 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { parse as parseYaml } from "yaml";
 import {
   MODE_ALLOWED_KINDS,
   normalizeRouteMode,
   workflowModeForPlan,
 } from "../schema/mode-catalog";
 import { ROUTE_SIGNAL_MAP } from "../schema/route-map";
+import { parseMarkdownFrontmatter } from "./shared";
 
 export const PLAN_ENTRY_ROUTING_BASELINE_PATH = "docs/governance/plan-entry-routing-baseline.json";
 
@@ -66,17 +66,6 @@ function stringArray(value: unknown): string[] {
   return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
 }
 
-function markdownFrontmatter(content: string): Record<string, unknown> | null {
-  const match = content.match(/^---\n([\s\S]*?)\n---(\n|$)/);
-  if (!match) return null;
-  try {
-    const parsed = parseYaml(match[1]);
-    return parsed && typeof parsed === "object" ? (parsed as Record<string, unknown>) : null;
-  } catch {
-    return null;
-  }
-}
-
 export function unresolvedPlanEntrySignals(entrySignals: string[]): PlanEntrySignalResolution[] {
   return entrySignals.map((value) =>
     value.startsWith("po_directive:")
@@ -101,7 +90,7 @@ export function loadPlanEntryRoutingDocs(
   for (const rel of files) {
     const abs = join(repoRoot, rel);
     if (!existsSync(abs)) continue;
-    const raw = markdownFrontmatter(readFileSync(abs, "utf-8"));
+    const raw = parseMarkdownFrontmatter(readFileSync(abs, "utf-8"));
     if (!raw) continue;
     const planId = stringField(raw.plan_id) ?? rel;
     const kind = stringField(raw.kind);

@@ -1246,3 +1246,11 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 |---|---|---|
 | U-OBJAUD-001 | `checkCompletionRow` | G-10行の全`decisionCount` markerをtoken境界付きで数値抽出し、live `outstanding.items.length` 以外、marker欠落、prefix collision、正値とstale値の矛盾併記をfail-closeする。 |
 | U-OBJAUD-001b | `checkCompletionRow` negative variants | `decisionCount=7`を`70`で満たした扱いにせず、正値が残っていても異値markerが1件あれば違反にする。 |
+
+### frontmatter 単一正本（PLAN-L7-433 Q1）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-FMSH-001 | `markdownFrontmatter` / `parseMarkdownFrontmatter` | 同じ mapping の LF/CRLF 入力が同一結果になる。 |
+| U-FMSH-002 | delimiter / YAML shape | delimiter 欠落、途中 delimiter、sequence を `null` にする。 |
+| U-FMSH-003 | production definition inventory | 対象9 module中の extractor 定義が `src/lint/shared.ts` の1件だけである。 |

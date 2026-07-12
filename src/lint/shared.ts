@@ -2,6 +2,30 @@
 // 配置 = src/lint (domain-boundary: lint 内 import と vmodel→lint import は許可)。
 import { basename } from "node:path";
 import type ts from "typescript";
+import { parse as parseYaml } from "yaml";
+
+/**
+ * Markdown の先頭 YAML frontmatter 本文を CRLF/LF 共通で抽出する単一正本。
+ * opening/closing delimiter が欠ける入力や文書途中の delimiter は受理しない。
+ */
+export function markdownFrontmatter(content: string): string | null {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  return match?.[1]?.replaceAll("\r\n", "\n") ?? null;
+}
+
+/** frontmatter を plain mapping として読む。invalid YAML / sequence / scalar は null。 */
+export function parseMarkdownFrontmatter(content: string): Record<string, unknown> | null {
+  const raw = markdownFrontmatter(content);
+  if (raw === null) return null;
+  try {
+    const parsed = parseYaml(raw);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * frontmatter 1 行 `key: value` の value を取り出す。

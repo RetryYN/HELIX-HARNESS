@@ -71,6 +71,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: src/lint/shared.ts
     artifact_type: source_module
+  - artifact_path: tests/frontmatter-shared.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []

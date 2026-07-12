@@ -368,7 +368,7 @@ import {
   loadSemanticFrontierConsistencyInput,
   semanticFrontierConsistencyMessages,
 } from "../lint/semantic-frontier-consistency";
-import { fmValue } from "../lint/shared";
+import { fmValue, parseMarkdownFrontmatter } from "../lint/shared";
 import {
   analyzeSkillAssignments,
   loadSkillAssignmentDocs,
@@ -5475,17 +5475,6 @@ function stringList(value: unknown): string[] {
     : [];
 }
 
-function markdownFrontmatter(text: string): Record<string, unknown> | null {
-  if (!text.startsWith("---\n")) return null;
-  const end = text.indexOf("\n---", 4);
-  if (end === -1) return null;
-  try {
-    return recordValue(parseYaml(text.slice(4, end)));
-  } catch {
-    return null;
-  }
-}
-
 export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const messages: string[] = ["doctor: profile=consumer"];
   const expectedClaudeAgentPaths = CONSUMER_CLAUDE_AGENT_NAMES.map(
@@ -5763,7 +5752,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
 
   const invalidAgentTemplates = expectedClaudeAgentPaths.filter((path) => {
     const text = consumerFile(deps, path) ?? "";
-    const fm = markdownFrontmatter(text);
+    const fm = parseMarkdownFrontmatter(text);
     const expectedName = basename(path, ".md");
     return !(
       fm?.name === expectedName &&
@@ -5786,7 +5775,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   });
   const invalidCommandTemplates = expectedClaudeCommandPaths.filter((path) => {
     const text = consumerFile(deps, path) ?? "";
-    const fm = markdownFrontmatter(text);
+    const fm = parseMarkdownFrontmatter(text);
     return !(
       typeof fm?.description === "string" &&
       fm.description.trim().length > 0 &&

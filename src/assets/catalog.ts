@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { markdownFrontmatter } from "../lint/shared";
 import { upsertSearchReference } from "../search/index";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
@@ -54,14 +55,8 @@ function frontmatterValue(content: string, key: string): string {
   return match?.[1]?.trim() ?? "";
 }
 
-function markdownFrontmatter(content: string): string {
-  if (!content.startsWith("---")) return "";
-  const end = content.indexOf("\n---", 3);
-  return end < 0 ? "" : content.slice(3, end);
-}
-
 function metadataFromContent(path: string, content: string): Record<string, unknown> {
-  const raw = /\.md$/i.test(path) ? markdownFrontmatter(content) : content;
+  const raw = /\.md$/i.test(path) ? (markdownFrontmatter(content) ?? "") : content;
   if (!raw.trim()) return {};
   const parsed = parseYaml(raw);
   return parsed && typeof parsed === "object" && !Array.isArray(parsed)

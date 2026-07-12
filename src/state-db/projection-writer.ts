@@ -32,7 +32,7 @@ import {
   loadRoadmaps,
   PARKED_BANDS,
 } from "../lint/roadmap-registry";
-import { normalizePath } from "../lint/shared";
+import { markdownFrontmatter, normalizePath } from "../lint/shared";
 import {
   catalogVerificationProfiles,
   recommendVerificationProfiles,
@@ -481,14 +481,8 @@ function unquoteFrontmatterValue(value: string): string {
   return value.replace(/^"|"$/g, "").replace(/^'|'$/g, "").trim();
 }
 
-function markdownFrontmatter(content: string): string {
-  if (!content.startsWith("---")) return "";
-  const end = content.indexOf("\n---", 3);
-  return end < 0 ? "" : content.slice(3, end);
-}
-
 function metadataFromContent(path: string, content: string): Record<string, unknown> {
-  const raw = /\.md$/i.test(path) ? markdownFrontmatter(content) : content;
+  const raw = /\.md$/i.test(path) ? (markdownFrontmatter(content) ?? "") : content;
   if (!raw.trim()) return {};
   const parsed = parseYaml(raw);
   return parsed && typeof parsed === "object" && !Array.isArray(parsed)
@@ -564,7 +558,7 @@ function workflowModesForPlan(planId: string, kind: string, content: string): st
     addUniqueMode(modes, "Add-feature");
   }
 
-  const frontmatter = markdownFrontmatter(content);
+  const frontmatter = markdownFrontmatter(content) ?? "";
   const modeDocRegex = /docs\/process\/modes\/[a-z-]+\.md/g;
   for (const match of frontmatter.matchAll(modeDocRegex)) {
     addUniqueMode(modes, modeFromProcessModeDoc(match[0]));

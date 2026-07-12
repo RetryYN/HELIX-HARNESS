@@ -916,3 +916,16 @@ surface するだけである。
 CLI `helix l1-l2 gap-check --json` が repo-local read-only surface であり、構造 gap がある場合は exit 1、
 現行 live repo の構造被覆 green では exit 0 を返す。content review は packet の
 `contentReviewRequired=true` として残し、completion evidence へ混ぜない。
+
+## 2026-07-13 frontmatter 単一正本追補 (PLAN-L7-433 Q1)
+
+`markdownFrontmatter(content)` は Markdown 先頭の YAML frontmatter 本文を抽出する唯一の production
+実装とする。LF/CRLF を同値として扱い、opening/closing delimiter 欠落または文書途中の delimiter は
+`null` とする。`parseMarkdownFrontmatter(content)` は同じ抽出結果だけを YAML mapping へ変換し、
+invalid YAML、sequence、scalar を `null` とする。consumer doctor、PLAN lint、descent/routing gate、
+asset/skill catalog、projection writer は独自 delimiter parser を持たず、この契約を参照する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `markdownFrontmatter` | 任意の Markdown text | 先頭の閉じた frontmatter 本文、または `null` | LF/CRLF 同値、途中 delimiter 非受理 | U-FMSH-001..003 |
+| `parseMarkdownFrontmatter` | `markdownFrontmatter` の入力 | plain mapping、または `null` | YAML parse error / array / scalar を通さない | U-FMSH-001..002 |
