@@ -1487,6 +1487,21 @@ export interface ProjectClosureStatus {
     missing: number;
     reverify: number;
   };
+  terminal_boundaries: {
+    items: Array<{
+      plan_id: string;
+      classification: "human_only" | "invalid_escalated";
+      reason: string;
+      owner: string;
+      next_decision_route: string;
+      automation_terminal: true;
+      whole_program_blocker: boolean;
+      event_digest: string;
+    }>;
+    open: number;
+    resolved: number;
+    whole_program_blockers: number;
+  };
   queue: {
     items: ProjectClosureQueueItem[];
     total: number;
@@ -5657,7 +5672,36 @@ function buildClosureStatus(input: {
     terminalL14PlanIds: input.terminalL14PlanIds,
     closureEvidenceIds: input.closureEvidenceIds,
   });
-  const queueItems = buildClosureQueue(input.db, input.openL7Plans);
+  const terminalTable = input.db
+    .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?")
+    .get("closure_terminal_boundaries");
+  const terminalRows = terminalTable
+    ? (input.db
+        .prepare(
+          `SELECT plan_id,classification,reason,owner,next_decision_route,
+                  automation_terminal,whole_program_blocker,event_digest
+             FROM closure_terminal_boundaries ORDER BY plan_id`,
+        )
+        .all() as Array<Record<string, unknown>>)
+    : [];
+  const terminalBoundaries = terminalRows.map((row) => ({
+    plan_id: String(row.plan_id),
+    classification: String(row.classification) as "human_only" | "invalid_escalated",
+    reason: String(row.reason),
+    owner: String(row.owner),
+    next_decision_route: String(row.next_decision_route),
+    automation_terminal: true as const,
+    whole_program_blocker: Number(row.whole_program_blocker) === 1,
+    event_digest: String(row.event_digest),
+  }));
+  const automationTerminalIds = new Set(
+    terminalBoundaries
+      .filter((row) => row.automation_terminal && row.whole_program_blocker)
+      .map((row) => row.plan_id),
+  );
+  const queueItems = buildClosureQueue(input.db, input.openL7Plans).filter(
+    (item) => !automationTerminalIds.has(item.planId),
+  );
   const packets = buildClosurePackets(queueItems);
   const nextActionLedger = buildClosureNextActionLedger(packets);
 
@@ -5668,6 +5712,12 @@ function buildClosureStatus(input: {
     closure_evidence_ids: unique(input.closureEvidenceIds),
     required_evidence: requiredEvidence,
     remediation,
+    terminal_boundaries: {
+      items: terminalBoundaries,
+      open: terminalBoundaries.filter((row) => row.whole_program_blocker).length,
+      resolved: terminalBoundaries.filter((row) => !row.whole_program_blocker).length,
+      whole_program_blockers: terminalBoundaries.filter((row) => row.whole_program_blocker).length,
+    },
     queue: {
       items: queueItems,
       total: queueItems.length,
@@ -5686,7 +5736,12 @@ function buildClosureStatus(input: {
       view_command: "helix progress tree-view --json",
     },
     docDependencies: ["docs/plans", "docs/design/**", "docs/test-design/**"],
-    implementationDependencies: ["plan_registry", "design_declarations", "design_references"],
+    implementationDependencies: [
+      "plan_registry",
+      "design_declarations",
+      "design_references",
+      "closure_terminal_boundaries",
+    ],
   };
 }
 

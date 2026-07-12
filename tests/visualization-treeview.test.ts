@@ -498,6 +498,12 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
       ],
       docDependencies: ["docs/plans", "docs/design/**", "docs/test-design/**"],
       implementationDependencies: ["plan_registry", "design_declarations", "design_references"],
+      terminal_boundaries: {
+        items: [],
+        open: 0,
+        resolved: 0,
+        whole_program_blockers: 0,
+      },
       remediation: {
         done: 1,
         missing: 0,

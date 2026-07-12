@@ -65,6 +65,15 @@ export interface ClosureEvidenceMaterializationInput {
   windowSize?: number;
   concurrency?: number;
   crashAt?: CrashPoint;
+  convergenceTarget: {
+    target_set_digest: `sha256:${string}`;
+    initial_set_digest: `sha256:${string}`;
+    terminal_boundary_digest: `sha256:${string}`;
+    initial_plan_ids: string[];
+    automatable_plan_ids: string[];
+    human_only_plan_ids: string[];
+    invalid_escalated_plan_ids: string[];
+  };
 }
 export interface ClosureEvidenceMaterializationResult {
   status: "published" | "classified";
@@ -580,6 +589,7 @@ async function materializeClosureEvidenceUnlocked(
           source_path: v.source_path,
           source_digest: v.source_digest,
         })),
+        ...input.convergenceTarget,
       }),
     );
     const jsonlRel = ".helix/evidence/runner-attestations.jsonl";

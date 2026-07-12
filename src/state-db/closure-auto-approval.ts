@@ -47,6 +47,13 @@ export interface ClosureAutoApprovalManifest {
   generated_at: string;
   expires_at: string;
   candidates: ClosureCandidateAuthority[];
+  target_set_digest?: `sha256:${string}`;
+  initial_set_digest?: `sha256:${string}`;
+  terminal_boundary_digest?: `sha256:${string}`;
+  initial_plan_ids?: string[];
+  automatable_plan_ids?: string[];
+  human_only_plan_ids?: string[];
+  invalid_escalated_plan_ids?: string[];
 }
 
 export interface ClosureAutoApprovalEvaluation {
@@ -162,6 +169,13 @@ const manifestSchema = z
         })
         .strict(),
     ),
+    target_set_digest: digestSchema.optional(),
+    initial_set_digest: digestSchema.optional(),
+    terminal_boundary_digest: digestSchema.optional(),
+    initial_plan_ids: z.array(z.string()).optional(),
+    automatable_plan_ids: z.array(z.string()).optional(),
+    human_only_plan_ids: z.array(z.string()).optional(),
+    invalid_escalated_plan_ids: z.array(z.string()).optional(),
   })
   .strict()
   .superRefine((value, context) => {
@@ -174,6 +188,31 @@ const manifestSchema = z
         });
       ids.add(candidate.plan_id);
     }
+    const convergence = [
+      value.target_set_digest,
+      value.initial_set_digest,
+      value.terminal_boundary_digest,
+      value.initial_plan_ids,
+      value.automatable_plan_ids,
+      value.human_only_plan_ids,
+      value.invalid_escalated_plan_ids,
+    ];
+    if (
+      convergence.some((item) => item !== undefined) &&
+      convergence.some((item) => item === undefined)
+    )
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "partial convergence target seal",
+      });
+    if (
+      value.automatable_plan_ids &&
+      JSON.stringify([...ids].sort()) !== JSON.stringify([...value.automatable_plan_ids].sort())
+    )
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "manifest candidates/automatable exact-set mismatch",
+      });
   });
 
 export function parseClosureAutoApprovalManifest(value: unknown): ClosureAutoApprovalManifest {
@@ -1051,6 +1090,7 @@ export function applyClosureAutoApprovalAtomic(input: {
   auditPath?: string;
   failAfterRenameForTest?: number;
   now?: Date;
+  expectedConvergenceTargetDigest: `sha256:${string}`;
 }): { applied: string[]; transaction_id: string } {
   const auditPath = join(
     input.repoRoot,
@@ -1100,6 +1140,8 @@ export function applyClosureAutoApprovalAtomic(input: {
   const temps: string[] = [];
   try {
     if (!input.evaluation.allowed) throw new Error(input.evaluation.blockers.join("; "));
+    if (input.manifest.target_set_digest !== input.expectedConvergenceTargetDigest)
+      throw new Error("write直前convergence target CAS不一致");
     const githubErrors = validateGithubRequiredCheckReceipt({
       repoRoot: input.repoRoot,
       receipt: input.githubReceipt,

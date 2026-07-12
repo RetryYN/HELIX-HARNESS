@@ -275,10 +275,11 @@ export function recordClosureAuthorityReview(input: {
   const now = Date.parse(input.now);
   const completed = Date.parse(evidence.completed_at);
   const expires = Date.parse(draft.expires_at);
+  const clockSkewMs = 5_000;
   if (
     !Number.isFinite(now) ||
     completed < Date.parse(draft.created_at) ||
-    now < completed ||
+    now + clockSkewMs < completed ||
     now >= expires
   )
     throw new Error("review task evidence TTL invalid");

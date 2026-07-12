@@ -28,6 +28,7 @@ function productionFixture(options: { humanOnly?: boolean } = {}) {
     join(root, "docs/governance/closure-authority-registry.yaml"),
     "schema_version: closure-authority-registry.v1\nauthorities: []\n",
   );
+  writeFileSync(join(root, "docs/governance/closure-terminal-boundaries.jsonl"), "");
   writeFileSync(
     join(root, "docs/governance/closure-gate-allowlist.yaml"),
     'schema_version: closure-gate-allowlist.v1\ngates:\n  g7: { command_id: g7, command: "helix gate G7" }\n',
@@ -520,6 +521,22 @@ describe("closure authority convergence production orchestration", () => {
       window_limit: 1,
       window_plan_ids: ["PLAN-L7-901-human-only"],
       applied_plan_ids: [],
+    });
+    const terminalEvents = readFileSync(
+      join(root, "docs/governance/closure-terminal-boundaries.jsonl"),
+      "utf8",
+    )
+      .trim()
+      .split("\n")
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    expect(terminalEvents).toHaveLength(1);
+    expect(terminalEvents[0]).toMatchObject({
+      event_kind: "boundary_opened",
+      plan_id: "PLAN-L7-901-human-only",
+      classification: "human_only",
+      automation_terminal: true,
+      whole_program_blocker: true,
     });
     const dbPath = join(root, ".helix/harness.db");
     const reopened = openHarnessDb(dbPath, { repoRoot: root });

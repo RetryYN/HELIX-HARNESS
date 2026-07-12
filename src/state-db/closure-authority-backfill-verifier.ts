@@ -181,7 +181,7 @@ export function verifyClosureAuthorityBackfillCurrentContext(input: {
     (statusRows.includes(allowedRegistryDrift) && !input.allowMutableRegistry)
   )
     throw new Error(
-      `production git context has non-registry drift or is not current origin/main: head=${head} origin=${originMain} status=${JSON.stringify(statusRows)}`,
+      `production git context must be clean current origin/main except the sealed registry generation; non-registry drift: head=${head} origin=${originMain} status=${JSON.stringify(statusRows)}`,
     );
   if (statusRows.includes(allowedRegistryDrift)) {
     const registry = readVerifiedRepoFile(

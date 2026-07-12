@@ -142,6 +142,12 @@ function ensureGateRunReceiptImmutability(db: HarnessDb): void {
 }
 
 function ensureClosureEvidenceImmutability(db: HarnessDb): void {
+  if (tableNames(db).includes("closure_terminal_boundaries")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_terminal_boundaries_no_update
+      BEFORE UPDATE ON closure_terminal_boundaries BEGIN SELECT RAISE(ABORT, 'closure terminal boundary immutable projection'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_terminal_boundaries_no_delete
+      BEFORE DELETE ON closure_terminal_boundaries BEGIN SELECT RAISE(ABORT, 'closure terminal boundary immutable projection'); END`);
+  }
   if (tableNames(db).includes("closure_process_receipts")) {
     db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipts_no_update
       BEFORE UPDATE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'closure process receipt immutable'); END`);

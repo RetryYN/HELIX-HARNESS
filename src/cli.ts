@@ -386,6 +386,11 @@ import {
   loadCurrentClosureAuthorityBackfillInput,
 } from "./state-db/closure-authority-backfill-production";
 import {
+  appendClosureTerminalBoundaryEvent,
+  buildClosureConvergenceTargetSet,
+  terminalBoundaryClassificationForAuthority,
+} from "./state-db/closure-authority-convergence-epoch";
+import {
   applyClosureAuthorityConvergenceWindow,
   createClosureAuthorityReviewDraft,
   loadClosureAuthorityProposal,
@@ -6018,6 +6023,86 @@ function closureAuthorityFailureExitCode(error: unknown): 1 | 2 {
     : 1;
 }
 
+function closureConvergenceTargetFromSnapshot(
+  snapshot: ProjectCurrentLocationSnapshot,
+  automatablePlanIds: string[],
+  additionalNeeds: string[] = [],
+) {
+  const boundaries = snapshot.closure.terminal_boundaries.items.filter(
+    (row) => row.whole_program_blocker,
+  );
+  const human = boundaries
+    .filter((row) => row.classification === "human_only")
+    .map((row) => row.plan_id)
+    .sort();
+  const invalid = boundaries
+    .filter((row) => row.classification === "invalid_escalated")
+    .map((row) => row.plan_id)
+    .sort();
+  const automatable = [...new Set(automatablePlanIds)].sort();
+  const needs = [
+    ...snapshot.closure.queue.items
+      .filter((item) => item.nextAction !== "close_ready")
+      .map((item) => item.planId),
+    ...additionalNeeds,
+  ]
+    .filter((id) => !automatable.includes(id))
+    .sort();
+  const initial = [...new Set([...automatable, ...needs, ...human, ...invalid])].sort();
+  return buildClosureConvergenceTargetSet({
+    initialPlanIds: initial,
+    eligiblePlanIds: automatable,
+    needsPlanIds: needs,
+    humanOnlyPlanIds: human,
+    invalidEscalatedPlanIds: invalid,
+    terminalBoundaryEventDigests: boundaries.map((row) => row.event_digest as `sha256:${string}`),
+  });
+}
+
+function recordClosureWindowTerminalBoundaries(input: {
+  repoRoot: string;
+  run: ReturnType<typeof loadClosureAuthorityProposal>;
+  offset: number;
+  limit: number;
+  cycleDigest: `sha256:${string}`;
+  registryDigest: `sha256:${string}`;
+}) {
+  const windowLength = input.run.candidate_plan_ids.slice(
+    input.offset,
+    input.offset + input.limit,
+  ).length;
+  if (input.offset + windowLength !== input.run.candidate_plan_ids.length) return [];
+  const selected = input.run.bundle.decisions;
+  const initialSetDigest = `sha256:${createHash("sha256")
+    .update(JSON.stringify(input.run.candidate_plan_ids))
+    .digest("hex")}` as const;
+  const recorded: string[] = [];
+  for (const decision of selected) {
+    if (decision.classification !== "human_only" && decision.classification !== "invalid") continue;
+    appendClosureTerminalBoundaryEvent({
+      repoRoot: input.repoRoot,
+      path: "docs/governance/closure-terminal-boundaries.jsonl",
+      event: {
+        event_kind: "boundary_opened",
+        authority_head: input.run.bundle.repository_head,
+        initial_set_digest: initialSetDigest,
+        cycle_digest: input.cycleDigest,
+        registry_generation: input.registryDigest,
+        plan_id: decision.plan_id,
+        classification:
+          decision.classification === "human_only" ? "human_only" : "invalid_escalated",
+        reason: decision.reason,
+        owner: decision.classification === "human_only" ? "PO" : "HELIX governance",
+        next_decision_route: decision.required_action,
+        automation_terminal: true,
+        whole_program_blocker: true,
+      },
+    });
+    recorded.push(decision.plan_id);
+  }
+  return recorded;
+}
+
 function updatePlanFrontmatterStatus(content: string, nextStatus: string): string {
   if (!content.startsWith("---\n")) {
     throw new Error("frontmatter が見つからないため status を更新できない");
@@ -7778,7 +7863,17 @@ closure
             limit,
           });
           if (completed) {
-            process.stdout.write(`${JSON.stringify({ ...completed, resumed: true })}\n`);
+            const terminalBoundaries = recordClosureWindowTerminalBoundaries({
+              repoRoot,
+              run,
+              offset,
+              limit,
+              cycleDigest: completed.cycle_digest,
+              registryDigest: completed.registry_digest,
+            });
+            process.stdout.write(
+              `${JSON.stringify({ ...completed, resumed: true, terminal_boundary_plan_ids: terminalBoundaries })}\n`,
+            );
             return;
           }
         }
@@ -7799,7 +7894,17 @@ closure
           failpoint: opts.failpoint as (typeof failpoints)[number] | undefined,
           window,
         });
-        process.stdout.write(`${JSON.stringify({ ...result, resumed: false })}\n`);
+        const terminalBoundaries = recordClosureWindowTerminalBoundaries({
+          repoRoot,
+          run,
+          offset,
+          limit,
+          cycleDigest: result.cycle_digest,
+          registryDigest: result.registry_digest,
+        });
+        process.stdout.write(
+          `${JSON.stringify({ ...result, resumed: false, terminal_boundary_plan_ids: terminalBoundaries })}\n`,
+        );
       } catch (error) {
         process.stderr.write(`closure authority-backfill-apply: ${String(error)}\n`);
         process.exitCode = closureAuthorityFailureExitCode(error);
@@ -7808,6 +7913,46 @@ closure
       }
     },
   );
+closure
+  .command("convergence-targets")
+  .description("derive the exact automatable/H/X closure target partition from persistent state")
+  .option("--from-db", "read persistent harness.db")
+  .option("--json", "emit one JSON document")
+  .action((opts: { fromDb?: boolean; json?: boolean }) => {
+    if (!opts.fromDb || !opts.json) {
+      process.stderr.write("closure convergence-targets: --from-db --json are required\n");
+      process.exitCode = 2;
+      return;
+    }
+    const repoRoot = process.cwd();
+    const dbPath = defaultHarnessDbPath(repoRoot);
+    if (!existsSync(dbPath)) {
+      process.stderr.write("closure convergence-targets: persistent harness.db does not exist\n");
+      process.exitCode = 2;
+      return;
+    }
+    let db: HarnessDb;
+    try {
+      db = openHarnessDbReadOnly(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(`closure convergence-targets: ${String(error)}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const automatable = snapshot.closure.queue.items
+        .filter((item) => item.nextAction === "close_ready")
+        .map((item) => item.planId);
+      const target = closureConvergenceTargetFromSnapshot(snapshot, automatable);
+      process.stdout.write(`${JSON.stringify(target)}\n`);
+    } catch (error) {
+      process.stderr.write(`closure convergence-targets: ${String(error)}\n`);
+      process.exitCode = closureAuthorityFailureExitCode(error);
+    } finally {
+      db.close();
+    }
+  });
 closure
   .command("authority-materialize")
   .description("classify or materialize current-main close_ready evidence from repo authority")
@@ -7901,19 +8046,63 @@ closure
           registry,
           drifts: analyzeClosureAuthorityDrift({ repositoryRoot: repoRoot, registry }),
         });
+        const eligiblePlanIds = classifications
+          .filter((row) => row.classification === "eligible")
+          .map((row) => row.plan_id);
+        const terminalByPlanId = new Map(
+          snapshot.closure.terminal_boundaries.items
+            .filter((row) => row.whole_program_blocker)
+            .map((row) => [row.plan_id, row.classification] as const),
+        );
+        const noneligiblePlanIds = classifications
+          .filter((row) => {
+            if (row.classification === "eligible") return false;
+            const boundary = terminalByPlanId.get(row.plan_id);
+            const expectedBoundary = terminalBoundaryClassificationForAuthority(row.classification);
+            return expectedBoundary === null || boundary !== expectedBoundary;
+          })
+          .map((row) => row.plan_id);
+        let targetSet: ReturnType<typeof buildClosureConvergenceTargetSet> | null = null;
+        try {
+          targetSet = closureConvergenceTargetFromSnapshot(
+            snapshot,
+            eligiblePlanIds,
+            noneligiblePlanIds,
+          );
+        } catch (error) {
+          const payload = {
+            status: "target_blocked",
+            executed: false,
+            classifications,
+            blocker: error instanceof Error ? error.message : String(error),
+          };
+          process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+          process.exitCode = 2;
+          return;
+        }
         if (repositoryHead !== originMainHead || !clean)
           throw new Error("current HEAD must equal origin/main and working tree must be clean");
         const allEligible =
           classifications.length > 0 &&
           classifications.every((row) => row.classification === "eligible");
         if (opts.execute && !allEligible) {
-          const payload = { status: "classified", executed: false, classifications };
+          const payload = {
+            status: "classified",
+            executed: false,
+            classifications,
+            target_set_digest: targetSet.target_set_digest,
+          };
           process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
           process.exitCode = 2;
           return;
         }
         if (opts.dryRun) {
-          const payload = { status: "classified", executed: false, classifications };
+          const payload = {
+            status: "classified",
+            executed: false,
+            classifications,
+            target_set_digest: targetSet.target_set_digest,
+          };
           process.stdout.write(
             opts.json
               ? `${JSON.stringify(payload, null, 2)}\n`
@@ -7946,10 +8135,11 @@ closure
           gateCommands,
           windowSize: batchSize,
           concurrency,
+          convergenceTarget: targetSet,
         });
         process.stdout.write(
           opts.json
-            ? `${JSON.stringify({ ...result, executed: result.status === "published" }, null, 2)}\n`
+            ? `${JSON.stringify({ ...result, executed: result.status === "published", target_set_digest: targetSet.target_set_digest }, null, 2)}\n`
             : `closure authority-materialize: status=${result.status} candidates=${result.classifications.length} runs=${result.run_count} manifest=${result.manifest_path ?? "-"}\n`,
         );
       } finally {
@@ -8752,6 +8942,46 @@ closure
         const manifest = parseClosureAutoApprovalManifest(
           JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
         );
+        const automatablePlanIds = snapshot.closure.queue.items
+          .filter((item) => item.nextAction === "close_ready")
+          .map((item) => item.planId)
+          .sort();
+        let targetSet: ReturnType<typeof buildClosureConvergenceTargetSet>;
+        try {
+          targetSet = closureConvergenceTargetFromSnapshot(snapshot, automatablePlanIds);
+        } catch (error) {
+          process.stderr.write(
+            `closure auto-approve: convergence target blocked: ${String(error)}\n`,
+          );
+          process.exitCode = 2;
+          return;
+        }
+        const manifestIds = manifest.candidates.map((row) => row.plan_id).sort();
+        if (
+          !manifest.target_set_digest ||
+          manifest.target_set_digest !== targetSet.target_set_digest ||
+          manifest.initial_set_digest !== targetSet.initial_set_digest ||
+          manifest.terminal_boundary_digest !== targetSet.terminal_boundary_digest ||
+          JSON.stringify(manifest.initial_plan_ids) !==
+            JSON.stringify(targetSet.initial_plan_ids) ||
+          JSON.stringify(manifest.automatable_plan_ids) !==
+            JSON.stringify(targetSet.automatable_plan_ids) ||
+          JSON.stringify(manifest.human_only_plan_ids) !==
+            JSON.stringify(targetSet.human_only_plan_ids) ||
+          JSON.stringify(manifest.invalid_escalated_plan_ids) !==
+            JSON.stringify(targetSet.invalid_escalated_plan_ids)
+        ) {
+          process.stderr.write("closure auto-approve: sealed convergence target drift\n");
+          process.exitCode = 2;
+          return;
+        }
+        if (JSON.stringify(manifestIds) !== JSON.stringify(targetSet.automatable_plan_ids)) {
+          process.stderr.write(
+            "closure auto-approve: manifest/convergence target exact-set drift\n",
+          );
+          process.exitCode = 2;
+          return;
+        }
         const authorityRegistry = loadClosureAuthorityRegistry({
           repositoryRoot: repoRoot,
           registryPath: "docs/governance/closure-authority-registry.yaml",
@@ -8807,6 +9037,10 @@ closure
             db,
             githubReceipt,
             githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
+            expectedConvergenceTargetDigest: closureConvergenceTargetFromSnapshot(
+              buildProjectCurrentLocationSnapshot(db),
+              automatablePlanIds,
+            ).target_set_digest,
           });
           applied.push(...result.applied);
         }
@@ -8822,6 +9056,7 @@ closure
           batches,
           applied_patches: applied,
           authority_digests: batches.map((batch) => batch.authority_digest),
+          target_set_digest: targetSet.target_set_digest,
         };
         if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
         else

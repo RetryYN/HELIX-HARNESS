@@ -19,7 +19,7 @@ plan: docs/plans/PLAN-L6-77-closure-authority-convergence.md
 > **L6 contract marker**: `runClosureAuthorityProductionOrchestration(input) => ClosureAuthorityProductionRun`。
 > pre: clean current main、persistent DB、current HEADへ束縛されたproposal artifactと独立review receipt。
 > post: 既存L6-73 writerとL6-74 loaderをexact state machineで接続し、全候補の終端分類を保存する。
-> invariant: U-CAC-001〜U-CAC-012、authority非推測、不可逆capability非昇格、candidate保存則、既存writer単一正本。
+> invariant: U-CAC-001〜U-CAC-021、authority非推測、不可逆capability非昇格、candidate保存則、既存writer単一正本。
 
 ## 本番状態機械
 
@@ -42,16 +42,66 @@ plan: docs/plans/PLAN-L6-77-closure-authority-convergence.md
 6. registry収束後に既存authority-materializeとauto-approveをwindow単位で実行する。各child runのstdout JSONは
    orchestration ledgerがdigest参照し、auto-approve自身への`--out`追加はPLAN-L6-71 deltaで別途扱う。
 
+## Git/CIを含む二epoch契約
+
+tracked governance sourceであるregistryを変更したdirty worktreeのままmaterializeへ進んではならない。状態機械を
+次の二epochへ分割し、epoch間ではPR merge後の新しいcurrent mainだけを次epochのauthorityとする。
+
+1. authority epochはproposal/review/window applyを完遂し、registryとhash-chain evidenceをcommit/PR/CI mergeする。
+2. closure epochは新HEADでDBをrebuildし、旧HEADのproposal・receipt・manifestを再利用せず全件re-censusする。
+3. authority epochのH/Xはtracked正本`docs/governance/closure-terminal-boundaries.jsonl`の
+   `closure-terminal-boundary-ledger.v1`へappend-only保存し、registryと同じPRでmergeする。各eventは
+   authority HEAD、初期集合digest、cycle digest、PLAN ID、分類`human_only | invalid_escalated`、理由、owner、
+   next decision route、`automation_terminal=true`、`whole_program_blocker=true`を持つ。Xはowner/route必須、Hも
+   human decision route必須とし、previous digest chainで改変・欠落・別authority HEAD replayを拒否する。
+4. closure epochではtracked ledger blobを唯一のrebuild sourceとし、authority HEADがcurrent HEADの祖先、registry
+   generationがeventへ一致することを検証する。persistent DB table `closure_terminal_boundaries`は
+   主キー`boundary_key`、authority HEAD、source blob digest、PLAN ID、分類、理由、owner、次判断route、
+   automation終端、全体blocker、opened event digest、resolved event digest、resolution authority digest、
+   直前event digest、event digestを持つ。
+   rebuildはfile全件から置換投影し、runtime upsert/API直接追加は禁止、duplicate key/digest conflictはfail-closeする。
+   eventは`boundary_opened | boundary_resolved`を持ち、current projectionはplan IDごとにdigest chain上の最新eventをfoldする。
+   `boundary_resolved`は直前open event digestを`supersedes_event_digest`へexact joinする。Hの解消は既存action-binding
+   approval receiptのcanonical tracked path/blob digest、decision ID、PLAN ID、approved scope、authority digestへ束縛し、Xの解消は
+   merge済みconfirmed design/testのblob digest、merge HEAD、tracked strict re-census artifact、現行canonical classifierの
+   `eligible`結果、re-census classification digestへ束縛する。根拠の無いresolved自己申告、
+   別PLAN receipt、receipt blob drift、Vペアdigest drift、open前resolve、二重resolveを拒否する。
+5. current-locationはH/Xをautomation terminal countへ残してautomatable close_ready/recovery machineから除外するが、
+   `whole_program_blocker=true`としてobjective G-10、completion-decision、L14 claimを必ずblockする。human decisionや
+   invalid escalationが未解決のまま全体完成へ昇格させない。PLAN ID hardcodeやqueueからの黙示削除は禁止する。
+6. authority epoch集合`I_authority=E⊎N⊎H⊎X`とclosure epoch集合`I_closure=E'⊎N'⊎H'⊎X'`を別digestで保存する。
+   epoch間の追加PLANはtyped `added_plan_ids`として再censusへ取り込み、削除・既存IDのsource digest変更は旧proposalを
+   stale化してauthority epochへ戻す。共通`buildClosureConvergenceTargetSet`は`N'=0`をpreconditionとし、
+   `I_closure = automatable ⊎ H' ⊎ X'`をexactly-once検証する。Nが残ればmaterialize/auto-approveを呼ばない。
+7. 共通target setだけがmaterializeとauto-approveへ同じautomatable exact set、initial-set digest、
+   terminal-boundary digestを渡す。DB-only boundary、ledgerに無い除外、AUTO/H/X重複・欠落を拒否する。
+8. automatable setだけをauthority-materializeし、既存PLAN-L6-71のGitHub adapter、receipt schema、branch-protection
+   検証、15分TTL、write直前refetch CASをそのまま呼んでauto-approveをdry-run→executeする。本deltaは
+   cross-epoch HEAD mismatchとtarget-set digest joinだけを追加し、新しいreceipt producerを作らない。
+9. accepted PLAN変更をcommit/PR/CI mergeし、新HEADで再度DB rebuildする。finalizeはrepo/DB/PLAN bytesから
+   `I_closure=A⊎H'⊎X'`と`N'=E'=remaining_automatable_close_ready=0`を導出し、caller自己申告のaccepted集合を受け取らない。
+   epoch relationは削除を許さず`I_closure = I_authority ⊎ added_plan_ids`とし、既存ID削除/source変更はstaleとしてrejectする。
+   H/Xが1件でも残ればautomation laneは終端可能だがL14/whole-program completion claimは拒否する。
+10. H/X PLAN bytesはpath、blob digestとも全epochで不変とし、authority/closure HEAD遷移、registry generation、materialization manifest、
+   GitHub receipt digest、auto-approve transaction、final partitionを`closure-convergence-run.v1`へ固定する。
+11. local ledger/manifest/PLAN publishはjournalとCASでexactly-once化する。commit/push/PR/CI/mergeはexactly-onceを
+   主張せず、`repository + authority_head + phase + artifact_digest`をidempotency keyとするat-least-once operationと、
+   remote ref/PR/merge/check状態のreconcileで再開する。merge済み、CI pending、branch削除後もremote stateから次phaseを導出する。
+
+external GitHubが取得不能ならclosure epochはdry-runまでで停止する。receiptやhuman approvalをCLIが生成してはならない。
+
 ## 保存則と停止条件
 
-- 初期ID集合`I0`を固定し、各cycleのcurrent partitionを
+- authority epochの初期ID集合`I_authority`を固定し、各cycleのcurrent partitionを
   `P = E(eligible) ⊎ N(needs_*) ⊎ H(human_only) ⊎ X(invalid_escalated)`としてdisjointに保つ。
   未終端はE/N、terminal decision routeはH/Xである。registry applyはEをauthority-materialize可能にするだけでacceptedとは数えない。
-- 最終保存則は`I0 = A(accepted) ⊎ H(human_only) ⊎ X(invalid_escalated)`。停止条件は
-  `N=0 && E=0 && remaining_automatable_close_ready=0`であり、H/Xはautomatable残数から除外する。
+- authority epochは`I_authority=E⊎N⊎H⊎X`、closure epochの最終保存則は
+  `I_closure=A(accepted)⊎H'(human_only)⊎X'(invalid_escalated)`。停止条件は
+  `N'=0 && E'=0 && remaining_automatable_close_ready=0`であり、H/Xはautomatable残数から除外する。
   accepted後のIDだけを次TTL suffixから除外する。
 - PLAN-L7-146 / PLAN-M-02 / external publish / charter P8はHへ残す。Xはtyped terminal escalationとして
-  reason/owner/next decision routeを必須にし、H/XをL14矛盾として数えないcurrent-location read-model deltaを定義する。
+  reason/owner/next decision routeを必須にする。H/Xはautomation laneの残数からだけ除外し、open boundaryが残る限り
+  objective G-10、completion-decision、L14/whole-program blockerには必ず残す。
 - 361→363の増加はPLAN-L7-431/432等の新規terminal PLAN流入としてcycle ledgerへ記録する。
 - TTL更新は前cycleのcommitted plan IDsを除いたsuffix、registry generation、window scope digestへ束縛し、
   GitHub required-check receiptを再取得する。正常な候補縮小をexact-set driftと誤判定しない。

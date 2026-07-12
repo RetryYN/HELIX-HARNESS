@@ -243,6 +243,7 @@ function fixture(count = 1) {
       source_path: item.sourcePath,
       source_digest: sha(readFileSync(join(root, item.sourcePath))),
     })),
+    target_set_digest: sha("fixture-target"),
   };
   writeFileSync(join(root, ".helix/test-snapshot.json"), JSON.stringify(snapshot));
   writeFileSync(join(root, ".helix/test-manifest.json"), JSON.stringify(manifest));
@@ -406,6 +407,7 @@ describe("closure auto approval authority", () => {
         db: toctou.db,
         githubReceipt: githubReceipt(toctou),
         now: new Date(),
+        expectedConvergenceTargetDigest: toctou.manifest.target_set_digest as `sha256:${string}`,
       }),
     ).toThrow("write直前manifest CAS不一致");
   });
@@ -460,6 +462,7 @@ describe("closure auto approval authority", () => {
         db: noGithub.db,
         githubReceipt: null,
         now: new Date(),
+        expectedConvergenceTargetDigest: noGithub.manifest.target_set_digest as `sha256:${string}`,
       }),
     ).toThrow("dry-run only");
     const f = fixture(2);
@@ -474,6 +477,7 @@ describe("closure auto approval authority", () => {
         githubReceipt: githubReceipt(f),
         failAfterRenameForTest: 1,
         now: new Date(),
+        expectedConvergenceTargetDigest: f.manifest.target_set_digest as `sha256:${string}`,
       }),
     ).toThrow("injected partial failure");
     expect(f.queue.map((item) => readFileSync(join(f.root, item.sourcePath), "utf8"))).toEqual(
