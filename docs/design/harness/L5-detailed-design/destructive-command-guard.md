@@ -3,7 +3,7 @@ layer: L5
 sub_doc: module-decomposition
 status: confirmed
 pair_artifact: docs/test-design/harness/L9-destructive-command-guard-integration.md
-plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
+plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 ---
 
 # 破壊的 command guard 詳細設計

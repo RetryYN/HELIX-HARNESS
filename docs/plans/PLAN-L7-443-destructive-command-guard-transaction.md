@@ -31,8 +31,9 @@ generates:
   - { artifact_path: tests/guard-override-transaction.test.ts, artifact_type: test_code }
   - { artifact_path: tests/work-guard.test.ts, artifact_type: test_code }
 dependencies:
-  parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md
-  requires: []
+  parent: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
+  requires:
+    - docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 review_evidence:
   - reviewer: review_443_round9
     review_kind: intra_runtime_subagent

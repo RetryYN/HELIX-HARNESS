@@ -3,7 +3,7 @@ layer: L6
 sub_doc: function-spec
 status: confirmed
 pair_artifact: docs/test-design/harness/L8-destructive-command-guard.md
-plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
+plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 ---
 
 # 破壊的 command guard 機能設計
@@ -73,3 +73,11 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 ## 5. Vペア
 
 `docs/test-design/harness/L8-destructive-command-guard.md` の `U-GITGUARD-003..009` を正本oracleとする。
+
+## 6. DbC trace
+
+| 公開関数 | signature | pre | post | invariant | oracle |
+|---|---|---|---|---|---|
+| classifier | `classifyDestructiveGitCommand(command) => GitCommandClassification` | commandはbounded文字列 | safe/blocked/indeterminateを返す | parse不能をsafeへ縮退しない | U-GITGUARD-003/004 |
+| override transaction | `commitOverrideUse(input) => OverrideCommitResult` | block分類、nonce、理由、audit/marker portが存在 | audit commit後かつconsume成功時だけallowed | exception/partial write/retryをpassへ変換しない | U-GITGUARD-005/006/008/009 |
+| Git adapter | `runGitCommandGuardHook(input) => GitCommandGuardHookOutcome` | hook JSONとrepo rootが与えられる | safe=0、block/failure=2 | dev/CLI/consumerで同じprimitiveを使う | U-GITGUARD-007 |

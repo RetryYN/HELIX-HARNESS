@@ -3,7 +3,7 @@ layer: L9
 sub_doc: integration-test-design
 status: confirmed
 pair_artifact: docs/design/harness/L5-detailed-design/destructive-command-guard.md
-plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
+plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 ---
 
 # 破壊的 command guard 結合テスト設計
