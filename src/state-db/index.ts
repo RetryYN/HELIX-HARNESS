@@ -94,7 +94,12 @@ function applyConnectionPragmas(native: NativeDatabase, path: string): void {
   if (path !== ":memory:") {
     // WAL allows read-only status/doctor probes to keep seeing the last committed
     // projection while a rebuild transaction is in progress.
-    native.exec("PRAGMA journal_mode = WAL");
+    const journal = native.prepare("PRAGMA journal_mode").get() as
+      | { journal_mode?: string }
+      | undefined;
+    if (String(journal?.journal_mode ?? "").toLowerCase() !== "wal") {
+      native.exec("PRAGMA journal_mode = WAL");
+    }
     native.exec("PRAGMA synchronous = NORMAL");
   }
   native.exec("PRAGMA foreign_keys = ON");
