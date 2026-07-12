@@ -98,6 +98,39 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(false);
   });
 
+  it("IT-DUR-003/004: releasing-only crash blocks writers and converges under authority", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    const live = JSON.parse(readFileSync(paths.claim, "utf8"));
+    const staleText = `${JSON.stringify({
+      ...live,
+      pid: 999_999_999,
+      bootIdentity: "different-boot",
+      processStartToken: "missing",
+      leaseDeadlineUptimeMs: 0,
+    })}\n`;
+    writeFileSync(paths.claim, staleText);
+    renameSync(paths.claim, paths.releasingClaim);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(false);
+    expect(
+      recoverStaleLoopClaim(
+        repo,
+        {
+          planId: PLAN,
+          claimDigest: sha256Digest(staleText),
+          pointerDigest: live.pointerDigest,
+          manifestDigest: live.manifestDigest,
+          approvedBy: "test-authority",
+          auditId: "release-convergence",
+        },
+        { verify: () => true },
+      ).status,
+    ).toBe("recovered");
+    expect(existsSync(paths.releasingClaim)).toBe(false);
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+  });
+
   it("IT-DUR-004/U-DUR-007: recovery is authority-bound, snapshot-bound, and tombstones one stale claim", () => {
     const repo = root();
     const paths = loopEpochPaths(repo, PLAN);

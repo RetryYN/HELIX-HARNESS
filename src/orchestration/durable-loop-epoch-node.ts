@@ -242,6 +242,7 @@ export function nodeDurableEpochPort(
     acquireExclusiveClaim: (planId) => {
       const value = paths(planId);
       mkdirSync(value.directory, { recursive: true });
+      if (existsSync(value.releasingClaim)) return false;
       try {
         const fd = openSync(value.claim, "wx", 0o600);
         try {
@@ -269,6 +270,11 @@ export function nodeDurableEpochPort(
           fsyncSync(fd);
         } finally {
           closeSync(fd);
+        }
+        if (existsSync(value.releasingClaim)) {
+          unlinkSync(value.claim);
+          fsyncDirectory(value.directory);
+          return false;
         }
         fsyncDirectory(value.directory);
         hooks.afterBoundary?.("claim_acquired");
@@ -463,7 +469,12 @@ export function recoverStaleLoopClaim(
     unlinkSync(mutexTemp);
     fsyncDirectory(value.directory);
     if (!recoveryClaimCreated) return { status: "conflict", reason: "recovery_claim_conflict" };
-    const claimText = readIfExists(value.claim);
+    const claimPath = existsSync(value.claim)
+      ? value.claim
+      : existsSync(value.releasingClaim)
+        ? value.releasingClaim
+        : null;
+    const claimText = claimPath === null ? null : readIfExists(claimPath);
     if (claimText === null || claimStatus(claimText) !== "stale")
       return { status: "rejected", reason: "claim_not_provably_stale" };
     const claim = JSON.parse(claimText) as Partial<ClaimMetadata>;
@@ -498,7 +509,8 @@ export function recoverStaleLoopClaim(
     fsyncPath(auditTemp);
     renameSync(auditTemp, value.claimTombstoneFor(recoveryId));
     fsyncDirectory(value.directory);
-    unlinkSync(value.claim);
+    if (claimPath === null) return { status: "rejected", reason: "claim_not_provably_stale" };
+    unlinkSync(claimPath);
     fsyncDirectory(value.directory);
     result = { status: "recovered", reason: "stale_claim_tombstoned", recoveryId };
   } catch {
