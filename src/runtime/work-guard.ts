@@ -197,6 +197,31 @@ export function extractEditTargets(toolInput: unknown): string[] {
   return [...new Set(targets)];
 }
 
+/** Bash command の代表的な破壊的 file-write surface から対象 path を抽出する。 */
+export function extractShellWriteTargets(command: string): string[] {
+  const targets: string[] = [];
+  const add = (value: string | undefined) => {
+    const path = stripPathQuotes((value ?? "").replace(/[;&|]+$/, ""));
+    if (path && path !== "/dev/null" && !path.startsWith("-")) targets.push(path);
+  };
+  for (const match of command.matchAll(/(?:^|[;&|]\s*|\s)tee(?:\s+-\S+)*\s+([^\s;&|]+)/g)) {
+    add(match[1]);
+  }
+  for (const match of command.matchAll(/(?:^|[;&|]\s*|\s)sed\s+-[^\s]*i[^\s]*\s+([^;&|]+)/g)) {
+    add(match[1]?.trim().split(/\s+/).at(-1));
+  }
+  for (const match of command.matchAll(
+    /(?:^|[;&|]\s*|\s)(?:cp|mv)\s+(?:-\S+\s+)*\S+\s+([^\s;&|]+)/g,
+  )) {
+    add(match[1]);
+  }
+  for (const match of command.matchAll(/(?:^|[;&|]\s*|\s)rm\s+(?:-\S+\s+)*([^\s;&|]+)/g)) {
+    add(match[1]);
+  }
+  for (const match of command.matchAll(/(?:^|[^>])>>?\s*([^\s;&|]+)/g)) add(match[1]);
+  return [...new Set(targets)];
+}
+
 export interface ForeignEditOverride {
   bypass: boolean;
   /** どこから override したか (audit 用)。 */

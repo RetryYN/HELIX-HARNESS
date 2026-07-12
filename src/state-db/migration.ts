@@ -102,16 +102,92 @@ function ensurePrimaryKeyCompatibilityIndexes(db: HarnessDb): void {
 }
 
 /**
+ * production gate receipt は一度 materialization identity と結合した後に書き換えない。
+ * legacy gate row（receipt が全て NULL）は従来どおり更新でき、materializer が最初の
+ * receipt を付与する migration path との互換性を保つ。
+ */
+function ensureGateRunReceiptImmutability(db: HarnessDb): void {
+  if (!tableNames(db).includes("gate_runs")) return;
+  const columns = columnNames(db, "gate_runs");
+  const receiptColumns = [
+    "session_id",
+    "command",
+    "exit_code",
+    "output_digest",
+    "materialization_id",
+  ];
+  if (!receiptColumns.every((column) => columns.has(column))) return;
+
+  const hadReceipt = receiptColumns.map((column) => `OLD.${column} IS NOT NULL`).join(" OR ");
+  const immutableColumns = [
+    "gate_run_id",
+    "gate_id",
+    "plan_id",
+    "status",
+    "checked_at",
+    "evidence_path",
+    ...receiptColumns,
+  ];
+  const receiptChanged = immutableColumns
+    .map((column) => `NOT (NEW.${column} IS OLD.${column})`)
+    .join(" OR ");
+  db.exec(`CREATE TRIGGER IF NOT EXISTS gate_runs_receipt_no_update
+    BEFORE UPDATE ON gate_runs
+    WHEN (${hadReceipt}) AND (${receiptChanged})
+    BEGIN SELECT RAISE(ABORT, 'gate run receipt immutable'); END`);
+  db.exec(`CREATE TRIGGER IF NOT EXISTS gate_runs_receipt_no_delete
+    BEFORE DELETE ON gate_runs
+    WHEN (${hadReceipt})
+    BEGIN SELECT RAISE(ABORT, 'gate run receipt immutable'); END`);
+}
+
+function ensureClosureEvidenceImmutability(db: HarnessDb): void {
+  if (tableNames(db).includes("closure_terminal_boundaries")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_terminal_boundaries_no_update
+      BEFORE UPDATE ON closure_terminal_boundaries BEGIN SELECT RAISE(ABORT, 'closure terminal boundary immutable projection'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_terminal_boundaries_no_delete
+      BEFORE DELETE ON closure_terminal_boundaries BEGIN SELECT RAISE(ABORT, 'closure terminal boundary immutable projection'); END`);
+  }
+  if (tableNames(db).includes("closure_process_receipts")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipts_no_update
+      BEFORE UPDATE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'closure process receipt immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipts_no_delete
+      BEFORE DELETE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'closure process receipt immutable'); END`);
+  }
+  if (tableNames(db).includes("closure_authority_review_receipts")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_authority_review_receipts_no_update
+      BEFORE UPDATE ON closure_authority_review_receipts BEGIN SELECT RAISE(ABORT, 'closure authority review receipt immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_authority_review_receipts_no_delete
+      BEFORE DELETE ON closure_authority_review_receipts BEGIN SELECT RAISE(ABORT, 'closure authority review receipt immutable'); END`);
+  }
+  if (tableNames(db).includes("runner_attestations")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS runner_attestations_no_update
+      BEFORE UPDATE ON runner_attestations BEGIN SELECT RAISE(ABORT, 'runner attestation immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS runner_attestations_no_delete
+      BEFORE DELETE ON runner_attestations BEGIN SELECT RAISE(ABORT, 'runner attestation immutable'); END`);
+  }
+  if (tableNames(db).includes("closure_materializations")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_materializations_no_update
+      BEFORE UPDATE ON closure_materializations BEGIN SELECT RAISE(ABORT, 'closure materialization immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_materializations_no_delete
+      BEFORE DELETE ON closure_materializations BEGIN SELECT RAISE(ABORT, 'closure materialization immutable'); END`);
+  }
+}
+
+/**
  * schema を現行 SCHEMA_VERSION まで適用する。
  * user_version < SCHEMA_VERSION のときのみ DDL を流し、適用後に user_version を更新する。
  * 冪等 (既に最新なら applied=false で no-op)。
  */
 export function migrate(db: HarnessDb): MigrationResult {
   const fromVersion = db.userVersion();
+  if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
   const ddls = schemaDdl();
   for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
   const addedColumns = addMissingColumns(db);
   ensurePrimaryKeyCompatibilityIndexes(db);
+  ensureGateRunReceiptImmutability(db);
+  ensureClosureEvidenceImmutability(db);
   for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
   if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
   const toVersion = fromVersion > SCHEMA_VERSION ? fromVersion : SCHEMA_VERSION;

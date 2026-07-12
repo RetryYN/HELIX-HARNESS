@@ -4,13 +4,14 @@ title: "PLAN-L7-428 (troubleshoot): 自走ガードの未配線修復 — GitHub
 kind: troubleshoot
 layer: L7
 drive: agent
-status: draft
+status: completed
 route_mode: incident
 entry_signals:
   - "po_directive:2026-07-12 PO 指示「フルチェック」— HEAD 基準の全ゲート実行 + 多角レビュー + 敵対検証で、confirmed PLAN が「実装済み」と称する自走ガード 3 本の実行経路未配線を検出"
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
+irreversible_impact: none
 backprop_decision: not_required
 backprop_decision_reason: "既存 confirmed PLAN (PLAN-L7-340/418, PLAN-L6-32) が宣言済みの契約を実行経路へ配線する補修であり、要求・設計の意味変更はない。契約自体の変更が必要と判明した場合はその時点で backprop を再判断する。"
 agent_slots:
@@ -23,9 +24,54 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-428-enforcement-wiring-gap.md
     artifact_type: markdown_doc
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
+  - artifact_path: src/audit/enforcement-route-input.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/lint-wiring.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
+  - artifact_path: src/schema/frontmatter.ts
+    artifact_type: source_module
+  - artifact_path: tests/enforcement-wiring-routes.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/lint-wiring.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/outstanding.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/frontmatter.test.ts
+    artifact_type: test_code
+verification_bindings:
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-001
+    test_path: tests/enforcement-wiring-routes.test.ts
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-002
+    test_path: tests/lint-wiring.test.ts
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-003
+    test_path: tests/outstanding.test.ts
+  - parent_design: docs/design/harness/L6-function-design/function-spec.md
+    oracle_id: U-WIRING-004
+    test_path: tests/outstanding.test.ts
 dependencies:
   parent: null
   requires: []
+review_evidence:
+  - reviewer: codex-independent-reviewer
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    tests_green_at: "2026-07-11T23:01:33Z"
+    reviewed_at: "2026-07-11T23:01:40Z"
+    verdict: approve_after_fixes
+    scope: "W1実write route、W2 AST call reachability、W3 typed irreversible authorityを敵対監査し、PLAN-L7-418運用は本配線とCI gateを条件に継続可と判断した。"
+    green_commands:
+      - { kind: unit_test, command: "bunx vitest run tests/closure-auto-approval.test.ts tests/current-location.test.ts tests/enforcement-wiring-routes.test.ts tests/lint-wiring.test.ts tests/outstanding.test.ts tests/frontmatter.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: tests/enforcement-wiring-routes.test.ts, output_digest: "sha256:527663340d7b1ac75ebd7e2ac5830ec7877fa39478080eff7d1063dd3b6f78e1" }
+      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-428-enforcement-wiring-gap.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: docs/plans/PLAN-L7-428-enforcement-wiring-gap.md, output_digest: "sha256:6b3a05038ab49afdd92ad55897948acfc6632d2a72bf056ae227400f26b67443" }
+      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: src/lint/lint-wiring.ts, output_digest: "sha256:10ac809aac6d655e10d534f0c8e5d76e2801cf20cd8a8d86ec8e3425097d897b" }
+      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T23:01:33Z", evidence_path: src/cli.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 ---
 
 # PLAN-L7-428: 自走ガードの未配線修復
@@ -108,6 +154,18 @@ dependencies:
 - W3: 誤分類 fixture / 正分類 fixture の regression test green。
 - 各 step の green command を digest 付きで review_evidence に記録し、cross-runtime review を経て
   confirm する。
+
+## L5詳細設計判断
+
+- W1は`helix github review-route`、`helix github ci-auto-fix-gate`、
+  `helix github release-automation-decision`を判定の正規CLI routeとする。入力はtyped JSON、判定が
+  rejectならexit 1でfail-closeする。外部writeはこのroute自身では実行しない。
+- W2は`helix mcp profile safety`と`helix mcp profile config`を正規routeとし、`lint-wiring`は
+  `REQUIRED_RUNTIME_EXPORTS`に登録された関数名がruntime到達sourceから参照されることをfile単位検査に
+  加えて検査する。re-exportだけでは到達証跡にしない。
+- W3はfrontmatter `irreversible_impact: none | cutover | migration`を正とする。明示`none`は本文の
+  境界説明を分類根拠にせず、`cutover`/`migration`は本文に依存せずblockerにする。既存PLANとの互換性の
+  ためfield欠落時だけ従来regexへfallbackする。
 
 ## 引き継ぎメモ（Codex 向け）
 

@@ -42,6 +42,10 @@ import { isTerminalPlanStatus, normalizePath } from "./shared";
 
 /** 意図的に空であってよい placeholder の basename (hollow 検査の除外)。 */
 const HOLLOW_EXEMPT_BASENAMES: ReadonlySet<string> = new Set([".gitkeep"]);
+/** append前の空blob自体がcanonical initial stateであるtracked hash-chain ledger。 */
+const HOLLOW_EXEMPT_CANONICAL_PATHS: ReadonlySet<string> = new Set([
+  "docs/governance/closure-terminal-boundaries.jsonl",
+]);
 
 export interface PlanArtifactRow {
   planId: string;
@@ -90,7 +94,7 @@ export function analyzePlanArtifactExistence(
 /** 実在するファイルが hollow (非空白 0 = 中身空っぽ) か。.gitkeep 等は除外。読めない/バイナリは hollow 扱いしない。 */
 function isHollowFile(repoRoot: string, p: string): boolean {
   const base = p.split("/").pop() ?? "";
-  if (HOLLOW_EXEMPT_BASENAMES.has(base)) return false;
+  if (HOLLOW_EXEMPT_BASENAMES.has(base) || HOLLOW_EXEMPT_CANONICAL_PATHS.has(p)) return false;
   try {
     return !/\S/.test(readFileSync(join(repoRoot, p), "utf8"));
   } catch {

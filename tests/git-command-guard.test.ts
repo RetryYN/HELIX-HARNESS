@@ -47,6 +47,22 @@ describe("git-command-guard", () => {
     }
   });
 
+  it("S1: blocks destructive git hidden in shell evaluation surfaces", () => {
+    for (const command of [
+      'bash -c "git reset --hard HEAD"',
+      "sh -c 'git restore src/cli.ts'",
+      'eval "git push --force origin main"',
+      "echo $(git checkout -- src/cli.ts)",
+      '/bin/bash -c "git reset --hard HEAD"',
+      "/usr/bin/sh -c 'git restore src/cli.ts'",
+      'eval -- "git revert HEAD"',
+      "bash -c \"sh -c 'git push --force origin main'\"",
+      'echo $(printf %s "$(git reset --hard HEAD)")',
+    ]) {
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+    }
+  });
+
   it("U-GITGUARD-001: passes non-destructive git commands and branch creation", () => {
     for (const command of [
       "git status --short",
@@ -111,6 +127,36 @@ describe("git-command-guard", () => {
 
       const second = runHook(input, cwd);
       expect(second.status).toBe(2);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("S4: safe command does not consume a destructive override marker", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-safe-marker-"));
+    try {
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      writeFileSync(markerPath, "approved recovery");
+      const safe = runHook({ session_id: "s-git", tool_input: { command: "git status" } }, cwd);
+      expect(safe.status).toBe(0);
+      expect(existsSync(markerPath)).toBe(true);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("S3: Bash write to a foreign uncommitted file is blocked", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-bash-workguard-"));
+    try {
+      spawnSync("git", ["init"], { cwd });
+      writeFileSync(join(cwd, "foreign.ts"), "export const foreign = true;\n");
+      const blocked = runHook(
+        { session_id: "s-bash", tool_input: { command: "sed -i s/true/false/ foreign.ts" } },
+        cwd,
+      );
+      expect(blocked.status).toBe(2);
+      expect(blocked.stderr).toContain("helix-work-guard");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }

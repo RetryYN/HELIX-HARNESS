@@ -190,7 +190,7 @@ export function greenCommandViolationReason(entry: ReviewEntry): string | null {
     if (
       entry.tests_green_at &&
       command.completed_at &&
-      command.completed_at > entry.tests_green_at
+      Date.parse(command.completed_at) > Date.parse(entry.tests_green_at)
     ) {
       return "completed_after_tests_green_at";
     }
@@ -249,7 +249,7 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
           testBeforeReviewViolations.push({ plan_id: p.plan_id, reason: "missing_tests_green_at" });
           break;
         }
-        if (e.reviewed_at && e.tests_green_at > e.reviewed_at) {
+        if (e.reviewed_at && Date.parse(e.tests_green_at) > Date.parse(e.reviewed_at)) {
           testBeforeReviewViolations.push({ plan_id: p.plan_id, reason: "review_before_test" });
           break;
         }

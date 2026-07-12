@@ -65,6 +65,7 @@ function runRepoScriptHelix(args: string[]) {
 function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
   const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", name.toUpperCase()].join("_");
   const reasonEnv = [helixEnvPrefix, "RAW", name.toUpperCase(), "REASON"].join("_");
+  const evidencePath = join(binDir, `${name}-env.txt`);
   if (process.platform === "win32") {
     const path = join(binDir, `${name}.cmd`);
     writeFileSync(
@@ -72,10 +73,10 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
       [
         "@echo off",
         `echo noisy-${name}`,
-        `echo raw=%${rawEnv}% > ${name}-env.txt`,
-        `echo reason=%${reasonEnv}% >> ${name}-env.txt`,
-        `echo effort=%CLAUDE_CODE_EFFORT_LEVEL% >> ${name}-env.txt`,
-        `echo args=%* >> ${name}-env.txt`,
+        `echo raw=%${rawEnv}% > "${evidencePath}"`,
+        `echo reason=%${reasonEnv}% >> "${evidencePath}"`,
+        `echo effort=%CLAUDE_CODE_EFFORT_LEVEL% >> "${evidencePath}"`,
+        `echo args=%* >> "${evidencePath}"`,
         "exit /b 0",
         "",
       ].join("\r\n"),
@@ -88,7 +89,7 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
     [
       "#!/bin/sh",
       `echo noisy-${name}`,
-      `printf "raw=%s\\nreason=%s\\neffort=%s\\nargs=%s\\n" "$${rawEnv}" "$${reasonEnv}" "$CLAUDE_CODE_EFFORT_LEVEL" "$*" > ${name}-env.txt`,
+      `printf "raw=%s\\nreason=%s\\neffort=%s\\nargs=%s\\n" "$${rawEnv}" "$${reasonEnv}" "$CLAUDE_CODE_EFFORT_LEVEL" "$*" > "${evidencePath}"`,
       "exit 0",
       "",
     ].join("\n"),
@@ -4627,7 +4628,7 @@ describe("L7 CLI surface closure", () => {
         "evidence-patch: append_yaml_frontmatter path=docs/plans/PLAN-L7-999-new-impl.md digest=sha256:",
       );
       expect(batchText.stdout).toContain(
-        "placeholders=<green command>,<iso8601>,<output>,<reviewer>",
+        "placeholders=<green command>,<output>,<probe_completed_at>,<reviewed_at>,<reviewer>",
       );
       expect(batchText.stdout).toContain("item: PLAN-L7-999-new-impl evidence=partial");
       expect(batchText.stdout).toContain("evidence-action=不足 evidence を収集する:");
@@ -4822,9 +4823,11 @@ describe("L7 CLI surface closure", () => {
         "candidate: PLAN-L7-999-new-impl append_yaml_frontmatter path=docs/plans/PLAN-L7-999-new-impl.md digest=sha256:",
       );
       expect(evidencePatchText.stdout).toContain(
-        "placeholders=<green command>,<iso8601>,<output>,<reviewer>",
+        "placeholders=<green command>,<output>,<probe_completed_at>,<reviewed_at>,<reviewer>",
       );
-      expect(evidencePatchText.stdout).toContain("rollback=承認適用後に戻す場合は");
+      expect(evidencePatchText.stdout).toContain(
+        "rollback=tracked evidenceは物理削除せず、rejection/supersede/compensation eventをappend",
+      );
       expect(evidencePatchText.stdout).toContain(
         "postcheck=helix db rebuild && helix closure batch --action collect_evidence --json && helix current-location --json && helix vmodel fit",
       );
@@ -4853,7 +4856,7 @@ describe("L7 CLI surface closure", () => {
         },
         placeholder_resolution: {
           fillable_placeholders: [],
-          remaining_placeholders: ["<green command>", "<iso8601>", "<output>"],
+          remaining_placeholders: ["<green command>", "<probe_completed_at>", "<output>"],
         },
         write_policy: "read-only",
       });
@@ -4885,7 +4888,7 @@ describe("L7 CLI surface closure", () => {
         placeholder_resolution: {
           fillable_count: 0,
           remaining_count: 3,
-          remaining_placeholders: ["<green command>", "<iso8601>", "<output>"],
+          remaining_placeholders: ["<green command>", "<probe_completed_at>", "<output>"],
         },
         apply_readiness: {
           status: "dry_run",
@@ -4911,7 +4914,7 @@ describe("L7 CLI surface closure", () => {
         "closure evidence-probe: action=collect_evidence dry_run=true can_execute=true command=bun run test:fast status=dry_run write=read-only",
       );
       expect(evidenceProbeText.stdout).toContain(
-        "placeholders: fillable=- remaining=<green command>,<iso8601>,<output>",
+        "placeholders: fillable=- remaining=<green command>,<probe_completed_at>,<output>",
       );
 
       const materializeNoProbe = runCliIn(root, [
@@ -4978,23 +4981,20 @@ describe("L7 CLI surface closure", () => {
         materialize_readiness: {
           status: "blocked_placeholders",
           allowed_to_apply: false,
-          remaining_placeholder_count: 2,
-          blocked_candidate_count: 1,
+          remaining_placeholder_count: 12,
+          blocked_candidate_count: 3,
         },
       });
       expect(materializePayload.materialized_candidates[0]).toMatchObject({
         plan_id: "PLAN-L7-999-new-impl",
         artifact_path: "docs/plans/PLAN-L7-999-new-impl.md",
-        filled_placeholders: ["<green command>", "<iso8601>", "<output>", "<reviewer>"],
-        remaining_placeholders: [],
-        ready_for_approval: true,
-      });
-      expect(
-        materializePayload.materialized_candidates[0].placeholder_resolution_sources,
-      ).toContainEqual({
-        placeholder: "<reviewer>",
-        source: "deterministic_closure_rule",
-        value_digest: expect.stringMatching(/^sha256:/),
+        filled_placeholders: expect.arrayContaining([
+          "<green command>",
+          "<probe_completed_at>",
+          "<output>",
+        ]),
+        remaining_placeholders: expect.arrayContaining(["<reviewer>", "<reviewed_at>"]),
+        ready_for_approval: false,
       });
       expect(materializePayload.materialized_candidates[2]).toMatchObject({
         remaining_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
@@ -5065,16 +5065,20 @@ describe("L7 CLI surface closure", () => {
           },
         },
         materialize_readiness: {
-          status: "ready_for_approval",
+          status: "blocked_placeholders",
           allowed_to_apply: false,
-          remaining_placeholder_count: 0,
-          blocked_candidate_count: 0,
+          remaining_placeholder_count: 10,
+          blocked_candidate_count: 3,
         },
       });
       expect(materializeReadyPayload.materialized_candidates[2]).toMatchObject({
         filled_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
-        remaining_placeholders: [],
-        ready_for_approval: true,
+        remaining_placeholders: expect.arrayContaining([
+          "<requirement_id>",
+          "<runtime verification claim>",
+          "<runtime_occurred_at>",
+        ]),
+        ready_for_approval: false,
       });
       const materializeSummaryJson = runCliIn(root, [
         "closure",
@@ -5096,9 +5100,9 @@ describe("L7 CLI surface closure", () => {
         queue_listed: 1,
         materialized_candidate_count: 3,
         materialize_readiness: {
-          status: "ready_for_approval",
-          remaining_placeholder_count: 0,
-          blocked_candidate_count: 0,
+          status: "blocked_placeholders",
+          remaining_placeholder_count: 10,
+          blocked_candidate_count: 3,
         },
         approval: {
           approval_scope_digest: materializeReadyPayload.approval.approval_scope_digest,
@@ -5114,7 +5118,7 @@ describe("L7 CLI surface closure", () => {
       expect(materializeSummaryPayload.sample_candidates[0]).toMatchObject({
         plan_id: "PLAN-L7-999-new-impl",
         operation: "append_yaml_frontmatter",
-        ready_for_approval: true,
+        ready_for_approval: false,
       });
       const approvalDraftJson = runCliIn(root, [
         "closure",
@@ -5137,7 +5141,7 @@ describe("L7 CLI surface closure", () => {
         approval_allowed: false,
         apply_authorized: false,
         materialize_readiness: {
-          status: "ready_for_approval",
+          status: "blocked_placeholders",
         },
         materialized_candidate_count: 3,
         approval: {
@@ -5199,17 +5203,8 @@ describe("L7 CLI surface closure", () => {
         approvalDraftPath,
         "--json",
       ]);
-      expect(approvalDraftOutJson.status).toBe(0);
-      const approvalDraftOutPayload = JSON.parse(approvalDraftOutJson.stdout);
-      expect(approvalDraftOutPayload.approval_record_output).toMatchObject({
-        requested: true,
-        path: approvalDraftPath,
-        written: true,
-        non_authorizing: true,
-      });
-      const approvalDraftRecord = readFileSync(approvalDraftPath, "utf8");
-      expect(approvalDraftRecord).toContain("outcome: pending_human_review");
-      expect(approvalDraftRecord).not.toContain("outcome: approve_materialized_evidence");
+      expect(approvalDraftOutJson.status).toBe(2);
+      expect(existsSync(approvalDraftPath)).toBe(false);
       const evidenceApplyBlocked = runCliIn(root, [
         "closure",
         "evidence-apply",
@@ -5228,16 +5223,19 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-closure-evidence-apply-plan.v1",
         selected_action: "collect_evidence",
         materialize_readiness: {
-          status: "ready_for_approval",
-          remaining_placeholder_count: 0,
-          blocked_candidate_count: 0,
+          status: "blocked_placeholders",
+          remaining_placeholder_count: 10,
+          blocked_candidate_count: 3,
         },
         approval: {
           valid: false,
           reasons: ["approval record が指定されていない"],
         },
         allowed_to_apply: false,
-        blocked_reasons: ["approval record が指定されていない"],
+        blocked_reasons: expect.arrayContaining([
+          "materialize_readiness が ready_for_approval ではない: blocked_placeholders",
+          "approval record が指定されていない",
+        ]),
         patch_candidates: [
           expect.objectContaining({
             plan_id: "PLAN-L7-999-new-impl",
@@ -5272,7 +5270,10 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-closure-evidence-apply-summary.v1",
         selected_action: "collect_evidence",
         allowed_to_apply: false,
-        blocked_reasons: ["approval record が指定されていない"],
+        blocked_reasons: expect.arrayContaining([
+          "materialize_readiness が ready_for_approval ではない: blocked_placeholders",
+          "approval record が指定されていない",
+        ]),
         patch_candidate_count: 3,
         executed: false,
         applied_artifacts: [],
@@ -6323,7 +6324,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 60_000);
 
-  it("executes approved materialized evidence patches in a fixture repo only", () => {
+  it("blocks approved materialized evidence patches without semantic authority receipts", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-apply-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
@@ -6433,7 +6434,14 @@ describe("L7 CLI surface closure", () => {
       ]);
       expect(materialize.status).toBe(0);
       const materializePayload = JSON.parse(materialize.stdout);
-      expect(materializePayload.materialize_readiness.status).toBe("ready_for_approval");
+      expect(materializePayload.materialize_readiness.status).toBe("blocked_placeholders");
+      expect(materializePayload.materialize_readiness.allowed_to_apply).toBe(false);
+      expect(materializePayload.materialized_candidates).toHaveLength(3);
+      expect(
+        materializePayload.materialized_candidates.every(
+          (candidate: { ready_for_approval: boolean }) => !candidate.ready_for_approval,
+        ),
+      ).toBe(true);
       const approvalPath = join(root, "materialized-evidence-approval.yaml");
       writeFileSync(
         approvalPath,
@@ -6464,29 +6472,17 @@ describe("L7 CLI surface closure", () => {
       const dryRunPayload = JSON.parse(dryRun.stdout);
       expect(dryRunPayload).toMatchObject({
         schema_version: "project-closure-evidence-apply-plan.v1",
-        allowed_to_apply: true,
+        allowed_to_apply: false,
+        blocked_reasons: expect.arrayContaining([
+          "materialize_readiness が ready_for_approval ではない: blocked_placeholders",
+        ]),
         approval: {
           valid: true,
           decision_id: "closure-evidence-materialize:collect_evidence",
           outcome: "approve_materialized_evidence",
         },
-        patch_candidates: [
-          expect.objectContaining({
-            artifact_path: "docs/plans/PLAN-L7-999-evidence.md",
-            operation: "append_yaml_frontmatter",
-          }),
-          expect.objectContaining({
-            artifact_path: "docs/evidence/PLAN-L7-999-evidence-test.json",
-            operation: "create_json_artifact",
-          }),
-          expect.objectContaining({
-            artifact_path: "docs/evidence/PLAN-L7-999-evidence-runtime.json",
-            operation: "create_json_artifact",
-          }),
-        ],
       });
-
-      const apply = runCliIn(root, [
+      const executeBlocked = runCliIn(root, [
         "closure",
         "evidence-apply",
         "--execute",
@@ -6500,35 +6496,24 @@ describe("L7 CLI surface closure", () => {
         approvalPath,
         "--json",
       ]);
-      expect(apply.status).toBe(0);
-      const applied = JSON.parse(apply.stdout);
-      expect(applied).toMatchObject({
-        executed: true,
-        allowed_to_apply: true,
-        applied_artifacts: [
-          expect.objectContaining({
-            artifact_path: "docs/plans/PLAN-L7-999-evidence.md",
-            operation: "append_yaml_frontmatter",
-          }),
-          expect.objectContaining({
-            artifact_path: "docs/evidence/PLAN-L7-999-evidence-test.json",
-            operation: "create_json_artifact",
-          }),
-          expect.objectContaining({
-            artifact_path: "docs/evidence/PLAN-L7-999-evidence-runtime.json",
-            operation: "create_json_artifact",
-          }),
-        ],
+      expect(executeBlocked.status).toBe(2);
+      const executeBlockedPayload = JSON.parse(executeBlocked.stdout);
+      expect(executeBlockedPayload).toMatchObject({
+        executed: false,
+        allowed_to_apply: false,
+        applied_artifacts: [],
+        blocked_reasons: expect.arrayContaining([
+          "materialize_readiness が ready_for_approval ではない: blocked_placeholders",
+        ]),
       });
       const planText = readFileSync(join(root, "docs", "plans", "PLAN-L7-999-evidence.md"), "utf8");
-      expect(planText).toContain("review_evidence:");
-      expect(planText).toContain('command: "bun run test:fast"');
+      expect(planText).not.toContain("review_evidence:");
       expect(existsSync(join(root, "docs", "evidence", "PLAN-L7-999-evidence-test.json"))).toBe(
-        true,
+        false,
       );
-      expect(
-        readFileSync(join(root, "docs", "evidence", "PLAN-L7-999-evidence-runtime.json"), "utf8"),
-      ).toContain('"correlation_id": "closure-correlation:corr1234"');
+      expect(existsSync(join(root, "docs", "evidence", "PLAN-L7-999-evidence-runtime.json"))).toBe(
+        false,
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -7597,12 +7582,12 @@ describe("L7 CLI surface closure", () => {
       expect(slots.every((slot: { released_at: string | null }) => slot.released_at !== null)).toBe(
         true,
       );
-      expect(readFileSync(join(root, "codex-env.txt"), "utf8")).not.toContain("raw=1");
-      expect(readFileSync(join(root, "codex-env.txt"), "utf8")).not.toContain(
+      expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).not.toContain("raw=1");
+      expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).not.toContain(
         "reason=helix-runtime-adapter-wrapper",
       );
-      expect(readFileSync(join(root, "claude-env.txt"), "utf8")).not.toContain("raw=1");
-      expect(readFileSync(join(root, "claude-env.txt"), "utf8")).toContain("effort=medium");
+      expect(readFileSync(join(binDir, "claude-env.txt"), "utf8")).not.toContain("raw=1");
+      expect(readFileSync(join(binDir, "claude-env.txt"), "utf8")).toContain("effort=medium");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -7644,7 +7629,7 @@ describe("L7 CLI surface closure", () => {
         signal: null,
       });
       // provider が実際に起動した証跡 (env dump)。「実行せず JSON だけ」だと生成されない。
-      expect(readFileSync(join(root, "codex-env.txt"), "utf8")).toContain("args=");
+      expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).toContain("args=");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

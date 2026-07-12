@@ -172,6 +172,29 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
     }
   });
 
+  it("allows only the canonical append-only terminal ledger to start as an empty tracked blob", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-ledger-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "docs", "governance"), { recursive: true });
+      writeFileSync(join(root, "docs", "governance", "closure-terminal-boundaries.jsonl"), "");
+      writeFileSync(join(root, "docs", "governance", "attacker.jsonl"), "");
+      writePlan(
+        root,
+        "PLAN-TEST-LEDGER.md",
+        "completed",
+        "docs/governance/closure-terminal-boundaries.jsonl",
+      );
+      writePlan(root, "PLAN-TEST-ATTACKER.md", "completed", "docs/governance/attacker.jsonl");
+
+      const result = checkPlanArtifactExistence(root);
+      expect(result.messages.join("\n")).not.toContain("PLAN-TEST-LEDGER");
+      expect(result.messages.join("\n")).toContain("PLAN-TEST-ATTACKER");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("does not flag a completed PLAN that declares no generates (boundary: empty/absent)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-nogen-"));
     try {

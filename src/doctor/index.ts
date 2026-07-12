@@ -40,10 +40,16 @@ import {
   loadChangedFiles,
 } from "../lint/change-impact";
 import {
+  analyzeClosureAuthorityRegistry,
+  closureAuthorityRegistryMessages,
+  loadClosureAuthorityRegistryLintInput,
+} from "../lint/closure-authority-registry";
+import {
   analyzeCodexHookAdapter,
   codexHookAdapterMessages,
   loadCodexHookAdapterInput,
 } from "../lint/codex-hook-adapter";
+import { codexHookTrustMessages, loadCodexHookTrust } from "../lint/codex-hook-trust";
 import {
   analyzeCodingRules,
   codingRulesMessages,
@@ -107,6 +113,7 @@ import {
   designLanguageMessages,
   loadDesignLanguageDocs,
 } from "../lint/design-language";
+import { scanDigestInventory } from "../lint/digest-inventory";
 import { analyzeDocConsistency, loadDocConsistencyDocs } from "../lint/doc-consistency";
 import {
   analyzeDriveDbRegistration,
@@ -441,6 +448,7 @@ import {
   peakParallel,
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
+import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
 import {
   buildSummarySurfaceCommandAudit,
   buildSummarySurfaceContractPayloads,
@@ -1378,6 +1386,29 @@ export function checkSecretScan(repoRoot: string): {
     return {
       messages: ["secret-scan - violation: docs / runtime state artifacts could not be read"],
       ok: false,
+    };
+  }
+}
+
+export function checkDigestInventory(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const expected = JSON.parse(
+      readFileSync(join(repoRoot, "config", "digest-canonicalization-inventory.json"), "utf8"),
+    ) as { rows?: unknown[] };
+    const actual = scanDigestInventory(repoRoot);
+    const ok = JSON.stringify(expected.rows ?? []) === JSON.stringify(actual);
+    return {
+      ok,
+      messages: [
+        ok
+          ? `digest-inventory - OK (hits=${actual.length})`
+          : "digest-inventory - violation: generated inventory differs from production AST scan",
+      ],
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      messages: [`digest-inventory - violation: ${String(error)}`],
     };
   }
 }
@@ -4665,6 +4696,23 @@ export function checkCodexHookAdapter(repoRoot: string): {
   }
 }
 
+export function checkCodexHookTrust(repoRoot: string): { messages: string[]; ok: boolean } {
+  const result = loadCodexHookTrust(repoRoot);
+  return { messages: codexHookTrustMessages(result), ok: result.ok };
+}
+
+export function checkMemoryCommitHygiene(repoRoot: string): { messages: string[]; ok: true } {
+  const result = inspectMemoryCommitHygiene(repoRoot);
+  return {
+    ok: true,
+    messages: result.warning
+      ? [
+          `memory-commit-hygiene - warning: ${result.path} is uncommitted for ${Math.floor(result.ageMs / 3_600_000)}h; include it in the lane terminal commit`,
+        ]
+      : ["memory-commit-hygiene - OK"],
+  };
+}
+
 export function checkToolContractRegistry(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -6134,6 +6182,23 @@ export function checkLintWiring(repoRoot: string): {
   }
 }
 
+/** PLAN-L6-72: repo-owned closure authority registryのschema/source drift hard gate。 */
+export function checkClosureAuthorityRegistry(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const result = analyzeClosureAuthorityRegistry(loadClosureAuthorityRegistryLintInput(repoRoot));
+    return { messages: closureAuthorityRegistryMessages(result), ok: result.ok };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "unknown registry error";
+    return {
+      messages: [`closure-authority-registry - violation: strict registry load failed: ${detail}`],
+      ok: false,
+    };
+  }
+}
+
 export function checkToolchainPin(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -6736,6 +6801,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
   const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
+  const digestInventory = checkDigestInventory(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
@@ -6773,6 +6839,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const cycleP4Verification = checkCycleP4Verification(deps.repoRoot);
   const projectHooks = checkProjectHooks(deps.repoRoot);
   const codexHookAdapter = checkCodexHookAdapter(deps.repoRoot);
+  const codexHookTrust = checkCodexHookTrust(deps.repoRoot);
+  const memoryCommitHygiene = checkMemoryCommitHygiene(deps.repoRoot);
   const toolContractRegistry = checkToolContractRegistry(deps.repoRoot);
   const codexWrapperParity = checkCodexWrapperParity(deps);
   const l6FrCoverage = checkL6FrCoverage(deps.repoRoot);
@@ -6849,6 +6917,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
   const g10UxWorkflow = checkG10UxWorkflow(deps.repoRoot);
   const l14CloseAudit = checkL14CloseAudit(deps.repoRoot);
+  const closureAuthorityRegistry = checkClosureAuthorityRegistry(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
@@ -6900,6 +6969,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       handoverRetirementInventory.ok &&
       handoverResurrection.ok &&
       secretScan.ok &&
+      digestInventory.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
       gateConfirm.ok &&
@@ -6924,6 +6994,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       feedbackLog.ok &&
       projectHooks.ok &&
       codexHookAdapter.ok &&
+      codexHookTrust.ok &&
       toolContractRegistry.ok &&
       codexWrapperParity.ok &&
       l6Completion.ok &&
@@ -6975,6 +7046,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       g9SystemWorkflow.ok &&
       g10UxWorkflow.ok &&
       l14CloseAudit.ok &&
+      closureAuthorityRegistry.ok &&
       lintWiring.ok &&
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
@@ -7023,6 +7095,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
       ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
+      ...digestInventory.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
@@ -7043,6 +7116,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...cycleP4Verification.messages.map((m) => `doctor: ${m}`),
       ...projectHooks.messages.map((m) => `doctor: ${m}`),
       ...codexHookAdapter.messages.map((m) => `doctor: ${m}`),
+      ...codexHookTrust.messages.map((m) => `doctor: ${m}`),
+      ...memoryCommitHygiene.messages.map((m) => `doctor: ${m}`),
       ...toolContractRegistry.messages.map((m) => `doctor: ${m}`),
       ...codexWrapperParity.messages.map((m) => `doctor: ${m}`),
       ...l6FrCoverage.messages.map((m) => `doctor: ${m}`),
@@ -7101,6 +7176,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g10UxWorkflow.messages.map((m) => `doctor: ${m}`),
       ...l14CloseAudit.messages.map((m) => `doctor: ${m}`),
+      ...closureAuthorityRegistry.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),

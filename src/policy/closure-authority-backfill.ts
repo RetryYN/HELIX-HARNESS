@@ -1,0 +1,552 @@
+import { createHash } from "node:crypto";
+import { isAbsolute } from "node:path";
+import { z } from "zod";
+import type { ClosureAuthority } from "./closure-authority-registry";
+
+type Digest = `sha256:${string}`;
+
+export type BackfillClassification =
+  | "eligible_proposal"
+  | "needs_design"
+  | "needs_test_citation"
+  | "needs_gate_authority"
+  | "human_only"
+  | "invalid";
+
+export interface BackfillBinding {
+  oracle_id: string;
+  parent_design: string;
+  test_path: string;
+}
+
+export interface BackfillL8Row extends BackfillBinding {
+  source_path: string;
+  source_digest: Digest;
+  parent_design_status: string;
+}
+
+export interface CollectedBackfillTest {
+  test_path: string;
+  full_name: string;
+  status: "passed" | "failed" | "skipped" | "todo";
+  source_digest: Digest;
+  canonical_realpath: boolean;
+  symlink: boolean;
+  receipt: {
+    schema_version: "closure-process-receipt.v1";
+    repository_head: string;
+    kind: "test";
+    executable: "bunx";
+    argv: string[];
+    stdout_digest: Digest;
+    completed_at: string;
+  };
+}
+
+export interface TypedAuthorityBlock {
+  source_kind: "confirmed_design" | "plan_frontmatter";
+  source_path: string;
+  source_digest: Digest;
+  field_pointer: string;
+  status?: string;
+  capabilities: readonly string[];
+  gates: readonly {
+    gate_id: string;
+    command_id: string;
+    command: string;
+  }[];
+}
+
+export interface ClosureAuthorityBackfillCandidate {
+  plan_id: string;
+  plan_path: string;
+  plan_digest: Digest;
+  plan_slot_kind: "implementation_plan";
+  plan_bindings: readonly BackfillBinding[];
+  l8_rows: readonly BackfillL8Row[];
+  collected_tests: readonly CollectedBackfillTest[];
+  design_authority?: TypedAuthorityBlock | null;
+  plan_authority?: TypedAuthorityBlock | null;
+}
+
+export interface ClosureAuthorityBackfillDecision {
+  plan_id: string;
+  source_path: string;
+  classification: BackfillClassification;
+  reason: string;
+  required_action: string;
+  evidence_digests: Digest[];
+  proposal:
+    | (ClosureAuthority & {
+        field_sources: {
+          capabilities: TypedAuthorityBlock;
+          gates: TypedAuthorityBlock;
+          bindings: Array<{ plan: Digest; l8: Digest; test: Digest }>;
+        };
+      })
+    | null;
+}
+
+export interface ClosureAuthorityBackfillBundle {
+  schema_version: "closure-authority-backfill-bundle.v1";
+  repository_head: string;
+  registry_digest: Digest;
+  review_scope_digest: Digest;
+  candidate_plan_ids: string[];
+  decisions: ClosureAuthorityBackfillDecision[];
+  source_digests: Digest[];
+  bundle_digest: Digest;
+}
+
+export interface ClosureAuthorityBackfillInput {
+  repository_head: string;
+  registry_digest: Digest;
+  review_scope_digest: Digest;
+  expected_plan_ids: readonly string[];
+  candidates: readonly ClosureAuthorityBackfillCandidate[];
+  gate_allowlist: {
+    source_path: string;
+    source_digest: Digest;
+    repository_head: string;
+    entries: Readonly<Record<string, { command_id: string; command: string }>>;
+  };
+}
+
+const DIGEST = /^sha256:[0-9a-f]{64}$/;
+const HEAD = /^[0-9a-f]{40}$/;
+const PLAN_ID = /^PLAN-[A-Z0-9]+-[A-Za-z0-9-]+$/;
+const ORACLE_ID = /^U-[A-Z0-9]+-[0-9]{3}$/;
+const canonicalPath = (value: string): boolean =>
+  value.length > 0 &&
+  !isAbsolute(value) &&
+  !value.includes("\\") &&
+  !value.startsWith("./") &&
+  !value.endsWith("/") &&
+  !value.split("/").some((part) => part === "" || part === "." || part === "..");
+
+const digestSchema = z.string().regex(DIGEST);
+const pathSchema = z.string().refine(canonicalPath, "canonical lexical path required");
+const testPathSchema = z
+  .string()
+  .regex(/^tests\/.+\.test\.(?:ts|tsx)$/)
+  .refine(canonicalPath, "canonical lexical path required");
+const planPathSchema = z
+  .string()
+  .regex(/^docs\/plans\/.+\.md$/)
+  .refine(canonicalPath, "canonical lexical path required");
+const bindingSchema = z
+  .object({
+    oracle_id: z.string().regex(ORACLE_ID),
+    parent_design: pathSchema,
+    test_path: testPathSchema,
+  })
+  .strict();
+const authoritySchema = z
+  .object({
+    source_kind: z.enum(["confirmed_design", "plan_frontmatter"]),
+    source_path: pathSchema,
+    source_digest: digestSchema,
+    field_pointer: z.string().regex(/^\/.+/),
+    status: z.string().optional(),
+    capabilities: z.array(z.string()).min(1),
+    gates: z.array(
+      z
+        .object({
+          gate_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+          command_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+          command: z.string().min(1),
+        })
+        .strict(),
+    ),
+  })
+  .strict();
+const candidateSchema = z
+  .object({
+    plan_id: z.string().regex(PLAN_ID),
+    plan_path: planPathSchema,
+    plan_digest: digestSchema,
+    plan_slot_kind: z.literal("implementation_plan"),
+    plan_bindings: z.array(bindingSchema),
+    l8_rows: z.array(
+      bindingSchema
+        .extend({
+          source_path: pathSchema,
+          source_digest: digestSchema,
+          parent_design_status: z.string(),
+        })
+        .strict(),
+    ),
+    collected_tests: z.array(
+      z
+        .object({
+          test_path: pathSchema,
+          full_name: z.string().min(1),
+          status: z.enum(["passed", "failed", "skipped", "todo"]),
+          source_digest: digestSchema,
+          canonical_realpath: z.boolean(),
+          symlink: z.boolean(),
+          receipt: z
+            .object({
+              schema_version: z.literal("closure-process-receipt.v1"),
+              repository_head: z.string().regex(HEAD),
+              kind: z.literal("test"),
+              executable: z.literal("bunx"),
+              argv: z.array(z.string()),
+              stdout_digest: digestSchema,
+              completed_at: z.string().datetime(),
+            })
+            .strict(),
+        })
+        .strict(),
+    ),
+    design_authority: authoritySchema.nullish(),
+    plan_authority: authoritySchema.nullish(),
+  })
+  .strict();
+const inputSchema = z
+  .object({
+    repository_head: z.string().regex(HEAD),
+    registry_digest: digestSchema,
+    review_scope_digest: digestSchema,
+    expected_plan_ids: z.array(z.string().regex(PLAN_ID)),
+    candidates: z.array(candidateSchema),
+    gate_allowlist: z
+      .object({
+        source_path: pathSchema,
+        source_digest: digestSchema,
+        repository_head: z.string().regex(HEAD),
+        entries: z.record(
+          z.string(),
+          z.object({ command_id: z.string(), command: z.string().min(1) }).strict(),
+        ),
+      })
+      .strict(),
+  })
+  .strict();
+const proposalSchema = z
+  .object({
+    plan_id: z.string().regex(PLAN_ID),
+    source_path: planPathSchema,
+    source_digest: digestSchema,
+    capabilities: z.array(z.string()),
+    bindings: z.array(bindingSchema),
+    gates: authoritySchema.shape.gates,
+    migration_reason: z.null(),
+    field_sources: z
+      .object({
+        capabilities: authoritySchema,
+        gates: authoritySchema,
+        bindings: z.array(
+          z.object({ plan: digestSchema, l8: digestSchema, test: digestSchema }).strict(),
+        ),
+      })
+      .strict(),
+  })
+  .strict();
+const decisionSchema = z
+  .object({
+    plan_id: z.string().regex(PLAN_ID),
+    source_path: planPathSchema,
+    classification: z.enum([
+      "eligible_proposal",
+      "needs_design",
+      "needs_test_citation",
+      "needs_gate_authority",
+      "human_only",
+      "invalid",
+    ]),
+    reason: z.string(),
+    required_action: z.string(),
+    evidence_digests: z.array(digestSchema),
+    proposal: proposalSchema.nullable(),
+  })
+  .strict();
+export const closureAuthorityBackfillBundleSchema = z
+  .object({
+    schema_version: z.literal("closure-authority-backfill-bundle.v1"),
+    repository_head: z.string().regex(HEAD),
+    registry_digest: digestSchema,
+    review_scope_digest: digestSchema,
+    candidate_plan_ids: z.array(z.string().regex(PLAN_ID)).min(1),
+    decisions: z.array(decisionSchema).min(1),
+    source_digests: z.array(digestSchema),
+    bundle_digest: digestSchema,
+  })
+  .strict();
+const CAPABILITIES = new Set([
+  "local_plan_status",
+  "version_activation",
+  "state_cutover",
+  "external_publish",
+  "charter_p8",
+]);
+const IRREVERSIBLE = new Set([
+  "version_activation",
+  "state_cutover",
+  "external_publish",
+  "charter_p8",
+]);
+
+const sha256 = (value: string): Digest =>
+  `sha256:${createHash("sha256").update(value).digest("hex")}`;
+
+function stable(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(stable).join(",")}]`;
+  if (value !== null && typeof value === "object")
+    return `{${Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, item]) => `${JSON.stringify(key)}:${stable(item)}`)
+      .join(",")}}`;
+  return JSON.stringify(value);
+}
+
+function exactMarker(fullName: string, planId: string, oracleId: string): boolean {
+  const markers = [
+    ...fullName.matchAll(/\[(PLAN-[A-Z0-9]+-[A-Za-z0-9-]+)\/(U-[A-Z0-9]+-[0-9]{3})\]/g),
+  ];
+  return markers.length === 1 && markers[0]?.[1] === planId && markers[0]?.[2] === oracleId;
+}
+
+function normalizedAuthority(block: TypedAuthorityBlock): string {
+  return stable({
+    capabilities: [...block.capabilities].sort(),
+    gates: [...block.gates].sort((a, b) => a.gate_id.localeCompare(b.gate_id)),
+  });
+}
+
+function classify(
+  candidate: ClosureAuthorityBackfillCandidate,
+  input: ClosureAuthorityBackfillInput,
+): ClosureAuthorityBackfillDecision {
+  const base = (
+    classification: BackfillClassification,
+    reason: string,
+    required_action: string,
+  ): ClosureAuthorityBackfillDecision => ({
+    plan_id: candidate.plan_id,
+    source_path: candidate.plan_path,
+    classification,
+    reason,
+    required_action,
+    evidence_digests: [candidate.plan_digest],
+    proposal: null,
+  });
+  if (!DIGEST.test(candidate.plan_digest))
+    return base("invalid", "PLAN digest schema invalid", "sourceを再読込する");
+  if (candidate.plan_bindings.length === 0)
+    return base("needs_design", "PLAN verification binding absent", "L6/L7設計へ戻す");
+  const bindingKeys = candidate.plan_bindings.map(
+    (row) => `${row.oracle_id}\0${row.parent_design}\0${row.test_path}`,
+  );
+  if (new Set(bindingKeys).size !== bindingKeys.length)
+    return base("invalid", "duplicate PLAN binding", "重複ownershipを解消する");
+  if (
+    new Set(candidate.plan_bindings.map((row) => row.oracle_id)).size !==
+    candidate.plan_bindings.length
+  )
+    return base("invalid", "duplicate oracle ownership", "oracle ownershipを一意化する");
+
+  const bindingSources: Array<{ plan: Digest; l8: Digest; test: Digest }> = [];
+  for (const binding of candidate.plan_bindings) {
+    const l8 = candidate.l8_rows.filter(
+      (row) =>
+        row.oracle_id === binding.oracle_id &&
+        row.parent_design === binding.parent_design &&
+        row.test_path === binding.test_path,
+    );
+    if (l8.length === 0)
+      return base(
+        "needs_design",
+        `L8 exact row absent: ${binding.oracle_id}`,
+        "L8 test-designへ戻す",
+      );
+    if (l8.length !== 1)
+      return base(
+        "invalid",
+        `L8 exact row ambiguous: ${binding.oracle_id}`,
+        "重複oracle ownershipを解消する",
+      );
+    if (l8[0]?.parent_design_status !== "confirmed")
+      return base(
+        "invalid",
+        `parent design is not confirmed: ${binding.oracle_id}`,
+        "親設計をconfirmedにする",
+      );
+    if (
+      candidate.design_authority &&
+      candidate.design_authority.source_path !== binding.parent_design
+    )
+      return base(
+        "invalid",
+        `authority parent mismatch: ${binding.oracle_id}`,
+        "authorityとparent_designを一致させる",
+      );
+    const tests = candidate.collected_tests.filter(
+      (test) =>
+        test.test_path === binding.test_path &&
+        exactMarker(test.full_name, candidate.plan_id, binding.oracle_id),
+    );
+    if (tests.length === 0)
+      return base(
+        "needs_test_citation",
+        `collected exact marker absent: ${binding.oracle_id}`,
+        "L7 test citationを追加する",
+      );
+    if (
+      tests.length !== 1 ||
+      tests[0]?.status !== "passed" ||
+      !tests[0].canonical_realpath ||
+      tests[0].symlink ||
+      tests[0].receipt.repository_head !== input.repository_head ||
+      tests[0].receipt.argv.join("\0") !==
+        ["vitest", "run", binding.test_path, "--reporter=json"].join("\0")
+    )
+      return base(
+        "invalid",
+        `test citation ambiguous or not passed: ${binding.oracle_id}`,
+        "実testを一意にcollect/passする",
+      );
+    const l8Row = l8[0];
+    const test = tests[0];
+    if (!l8Row || !test || !DIGEST.test(l8Row.source_digest) || !DIGEST.test(test.source_digest))
+      return base("invalid", `source digest invalid: ${binding.oracle_id}`, "sourceを再読込する");
+    bindingSources.push({
+      plan: candidate.plan_digest,
+      l8: l8Row.source_digest,
+      test: test.source_digest,
+    });
+  }
+
+  const design = candidate.design_authority ?? null;
+  const plan = candidate.plan_authority ?? null;
+  if (design && (design.source_kind !== "confirmed_design" || design.status !== "confirmed"))
+    return base("invalid", "design authority is not confirmed", "親設計をconfirmedにする");
+  if (design && plan && normalizedAuthority(design) !== normalizedAuthority(plan))
+    return base("invalid", "design and PLAN authority conflict", "typed authorityを一致させる");
+  const authority = design ?? plan;
+  if (!authority)
+    return base(
+      "needs_gate_authority",
+      "typed authority block absent",
+      "confirmed設計またはPLAN frontmatterへtyped authorityを追加する",
+    );
+  if (!DIGEST.test(authority.source_digest))
+    return base("invalid", "authority source digest invalid", "authority sourceを再読込する");
+  if (
+    authority.capabilities.length === 0 ||
+    authority.capabilities.some((capability) => !CAPABILITIES.has(capability))
+  )
+    return base("invalid", "unknown or empty capability", "typed capabilityを是正する");
+  if (new Set(authority.capabilities).size !== authority.capabilities.length)
+    return base("invalid", "duplicate capability", "typed capabilityを一意化する");
+  const gateIds = authority.gates.map((gate) => gate.gate_id);
+  if (new Set(gateIds).size !== gateIds.length)
+    return base("invalid", "duplicate required gate", "typed gate authorityを一意化する");
+  for (const gate of authority.gates) {
+    const allowed = input.gate_allowlist.entries[gate.gate_id];
+    if (!allowed || allowed.command_id !== gate.command_id || allowed.command !== gate.command)
+      return base(
+        "invalid",
+        `gate allowlist mismatch: ${gate.gate_id}`,
+        "canonical gate authorityへ戻す",
+      );
+  }
+  if (authority.gates.length === 0)
+    return base("needs_gate_authority", "required gate absent", "typed gate authorityを追加する");
+  if (authority.capabilities.some((capability) => IRREVERSIBLE.has(capability)))
+    return base("human_only", "irreversible capability", "human/action-binding approvalを維持する");
+
+  const evidence = [
+    candidate.plan_digest,
+    authority.source_digest,
+    input.gate_allowlist.source_digest,
+    ...bindingSources.flatMap((row) => [row.l8, row.test]),
+  ];
+  return {
+    plan_id: candidate.plan_id,
+    source_path: candidate.plan_path,
+    classification: "eligible_proposal",
+    reason: "exact V-pair and typed reversible authority",
+    required_action: "independent reviewへ送る",
+    evidence_digests: [...new Set(evidence)],
+    proposal: {
+      plan_id: candidate.plan_id,
+      source_path: candidate.plan_path,
+      source_digest: candidate.plan_digest,
+      capabilities: [...authority.capabilities].sort() as ClosureAuthority["capabilities"],
+      bindings: candidate.plan_bindings
+        .map((row) => ({ ...row }))
+        .sort((a, b) => a.oracle_id.localeCompare(b.oracle_id)),
+      gates: authority.gates
+        .map((row) => ({ ...row }))
+        .sort((a, b) => a.gate_id.localeCompare(b.gate_id)),
+      migration_reason: null,
+      field_sources: {
+        capabilities: structuredClone(authority),
+        gates: structuredClone(authority),
+        bindings: bindingSources,
+      },
+    },
+  };
+}
+
+/** read-only pure policy: caller prose/green command等をauthority入力として受け取らない。 */
+export function buildClosureAuthorityBackfill(
+  input: ClosureAuthorityBackfillInput,
+): ClosureAuthorityBackfillBundle {
+  inputSchema.parse(input);
+  if (!HEAD.test(input.repository_head)) throw new Error("repository HEAD must be lowercase SHA-1");
+  for (const digest of [input.registry_digest, input.review_scope_digest])
+    if (!DIGEST.test(digest)) throw new Error("bundle binding digest invalid");
+  const expected = [...input.expected_plan_ids];
+  const actual = input.candidates.map((candidate) => candidate.plan_id);
+  if (new Set(expected).size !== expected.length || new Set(actual).size !== actual.length)
+    throw new Error("candidate census contains duplicate PLAN");
+  if (input.gate_allowlist.repository_head !== input.repository_head)
+    throw new Error("gate allowlist HEAD drift");
+  if (
+    expected.length !== actual.length ||
+    expected.some((planId, index) => actual[index] !== planId)
+  )
+    throw new Error("candidate census missing/excess/order drift");
+  const oracleOwners = new Map<string, string>();
+  for (const candidate of input.candidates)
+    for (const binding of candidate.plan_bindings) {
+      const owner = oracleOwners.get(binding.oracle_id);
+      if (owner && owner !== candidate.plan_id)
+        throw new Error(`oracle global ownership duplicate: ${binding.oracle_id}`);
+      oracleOwners.set(binding.oracle_id, candidate.plan_id);
+    }
+  const decisions = input.candidates.map((candidate) => classify(candidate, input));
+  const sourceDigests = [
+    ...new Set([
+      input.registry_digest,
+      input.gate_allowlist.source_digest,
+      ...decisions.flatMap((decision) => decision.evidence_digests),
+    ]),
+  ].sort();
+  const body = {
+    schema_version: "closure-authority-backfill-bundle.v1" as const,
+    repository_head: input.repository_head,
+    registry_digest: input.registry_digest,
+    review_scope_digest: input.review_scope_digest,
+    candidate_plan_ids: actual,
+    decisions,
+    source_digests: sourceDigests,
+  };
+  return { ...body, bundle_digest: sha256(stable(body)) };
+}
+
+/** Untrusted transport/persistence boundary: strict shape and self-digest verification. */
+export function parseClosureAuthorityBackfillBundle(
+  value: unknown,
+): ClosureAuthorityBackfillBundle {
+  const bundle = closureAuthorityBackfillBundleSchema.parse(
+    value,
+  ) as ClosureAuthorityBackfillBundle;
+  const body = { ...bundle };
+  delete (body as Partial<ClosureAuthorityBackfillBundle>).bundle_digest;
+  if (sha256(stable(body)) !== bundle.bundle_digest)
+    throw new Error("closure authority backfill bundle digest mismatch");
+  return bundle;
+}

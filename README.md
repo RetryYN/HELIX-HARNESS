@@ -322,13 +322,13 @@ helix doctor
 helix db rebuild --json
 helix telemetry scan --json
 helix team suggest --task "production security schema migration" --mode hybrid --json
-helix team run --definition .helix/teams/team.yaml --mode hybrid --json
+helix team run --definition .helix/teams/example-review-team.yaml --mode hybrid --json
 ```
 
 `--execute` は、provider CLI を実際に起動すべきときだけ使います:
 
 ```sh
-helix team run --definition .helix/teams/team.yaml --mode hybrid --execute
+helix team run --definition .helix/teams/example-review-team.yaml --mode hybrid --execute
 ```
 
 </details>

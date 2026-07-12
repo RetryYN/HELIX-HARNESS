@@ -78,6 +78,40 @@ function gitSlices(tokens: string[]): string[][] {
   return slices;
 }
 
+function nestedShellCommands(command: string): string[] {
+  const nested: string[] = [];
+  const tokens = shellTokens(command);
+  for (let i = 0; i < tokens.length; i += 1) {
+    const token = tokens[i] ?? "";
+    const executable = token.split(/[\\/]/).at(-1) ?? token;
+    if ((/^(?:bash|sh|zsh)$/.test(executable) && tokens[i + 1] === "-c") || executable === "eval") {
+      const evalOffset = tokens[i + 1] === "--" ? 2 : 1;
+      const payload = tokens[executable === "eval" ? i + evalOffset : i + 2];
+      if (payload) nested.push(payload);
+    }
+  }
+  let substitutions = command;
+  for (let depth = 0; depth < 4; depth += 1) {
+    let found = false;
+    substitutions = substitutions.replace(/\$\(([^()]*)\)/g, (_whole, payload: string) => {
+      found = true;
+      if (payload) nested.push(payload);
+      return payload;
+    });
+    if (!found) break;
+  }
+  return nested;
+}
+
+function commandGitSlices(command: string, depth = 0): string[][] {
+  if (depth > 4) return [];
+  const direct = gitSlices(shellTokens(command));
+  const nested = nestedShellCommands(command).flatMap((payload) =>
+    commandGitSlices(payload, depth + 1),
+  );
+  return [...direct, ...nested];
+}
+
 function withoutGlobalOptions(args: string[]): string[] {
   const out = [...args];
   while (out.length > 0) {
@@ -166,8 +200,7 @@ export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommand
   const command = input.command.trim();
   if (!command) return { decision: "pass", reason: "no-command", message: "" };
   if (input.bypass) return { decision: "pass", reason: "bypass", message: "" };
-  const tokens = shellTokens(command);
-  const slices = gitSlices(tokens);
+  const slices = commandGitSlices(command);
   if (slices.length === 0) return { decision: "pass", reason: "non-git", message: "" };
   for (const slice of slices) {
     const op = destructiveOperation(slice);

@@ -1487,6 +1487,21 @@ export interface ProjectClosureStatus {
     missing: number;
     reverify: number;
   };
+  terminal_boundaries: {
+    items: Array<{
+      plan_id: string;
+      classification: "human_only" | "invalid_escalated";
+      reason: string;
+      owner: string;
+      next_decision_route: string;
+      automation_terminal: true;
+      whole_program_blocker: boolean;
+      event_digest: string;
+    }>;
+    open: number;
+    resolved: number;
+    whole_program_blockers: number;
+  };
   queue: {
     items: ProjectClosureQueueItem[];
     total: number;
@@ -5657,7 +5672,36 @@ function buildClosureStatus(input: {
     terminalL14PlanIds: input.terminalL14PlanIds,
     closureEvidenceIds: input.closureEvidenceIds,
   });
-  const queueItems = buildClosureQueue(input.db, input.openL7Plans);
+  const terminalTable = input.db
+    .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?")
+    .get("closure_terminal_boundaries");
+  const terminalRows = terminalTable
+    ? (input.db
+        .prepare(
+          `SELECT plan_id,classification,reason,owner,next_decision_route,
+                  automation_terminal,whole_program_blocker,event_digest
+             FROM closure_terminal_boundaries ORDER BY plan_id`,
+        )
+        .all() as Array<Record<string, unknown>>)
+    : [];
+  const terminalBoundaries = terminalRows.map((row) => ({
+    plan_id: String(row.plan_id),
+    classification: String(row.classification) as "human_only" | "invalid_escalated",
+    reason: String(row.reason),
+    owner: String(row.owner),
+    next_decision_route: String(row.next_decision_route),
+    automation_terminal: true as const,
+    whole_program_blocker: Number(row.whole_program_blocker) === 1,
+    event_digest: String(row.event_digest),
+  }));
+  const automationTerminalIds = new Set(
+    terminalBoundaries
+      .filter((row) => row.automation_terminal && row.whole_program_blocker)
+      .map((row) => row.plan_id),
+  );
+  const queueItems = buildClosureQueue(input.db, input.openL7Plans).filter(
+    (item) => !automationTerminalIds.has(item.planId),
+  );
   const packets = buildClosurePackets(queueItems);
   const nextActionLedger = buildClosureNextActionLedger(packets);
 
@@ -5668,6 +5712,12 @@ function buildClosureStatus(input: {
     closure_evidence_ids: unique(input.closureEvidenceIds),
     required_evidence: requiredEvidence,
     remediation,
+    terminal_boundaries: {
+      items: terminalBoundaries,
+      open: terminalBoundaries.filter((row) => row.whole_program_blocker).length,
+      resolved: terminalBoundaries.filter((row) => !row.whole_program_blocker).length,
+      whole_program_blockers: terminalBoundaries.filter((row) => row.whole_program_blocker).length,
+    },
     queue: {
       items: queueItems,
       total: queueItems.length,
@@ -5686,7 +5736,12 @@ function buildClosureStatus(input: {
       view_command: "helix progress tree-view --json",
     },
     docDependencies: ["docs/plans", "docs/design/**", "docs/test-design/**"],
-    implementationDependencies: ["plan_registry", "design_declarations", "design_references"],
+    implementationDependencies: [
+      "plan_registry",
+      "design_declarations",
+      "design_references",
+      "closure_terminal_boundaries",
+    ],
   };
 }
 
@@ -6793,8 +6848,8 @@ function closureGreenEvidenceArtifactTemplates(input: {
           {
             reviewer: "<reviewer>",
             review_kind: "intra_runtime_subagent",
-            reviewed_at: "<iso8601>",
-            tests_green_at: "<iso8601>",
+            reviewed_at: "<reviewed_at>",
+            tests_green_at: "<probe_completed_at>",
             verdict: "approve",
             scope: "closure-repair",
             worker_model: "<worker_model>",
@@ -6806,7 +6861,7 @@ function closureGreenEvidenceArtifactTemplates(input: {
                 runner: "bun",
                 scope: "fast|targeted",
                 exit_code: 0,
-                completed_at: "<iso8601>",
+                completed_at: "<probe_completed_at>",
                 evidence_path: evidencePath,
                 output_digest: "sha256:<output>",
               },
@@ -6837,7 +6892,7 @@ function closureGreenEvidenceArtifactTemplates(input: {
       ],
       example: {
         plan_id: input.planId,
-        recorded_at: "<iso8601>",
+        recorded_at: "<recorded_at>",
         cases: [
           {
             name: "<test case name>",
@@ -6882,7 +6937,7 @@ function closureGreenEvidenceArtifactTemplates(input: {
         runtime_surface: "cli",
         correlation_id: "<correlation_id>",
         evidence_path: runtimeEvidencePath,
-        occurred_at: "<iso8601>",
+        occurred_at: "<runtime_occurred_at>",
         redaction_policy: "none",
         verification_class: "runtime_verified",
         accept_status: "accepted",
@@ -6950,8 +7005,8 @@ function closureGreenEvidencePatchPreviewLines(
       "review_evidence:",
       "  - reviewer: <reviewer>",
       "    review_kind: intra_runtime_subagent",
-      '    reviewed_at: "<iso8601>"',
-      '    tests_green_at: "<iso8601>"',
+      '    reviewed_at: "<reviewed_at>"',
+      '    tests_green_at: "<probe_completed_at>"',
       "    verdict: approve",
       "    scope: closure-repair",
       "    green_commands:",
@@ -6960,7 +7015,7 @@ function closureGreenEvidencePatchPreviewLines(
       "        runner: bun",
       "        scope: fast|targeted",
       "        exit_code: 0",
-      '        completed_at: "<iso8601>"',
+      '        completed_at: "<probe_completed_at>"',
       `        evidence_path: ${String(
         (
           template.example.review_evidence as
@@ -7071,12 +7126,9 @@ export function buildProjectClosureEvidencePlan(
 }
 
 function closureEvidencePatchRollbackNote(
-  candidate: ProjectClosureGreenEvidencePatchCandidate,
+  _candidate: ProjectClosureGreenEvidencePatchCandidate,
 ): string {
-  if (candidate.operation === "append_yaml_frontmatter") {
-    return "承認適用後に戻す場合は、追加した review_evidence entry だけを削除し、harness.db rebuild と current-location を再実行する";
-  }
-  return "承認適用後に戻す場合は、新規作成した evidence artifact を削除し、harness.db rebuild と current-location を再実行する";
+  return "tracked evidenceは物理削除せず、rejection/supersede/compensation eventをappendしてharness.db rebuildとcurrent-locationを再実行する";
 }
 
 function closureEvidencePatchPlaceholders(lines: string[]): string[] {
@@ -7346,27 +7398,24 @@ export function buildProjectClosureEvidenceProbePacket(
   const execution = input.execution ?? null;
   const dryRun = input.dryRun ?? execution === null;
   const fillablePlaceholders =
-    execution?.status === "passed"
-      ? [
-          "<green command>",
-          "<iso8601>",
-          "<oracle_id>",
-          "<output>",
-          "<reviewer>",
-          "<requirement_id>",
-          "<runtime verification claim>",
-          "<test case name>",
-          "<test_oracle_id>",
-          "<timestamp>",
-        ]
-      : [];
+    execution?.status === "passed" ? ["<green command>", "<probe_completed_at>", "<output>"] : [];
   const remainingPlaceholders =
     execution?.status === "passed"
       ? [
+          "<reviewer>",
+          "<reviewed_at>",
+          "<oracle_id>",
+          "<test case name>",
+          "<recorded_at>",
+          "<requirement_id>",
+          "<test_oracle_id>",
+          "<runtime verification claim>",
+          "<runtime_occurred_at>",
+          "<timestamp>",
           ...(execution.session_id ? [] : ["<session_id>"]),
           ...(execution.correlation_id ? [] : ["<correlation_id>"]),
         ]
-      : ["<green command>", "<iso8601>", "<output>"];
+      : ["<green command>", "<probe_completed_at>", "<output>"];
 
   return {
     schema_version: "project-closure-evidence-probe.v1",
@@ -7386,8 +7435,8 @@ export function buildProjectClosureEvidenceProbePacket(
       required_action:
         execution?.status === "passed"
           ? remainingPlaceholders.length === 0
-            ? "probe result と deterministic closure rule で command/completed_at/output_digest/reviewer/oracle/claim/runtime provenance を実値化できる"
-            : "probe result と deterministic closure rule で command/completed_at/output_digest/reviewer/oracle/claim を実値化し、runtime provenance 固有値だけを別途補完する"
+            ? "probe resultで物理process fieldだけを実値化できる。semantic authorityは独立receiptへexact joinする"
+            : "probe resultでcommand/completed_at/output_digestを実値化し、review/oracle/runtime authorityを別途補完する"
           : "safe command を実行して command/completed_at/output_digest を取得する",
     },
     apply_readiness: closureEvidenceProbeApplyReadiness({
@@ -7416,7 +7465,7 @@ function escapeDoubleQuotedEvidenceValue(value: string): string {
 
 function materializePreviewLines(
   candidate: ProjectClosureEvidencePatchPacketCandidate,
-  action: ProjectClosureQueueNextAction | null,
+  _action: ProjectClosureQueueNextAction | null,
   execution: ProjectClosureEvidenceProbeExecution,
 ): {
   lines: string[];
@@ -7424,9 +7473,6 @@ function materializePreviewLines(
   resolutionSources: ProjectClosureEvidenceMaterializeCandidate["placeholder_resolution_sources"];
 } {
   const digestValue = execution.output_digest.replace(/^sha256:/i, "");
-  const oracleId = `oracle:${candidate.plan_id}:${action ?? "closure"}:${candidate.artifact_kind}`;
-  const testCaseName = `closure evidence probe passed: ${execution.command}`;
-  const runtimeClaim = `closure evidence probe passed for ${candidate.plan_id} with ${execution.command}`;
   const replacements: Array<{
     placeholder: string;
     value: string;
@@ -7438,16 +7484,11 @@ function materializePreviewLines(
       source: "probe_execution",
     },
     {
-      placeholder: "<iso8601>",
+      placeholder: "<probe_completed_at>",
       value: execution.completed_at,
       source: "probe_execution",
     },
     { placeholder: "<output>", value: digestValue, source: "probe_execution" },
-    {
-      placeholder: "<timestamp>",
-      value: execution.completed_at,
-      source: "probe_execution",
-    },
     ...(execution.session_id
       ? [
           {
@@ -7466,36 +7507,6 @@ function materializePreviewLines(
           },
         ]
       : []),
-    {
-      placeholder: "<reviewer>",
-      value: "codex-intra-runtime",
-      source: "deterministic_closure_rule",
-    },
-    {
-      placeholder: "<oracle_id>",
-      value: escapeDoubleQuotedEvidenceValue(oracleId),
-      source: "deterministic_closure_rule",
-    },
-    {
-      placeholder: "<test case name>",
-      value: escapeDoubleQuotedEvidenceValue(testCaseName),
-      source: "deterministic_closure_rule",
-    },
-    {
-      placeholder: "<requirement_id>",
-      value: candidate.plan_id,
-      source: "deterministic_closure_rule",
-    },
-    {
-      placeholder: "<test_oracle_id>",
-      value: escapeDoubleQuotedEvidenceValue(oracleId),
-      source: "deterministic_closure_rule",
-    },
-    {
-      placeholder: "<runtime verification claim>",
-      value: escapeDoubleQuotedEvidenceValue(runtimeClaim),
-      source: "deterministic_closure_rule",
-    },
   ];
   const filled = new Map<
     string,
@@ -7597,7 +7608,7 @@ export function buildProjectClosureEvidenceMaterializePacket(
               required_action:
                 remaining.length === 0
                   ? "materialized preview を approval scope に含め、別 apply surface で扱う"
-                  : "残る runtime provenance placeholder を実値で補完してから approval packet を再生成する",
+                  : "review/oracle/runtime semantic authority receiptをexact joinしてからapproval packetを再生成する",
             };
           },
         )
@@ -7644,7 +7655,7 @@ export function buildProjectClosureEvidenceMaterializePacket(
           : readinessStatus === "probe_not_green"
             ? "green command が passed になるまで修正し、probe を取り直す"
             : readinessStatus === "blocked_placeholders"
-              ? "session_id / correlation_id など実 runtime provenance を実値化してから approval packet を再生成する"
+              ? "review/oracle/runtime semantic authority receiptをexact joinしてからapproval packetを再生成する"
               : "approval_scope_digest を確認し、別 apply surface で扱う",
       execute_command: null,
     },
@@ -7832,9 +7843,7 @@ export function buildProjectClosureEvidenceApplyPlan(
           ? "PLAN frontmatter に materialized review_evidence を追記し、test_runs projection source にする"
           : "materialized evidence artifact を作成し、DB projection source にする",
       rollback_note:
-        candidate.operation === "append_yaml_frontmatter"
-          ? "追加した review_evidence block だけを削除し、harness.db rebuild と current-location を再実行する"
-          : "作成した evidence artifact を削除し、harness.db rebuild と current-location を再実行する",
+        "tracked evidenceは物理削除せず、rejection/supersede/compensation eventをappendしてharness.db rebuildとcurrent-locationを再実行する",
     })),
     postcheck_commands: materialize.postcheck_commands,
     write_policy: "read-only",

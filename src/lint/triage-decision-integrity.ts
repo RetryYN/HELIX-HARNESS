@@ -30,7 +30,18 @@ export const PIN_BACKLOG_VERIFIED = [
 export const PIN_RETAINED = { id: "IMP-118", residual: "IMP-148" } as const;
 export const PIN_UNENUMERATED_COUNT = 10;
 /** annexでIDが列挙されるまで空。推測した任意10件でcompletionを偽装させない独立authority pin。 */
-export const PIN_ENUMERATED_IDS: readonly string[] = [];
+export const PIN_ENUMERATED_IDS = [
+  "IMP-034",
+  "IMP-120",
+  "IMP-121",
+  "IMP-122",
+  "IMP-123",
+  "IMP-124",
+  "IMP-126",
+  "IMP-133",
+  "IMP-134",
+  "IMP-135",
+] as const;
 
 type CatalogItem = {
   id?: string;
@@ -50,6 +61,8 @@ type DecisionManifest = {
       expected_count?: number;
       ids?: string[];
       state?: string;
+      target_status?: string;
+      evidence?: Record<string, string[]>;
     };
   };
 };
@@ -186,7 +199,17 @@ export function analyzeTriageDecisionIntegrity(input: TriageInput): TriageResult
   }
   const authorityReady =
     PIN_ENUMERATED_IDS.length === PIN_UNENUMERATED_COUNT && sameSet(ids, PIN_ENUMERATED_IDS);
-  const completionReady = enumeratedAndResolved && authorityReady;
+  if (claim?.state === "resolved" && claim.target_status !== "implemented")
+    add("unresolved-state-invalid", "unenumerated_status_claim.target_status", "implemented固定");
+  for (const id of PIN_ENUMERATED_IDS) {
+    if (input.backlogStatuses.get(id) !== "implemented")
+      add("source-status-drift", id, "backlog statusがimplementedではない");
+    const evidence = claim?.evidence?.[id] ?? [];
+    if (evidence.length < 3 || evidence.some((path) => !input.artifactExists(path)))
+      add("artifact-not-found", id, "PLAN/source/testの三点証拠が必要");
+  }
+  const completionReady =
+    enumeratedAndResolved && authorityReady && claim?.target_status === "implemented";
   if (input.planTerminal && !completionReady)
     add("unresolved-claim-at-terminal", "PLAN-L7-425", "終端statusには10件の列挙完了が必要");
   return { ok: violations.length === 0, completionReady, violations };

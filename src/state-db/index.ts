@@ -8,7 +8,7 @@
  *
  * 不変条件 (PLAN-L7-45 §2): DB path は `.helix/` 配下に限定 (`:memory:` は test 用に許可)。
  */
-import { mkdirSync } from "node:fs";
+import { existsSync, mkdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { assertSqlIdentifier } from "../schema/harness-db";
@@ -74,6 +74,19 @@ function openNative(path: string, driver: "bun" | "node"): NativeDatabase {
     DatabaseSync: new (p: string) => NativeDatabase;
   };
   return new DatabaseSync(path);
+}
+
+function openNativeReadOnly(path: string, driver: "bun" | "node"): NativeDatabase {
+  if (driver === "bun") {
+    const { Database } = nodeRequire("bun:sqlite") as {
+      Database: new (p: string, options: { readonly: boolean; create: boolean }) => NativeDatabase;
+    };
+    return new Database(path, { readonly: true, create: false });
+  }
+  const { DatabaseSync } = nodeRequire("node:sqlite") as {
+    DatabaseSync: new (p: string, options: { readOnly: boolean }) => NativeDatabase;
+  };
+  return new DatabaseSync(path, { readOnly: true });
 }
 
 function applyConnectionPragmas(native: NativeDatabase, path: string): void {
@@ -150,6 +163,40 @@ export function openHarnessDb(path: string, options: { repoRoot?: string } = {})
       // PRAGMA はパラメータバインド不可のため数値検証後に埋め込む (上で整数を保証)。
       native.exec(`PRAGMA user_version = ${version}`);
     },
+    close: () => native.close(),
+  };
+}
+
+/** production inspection専用。DB/WAL/SHMを作成・変更せず、全write APIをfail-closeする。 */
+export function openHarnessDbReadOnly(
+  path: string,
+  options: { repoRoot?: string } = {},
+): HarnessDb {
+  const repoRoot = options.repoRoot ?? process.cwd();
+  assertWithinHelixStateDir(path, repoRoot);
+  if (path === ":memory:") throw new Error("read-only harness DB requires a persistent file");
+  if (!existsSync(path)) throw new Error("read-only harness DB does not exist");
+  const driver = currentDriver();
+  const native = openNativeReadOnly(path, driver);
+  native.exec("PRAGMA query_only = ON");
+  const readonly = (): never => {
+    throw new Error("read-only harness DB mutation rejected");
+  };
+  return {
+    path,
+    driver,
+    exec: readonly,
+    prepare: (sql: string) => {
+      const statement = wrapStatement(native.prepare(sql));
+      return { run: readonly, get: statement.get, all: statement.all };
+    },
+    userVersion: () => {
+      const row = native.prepare("PRAGMA user_version").get() as
+        | { user_version?: number }
+        | undefined;
+      return Number(row?.user_version ?? 0);
+    },
+    setUserVersion: readonly,
     close: () => native.close(),
   };
 }

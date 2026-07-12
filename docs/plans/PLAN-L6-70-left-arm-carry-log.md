@@ -36,7 +36,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L6-70-left-arm-carry-log.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/left-arm-carry-log.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: doc_update }
 dependencies:
   parent: docs/plans/PLAN-L6-69-triage-decision-integrity.md
   requires: [docs/plans/PLAN-L6-69-triage-decision-integrity.md]

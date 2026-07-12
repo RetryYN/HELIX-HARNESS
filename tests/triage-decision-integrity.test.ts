@@ -36,11 +36,11 @@ const base = () => {
 
 // PLAN-L7-429-triage-decision-integrity
 describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", () => {
-  it("U-TRIAGE-001: real contract passes while unenumerated completion remains blocked", () => {
+  it("U-TRIAGE-001: real contract passes with exact implemented evidence", () => {
     const r = analyzeTriageDecisionIntegrity(base());
     expect(r.violations).toEqual([]);
     expect(r.ok).toBe(true);
-    expect(r.completionReady).toBe(false);
+    expect(r.completionReady).toBe(true);
   });
   it("U-TRIAGE-002: missing and bad schema fail closed", () => {
     expect(analyzeTriageDecisionIntegrity({ ...base(), manifest: null }).ok).toBe(false);
@@ -185,11 +185,26 @@ describe("triage-decision-integrity (PLAN-L7-429-triage-decision-integrity)", ()
     );
     expect(design).toContain("analyzeTriageDecisionIntegrity(input) => TriageResult");
   });
-  it("terminal PLAN cannot pass with the unenumerated claim", () => {
+  it("U-TRIAGE-012: exact 10件はimplemented statusとPLAN/source/test三点証拠を必須にする", () => {
+    const statusDrift = base();
+    statusDrift.backlogStatuses.set("IMP-120", "observed");
+    expect(analyzeTriageDecisionIntegrity(statusDrift).violations.map((v) => v.kind)).toContain(
+      "source-status-drift",
+    );
+
+    const evidenceShrink = base();
+    const evidence = evidenceShrink.manifest.backlog.unenumerated_status_claim.evidence;
+    if (!evidence) throw new Error("exact evidence fixture is missing");
+    evidence["IMP-120"] = ["docs/plans/PLAN-L7-34-tool-adapter-probes.md"];
+    expect(analyzeTriageDecisionIntegrity(evidenceShrink).violations.map((v) => v.kind)).toContain(
+      "artifact-not-found",
+    );
+  });
+  it("terminal PLAN passes only with the exact enumerated claim", () => {
     const input = base();
     input.planTerminal = true;
     const result = analyzeTriageDecisionIntegrity(input);
-    expect(result.ok).toBe(false);
-    expect(result.violations.map((v) => v.kind)).toContain("unresolved-claim-at-terminal");
+    expect(result.ok).toBe(true);
+    expect(result.completionReady).toBe(true);
   });
 });

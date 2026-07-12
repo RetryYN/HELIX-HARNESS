@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256Digest } from "./digest";
 
 export const CHANGE_PACKAGE_DELTA_ARCHIVE_SCHEMA_VERSION = "change-package-delta-archive.v1";
 
@@ -37,10 +37,6 @@ export interface ChangePackageDeltaArchiveReport {
 
 function present(value: string | null | undefined): value is string {
   return typeof value === "string" && value.trim().length > 0;
-}
-
-function sha256(value: string): string {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }
 
 function isActiveStatus(status: string): boolean {
@@ -87,7 +83,7 @@ export function buildChangePackageDeltaArchiveReport(
     ok: !findings.some((finding) => finding.severity === "error"),
     dry_run: true,
     package_id: manifest.package_id,
-    manifest_digest: sha256(JSON.stringify(manifest)),
+    manifest_digest: sha256Digest(JSON.stringify(manifest)),
     delta_layers: manifest.delta_layers ?? [],
     archive_allowed:
       Boolean(manifest.archive_requested) &&

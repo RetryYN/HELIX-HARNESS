@@ -1,4 +1,5 @@
 import { join } from "node:path";
+import { assertLoopPlanId } from "../schema/loop-plan-id";
 import type { LoopIterationRecord } from "./loop-runner";
 import type { LoopState } from "./loop-state";
 
@@ -13,9 +14,10 @@ export function fileLoopStore(deps: {
   readText(p: string): string | null;
   writeText(p: string, c: string): void;
 }): LoopStore {
-  const pathFor = (planId: string) => join(deps.root, ".helix", "state", "loop", `${planId}.json`);
+  const pathFor = (planId: string) =>
+    join(deps.root, ".helix", "state", "loop", `${assertLoopPlanId(planId)}.json`);
   const iterationsPathFor = (planId: string) =>
-    join(deps.root, ".helix", "state", "loop", `${planId}.iterations.jsonl`);
+    join(deps.root, ".helix", "state", "loop", `${assertLoopPlanId(planId)}.iterations.jsonl`);
 
   return {
     read: (planId: string) => {

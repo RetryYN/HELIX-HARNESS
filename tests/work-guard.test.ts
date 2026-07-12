@@ -7,6 +7,7 @@ import {
   evaluateWorkGuard,
   evaluateWorkGuardTargets,
   extractEditTargets,
+  extractShellWriteTargets,
   normalizeRepoRelative,
   resolveForeignEditOverride,
 } from "../src/runtime/work-guard";
@@ -197,6 +198,17 @@ describe("extractEditTargets (PLAN-L7-139) — Codex apply_patch / Claude file_p
     expect(extractEditTargets(null)).toEqual([]);
     expect(extractEditTargets("just a string")).toEqual([]);
     expect(extractEditTargets(undefined)).toEqual([]);
+  });
+});
+
+describe("S3 Bash write target extraction", () => {
+  it("extracts common overwrite, move, delete, tee and redirect targets", () => {
+    expect(extractShellWriteTargets("sed -i s/a/b/ foreign.ts")).toContain("foreign.ts");
+    expect(extractShellWriteTargets("cp source.ts foreign.ts")).toContain("foreign.ts");
+    expect(extractShellWriteTargets("mv source.ts foreign.ts")).toContain("foreign.ts");
+    expect(extractShellWriteTargets("rm -f foreign.ts")).toContain("foreign.ts");
+    expect(extractShellWriteTargets("printf x > foreign.ts")).toContain("foreign.ts");
+    expect(extractShellWriteTargets("printf x | tee foreign.ts")).toContain("foreign.ts");
   });
 });
 

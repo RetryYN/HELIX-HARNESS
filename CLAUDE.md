@@ -193,6 +193,9 @@ V-model artifacts は分離を保つ。
 - **commit 直前に `git status` + `git diff --staged` (or `helix review --staged` / `--uncommitted`) を
   確認**し、自分が authored した意図ファイルのみが staged であることを検証する。
 - push は origin と相手の commit を含めて整合する状態でのみ行う。push 済み履歴は決して破壊しない。
+- `.helix/memory/harness.jsonl` などの共有 memory を変更した場合は、レーン終端の意図 commit に
+  明示 path で含める。doctor の memory age warning を放置せず、foreign change と競合する場合は
+  勝手に混載せず所有 runtime と調整して commit/push 済 HEAD へ収束させる。
 - 真に off-task な overstep (相手ランタイムの作業でも自分の作業でもない net-new) と疑う場合でも、
   **revert する前に PO 確認**を取り、IMP で記録する (完了済み成果を捨てる誤判定を防ぐ)。
 

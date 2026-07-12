@@ -69,4 +69,5 @@ ehthumbs.db
 *-debug.log
 npm-debug.log*
 bun-debug.log*
+codex-env.txt
 # 注: .vscode/ は共有設定 (settings.json / extensions.json) を commit したい場合があるため意図的に未 ignore (team 判断)

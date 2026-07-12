@@ -460,4 +460,14 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
         .success,
     ).toBe(false);
   });
+  it("U-WIRING-003/004: irreversible_impact is a strict typed enum", () => {
+    for (const value of ["none", "cutover", "migration"] as const) {
+      expect(frontmatterSchema.safeParse(implBase({ irreversible_impact: value })).success).toBe(
+        true,
+      );
+    }
+    expect(
+      frontmatterSchema.safeParse(implBase({ irreversible_impact: "informational" })).success,
+    ).toBe(false);
+  });
 });

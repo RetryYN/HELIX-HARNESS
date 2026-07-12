@@ -57,6 +57,7 @@ import {
 } from "../schema/runtime-verification";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
+import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
 import {
   projectFeedbackEvents,
@@ -4958,6 +4959,8 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
     db.exec("BEGIN IMMEDIATE");
     try {
       profiled("migrate", input.onProfile, () => migrate(db));
+      db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_update");
+      db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_delete");
       profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
       const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
       profiled("projectDriveRuns", input.onProfile, () => projectDriveRuns(repoRoot, db, plans));
@@ -4968,6 +4971,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       profiled("projectRoadmapRollup", input.onProfile, () => projectRoadmapRollup(repoRoot, db));
       profiled("projectReviewEvidenceRegistry", input.onProfile, () =>
         projectReviewEvidenceRegistry(repoRoot, db),
+      );
+      profiled("projectTrackedClosureTerminalBoundaries", input.onProfile, () =>
+        projectTrackedClosureTerminalBoundaries({ repoRoot, db }),
       );
       profiled("projectRuntimeVerificationEvents", input.onProfile, () =>
         projectRuntimeVerificationEvents(repoRoot, db),

@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256Digest } from "./digest";
 import {
   evaluateRuntimeCapabilityRoute,
   type RuntimeCapability,
@@ -48,10 +48,6 @@ export interface AgentSsotRuntimeProjectionReport {
   source_command: string;
 }
 
-function sha256(value: string): string {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
-}
-
 export function buildAgentSsotRuntimeProjectionReport(
   items: AgentSsotProjectionItem[],
   options: { sourceCommand?: string } = {},
@@ -61,8 +57,9 @@ export function buildAgentSsotRuntimeProjectionReport(
     const required = item.required_capability ? [item.required_capability] : [];
     const route = evaluateRuntimeCapabilityRoute(item.runtime, required);
     const unsupportedReason = route.ok ? null : `${item.runtime} lacks ${route.missing.join(",")}`;
-    const generatedDigest = sha256(item.generated_content);
-    const existingDigest = item.existing_content == null ? null : sha256(item.existing_content);
+    const generatedDigest = sha256Digest(item.generated_content);
+    const existingDigest =
+      item.existing_content == null ? null : sha256Digest(item.existing_content);
     const drift = existingDigest != null && existingDigest !== generatedDigest;
     const userModified = item.user_modified === true;
     if (unsupportedReason) {
@@ -93,7 +90,7 @@ export function buildAgentSsotRuntimeProjectionReport(
       runtime: item.runtime,
       target_path: item.target_path,
       action,
-      source_digest: sha256(item.source_content),
+      source_digest: sha256Digest(item.source_content),
       generated_digest: generatedDigest,
       cleanup_policy: item.cleanup_policy,
       unsupported_reason: unsupportedReason,
