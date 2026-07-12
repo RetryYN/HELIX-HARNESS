@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { readPackageVersion } from "../runtime/repo-info";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
 import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
@@ -485,17 +486,6 @@ function checkDistributionVersionBinding(
     if (!input.auditText.includes(marker)) {
       violations.push(`G-01: missing distribution version binding marker ${marker}`);
     }
-  }
-}
-
-function readPackageVersion(repoRoot: string): string | null {
-  try {
-    const parsed = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
-      version?: unknown;
-    };
-    return typeof parsed.version === "string" && parsed.version.length > 0 ? parsed.version : null;
-  } catch {
-    return null;
   }
 }
 

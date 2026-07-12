@@ -1,7 +1,7 @@
-import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { readPackageVersion, readRepoHeadSha } from "../runtime/repo-info";
 import { shellQuote } from "../runtime/shell-quote";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
@@ -907,28 +907,6 @@ function parsePlan(file: string, content: string): VersionUpReadinessPlan {
     versionTarget: fmValue(content, "version_target") ?? null,
     text: content,
   };
-}
-
-function readRepoHeadSha(repoRoot: string): string | null {
-  try {
-    return execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
-  } catch {
-    return null;
-  }
-}
-
-function readPackageVersion(repoRoot: string): string | null {
-  try {
-    const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
-      version?: unknown;
-    };
-    return typeof pkg.version === "string" && pkg.version.trim() ? pkg.version.trim() : null;
-  } catch {
-    return null;
-  }
 }
 
 export function loadVersionUpReadinessInput(

@@ -322,6 +322,8 @@ fail-close する。
 | U-SQLBUSY-002 | `isSqliteBusy` | unrelated Errorと非Error値をfalseにし、busy以外の障害をretry/nullへ隠蔽しない。 |
 | U-SHQUOTE-001 | `shellQuote` | 明示safe alphabetのtokenをbyte同一で保持する。 |
 | U-SHQUOTE-002 | `shellQuote` | 空白、apostrophe、改行、空文字をPOSIX single-tokenとして安全にquoteする。 |
+| U-REPOINFO-001 | `readRepoHeadSha` | 実git fixtureのHEADを40-hexで返し、非repo/path不正はnullとしてsnapshot bindingをfail-close側へ渡す。 |
+| U-REPOINFO-002 | `readPackageVersion` | version文字列をtrimし、空白だけ・不正JSON・欠落をnullにする。 |
 
 ### §1.8 U-HRET（session handover の退役）
 

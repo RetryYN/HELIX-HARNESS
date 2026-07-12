@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
+import { readRepoHeadSha } from "../runtime/repo-info";
 import {
   CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
   REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS,
@@ -2275,18 +2276,6 @@ function repoLocalPathViolation(
     return `${input.field} must stay under ${input.allowedPrefixes.join(" or ")}: ${value}`;
   }
   return null;
-}
-
-function readRepoHeadSha(root: string): string | null {
-  try {
-    const head = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
-    return /^[a-f0-9]{40}$/.test(head) ? head : null;
-  } catch {
-    return null;
-  }
 }
 
 function readRepoWorktreeSnapshot(root: string): IdentifierRenameWorktreeSnapshot {

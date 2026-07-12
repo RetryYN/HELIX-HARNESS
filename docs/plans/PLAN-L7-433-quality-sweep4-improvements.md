@@ -53,6 +53,16 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/shell-quote.test.ts
     artifact_type: test_code
+  - artifact_path: src/runtime/repo-info.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/identifier-rename.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/action-binding-approval-readiness.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/objective-evidence-audit.ts
+    artifact_type: source_module
+  - artifact_path: tests/repo-info.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
