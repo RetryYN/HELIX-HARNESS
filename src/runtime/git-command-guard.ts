@@ -90,7 +90,7 @@ function gitSlices(tokens: string[]): string[][] {
       const prefix = tokens.slice(start, i);
       if (prefix[0] === "command") {
         prefix.shift();
-        if (prefix[0] === "--") prefix.shift();
+        if (prefix.at(0) === "--") prefix.shift();
       }
       if (prefix[0] === "env") {
         prefix.shift();
