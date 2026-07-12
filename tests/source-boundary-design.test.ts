@@ -15,6 +15,7 @@ const successorPaths = [
 ] as const;
 
 type PlanFrontmatter = {
+  status?: string;
   parent_design?: string;
   pair_artifact?: string;
   verification_bindings?: Array<{ oracle_id?: string; test_path?: string }>;
@@ -161,4 +162,14 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
   });
   it("U-SBOUND-010: partial materializeをacceptedにしない", () =>
     expect(l8).toContain("port throw/partial write/CAS drift"));
+
+  it("U-SBOUND-013: 452 terminalを450/451 terminalかつtemporary 0へ拘束する", () => {
+    const ratchet = frontmatter(successorPaths[2]);
+    if (!new Set(["confirmed", "completed"]).has(ratchet.status ?? "")) return;
+    for (const prerequisite of successorPaths.slice(0, 2)) {
+      expect(new Set(["confirmed", "completed"])).toContain(frontmatter(prerequisite).status);
+    }
+    const codingRules = read("src/lint/coding-rules.ts");
+    expect(codingRules).toContain("const TEMPORARY_SOURCE_DIRECTIONS = [] as const");
+  });
 });
