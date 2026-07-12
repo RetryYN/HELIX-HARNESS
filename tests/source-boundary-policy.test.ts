@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { extractSourceEdges } from "../src/lint/source-edge-extractor";
 import {
   evaluateSourceBoundary,
   type ModuleCatalog,
   validateBoundaryPolicyCoverage,
 } from "../src/lint/source-boundary-policy";
+import { extractSourceEdges } from "../src/lint/source-edge-extractor";
 
 const catalog: ModuleCatalog = {
   owners: ["state-db", "vscode"],
@@ -45,6 +45,12 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
       validateBoundaryPolicyCoverage(catalog, [edge!], { ...policy, defaults: { vscode: "deny" } }),
     ).toEqual(
       expect.arrayContaining([expect.objectContaining({ reason: "missing_owner_default" })]),
+    );
+    const [known] = extractSourceEdges([
+      { path: "src/state-db/a.ts", source: 'import "../state-db/b";' },
+    ]);
+    expect(evaluateSourceBoundary(known!, catalog, policy)).toEqual(
+      expect.objectContaining({ decision: "deny", reason: "owner default deny" }),
     );
   });
 

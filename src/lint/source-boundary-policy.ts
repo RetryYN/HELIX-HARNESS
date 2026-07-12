@@ -74,12 +74,19 @@ export function evaluateSourceBoundary(
   const matches = policy.exceptions.filter(
     (entry) => entry.from === fromOwner && entry.to === toOwner,
   );
-  if (matches.length !== 1)
+  if (matches.length > 1)
     return {
       decision: "unspecified",
       from_owner: fromOwner,
       to_owner: toOwner,
-      reason: matches.length === 0 ? "missing explicit decision" : "ambiguous explicit decision",
+      reason: "ambiguous explicit decision",
+    };
+  if (matches.length === 0)
+    return {
+      decision: "deny",
+      from_owner: fromOwner,
+      to_owner: toOwner,
+      reason: "owner default deny",
     };
   return {
     decision: matches[0]!.decision,
