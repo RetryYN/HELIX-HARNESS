@@ -1,6 +1,7 @@
 // A-120 共通化: lint / vmodel が各自コピペしていた frontmatter / DbC / TS module 判定を単一正本化する。
 // 配置 = src/lint (domain-boundary: lint 内 import と vmodel→lint import は許可)。
-import { basename } from "node:path";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { basename, join } from "node:path";
 import type ts from "typescript";
 import { parse as parseYaml } from "yaml";
 
@@ -25,6 +26,21 @@ export function parseMarkdownFrontmatter(content: string): Record<string, unknow
   } catch {
     return null;
   }
+}
+
+export interface LoadedPlanDoc {
+  file: string;
+  content: string;
+}
+
+/** readiness gate 群が共有する canonical PLAN snapshot loader。PLAN-*.md だけを安定順で読む。 */
+export function loadPlanDocs(repoRoot: string = process.cwd()): LoadedPlanDoc[] {
+  const plansDir = join(repoRoot, "docs", "plans");
+  if (!existsSync(plansDir)) return [];
+  return readdirSync(plansDir)
+    .filter((file) => file.startsWith("PLAN-") && file.endsWith(".md"))
+    .sort()
+    .map((file) => ({ file, content: readFileSync(join(plansDir, file), "utf8") }));
 }
 
 /**

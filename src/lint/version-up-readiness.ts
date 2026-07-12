@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { readPackageVersion, readRepoHeadSha } from "../shared/repo-info";
 import { shellQuote } from "../shared/shell-quote";
@@ -19,6 +19,7 @@ import {
 import {
   allowedOutcomeSetViolation,
   fmValue,
+  loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
@@ -912,11 +913,8 @@ function parsePlan(file: string, content: string): VersionUpReadinessPlan {
 export function loadVersionUpReadinessInput(
   repoRoot: string = process.cwd(),
 ): VersionUpReadinessInput {
-  const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
-  const plans = readdirSync(plansDir)
-    .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
-    .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8")));
+  const plans = loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content));
 
   return {
     charter: readFileSync(

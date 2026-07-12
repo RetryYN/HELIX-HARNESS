@@ -1254,3 +1254,9 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-FMSH-001 | `markdownFrontmatter` / `parseMarkdownFrontmatter` | 同じ mapping の LF/CRLF 入力が同一結果になる。 |
 | U-FMSH-002 | delimiter / YAML shape | delimiter 欠落、途中 delimiter、sequence を `null` にする。 |
 | U-FMSH-003 | production definition inventory | 対象9 module中の extractor 定義が `src/lint/shared.ts` の1件だけである。 |
+
+### readiness PLAN snapshot 共通化（PLAN-L7-433 Q3）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-PLDOC-001 | `loadPlanDocs` | temp repoで `PLAN-*.md` だけをfilename昇順に読み、README/非Markdownを除外する。 |

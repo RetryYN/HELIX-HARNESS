@@ -1,6 +1,8 @@
-import { readFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { markdownFrontmatter, parseMarkdownFrontmatter } from "../src/lint/shared";
+import { loadPlanDocs, markdownFrontmatter, parseMarkdownFrontmatter } from "../src/lint/shared";
 
 describe("frontmatter 単一正本 (PLAN-L7-433 Q1)", () => {
   it("U-FMSH-001: LF/CRLF を同じ mapping として抽出する", () => {
@@ -33,5 +35,25 @@ describe("frontmatter 単一正本 (PLAN-L7-433 Q1)", () => {
       return [...source.matchAll(/(?:function|const)\s+markdownFrontmatter\b/g)].map(() => path);
     });
     expect(definitions).toEqual(["src/lint/shared.ts"]);
+  });
+});
+
+describe("PLAN snapshot loader (PLAN-L7-433 Q3)", () => {
+  it("U-PLDOC-001: PLAN-*.mdだけを安定順で一度のsnapshotとして読む", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-docs-"));
+    try {
+      const dir = join(root, "docs", "plans");
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, "PLAN-Z.md"), "z");
+      writeFileSync(join(dir, "PLAN-A.md"), "a");
+      writeFileSync(join(dir, "README.md"), "ignore");
+      writeFileSync(join(dir, "PLAN-B.txt"), "ignore");
+      expect(loadPlanDocs(root)).toEqual([
+        { file: "PLAN-A.md", content: "a" },
+        { file: "PLAN-Z.md", content: "z" },
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

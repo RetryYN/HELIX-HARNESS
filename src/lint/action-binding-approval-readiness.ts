@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { readPackageVersion, readRepoHeadSha } from "../shared/repo-info";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
@@ -20,6 +20,7 @@ import {
   allowedOutcomeSetViolation,
   fmValue,
   isClosedPlanStatus,
+  loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
@@ -217,7 +218,6 @@ function parsePlan(file: string, content: string): ActionBindingApprovalPlan {
 export function loadActionBindingApprovalReadinessInput(
   repoRoot = process.cwd(),
 ): ActionBindingApprovalReadinessInput {
-  const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
   return {
     rightArmMd: readFileSync(
@@ -233,9 +233,7 @@ export function loadActionBindingApprovalReadinessInput(
     currentVersion: readPackageVersion(repoRoot) ?? undefined,
     currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
-    plans: readdirSync(plansDir)
-      .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
-      .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
+    plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
   };
 }
 
