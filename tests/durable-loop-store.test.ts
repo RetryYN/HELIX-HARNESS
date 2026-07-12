@@ -87,4 +87,26 @@ describe("PLAN-L7-449 production durable loop store", () => {
       /^(posix_dir_fsync|file_fsync_same_volume_rename)$/,
     );
   });
+
+  it("IT-DUR-005: persists ambiguous intent before dispatch and blocks restart after a crash", async () => {
+    const repo = root();
+    const store = durableFileLoopStore({ root: repo });
+    await expect(
+      store.runSideEffect(state, async () => {
+        throw new Error("simulated provider crash");
+      }),
+    ).rejects.toThrow("simulated provider crash");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("ambiguous_side_effect");
+    expect(() => durableFileLoopStore({ root: repo }).read(PLAN)).toThrow(
+      "loop epoch is not readable",
+    );
+  });
+
+  it("IT-DUR-005: records completed side effects before allowing the next transition", async () => {
+    const repo = root();
+    const store = durableFileLoopStore({ root: repo });
+    await expect(store.runSideEffect(state, async () => "done")).resolves.toBe("done");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    expect(durableFileLoopStore({ root: repo }).read(PLAN)).toEqual(state);
+  });
 });
