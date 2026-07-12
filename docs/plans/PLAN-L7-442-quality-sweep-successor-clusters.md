@@ -1,24 +1,32 @@
 ---
 plan_id: PLAN-L7-442-quality-sweep-successor-clusters
-title: "PLAN-L7-442 (research): quality sweep第4巡 successor cluster正式化"
-kind: research
+title: "PLAN-L7-442 (troubleshoot): quality sweep第4巡 successor cluster正式化"
+kind: troubleshoot
 layer: L7
 drive: agent
 status: draft
-route_mode: research
+route_mode: incident
 entry_signals:
   - "po_directive:2026-07-13 /goal『ハーネスメモリを確認しながら起票があれば潰す・抜け漏れを許さない』に基づき、PLAN-L7-433 annex敵対監査の採用carryをorphan化させず正式追跡する"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
-backprop_decision: required
-backprop_decision_reason: "各clusterの実装前にL5/L6設計とL7 test-design oracleを作る。現時点では採用carryの正式追跡と分割境界だけを確定する。"
+backprop_decision: not_required
+backprop_decision_reason: "本PLANは採用carryの追跡・分割境界だけを正式化し、要求/設計を変更しない。各clusterの実装前に個別PLANでL5/L6 backpropを判断する。"
+agent_slots:
+  - role: aim
+    slot_label: "AIM — cluster優先度と高影響境界の妥当性判定"
+  - role: se
+    slot_label: "SE — inventory再測定とsuccessor Vペア起票"
+  - role: qa
+    slot_label: "QA — orphan carry 0とcluster重複/欠落の敵対検証"
 generates:
   - artifact_path: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md
     artifact_type: markdown_doc
 dependencies:
-  parent: docs/plans/PLAN-L7-433-quality-sweep4-improvements.md
-  requires:
+  parent: null
+  requires: []
+  references:
     - docs/plans/PLAN-L7-433-quality-sweep4-improvements.md
 ---
 
