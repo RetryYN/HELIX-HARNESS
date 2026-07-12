@@ -142,6 +142,15 @@ function fixture() {
     gateCommands: { "harness-check": "helix gate harness-check" },
     id: () => "materialization-fixture-0001",
     now: () => "2026-07-12T00:00:00.000Z",
+    convergenceTarget: {
+      target_set_digest: `sha256:${"1".repeat(64)}` as const,
+      initial_set_digest: `sha256:${"2".repeat(64)}` as const,
+      terminal_boundary_digest: `sha256:${"3".repeat(64)}` as const,
+      initial_plan_ids: [PLAN],
+      automatable_plan_ids: [PLAN],
+      human_only_plan_ids: [],
+      invalid_escalated_plan_ids: [],
+    },
   };
   return { root, db, input, createRunner };
 }
@@ -305,6 +314,7 @@ describe("closure evidence materialization transaction", () => {
     const manifest = parseClosureAutoApprovalManifest(
       JSON.parse(readFileSync(join(root, result.manifest_path ?? ""), "utf8")),
     );
+    expect(manifest).toMatchObject(input.convergenceTarget);
     const queueItem = {
       planId: PLAN,
       kind: "impl",

@@ -376,10 +376,30 @@ import {
   recordSkillRecommendations,
 } from "./skills/recommend";
 import {
+  buildClosureAuthorityBackfillWindow,
+  readCompletedClosureAuthorityBackfillWindow,
+  recoverClosureAuthorityBackfill,
+} from "./state-db/closure-authority-backfill";
+import {
   buildCurrentClosureAuthorityBackfillRun,
   ClosureAuthorityBackfillInputError,
   loadCurrentClosureAuthorityBackfillInput,
 } from "./state-db/closure-authority-backfill-production";
+import {
+  appendClosureTerminalBoundaryEvent,
+  buildClosureConvergenceTargetSet,
+  terminalBoundaryClassificationForAuthority,
+} from "./state-db/closure-authority-convergence-epoch";
+import {
+  applyClosureAuthorityConvergenceWindow,
+  createClosureAuthorityReviewDraft,
+  loadClosureAuthorityProposal,
+  loadClosureAuthorityReviewDraft,
+  loadClosureAuthorityReviewReceipt,
+  loadClosureAuthorityReviewTaskEvidence,
+  persistClosureAuthorityProposal,
+  recordClosureAuthorityReview,
+} from "./state-db/closure-authority-convergence-production";
 import {
   applyClosureAutoApprovalAtomic,
   type ClosureAutoApprovalEvaluation,
@@ -5991,6 +6011,98 @@ const closure = program
   .command("closure")
   .description("Project closure read-only automation surfaces");
 
+function closureAuthorityFailureExitCode(error: unknown): 1 | 2 {
+  if (error instanceof Error && error.name === "ZodError") return 2;
+  const code = (error as { code?: unknown } | null)?.code;
+  if (code === "ENOENT" || code === "EEXIST") return 2;
+  const message = error instanceof Error ? error.message : String(error);
+  return /(?:invalid|missing|must|required|forbidden|self-approval|binding mismatch|TTL|digest mismatch|drift|CAS mismatch|replay|offset gap|outside repository|symlink|already exists|provenance mismatch|candidate order|cardinality)/i.test(
+    message,
+  )
+    ? 2
+    : 1;
+}
+
+function closureConvergenceTargetFromSnapshot(
+  snapshot: ProjectCurrentLocationSnapshot,
+  automatablePlanIds: string[],
+  additionalNeeds: string[] = [],
+) {
+  const boundaries = snapshot.closure.terminal_boundaries.items.filter(
+    (row) => row.whole_program_blocker,
+  );
+  const human = boundaries
+    .filter((row) => row.classification === "human_only")
+    .map((row) => row.plan_id)
+    .sort();
+  const invalid = boundaries
+    .filter((row) => row.classification === "invalid_escalated")
+    .map((row) => row.plan_id)
+    .sort();
+  const automatable = [...new Set(automatablePlanIds)].sort();
+  const needs = [
+    ...snapshot.closure.queue.items
+      .filter((item) => item.nextAction !== "close_ready")
+      .map((item) => item.planId),
+    ...additionalNeeds,
+  ]
+    .filter((id) => !automatable.includes(id))
+    .sort();
+  const initial = [...new Set([...automatable, ...needs, ...human, ...invalid])].sort();
+  return buildClosureConvergenceTargetSet({
+    initialPlanIds: initial,
+    eligiblePlanIds: automatable,
+    needsPlanIds: needs,
+    humanOnlyPlanIds: human,
+    invalidEscalatedPlanIds: invalid,
+    terminalBoundaryEventDigests: boundaries.map((row) => row.event_digest as `sha256:${string}`),
+  });
+}
+
+function recordClosureWindowTerminalBoundaries(input: {
+  repoRoot: string;
+  run: ReturnType<typeof loadClosureAuthorityProposal>;
+  offset: number;
+  limit: number;
+  cycleDigest: `sha256:${string}`;
+  registryDigest: `sha256:${string}`;
+}) {
+  const windowLength = input.run.candidate_plan_ids.slice(
+    input.offset,
+    input.offset + input.limit,
+  ).length;
+  if (input.offset + windowLength !== input.run.candidate_plan_ids.length) return [];
+  const selected = input.run.bundle.decisions;
+  const initialSetDigest = `sha256:${createHash("sha256")
+    .update(JSON.stringify(input.run.candidate_plan_ids))
+    .digest("hex")}` as const;
+  const recorded: string[] = [];
+  for (const decision of selected) {
+    if (decision.classification !== "human_only" && decision.classification !== "invalid") continue;
+    appendClosureTerminalBoundaryEvent({
+      repoRoot: input.repoRoot,
+      path: "docs/governance/closure-terminal-boundaries.jsonl",
+      event: {
+        event_kind: "boundary_opened",
+        authority_head: input.run.bundle.repository_head,
+        initial_set_digest: initialSetDigest,
+        cycle_digest: input.cycleDigest,
+        registry_generation: input.registryDigest,
+        plan_id: decision.plan_id,
+        classification:
+          decision.classification === "human_only" ? "human_only" : "invalid_escalated",
+        reason: decision.reason,
+        owner: decision.classification === "human_only" ? "PO" : "HELIX governance",
+        next_decision_route: decision.required_action,
+        automation_terminal: true,
+        whole_program_blocker: true,
+      },
+    });
+    recorded.push(decision.plan_id);
+  }
+  return recorded;
+}
+
 function updatePlanFrontmatterStatus(content: string, nextStatus: string): string {
   if (!content.startsWith("---\n")) {
     throw new Error("frontmatter が見つからないため status を更新できない");
@@ -6864,7 +6976,14 @@ closure
 
     const repoRoot = process.cwd();
     const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
-    const db = openHarnessDb(dbPath, { repoRoot });
+    let db: HarnessDb;
+    try {
+      db = openHarnessDb(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(`closure authority-review-record: ${String(error)}\n`);
+      process.exitCode = 1;
+      return;
+    }
     try {
       if (opts.fromDb) migrate(db);
       else rebuildHarnessDb({ repoRoot, db });
@@ -7501,19 +7620,314 @@ closure
   .option("--dry-run", "required read-only mode")
   .option("--from-db", "read persistent harness.db (required)")
   .option("--expected-head <sha>", "expected current local origin/main SHA")
+  .option("--out <path>", "atomically persist the proposal at a new repository-relative path")
   .option("--json", "emit one JSON document")
-  .action((opts: { dryRun?: boolean; fromDb?: boolean; expectedHead?: string; json?: boolean }) => {
-    if (!opts.dryRun || !opts.fromDb || !opts.expectedHead || !opts.json) {
-      process.stderr.write(
-        "closure authority-backfill: --dry-run --from-db --expected-head <sha> --json are required\n",
-      );
+  .action(
+    (opts: {
+      dryRun?: boolean;
+      fromDb?: boolean;
+      expectedHead?: string;
+      out?: string;
+      json?: boolean;
+    }) => {
+      if (!opts.dryRun || !opts.fromDb || !opts.expectedHead || !opts.json) {
+        process.stderr.write(
+          "closure authority-backfill: --dry-run --from-db --expected-head <sha> --json are required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) {
+        process.stderr.write("closure authority-backfill: persistent harness.db does not exist\n");
+        process.exitCode = 2;
+        return;
+      }
+      let db: HarnessDb;
+      try {
+        db = openHarnessDbReadOnly(dbPath, { repoRoot });
+      } catch (error) {
+        process.stderr.write(
+          `closure authority-backfill: internal DB open failure: ${String(error)}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      try {
+        for (const table of ["plan_registry", "closure_process_receipts"]) {
+          if (
+            !db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").get(table)
+          ) {
+            process.stderr.write(
+              `closure authority-backfill: persistent DB schema missing ${table}\n`,
+            );
+            process.exitCode = 2;
+            return;
+          }
+        }
+        const run = buildCurrentClosureAuthorityBackfillRun(
+          loadCurrentClosureAuthorityBackfillInput({
+            repoRoot,
+            db,
+            expected_head_sha: opts.expectedHead,
+            now: new Date().toISOString(),
+          }),
+        );
+        const output = opts.out
+          ? {
+              schema_version: "closure-authority-backfill-persist-result.v1",
+              run,
+              persisted: persistClosureAuthorityProposal({ repoRoot, outPath: opts.out, run }),
+            }
+          : run;
+        process.stdout.write(`${JSON.stringify(output)}\n`);
+      } catch (error) {
+        process.stderr.write(`closure authority-backfill: ${String(error)}\n`);
+        process.exitCode = error instanceof ClosureAuthorityBackfillInputError ? 2 : 1;
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("authority-review-draft")
+  .description("create a non-authorizing independent review task draft")
+  .requiredOption("--proposal <path>", "persisted closure authority proposal")
+  .requiredOption("--out <path>", "new repository-relative draft path")
+  .option("--worker-identity <id>", "worker identity", `worker-${process.pid}`)
+  .option("--task-identity <id>", "review task identity", `review-task-${process.pid}`)
+  .option("--json", "emit one JSON document")
+  .action(
+    (opts: {
+      proposal: string;
+      out: string;
+      workerIdentity: string;
+      taskIdentity: string;
+      json?: boolean;
+    }) => {
+      if (!opts.json) {
+        process.stderr.write("closure authority-review-draft: --json is required\n");
+        process.exitCode = 2;
+        return;
+      }
+      try {
+        const result = createClosureAuthorityReviewDraft({
+          repoRoot: process.cwd(),
+          outPath: opts.out,
+          proposalPath: opts.proposal,
+          workerIdentity: opts.workerIdentity,
+          taskIdentity: opts.taskIdentity,
+          now: new Date().toISOString(),
+        });
+        process.stdout.write(`${JSON.stringify(result)}\n`);
+      } catch (error) {
+        process.stderr.write(`closure authority-review-draft: ${String(error)}\n`);
+        process.exitCode = closureAuthorityFailureExitCode(error);
+      }
+    },
+  );
+closure
+  .command("authority-review-record")
+  .description("record independent task evidence as an authority review receipt")
+  .requiredOption("--draft <path>", "non-authorizing review draft")
+  .requiredOption("--review-evidence <path>", "independent task completion artifact")
+  .requiredOption("--out <path>", "new repository-relative receipt path")
+  .option("--json", "emit one JSON document")
+  .action((opts: { draft: string; reviewEvidence: string; out: string; json?: boolean }) => {
+    if (!opts.json) {
+      process.stderr.write("closure authority-review-record: --json is required\n");
       process.exitCode = 2;
       return;
     }
     const repoRoot = process.cwd();
     const dbPath = defaultHarnessDbPath(repoRoot);
     if (!existsSync(dbPath)) {
-      process.stderr.write("closure authority-backfill: persistent harness.db does not exist\n");
+      process.stderr.write(
+        "closure authority-review-record: persistent harness.db does not exist\n",
+      );
+      process.exitCode = 2;
+      return;
+    }
+    let db: HarnessDb;
+    try {
+      db = openHarnessDb(dbPath, { repoRoot });
+    } catch (error) {
+      process.stderr.write(`closure authority-review-record: ${String(error)}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      const result = recordClosureAuthorityReview({
+        repoRoot,
+        outPath: opts.out,
+        draft: loadClosureAuthorityReviewDraft(repoRoot, opts.draft),
+        taskEvidence: loadClosureAuthorityReviewTaskEvidence(repoRoot, opts.reviewEvidence),
+        now: new Date().toISOString(),
+        db,
+      });
+      process.stdout.write(`${JSON.stringify(result)}\n`);
+    } catch (error) {
+      process.stderr.write(`closure authority-review-record: ${String(error)}\n`);
+      process.exitCode = closureAuthorityFailureExitCode(error);
+    } finally {
+      db.close();
+    }
+  });
+closure
+  .command("authority-backfill-apply")
+  .description("apply one independently reviewed authority backfill window")
+  .option("--execute", "execute the reviewed mutation")
+  .option("--from-db", "use persistent harness.db")
+  .requiredOption("--proposal <path>", "persisted full proposal run")
+  .requiredOption("--review-receipt <path>", "independent review receipt")
+  .requiredOption("--expected-head <sha>", "expected repository HEAD")
+  .requiredOption("--offset <n>", "ledger-derived window offset")
+  .requiredOption("--limit <n>", "window size (1..100)")
+  .option("--resume", "resume an exactly matching committed window")
+  .option("--failpoint <name>", "test-only crash injection")
+  .option("--json", "emit one JSON document")
+  .action(
+    (opts: {
+      execute?: boolean;
+      fromDb?: boolean;
+      proposal: string;
+      reviewReceipt: string;
+      expectedHead: string;
+      offset: string;
+      limit: string;
+      resume?: boolean;
+      failpoint?: string;
+      json?: boolean;
+    }) => {
+      const offset = /^(?:0|[1-9][0-9]*)$/.test(opts.offset) ? Number(opts.offset) : -1;
+      const limit = /^[1-9][0-9]*$/.test(opts.limit) ? Number(opts.limit) : -1;
+      const failpoints = [
+        "after-journal",
+        "after-rename",
+        "after-postverify",
+        "before-marker",
+        "after-marker",
+        "before-ledger",
+        "partial-ledger",
+      ] as const;
+      if (
+        !opts.execute ||
+        !opts.fromDb ||
+        !opts.json ||
+        !Number.isSafeInteger(offset) ||
+        offset < 0 ||
+        !Number.isSafeInteger(limit) ||
+        limit < 1 ||
+        limit > 100 ||
+        (opts.failpoint !== undefined &&
+          !failpoints.includes(opts.failpoint as (typeof failpoints)[number]))
+      ) {
+        process.stderr.write(
+          "closure authority-backfill-apply: --execute --from-db --json, offset >= 0, limit 1..100, and a known failpoint are required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) {
+        process.stderr.write(
+          "closure authority-backfill-apply: persistent harness.db does not exist\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      let db: HarnessDb;
+      try {
+        db = openHarnessDb(dbPath, { repoRoot });
+      } catch (error) {
+        process.stderr.write(`closure authority-backfill-apply: ${String(error)}\n`);
+        process.exitCode = 1;
+        return;
+      }
+      try {
+        const run = loadClosureAuthorityProposal(repoRoot, opts.proposal);
+        const head = execFileSync("git", ["rev-parse", "HEAD"], {
+          cwd: repoRoot,
+          encoding: "utf8",
+        }).trim();
+        if (head !== opts.expectedHead || run.bundle.repository_head !== head)
+          throw new Error("expected HEAD/proposal provenance mismatch");
+        if (opts.resume) {
+          recoverClosureAuthorityBackfill(repoRoot);
+          const completed = readCompletedClosureAuthorityBackfillWindow({
+            repoRoot,
+            bundle: run.bundle,
+            offset,
+            limit,
+          });
+          if (completed) {
+            const terminalBoundaries = recordClosureWindowTerminalBoundaries({
+              repoRoot,
+              run,
+              offset,
+              limit,
+              cycleDigest: completed.cycle_digest,
+              registryDigest: completed.registry_digest,
+            });
+            process.stdout.write(
+              `${JSON.stringify({ ...completed, resumed: true, terminal_boundary_plan_ids: terminalBoundaries })}\n`,
+            );
+            return;
+          }
+        }
+        const window = buildClosureAuthorityBackfillWindow({
+          repoRoot,
+          registryPath: "docs/governance/closure-authority-registry.yaml",
+          bundle: run.bundle,
+          offset,
+          limit,
+        });
+        const result = applyClosureAuthorityConvergenceWindow({
+          repoRoot,
+          db,
+          bundle: run.bundle,
+          receipt: loadClosureAuthorityReviewReceipt(repoRoot, opts.reviewReceipt),
+          now: new Date().toISOString(),
+          cycleId: `authority-window-${offset}`,
+          failpoint: opts.failpoint as (typeof failpoints)[number] | undefined,
+          window,
+        });
+        const terminalBoundaries = recordClosureWindowTerminalBoundaries({
+          repoRoot,
+          run,
+          offset,
+          limit,
+          cycleDigest: result.cycle_digest,
+          registryDigest: result.registry_digest,
+        });
+        process.stdout.write(
+          `${JSON.stringify({ ...result, resumed: false, terminal_boundary_plan_ids: terminalBoundaries })}\n`,
+        );
+      } catch (error) {
+        process.stderr.write(`closure authority-backfill-apply: ${String(error)}\n`);
+        process.exitCode = closureAuthorityFailureExitCode(error);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("convergence-targets")
+  .description("derive the exact automatable/H/X closure target partition from persistent state")
+  .option("--from-db", "read persistent harness.db")
+  .option("--json", "emit one JSON document")
+  .action((opts: { fromDb?: boolean; json?: boolean }) => {
+    if (!opts.fromDb || !opts.json) {
+      process.stderr.write("closure convergence-targets: --from-db --json are required\n");
+      process.exitCode = 2;
+      return;
+    }
+    const repoRoot = process.cwd();
+    const dbPath = defaultHarnessDbPath(repoRoot);
+    if (!existsSync(dbPath)) {
+      process.stderr.write("closure convergence-targets: persistent harness.db does not exist\n");
       process.exitCode = 2;
       return;
     }
@@ -7521,36 +7935,20 @@ closure
     try {
       db = openHarnessDbReadOnly(dbPath, { repoRoot });
     } catch (error) {
-      process.stderr.write(
-        `closure authority-backfill: internal DB open failure: ${String(error)}\n`,
-      );
+      process.stderr.write(`closure convergence-targets: ${String(error)}\n`);
       process.exitCode = 1;
       return;
     }
     try {
-      for (const table of ["plan_registry", "closure_process_receipts"]) {
-        if (
-          !db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").get(table)
-        ) {
-          process.stderr.write(
-            `closure authority-backfill: persistent DB schema missing ${table}\n`,
-          );
-          process.exitCode = 2;
-          return;
-        }
-      }
-      const run = buildCurrentClosureAuthorityBackfillRun(
-        loadCurrentClosureAuthorityBackfillInput({
-          repoRoot,
-          db,
-          expected_head_sha: opts.expectedHead,
-          now: new Date().toISOString(),
-        }),
-      );
-      process.stdout.write(`${JSON.stringify(run)}\n`);
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      const automatable = snapshot.closure.queue.items
+        .filter((item) => item.nextAction === "close_ready")
+        .map((item) => item.planId);
+      const target = closureConvergenceTargetFromSnapshot(snapshot, automatable);
+      process.stdout.write(`${JSON.stringify(target)}\n`);
     } catch (error) {
-      process.stderr.write(`closure authority-backfill: ${String(error)}\n`);
-      process.exitCode = error instanceof ClosureAuthorityBackfillInputError ? 2 : 1;
+      process.stderr.write(`closure convergence-targets: ${String(error)}\n`);
+      process.exitCode = closureAuthorityFailureExitCode(error);
     } finally {
       db.close();
     }
@@ -7648,19 +8046,63 @@ closure
           registry,
           drifts: analyzeClosureAuthorityDrift({ repositoryRoot: repoRoot, registry }),
         });
+        const eligiblePlanIds = classifications
+          .filter((row) => row.classification === "eligible")
+          .map((row) => row.plan_id);
+        const terminalByPlanId = new Map(
+          snapshot.closure.terminal_boundaries.items
+            .filter((row) => row.whole_program_blocker)
+            .map((row) => [row.plan_id, row.classification] as const),
+        );
+        const noneligiblePlanIds = classifications
+          .filter((row) => {
+            if (row.classification === "eligible") return false;
+            const boundary = terminalByPlanId.get(row.plan_id);
+            const expectedBoundary = terminalBoundaryClassificationForAuthority(row.classification);
+            return expectedBoundary === null || boundary !== expectedBoundary;
+          })
+          .map((row) => row.plan_id);
+        let targetSet: ReturnType<typeof buildClosureConvergenceTargetSet> | null = null;
+        try {
+          targetSet = closureConvergenceTargetFromSnapshot(
+            snapshot,
+            eligiblePlanIds,
+            noneligiblePlanIds,
+          );
+        } catch (error) {
+          const payload = {
+            status: "target_blocked",
+            executed: false,
+            classifications,
+            blocker: error instanceof Error ? error.message : String(error),
+          };
+          process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+          process.exitCode = 2;
+          return;
+        }
         if (repositoryHead !== originMainHead || !clean)
           throw new Error("current HEAD must equal origin/main and working tree must be clean");
         const allEligible =
           classifications.length > 0 &&
           classifications.every((row) => row.classification === "eligible");
         if (opts.execute && !allEligible) {
-          const payload = { status: "classified", executed: false, classifications };
+          const payload = {
+            status: "classified",
+            executed: false,
+            classifications,
+            target_set_digest: targetSet.target_set_digest,
+          };
           process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
           process.exitCode = 2;
           return;
         }
         if (opts.dryRun) {
-          const payload = { status: "classified", executed: false, classifications };
+          const payload = {
+            status: "classified",
+            executed: false,
+            classifications,
+            target_set_digest: targetSet.target_set_digest,
+          };
           process.stdout.write(
             opts.json
               ? `${JSON.stringify(payload, null, 2)}\n`
@@ -7693,10 +8135,11 @@ closure
           gateCommands,
           windowSize: batchSize,
           concurrency,
+          convergenceTarget: targetSet,
         });
         process.stdout.write(
           opts.json
-            ? `${JSON.stringify({ ...result, executed: result.status === "published" }, null, 2)}\n`
+            ? `${JSON.stringify({ ...result, executed: result.status === "published", target_set_digest: targetSet.target_set_digest }, null, 2)}\n`
             : `closure authority-materialize: status=${result.status} candidates=${result.classifications.length} runs=${result.run_count} manifest=${result.manifest_path ?? "-"}\n`,
         );
       } finally {
@@ -8499,6 +8942,46 @@ closure
         const manifest = parseClosureAutoApprovalManifest(
           JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
         );
+        const automatablePlanIds = snapshot.closure.queue.items
+          .filter((item) => item.nextAction === "close_ready")
+          .map((item) => item.planId)
+          .sort();
+        let targetSet: ReturnType<typeof buildClosureConvergenceTargetSet>;
+        try {
+          targetSet = closureConvergenceTargetFromSnapshot(snapshot, automatablePlanIds);
+        } catch (error) {
+          process.stderr.write(
+            `closure auto-approve: convergence target blocked: ${String(error)}\n`,
+          );
+          process.exitCode = 2;
+          return;
+        }
+        const manifestIds = manifest.candidates.map((row) => row.plan_id).sort();
+        if (
+          !manifest.target_set_digest ||
+          manifest.target_set_digest !== targetSet.target_set_digest ||
+          manifest.initial_set_digest !== targetSet.initial_set_digest ||
+          manifest.terminal_boundary_digest !== targetSet.terminal_boundary_digest ||
+          JSON.stringify(manifest.initial_plan_ids) !==
+            JSON.stringify(targetSet.initial_plan_ids) ||
+          JSON.stringify(manifest.automatable_plan_ids) !==
+            JSON.stringify(targetSet.automatable_plan_ids) ||
+          JSON.stringify(manifest.human_only_plan_ids) !==
+            JSON.stringify(targetSet.human_only_plan_ids) ||
+          JSON.stringify(manifest.invalid_escalated_plan_ids) !==
+            JSON.stringify(targetSet.invalid_escalated_plan_ids)
+        ) {
+          process.stderr.write("closure auto-approve: sealed convergence target drift\n");
+          process.exitCode = 2;
+          return;
+        }
+        if (JSON.stringify(manifestIds) !== JSON.stringify(targetSet.automatable_plan_ids)) {
+          process.stderr.write(
+            "closure auto-approve: manifest/convergence target exact-set drift\n",
+          );
+          process.exitCode = 2;
+          return;
+        }
         const authorityRegistry = loadClosureAuthorityRegistry({
           repositoryRoot: repoRoot,
           registryPath: "docs/governance/closure-authority-registry.yaml",
@@ -8554,6 +9037,10 @@ closure
             db,
             githubReceipt,
             githubReceiptRefetch: () => refetchGithubRequiredCheckReceipt(repoRoot, githubReceipt),
+            expectedConvergenceTargetDigest: closureConvergenceTargetFromSnapshot(
+              buildProjectCurrentLocationSnapshot(db),
+              automatablePlanIds,
+            ).target_set_digest,
           });
           applied.push(...result.applied);
         }
@@ -8569,6 +9056,7 @@ closure
           batches,
           applied_patches: applied,
           authority_digests: batches.map((batch) => batch.authority_digest),
+          target_set_digest: targetSet.target_set_digest,
         };
         if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
         else

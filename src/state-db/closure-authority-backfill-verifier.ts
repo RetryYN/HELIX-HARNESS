@@ -12,6 +12,7 @@ import type {
   TypedAuthorityBlock,
 } from "../policy/closure-authority-backfill";
 import { buildClosureAuthorityBackfill } from "../policy/closure-authority-backfill";
+import { parseClosureAuthorityRegistry } from "../policy/closure-authority-registry";
 import {
   CLOSURE_GATE_ALLOWLIST_PATH,
   loadRepoOwnedGateAllowlist,
@@ -159,16 +160,36 @@ export function verifyClosureAuthorityBackfillCurrentContext(input: {
   repoRoot: string;
   db: HarnessDb;
   bundle: ClosureAuthorityBackfillBundle;
+  expectedRegistryDigest?: Digest;
+  allowMutableRegistry?: boolean;
 }): ReturnType<typeof buildProjectClosureReviewBundle> {
   const git = (...args: string[]) =>
     execFileSync("git", args, { cwd: input.repoRoot, encoding: "utf8" }).trim();
   const head = git("rev-parse", "HEAD");
+  const status = execFileSync("git", ["status", "--porcelain=v1", "--untracked-files=all"], {
+    cwd: input.repoRoot,
+    encoding: "utf8",
+  }).trimEnd();
+  const allowedRegistryDrift = " M docs/governance/closure-authority-registry.yaml";
+  const statusRows = status === "" ? [] : status.split("\n");
+  const originMain = git("rev-parse", "origin/main");
   if (
-    head !== git("rev-parse", "origin/main") ||
+    head !== originMain ||
     head !== input.bundle.repository_head ||
-    git("status", "--porcelain=v1", "--untracked-files=normal") !== ""
+    statusRows.some((row) => row !== allowedRegistryDrift) ||
+    (statusRows.includes(allowedRegistryDrift) && !input.allowMutableRegistry)
   )
-    throw new Error("production git context must be clean current origin/main");
+    throw new Error(
+      `production git context must be clean current origin/main except the sealed registry generation; non-registry drift: head=${head} origin=${originMain} status=${JSON.stringify(statusRows)}`,
+    );
+  if (statusRows.includes(allowedRegistryDrift)) {
+    const registry = readVerifiedRepoFile(
+      input.repoRoot,
+      "docs/governance/closure-authority-registry.yaml",
+    );
+    if (registry.digest !== input.expectedRegistryDigest)
+      throw new Error("mutable registry drift is not ledger-sealed expected generation");
+  }
   const snapshot = buildProjectCurrentLocationSnapshot(input.db);
   const count = snapshot.closure.queue.route_counts.close_ready;
   const review = buildProjectClosureReviewBundle(snapshot, {
@@ -463,6 +484,8 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
   bundle: ClosureAuthorityBackfillBundle;
   gateAllowlistPath: string;
   now: string;
+  expectedRegistryDigest?: Digest;
+  allowMutableRegistry?: boolean;
 }): { verified: true; source_digest: Digest } {
   const { bundle } = input;
   if (input.gateAllowlistPath !== CLOSURE_GATE_ALLOWLIST_PATH)
@@ -475,6 +498,8 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
     repoRoot: input.repoRoot,
     db: input.db,
     bundle,
+    expectedRegistryDigest: input.expectedRegistryDigest,
+    allowMutableRegistry: input.allowMutableRegistry,
   });
   const allowlist = loadRepoOwnedGateAllowlist({
     repoRoot: input.repoRoot,
@@ -495,9 +520,38 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
     repoRoot: input.repoRoot,
     head: bundle.repository_head,
     path: "docs/governance/closure-authority-registry.yaml",
-    digest: registry.digest,
+    digest: bundle.registry_digest,
   });
-  if (registry.digest !== bundle.registry_digest) throw new Error("registry digest drift");
+  const expectedRegistryDigest = input.expectedRegistryDigest ?? bundle.registry_digest;
+  if (registry.digest !== expectedRegistryDigest) throw new Error("registry digest drift");
+  if (expectedRegistryDigest !== bundle.registry_digest) {
+    const current = parseClosureAuthorityRegistry(parseYaml(registry.bytes.toString("utf8")));
+    const baseline = parseClosureAuthorityRegistry(
+      parseYaml(
+        execFileSync(
+          "git",
+          ["show", `${bundle.repository_head}:docs/governance/closure-authority-registry.yaml`],
+          { cwd: input.repoRoot, encoding: "utf8" },
+        ),
+      ),
+    );
+    const proposals = new Map<string, string>();
+    for (const decision of bundle.decisions) {
+      if (!decision.proposal) continue;
+      const { field_sources: _sources, ...row } = decision.proposal;
+      proposals.set(decision.plan_id, stable(row));
+    }
+    if (
+      stable(current.authorities.slice(0, baseline.authorities.length)) !==
+      stable(baseline.authorities)
+    )
+      throw new Error("mutable registry changed baseline authority rows");
+    for (const row of current.authorities.slice(baseline.authorities.length)) {
+      const expected = proposals.get(row.plan_id);
+      if (expected === undefined || stable(row) !== expected)
+        throw new Error(`${row.plan_id}: previously applied authority differs from full proposal`);
+    }
+  }
   const l8 = readVerifiedRepoFile(
     input.repoRoot,
     "docs/test-design/harness/L8-unit-test-design.md",
@@ -532,7 +586,7 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
   }
   const rebuilt = buildClosureAuthorityBackfill({
     repository_head: bundle.repository_head,
-    registry_digest: registry.digest,
+    registry_digest: bundle.registry_digest,
     review_scope_digest: review.review_scope.approval_scope_digest as Digest,
     expected_plan_ids: review.review_scope.plan_ids,
     candidates: rebuiltCandidates,

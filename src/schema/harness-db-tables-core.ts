@@ -189,6 +189,27 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "closure_terminal_boundaries",
+    columns: [
+      pk("boundary_key"),
+      col("authority_head"),
+      col("registry_digest"),
+      col("source_blob_digest"),
+      col("plan_id"),
+      col("classification"),
+      col("reason"),
+      col("owner"),
+      col("next_decision_route"),
+      col("automation_terminal", "INTEGER"),
+      col("whole_program_blocker", "INTEGER"),
+      col("opened_event_digest"),
+      col("resolved_event_digest"),
+      col("resolution_authority_digest"),
+      col("previous_event_digest"),
+      col("event_digest"),
+    ],
+  },
+  {
     name: "runner_attestations",
     columns: [
       pk("event_digest"),

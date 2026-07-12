@@ -119,6 +119,12 @@ const reviewReceiptSchema = z
   .strict();
 export type ClosureAuthorityBackfillReviewReceipt = z.infer<typeof reviewReceiptSchema>;
 
+export function decodeClosureAuthorityBackfillReviewReceipt(
+  value: unknown,
+): ClosureAuthorityBackfillReviewReceipt {
+  return reviewReceiptSchema.parse(value);
+}
+
 export interface ClosureAuthorityReviewDbReceipt {
   receipt_id: string;
   worker_run_id: string;
@@ -420,6 +426,12 @@ const cycleSchema = z
     review_outcome: z.literal("applied"),
     review_receipt_path: z.string().min(1),
     candidate_plan_ids: z.array(z.string()),
+    full_bundle_digest: z.string().regex(DIGEST).optional(),
+    window_offset: z.number().int().nonnegative().optional(),
+    window_limit: z.number().int().min(1).max(100).optional(),
+    window_plan_ids: z.array(z.string()).min(1).max(100).optional(),
+    window_digest: z.string().regex(DIGEST).optional(),
+    applied_plan_ids: z.array(z.string()).optional(),
     counts: z.record(z.number().int().nonnegative()),
     backfill_counts: z
       .object({
@@ -498,6 +510,35 @@ function verifyCycleLedger(bytes: Buffer): {
       new Set(parsed.backlog.map((row) => row.plan_id)).size !== parsed.backlog.length
     )
       throw new Error("cycle ledger conservation/backlog mismatch");
+    const windowFields = [
+      parsed.full_bundle_digest,
+      parsed.window_offset,
+      parsed.window_limit,
+      parsed.window_plan_ids,
+      parsed.window_digest,
+      parsed.applied_plan_ids,
+    ];
+    const presentWindowFields = windowFields.filter((value) => value !== undefined).length;
+    if (presentWindowFields !== 0 && presentWindowFields !== windowFields.length)
+      throw new Error("cycle ledger partial window contract");
+    if (presentWindowFields === windowFields.length) {
+      const offset = parsed.window_offset as number;
+      const limit = parsed.window_limit as number;
+      const planIds = parsed.window_plan_ids as string[];
+      const selected = parsed.candidate_plan_ids.slice(offset, offset + limit);
+      if (
+        stable(selected) !== stable(planIds) ||
+        parsed.window_digest !==
+          closureAuthorityBackfillWindowDigest({
+            offset,
+            limit,
+            plan_ids: planIds,
+            bundle_digest: parsed.full_bundle_digest as Digest,
+          }) ||
+        (parsed.applied_plan_ids as string[]).some((id) => !planIds.includes(id))
+      )
+        throw new Error("cycle ledger selected window mismatch");
+    }
     let cursor = 0;
     for (const window of parsed.window_coverage.windows) {
       if (
@@ -694,6 +735,7 @@ export interface ApplyClosureAuthorityBackfillInput {
   cycleId?: string;
   platformName?: NodeJS.Platform;
   postVerify?: () => void;
+  window?: ClosureAuthorityBackfillWindow;
   crashAt?:
     | "after-journal"
     | "after-rename"
@@ -702,6 +744,154 @@ export interface ApplyClosureAuthorityBackfillInput {
     | "after-marker"
     | "before-ledger"
     | "partial-ledger";
+}
+
+export interface ClosureAuthorityBackfillWindow {
+  offset: number;
+  limit: number;
+  plan_ids: readonly string[];
+  window_digest: Digest;
+  expected_registry_digest: Digest;
+  previous_cycle_digest: Digest | null;
+}
+
+export function closureAuthorityBackfillWindowDigest(input: {
+  offset: number;
+  limit: number;
+  plan_ids: readonly string[];
+  bundle_digest: Digest;
+}): Digest {
+  return sha256(stable(input));
+}
+
+export function normalizeClosureAuthorityBackfillWindow(
+  bundle: ClosureAuthorityBackfillApplyBundle,
+  window?: ClosureAuthorityBackfillWindow,
+): ClosureAuthorityBackfillWindow {
+  if (!window) {
+    if (bundle.candidate_plan_ids.length > 100)
+      throw new Error("window is required when candidate census exceeds 100");
+    const value = {
+      offset: 0,
+      limit: Math.max(1, bundle.candidate_plan_ids.length),
+      plan_ids: [...bundle.candidate_plan_ids],
+      expected_registry_digest: bundle.registry_digest,
+      previous_cycle_digest: null,
+    };
+    return {
+      ...value,
+      window_digest: closureAuthorityBackfillWindowDigest({
+        offset: value.offset,
+        limit: value.limit,
+        plan_ids: value.plan_ids,
+        bundle_digest: bundle.bundle_digest,
+      }),
+    };
+  }
+  if (!Number.isSafeInteger(window.offset) || window.offset < 0)
+    throw new Error("invalid window offset");
+  if (!Number.isSafeInteger(window.limit) || window.limit < 1 || window.limit > 100)
+    throw new Error("window limit must be 1..100");
+  const expectedIds = bundle.candidate_plan_ids.slice(window.offset, window.offset + window.limit);
+  if (expectedIds.length === 0 || stable(expectedIds) !== stable(window.plan_ids))
+    throw new Error("window candidate order/cardinality mismatch");
+  const expectedDigest = closureAuthorityBackfillWindowDigest({
+    offset: window.offset,
+    limit: window.limit,
+    plan_ids: window.plan_ids,
+    bundle_digest: bundle.bundle_digest,
+  });
+  if (window.window_digest !== expectedDigest) throw new Error("window digest mismatch");
+  return window;
+}
+
+export function buildClosureAuthorityBackfillWindow(input: {
+  repoRoot: string;
+  registryPath: string;
+  bundle: ClosureAuthorityBackfillApplyBundle;
+  offset: number;
+  limit: number;
+}): ClosureAuthorityBackfillWindow {
+  if (!Number.isSafeInteger(input.offset) || input.offset < 0)
+    throw new Error("invalid window offset");
+  if (!Number.isSafeInteger(input.limit) || input.limit < 1 || input.limit > 100)
+    throw new Error("window limit must be 1..100");
+  const ledgerPath = join(
+    input.repoRoot,
+    ".helix/evidence/closure-authority-backfill/cycles.jsonl",
+  );
+  const ledger = verifyCycleLedger(
+    existsSync(ledgerPath) ? readFileSync(ledgerPath) : Buffer.alloc(0),
+  );
+  const expectedOffset = ledger.lastCycle
+    ? ledger.lastCycle.window_offset !== undefined
+      ? ledger.lastCycle.window_offset + (ledger.lastCycle.window_plan_ids?.length ?? 0)
+      : ledger.lastCycle.candidate_plan_ids.length
+    : 0;
+  if (input.offset !== expectedOffset) throw new Error("window replay or offset gap");
+  if (
+    ledger.lastCycle &&
+    stable(ledger.lastCycle.candidate_plan_ids) !== stable(input.bundle.candidate_plan_ids)
+  )
+    throw new Error("window candidate census drift");
+  const planIds = input.bundle.candidate_plan_ids.slice(input.offset, input.offset + input.limit);
+  if (planIds.length === 0) throw new Error("empty authority backfill window");
+  const registry = readCanonicalComponent(
+    input.repoRoot,
+    join(input.repoRoot, input.registryPath),
+    true,
+  );
+  return {
+    offset: input.offset,
+    limit: input.limit,
+    plan_ids: planIds,
+    window_digest: closureAuthorityBackfillWindowDigest({
+      offset: input.offset,
+      limit: input.limit,
+      plan_ids: planIds,
+      bundle_digest: input.bundle.bundle_digest,
+    }),
+    expected_registry_digest: sha256(readFileSync(registry)),
+    previous_cycle_digest: ledger.last,
+  };
+}
+
+export function readCompletedClosureAuthorityBackfillWindow(input: {
+  repoRoot: string;
+  bundle: ClosureAuthorityBackfillApplyBundle;
+  offset: number;
+  limit: number;
+}): {
+  applied_plan_ids: string[];
+  registry_digest: Digest;
+  cycle_digest: Digest;
+} | null {
+  const ledgerPath = join(
+    input.repoRoot,
+    ".helix/evidence/closure-authority-backfill/cycles.jsonl",
+  );
+  const ledger = verifyCycleLedger(
+    existsSync(ledgerPath) ? readFileSync(ledgerPath) : Buffer.alloc(0),
+  );
+  const cycle = ledger.lastCycle;
+  if (
+    !cycle ||
+    cycle.full_bundle_digest !== input.bundle.bundle_digest ||
+    cycle.window_offset !== input.offset ||
+    cycle.window_limit !== input.limit
+  )
+    return null;
+  const expectedIds = input.bundle.candidate_plan_ids.slice(
+    input.offset,
+    input.offset + input.limit,
+  );
+  if (stable(cycle.window_plan_ids) !== stable(expectedIds))
+    throw new Error("completed window candidate drift");
+  return {
+    applied_plan_ids: [...(cycle.applied_plan_ids ?? [])],
+    registry_digest: cycle.registry_after_digest as Digest,
+    cycle_digest: cycle.cycle_digest as Digest,
+  };
 }
 
 function closureInvariantSnapshot(
@@ -740,6 +930,7 @@ function applyClosureAuthorityBackfillTransaction(
     receipt: input.receipt,
     now: input.now,
   });
+  const window = normalizeClosureAuthorityBackfillWindow(input.bundle, input.window);
   const reviewPath = join(
     input.repoRoot,
     ".helix/evidence/closure-authority-backfill/reviews",
@@ -759,7 +950,7 @@ function applyClosureAuthorityBackfillTransaction(
       true,
     );
     const before = readFileSync(registryAbsolute);
-    if (sha256(before) !== input.bundle.registry_digest)
+    if (sha256(before) !== window.expected_registry_digest)
       throw new Error("registry generation CAS mismatch");
     const registry = parseClosureAuthorityRegistry(parseYaml(before.toString("utf8")));
     const beforeClassifications = classifyClosureAuthorities({
@@ -767,11 +958,13 @@ function applyClosureAuthorityBackfillTransaction(
       registry,
       drifts: analyzeClosureAuthorityDrift({ repositoryRoot: input.repoRoot, registry }),
     });
-    const proposals = input.bundle.decisions.flatMap((decision) =>
-      decision.classification === "eligible_proposal" && decision.proposal
-        ? [decision.proposal]
-        : [],
-    );
+    const proposals = input.bundle.decisions
+      .slice(window.offset, window.offset + window.limit)
+      .flatMap((decision) =>
+        decision.classification === "eligible_proposal" && decision.proposal
+          ? [decision.proposal]
+          : [],
+      );
     const existing = new Set(registry.authorities.map((row) => row.plan_id));
     if (proposals.some((row) => existing.has(row.plan_id)))
       throw new Error("existing registry row overwriteは禁止");
@@ -837,6 +1030,21 @@ function applyClosureAuthorityBackfillTransaction(
     );
     const ledgerBefore = existsSync(ledgerPath) ? readFileSync(ledgerPath) : Buffer.alloc(0);
     const ledgerState = verifyCycleLedger(ledgerBefore);
+    const expectedOffset = ledgerState.lastCycle
+      ? ledgerState.lastCycle.window_offset !== undefined &&
+        ledgerState.lastCycle.window_plan_ids !== undefined
+        ? ledgerState.lastCycle.window_offset + ledgerState.lastCycle.window_plan_ids.length
+        : ledgerState.lastCycle.candidate_plan_ids.length
+      : 0;
+    if (
+      input.window !== undefined &&
+      (window.offset !== expectedOffset ||
+        window.previous_cycle_digest !== ledgerState.last ||
+        (ledgerState.lastCycle !== null &&
+          stable(ledgerState.lastCycle.candidate_plan_ids) !==
+            stable(input.bundle.candidate_plan_ids)))
+    )
+      throw new Error("window replay, offset gap, or cycle chain mismatch");
     const counts = Object.fromEntries(
       ["eligible", "authority_backfill_required", "human_only", "invalid"].map((kind) => [
         kind,
@@ -900,6 +1108,12 @@ function applyClosureAuthorityBackfillTransaction(
       review_outcome: "applied" as const,
       review_receipt_path: relative(input.repoRoot, reviewPath).split(sep).join("/"),
       candidate_plan_ids: [...input.bundle.candidate_plan_ids],
+      full_bundle_digest: input.bundle.bundle_digest,
+      window_offset: window.offset,
+      window_limit: window.limit,
+      window_plan_ids: [...window.plan_ids],
+      window_digest: window.window_digest,
+      applied_plan_ids: proposals.map((row) => row.plan_id),
       counts,
       backfill_counts: backfillCounts,
       backfill_delta: backfillDelta,
@@ -1024,6 +1238,9 @@ export function applyClosureAuthorityBackfill(
       bundle: input.bundle,
       gateAllowlistPath: input.gateAllowlistPath,
       now: input.now,
+      expectedRegistryDigest: normalizeClosureAuthorityBackfillWindow(input.bundle, input.window)
+        .expected_registry_digest,
+      allowMutableRegistry: input.window !== undefined && input.window.offset > 0,
     });
     const authorityReceipt = validateClosureAuthorityBackfillReview({
       bundle: input.bundle,
