@@ -328,17 +328,27 @@ export function recoverStaleLoopClaim(
         if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
         const residualText = readIfExists(value.recoveryClaim);
         if (residualText === null) continue;
-        if (claimStatus(residualText) !== "stale")
-          return { status: "conflict", reason: "recovery_claim_conflict" };
-        const residual = JSON.parse(residualText) as Partial<RecoveryClaimMetadata>;
-        if (
-          typeof residual.claimId !== "string" ||
-          !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+        let residual: Partial<RecoveryClaimMetadata> | null = null;
+        try {
+          residual = JSON.parse(residualText) as Partial<RecoveryClaimMetadata>;
+        } catch {
+          residual = null;
+        }
+        const residualTrusted =
+          residual !== null &&
+          typeof residual.claimId === "string" &&
+          /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
             residual.claimId,
-          ) ||
-          typeof residual.packetDigest !== "string"
+          ) &&
+          typeof residual.packetDigest === "string";
+        if (residualTrusted && claimStatus(residualText) !== "stale")
+          return { status: "conflict", reason: "recovery_claim_conflict" };
+        if (
+          residualTrusted &&
+          residual !== null &&
+          residual.packetDigest !== sha256Digest(JSON.stringify(packet))
         )
-          return { status: "conflict", reason: "recovery_claim_untrusted" };
+          return { status: "conflict", reason: "recovery_claim_scope_mismatch" };
         try {
           renameSync(value.recoveryClaim, value.recoveryClaimTombstoneFor(randomUUID()));
           fsyncDirectory(value.directory);
