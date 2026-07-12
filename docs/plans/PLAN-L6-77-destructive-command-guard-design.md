@@ -1,12 +1,11 @@
 ---
 plan_id: PLAN-L6-77-destructive-command-guard-design
-title: "PLAN-L6-77 (design): 破壊的command guard transaction Vペア設計"
-kind: design
+title: "PLAN-L6-77 (add-design): 破壊的command guard transaction Vペア設計"
+kind: add-design
 layer: L6
-sub_doc: function-spec
 drive: agent
 status: confirmed
-route_mode: forward
+route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-13 /goal『設計とテスト設計/検証設計でVペアを作る』に基づきPLAN-L7-443のL6 owner欠落を是正"
 created: 2026-07-13
