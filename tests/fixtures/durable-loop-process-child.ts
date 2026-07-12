@@ -1,6 +1,11 @@
 import { appendFileSync, existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { durableFileLoopStore } from "../../src/orchestration/loop-store";
+import { commitLoopEpoch } from "../../src/orchestration/durable-loop-epoch";
+import {
+  type DurableEpochBoundary,
+  nodeDurableEpochPort,
+} from "../../src/orchestration/durable-loop-epoch-node";
 
 const [root, mode, id] = process.argv.slice(2);
 if (!root || !mode || !id) throw new Error("root, mode, and id are required");
@@ -34,6 +39,31 @@ const store = durableFileLoopStore({
         }
       : undefined,
 });
+
+if (mode.startsWith("publish:")) {
+  const firstPort = nodeDurableEpochPort(root);
+  const first = commitLoopEpoch({
+    planId,
+    previousManifestText: null,
+    payload: { state, iteration: null },
+    sideEffectPhase: "completed",
+    port: firstPort,
+  });
+  if (first.status !== "committed") throw new Error(`baseline failed: ${first.reason}`);
+  const boundary = mode.slice("publish:".length) as DurableEpochBoundary;
+  commitLoopEpoch({
+    planId,
+    previousManifestText: firstPort.readManifestText(planId),
+    payload: { state: { ...state, updatedAt: "2026-07-13T00:01:00.000Z" }, iteration: null },
+    sideEffectPhase: "completed",
+    port: nodeDurableEpochPort(root, {
+      afterBoundary: (observed) => {
+        if (observed === boundary) process.kill(process.pid, "SIGKILL");
+      },
+    }),
+  });
+  process.exit(2);
+}
 
 await store.runSideEffect(state, "worker", async () => {
   appendFileSync(join(root, "effects.log"), `${id}\n`);

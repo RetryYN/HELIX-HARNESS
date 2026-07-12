@@ -50,6 +50,16 @@ export type RecoveryMutexObservation = {
 export interface StaleLoopClaimRecoveryAuthority {
   verify(packet: StaleLoopClaimRecoveryPacket, mutex: RecoveryMutexObservation): boolean;
 }
+export type DurableEpochBoundary =
+  | "claim_acquired"
+  | "payload_temp_written"
+  | "payload_temp_fsynced"
+  | "payload_renamed"
+  | "manifest_temp_written"
+  | "manifest_temp_fsynced"
+  | "manifest_renamed"
+  | "pointer_renamed"
+  | "claim_unlinked";
 export type StaleLoopClaimApprovalRecord = StaleLoopClaimRecoveryPacket &
   RecoveryMutexObservation & { expiresAt: string };
 
@@ -222,7 +232,10 @@ export function loopEpochPaths(root: string, planId: string) {
   };
 }
 
-export function nodeDurableEpochPort(root: string): DurableEpochPort {
+export function nodeDurableEpochPort(
+  root: string,
+  hooks: { afterBoundary?: (boundary: DurableEpochBoundary) => void } = {},
+): DurableEpochPort {
   const paths = (planId: string) => loopEpochPaths(root, planId);
   return {
     acquireExclusiveClaim: (planId) => {
@@ -257,6 +270,7 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
           closeSync(fd);
         }
         fsyncDirectory(value.directory);
+        hooks.afterBoundary?.("claim_acquired");
         return true;
       } catch (error) {
         if ((error as NodeJS.ErrnoException).code === "EEXIST") return false;
@@ -269,25 +283,39 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
       if (pointerText === null) return null;
       return resolvePointerManifest(value, planId, pointerText);
     },
-    writePayloadTemp: (planId, tempId, text) =>
+    writePayloadTemp: (planId, tempId, text) => {
       writeFileSync(paths(planId).payloadTempFor(tempId), text, {
         encoding: "utf8",
         flag: "wx",
         mode: 0o600,
-      }),
-    fsyncPayloadTemp: (planId, tempId) => fsyncPath(paths(planId).payloadTempFor(tempId)),
-    renamePayload: (planId, tempId, payloadFile) =>
-      renameSync(paths(planId).payloadTempFor(tempId), paths(planId).payloadFor(payloadFile)),
+      });
+      hooks.afterBoundary?.("payload_temp_written");
+    },
+    fsyncPayloadTemp: (planId, tempId) => {
+      fsyncPath(paths(planId).payloadTempFor(tempId));
+      hooks.afterBoundary?.("payload_temp_fsynced");
+    },
+    renamePayload: (planId, tempId, payloadFile) => {
+      renameSync(paths(planId).payloadTempFor(tempId), paths(planId).payloadFor(payloadFile));
+      hooks.afterBoundary?.("payload_renamed");
+    },
     fsyncStateDirectory: (planId) => fsyncDirectory(paths(planId).directory),
-    writeManifestTemp: (planId, tempId, text) =>
+    writeManifestTemp: (planId, tempId, text) => {
       writeFileSync(paths(planId).manifestTempFor(tempId), text, {
         encoding: "utf8",
         flag: "wx",
         mode: 0o600,
-      }),
-    fsyncManifestTemp: (planId, tempId) => fsyncPath(paths(planId).manifestTempFor(tempId)),
-    renameManifest: (planId, tempId, manifestFile) =>
-      renameSync(paths(planId).manifestTempFor(tempId), paths(planId).manifestFor(manifestFile)),
+      });
+      hooks.afterBoundary?.("manifest_temp_written");
+    },
+    fsyncManifestTemp: (planId, tempId) => {
+      fsyncPath(paths(planId).manifestTempFor(tempId));
+      hooks.afterBoundary?.("manifest_temp_fsynced");
+    },
+    renameManifest: (planId, tempId, manifestFile) => {
+      renameSync(paths(planId).manifestTempFor(tempId), paths(planId).manifestFor(manifestFile));
+      hooks.afterBoundary?.("manifest_renamed");
+    },
     writePointerTemp: (planId, tempId, text) =>
       writeFileSync(paths(planId).pointerTempFor(tempId), text, {
         encoding: "utf8",
@@ -295,9 +323,14 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
         mode: 0o600,
       }),
     fsyncPointerTemp: (planId, tempId) => fsyncPath(paths(planId).pointerTempFor(tempId)),
-    renamePointer: (planId, tempId) =>
-      renameSync(paths(planId).pointerTempFor(tempId), paths(planId).manifest),
-    unlinkClaim: (planId) => unlinkSync(paths(planId).claim),
+    renamePointer: (planId, tempId) => {
+      renameSync(paths(planId).pointerTempFor(tempId), paths(planId).manifest);
+      hooks.afterBoundary?.("pointer_renamed");
+    },
+    unlinkClaim: (planId) => {
+      unlinkSync(paths(planId).claim);
+      hooks.afterBoundary?.("claim_unlinked");
+    },
     fsyncClaimDirectory: (planId) => fsyncDirectory(paths(planId).directory),
   };
 }
