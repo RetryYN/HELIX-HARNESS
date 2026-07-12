@@ -75,6 +75,15 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     rmSync(paths.claim);
     writeFileSync(paths.manifest, "{");
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("corrupt");
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: { state, iteration: null },
+        sideEffectPhase: "not_started",
+        port: nodeDurableEpochPort(repo),
+      }).status,
+    ).toBe("durability_uncertain");
   });
 
   it("IT-DUR-004: O_EXCL permits at most one live claim", () => {

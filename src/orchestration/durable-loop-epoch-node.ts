@@ -141,11 +141,11 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
         typeof pointer.manifestFile !== "string" ||
         !/^[A-Za-z0-9._-]+\.manifest\.json$/.test(pointer.manifestFile)
       )
-        return null;
+        throw new Error("loop epoch pointer is invalid");
       const manifestText = readIfExists(value.manifestFor(pointer.manifestFile));
-      return manifestText !== null && sha256Digest(manifestText) === pointer.manifestDigest
-        ? manifestText
-        : null;
+      if (manifestText === null || sha256Digest(manifestText) !== pointer.manifestDigest)
+        throw new Error("loop epoch pointer digest is invalid");
+      return manifestText;
     },
     writePayloadTemp: (planId, tempId, text) =>
       writeFileSync(paths(planId).payloadTempFor(tempId), text, {
