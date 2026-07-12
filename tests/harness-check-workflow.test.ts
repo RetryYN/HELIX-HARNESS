@@ -109,8 +109,8 @@ describe("source harness-check workflow", () => {
     );
     expect(smoke["continue-on-error"]).not.toBe(true);
     expect(job.needs).toBe("windows-durability-smoke");
-    expect(job.if).toBe("${{ always() }}");
-    expect(aggregate.if).toBe("${{ needs.windows-durability-smoke.result != 'success' }}");
+    expect(job.if).toBe(`\${{ always() }}`);
+    expect(aggregate.if).toBe(`\${{ needs.windows-durability-smoke.result != 'success' }}`);
     expect(aggregate.run).toBe("exit 1");
   });
 
@@ -229,7 +229,7 @@ describe("source harness-check workflow", () => {
     ],
     [
       "command soft-pass",
-      (raw: string) => raw.replace("run: bun run test", "run: bun run test || true"),
+      (raw: string) => raw.replace("run: bun run test\n", "run: bun run test || true\n"),
     ],
     [
       "同名ダミー",
