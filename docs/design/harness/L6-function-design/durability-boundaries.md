@@ -24,7 +24,7 @@ fieldのみでraw causeを持たない。`LoopEpochReadResult`は `missing | com
 concurrent_conflict | ambiguous_side_effect | live_claim | stale_claim | durability_uncertain` を区別する。
 digest-valid manifestでも残留claimがあればuncertainで、claim release durable完了後だけcommittedとなる。
 
-## 2. cause digest DbC
+## 2. cause digestのDbC
 
 pre: causeは任意のJavaScript value。post: helperはthrowせず、boundedな有限kind/digestを返す。invariant: raw
 message、stack、path、SQL、secret、PIIをhash入力・返却・永続化しない。同じallowlist分類は同じdigestとなる。
@@ -32,7 +32,7 @@ property access、string coercion、serializationがthrowした場合は`inacces
 v1の`truncated`は常にfalseであり、raw prefixを切断してhashする用途への転用を禁止する。digest authority自体が
 失敗した場合も事前固定した`inaccessible` fallback envelopeへ収束し、causeへ再アクセスしない。
 
-## 3. loop epoch DbC
+## 3. loop epochのDbC
 
 pre: plan IDはcanonical、epoch IDは直前committed epochより単調増加、previous digestはreader snapshotと一致する。
 post: `committed`ならstate/receipt/manifestのdigestが一致し、claim unlinkとそのparent directory durabilityまで完了し、
@@ -46,7 +46,7 @@ Windowsのregular file fsyncはwritable/non-truncating handleで実行し、dire
 `file_fsync_same_volume_rename` capabilityへ縮退する。Windows対応claimはactual runnerでinitial/second epoch、
 pointer replacement、restart、hard-link mutexを通過した場合だけ許可する。
 
-## 4. recovery decision
+## 4. recovery判定
 
 `missing`だけがfresh start可能である。`uncommitted`は安全に無視できるが診断を残す。`corrupt`と
 `concurrent_conflict`はfail-closeする。`ambiguous_side_effect`は`classifyLoopRecovery`が`block_and_escalate`へ写し、自動retryせず、plan、epoch、safe digestを含む
@@ -66,7 +66,7 @@ tombstone化する。authority matcherへ渡すrecordはplain object自体を信
 actor/tool/target/params、expiry、revocation、current snapshot、auditを検証するappend-only trusted SSoT adapterが存在する場合だけ
 有効化する。現行の`planOnly=true` / `approvalAllowed=false` packetから実行authorityを構成してはならない。
 
-## 5. DbC trace
+## 5. DbCトレース
 
 | 公開関数                  | pre                              | post                                 | invariant                           | oracle                        |
 | ------------------------- | -------------------------------- | ------------------------------------ | ----------------------------------- | ----------------------------- |

@@ -29,7 +29,7 @@ side effectの二重実行を防ぐ。filesystemの完全復旧や外部side eff
 既存のatomic publish実装を共通primitiveへ抽出して再利用し、loop専用copyを増やさない。Windowsではsame-volume
 rename + file fsyncをportable境界とし、POSIXではparent directory fsyncも要求する。
 
-## 3. diagnostic redaction contract
+## 3. 診断redaction contract
 
 cause kindは `error | string | object | primitive | inaccessible` の有限集合とする。digest入力は型tagと有限の
 allowlist済み分類だけでcanonical化し、SHA-256を返す。raw message/stack/path/SQL/string値/object scalar値は
@@ -51,7 +51,7 @@ live claimはblockし、stale claimはowner liveness、bounded lease、manifest 
 - `intent_recorded`後で外部side effect完了証明が無いC0曖昧状態は自動retryせずhuman/escalation routeへ送る。
 - iteration historyはwhole-file read/modify/writeを廃止し、epoch payloadまたはappend lock/CASでlost updateを防ぐ。
 
-| window | fault point                           | restart classification                                                                                 |
+| 区間   | 障害点                                | restart時の分類                                                                                         |
 | ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | C0     | side-effect intent後、結果証明前      | `ambiguous_side_effect`、自動retry禁止                                                                 |
 | C1     | claim取得前/直後                      | 旧epoch、またはlive/stale claim診断                                                                    |

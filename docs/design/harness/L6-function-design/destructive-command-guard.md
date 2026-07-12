@@ -74,7 +74,7 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 
 `docs/test-design/harness/L8-destructive-command-guard.md` の `U-GITGUARD-003..009` を正本oracleとする。
 
-## 6. DbC trace
+## 6. DbCトレース
 
 | 公開関数 | signature | pre | post | invariant | oracle |
 |---|---|---|---|---|---|

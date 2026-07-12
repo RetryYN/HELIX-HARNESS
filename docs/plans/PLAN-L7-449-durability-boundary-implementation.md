@@ -130,7 +130,8 @@ generates:
     }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: source_module }
 dependencies:
-  { parent: docs/plans/PLAN-L6-78-durability-boundary-design.md, requires: [] }
+  parent: docs/plans/PLAN-L6-78-durability-boundary-design.md
+  requires: []
 review_evidence:
   - reviewer: qs4_445_atomic_loop_final
     review_kind: intra_runtime_subagent

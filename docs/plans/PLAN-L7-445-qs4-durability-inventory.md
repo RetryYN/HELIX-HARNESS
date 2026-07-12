@@ -18,7 +18,7 @@ backprop_decision_reason: "現状inventoryとVペア起票境界を確定するr
 agent_slots:
   [
     { role: aim, slot_label: "AIM — durability threat境界" },
-    { role: se, slot_label: "SE — redaction/atomic write inventory" },
+    { role: se, slot_label: "SE — redaction/atomic write棚卸し" },
     { role: qa, slot_label: "QA — crash/corruption oracle監査" },
   ]
 generates:
