@@ -7581,7 +7581,7 @@ describe("L7 CLI surface closure", () => {
         output_truncated: false,
       });
       expect(run.stdout).not.toContain("VERDICT: PASS");
-      const receiptDb = openHarnessDb(join(root, ".helix", "harness.db"));
+      const receiptDb = openHarnessDb(join(root, ".helix", "harness.db"), { repoRoot: root });
       try {
         const receipts = receiptDb
           .prepare(

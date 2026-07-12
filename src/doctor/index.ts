@@ -485,7 +485,12 @@ import {
   type GuardrailDecisionInput,
   inspectGuardrailInvariants,
 } from "../state-db/guardrail-invariants";
-import { type HarnessDb, openHarnessDb } from "../state-db/index";
+import {
+  defaultHarnessDbPath,
+  type HarnessDb,
+  openHarnessDb,
+  openHarnessDbReadOnly,
+} from "../state-db/index";
 import { rowCounts } from "../state-db/migration";
 import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
 import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
@@ -1481,6 +1486,47 @@ export function checkVerifierProviderMismatch(repoRoot: string): {
       ],
       ok: false,
     };
+  }
+}
+
+export function checkTeamReviewReceipts(repoRoot: string): { messages: string[]; ok: boolean } {
+  let db: HarnessDb | undefined;
+  try {
+    db = openHarnessDbReadOnly(defaultHarnessDbPath(repoRoot), { repoRoot });
+    const invalidCompleted = db
+      .prepare(`SELECT COUNT(*) AS n FROM team_member_run_receipts
+        WHERE role IN ('tl','qa','uiux') AND status='completed'
+          AND NOT (exit_code=0 AND verdict='pass' AND verdict_status='accepted')`)
+      .get()?.n as number | undefined;
+    const missingCrossWorker = db
+      .prepare(`SELECT COUNT(*) AS n FROM team_member_run_receipts reviewer
+        WHERE reviewer.role IN ('tl','qa','uiux') AND reviewer.status='completed'
+          AND NOT EXISTS (
+            SELECT 1 FROM team_member_run_receipts worker
+            WHERE worker.team_run_id=reviewer.team_run_id
+              AND worker.role NOT IN ('tl','qa','uiux')
+              AND worker.status='completed'
+              AND worker.provider<>reviewer.provider
+          )`)
+      .get()?.n as number | undefined;
+    const violations = (invalidCompleted ?? 0) + (missingCrossWorker ?? 0);
+    return {
+      ok: violations === 0,
+      messages: [
+        violations === 0
+          ? "team-review-receipts - OK (completed reviewer receipts are explicit PASS and cross-provider bound)"
+          : `team-review-receipts - violation: invalid_completed=${invalidCompleted ?? 0} missing_cross_worker=${missingCrossWorker ?? 0}`,
+      ],
+    };
+  } catch {
+    return {
+      ok: false,
+      messages: ["team-review-receipts - violation: canonical receipt table could not be read"],
+    };
+  } finally {
+    try {
+      db?.close();
+    } catch {}
   }
 }
 
