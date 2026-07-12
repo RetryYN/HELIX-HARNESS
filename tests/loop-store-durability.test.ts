@@ -4,7 +4,13 @@ import { sha256Digest } from "../src/runtime/digest";
 
 const PLAN = "PLAN-L7-449-durability-boundary-implementation";
 const payload = JSON.stringify({
-  state: { planId: PLAN, status: "running", iteration: 1 },
+  state: {
+    planId: PLAN,
+    status: "running",
+    iteration: 1,
+    maxIterations: 3,
+    updatedAt: "2026-07-13T00:00:00.000Z",
+  },
   iteration: null,
 });
 
@@ -101,5 +107,32 @@ describe("PLAN-L7-449 loop epoch reader", () => {
     });
     expect(result.status).toBe("ambiguous_side_effect");
     expect(result.reason).toBe("intent_without_completion");
+  });
+
+  it("U-DUR-004/007: rejects invalid state schema and detects a forked epoch", () => {
+    const invalidPayload = JSON.stringify({ state: { planId: PLAN }, iteration: null });
+    expect(
+      classifyLoopEpochFiles({
+        planId: PLAN,
+        manifestText: JSON.stringify({
+          ...JSON.parse(manifest()),
+          payloadDigest: sha256Digest(invalidPayload),
+        }),
+        payloadText: invalidPayload,
+        claimStatus: "absent",
+      }).status,
+    ).toBe("corrupt");
+    expect(
+      classifyLoopEpochFiles({
+        planId: PLAN,
+        manifestText: manifest(),
+        payloadText: payload,
+        claimStatus: "absent",
+        conflictingManifestText: JSON.stringify({
+          ...JSON.parse(manifest()),
+          payloadDigest: `sha256:${"0".repeat(64)}`,
+        }),
+      }).status,
+    ).toBe("concurrent_conflict");
   });
 });

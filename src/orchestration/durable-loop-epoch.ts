@@ -82,6 +82,10 @@ function parsePayload(text: string, planId: string): LoopEpochPayload | null {
     typeof state !== "object" ||
     state === null ||
     (state as { planId?: unknown }).planId !== planId ||
+    !["running", "paused", "stopped"].includes(String((state as { status?: unknown }).status)) ||
+    !Number.isSafeInteger((state as { iteration?: unknown }).iteration) ||
+    !Number.isSafeInteger((state as { maxIterations?: unknown }).maxIterations) ||
+    typeof (state as { updatedAt?: unknown }).updatedAt !== "string" ||
     !("iteration" in value)
   ) {
     return null;
@@ -94,6 +98,7 @@ export function classifyLoopEpochFiles(input: {
   manifestText: string | null;
   payloadText: string | null;
   claimStatus: LoopClaimStatus;
+  conflictingManifestText?: string | null;
 }): LoopEpochReadResult {
   const planId = assertLoopPlanId(input.planId);
   if (input.manifestText === null) {
@@ -112,6 +117,18 @@ export function classifyLoopEpochFiles(input: {
   const payload = parsePayload(input.payloadText, planId);
   if (payload === null || sha256Digest(input.payloadText) !== manifest.payloadDigest) {
     return { status: "corrupt", manifest, payload: null, reason: "payload_digest_mismatch" };
+  }
+  if (input.conflictingManifestText) {
+    const conflicting = parseManifest(input.conflictingManifestText);
+    if (
+      conflicting !== null &&
+      conflicting.planId === manifest.planId &&
+      conflicting.epochId === manifest.epochId &&
+      conflicting.previousManifestDigest === manifest.previousManifestDigest &&
+      conflicting.payloadDigest !== manifest.payloadDigest
+    ) {
+      return { status: "concurrent_conflict", manifest, payload, reason: "forked_epoch" };
+    }
   }
   if (input.claimStatus !== "absent") {
     return {
