@@ -17,6 +17,7 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 - `classifyLoopRecovery(read: LoopEpochReadResult): LoopRecoveryDecision`
 - `authorizeLoopSideEffect(read: LoopEpochReadResult, effect: () => T): SideEffectGateResult<T>`
 - `recoverStaleLoopClaim(packet: ClaimRecoveryPacket, port: EpochClaimPort): ClaimRecoveryResult`
+- `actionBindingLoopRecoveryAuthority(record: StaleLoopClaimApprovalRecord): StaleLoopClaimRecoveryAuthority`
 
 `StableCauseDigest`は有限`causeKind`、`sha256:<64 lower hex>`、`truncated`だけを持つ。`DoctorFailure`はallowlist
 fieldのみでraw causeを持たない。`LoopEpochReadResult`は `missing | committed | uncommitted | corrupt |
@@ -41,6 +42,9 @@ side effectをmissing/successへ縮退しない。
 publish前にplan-scoped exclusive claimをatomic createし、取得後にprevious digestを再検査する。publish順は payload temp write -> file fsync -> payload rename -> directory durability -> manifest temp write -> manifest
 fsync -> manifest rename -> directory durability -> claim unlink -> claim parent directory durability -> committed return とする。commit時はprevious digest CASを再検査する。platformがdirectory
 fsyncを提供しない場合はcapabilityを明示し、file fsync + same-volume renameより強い保証を表示しない。
+Windowsのregular file fsyncはwritable/non-truncating handleで実行し、directory fsync非対応だけを明示した
+`file_fsync_same_volume_rename` capabilityへ縮退する。Windows対応claimはactual runnerでinitial/second epoch、
+pointer replacement、restart、hard-link mutexを通過した場合だけ許可する。
 
 ## 4. recovery decision
 
@@ -51,6 +55,11 @@ recovery packetへ送る。readerは破損artifactを変更しない。
 `authorizeLoopSideEffect`はdurable intentと全digestを検証後だけeffect callbackを一度呼ぶ。intent commit前、
 C5 uncertain、corrupt/conflictではcallback 0でblockする。`recoverStaleLoopClaim`はboot identity、process start token、
 monotonic lease、manifest/claim digest、authority/auditを検証し、recovery用exclusive claim取得後だけ処理する。
+recovery mutexはunique tempをfile fsyncした後にhard-linkでfixed nameへatomic publishする。stale/legacy partial mutexの
+quarantineは、mutex actionとexact digestを含むapproval snapshotを検証し、cleanup approval envelopeをdurable化してから
+tombstone化する。authority matcherへ渡すrecordはplain object自体を信頼根拠にしてはならず、production compositionは
+actor/tool/target/params、expiry、revocation、current snapshot、auditを検証するappend-only trusted SSoT adapterが存在する場合だけ
+有効化する。現行の`planOnly=true` / `approvalAllowed=false` packetから実行authorityを構成してはならない。
 
 ## 5. DbC trace
 
@@ -63,3 +72,4 @@ monotonic lease、manifest/claim digest、authority/auditを検証し、recovery
 | `classifyLoopRecovery`    | exact read classification        | retry/start/block                    | ambiguousをretryへ写さない          | U-DUR-005、IT-DUR-005         |
 | `authorizeLoopSideEffect` | durable intent + verified digest | gate後だけeffectを呼ぶ               | effect-before-intent禁止            | U-DUR-005、IT-DUR-005         |
 | `recoverStaleLoopClaim`   | snapshot-bound packet            | single recovery owner                | wall clock/PID単独で奪取しない      | U-DUR-007、IT-DUR-004         |
+| `actionBindingLoopRecoveryAuthority` | trusted approval record | exact scope・expiry一致時だけ許可 | plan-only packetをauthority化しない | U-DUR-007、IT-DUR-004 |

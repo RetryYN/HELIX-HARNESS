@@ -16,8 +16,13 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 | U-DUR-004 | read classification   | absent、invalid、orphan、live/stale claim、残留claim付きvalid manifestを9 variantへexact分類       | `tests/loop-store-durability.test.ts`        |
 | U-DUR-005 | side-effect gate      | durable intent前/C5 uncertain時callback 0。gate後・completion前restartはambiguousで自動retry 0     | `tests/loop-store-durability.test.ts`        |
 | U-DUR-006 | fault points          | C0-C6各境界のfailure/restartがL5 matrixどおりで未commitをauthoritativeにしない                     | `tests/loop-store-durability.test.ts`        |
-| U-DUR-007 | claim/CAS concurrency | commit 1件以下。boot/PID/lease/digest変異と同時recoveryで奪取1件以下、通常writerの自動奪取0        | `tests/loop-store-durability.test.ts`        |
+| U-DUR-007 | claim/CAS concurrency | commit 1件以下。boot/PID/lease/digest変異、mutex action/digest、authority expiry、partial mutex、同時recoveryで奪取1件以下。通常writerの自動奪取0 | `tests/loop-store-durability.test.ts`、`tests/loop-store-durability-node.test.ts` |
 
 redaction oracleはterminal/JSON/DB/artifact bytesをsecret、credential、PII、個人absolute path、raw SQL seedでscanする。
 static ratchetの例外はcleanup fail-open markerと理由を同じ行に要求し、件数baselineではなく構文契約で管理する。
 fault tableは各durability syscallの直前・直後を網羅し、restart read結果まで検査する。
+platform oracleは`windows-latest`でnode durability suiteを実行し、hard-link atomic publish、regular file flush、
+initial/second epoch pointer replacement、restartを検査する。required `harness-check`は`always()`で集約し、Windows jobが
+success以外なら明示failする。このworkflow構造は`tests/harness-check-workflow.test.ts`でsilent removal/fail-openを拒否する。
+trusted authority SSoT adapter未実装中はproduction recovery route 0件を正とし、plan-only packetをacceptするadapter追加を
+greenとみなさない。
