@@ -11,7 +11,7 @@ entry_signals:
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
-backprop_decision: completed
+backprop_decision: not_required
 backprop_decision_reason: "既存L6のsilent bypass禁止をL5 threat model、L6 atomic nonce transaction、L8 fault oracle、L9 integration crash matrixへ具体化した。"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md, artifact_type: markdown_doc }
@@ -30,6 +30,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md
   requires: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — troubleshoot分類と既存guard契約の維持を監査" }
   - { role: se, slot_label: "SE — taxonomyと共通transaction実装" }
   - { role: qa, slot_label: "QA — grammar property/failure injection/adapter parity敵対検証" }
 ---
