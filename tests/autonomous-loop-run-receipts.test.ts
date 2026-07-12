@@ -40,7 +40,7 @@ describe("autonomous loop run receipts", () => {
     }
   });
 
-  it("surfaces restartable next action and iteration evidence", () => {
+  it("surfaces restartable next action and iteration evidence", async () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-"));
     try {
       const store = durableFileLoopStore({ root });
@@ -158,20 +158,22 @@ describe("autonomous loop run receipts", () => {
         stopReason: null,
         blockedReason: null,
       });
-      expect(() => store.write({
-        planId: "PLAN-L7-366",
-        status: "running",
-        iteration: 1,
-        maxIterations: 3,
-        lastVerdict: "pending",
-        workerProvider: "codex",
-        verifierProvider: "claude",
-        blockedReason: null,
-        windowOpensAt: "2026-07-09T09:00:00.000Z",
-        windowClosesAt: "2026-07-09T11:00:00.000Z",
-        costUsd: 0,
-        updatedAt: "2026-07-09T10:00:00.000Z",
-      })).toThrow("invalid initial loop state commit");
+      expect(() =>
+        store.write({
+          planId: "PLAN-L7-366",
+          status: "running",
+          iteration: 1,
+          maxIterations: 3,
+          lastVerdict: "pending",
+          workerProvider: "codex",
+          verifierProvider: "claude",
+          blockedReason: null,
+          windowOpensAt: "2026-07-09T09:00:00.000Z",
+          windowClosesAt: "2026-07-09T11:00:00.000Z",
+          costUsd: 0,
+          updatedAt: "2026-07-09T10:00:00.000Z",
+        }),
+      ).toThrow("invalid initial loop state commit");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
