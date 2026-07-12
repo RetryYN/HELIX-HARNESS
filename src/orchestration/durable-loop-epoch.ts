@@ -118,7 +118,7 @@ export function commitLoopEpoch(input: {
     }
     const payloadDigest = sha256Digest(payloadText);
     const epochId = (previous?.epochId ?? -1) + 1;
-    const payloadFile = `${planId}.epoch-${epochId}-${payloadDigest.slice(7, 23)}.payload.json`;
+    const payloadFile = `${planId}.epoch-${epochId}-${payloadDigest.slice(7)}.payload.json`;
     const tempId = randomUUID();
     const manifest: LoopEpochManifest = {
       schema: LOOP_EPOCH_SCHEMA,
@@ -199,7 +199,8 @@ function parseManifest(text: string): LoopEpochManifest | null {
     typeof value.payloadDigest !== "string" ||
     !/^sha256:[a-f0-9]{64}$/.test(value.payloadDigest) ||
     typeof value.payloadFile !== "string" ||
-    !/^[A-Za-z0-9._-]+\.payload\.json$/.test(value.payloadFile) ||
+    value.payloadFile !==
+      `${value.planId}.epoch-${value.epochId}-${value.payloadDigest.slice(7)}.payload.json` ||
     !["not_started", "intent_recorded", "completed"].includes(String(value.sideEffectPhase))
   ) {
     return null;

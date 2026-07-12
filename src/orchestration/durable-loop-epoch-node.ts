@@ -65,6 +65,15 @@ function claimStatus(text: string | null): "absent" | "live" | "stale" {
   }
 }
 
+function readIfExists(path: string): string | null {
+  try {
+    return readFileSync(path, "utf8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+    throw error;
+  }
+}
+
 function fsyncPath(path: string): void {
   const fd = openSync(path, "r");
   try {
@@ -146,33 +155,37 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
 
 export function readLoopEpochFromFs(root: string, planId: string): LoopEpochReadResult {
   const paths = loopEpochPaths(root, planId);
-  const manifestText = existsSync(paths.manifest) ? readFileSync(paths.manifest, "utf8") : null;
-  const claimText = existsSync(paths.claim) ? readFileSync(paths.claim, "utf8") : null;
-  let payloadText: string | null = null;
-  if (manifestText !== null) {
-    try {
+  try {
+    const manifestText = readIfExists(paths.manifest);
+    const claimText = readIfExists(paths.claim);
+    let payloadText: string | null = null;
+    if (manifestText !== null) {
       const manifest = JSON.parse(manifestText) as { payloadFile?: unknown };
       if (
         typeof manifest.payloadFile === "string" &&
         /^[A-Za-z0-9._-]+\.payload\.json$/.test(manifest.payloadFile)
       ) {
-        const payloadPath = paths.payloadFor(manifest.payloadFile);
-        payloadText = existsSync(payloadPath) ? readFileSync(payloadPath, "utf8") : null;
+        payloadText = readIfExists(paths.payloadFor(manifest.payloadFile));
       }
-    } catch {
-      payloadText = null;
+    } else if (existsSync(paths.directory)) {
+      const orphan = readdirSync(paths.directory).find(
+        (name) =>
+          name.startsWith(`${assertLoopPlanId(planId)}.epoch-`) && name.endsWith(".payload.json"),
+      );
+      if (orphan) payloadText = readIfExists(join(paths.directory, orphan));
     }
-  } else if (existsSync(paths.directory)) {
-    const orphan = readdirSync(paths.directory).find(
-      (name) =>
-        name.startsWith(`${assertLoopPlanId(planId)}.epoch-`) && name.endsWith(".payload.json"),
-    );
-    if (orphan) payloadText = readFileSync(join(paths.directory, orphan), "utf8");
+    return classifyLoopEpochFiles({
+      planId,
+      manifestText,
+      payloadText,
+      claimStatus: claimStatus(claimText),
+    });
+  } catch {
+    return {
+      status: "durability_uncertain",
+      manifest: null,
+      payload: null,
+      reason: "filesystem_snapshot_unreadable",
+    };
   }
-  return classifyLoopEpochFiles({
-    planId,
-    manifestText,
-    payloadText,
-    claimStatus: claimStatus(claimText),
-  });
 }
