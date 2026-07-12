@@ -59,7 +59,8 @@ export type DurableEpochBoundary =
   | "manifest_temp_fsynced"
   | "manifest_renamed"
   | "pointer_renamed"
-  | "claim_unlinked";
+  | "claim_unlinked"
+  | "release_proof_published";
 export type StaleLoopClaimApprovalRecord = StaleLoopClaimRecoveryPacket &
   RecoveryMutexObservation & { expiresAt: string };
 
@@ -204,6 +205,24 @@ function fsyncDirectory(path: string): void {
   }
 }
 
+function validReleaseProof(value: ReturnType<typeof loopEpochPaths>, planId: string): boolean {
+  const releasingText = readIfExists(value.releasingClaim);
+  const proofText = readIfExists(value.releaseProof);
+  if (releasingText === null || proofText === null) return false;
+  try {
+    const proof = JSON.parse(proofText) as Record<string, unknown>;
+    const pointerText = readIfExists(value.manifest);
+    return (
+      proof.schema === "helix.loop-claim-release.v1" &&
+      proof.planId === planId &&
+      proof.claimDigest === sha256Digest(releasingText) &&
+      proof.pointerDigest === sha256Digest(pointerText ?? "")
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function loopEpochPaths(root: string, planId: string) {
   const safe = assertLoopPlanId(planId);
   const directory = join(root, ".helix", "state", "loop");
@@ -213,6 +232,8 @@ export function loopEpochPaths(root: string, planId: string) {
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
     releasingClaim: join(directory, `${safe}.epoch.claim.releasing`),
+    releaseProof: join(directory, `${safe}.epoch.claim.release-proof.json`),
+    releaseProofTemp: join(directory, `${safe}.epoch.claim.release-proof.tmp`),
     recoveryClaim: join(directory, `${safe}.epoch.recovery.claim`),
     recoveryClaimTempFor: (recoveryId: string) =>
       join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.tmp`),
@@ -242,7 +263,12 @@ export function nodeDurableEpochPort(
     acquireExclusiveClaim: (planId) => {
       const value = paths(planId);
       mkdirSync(value.directory, { recursive: true });
-      if (existsSync(value.releasingClaim)) return false;
+      if (existsSync(value.releasingClaim) || existsSync(value.releaseProof)) {
+        if (!validReleaseProof(value, planId)) return false;
+        unlinkSync(value.releasingClaim);
+        unlinkSync(value.releaseProof);
+        fsyncDirectory(value.directory);
+      }
       try {
         const fd = openSync(value.claim, "wx", 0o600);
         try {
@@ -338,7 +364,24 @@ export function nodeDurableEpochPort(
       renameSync(paths(planId).claim, paths(planId).releasingClaim);
       hooks.afterBoundary?.("claim_unlinked");
     },
-    finalizeClaimRelease: (planId) => unlinkSync(paths(planId).releasingClaim),
+    finalizeClaimRelease: (planId) => {
+      const value = paths(planId);
+      const releasingText = readFileSync(value.releasingClaim, "utf8");
+      const pointerText = readIfExists(value.manifest);
+      writeFileSync(
+        value.releaseProofTemp,
+        `${JSON.stringify({
+          schema: "helix.loop-claim-release.v1",
+          planId,
+          claimDigest: sha256Digest(releasingText),
+          pointerDigest: sha256Digest(pointerText ?? ""),
+        })}\n`,
+        { encoding: "utf8", flag: "wx", mode: 0o600 },
+      );
+      fsyncPath(value.releaseProofTemp);
+      renameSync(value.releaseProofTemp, value.releaseProof);
+      hooks.afterBoundary?.("release_proof_published");
+    },
     fsyncClaimDirectory: (planId) => fsyncDirectory(paths(planId).directory),
   };
 }
@@ -532,7 +575,10 @@ export function readLoopEpochFromFs(root: string, planId: string): LoopEpochRead
   const paths = loopEpochPaths(root, planId);
   try {
     const pointerText = readIfExists(paths.manifest);
-    const claimText = readIfExists(paths.claim) ?? readIfExists(paths.releasingClaim);
+    const releasingText = readIfExists(paths.releasingClaim);
+    const claimText =
+      readIfExists(paths.claim) ??
+      (releasingText !== null && !validReleaseProof(paths, planId) ? releasingText : null);
     let manifestText: string | null = null;
     let previousManifestText: string | null | undefined;
     let conflictingManifestText: string | null = null;
