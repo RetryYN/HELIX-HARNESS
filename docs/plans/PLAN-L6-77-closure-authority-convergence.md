@@ -3,7 +3,7 @@ plan_id: PLAN-L6-77-closure-authority-convergence
 title: "PLAN-L6-77 (add-design): closure authority段階収束"
 kind: add-design
 layer: L6
-drive: be
+drive: agent
 status: confirmed
 route_mode: add-feature
 entry_signals:
@@ -24,8 +24,8 @@ review_evidence:
       - { kind: unit_test, command: "bunx vitest run tests/design-coverage.test.ts tests/design-language.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T10:09:00Z", evidence_path: docs/test-design/harness/closure-authority-convergence.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 parent_design: docs/design/harness/L5-detailed-design/internal-processing.md
 pair_artifact: docs/test-design/harness/closure-authority-convergence.md
-backprop_decision: required
-backprop_decision_reason: "PLAN-L6-73のwriterとL6-74のloaderは実装済みだが、proposal保存・独立review producer・CLI sequencing・I8終端保存則が未接続だったためapplication orchestration差分が必要"
+backprop_decision: not_required
+backprop_decision_reason: "本PLAN自身がL6へのbackprop成果であり、追加の上位層変更は不要。"
 agent_slots:
   - { role: se, slot_label: "SE - convergence contract設計" }
   - { role: qa, slot_label: "QA - authority非推測と再開性のVペアreview" }
