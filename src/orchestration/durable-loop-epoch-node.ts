@@ -3,6 +3,7 @@ import {
   closeSync,
   existsSync,
   fsyncSync,
+  linkSync,
   mkdirSync,
   openSync,
   readdirSync,
@@ -102,6 +103,18 @@ function processStartToken(pid: number): string | null {
   return closing >= 0 ? (stat.slice(closing + 2).split(/\s+/)[19] ?? null) : null;
 }
 
+function processLiveness(pid: number): "live" | "dead" | "unknown" {
+  try {
+    process.kill(pid, 0);
+    return "live";
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code === "ESRCH") return "dead";
+    if (code === "EPERM") return "live";
+    return "unknown";
+  }
+}
+
 function claimStatus(text: string | null): "absent" | "live" | "stale" {
   if (text === null) return "absent";
   try {
@@ -115,7 +128,9 @@ function claimStatus(text: string | null): "absent" | "live" | "stale" {
     if (claim.processStartToken && currentToken && claim.processStartToken !== currentToken)
       return "stale";
     if (platform() === "linux" && currentToken === null) return "stale";
-    if (uptime() * 1000 > claim.leaseDeadlineUptimeMs) return "stale";
+    const liveness = processLiveness(claim.pid);
+    if (liveness === "live") return "live";
+    if (liveness === "dead") return "stale";
     return "live";
   } catch {
     return "live";
@@ -160,6 +175,8 @@ export function loopEpochPaths(root: string, planId: string) {
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
     recoveryClaim: join(directory, `${safe}.epoch.recovery.claim`),
+    recoveryClaimTempFor: (recoveryId: string) =>
+      join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.tmp`),
     recoveryClaimTombstoneFor: (recoveryId: string) =>
       join(directory, `${safe}.${recoveryId}.epoch.recovery-claim.stale.json`),
     recoveryAuditTempFor: (recoveryId: string) =>
