@@ -525,7 +525,7 @@ IMP-140: 15 screens (PM/HM/GD) と FR/BR→screen trace は `screen-list.md` / `
 - src/web (Phase B) までは `screens.implemented=0` とする。変更には NFR-08 implementation-truthfulness evidence が必要である。
 - Source of truth は docs のままである。この projection は `helix db rebuild` で deterministic に rebuild される derived read model であり、別 authoring surface は持たない。
 
-### §9.9 Team member review receipt (PLAN-L7-444)
+### §9.9 チームメンバーレビュー証跡 (PLAN-L7-444)
 
 | table | primary key | 必須列 | 目的 |
 |---|---|---|---|

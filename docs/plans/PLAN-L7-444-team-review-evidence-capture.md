@@ -36,7 +36,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — missing/FAIL/PASS/truncation oracle" }
 ---
 
-# PLAN-L7-444: team review evidence capture fail-close
+# PLAN-L7-444: チームレビュー証跡のfail-close
 
 ## 工程表
 

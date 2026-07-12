@@ -1507,6 +1507,8 @@ export function checkTeamReviewReceipts(repoRoot: string): { messages: string[];
               AND worker.role NOT IN ('tl','qa','uiux')
               AND worker.status='completed'
               AND worker.provider<>reviewer.provider
+              AND worker.repository_head=reviewer.repository_head
+              AND reviewer.repository_head IS NOT NULL
           )`)
       .get()?.n as number | undefined;
     const violations = (invalidCompleted ?? 0) + (missingCrossWorker ?? 0);

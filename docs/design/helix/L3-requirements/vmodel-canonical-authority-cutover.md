@@ -35,7 +35,7 @@ spec:
 これにより「ZIPを正本とする」と「archiveをruntime stateにしない」を両立する。ZIPの設計意味を上位に置き、
 実行可能な正本はreview可能なrepo-owned抽出物へ固定する。
 
-## §1 exact remap
+## §1 層の完全対応
 
 | 現行 | canonical | 移行判断 |
 |---|---|---|
@@ -51,7 +51,7 @@ spec:
 既存artifactは一括renameしない。`legacy_layer`と`canonical_layer`の両方をprojectionし、compat期限までは旧入力を
 受理するが、新規generator/PLAN/templateはcanonical layerだけを出力する。
 
-## §2 cutover invariant
+## §2 切替の不変条件
 
 - Core Reads、AGENTS/CLAUDE、schema enum、PLAN lint、pair gate、current-location、DB、VSCode、consumer templateの
   authority markerが同じcutover epochを指す。
@@ -62,9 +62,8 @@ spec:
 
 ## §3 後続分割
 
-- L4: authority/cutover architecture、epoch、consumer surface matrix。
+- L4: 正本権限と切替architecture、epoch、consumer surface matrixを定義する。
 - L5: schema/DB remap、compat parser、rollback詳細設計。
 - L6: canonical binding contract。
 - L7: migration implementation、detector、template/view更新。
-- L8-L12: unit/integration/system/acceptance/operation verification。
-
+- L8-L12: unit/integration/system/acceptance/operationの各検証を定義する。

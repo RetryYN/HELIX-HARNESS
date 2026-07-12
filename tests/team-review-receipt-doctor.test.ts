@@ -17,7 +17,7 @@ describe("[PLAN-L7-444/U-TEAMRUN-004] team review receipt doctor", () => {
         (receipt_id, team_run_id, plan_id, team, member_index, role, engine, provider, model,
          repository_head, slot_id, exit_code, status, verdict, verdict_status, output_digest,
          output_bytes, output_truncated, completed_at)
-        VALUES (?, ?, ?, 't', ?, ?, 'e', ?, 'm', 'head', ?, 0, 'completed', ?, ?, ?, 1, 0, '2026-07-13')`);
+        VALUES (?, ?, ?, 't', ?, ?, 'e', ?, 'm', ?, ?, 0, 'completed', ?, ?, ?, 1, 0, '2026-07-13')`);
       insert.run(
         "r:0",
         "r",
@@ -25,6 +25,7 @@ describe("[PLAN-L7-444/U-TEAMRUN-004] team review receipt doctor", () => {
         0,
         "se",
         "codex",
+        "head",
         "s0",
         null,
         "not_required",
@@ -37,6 +38,7 @@ describe("[PLAN-L7-444/U-TEAMRUN-004] team review receipt doctor", () => {
         1,
         "tl",
         "claude",
+        "head",
         "s1",
         "pass",
         "accepted",
@@ -44,16 +46,30 @@ describe("[PLAN-L7-444/U-TEAMRUN-004] team review receipt doctor", () => {
       );
       expect(checkTeamReviewReceipts(root).ok).toBe(true);
       insert.run(
+        "bad:0",
+        "bad",
+        "PLAN-L7-444",
+        0,
+        "se",
+        "codex",
+        "old-head",
+        "s2",
+        null,
+        "not_required",
+        `sha256:${"c".repeat(64)}`,
+      );
+      insert.run(
         "bad:1",
         "bad",
         "PLAN-L7-444",
         1,
         "qa",
         "claude",
-        "s2",
+        "current-head",
+        "s3",
         "pass",
         "accepted",
-        `sha256:${"c".repeat(64)}`,
+        `sha256:${"d".repeat(64)}`,
       );
       expect(checkTeamReviewReceipts(root)).toMatchObject({ ok: false });
     } finally {

@@ -39,7 +39,7 @@ dependencies:
   blocks: []
 ---
 
-# PLAN-L3-14: ZIP L1-L12 canonical authority cutover freeze
+# PLAN-L3-14: ZIP L1-L12 正本権限の切替freeze
 
 ## §0 目的
 
