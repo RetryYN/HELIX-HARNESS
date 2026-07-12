@@ -256,7 +256,12 @@ describe("PLAN-L7-449 loop epoch reader", () => {
     });
     expect(result.status).toBe("corrupt");
     expect(result.intentCapability).toBeNull();
-    expect(calls).toEqual(["unlinkClaim", "fsyncClaimDirectory"]);
+    expect(calls).toEqual([
+      "unlinkClaim",
+      "fsyncClaimDirectory",
+      "finalizeClaimRelease",
+      "fsyncClaimDirectory",
+    ]);
   });
 
   it("U-DUR-004: distinguishes live/stale claims and residual-claim uncertainty", () => {

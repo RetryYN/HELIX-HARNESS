@@ -89,6 +89,13 @@ export type LoopEpochCommitResult = {
   reason: string;
 };
 
+function releaseClaim(port: DurableEpochPort, planId: string): void {
+  port.unlinkClaim(planId);
+  port.fsyncClaimDirectory(planId);
+  port.finalizeClaimRelease(planId);
+  port.fsyncClaimDirectory(planId);
+}
+
 export function commitLoopEpoch(input: {
   planId: string;
   previousManifestText: string | null;
@@ -107,8 +114,7 @@ export function commitLoopEpoch(input: {
   }
   try {
     if (input.port.readManifestText(planId) !== input.previousManifestText) {
-      input.port.unlinkClaim(planId);
-      input.port.fsyncClaimDirectory(planId);
+      releaseClaim(input.port, planId);
       return {
         status: "concurrent_conflict",
         manifest: null,
@@ -120,8 +126,7 @@ export function commitLoopEpoch(input: {
       ? parseLoopEpochManifest(input.previousManifestText)
       : null;
     if (input.previousManifestText && (previous === null || previous.planId !== planId)) {
-      input.port.unlinkClaim(planId);
-      input.port.fsyncClaimDirectory(planId);
+      releaseClaim(input.port, planId);
       return {
         status: "concurrent_conflict",
         manifest: null,
@@ -131,8 +136,7 @@ export function commitLoopEpoch(input: {
     }
     const payloadText = JSON.stringify(input.payload);
     if (parseLoopEpochPayload(payloadText, planId) === null) {
-      input.port.unlinkClaim(planId);
-      input.port.fsyncClaimDirectory(planId);
+      releaseClaim(input.port, planId);
       return {
         status: "corrupt",
         manifest: null,
@@ -180,10 +184,7 @@ export function commitLoopEpoch(input: {
     input.port.fsyncPointerTemp(planId, tempId);
     input.port.renamePointer(planId, tempId);
     input.port.fsyncStateDirectory(planId);
-    input.port.unlinkClaim(planId);
-    input.port.fsyncClaimDirectory(planId);
-    input.port.finalizeClaimRelease(planId);
-    input.port.fsyncClaimDirectory(planId);
+    releaseClaim(input.port, planId);
     return {
       status: "committed",
       manifest,
