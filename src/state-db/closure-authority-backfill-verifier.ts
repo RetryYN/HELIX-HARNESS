@@ -36,7 +36,13 @@ function stable(value: unknown): string {
       .join(",")}}`;
   return JSON.stringify(value);
 }
-function verifyTrackedHeadFile(repoRoot: string, head: string, path: string, digest: Digest): void {
+function verifyTrackedHeadFile(input: {
+  repoRoot: string;
+  head: string;
+  path: string;
+  digest: Digest;
+}): void {
+  const { repoRoot, head, path, digest } = input;
   const tracked = execFileSync("git", ["ls-files", "--error-unmatch", "--", path], {
     cwd: repoRoot,
     encoding: "utf8",
@@ -346,7 +352,12 @@ function rebuildCandidate(input: {
   now: string;
 }): ClosureAuthorityBackfillCandidate {
   const plan = readVerifiedRepoFile(input.repoRoot, input.planPath);
-  verifyTrackedHeadFile(input.repoRoot, input.head, input.planPath, plan.digest);
+  verifyTrackedHeadFile({
+    repoRoot: input.repoRoot,
+    head: input.head,
+    path: input.planPath,
+    digest: plan.digest,
+  });
   const meta = frontmatter(plan.bytes);
   if (meta.plan_id !== input.planId) throw new Error(`${input.planId}: canonical PLAN ID mismatch`);
   const bindings = z
@@ -360,9 +371,19 @@ function rebuildCandidate(input: {
   const parentBlocks: TypedAuthorityBlock[] = [];
   for (const binding of bindings) {
     const parent = readVerifiedRepoFile(input.repoRoot, binding.parent_design);
-    verifyTrackedHeadFile(input.repoRoot, input.head, binding.parent_design, parent.digest);
+    verifyTrackedHeadFile({
+      repoRoot: input.repoRoot,
+      head: input.head,
+      path: binding.parent_design,
+      digest: parent.digest,
+    });
     const test = readVerifiedRepoFile(input.repoRoot, binding.test_path);
-    verifyTrackedHeadFile(input.repoRoot, input.head, binding.test_path, test.digest);
+    verifyTrackedHeadFile({
+      repoRoot: input.repoRoot,
+      head: input.head,
+      path: binding.test_path,
+      digest: test.digest,
+    });
     const parentMeta = frontmatter(parent.bytes);
     const exactRows = parsedL8.rows.filter(
       (row) => row.oracleId === binding.oracle_id && row.testPaths.includes(binding.test_path),
@@ -458,29 +479,29 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
     input.repoRoot,
     "docs/governance/closure-authority-registry.yaml",
   );
-  verifyTrackedHeadFile(
-    input.repoRoot,
-    bundle.repository_head,
-    input.gateAllowlistPath,
-    allowlist.source_digest,
-  );
-  verifyTrackedHeadFile(
-    input.repoRoot,
-    bundle.repository_head,
-    "docs/governance/closure-authority-registry.yaml",
-    registry.digest,
-  );
+  verifyTrackedHeadFile({
+    repoRoot: input.repoRoot,
+    head: bundle.repository_head,
+    path: input.gateAllowlistPath,
+    digest: allowlist.source_digest,
+  });
+  verifyTrackedHeadFile({
+    repoRoot: input.repoRoot,
+    head: bundle.repository_head,
+    path: "docs/governance/closure-authority-registry.yaml",
+    digest: registry.digest,
+  });
   if (registry.digest !== bundle.registry_digest) throw new Error("registry digest drift");
   const l8 = readVerifiedRepoFile(
     input.repoRoot,
     "docs/test-design/harness/L8-unit-test-design.md",
   );
-  verifyTrackedHeadFile(
-    input.repoRoot,
-    bundle.repository_head,
-    "docs/test-design/harness/L8-unit-test-design.md",
-    l8.digest,
-  );
+  verifyTrackedHeadFile({
+    repoRoot: input.repoRoot,
+    head: bundle.repository_head,
+    path: "docs/test-design/harness/L8-unit-test-design.md",
+    digest: l8.digest,
+  });
   const rebuiltCandidates: ClosureAuthorityBackfillCandidate[] = [];
   for (let offset = 0; offset < review.review_scope.plan_ids.length; offset += 100) {
     const ids = review.review_scope.plan_ids.slice(offset, offset + 100);
@@ -516,12 +537,12 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
     const proposal = decision.proposal;
     if (!proposal) continue;
     const plan = readVerifiedRepoFile(input.repoRoot, proposal.source_path);
-    verifyTrackedHeadFile(
-      input.repoRoot,
-      bundle.repository_head,
-      proposal.source_path,
-      plan.digest,
-    );
+    verifyTrackedHeadFile({
+      repoRoot: input.repoRoot,
+      head: bundle.repository_head,
+      path: proposal.source_path,
+      digest: plan.digest,
+    });
     if (plan.digest !== proposal.source_digest)
       throw new Error(`${proposal.plan_id}: PLAN source digest drift`);
     verifyPlanFrontmatter({
@@ -536,19 +557,24 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
         input.repoRoot,
         "docs/test-design/harness/L8-unit-test-design.md",
       );
-      verifyTrackedHeadFile(
-        input.repoRoot,
-        bundle.repository_head,
-        binding.parent_design,
-        parent.digest,
-      );
-      verifyTrackedHeadFile(input.repoRoot, bundle.repository_head, binding.test_path, test.digest);
-      verifyTrackedHeadFile(
-        input.repoRoot,
-        bundle.repository_head,
-        "docs/test-design/harness/L8-unit-test-design.md",
-        l8.digest,
-      );
+      verifyTrackedHeadFile({
+        repoRoot: input.repoRoot,
+        head: bundle.repository_head,
+        path: binding.parent_design,
+        digest: parent.digest,
+      });
+      verifyTrackedHeadFile({
+        repoRoot: input.repoRoot,
+        head: bundle.repository_head,
+        path: binding.test_path,
+        digest: test.digest,
+      });
+      verifyTrackedHeadFile({
+        repoRoot: input.repoRoot,
+        head: bundle.repository_head,
+        path: "docs/test-design/harness/L8-unit-test-design.md",
+        digest: l8.digest,
+      });
       if (frontmatter(parent.bytes).status !== "confirmed")
         throw new Error(`${binding.oracle_id}: parent design status not confirmed`);
       verifyL8ExactRow({
@@ -586,12 +612,12 @@ export function verifyClosureAuthorityBackfillProductionBundle(input: {
     }
     const authoritySource = proposal.field_sources.capabilities;
     const authorityBytes = readVerifiedRepoFile(input.repoRoot, authoritySource.source_path);
-    verifyTrackedHeadFile(
-      input.repoRoot,
-      bundle.repository_head,
-      authoritySource.source_path,
-      authorityBytes.digest,
-    );
+    verifyTrackedHeadFile({
+      repoRoot: input.repoRoot,
+      head: bundle.repository_head,
+      path: authoritySource.source_path,
+      digest: authorityBytes.digest,
+    });
     if (authorityBytes.digest !== authoritySource.source_digest)
       throw new Error(`${proposal.plan_id}: authority source digest drift`);
     if (!bundle.source_digests.includes(authorityBytes.digest))
