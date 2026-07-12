@@ -1,7 +1,36 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import { doctorFailure, doctorFailureMessage } from "../src/doctor/failure";
+import { sha256Digest } from "../src/runtime/digest";
+
+function anonymousCatchOwnerDigest(source: string): { count: number; digest: string } {
+  const file = ts.createSourceFile("src/doctor/index.ts", source, ts.ScriptTarget.Latest, true);
+  const owners: string[] = [];
+  const owner = (node: ts.Node): string => {
+    for (let current = node.parent; current; current = current.parent) {
+      if (
+        (ts.isFunctionDeclaration(current) ||
+          ts.isMethodDeclaration(current) ||
+          ts.isVariableDeclaration(current)) &&
+        current.name
+      ) {
+        return current.name.getText(file);
+      }
+    }
+    return "module";
+  };
+  const visit = (node: ts.Node): void => {
+    if (ts.isCatchClause(node) && !node.variableDeclaration) owners.push(owner(node));
+    ts.forEachChild(node, visit);
+  };
+  visit(file);
+  const counts = [...new Set(owners)]
+    .sort()
+    .map((name) => [name, owners.filter((ownerName) => ownerName === name).length]);
+  return { count: owners.length, digest: sha256Digest(JSON.stringify(counts)) };
+}
 
 describe("PLAN-L7-449 doctor failure contract", () => {
   it("U-DUR-003: emits only allowlisted identity, reason, and finite cause metadata", () => {
@@ -23,6 +52,9 @@ describe("PLAN-L7-449 doctor failure contract", () => {
     expect(source).not.toMatch(/String\((?:error|cause|err)\)/);
     expect(source).not.toMatch(/\$\{(?:error|cause|err)\}/);
     expect(source).not.toMatch(/(?:error|cause|err)\.(?:message|stack)/);
-    expect(source.match(/catch\s*\{/g)?.length ?? 0).toBeLessThanOrEqual(127);
+    expect(anonymousCatchOwnerDigest(source)).toEqual({
+      count: 127,
+      digest: "sha256:9ad1dbe3da484413684c10e05b577a524f674b3d45adfa94c26b11136fa7f730",
+    });
   });
 });
