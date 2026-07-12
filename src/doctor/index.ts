@@ -6941,6 +6941,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     // fail-open: in-memory 共有 projection の close 失敗は検査結果へ影響しないため無視する
   }
   const verifierProviderMismatch = checkVerifierProviderMismatch(deps.repoRoot);
+  const teamReviewReceipts = checkTeamReviewReceipts(deps.repoRoot);
   const agentModelSsot = checkAgentModelSsot(deps.repoRoot);
   const docConsistency = checkDocConsistency(deps.repoRoot);
   const entityCoverage = checkEntityCoverage(deps.repoRoot);
@@ -7070,6 +7071,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       vmodelZipManifest.ok &&
       vmodelFit.ok &&
       verifierProviderMismatch.ok &&
+      teamReviewReceipts.ok &&
       agentModelSsot.ok &&
       docConsistency.ok &&
       entityCoverage.ok &&
@@ -7200,6 +7202,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...vmodelZipManifest.messages.map((m) => `doctor: ${m}`),
       ...vmodelFit.messages.map((m) => `doctor: ${m}`),
       ...verifierProviderMismatch.messages.map((m) => `doctor: ${m}`),
+      ...teamReviewReceipts.messages.map((m) => `doctor: ${m}`),
       ...agentModelSsot.messages.map((m) => `doctor: ${m}`),
       ...docConsistency.messages.map((m) => `doctor: ${m}`),
       ...entityCoverage.messages.map((m) => `doctor: ${m}`),

@@ -23,9 +23,11 @@ generates:
   - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/team-run.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/team-review-receipt-schema.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/team-review-receipt-doctor.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-425-system-review-issue-handoff.md
   requires: []
