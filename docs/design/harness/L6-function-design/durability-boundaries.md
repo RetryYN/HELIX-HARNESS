@@ -32,12 +32,12 @@ property access、string coercion、serializationがthrowした場合は`inacces
 ## 3. loop epoch DbC
 
 pre: plan IDはcanonical、epoch IDは直前committed epochより単調増加、previous digestはreader snapshotと一致する。
-post: `committed`ならstate/receipt/manifestのdigestが一致し、restart readerが同じepochを返す。commit manifest durable
-publish前のfailureは新epochをauthoritativeにしない。invariant: corruption、I/O exception、CAS conflict、曖昧な
+post: `committed`ならstate/receipt/manifestのdigestが一致し、claim unlinkとそのparent directory durabilityまで完了し、
+restart readerが同じepochを返す。それ以前のfailureは新epochをauthoritativeにせずuncertain/blockとする。invariant: corruption、I/O exception、CAS conflict、曖昧な
 side effectをmissing/successへ縮退しない。
 
 publish前にplan-scoped exclusive claimをatomic createし、取得後にprevious digestを再検査する。publish順は payload temp write -> file fsync -> payload rename -> directory durability -> manifest temp write -> manifest
-fsync -> manifest rename -> directory durability とする。commit時はprevious digest CASを再検査する。platformがdirectory
+fsync -> manifest rename -> directory durability -> claim unlink -> claim parent directory durability -> committed return とする。commit時はprevious digest CASを再検査する。platformがdirectory
 fsyncを提供しない場合はcapabilityを明示し、file fsync + same-volume renameより強い保証を表示しない。
 
 ## 4. recovery decision
@@ -52,12 +52,12 @@ monotonic lease、manifest/claim digest、authority/auditを検証し、recovery
 
 ## 5. DbC trace
 
-| 公開関数                  | pre                              | post                        | invariant                           | oracle                        |
-| ------------------------- | -------------------------------- | --------------------------- | ----------------------------------- | ----------------------------- |
-| `stableCauseDigest`       | unknown value                    | finite kind + typed SHA-256 | throw/raw leakなし                  | U-DUR-001/002                 |
-| `doctorFailure`           | check/reason allowlist           | bounded safe failure        | raw interpolationなし               | U-DUR-003、IT-DUR-001         |
-| `readLoopEpoch`           | canonical plan ID                | 9状態を区別                 | corrupt/claim/uncertain≠missing     | U-DUR-004/005、IT-DUR-002     |
-| `commitLoopEpoch`         | snapshot-bound previous digest   | manifest後だけcommitted     | partial/concurrentをsuccess化しない | U-DUR-006/007、IT-DUR-003/004 |
-| `classifyLoopRecovery`    | exact read classification        | retry/start/block           | ambiguousをretryへ写さない          | U-DUR-005、IT-DUR-005         |
-| `authorizeLoopSideEffect` | durable intent + verified digest | gate後だけeffectを呼ぶ      | effect-before-intent禁止            | U-DUR-005、IT-DUR-005         |
-| `recoverStaleLoopClaim`   | snapshot-bound packet            | single recovery owner       | wall clock/PID単独で奪取しない      | U-DUR-007、IT-DUR-004         |
+| 公開関数                  | pre                              | post                                 | invariant                           | oracle                        |
+| ------------------------- | -------------------------------- | ------------------------------------ | ----------------------------------- | ----------------------------- |
+| `stableCauseDigest`       | unknown value                    | finite kind + typed SHA-256          | throw/raw leakなし                  | U-DUR-001/002                 |
+| `doctorFailure`           | check/reason allowlist           | bounded safe failure                 | raw interpolationなし               | U-DUR-003、IT-DUR-001         |
+| `readLoopEpoch`           | canonical plan ID                | 9状態を区別                          | corrupt/claim/uncertain≠missing     | U-DUR-004/005、IT-DUR-002     |
+| `commitLoopEpoch`         | snapshot-bound previous digest   | claim release durable後だけcommitted | partial/concurrentをsuccess化しない | U-DUR-006/007、IT-DUR-003/004 |
+| `classifyLoopRecovery`    | exact read classification        | retry/start/block                    | ambiguousをretryへ写さない          | U-DUR-005、IT-DUR-005         |
+| `authorizeLoopSideEffect` | durable intent + verified digest | gate後だけeffectを呼ぶ               | effect-before-intent禁止            | U-DUR-005、IT-DUR-005         |
+| `recoverStaleLoopClaim`   | snapshot-bound packet            | single recovery owner                | wall clock/PID単独で奪取しない      | U-DUR-007、IT-DUR-004         |
