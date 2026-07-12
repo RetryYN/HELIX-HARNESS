@@ -15,19 +15,22 @@ import {
   truncateSync,
   writeFileSync,
 } from "node:fs";
-import { hostname } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
 import type {
   ClosureAuthority,
   ClosureAuthorityClassificationRow,
-} from "./closure-authority-registry";
+} from "../policy/closure-authority-registry";
 import {
   analyzeClosureAuthorityDrift,
   type ClosureAuthorityRegistry,
   classifyClosureAuthorities,
-} from "./closure-authority-registry";
+} from "../policy/closure-authority-registry";
 import { verifyRunnerAttestationChain } from "./closure-auto-approval";
 import type { ClosureEvidenceRunner, ClosureProcessReceipt } from "./closure-evidence-runner";
+import {
+  acquireClosureMaterializationLock,
+  releaseClosureMaterializationLock,
+} from "./closure-materialization-lock";
 import type { HarnessDb } from "./index";
 
 type CrashPoint =
@@ -626,80 +629,21 @@ function materializeClosureEvidenceUnlocked(
   } catch (error) {
     try {
       input.db.exec("ROLLBACK");
-    } catch {}
+    } catch {
+      // Best effort only: the outer recovery path owns the durable rollback decision.
+    }
     recoverClosureEvidenceMaterialization(input.repoRoot, input.db);
     throw error;
   }
 }
 
-function acquireMaterializationLock(repoRoot: string): { path: string; token: string } {
-  const stateDir = join(repoRoot, ".helix/state");
-  mkdirSync(stateDir, { recursive: true });
-  if (lstatSync(stateDir).isSymbolicLink())
-    throw new Error("materialization lock dir symlinkは禁止");
-  const path = join(stateDir, "closure-materialization.lock");
-  const token = randomUUID();
-  const acquire = (): void => {
-    let fd: number;
-    try {
-      fd = openSync(path, "wx", 0o600);
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
-      if (lstatSync(path).isSymbolicLink()) throw new Error("materialization lock symlinkは禁止");
-      let owner: { pid: number; host: string };
-      try {
-        owner = JSON.parse(readFileSync(path, "utf8"));
-      } catch {
-        throw new Error("materialization lock schema不正");
-      }
-      if (!Number.isSafeInteger(owner.pid) || owner.pid <= 0 || owner.host !== hostname())
-        throw new Error("materialization lock owner不正");
-      try {
-        process.kill(owner.pid, 0);
-        throw new Error(`closure materialization already running pid=${owner.pid}`);
-      } catch (probe) {
-        if (probe instanceof Error && probe.message.startsWith("closure materialization"))
-          throw probe;
-        if ((probe as NodeJS.ErrnoException).code !== "ESRCH")
-          throw new Error(`closure materialization lockを検証できない pid=${owner.pid}`);
-      }
-      rmSync(path, { force: true });
-      acquire();
-      return;
-    }
-    try {
-      writeFileSync(
-        fd,
-        JSON.stringify({
-          schema_version: "closure-materialization-lock.v1",
-          token,
-          pid: process.pid,
-          host: hostname(),
-        }),
-      );
-      fsyncSync(fd);
-    } finally {
-      closeSync(fd);
-    }
-  };
-  acquire();
-  return { path, token };
-}
-
 export function materializeClosureEvidence(
   input: ClosureEvidenceMaterializationInput,
 ): ClosureEvidenceMaterializationResult {
-  const lock = acquireMaterializationLock(input.repoRoot);
+  const lock = acquireClosureMaterializationLock(input.repoRoot);
   try {
     return materializeClosureEvidenceUnlocked(input);
   } finally {
-    if (existsSync(lock.path) && !lstatSync(lock.path).isSymbolicLink()) {
-      try {
-        const owner = JSON.parse(readFileSync(lock.path, "utf8"));
-        if (owner.token === lock.token) rmSync(lock.path, { force: true });
-      } catch {
-        // Fail closed: do not remove a lock whose ownership cannot be proven.
-      }
-    }
+    releaseClosureMaterializationLock(lock);
   }
 }

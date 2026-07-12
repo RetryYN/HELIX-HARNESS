@@ -3,7 +3,7 @@ import {
   type ClosureAuthorityDrift,
   type ClosureAuthorityRegistry,
   loadClosureAuthorityRegistry,
-} from "../state-db/closure-authority-registry";
+} from "../policy/closure-authority-registry";
 
 export const CLOSURE_AUTHORITY_REGISTRY_PATH =
   "docs/governance/closure-authority-registry.yaml" as const;

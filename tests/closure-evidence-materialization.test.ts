@@ -1,10 +1,10 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
-import { hostname, tmpdir } from "node:os";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { parseClosureAuthorityRegistry } from "../src/state-db/closure-authority-registry";
+import { parseClosureAuthorityRegistry } from "../src/policy/closure-authority-registry";
 import {
   evaluateClosureAutoApproval,
   parseClosureAutoApprovalManifest,
@@ -14,6 +14,10 @@ import {
   recoverClosureEvidenceMaterialization,
 } from "../src/state-db/closure-evidence-materialization";
 import { ClosureEvidenceRunner } from "../src/state-db/closure-evidence-runner";
+import {
+  acquireClosureMaterializationLock,
+  releaseClosureMaterializationLock,
+} from "../src/state-db/closure-materialization-lock";
 import type { ProjectCurrentLocationSnapshot } from "../src/state-db/current-location";
 import { type HarnessDb, openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
@@ -147,12 +151,12 @@ describe("closure evidence materialization transaction", () => {
 
   it("multi-process lockはrunner開始前に同時materializationを拒否する", () => {
     const { root, input } = fixture();
-    mkdirSync(join(root, ".helix/state"), { recursive: true });
-    writeFileSync(
-      join(root, ".helix/state/closure-materialization.lock"),
-      JSON.stringify({ pid: process.pid, host: hostname() }),
-    );
-    expect(() => materializeClosureEvidence(input)).toThrow(/already running/);
+    const lock = acquireClosureMaterializationLock(root);
+    try {
+      expect(() => materializeClosureEvidence(input)).toThrow(/already running/);
+    } finally {
+      releaseClosureMaterializationLock(lock);
+    }
   });
 
   it("U-CMAT-009: windowとconcurrencyの上限をfail-closeする", () => {

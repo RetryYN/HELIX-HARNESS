@@ -19,7 +19,7 @@ import {
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { z } from "zod";
-import type { ClosureAuthorityRegistry } from "./closure-authority-registry";
+import type { ClosureAuthorityRegistry } from "../policy/closure-authority-registry";
 import {
   buildProjectClosureApplyPlan,
   buildProjectClosureReviewBundle,

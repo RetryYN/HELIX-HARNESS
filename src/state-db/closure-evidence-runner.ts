@@ -262,9 +262,9 @@ export class ClosureEvidenceRunner {
     try {
       report = vitestJsonSchema.parse(JSON.parse(receipt.stdout));
     } catch (error) {
-      throw new Error(
-        `invalid Vitest JSON output: ${error instanceof Error ? error.message : String(error)}`,
-      );
+      // fail-closed: parser/schema failures cannot establish oracle evidence.
+      const detail = error instanceof Error ? error.message : String(error);
+      throw new Error(`invalid Vitest JSON output: ${detail}`);
     }
     if (!report.success) throw new Error("Vitest JSON reports failure");
     const assertions = report.testResults.flatMap((result) => result.assertionResults);

@@ -168,6 +168,11 @@ import {
 } from "./orchestration/pair-agent";
 import { lintPlanWithGateOptions } from "./plan/lint";
 import {
+  analyzeClosureAuthorityDrift,
+  classifyClosureAuthorities,
+  loadClosureAuthorityRegistry,
+} from "./policy/closure-authority-registry";
+import {
   type AdapterContextInjection,
   type AdapterProvider,
   adapterExecutionEnv,
@@ -369,11 +374,6 @@ import {
   recommendSkillsForText,
   recordSkillRecommendations,
 } from "./skills/recommend";
-import {
-  analyzeClosureAuthorityDrift,
-  classifyClosureAuthorities,
-  loadClosureAuthorityRegistry,
-} from "./state-db/closure-authority-registry";
 import {
   applyClosureAutoApprovalAtomic,
   type ClosureAutoApprovalEvaluation,

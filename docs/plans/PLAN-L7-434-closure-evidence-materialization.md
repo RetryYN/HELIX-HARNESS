@@ -31,13 +31,17 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-010, test_path: tests/closure-evidence-materialization.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-434-closure-evidence-materialization.md, artifact_type: markdown_doc }
-  - { artifact_path: src/state-db/closure-authority-registry.ts, artifact_type: source_module }
+  - { artifact_path: src/policy/closure-authority-registry.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/closure-authority-registry.yaml, artifact_type: yaml_config }
   - { artifact_path: src/state-db/closure-evidence-materialization.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/closure-materialization-lock.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/closure-evidence-runner.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/closure-authority-registry.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/closure-evidence-materialization.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-materialization-lock.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-authority-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-evidence-runner.test.ts, artifact_type: test_code }
 dependencies:

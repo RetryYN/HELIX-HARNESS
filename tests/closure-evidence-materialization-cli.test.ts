@@ -71,9 +71,13 @@ describe("closure authority-materialize CLI", () => {
     execFileSync("git", ["add", "docs/governance/closure-authority-registry.yaml"], {
       cwd: fixture,
     });
-    execFileSync("git", ["commit", "--quiet", "-m", "test: add empty authority registry"], {
-      cwd: fixture,
-    });
+    execFileSync(
+      "git",
+      ["commit", "--quiet", "--allow-empty", "-m", "test: add empty authority registry"],
+      {
+        cwd: fixture,
+      },
+    );
     execFileSync("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: fixture });
     const rebuild = spawnSync("bun", [cliPath, "db", "rebuild"], {
       cwd: fixture,

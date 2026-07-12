@@ -8,7 +8,7 @@ import {
   classifyClosureAuthorities,
   loadClosureAuthorityRegistry,
   parseClosureAuthorityRegistry,
-} from "../src/state-db/closure-authority-registry";
+} from "../src/policy/closure-authority-registry";
 
 // PLAN-L7-434-closure-evidence-materialization
 
@@ -142,7 +142,7 @@ describe("closure authority registry", () => {
     expect(result[0]?.reason).toBe("duplicate candidate");
     expect(
       readFileSync(
-        join(import.meta.dirname, "../src/state-db/closure-authority-registry.ts"),
+        join(import.meta.dirname, "../src/policy/closure-authority-registry.ts"),
         "utf8",
       ),
     ).not.toContain("callerOverride");
