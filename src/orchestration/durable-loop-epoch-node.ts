@@ -160,12 +160,16 @@ export function readLoopEpochFromFs(root: string, planId: string): LoopEpochRead
     const claimText = readIfExists(paths.claim);
     let payloadText: string | null = null;
     if (manifestText !== null) {
-      const manifest = JSON.parse(manifestText) as { payloadFile?: unknown };
-      if (
-        typeof manifest.payloadFile === "string" &&
-        /^[A-Za-z0-9._-]+\.payload\.json$/.test(manifest.payloadFile)
-      ) {
-        payloadText = readIfExists(paths.payloadFor(manifest.payloadFile));
+      try {
+        const manifest = JSON.parse(manifestText) as { payloadFile?: unknown };
+        if (
+          typeof manifest.payloadFile === "string" &&
+          /^[A-Za-z0-9._-]+\.payload\.json$/.test(manifest.payloadFile)
+        ) {
+          payloadText = readIfExists(paths.payloadFor(manifest.payloadFile));
+        }
+      } catch {
+        payloadText = null;
       }
     } else if (existsSync(paths.directory)) {
       const orphan = readdirSync(paths.directory).find(

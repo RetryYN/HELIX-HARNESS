@@ -310,6 +310,7 @@ describe("PLAN-L7-449 loop epoch reader", () => {
         conflictingManifestText: JSON.stringify({
           ...JSON.parse(manifest()),
           payloadDigest: `sha256:${"0".repeat(64)}`,
+          payloadFile: `${PLAN}.epoch-1-${"0".repeat(64)}.payload.json`,
         }),
       }).status,
     ).toBe("concurrent_conflict");
