@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { parse as parseYaml } from "yaml";
 import {
   deriveEffortObservation,
@@ -107,7 +108,18 @@ export interface TeamMemberExecution {
   slot_id: string | null;
   exit_code: number | null;
   status: SlotStatus;
+  evidence: TeamMemberExecutionEvidence;
   skipped_reason?: string;
+}
+
+export type TeamReviewVerdict = "pass" | "fail" | "error" | "pending";
+
+export interface TeamMemberExecutionEvidence {
+  output_digest: string;
+  output_bytes: number;
+  output_truncated: boolean;
+  verdict: TeamReviewVerdict | null;
+  verdict_status: "not_required" | "accepted" | "missing" | "ambiguous" | "rejected";
 }
 
 export interface TeamRunExecution {
@@ -128,7 +140,43 @@ export interface TeamRunnerDeps {
     env?: Record<string, string>;
     /** codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。 */
     stdin?: string;
-  }) => Promise<{ exitCode: number | null }>;
+  }) => Promise<{
+    exitCode: number | null;
+    output?: string;
+    outputBytes?: number;
+    outputTruncated?: boolean;
+  }>;
+}
+
+const REVIEW_ROLES = new Set(["tl", "qa", "uiux"]);
+
+export function parseStrictTeamReviewVerdict(output: string): {
+  verdict: TeamReviewVerdict | null;
+  status: "accepted" | "missing" | "ambiguous" | "rejected";
+} {
+  const matches = [...output.matchAll(/^\s*VERDICT:\s*(PASS|FAIL|ERROR|PENDING)\s*$/gim)].map(
+    (match) => match[1]?.toLowerCase() as TeamReviewVerdict,
+  );
+  if (matches.length === 0) return { verdict: null, status: "missing" };
+  if (matches.length !== 1) return { verdict: null, status: "ambiguous" };
+  return { verdict: matches[0] ?? null, status: matches[0] === "pass" ? "accepted" : "rejected" };
+}
+
+function executionEvidence(
+  role: string,
+  run: { output?: string; outputBytes?: number; outputTruncated?: boolean },
+): TeamMemberExecutionEvidence {
+  const output = run.output ?? "";
+  const parsed = REVIEW_ROLES.has(role)
+    ? parseStrictTeamReviewVerdict(output)
+    : { verdict: null, status: "not_required" as const };
+  return {
+    output_digest: `sha256:${createHash("sha256").update(output).digest("hex")}`,
+    output_bytes: run.outputBytes ?? Buffer.byteLength(output),
+    output_truncated: run.outputTruncated ?? false,
+    verdict: parsed.verdict,
+    verdict_status: parsed.status,
+  };
 }
 
 export function providerFromEngine(engine: string): TeamProvider {
