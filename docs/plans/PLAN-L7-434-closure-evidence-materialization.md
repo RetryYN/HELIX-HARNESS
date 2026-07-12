@@ -34,6 +34,7 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-434-closure-evidence-materialization.md, artifact_type: markdown_doc }
   - { artifact_path: src/policy/closure-authority-registry.ts, artifact_type: source_module }
+  - { artifact_path: src/policy/filesystem-durability.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/closure-authority-registry.yaml, artifact_type: yaml_config }
   - { artifact_path: src/state-db/closure-evidence-materialization.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/closure-materialization-lock.ts, artifact_type: source_module }

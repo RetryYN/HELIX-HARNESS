@@ -5,6 +5,11 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  isAtomicRenameCollision,
+  parseWindowsProcessStartIdentity,
+  supportsDirectoryFsync,
+} from "../src/policy/filesystem-durability";
+import {
   acquireClosureMaterializationLock,
   readProcessIdentity,
   releaseClosureMaterializationLock,
@@ -127,6 +132,33 @@ describe("closure materialization atomic lock", () => {
   });
 
   it("Windows adapterはWMIC非依存・non-interactive identity・rename衝突正規化を固定する", () => {
+    expect(supportsDirectoryFsync("win32")).toBe(false);
+    expect(supportsDirectoryFsync("linux")).toBe(true);
+    expect(parseWindowsProcessStartIdentity("638879040000000000\r\n")).toBe(
+      "win32:638879040000000000",
+    );
+    expect(() => parseWindowsProcessStartIdentity("Get-Process failed")).toThrow(/malformed/);
+    expect(
+      isAtomicRenameCollision({
+        platformName: "win32",
+        errorCode: "EPERM",
+        targetExists: true,
+      }),
+    ).toBe(true);
+    expect(
+      isAtomicRenameCollision({
+        platformName: "win32",
+        errorCode: "EPERM",
+        targetExists: false,
+      }),
+    ).toBe(false);
+    expect(
+      isAtomicRenameCollision({
+        platformName: "linux",
+        errorCode: "EEXIST",
+        targetExists: true,
+      }),
+    ).toBe(true);
     const source = readFileSync(
       join(import.meta.dirname, "../src/state-db/closure-materialization-lock.ts"),
       "utf8",
@@ -134,12 +166,6 @@ describe("closure materialization atomic lock", () => {
     expect(source).not.toContain("wmic.exe");
     expect(source).toContain('"powershell.exe"');
     expect(source).toContain('"-NonInteractive"');
-    expect(source).toContain('code === "EPERM" || code === "EACCES"');
-    expect(source).toContain('if (platform() === "win32") return;');
-    const transaction = readFileSync(
-      join(import.meta.dirname, "../src/state-db/closure-evidence-materialization.ts"),
-      "utf8",
-    );
-    expect(transaction).toContain('if (platform() === "win32") return;');
+    expect(source).toContain("parseWindowsProcessStartIdentity(created)");
   });
 });

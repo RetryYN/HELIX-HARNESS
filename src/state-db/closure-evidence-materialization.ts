@@ -26,6 +26,7 @@ import {
   type ClosureAuthorityRegistry,
   classifyClosureAuthorities,
 } from "../policy/closure-authority-registry";
+import { supportsDirectoryFsync } from "../policy/filesystem-durability";
 import { verifyRunnerAttestationChain } from "./closure-auto-approval";
 import {
   type ClosureEvidenceRunner,
@@ -167,7 +168,7 @@ function durable(path: string, bytes: string): void {
   }
 }
 function fsyncDirectory(path: string): void {
-  if (platform() === "win32") return;
+  if (!supportsDirectoryFsync(platform())) return;
   const fd = openSync(path, "r");
   try {
     fsyncSync(fd);

@@ -15,6 +15,11 @@ import {
 } from "node:fs";
 import { hostname, platform } from "node:os";
 import { join } from "node:path";
+import {
+  isAtomicRenameCollision,
+  parseWindowsProcessStartIdentity,
+  supportsDirectoryFsync,
+} from "../policy/filesystem-durability";
 
 const LOCK_SCHEMA = "closure-materialization-lock.v2" as const;
 
@@ -37,7 +42,7 @@ export interface ClosureMaterializationLock {
 function fsyncDirectory(path: string): void {
   // Windows does not expose a portable directory fsync through Node. File fsync + same-volume
   // atomic rename is the supported durability boundary there; POSIX additionally fsyncs parent dirs.
-  if (platform() === "win32") return;
+  if (!supportsDirectoryFsync(platform())) return;
   const fd = openSync(path, "r");
   try {
     fsyncSync(fd);
@@ -69,9 +74,8 @@ export function readProcessIdentity(pid: number): string {
       "powershell.exe",
       ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
       { encoding: "utf8", windowsHide: true },
-    ).trim();
-    if (!created) throw new Error(`process identity malformed pid=${pid}`);
-    return `win32:${created}`;
+    );
+    return parseWindowsProcessStartIdentity(created);
   }
   const started = execFileSync("ps", ["-p", String(pid), "-o", "lstart="], {
     encoding: "utf8",
@@ -167,9 +171,13 @@ export function acquireClosureMaterializationLock(repoRoot: string): ClosureMate
       return { path, token, processStartId };
     } catch (error) {
       const code = (error as NodeJS.ErrnoException).code;
-      const windowsCollision =
-        platform() === "win32" && (code === "EPERM" || code === "EACCES") && existsSync(path);
-      if (code !== "EEXIST" && code !== "ENOTEMPTY" && !windowsCollision) {
+      if (
+        !isAtomicRenameCollision({
+          platformName: platform(),
+          errorCode: code,
+          targetExists: existsSync(path),
+        })
+      ) {
         removeClaim(claim, stateDir);
         throw error;
       }
