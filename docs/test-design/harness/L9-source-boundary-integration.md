@@ -14,8 +14,8 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 | IT-SBOUND-002 | fake contract DTOだけでVS Code adapter起動 | harness.db不要 |
 | IT-SBOUND-003 | lint full read-only routeをinstrument | write set 0、child process 0 |
 | IT-SBOUND-004 | explicitなprobe command | child process 1回、bounded receipt |
-| IT-SBOUND-005 | 実repoのimport graph | forbidden 0、unspecified 0、全live edgeにtotal decision |
-| IT-SBOUND-006 | module directionを1 edgeずつ反転するmutation | gate red |
+| IT-SBOUND-005 | 実repoのimport graph | forbidden 0、unspecified 0、全live edgeにtotal decision。`tests/source-boundary-integration.test.ts` |
+| IT-SBOUND-006 | module directionを1 edgeずつ除去するmutation | 全explicit directionがdefault denyへ戻る。`tests/source-boundary-integration.test.ts` |
 | IT-SBOUND-007 | HEAD/worktree/inputをprobe途中で変異 | snapshot driftでeffect 0 |
 | IT-SBOUND-008 | materializeを各durability境界で停止 | partial targetをacceptedにしない |
 

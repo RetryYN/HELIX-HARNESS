@@ -15,7 +15,7 @@ import {
 } from "./source-boundary-policy";
 import { extractSourceEdges } from "./source-edge-extractor";
 
-const SOURCE_MODULE_CATALOG: ModuleCatalog = {
+export const SOURCE_MODULE_CATALOG: ModuleCatalog = {
   owners: SOURCE_BOUNDARY_MODULES,
   ownerOf: sourceModule,
   resolve: importedSourceModule,
@@ -108,7 +108,7 @@ const TEMPORARY_SOURCE_DIRECTIONS = [
   { from: "vscode", to: "state-db" },
 ] as const;
 
-const SOURCE_MODULE_POLICY: BoundaryPolicy = {
+export const SOURCE_MODULE_POLICY: BoundaryPolicy = {
   defaults: Object.fromEntries(SOURCE_BOUNDARY_MODULES.map((owner) => [owner, "deny"])),
   evaluated_at: new Date().toISOString(),
   exceptions: [
