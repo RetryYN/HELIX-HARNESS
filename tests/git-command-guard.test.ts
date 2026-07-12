@@ -333,10 +333,16 @@ describe("git-command-guard", () => {
         session_id: "s-cas",
         tool_input: { command: "git clean -f" },
       });
+      const barrierDir = join(cwd, ".helix", "tmp", "guard-cas-barrier");
       const startWorker = () => {
         const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "pipe"],
+          env: {
+            ...process.env,
+            NODE_ENV: "test",
+            HELIX_GUARD_TEST_BARRIER_DIR: barrierDir,
+          },
         });
         let stderr = "";
         child.stderr.on("data", (chunk) => {

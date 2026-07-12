@@ -1,5 +1,13 @@
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, rmSync, statSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
 import { migrate } from "../state-db/migration";
@@ -78,6 +86,16 @@ export function runGitCommandGuardHook(opts: {
     env: (opts.env ?? process.env).HELIX_ALLOW_DESTRUCTIVE_GIT,
     markerReason,
   });
+  const barrierDir = (opts.env ?? process.env).HELIX_GUARD_TEST_BARRIER_DIR;
+  if ((opts.env ?? process.env).NODE_ENV === "test" && barrierDir) {
+    mkdirSync(barrierDir, { recursive: true });
+    writeFileSync(join(barrierDir, String(process.pid)), "ready");
+    const deadline = Date.now() + 5_000;
+    while (readdirSync(barrierDir).length < 2) {
+      if (Date.now() >= deadline) throw new Error("guard test barrier timed out");
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
+    }
+  }
   if (override.source === "env") {
     try {
       const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
