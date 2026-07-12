@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import {
   closeSync,
   existsSync,
@@ -183,7 +184,7 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
           writeFileSync(
             fd,
             `${JSON.stringify({
-              claimId: crypto.randomUUID(),
+              claimId: randomUUID(),
               pid: process.pid,
               bootIdentity: bootIdentity(),
               processStartToken: processStartToken(process.pid),
@@ -273,7 +274,8 @@ export function recoverStaleLoopClaim(
     const claim = JSON.parse(claimText) as Partial<ClaimMetadata>;
     const pointerText = readIfExists(value.manifest);
     let manifestDigest: string | null = null;
-    if (pointerText !== null) manifestDigest = sha256Digest(resolvePointerManifest(value, planId, pointerText));
+    if (pointerText !== null)
+      manifestDigest = sha256Digest(resolvePointerManifest(value, planId, pointerText));
     if (
       typeof claim.claimId !== "string" ||
       claim.pointerDigest !== sha256Digest(pointerText ?? "") ||
