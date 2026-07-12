@@ -249,6 +249,7 @@ import {
   extractShellCommand,
   resolveDestructiveGitOverride,
 } from "./runtime/git-command-guard";
+import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
 import {
   buildHarnessTaxonomyCurationReport,
   type HarnessTaxonomySource,
@@ -3584,46 +3585,20 @@ hook
   .command("git-command-guard")
   .description("block destructive git history/worktree operations before shell execution")
   .action(() => {
-    const input = readStrictHookInput();
-    if (input === null) {
+    const rawInput = process.stdin.isTTY ? "" : readStdin();
+    if (!rawInput.trim()) {
       process.stderr.write(
         "[helix-git-command-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
       );
       process.exitCode = 2;
       return;
     }
-    const override = resolveDestructiveGitOverride({
-      env: process.env.HELIX_ALLOW_DESTRUCTIVE_GIT,
-      markerReason: readOneShotMarker(
-        join(process.cwd(), ".helix", "state", "destructive-git-override"),
-      ),
-    });
-    const result = evaluateGitCommandGuard({
-      command: extractShellCommand(input.tool_input),
-      bypass: override.bypass,
-    });
-    if (override.source === "marker") {
-      const auditPath = join(process.cwd(), ".helix", "logs", "destructive-git-overrides.jsonl");
-      try {
-        mkdirSync(dirname(auditPath), { recursive: true });
-        appendFileSync(
-          auditPath,
-          `${JSON.stringify({
-            ts: new Date().toISOString(),
-            command: extractShellCommand(input.tool_input),
-            reason: override.reason,
-            sessionId: (input as { session_id?: string }).session_id ?? "helix-cli",
-          })}\n`,
-        );
-      } catch {
-        // Override audit is best-effort; the explicit marker reason is still required.
-      }
+    const outcome = runGitCommandGuardHook({ repoRoot: process.cwd(), rawInput, env: process.env });
+    if (outcome.message) process.stderr.write(`${outcome.message}\n`);
+    if (outcome.exitCode === 0) {
+      process.stdout.write(`git-command-guard: pass (${outcome.reason ?? "safe-git"})\n`);
     }
-    if (result.message) process.stderr.write(`${result.message}\n`);
-    if (result.decision === "pass") {
-      process.stdout.write(`git-command-guard: pass (${result.reason})\n`);
-    }
-    process.exitCode = result.decision === "block" ? 2 : 0;
+    process.exitCode = outcome.exitCode;
   });
 
 hook

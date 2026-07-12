@@ -79,6 +79,31 @@ describe("git-command-guard", () => {
     }
   });
 
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-004] classifies destructive cleanup and ref deletion", () => {
+    for (const command of [
+      "git clean -f",
+      "git clean -fdx",
+      "git branch -D feature",
+      "git branch --delete --force feature",
+      "git stash drop stash@{0}",
+      "git stash clear",
+      "git -C repo clean -df",
+      "git clean -f; echo ok",
+      "git stash clear&&echo ok",
+      "git branch -df feature",
+      "git branch -d -f feature",
+      "git stash -q drop stash@{0}",
+    ]) expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+    for (const command of ["git clean -nfd", "git clean --dry-run", "git branch -d merged", "git stash list", "git stash show"])
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] fails closed on incomplete shell grammar", () => {
+    for (const command of ["git clean '-f", 'git stash "clear']) {
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+    }
+  });
+
   it("U-GITGUARD-002: extracts Claude and Codex shell command payload shapes", () => {
     expect(extractShellCommand({ command: "git reset --hard" })).toBe("git reset --hard");
     expect(extractShellCommand({ cmd: "git status" })).toBe("git status");
@@ -123,7 +148,9 @@ describe("git-command-guard", () => {
         join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl"),
         "utf8",
       );
-      expect(audit).toContain("manual recovery after log/reflog review");
+      expect(audit).toContain('"schemaVersion":"guard-override-audit.v1"');
+      expect(audit).toContain('"reasonDigest":"sha256:');
+      expect(audit).not.toContain("manual recovery after log/reflog review");
 
       const second = runHook(input, cwd);
       expect(second.status).toBe(2);
@@ -143,6 +170,26 @@ describe("git-command-guard", () => {
       expect(existsSync(markerPath)).toBe(true);
     } finally {
       rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-006/007] dev hook and CLI fail closed when durable audit cannot commit", () => {
+    for (const adapter of ["dev-hook", "cli"] as const) {
+      const cwd = mkdtempSync(join(tmpdir(), `helix-gitguard-audit-failure-${adapter}-`));
+      try {
+        const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+        const auditPath = join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl");
+        mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+        mkdirSync(auditPath, { recursive: true });
+        writeFileSync(markerPath, "reviewed recovery");
+        const input = { session_id: "s-failure", tool_input: { command: "git clean -f" } };
+        const result = adapter === "dev-hook" ? runHook(input, cwd) : runCliGuard(input, cwd);
+        expect(result.status, adapter).toBe(2);
+        expect(result.stderr, adapter).toContain("blocked_audit_failure");
+        expect(existsSync(markerPath), adapter).toBe(true);
+      } finally {
+        rmSync(cwd, { recursive: true, force: true });
+      }
     }
   });
 

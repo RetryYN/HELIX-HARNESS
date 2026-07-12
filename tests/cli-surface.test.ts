@@ -142,7 +142,7 @@ function writeFakeGitLsRemote(
         `  echo ${packHead} refs/heads/main`,
         "  exit /b 0",
         ")",
-        "echo e95850d08cfcf0f3ce811659178c0db7522e24d7 refs/heads/main",
+        "echo 6624ae45874e1fabdca26fada7327c5544bb1264 refs/heads/main",
         "exit /b 0",
         "",
       ].join("\r\n"),
@@ -167,7 +167,7 @@ function writeFakeGitLsRemote(
       `    echo '${packHead} refs/heads/main'`,
       "    ;;",
       "  *)",
-      "    echo 'e95850d08cfcf0f3ce811659178c0db7522e24d7 refs/heads/main'",
+      "    echo '6624ae45874e1fabdca26fada7327c5544bb1264 refs/heads/main'",
       "    ;;",
       "esac",
       "",
@@ -1552,7 +1552,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload).toMatchObject({
         ok: true,
         externalObserved: {
-          development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
+          development_repo: "6624ae45874e1fabdca26fada7327c5544bb1264",
           distribution_repo: "unpublished",
           distribution_latest_tag: "unpublished",
         },

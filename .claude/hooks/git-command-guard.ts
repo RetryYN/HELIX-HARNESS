@@ -15,6 +15,7 @@ import {
   extractShellCommand,
   resolveDestructiveGitOverride,
 } from "../../src/runtime/git-command-guard";
+import { runGitCommandGuardHook } from "../../src/runtime/git-command-guard-hook";
 import {
   evaluateWorkGuardTargets,
   extractShellWriteTargets,
@@ -94,20 +95,11 @@ try {
 
 try {
   const command = extractShellCommand(input.tool_input);
-  const override = resolveDestructiveGitOverride({
-    env: process.env.HELIX_ALLOW_DESTRUCTIVE_GIT,
-    markerReason: readOverrideMarker(),
+  const gitOutcome = runGitCommandGuardHook({
+    repoRoot,
+    rawInput: JSON.stringify(input),
+    env: process.env,
   });
-  const wouldBlock = evaluateGitCommandGuard({ command, bypass: false });
-  const result = evaluateGitCommandGuard({ command, bypass: override.bypass });
-  if (override.source === "marker" && wouldBlock.decision === "block") {
-    auditOverride({
-      command,
-      reason: override.reason,
-      sessionId: input.session_id ?? "unknown",
-    });
-    consumeOverrideMarker();
-  }
   const targets = extractShellWriteTargets(command).map((path) => normalizeRepoRelative(path, repoRoot));
   const foreignOverride = resolveForeignEditOverride({
     env: process.env.HELIX_ALLOW_FOREIGN_EDIT,
@@ -140,8 +132,8 @@ try {
     process.stderr.write(`${foreignResult.blocked?.message ?? "[helix-work-guard] BLOCK"}\n`);
     process.exit(2);
   }
-  if (result.decision === "block") {
-    process.stderr.write(`${result.message}\n`);
+  if (gitOutcome.exitCode === 2) {
+    process.stderr.write(`${gitOutcome.message ?? "[helix-git-command-guard] BLOCK"}\n`);
     process.exit(2);
   }
   process.exit(0);
