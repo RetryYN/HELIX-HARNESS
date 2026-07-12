@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
-import { parse } from "yaml";
 import { describe, expect, it } from "vitest";
+import { parse } from "yaml";
 
 const read = (path: string) => readFileSync(path, "utf8");
 const l5 = read("docs/design/harness/L5-detailed-design/source-boundary-architecture.md");
