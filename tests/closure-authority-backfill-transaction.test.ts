@@ -18,6 +18,8 @@ import {
   type ApplyClosureAuthorityBackfillInput,
   applyClosureAuthorityBackfill,
   type ClosureAuthorityBackfillApplyBundle,
+  closureAuthorityBackfillWindowDigest,
+  normalizeClosureAuthorityBackfillWindow,
   proposalDigest,
   proposalSetDigest,
   reviewVerdictDigest,
@@ -234,6 +236,46 @@ function apply(
 }
 
 describe("closure authority backfill transaction", () => {
+  it("U-CABF-WINDOW: full bundleを維持した正規windowだけを受理する", () => {
+    const { bundle } = fixture("PLAN-L7-919-window-contract");
+    expect(normalizeClosureAuthorityBackfillWindow(bundle)).toMatchObject({
+      offset: 0,
+      plan_ids: bundle.candidate_plan_ids,
+      expected_registry_digest: bundle.registry_digest,
+    });
+    const oversized = {
+      ...bundle,
+      candidate_plan_ids: Array.from(
+        { length: 101 },
+        (_, index) => `PLAN-L7-${1000 + index}-window`,
+      ),
+    };
+    expect(() => normalizeClosureAuthorityBackfillWindow(oversized)).toThrow(/window is required/);
+    const planIds = [...bundle.candidate_plan_ids];
+    const valid = {
+      offset: 0,
+      limit: 1,
+      plan_ids: planIds,
+      expected_registry_digest: bundle.registry_digest,
+      previous_cycle_digest: null,
+      window_digest: closureAuthorityBackfillWindowDigest({
+        offset: 0,
+        limit: 1,
+        plan_ids: planIds,
+        bundle_digest: bundle.bundle_digest,
+      }),
+    };
+    expect(normalizeClosureAuthorityBackfillWindow(bundle, valid)).toEqual(valid);
+    expect(() =>
+      normalizeClosureAuthorityBackfillWindow(bundle, {
+        ...valid,
+        window_digest: `sha256:${"0".repeat(64)}`,
+      }),
+    ).toThrow(/window digest/);
+    expect(() => normalizeClosureAuthorityBackfillWindow(bundle, { ...valid, offset: 1 })).toThrow(
+      /order\/cardinality/,
+    );
+  });
   it("U-CABF-006: [PLAN-L7-435-closure-authority-backfill/U-CABF-006] strict independent reviewをexact digest/cardinalityとTTLへ束縛する", () => {
     const value = fixture();
     const { bundle } = value;

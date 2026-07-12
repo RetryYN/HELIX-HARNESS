@@ -71,6 +71,7 @@ export interface ClosureAuthorityBackfillCandidate {
 
 export interface ClosureAuthorityBackfillDecision {
   plan_id: string;
+  source_path: string;
   classification: BackfillClassification;
   reason: string;
   required_action: string;
@@ -245,6 +246,7 @@ const proposalSchema = z
 const decisionSchema = z
   .object({
     plan_id: z.string().regex(PLAN_ID),
+    source_path: planPathSchema,
     classification: z.enum([
       "eligible_proposal",
       "needs_design",
@@ -322,6 +324,7 @@ function classify(
     required_action: string,
   ): ClosureAuthorityBackfillDecision => ({
     plan_id: candidate.plan_id,
+    source_path: candidate.plan_path,
     classification,
     reason,
     required_action,
@@ -461,6 +464,7 @@ function classify(
   ];
   return {
     plan_id: candidate.plan_id,
+    source_path: candidate.plan_path,
     classification: "eligible_proposal",
     reason: "exact V-pair and typed reversible authority",
     required_action: "independent reviewへ送る",

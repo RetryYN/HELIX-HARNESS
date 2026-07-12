@@ -514,6 +514,86 @@ describe("closure authority production route", () => {
           now: "2026-07-12T00:50:00.000Z",
         }),
       ).toThrow();
+      const registryPath = join(
+        fixture.root,
+        "docs/governance/closure-authority-registry.yaml",
+      );
+      const nextRegistry = `${JSON.stringify({
+        schema_version: "closure-authority-registry.v1",
+        authorities: [],
+      })}\n`;
+      writeFileSync(registryPath, nextRegistry);
+      const nextDigest = digest(nextRegistry);
+      expect(
+        verifyClosureAuthorityBackfillProductionBundle({
+          repoRoot: fixture.root,
+          db,
+          bundle: run.bundle,
+          gateAllowlistPath: CLOSURE_GATE_ALLOWLIST_PATH,
+          now: "2026-07-12T00:50:00.000Z",
+          expectedRegistryDigest: nextDigest,
+          allowMutableRegistry: true,
+        }),
+      ).toMatchObject({ verified: true });
+
+      const unrelated = join(fixture.root, "untracked-window-drift.txt");
+      writeFileSync(unrelated, "drift");
+      expect(() =>
+        verifyClosureAuthorityBackfillProductionBundle({
+          repoRoot: fixture.root,
+          db,
+          bundle: run.bundle,
+          gateAllowlistPath: CLOSURE_GATE_ALLOWLIST_PATH,
+          now: "2026-07-12T00:50:00.000Z",
+          expectedRegistryDigest: nextDigest,
+          allowMutableRegistry: true,
+        }),
+      ).toThrow(/non-registry drift/);
+      rmSync(unrelated);
+
+      const tamperedRegistry = `${JSON.stringify({
+        schema_version: "closure-authority-registry.v1",
+        authorities: [
+          {
+            plan_id: "PLAN-L7-999-unapproved",
+            source_path: "docs/plans/PLAN-L7-999-unapproved.md",
+            source_digest: `sha256:${"0".repeat(64)}`,
+            capabilities: ["local_plan_status"],
+            bindings: [],
+            gates: [],
+            migration_reason: null,
+          },
+        ],
+      })}\n`;
+      writeFileSync(registryPath, tamperedRegistry);
+      expect(() =>
+        verifyClosureAuthorityBackfillProductionBundle({
+          repoRoot: fixture.root,
+          db,
+          bundle: run.bundle,
+          gateAllowlistPath: CLOSURE_GATE_ALLOWLIST_PATH,
+          now: "2026-07-12T00:50:00.000Z",
+          expectedRegistryDigest: digest(tamperedRegistry),
+          allowMutableRegistry: true,
+        }),
+      ).toThrow(/differs from full proposal/);
+      writeFileSync(registryPath, nextRegistry);
+
+      const sourcePath = run.bundle.decisions[0]?.source_path;
+      expect(sourcePath).toBeTruthy();
+      if (!sourcePath) throw new Error("fixture source path missing");
+      writeFileSync(join(fixture.root, sourcePath), "tampered source");
+      expect(() =>
+        verifyClosureAuthorityBackfillProductionBundle({
+          repoRoot: fixture.root,
+          db,
+          bundle: run.bundle,
+          gateAllowlistPath: CLOSURE_GATE_ALLOWLIST_PATH,
+          now: "2026-07-12T00:50:00.000Z",
+          expectedRegistryDigest: nextDigest,
+          allowMutableRegistry: true,
+        }),
+      ).toThrow(/non-registry drift|source|blob/);
     } finally {
       db.close();
     }
