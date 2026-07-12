@@ -70,7 +70,7 @@ describe("PLAN-L7-449 production durable loop store", () => {
     });
     expect(store.read(PLAN)).toEqual(state);
     rmSync(loopEpochPaths(repo, PLAN).manifest);
-    expect(() => store.read(PLAN)).toThrow("epoch missing after completed legacy import");
+    expect(() => store.read(PLAN)).toThrow("loop epoch is not readable");
   });
 
   it("IT-DUR-002: refuses corrupt legacy state instead of mapping it to missing", () => {
@@ -118,6 +118,14 @@ describe("PLAN-L7-449 production durable loop store", () => {
     expect(() => durableFileLoopStore({ root: repo }).read(PLAN)).toThrow(
       "loop epoch is not readable",
     );
+    let replayCalls = 0;
+    await expect(
+      durableFileLoopStore({ root: repo }).runSideEffect(state, "worker", async () => {
+        replayCalls += 1;
+        return null;
+      }),
+    ).rejects.toThrow("blocked by epoch state");
+    expect(replayCalls).toBe(0);
   });
 
   it("IT-DUR-005: records completed side effects before allowing the next transition", async () => {
@@ -155,5 +163,26 @@ describe("PLAN-L7-449 production durable loop store", () => {
     ).resolves.toBe("fail");
     expect(verifierCalls).toBe(1);
     expect(workerCalls).toBe(1);
+  });
+
+  it("IT-DUR-005: rejects completed-stage reuse for a different state snapshot", async () => {
+    const repo = root();
+    await durableFileLoopStore({ root: repo }).runSideEffect(state, "worker", async () => null);
+    await expect(
+      durableFileLoopStore({ root: repo }).runSideEffect(
+        { ...state, maxIterations: 99 },
+        "worker",
+        async () => null,
+      ),
+    ).rejects.toThrow("state snapshot mismatch");
+  });
+
+  it("IT-DUR-005: refuses final state commit before verifier completion", async () => {
+    const repo = root();
+    const store = durableFileLoopStore({ root: repo });
+    await store.runSideEffect(state, "worker", async () => null);
+    expect(() => store.write({ ...state, iteration: 1, lastVerdict: "pass" })).toThrow(
+      "invalid loop stage finalization",
+    );
   });
 });

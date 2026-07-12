@@ -26,3 +26,7 @@ initial/second epoch pointer replacement、restartを検査する。required `ha
 success以外なら明示failする。このworkflow構造は`tests/harness-check-workflow.test.ts`でsilent removal/fail-openを拒否する。
 trusted authority SSoT adapter未実装中はproduction recovery route 0件を正とし、plan-only packetをacceptするadapter追加を
 greenとみなさない。
+product oracleは`tests/durable-loop-store.test.ts`と`tests/orchestration/loop-bridge.test.ts`で、legacy source retirement、
+epoch0 import、done marker、rollback拒否、dispatch前intent、worker/verifier completed resume、ambiguous callback 0、
+state snapshot drift、verifier迂回finalizationを検査する。receipt oracleはlatest iteration indexだけでなくworker/verifier、
+verdict、blocked reasonをstate transitionと照合し、中間orchestration stageをblocked・retry falseに固定する。
