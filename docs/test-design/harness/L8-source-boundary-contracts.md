@@ -10,7 +10,7 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-SBOUND-001 | state-db→vscode edge | direct/type-onlyともdeny | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-001 | state-db→vscode edge | direct/type-onlyともdeny、evidence projectionはpresentation import 0 | `tests/source-boundary-architecture.test.ts` |
 | U-SBOUND-002 | vscode→state-db edge | implementation edgeをdeny | `tests/source-boundary-design.test.ts` |
 | U-SBOUND-003 | policy coverage | missing owner default/EMPTY/new from/new toをunspecifiedエラー | `tests/source-boundary-policy.test.ts` |
 | U-SBOUND-004 | lint analyzer | write/child-process importをviolation | `tests/source-boundary-design.test.ts` |

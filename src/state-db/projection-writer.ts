@@ -60,7 +60,6 @@ import {
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
 import { nowIso } from "../shared/time-utils";
-import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -84,6 +83,7 @@ import {
 import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
+import { buildVisualizationEvidence } from "./visualization-evidence";
 import { buildVisualizationSnapshot } from "./visualization-read-model";
 import { buildVisualizationViewModel } from "./visualization-view-model";
 import { buildVmodelFitReport } from "./vmodel-fit";
@@ -316,10 +316,6 @@ function uniqueStrings(values: readonly string[]): string[] {
 
 function csv(values: readonly string[]): string {
   return uniqueStrings(values).join(",");
-}
-
-function countTreeNodes(nodes: readonly TreeViewNode[]): number {
-  return nodes.reduce((sum, node) => sum + 1 + countTreeNodes(node.children), 0);
 }
 
 function relationArtifactId(nodeId: string): string {
@@ -4396,7 +4392,7 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
     repoRoot,
   });
   const viewModel = buildVisualizationViewModel(visualizationSnapshot);
-  const treeView = buildVisualizationTreeView(viewModel);
+  const treeView = buildVisualizationEvidence(viewModel);
   const snapshotId = "project-current-location:latest";
   const snapshotHash = stableJsonHash(snapshot);
   const scrumOperation = snapshot.scrum_operation;
@@ -4832,10 +4828,10 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
       tree_view_id: "visualization-tree-view:latest",
       schema_version: treeView.schema_version,
       source_clock: treeView.source_clock ?? "",
-      root_ids: csv(treeView.roots.map((root) => root.id)),
-      root_count: treeView.roots.length,
-      node_count: countTreeNodes(treeView.roots),
-      warnings_count: treeView.warnings.length,
+      root_ids: csv(treeView.root_ids),
+      root_count: treeView.root_count,
+      node_count: treeView.node_count,
+      warnings_count: treeView.warnings_count,
       snapshot_hash: stableJsonHash(treeView),
       indexed_at: indexedAt,
     },

@@ -18,7 +18,7 @@ backprop_decision_reason: "confirmed前のPLAN-L6-79 contractを実装候補へ�
 parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md
 pair_artifact: docs/test-design/harness/L8-source-boundary-contracts.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-001, test_path: tests/source-boundary-design.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-001, test_path: tests/source-boundary-architecture.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-002, test_path: tests/source-boundary-design.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-005, test_path: tests/source-boundary-design.test.ts }
 generates:
@@ -26,6 +26,7 @@ generates:
   - { artifact_path: src/schema/visualization-contract.ts, artifact_type: source_module }
   - { artifact_path: src/vmodel/visualization-tree-projector.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/visualization-evidence.ts, artifact_type: source_module }
+  - { artifact_path: tests/source-boundary-architecture.test.ts, artifact_type: test_code }
   - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
