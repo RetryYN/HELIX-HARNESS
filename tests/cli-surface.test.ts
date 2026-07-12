@@ -73,6 +73,7 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
       [
         "@echo off",
         `echo noisy-${name}`,
+        ...(name === "claude" ? ["echo VERDICT: PASS"] : []),
         `echo raw=%${rawEnv}% > "${evidencePath}"`,
         `echo reason=%${reasonEnv}% >> "${evidencePath}"`,
         `echo effort=%CLAUDE_CODE_EFFORT_LEVEL% >> "${evidencePath}"`,
@@ -89,6 +90,7 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
     [
       "#!/bin/sh",
       `echo noisy-${name}`,
+      ...(name === "claude" ? ["echo 'VERDICT: PASS'"] : []),
       `printf "raw=%s\\nreason=%s\\neffort=%s\\nargs=%s\\n" "$${rawEnv}" "$${reasonEnv}" "$CLAUDE_CODE_EFFORT_LEVEL" "$*" > "${evidencePath}"`,
       "exit 0",
       "",

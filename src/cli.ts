@@ -11459,14 +11459,24 @@ team
                 command,
                 args,
               });
-              const ioMode = opts.json ? "ignore" : "inherit";
+              const captureLimitBytes = 1024 * 1024;
+              let captured = Buffer.alloc(0);
+              let observedBytes = 0;
+              let outputTruncated = false;
+              const capture = (chunk: Buffer, destination: NodeJS.WriteStream) => {
+                observedBytes += chunk.length;
+                if (!opts.json) destination.write(chunk);
+                const remaining = captureLimitBytes - captured.length;
+                if (remaining > 0) captured = Buffer.concat([captured, chunk.subarray(0, remaining)]);
+                if (chunk.length > remaining) outputTruncated = true;
+              };
               const child = spawn(invocation.command, invocation.args, {
                 cwd: repoRoot,
                 env: adapterExecutionEnv(provider, env),
                 // Provider prompts are passed through stdin; argv carries only fixed
                 // command flags so shell metacharacters and tool markup stay inert.
                 // codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。
-                stdio: stdin === undefined ? ioMode : ["pipe", ioMode, ioMode],
+                stdio: stdin === undefined ? ["ignore", "pipe", "pipe"] : ["pipe", "pipe", "pipe"],
                 shell: invocation.shell ?? false,
                 windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
               });
@@ -11474,6 +11484,8 @@ team
                 child.stdin?.write(stdin);
                 child.stdin?.end();
               }
+              child.stdout?.on("data", (chunk: Buffer) => capture(chunk, process.stdout));
+              child.stderr?.on("data", (chunk: Buffer) => capture(chunk, process.stderr));
               let finalized = false;
               const finish = (exitCode: number | null) => {
                 if (finalized) return;
@@ -11499,7 +11511,12 @@ team
                   sessionDeps,
                   "Stop",
                 );
-                resolve({ exitCode });
+                resolve({
+                  exitCode,
+                  output: captured.toString("utf8"),
+                  outputBytes: observedBytes,
+                  outputTruncated,
+                });
               };
               child.on("error", () => finish(null));
               child.on("close", (code) => finish(code));

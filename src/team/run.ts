@@ -454,6 +454,7 @@ async function executeMember(
   member: TeamMemberLaunch,
   deps: TeamRunnerDeps,
 ): Promise<TeamMemberExecution> {
+  const emptyEvidence = executionEvidence(member.role, {});
   if (!member.adapter || !member.executable) {
     return {
       index: member.index,
@@ -465,6 +466,7 @@ async function executeMember(
       slot_id: null,
       exit_code: null,
       status: "failed",
+      evidence: emptyEvidence,
     };
   }
   let slot: Slot | null = null;
@@ -480,7 +482,9 @@ async function executeMember(
       env: member.adapter.env,
       stdin: member.adapter.stdin,
     });
-    const status: SlotStatus = run.exitCode === 0 ? "completed" : "failed";
+    const evidence = executionEvidence(member.role, run);
+    const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";
+    const status: SlotStatus = run.exitCode === 0 && reviewAccepted ? "completed" : "failed";
     releaseSlot({ slotId: slot.slot_id, status, exitCode: run.exitCode }, deps.slots);
     return {
       index: member.index,
@@ -492,6 +496,7 @@ async function executeMember(
       slot_id: slot.slot_id,
       exit_code: run.exitCode,
       status,
+      evidence,
     };
   } catch {
     if (slot) releaseSlot({ slotId: slot.slot_id, status: "failed", exitCode: null }, deps.slots);
@@ -505,6 +510,7 @@ async function executeMember(
       slot_id: slot?.slot_id ?? null,
       exit_code: null,
       status: "failed",
+      evidence: emptyEvidence,
     };
   }
 }
@@ -554,6 +560,7 @@ export async function executeTeamRunPlan(
           slot_id: null,
           exit_code: null,
           status: "failed",
+          evidence: executionEvidence(member.role, {}),
           skipped_reason: dependencyFailedMessage(member.serialize_after),
         });
         failedDependencies.add(member.role);
