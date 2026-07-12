@@ -20,6 +20,9 @@ plan: docs/plans/PLAN-L6-74-closure-authority-production-route.md
 
 `buildCurrentClosureAuthorityBackfillRun(input) => ClosureAuthorityBackfillRun`を正規contractとする。
 
+> **DbC**: preはcleanなreviewed HEADとread-only persistent DB、postは全candidateのexactly-once bundle、
+> invariantはsource bytes・DB・closure status・approvalを変更しないことである。oracleは`U-CABF-011..018`。
+
 - runはcurrent review scopeの全候補をexactly-once、同順序で保持し、`total_candidates`、`scope_digest`、
   `candidate_plan_ids`、全件`bundle`、`windows[]`、`run_digest`を返す。
 - `bundle`は全候補のdecision保存則を担う。`windows[]`は実行資源のpartitionであり、bundleを部分化しない。
