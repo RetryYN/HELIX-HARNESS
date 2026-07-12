@@ -1,18 +1,18 @@
 # HELIX 目標証跡監査
 
-更新日: 2026-07-10
+更新日: 2026-07-13
 
 この監査は、現在のユーザー目標をリポジトリ上の証跡へ対応付ける。
 設計書の代替ではなく、要求ごとに「意味がどの層へ降下済みか」「どこで実装済みか」
 「どこを意図的に保留しているか」「全件完了がどこで block されているか」を示す索引である。
 
-外部ソース HEAD 確認日: 2026-07-10
+外部ソース HEAD 確認日: 2026-07-13
 
 - `RetryYN/HELIX-HARNESS` default branch `main`: `6624ae45874e1fabdca26fada7327c5544bb1264`
 - `RetryYN/HELIX-HARNESS-OS` distribution branch/tag: `unpublished`（現行配布 repo は到達するが main/tag は未公開）
 - `RetryYN/ai-dev-kit-vscode` default branch `main`: `1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23`
 
-外部 source ledger (checked 2026-07-10):
+外部 source ledger (checked 2026-07-13):
 
 | source key | 確認 command | ref | observed | latestOfficialStatus（最新公式 status） | sourceStatusDelta（source status delta） | adoptionDecision（採用判断） | workflowRouteImpact（workflow route impact） |
 |---|---|---|---|---|---|---|---|
@@ -31,7 +31,7 @@
 - 現行配布 latest tag: `unpublished`
 - version-up activation required before publishing/adopting distribution tag（配布 tag の publish/adoption 前に version-up activation が必要）
 
-検証 / 進捗 source basis 再確認日: 2026-07-10
+検証 / 進捗 source basis 再確認日: 2026-07-13
 
 - NIST SSDF SP 800-218: 検証証跡と provenance は chat-only ではなく、後から検査可能でなければならない。
 - ISO/IEC/IEEE 29148: 要求証跡は実装ファイル数ではなく、要求情報と検証根拠で数える。
