@@ -65,6 +65,7 @@ function runRepoScriptHelix(args: string[]) {
 function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
   const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", name.toUpperCase()].join("_");
   const reasonEnv = [helixEnvPrefix, "RAW", name.toUpperCase(), "REASON"].join("_");
+  const evidencePath = join(binDir, `${name}-env.txt`);
   if (process.platform === "win32") {
     const path = join(binDir, `${name}.cmd`);
     writeFileSync(
@@ -72,10 +73,10 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
       [
         "@echo off",
         `echo noisy-${name}`,
-        `echo raw=%${rawEnv}% > ${name}-env.txt`,
-        `echo reason=%${reasonEnv}% >> ${name}-env.txt`,
-        `echo effort=%CLAUDE_CODE_EFFORT_LEVEL% >> ${name}-env.txt`,
-        `echo args=%* >> ${name}-env.txt`,
+        `echo raw=%${rawEnv}% > "${evidencePath}"`,
+        `echo reason=%${reasonEnv}% >> "${evidencePath}"`,
+        `echo effort=%CLAUDE_CODE_EFFORT_LEVEL% >> "${evidencePath}"`,
+        `echo args=%* >> "${evidencePath}"`,
         "exit /b 0",
         "",
       ].join("\r\n"),
@@ -88,7 +89,7 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
     [
       "#!/bin/sh",
       `echo noisy-${name}`,
-      `printf "raw=%s\\nreason=%s\\neffort=%s\\nargs=%s\\n" "$${rawEnv}" "$${reasonEnv}" "$CLAUDE_CODE_EFFORT_LEVEL" "$*" > ${name}-env.txt`,
+      `printf "raw=%s\\nreason=%s\\neffort=%s\\nargs=%s\\n" "$${rawEnv}" "$${reasonEnv}" "$CLAUDE_CODE_EFFORT_LEVEL" "$*" > "${evidencePath}"`,
       "exit 0",
       "",
     ].join("\n"),
@@ -7597,12 +7598,12 @@ describe("L7 CLI surface closure", () => {
       expect(slots.every((slot: { released_at: string | null }) => slot.released_at !== null)).toBe(
         true,
       );
-      expect(readFileSync(join(root, "codex-env.txt"), "utf8")).not.toContain("raw=1");
-      expect(readFileSync(join(root, "codex-env.txt"), "utf8")).not.toContain(
+      expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).not.toContain("raw=1");
+      expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).not.toContain(
         "reason=helix-runtime-adapter-wrapper",
       );
-      expect(readFileSync(join(root, "claude-env.txt"), "utf8")).not.toContain("raw=1");
-      expect(readFileSync(join(root, "claude-env.txt"), "utf8")).toContain("effort=medium");
+      expect(readFileSync(join(binDir, "claude-env.txt"), "utf8")).not.toContain("raw=1");
+      expect(readFileSync(join(binDir, "claude-env.txt"), "utf8")).toContain("effort=medium");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -7644,7 +7645,7 @@ describe("L7 CLI surface closure", () => {
         signal: null,
       });
       // provider が実際に起動した証跡 (env dump)。「実行せず JSON だけ」だと生成されない。
-      expect(readFileSync(join(root, "codex-env.txt"), "utf8")).toContain("args=");
+      expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).toContain("args=");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

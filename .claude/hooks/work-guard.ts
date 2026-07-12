@@ -130,7 +130,18 @@ try {
   const uncommitted = gitUncommittedFiles();
   const touched = sessionTouchedFiles(input.session_id ?? "unknown");
   let blocked: WorkGuardResult | null = null;
+  let wouldBlock = false;
   for (const target of targets) {
+    if (
+      evaluateWorkGuard({
+        targetPath: target,
+        uncommittedFiles: uncommitted,
+        sessionTouchedFiles: touched,
+        bypass: false,
+      }).decision === "block"
+    ) {
+      wouldBlock = true;
+    }
     const result = evaluateWorkGuard({
       targetPath: target,
       uncommittedFiles: uncommitted,
@@ -142,7 +153,7 @@ try {
       break;
     }
   }
-  if (override.source === "marker" && targets.length > 0) {
+  if (override.source === "marker" && wouldBlock) {
     // agent-accessible override は silent にせず durable に audit する (証跡を残す)。
     auditOverride({
       target: targets.join(", "),

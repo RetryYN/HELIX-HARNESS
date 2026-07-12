@@ -98,15 +98,16 @@ G7 は L7 実装完了の唯一の exit gate。以下 3 条件をすべて満た
 
 ## 4. 横断検出ゲート (§7.8.5)
 
-`helix doctor` / `helix plan lint` に束ねられる横断検出器。いずれも fail-close で該当 mode への接続を強制する。
+`helix doctor` / `helix plan lint` に束ねる横断検出器の現状と予定。`relation-graph`以外の下表の
+期待検出器は未実装であり、実装・doctor配線が完了するまでfail-close稼働中として扱わない。
 
 | 検出器 | fail 条件 | 接続先 mode |
 |--------|----------|------------|
-| `drift-check` (schema/contract drift) | 設計↔実装のコントラクト不一致 | **Reverse** (normalization) |
-| `connection-deficiency` (§7.8.7 DEP-2) | コンポーネント間接続の欠損 | **Reverse** または **Refactor** (影響範囲による) |
+| `drift-check` (未実装carry) | 設計↔実装のコントラクト不一致 | **Reverse** (normalization) |
+| `connection-deficiency` (未実装carry、§7.8.7 DEP-2) | コンポーネント間接続の欠損 | **Reverse** または **Refactor** (影響範囲による) |
 | `relation-graph` (DEP-1) | orphan / cycle / レイヤリング違反 | **Refactor** または **Reverse** |
-| `test-perspective-gate` (TST-2) | テスト観点の抜け / レベル間重複 | 当該 L の設計層へ差し戻し (G1-G6 再通過) |
-| `doc-drift` | 設計文書と実装の乖離 (drift) | **Reverse** (R0 起点) |
+| `test-perspective-gate` (未実装carry、TST-2) | テスト観点の抜け / レベル間重複 | 当該 L の設計層へ差し戻し (G1-G6 再通過) |
+| `doc-drift` (未実装carry) | 設計文書と実装の乖離 (drift) | **Reverse** (R0 起点) |
 | `regression_dev` (開発中回帰) | テスト緑が壊れた | **Recovery** (human approval 必須) |
 | `regression_prod` (本番回帰) | `env=prod` での回帰 | **Incident** (三者承認必須) |
 | `debt_degradation` / `code_smell` | コード劣化検出 | **Refactor** |
