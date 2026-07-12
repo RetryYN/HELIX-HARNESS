@@ -50,7 +50,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("distribution_latest_tag");
     expect(text).toContain("sourceStatusDelta");
     expect(text).toContain("workflowRouteImpact");
-    expect(text).toContain("e95850d08cfcf0f3ce811659178c0db7522e24d7");
+    expect(text).toContain("6624ae45874e1fabdca26fada7327c5544bb1264");
     expect(text).toContain("RetryYN/HELIX-HARNESS");
     expect(text).toContain("RetryYN/HELIX-HARNESS-OS");
     expect(text).toContain("unpublished");
@@ -235,7 +235,7 @@ describe("HELIX objective evidence audit", () => {
     const ok = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
+        development_repo: "6624ae45874e1fabdca26fada7327c5544bb1264",
         distribution_repo: "unpublished",
         distribution_latest_tag: "unpublished",
       },
@@ -245,7 +245,7 @@ describe("HELIX objective evidence audit", () => {
     const partial = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
+        development_repo: "6624ae45874e1fabdca26fada7327c5544bb1264",
       },
     });
 
@@ -260,7 +260,7 @@ describe("HELIX objective evidence audit", () => {
     const drifted = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "e95850d08cfcf0f3ce811659178c0db7522e24d7",
+        development_repo: "6624ae45874e1fabdca26fada7327c5544bb1264",
         distribution_repo: "different-pack-head",
         distribution_latest_tag: "unpublished",
       },
