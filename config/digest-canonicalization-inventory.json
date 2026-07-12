@@ -1576,7 +1576,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::buildClosureEvidencePatchApprovalDigest:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 7165,
+      "line": 7162,
       "symbol": "buildClosureEvidencePatchApprovalDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1593,7 +1593,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::evidenceValueDigest:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 7465,
+      "line": 7459,
       "symbol": "evidenceValueDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1610,7 +1610,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::materializeApprovalDigest:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 7616,
+      "line": 7572,
       "symbol": "materializeApprovalDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1627,7 +1627,7 @@
     {
       "hit_id": "src/state-db/current-location.ts::buildClosureReviewScope:createHash(sha256)::1",
       "path": "src/state-db/current-location.ts",
-      "line": 8258,
+      "line": 8212,
       "symbol": "buildClosureReviewScope",
       "algorithm": "sha256",
       "input_kind": "string",
