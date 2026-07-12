@@ -198,7 +198,14 @@ export function durableFileLoopStore(deps: {
     },
     write: (state) => {
       const planId = assertLoopPlanId(state.planId);
+      const expectedManifestText = port.readManifestText(planId);
       const snapshot = readLoopEpochFromFs(deps.root, planId);
+      if (
+        (expectedManifestText === null) !== (snapshot.manifest === null) ||
+        (expectedManifestText !== null &&
+          JSON.stringify(JSON.parse(expectedManifestText)) !== JSON.stringify(snapshot.manifest))
+      )
+        throw new Error(`loop finalization manifest snapshot changed: ${planId}`);
       const stage = snapshot.payload?.orchestrationStage;
       if (stage) {
         const iteration = pendingIterations.get(planId);
@@ -237,11 +244,10 @@ export function durableFileLoopStore(deps: {
         )
           throw new Error(`invalid stage-less loop transition: ${planId}`);
       }
-      const previousManifestText = port.readManifestText(planId);
       const iteration = pendingIterations.get(planId) ?? null;
       const committed = commitLoopEpoch({
         planId,
-        previousManifestText,
+        previousManifestText: expectedManifestText,
         payload: { state, iteration },
         sideEffectPhase: "completed",
         port,
