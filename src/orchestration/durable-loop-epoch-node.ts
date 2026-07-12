@@ -399,6 +399,8 @@ export function recoverStaleLoopClaim(
           typeof residual.packetDigest === "string";
         if (residualTrusted && claimStatus(residualText) !== "stale")
           return { status: "conflict", reason: "recovery_claim_conflict" };
+        if (mutexObservation.mutexDigest !== sha256Digest(residualText))
+          return { status: "conflict", reason: "recovery_claim_snapshot_changed" };
         try {
           const cleanupId = randomUUID();
           writeFileSync(

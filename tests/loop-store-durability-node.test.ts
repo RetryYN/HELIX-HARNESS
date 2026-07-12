@@ -283,6 +283,9 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     expect(
       readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.stale.json")),
     ).toHaveLength(1);
+    expect(
+      readdirSync(paths.directory).filter((name) => name.endsWith("recovery-claim.approval.json")),
+    ).toHaveLength(1);
   });
 
   it("IT-DUR-004/U-DUR-007: atomically replaces an authorized partial legacy mutex", () => {
