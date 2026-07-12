@@ -71,6 +71,7 @@ export function fileLoopStore(deps: {
 export function durableFileLoopStore(deps: {
   root: string;
   readLegacyText?: (path: string) => string | null;
+  beforeFinalCommit?: () => void;
 }): LoopStore {
   const port = nodeDurableEpochPort(deps.root);
   const pendingIterations = new Map<string, LoopIterationRecord>();
@@ -245,6 +246,7 @@ export function durableFileLoopStore(deps: {
           throw new Error(`invalid stage-less loop transition: ${planId}`);
       }
       const iteration = pendingIterations.get(planId) ?? null;
+      deps.beforeFinalCommit?.();
       const committed = commitLoopEpoch({
         planId,
         previousManifestText: expectedManifestText,

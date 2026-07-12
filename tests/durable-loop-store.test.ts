@@ -218,4 +218,50 @@ describe("PLAN-L7-449 production durable loop store", () => {
       "invalid loop stage finalization",
     );
   });
+
+  it("IT-DUR-007: concurrent finalizers cannot follow the winner manifest", async () => {
+    const repo = root();
+    const bootstrap = durableFileLoopStore({ root: repo });
+    await bootstrap.runSideEffect(state, "worker", async () => null);
+    await bootstrap.runSideEffect(state, "verifier", async () => "pass");
+    const receipt = {
+      planId: PLAN,
+      iteration: 0,
+      workerProvider: "codex" as const,
+      verifierProvider: "claude" as const,
+      verdict: "pass" as const,
+      stopReason: null,
+      blockedReason: null,
+    };
+    const winner = durableFileLoopStore({ root: repo });
+    winner.recordIteration(receipt);
+    let winnerCommitted = false;
+    const loser = durableFileLoopStore({
+      root: repo,
+      beforeFinalCommit: () => {
+        winner.write({
+          ...state,
+          iteration: 1,
+          lastVerdict: "pass",
+          verifierProvider: "claude",
+          updatedAt: "2026-07-13T00:01:00.000Z",
+        });
+        winnerCommitted = true;
+      },
+    });
+    loser.recordIteration(receipt);
+    expect(() =>
+      loser.write({
+        ...state,
+        iteration: 1,
+        lastVerdict: "pass",
+        verifierProvider: "claude",
+        updatedAt: "2026-07-13T00:02:00.000Z",
+      }),
+    ).toThrow("loop epoch commit failed");
+    expect(winnerCommitted).toBe(true);
+    expect(durableFileLoopStore({ root: repo }).read(PLAN)?.updatedAt).toBe(
+      "2026-07-13T00:01:00.000Z",
+    );
+  });
 });
