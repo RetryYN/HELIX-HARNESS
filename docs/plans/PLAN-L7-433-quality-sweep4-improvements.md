@@ -45,6 +45,14 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/sqlite-error.test.ts
     artifact_type: test_code
+  - artifact_path: src/runtime/shell-quote.ts
+    artifact_type: source_module
+  - artifact_path: src/audit/github-merge-readiness.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/version-up-readiness.ts
+    artifact_type: source_module
+  - artifact_path: tests/shell-quote.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []

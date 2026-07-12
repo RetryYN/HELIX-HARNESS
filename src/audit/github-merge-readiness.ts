@@ -1,6 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { shellQuote } from "../runtime/shell-quote";
 
 export interface GithubMergeReadinessInput {
   baseBranch: string;
@@ -136,11 +137,6 @@ export interface GithubPrCreateResult {
   exitCode: number | null;
   stderr?: string;
   findings: GithubMergeReadinessFinding[];
-}
-
-function shellQuote(value: string): string {
-  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
-  return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
 function normalizeViewerPermission(

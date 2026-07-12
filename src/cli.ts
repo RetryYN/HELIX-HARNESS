@@ -312,6 +312,7 @@ import {
   type SessionHookInput,
   safeName,
 } from "./runtime/session-log";
+import { shellQuote } from "./runtime/shell-quote";
 import {
   buildSkillEfficacyEvaluationReport,
   type SkillEfficacyEvalInput,
@@ -724,11 +725,6 @@ function gitHead(): string | null {
   } catch {
     return null;
   }
-}
-
-function shellQuote(value: string): string {
-  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
-  return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
 /** review-guard 用: loadChangedFiles を fail-open でラップ (非 git / 一時失敗で委譲を壊さない、IMP-137)。 */

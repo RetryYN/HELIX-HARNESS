@@ -320,6 +320,8 @@ fail-close する。
 | U-SETUP-042 | dev `.claude/settings.json` / `AGENT_TOOL_NAMES` / consumer Claude template | agent-guard matcherは三面すべて `Agent|Task` と一致し、Task runtimeだけdev guardを迂回するdriftを許さない。 |
 | U-SQLBUSY-001 | `isSqliteBusy` | Bunの`code=SQLITE_BUSY`とnode:sqliteの`message=database is locked`をともにtrueへ正規化する。 |
 | U-SQLBUSY-002 | `isSqliteBusy` | unrelated Errorと非Error値をfalseにし、busy以外の障害をretry/nullへ隠蔽しない。 |
+| U-SHQUOTE-001 | `shellQuote` | 明示safe alphabetのtokenをbyte同一で保持する。 |
+| U-SHQUOTE-002 | `shellQuote` | 空白、apostrophe、改行、空文字をPOSIX single-tokenとして安全にquoteする。 |
 
 ### §1.8 U-HRET（session handover の退役）
 

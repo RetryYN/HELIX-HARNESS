@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { shellQuote } from "../runtime/shell-quote";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
   type CompletionDecisionRecordTemplate,
@@ -2118,11 +2119,6 @@ function buildVersionUpActivationDryRunEvidence(
 
 function buildVersionUpDryRunReviewCommand(currentVersion: string, targetVersion: string): string {
   return `bun run src/cli.ts version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`;
-}
-
-function shellQuote(value: string): string {
-  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
-  return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
 function versionUpDryRunTarget(plan: VersionUpReadinessPlan): string {
