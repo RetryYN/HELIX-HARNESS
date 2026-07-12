@@ -4,7 +4,7 @@ title: "PLAN-L7-445 (troubleshoot): QS4 durability Vペア入口監査"
 kind: troubleshoot
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: incident
 entry_signals:
   [
@@ -33,6 +33,24 @@ dependencies:
     parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md,
     requires: [],
   }
+review_evidence:
+  - reviewer: qs4_445_atomic_loop_final
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-13T06:42:28+09:00"
+    tests_green_at: "2026-07-13T06:41:55+09:00"
+    verdict: pass
+    scope: "QS4 #29/#30のinventory、PLAN-L6-78/PLAN-L7-449 exact successor、L5/L6↔L8/L9 Vペア、redaction/corrupt/process crash/recovery oracleを確認。PLAN-L7-449 final reviewでBlocker/High 0、IT-DUR-001..005 PASS。"
+    worker_model: codex
+    reviewer_model: codex-fresh-subagent
+    green_commands:
+      - kind: integration_test
+        command: "bun run test:fast -- tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-13T06:41:55+09:00"
+        evidence_path: tests/durable-loop-process.test.ts
+        output_digest: "sha256:7e9abd94a0a448c376b11f64b65472f7995672d07198f6a2d0f66736de12e03c"
 ---
 
 # PLAN-L7-445: QS4 durability Vペア入口監査
