@@ -14,7 +14,8 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
   `state-db/visualization-view-model.ts`へ戻る2-node architecture cycle。
 - #13: lint配下にrepo write、external process probe、git subprocessがanalyzerと同居する。
 - #15: source boundary 32 module中29 moduleがEMPTYで、未設計方向を暗黙allowする。
-- #14: edge extractor/re-export/dynamic importは`PLAN-L7-428` W2のauthorityとし、本設計でparserを複製しない。
+- #14: `PLAN-L7-428` W2は要求provenanceとして参照するが、その実装はfunction reachabilityでありshared edge
+  extractorではない。source-boundary用extractorは`PLAN-L7-452`が`src/lint/source-edge-extractor.ts`に単一実装する。
 
 ## 2. ownership
 
@@ -28,14 +29,30 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 | executor/materializer | typed intent→receipt | finding判定、silent retry |
 | composition root | owner間の配線とlifecycle | domain contractの再定義 |
 
+## 2.1 物理配置とsymbol移動
+
+| 現symbol/owner | 新owner path | 接続root |
+|---|---|---|
+| `MetricRow` / `VisualizationViewModel` | `src/schema/visualization-contract.ts` | `src/cli.ts` / `src/vscode/extension-adapter.ts` |
+| `TreeViewNode`のadapter-neutral部分 | `GenericTreeNode` in `src/schema/visualization-contract.ts` | `src/vscode/extension-adapter.ts` |
+| `buildVisualizationTreeView`のpure projection | `buildVisualizationTree` in `src/vmodel/visualization-tree-projector.ts` | `src/vscode/extension-adapter.ts` |
+| VS Code command decoration | `src/vscode/tree-view-provider.ts` | `src/vscode/extension-adapter.ts` |
+| projection用tree summary | `src/state-db/visualization-evidence.ts` | `src/state-db/projection-writer.ts` |
+
+`schema`はI/Oを持たない最下位contract、`vmodel` projectorはschemaだけを参照する。`vscode`はschema/vmodelを参照できるが
+state-db実装を参照しない。state-dbはschemaを参照できるがvscode/vmodel projectorを参照しない。composition rootだけが
+state-dbのview dataをprojectorとadapterへ渡す。
+
 ## 3. 依存規則
 
 依存はcontractへ向かう一方向とし、presentation→application→contract、persistence→contractを許可する。
 persistence→presentation、analyzer→executor、adapter→persistence実装への直接edgeは禁止する。type-only importも
 architecture ownershipを結合するため同じedgeとして扱う。
 
-boundary policyはmodule pairごとに`allow | deny`、owner、rationale、review triggerを持つ。missing、EMPTY、未知moduleは
-`unspecified`としてfail-closeし、allow-allと同義にしない。移行中の例外は期限とsuccessor PLANを必須にする。
+boundary policyは各source ownerにdefault `deny`を必須とし、許可方向だけをexplicit allowとして列挙する。これにより
+catalog内の全directed pairはdefaultまたはexceptionのどちらかでtotal decisionされる。missing owner default、EMPTY、未知from、
+未知toは`unspecified`としてfail-closeし、allow-allと同義にしない。type-only/re-export/dynamic importも同じdirected edgeへ
+正規化する。移行中の例外はowner、rationale、expiry、successor PLANを必須にする。
 
 ## 4. effect実行権限
 
@@ -49,4 +66,4 @@ timeout、exit、stdout/stderr digest、provenance、snapshot bindingを持つre
 2. state-db⇄vscode cycleを解消する。
 3. lint effect endpointsをexecutorへ隔離する。
 4. EMPTY policyをlive edgeごとのallow/denyへratchetする。
-5. `PLAN-L7-428` W2 extractor完成後にdynamic/re-export edgeを同じpolicyへ流す。
+5. `PLAN-L7-452`のshared extractorでdirect/type-only/re-export/dynamic edgeを同じpolicyへ流す。
