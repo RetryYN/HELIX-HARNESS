@@ -100,7 +100,12 @@ function applyConnectionPragmas(native: NativeDatabase, path: string): void {
     if (String(journal?.journal_mode ?? "").toLowerCase() !== "wal") {
       native.exec("PRAGMA journal_mode = WAL");
     }
-    native.exec("PRAGMA synchronous = NORMAL");
+    const synchronous = native.prepare("PRAGMA synchronous").get() as
+      | { synchronous?: number }
+      | undefined;
+    if (Number(synchronous?.synchronous ?? -1) !== 1) {
+      native.exec("PRAGMA synchronous = NORMAL");
+    }
   }
   native.exec("PRAGMA foreign_keys = ON");
 }
