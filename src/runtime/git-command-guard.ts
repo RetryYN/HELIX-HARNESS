@@ -138,6 +138,9 @@ function nestedShellCommands(command: string): string[] {
     });
     if (!found) break;
   }
+  for (const match of command.matchAll(/`([^`]*)`/g)) {
+    if (match[1]) nested.push(match[1]);
+  }
   return nested;
 }
 
@@ -150,7 +153,10 @@ function commandGitSlices(command: string, depth = 0): { slices: string[][]; com
   );
   return {
     slices: [...direct, ...nestedResults.flatMap((result) => result.slices)],
-    complete: tokenized.complete && nestedResults.every((result) => result.complete),
+    complete:
+      tokenized.complete &&
+      (command.match(/`/g)?.length ?? 0) % 2 === 0 &&
+      nestedResults.every((result) => result.complete),
   };
 }
 
@@ -160,6 +166,10 @@ function withoutGlobalOptions(args: string[]): string[] {
     const head = out[0] ?? "";
     if (head === "-C" || head === "-c") {
       out.splice(0, 2);
+      continue;
+    }
+    if (head.startsWith("-c") && head.length > 2) {
+      out.shift();
       continue;
     }
     if (head.startsWith("--git-dir=") || head.startsWith("--work-tree=")) {

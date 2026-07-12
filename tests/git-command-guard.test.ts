@@ -142,9 +142,15 @@ describe("git-command-guard", () => {
       "(git clean -f)",
       "git --no-pager clean -f",
       "git --paginate stash clear",
+      "git -cfoo.bar=baz clean -f",
+      "echo `git clean -f`",
     ]) {
       expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
     }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] fails closed on incomplete backtick substitution", () => {
+    expect(evaluateGitCommandGuard({ command: "echo `git clean -f" }).decision).toBe("block");
   });
 
   it("U-GITGUARD-002: extracts Claude and Codex shell command payload shapes", () => {
