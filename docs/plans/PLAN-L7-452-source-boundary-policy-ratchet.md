@@ -10,6 +10,9 @@ entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #15 EMPTY/default allowをt
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+agent_slots:
+  - { role: se, slot_label: "SE — shared edge extractorとpolicy evaluator" }
+  - { role: qa, slot_label: "QA — total-decision mutation oracle" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-79のfail-close policyを実装候補へ降下し、PLAN-L7-428は要求provenanceとしてのみ参照する。"
 parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md

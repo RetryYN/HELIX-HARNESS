@@ -10,6 +10,9 @@ entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #13 analyzer effect authori
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+agent_slots:
+  - { role: se, slot_label: "SE — effect intent/executor port分離" }
+  - { role: qa, slot_label: "QA — authority/drift/durability負例" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L6-79のeffect DbCを実装候補へ降下し、外部操作は追加しない。"
 parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md

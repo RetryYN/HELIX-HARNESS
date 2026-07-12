@@ -10,6 +10,9 @@ entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #11 architecture cycleをex
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+agent_slots:
+  - { role: se, slot_label: "SE — contract/projector/evidence owner分離" }
+  - { role: qa, slot_label: "QA — cycle/headless adapter oracle" }
 backprop_decision: not_required
 backprop_decision_reason: "confirmed前のPLAN-L6-79 contractを実装候補へ具体化し、上位意味は変更しない。"
 parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md
