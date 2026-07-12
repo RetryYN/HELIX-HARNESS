@@ -29,6 +29,42 @@ type ClaimMetadata = {
   processStartToken: string | null;
   leaseDeadlineUptimeMs: number;
 };
+const MAX_MANIFEST_HISTORY = 4096;
+
+function resolvePointerManifest(
+  value: ReturnType<typeof loopEpochPaths>,
+  planId: string,
+  pointerText: string,
+): string {
+  const pointer = JSON.parse(pointerText) as {
+    schema?: unknown;
+    planId?: unknown;
+    epochId?: unknown;
+    manifestFile?: unknown;
+    manifestDigest?: unknown;
+  };
+  if (
+    pointer.schema !== LOOP_EPOCH_POINTER_SCHEMA ||
+    pointer.planId !== planId ||
+    !Number.isSafeInteger(pointer.epochId) ||
+    typeof pointer.manifestFile !== "string" ||
+    !pointer.manifestFile.startsWith(`${assertLoopPlanId(planId)}.epoch-`) ||
+    !pointer.manifestFile.endsWith(".manifest.json") ||
+    typeof pointer.manifestDigest !== "string"
+  )
+    throw new Error("loop epoch pointer is invalid");
+  const manifestText = readIfExists(value.manifestFor(pointer.manifestFile));
+  const manifest = manifestText === null ? null : parseLoopEpochManifest(manifestText);
+  if (
+    manifestText === null ||
+    sha256Digest(manifestText) !== pointer.manifestDigest ||
+    manifest === null ||
+    manifest.planId !== planId ||
+    manifest.epochId !== pointer.epochId
+  )
+    throw new Error("loop epoch pointer digest or identity is invalid");
+  return manifestText;
+}
 
 function readLinuxText(path: string): string | null {
   try {
@@ -135,19 +171,7 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
       const value = paths(planId);
       const pointerText = readIfExists(value.manifest);
       if (pointerText === null) return null;
-      const pointer = JSON.parse(pointerText) as {
-        manifestFile?: unknown;
-        manifestDigest?: unknown;
-      };
-      if (
-        typeof pointer.manifestFile !== "string" ||
-        !/^[A-Za-z0-9._-]+\.manifest\.json$/.test(pointer.manifestFile)
-      )
-        throw new Error("loop epoch pointer is invalid");
-      const manifestText = readIfExists(value.manifestFor(pointer.manifestFile));
-      if (manifestText === null || sha256Digest(manifestText) !== pointer.manifestDigest)
-        throw new Error("loop epoch pointer digest is invalid");
-      return manifestText;
+      return resolvePointerManifest(value, planId, pointerText);
     },
     writePayloadTemp: (planId, tempId, text) =>
       writeFileSync(paths(planId).payloadTempFor(tempId), text, {
@@ -228,6 +252,13 @@ export function readLoopEpochFromFs(root: string, planId: string): LoopEpochRead
             name.endsWith(".manifest.json") &&
             name !== pointer.manifestFile,
         );
+        if (history.length > MAX_MANIFEST_HISTORY)
+          return {
+            status: "durability_uncertain",
+            manifest,
+            payload: null,
+            reason: "history_limit",
+          };
         const historyTexts = history
           .map((name) => readIfExists(paths.manifestFor(name)))
           .filter((text): text is string => text !== null);

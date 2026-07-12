@@ -176,4 +176,39 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     writeFileSync(paths.manifestFor(firstPointer.manifestFile), "{}");
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("concurrent_conflict");
   });
+
+  it("IT-DUR-002: writer refuses to heal a corrupt pointer envelope", () => {
+    const repo = root();
+    const port = nodeDurableEpochPort(repo);
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: { state, iteration: null },
+        sideEffectPhase: "not_started",
+        port,
+      }).status,
+    ).toBe("committed");
+    const paths = loopEpochPaths(repo, PLAN);
+    const validPointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    for (const patch of [
+      { schema: "tampered" },
+      { planId: "PLAN-L7-448-qs4-test-infra-inventory" },
+      { epochId: 99 },
+    ]) {
+      const tampered = `${JSON.stringify({ ...validPointer, ...patch })}\n`;
+      writeFileSync(paths.manifest, tampered);
+      expect(
+        commitLoopEpoch({
+          planId: PLAN,
+          previousManifestText: null,
+          payload: { state, iteration: null },
+          sideEffectPhase: "not_started",
+          port: nodeDurableEpochPort(repo),
+        }).status,
+      ).toBe("durability_uncertain");
+      expect(readFileSync(paths.manifest, "utf8")).toBe(tampered);
+      rmSync(paths.claim, { force: true });
+    }
+  });
 });
