@@ -125,4 +125,34 @@ describe("PLAN-L7-449 node durable epoch port", () => {
       previousPayloadText,
     );
   });
+
+  it("IT-DUR-002/003: restart verifies immutable previous-manifest history", () => {
+    const repo = root();
+    const port = nodeDurableEpochPort(repo);
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: { state, iteration: null },
+        sideEffectPhase: "not_started",
+        port,
+      }).status,
+    ).toBe("committed");
+    const paths = loopEpochPaths(repo, PLAN);
+    const firstPointer = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    const previousManifestText = port.readManifestText(PLAN);
+    expect(previousManifestText).not.toBeNull();
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: previousManifestText as string,
+        payload: { state: { ...state, iteration: 1 }, iteration: null },
+        sideEffectPhase: "completed",
+        port,
+      }).status,
+    ).toBe("committed");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    writeFileSync(paths.manifestFor(firstPointer.manifestFile), "{}");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("concurrent_conflict");
+  });
 });
