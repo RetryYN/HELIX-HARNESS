@@ -28,12 +28,11 @@ generates:
   - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
-  requires:
-    - docs/plans/PLAN-L6-79-source-boundary-contracts.md
-    - docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md
-    - docs/plans/PLAN-L7-451-lint-effect-port-separation.md
+  requires: []
   references:
     - docs/plans/PLAN-L7-428-function-reachability.md
+    - docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md
+    - docs/plans/PLAN-L7-451-lint-effect-port-separation.md
 ---
 
 # PLAN-L7-452: source boundary全域判定の段階的強化

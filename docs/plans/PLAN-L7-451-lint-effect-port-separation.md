@@ -29,7 +29,7 @@ generates:
   - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
-  requires: [docs/plans/PLAN-L6-79-source-boundary-contracts.md]
+  requires: []
 ---
 
 # PLAN-L7-451: lint effect port分離
