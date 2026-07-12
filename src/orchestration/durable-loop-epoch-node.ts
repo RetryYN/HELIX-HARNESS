@@ -16,8 +16,10 @@ import { assertLoopPlanId } from "../schema/loop-plan-id";
 import {
   classifyLoopEpochFiles,
   type DurableEpochPort,
+  LOOP_EPOCH_POINTER_SCHEMA,
   type LoopEpochReadResult,
 } from "./durable-loop-epoch";
+import { sha256Digest } from "../runtime/digest";
 
 type ClaimMetadata = {
   pid: number;
@@ -89,10 +91,12 @@ export function loopEpochPaths(root: string, planId: string) {
   return {
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
-    manifest: join(directory, `${safe}.epoch.manifest.json`),
+    manifest: join(directory, `${safe}.epoch.current.json`),
+    manifestFor: (manifestFile: string) => join(directory, manifestFile),
     payloadFor: (payloadFile: string) => join(directory, payloadFile),
     payloadTempFor: (tempId: string) => join(directory, `${safe}.${tempId}.payload.tmp`),
     manifestTempFor: (tempId: string) => join(directory, `${safe}.${tempId}.manifest.tmp`),
+    pointerTempFor: (tempId: string) => join(directory, `${safe}.${tempId}.pointer.tmp`),
   };
 }
 
@@ -126,8 +130,18 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
       }
     },
     readManifestText: (planId) => {
-      const path = paths(planId).manifest;
-      return existsSync(path) ? readFileSync(path, "utf8") : null;
+      const value = paths(planId);
+      const pointerText = readIfExists(value.manifest);
+      if (pointerText === null) return null;
+      const pointer = JSON.parse(pointerText) as { manifestFile?: unknown; manifestDigest?: unknown };
+      if (
+        typeof pointer.manifestFile !== "string" ||
+        !/^[A-Za-z0-9._-]+\.manifest\.json$/.test(pointer.manifestFile)
+      ) return null;
+      const manifestText = readIfExists(value.manifestFor(pointer.manifestFile));
+      return manifestText !== null && sha256Digest(manifestText) === pointer.manifestDigest
+        ? manifestText
+        : null;
     },
     writePayloadTemp: (planId, tempId, text) =>
       writeFileSync(paths(planId).payloadTempFor(tempId), text, {
@@ -146,8 +160,13 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
         mode: 0o600,
       }),
     fsyncManifestTemp: (planId, tempId) => fsyncPath(paths(planId).manifestTempFor(tempId)),
-    renameManifest: (planId, tempId) =>
-      renameSync(paths(planId).manifestTempFor(tempId), paths(planId).manifest),
+    renameManifest: (planId, tempId, manifestFile) =>
+      renameSync(paths(planId).manifestTempFor(tempId), paths(planId).manifestFor(manifestFile)),
+    writePointerTemp: (planId, tempId, text) =>
+      writeFileSync(paths(planId).pointerTempFor(tempId), text, { encoding: "utf8", flag: "wx", mode: 0o600 }),
+    fsyncPointerTemp: (planId, tempId) => fsyncPath(paths(planId).pointerTempFor(tempId)),
+    renamePointer: (planId, tempId) =>
+      renameSync(paths(planId).pointerTempFor(tempId), paths(planId).manifest),
     unlinkClaim: (planId) => unlinkSync(paths(planId).claim),
     fsyncClaimDirectory: (planId) => fsyncPath(paths(planId).directory),
   };

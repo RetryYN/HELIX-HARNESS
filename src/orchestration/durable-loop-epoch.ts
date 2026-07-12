@@ -5,6 +5,7 @@ import type { LoopIterationRecord } from "./loop-runner";
 import type { LoopState } from "./loop-state";
 
 export const LOOP_EPOCH_SCHEMA = "helix.loop-epoch.v1" as const;
+export const LOOP_EPOCH_POINTER_SCHEMA = "helix.loop-epoch-pointer.v1" as const;
 export type LoopSideEffectPhase = "not_started" | "intent_recorded" | "completed";
 export type LoopClaimStatus = "absent" | "live" | "stale";
 export type LoopEpochReadStatus =
@@ -33,6 +34,14 @@ export type LoopEpochManifest = {
   sideEffectPhase: LoopSideEffectPhase;
 };
 
+export type LoopEpochPointer = {
+  schema: typeof LOOP_EPOCH_POINTER_SCHEMA;
+  planId: string;
+  epochId: number;
+  manifestFile: string;
+  manifestDigest: Sha256Digest;
+};
+
 export type LoopEpochReadResult = {
   status: LoopEpochReadStatus;
   manifest: LoopEpochManifest | null;
@@ -49,7 +58,10 @@ export interface DurableEpochPort {
   fsyncStateDirectory(planId: string): void;
   writeManifestTemp(planId: string, tempId: string, text: string): void;
   fsyncManifestTemp(planId: string, tempId: string): void;
-  renameManifest(planId: string, tempId: string): void;
+  renameManifest(planId: string, tempId: string, manifestFile: string): void;
+  writePointerTemp(planId: string, tempId: string, text: string): void;
+  fsyncPointerTemp(planId: string, tempId: string): void;
+  renamePointer(planId: string, tempId: string): void;
   unlinkClaim(planId: string): void;
   fsyncClaimDirectory(planId: string): void;
 }
@@ -131,13 +143,26 @@ export function commitLoopEpoch(input: {
       payloadFile,
       sideEffectPhase: input.sideEffectPhase,
     };
+    const manifestText = JSON.stringify(manifest);
+    const manifestFile = `${planId}.epoch-${epochId}-${randomUUID()}.manifest.json`;
+    const pointer: LoopEpochPointer = {
+      schema: LOOP_EPOCH_POINTER_SCHEMA,
+      planId,
+      epochId,
+      manifestFile,
+      manifestDigest: sha256Digest(manifestText),
+    };
     input.port.writePayloadTemp(planId, tempId, payloadText);
     input.port.fsyncPayloadTemp(planId, tempId);
     input.port.renamePayload(planId, tempId, payloadFile);
     input.port.fsyncStateDirectory(planId);
-    input.port.writeManifestTemp(planId, tempId, JSON.stringify(manifest));
+    input.port.writeManifestTemp(planId, tempId, manifestText);
     input.port.fsyncManifestTemp(planId, tempId);
-    input.port.renameManifest(planId, tempId);
+    input.port.renameManifest(planId, tempId, manifestFile);
+    input.port.fsyncStateDirectory(planId);
+    input.port.writePointerTemp(planId, tempId, JSON.stringify(pointer));
+    input.port.fsyncPointerTemp(planId, tempId);
+    input.port.renamePointer(planId, tempId);
     input.port.fsyncStateDirectory(planId);
     input.port.unlinkClaim(planId);
     input.port.fsyncClaimDirectory(planId);
