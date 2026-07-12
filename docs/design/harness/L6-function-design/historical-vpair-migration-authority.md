@@ -96,4 +96,4 @@ release、publish、cutover、distribution、認証、決済、PII、secretをhi
 
 ## 4. Vペア
 
-正本は`docs/test-design/harness/historical-vpair-migration-authority.md`の`U-HVMA-001..010`である。
+正本は`docs/test-design/harness/historical-vpair-migration-authority.md`の`U-HVMA-001..012`である。

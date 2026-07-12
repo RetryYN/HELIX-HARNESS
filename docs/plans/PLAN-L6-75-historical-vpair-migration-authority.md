@@ -47,7 +47,7 @@ cutoff treeに存在するbindings欠落とcutoff後の違反を、Git provenanc
 ## 2. 完了条件
 
 - cutoff SSoT、tree存在ベースのprimary境界、pinned commit/tree、immutable baseline authority、dynamic census、overlap tag、append-only reviewをL6でfreezeする。
-- `U-HVMA-001..010`とintegration/system verificationを一対一で定義する。
+- `U-HVMA-001..012`とintegration/system verificationを一対一で定義する。
 - confirmed designやbaselineからbinding/gate/capabilityを推測せず、registry/closure promotionを禁止する。
 
 ## 3. 非目標

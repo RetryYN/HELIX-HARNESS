@@ -14,6 +14,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { ClosureAuthorityBackfillCandidate } from "../src/policy/closure-authority-backfill";
+import { classifyHistoricalVpairMigration } from "../src/policy/historical-vpair-migration-authority";
 import {
   CLOSURE_GATE_ALLOWLIST_PATH,
   loadRepoOwnedGateAllowlist,
@@ -28,6 +29,12 @@ import {
   verifyTrackedHeadBlob,
 } from "../src/state-db/closure-authority-backfill-production";
 import { verifyClosureAuthorityBackfillProductionBundle } from "../src/state-db/closure-authority-backfill-verifier";
+import {
+  appendHistoricalAuthorityArtifact,
+  loadHistoricalAuthority,
+  loadHistoricalCandidatesFromAuthorityRun,
+  sealHistoricalAuthorityGeneration,
+} from "../src/state-db/historical-vpair-migration-authority";
 import { openHarnessDb, openHarnessDbReadOnly } from "../src/state-db/index";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 
@@ -126,7 +133,7 @@ function productionFixture() {
     "2026-07-12T00:40:00.000Z",
   );
   db.close();
-  return { root, head, planId, planPath };
+  return { root, bare, head, planId, planPath };
 }
 
 function runCli(root: string, head: string) {
@@ -510,6 +517,521 @@ describe("closure authority production route", () => {
     } finally {
       db.close();
     }
+  });
+
+  it("U-HVMA-012: [PLAN-L7-437-historical-vpair-migration-authority/U-HVMA-012] historical gen2 real child CLI is read-only across registry DB WAL SHM and closure projection", () => {
+    const fixture = productionFixture();
+    const initialRun = runCli(fixture.root, fixture.head);
+    expect(initialRun.status).toBe(0);
+    const run = JSON.parse(initialRun.stdout);
+    const configDir = join(fixture.root, "config");
+    mkdirSync(join(configDir, "historical-vpair-migration-authority.manifests"), {
+      recursive: true,
+    });
+    mkdirSync(join(configDir, "historical-vpair-migration-authority.authorities"), {
+      recursive: true,
+    });
+    mkdirSync(join(configDir, "historical-vpair-migration-authority.reviews"), { recursive: true });
+    const genesis = JSON.parse(
+      readFileSync(
+        join(import.meta.dirname, "../config/historical-vpair-migration-authority.manifest.json"),
+        "utf8",
+      ),
+    );
+    writeFileSync(
+      join(configDir, "historical-vpair-migration-authority.manifests/00000001.json"),
+      `${JSON.stringify(genesis)}\n`,
+    );
+    const genesisAuthorityBytes = readFileSync(
+      join(import.meta.dirname, "../config/historical-vpair-migration-authority.json"),
+    );
+    writeFileSync(
+      join(configDir, "historical-vpair-migration-authority.authorities/00000001.json"),
+      genesisAuthorityBytes,
+    );
+    const genesisAuthority = JSON.parse(genesisAuthorityBytes.toString("utf8"));
+    const cutoffTree = execFileSync("git", ["show", "-s", "--format=%T", fixture.head], {
+      cwd: fixture.root,
+      encoding: "utf8",
+    }).trim();
+    const authorityBody: Record<string, unknown> = {
+      schema_version: "historical-vpair-migration-authority.v1",
+      repository_identity: `file://${fixture.bare}`,
+      cutoff_commit_sha: fixture.head,
+      cutoff_tree_oid: cutoffTree,
+      initial_census_digest: digest("[]"),
+      previous_digest: null,
+      rows: [],
+    };
+    authorityBody.authority_digest = digest(stable(authorityBody));
+    const authorityBytes = Buffer.from(`${JSON.stringify(authorityBody)}\n`);
+    writeFileSync(join(configDir, "historical-vpair-migration-authority.json"), authorityBytes);
+    writeFileSync(
+      join(configDir, "historical-vpair-migration-authority.authorities/00000002.json"),
+      authorityBytes,
+    );
+    const authorityBlob = execFileSync("git", ["hash-object", "--stdin"], {
+      cwd: fixture.root,
+      input: authorityBytes,
+      encoding: "utf8",
+    }).trim();
+    const manifestReceiptBody = {
+      previous_manifest_digest: genesis.manifest_digest,
+      authority_raw_digest: digest(authorityBytes),
+      bundle_digest: run.bundle.bundle_digest,
+      worker_identity: "worker-provider",
+      reviewer_identity: "reviewer-provider",
+      worker_termination_event_id: "historical-worker-event",
+      reviewer_termination_event_id: "historical-reviewer-event",
+      reviewed_at: "2026-07-12T00:00:00.000Z",
+      authority_generation: 2,
+      verdict_digest: digest("gen2-verdicts"),
+      review_chain_artifact_digest: digest("review-chain-placeholder"),
+      review_chain_sequence: 1,
+    };
+    const reviewDigest = digest(stable(manifestReceiptBody));
+    const manifestBody: Record<string, unknown> = {
+      schema_version: "historical-vpair-migration-authority-manifest.v1",
+      authority_path: "config/historical-vpair-migration-authority.json",
+      repository_identity: `file://${fixture.bare}`,
+      expected_tree_mode: "100644",
+      expected_blob_oid: authorityBlob,
+      expected_raw_digest: digest(authorityBytes),
+      generation: 2,
+      previous_manifest_digest: genesis.manifest_digest,
+      review_digest: reviewDigest,
+    };
+    const manifest = { ...manifestBody, manifest_digest: digest(stable(manifestBody)) };
+    writeFileSync(
+      join(configDir, "historical-vpair-migration-authority.manifest.json"),
+      `${JSON.stringify(manifest)}\n`,
+    );
+    writeFileSync(
+      join(configDir, `historical-vpair-migration-authority.reviews/${reviewDigest.slice(7)}.json`),
+      `${JSON.stringify({ review_digest: reviewDigest, new_manifest_digest: manifest.manifest_digest, ...manifestReceiptBody })}\n`,
+    );
+    execFileSync("git", ["add", "config"], { cwd: fixture.root });
+    let head = commitFixture(fixture.root, "historical gen2");
+    const runPath = join(fixture.root, ".helix/historical-run.json");
+    writeFileSync(runPath, JSON.stringify(run));
+    const authority = loadHistoricalAuthority(fixture.root, head);
+    const loaded = loadHistoricalCandidatesFromAuthorityRun({
+      repoRoot: fixture.root,
+      runPath,
+      authority,
+    });
+    const bundle = classifyHistoricalVpairMigration({ authority, candidates: loaded.candidates });
+    const genesisTip = appendHistoricalAuthorityArtifact({
+      repoRoot: fixture.root,
+      repositoryHead: head,
+      repositoryIdentity: `file://${fixture.bare}`,
+      bundleDigest: bundle.bundle_digest,
+      payload: { manifest_generation: 1, authority_digest: genesisAuthority.authority_digest },
+      expectedPreviousDigest: null,
+    });
+    const tip = appendHistoricalAuthorityArtifact({
+      repoRoot: fixture.root,
+      repositoryHead: head,
+      repositoryIdentity: `file://${fixture.bare}`,
+      bundleDigest: bundle.bundle_digest,
+      payload: { manifest_generation: 2, authority_digest: authority.authority_digest },
+      expectedPreviousDigest: genesisTip.artifact_digest,
+    });
+    const now = new Date();
+    const reviewedAt = new Date(now.getTime() - 30_000).toISOString();
+    const expiresAt = new Date(now.getTime() + 1_800_000).toISOString();
+    const review: Record<string, unknown> = {
+      schema_version: "historical-vpair-migration-review.v1",
+      worker_identity: "worker-provider",
+      reviewer_identity: "reviewer-provider",
+      review_kind: "cross_agent",
+      worker_task_id: "historical-worker",
+      reviewer_task_id: "historical-reviewer",
+      termination_event_id: "historical-reviewer-event",
+      worker_termination_event_id: "historical-worker-event",
+      termination_status: "completed",
+      bundle_digest: bundle.bundle_digest,
+      authority_artifact_digest: tip.artifact_digest,
+      authority_generation: tip.sequence,
+      previous_digest: null,
+      reviewed_at: reviewedAt,
+      expires_at: expiresAt,
+      verdicts: bundle.decisions.map((row) => ({ plan_id: row.plan_id, verdict: "approve" })),
+    };
+    review.review_digest = digest(stable(review));
+    const reviewPath = join(fixture.root, ".helix/historical-review.json");
+    writeFileSync(reviewPath, JSON.stringify(review));
+    const db = openHarnessDb(join(fixture.root, ".helix/harness.db"), { repoRoot: fixture.root });
+    for (const [key, eventId, operation, session, payload, seq] of [
+      [
+        "hw",
+        "historical-worker-event",
+        "historical-worker",
+        "worker-provider",
+        bundle.bundle_digest,
+        9001,
+      ],
+      [
+        "hr",
+        "historical-reviewer-event",
+        "historical-reviewer",
+        "reviewer-provider",
+        review.review_digest,
+        9002,
+      ],
+    ] as const)
+      db.prepare(
+        "INSERT INTO session_events (event_key,event_id,schema_version,operation_id,session_id,event_seq,plan_id,event_kind,next_action,memory_ref,recorded_at,payload_hash) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+      ).run(
+        key,
+        eventId,
+        "session-event.v1",
+        operation,
+        session,
+        seq,
+        null,
+        "subagent_completed",
+        null,
+        null,
+        reviewedAt,
+        payload,
+      );
+    db.close();
+    const reviewDb = openHarnessDb(join(fixture.root, ".helix/harness.db"), {
+      repoRoot: fixture.root,
+    });
+    const sealed = sealHistoricalAuthorityGeneration({
+      repoRoot: fixture.root,
+      db: reviewDb,
+      bundle,
+      authorityTip: tip,
+      review,
+      newAuthorityBytes: authorityBytes,
+      previousManifest: genesis,
+      repositoryHead: head,
+      repositoryIdentity: `file://${fixture.bare}`,
+      now: new Date().toISOString(),
+    });
+    const replay = sealHistoricalAuthorityGeneration({
+      repoRoot: fixture.root,
+      db: reviewDb,
+      bundle,
+      authorityTip: tip,
+      review,
+      newAuthorityBytes: authorityBytes,
+      previousManifest: genesis,
+      repositoryHead: head,
+      repositoryIdentity: `file://${fixture.bare}`,
+      now: new Date().toISOString(),
+    });
+    expect(replay.disposition).toBe("reused");
+    expect(replay.reviewArtifact.artifact_digest).toBe(sealed.reviewArtifact.artifact_digest);
+    const reuseArtifactPath = join(
+      fixture.root,
+      ".helix/evidence/historical-vpair-migration/review/00000001.json",
+    );
+    const reuseArtifactBytes = readFileSync(reuseArtifactPath);
+    const rejectReuseEnvelope = (
+      mutate: (value: Record<string, unknown>) => void,
+      recompute = true,
+    ) => {
+      const value = JSON.parse(reuseArtifactBytes.toString("utf8"));
+      mutate(value);
+      if (recompute) {
+        delete value.artifact_digest;
+        value.artifact_digest = digest(stable(value));
+      }
+      writeFileSync(reuseArtifactPath, JSON.stringify(value));
+      expect(() =>
+        sealHistoricalAuthorityGeneration({
+          repoRoot: fixture.root,
+          db: reviewDb,
+          bundle,
+          authorityTip: tip,
+          review,
+          newAuthorityBytes: authorityBytes,
+          previousManifest: genesis,
+          repositoryHead: head,
+          repositoryIdentity: `file://${fixture.bare}`,
+          now: new Date().toISOString(),
+        }),
+      ).toThrow(/prefix|reuse envelope|tip exact|previous/);
+      writeFileSync(reuseArtifactPath, reuseArtifactBytes);
+    };
+    rejectReuseEnvelope((value) => {
+      value.artifact_digest = digest("corrupt-envelope");
+    }, false);
+    rejectReuseEnvelope((value) => {
+      value.repository_head = "f".repeat(40);
+    });
+    rejectReuseEnvelope((value) => {
+      value.repository_identity = "file:///wrong";
+    });
+    rejectReuseEnvelope((value) => {
+      value.bundle_digest = digest("wrong-bundle");
+    });
+    rejectReuseEnvelope((value) => {
+      value.previous_artifact_digest = digest("wrong-previous");
+    });
+    const conflictingReview = structuredClone(review);
+    conflictingReview.verdicts = (conflictingReview.verdicts as Array<{ plan_id: string }>).map(
+      (row) => ({
+        plan_id: row.plan_id,
+        verdict: "approve_after_fixes",
+      }),
+    );
+    delete conflictingReview.review_digest;
+    conflictingReview.review_digest = digest(stable(conflictingReview));
+    reviewDb
+      .prepare("UPDATE session_events SET payload_hash=? WHERE event_id=?")
+      .run(conflictingReview.review_digest, "historical-reviewer-event");
+    expect(() =>
+      sealHistoricalAuthorityGeneration({
+        repoRoot: fixture.root,
+        db: reviewDb,
+        bundle,
+        authorityTip: tip,
+        review: conflictingReview,
+        newAuthorityBytes: authorityBytes,
+        previousManifest: genesis,
+        repositoryHead: head,
+        repositoryIdentity: `file://${fixture.bare}`,
+        now: new Date().toISOString(),
+      }),
+    ).toThrow(/CAS|previous digest/);
+    reviewDb
+      .prepare("UPDATE session_events SET payload_hash=? WHERE event_id=?")
+      .run(review.review_digest, "historical-reviewer-event");
+    reviewDb.close();
+    const sealedReviewDigest = sealed.receipt.review_digest;
+    const sealedManifest = sealed.manifest;
+    const oldReceiptPath = join(
+      configDir,
+      `historical-vpair-migration-authority.reviews/${reviewDigest.slice(7)}.json`,
+    );
+    rmSync(oldReceiptPath);
+    writeFileSync(
+      join(
+        configDir,
+        `historical-vpair-migration-authority.reviews/${sealedReviewDigest.slice(7)}.json`,
+      ),
+      `${JSON.stringify(sealed.receipt)}\n`,
+    );
+    writeFileSync(
+      join(configDir, "historical-vpair-migration-authority.manifest.json"),
+      `${JSON.stringify(sealedManifest)}\n`,
+    );
+    execFileSync("git", ["add", "config"], { cwd: fixture.root });
+    head = commitFixture(fixture.root, "seal historical review chain receipt");
+    const before = state(fixture.root);
+    const child = spawnSync(
+      "bun",
+      [
+        cliPath,
+        "closure",
+        "historical-vpair-migration",
+        "--dry-run",
+        "--from-db",
+        "--run",
+        runPath,
+        "--review",
+        reviewPath,
+        "--expected-head",
+        head,
+        "--json",
+      ],
+      {
+        cwd: fixture.root,
+        encoding: "utf8",
+        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+      },
+    );
+    expect(child.status, child.stderr).toBe(0);
+    expect(JSON.parse(child.stdout)).toMatchObject({
+      dry_run: true,
+      mutates_registry: false,
+      mutates_harness_db: false,
+      mutates_closure_projection: false,
+      chain: { authority_generation: 2 },
+    });
+    expect(state(fixture.root)).toEqual(before);
+    const invokeHistorical = () =>
+      spawnSync(
+        "bun",
+        [
+          cliPath,
+          "closure",
+          "historical-vpair-migration",
+          "--dry-run",
+          "--from-db",
+          "--run",
+          runPath,
+          "--review",
+          reviewPath,
+          "--expected-head",
+          head,
+          "--json",
+        ],
+        {
+          cwd: fixture.root,
+          encoding: "utf8",
+          env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+        },
+      );
+    const reviewArtifactPath = join(
+      fixture.root,
+      ".helix/evidence/historical-vpair-migration/review/00000001.json",
+    );
+    const reviewArtifactBytes = readFileSync(reviewArtifactPath);
+    rmSync(reviewArtifactPath);
+    expect(invokeHistorical().status).not.toBe(0);
+    writeFileSync(reviewArtifactPath, reviewArtifactBytes);
+    const originalReviewBytes = readFileSync(reviewPath);
+    const rejectReviewMutation = (mutate: (value: Record<string, unknown>) => void) => {
+      const value = JSON.parse(originalReviewBytes.toString("utf8"));
+      mutate(value);
+      delete value.review_digest;
+      value.review_digest = digest(stable(value));
+      writeFileSync(reviewPath, JSON.stringify(value));
+      expect(invokeHistorical().status).not.toBe(0);
+      writeFileSync(reviewPath, originalReviewBytes);
+    };
+    rejectReviewMutation((value) => {
+      value.reviewer_identity = value.worker_identity;
+    });
+    rejectReviewMutation((value) => {
+      value.termination_event_id = "fictional-event";
+    });
+    rejectReviewMutation((value) => {
+      value.bundle_digest = digest("wrong-bundle");
+    });
+    rejectReviewMutation((value) => {
+      value.verdicts = [{ plan_id: fixture.planId, verdict: "pass" }];
+    });
+    const tipPath = join(
+      fixture.root,
+      ".helix/evidence/historical-vpair-migration/authority/00000002.json",
+    );
+    const tipBytes = readFileSync(tipPath);
+    const badTip = JSON.parse(tipBytes.toString("utf8"));
+    badTip.payload.authority_digest = digest("tip-mismatch");
+    writeFileSync(tipPath, `${JSON.stringify(badTip)}\n`);
+    const tipMismatch = spawnSync(
+      "bun",
+      [
+        cliPath,
+        "closure",
+        "historical-vpair-migration",
+        "--dry-run",
+        "--from-db",
+        "--run",
+        runPath,
+        "--review",
+        reviewPath,
+        "--expected-head",
+        head,
+        "--json",
+      ],
+      {
+        cwd: fixture.root,
+        encoding: "utf8",
+        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+      },
+    );
+    expect(tipMismatch.status).not.toBe(0);
+    writeFileSync(tipPath, tipBytes);
+    const assertTrackedTamper = (path: string, bytes: Buffer, pattern: RegExp) => {
+      writeFileSync(path, Buffer.concat([bytes, Buffer.from(" ")]));
+      execFileSync("git", ["add", path], { cwd: fixture.root });
+      const badHead = commitFixture(fixture.root, "tamper historical generation");
+      expect(() => loadHistoricalAuthority(fixture.root, badHead)).toThrow(pattern);
+      writeFileSync(path, bytes);
+      execFileSync("git", ["add", path], { cwd: fixture.root });
+      commitFixture(fixture.root, "restore historical generation");
+    };
+    assertTrackedTamper(
+      join(configDir, "historical-vpair-migration-authority.authorities/00000002.json"),
+      authorityBytes,
+      /review\/blob receipt drift|active\/archive/,
+    );
+    assertTrackedTamper(
+      join(configDir, "historical-vpair-migration-authority.json"),
+      authorityBytes,
+      /provenance envelope|active\/archive/,
+    );
+    const manifestPath = join(configDir, "historical-vpair-migration-authority.manifest.json");
+    const manifestBytes = readFileSync(manifestPath);
+    const manifestTamper = JSON.parse(manifestBytes.toString("utf8"));
+    manifestTamper.expected_raw_digest = digest("manifest-only");
+    writeFileSync(manifestPath, JSON.stringify(manifestTamper));
+    execFileSync("git", ["add", manifestPath], { cwd: fixture.root });
+    const manifestHead = commitFixture(fixture.root, "tamper active manifest");
+    expect(() => loadHistoricalAuthority(fixture.root, manifestHead)).toThrow(/manifest/);
+    writeFileSync(manifestPath, manifestBytes);
+    execFileSync("git", ["add", manifestPath], { cwd: fixture.root });
+    commitFixture(fixture.root, "restore active manifest");
+    const receiptPath = join(
+      configDir,
+      `historical-vpair-migration-authority.reviews/${sealedReviewDigest.slice(7)}.json`,
+    );
+    const sealedReceiptBytes = readFileSync(receiptPath);
+    const rejectTrackedReceiptMutation = (mutate: (value: Record<string, unknown>) => void) => {
+      const value = JSON.parse(sealedReceiptBytes.toString("utf8"));
+      mutate(value);
+      delete value.review_digest;
+      delete value.new_manifest_digest;
+      const attackDigest = digest(stable(value));
+      const attackManifestBody = { ...sealedManifest, review_digest: attackDigest } as Record<
+        string,
+        unknown
+      >;
+      delete attackManifestBody.manifest_digest;
+      const attackManifest = {
+        ...attackManifestBody,
+        manifest_digest: digest(stable(attackManifestBody)),
+      };
+      const attackPath = join(
+        configDir,
+        `historical-vpair-migration-authority.reviews/${attackDigest.slice(7)}.json`,
+      );
+      rmSync(receiptPath);
+      writeFileSync(
+        attackPath,
+        `${JSON.stringify({ review_digest: attackDigest, new_manifest_digest: attackManifest.manifest_digest, ...value })}\n`,
+      );
+      writeFileSync(manifestPath, `${JSON.stringify(attackManifest)}\n`);
+      execFileSync("git", ["add", "config"], { cwd: fixture.root });
+      head = commitFixture(fixture.root, "attacker reseals manifest generation receipt");
+      expect(invokeHistorical().status).not.toBe(0);
+      rmSync(attackPath);
+      writeFileSync(receiptPath, sealedReceiptBytes);
+      writeFileSync(manifestPath, `${JSON.stringify(sealedManifest)}\n`);
+      execFileSync("git", ["add", "config"], { cwd: fixture.root });
+      head = commitFixture(fixture.root, "restore manifest generation receipt");
+    };
+    rejectTrackedReceiptMutation((value) => {
+      value.reviewer_identity = value.worker_identity;
+    });
+    rejectTrackedReceiptMutation((value) => {
+      value.reviewer_termination_event_id = "fake-event";
+    });
+    rejectTrackedReceiptMutation((value) => {
+      value.bundle_digest = digest("wrong-bundle");
+    });
+    rejectTrackedReceiptMutation((value) => {
+      value.verdict_digest = digest("wrong-verdict");
+    });
+    rejectTrackedReceiptMutation((value) => {
+      value.review_chain_artifact_digest = digest("missing-chain");
+    });
+    const tamperedReceipt = JSON.parse(readFileSync(receiptPath, "utf8"));
+    tamperedReceipt.authority_raw_digest = digest("tampered");
+    writeFileSync(receiptPath, `${JSON.stringify(tamperedReceipt)}\n`);
+    execFileSync("git", ["add", receiptPath], { cwd: fixture.root });
+    const tamperedHead = commitFixture(fixture.root, "tamper gen2 receipt");
+    expect(() => loadHistoricalAuthority(fixture.root, tamperedHead)).toThrow(
+      /review receipt|review\/blob receipt drift/,
+    );
   });
 
   it("untrusted run decoder rejects census, window, digest, unknown, and empty tampering", () => {

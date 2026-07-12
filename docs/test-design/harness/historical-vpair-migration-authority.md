@@ -28,6 +28,8 @@ fixture Git repository、施行日前後のcommit、versioned baseline、current
 | U-HVMA-008 | dynamic census | non-impl、別classification、bindingあり、path/ID不一致をtyped rejectionへ保持し、追加・削除・順序driftをscope digestとexact setで検出する | `tests/historical-vpair-migration-authority.test.ts` |
 | U-HVMA-009 | append-only review | duplicate verdict、同一identity、stale、chain/digest改ざんを拒否する | `tests/historical-vpair-migration-authority.test.ts` |
 | U-HVMA-010 | promotion禁止 | outputをregistry/closure applyへ渡せず、status/approval/registry bytesが不変である | `tests/historical-vpair-migration-authority.test.ts` |
+| U-HVMA-011 | Git adversarial provenance | cutoff後NEW pathの三重backdate、target pathを持つnon-ancestor orphan、manifest/chain全再seal、CAS/recovery攻撃を実Git・実processで拒否する | `tests/historical-vpair-migration-adversarial.test.ts` |
+| U-HVMA-012 | production read-only | real child CLIでauthority/run/review/full chainを通し、registry、persistent DB、WAL/SHM、全table件数、closure projectionが不変である | `tests/closure-authority-backfill-production-route.test.ts` |
 
 ## 3. integration・verification
 
