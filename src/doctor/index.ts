@@ -1526,7 +1526,9 @@ export function checkTeamReviewReceipts(repoRoot: string): { messages: string[];
   } finally {
     try {
       db?.close();
-    } catch {}
+    } catch {
+      // fail-open: closing a read-only diagnostic handle cannot change the completed check result.
+    }
   }
 }
 

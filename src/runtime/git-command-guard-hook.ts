@@ -51,7 +51,9 @@ export function createGuardOverrideAuditPort(db: HarnessDb): OverrideAuditPort {
         } catch (error) {
           try {
             db.exec("ROLLBACK");
-          } catch {}
+          } catch {
+            // fail-close: retain the original transaction error; rollback is best-effort cleanup.
+          }
           const code = String((error as NodeJS.ErrnoException).code ?? "");
           const message = String(error).toUpperCase();
           const busy =

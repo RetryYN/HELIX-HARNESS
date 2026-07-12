@@ -65,7 +65,9 @@ export function commitOverrideUse(input: {
   } catch {
     try {
       input.audit.abort({ nonce: input.nonce, reason: "consume_failed" });
-    } catch {}
+    } catch {
+      // fail-close: the returned blocked state is authoritative even if audit compensation fails.
+    }
     return { status: "blocked_consume_failure" };
   }
 }

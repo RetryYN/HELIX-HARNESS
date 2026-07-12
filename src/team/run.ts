@@ -169,7 +169,9 @@ function executionEvidence(
 ): TeamMemberExecutionEvidence {
   const output = run.output ?? "";
   const parsed = REVIEW_ROLES.has(role)
-    ? parseStrictTeamReviewVerdict(output)
+    ? run.outputTruncated
+      ? { verdict: null, status: "ambiguous" as const }
+      : parseStrictTeamReviewVerdict(output)
     : { verdict: null, status: "not_required" as const };
   return {
     output_digest: `sha256:${createHash("sha256").update(output).digest("hex")}`,

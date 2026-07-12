@@ -11561,7 +11561,9 @@ team
         } catch (error) {
           try {
             receiptDb.exec("ROLLBACK");
-          } catch {}
+          } catch {
+            // fail-close: preserve the persistence error; rollback is best-effort cleanup.
+          }
           throw new Error(`team review evidence persistence failed: ${String(error)}`);
         } finally {
           receiptDb.close();

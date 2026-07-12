@@ -501,7 +501,7 @@ describe("team run validation", () => {
         expect(execution.ok).toBe(false);
         expect(execution.executions[1]?.evidence.verdict_status).toBe(expectedStatus);
       }
-      const passed = await executeTeamRunPlan(plan, {
+      const truncated = await executeTeamRunPlan(plan, {
         slots: nodeAgentSlotsDeps(repo),
         runCommand: async ({ command }) => ({
           exitCode: 0,
@@ -510,15 +510,15 @@ describe("team run validation", () => {
           outputTruncated: true,
         }),
       });
-      expect(passed.ok).toBe(true);
-      expect(passed.executions[1]?.evidence).toMatchObject({
-        verdict: "pass",
-        verdict_status: "accepted",
+      expect(truncated.ok).toBe(false);
+      expect(truncated.executions[1]?.evidence).toMatchObject({
+        verdict: null,
+        verdict_status: "ambiguous",
         output_bytes: 2_000_000,
         output_truncated: true,
       });
-      expect(passed.executions[1]?.evidence.output_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
-      expect(JSON.stringify(passed)).not.toContain("VERDICT: PASS");
+      expect(truncated.executions[1]?.evidence.output_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(JSON.stringify(truncated)).not.toContain("VERDICT: PASS");
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }

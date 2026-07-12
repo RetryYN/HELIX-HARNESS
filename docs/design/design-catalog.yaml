@@ -71,6 +71,7 @@ items:
     status: done
     artifact:
       - docs/design/helix/L3-requirements/pillar-functional-requirements.md
+      - docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -98,6 +99,8 @@ items:
       - docs/design/harness/L6-function-design/closure-authority-convergence.md
       - docs/design/harness/L6-function-design/development-ci-bounded-time.md
       - docs/design/harness/L6-function-design/fe-roster-orchestration.md
+      - docs/design/harness/L5-detailed-design/destructive-command-guard.md
+      - docs/design/harness/L6-function-design/destructive-command-guard.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test
