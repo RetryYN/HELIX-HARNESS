@@ -1,8 +1,9 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { mkdtempSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { AGENT_TOOL_NAMES } from "../src/runtime/agent-guard-policy";
 import { BUILTIN_GITHUB_TEMPLATES } from "../src/setup/templates";
 
 const cli = join(process.cwd(), "src", "cli.ts");
@@ -52,5 +53,26 @@ describe("PLAN-L7-433 C1 consumer hook command", () => {
     expect(help.status).toBe(0);
     for (const command of new Set(commands)) expect(help.stdout).toContain(command);
     expect(commands).toContain("work-guard");
+  });
+
+  it("U-SETUP-042: dev matcher, policy, and consumer template share Agent|Task", () => {
+    const settings = JSON.parse(
+      readFileSync(join(process.cwd(), ".claude", "settings.json"), "utf8"),
+    );
+    const devMatcher = settings.hooks.PreToolUse.find(
+      (entry: { hooks?: Array<{ command?: string }> }) =>
+        entry.hooks?.some((hook) => hook.command?.includes("agent-guard")),
+    )?.matcher;
+    const templateMatcher = JSON.parse(
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/settings.json"],
+    ).hooks.PreToolUse.find((entry: { hooks?: Array<{ command?: string }> }) =>
+      entry.hooks?.some((hook) => hook.command === "helix hook agent-guard"),
+    )?.matcher;
+    const policyMatcher = [...AGENT_TOOL_NAMES].join("|");
+    expect({ devMatcher, templateMatcher, policyMatcher }).toEqual({
+      devMatcher: "Agent|Task",
+      templateMatcher: "Agent|Task",
+      policyMatcher: "Agent|Task",
+    });
   });
 });

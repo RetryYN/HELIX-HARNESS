@@ -33,6 +33,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design
+  - artifact_path: .claude/settings.json
+    artifact_type: config
 dependencies:
   parent: null
   requires: []

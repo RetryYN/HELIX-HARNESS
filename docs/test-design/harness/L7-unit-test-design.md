@@ -317,6 +317,7 @@ fail-close する。
 | U-SETUP-038 | `mergeConsumerPackageJson` / `bootstrapProjectPackageLockfile` | brownfield consumer repo で既存 `package.json` に必須 script または dependency を merge した場合、既存 `bun.lock` があっても `bun install --lockfile-only` を実行して lockfile を更新する。既存 script は上書きせず、欠落している `typecheck` / `test`、`devDependencies.helix`、`devDependencies.typescript` を追加する。`importReport.mode=brownfield` だが mergeable package surface のみなら `requiresReview=false` / `nextRoute=ready` とし、stale lockfile のまま `bun install --frozen-lockfile` が落ちる状態を consumer readiness green にしない。 |
 | U-SETUP-040 | `helix hook work-guard` | 実git fixtureでforeign uncommitted targetはexit 2、clean targetはexit 0となり、配布CLI経路がshared work-guard判定へ実到達する。 |
 | U-SETUP-041 | consumer Claude/Codex hook templates / `helix hook --help` | 両templateが宣言する全 `helix hook <subcommand>` がCLI helpに実在する。command文字列の構造検査だけで、存在しないsubcommandをready扱いしない。 |
+| U-SETUP-042 | dev `.claude/settings.json` / `AGENT_TOOL_NAMES` / consumer Claude template | agent-guard matcherは三面すべて `Agent|Task` と一致し、Task runtimeだけdev guardを迂回するdriftを許さない。 |
 
 ### §1.8 U-HRET（session handover の退役）
 
