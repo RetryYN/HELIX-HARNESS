@@ -182,6 +182,21 @@ export function durableFileLoopStore(deps: {
     },
     write: (state) => {
       const planId = assertLoopPlanId(state.planId);
+      const snapshot = readLoopEpochFromFs(deps.root, planId);
+      const stage = snapshot.payload?.orchestrationStage;
+      if (stage) {
+        if (
+          snapshot.status !== "committed" ||
+          stage.purpose !== "verifier" ||
+          stage.status !== "completed" ||
+          stage.result === null ||
+          state.iteration !== stage.iteration + 1 ||
+          state.lastVerdict !== stage.result
+        )
+          throw new Error(`invalid loop stage finalization: ${planId}`);
+      } else if (snapshot.status !== "missing" && snapshot.status !== "committed") {
+        throw new Error(`loop epoch cannot be overwritten: ${planId}:${snapshot.status}`);
+      }
       const previousManifestText = port.readManifestText(planId);
       const iteration = pendingIterations.get(planId) ?? null;
       const committed = commitLoopEpoch({
@@ -198,6 +213,13 @@ export function durableFileLoopStore(deps: {
     runSideEffect: async (state, purpose, effect) => {
       const planId = assertLoopPlanId(state.planId);
       const current = readLoopEpochFromFs(deps.root, planId);
+      if (current.status !== "missing" && current.status !== "committed")
+        throw new Error(`loop side effect blocked by epoch state: ${planId}:${current.status}`);
+      if (
+        current.payload !== null &&
+        JSON.stringify(current.payload.state) !== JSON.stringify(state)
+      )
+        throw new Error(`loop side effect state snapshot mismatch: ${planId}`);
       const stage = current.payload?.orchestrationStage;
       if (
         current.status === "committed" &&

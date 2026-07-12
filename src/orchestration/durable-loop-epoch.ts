@@ -302,7 +302,10 @@ export function parseLoopEpochPayload(text: string, planId: string): LoopEpochPa
         (stageRecord.result === null ||
           ["pass", "fail", "error", "pending"].includes(String(stageRecord.result))) &&
         (stageRecord.purpose === "worker" ? stageRecord.result === null : true) &&
-        (stageRecord.status === "intent" ? stageRecord.result === null : true))
+        (stageRecord.status === "intent" ? stageRecord.result === null : true) &&
+        (stageRecord.status === "completed" && stageRecord.purpose === "verifier"
+          ? stageRecord.result !== null
+          : true))
     )
   ) {
     return null;
