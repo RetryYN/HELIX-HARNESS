@@ -55,4 +55,45 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
     expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(false);
   });
+
+  it("IT-DUR-003: a second-epoch C4 crash preserves the previous committed payload", () => {
+    const repo = root();
+    const firstPort = nodeDurableEpochPort(repo);
+    const first = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: { state, iteration: null },
+      sideEffectPhase: "not_started",
+      port: firstPort,
+    });
+    expect(first.status).toBe("committed");
+    const paths = loopEpochPaths(repo, PLAN);
+    const previousManifestText = readFileSync(paths.manifest, "utf8");
+    const previousManifest = JSON.parse(previousManifestText);
+    const previousPayloadText = readFileSync(
+      paths.payloadFor(previousManifest.payloadFile),
+      "utf8",
+    );
+    const realPort = nodeDurableEpochPort(repo);
+    const faultPort = new Proxy(realPort, {
+      get: (target, name, receiver) =>
+        name === "writeManifestTemp"
+          ? () => {
+              throw new Error("C4 fault");
+            }
+          : Reflect.get(target, name, receiver),
+    });
+    const second = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText,
+      payload: { state: { ...state, iteration: 1 }, iteration: null },
+      sideEffectPhase: "not_started",
+      port: faultPort,
+    });
+    expect(second.status).toBe("durability_uncertain");
+    expect(readFileSync(paths.manifest, "utf8")).toBe(previousManifestText);
+    expect(readFileSync(paths.payloadFor(previousManifest.payloadFile), "utf8")).toBe(
+      previousPayloadText,
+    );
+  });
 });
