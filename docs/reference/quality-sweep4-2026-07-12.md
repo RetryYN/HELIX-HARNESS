@@ -41,10 +41,11 @@ evidence の要点は PLAN 本文に転記済み。verifier の生 verdict は w
   共有 snapshot なしに独立再計算される。加えて `src/cli.ts` 12,463 行 / `src/doctor/index.ts` 7,150 行
   （実測 wc）の monolith に複数 finder 視点が独立に到達した。
 
-## 3. 未検証残 30 件（検証中断 — 棄却ではない）
+## 3. 未検証残（当時の検証中断記録 — 2026-07-13 再監査完了）
 
-月間利用上限による検証中断のため、以下は**実在・既出の判定が未了**。着手時は 1 件ずつ検証してから
-採否を記録する（無検証のまま実装しない）。既出疑いの注記付き。
+月間利用上限による検証中断時点の候補一覧。2026-07-13 に2つの独立read-only監査laneで
+実在反証と既出照合を完走し、§4へ採否を記録した。元表は32行あり、C2確定済み1行と
+PLAN-L7-431 S4同族2行を除く実質30件という注記だった。
 
 | lens | 所見（タイトル） | 備考 |
 | --- | --- | --- |
@@ -83,3 +84,47 @@ evidence の要点は PLAN 本文に転記済み。verifier の生 verdict は w
 
 （注: 表は rejectedSummary の 34 件から、C1〜C3 で確定昇格した項目と PLAN-431 S4 同一と判定済みの重複行を
 整理した実質 30 件。原本 42 件の生データは workflow run `wf_8a0c472e-2c0` の journal にある。）
+
+## 4. 2026-07-13 現HEAD敵対監査の採否
+
+判定規律: `採用`は実在根拠がありsuccessor境界が必要、`既出`は既存PLAN/Qで解消または統合、
+`棄却`は現HEADで反証済み。性能値・行数・module数は旧測定をそのまま採用せず再計測を条件とする。
+
+| # | 所見 | 判定 | 現HEAD根拠・successor境界 |
+|---:|---|---|---|
+| 1 | runFullDoctor boilerplate / registry | 採用 (C3 successor) | `src/doctor/index.ts` の直列check群。severity/cost/dependency/snapshotを持つdescriptorへ段階化 |
+| 2 | completion packet期待値重複 | 採用 | `outstanding.ts` と `completion-decision-packet.ts` のcontract descriptorを共有。自己比較testは禁止 |
+| 3 | buildProjectCurrentLocationView巨大化 | 採用 (C3 successor) | projection section別pure builderへ分割 |
+| 4 | cli monolith / 型重複 | 採用 (C3 successor) | command family別registrar/handler/presenterへ段階分割 |
+| 5 | lint micro utility drift | 既出 (Q8) | value/string/collection/time/file-walk shared SSoTと定義数oracleで解消 |
+| 6 | Markdown table parser重複 | 採用 | escaped pipe/code span/header/CRLF契約を先に設計し同義callerだけ移行 |
+| 7 | runtime capability unsupported反復 | 棄却 | runtime×capabilityの明示宣言dataでありlogic重複ではない |
+| 8 | ProjectCurrentLocationView巨大interface | 採用 (C3 successor) | named section type compositionへ分割 |
+| 9 | CLI domain logic埋没 | 採用 (C3 successor) | CLIをparse→domain service→presentへ限定 |
+| 10 | doctor monolith / registry形骸化 | 採用 (C3 successor) | #1と同一successor境界 |
+| 11 | state-db ⇄ vscode cycle | 採用 (高) | view-model contractをshared/schemaへ移しstate-db→vscodeを禁止 |
+| 12 | circular grandfather陳腐化 | 既出統合 (PLAN-L7-341) | live graphとの差集合ratchetをsuccessorへ追加 |
+| 13 | lint内write/process端点 | 採用 | analyzerとexecutor/probe adapterを分離しlint外部効果をboundary rule化 |
+| 14 | re-export/dynamic import未追跡 | 既出統合 (PLAN-L7-428 W2) | import/export/`import()`/literal require共通edge extractorを追加 |
+| 15 | source-boundary EMPTY過多 | 採用 | 現在32 module中27 EMPTY。architectureに沿うlayer ruleを段階導入 |
+| 16 | work-guard marker消費 | 既出 (PLAN-L7-431 S4) | one-shot消費条件の既存是正・oracleを維持 |
+| 17 | git-command marker安全command消費 | 既出 (PLAN-L7-431 S4) | 同上 |
+| 18 | git-command bypass grammar | 部分既出・採用 | S1で主要形は対応。`git -C`/`--git-dir`/env/separator property testをsuccessor化 |
+| 19 | test helper大量重複 | 採用 | temp repo/PLAN fixture/CLI spawnをinventory後にtest-support契約へ集約 |
+| 20 | git clean / branch -D / stash drop fence | 採用 (高) | destructive grammar threat-model successorでfail-close化 |
+| 21 | schemaDdl determinism自己比較 | 採用 | golden digestとmigration後schemaの双方向oracleへ置換 |
+| 22 | doctor PLAN再読込 | 部分既出・採用 | Q3 loader統一済み。doctor-run snapshot注入とI/O count oracleが残る |
+| 23 | plan-entry-routing毎file DB open | 棄却 | `plan-entry-routing-input.ts`は1回open→全件map→1回close |
+| 24 | TS files複数回parse | 採用候補 | shared TS source/AST snapshot。回数はbenchmark再測定後に固定 |
+| 25 | rename cutover full audit反復 | 採用候補 | doctor-run rename snapshot注入、freshness/worktree binding維持 |
+| 26 | completion review bridge再構築 | 採用 | doctor orchestration contextからpacket注入しfallback=0をoracle化 |
+| 27 | outstanding独立再計算 | 既出 (C3) | 同期run snapshot + microtask clearで解消 |
+| 28 | vpair test毎createProgram | 採用候補 | batch Program/CompilerHost cache、symbol oracle等価性を要求 |
+| 29 | doctor匿名catch原因破棄 | 採用 | redaction済みstable cause digestを返すgate failure helper |
+| 30 | autonomous loop非atomic/silent reset | 採用 | corrupt≠missing、temp+fsync+rename、quarantine/diagnostic契約 |
+| 31 | agent matcher Agentのみ | 既出 (C2/PLAN-L7-441) | Agent/Task三面parityで解消 |
+| 32 | marker bypass audit失敗握り潰し | 採用 (高) | audit成功→marker消費→許可をtransaction化。失敗時block+marker保持 |
+
+監査結果: 採用/採用候補21、部分既出2、既出7、棄却2（合計32行、実質30候補）。採用項目は相互依存に沿って
+`doctor-run context`、`dependency boundary`、`git guard threat model`、`durability/error diagnostics`、
+`test infrastructure`へ束ね、一括実装せず各successorで設計・Vペアを作る。
