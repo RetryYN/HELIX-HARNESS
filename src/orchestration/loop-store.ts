@@ -227,6 +227,7 @@ export function durableFileLoopStore(deps: {
     },
     runSideEffect: async (state, purpose, effect) => {
       const planId = assertLoopPlanId(state.planId);
+      const expectedManifestText = port.readManifestText(planId);
       const current = readLoopEpochFromFs(deps.root, planId);
       if (current.status !== "missing" && current.status !== "committed")
         throw new Error(`loop side effect blocked by epoch state: ${planId}:${current.status}`);
@@ -235,6 +236,12 @@ export function durableFileLoopStore(deps: {
         JSON.stringify(current.payload.state) !== JSON.stringify(state)
       )
         throw new Error(`loop side effect state snapshot mismatch: ${planId}`);
+      if (
+        (expectedManifestText === null) !== (current.manifest === null) ||
+        (expectedManifestText !== null &&
+          JSON.stringify(JSON.parse(expectedManifestText)) !== JSON.stringify(current.manifest))
+      )
+        throw new Error(`loop side effect manifest snapshot changed: ${planId}`);
       const stage = current.payload?.orchestrationStage;
       if (purpose === "verifier" && stage?.purpose !== "worker" && stage?.purpose !== "verifier")
         throw new Error(`loop verifier requires completed worker stage: ${planId}`);
@@ -246,10 +253,9 @@ export function durableFileLoopStore(deps: {
         if (purpose === "worker" && ["worker", "verifier"].includes(stage.purpose)) return null;
         if (purpose === "verifier" && stage.purpose === "verifier") return stage.result;
       }
-      const beforeIntent = port.readManifestText(planId);
       const intent = commitLoopEpoch({
         planId,
-        previousManifestText: beforeIntent,
+        previousManifestText: expectedManifestText,
         payload: {
           state,
           iteration: null,
