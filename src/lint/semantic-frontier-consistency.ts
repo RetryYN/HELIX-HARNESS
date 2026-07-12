@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { escapeRegExp } from "../shared/string-utils";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
 
 export interface SemanticFrontierConsistencyInput {
@@ -499,10 +500,6 @@ function extractTableIds(text: string, idPattern: RegExp): string[] {
 
 function hasStandaloneMarker(text: string, marker: string): boolean {
   return new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(marker)}(?![A-Z0-9-])`).test(text);
-}
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 export function semanticFrontierConsistencyMessages(

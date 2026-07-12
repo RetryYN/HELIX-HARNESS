@@ -77,6 +77,10 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/value-guards.test.ts
     artifact_type: test_code
+  - artifact_path: src/shared/string-utils.ts
+    artifact_type: source_module
+  - artifact_path: tests/string-utils.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []

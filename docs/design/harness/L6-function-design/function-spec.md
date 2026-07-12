@@ -972,3 +972,13 @@ lint / runtime / state-dbは独自type guardを持たない。特にtest-report 
 | 関数 | pre | post | invariant | oracle |
 |---|---|---|---|---|
 | `isRecord` | unknown | plain recordならtrue | null/array/primitiveはfalse、production定義1件 | U-VGUARD-001..002 |
+
+### regex literal escape単一正本（PLAN-L7-433 Q8）
+
+`escapeRegExp(value)` は`src/shared/string-utils.ts`の低位pure utilityとし、dynamic regexを組む
+schema/lint callerは独自実装を持たない。正規表現meta characterだけをescapeし、入力文字列との
+完全literal matchを保証する。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `escapeRegExp` | 任意文字列 | regex literal fragment | production定義1件、非meta文字不変 | U-STRUTIL-001..002 |

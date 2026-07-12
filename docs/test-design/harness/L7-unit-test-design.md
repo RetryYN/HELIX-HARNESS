@@ -1279,3 +1279,6 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 |---|---|---|
 | U-VGUARD-001 | `isRecord` | objectを受理し、array/null/primitiveを拒否する。 |
 | U-VGUARD-002 | production definition inventory | 対象13 module中の`isRecord`定義がsharedの1件だけである。 |
+
+| U-STRUTIL-001 | `escapeRegExp` | 全meta characterを含む入力が生成regexで完全literal matchする。 |
+| U-STRUTIL-002 | production definition inventory | 対象5 module中の`escapeRegExp`定義がsharedの1件だけである。 |
