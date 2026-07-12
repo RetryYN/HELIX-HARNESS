@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { type Sha256Digest, sha256Digest } from "../runtime/digest";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
 import type { LoopIterationRecord } from "./loop-runner";
@@ -28,6 +29,7 @@ export type LoopEpochManifest = {
   epochId: number;
   previousManifestDigest: Sha256Digest | null;
   payloadDigest: Sha256Digest;
+  payloadFile: string;
   sideEffectPhase: LoopSideEffectPhase;
 };
 
@@ -41,13 +43,13 @@ export type LoopEpochReadResult = {
 export interface DurableEpochPort {
   acquireExclusiveClaim(planId: string): boolean;
   readManifestText(planId: string): string | null;
-  writePayloadTemp(planId: string, text: string): void;
-  fsyncPayloadTemp(planId: string): void;
-  renamePayload(planId: string): void;
+  writePayloadTemp(planId: string, tempId: string, text: string): void;
+  fsyncPayloadTemp(planId: string, tempId: string): void;
+  renamePayload(planId: string, tempId: string, payloadFile: string): void;
   fsyncStateDirectory(planId: string): void;
-  writeManifestTemp(planId: string, text: string): void;
-  fsyncManifestTemp(planId: string): void;
-  renameManifest(planId: string): void;
+  writeManifestTemp(planId: string, tempId: string, text: string): void;
+  fsyncManifestTemp(planId: string, tempId: string): void;
+  renameManifest(planId: string, tempId: string): void;
   unlinkClaim(planId: string): void;
   fsyncClaimDirectory(planId: string): void;
 }
@@ -114,23 +116,28 @@ export function commitLoopEpoch(input: {
         reason: "invalid_payload",
       };
     }
+    const payloadDigest = sha256Digest(payloadText);
+    const epochId = (previous?.epochId ?? -1) + 1;
+    const payloadFile = `${planId}.epoch-${epochId}-${payloadDigest.slice(7, 23)}.payload.json`;
+    const tempId = randomUUID();
     const manifest: LoopEpochManifest = {
       schema: LOOP_EPOCH_SCHEMA,
       planId,
-      epochId: (previous?.epochId ?? -1) + 1,
+      epochId,
       previousManifestDigest: input.previousManifestText
         ? sha256Digest(input.previousManifestText)
         : null,
-      payloadDigest: sha256Digest(payloadText),
+      payloadDigest,
+      payloadFile,
       sideEffectPhase: input.sideEffectPhase,
     };
-    input.port.writePayloadTemp(planId, payloadText);
-    input.port.fsyncPayloadTemp(planId);
-    input.port.renamePayload(planId);
+    input.port.writePayloadTemp(planId, tempId, payloadText);
+    input.port.fsyncPayloadTemp(planId, tempId);
+    input.port.renamePayload(planId, tempId, payloadFile);
     input.port.fsyncStateDirectory(planId);
-    input.port.writeManifestTemp(planId, JSON.stringify(manifest));
-    input.port.fsyncManifestTemp(planId);
-    input.port.renameManifest(planId);
+    input.port.writeManifestTemp(planId, tempId, JSON.stringify(manifest));
+    input.port.fsyncManifestTemp(planId, tempId);
+    input.port.renameManifest(planId, tempId);
     input.port.fsyncStateDirectory(planId);
     input.port.unlinkClaim(planId);
     input.port.fsyncClaimDirectory(planId);
