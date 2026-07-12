@@ -108,12 +108,17 @@ export function buildAutonomousLoopRunReceipt(
     };
   }
   const state = snapshot.payload.state;
-  const iterationCount = state.iteration;
+  const latestIteration = snapshot.payload.iteration;
+  const iterationEvidenceMatches =
+    state.iteration === 0
+      ? latestIteration === null
+      : latestIteration !== null && latestIteration.iteration === state.iteration - 1;
+  const iterationCount = iterationEvidenceMatches ? state.iteration : 0;
   const kind = stopKind(state);
   const remainingIterations = Math.max(0, state.maxIterations - state.iteration);
   return {
     schema_version: AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION,
-    ok: iterationCount > 0 || state.status !== "running",
+    ok: iterationEvidenceMatches && (iterationCount > 0 || state.status !== "running"),
     plan_id: planId,
     status: "present",
     loop_state: state,
@@ -129,8 +134,15 @@ export function buildAutonomousLoopRunReceipt(
       reason: state.blockedReason,
     },
     evidence_paths: [paths.manifest, paths.payloadFor(snapshot.manifest?.payloadFile ?? "")],
-    findings:
-      iterationCount === 0 && state.status === "running"
+    findings: !iterationEvidenceMatches
+      ? [
+          {
+            code: "iteration_receipt_mismatch",
+            severity: "error",
+            detail: "latest durable iteration receipt does not match loop state progression",
+          },
+        ]
+      : iterationCount === 0 && state.status === "running"
         ? [
             {
               code: "running_without_iteration_receipt",

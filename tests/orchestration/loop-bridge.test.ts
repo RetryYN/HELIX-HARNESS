@@ -214,7 +214,7 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
         readFileSync(join(cwd, "claude-calls.txt"), "utf8").trim().split(/\r?\n/),
       ).toHaveLength(2);
       expect(snapshot.payload?.iteration).toMatchObject({
-        iteration: 2,
+        iteration: 1,
         verifierProvider: "claude",
       });
     } finally {

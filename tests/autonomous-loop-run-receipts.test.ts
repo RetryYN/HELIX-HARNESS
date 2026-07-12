@@ -46,7 +46,7 @@ describe("autonomous loop run receipts", () => {
       const store = durableFileLoopStore({ root });
       store.recordIteration({
         planId: "PLAN-L7-366",
-        iteration: 1,
+        iteration: 0,
         workerProvider: "codex",
         verifierProvider: "claude",
         verdict: "pending",
