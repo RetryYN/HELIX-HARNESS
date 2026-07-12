@@ -31,28 +31,36 @@ export function guardOverrideDigest(value: string): string {
 export function createGuardOverrideAuditPort(db: HarnessDb): OverrideAuditPort {
   return {
     commit(input) {
-      db.exec("BEGIN IMMEDIATE");
-      try {
-        const inserted = db
-          .prepare(`INSERT OR IGNORE INTO guard_override_transactions
+      for (let attempt = 0; attempt < 5; attempt += 1) {
+        try {
+          db.exec("BEGIN IMMEDIATE");
+          const inserted = db
+            .prepare(`INSERT OR IGNORE INTO guard_override_transactions
           (nonce, guard_kind, operation_class, subject_digest, reason_digest, status, created_at)
           VALUES (?, ?, ?, ?, ?, 'committed', ?)`)
-          .run(
-            input.nonce,
-            input.classification.guardKind,
-            input.classification.operationClass,
-            input.classification.subjectDigest,
-            guardOverrideDigest(input.reason),
-            new Date().toISOString(),
-          );
-        db.exec("COMMIT");
-        return { status: inserted.changes === 1 ? "committed" : "reused" };
-      } catch (error) {
-        try {
-          db.exec("ROLLBACK");
-        } catch {}
-        throw error;
+            .run(
+              input.nonce,
+              input.classification.guardKind,
+              input.classification.operationClass,
+              input.classification.subjectDigest,
+              guardOverrideDigest(input.reason),
+              new Date().toISOString(),
+            );
+          db.exec("COMMIT");
+          return { status: inserted.changes === 1 ? "committed" : "reused" };
+        } catch (error) {
+          try {
+            db.exec("ROLLBACK");
+          } catch {}
+          const code = String((error as NodeJS.ErrnoException).code ?? "");
+          const message = String(error).toLowerCase();
+          const busy =
+            code.includes("BUSY") || code.includes("LOCKED") || message.includes("locked");
+          if (!busy || attempt === 4) throw error;
+          Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10 * (attempt + 1));
+        }
       }
+      throw new Error("guard override transaction retry exhausted");
     },
     abort(input) {
       db.prepare(`UPDATE guard_override_transactions
