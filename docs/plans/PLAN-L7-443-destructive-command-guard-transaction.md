@@ -42,6 +42,15 @@ review_evidence:
     scope: "L5/L6/L8/L9、guard実装、SQLite retry/CAS/crash/adapter/redactionを再審査しBlocker/High 0。別provider receipt基盤の欠陥はPLAN-L7-444へ責務分離し、本technical reviewをcross-runtime reviewと称さない。"
     worker_model: codex
     reviewer_model: codex-fresh-subagent
+    green_commands:
+      - kind: regression_test
+        command: "bunx vitest run tests/guard-override-transaction.test.ts tests/work-guard.test.ts tests/hook-contract.test.ts --reporter=dot"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-13T03:54:25+09:00"
+        evidence_path: tests/guard-override-transaction.test.ts
+        output_digest: "sha256:0b17b75c762180b6c0287fb04324f48fa57fc5c55efb3e8483469ef276c168a4"
   - reviewer: codex-fresh-cas-stress
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-13T03:12:00+09:00"

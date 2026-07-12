@@ -37,6 +37,24 @@ dependencies:
     - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
     - docs/design/helix/L12-vmodel/vmodel-layer-coverage.md
   blocks: []
+review_evidence:
+  - reviewer: PO
+    review_kind: human
+    reviewed_at: "2026-07-13T03:48:00+09:00"
+    tests_green_at: "2026-07-13T03:54:55+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: human-po
+    scope: "PO明示指示『ハイブリッド設計ドキュメントv1-fixed.zipを正本』をL3設計freeze承認として記録する。runtime enum/state/CLI/hook/consumer/distributionの実cutoverは承認範囲外。"
+    green_commands:
+      - kind: lint
+        command: "scripts/helix plan lint docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md"
+        runner: helix
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-13T03:54:55+09:00"
+        evidence_path: docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md
+        output_digest: "sha256:99fc1b7aa9d981c8b00e7d0439bb04ac783a8e8a6e309f6a76dba8a416a5792f"
 ---
 
 # PLAN-L3-14: ZIP L1-L12 正本権限の切替freeze
