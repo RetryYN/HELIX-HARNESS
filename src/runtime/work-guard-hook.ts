@@ -103,6 +103,7 @@ export function runWorkGuardHook(opts: {
     const targets = (editTargets.length > 0 ? editTargets : extractShellWriteTargets(command))
       .map((t) => normalizeRepoRelative(t, opts.repoRoot))
       .filter((t) => t.length > 0);
+    if (targets.length === 0) return { exitCode: 0 };
     const override = resolveForeignEditOverride({
       env: env.HELIX_ALLOW_FOREIGN_EDIT,
       markerReason: readOverrideMarker(opts.repoRoot),
