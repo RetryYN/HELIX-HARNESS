@@ -82,6 +82,19 @@ function gitSlices(tokens: string[]): string[][] {
   const slices: string[][] = [];
   for (let i = 0; i < tokens.length; i++) {
     if (tokens[i] !== "git") continue;
+    let commandStart = i === 0 || /^(?:&&|\|\||;|\|)$/.test(tokens[i - 1] ?? "");
+    if (!commandStart) {
+      let start = i - 1;
+      while (start > 0 && !/^(?:&&|\|\||;|\|)$/.test(tokens[start - 1] ?? "")) start -= 1;
+      const prefix = tokens.slice(start, i);
+      if (prefix[0] === "command") prefix.shift();
+      if (prefix[0] === "env") prefix.shift();
+      while (prefix.length > 0 && /^[A-Za-z_][A-Za-z0-9_]*=.*/.test(prefix[0] ?? "")) {
+        prefix.shift();
+      }
+      commandStart = prefix.length === 0;
+    }
+    if (!commandStart) continue;
     const slice: string[] = [];
     for (let j = i + 1; j < tokens.length; j++) {
       const token = tokens[j] ?? "";
@@ -122,10 +135,13 @@ function commandGitSlices(command: string, depth = 0): { slices: string[][]; com
   if (depth > 4) return { slices: [], complete: false };
   const tokenized = shellTokens(command);
   const direct = gitSlices(tokenized.tokens);
-  const nested = nestedShellCommands(command).flatMap(
-    (payload) => commandGitSlices(payload, depth + 1).slices,
+  const nestedResults = nestedShellCommands(command).map((payload) =>
+    commandGitSlices(payload, depth + 1),
   );
-  return { slices: [...direct, ...nested], complete: tokenized.complete };
+  return {
+    slices: [...direct, ...nestedResults.flatMap((result) => result.slices)],
+    complete: tokenized.complete && nestedResults.every((result) => result.complete),
+  };
 }
 
 function withoutGlobalOptions(args: string[]): string[] {

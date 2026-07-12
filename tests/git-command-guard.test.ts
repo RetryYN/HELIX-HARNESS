@@ -118,8 +118,18 @@ describe("git-command-guard", () => {
   });
 
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] fails closed on incomplete shell grammar", () => {
-    for (const command of ["git clean '-f", 'git stash "clear']) {
+    for (const command of ["git clean '-f", 'git stash "clear', `bash -c "git clean '-f"`]) {
       expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+    }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-003] does not treat string arguments as commands", () => {
+    for (const command of [
+      `echo "git reset --hard"`,
+      `printf '%s' 'git clean -f'`,
+      `rg 'git stash clear' docs`,
+    ]) {
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
     }
   });
 
