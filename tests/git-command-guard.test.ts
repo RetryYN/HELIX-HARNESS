@@ -329,6 +329,9 @@ describe("git-command-guard", () => {
       const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
       writeFileSync(markerPath, "reviewed concurrent recovery");
+      const initialized = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      migrate(initialized);
+      initialized.close();
       const input = JSON.stringify({
         session_id: "s-cas",
         tool_input: { command: "git clean -f" },
