@@ -1,60 +1,146 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { parse } from "yaml";
 import { describe, expect, it } from "vitest";
 
-const l5 = readFileSync(
-  "docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
-  "utf8",
-);
-const l6 = readFileSync(
-  "docs/design/harness/L6-function-design/source-boundary-contracts.md",
-  "utf8",
-);
-const l8 = readFileSync("docs/test-design/harness/L8-source-boundary-contracts.md", "utf8");
-const l9 = readFileSync("docs/test-design/harness/L9-source-boundary-integration.md", "utf8");
+const read = (path: string) => readFileSync(path, "utf8");
+const l5 = read("docs/design/harness/L5-detailed-design/source-boundary-architecture.md");
+const l6 = read("docs/design/harness/L6-function-design/source-boundary-contracts.md");
+const l8 = read("docs/test-design/harness/L8-source-boundary-contracts.md");
+const l9 = read("docs/test-design/harness/L9-source-boundary-integration.md");
+
+const successorPaths = [
+  "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
+  "docs/plans/PLAN-L7-451-lint-effect-port-separation.md",
+  "docs/plans/PLAN-L7-452-source-boundary-policy-ratchet.md",
+] as const;
+
+type PlanFrontmatter = {
+  parent_design?: string;
+  pair_artifact?: string;
+  verification_bindings?: Array<{ oracle_id?: string; test_path?: string }>;
+  generates?: Array<{ artifact_path?: string }>;
+  dependencies?: { requires?: string[]; references?: string[] };
+};
+
+const frontmatter = (path: string): PlanFrontmatter => {
+  const match = read(path).match(/^---\n([\s\S]*?)\n---/);
+  expect(match, `${path} frontmatter`).not.toBeNull();
+  return parse(match?.[1] ?? "") as PlanFrontmatter;
+};
 
 describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
-  it("U-SBOUND-001/002/003: freezes forbidden directions and unspecified policy", () => {
+  it("U-SBOUND-001/002/003: freezes forbidden directions and total fail-close policy", () => {
     expect(l5).toContain("persistence→presentation");
     expect(l5).toContain("type-only import");
+    expect(l5).toContain("default `deny`");
     expect(l5).toContain("`unspecified`としてfail-close");
-    expect(l8).toContain("U-SBOUND-001");
-    expect(l8).toContain("U-SBOUND-002");
-    expect(l8).toContain("U-SBOUND-003");
-  });
-
-  it("U-SBOUND-004/005/006/007: freezes effect, projector, receipt, and policy contracts", () => {
-    expect(l6).toContain("analyzerからwrite/child-process authorityへ直接到達できない");
-    expect(l6).toContain("unspecified≠allow");
-    expect(l6).toContain("timeout/nonzeroをsuccess化しない");
-    for (const id of ["U-SBOUND-004", "U-SBOUND-005", "U-SBOUND-006", "U-SBOUND-007"]) {
+    for (const id of ["U-SBOUND-001", "U-SBOUND-002", "U-SBOUND-003"]) {
       expect(l8).toContain(id);
     }
   });
 
-  it("U-SBOUND-008: delegates edge extraction to PLAN-L7-428 without a second parser", () => {
-    expect(l5).toContain("`PLAN-L7-428` W2");
-    expect(l6).toContain("独自parserを作らない");
+  it("U-SBOUND-004..010: binds every public contract to a negative oracle", () => {
+    const contractOracles: Record<string, string[]> = {
+      "projectVisualization(view: VisualizationViewModel): GenericTreeNode[]": [
+        "U-SBOUND-001",
+        "U-SBOUND-002",
+        "U-SBOUND-005",
+      ],
+      "buildEvidenceProjection(rows: MetricRow[]): EvidenceProjection": ["U-SBOUND-001"],
+      "analyzeSnapshot<T>(snapshot: T, rules: AnalyzerRules<T>): Finding[]": ["U-SBOUND-004"],
+      "runProbe(intent: ProbeIntent, port: ProbePort): ProbeReceipt": [
+        "U-SBOUND-006",
+        "U-SBOUND-009",
+      ],
+      "materializeLintArtifact(intent: MaterializeIntent, port: WritePort): MaterializeReceipt": [
+        "U-SBOUND-009",
+        "U-SBOUND-010",
+      ],
+      "extractSourceEdges(docs: SourceDocument[]): SourceEdge[]": ["U-SBOUND-008"],
+      "evaluateSourceBoundary(edge: SourceEdge, policy: BoundaryPolicy): BoundaryDecision": [
+        "U-SBOUND-003",
+        "U-SBOUND-007",
+      ],
+      "validateBoundaryPolicyCoverage(catalog: ModuleCatalog, edges: SourceEdge[], policy: BoundaryPolicy): PolicyFinding[]":
+        ["U-SBOUND-003", "U-SBOUND-007"],
+    };
+    for (const [contract, oracleIds] of Object.entries(contractOracles)) {
+      expect(l6).toContain(`\`${contract}\``);
+      for (const id of oracleIds) expect(l8).toContain(id);
+    }
+    expect(l6).toContain("partial write");
+    expect(l6).toContain("idempotency key");
+  });
+
+  it("U-SBOUND-008: assigns one exact extractor owner and treats PLAN-L7-428 as provenance", () => {
+    expect(l5).toContain("`src/lint/source-edge-extractor.ts`");
+    expect(l6).toContain("PLAN-L7-452が`src/lint/source-edge-extractor.ts`を単一owner");
     expect(l8).toContain("U-SBOUND-008");
   });
 
-  it("IT-SBOUND-001/002: freezes headless core and adapter-only integration", () => {
-    expect(l9).toContain("IT-SBOUND-001");
-    expect(l9).toContain("presentation import 0");
-    expect(l9).toContain("IT-SBOUND-002");
-    expect(l9).toContain("harness.db不要");
+  it("IT-SBOUND-001..008: freezes integration, mutation, drift, and durability oracles", () => {
+    for (let index = 1; index <= 8; index += 1) {
+      expect(l9).toContain(`IT-SBOUND-${String(index).padStart(3, "0")}`);
+    }
+    expect(l9).toContain("全live edgeにtotal decision");
+    expect(l9).toContain("snapshot driftでeffect 0");
+    expect(l9).toContain("partial targetをacceptedにしない");
   });
 
-  it("IT-SBOUND-003/004: freezes read-only and explicit effect counts", () => {
-    expect(l9).toContain("IT-SBOUND-003");
-    expect(l9).toContain("write set 0、child process 0");
-    expect(l9).toContain("IT-SBOUND-004");
-    expect(l9).toContain("child process 1回");
+  it("structurally binds every exact successor to the L6/L8 V-pair", () => {
+    for (const path of successorPaths) {
+      expect(existsSync(path), path).toBe(true);
+      const plan = frontmatter(path);
+      expect(plan.parent_design).toBe(
+        "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+      );
+      expect(plan.pair_artifact).toBe("docs/test-design/harness/L8-source-boundary-contracts.md");
+      expect(plan.verification_bindings?.length).toBeGreaterThan(0);
+      expect(
+        plan.verification_bindings?.every((binding) => binding.oracle_id && binding.test_path),
+      ).toBe(true);
+      expect(plan.generates?.some((item) => item.artifact_path === path)).toBe(true);
+    }
   });
 
-  it("IT-SBOUND-005/006: freezes real graph coverage and mutation detection", () => {
-    expect(l9).toContain("IT-SBOUND-005");
-    expect(l9).toContain("policy coverage 32/32");
-    expect(l9).toContain("IT-SBOUND-006");
-    expect(l9).toContain("gate red");
+  it("binds successor-specific oracle sets and keeps PLAN-L7-428 out of dependencies", () => {
+    const expected: Record<string, string[]> = {
+      [successorPaths[0]]: [
+        "U-SBOUND-001",
+        "U-SBOUND-002",
+        "U-SBOUND-005",
+        "IT-SBOUND-001",
+        "IT-SBOUND-002",
+      ],
+      [successorPaths[1]]: [
+        "U-SBOUND-004",
+        "U-SBOUND-006",
+        "U-SBOUND-009",
+        "U-SBOUND-010",
+        "IT-SBOUND-003",
+        "IT-SBOUND-004",
+        "IT-SBOUND-007",
+        "IT-SBOUND-008",
+      ],
+      [successorPaths[2]]: [
+        "U-SBOUND-003",
+        "U-SBOUND-007",
+        "U-SBOUND-008",
+        "IT-SBOUND-005",
+        "IT-SBOUND-006",
+      ],
+    };
+    for (const [path, ids] of Object.entries(expected)) {
+      const plan = frontmatter(path);
+      expect(plan.verification_bindings?.map((binding) => binding.oracle_id)).toEqual(ids);
+    }
+    const ratchet = frontmatter(successorPaths[2]);
+    expect(ratchet.dependencies?.requires).not.toContain(
+      "docs/plans/PLAN-L7-428-function-reachability.md",
+    );
+    expect(ratchet.dependencies?.references).toContain(
+      "docs/plans/PLAN-L7-428-function-reachability.md",
+    );
+    expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
 });
