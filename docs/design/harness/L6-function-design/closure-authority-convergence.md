@@ -1,7 +1,7 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 pair_artifact: docs/test-design/harness/closure-authority-convergence.md
 plan: docs/plans/PLAN-L6-77-closure-authority-convergence.md
 ---
@@ -44,10 +44,12 @@ plan: docs/plans/PLAN-L6-77-closure-authority-convergence.md
 
 ## 保存則と停止条件
 
-- 初期ID集合`I0`を固定し、各cycle中は未終端集合`R = E(eligible) ⊎ N(needs_*) ⊎ H(human_only)
-  ⊎ X(invalid_escalated)`をdisjointに保つ。registry applyはEをauthority-materialize可能にするだけでacceptedとは数えない。
+- 初期ID集合`I0`を固定し、各cycleのcurrent partitionを
+  `P = E(eligible) ⊎ N(needs_*) ⊎ H(human_only) ⊎ X(invalid_escalated)`としてdisjointに保つ。
+  未終端はE/N、terminal decision routeはH/Xである。registry applyはEをauthority-materialize可能にするだけでacceptedとは数えない。
 - 最終保存則は`I0 = A(accepted) ⊎ H(human_only) ⊎ X(invalid_escalated)`。停止条件は
-  `N=0 && E=0 && remaining_nonhuman_close_ready=0`であり、accepted後のIDだけを次TTL suffixから除外する。
+  `N=0 && E=0 && remaining_automatable_close_ready=0`であり、H/Xはautomatable残数から除外する。
+  accepted後のIDだけを次TTL suffixから除外する。
 - PLAN-L7-146 / PLAN-M-02 / external publish / charter P8はHへ残す。Xはtyped terminal escalationとして
   reason/owner/next decision routeを必須にし、H/XをL14矛盾として数えないcurrent-location read-model deltaを定義する。
 - 361→363の増加はPLAN-L7-431/432等の新規terminal PLAN流入としてcycle ledgerへ記録する。
