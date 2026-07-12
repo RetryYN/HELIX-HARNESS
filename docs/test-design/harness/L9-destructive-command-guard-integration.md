@@ -9,7 +9,7 @@ plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 # 破壊的 command guard 結合テスト設計
 
 dev hook、CLI、consumer hookをtemp repositoryと実filesystem portで結合する。同一nonceへ2 processを
-barrier付きで同時実行しallowが1以下であること、durable commit前rollbackはmarker保持後retry可能であり、
+stdin barrier付きで同時実行しallow 1/block 1/DB row 1であること、durable commit前rollbackはmarker保持後retry可能であり、
 commit後consume前crashだけrestart後にnonceを再利用できないこと、
 全audit bytesにsecret、PII、個人absolute pathが無いことを検証する。
 

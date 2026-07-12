@@ -1,6 +1,14 @@
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -276,20 +284,45 @@ describe("git-command-guard", () => {
         session_id: "s-cas",
         tool_input: { command: "git clean -f" },
       });
-      const run = () =>
-        new Promise<number | null>((resolve) => {
-          const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
-            cwd,
-            stdio: ["pipe", "ignore", "ignore"],
-          });
-          child.stdin.end(input);
-          child.once("close", resolve);
+      const startWorker = () => {
+        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+          cwd,
+          stdio: ["pipe", "ignore", "ignore"],
         });
-      const statuses = await Promise.all([run(), run()]);
+        return {
+          child,
+          completed: new Promise<number | null>((resolve) => child.once("close", resolve)),
+        };
+      };
+      const workers = [startWorker(), startWorker()];
+      for (const worker of workers) worker.child.stdin.end(input);
+      const statuses = await Promise.all(workers.map((worker) => worker.completed));
       expect(statuses.filter((status) => status === 0)).toHaveLength(1);
       expect(statuses.filter((status) => status === 2)).toHaveLength(1);
       expect(overrideRows(cwd)).toHaveLength(1);
       expect(existsSync(markerPath)).toBe(false);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("[PLAN-L7-443-destructive-command-guard-transaction/IT-GITGUARD-004] stores no raw secret, PII, command, or absolute path bytes", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-redaction-"));
+    try {
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      const reason = "recovery approved by alice@example.com";
+      const absolutePath = "/home/alice/private-project";
+      const secret = "private-token-value-123456789";
+      const command = `git clean -f ${absolutePath}/${secret}`;
+      writeFileSync(markerPath, reason);
+      const result = runCliGuard({ session_id: "s-redact", tool_input: { command } }, cwd);
+      expect(result.status).toBe(0);
+      const bytes = readFileSync(join(cwd, ".helix", "harness.db")).toString("utf8");
+      for (const raw of [reason, "alice@example.com", absolutePath, secret, command]) {
+        expect(bytes, raw).not.toContain(raw);
+      }
+      expect(overrideRows(cwd)[0]).toMatchObject({ guard_kind: "git", status: "committed" });
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }

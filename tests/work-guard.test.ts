@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -302,6 +302,9 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
       });
       expect(JSON.stringify(rows)).not.toContain("completing Codex orphan-impl per review");
       expect(JSON.stringify(rows)).not.toContain("foreign.ts");
+      const dbBytes = readFileSync(defaultHarnessDbPath(cwd)).toString("utf8");
+      expect(dbBytes).not.toContain("completing Codex orphan-impl per review");
+      expect(dbBytes).not.toContain("foreign.ts");
 
       // 2回目: marker は消費済み → bypass 無し → 同じ foreign 編集が block される (exit 2)。
       const second = runWorkGuardHook(cwd, input);
