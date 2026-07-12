@@ -75,6 +75,7 @@ describe("PLAN-L7-449 production durable loop store", () => {
       workerProvider: "codex",
       verifierProvider: "claude",
       verdict: "pass",
+      stopReason: null,
       blockedReason: null,
     });
     store.write({ ...state, iteration: 1, lastVerdict: "pass" });

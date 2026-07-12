@@ -1,7 +1,9 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { loopEpochPaths } from "../src/orchestration/durable-loop-epoch-node";
+import { durableFileLoopStore } from "../src/orchestration/loop-store";
 import { buildAutonomousLoopRunReceipt } from "../src/runtime/autonomous-loop-run-receipts";
 
 describe("autonomous loop run receipts", () => {
@@ -27,28 +29,30 @@ describe("autonomous loop run receipts", () => {
   it("surfaces restartable next action and iteration evidence", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-"));
     try {
-      mkdirSync(join(root, ".helix", "state", "loop"), { recursive: true });
-      writeFileSync(
-        join(root, ".helix", "state", "loop", "PLAN-L7-366.json"),
-        JSON.stringify({
-          planId: "PLAN-L7-366",
-          status: "running",
-          iteration: 1,
-          maxIterations: 3,
-          lastVerdict: "pending",
-          workerProvider: "codex",
-          verifierProvider: "claude",
-          blockedReason: null,
-          windowOpensAt: "2026-07-09T09:00:00.000Z",
-          windowClosesAt: "2026-07-09T11:00:00.000Z",
-          costUsd: 0,
-          updatedAt: "2026-07-09T10:00:00.000Z",
-        }),
-      );
-      writeFileSync(
-        join(root, ".helix", "state", "loop", "PLAN-L7-366.iterations.jsonl"),
-        `${JSON.stringify({ iteration: 1, verdict: "pending" })}\n`,
-      );
+      const store = durableFileLoopStore({ root });
+      store.recordIteration({
+        planId: "PLAN-L7-366",
+        iteration: 1,
+        workerProvider: "codex",
+        verifierProvider: "claude",
+        verdict: "pending",
+        stopReason: null,
+        blockedReason: null,
+      });
+      store.write({
+        planId: "PLAN-L7-366",
+        status: "running",
+        iteration: 1,
+        maxIterations: 3,
+        lastVerdict: "pending",
+        workerProvider: "codex",
+        verifierProvider: "claude",
+        blockedReason: null,
+        windowOpensAt: "2026-07-09T09:00:00.000Z",
+        windowClosesAt: "2026-07-09T11:00:00.000Z",
+        costUsd: 0,
+        updatedAt: "2026-07-09T10:00:00.000Z",
+      });
 
       const report = buildAutonomousLoopRunReceipt(root, "PLAN-L7-366");
 
@@ -57,6 +61,35 @@ describe("autonomous loop run receipts", () => {
       expect(report.stop_kind).toBe("running");
       expect(report.restartable_next_action).toBe("helix loop run --plan PLAN-L7-366 --once");
       expect(report.evidence_paths).toHaveLength(2);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("IT-DUR-002: preserves corrupt epoch classification instead of reporting missing", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-corrupt-"));
+    try {
+      const paths = loopEpochPaths(root, "PLAN-L7-366");
+      const store = durableFileLoopStore({ root });
+      store.write({
+        planId: "PLAN-L7-366",
+        status: "stopped",
+        iteration: 0,
+        maxIterations: 1,
+        lastVerdict: "error",
+        workerProvider: "codex",
+        verifierProvider: null,
+        blockedReason: "test",
+        windowOpensAt: "2026-07-09T09:00:00.000Z",
+        windowClosesAt: "2026-07-09T11:00:00.000Z",
+        costUsd: 0,
+        updatedAt: "2026-07-09T10:00:00.000Z",
+      });
+      writeFileSync(paths.manifest, "{");
+      const report = buildAutonomousLoopRunReceipt(root, "PLAN-L7-366");
+      expect(report.status).toBe("blocked");
+      expect(report.findings[0]?.code).toBe("receipt_corrupt");
+      expect(report.findings[0]?.code).not.toBe("receipt_missing");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

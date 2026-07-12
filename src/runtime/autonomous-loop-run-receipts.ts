@@ -1,5 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { loopEpochPaths, readLoopEpochFromFs } from "../orchestration/durable-loop-epoch-node";
 import type { LoopState } from "../orchestration/loop-state";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
 
@@ -11,7 +10,7 @@ export type AutonomousLoopRunReceipt = {
   schema_version: typeof AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION;
   ok: boolean;
   plan_id: string;
-  status: "present" | "missing";
+  status: "present" | "missing" | "blocked";
   loop_state: LoopState | null;
   iteration_count: number;
   stop_kind: LoopReceiptStopKind;
@@ -26,22 +25,6 @@ export type AutonomousLoopRunReceipt = {
   source_command: string;
 };
 
-function readJson<T>(path: string): T | null {
-  if (!existsSync(path)) return null;
-  try {
-    return JSON.parse(readFileSync(path, "utf8")) as T;
-  } catch {
-    return null;
-  }
-}
-
-function countJsonl(path: string): number {
-  if (!existsSync(path)) return 0;
-  return readFileSync(path, "utf8")
-    .split(/\r?\n/)
-    .filter((line) => line.trim().length > 0).length;
-}
-
 function stopKind(state: LoopState): LoopReceiptStopKind {
   if (state.status === "running") return "running";
   if (state.lastVerdict === "pass") return "success_stop";
@@ -55,16 +38,9 @@ export function buildAutonomousLoopRunReceipt(
   options: { sourceCommand?: string } = {},
 ): AutonomousLoopRunReceipt {
   const safePlanId = assertLoopPlanId(planId);
-  const statePath = join(repoRoot, ".helix", "state", "loop", `${safePlanId}.json`);
-  const iterationsPath = join(
-    repoRoot,
-    ".helix",
-    "state",
-    "loop",
-    `${safePlanId}.iterations.jsonl`,
-  );
-  const state = readJson<LoopState>(statePath);
-  if (!state) {
+  const snapshot = readLoopEpochFromFs(repoRoot, safePlanId);
+  const paths = loopEpochPaths(repoRoot, safePlanId);
+  if (snapshot.status === "missing") {
     return {
       schema_version: AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION,
       ok: false,
@@ -86,7 +62,30 @@ export function buildAutonomousLoopRunReceipt(
       source_command: options.sourceCommand ?? "helix loop receipt --json",
     };
   }
-  const iterationCount = countJsonl(iterationsPath);
+  if (snapshot.status !== "committed" || snapshot.payload === null) {
+    return {
+      schema_version: AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION,
+      ok: false,
+      plan_id: planId,
+      status: "blocked",
+      loop_state: snapshot.payload?.state ?? null,
+      iteration_count: snapshot.payload?.state.iteration ?? 0,
+      stop_kind: "blocker_stop",
+      restartable_next_action: null,
+      retry: { allowed: false, max_iterations: null, reason: snapshot.reason },
+      evidence_paths: [paths.manifest],
+      findings: [
+        {
+          code: `receipt_${snapshot.status}`,
+          severity: "error",
+          detail: `loop epoch cannot produce a receipt: ${snapshot.reason}`,
+        },
+      ],
+      source_command: options.sourceCommand ?? "helix loop receipt --json",
+    };
+  }
+  const state = snapshot.payload.state;
+  const iterationCount = state.iteration;
   const kind = stopKind(state);
   const remainingIterations = Math.max(0, state.maxIterations - state.iteration);
   return {
@@ -106,7 +105,7 @@ export function buildAutonomousLoopRunReceipt(
       max_iterations: state.maxIterations,
       reason: state.blockedReason,
     },
-    evidence_paths: [statePath, ...(existsSync(iterationsPath) ? [iterationsPath] : [])],
+    evidence_paths: [paths.manifest, paths.payloadFor(snapshot.manifest?.payloadFile ?? "")],
     findings:
       iterationCount === 0 && state.status === "running"
         ? [
