@@ -198,6 +198,8 @@ function parseManifest(text: string): LoopEpochManifest | null {
         !/^sha256:[a-f0-9]{64}$/.test(value.previousManifestDigest))) ||
     typeof value.payloadDigest !== "string" ||
     !/^sha256:[a-f0-9]{64}$/.test(value.payloadDigest) ||
+    typeof value.payloadFile !== "string" ||
+    !/^[A-Za-z0-9._-]+\.payload\.json$/.test(value.payloadFile) ||
     !["not_started", "intent_recorded", "completed"].includes(String(value.sideEffectPhase))
   ) {
     return null;

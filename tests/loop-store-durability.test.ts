@@ -34,6 +34,7 @@ function manifest(phase: "not_started" | "intent_recorded" | "completed" = "comp
     epochId: 1,
     previousManifestDigest: null,
     payloadDigest: sha256Digest(payload),
+    payloadFile: `${PLAN}.epoch-1-test.payload.json`,
     sideEffectPhase: phase,
   });
 }

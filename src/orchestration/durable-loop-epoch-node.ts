@@ -28,10 +28,10 @@ export function loopEpochPaths(root: string, planId: string) {
   return {
     directory,
     claim: join(directory, `${safe}.epoch.claim`),
-    payloadTemp: join(directory, `${safe}.epoch.payload.tmp`),
-    payload: join(directory, `${safe}.epoch.payload.json`),
-    manifestTemp: join(directory, `${safe}.epoch.manifest.tmp`),
     manifest: join(directory, `${safe}.epoch.manifest.json`),
+    payloadFor: (payloadFile: string) => join(directory, payloadFile),
+    payloadTempFor: (tempId: string) => join(directory, `${safe}.${tempId}.payload.tmp`),
+    manifestTempFor: (tempId: string) => join(directory, `${safe}.${tempId}.manifest.tmp`),
   };
 }
 
@@ -63,19 +63,25 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
       const path = paths(planId).manifest;
       return existsSync(path) ? readFileSync(path, "utf8") : null;
     },
-    writePayloadTemp: (planId, text) =>
-      writeFileSync(paths(planId).payloadTemp, text, { encoding: "utf8", flag: "wx", mode: 0o600 }),
-    fsyncPayloadTemp: (planId) => fsyncPath(paths(planId).payloadTemp),
-    renamePayload: (planId) => renameSync(paths(planId).payloadTemp, paths(planId).payload),
-    fsyncStateDirectory: (planId) => fsyncPath(paths(planId).directory),
-    writeManifestTemp: (planId, text) =>
-      writeFileSync(paths(planId).manifestTemp, text, {
+    writePayloadTemp: (planId, tempId, text) =>
+      writeFileSync(paths(planId).payloadTempFor(tempId), text, {
         encoding: "utf8",
         flag: "wx",
         mode: 0o600,
       }),
-    fsyncManifestTemp: (planId) => fsyncPath(paths(planId).manifestTemp),
-    renameManifest: (planId) => renameSync(paths(planId).manifestTemp, paths(planId).manifest),
+    fsyncPayloadTemp: (planId, tempId) => fsyncPath(paths(planId).payloadTempFor(tempId)),
+    renamePayload: (planId, tempId, payloadFile) =>
+      renameSync(paths(planId).payloadTempFor(tempId), paths(planId).payloadFor(payloadFile)),
+    fsyncStateDirectory: (planId) => fsyncPath(paths(planId).directory),
+    writeManifestTemp: (planId, tempId, text) =>
+      writeFileSync(paths(planId).manifestTempFor(tempId), text, {
+        encoding: "utf8",
+        flag: "wx",
+        mode: 0o600,
+      }),
+    fsyncManifestTemp: (planId, tempId) => fsyncPath(paths(planId).manifestTempFor(tempId)),
+    renameManifest: (planId, tempId) =>
+      renameSync(paths(planId).manifestTempFor(tempId), paths(planId).manifest),
     unlinkClaim: (planId) => unlinkSync(paths(planId).claim),
     fsyncClaimDirectory: (planId) => fsyncPath(paths(planId).directory),
   };

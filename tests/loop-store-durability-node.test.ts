@@ -43,10 +43,11 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     });
     const paths = loopEpochPaths(repo, PLAN);
     expect(result.status).toBe("committed");
-    expect(existsSync(paths.payload)).toBe(true);
     expect(existsSync(paths.manifest)).toBe(true);
     expect(existsSync(paths.claim)).toBe(false);
-    expect(JSON.parse(readFileSync(paths.manifest, "utf8")).planId).toBe(PLAN);
+    const manifest = JSON.parse(readFileSync(paths.manifest, "utf8"));
+    expect(manifest.planId).toBe(PLAN);
+    expect(existsSync(paths.payloadFor(manifest.payloadFile))).toBe(true);
   });
 
   it("IT-DUR-004: O_EXCL permits at most one live claim", () => {
