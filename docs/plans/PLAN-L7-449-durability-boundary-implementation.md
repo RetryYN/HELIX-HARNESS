@@ -149,7 +149,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-13T06:41:55+09:00"
         evidence_path: tests/durable-loop-process.test.ts
-        output_digest: "sha256:7e9abd94a0a448c376b11f64b65472f7995672d07198f6a2d0f66736de12e03c"
+        output_digest: "sha256:fd5d1ae7c2294a5d7a5b75ab680d1511907938c96606b8eeba32ac9f5b1b4c87"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -157,7 +157,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-13T06:41:25+09:00"
         evidence_path: tsconfig.json
-        output_digest: "sha256:7e9abd94a0a448c376b11f64b65472f7995672d07198f6a2d0f66736de12e03c"
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-449: durability boundary実装

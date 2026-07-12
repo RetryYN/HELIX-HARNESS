@@ -59,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-13T06:41:55+09:00"
         evidence_path: tests/durable-loop-process.test.ts
-        output_digest: "sha256:7e9abd94a0a448c376b11f64b65472f7995672d07198f6a2d0f66736de12e03c"
+        output_digest: "sha256:fd5d1ae7c2294a5d7a5b75ab680d1511907938c96606b8eeba32ac9f5b1b4c87"
 ---
 
 # PLAN-L6-78: diagnostic redaction / autonomous-loop durability Vペア設計

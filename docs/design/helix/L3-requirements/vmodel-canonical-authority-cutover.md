@@ -24,6 +24,8 @@ spec:
 
 ## §0 判断
 
+### HR-FR-VMCUT-01 正本権限
+
 移行後のauthorityは次の順とする。
 
 1. PO承認済みのrepo-owned L0/L1判断と本L3 freeze。
@@ -36,6 +38,8 @@ spec:
 実行可能な正本はreview可能なrepo-owned抽出物へ固定する。
 
 ## §1 層の完全対応
+
+### HR-FR-VMCUT-02 L0-L14からL1-L12へのexact remap
 
 | 現行 | canonical | 移行判断 |
 |---|---|---|
@@ -51,7 +55,14 @@ spec:
 既存artifactは一括renameしない。`legacy_layer`と`canonical_layer`の両方をprojectionし、compat期限までは旧入力を
 受理するが、新規generator/PLAN/templateはcanonical layerだけを出力する。
 
+### HR-FR-VMCUT-03 独立L6成果物の移行
+
+旧L6の契約はcanonical L5へ吸収し、新規の独立L6設計成果物を生成しない。既存成果物は移行完了まで
+compatibility inputとして追跡し、削除や改名を一括実行しない。
+
 ## §2 切替の不変条件
+
+### HR-FR-VMCUT-04 compatibility windowとrollback
 
 - Core Reads、AGENTS/CLAUDE、schema enum、PLAN lint、pair gate、current-location、DB、VSCode、consumer templateの
   authority markerが同じcutover epochを指す。
@@ -59,6 +70,11 @@ spec:
 - viewはcanonical値を作らずDB projectionだけを描画する。
 - compatibility inputを削除する前に利用件数0、rollback rehearsal、snapshot bindingを記録する。
 - `.helix`/CLI identifier migrationとは分離し、PLAN-M-02の承認境界を越えない。
+
+### HR-FR-VMCUT-05 authority driftのfail-close検出
+
+Core Reads、typed declaration、catalog、projection、templateのcutover epochまたはlayer mappingが一致しない場合は
+terminal claimを拒否する。検出結果をviewだけで補正せず、authoring sourceへ戻して是正する。
 
 ## §3 後続分割
 
