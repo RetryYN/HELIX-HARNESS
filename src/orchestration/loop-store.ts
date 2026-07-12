@@ -72,6 +72,7 @@ export function durableFileLoopStore(deps: {
   root: string;
   readLegacyText?: (path: string) => string | null;
   beforeFinalCommit?: () => void;
+  beforeIntentCommit?: () => Promise<void>;
 }): LoopStore {
   const port = nodeDurableEpochPort(deps.root);
   const pendingIterations = new Map<string, LoopIterationRecord>();
@@ -308,6 +309,7 @@ export function durableFileLoopStore(deps: {
         if (purpose === "worker" && ["worker", "verifier"].includes(stage.purpose)) return null;
         if (purpose === "verifier" && stage.purpose === "verifier") return stage.result;
       }
+      await deps.beforeIntentCommit?.();
       const intent = commitLoopEpoch({
         planId,
         previousManifestText: expectedManifestText,
