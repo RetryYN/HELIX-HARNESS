@@ -43,8 +43,36 @@ export type StaleLoopClaimRecoveryPacket = {
   auditId: string;
 };
 type RecoveryClaimMetadata = ClaimMetadata & { packetDigest: string };
+export type RecoveryMutexObservation = {
+  action: "acquire" | "quarantine_invalid_mutex" | "replace_stale_mutex";
+  mutexDigest: string | null;
+};
 export interface StaleLoopClaimRecoveryAuthority {
-  verify(packet: StaleLoopClaimRecoveryPacket): boolean;
+  verify(packet: StaleLoopClaimRecoveryPacket, mutex: RecoveryMutexObservation): boolean;
+}
+export type StaleLoopClaimApprovalRecord = StaleLoopClaimRecoveryPacket &
+  RecoveryMutexObservation & { expiresAt: string };
+
+export function actionBindingLoopRecoveryAuthority(
+  record: StaleLoopClaimApprovalRecord,
+  now = () => new Date(),
+): StaleLoopClaimRecoveryAuthority {
+  return {
+    verify: (packet, mutex) =>
+      Number.isFinite(Date.parse(record.expiresAt)) &&
+      now().getTime() <= Date.parse(record.expiresAt) &&
+      JSON.stringify({ ...packet, ...mutex }) ===
+        JSON.stringify({
+          planId: record.planId,
+          claimDigest: record.claimDigest,
+          pointerDigest: record.pointerDigest,
+          manifestDigest: record.manifestDigest,
+          approvedBy: record.approvedBy,
+          auditId: record.auditId,
+          action: record.action,
+          mutexDigest: record.mutexDigest,
+        }),
+  };
 }
 const MAX_MANIFEST_HISTORY = 4096;
 
@@ -283,15 +311,25 @@ export function recoverStaleLoopClaim(
 } {
   const planId = assertLoopPlanId(packet.planId);
   const value = loopEpochPaths(root, planId);
+  mkdirSync(value.directory, { recursive: true });
+  const observedMutexText = readIfExists(value.recoveryClaim);
+  const mutexObservation: RecoveryMutexObservation = {
+    action:
+      observedMutexText === null
+        ? "acquire"
+        : claimStatus(observedMutexText) === "stale"
+          ? "replace_stale_mutex"
+          : "quarantine_invalid_mutex",
+    mutexDigest: observedMutexText === null ? null : sha256Digest(observedMutexText),
+  };
   let authorityVerified = false;
   try {
-    authorityVerified = authority.verify(packet);
+    authorityVerified = authority.verify(packet, mutexObservation);
   } catch {
     return { status: "rejected", reason: "authority_unavailable" };
   }
   if (!packet.approvedBy.trim() || !packet.auditId.trim() || !authorityVerified)
     return { status: "rejected", reason: "authority_missing" };
-  mkdirSync(value.directory, { recursive: true });
   let acquired = false;
   let result: {
     status: "recovered" | "rejected" | "conflict" | "durability_uncertain";
