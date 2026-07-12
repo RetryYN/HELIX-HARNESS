@@ -26,6 +26,7 @@ const candidate = (): ClosureAuthorityBackfillCandidate => ({
   plan_id: PLAN,
   plan_path: "docs/plans/PLAN-L7-900-fixture.md",
   plan_digest: digest("plan"),
+  plan_slot_kind: "implementation_plan",
   plan_bindings: [
     {
       oracle_id: ORACLE,
@@ -51,6 +52,15 @@ const candidate = (): ClosureAuthorityBackfillCandidate => ({
       source_digest: digest("test"),
       canonical_realpath: true,
       symlink: false,
+      receipt: {
+        schema_version: "closure-process-receipt.v1",
+        repository_head: "a".repeat(40),
+        kind: "test",
+        executable: "bunx",
+        argv: ["vitest", "run", "tests/example.test.ts", "--reporter=json"],
+        stdout_digest: digest("vitest-json"),
+        completed_at: "2026-07-12T00:00:00.000Z",
+      },
     },
   ],
   design_authority: authority(),
@@ -64,12 +74,25 @@ const input = (
   review_scope_digest: digest("scope"),
   expected_plan_ids: candidates.map((row) => row.plan_id),
   candidates,
-  gate_allowlist: { g7: { command_id: "g7", command: "helix gate G7" } },
+  gate_allowlist: {
+    source_path: "docs/governance/closure-gate-allowlist.json",
+    source_digest: digest("gate-allowlist"),
+    repository_head: "a".repeat(40),
+    entries: { g7: { command_id: "g7", command: "helix gate G7" } },
+  },
 });
 
 describe("closure authority backfill pure policy", () => {
   it("U-CABF-001: [PLAN-L7-435-closure-authority-backfill/U-CABF-001] censusをexactly-onceかつ順序通り分類する", () => {
-    const second = { ...candidate(), plan_id: "PLAN-L7-901-second" };
+    const second = structuredClone(candidate());
+    second.plan_id = "PLAN-L7-901-second";
+    const binding = second.plan_bindings[0];
+    const l8 = second.l8_rows[0];
+    const collected = second.collected_tests[0];
+    if (!binding || !l8 || !collected) throw new Error("second fixture incomplete");
+    binding.oracle_id = "U-CABF-003";
+    l8.oracle_id = "U-CABF-003";
+    collected.full_name = `[${second.plan_id}/U-CABF-003] exact citation`;
     const valid = input([candidate(), second]);
     expect(buildClosureAuthorityBackfill(valid).decisions.map((row) => row.plan_id)).toEqual([
       PLAN,
@@ -80,7 +103,7 @@ describe("closure authority backfill pure policy", () => {
     );
     expect(() =>
       buildClosureAuthorityBackfill({ ...valid, expected_plan_ids: [second.plan_id, PLAN] }),
-    ).toThrow(/order/);
+    ).toThrow(/sort|order/);
     expect(() => buildClosureAuthorityBackfill(input([candidate(), candidate()]))).toThrow(
       /duplicate/,
     );
@@ -116,9 +139,7 @@ describe("closure authority backfill pure policy", () => {
       review_prose: "approve gate g7 capability local_plan_status",
       similar_file_name: "U-CABF-002.test.ts",
     } as ClosureAuthorityBackfillCandidate;
-    const decision = buildClosureAuthorityBackfill(input([untrusted])).decisions[0];
-    expect(decision?.classification).toBe("needs_design");
-    expect(decision?.proposal).toBeNull();
+    expect(() => buildClosureAuthorityBackfill(input([untrusted]))).toThrow(/Unrecognized key/);
   });
 
   it("U-CABF-004: [PLAN-L7-435-closure-authority-backfill/U-CABF-004] confirmed design precedence・conflict・typed human境界を分類する", () => {
@@ -163,11 +184,84 @@ describe("closure authority backfill pure policy", () => {
       review_scope_digest: value.review_scope_digest,
     });
     expect(bundle.source_digests).toEqual(
-      expect.arrayContaining([digest("plan"), digest("design"), digest("l8"), digest("test")]),
+      expect.arrayContaining([
+        digest("plan"),
+        digest("design"),
+        digest("l8"),
+        digest("test"),
+        digest("gate-allowlist"),
+      ]),
     );
     expect(
       buildClosureAuthorityBackfill({ ...value, review_scope_digest: digest("other") })
         .bundle_digest,
     ).not.toBe(bundle.bundle_digest);
+  });
+
+  it("nested schema・path・slot・receipt・gate provenanceをruntimeでfail-closeする", () => {
+    const base = input();
+    expect(() => buildClosureAuthorityBackfill({ ...base, extra: true } as never)).toThrow();
+    expect(() =>
+      buildClosureAuthorityBackfill({
+        ...base,
+        candidates: [{ ...candidate(), plan_slot_kind: "design_plan" } as never],
+      }),
+    ).toThrow();
+    expect(() =>
+      buildClosureAuthorityBackfill({
+        ...base,
+        candidates: [{ ...candidate(), plan_path: "docs/plans/../escape.md" }],
+      }),
+    ).toThrow(/canonical lexical/);
+    const badReceipt = candidate();
+    const originalReceipt = badReceipt.collected_tests[0];
+    if (!originalReceipt) throw new Error("receipt fixture missing");
+    badReceipt.collected_tests = [
+      {
+        ...originalReceipt,
+        receipt: { ...originalReceipt.receipt, repository_head: "b".repeat(40) },
+      },
+    ];
+    expect(buildClosureAuthorityBackfill(input([badReceipt])).decisions[0]?.classification).toBe(
+      "invalid",
+    );
+    expect(() =>
+      buildClosureAuthorityBackfill({
+        ...base,
+        gate_allowlist: { ...base.gate_allowlist, repository_head: "b".repeat(40) },
+      }),
+    ).toThrow(/HEAD drift/);
+  });
+
+  it("oracle global ownership・authority parent・duplicate gateを拒否しcanonical sortする", () => {
+    const second = candidate();
+    second.plan_id = "PLAN-L7-901-second";
+    second.plan_path = "docs/plans/PLAN-L7-901-second.md";
+    const originalCollected = second.collected_tests[0];
+    if (!originalCollected) throw new Error("collected fixture missing");
+    second.collected_tests = [
+      { ...originalCollected, full_name: `[${second.plan_id}/${ORACLE}] duplicate` },
+    ];
+    expect(() => buildClosureAuthorityBackfill(input([candidate(), second]))).toThrow(
+      /global ownership duplicate/,
+    );
+
+    const parentMismatch = candidate();
+    parentMismatch.design_authority = {
+      ...authority(),
+      source_path: "docs/design/harness/L6-function-design/other.md",
+    };
+    expect(
+      buildClosureAuthorityBackfill(input([parentMismatch])).decisions[0]?.classification,
+    ).toBe("invalid");
+
+    const duplicateGate = candidate();
+    duplicateGate.design_authority = {
+      ...authority(),
+      gates: [...authority().gates, ...authority().gates],
+    };
+    expect(buildClosureAuthorityBackfill(input([duplicateGate])).decisions[0]?.classification).toBe(
+      "invalid",
+    );
   });
 });

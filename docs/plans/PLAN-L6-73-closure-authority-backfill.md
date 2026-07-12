@@ -28,7 +28,7 @@ review_evidence:
     worker_model: codex
     reviewer_model: codex-intra-runtime
     tests_green_at: "2026-07-12T02:04:49Z"
-    reviewed_at: "2026-07-12T02:04:00Z"
+    reviewed_at: "2026-07-12T02:05:00Z"
     verdict: approve_after_fixes
     scope: "authority非推測、Vペアjoin、review receipt、process lock、crash recovery、cycle ledgerを敵対監査し、初回HIGH 3/MEDIUM 3/LOW 1と再review LOW 2を全件是正した。"
     green_commands:

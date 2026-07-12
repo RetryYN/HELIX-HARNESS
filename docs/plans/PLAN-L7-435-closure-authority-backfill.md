@@ -24,12 +24,20 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-003, test_path: tests/closure-authority-backfill.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-004, test_path: tests/closure-authority-backfill.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-005, test_path: tests/closure-authority-backfill.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-006, test_path: tests/closure-authority-backfill-transaction.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-007, test_path: tests/closure-authority-backfill-transaction.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-008, test_path: tests/closure-authority-backfill-transaction.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-009, test_path: tests/closure-authority-backfill-transaction.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-010, test_path: tests/closure-authority-backfill-transaction.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-435-closure-authority-backfill.md, artifact_type: markdown_doc }
   - { artifact_path: src/policy/closure-authority-backfill.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/closure-authority-backfill-loader.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/closure-authority-backfill-verifier.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/closure-authority-backfill.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/closure-authority-backfill.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-authority-backfill-transaction.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-73-closure-authority-backfill.md
   requires: [docs/plans/PLAN-L6-73-closure-authority-backfill.md]

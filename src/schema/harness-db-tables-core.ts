@@ -171,6 +171,24 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "closure_authority_review_receipts",
+    columns: [
+      pk("receipt_id"),
+      col("worker_run_id"),
+      col("reviewer_run_id"),
+      col("artifact_path"),
+      col("artifact_digest"),
+      col("repository_head"),
+      col("bundle_digest"),
+      col("proposal_set_digest"),
+      col("recompute_digest"),
+      col("verdict_digest"),
+      col("status"),
+      col("exit_code", "INTEGER"),
+      col("completed_at"),
+    ],
+  },
+  {
     name: "runner_attestations",
     columns: [
       pk("event_digest"),

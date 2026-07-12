@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { isAbsolute } from "node:path";
+import { z } from "zod";
 import type { ClosureAuthority } from "./closure-authority-registry";
 
 type Digest = `sha256:${string}`;
@@ -30,6 +32,15 @@ export interface CollectedBackfillTest {
   source_digest: Digest;
   canonical_realpath: boolean;
   symlink: boolean;
+  receipt: {
+    schema_version: "closure-process-receipt.v1";
+    repository_head: string;
+    kind: "test";
+    executable: "bunx";
+    argv: string[];
+    stdout_digest: Digest;
+    completed_at: string;
+  };
 }
 
 export interface TypedAuthorityBlock {
@@ -50,6 +61,7 @@ export interface ClosureAuthorityBackfillCandidate {
   plan_id: string;
   plan_path: string;
   plan_digest: Digest;
+  plan_slot_kind: "implementation_plan";
   plan_bindings: readonly BackfillBinding[];
   l8_rows: readonly BackfillL8Row[];
   collected_tests: readonly CollectedBackfillTest[];
@@ -91,11 +103,127 @@ export interface ClosureAuthorityBackfillInput {
   review_scope_digest: Digest;
   expected_plan_ids: readonly string[];
   candidates: readonly ClosureAuthorityBackfillCandidate[];
-  gate_allowlist: Readonly<Record<string, { command_id: string; command: string }>>;
+  gate_allowlist: {
+    source_path: string;
+    source_digest: Digest;
+    repository_head: string;
+    entries: Readonly<Record<string, { command_id: string; command: string }>>;
+  };
 }
 
 const DIGEST = /^sha256:[0-9a-f]{64}$/;
 const HEAD = /^[0-9a-f]{40}$/;
+const PLAN_ID = /^PLAN-[A-Z0-9]+-[A-Za-z0-9-]+$/;
+const ORACLE_ID = /^U-[A-Z0-9]+-[0-9]{3}$/;
+const canonicalPath = (value: string): boolean =>
+  value.length > 0 &&
+  !isAbsolute(value) &&
+  !value.includes("\\") &&
+  !value.startsWith("./") &&
+  !value.endsWith("/") &&
+  !value.split("/").some((part) => part === "" || part === "." || part === "..");
+
+const digestSchema = z.string().regex(DIGEST);
+const pathSchema = z.string().refine(canonicalPath, "canonical lexical path required");
+const testPathSchema = z
+  .string()
+  .regex(/^tests\/.+\.test\.(?:ts|tsx)$/)
+  .refine(canonicalPath, "canonical lexical path required");
+const planPathSchema = z
+  .string()
+  .regex(/^docs\/plans\/.+\.md$/)
+  .refine(canonicalPath, "canonical lexical path required");
+const bindingSchema = z
+  .object({
+    oracle_id: z.string().regex(ORACLE_ID),
+    parent_design: pathSchema,
+    test_path: testPathSchema,
+  })
+  .strict();
+const authoritySchema = z
+  .object({
+    source_kind: z.enum(["confirmed_design", "plan_frontmatter"]),
+    source_path: pathSchema,
+    source_digest: digestSchema,
+    field_pointer: z.string().regex(/^\/.+/),
+    status: z.string().optional(),
+    capabilities: z.array(z.string()).min(1),
+    gates: z
+      .array(
+        z
+          .object({
+            gate_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+            command_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+            command: z.string().min(1),
+          })
+          .strict(),
+      )
+      .min(1),
+  })
+  .strict();
+const candidateSchema = z
+  .object({
+    plan_id: z.string().regex(PLAN_ID),
+    plan_path: planPathSchema,
+    plan_digest: digestSchema,
+    plan_slot_kind: z.literal("implementation_plan"),
+    plan_bindings: z.array(bindingSchema),
+    l8_rows: z.array(
+      bindingSchema
+        .extend({
+          source_path: pathSchema,
+          source_digest: digestSchema,
+          parent_design_status: z.string(),
+        })
+        .strict(),
+    ),
+    collected_tests: z.array(
+      z
+        .object({
+          test_path: pathSchema,
+          full_name: z.string().min(1),
+          status: z.enum(["passed", "failed", "skipped", "todo"]),
+          source_digest: digestSchema,
+          canonical_realpath: z.boolean(),
+          symlink: z.boolean(),
+          receipt: z
+            .object({
+              schema_version: z.literal("closure-process-receipt.v1"),
+              repository_head: z.string().regex(HEAD),
+              kind: z.literal("test"),
+              executable: z.literal("bunx"),
+              argv: z.array(z.string()),
+              stdout_digest: digestSchema,
+              completed_at: z.string().datetime(),
+            })
+            .strict(),
+        })
+        .strict(),
+    ),
+    design_authority: authoritySchema.nullish(),
+    plan_authority: authoritySchema.nullish(),
+  })
+  .strict();
+const inputSchema = z
+  .object({
+    repository_head: z.string().regex(HEAD),
+    registry_digest: digestSchema,
+    review_scope_digest: digestSchema,
+    expected_plan_ids: z.array(z.string().regex(PLAN_ID)),
+    candidates: z.array(candidateSchema),
+    gate_allowlist: z
+      .object({
+        source_path: pathSchema,
+        source_digest: digestSchema,
+        repository_head: z.string().regex(HEAD),
+        entries: z.record(
+          z.string(),
+          z.object({ command_id: z.string(), command: z.string().min(1) }).strict(),
+        ),
+      })
+      .strict(),
+  })
+  .strict();
 const CAPABILITIES = new Set([
   "local_plan_status",
   "version_activation",
@@ -131,7 +259,10 @@ function exactMarker(fullName: string, planId: string, oracleId: string): boolea
 }
 
 function normalizedAuthority(block: TypedAuthorityBlock): string {
-  return stable({ capabilities: [...block.capabilities], gates: [...block.gates] });
+  return stable({
+    capabilities: [...block.capabilities].sort(),
+    gates: [...block.gates].sort((a, b) => a.gate_id.localeCompare(b.gate_id)),
+  });
 }
 
 function classify(
@@ -159,6 +290,11 @@ function classify(
   );
   if (new Set(bindingKeys).size !== bindingKeys.length)
     return base("invalid", "duplicate PLAN binding", "重複ownershipを解消する");
+  if (
+    new Set(candidate.plan_bindings.map((row) => row.oracle_id)).size !==
+    candidate.plan_bindings.length
+  )
+    return base("invalid", "duplicate oracle ownership", "oracle ownershipを一意化する");
 
   const bindingSources: Array<{ plan: Digest; l8: Digest; test: Digest }> = [];
   for (const binding of candidate.plan_bindings) {
@@ -186,6 +322,15 @@ function classify(
         `parent design is not confirmed: ${binding.oracle_id}`,
         "親設計をconfirmedにする",
       );
+    if (
+      candidate.design_authority &&
+      candidate.design_authority.source_path !== binding.parent_design
+    )
+      return base(
+        "invalid",
+        `authority parent mismatch: ${binding.oracle_id}`,
+        "authorityとparent_designを一致させる",
+      );
     const tests = candidate.collected_tests.filter(
       (test) =>
         test.test_path === binding.test_path &&
@@ -201,7 +346,10 @@ function classify(
       tests.length !== 1 ||
       tests[0]?.status !== "passed" ||
       !tests[0].canonical_realpath ||
-      tests[0].symlink
+      tests[0].symlink ||
+      tests[0].receipt.repository_head !== input.repository_head ||
+      tests[0].receipt.argv.join("\0") !==
+        ["vitest", "run", binding.test_path, "--reporter=json"].join("\0")
     )
       return base(
         "invalid",
@@ -241,8 +389,11 @@ function classify(
     return base("invalid", "unknown or empty capability", "typed capabilityを是正する");
   if (new Set(authority.capabilities).size !== authority.capabilities.length)
     return base("invalid", "duplicate capability", "typed capabilityを一意化する");
+  const gateIds = authority.gates.map((gate) => gate.gate_id);
+  if (new Set(gateIds).size !== gateIds.length)
+    return base("invalid", "duplicate required gate", "typed gate authorityを一意化する");
   for (const gate of authority.gates) {
-    const allowed = input.gate_allowlist[gate.gate_id];
+    const allowed = input.gate_allowlist.entries[gate.gate_id];
     if (!allowed || allowed.command_id !== gate.command_id || allowed.command !== gate.command)
       return base(
         "invalid",
@@ -258,6 +409,7 @@ function classify(
   const evidence = [
     candidate.plan_digest,
     authority.source_digest,
+    input.gate_allowlist.source_digest,
     ...bindingSources.flatMap((row) => [row.l8, row.test]),
   ];
   return {
@@ -270,9 +422,13 @@ function classify(
       plan_id: candidate.plan_id,
       source_path: candidate.plan_path,
       source_digest: candidate.plan_digest,
-      capabilities: [...authority.capabilities] as ClosureAuthority["capabilities"],
-      bindings: candidate.plan_bindings.map((row) => ({ ...row })),
-      gates: authority.gates.map((row) => ({ ...row })),
+      capabilities: [...authority.capabilities].sort() as ClosureAuthority["capabilities"],
+      bindings: candidate.plan_bindings
+        .map((row) => ({ ...row }))
+        .sort((a, b) => a.oracle_id.localeCompare(b.oracle_id)),
+      gates: authority.gates
+        .map((row) => ({ ...row }))
+        .sort((a, b) => a.gate_id.localeCompare(b.gate_id)),
       migration_reason: null,
       field_sources: {
         capabilities: structuredClone(authority),
@@ -287,6 +443,7 @@ function classify(
 export function buildClosureAuthorityBackfill(
   input: ClosureAuthorityBackfillInput,
 ): ClosureAuthorityBackfillBundle {
+  inputSchema.parse(input);
   if (!HEAD.test(input.repository_head)) throw new Error("repository HEAD must be lowercase SHA-1");
   for (const digest of [input.registry_digest, input.review_scope_digest])
     if (!DIGEST.test(digest)) throw new Error("bundle binding digest invalid");
@@ -294,11 +451,21 @@ export function buildClosureAuthorityBackfill(
   const actual = input.candidates.map((candidate) => candidate.plan_id);
   if (new Set(expected).size !== expected.length || new Set(actual).size !== actual.length)
     throw new Error("candidate census contains duplicate PLAN");
+  if (input.gate_allowlist.repository_head !== input.repository_head)
+    throw new Error("gate allowlist HEAD drift");
   if (
     expected.length !== actual.length ||
     expected.some((planId, index) => actual[index] !== planId)
   )
     throw new Error("candidate census missing/excess/order drift");
+  const oracleOwners = new Map<string, string>();
+  for (const candidate of input.candidates)
+    for (const binding of candidate.plan_bindings) {
+      const owner = oracleOwners.get(binding.oracle_id);
+      if (owner && owner !== candidate.plan_id)
+        throw new Error(`oracle global ownership duplicate: ${binding.oracle_id}`);
+      oracleOwners.set(binding.oracle_id, candidate.plan_id);
+    }
   const decisions = input.candidates.map((candidate) => classify(candidate, input));
   const sourceDigests = [
     ...new Set(decisions.flatMap((decision) => decision.evidence_digests)),
