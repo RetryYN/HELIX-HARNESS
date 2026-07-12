@@ -148,17 +148,15 @@ const authoritySchema = z
     field_pointer: z.string().regex(/^\/.+/),
     status: z.string().optional(),
     capabilities: z.array(z.string()).min(1),
-    gates: z
-      .array(
-        z
-          .object({
-            gate_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
-            command_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
-            command: z.string().min(1),
-          })
-          .strict(),
-      )
-      .min(1),
+    gates: z.array(
+      z
+        .object({
+          gate_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+          command_id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+          command: z.string().min(1),
+        })
+        .strict(),
+    ),
   })
   .strict();
 const candidateSchema = z
@@ -222,6 +220,55 @@ const inputSchema = z
         ),
       })
       .strict(),
+  })
+  .strict();
+const proposalSchema = z
+  .object({
+    plan_id: z.string().regex(PLAN_ID),
+    source_path: planPathSchema,
+    source_digest: digestSchema,
+    capabilities: z.array(z.string()),
+    bindings: z.array(bindingSchema),
+    gates: authoritySchema.shape.gates,
+    migration_reason: z.null(),
+    field_sources: z
+      .object({
+        capabilities: authoritySchema,
+        gates: authoritySchema,
+        bindings: z.array(
+          z.object({ plan: digestSchema, l8: digestSchema, test: digestSchema }).strict(),
+        ),
+      })
+      .strict(),
+  })
+  .strict();
+const decisionSchema = z
+  .object({
+    plan_id: z.string().regex(PLAN_ID),
+    classification: z.enum([
+      "eligible_proposal",
+      "needs_design",
+      "needs_test_citation",
+      "needs_gate_authority",
+      "human_only",
+      "invalid",
+    ]),
+    reason: z.string(),
+    required_action: z.string(),
+    evidence_digests: z.array(digestSchema),
+    proposal: proposalSchema.nullable(),
+  })
+  .strict();
+export const closureAuthorityBackfillBundleSchema = z
+  .object({
+    schema_version: z.literal("closure-authority-backfill-bundle.v1"),
+    repository_head: z.string().regex(HEAD),
+    registry_digest: digestSchema,
+    review_scope_digest: digestSchema,
+    candidate_plan_ids: z.array(z.string().regex(PLAN_ID)).min(1),
+    decisions: z.array(decisionSchema).min(1),
+    source_digests: z.array(digestSchema),
+    bundle_digest: digestSchema,
   })
   .strict();
 const CAPABILITIES = new Set([
@@ -468,7 +515,11 @@ export function buildClosureAuthorityBackfill(
     }
   const decisions = input.candidates.map((candidate) => classify(candidate, input));
   const sourceDigests = [
-    ...new Set(decisions.flatMap((decision) => decision.evidence_digests)),
+    ...new Set([
+      input.registry_digest,
+      input.gate_allowlist.source_digest,
+      ...decisions.flatMap((decision) => decision.evidence_digests),
+    ]),
   ].sort();
   const body = {
     schema_version: "closure-authority-backfill-bundle.v1" as const,
@@ -480,4 +531,18 @@ export function buildClosureAuthorityBackfill(
     source_digests: sourceDigests,
   };
   return { ...body, bundle_digest: sha256(stable(body)) };
+}
+
+/** Untrusted transport/persistence boundary: strict shape and self-digest verification. */
+export function parseClosureAuthorityBackfillBundle(
+  value: unknown,
+): ClosureAuthorityBackfillBundle {
+  const bundle = closureAuthorityBackfillBundleSchema.parse(
+    value,
+  ) as ClosureAuthorityBackfillBundle;
+  const body = { ...bundle };
+  delete (body as Partial<ClosureAuthorityBackfillBundle>).bundle_digest;
+  if (sha256(stable(body)) !== bundle.bundle_digest)
+    throw new Error("closure authority backfill bundle digest mismatch");
+  return bundle;
 }

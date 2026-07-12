@@ -42,6 +42,9 @@ export interface PlanDescentDoc {
   parentDesignStatus: string | null;
   pairArtifact: string | null;
   pairArtifactExists: boolean;
+  pairArtifactLayer?: string | null;
+  pairArtifactSubDoc?: string | null;
+  pairArtifactType?: string | null;
   generatesArtifactTypes: string[];
 }
 
@@ -110,6 +113,13 @@ export function loadPlanDescentDocs(
     if (!raw) continue;
     const parentDesign = stringField(raw.parent_design);
     const pairArtifact = stringField(raw.pair_artifact);
+    const pairMeta = pairArtifact
+      ? markdownFrontmatter(
+          existsSync(join(repoRoot, pairArtifact))
+            ? readFileSync(join(repoRoot, pairArtifact), "utf-8")
+            : "",
+        )
+      : null;
     const generates = Array.isArray(raw.generates) ? raw.generates : [];
     docs.push({
       file: rel,
@@ -122,6 +132,9 @@ export function loadPlanDescentDocs(
       parentDesignStatus: parentDesign ? docStatus(repoRoot, parentDesign) : null,
       pairArtifact,
       pairArtifactExists: pairArtifact ? existsSync(join(repoRoot, pairArtifact)) : false,
+      pairArtifactLayer: pairMeta ? stringField(pairMeta.layer) : null,
+      pairArtifactSubDoc: pairMeta ? stringField(pairMeta.sub_doc) : null,
+      pairArtifactType: pairMeta ? stringField(pairMeta.artifact_type) : null,
       generatesArtifactTypes: generates
         .map((g) =>
           g && typeof g === "object"
@@ -158,8 +171,15 @@ function isL8PairEnforced(doc: PlanDescentDoc): boolean {
   return !doc.created || doc.created >= L8_PAIR_ENFORCEMENT_DATE;
 }
 
-function isL8UnitTestDesign(path: string): boolean {
-  return path.includes(L8_UNIT_TEST_DESIGN_SEGMENT);
+function isL8UnitTestDesign(doc: PlanDescentDoc): boolean {
+  return (
+    (doc.pairArtifact === "docs/test-design/harness/L8-unit-test-design.md" &&
+      doc.pairArtifactLayer === "L8" &&
+      doc.pairArtifactType === "test_design") ||
+    (doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) === true &&
+      doc.pairArtifactLayer === "L8" &&
+      doc.pairArtifactSubDoc === "unit-test-design")
+  );
 }
 
 function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
@@ -197,7 +217,7 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
       reason: "pair_artifact_not_test_design",
       detail: doc.pairArtifact ?? undefined,
     });
-  } else if (isL8PairEnforced(doc) && !isL8UnitTestDesign(doc.pairArtifact)) {
+  } else if (isL8PairEnforced(doc) && !isL8UnitTestDesign(doc)) {
     violations.push({
       planId: doc.planId,
       file: doc.file,

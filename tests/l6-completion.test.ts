@@ -1,5 +1,12 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { analyzeL6Completion, l6CompletionMessages } from "../src/lint/l6-completion";
+import {
+  analyzeL6Completion,
+  l6CompletionMessages,
+  loadL6CompletionInputs,
+} from "../src/lint/l6-completion";
 
 const gatePass = `
 | Gate | Status | Evidence |
@@ -33,6 +40,7 @@ describe("L6 completion readiness", () => {
         },
       ],
       l7Text: "status: draft\n",
+      unitTestDesignStatuses: {},
       gateText: gateNotReached,
     });
 
@@ -68,7 +76,7 @@ describe("L6 completion readiness", () => {
           path: "docs/design/harness/L6-function-design/function-spec.md",
           text: [
             "status: confirmed",
-            "pair_artifact: docs/test-design/harness/L8-unit-test-design.md",
+            "pair_artifact: docs/test-design/harness/closure-authority-production-route.md",
             "plan: docs/plans/PLAN-L6-01-function-spec.md",
             "L6 contract marker: planDraft(input: PlanDraftInput) => PlanDraftResult. DbC pre/post. L7 oracle family: U-FUNC-001.",
           ].join("\n"),
@@ -86,7 +94,11 @@ describe("L6 completion readiness", () => {
           ].join("\n"),
         },
       ],
-      l7Text: "status: confirmed\nfunction-spec.md\n",
+      l7Text:
+        "PAIR_PATH:docs/test-design/harness/closure-authority-production-route.md\nstatus: confirmed\nfunction-spec.md\n",
+      unitTestDesignStatuses: {
+        "docs/test-design/harness/closure-authority-production-route.md": "confirmed",
+      },
       gateText: gatePass,
     });
 
@@ -114,7 +126,11 @@ describe("L6 completion readiness", () => {
           text: "plan_id: PLAN-L6-01-function-spec\nkind: design\nstatus: draft\n",
         },
       ],
-      l7Text: "status: draft\nfunction-spec.md\n",
+      l7Text:
+        "PAIR_PATH:docs/test-design/harness/L8-unit-test-design.md\nstatus: draft\nfunction-spec.md\n",
+      unitTestDesignStatuses: {
+        "docs/test-design/harness/L8-unit-test-design.md": "confirmed",
+      },
       gateText: gateNotReached,
     });
 
@@ -154,11 +170,51 @@ describe("L6 completion readiness", () => {
           text: "plan_id: PLAN-L6-24-structured-error-handling\nkind: add-design\nstatus: draft\n",
         },
       ],
-      l7Text: "status: confirmed\nfunction-spec.md\n",
+      l7Text:
+        "PAIR_PATH:docs/test-design/harness/L8-unit-test-design.md\nstatus: confirmed\nfunction-spec.md\n",
+      unitTestDesignStatuses: {
+        "docs/test-design/harness/L8-unit-test-design.md": "confirmed",
+      },
       gateText: gatePass,
     });
 
     expect(result.ready).toBe(true);
     expect(result.draftPlans).toEqual([]);
+  });
+
+  it("dedicated L8 pairはloaderがpath単位statusを保持しdraft/meta偽装を承認しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-l6-pair-status-"));
+    const designDir = join(root, "docs/design/harness/L6-function-design");
+    const testDir = join(root, "docs/test-design/harness");
+    const planDir = join(root, "docs/plans");
+    const governanceDir = join(root, "docs/governance");
+    for (const dir of [designDir, testDir, planDir, governanceDir])
+      mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      join(testDir, "dedicated.md"),
+      "---\nlayer: L8\nsub_doc: unit-test-design\nstatus: draft\n---\nfunction-spec.md\n",
+    );
+    writeFileSync(
+      join(testDir, "spoof.md"),
+      "---\nlayer: L7\nsub_doc: unit-test-design\nstatus: confirmed\n---\nfunction-spec.md\n",
+    );
+    writeFileSync(join(governanceDir, "gate-design.md"), gatePass);
+    const loaded = loadL6CompletionInputs(root);
+    expect(loaded.unitTestDesignStatuses).toEqual({
+      "docs/test-design/harness/dedicated.md": "draft",
+    });
+    expect(loaded.l7Text).not.toContain("spoof.md");
+    const result = analyzeL6Completion({
+      ...loaded,
+      l6Docs: [
+        {
+          path: "docs/design/harness/L6-function-design/function-spec.md",
+          text: "status: confirmed\npair_artifact: docs/test-design/harness/dedicated.md\n",
+        },
+      ],
+    });
+    expect(result.missingDocPairArtifacts).toEqual([
+      "docs/design/harness/L6-function-design/function-spec.md",
+    ]);
   });
 });
