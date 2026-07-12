@@ -38,6 +38,112 @@ export type LoopEpochReadResult = {
   reason: string;
 };
 
+export interface DurableEpochPort {
+  acquireExclusiveClaim(planId: string): boolean;
+  readManifestText(planId: string): string | null;
+  writePayloadTemp(planId: string, text: string): void;
+  fsyncPayloadTemp(planId: string): void;
+  renamePayload(planId: string): void;
+  fsyncStateDirectory(planId: string): void;
+  writeManifestTemp(planId: string, text: string): void;
+  fsyncManifestTemp(planId: string): void;
+  renameManifest(planId: string): void;
+  unlinkClaim(planId: string): void;
+  fsyncClaimDirectory(planId: string): void;
+}
+
+const INTENT_CAPABILITY = Symbol("helix.loop.intent-capability");
+export type DurableIntentCapability = {
+  readonly [INTENT_CAPABILITY]: true;
+  readonly planId: string;
+};
+export type LoopEpochCommitResult = {
+  status: "committed" | "concurrent_conflict" | "durability_uncertain";
+  manifest: LoopEpochManifest | null;
+  intentCapability: DurableIntentCapability | null;
+  reason: string;
+};
+
+export function commitLoopEpoch(input: {
+  planId: string;
+  previousManifestText: string | null;
+  payload: LoopEpochPayload;
+  sideEffectPhase: LoopSideEffectPhase;
+  port: DurableEpochPort;
+}): LoopEpochCommitResult {
+  const planId = assertLoopPlanId(input.planId);
+  if (!input.port.acquireExclusiveClaim(planId)) {
+    return {
+      status: "concurrent_conflict",
+      manifest: null,
+      intentCapability: null,
+      reason: "claim_conflict",
+    };
+  }
+  try {
+    if (input.port.readManifestText(planId) !== input.previousManifestText) {
+      return {
+        status: "concurrent_conflict",
+        manifest: null,
+        intentCapability: null,
+        reason: "stale_previous",
+      };
+    }
+    const previous = input.previousManifestText ? parseManifest(input.previousManifestText) : null;
+    if (input.previousManifestText && previous === null) {
+      return {
+        status: "concurrent_conflict",
+        manifest: null,
+        intentCapability: null,
+        reason: "invalid_previous",
+      };
+    }
+    const payloadText = JSON.stringify(input.payload);
+    const manifest: LoopEpochManifest = {
+      schema: LOOP_EPOCH_SCHEMA,
+      planId,
+      epochId: (previous?.epochId ?? -1) + 1,
+      previousManifestDigest: input.previousManifestText
+        ? sha256Digest(input.previousManifestText)
+        : null,
+      payloadDigest: sha256Digest(payloadText),
+      sideEffectPhase: input.sideEffectPhase,
+    };
+    input.port.writePayloadTemp(planId, payloadText);
+    input.port.fsyncPayloadTemp(planId);
+    input.port.renamePayload(planId);
+    input.port.fsyncStateDirectory(planId);
+    input.port.writeManifestTemp(planId, JSON.stringify(manifest));
+    input.port.fsyncManifestTemp(planId);
+    input.port.renameManifest(planId);
+    input.port.fsyncStateDirectory(planId);
+    input.port.unlinkClaim(planId);
+    input.port.fsyncClaimDirectory(planId);
+    return {
+      status: "committed",
+      manifest,
+      intentCapability:
+        input.sideEffectPhase === "intent_recorded" ? { [INTENT_CAPABILITY]: true, planId } : null,
+      reason: "durable",
+    };
+  } catch {
+    return {
+      status: "durability_uncertain",
+      manifest: null,
+      intentCapability: null,
+      reason: "publish_failed",
+    };
+  }
+}
+
+export function authorizeLoopSideEffect<T>(
+  capability: DurableIntentCapability | null,
+  effect: () => T,
+): { allowed: boolean; value?: T } {
+  if (capability?.[INTENT_CAPABILITY] !== true) return { allowed: false };
+  return { allowed: true, value: effect() };
+}
+
 function parseRecord(text: string): Record<string, unknown> | null {
   try {
     const value: unknown = JSON.parse(text);

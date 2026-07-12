@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { classifyLoopEpochFiles, LOOP_EPOCH_SCHEMA } from "../src/orchestration/durable-loop-epoch";
+import {
+  authorizeLoopSideEffect,
+  classifyLoopEpochFiles,
+  commitLoopEpoch,
+  type DurableEpochPort,
+  LOOP_EPOCH_SCHEMA,
+} from "../src/orchestration/durable-loop-epoch";
 import { sha256Digest } from "../src/runtime/digest";
 
 const PLAN = "PLAN-L7-449-durability-boundary-implementation";
@@ -74,6 +80,112 @@ describe("PLAN-L7-449 loop epoch reader", () => {
         claimStatus: "absent",
       }).status,
     ).toBe("committed");
+  });
+
+  it("U-DUR-005/006: mints an intent capability only after the full durability sequence", () => {
+    const calls: string[] = [];
+    const port = Object.fromEntries(
+      [
+        "acquireExclusiveClaim",
+        "readManifestText",
+        "writePayloadTemp",
+        "fsyncPayloadTemp",
+        "renamePayload",
+        "fsyncStateDirectory",
+        "writeManifestTemp",
+        "fsyncManifestTemp",
+        "renameManifest",
+        "unlinkClaim",
+        "fsyncClaimDirectory",
+      ].map((name) => [
+        name,
+        () => {
+          calls.push(name);
+          return name === "acquireExclusiveClaim" ? true : null;
+        },
+      ]),
+    ) as unknown as DurableEpochPort;
+    const committed = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: JSON.parse(payload),
+      sideEffectPhase: "intent_recorded",
+      port,
+    });
+    expect(committed.status).toBe("committed");
+    expect(calls).toEqual([
+      "acquireExclusiveClaim",
+      "readManifestText",
+      "writePayloadTemp",
+      "fsyncPayloadTemp",
+      "renamePayload",
+      "fsyncStateDirectory",
+      "writeManifestTemp",
+      "fsyncManifestTemp",
+      "renameManifest",
+      "fsyncStateDirectory",
+      "unlinkClaim",
+      "fsyncClaimDirectory",
+    ]);
+    let effects = 0;
+    expect(
+      authorizeLoopSideEffect(null, () => {
+        effects += 1;
+      }),
+    ).toEqual({ allowed: false });
+    expect(
+      authorizeLoopSideEffect(committed.intentCapability, () => {
+        effects += 1;
+        return "ok";
+      }),
+    ).toEqual({ allowed: true, value: "ok" });
+    expect(effects).toBe(1);
+  });
+
+  it("U-DUR-006/007: fails closed on claim conflict and every durability fault", () => {
+    const methods = [
+      "writePayloadTemp",
+      "fsyncPayloadTemp",
+      "renamePayload",
+      "fsyncStateDirectory",
+      "writeManifestTemp",
+      "fsyncManifestTemp",
+      "renameManifest",
+      "unlinkClaim",
+      "fsyncClaimDirectory",
+    ] as const;
+    for (const fault of methods) {
+      const port = new Proxy({} as DurableEpochPort, {
+        get: (_target, name) => {
+          if (name === "acquireExclusiveClaim") return () => true;
+          if (name === "readManifestText") return () => null;
+          if (name === fault)
+            return () => {
+              throw new Error(`fault:${fault}`);
+            };
+          return () => undefined;
+        },
+      });
+      const result = commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: JSON.parse(payload),
+        sideEffectPhase: "intent_recorded",
+        port,
+      });
+      expect(result.status).toBe("durability_uncertain");
+      expect(result.intentCapability).toBeNull();
+    }
+    const conflictPort = { acquireExclusiveClaim: () => false } as DurableEpochPort;
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: JSON.parse(payload),
+        sideEffectPhase: "completed",
+        port: conflictPort,
+      }).status,
+    ).toBe("concurrent_conflict");
   });
 
   it("U-DUR-004: distinguishes live/stale claims and residual-claim uncertainty", () => {
