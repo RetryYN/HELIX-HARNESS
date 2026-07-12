@@ -89,6 +89,24 @@ describe("PLAN-L7-449 actual process durability", () => {
       );
       expect(await released.exited).not.toBe(0);
       expect(readLoopEpochFromFs(releasedRepo, PLAN).status).toBe("committed");
+
+      const proofGcRepo = root();
+      const proofGc = child(
+        proofGcRepo,
+        "gc:release_proof_gc_unlinked",
+        "release_proof_gc_unlinked",
+      );
+      expect(await proofGc.exited).not.toBe(0);
+      expect(readLoopEpochFromFs(proofGcRepo, PLAN).status).toBe("durability_uncertain");
+
+      const releasingGcRepo = root();
+      const releasingGc = child(
+        releasingGcRepo,
+        "gc:releasing_gc_unlinked",
+        "releasing_gc_unlinked",
+      );
+      expect(await releasingGc.exited).not.toBe(0);
+      expect(readLoopEpochFromFs(releasingGcRepo, PLAN).status).toBe("committed");
     },
     30_000,
   );

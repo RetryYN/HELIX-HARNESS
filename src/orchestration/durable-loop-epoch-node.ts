@@ -60,7 +60,9 @@ export type DurableEpochBoundary =
   | "manifest_renamed"
   | "pointer_renamed"
   | "claim_unlinked"
-  | "release_proof_published";
+  | "release_proof_published"
+  | "release_proof_gc_unlinked"
+  | "releasing_gc_unlinked";
 export type StaleLoopClaimApprovalRecord = StaleLoopClaimRecoveryPacket &
   RecoveryMutexObservation & { expiresAt: string };
 
@@ -269,8 +271,10 @@ export function nodeDurableEpochPort(
           throw new Error("loop claim release proof is invalid");
         unlinkSync(value.releaseProof);
         fsyncDirectory(value.directory);
+        hooks.afterBoundary?.("release_proof_gc_unlinked");
         unlinkSync(value.releasingClaim);
         fsyncDirectory(value.directory);
+        hooks.afterBoundary?.("releasing_gc_unlinked");
       }
       try {
         const fd = openSync(value.claim, "wx", 0o600);
