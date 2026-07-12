@@ -151,7 +151,7 @@ review_evidence:
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
-        scope: repository
+        scope: full
         exit_code: 0
         completed_at: "2026-07-13T06:41:25+09:00"
         evidence_path: tsconfig.json
