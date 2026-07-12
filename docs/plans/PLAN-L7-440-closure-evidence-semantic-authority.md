@@ -10,6 +10,9 @@ entry_signals: ["po_directive:2026-07-12 PLAN-L7-425 collect_evidence candidate 
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
+agent_slots:
+  - { role: se, slot_label: "SE - materializer fail-close実装" }
+  - { role: qa, slot_label: "QA - semantic provenance独立review" }
 review_evidence:
   - reviewer: codex-independent-reviewer
     review_kind: intra_runtime_subagent

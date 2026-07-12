@@ -1,15 +1,18 @@
 ---
 plan_id: PLAN-L6-78-closure-evidence-semantic-authority
 title: "closure evidence semantic authority"
-kind: design
+kind: add-design
 layer: L6
 drive: agent
 status: confirmed
-route_mode: forward
+route_mode: add-feature
 entry_signals: ["po_directive:2026-07-12 PLAN-L7-425 collect_evidence materializer semantic fabrication remediation"]
 created: 2026-07-12
 updated: 2026-07-12
 owner: Codex
+agent_slots:
+  - { role: se, slot_label: "SE - semantic authority delta設計" }
+  - { role: qa, slot_label: "QA - authority非推測とVペアreview" }
 pair_artifact: docs/test-design/harness/closure-evidence-semantic-authority.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-semantic-authority.md, oracle_id: U-CESA-001, test_path: tests/closure-evidence-semantic-authority.test.ts }
