@@ -65,6 +65,12 @@ generates:
     artifact_type: test_code
   - artifact_path: config/digest-canonicalization-inventory.json
     artifact_type: config
+  - artifact_path: docs/design/harness/L4-basic-design/architecture.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L5-detailed-design/module-decomposition.md
+    artifact_type: design_doc
+  - artifact_path: src/lint/shared.ts
+    artifact_type: source_module
 dependencies:
   parent: null
   requires: []
