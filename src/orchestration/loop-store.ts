@@ -1,4 +1,17 @@
+import { randomUUID } from "node:crypto";
+import {
+  closeSync,
+  existsSync,
+  fsyncSync,
+  mkdirSync,
+  openSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
+import { sha256Digest } from "../runtime/digest";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
 import {
   authorizeLoopSideEffect,
@@ -63,9 +76,60 @@ export function durableFileLoopStore(deps: {
   const pendingIterations = new Map<string, LoopIterationRecord>();
   const legacyPathFor = (planId: string) =>
     join(deps.root, ".helix", "state", "loop", `${assertLoopPlanId(planId)}.json`);
+  const loopDirectory = join(deps.root, ".helix", "state", "loop");
+  const doneMarkerFor = (planId: string) =>
+    join(loopDirectory, `${assertLoopPlanId(planId)}.legacy-import.done.json`);
+
+  function fsyncFile(path: string): void {
+    const fd = openSync(path, "r+");
+    try {
+      fsyncSync(fd);
+    } finally {
+      closeSync(fd);
+    }
+  }
+
+  function sourceMarkerFor(planId: string): string | null {
+    if (!existsSync(loopDirectory)) return null;
+    const prefix = `${assertLoopPlanId(planId)}.legacy-source-`;
+    const matches = readdirSync(loopDirectory).filter(
+      (name) => name.startsWith(prefix) && name.endsWith(".json"),
+    );
+    if (matches.length > 1) throw new Error(`multiple legacy loop migration sources: ${planId}`);
+    return matches[0] ? join(loopDirectory, matches[0]) : null;
+  }
+
+  function publishDoneMarker(planId: string, sourceDigest: string): void {
+    const done = doneMarkerFor(planId);
+    if (existsSync(done)) return;
+    const manifestText = port.readManifestText(planId);
+    if (manifestText === null) throw new Error(`legacy import manifest missing: ${planId}`);
+    const temp = `${done}.${randomUUID()}.tmp`;
+    writeFileSync(
+      temp,
+      `${JSON.stringify({
+        schema: "helix.loop-legacy-import.v1",
+        planId,
+        sourceDigest,
+        manifestDigest: sha256Digest(manifestText),
+        importedAt: new Date().toISOString(),
+      })}\n`,
+      { encoding: "utf8", flag: "wx", mode: 0o600 },
+    );
+    fsyncFile(temp);
+    renameSync(temp, done);
+    port.fsyncClaimDirectory(planId);
+  }
 
   function importLegacy(planId: string): LoopState | null {
-    const text = deps.readLegacyText?.(legacyPathFor(planId)) ?? null;
+    if (existsSync(doneMarkerFor(planId)))
+      throw new Error(`durable loop epoch missing after completed legacy import: ${planId}`);
+    const existingSource = sourceMarkerFor(planId);
+    const rawPath = legacyPathFor(planId);
+    const text =
+      existingSource !== null
+        ? readFileSync(existingSource, "utf8")
+        : (deps.readLegacyText?.(rawPath) ?? null);
     if (text === null) return null;
     let state: LoopState;
     try {
@@ -76,6 +140,16 @@ export function durableFileLoopStore(deps: {
     const payload: LoopEpochPayload = { state, iteration: null };
     if (parseLoopEpochPayload(JSON.stringify(payload), planId) === null)
       throw new Error(`legacy loop state is invalid: ${planId}`);
+    const sourceDigest = sha256Digest(text);
+    let sourcePath = existingSource;
+    if (sourcePath === null) {
+      if (!existsSync(rawPath))
+        throw new Error(`legacy loop state cannot be retired durably: ${planId}`);
+      mkdirSync(loopDirectory, { recursive: true });
+      sourcePath = join(loopDirectory, `${planId}.legacy-source-${sourceDigest.slice(7)}.json`);
+      renameSync(rawPath, sourcePath);
+      port.fsyncClaimDirectory(planId);
+    }
     const committed = commitLoopEpoch({
       planId,
       previousManifestText: null,
@@ -85,6 +159,7 @@ export function durableFileLoopStore(deps: {
     });
     if (committed.status !== "committed")
       throw new Error(`legacy loop state import failed: ${planId}:${committed.reason}`);
+    publishDoneMarker(planId, sourceDigest);
     return state;
   }
 
@@ -97,6 +172,9 @@ export function durableFileLoopStore(deps: {
         throw new Error(
           `loop epoch is not readable: ${planId}:${snapshot.status}:${snapshot.reason}`,
         );
+      const source = sourceMarkerFor(planId);
+      if (source !== null && !existsSync(doneMarkerFor(planId)))
+        publishDoneMarker(planId, sha256Digest(readFileSync(source, "utf8")));
       return snapshot.payload.state;
     },
     recordIteration: (record) => {

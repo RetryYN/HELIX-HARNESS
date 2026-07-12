@@ -51,8 +51,26 @@ describe("PLAN-L7-449 production durable loop store", () => {
 
     expect(makeStore().read(PLAN)).toEqual(state);
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    expect(existsSync(legacy)).toBe(false);
+    expect(
+      existsSync(join(repo, ".helix", "state", "loop", `${PLAN}.legacy-import.done.json`)),
+    ).toBe(true);
     writeFileSync(legacy, "{");
     expect(makeStore().read(PLAN)).toEqual(state);
+  });
+
+  it("IT-DUR-002/003: refuses legacy rollback after a completed import loses its epoch pointer", () => {
+    const repo = root();
+    const legacy = join(repo, ".helix", "state", "loop", `${PLAN}.json`);
+    mkdirSync(dirname(legacy), { recursive: true });
+    writeFileSync(legacy, JSON.stringify(state));
+    const store = durableFileLoopStore({
+      root: repo,
+      readLegacyText: (path) => readFileSync(path, "utf8"),
+    });
+    expect(store.read(PLAN)).toEqual(state);
+    rmSync(loopEpochPaths(repo, PLAN).manifest);
+    expect(() => store.read(PLAN)).toThrow("epoch missing after completed legacy import");
   });
 
   it("IT-DUR-002: refuses corrupt legacy state instead of mapping it to missing", () => {
