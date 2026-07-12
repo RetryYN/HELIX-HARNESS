@@ -20,7 +20,7 @@ foreign-edit override である。認証、remote write、release/cutover の承
 |---|---|---|
 | command classifier | shell input を command slice へ正規化し destructive taxonomy を返す | marker、filesystem、audit を読むこと |
 | override authorizer | block classification と非空理由付き marker を結合する | audit 成功前に allow を返すこと |
-| override transaction | audit durable commit、marker one-shot consume、結果確定を直列化する | I/O failure の握り潰し |
+| override transaction | `harness.db`へのaudit+nonce durable commit、marker one-shot consume、結果確定を直列化する | I/O failure の握り潰し、sidecar二重store |
 | hook adapter | payload 正規化と exit/message 変換 | classifier/transaction logic の複製 |
 
 依存方向は `hook/CLI -> transaction -> classifier` とする。classifier は pure、transaction は注入した
@@ -53,8 +53,9 @@ destructive Git slice の可能性を排除できない parser state は fail-cl
 raw secret、credential、PII、個人absolute pathはauditへ保存しない。transaction IDでretryを識別し、
 同一markerの二重allowを拒否する。
 
-同一nonceへの並行呼出しはatomic compare-and-consumeで直列化する。監査ledgerはtransaction ID/nonceを
-一意制約で永続化し、競合とprocess restart後の再利用を`blocked_reuse`としてallow回数を1以下に保つ。
+同一nonceへの並行呼出しは`BEGIN IMMEDIATE`と`guard_override_transactions.nonce`の一意制約で直列化する。
+同じrowにguard kind、operation class、subject/reason digest、状態を永続化し、audit JSONLやnonce sidecarへ
+二重書込みしない。競合とprocess restart後の再利用は`blocked_reuse`としてallow回数を1以下に保つ。
 
 ## 5. 移行境界
 

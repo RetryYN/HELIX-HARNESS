@@ -15,10 +15,18 @@ describe("guard override transaction", () => {
       reason: "reviewed recovery",
       classification,
       audit: {
-        commit: () => (order.push("audit"), { status: "committed" }),
+        commit: () => {
+          order.push("audit");
+          return { status: "committed" };
+        },
         abort: () => order.push("abort"),
       },
-      marker: { consume: () => (order.push("consume"), true) },
+      marker: {
+        consume: () => {
+          order.push("consume");
+          return true;
+        },
+      },
     });
     expect(result).toEqual({ status: "allowed" });
     expect(order).toEqual(["audit", "consume"]);
@@ -31,7 +39,12 @@ describe("guard override transaction", () => {
         nonce: "n-1",
         reason: "reason",
         classification,
-        audit: { commit: () => { throw new Error("disk full"); }, abort: () => undefined },
+        audit: {
+          commit: () => {
+            throw new Error("disk full");
+          },
+          abort: () => undefined,
+        },
         marker: { consume },
       }),
     ).toEqual({ status: "blocked_audit_failure" });
@@ -43,7 +56,11 @@ describe("guard override transaction", () => {
         reason: "reason",
         classification,
         audit: { commit: () => ({ status: "committed" }), abort },
-        marker: { consume: () => { throw new Error("readonly"); } },
+        marker: {
+          consume: () => {
+            throw new Error("readonly");
+          },
+        },
       }),
     ).toEqual({ status: "blocked_consume_failure" });
     expect(abort).toHaveBeenCalledWith({ nonce: "n-1", reason: "consume_failed" });
@@ -65,7 +82,9 @@ describe("guard override transaction", () => {
   it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-006] rejects unbounded or credential-bearing audit input", () => {
     for (const reason of ["", "x".repeat(257), "token=secret-value", "line1\nline2"]) {
       const result = commitOverrideUse({
-        nonce: "n-1", reason, classification,
+        nonce: "n-1",
+        reason,
+        classification,
         audit: { commit: () => ({ status: "committed" }), abort: () => undefined },
         marker: { consume: () => true },
       });

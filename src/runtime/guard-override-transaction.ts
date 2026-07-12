@@ -5,7 +5,9 @@ export interface GuardBlockClassification {
 }
 
 export interface OverrideAuditPort {
-  commit(input: { nonce: string; reason: string; classification: GuardBlockClassification }): { status: "committed" | "reused" };
+  commit(input: { nonce: string; reason: string; classification: GuardBlockClassification }): {
+    status: "committed" | "reused";
+  };
   abort(input: { nonce: string; reason: "consume_failed" }): void;
 }
 
@@ -19,8 +21,10 @@ function validAuditInput(input: {
   classification: GuardBlockClassification;
 }): boolean {
   return (
-    input.nonce.length > 0 && input.nonce.length <= 128 &&
-    input.reason.trim().length > 0 && input.reason.length <= 256 &&
+    input.nonce.length > 0 &&
+    input.nonce.length <= 128 &&
+    input.reason.trim().length > 0 &&
+    input.reason.length <= 256 &&
     !/[\r\n]/.test(input.reason) &&
     !/(?:token|password|secret|credential)\s*[:=]/i.test(input.reason) &&
     input.classification.operationClass.length > 0 &&
@@ -59,7 +63,9 @@ export function commitOverrideUse(input: {
     input.audit.abort({ nonce: input.nonce, reason: "consume_failed" });
     return { status: "blocked_consume_failure" };
   } catch {
-    try { input.audit.abort({ nonce: input.nonce, reason: "consume_failed" }); } catch {}
+    try {
+      input.audit.abort({ nonce: input.nonce, reason: "consume_failed" });
+    } catch {}
     return { status: "blocked_consume_failure" };
   }
 }

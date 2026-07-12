@@ -20,6 +20,9 @@ generates:
   - { artifact_path: docs/test-design/harness/L8-destructive-command-guard.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/harness/L9-destructive-command-guard-integration.md, artifact_type: test_design }
   - { artifact_path: src/runtime/guard-override-transaction.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/git-command-guard-hook.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/harness-db.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/git-command-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/work-guard-hook.ts, artifact_type: source_module }
   - { artifact_path: .claude/hooks/git-command-guard.ts, artifact_type: source_module }
@@ -51,4 +54,5 @@ agent_slots:
 - force clean、branch force delete、stash drop/clearと同値shell変形をblockする。
 - audit commitとmarker consumeの双方が成功した呼出しだけallowする。
 - audit/consume/crash/retry failureで二重allowせず、secret/pathを監査へ漏らさない。
+- auditとnonce reservationを`harness.db.guard_override_transactions`の単一transactionへcommitし、JSONL/nonce sidecarを正本にしない。
 - `U-GITGUARD-003..009` / `IT-GITGUARD-001..004`、typecheck、hook contract、doctor gateがgreenである。

@@ -49,12 +49,13 @@ post:
 
 invariant: exception、partial write、process retryをpassへ変換しない。audit recordはboundedかつredactedである。
 監査schemaはallowlist fieldだけを持ち、SHA-256 digest、文字列256 byte上限、正規化error codeを使う。
-append後のfsyncとrecord framingを確認し、partial/torn JSONLをcommittedとしない。session、parser reason、
+SQLite transaction commitとrow一意性を確認し、未commit rowをcommittedとしない。session、parser reason、
 例外、abortを含む全fieldでcredential、PII、個人absolute pathをredactする。nonce ledgerはrestart後も永続する。
 
-`AuditPort.commit(record, nonce)`はaudit recordとnonce reservationを単一atomic commitにする。durable commit前の
-partial/torn writeはquarantineしてmarkerを保持し、同nonceのretryを許可する。durable commit成功後からmarker consume
-までにcrashした場合、nonceは予約済みのためrestart後のretryを`blocked_reuse`にする。別storeへの二重書込みは禁止する。
+`AuditPort.commit(record, nonce)`は`harness.db.guard_override_transactions`への一意INSERTを`BEGIN IMMEDIATE`内で行い、
+audit recordとnonce reservationを単一atomic commitにする。durable commit前のrollbackはmarkerを保持し、同nonceのretryを
+許可する。commit成功後からmarker consumeまでにcrashした場合、rowは予約済みのためrestart後のretryを`blocked_reuse`にする。
+JSONL/nonce directory等の別storeへの二重書込みは禁止する。
 
 ## 4. adapter 同値性
 
@@ -63,4 +64,4 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 
 ## 5. Vペア
 
-`docs/test-design/harness/L8-destructive-command-guard.md` の `U-GITGUARD-003..008` を正本oracleとする。
+`docs/test-design/harness/L8-destructive-command-guard.md` の `U-GITGUARD-003..009` を正本oracleとする。

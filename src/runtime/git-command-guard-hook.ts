@@ -1,8 +1,14 @@
 import { createHash } from "node:crypto";
-import { appendFileSync, closeSync, existsSync, mkdirSync, openSync, readFileSync, rmSync, statSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { existsSync, readFileSync, rmSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
+import { migrate } from "../state-db/migration";
+import {
+  evaluateGitCommandGuard,
+  extractShellCommand,
+  resolveDestructiveGitOverride,
+} from "./git-command-guard";
 import { commitOverrideUse, type OverrideAuditPort } from "./guard-override-transaction";
-import { evaluateGitCommandGuard, extractShellCommand, resolveDestructiveGitOverride } from "./git-command-guard";
 
 export interface GitCommandGuardHookOutcome {
   exitCode: 0 | 2;
@@ -14,52 +20,35 @@ function digest(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }
 
-function auditPort(auditPath: string): OverrideAuditPort {
+function auditPort(db: HarnessDb): OverrideAuditPort {
   return {
     commit(input) {
-      mkdirSync(dirname(auditPath), { recursive: true });
-      if (existsSync(auditPath)) {
-        for (const line of readFileSync(auditPath, "utf8").split("\n")) {
-          if (!line) continue;
-          try {
-            JSON.parse(line);
-          } catch {
-            throw new Error("invalid audit framing");
-          }
-        }
-      }
-      const reservationDir = `${auditPath}.nonces`;
-      mkdirSync(reservationDir, { recursive: true });
-      const reservationPath = join(reservationDir, input.nonce.replace(/^sha256:/, ""));
-      let reservationFd: number;
+      db.exec("BEGIN IMMEDIATE");
       try {
-        reservationFd = openSync(reservationPath, "wx", 0o600);
+        const inserted = db
+          .prepare(`INSERT OR IGNORE INTO guard_override_transactions
+          (nonce, guard_kind, operation_class, subject_digest, reason_digest, status, created_at)
+          VALUES (?, ?, ?, ?, ?, 'committed', ?)`)
+          .run(
+            input.nonce,
+            input.classification.guardKind,
+            input.classification.operationClass,
+            input.classification.subjectDigest,
+            digest(input.reason),
+            new Date().toISOString(),
+          );
+        db.exec("COMMIT");
+        return { status: inserted.changes === 1 ? "committed" : "reused" };
       } catch (error) {
-        if ((error as NodeJS.ErrnoException).code === "EEXIST") return { status: "reused" };
-        throw error;
-      }
-      closeSync(reservationFd);
-      try {
-        appendFileSync(auditPath, `${JSON.stringify({
-          schemaVersion: "guard-override-audit.v1",
-          nonce: input.nonce,
-          guardKind: input.classification.guardKind,
-          operationClass: input.classification.operationClass,
-          subjectDigest: input.classification.subjectDigest,
-          reasonDigest: digest(input.reason),
-        })}\n`, { flush: true });
-        return { status: "committed" };
-      } catch (error) {
-        rmSync(reservationPath, { force: true });
+        try {
+          db.exec("ROLLBACK");
+        } catch {}
         throw error;
       }
     },
     abort(input) {
-      appendFileSync(auditPath, `${JSON.stringify({
-        schemaVersion: "guard-override-abort.v1",
-        nonce: input.nonce,
-        reason: input.reason,
-      })}\n`, { flush: true });
+      db.prepare(`UPDATE guard_override_transactions
+        SET status='consume_failed', abort_reason=? WHERE nonce=?`).run(input.reason, input.nonce);
     },
   };
 }
@@ -90,32 +79,43 @@ export function runGitCommandGuardHook(opts: {
     markerReason,
   });
   if (override.source === "env") return { exitCode: 0, reason: "bypass" };
-  if (override.source !== "marker" || markerReason === null) return { exitCode: 2, message: base.message };
+  if (override.source !== "marker" || markerReason === null)
+    return { exitCode: 2, message: base.message };
   try {
-    const markerStat = statSync(markerPath);
-    const nonce = digest(`${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`);
-    const result = commitOverrideUse({
-      nonce,
-      reason: override.reason,
-      classification: {
-        guardKind: "git",
-        operationClass: base.destructiveOperation ?? "indeterminate",
-        subjectDigest: digest(command),
-      },
-      audit: auditPort(join(opts.repoRoot, ".helix", "logs", "destructive-git-overrides.jsonl")),
-      marker: {
-        consume(expectedNonce) {
-          const current = readFileSync(markerPath, "utf8");
-          const currentStat = statSync(markerPath);
-          const actual = digest(`${currentStat.dev}:${currentStat.ino}:${currentStat.mtimeMs}:${current}`);
-          if (actual !== expectedNonce) return false;
-          rmSync(markerPath);
-          return !existsSync(markerPath);
+    const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), { repoRoot: opts.repoRoot });
+    try {
+      migrate(db);
+      const markerStat = statSync(markerPath);
+      const nonce = digest(
+        `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
+      );
+      const result = commitOverrideUse({
+        nonce,
+        reason: override.reason,
+        classification: {
+          guardKind: "git",
+          operationClass: base.destructiveOperation ?? "indeterminate",
+          subjectDigest: digest(command),
         },
-      },
-    });
-    if (result.status === "allowed") return { exitCode: 0, reason: "bypass" };
-    return { exitCode: 2, message: `${base.message} override=${result.status}` };
+        audit: auditPort(db),
+        marker: {
+          consume(expectedNonce) {
+            const current = readFileSync(markerPath, "utf8");
+            const currentStat = statSync(markerPath);
+            const actual = digest(
+              `${currentStat.dev}:${currentStat.ino}:${currentStat.mtimeMs}:${current}`,
+            );
+            if (actual !== expectedNonce) return false;
+            rmSync(markerPath);
+            return !existsSync(markerPath);
+          },
+        },
+      });
+      if (result.status === "allowed") return { exitCode: 0, reason: "bypass" };
+      return { exitCode: 2, message: `${base.message} override=${result.status}` };
+    } finally {
+      db.close();
+    }
   } catch {
     return { exitCode: 2, message: `${base.message} override=blocked_audit_failure` };
   }

@@ -520,6 +520,20 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "guard_override_transactions",
+    columns: [
+      pk("nonce"),
+      col("guard_kind"),
+      col("operation_class"),
+      col("subject_digest"),
+      col("reason_digest"),
+      col("status"),
+      col("created_at"),
+      col("consumed_at"),
+      col("abort_reason"),
+    ],
+  },
+  {
     name: "issue_queue",
     columns: [
       pk("issue_queue_id"),

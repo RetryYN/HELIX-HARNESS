@@ -244,11 +244,6 @@ import {
   recordFeedback,
   scanDanglingStops,
 } from "./runtime/forced-stop";
-import {
-  evaluateGitCommandGuard,
-  extractShellCommand,
-  resolveDestructiveGitOverride,
-} from "./runtime/git-command-guard";
 import { runGitCommandGuardHook } from "./runtime/git-command-guard-hook";
 import {
   buildHarnessTaxonomyCurationReport,
@@ -962,17 +957,6 @@ function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undef
     }
   }
   return touched;
-}
-
-function readOneShotMarker(path: string): string | null {
-  try {
-    if (!existsSync(path)) return null;
-    const reason = readFileSync(path, "utf8");
-    rmSync(path, { force: true });
-    return reason;
-  } catch {
-    return null;
-  }
 }
 
 function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[] {

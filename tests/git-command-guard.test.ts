@@ -1,6 +1,6 @@
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -9,6 +9,17 @@ import {
   extractShellCommand,
   resolveDestructiveGitOverride,
 } from "../src/runtime/git-command-guard";
+import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
+import { migrate } from "../src/state-db/migration";
+
+function overrideRows(cwd: string): Record<string, unknown>[] {
+  const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+  try {
+    return db.prepare("SELECT * FROM guard_override_transactions ORDER BY nonce").all();
+  } finally {
+    db.close();
+  }
+}
 
 const cliPath = join(process.cwd(), "src", "cli.ts");
 const hookPath = join(process.cwd(), ".claude", "hooks", "git-command-guard.ts");
@@ -94,8 +105,15 @@ describe("git-command-guard", () => {
       "git branch -df feature",
       "git branch -d -f feature",
       "git stash -q drop stash@{0}",
-    ]) expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
-    for (const command of ["git clean -nfd", "git clean --dry-run", "git branch -d merged", "git stash list", "git stash show"])
+    ])
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("block");
+    for (const command of [
+      "git clean -nfd",
+      "git clean --dry-run",
+      "git branch -d merged",
+      "git stash list",
+      "git stash show",
+    ])
       expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
   });
 
@@ -145,13 +163,15 @@ describe("git-command-guard", () => {
       const first = runHook(input, cwd);
       expect(first.status).toBe(0);
       expect(existsSync(markerPath)).toBe(false);
-      const audit = readFileSync(
-        join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl"),
-        "utf8",
-      );
-      expect(audit).toContain('"schemaVersion":"guard-override-audit.v1"');
-      expect(audit).toContain('"reasonDigest":"sha256:');
-      expect(audit).not.toContain("manual recovery after log/reflog review");
+      const rows = overrideRows(cwd);
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({
+        guard_kind: "git",
+        operation_class: "git reset",
+        status: "committed",
+      });
+      expect(String(rows[0]?.reason_digest)).toMatch(/^sha256:[0-9a-f]{64}$/);
+      expect(JSON.stringify(rows)).not.toContain("manual recovery after log/reflog review");
 
       const second = runHook(input, cwd);
       expect(second.status).toBe(2);
@@ -179,9 +199,8 @@ describe("git-command-guard", () => {
       const cwd = mkdtempSync(join(tmpdir(), `helix-gitguard-audit-failure-${adapter}-`));
       try {
         const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
-        const auditPath = join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl");
         mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
-        mkdirSync(auditPath, { recursive: true });
+        mkdirSync(join(cwd, ".helix", "harness.db"), { recursive: true });
         writeFileSync(markerPath, "reviewed recovery");
         const input = { session_id: "s-failure", tool_input: { command: "git clean -f" } };
         const result = adapter === "dev-hook" ? runHook(input, cwd) : runCliGuard(input, cwd);
@@ -200,17 +219,23 @@ describe("git-command-guard", () => {
       const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
       writeFileSync(markerPath, "reviewed concurrent recovery");
-      const input = JSON.stringify({ session_id: "s-cas", tool_input: { command: "git clean -f" } });
-      const run = () => new Promise<number | null>((resolve) => {
-        const child = spawn("bun", [cliPath, "hook", "git-command-guard"], { cwd, stdio: ["pipe", "ignore", "ignore"] });
-        child.stdin.end(input);
-        child.once("close", resolve);
+      const input = JSON.stringify({
+        session_id: "s-cas",
+        tool_input: { command: "git clean -f" },
       });
+      const run = () =>
+        new Promise<number | null>((resolve) => {
+          const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
+            cwd,
+            stdio: ["pipe", "ignore", "ignore"],
+          });
+          child.stdin.end(input);
+          child.once("close", resolve);
+        });
       const statuses = await Promise.all([run(), run()]);
       expect(statuses.filter((status) => status === 0)).toHaveLength(1);
       expect(statuses.filter((status) => status === 2)).toHaveLength(1);
-      const audit = readFileSync(join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl"), "utf8");
-      expect(audit.trim().split("\n")).toHaveLength(1);
+      expect(overrideRows(cwd)).toHaveLength(1);
       expect(existsSync(markerPath)).toBe(false);
     } finally {
       rmSync(cwd, { recursive: true, force: true });
@@ -221,15 +246,23 @@ describe("git-command-guard", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-restart-"));
     try {
       const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
-      const auditPath = join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
       writeFileSync(markerPath, "reviewed crash recovery");
       const markerStat = statSync(markerPath);
-      const nonce = createHash("sha256")
+      const nonce = `sha256:${createHash("sha256")
         .update(`${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:reviewed crash recovery`)
-        .digest("hex");
-      mkdirSync(`${auditPath}.nonces`, { recursive: true });
-      writeFileSync(join(`${auditPath}.nonces`, nonce), "");
+        .digest("hex")}`;
+      const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      migrate(db);
+      db.prepare(`INSERT INTO guard_override_transactions
+        (nonce, guard_kind, operation_class, subject_digest, reason_digest, status, created_at)
+        VALUES (?, 'git', 'git clean --force', ?, ?, 'committed', ?)`).run(
+        nonce,
+        `sha256:${"0".repeat(64)}`,
+        `sha256:${"1".repeat(64)}`,
+        new Date().toISOString(),
+      );
+      db.close();
       const result = runCliGuard({ tool_input: { command: "git clean -f" } }, cwd);
       expect(result.status).toBe(2);
       expect(result.stderr).toContain("blocked_reuse");
@@ -239,15 +272,13 @@ describe("git-command-guard", () => {
     }
   });
 
-  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-009/IT-GITGUARD-002] fails closed on torn audit framing", () => {
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-009/IT-GITGUARD-002] fails closed on corrupt transaction store", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-torn-"));
     try {
       const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
-      const auditPath = join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl");
       mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
-      mkdirSync(join(cwd, ".helix", "logs"), { recursive: true });
       writeFileSync(markerPath, "reviewed recovery");
-      writeFileSync(auditPath, '{"schemaVersion":"guard-override-audit.v1"');
+      writeFileSync(join(cwd, ".helix", "harness.db"), "not-a-sqlite-database");
       const result = runCliGuard({ tool_input: { command: "git clean -f" } }, cwd);
       expect(result.status).toBe(2);
       expect(result.stderr).toContain("blocked_audit_failure");

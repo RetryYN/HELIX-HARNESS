@@ -122,8 +122,8 @@ function commandGitSlices(command: string, depth = 0): { slices: string[][]; com
   if (depth > 4) return { slices: [], complete: false };
   const tokenized = shellTokens(command);
   const direct = gitSlices(tokenized.tokens);
-  const nested = nestedShellCommands(command).flatMap((payload) =>
-    commandGitSlices(payload, depth + 1).slices,
+  const nested = nestedShellCommands(command).flatMap(
+    (payload) => commandGitSlices(payload, depth + 1).slices,
   );
   return { slices: [...direct, ...nested], complete: tokenized.complete };
 }
@@ -201,14 +201,17 @@ function destructiveOperation(args: string[]): string | null {
   if (sub === "clean") {
     const dryRun = rest.some((arg) => arg === "-n" || arg === "--dry-run" || /^-[^-]*n/.test(arg));
     const force = rest.some(
-      (arg) => arg === "--force" || (arg.startsWith("-") && !arg.startsWith("--") && arg.includes("f")),
+      (arg) =>
+        arg === "--force" || (arg.startsWith("-") && !arg.startsWith("--") && arg.includes("f")),
     );
     if (force && !dryRun) return "git clean --force";
     return null;
   }
   if (
     sub === "branch" &&
-    (rest.some((arg) => arg === "-D" || (/^-[^-]+$/.test(arg) && arg.includes("d") && arg.includes("f"))) ||
+    (rest.some(
+      (arg) => arg === "-D" || (/^-[^-]+$/.test(arg) && arg.includes("d") && arg.includes("f")),
+    ) ||
       (rest.some((arg) => arg === "-d" || arg === "--delete") &&
         rest.some((arg) => arg === "-f" || arg === "--force")))
   ) {
@@ -242,7 +245,8 @@ export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommand
       decision: "block",
       reason: "destructive-git",
       destructiveOperation: "indeterminate shell command",
-      message: "[helix-git-command-guard] BLOCK: shell command を完全に解析できないため fail-close しました。",
+      message:
+        "[helix-git-command-guard] BLOCK: shell command を完全に解析できないため fail-close しました。",
     };
   }
   const slices = parsed.slices;
