@@ -20,6 +20,7 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 | U-SBOUND-008 | source edge | direct/type-only/re-export/dynamic/literal require/import-equalsを正規化しcomputed requireをunknownで拒否 | `tests/source-boundary-policy.test.ts` |
 | U-SBOUND-009 | effect authority | untrusted issuer/改ざん/scope拡大/revocation/capability/snapshot/idempotency変異でeffect callback 0 | `tests/source-boundary-design.test.ts` |
 | U-SBOUND-010 | durable materialize | port throw/partial write/CAS driftでaccepted 0、uncertainまたはblocked | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-011 | temporary allow | explicit allow正常系、期限切れ・不正expiry・review trigger発火・duplicate pairをfail-close | `tests/source-boundary-policy.test.ts` |
 
 fixtureはset比較だけでなくedge kind、from/to owner、decision reasonを固定する。allowlist件数baseline追加で逃げず、
 各新module、unknown from/to、owner default欠落、explicit exception欠落をunspecifiedとして赤にするmutation oracleを持つ。

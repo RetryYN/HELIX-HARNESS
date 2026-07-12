@@ -71,6 +71,14 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
         expect.objectContaining({ reason: "incomplete_exception_metadata" }),
       ]),
     );
+    expect(
+      validateBoundaryPolicyCoverage(catalog, [], {
+        ...policy,
+        exceptions: [exception, { ...exception }],
+      }),
+    ).toEqual(
+      expect.arrayContaining([expect.objectContaining({ reason: "duplicate_exception_pair" })]),
+    );
   });
 
   it("U-SBOUND-008: all supported syntaxを抽出しcomputed formをfail-closeする", () => {
@@ -107,5 +115,46 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
     expect(
       validateBoundaryPolicyCoverage(catalog, edges, policy).map((finding) => finding.reason),
     ).toContain("computed or nonliteral require");
+  });
+
+  it("U-SBOUND-011: allow、expiry、review triggerをfail-close評価する", () => {
+    const [edge] = extractSourceEdges([
+      { path: "src/state-db/a.ts", source: 'import "../vscode/b";' },
+    ]);
+    if (!edge) throw new Error("allow fixture edge missing");
+    const allow = {
+      from: "state-db",
+      to: "vscode",
+      decision: "allow" as const,
+      owner: "architecture",
+      rationale: "temporary migration",
+      review_trigger: "owner change",
+      expiry: "2026-08-01T00:00:00Z",
+      successor_plan: "PLAN-L7-450-state-db-vscode-decoupling",
+    };
+    expect(
+      evaluateSourceBoundary(edge, catalog, {
+        defaults: policy.defaults,
+        exceptions: [allow],
+        evaluated_at: "2026-07-13T00:00:00Z",
+      }).decision,
+    ).toBe("allow");
+    expect(
+      evaluateSourceBoundary(edge, catalog, {
+        defaults: policy.defaults,
+        exceptions: [allow],
+        evaluated_at: "2026-08-01T00:00:00Z",
+      }),
+    ).toEqual(expect.objectContaining({ decision: "deny", reason: "temporary exception expired" }));
+    expect(
+      evaluateSourceBoundary(edge, catalog, {
+        defaults: policy.defaults,
+        exceptions: [allow],
+        evaluated_at: "2026-07-13T00:00:00Z",
+        triggered_reviews: ["owner change"],
+      }),
+    ).toEqual(
+      expect.objectContaining({ decision: "deny", reason: "exception review trigger fired" }),
+    );
   });
 });

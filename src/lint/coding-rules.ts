@@ -2,12 +2,41 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import ts from "typescript";
 import {
+  evaluateSourceBoundary,
+  type ModuleCatalog,
+  type BoundaryPolicy,
+} from "./source-boundary-policy";
+import { extractSourceEdges } from "./source-edge-extractor";
+import {
+  SOURCE_BOUNDARY_MODULES,
   importedSourceModule,
   lineOf,
   normalizePath,
   sourceModule,
   violatesSourceBoundary,
 } from "./shared";
+
+const SOURCE_MODULE_CATALOG: ModuleCatalog = {
+  owners: SOURCE_BOUNDARY_MODULES,
+  ownerOf: sourceModule,
+  resolve: importedSourceModule,
+};
+
+const SOURCE_MODULE_POLICY: BoundaryPolicy = {
+  defaults: Object.fromEntries(SOURCE_BOUNDARY_MODULES.map((owner) => [owner, "deny"])),
+  exceptions: SOURCE_BOUNDARY_MODULES.flatMap((from) =>
+    SOURCE_BOUNDARY_MODULES.map((to) => ({
+      from,
+      to,
+      decision: violatesSourceBoundary(from, to) ? ("deny" as const) : ("allow" as const),
+      owner: "coding-rules",
+      rationale: violatesSourceBoundary(from, to)
+        ? "canonical module boundary prohibition"
+        : "canonical module boundary allowance",
+      review_trigger: "source module catalog or ownership changes",
+    })),
+  ),
+};
 
 export type CodingRulesScope = "source" | "test";
 
@@ -439,22 +468,21 @@ export function analyzeCodingRules(
     }
 
     const sourceFile = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
-    const visit = (node: ts.Node): void => {
-      if (doc.scope === "source" && ts.isImportDeclaration(node)) {
-        const specifier = node.moduleSpecifier;
-        if (ts.isStringLiteral(specifier)) {
-          const fromModule = sourceModule(doc.path);
-          const toModule = importedSourceModule(doc.path, specifier.text);
-          if (violatesSourceBoundary(fromModule, toModule)) {
-            violations.push({
-              path: doc.path,
-              line: lineOf(sourceFile, specifier.getStart(sourceFile)),
-              rule: "module-boundary",
-              message: `Module ${fromModule} must not import ${toModule}; move shared code to a lower-level module.`,
-            });
-          }
+    if (doc.scope === "source") {
+      for (const edge of extractSourceEdges([{ path: doc.path, source: doc.text }])) {
+        if (edge.specifier !== null && !edge.specifier.startsWith(".")) continue;
+        const decision = evaluateSourceBoundary(edge, SOURCE_MODULE_CATALOG, SOURCE_MODULE_POLICY);
+        if (decision.decision !== "allow") {
+          violations.push({
+            path: doc.path,
+            line: edge.line,
+            rule: "module-boundary",
+            message: `Module boundary ${decision.decision}: ${decision.from_owner ?? "unknown"} -> ${decision.to_owner ?? "unknown"} (${decision.reason}).`,
+          });
         }
       }
+    }
+    const visit = (node: ts.Node): void => {
       if (node.kind === ts.SyntaxKind.AnyKeyword) {
         violations.push({
           path: doc.path,
