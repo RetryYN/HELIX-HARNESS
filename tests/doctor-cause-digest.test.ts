@@ -37,7 +37,7 @@ describe("PLAN-L7-449 stable cause digest", () => {
     expect(() => stableCauseDigest(proxy)).not.toThrow();
     expect(stableCauseDigest(proxy).causeKind).toBe("inaccessible");
     expect(() => stableCauseDigest(throwingError)).not.toThrow();
-    expect(stableCauseDigest(throwingError).causeKind).toBe("inaccessible");
+    expect(stableCauseDigest(throwingError).causeKind).toBe("error");
     expect(stableCauseDigest(cyclic).causeKind).toBe("object");
     const huge = stableCauseDigest("x".repeat(100_000));
     expect(huge.truncated).toBe(false);
