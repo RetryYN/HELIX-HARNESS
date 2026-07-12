@@ -2,6 +2,37 @@ import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
+    name: "idx_closure_process_receipts_dedupe",
+    table: "closure_process_receipts",
+    columns: ["repository_head", "dedupe_key", "completed_at"],
+  },
+  {
+    name: "idx_closure_process_receipts_materialization",
+    table: "closure_process_receipts",
+    columns: ["materialization_id", "completed_at"],
+  },
+  {
+    name: "idx_test_runs_process_receipt",
+    table: "test_runs",
+    columns: ["process_receipt_key"],
+  },
+  {
+    name: "idx_gate_runs_process_receipt",
+    table: "gate_runs",
+    columns: ["process_receipt_key"],
+  },
+  {
+    name: "idx_runner_attestations_process_receipt",
+    table: "runner_attestations",
+    columns: ["process_receipt_key"],
+  },
+  {
+    name: "idx_runner_attestations_run_id",
+    table: "runner_attestations",
+    columns: ["run_id"],
+    unique: true,
+  },
+  {
     name: "idx_session_events_session_seq",
     table: "session_events",
     columns: ["session_id", "event_seq"],

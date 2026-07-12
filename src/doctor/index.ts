@@ -40,6 +40,11 @@ import {
   loadChangedFiles,
 } from "../lint/change-impact";
 import {
+  analyzeClosureAuthorityRegistry,
+  closureAuthorityRegistryMessages,
+  loadClosureAuthorityRegistryLintInput,
+} from "../lint/closure-authority-registry";
+import {
   analyzeCodexHookAdapter,
   codexHookAdapterMessages,
   loadCodexHookAdapterInput,
@@ -6134,6 +6139,23 @@ export function checkLintWiring(repoRoot: string): {
   }
 }
 
+/** PLAN-L6-72: repo-owned closure authority registryのschema/source drift hard gate。 */
+export function checkClosureAuthorityRegistry(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const result = analyzeClosureAuthorityRegistry(loadClosureAuthorityRegistryLintInput(repoRoot));
+    return { messages: closureAuthorityRegistryMessages(result), ok: result.ok };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "unknown registry error";
+    return {
+      messages: [`closure-authority-registry - violation: strict registry load failed: ${detail}`],
+      ok: false,
+    };
+  }
+}
+
 export function checkToolchainPin(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -6849,6 +6871,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
   const g10UxWorkflow = checkG10UxWorkflow(deps.repoRoot);
   const l14CloseAudit = checkL14CloseAudit(deps.repoRoot);
+  const closureAuthorityRegistry = checkClosureAuthorityRegistry(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
@@ -6975,6 +6998,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       g9SystemWorkflow.ok &&
       g10UxWorkflow.ok &&
       l14CloseAudit.ok &&
+      closureAuthorityRegistry.ok &&
       lintWiring.ok &&
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
@@ -7101,6 +7125,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g10UxWorkflow.messages.map((m) => `doctor: ${m}`),
       ...l14CloseAudit.messages.map((m) => `doctor: ${m}`),
+      ...closureAuthorityRegistry.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),

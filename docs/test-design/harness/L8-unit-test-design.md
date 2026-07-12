@@ -295,6 +295,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | `plan-descent-specific-parent-binding.md` | PSPB 系 oracle |
 | `reverse-feedback-closure.md` | reverse feedback 閉塞の単体 oracle |
 | `closure-auto-approval.md` | close_ready機械承認と不可逆境界の`U-CAUTO-*` oracle |
+| `closure-evidence-materialization.md` | production authority registryと証跡生成transactionの`U-CMAT-*` oracle |
 
 ### closure自走承認 oracle
 
@@ -306,3 +307,20 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-CAUTO-004 | replay/TOCTOU | HEAD、PLAN bytes、evidence bytes、run freshness driftを評価時とwrite直前CASで拒否 | `tests/closure-auto-approval.test.ts` |
 | U-CAUTO-005 | atomic apply/audit | rename途中失敗を全rollbackし、失敗before/after auditとdigestを残す | `tests/closure-auto-approval.test.ts` |
 | U-CAUTO-006 | bounded batch | 361件を100件以下のwindowで欠落・重複なく評価する | `tests/closure-auto-approval.test.ts` |
+
+### closure証跡materialization（PLAN-L6-72）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-CMAT-001 | authority分類 | registryとsource digestで全close_readyをeligible/backfill_required/human_only/invalidへexactly-one分類し、unknown/重複/driftを拒否する | `tests/closure-authority-registry.test.ts` |
+| U-CMAT-002 | authority非推測 | caller override、review commandだけ、曖昧test citation、複数oracle候補からbindingやgateを生成しない | `tests/closure-authority-registry.test.ts` |
+| U-CMAT-003 | scope/HEAD | review-bundleとのmissing/excess/order drift、dirty tree、非main HEAD、symlink pathをfail-closeする | `tests/closure-evidence-materialization.test.ts` |
+| U-CMAT-004 | runner固定 | bindingをsingle-path vitest argvへ固定し、任意shell、path traversal、未知gate commandを拒否する | `tests/closure-evidence-runner.test.ts` |
+| U-CMAT-005 | dedupとoracle | 同一HEAD+argvは1回だけ実行し、JSON結果のcollect/execute/passを確認してPLAN+oracleごとexactly-one test caseを作る | `tests/closure-evidence-runner.test.ts` |
+| U-CMAT-006 | all-or-none staging | 途中exit非0、timeout、signal、output欠落時はpersistent DB/JSONL/run record/manifestを変更しない | `tests/closure-evidence-materialization.test.ts` |
+| U-CMAT-007 | exact join | test/gateの物理spawn receiptはHEAD+kind+argvごとfresh期間内exactly-one、stale後はimmutable historyを保持して更新し、論理runは選択receiptを1:N参照する。DB、JSONL attestation、run record、共有stdout/stderr artifact bytesがmaterialization identityとdigestで完全一致する | `tests/closure-evidence-materialization.test.ts`、`tests/closure-process-receipt-schema.test.ts` |
+| U-CMAT-008 | crash recovery | DB/JSONL/filesystem各境界のcrashから再開/rollbackし、孤立eventとpartial manifestを残さない | `tests/closure-evidence-materialization.test.ts` |
+| U-CMAT-009 | bounded production | 361件を100件以下のwindow、実worker pool concurrency上限4、HEAD+argv横断dedupe、single DB writerで欠落・重複なく処理する | `tests/closure-evidence-materialization.test.ts`、`tests/closure-evidence-runner.test.ts` |
+| U-CMAT-010 | trust/human境界 | materializationはstatusを変更せず、executeはfresh required-check CASと不可逆human境界を維持する | `tests/closure-evidence-materialization.test.ts` |
+| U-CMAT-011 | physical receipt schema | 旧DB rowを保存したadditive migrationで物理receiptをimmutable exactly-one化し、論理run参照はlegacy互換nullableとする | `tests/closure-process-receipt-schema.test.ts` |
+| U-CMAT-012 | atomic process lock | 完全なowner directoryだけをatomic claimし、2 child同時barrierのwinnerをexactly-one化する。process birth identityでlive/stale/PID再利用を判定し、torn・symlink・異owner releaseをfail-closeする | `tests/closure-materialization-lock.test.ts` |

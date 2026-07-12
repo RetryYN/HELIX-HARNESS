@@ -168,6 +168,11 @@ import {
 } from "./orchestration/pair-agent";
 import { lintPlanWithGateOptions } from "./plan/lint";
 import {
+  analyzeClosureAuthorityDrift,
+  classifyClosureAuthorities,
+  loadClosureAuthorityRegistry,
+} from "./policy/closure-authority-registry";
+import {
   type AdapterContextInjection,
   type AdapterProvider,
   adapterExecutionEnv,
@@ -382,6 +387,11 @@ import {
   recoverClosureAutoApprovalTransaction,
   refetchGithubRequiredCheckReceipt,
 } from "./state-db/closure-auto-approval";
+import { materializeClosureEvidence } from "./state-db/closure-evidence-materialization";
+import {
+  ClosureEvidenceRunner,
+  type ClosureGateAllowlistEntry,
+} from "./state-db/closure-evidence-runner";
 import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
@@ -7316,7 +7326,6 @@ closure
         process.exitCode = 2;
         return;
       }
-
       const repoRoot = process.cwd();
       const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
       const db = openHarnessDb(dbPath, { repoRoot });
@@ -7351,6 +7360,155 @@ closure
           );
         }
         process.stdout.write(`  postcheck=${packet.postcheck_commands.join(" && ")}\n`);
+      } finally {
+        db.close();
+      }
+    },
+  );
+closure
+  .command("authority-materialize")
+  .description("classify or materialize current-main close_ready evidence from repo authority")
+  .option("--dry-run", "classify only; never start a runner or persist evidence")
+  .option("--execute", "materialize only when every candidate is eligible")
+  .option("--from-db", "read the persistent harness.db (required)")
+  .option(
+    "--authority-registry <path>",
+    "canonical repo-owned authority registry",
+    "docs/governance/closure-authority-registry.yaml",
+  )
+  .option("--batch-size <n>", "bounded materialization window (1..100)", "100")
+  .option("--concurrency <n>", "typed runner concurrency (1..4)", "1")
+  .option("--json", "JSON output")
+  .action(
+    async (opts: {
+      dryRun?: boolean;
+      execute?: boolean;
+      fromDb?: boolean;
+      authorityRegistry: string;
+      batchSize: string;
+      concurrency: string;
+      json?: boolean;
+    }) => {
+      const canonicalRegistry = "docs/governance/closure-authority-registry.yaml";
+      const parseBoundedInteger = (value: string, maximum: number): number | null =>
+        /^(?:0|[1-9][0-9]*)$/.test(value) &&
+        Number.isSafeInteger(Number(value)) &&
+        Number(value) >= 1 &&
+        Number(value) <= maximum
+          ? Number(value)
+          : null;
+      if (opts.dryRun === opts.execute) {
+        process.stderr.write(
+          "closure authority-materialize: exactly one of --dry-run or --execute is required\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      if (!opts.fromDb) {
+        process.stderr.write("closure authority-materialize: --from-db is required\n");
+        process.exitCode = 2;
+        return;
+      }
+      if (opts.authorityRegistry !== canonicalRegistry) {
+        process.stderr.write(
+          `closure authority-materialize: --authority-registry must be ${canonicalRegistry}\n`,
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const batchSize = parseBoundedInteger(opts.batchSize, 100);
+      const concurrency = parseBoundedInteger(opts.concurrency, 4);
+      if (batchSize === null || concurrency === null) {
+        process.stderr.write(
+          "closure authority-materialize: --batch-size must be 1..100 and --concurrency must be 1..4\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const repoRoot = process.cwd();
+      const git = (...args: string[]) =>
+        execFileSync("git", args, {
+          cwd: repoRoot,
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "pipe"],
+        }).trim();
+      const dbPath = defaultHarnessDbPath(repoRoot);
+      if (!existsSync(dbPath)) throw new Error("persistent harness.db does not exist");
+      const db = openHarnessDb(dbPath, { repoRoot });
+      try {
+        const repositoryHead = git("rev-parse", "HEAD");
+        const originMainHead = git("rev-parse", "origin/main");
+        const clean = git("status", "--porcelain=v1", "--untracked-files=normal") === "";
+        const snapshot = buildProjectCurrentLocationSnapshot(db);
+        const bundle = buildProjectClosureReviewBundle(snapshot, {
+          action: "close_ready",
+          limit: Math.max(1, snapshot.closure.queue.route_counts.close_ready),
+          offset: 0,
+        });
+        const candidates = bundle.candidates.map((candidate) => ({
+          plan_id: candidate.planId,
+          source_path: candidate.sourcePath,
+        }));
+        const registry = loadClosureAuthorityRegistry({
+          repositoryRoot: repoRoot,
+          registryPath: canonicalRegistry,
+        });
+        const classifications = classifyClosureAuthorities({
+          candidatePlanIds: candidates.map((candidate) => candidate.plan_id),
+          registry,
+          drifts: analyzeClosureAuthorityDrift({ repositoryRoot: repoRoot, registry }),
+        });
+        if (repositoryHead !== originMainHead || !clean)
+          throw new Error("current HEAD must equal origin/main and working tree must be clean");
+        const allEligible =
+          classifications.length > 0 &&
+          classifications.every((row) => row.classification === "eligible");
+        if (opts.execute && !allEligible) {
+          const payload = { status: "classified", executed: false, classifications };
+          process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+          process.exitCode = 2;
+          return;
+        }
+        if (opts.dryRun) {
+          const payload = { status: "classified", executed: false, classifications };
+          process.stdout.write(
+            opts.json
+              ? `${JSON.stringify(payload, null, 2)}\n`
+              : `closure authority-materialize: status=classified candidates=${classifications.length} eligible=${classifications.filter((row) => row.classification === "eligible").length} executed=false\n`,
+          );
+          return;
+        }
+        migrate(db);
+        const gateCommands: Readonly<Record<string, string>> = {
+          "harness-check": "bun src/cli.ts gate harness-check",
+        };
+        const gateAllowlist: Readonly<Record<string, ClosureGateAllowlistEntry>> = {
+          "harness-check": {
+            command: gateCommands["harness-check"] ?? "",
+            executable: "bun",
+            argv: ["src/cli.ts", "gate", "harness-check"],
+          },
+        };
+        migrate(db);
+        const result = await materializeClosureEvidence({
+          repoRoot,
+          db,
+          repositoryHead,
+          originMainHead,
+          clean,
+          candidates,
+          reviewBundlePlanIds: bundle.review_scope.plan_ids,
+          registry,
+          runner: new ClosureEvidenceRunner({ repoRoot, repositoryHead, gateAllowlist }),
+          gateCommands,
+          windowSize: batchSize,
+          concurrency,
+        });
+        process.stdout.write(
+          opts.json
+            ? `${JSON.stringify({ ...result, executed: result.status === "published" }, null, 2)}\n`
+            : `closure authority-materialize: status=${result.status} candidates=${result.classifications.length} runs=${result.run_count} manifest=${result.manifest_path ?? "-"}\n`,
+        );
       } finally {
         db.close();
       }
@@ -8151,6 +8309,10 @@ closure
         const manifest = parseClosureAutoApprovalManifest(
           JSON.parse(readFileSync(join(repoRoot, opts.evidenceManifest), "utf8")),
         );
+        const authorityRegistry = loadClosureAuthorityRegistry({
+          repositoryRoot: repoRoot,
+          registryPath: "docs/governance/closure-authority-registry.yaml",
+        });
         const total = snapshot.closure.queue.route_counts.close_ready;
         const windows = closureAutoApprovalWindows({
           total,
@@ -8174,6 +8336,7 @@ closure
               },
               limit: window.limit,
               offset: window.offset,
+              authorityRegistry,
             }),
           );
         }
