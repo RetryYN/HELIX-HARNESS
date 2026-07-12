@@ -26,7 +26,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { frontmatterSchema } from "../schema/frontmatter";
-import { isRecord } from "../shared/value-guards";
+import { deepFreeze, isRecord } from "../shared/value-guards";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
 import {
@@ -1131,7 +1131,7 @@ export function computeOutstandingWork(repoRoot: string): OutstandingWork {
   } catch {
     openDefers = 0;
   }
-  const result = analyzeOutstandingWork(plans, openDefers);
+  const result = deepFreeze(analyzeOutstandingWork(plans, openDefers)) as OutstandingWork;
   outstandingRunCache.set(cacheKey, result);
   scheduleOutstandingRunCacheClear();
   return result;

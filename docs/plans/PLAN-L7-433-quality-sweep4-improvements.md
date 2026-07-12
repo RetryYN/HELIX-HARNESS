@@ -93,9 +93,15 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/file-walk.test.ts
     artifact_type: test_code
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
+  - artifact_path: tests/outstanding.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
+  references:
+    - docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md
 ---
 
 # PLAN-L7-433: 品質改善第4巡の改善点

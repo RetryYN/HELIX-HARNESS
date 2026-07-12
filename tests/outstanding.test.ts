@@ -391,6 +391,12 @@ describe("outstanding synchronous run snapshot (PLAN-L7-433 C3)", () => {
       const first = computeOutstandingWork(root);
       const second = computeOutstandingWork(root);
       expect(second).toBe(first);
+      expect(Object.isFrozen(first)).toBe(true);
+      expect(Object.isFrozen(first.items)).toBe(true);
+      expect(Object.isFrozen(first.completionReadiness)).toBe(true);
+      expect(() => {
+        (first.items as OutstandingPlanRow[]).push({ layer: "L7", status: "draft" });
+      }).toThrow();
       await Promise.resolve();
       const third = computeOutstandingWork(root);
       expect(third).not.toBe(first);
