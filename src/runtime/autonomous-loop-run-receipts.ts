@@ -41,6 +41,29 @@ export function buildAutonomousLoopRunReceipt(
   const snapshot = readLoopEpochFromFs(repoRoot, safePlanId);
   const paths = loopEpochPaths(repoRoot, safePlanId);
   if (snapshot.status === "missing") {
+    const legacyPath = join(repoRoot, ".helix", "state", "loop", `${safePlanId}.json`);
+    if (existsSync(legacyPath)) {
+      return {
+        schema_version: AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION,
+        ok: false,
+        plan_id: planId,
+        status: "blocked",
+        loop_state: null,
+        iteration_count: 0,
+        stop_kind: "blocker_stop",
+        restartable_next_action: `helix loop run --plan ${planId} --dry-run`,
+        retry: { allowed: false, max_iterations: null, reason: "legacy_state_requires_import" },
+        evidence_paths: [legacyPath],
+        findings: [
+          {
+            code: "receipt_legacy_state_unimported",
+            severity: "error",
+            detail: "legacy loop state exists and must pass strict epoch import before receipt use",
+          },
+        ],
+        source_command: options.sourceCommand ?? "helix loop receipt --json",
+      };
+    }
     return {
       schema_version: AUTONOMOUS_LOOP_RECEIPT_SCHEMA_VERSION,
       ok: false,
@@ -119,3 +142,5 @@ export function buildAutonomousLoopRunReceipt(
     source_command: options.sourceCommand ?? "helix loop receipt --json",
   };
 }
+import { existsSync } from "node:fs";
+import { join } from "node:path";

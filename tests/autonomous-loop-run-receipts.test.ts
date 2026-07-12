@@ -26,6 +26,21 @@ describe("autonomous loop run receipts", () => {
     );
   });
 
+  it("IT-DUR-002: classifies a legacy artifact as blocked rather than missing", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-legacy-"));
+    try {
+      const legacy = join(root, ".helix", "state", "loop", "PLAN-L7-366.json");
+      const { mkdirSync } = require("node:fs") as typeof import("node:fs");
+      mkdirSync(join(root, ".helix", "state", "loop"), { recursive: true });
+      writeFileSync(legacy, "{");
+      const report = buildAutonomousLoopRunReceipt(root, "PLAN-L7-366");
+      expect(report.status).toBe("blocked");
+      expect(report.findings[0]?.code).toBe("receipt_legacy_state_unimported");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("surfaces restartable next action and iteration evidence", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-"));
     try {
