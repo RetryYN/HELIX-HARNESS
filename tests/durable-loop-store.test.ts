@@ -73,6 +73,16 @@ describe("PLAN-L7-449 production durable loop store", () => {
     expect(() => store.read(PLAN)).toThrow("loop epoch is not readable");
   });
 
+  it("IT-DUR-002: distinguishes a corrupt legacy done marker", () => {
+    const repo = root();
+    const marker = join(repo, ".helix", "state", "loop", `${PLAN}.legacy-import.done.json`);
+    mkdirSync(dirname(marker), { recursive: true });
+    writeFileSync(marker, "{");
+    expect(() => durableFileLoopStore({ root: repo }).read(PLAN)).toThrow(
+      "legacy loop import marker is corrupt",
+    );
+  });
+
   it("IT-DUR-002: refuses corrupt legacy state instead of mapping it to missing", () => {
     const repo = root();
     const legacy = join(repo, ".helix", "state", "loop", `${PLAN}.json`);

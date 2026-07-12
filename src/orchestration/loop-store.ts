@@ -81,6 +81,28 @@ export function durableFileLoopStore(deps: {
   const doneMarkerFor = (planId: string) =>
     join(loopDirectory, `${assertLoopPlanId(planId)}.legacy-import.done.json`);
 
+  function validateDoneMarker(planId: string): boolean {
+    const path = doneMarkerFor(planId);
+    if (!existsSync(path)) return false;
+    try {
+      const value = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown>;
+      if (
+        value.schema !== "helix.loop-legacy-import.v1" ||
+        value.planId !== planId ||
+        typeof value.sourceDigest !== "string" ||
+        !/^sha256:[a-f0-9]{64}$/.test(value.sourceDigest) ||
+        typeof value.manifestDigest !== "string" ||
+        !/^sha256:[a-f0-9]{64}$/.test(value.manifestDigest) ||
+        typeof value.importedAt !== "string" ||
+        !Number.isFinite(Date.parse(value.importedAt))
+      )
+        throw new Error("invalid marker");
+      return true;
+    } catch {
+      throw new Error(`legacy loop import marker is corrupt: ${planId}`);
+    }
+  }
+
   function fsyncFile(path: string): void {
     const fd = openSync(path, "r+");
     try {
@@ -123,7 +145,7 @@ export function durableFileLoopStore(deps: {
   }
 
   function importLegacy(planId: string): LoopState | null {
-    if (existsSync(doneMarkerFor(planId)))
+    if (validateDoneMarker(planId))
       throw new Error(`durable loop epoch missing after completed legacy import: ${planId}`);
     const existingSource = sourceMarkerFor(planId);
     const rawPath = legacyPathFor(planId);
