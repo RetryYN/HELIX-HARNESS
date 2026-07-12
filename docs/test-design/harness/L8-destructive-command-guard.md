@@ -16,7 +16,7 @@ plan: docs/plans/PLAN-L7-443-destructive-command-guard-transaction.md
 | U-GITGUARD-006 | failure injection | SQLite transaction/commit、consume、crash、retryの各failureでexit 2、audit失敗時marker保持、二重allow 0を証明する | `tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts` |
 | U-GITGUARD-007 | adapter parity | dev hook、work guard、CLI、consumer templateが同じtransaction primitiveとclassificationを使い、foreign-editもDB rowへredacted auditする | `tests/hook-contract.test.ts`、`tests/work-guard.test.ts` |
 | U-GITGUARD-008 | concurrent CAS | 同一nonceへbarrier付き2並行呼出しを行い、allowが1以下、敗者が`blocked_reuse`、restart後も再利用不可 | `tests/guard-override-transaction.test.ts` |
-| U-GITGUARD-009 | crash point | durable commit前のtorn recordはquarantine・marker保持・retry可、commit後consume前crashはrestart後`blocked_reuse` | `tests/guard-override-transaction.test.ts` |
+| U-GITGUARD-009 | crash point | durable commit前のSQLite rollbackはrow未commit・marker保持・lock release後retry可。DB corruptionはfail-closeしてstate recoveryへ送り、commit後consume前crashはrestart後`blocked_reuse` | `tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts` |
 
 env overrideはGit/foreign-editの両adapterで初回だけDB audit付きallow、同一session/subjectの2回目を
 `blocked_reuse`とする。raw command、target、reasonをrowへ保存しない。

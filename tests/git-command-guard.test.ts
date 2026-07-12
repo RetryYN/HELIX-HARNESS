@@ -336,18 +336,26 @@ describe("git-command-guard", () => {
       const startWorker = () => {
         const child = spawn("bun", [cliPath, "hook", "git-command-guard"], {
           cwd,
-          stdio: ["pipe", "ignore", "ignore"],
+          stdio: ["pipe", "ignore", "pipe"],
+        });
+        let stderr = "";
+        child.stderr.on("data", (chunk) => {
+          stderr += String(chunk);
         });
         return {
           child,
-          completed: new Promise<number | null>((resolve) => child.once("close", resolve)),
+          completed: new Promise<{ status: number | null; stderr: string }>((resolve) =>
+            child.once("close", (status) => resolve({ status, stderr })),
+          ),
         };
       };
       const workers = [startWorker(), startWorker()];
       for (const worker of workers) worker.child.stdin.end(input);
-      const statuses = await Promise.all(workers.map((worker) => worker.completed));
-      expect(statuses.filter((status) => status === 0)).toHaveLength(1);
-      expect(statuses.filter((status) => status === 2)).toHaveLength(1);
+      const outcomes = await Promise.all(workers.map((worker) => worker.completed));
+      expect(outcomes.filter(({ status }) => status === 0)).toHaveLength(1);
+      const blocked = outcomes.filter(({ status }) => status === 2);
+      expect(blocked).toHaveLength(1);
+      expect(blocked[0]?.stderr).toContain("blocked_reuse");
       expect(overrideRows(cwd)).toHaveLength(1);
       expect(existsSync(markerPath)).toBe(false);
     } finally {
