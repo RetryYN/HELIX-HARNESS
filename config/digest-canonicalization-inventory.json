@@ -24,7 +24,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/audit/handover-resurrection-source.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/audit/handover-resurrection-source.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
@@ -41,7 +41,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/audit/handover-resurrection-source.ts canonicalJson FunctionDeclaration canonicalJson occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
@@ -58,7 +58,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts provenanceDigest createHash(sha256) occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
@@ -75,7 +75,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts runClosureEvidenceProbeCommand createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
@@ -92,7 +92,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts outputDigest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
@@ -109,7 +109,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts provenanceDigest createHash(sha256) occurrence 2 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
@@ -126,7 +126,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts sessionRef createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
@@ -143,7 +143,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts maintainFeedbackLifecycle createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
@@ -160,7 +160,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts receiptSession createHash(sha256) occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::surfaceTakeoverFeedbackToStdout:createHash(sha256)::1",
@@ -177,7 +177,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts surfaceTakeoverFeedbackToStdout createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
@@ -194,7 +194,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts sha256Text createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
@@ -211,7 +211,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts operationId createHash(sha256) occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
@@ -228,7 +228,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts operationId createHash(sha256) occurrence 2 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
@@ -245,7 +245,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts module createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
@@ -262,7 +262,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts module createHash(sha256) occurrence 2 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
@@ -279,7 +279,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts module createHash(sha256) occurrence 3 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
@@ -296,7 +296,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts operationId createHash(sha256) occurrence 3 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/cli.ts::digest:createHash(sha256)::1",
@@ -313,7 +313,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/cli.ts digest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/export/document-export.ts::hash:createHash(sha256)::1",
@@ -330,7 +330,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/export/document-export.ts hash createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/feedback/lifecycle-surface.ts::hash:createHash(sha256)::1",
@@ -347,7 +347,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/feedback/lifecycle-surface.ts hash createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/action-binding-approval-readiness.ts::sha256Json:createHash(sha256)::1",
@@ -364,7 +364,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/action-binding-approval-readiness.ts sha256Json createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/artifact-retirement-authority.ts::digest:createHash(sha256)::1",
@@ -381,7 +381,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/artifact-retirement-authority.ts digest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/completion-decision-packet.ts::sha256Json:createHash(sha256)::1",
@@ -398,7 +398,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/completion-decision-packet.ts sha256Json createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/design-coverage.ts::computeBaselineFingerprint:createHash(sha256)::1",
@@ -415,7 +415,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/design-coverage.ts computeBaselineFingerprint createHash(sha256) occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/design-language.ts::sha256Text:createHash(sha256)::1",
@@ -432,7 +432,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/design-language.ts sha256Text createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/green-command-digest.ts::nodeDigestAuditDeps:createHash(sha256)::1",
@@ -449,7 +449,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/green-command-digest.ts nodeDigestAuditDeps createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/handover-cutover-approval.ts::sha256:createHash(sha256)::1",
@@ -466,7 +466,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/handover-cutover-approval.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/handover-cutover-approval.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
@@ -483,7 +483,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/handover-cutover-approval.ts canonicalJson FunctionDeclaration canonicalJson occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/handover-resurrection.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
@@ -500,7 +500,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/handover-resurrection.ts canonicalJson FunctionDeclaration canonicalJson occurrence 1 preserves pure_lint_embedded output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/identifier-rename.ts::readEvidenceArtifacts:createHash(sha256)::1",
@@ -517,7 +517,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/identifier-rename.ts readEvidenceArtifacts createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/identifier-rename.ts::fileSha256ForRenameHit:createHash(sha256)::1",
@@ -534,7 +534,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/identifier-rename.ts fileSha256ForRenameHit createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/identifier-rename.ts::sha256Json:createHash(sha256)::1",
@@ -551,7 +551,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/identifier-rename.ts sha256Json createHash(sha256) occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/identifier-rename.ts::sha256Text:createHash(sha256)::1",
@@ -568,7 +568,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/identifier-rename.ts sha256Text createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::fingerprint:createHash(sha256)::1",
@@ -585,7 +585,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/left-arm-carry-log.ts fingerprint createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::canonicalize:FunctionDeclaration canonicalize::1",
@@ -602,7 +602,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/left-arm-carry-log.ts canonicalize FunctionDeclaration canonicalize occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::computeCarryReviewSemanticDigest:createHash(sha256)::1",
@@ -619,7 +619,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/left-arm-carry-log.ts computeCarryReviewSemanticDigest createHash(sha256) occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/left-arm-carry-log.ts::sha256File:createHash(sha256)::1",
@@ -636,7 +636,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/left-arm-carry-log.ts sha256File createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/outstanding.ts::sha256Json:createHash(sha256)::1",
@@ -653,7 +653,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/outstanding.ts sha256Json createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/plan-specific-vpair-binding.ts::sha256:createHash(sha256)::1",
@@ -670,7 +670,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/plan-specific-vpair-binding.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/version-up-bundle.ts::versionUpBundleRawFile:createHash(sha256)::1",
@@ -687,7 +687,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/version-up-bundle.ts versionUpBundleRawFile createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/version-up-bundle.ts::htmlSha256:createHash(sha256)::1",
@@ -704,7 +704,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/version-up-bundle.ts htmlSha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/lint/version-up-readiness.ts::sha256Json:createHash(sha256)::1",
@@ -721,7 +721,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/lint/version-up-readiness.ts sha256Json createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/memory/memory-v2.ts::digestJson:createHash(sha256)::1",
@@ -738,7 +738,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/memory/memory-v2.ts digestJson createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/plan/lint.ts::sha256:createHash(sha256)::1",
@@ -755,7 +755,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/plan/lint.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/policy/closure-authority-backfill.ts::sha256:createHash(sha256)::1",
@@ -772,7 +772,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/policy/closure-authority-backfill.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/policy/closure-authority-backfill.ts::stable:FunctionDeclaration stable::1",
@@ -789,7 +789,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/policy/closure-authority-backfill.ts stable FunctionDeclaration stable occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/policy/closure-authority-registry.ts::sha256:createHash(sha256)::1",
@@ -806,7 +806,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/policy/closure-authority-registry.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/policy/feedback-lifecycle.ts::digest:createHash(sha256)::1",
@@ -823,7 +823,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/policy/feedback-lifecycle.ts digest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/policy/historical-vpair-migration-authority.ts::sha:createHash(sha256)::1",
@@ -840,7 +840,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/policy/historical-vpair-migration-authority.ts sha createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/policy/historical-vpair-migration-authority.ts::stable:VariableDeclaration stable::1",
@@ -857,7 +857,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/policy/historical-vpair-migration-authority.ts stable VariableDeclaration stable occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/agent-catalog-watch.ts::buildAgentCatalogWatchReport:createHash(sha256)::1",
@@ -874,7 +874,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/agent-catalog-watch.ts buildAgentCatalogWatchReport createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/agent-observability-provenance.ts::sha256:createHash(sha256)::1",
@@ -891,7 +891,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/agent-observability-provenance.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/agent-ssot-runtime-projection.ts::generatedDigest:sha256Digest()::1",
@@ -908,7 +908,7 @@
       "disposition": "typed_utility",
       "rationale": "src/runtime/agent-ssot-runtime-projection.ts generatedDigest sha256Digest() occurrence 1 uses prefixed_sha256 public artifact encoding",
       "expected_test": "tests/digest-consumer-compatibility.test.ts",
-      "citation": "IT-DIGEST-001"
+      "citation": "U-DIGEST-004"
     },
     {
       "hit_id": "src/runtime/agent-ssot-runtime-projection.ts::existingDigest:sha256Digest()::1",
@@ -925,7 +925,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/agent-ssot-runtime-projection.ts existingDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/agent-ssot-runtime-projection.ts::projectedFiles:sha256Digest()::1",
@@ -942,7 +942,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/agent-ssot-runtime-projection.ts projectedFiles sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/change-package-delta-archive.ts::buildChangePackageDeltaArchiveReport:sha256Digest()::1",
@@ -959,7 +959,7 @@
       "disposition": "typed_utility",
       "rationale": "src/runtime/change-package-delta-archive.ts buildChangePackageDeltaArchiveReport sha256Digest() occurrence 1 uses prefixed_sha256 public artifact encoding",
       "expected_test": "tests/digest-consumer-compatibility.test.ts",
-      "citation": "IT-DIGEST-001"
+      "citation": "U-DIGEST-004"
     },
     {
       "hit_id": "src/runtime/constitution-template-stack.ts::buildConstitutionTemplateStackReport:sha256Digest()::1",
@@ -976,7 +976,7 @@
       "disposition": "typed_utility",
       "rationale": "src/runtime/constitution-template-stack.ts buildConstitutionTemplateStackReport sha256Digest() occurrence 1 uses prefixed_sha256 public artifact encoding",
       "expected_test": "tests/digest-consumer-compatibility.test.ts",
-      "citation": "IT-DIGEST-001"
+      "citation": "U-DIGEST-004"
     },
     {
       "hit_id": "src/runtime/continuation.ts::sha256:createHash(sha256)::1",
@@ -993,7 +993,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/continuation.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/continuation.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
@@ -1010,7 +1010,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/continuation.ts canonicalJson FunctionDeclaration canonicalJson occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/digest.ts::sha256Digest:createHash(sha256)::1",
@@ -1027,7 +1027,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/digest.ts sha256Digest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/digest.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
@@ -1044,7 +1044,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/digest.ts canonicalJson FunctionDeclaration canonicalJson occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/extension-preset-bundle-registry.ts::sha256:createHash(sha256)::1",
@@ -1061,7 +1061,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/extension-preset-bundle-registry.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/harness-taxonomy-curation-policy.ts::sha256Json:createHash(sha256)::1",
@@ -1078,7 +1078,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/harness-taxonomy-curation-policy.ts sha256Json createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/memory-promotion.ts::memoryPromotionSessionRef:createHash(sha256)::1",
@@ -1095,7 +1095,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/memory-promotion.ts memoryPromotionSessionRef createHash(sha256) occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/retirement-preserve.ts::sha256:sha256Digest()::1",
@@ -1112,7 +1112,7 @@
       "disposition": "typed_utility",
       "rationale": "src/runtime/retirement-preserve.ts sha256 sha256Digest() occurrence 1 uses prefixed_sha256 public artifact encoding",
       "expected_test": "tests/digest-consumer-compatibility.test.ts",
-      "citation": "IT-DIGEST-001"
+      "citation": "U-DIGEST-004"
     },
     {
       "hit_id": "src/runtime/retirement-preserve.ts::canonicalJson:FunctionDeclaration canonicalJson::1",
@@ -1129,7 +1129,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/retirement-preserve.ts canonicalJson FunctionDeclaration canonicalJson occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/review-feedback-session-intake.ts::stableId:createHash(sha256)::1",
@@ -1146,7 +1146,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/review-feedback-session-intake.ts stableId createHash(sha256) occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/runtime/source-content-mirror-completeness.ts::hash:createHash(sha256)::1",
@@ -1163,7 +1163,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/source-content-mirror-completeness.ts hash createHash(sha256) occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill-loader.ts::sha256:createHash(sha256)::1",
@@ -1180,7 +1180,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill-loader.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill-production.ts::sha256:createHash(sha256)::1",
@@ -1197,7 +1197,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill-production.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill-production.ts::stable:VariableDeclaration stable::1",
@@ -1214,7 +1214,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill-production.ts stable VariableDeclaration stable occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill-production.ts::verifyTrackedHeadBlob:createHash(sha256)::1",
@@ -1231,7 +1231,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill-production.ts verifyTrackedHeadBlob createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill-verifier.ts::sha256:createHash(sha256)::1",
@@ -1248,7 +1248,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill-verifier.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill-verifier.ts::stable:FunctionDeclaration stable::1",
@@ -1265,7 +1265,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill-verifier.ts stable FunctionDeclaration stable occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill.ts::sha256:createHash(sha256)::1",
@@ -1282,7 +1282,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-authority-backfill.ts::stable:FunctionDeclaration stable::1",
@@ -1299,7 +1299,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-authority-backfill.ts stable FunctionDeclaration stable occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-auto-approval.ts::sha256:createHash(sha256)::1",
@@ -1316,7 +1316,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-auto-approval.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-evidence-materialization.ts::sha256:createHash(sha256)::1",
@@ -1333,7 +1333,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-evidence-materialization.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/closure-evidence-runner.ts::sha256:createHash(sha256)::1",
@@ -1350,7 +1350,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/closure-evidence-runner.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/current-location.ts::digestLines:createHash(sha256)::1",
@@ -1367,7 +1367,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/current-location.ts digestLines createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/current-location.ts::buildClosureEvidencePatchApprovalDigest:createHash(sha256)::1",
@@ -1384,7 +1384,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/current-location.ts buildClosureEvidencePatchApprovalDigest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/current-location.ts::evidenceValueDigest:createHash(sha256)::1",
@@ -1401,7 +1401,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/current-location.ts evidenceValueDigest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/current-location.ts::materializeApprovalDigest:createHash(sha256)::1",
@@ -1418,7 +1418,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/current-location.ts materializeApprovalDigest createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/current-location.ts::buildClosureReviewScope:createHash(sha256)::1",
@@ -1435,7 +1435,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/current-location.ts buildClosureReviewScope createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/drive-registration.ts::stableHash:createHash(sha256)::1",
@@ -1452,7 +1452,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/drive-registration.ts stableHash createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/historical-vpair-migration-authority.ts::sha:createHash(sha256)::1",
@@ -1469,7 +1469,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/historical-vpair-migration-authority.ts sha createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/historical-vpair-migration-authority.ts::stableJson:VariableDeclaration stableJson::1",
@@ -1486,7 +1486,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/historical-vpair-migration-authority.ts stableJson VariableDeclaration stableJson occurrence 1 preserves canonical_json output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/historical-vpair-migration-authority.ts::nonce:createHash(sha256)::1",
@@ -1503,7 +1503,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/historical-vpair-migration-authority.ts nonce createHash(sha256) occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/projection-writer.ts::stableHash:createHash(sha256)::1",
@@ -1520,7 +1520,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/projection-writer.ts stableHash createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/refactor-candidates.ts::stableHash:createHash(sha256)::1",
@@ -1537,7 +1537,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/refactor-candidates.ts stableHash createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/visualization-read-model.ts::sha256:createHash(sha256)::1",
@@ -1554,7 +1554,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/visualization-read-model.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/state-db/vmodel-fit.ts::inspectVmodelHandoffArtifact:createHash(sha256)::1",
@@ -1571,7 +1571,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/state-db/vmodel-fit.ts inspectVmodelHandoffArtifact createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/web/share.ts::sha256:createHash(sha256)::1",
@@ -1588,7 +1588,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/web/share.ts sha256 createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     },
     {
       "hit_id": "src/workflow/contracts.ts::stableHash:createHash(sha256)::1",
@@ -1605,7 +1605,7 @@
       "disposition": "explicit_nonmigration",
       "rationale": "src/workflow/contracts.ts stableHash createHash(sha256) occurrence 1 preserves bare_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
-      "citation": "ST-DIGEST-001"
+      "citation": "U-DIGEST-005"
     }
   ]
 }

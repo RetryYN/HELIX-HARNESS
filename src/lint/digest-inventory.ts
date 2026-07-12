@@ -129,7 +129,7 @@ export function scanDigestInventory(root: string): DigestHit[] {
           ? `${path} ${symbol} ${signature} occurrence ${n} uses ${variant} public artifact encoding`
           : `${path} ${symbol} ${signature} occurrence ${n} preserves ${variant} output until its byte oracle is frozen`,
         expected_test: typed ? (migrated[path] ?? "tests/digest.test.ts") : "tests/digest.test.ts",
-        citation: typed ? "IT-DIGEST-001" : "ST-DIGEST-001",
+        citation: typed ? "U-DIGEST-004" : "U-DIGEST-005",
       });
     };
     const visit = (node: ts.Node) => {

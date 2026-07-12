@@ -25,7 +25,7 @@ describe("digest canonicalization authority", () => {
     cyclic.self = cyclic;
     expect(() => canonicalJson(cyclic)).toThrow("not JSON");
   });
-  it("[PLAN-L7-438-digest-canonicalization-authority/ST-DIGEST-001] inventory is an exact production hit set", () => {
+  it("[PLAN-L7-438-digest-canonicalization-authority/U-DIGEST-005] inventory is an exact production hit set", () => {
     const inventory = JSON.parse(
       readFileSync("config/digest-canonicalization-inventory.json", "utf8"),
     ) as {
@@ -82,14 +82,14 @@ describe("digest canonicalization authority", () => {
     expect(
       migrated.every(
         (row) =>
-          row.citation === "IT-DIGEST-001" && readFileSync(row.expected_test, "utf8").length > 0,
+          row.citation === "U-DIGEST-004" && readFileSync(row.expected_test, "utf8").length > 0,
       ),
     ).toBe(true);
     expect(sha256Digest("HELIX")).toBe(
       "sha256:10506a073fae9cedc521ae88bdc5110e7d1aae297bcbe89dfcdaa62cbcb4dc6e",
     );
   });
-  it("[PLAN-L7-438-digest-canonicalization-authority/ST-DIGEST-002] handover lint boundary has no runtime digest dependency", () => {
+  it("[PLAN-L7-438-digest-canonicalization-authority/U-DIGEST-006] handover lint boundary has no runtime digest dependency", () => {
     const source = readFileSync("src/lint/handover-resurrection.ts", "utf8");
     expect(source).not.toContain('from "../runtime/digest"');
     expect(source).not.toContain('from "node:crypto"');

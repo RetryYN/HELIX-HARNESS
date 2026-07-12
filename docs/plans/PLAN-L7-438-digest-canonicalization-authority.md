@@ -29,19 +29,16 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-001, test_path: tests/digest.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-002, test_path: tests/digest.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-003, test_path: tests/digest.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: IT-DIGEST-001, test_path: tests/change-package-delta-archive.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: IT-DIGEST-001, test_path: tests/agent-ssot-runtime-projection.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: IT-DIGEST-001, test_path: tests/spec-driven-constitution-template-stack.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: IT-DIGEST-001, test_path: tests/retirement-preserve.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: ST-DIGEST-001, test_path: tests/digest.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: ST-DIGEST-002, test_path: tests/handover-resurrection.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-004, test_path: tests/digest-consumer-compatibility.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-005, test_path: tests/digest.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-006, test_path: tests/digest.test.ts }
 generates:
   - { artifact_path: src/runtime/digest.ts, artifact_type: source_module }
   - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/digest-consumer-compatibility.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
-backprop_decision: required
-backprop_decision_reason: "production digest契約の全面移行は意味差分類とVペア固定が必要"
+backprop_decision: not_required
+backprop_decision_reason: "production digest契約の意味差分類とVペアをPLAN-L6-76で先にfreeze済みであり、上位要求への追加backpropは不要"
 dependencies:
   parent: docs/plans/PLAN-L6-76-digest-canonicalization-authority.md
   requires: [docs/plans/PLAN-L6-76-digest-canonicalization-authority.md]

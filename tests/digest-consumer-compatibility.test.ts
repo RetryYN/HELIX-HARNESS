@@ -4,8 +4,8 @@ import { buildChangePackageDeltaArchiveReport } from "../src/runtime/change-pack
 import { buildConstitutionTemplateStackReport } from "../src/runtime/constitution-template-stack";
 import { retirementPreserveInventoryDigest } from "../src/runtime/retirement-preserve";
 
-describe("IT-DIGEST-001 public consumer byte compatibility", () => {
-  it("[PLAN-L7-438-digest-canonicalization-authority/IT-DIGEST-001] returns four hardcoded public API digests", () => {
+describe("U-DIGEST-004 public consumer byte compatibility", () => {
+  it("[PLAN-L7-438-digest-canonicalization-authority/U-DIGEST-004] returns four hardcoded public API digests", () => {
     const change = buildChangePackageDeltaArchiveReport({
       package_id: "p",
       plan_id: "PLAN-L7-1",

@@ -3,7 +3,7 @@ plan_id: PLAN-L6-76-digest-canonicalization-authority
 title: "PLAN-L6-76 (add-design): digest canonicalization authority"
 kind: add-design
 layer: L6
-drive: agent
+drive: be
 status: confirmed
 route_mode: add-feature
 entry_signals: ["po_directive:2026-07-12 PLAN-L7-431 H1 authority補完"]
@@ -26,9 +26,11 @@ pair_artifact: docs/test-design/harness/digest-canonicalization-authority.md
 agent_slots: [{ role: se, slot_label: "SE - digest contract design" }, { role: qa, slot_label: "QA - V-pair review" }]
 verification_bindings: []
 generates:
-  - { artifact_path: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/harness/digest-canonicalization-authority.md, artifact_type: markdown_doc }
-dependencies: { parent: null, requires: [] }
+  - { artifact_path: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/harness/digest-canonicalization-authority.md, artifact_type: test_design }
+dependencies:
+  parent: docs/plans/PLAN-L5-03-internal-processing.md
+  requires: [docs/plans/PLAN-L5-03-internal-processing.md]
 ---
 
 # PLAN-L6-76

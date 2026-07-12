@@ -28,7 +28,7 @@ generates:
     artifact_type: design_doc
   - artifact_path: src/state-db/projection-writer.ts
     artifact_type: source_module
-  - artifact_path: tests/projection-writer.test.ts
+  - artifact_path: tests/slow/projection-writer.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md
@@ -37,7 +37,7 @@ dependencies:
     - docs/design/harness/L5-detailed-design/physical-data.md
     - docs/design/harness/L6-function-design/function-spec.md
     - src/state-db/projection-writer.ts
-    - tests/projection-writer.test.ts
+    - tests/slow/projection-writer.test.ts
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -49,12 +49,12 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
+        command: "bun test tests/slow/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
         runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
-        evidence_path: tests/projection-writer.test.ts
+        evidence_path: tests/slow/projection-writer.test.ts
         output_digest: "sha256:85f5f8aaa1c62a7ae4708f4b610661639ccf0bbfa51b36f5892c36e52bd73486"
       - kind: typecheck
         command: "bun run tsc --noEmit"
@@ -142,8 +142,8 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 
 ## 3. 検証予定
 
-- `bun test tests/projection-writer.test.ts --timeout 180000`
-- `bun test tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000`
+- `bun test tests/slow/projection-writer.test.ts --timeout 180000`
+- `bun test tests/slow/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000`
 - `bun run tsc --noEmit`
 - `bun run src/cli.ts plan lint --gate governance`
 - `git diff --check`

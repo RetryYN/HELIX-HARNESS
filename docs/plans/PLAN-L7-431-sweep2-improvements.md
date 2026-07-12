@@ -55,8 +55,8 @@ generates:
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
   - { artifact_path: tests/continuation-event-first.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/process/gates.md, artifact_type: process_doc }
-  - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: process_doc }
+  - { artifact_path: docs/process/gates.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/process/forward/L07-implementation.md, artifact_type: markdown_doc }
   - { artifact_path: AGENTS.md, artifact_type: markdown_doc }
   - { artifact_path: README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/skills/spec-driven-development.md, artifact_type: markdown_doc }
