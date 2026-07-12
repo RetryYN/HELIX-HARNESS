@@ -146,8 +146,10 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l8).toContain("literal require/import-equals");
     expect(l8).toContain("computed requireをunknownで拒否");
   });
-  it("U-SBOUND-009: stale authorityのeffectを拒否する", () =>
-    expect(l8).toContain("capability/authority/snapshot/idempotency"));
+  it("U-SBOUND-009: stale authorityのeffectを拒否する", () => {
+    expect(l8).toContain("untrusted issuer/改ざん/scope拡大/revocation");
+    expect(l6).toContain("self-issued/plain object");
+  });
   it("U-SBOUND-010: partial materializeをacceptedにしない", () =>
     expect(l8).toContain("port throw/partial write/CAS drift"));
 });
