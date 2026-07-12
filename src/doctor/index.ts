@@ -1496,7 +1496,7 @@ export function checkTeamReviewReceipts(repoRoot: string): { messages: string[];
     const invalidCompleted = db
       .prepare(`SELECT COUNT(*) AS n FROM team_member_run_receipts
         WHERE role IN ('tl','qa','uiux') AND status='completed'
-          AND NOT (exit_code=0 AND verdict='pass' AND verdict_status='accepted')`)
+          AND (exit_code IS NOT 0 OR verdict IS NOT 'pass' OR verdict_status IS NOT 'accepted')`)
       .get()?.n as number | undefined;
     const missingCrossWorker = db
       .prepare(`SELECT COUNT(*) AS n FROM team_member_run_receipts reviewer

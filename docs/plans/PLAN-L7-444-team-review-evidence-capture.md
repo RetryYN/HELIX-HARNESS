@@ -4,7 +4,7 @@ title: "PLAN-L7-444 (troubleshoot): team review evidence capture fail-close"
 kind: troubleshoot
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: incident
 entry_signals:
   - "po_directive:2026-07-13 /goal『バグがあればその場で是正し検出力を強化』に基づく実測で、PLAN-L7-443 cross-runtime team runがprovider/model分離とexit 0だけを返し、reviewer判定本文を証跡化しなかった"
@@ -31,6 +31,24 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-425-system-review-issue-handoff.md
   requires: []
+review_evidence:
+  - reviewer: review_444_round1
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-13T04:08:30+09:00"
+    tests_green_at: "2026-07-13T04:07:47+09:00"
+    verdict: pass
+    worker_model: codex
+    reviewer_model: codex-fresh-subagent
+    scope: "strict verdict、truncation fail-close、NULL-safe receipt、repository HEAD/provider binding、append-only schema、raw非露出を三巡敵対監査しBlocker/High 0。cross-provider実receipt未取得をcross_agent evidenceと称さない。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/team-run.test.ts tests/team-review-receipt-schema.test.ts tests/team-review-receipt-doctor.test.ts --reporter=dot"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-13T04:07:47+09:00"
+        evidence_path: tests/team-run.test.ts
+        output_digest: "sha256:82d82fb44f383d41e601f48a376453646f44de5b4560932c0096ff0f3c1b6c00"
 agent_slots:
   - { role: aim, slot_label: "AIM — incident境界とevidence authorityを監査" }
   - { role: se, slot_label: "SE — bounded output captureとdigest/verdict実装" }

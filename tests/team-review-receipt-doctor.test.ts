@@ -45,6 +45,17 @@ describe("[PLAN-L7-444/U-TEAMRUN-004] team review receipt doctor", () => {
         `sha256:${"b".repeat(64)}`,
       );
       expect(checkTeamReviewReceipts(root).ok).toBe(true);
+      db.exec(`INSERT INTO team_member_run_receipts
+        SELECT 'null:0', 'null', plan_id, team, 0, 'se', engine, 'codex', model,
+               repository_head, 'null-worker', 0, 'completed', NULL, 'not_required', output_digest,
+               output_bytes, output_truncated, completed_at
+        FROM team_member_run_receipts WHERE receipt_id='r:0'`);
+      db.exec(`INSERT INTO team_member_run_receipts
+        SELECT 'null:1', 'null', plan_id, team, 1, 'tl', engine, 'claude', model,
+               repository_head, 'null-reviewer', NULL, 'completed', NULL, 'accepted', output_digest,
+               output_bytes, output_truncated, completed_at
+        FROM team_member_run_receipts WHERE receipt_id='r:1'`);
+      expect(checkTeamReviewReceipts(root)).toMatchObject({ ok: false });
       insert.run(
         "bad:0",
         "bad",
