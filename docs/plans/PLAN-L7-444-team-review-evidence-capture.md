@@ -19,8 +19,11 @@ generates:
   - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/team/run.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
   - { artifact_path: tests/team-run.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/team-review-receipt-schema.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-425-system-review-issue-handoff.md
   requires: []
@@ -44,6 +47,7 @@ agent_slots:
 
 - reviewer role (`tl` / `qa` / `uiux`) は `VERDICT: PASS` のみ成功とする。
 - `VERDICT: FAIL`、verdict欠落、provider非zeroはteam全体を失敗にする。
-- provider raw outputはJSONへ含めず、SHA-256 digest、byte数、truncation、正規化verdictだけを返す。
+- provider raw outputはJSON/DBへ含めず、SHA-256 digest、byte数、truncation、正規化verdictだけを返す。
+- member receiptは`harness.db.team_member_run_receipts`へappend-onlyで保存し、update/deleteを拒否する。
 - captureは上限を持ち、巨大出力でmemoryを無制限消費しない。
 - `U-TEAMRUN-004`、CLI fake-provider回帰、typecheck、lint、doctorがgreenである。

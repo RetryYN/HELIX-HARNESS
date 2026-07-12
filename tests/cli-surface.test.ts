@@ -12,6 +12,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
+import { openHarnessDb } from "../src/state-db";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -7574,6 +7575,33 @@ describe("L7 CLI surface closure", () => {
         "completed",
         "completed",
       ]);
+      expect(payload.executions[1].evidence).toMatchObject({
+        verdict: "pass",
+        verdict_status: "accepted",
+        output_truncated: false,
+      });
+      expect(run.stdout).not.toContain("VERDICT: PASS");
+      const receiptDb = openHarnessDb(join(root, ".helix", "harness.db"));
+      try {
+        const receipts = receiptDb
+          .prepare(
+            "SELECT role, provider, status, verdict, verdict_status, output_digest FROM team_member_run_receipts ORDER BY member_index",
+          )
+          .all();
+        expect(receipts).toHaveLength(2);
+        expect(receipts[1]).toMatchObject({
+          role: "tl",
+          provider: "claude",
+          status: "completed",
+          verdict: "pass",
+          verdict_status: "accepted",
+        });
+        expect((receipts[1] as { output_digest: string }).output_digest).toMatch(
+          /^sha256:[a-f0-9]{64}$/,
+        );
+      } finally {
+        receiptDb.close();
+      }
       const slots = JSON.parse(
         readFileSync(join(root, ".helix", "state", "agent-slots.json"), "utf8"),
       );

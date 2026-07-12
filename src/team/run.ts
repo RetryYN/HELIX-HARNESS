@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 import {
@@ -125,6 +125,7 @@ export interface TeamMemberExecutionEvidence {
 export interface TeamRunExecution {
   ok: boolean;
   dry_run: false;
+  team_run_id: string;
   team: string;
   strategy: TeamDefinition["strategy"];
   executions: TeamMemberExecution[];
@@ -519,10 +520,12 @@ export async function executeTeamRunPlan(
   plan: TeamRunPlan,
   deps: TeamRunnerDeps,
 ): Promise<TeamRunExecution> {
+  const teamRunId = randomUUID();
   if (plan.dry_run) {
     return {
       ok: false,
       dry_run: false,
+      team_run_id: teamRunId,
       team: plan.team,
       strategy: plan.strategy,
       executions: [],
@@ -533,6 +536,7 @@ export async function executeTeamRunPlan(
     return {
       ok: false,
       dry_run: false,
+      team_run_id: teamRunId,
       team: plan.team,
       strategy: plan.strategy,
       executions: [],
@@ -579,6 +583,7 @@ export async function executeTeamRunPlan(
   return {
     ok: executions.every((execution) => execution.status === "completed"),
     dry_run: false,
+    team_run_id: teamRunId,
     team: plan.team,
     strategy: plan.strategy,
     executions,

@@ -11523,6 +11523,49 @@ team
               child.on("close", (code) => finish(code));
             }),
         });
+        const receiptDb = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+        try {
+          migrate(receiptDb);
+          receiptDb.exec("BEGIN IMMEDIATE");
+          const insertReceipt = receiptDb.prepare(`INSERT INTO team_member_run_receipts
+            (receipt_id, team_run_id, plan_id, team, member_index, role, engine, provider, model,
+             repository_head, slot_id, exit_code, status, verdict, verdict_status, output_digest,
+             output_bytes, output_truncated, completed_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+          const completedAt = new Date().toISOString();
+          for (const member of execution.executions) {
+            const launch = result.members.find((candidate) => candidate.index === member.index);
+            insertReceipt.run(
+              `${execution.team_run_id}:${member.index}`,
+              execution.team_run_id,
+              opts.plan ?? null,
+              execution.team,
+              member.index,
+              member.role,
+              member.engine,
+              member.provider,
+              launch?.model_selection.model ?? null,
+              gitHead(),
+              member.slot_id,
+              member.exit_code,
+              member.status,
+              member.evidence.verdict,
+              member.evidence.verdict_status,
+              member.evidence.output_digest,
+              member.evidence.output_bytes,
+              member.evidence.output_truncated ? 1 : 0,
+              completedAt,
+            );
+          }
+          receiptDb.exec("COMMIT");
+        } catch (error) {
+          try {
+            receiptDb.exec("ROLLBACK");
+          } catch {}
+          throw new Error(`team review evidence persistence failed: ${String(error)}`);
+        } finally {
+          receiptDb.close();
+        }
         if (opts.json) process.stdout.write(`${JSON.stringify(execution, null, 2)}\n`);
         else {
           process.stdout.write(
