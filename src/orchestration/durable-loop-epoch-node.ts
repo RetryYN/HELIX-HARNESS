@@ -4,14 +4,66 @@ import {
   fsyncSync,
   mkdirSync,
   openSync,
+  readdirSync,
   readFileSync,
   renameSync,
   unlinkSync,
   writeFileSync,
 } from "node:fs";
+import { platform, uptime } from "node:os";
 import { join } from "node:path";
 import { assertLoopPlanId } from "../schema/loop-plan-id";
-import type { DurableEpochPort } from "./durable-loop-epoch";
+import {
+  classifyLoopEpochFiles,
+  type DurableEpochPort,
+  type LoopEpochReadResult,
+} from "./durable-loop-epoch";
+
+type ClaimMetadata = {
+  pid: number;
+  bootIdentity: string | null;
+  processStartToken: string | null;
+  leaseDeadlineUptimeMs: number;
+};
+
+function readLinuxText(path: string): string | null {
+  try {
+    return readFileSync(path, "utf8").trim();
+  } catch {
+    return null;
+  }
+}
+
+function bootIdentity(): string | null {
+  return platform() === "linux" ? readLinuxText("/proc/sys/kernel/random/boot_id") : null;
+}
+
+function processStartToken(pid: number): string | null {
+  if (platform() !== "linux") return null;
+  const stat = readLinuxText(`/proc/${pid}/stat`);
+  if (!stat) return null;
+  const closing = stat.lastIndexOf(")");
+  return closing >= 0 ? (stat.slice(closing + 2).split(/\s+/)[19] ?? null) : null;
+}
+
+function claimStatus(text: string | null): "absent" | "live" | "stale" {
+  if (text === null) return "absent";
+  try {
+    const claim = JSON.parse(text) as Partial<ClaimMetadata>;
+    if (typeof claim.pid !== "number" || typeof claim.leaseDeadlineUptimeMs !== "number")
+      return "live";
+    const currentBoot = bootIdentity();
+    if (claim.bootIdentity && currentBoot && claim.bootIdentity !== currentBoot) return "stale";
+    if (uptime() * 1000 > claim.leaseDeadlineUptimeMs) return "stale";
+    const currentToken = processStartToken(claim.pid);
+    if (claim.processStartToken && currentToken && claim.processStartToken !== currentToken)
+      return "stale";
+    if (platform() === "linux" && currentToken === null) return "stale";
+    return "live";
+  } catch {
+    return "live";
+  }
+}
 
 function fsyncPath(path: string): void {
   const fd = openSync(path, "r");
@@ -46,7 +98,12 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
         try {
           writeFileSync(
             fd,
-            `${JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() })}\n`,
+            `${JSON.stringify({
+              pid: process.pid,
+              bootIdentity: bootIdentity(),
+              processStartToken: processStartToken(process.pid),
+              leaseDeadlineUptimeMs: uptime() * 1000 + 60_000,
+            } satisfies ClaimMetadata)}\n`,
           );
           fsyncSync(fd);
         } finally {
@@ -85,4 +142,37 @@ export function nodeDurableEpochPort(root: string): DurableEpochPort {
     unlinkClaim: (planId) => unlinkSync(paths(planId).claim),
     fsyncClaimDirectory: (planId) => fsyncPath(paths(planId).directory),
   };
+}
+
+export function readLoopEpochFromFs(root: string, planId: string): LoopEpochReadResult {
+  const paths = loopEpochPaths(root, planId);
+  const manifestText = existsSync(paths.manifest) ? readFileSync(paths.manifest, "utf8") : null;
+  const claimText = existsSync(paths.claim) ? readFileSync(paths.claim, "utf8") : null;
+  let payloadText: string | null = null;
+  if (manifestText !== null) {
+    try {
+      const manifest = JSON.parse(manifestText) as { payloadFile?: unknown };
+      if (
+        typeof manifest.payloadFile === "string" &&
+        /^[A-Za-z0-9._-]+\.payload\.json$/.test(manifest.payloadFile)
+      ) {
+        const payloadPath = paths.payloadFor(manifest.payloadFile);
+        payloadText = existsSync(payloadPath) ? readFileSync(payloadPath, "utf8") : null;
+      }
+    } catch {
+      payloadText = null;
+    }
+  } else if (existsSync(paths.directory)) {
+    const orphan = readdirSync(paths.directory).find(
+      (name) =>
+        name.startsWith(`${assertLoopPlanId(planId)}.epoch-`) && name.endsWith(".payload.json"),
+    );
+    if (orphan) payloadText = readFileSync(join(paths.directory, orphan), "utf8");
+  }
+  return classifyLoopEpochFiles({
+    planId,
+    manifestText,
+    payloadText,
+    claimStatus: claimStatus(claimText),
+  });
 }

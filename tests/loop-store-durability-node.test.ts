@@ -1,9 +1,13 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { commitLoopEpoch } from "../src/orchestration/durable-loop-epoch";
-import { loopEpochPaths, nodeDurableEpochPort } from "../src/orchestration/durable-loop-epoch-node";
+import {
+  loopEpochPaths,
+  nodeDurableEpochPort,
+  readLoopEpochFromFs,
+} from "../src/orchestration/durable-loop-epoch-node";
 
 const PLAN = "PLAN-L7-449-durability-boundary-implementation";
 const roots: string[] = [];
@@ -48,6 +52,28 @@ describe("PLAN-L7-449 node durable epoch port", () => {
     const manifest = JSON.parse(readFileSync(paths.manifest, "utf8"));
     expect(manifest.planId).toBe(PLAN);
     expect(existsSync(paths.payloadFor(manifest.payloadFile))).toBe(true);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+  });
+
+  it("IT-DUR-002/004: filesystem reader distinguishes corrupt, live, and provably stale claims", () => {
+    const repo = root();
+    const paths = loopEpochPaths(repo, PLAN);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("missing");
+    expect(nodeDurableEpochPort(repo).acquireExclusiveClaim(PLAN)).toBe(true);
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("live_claim");
+    writeFileSync(
+      paths.claim,
+      `${JSON.stringify({
+        pid: 999_999_999,
+        bootIdentity: "different-boot",
+        processStartToken: "missing",
+        leaseDeadlineUptimeMs: 0,
+      })}\n`,
+    );
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("stale_claim");
+    rmSync(paths.claim);
+    writeFileSync(paths.manifest, "{");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("corrupt");
   });
 
   it("IT-DUR-004: O_EXCL permits at most one live claim", () => {
