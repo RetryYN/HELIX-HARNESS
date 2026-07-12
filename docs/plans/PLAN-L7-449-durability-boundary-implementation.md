@@ -127,7 +127,7 @@ generates:
       artifact_path: tests/harness-check-workflow.test.ts,
       artifact_type: test_code,
     }
-  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: ci_config }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: source_module }
 dependencies:
   { parent: docs/plans/PLAN-L6-78-durability-boundary-design.md, requires: [] }
 ---
