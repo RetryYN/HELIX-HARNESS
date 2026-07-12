@@ -42,6 +42,7 @@ generates:
   - { artifact_path: src/runtime/git-command-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/work-guard.ts, artifact_type: source_module }
   - { artifact_path: src/orchestration/loop-store.ts, artifact_type: source_module }
+  - { artifact_path: src/util/loop-plan-id.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/autonomous-loop-run-receipts.ts, artifact_type: source_module }
   - { artifact_path: src/lint/secret-scan.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/digest.ts, artifact_type: source_module }

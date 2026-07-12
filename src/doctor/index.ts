@@ -113,6 +113,7 @@ import {
   designLanguageMessages,
   loadDesignLanguageDocs,
 } from "../lint/design-language";
+import { scanDigestInventory } from "../lint/digest-inventory";
 import { analyzeDocConsistency, loadDocConsistencyDocs } from "../lint/doc-consistency";
 import {
   analyzeDriveDbRegistration,
@@ -1385,6 +1386,29 @@ export function checkSecretScan(repoRoot: string): {
     return {
       messages: ["secret-scan - violation: docs / runtime state artifacts could not be read"],
       ok: false,
+    };
+  }
+}
+
+export function checkDigestInventory(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const expected = JSON.parse(
+      readFileSync(join(repoRoot, "config", "digest-canonicalization-inventory.json"), "utf8"),
+    ) as { rows?: unknown[] };
+    const actual = scanDigestInventory(repoRoot);
+    const ok = JSON.stringify(expected.rows ?? []) === JSON.stringify(actual);
+    return {
+      ok,
+      messages: [
+        ok
+          ? `digest-inventory - OK (hits=${actual.length})`
+          : "digest-inventory - violation: generated inventory differs from production AST scan",
+      ],
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      messages: [`digest-inventory - violation: ${String(error)}`],
     };
   }
 }
@@ -6777,6 +6801,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const handoverRetirementInventory = checkHandoverRetirementInventory(deps.repoRoot);
   const handoverResurrection = checkHandoverResurrection(deps.repoRoot);
   const secretScan = checkSecretScan(deps.repoRoot);
+  const digestInventory = checkDigestInventory(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
@@ -6944,6 +6969,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       handoverRetirementInventory.ok &&
       handoverResurrection.ok &&
       secretScan.ok &&
+      digestInventory.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
       gateConfirm.ok &&
@@ -7069,6 +7095,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...handoverRetirementInventory.messages.map((m) => `doctor: ${m}`),
       ...handoverResurrection.messages.map((m) => `doctor: ${m}`),
       ...secretScan.messages.map((m) => `doctor: ${m}`),
+      ...digestInventory.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),

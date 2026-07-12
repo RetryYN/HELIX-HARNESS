@@ -91,7 +91,13 @@ export function scanDigestInventory(root: string): DigestHit[] {
           if ((el.propertyName?.text ?? el.name.text) === "createHash") aliases.add(el.name.text);
       }
     const ord = new Map<string, number>();
-    const add = (node: ts.Node, signature: string, algorithm: string, canonical = false) => {
+    const add = (input: {
+      node: ts.Node;
+      signature: string;
+      algorithm: string;
+      canonical?: boolean;
+    }) => {
+      const { node, signature, algorithm, canonical = false } = input;
       const symbol = owner(node),
         key = `${symbol}:${signature}`,
         n = (ord.get(key) ?? 0) + 1;
@@ -152,8 +158,9 @@ export function scanDigestInventory(root: string): DigestHit[] {
               `unknown digest algorithm ${path}:${sf.getLineAndCharacterOfPosition(node.getStart()).line + 1}`,
             );
           }
-          add(node, `${name}(sha256)`, "sha256");
-        } else if (name === "sha256Digest") add(node, "sha256Digest()", "sha256");
+          add({ node, signature: `${name}(sha256)`, algorithm: "sha256" });
+        } else if (name === "sha256Digest")
+          add({ node, signature: "sha256Digest()", algorithm: "sha256" });
         else if (
           name === "digest" &&
           ts.isPropertyAccessExpression(expr) &&
@@ -162,19 +169,24 @@ export function scanDigestInventory(root: string): DigestHit[] {
           const alg = literal(node.arguments[0]);
           if (alg?.toLowerCase().replace("-", "") !== "sha256")
             throw new Error(`unknown SubtleCrypto algorithm ${path}`);
-          add(node, "SubtleCrypto.digest(SHA-256)", "sha256");
+          add({ node, signature: "SubtleCrypto.digest(SHA-256)", algorithm: "sha256" });
         }
       } else if (ts.isNewExpression(node) && node.expression.getText() === "CryptoHasher") {
         const alg = literal(node.arguments?.[0]);
         if (alg?.toLowerCase().replace("-", "") !== "sha256")
           throw new Error(`unknown CryptoHasher algorithm ${path}`);
-        add(node, "new CryptoHasher(sha256)", "sha256");
+        add({ node, signature: "new CryptoHasher(sha256)", algorithm: "sha256" });
       } else if (
         (ts.isFunctionDeclaration(node) || ts.isVariableDeclaration(node)) &&
         node.name &&
         /^(canonicalJson|canonicalize|stableJson|stable)$/.test(node.name.getText())
       )
-        add(node, `${ts.SyntaxKind[node.kind]} ${node.name.getText()}`, "canonical-json", true);
+        add({
+          node,
+          signature: `${ts.SyntaxKind[node.kind]} ${node.name.getText()}`,
+          algorithm: "canonical-json",
+          canonical: true,
+        });
       ts.forEachChild(node, visit);
     };
     visit(sf);

@@ -140,11 +140,12 @@ function containsProtectedArtifact(path: string): boolean {
   if (!statSync(path).isDirectory()) return false;
   return readdirSync(path).some((name) => containsProtectedArtifact(join(path, name)));
 }
-export function findTmpGcCandidates(
-  root: string,
-  nowMs: number,
-  maxAgeMs: number,
-): TmpGcCandidate[] {
+export function findTmpGcCandidates(input: {
+  root: string;
+  nowMs: number;
+  maxAgeMs: number;
+}): TmpGcCandidate[] {
+  const { root, nowMs, maxAgeMs } = input;
   if (!existsSync(root)) return [];
   return readdirSync(root, { withFileTypes: true })
     .flatMap((entry) => {
@@ -159,8 +160,9 @@ export function findTmpGcCandidates(
     })
     .sort((a, b) => a.path.localeCompare(b.path));
 }
-export function gcTmp(root: string, nowMs: number, maxAgeMs: number, apply = false) {
-  const candidates = findTmpGcCandidates(root, nowMs, maxAgeMs);
+export function gcTmp(input: { root: string; nowMs: number; maxAgeMs: number; apply?: boolean }) {
+  const { root, nowMs, maxAgeMs, apply = false } = input;
+  const candidates = findTmpGcCandidates({ root, nowMs, maxAgeMs });
   if (apply)
     for (const row of candidates) rmSync(join(root, row.path), { recursive: true, force: true });
   return { root, apply, candidates, removed: apply ? candidates.length : 0 };

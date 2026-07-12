@@ -43,7 +43,9 @@ describe("PLAN-L7-432 state/lane hygiene", () => {
     mkdirSync(join(root, "probe-protected", "nested-audit"), { recursive: true });
     utimesSync(join(root, "probe-old"), new Date(0), new Date(0));
     utimesSync(join(root, "probe-protected"), new Date(0), new Date(0));
-    expect(findTmpGcCandidates(root, 100_000, 50_000).map((v) => v.path)).toEqual(["probe-old"]);
+    expect(
+      findTmpGcCandidates({ root, nowMs: 100_000, maxAgeMs: 50_000 }).map((v) => v.path),
+    ).toEqual(["probe-old"]);
   });
   it("U-S3HY-004 warns only for old uncommitted memory", () => {
     expect(

@@ -4072,12 +4072,12 @@ db.command("gc")
   .action((opts: { maxAgeHours: string; apply?: boolean; json?: boolean }) => {
     const hours = Number(opts.maxAgeHours);
     if (!Number.isFinite(hours) || hours < 0) throw new Error("max-age-hours must be non-negative");
-    const result = gcTmp(
-      join(process.cwd(), ".helix", "tmp"),
-      Date.now(),
-      hours * 3_600_000,
-      opts.apply === true,
-    );
+    const result = gcTmp({
+      root: join(process.cwd(), ".helix", "tmp"),
+      nowMs: Date.now(),
+      maxAgeMs: hours * 3_600_000,
+      apply: opts.apply === true,
+    });
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(result, null, 2)}\n`

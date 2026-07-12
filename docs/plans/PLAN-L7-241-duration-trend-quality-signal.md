@@ -38,7 +38,7 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/workflow-contracts.test.ts
     artifact_type: test_code
-  - artifact_path: tests/slow/projection-writer.test.ts
+  - artifact_path: tests/projection-writer.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-240-reporter-artifact-ut-ingestion.md
@@ -51,7 +51,7 @@ dependencies:
     - src/workflow/contracts.ts
     - src/state-db/projection-writer.ts
     - tests/workflow-contracts.test.ts
-    - tests/slow/projection-writer.test.ts
+    - tests/projection-writer.test.ts
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -63,7 +63,7 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/workflow-contracts.test.ts tests/slow/projection-writer.test.ts --timeout 180000"
+        command: "bun test tests/workflow-contracts.test.ts tests/projection-writer.test.ts --timeout 180000"
         runner: bun
         scope: targeted
         exit_code: 0

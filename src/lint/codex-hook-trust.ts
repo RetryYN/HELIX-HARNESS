@@ -74,11 +74,11 @@ export const runCodexHookList: HookListRunner = (repoRoot) => {
     },
   });
   const list = JSON.stringify({ method: "hooks/list", id: 2, params: { cwds: [repoRoot] } });
-  const script = `(printf '%s\\n' "$HELIX_INIT" '{"method":"initialized"}' "$HELIX_LIST"; sleep 3) | timeout 5 codex app-server --stdio 2>/dev/null | awk '/"id":2/{print; exit}'`;
-  const run = spawnSync("bash", ["-lc", script], {
+  const input = `${init}\n{"method":"initialized"}\n${list}\n`;
+  const run = spawnSync("codex", ["app-server", "--stdio"], {
     encoding: "utf8",
     timeout: 7_000,
-    env: { ...process.env, HELIX_INIT: init, HELIX_LIST: list },
+    input,
   });
   const unavailableReason =
     !run.stdout && process.env.CI === "true"

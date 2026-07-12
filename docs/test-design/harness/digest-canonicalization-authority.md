@@ -6,7 +6,7 @@ pair_artifact: docs/design/harness/L6-function-design/digest-canonicalization-au
 plan: docs/plans/PLAN-L6-76-digest-canonicalization-authority.md
 ---
 
-# Digest canonicalization verification design
+# ダイジェスト正規化の検証設計
 
 | ID | oracle | test citation |
 |---|---|---|

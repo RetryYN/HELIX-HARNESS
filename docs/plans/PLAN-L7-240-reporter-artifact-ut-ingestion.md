@@ -32,7 +32,7 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/test-report-parser.test.ts
     artifact_type: test_code
-  - artifact_path: tests/slow/projection-writer.test.ts
+  - artifact_path: tests/projection-writer.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md
@@ -41,7 +41,7 @@ dependencies:
     - docs/design/harness/L5-detailed-design/physical-data.md
     - docs/design/harness/L6-function-design/function-spec.md
     - src/state-db/projection-writer.ts
-    - tests/slow/projection-writer.test.ts
+    - tests/projection-writer.test.ts
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
@@ -53,12 +53,12 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/test-report-parser.test.ts tests/slow/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
+        command: "bun test tests/test-report-parser.test.ts tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
         runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:43:00+09:00"
-        evidence_path: tests/slow/projection-writer.test.ts
+        evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:e21be7cb77522b3a284426473f916de658a715be6b706b58441ba62fae2216b0"
       - kind: unit_test
         command: "bun test tests/test-report-parser.test.ts --timeout 180000"

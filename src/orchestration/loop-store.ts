@@ -1,4 +1,5 @@
 import { join } from "node:path";
+import { assertLoopPlanId } from "../util/loop-plan-id";
 import type { LoopIterationRecord } from "./loop-runner";
 import type { LoopState } from "./loop-state";
 
@@ -6,16 +7,6 @@ export interface LoopStore {
   read(planId: string): LoopState | null;
   write(state: LoopState): void;
   recordIteration(rec: LoopIterationRecord): void;
-}
-
-const LOOP_PLAN_ID =
-  /^PLAN-(?:L(?:[0-9]|1[0-4])|M|DISCOVERY|REVERSE|RECOVERY)-[A-Za-z0-9][A-Za-z0-9-]*$/;
-
-export function assertLoopPlanId(planId: string): string {
-  if (!LOOP_PLAN_ID.test(planId)) {
-    throw new RangeError(`invalid loop plan id: ${planId}`);
-  }
-  return planId;
 }
 
 export function fileLoopStore(deps: {

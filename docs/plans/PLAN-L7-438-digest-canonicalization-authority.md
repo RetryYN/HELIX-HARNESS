@@ -33,6 +33,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-005, test_path: tests/digest.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md, oracle_id: U-DIGEST-006, test_path: tests/digest.test.ts }
 generates:
+  - { artifact_path: src/lint/digest-inventory.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/digest.ts, artifact_type: source_module }
   - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/digest-consumer-compatibility.test.ts, artifact_type: test_code }
@@ -44,7 +45,7 @@ dependencies:
   requires: [docs/plans/PLAN-L6-76-digest-canonicalization-authority.md]
 ---
 
-# PLAN-L7-438: digest canonicalization authority
+# PLAN-L7-438: ダイジェスト正規化の設計権限
 
 ## Authority
 
