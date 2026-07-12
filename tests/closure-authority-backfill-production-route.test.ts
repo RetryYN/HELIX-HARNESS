@@ -514,10 +514,7 @@ describe("closure authority production route", () => {
           now: "2026-07-12T00:50:00.000Z",
         }),
       ).toThrow();
-      const registryPath = join(
-        fixture.root,
-        "docs/governance/closure-authority-registry.yaml",
-      );
+      const registryPath = join(fixture.root, "docs/governance/closure-authority-registry.yaml");
       const nextRegistry = `${JSON.stringify({
         schema_version: "closure-authority-registry.v1",
         authorities: [],

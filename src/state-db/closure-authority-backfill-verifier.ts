@@ -166,11 +166,10 @@ export function verifyClosureAuthorityBackfillCurrentContext(input: {
   const git = (...args: string[]) =>
     execFileSync("git", args, { cwd: input.repoRoot, encoding: "utf8" }).trim();
   const head = git("rev-parse", "HEAD");
-  const status = execFileSync(
-    "git",
-    ["status", "--porcelain=v1", "--untracked-files=all"],
-    { cwd: input.repoRoot, encoding: "utf8" },
-  ).trimEnd();
+  const status = execFileSync("git", ["status", "--porcelain=v1", "--untracked-files=all"], {
+    cwd: input.repoRoot,
+    encoding: "utf8",
+  }).trimEnd();
   const allowedRegistryDrift = " M docs/governance/closure-authority-registry.yaml";
   const statusRows = status === "" ? [] : status.split("\n");
   const originMain = git("rev-parse", "origin/main");
