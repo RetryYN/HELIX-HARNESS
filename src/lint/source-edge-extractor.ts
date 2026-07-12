@@ -39,52 +39,47 @@ export function extractSourceEdges(documents: readonly SourceDocument[]): Source
   const edges: SourceEdge[] = [];
   for (const document of documents) {
     const file = sourceFile(document);
-    const push = (node: ts.Node, kind: SourceEdgeKind, specifier: string | null, reason: string) =>
-      edges.push({ from: document.path, specifier, kind, line: lineOf(file, node), reason });
+    const push = (node: ts.Node, edge: Pick<SourceEdge, "kind" | "specifier" | "reason">) =>
+      edges.push({ from: document.path, line: lineOf(file, node), ...edge });
 
     const visit = (node: ts.Node): void => {
       if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
-        push(
-          node,
-          node.importClause?.isTypeOnly === true ? "type_import" : "import",
-          node.moduleSpecifier.text,
-          "static import declaration",
-        );
+        push(node, {
+          kind: node.importClause?.isTypeOnly === true ? "type_import" : "import",
+          specifier: node.moduleSpecifier.text,
+          reason: "static import declaration",
+        });
       } else if (ts.isExportDeclaration(node) && node.moduleSpecifier) {
-        push(
-          node,
-          "re_export",
-          ts.isStringLiteral(node.moduleSpecifier) ? node.moduleSpecifier.text : null,
-          "re-export declaration",
-        );
+        push(node, {
+          kind: "re_export",
+          specifier: ts.isStringLiteral(node.moduleSpecifier) ? node.moduleSpecifier.text : null,
+          reason: "re-export declaration",
+        });
       } else if (
         ts.isImportEqualsDeclaration(node) &&
         ts.isExternalModuleReference(node.moduleReference)
       ) {
         const expression = node.moduleReference.expression;
-        push(
-          node,
-          expression ? "import_equals" : "unknown_edge_kind",
-          expression ? literalText(expression) : null,
-          expression ? "TypeScript import-equals" : "import-equals without literal module",
-        );
+        push(node, {
+          kind: expression ? "import_equals" : "unknown_edge_kind",
+          specifier: expression ? literalText(expression) : null,
+          reason: expression ? "TypeScript import-equals" : "import-equals without literal module",
+        });
       } else if (ts.isCallExpression(node)) {
         if (node.expression.kind === ts.SyntaxKind.ImportKeyword) {
           const specifier = node.arguments[0] ? literalText(node.arguments[0]) : null;
-          push(
-            node,
-            specifier === null ? "unknown_edge_kind" : "dynamic_import",
+          push(node, {
+            kind: specifier === null ? "unknown_edge_kind" : "dynamic_import",
             specifier,
-            specifier === null ? "computed dynamic import" : "literal dynamic import",
-          );
+            reason: specifier === null ? "computed dynamic import" : "literal dynamic import",
+          });
         } else if (ts.isIdentifier(node.expression) && node.expression.text === "require") {
           const specifier = node.arguments[0] ? literalText(node.arguments[0]) : null;
-          push(
-            node,
-            specifier === null ? "unknown_edge_kind" : "literal_require",
+          push(node, {
+            kind: specifier === null ? "unknown_edge_kind" : "literal_require",
             specifier,
-            specifier === null ? "computed or nonliteral require" : "literal require",
-          );
+            reason: specifier === null ? "computed or nonliteral require" : "literal require",
+          });
         }
       }
       ts.forEachChild(node, visit);

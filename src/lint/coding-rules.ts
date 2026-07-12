@@ -2,19 +2,19 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import ts from "typescript";
 import {
-  evaluateSourceBoundary,
-  type ModuleCatalog,
-  type BoundaryPolicy,
-} from "./source-boundary-policy";
-import { extractSourceEdges } from "./source-edge-extractor";
-import {
-  SOURCE_BOUNDARY_MODULES,
   importedSourceModule,
   lineOf,
   normalizePath,
+  SOURCE_BOUNDARY_MODULES,
   sourceModule,
   violatesSourceBoundary,
 } from "./shared";
+import {
+  type BoundaryPolicy,
+  evaluateSourceBoundary,
+  type ModuleCatalog,
+} from "./source-boundary-policy";
+import { extractSourceEdges } from "./source-edge-extractor";
 
 const SOURCE_MODULE_CATALOG: ModuleCatalog = {
   owners: SOURCE_BOUNDARY_MODULES,
