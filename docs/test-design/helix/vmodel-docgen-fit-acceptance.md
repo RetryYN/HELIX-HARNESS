@@ -55,6 +55,12 @@ spec:
       layer: L12
       owner: QA
       status: confirmed
+    - id: HAT-VMFIT-08
+      kind: 受入テスト
+      title: drive model skill binding
+      layer: L12
+      owner: QA
+      status: confirmed
     - id: HAT-VMFIT-L7-CLOSURE
       kind: TDD closure oracle
       title: L7 TDD closure / trace closure
@@ -157,6 +163,18 @@ spec:
       layer: L12
       owner: QA
       status: confirmed
+    - id: HAC-VMFIT-08a
+      kind: acceptance criteria
+      title: drive/layer 根拠付き skill 分類
+      layer: L12
+      owner: QA
+      status: confirmed
+    - id: HAC-VMFIT-08b
+      kind: acceptance criteria
+      title: skill context 最小ロードと Project view 投影
+      layer: L12
+      owner: QA
+      status: confirmed
   refs:
     - from: HAT-VMFIT-01
       to: HR-FR-VMFIT-01
@@ -178,6 +196,9 @@ spec:
       kind: accepts
     - from: HAT-VMFIT-07
       to: HR-FR-VMFIT-07
+      kind: accepts
+    - from: HAT-VMFIT-08
+      to: HR-FR-VMFIT-08
       kind: accepts
     - from: HAT-VMFIT-L7-CLOSURE
       to: HR-FR-VMFIT-02
@@ -239,6 +260,12 @@ spec:
     - from: HAC-VMFIT-07c
       to: HR-FR-VMFIT-07
       kind: verifies
+    - from: HAC-VMFIT-08a
+      to: HR-FR-VMFIT-08
+      kind: verifies
+    - from: HAC-VMFIT-08b
+      to: HR-FR-VMFIT-08
+      kind: verifies
 ---
 
 # HELIX L12 受入テスト設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合
@@ -259,6 +286,7 @@ spec:
 | HAT-VMFIT-05 | HR-FR-VMFIT-05 | HAC-VMFIT-05a/b | L14 到達済み claim と L7 起票のような矛盾が current-location と drive-model selector の finding になり、選定 model は Recovery へ昇格し、その内部経路として設計/テスト設計へ戻す範囲と文書/実装依存が出る | drive-model-selector tests / contradiction fixture |
 | HAT-VMFIT-06 | HR-FR-VMFIT-06 | HAC-VMFIT-06a/b | VSCode Project view-model が L12 map、impact、current location、drive recommendation を DB/read-model 由来で描画し、値を捏造しない | visualization read-model/view-model tests |
 | HAT-VMFIT-07 | HR-FR-VMFIT-07 | HAC-VMFIT-07a/b/c | log design、KPI、runtime verification、operation test、class/method contract、障害時 Recovery/Reverse 逆流 route の未設計/未観測が L12 運用後検証の gap として表示される | operation-scope coverage tests / runtime evidence tests |
+| HAT-VMFIT-08 | HR-FR-VMFIT-08 | HAC-VMFIT-08a/b | current drive・workflow・layer に基づいて skill が required/recommended/optional に分類され、選定根拠を保ったまま必要な本文だけが注入され、Project view と CLI が同じ binding を表示する | skill selector tests / context injection boundary tests / Project view projection tests |
 | HAT-VMFIT-L7-CLOSURE | HR-FR-VMFIT-02 | HAC-VMFIT-02a/b | L7 TDD closure / trace closure が L12 compatibility projection に残り、実装済み claim と TDD closure evidence を混同しない | current-location coverage tests / artifact-remap tests |
 
 ## §2 受入条件
@@ -281,6 +309,8 @@ spec:
 | HAC-VMFIT-07a | log/KPI/runtime verification/operation test/class/method contract 設計が欠落している | L12 operation coverage を検査 | 未設計 gap として検出され、運用後検証完了にしない |
 | HAC-VMFIT-07b | runtime evidence が projection-only である | operation verification を検査 | observed/runtime_verified へ昇格せず、未観測または要検証として扱う |
 | HAC-VMFIT-07c | log/KPI/runtime verification/operation test/class/method contract/incident route が設計済みだが accepted runtime evidence が無い | current-location / Project view / doctor を生成 | `observed_gap` と `observed-gap: status=watch` が表示され、設計済み scope と運用観測済み scope を混同しない |
+| HAC-VMFIT-08a | current-location が drive model・workflow・layer を返す | skill binding selector を実行 | 各 skill が required/recommended/optional のいずれかに分類され、drive・workflow・layer の選定根拠と未解決 binding が機械可読に返る |
+| HAC-VMFIT-08b | skill binding が選定済みである | runtime context と Project view を生成 | required skill の必要部分だけを注入し、全 skill の一括ロードを行わず、CLI と Project view が同一 DB/read-model 由来の分類・根拠を表示する |
 
 ## §3 trace 対応
 
@@ -293,4 +323,5 @@ spec:
 | HR-FR-VMFIT-05 | HAT-VMFIT-05 | 現在地 / 駆動モデル |
 | HR-FR-VMFIT-06 | HAT-VMFIT-06 | VSCode 表示 |
 | HR-FR-VMFIT-07 | HAT-VMFIT-07 | 運用後検証 / log / KPI |
+| HR-FR-VMFIT-08 | HAT-VMFIT-08 | drive model / workflow / layer skill binding |
 | HR-FR-VMFIT-02 | HAT-VMFIT-L7-CLOSURE | L7 TDD 閉鎖 / trace 閉鎖 |
