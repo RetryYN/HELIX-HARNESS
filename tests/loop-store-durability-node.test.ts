@@ -161,6 +161,18 @@ describe("PLAN-L7-449 node durable epoch port", () => {
       }).status,
     ).toBe("committed");
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    const secondManifestText = port.readManifestText(PLAN);
+    expect(secondManifestText).not.toBeNull();
+    expect(
+      commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: secondManifestText as string,
+        payload: { state: { ...state, iteration: 2 }, iteration: null },
+        sideEffectPhase: "completed",
+        port,
+      }).status,
+    ).toBe("committed");
+    expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
     writeFileSync(paths.manifestFor(firstPointer.manifestFile), "{}");
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("concurrent_conflict");
   });

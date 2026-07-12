@@ -19,6 +19,8 @@ import {
   type DurableEpochPort,
   LOOP_EPOCH_POINTER_SCHEMA,
   type LoopEpochReadResult,
+  parseLoopEpochManifest,
+  parseLoopEpochPayload,
 } from "./durable-loop-epoch";
 
 type ClaimMetadata = {
@@ -216,43 +218,90 @@ export function readLoopEpochFromFs(root: string, planId: string): LoopEpochRead
             payload: null,
             reason: "pointer_digest_mismatch",
           };
-        const manifest = JSON.parse(manifestText) as {
-          epochId?: unknown;
-          previousManifestDigest?: unknown;
-          payloadFile?: unknown;
-        };
-        if (
-          typeof manifest.payloadFile === "string" &&
-          /^[A-Za-z0-9._-]+\.payload\.json$/.test(manifest.payloadFile)
-        ) {
-          payloadText = readIfExists(paths.payloadFor(manifest.payloadFile));
-        }
+        const manifest = parseLoopEpochManifest(manifestText);
+        if (manifest === null || manifest.epochId !== pointer.epochId)
+          return { status: "corrupt", manifest: null, payload: null, reason: "manifest_invalid" };
+        payloadText = readIfExists(paths.payloadFor(manifest.payloadFile));
         const history = readdirSync(paths.directory).filter(
           (name) =>
             name.startsWith(`${assertLoopPlanId(planId)}.epoch-`) &&
             name.endsWith(".manifest.json") &&
             name !== pointer.manifestFile,
         );
-        if (manifest.epochId === 0) previousManifestText = null;
-        else if (typeof manifest.previousManifestDigest === "string")
-          previousManifestText =
-            history
-              .map((name) => readIfExists(paths.manifestFor(name)))
-              .find(
-                (text): text is string =>
-                  text !== null && sha256Digest(text) === manifest.previousManifestDigest,
-              ) ?? null;
+        const historyTexts = history
+          .map((name) => readIfExists(paths.manifestFor(name)))
+          .filter((text): text is string => text !== null);
+        const allTexts = [manifestText, ...historyTexts];
+        const parsedHistory = allTexts.map((text) => ({
+          text,
+          digest: sha256Digest(text),
+          manifest: parseLoopEpochManifest(text),
+        }));
+        if (
+          parsedHistory.some((row) => row.manifest === null || row.manifest.planId !== planId) ||
+          new Set(parsedHistory.map((row) => row.manifest?.epochId)).size !== parsedHistory.length
+        ) {
+          return { status: "concurrent_conflict", manifest, payload: null, reason: "history_fork" };
+        }
+        let cursor = manifest;
+        const seen = new Set<string>();
+        while (true) {
+          if (seen.has(`${cursor.epochId}:${cursor.previousManifestDigest}`))
+            return {
+              status: "concurrent_conflict",
+              manifest,
+              payload: null,
+              reason: "history_cycle",
+            };
+          seen.add(`${cursor.epochId}:${cursor.previousManifestDigest}`);
+          const cursorPayloadText = readIfExists(paths.payloadFor(cursor.payloadFile));
+          if (
+            cursorPayloadText === null ||
+            sha256Digest(cursorPayloadText) !== cursor.payloadDigest ||
+            parseLoopEpochPayload(cursorPayloadText, planId) === null
+          )
+            return {
+              status: "corrupt",
+              manifest,
+              payload: null,
+              reason: "history_payload_invalid",
+            };
+          if (cursor.epochId === 0) {
+            if (cursor.previousManifestDigest !== null)
+              return {
+                status: "concurrent_conflict",
+                manifest,
+                payload: null,
+                reason: "history_root_invalid",
+              };
+            break;
+          }
+          const previous = parsedHistory.find(
+            (row) => row.digest === cursor.previousManifestDigest,
+          );
+          if (
+            previous?.manifest === null ||
+            previous?.manifest === undefined ||
+            previous.manifest.epochId !== cursor.epochId - 1
+          )
+            return {
+              status: "concurrent_conflict",
+              manifest,
+              payload: null,
+              reason: "history_gap",
+            };
+          if (cursor === manifest) previousManifestText = previous.text;
+          cursor = previous.manifest;
+        }
         conflictingManifestText =
-          history
-            .map((name) => readIfExists(paths.manifestFor(name)))
-            .find((text) => {
-              if (text === null) return false;
-              try {
-                return (JSON.parse(text) as { epochId?: unknown }).epochId === manifest.epochId;
-              } catch {
-                return false;
-              }
-            }) ?? null;
+          historyTexts.find((text) => {
+            if (text === null) return false;
+            try {
+              return (JSON.parse(text) as { epochId?: unknown }).epochId === manifest.epochId;
+            } catch {
+              return false;
+            }
+          }) ?? null;
       } catch {
         return {
           status: "corrupt",

@@ -106,7 +106,9 @@ export function commitLoopEpoch(input: {
         reason: "stale_previous",
       };
     }
-    const previous = input.previousManifestText ? parseManifest(input.previousManifestText) : null;
+    const previous = input.previousManifestText
+      ? parseLoopEpochManifest(input.previousManifestText)
+      : null;
     if (input.previousManifestText && (previous === null || previous.planId !== planId)) {
       input.port.unlinkClaim(planId);
       input.port.fsyncClaimDirectory(planId);
@@ -118,7 +120,7 @@ export function commitLoopEpoch(input: {
       };
     }
     const payloadText = JSON.stringify(input.payload);
-    if (parsePayload(payloadText, planId) === null) {
+    if (parseLoopEpochPayload(payloadText, planId) === null) {
       input.port.unlinkClaim(planId);
       input.port.fsyncClaimDirectory(planId);
       return {
@@ -314,12 +316,14 @@ export function classifyLoopEpochFiles(input: {
       ? { status: "missing", manifest: null, payload: null, reason: "absent" }
       : { status: "uncommitted", manifest: null, payload: null, reason: "orphan_payload" };
   }
-  const manifest = parseManifest(input.manifestText);
+  const manifest = parseLoopEpochManifest(input.manifestText);
   if (manifest === null || manifest.planId !== planId || input.payloadText === null) {
     return { status: "corrupt", manifest, payload: null, reason: "manifest_or_payload_invalid" };
   }
   if (input.previousManifestText !== undefined) {
-    const previous = input.previousManifestText ? parseManifest(input.previousManifestText) : null;
+    const previous = input.previousManifestText
+      ? parseLoopEpochManifest(input.previousManifestText)
+      : null;
     const chainMatches =
       previous === null
         ? manifest.epochId === 0 && manifest.previousManifestDigest === null
@@ -329,12 +333,12 @@ export function classifyLoopEpochFiles(input: {
       return { status: "concurrent_conflict", manifest, payload: null, reason: "stale_previous" };
     }
   }
-  const payload = parsePayload(input.payloadText, planId);
+  const payload = parseLoopEpochPayload(input.payloadText, planId);
   if (payload === null || sha256Digest(input.payloadText) !== manifest.payloadDigest) {
     return { status: "corrupt", manifest, payload: null, reason: "payload_digest_mismatch" };
   }
   if (input.conflictingManifestText) {
-    const conflicting = parseManifest(input.conflictingManifestText);
+    const conflicting = parseLoopEpochManifest(input.conflictingManifestText);
     if (
       conflicting !== null &&
       conflicting.planId === manifest.planId &&
