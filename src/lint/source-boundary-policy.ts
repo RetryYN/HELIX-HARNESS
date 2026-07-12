@@ -88,11 +88,19 @@ export function evaluateSourceBoundary(
       to_owner: toOwner,
       reason: "owner default deny",
     };
+  const match = matches[0];
+  if (!match)
+    return {
+      decision: "unspecified",
+      from_owner: fromOwner,
+      to_owner: toOwner,
+      reason: "missing normalized decision",
+    };
   return {
-    decision: matches[0]!.decision,
+    decision: match.decision,
     from_owner: fromOwner,
     to_owner: toOwner,
-    reason: matches[0]!.rationale,
+    reason: match.rationale,
   };
 }
 

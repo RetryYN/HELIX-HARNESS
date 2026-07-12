@@ -40,25 +40,31 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet behavior", () => {
     const [edge] = extractSourceEdges([
       { path: "src/unknown/a.ts", source: 'import "../vscode/x";' },
     ]);
-    expect(evaluateSourceBoundary(edge!, catalog, policy).decision).toBe("unspecified");
+    expect(edge).toBeDefined();
+    if (!edge) throw new Error("fixture edge missing");
+    expect(evaluateSourceBoundary(edge, catalog, policy).decision).toBe("unspecified");
     expect(
-      validateBoundaryPolicyCoverage(catalog, [edge!], { ...policy, defaults: { vscode: "deny" } }),
+      validateBoundaryPolicyCoverage(catalog, [edge], { ...policy, defaults: { vscode: "deny" } }),
     ).toEqual(
       expect.arrayContaining([expect.objectContaining({ reason: "missing_owner_default" })]),
     );
     const [known] = extractSourceEdges([
       { path: "src/state-db/a.ts", source: 'import "../state-db/b";' },
     ]);
-    expect(evaluateSourceBoundary(known!, catalog, policy)).toEqual(
+    expect(known).toBeDefined();
+    if (!known) throw new Error("known fixture edge missing");
+    expect(evaluateSourceBoundary(known, catalog, policy)).toEqual(
       expect.objectContaining({ decision: "deny", reason: "owner default deny" }),
     );
   });
 
   it("U-SBOUND-007: incomplete policy metadataを拒否する", () => {
+    const exception = policy.exceptions[0];
+    if (!exception) throw new Error("policy fixture missing");
     expect(
       validateBoundaryPolicyCoverage(catalog, [], {
         ...policy,
-        exceptions: [{ ...policy.exceptions[0]!, rationale: "" }],
+        exceptions: [{ ...exception, rationale: "" }],
       }),
     ).toEqual(
       expect.arrayContaining([
