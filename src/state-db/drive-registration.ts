@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { DriveDbRegistrationStats } from "../lint/drive-db-registration";
 import { loadReviewPlans } from "../lint/review-evidence";
+import { fmValue } from "../lint/shared";
 import { ACTIVE_PLAN_VALIDATION_ENFORCED_AT } from "../policy/active-plan-selection";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./index";
 import { migrate } from "./migration";
@@ -15,11 +16,6 @@ function count(db: HarnessDb, sql: string): number {
 
 function stableHash(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
-}
-
-function frontmatterValue(content: string, key: string): string {
-  const match = content.match(new RegExp(`^${key}:\\s*"?([^"\\r\\n]+)"?`, "m"));
-  return match?.[1]?.trim() ?? "";
 }
 
 function aggregatePlanRegistryFingerprint(entries: Array<[string, string]>): string {
@@ -38,7 +34,7 @@ export function collectCurrentPlanRegistryFingerprint(repoRoot: string = process
   for (const name of readdirSync(plansDir).sort()) {
     if (!name.endsWith(".md")) continue;
     const content = readFileSync(join(plansDir, name), "utf8");
-    const planId = frontmatterValue(content, "plan_id");
+    const planId = fmValue(content, "plan_id") ?? "";
     if (!planId) continue;
     entries.push([planId, stableHash(content)]);
   }

@@ -32,7 +32,11 @@ import {
   loadRoadmaps,
   PARKED_BANDS,
 } from "../lint/roadmap-registry";
-import { markdownFrontmatter, normalizePath } from "../lint/shared";
+import {
+  fmValueOrEmpty as frontmatterValue,
+  markdownFrontmatter,
+  normalizePath,
+} from "../lint/shared";
 import {
   catalogVerificationProfiles,
   recommendVerificationProfiles,
@@ -455,30 +459,6 @@ function markdownFiles(dir: string): string[] {
     .filter((name) => name.endsWith(".md"))
     .map((name) => join(dir, name))
     .sort();
-}
-
-function frontmatterValue(content: string, key: string): string {
-  const match = content.match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"));
-  return match ? unquoteFrontmatterValue(stripInlineYamlComment(match[1])) : "";
-}
-
-function stripInlineYamlComment(value: string): string {
-  let quote: '"' | "'" | null = null;
-  for (let index = 0; index < value.length; index += 1) {
-    const char = value[index];
-    if ((char === '"' || char === "'") && (index === 0 || value[index - 1] !== "\\")) {
-      quote = quote === char ? null : (quote ?? char);
-      continue;
-    }
-    if (char === "#" && quote === null && (index === 0 || /\s/.test(value[index - 1] ?? ""))) {
-      return value.slice(0, index).trim();
-    }
-  }
-  return value.trim();
-}
-
-function unquoteFrontmatterValue(value: string): string {
-  return value.replace(/^"|"$/g, "").replace(/^'|'$/g, "").trim();
 }
 
 function metadataFromContent(path: string, content: string): Record<string, unknown> {

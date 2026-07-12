@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import ts from "typescript";
 import {
+  fmValue,
   importedSourceModule,
   lineOf,
   normalizePath,
@@ -293,26 +294,21 @@ function invariantTraceViolations(policy: DddTddPolicy | null, l7Text: string): 
   return violations;
 }
 
-function frontmatterValue(text: string, key: string): string | null {
-  const match = text.match(new RegExp(`^${key}:\\s*([^\\n]+)`, "m"));
-  return match?.[1]?.trim().replace(/^["']|["']$/g, "") ?? null;
-}
-
 function booleanField(text: string, key: string): boolean {
   return new RegExp(`^${key}:\\s*true\\s*$`, "m").test(text);
 }
 
 function evidenceDates(text: string): EvidenceDates {
   return {
-    redAt: frontmatterValue(text, "red_at"),
-    greenAt: frontmatterValue(text, "green_at"),
+    redAt: fmValue(text, "red_at") ?? null,
+    greenAt: fmValue(text, "green_at") ?? null,
   };
 }
 
 function redFirstViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
   const violations: DddTddViolation[] = [];
   for (const plan of plans) {
-    const status = frontmatterValue(plan.text, "status");
+    const status = fmValue(plan.text, "status") ?? null;
     const required = booleanField(plan.text, "tdd_red_required");
     if (status !== "confirmed" || !required) continue;
     const dates = evidenceDates(plan.text);
@@ -360,7 +356,7 @@ function mutationOracleEvidence(text: string): { line: number; value: string } |
 function mutationOracleViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
   const violations: DddTddViolation[] = [];
   for (const plan of plans) {
-    const status = frontmatterValue(plan.text, "status");
+    const status = fmValue(plan.text, "status") ?? null;
     const required =
       status === "confirmed" &&
       (booleanField(plan.text, "tdd_red_required") ||

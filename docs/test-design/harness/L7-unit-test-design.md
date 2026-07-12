@@ -1260,3 +1260,9 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-ID | 対象 | Oracle |
 |---|---|---|
 | U-PLDOC-001 | `loadPlanDocs` | temp repoで `PLAN-*.md` だけをfilename昇順に読み、README/非Markdownを除外する。 |
+
+### frontmatter scalar 単一正本（PLAN-L7-433 Q4）
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-FMSC-001 | `fmValue` | quoted scalar、inline comment、quote内hash、不在keyのsnapshotを固定する。 |

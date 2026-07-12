@@ -2,7 +2,12 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { loadPlanDocs, markdownFrontmatter, parseMarkdownFrontmatter } from "../src/lint/shared";
+import {
+  fmValue,
+  loadPlanDocs,
+  markdownFrontmatter,
+  parseMarkdownFrontmatter,
+} from "../src/lint/shared";
 
 describe("frontmatter 単一正本 (PLAN-L7-433 Q1)", () => {
   it("U-FMSH-001: LF/CRLF を同じ mapping として抽出する", () => {
@@ -55,5 +60,29 @@ describe("PLAN snapshot loader (PLAN-L7-433 Q3)", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+});
+
+describe("frontmatter scalar 単一正本 (PLAN-L7-433 Q4)", () => {
+  it("U-FMSC-001: quote/comment/hashを一貫して解釈する", () => {
+    const source = [
+      'status: "confirmed" # terminal note',
+      "single: 'value' # note",
+      'quoted_hash: "value # retained" # removed',
+      "plain_hash: value # removed",
+    ].join("\n");
+    expect({
+      status: fmValue(source, "status"),
+      single: fmValue(source, "single"),
+      quotedHash: fmValue(source, "quoted_hash"),
+      plainHash: fmValue(source, "plain_hash"),
+      missing: fmValue(source, "missing"),
+    }).toEqual({
+      status: "confirmed",
+      single: "value",
+      quotedHash: "value # retained",
+      plainHash: "value",
+      missing: undefined,
+    });
   });
 });

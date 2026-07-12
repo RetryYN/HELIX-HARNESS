@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { markdownFrontmatter } from "../lint/shared";
+import { fmValueOrEmpty as frontmatterValue, markdownFrontmatter } from "../lint/shared";
 import { upsertSearchReference } from "../search/index";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
@@ -48,11 +48,6 @@ function assetFiles(dir: string): string[] {
     else if (name.isFile() && /\.(md|ya?ml)$/i.test(name.name)) out.push(path);
   }
   return out.sort();
-}
-
-function frontmatterValue(content: string, key: string): string {
-  const match = content.match(new RegExp(`^${key}:\\s*"?([^"\\r\\n]+)"?`, "m"));
-  return match?.[1]?.trim() ?? "";
 }
 
 function metadataFromContent(path: string, content: string): Record<string, unknown> {

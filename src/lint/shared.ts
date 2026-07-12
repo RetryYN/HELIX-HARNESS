@@ -43,13 +43,39 @@ export function loadPlanDocs(repoRoot: string = process.cwd()): LoadedPlanDoc[] 
     .map((file) => ({ file, content: readFileSync(join(plansDir, file), "utf8") }));
 }
 
+/** frontmatter scalar の quote 外にある YAML inline comment を除く。 */
+function stripInlineYamlComment(value: string): string {
+  let quote: '"' | "'" | null = null;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if ((char === '"' || char === "'") && (index === 0 || value[index - 1] !== "\\")) {
+      quote = quote === char ? null : (quote ?? char);
+    } else if (
+      char === "#" &&
+      quote === null &&
+      (index === 0 || /\s/.test(value[index - 1] ?? ""))
+    ) {
+      return value.slice(0, index).trim();
+    }
+  }
+  return value.trim();
+}
+
 /**
- * frontmatter 1 行 `key: value` の value を取り出す。
- * 末尾の YAML inline コメント (` # ...`) は値に含めない (scrum-reverse 版を canonical 採用)。
- * 値なし / key 不在は undefined。
+ * frontmatter 1 行 `key: value` の scalar value を取り出す単一正本。
+ * quote 外の inline comment を除き、対になった単一/二重 quote を外す。値なし / key 不在は undefined。
  */
 export function fmValue(content: string, key: string): string | undefined {
-  return content.match(new RegExp(`^${key}:\\s*(.+?)\\s*(?:#.*)?$`, "m"))?.[1]?.trim();
+  const raw = content.match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"))?.[1];
+  if (raw === undefined) return undefined;
+  const withoutComment = stripInlineYamlComment(raw);
+  const quoted = withoutComment.match(/^(["'])([\s\S]*)\1$/);
+  return (quoted?.[2] ?? withoutComment).trim();
+}
+
+/** empty-string contract を持つ legacy caller 用adapter。scalar解釈は fmValue にのみ委ねる。 */
+export function fmValueOrEmpty(content: string, key: string): string {
+  return fmValue(content, key) ?? "";
 }
 
 /**
