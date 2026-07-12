@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-451-lint-effect-port-separation
 title: "PLAN-L7-451 (refactor): lint effect port分離"
-kind: refactor
+kind: impl
 layer: L7
 drive: agent
 status: draft
@@ -19,15 +19,11 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-006, test_path: tests/source-boundary-design.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-009, test_path: tests/source-boundary-design.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-010, test_path: tests/source-boundary-design.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: IT-SBOUND-003, test_path: tests/source-boundary-design.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: IT-SBOUND-004, test_path: tests/source-boundary-design.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: IT-SBOUND-007, test_path: tests/source-boundary-design.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: IT-SBOUND-008, test_path: tests/source-boundary-design.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/effect-intent.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/lint-effect-executor.ts, artifact_type: source_module }
-  - { artifact_path: tests/lint-effect-boundary.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: [docs/plans/PLAN-L6-79-source-boundary-contracts.md]

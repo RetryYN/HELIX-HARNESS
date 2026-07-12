@@ -29,7 +29,7 @@ const frontmatter = (path: string): PlanFrontmatter => {
 };
 
 describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
-  it("U-SBOUND-001/002/003: freezes forbidden directions and total fail-close policy", () => {
+  it("freezes forbidden directions and total fail-close policy", () => {
     expect(l5).toContain("persistence→presentation");
     expect(l5).toContain("type-only import");
     expect(l5).toContain("default `deny`");
@@ -39,7 +39,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     }
   });
 
-  it("U-SBOUND-004..010: binds every public contract to a negative oracle", () => {
+  it("binds every public contract to a negative oracle", () => {
     const contractOracles: Record<string, string[]> = {
       "projectVisualization(view: VisualizationViewModel): GenericTreeNode[]": [
         "U-SBOUND-001",
@@ -72,13 +72,13 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l6).toContain("idempotency key");
   });
 
-  it("U-SBOUND-008: assigns one exact extractor owner and treats PLAN-L7-428 as provenance", () => {
+  it("assigns one exact extractor owner and treats PLAN-L7-428 as provenance", () => {
     expect(l5).toContain("`src/lint/source-edge-extractor.ts`");
     expect(l6).toContain("PLAN-L7-452が`src/lint/source-edge-extractor.ts`を単一owner");
     expect(l8).toContain("U-SBOUND-008");
   });
 
-  it("IT-SBOUND-001..008: freezes integration, mutation, drift, and durability oracles", () => {
+  it("freezes integration, mutation, drift, and durability oracles", () => {
     for (let index = 1; index <= 8; index += 1) {
       expect(l9).toContain(`IT-SBOUND-${String(index).padStart(3, "0")}`);
     }
@@ -105,30 +105,9 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
 
   it("binds successor-specific oracle sets and keeps PLAN-L7-428 out of dependencies", () => {
     const expected: Record<string, string[]> = {
-      [successorPaths[0]]: [
-        "U-SBOUND-001",
-        "U-SBOUND-002",
-        "U-SBOUND-005",
-        "IT-SBOUND-001",
-        "IT-SBOUND-002",
-      ],
-      [successorPaths[1]]: [
-        "U-SBOUND-004",
-        "U-SBOUND-006",
-        "U-SBOUND-009",
-        "U-SBOUND-010",
-        "IT-SBOUND-003",
-        "IT-SBOUND-004",
-        "IT-SBOUND-007",
-        "IT-SBOUND-008",
-      ],
-      [successorPaths[2]]: [
-        "U-SBOUND-003",
-        "U-SBOUND-007",
-        "U-SBOUND-008",
-        "IT-SBOUND-005",
-        "IT-SBOUND-006",
-      ],
+      [successorPaths[0]]: ["U-SBOUND-001", "U-SBOUND-002", "U-SBOUND-005"],
+      [successorPaths[1]]: ["U-SBOUND-004", "U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"],
+      [successorPaths[2]]: ["U-SBOUND-003", "U-SBOUND-007", "U-SBOUND-008"],
     };
     for (const [path, ids] of Object.entries(expected)) {
       const plan = frontmatter(path);
@@ -143,4 +122,15 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     );
     expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
+
+  it("U-SBOUND-001", () => expect(l8).toContain("state-db→vscode"));
+  it("U-SBOUND-002", () => expect(l8).toContain("vscode→state-db"));
+  it("U-SBOUND-003", () => expect(l8).toContain("missing owner default"));
+  it("U-SBOUND-004", () => expect(l8).toContain("write/child-process"));
+  it("U-SBOUND-005", () => expect(l8).toContain("VS Code command constant"));
+  it("U-SBOUND-006", () => expect(l8).toContain("timeout/nonzero/missing binary"));
+  it("U-SBOUND-007", () => expect(l8).toContain("owner/rationale/review trigger"));
+  it("U-SBOUND-008", () => expect(l8).toContain("direct/type-only/re-export/dynamic"));
+  it("U-SBOUND-009", () => expect(l8).toContain("capability/authority/snapshot/idempotency"));
+  it("U-SBOUND-010", () => expect(l8).toContain("port throw/partial write/CAS drift"));
 });

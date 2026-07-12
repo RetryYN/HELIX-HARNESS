@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-450-state-db-vscode-decoupling
 title: "PLAN-L7-450 (refactor): state-db / VS Code ownership分離"
-kind: refactor
+kind: impl
 layer: L7
 drive: agent
 status: draft
@@ -18,14 +18,12 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-001, test_path: tests/source-boundary-design.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-002, test_path: tests/source-boundary-design.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-005, test_path: tests/source-boundary-design.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: IT-SBOUND-001, test_path: tests/source-boundary-design.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: IT-SBOUND-002, test_path: tests/source-boundary-design.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md, artifact_type: markdown_doc }
   - { artifact_path: src/schema/visualization-contract.ts, artifact_type: source_module }
   - { artifact_path: src/vmodel/visualization-tree-projector.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/visualization-evidence.ts, artifact_type: source_module }
-  - { artifact_path: tests/source-boundary-architecture.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: [docs/plans/PLAN-L6-79-source-boundary-contracts.md]

@@ -8,18 +8,18 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 
 # source boundary contracts 単体テスト設計
 
-| oracle | 反例 | 期待結果 |
-|---|---|---|
-| U-SBOUND-001 | state-db→vscodeのdirect/type-only edge | deny |
-| U-SBOUND-002 | vscode→state-dbのimplementation edge | deny |
-| U-SBOUND-003 | missing owner default/EMPTY/new from/new to policy | unspecifiedエラー |
-| U-SBOUND-004 | lint analyzerにwrite/child-process import | violation |
-| U-SBOUND-005 | generic projectorにVS Code command constant | violation |
-| U-SBOUND-006 | probeのtimeout/nonzero/missing binary | typed blocked receipt |
-| U-SBOUND-007 | policy owner/rationale/review trigger欠落 | coverage violation |
-| U-SBOUND-008 | direct/type-only/re-export/dynamic edge fixture | `src/lint/source-edge-extractor.ts`の同じSourceEdgeへ正規化 |
-| U-SBOUND-009 | capability/authority/snapshot/idempotency変異 | effect callback 0、blocked |
-| U-SBOUND-010 | port throw/partial write/CAS drift | accepted 0、uncertainまたはblocked |
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SBOUND-001 | state-db→vscode edge | direct/type-onlyともdeny | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-002 | vscode→state-db edge | implementation edgeをdeny | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-003 | policy coverage | missing owner default/EMPTY/new from/new toをunspecifiedエラー | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-004 | lint analyzer | write/child-process importをviolation | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-005 | generic projector | VS Code command constantをviolation | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-006 | probe failure | timeout/nonzero/missing binaryをtyped blocked receipt化 | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-007 | policy metadata | owner/rationale/review trigger欠落をcoverage violation化 | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-008 | source edge | direct/type-only/re-export/dynamicを同じSourceEdgeへ正規化 | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-009 | effect authority | capability/authority/snapshot/idempotency変異でeffect callback 0、blocked | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-010 | durable materialize | port throw/partial write/CAS driftでaccepted 0、uncertainまたはblocked | `tests/source-boundary-design.test.ts` |
 
 fixtureはset比較だけでなくedge kind、from/to owner、decision reasonを固定する。allowlist件数baseline追加で逃げず、
 各新module、unknown from/to、owner default欠落、explicit exception欠落をunspecifiedとして赤にするmutation oracleを持つ。
