@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeOutstandingWork,
+  clearOutstandingWorkRunCache,
   completionDecisionPacketForOutstanding,
   completionReadinessForOutstanding,
   completionReadinessLine,
@@ -374,6 +375,30 @@ describe("analyzeOutstandingWork", () => {
     expect(o.blockersByKind).toEqual({});
     expect(o.items).toEqual([]);
     expect(o.semanticFeatureFrontierRecords).toEqual([]);
+  });
+});
+
+describe("outstanding synchronous run snapshot (PLAN-L7-433 C3)", () => {
+  it("U-OUTSNAP-001: 同期run内は同一snapshot、microtask後は再計算する", async () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-snapshot-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-TEST.md"),
+        "---\nplan_id: PLAN-L7-TEST\nlayer: L7\nkind: impl\nstatus: draft\n---\n",
+      );
+      clearOutstandingWorkRunCache();
+      const first = computeOutstandingWork(root);
+      const second = computeOutstandingWork(root);
+      expect(second).toBe(first);
+      await Promise.resolve();
+      const third = computeOutstandingWork(root);
+      expect(third).not.toBe(first);
+      expect(third).toEqual(first);
+    } finally {
+      clearOutstandingWorkRunCache();
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 

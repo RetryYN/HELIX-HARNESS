@@ -1288,3 +1288,4 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-TIMEUTIL-001 | `nowIso` | UTC ISO-8601 millisecond形式を返し、対象6 module中の定義をshared 1件にする。 |
 | U-FWALK-001 | `walkFiles` | nested temp treeでextension filter、安定順、POSIX relative pathを固定する。 |
 | U-FWALK-002 | recursive inventory caller | 対象7 gateが独自`readdirSync`を持たずshared walkerへ集約されている。 |
+| U-OUTSNAP-001 | `computeOutstandingWork` | 同期2呼出は同一参照、microtask後は再計算した同値別参照になる。 |

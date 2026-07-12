@@ -23,7 +23,7 @@
 
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { frontmatterSchema } from "../schema/frontmatter";
 import { isRecord } from "../shared/value-guards";
@@ -1098,8 +1098,32 @@ function consumerSetupBoundaryPlanRow(repoRoot: string): OutstandingPlanRow | nu
   };
 }
 
-/** repo から outstanding work を集計する (I/O 失敗は fail-open でゼロ寄せ、informational surface)。 */
+const outstandingRunCache = new Map<string, OutstandingWork>();
+let outstandingRunCacheClearScheduled = false;
+
+function scheduleOutstandingRunCacheClear(): void {
+  if (outstandingRunCacheClearScheduled) return;
+  outstandingRunCacheClearScheduled = true;
+  queueMicrotask(() => {
+    outstandingRunCache.clear();
+    outstandingRunCacheClearScheduled = false;
+  });
+}
+
+/** test/明示run境界用。通常はmicrotask境界で自動clearされる。 */
+export function clearOutstandingWorkRunCache(): void {
+  outstandingRunCache.clear();
+}
+
+/**
+ * repo から outstanding work を集計する。同一同期run内はrepoRoot単位でsnapshotを共有し、
+ * microtask境界で破棄するため次command/非同期filesystem更新へstale値を持ち越さない。
+ * I/O 失敗は従来どおりfail-openでゼロ寄せする。
+ */
 export function computeOutstandingWork(repoRoot: string): OutstandingWork {
+  const cacheKey = resolve(repoRoot);
+  const cached = outstandingRunCache.get(cacheKey);
+  if (cached) return cached;
   const plans = loadOutstandingPlanRows(repoRoot);
   let openDefers = 0;
   try {
@@ -1107,7 +1131,10 @@ export function computeOutstandingWork(repoRoot: string): OutstandingWork {
   } catch {
     openDefers = 0;
   }
-  return analyzeOutstandingWork(plans, openDefers);
+  const result = analyzeOutstandingWork(plans, openDefers);
+  outstandingRunCache.set(cacheKey, result);
+  scheduleOutstandingRunCacheClear();
+  return result;
 }
 
 /** status text / doctor 向け 1 行サマリ。 */
