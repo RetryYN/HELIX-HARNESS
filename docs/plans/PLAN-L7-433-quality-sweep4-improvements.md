@@ -179,6 +179,8 @@ dependencies:
 
 ### C1: consumer 配布 hook 契約が実在しない `helix hook work-guard` を配線（high・最優先）
 
+> 実装済み: PLAN-L7-441-hook-contract-repair（2026-07-12、cross-runtime review pass）。
+
 - 事象: `src/setup/templates.ts:229,326` と `src/setup/index.ts:183,214` は consumer 向け hook 設定に
   `helix hook work-guard` を宣言するが、`src/cli.ts:3417` hook group の subcommand は
   `agent-guard` / `git-command-guard` / `post-tool-use` / `subagent-stop` のみ。実行実測で
@@ -190,6 +192,8 @@ dependencies:
 - 受け入れ: `helix hook work-guard` が動作する regression test green + template↔CLI 突合テスト green。
 
 ### C2: agent-guard matcher の三面不一致（medium）
+
+> 実装済み: PLAN-L7-441-hook-contract-repair（2026-07-12、cross-runtime review pass）。
 
 - 事象: dev repo `.claude/settings.json` は matcher=`"Agent"` のみ、policy 正本
   `src/runtime/agent-guard-policy.ts:60` は `{Agent, Task}`、consumer template

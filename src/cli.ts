@@ -344,6 +344,7 @@ import {
   normalizeRepoRelative,
   resolveForeignEditOverride,
 } from "./runtime/work-guard";
+import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { findReference } from "./search/index";
 import {
   buildCleanDistributionPlan,
@@ -3580,62 +3581,6 @@ hook
   });
 
 hook
-  .command("work-guard")
-  .description("block edits to foreign uncommitted files before execution")
-  .action(() => {
-    const repoRoot = process.cwd();
-    const input = readStrictHookInput();
-    if (input === null) {
-      // work-guard は既存 hook shim と同じく、検証不能時は作業停止を避ける fail-open 契約。
-      process.exitCode = 0;
-      return;
-    }
-    const sessionId = (input as { session_id?: string }).session_id;
-    const targetPaths = extractEditTargets(input.tool_input).map((target) =>
-      normalizeRepoRelative(target, repoRoot),
-    );
-    const markerPath = join(repoRoot, ".helix", "state", "foreign-edit-override");
-    const markerReason = existsSync(markerPath) ? readFileSync(markerPath, "utf8") : null;
-    const override = resolveForeignEditOverride({
-      env: process.env.HELIX_ALLOW_FOREIGN_EDIT,
-      markerReason,
-    });
-    const result = evaluateWorkGuardTargets({
-      targetPaths,
-      uncommittedFiles: loadChangedFiles(repoRoot),
-      sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, sessionId),
-      bypass: override.bypass,
-    });
-    if (override.source === "marker") {
-      const withoutBypass = evaluateWorkGuardTargets({
-        targetPaths,
-        uncommittedFiles: loadChangedFiles(repoRoot),
-        sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, sessionId),
-        bypass: false,
-      });
-      if (withoutBypass.decision === "block") {
-        const auditPath = join(repoRoot, ".helix", "logs", "foreign-edit-overrides.jsonl");
-        mkdirSync(dirname(auditPath), { recursive: true });
-        appendFileSync(
-          auditPath,
-          `${JSON.stringify({
-            ts: new Date().toISOString(),
-            target: targetPaths.join(", "),
-            reason: override.reason,
-            sessionId: sessionId ?? "helix-cli",
-          })}\n`,
-        );
-        rmSync(markerPath, { force: true });
-      }
-    }
-    if (result.blocked?.message) process.stderr.write(`${result.blocked.message}\n`);
-    if (result.decision === "pass") {
-      process.stdout.write(`work-guard: pass (${result.reason})\n`);
-    }
-    process.exitCode = result.decision === "block" ? 2 : 0;
-  });
-
-hook
   .command("git-command-guard")
   .description("block destructive git history/worktree operations before shell execution")
   .action(() => {
@@ -3679,6 +3624,25 @@ hook
       process.stdout.write(`git-command-guard: pass (${result.reason})\n`);
     }
     process.exitCode = result.decision === "block" ? 2 : 0;
+  });
+
+hook
+  .command("work-guard")
+  .description("block edits to foreign uncommitted files (hybrid runtime collision guard)")
+  .action(() => {
+    // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
+    // 実行本体は dev repo hook (.claude/hooks/work-guard.ts) と共有。fail-open 方針は共有 runner 側。
+    const raw = process.stdin.isTTY ? "" : readStdin();
+    const outcome = runWorkGuardHook({
+      repoRoot: process.cwd(),
+      rawInput: raw,
+      env: process.env,
+    });
+    if (outcome.message) process.stderr.write(`${outcome.message}\n`);
+    if (outcome.exitCode === 0) {
+      process.stdout.write("work-guard: pass\n");
+    }
+    process.exitCode = outcome.exitCode;
   });
 
 hook
