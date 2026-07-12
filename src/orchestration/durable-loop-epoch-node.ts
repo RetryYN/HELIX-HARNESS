@@ -175,7 +175,7 @@ function readIfExists(path: string): string | null {
 }
 
 function fsyncPath(path: string): void {
-  const fd = openSync(path, "r");
+  const fd = openSync(path, platform() === "win32" ? "r+" : "r");
   try {
     fsyncSync(fd);
   } finally {
