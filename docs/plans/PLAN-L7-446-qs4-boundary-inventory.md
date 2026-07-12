@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-446-qs4-boundary-inventory
-title: "PLAN-L7-446 (research): QS4 module boundary Vペア入口監査"
-kind: research
+title: "PLAN-L7-446 (troubleshoot): QS4 module boundary Vペア入口監査"
+kind: troubleshoot
 layer: L7
 drive: agent
 status: draft
-route_mode: research
+route_mode: incident
 entry_signals: ["po_directive:2026-07-13 /goal『設計基準に合わせて検出力を強化』に基づきPLAN-L7-442 QS4-BOUNDARY #11/#13/#15をexact successorへ接続"]
 created: 2026-07-13
 updated: 2026-07-13

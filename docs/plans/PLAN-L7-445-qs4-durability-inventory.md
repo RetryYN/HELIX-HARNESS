@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-445-qs4-durability-inventory
-title: "PLAN-L7-445 (research): QS4 durability Vペア入口監査"
-kind: research
+title: "PLAN-L7-445 (troubleshoot): QS4 durability Vペア入口監査"
+kind: troubleshoot
 layer: L7
 drive: agent
 status: draft
-route_mode: research
+route_mode: incident
 entry_signals: ["po_directive:2026-07-13 /goal『抜け漏れを許さず検出力を強化』に基づきPLAN-L7-442 QS4-DURABILITY #29/#30をexact successorへ接続"]
 created: 2026-07-13
 updated: 2026-07-13

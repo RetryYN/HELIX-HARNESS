@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-448-qs4-test-infra-inventory
-title: "PLAN-L7-448 (research): QS4 test infrastructure Vペア入口監査"
-kind: research
+title: "PLAN-L7-448 (troubleshoot): QS4 test infrastructure Vペア入口監査"
+kind: troubleshoot
 layer: L7
 drive: agent
 status: draft
-route_mode: research
+route_mode: incident
 entry_signals: ["po_directive:2026-07-13 /goal『テストや検出基は設計に追従』に基づきPLAN-L7-442 QS4-TEST-INFRA #6/#19/#21をexact successorへ接続"]
 created: 2026-07-13
 updated: 2026-07-13

@@ -1,11 +1,11 @@
 ---
 plan_id: PLAN-L7-447-qs4-doctor-context-inventory
-title: "PLAN-L7-447 (research): QS4 doctor context Vペア入口監査"
-kind: research
+title: "PLAN-L7-447 (troubleshoot): QS4 doctor context Vペア入口監査"
+kind: troubleshoot
 layer: L7
 drive: agent
 status: draft
-route_mode: research
+route_mode: incident
 entry_signals: ["po_directive:2026-07-13 /goal『速度と精度とコストを担保』に基づきPLAN-L7-442 QS4-DOCTOR-CONTEXT 12件をexact successorへ接続"]
 created: 2026-07-13
 updated: 2026-07-13
