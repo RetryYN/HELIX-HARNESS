@@ -136,5 +136,10 @@ describe("closure materialization atomic lock", () => {
     expect(source).toContain('"-NonInteractive"');
     expect(source).toContain('code === "EPERM" || code === "EACCES"');
     expect(source).toContain('if (platform() === "win32") return;');
+    const transaction = readFileSync(
+      join(import.meta.dirname, "../src/state-db/closure-evidence-materialization.ts"),
+      "utf8",
+    );
+    expect(transaction).toContain('if (platform() === "win32") return;');
   });
 });

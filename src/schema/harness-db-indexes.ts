@@ -4,8 +4,7 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
     name: "idx_closure_process_receipts_dedupe",
     table: "closure_process_receipts",
-    columns: ["repository_head", "dedupe_key"],
-    unique: true,
+    columns: ["repository_head", "dedupe_key", "completed_at"],
   },
   {
     name: "idx_closure_process_receipts_materialization",

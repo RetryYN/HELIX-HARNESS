@@ -85,7 +85,11 @@ function fixture() {
     schema_version: "closure-authority-registry.v1",
     authorities: [authority],
   });
-  const createRunner = (repositoryHead: string, suppliedSpawn?: ClosureSpawn) =>
+  const createRunner = (
+    repositoryHead: string,
+    suppliedSpawn?: ClosureSpawn,
+    runnerNow = "2026-07-12T00:00:00.000Z",
+  ) =>
     new ClosureEvidenceRunner({
       repoRoot: root,
       repositoryHead,
@@ -122,7 +126,7 @@ function fixture() {
                 })
               : "gate green\n",
         })),
-      now: () => "2026-07-12T00:00:00.000Z",
+      now: () => runnerNow,
     });
   const runner = createRunner(head);
   const input = {
@@ -467,5 +471,51 @@ describe("closure evidence materialization transaction", () => {
     ).rejects.toThrow(/after-files-before-commit/);
     expect(respawned).toBe(0);
     expect(readFileSync(recordPath)).toEqual(before);
+  });
+
+  it("24時間超のsame-HEAD receiptはhistoryを保持したままfresh processを再実行する", async () => {
+    const { db, input, createRunner } = fixture();
+    await materializeClosureEvidence(input);
+    let spawned = 0;
+    const freshTime = "2026-07-13T01:00:00.000Z";
+    const freshRunner = createRunner(
+      input.repositoryHead,
+      ({ executable }) => {
+        spawned += 1;
+        return {
+          exitCode: 0,
+          signal: null,
+          timedOut: false,
+          stderr: "",
+          stdout:
+            executable === "bunx"
+              ? JSON.stringify({
+                  success: true,
+                  testResults: [
+                    {
+                      name: "fresh fixture",
+                      assertionResults: [
+                        {
+                          fullName: "U-CMAT-007 fresh exact join",
+                          title: "U-CMAT-007",
+                          status: "passed",
+                        },
+                      ],
+                    },
+                  ],
+                })
+              : "fresh gate green\n",
+        };
+      },
+      freshTime,
+    );
+    await materializeClosureEvidence({
+      ...input,
+      id: () => "materialization-fixture-fresh",
+      now: () => freshTime,
+      runner: freshRunner,
+    });
+    expect(spawned).toBe(2);
+    expect(db.prepare("SELECT COUNT(*) AS n FROM closure_process_receipts").get()?.n).toBe(4);
   });
 });

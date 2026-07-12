@@ -97,6 +97,15 @@ describe("closure evidence typed subprocess runner", () => {
     expect(asyncSpawn).toHaveBeenCalledTimes(1);
     expect(receipts[0]).toBe(receipts[1]);
     expect(receipts[1]).toBe(receipts[2]);
+    const crossKind = await runner.runTypedCommands(
+      [
+        { kind: "test", executable: "bun", argv: ["--version"] },
+        { kind: "gate", executable: "bun", argv: ["--version"] },
+      ],
+      { concurrency: 2 },
+    );
+    expect(crossKind.map((receipt) => receipt.kind)).toEqual(["test", "gate"]);
+    expect(crossKind[0]?.dedupe_key).not.toBe(crossKind[1]?.dedupe_key);
   });
 
   it("async FIFO poolは最初のfailure観測後に未dispatch commandを開始しない", async () => {
@@ -188,9 +197,18 @@ describe("closure evidence typed subprocess runner", () => {
     });
     runner.runTest({ testPath, oracleIds: ["U-CMAT-006"] });
     expect(spawn).toHaveBeenCalledTimes(1);
-    expect(closureCommandDedupeKey(HEAD, { executable: "bunx", argv: ["x"] })).not.toBe(
-      closureCommandDedupeKey("b".repeat(40), { executable: "bunx", argv: ["x"] }),
+    expect(
+      closureCommandDedupeKey(HEAD, { kind: "test", executable: "bunx", argv: ["x"] }),
+    ).not.toBe(
+      closureCommandDedupeKey("b".repeat(40), {
+        kind: "test",
+        executable: "bunx",
+        argv: ["x"],
+      }),
     );
+    expect(
+      closureCommandDedupeKey(HEAD, { kind: "test", executable: "bunx", argv: ["x"] }),
+    ).not.toBe(closureCommandDedupeKey(HEAD, { kind: "gate", executable: "bunx", argv: ["x"] }));
   });
 
   it("oracle proof: U-CMAT-005 missing、duplicate、未passを拒否する", () => {

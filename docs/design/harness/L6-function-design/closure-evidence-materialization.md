@@ -79,8 +79,9 @@ write直前CASを満たす場合だけ許可する。
 
 - 361 candidateを最大100件のbounded windowで扱うが、runner commandは重複test pathをHEAD+command単位で共有する。
 - concurrencyは既定1、明示上限4。DB/JSONL publishは単一writerとする。
-- `closure_process_receipts`はHEAD+typed argvごとの物理processをexactly-oneで保持し、複数PLAN/oracleの
-  論理runは`process_receipt_key`で1:N参照する。stdout/stderrは共有artifactとdigestを永続化し、
+- `closure_process_receipts`はHEAD+kind+typed argvのcommand identityごとに24時間以内のfresh物理processを
+  exactly-one reuseし、stale後はimmutable historyを残して新しいphysical receiptを作る。複数PLAN/oracleの
+  論理runは選択した`process_receipt_key`で1:N参照する。stdout/stderrは共有artifactとdigestを永続化し、
   logical run、attestation、artifactとのjoin不一致をapproval gateで拒否する。
 - 全候補をメモリへ無制限保持せず、分類・実行・record生成をwindow単位で行う。
 

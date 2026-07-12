@@ -318,7 +318,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-CMAT-004 | runner固定 | bindingをsingle-path vitest argvへ固定し、任意shell、path traversal、未知gate commandを拒否する | `tests/closure-evidence-runner.test.ts` |
 | U-CMAT-005 | dedupとoracle | 同一HEAD+argvは1回だけ実行し、JSON結果のcollect/execute/passを確認してPLAN+oracleごとexactly-one test caseを作る | `tests/closure-evidence-runner.test.ts` |
 | U-CMAT-006 | all-or-none staging | 途中exit非0、timeout、signal、output欠落時はpersistent DB/JSONL/run record/manifestを変更しない | `tests/closure-evidence-materialization.test.ts` |
-| U-CMAT-007 | exact join | test/gateの物理spawn receiptはHEAD+argvごとexactly-one、論理runは1:N参照し、DB、JSONL attestation、run record、共有stdout/stderr artifact bytesがmaterialization identityとdigestで完全一致する | `tests/closure-evidence-materialization.test.ts`、`tests/closure-process-receipt-schema.test.ts` |
+| U-CMAT-007 | exact join | test/gateの物理spawn receiptはHEAD+kind+argvごとfresh期間内exactly-one、stale後はimmutable historyを保持して更新し、論理runは選択receiptを1:N参照する。DB、JSONL attestation、run record、共有stdout/stderr artifact bytesがmaterialization identityとdigestで完全一致する | `tests/closure-evidence-materialization.test.ts`、`tests/closure-process-receipt-schema.test.ts` |
 | U-CMAT-008 | crash recovery | DB/JSONL/filesystem各境界のcrashから再開/rollbackし、孤立eventとpartial manifestを残さない | `tests/closure-evidence-materialization.test.ts` |
 | U-CMAT-009 | bounded production | 361件を100件以下のwindow、実worker pool concurrency上限4、HEAD+argv横断dedupe、single DB writerで欠落・重複なく処理する | `tests/closure-evidence-materialization.test.ts`、`tests/closure-evidence-runner.test.ts` |
 | U-CMAT-010 | trust/human境界 | materializationはstatusを変更せず、executeはfresh required-check CASと不可逆human境界を維持する | `tests/closure-evidence-materialization.test.ts` |

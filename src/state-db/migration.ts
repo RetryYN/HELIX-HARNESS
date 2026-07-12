@@ -169,6 +169,7 @@ function ensureClosureEvidenceImmutability(db: HarnessDb): void {
  */
 export function migrate(db: HarnessDb): MigrationResult {
   const fromVersion = db.userVersion();
+  if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
   const ddls = schemaDdl();
   for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
   const addedColumns = addMissingColumns(db);

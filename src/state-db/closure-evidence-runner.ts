@@ -26,6 +26,7 @@ export interface ClosureProcessReceipt {
   repository_head: string;
   executable: string;
   argv: string[];
+  command_dedupe_key: `sha256:${string}`;
   dedupe_key: `sha256:${string}`;
   exit_code: number;
   signal: null;
@@ -203,10 +204,12 @@ function canonicalTestPath(repoRoot: string, testPath: string): string {
 
 export function closureCommandDedupeKey(
   repositoryHead: string,
-  command: Pick<TypedClosureCommand, "executable" | "argv">,
+  command: Pick<TypedClosureCommand, "kind" | "executable" | "argv">,
 ): `sha256:${string}` {
   validateHead(repositoryHead);
-  return sha256(JSON.stringify([repositoryHead, command.executable, ...command.argv]));
+  return sha256(
+    JSON.stringify([repositoryHead, command.kind, command.executable, ...command.argv]),
+  );
 }
 
 function executeTypedCommand(input: {
@@ -234,21 +237,26 @@ function executeTypedCommand(input: {
     throw new Error(`${input.command.kind} subprocess exited ${output.exitCode}`);
   if (output.stdout.length === 0)
     throw new Error(`${input.command.kind} subprocess produced no stdout`);
+  const commandDedupeKey = closureCommandDedupeKey(input.repositoryHead, input.command);
+  const completedAt = input.now();
+  const stdoutDigest = sha256(output.stdout);
+  const stderrDigest = sha256(output.stderr);
   return {
     schema_version: "closure-process-receipt.v1",
     kind: input.command.kind,
     repository_head: input.repositoryHead,
     executable: input.command.executable,
     argv: [...input.command.argv],
-    dedupe_key: closureCommandDedupeKey(input.repositoryHead, input.command),
+    command_dedupe_key: commandDedupeKey,
+    dedupe_key: sha256(JSON.stringify([commandDedupeKey, completedAt, stdoutDigest, stderrDigest])),
     exit_code: 0,
     signal: null,
     timed_out: false,
     stdout: output.stdout,
     stderr: output.stderr,
-    stdout_digest: sha256(output.stdout),
-    stderr_digest: sha256(output.stderr),
-    completed_at: input.now(),
+    stdout_digest: stdoutDigest,
+    stderr_digest: stderrDigest,
+    completed_at: completedAt,
   };
 }
 
@@ -287,21 +295,26 @@ function receiptFromOutput(input: {
     throw new Error(`${input.command.kind} subprocess exited ${output.exitCode}`);
   if (output.stdout.length === 0)
     throw new Error(`${input.command.kind} subprocess produced no stdout`);
+  const commandDedupeKey = closureCommandDedupeKey(input.repositoryHead, input.command);
+  const completedAt = input.now();
+  const stdoutDigest = sha256(output.stdout);
+  const stderrDigest = sha256(output.stderr);
   return {
     schema_version: "closure-process-receipt.v1",
     kind: input.command.kind,
     repository_head: input.repositoryHead,
     executable: input.command.executable,
     argv: [...input.command.argv],
-    dedupe_key: closureCommandDedupeKey(input.repositoryHead, input.command),
+    command_dedupe_key: commandDedupeKey,
+    dedupe_key: sha256(JSON.stringify([commandDedupeKey, completedAt, stdoutDigest, stderrDigest])),
     exit_code: 0,
     signal: null,
     timed_out: false,
     stdout: output.stdout,
     stderr: output.stderr,
-    stdout_digest: sha256(output.stdout),
-    stderr_digest: sha256(output.stderr),
-    completed_at: input.now(),
+    stdout_digest: stdoutDigest,
+    stderr_digest: stderrDigest,
+    completed_at: completedAt,
   };
 }
 

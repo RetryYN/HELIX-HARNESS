@@ -15,6 +15,7 @@ import {
   truncateSync,
   writeFileSync,
 } from "node:fs";
+import { platform } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
 import type {
   ClosureAuthority,
@@ -166,6 +167,7 @@ function durable(path: string, bytes: string): void {
   }
 }
 function fsyncDirectory(path: string): void {
+  if (platform() === "win32") return;
   const fd = openSync(path, "r");
   try {
     fsyncSync(fd);
@@ -339,6 +341,7 @@ async function materializeClosureEvidenceUnlocked(
     throw new Error("concurrency must be 1..4");
   const id = input.id?.() ?? randomUUID();
   const completedAt = input.now?.() ?? new Date().toISOString();
+  const receiptFreshAfter = new Date(Date.parse(completedAt) - 86_400_000).toISOString();
   const stageRel = `.helix/tmp/closure-materialization/${id}`;
   const stageRoot = join(input.repoRoot, stageRel);
   mkdirSync(stageRoot, { recursive: true });
@@ -393,9 +396,17 @@ async function materializeClosureEvidenceUnlocked(
         const key = closureCommandDedupeKey(input.repositoryHead, item.command);
         if (receiptCache.has(key)) continue;
         const stored = input.db
-          .prepare("SELECT * FROM closure_process_receipts WHERE process_receipt_key=?")
-          .get(key);
+          .prepare(
+            `SELECT * FROM closure_process_receipts
+             WHERE repository_head=? AND dedupe_key=? AND completed_at>=?
+             ORDER BY completed_at DESC, process_receipt_key DESC LIMIT 1`,
+          )
+          .get(input.repositoryHead, key, receiptFreshAfter);
         if (!stored) continue;
+        const processReceiptKey = String(stored.process_receipt_key ?? "");
+        if (!/^sha256:[0-9a-f]{64}$/.test(processReceiptKey))
+          throw new Error(`persistent physical process receipt key不正: ${key}`);
+        const expectedBasename = processReceiptKey.slice(7);
         const stdoutPath = String(stored.stdout_path ?? "");
         const stderrPath = String(stored.stderr_path ?? "");
         canonicalRegular(input.repoRoot, stdoutPath);
@@ -405,6 +416,10 @@ async function materializeClosureEvidenceUnlocked(
         const argv = JSON.parse(String(stored.argv_json ?? ""));
         if (
           stored.schema_version !== "closure-process-receipt.v1" ||
+          stored.dedupe_key !== key ||
+          stdoutPath !== `.helix/evidence/process-receipts/${expectedBasename}.stdout` ||
+          stderrPath !== `.helix/evidence/process-receipts/${expectedBasename}.stderr` ||
+          !Number.isFinite(Date.parse(String(stored.completed_at ?? ""))) ||
           stored.repository_head !== input.repositoryHead ||
           stored.kind !== item.command.kind ||
           stored.executable !== item.command.executable ||
@@ -423,7 +438,8 @@ async function materializeClosureEvidenceUnlocked(
           repository_head: input.repositoryHead,
           executable: item.command.executable,
           argv: [...item.command.argv],
-          dedupe_key: key,
+          command_dedupe_key: key,
+          dedupe_key: processReceiptKey as `sha256:${string}`,
           exit_code: 0,
           signal: null,
           timed_out: false,
@@ -440,7 +456,7 @@ async function materializeClosureEvidenceUnlocked(
           (command) => !receiptCache.has(closureCommandDedupeKey(input.repositoryHead, command)),
         );
       const executed = await input.runner.runTypedCommands(missing, { concurrency });
-      for (const receipt of executed) receiptCache.set(receipt.dedupe_key, receipt);
+      for (const receipt of executed) receiptCache.set(receipt.command_dedupe_key, receipt);
       for (const item of planned) {
         const receipt = receiptCache.get(
           closureCommandDedupeKey(input.repositoryHead, item.command),
@@ -635,7 +651,7 @@ async function materializeClosureEvidenceUnlocked(
             receipt.repository_head,
             receipt.executable,
             JSON.stringify(receipt.argv),
-            receipt.dedupe_key,
+            receipt.command_dedupe_key,
             receipt.exit_code,
             receipt.signal,
             receipt.timed_out ? 1 : 0,
@@ -647,12 +663,13 @@ async function materializeClosureEvidenceUnlocked(
           );
         const stored = input.db
           .prepare(
-            "SELECT repository_head,kind,executable,argv_json,exit_code,stdout_digest,stderr_digest FROM closure_process_receipts WHERE process_receipt_key=?",
+            "SELECT repository_head,dedupe_key,kind,executable,argv_json,exit_code,stdout_digest,stderr_digest FROM closure_process_receipts WHERE process_receipt_key=?",
           )
           .get(receipt.dedupe_key);
         if (
           !stored ||
           stored.repository_head !== receipt.repository_head ||
+          stored.dedupe_key !== receipt.command_dedupe_key ||
           stored.kind !== receipt.kind ||
           stored.executable !== receipt.executable ||
           stored.argv_json !== JSON.stringify(receipt.argv) ||
