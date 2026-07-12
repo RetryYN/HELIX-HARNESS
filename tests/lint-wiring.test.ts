@@ -103,6 +103,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
       "action-binding-approval-readiness",
       "cutover-readiness",
       "completion-decision-packet",
+      "closure-authority-registry",
       "doc-consistency",
       "entity-coverage",
       "fr-registry-audit",

@@ -19,6 +19,7 @@ import {
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { z } from "zod";
+import type { ClosureAuthorityRegistry } from "./closure-authority-registry";
 import {
   buildProjectClosureApplyPlan,
   buildProjectClosureReviewBundle,
@@ -253,10 +254,10 @@ function renderAccepted(source: string): string {
   return rendered;
 }
 
-function planAuthority(source: string) {
+function planAuthority(source: string, registry?: ClosureAuthorityRegistry) {
   const match = /^---\n([\s\S]*?)\n---\n/.exec(source);
   if (!match?.[1]) throw new Error("strict frontmatterが無い");
-  const parsed = z
+  const schema = z
     .object({
       plan_id: z.string(),
       status: z.enum(["completed", "confirmed"]),
@@ -279,9 +280,38 @@ function planAuthority(source: string) {
         })
         .strict(),
     })
+    .passthrough();
+  const raw = parseYaml(match[1]);
+  const parsed = schema.safeParse(raw);
+  if (parsed.success) return parsed.data;
+  const base = z
+    .object({ plan_id: z.string(), status: z.enum(["completed", "confirmed"]) })
     .passthrough()
-    .parse(parseYaml(match[1]));
-  return parsed;
+    .parse(raw);
+  const authority = registry?.authorities.find((row) => row.plan_id === base.plan_id);
+  if (
+    !authority ||
+    authority.source_digest !== sha256(source) ||
+    authority.migration_reason !== null
+  )
+    throw parsed.error;
+  return {
+    ...base,
+    verification_bindings: authority.bindings.map((binding) => ({
+      oracle_id: binding.oracle_id,
+      test_path: binding.test_path,
+    })),
+    closure_auto_authority: {
+      irreversible_impact: authority.capabilities.some((capability) =>
+        IRREVERSIBLE.has(capability),
+      ),
+      capabilities: authority.capabilities,
+      required_gates: authority.gates.map((gate) => ({
+        gate_id: gate.gate_id,
+        command: gate.command,
+      })),
+    },
+  };
 }
 
 function validateCanonicalRuns(input: {
@@ -336,8 +366,8 @@ function validateCanonicalRuns(input: {
             .get(run.run_id, input.planId, run.oracle_id)
         : input.db
             .prepare(
-              `SELECT gate_run_id AS run_id, gate_id AS oracle_id, status, evidence_path,
-                      checked_at AS completed_at
+              `SELECT gate_run_id AS run_id, gate_id AS oracle_id, session_id, command,
+                      exit_code, status, evidence_path, output_digest, checked_at AS completed_at
                FROM gate_runs WHERE gate_run_id = ? AND plan_id = ? AND gate_id = ?`,
             )
             .get(run.run_id, input.planId, run.oracle_id);
@@ -366,12 +396,17 @@ function validateCanonicalRuns(input: {
         String(dbRow.completed_at ?? "") !== run.completed_at
       )
         errors.push(`${run.run_id}: DB green/output digest不一致`);
-    } else if (
-      String(dbRow.status ?? "") !== "passed" ||
-      String(dbRow.evidence_path ?? "") !== run.output_path ||
-      String(dbRow.completed_at ?? "") !== run.completed_at
-    ) {
-      errors.push(`${run.run_id}: DB gate receipt field不一致`);
+    } else {
+      if (
+        String(dbRow.session_id ?? "").length < 8 ||
+        String(dbRow.command ?? "") !== run.command ||
+        Number(dbRow.exit_code) !== 0 ||
+        String(dbRow.status ?? "") !== "passed" ||
+        String(dbRow.evidence_path ?? "") !== run.output_path ||
+        String(dbRow.output_digest ?? "") !== run.output_digest ||
+        String(dbRow.completed_at ?? "") !== run.completed_at
+      )
+        errors.push(`${run.run_id}: DB gate receipt field不一致`);
     }
     const attestation = input.db
       .prepare("SELECT * FROM runner_attestations WHERE run_id = ?")
@@ -419,7 +454,13 @@ function validateCanonicalRuns(input: {
     else if (run.kind === "test") {
       const command = run.command.trim().replace(/\s+/g, " ");
       const expectedArgv = `bunx vitest run ${expectedCommand}`;
-      if (!/^bunx? vitest run [A-Za-z0-9_./-]+$/.test(command) || command !== expectedArgv)
+      const expectedJsonArgv = `${expectedArgv} --reporter=json`;
+      if (
+        !/^bunx vitest run tests\/[A-Za-z0-9_./-]+\.test\.(?:ts|tsx)(?: --reporter=json)?$/.test(
+          command,
+        ) ||
+        (command !== expectedArgv && command !== expectedJsonArgv)
+      )
         errors.push(`${run.run_id}: test command exact argv不一致`);
       actualTests.add(run.oracle_id);
     } else {
@@ -794,6 +835,7 @@ export function evaluateClosureAutoApproval(input: {
   limit: number;
   offset: number;
   now?: Date;
+  authorityRegistry?: ClosureAuthorityRegistry;
 }): ClosureAutoApprovalEvaluation {
   const { repoRoot, manifest } = input;
   const nowMs = (input.now ?? new Date()).getTime();
@@ -844,7 +886,7 @@ export function evaluateClosureAutoApproval(input: {
       if (sha256(sourceText) !== authority.source_digest)
         blockers.push(`${candidate.planId}: PLAN bytes drift`);
       try {
-        const plan = planAuthority(sourceText);
+        const plan = planAuthority(sourceText, input.authorityRegistry);
         if (plan.plan_id !== candidate.planId) blockers.push(`${candidate.planId}: plan_id不一致`);
         const capabilityIrreversible = plan.closure_auto_authority.capabilities.some((value) =>
           IRREVERSIBLE.has(value),

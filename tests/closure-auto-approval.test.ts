@@ -163,9 +163,19 @@ function fixture(count = 1) {
        VALUES (?, ?, ?, 'U-FIXTURE', 'passed')`,
     ).run(`case:${item.planId}`, `test-run:${item.planId}`, item.planId);
     db.prepare(
-      `INSERT INTO gate_runs (gate_run_id, gate_id, plan_id, status, checked_at, evidence_path)
-       VALUES (?, 'G7', ?, 'passed', ?, ?)`,
-    ).run(`gate-run:${item.planId}`, item.planId, completedAt, gateOutput);
+      `INSERT INTO gate_runs
+       (gate_run_id, gate_id, plan_id, status, checked_at, evidence_path,
+        session_id, command, exit_code, output_digest, materialization_id)
+       VALUES (?, 'G7', ?, 'passed', ?, ?, ?, 'helix gate G7', 0, ?, ?)`,
+    ).run(
+      `gate-run:${item.planId}`,
+      item.planId,
+      completedAt,
+      gateOutput,
+      `gate-run:${item.planId}`,
+      sha(readFileSync(join(root, gateOutput))),
+      `fixture:${item.planId}`,
+    );
     appendRunnerAttestation({
       repoRoot: root,
       db,
@@ -339,9 +349,9 @@ describe("closure auto approval authority", () => {
       `${f.queue[0]?.planId}: test-run:${f.queue[0]?.planId}: output artifact digest drift`,
     );
     const jsonOnly = fixture();
-    jsonOnly.db.prepare("DELETE FROM test_cases").run();
-    jsonOnly.db.prepare("DELETE FROM test_runs").run();
-    jsonOnly.db.prepare("DELETE FROM gate_runs").run();
+    jsonOnly.db.close();
+    jsonOnly.db = openHarnessDb(":memory:", { repoRoot: jsonOnly.root });
+    migrate(jsonOnly.db);
     expect(evaluate(jsonOnly).blockers).toContain(
       `${jsonOnly.queue[0]?.planId}: test-run:${jsonOnly.queue[0]?.planId}: canonical DB runner receipt欠落`,
     );
