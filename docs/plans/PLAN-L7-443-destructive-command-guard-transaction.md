@@ -37,8 +37,8 @@ dependencies:
 review_evidence:
   - reviewer: review_443_round9
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-13T03:49:00+09:00"
-    tests_green_at: "2026-07-13T03:49:00+09:00"
+    reviewed_at: "2026-07-13T03:55:00+09:00"
+    tests_green_at: "2026-07-13T03:54:25+09:00"
     verdict: pass
     scope: "L5/L6/L8/L9、guard実装、SQLite retry/CAS/crash/adapter/redactionを再審査しBlocker/High 0。別provider receipt基盤の欠陥はPLAN-L7-444へ責務分離し、本technical reviewをcross-runtime reviewと称さない。"
     worker_model: codex
