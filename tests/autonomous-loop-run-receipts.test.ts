@@ -1,4 +1,4 @@
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -30,7 +30,6 @@ describe("autonomous loop run receipts", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-loop-receipt-legacy-"));
     try {
       const legacy = join(root, ".helix", "state", "loop", "PLAN-L7-366.json");
-      const { mkdirSync } = require("node:fs") as typeof import("node:fs");
       mkdirSync(join(root, ".helix", "state", "loop"), { recursive: true });
       writeFileSync(legacy, "{");
       const report = buildAutonomousLoopRunReceipt(root, "PLAN-L7-366");

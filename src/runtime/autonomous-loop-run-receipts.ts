@@ -142,5 +142,6 @@ export function buildAutonomousLoopRunReceipt(
     source_command: options.sourceCommand ?? "helix loop receipt --json",
   };
 }
+
 import { existsSync } from "node:fs";
 import { join } from "node:path";
