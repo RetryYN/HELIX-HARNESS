@@ -7,7 +7,7 @@ drive: agent
 status: draft
 route_mode: incident
 entry_signals:
-  - "runtime_observation:2026-07-13 PLAN-L7-443 cross-runtime team runがprovider/model分離とexit 0だけを返し、reviewer判定本文をstdout/harness.dbのいずれにも証跡化しなかった"
+  - "po_directive:2026-07-13 /goal『バグがあればその場で是正し検出力を強化』に基づく実測で、PLAN-L7-443 cross-runtime team runがprovider/model分離とexit 0だけを返し、reviewer判定本文を証跡化しなかった"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex

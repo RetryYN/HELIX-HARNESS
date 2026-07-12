@@ -160,6 +160,12 @@ function ensureClosureEvidenceImmutability(db: HarnessDb): void {
     db.exec(`CREATE TRIGGER IF NOT EXISTS closure_authority_review_receipts_no_delete
       BEFORE DELETE ON closure_authority_review_receipts BEGIN SELECT RAISE(ABORT, 'closure authority review receipt immutable'); END`);
   }
+  if (tableNames(db).includes("team_member_run_receipts")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS team_member_run_receipts_no_update
+      BEFORE UPDATE ON team_member_run_receipts BEGIN SELECT RAISE(ABORT, 'team member run receipt immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS team_member_run_receipts_no_delete
+      BEFORE DELETE ON team_member_run_receipts BEGIN SELECT RAISE(ABORT, 'team member run receipt immutable'); END`);
+  }
   if (tableNames(db).includes("runner_attestations")) {
     db.exec(`CREATE TRIGGER IF NOT EXISTS runner_attestations_no_update
       BEFORE UPDATE ON runner_attestations BEGIN SELECT RAISE(ABORT, 'runner attestation immutable'); END`);

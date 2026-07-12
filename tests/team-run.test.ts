@@ -477,6 +477,7 @@ describe("team run validation", () => {
         {
           name: "review-team",
           strategy: "sequential",
+          max_parallel: 8,
           members: [
             { role: "se", engine: "codex-se", task: "implement" },
             { role: "tl", engine: "pmo-sonnet", task: "review", serialize_after: "se" },

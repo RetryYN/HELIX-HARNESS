@@ -11467,7 +11467,8 @@ team
                 observedBytes += chunk.length;
                 if (!opts.json) destination.write(chunk);
                 const remaining = captureLimitBytes - captured.length;
-                if (remaining > 0) captured = Buffer.concat([captured, chunk.subarray(0, remaining)]);
+                if (remaining > 0)
+                  captured = Buffer.concat([captured, chunk.subarray(0, remaining)]);
                 if (chunk.length > remaining) outputTruncated = true;
               };
               const child = spawn(invocation.command, invocation.args, {
