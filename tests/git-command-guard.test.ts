@@ -374,6 +374,39 @@ describe("git-command-guard", () => {
     }
   });
 
+  it("[PLAN-L7-443-destructive-command-guard-transaction/U-GITGUARD-006/009/IT-GITGUARD-002] retains marker after real SQLite commit contention and retries after rollback", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-db-lock-"));
+    const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+    let lockDb: ReturnType<typeof openHarnessDb> | null = null;
+    try {
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
+      writeFileSync(markerPath, "reviewed recovery after DB contention");
+      lockDb = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
+      migrate(lockDb);
+      lockDb.exec("BEGIN IMMEDIATE");
+      const input = { session_id: "s-lock", tool_input: { command: "git clean -f" } };
+      const blocked = runCliGuard(input, cwd);
+      expect(blocked.status).toBe(2);
+      expect(blocked.stderr).toContain("blocked_audit_failure");
+      expect(existsSync(markerPath)).toBe(true);
+      lockDb.exec("ROLLBACK");
+      lockDb.close();
+      lockDb = null;
+      const retried = runCliGuard(input, cwd);
+      expect(retried.status).toBe(0);
+      expect(existsSync(markerPath)).toBe(false);
+      expect(overrideRows(cwd)).toHaveLength(1);
+    } finally {
+      if (lockDb) {
+        try {
+          lockDb.exec("ROLLBACK");
+        } catch {}
+        lockDb.close();
+      }
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  }, 15_000);
+
   it("S3: Bash write to a foreign uncommitted file is blocked", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-bash-workguard-"));
     try {
