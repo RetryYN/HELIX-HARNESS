@@ -77,20 +77,59 @@ function parseManifest(text: string): LoopEpochManifest | null {
 function parsePayload(text: string, planId: string): LoopEpochPayload | null {
   const value = parseRecord(text);
   const state = value?.state;
+  const stateRecord =
+    typeof state === "object" && state !== null ? (state as Record<string, unknown>) : null;
+  const iteration = value?.iteration;
   if (
     value === null ||
-    typeof state !== "object" ||
-    state === null ||
-    (state as { planId?: unknown }).planId !== planId ||
-    !["running", "paused", "stopped"].includes(String((state as { status?: unknown }).status)) ||
-    !Number.isSafeInteger((state as { iteration?: unknown }).iteration) ||
-    !Number.isSafeInteger((state as { maxIterations?: unknown }).maxIterations) ||
-    typeof (state as { updatedAt?: unknown }).updatedAt !== "string" ||
-    !("iteration" in value)
+    stateRecord === null ||
+    stateRecord.planId !== planId ||
+    !["running", "paused", "stopped"].includes(String(stateRecord.status)) ||
+    !Number.isSafeInteger(stateRecord.iteration) ||
+    Number(stateRecord.iteration) < 0 ||
+    !Number.isSafeInteger(stateRecord.maxIterations) ||
+    Number(stateRecord.maxIterations) < Number(stateRecord.iteration) ||
+    !["pass", "fail", "error", "pending"].includes(String(stateRecord.lastVerdict)) ||
+    !["claude", "codex"].includes(String(stateRecord.workerProvider)) ||
+    (stateRecord.verifierProvider !== null &&
+      !["claude", "codex"].includes(String(stateRecord.verifierProvider))) ||
+    (stateRecord.blockedReason !== null && typeof stateRecord.blockedReason !== "string") ||
+    typeof stateRecord.windowOpensAt !== "string" ||
+    !Number.isFinite(Date.parse(stateRecord.windowOpensAt)) ||
+    typeof stateRecord.windowClosesAt !== "string" ||
+    !Number.isFinite(Date.parse(stateRecord.windowClosesAt)) ||
+    typeof stateRecord.costUsd !== "number" ||
+    !Number.isFinite(stateRecord.costUsd) ||
+    stateRecord.costUsd < 0 ||
+    typeof stateRecord.updatedAt !== "string" ||
+    !Number.isFinite(Date.parse(stateRecord.updatedAt)) ||
+    !("iteration" in value) ||
+    !validIterationRecord(iteration, planId, Number(stateRecord.iteration))
   ) {
     return null;
   }
   return value as LoopEpochPayload;
+}
+
+function validIterationRecord(
+  value: unknown,
+  planId: string,
+  stateIteration: number,
+): value is LoopIterationRecord | null {
+  if (value === null) return true;
+  if (typeof value !== "object" || value === null) return false;
+  const record = value as Record<string, unknown>;
+  return (
+    record.planId === planId &&
+    Number.isSafeInteger(record.iteration) &&
+    Number(record.iteration) >= 0 &&
+    Number(record.iteration) <= stateIteration &&
+    ["claude", "codex"].includes(String(record.workerProvider)) &&
+    (record.verifierProvider === null ||
+      ["claude", "codex"].includes(String(record.verifierProvider))) &&
+    ["pass", "fail", "error", "pending"].includes(String(record.verdict)) &&
+    (record.blockedReason === null || typeof record.blockedReason === "string")
+  );
 }
 
 export function classifyLoopEpochFiles(input: {
@@ -99,6 +138,7 @@ export function classifyLoopEpochFiles(input: {
   payloadText: string | null;
   claimStatus: LoopClaimStatus;
   conflictingManifestText?: string | null;
+  previousManifestText?: string | null;
 }): LoopEpochReadResult {
   const planId = assertLoopPlanId(input.planId);
   if (input.manifestText === null) {
@@ -113,6 +153,17 @@ export function classifyLoopEpochFiles(input: {
   const manifest = parseManifest(input.manifestText);
   if (manifest === null || manifest.planId !== planId || input.payloadText === null) {
     return { status: "corrupt", manifest, payload: null, reason: "manifest_or_payload_invalid" };
+  }
+  if (input.previousManifestText !== undefined) {
+    const previous = input.previousManifestText ? parseManifest(input.previousManifestText) : null;
+    const chainMatches =
+      previous === null
+        ? manifest.epochId === 0 && manifest.previousManifestDigest === null
+        : manifest.epochId === previous.epochId + 1 &&
+          manifest.previousManifestDigest === sha256Digest(input.previousManifestText ?? "");
+    if (!chainMatches) {
+      return { status: "concurrent_conflict", manifest, payload: null, reason: "stale_previous" };
+    }
   }
   const payload = parsePayload(input.payloadText, planId);
   if (payload === null || sha256Digest(input.payloadText) !== manifest.payloadDigest) {

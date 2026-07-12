@@ -9,6 +9,13 @@ const payload = JSON.stringify({
     status: "running",
     iteration: 1,
     maxIterations: 3,
+    lastVerdict: "pending",
+    workerProvider: "codex",
+    verifierProvider: null,
+    blockedReason: null,
+    windowOpensAt: "2026-07-13T00:00:00.000Z",
+    windowClosesAt: "2026-07-13T12:00:00.000Z",
+    costUsd: 0,
     updatedAt: "2026-07-13T00:00:00.000Z",
   },
   iteration: null,
@@ -132,6 +139,18 @@ describe("PLAN-L7-449 loop epoch reader", () => {
           ...JSON.parse(manifest()),
           payloadDigest: `sha256:${"0".repeat(64)}`,
         }),
+      }).status,
+    ).toBe("concurrent_conflict");
+  });
+
+  it("U-DUR-007: rejects stale previous digest and non-monotonic epoch", () => {
+    expect(
+      classifyLoopEpochFiles({
+        planId: PLAN,
+        manifestText: manifest(),
+        payloadText: payload,
+        claimStatus: "absent",
+        previousManifestText: null,
       }).status,
     ).toBe("concurrent_conflict");
   });
