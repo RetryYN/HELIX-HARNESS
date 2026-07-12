@@ -5,6 +5,7 @@ kind: design
 layer: L6
 drive: agent
 status: confirmed
+route_mode: forward
 entry_signals:
   - "po_directive:2026-07-13 /goal『設計とテスト設計/検証設計でVペアを作る』に基づきPLAN-L7-443のL6 owner欠落を是正"
 created: 2026-07-13
