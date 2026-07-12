@@ -43,10 +43,10 @@ test-design oracle、個別impl/refactor PLANの順で降下する。一括big-b
 | cluster | annex # | 優先度 | 設計入口 | impl起票条件 |
 |---|---|---|---|---|
 | QS4-GUARD | 18,20,32 | P0 | destructive grammar、override audit transaction、fail-close順序 | actor/tool/command threat modelとnegative oracle確定 |
-| QS4-DURABILITY | 29,30 | P0 | redacted cause digest、atomic state write、corrupt≠missing | secret/path redactionとcrash recovery Vペア確定 |
-| QS4-BOUNDARY | 11,13,14,15 | P1 | state-db↔vscode cycle、lint effect端点、import edge、matrix | live graph baselineと禁止方向のL5確定 |
-| QS4-DOCTOR-CONTEXT | 1,2,3,4,8,9,10,22,24,25,26,28 | P1 | doctor-run shared context、packet descriptor、monolith段階分割 | I/O/AST/program count benchmarkとpublic surface snapshot確定 |
-| QS4-TEST-INFRA | 6,19,21 | P2 | Markdown table reader、temp repo/CLI fixture、DDL golden | escaped syntax/cleanup/schema digest oracle確定 |
+| QS4-DURABILITY | 29,30 | P0 | `PLAN-L7-445-qs4-durability-inventory` | secret/path redactionとcrash recovery Vペア確定 |
+| QS4-BOUNDARY | 11,13,15 | P1 | `PLAN-L7-446-qs4-boundary-inventory` | live graph baselineと禁止方向のL5確定。#14は既出`PLAN-L7-428` W2へ一意接続 |
+| QS4-DOCTOR-CONTEXT | 1,2,3,4,8,9,10,22,24,25,26,28 | P1 | `PLAN-L7-447-qs4-doctor-context-inventory` | I/O/AST/program count benchmarkとpublic surface snapshot確定 |
+| QS4-TEST-INFRA | 6,19,21 | P2 | `PLAN-L7-448-qs4-test-infra-inventory` | escaped syntax/cleanup/schema digest oracle確定 |
 
 部分既出のannex #18/#22は既存実装を捨てず、残差だけをclusterへ入れる。既出解消7件と棄却2件は
 本PLANの実装対象にしない。
