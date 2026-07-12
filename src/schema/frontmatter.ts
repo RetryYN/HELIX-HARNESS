@@ -89,7 +89,8 @@ export const generatesEntrySchema = z.object({
 });
 
 /** PLAN-L6-65: L7実装PLANのL6設計・L8 oracle・生成testを同一tupleへ拘束する。 */
-export const PLAN_SPECIFIC_ORACLE_ID_PATTERN = /^U-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]?$/;
+export const PLAN_SPECIFIC_ORACLE_ID_PATTERN =
+  /^(?:U|IT)-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]?$/;
 
 export const verificationBindingSchema = z
   .object({

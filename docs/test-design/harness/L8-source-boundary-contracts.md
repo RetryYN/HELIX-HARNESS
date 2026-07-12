@@ -22,6 +22,8 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 | U-SBOUND-010 | durable materialize | port throw/partial write/CAS driftでaccepted 0、uncertainまたはblocked | `tests/source-boundary-design.test.ts` |
 | U-SBOUND-011 | temporary allow | explicit allow正常系、期限切れ・不正expiry・review trigger発火・duplicate pairをfail-close | `tests/source-boundary-policy.test.ts` |
 | U-SBOUND-012 | production wiring | coding-rules gateがliteral requireとcomputed dynamic importの迂回をmodule-boundary violation化 | `tests/source-boundary-policy.test.ts` |
+| IT-SBOUND-005 | L9 real graph binding | 実repo全live edgeをproduction policyで全域判定 | `tests/source-boundary-integration.test.ts` |
+| IT-SBOUND-006 | L9 direction mutation binding | 全explicit direction除去でdefault denyへ戻す | `tests/source-boundary-integration.test.ts` |
 
 fixtureはset比較だけでなくedge kind、from/to owner、decision reasonを固定する。allowlist件数baseline追加で逃げず、
 各新module、unknown from/to、owner default欠落、explicit exception欠落をunspecifiedとして赤にするmutation oracleを持つ。

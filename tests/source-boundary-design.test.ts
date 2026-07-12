@@ -118,6 +118,8 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
         "U-SBOUND-008",
         "U-SBOUND-011",
         "U-SBOUND-012",
+        "IT-SBOUND-005",
+        "IT-SBOUND-006",
       ],
     };
     for (const [path, ids] of Object.entries(expected)) {
