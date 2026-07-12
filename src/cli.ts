@@ -157,7 +157,7 @@ import { selectVerifier } from "./orchestration/cross-verifier";
 import { nodeTickDeps } from "./orchestration/loop-bridge";
 import { canResume, tick } from "./orchestration/loop-runner";
 import type { Provider as LoopProvider, LoopState } from "./orchestration/loop-state";
-import { fileLoopStore } from "./orchestration/loop-store";
+import { durableFileLoopStore } from "./orchestration/loop-store";
 import {
   buildPairAgentAdapterPlans,
   buildPairAgentTddPlan,
@@ -1103,15 +1103,11 @@ function parseLoopProvider(provider: string): LoopProvider | null {
 }
 
 function loopStoreForRoot(root: string) {
-  return fileLoopStore({
+  return durableFileLoopStore({
     root,
-    readText: (path: string) => {
+    readLegacyText: (path: string) => {
       if (!existsSync(path)) return null;
       return readFileSync(path, "utf8");
-    },
-    writeText: (path: string, content: string) => {
-      mkdirSync(dirname(path), { recursive: true });
-      writeFileSync(path, content, "utf8");
     },
   });
 }
