@@ -44,6 +44,9 @@ export interface DesignDeclarationFinding {
 
 export interface ParsedDesignDeclarationDoc {
   path: string;
+  /** 同一 frontmatter parse 結果から取り出す従属契約。typed spec の再解析は禁止する。 */
+  documentAgent: unknown;
+  pairArtifact?: string;
   declarations: DesignDeclaration[];
   references: DesignReference[];
   findings: DesignDeclarationFinding[];
@@ -163,12 +166,15 @@ function extractSpecBlocks(
 ): {
   blocks: SpecBlock[];
   findings: DesignDeclarationFinding[];
+  frontmatter: unknown;
 } {
   const blocks: SpecBlock[] = [];
   const findings: DesignDeclarationFinding[] = [];
+  let frontmatter: unknown = undefined;
   const fm = frontmatterBlock(content);
   if (fm) {
     const parsed = parseYamlDocument({ path, source: "frontmatter", text: fm });
+    frontmatter = parsed.value;
     if (parsed.finding) findings.push(parsed.finding);
     if (isRecord(parsed.value) && parsed.value.spec !== undefined) {
       blocks.push({ source: "frontmatter", value: parsed.value.spec });
@@ -195,7 +201,7 @@ function extractSpecBlocks(
     });
   }
 
-  return { blocks, findings };
+  return { blocks, findings, frontmatter };
 }
 
 function parseDefine(input: { path: string; source: DesignDeclarationSource; value: unknown }): {
@@ -350,6 +356,10 @@ export function parseDesignDeclarationDoc(
 
   return {
     path,
+    documentAgent: isRecord(extracted.frontmatter)
+      ? extracted.frontmatter.document_agent
+      : undefined,
+    pairArtifact: stringField(extracted.frontmatter, "pair_artifact"),
     declarations,
     references,
     findings,
