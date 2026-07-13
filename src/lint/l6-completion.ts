@@ -260,7 +260,9 @@ export function l6CompletionMessages(result: L6CompletionResult): string[] {
     );
   }
   if (result.missingDocPairArtifacts.length > 0) {
-    messages.push(`l6-completion — L6 docs without readable unit test design pair_artifact: ${result.missingDocPairArtifacts.join(", ")}`);
+    messages.push(
+      `l6-completion — L6 docs without readable unit test design pair_artifact: ${result.missingDocPairArtifacts.join(", ")}`,
+    );
   }
   if (result.missingL7DocRefs.length > 0) {
     messages.push(

@@ -74,7 +74,17 @@ describe("loadOracleTestTraceInput real repo (U-OTT-004/005)", () => {
       mkdirSync(join(root, "tests"), { recursive: true });
       writeFileSync(
         join(root, "docs", "test-design", "confirmed-with-example.md"),
-        ["---", "status: confirmed", "---", "", "```yaml", "status: draft", "```", "U-TRACE-001", ""].join("\n"),
+        [
+          "---",
+          "status: confirmed",
+          "---",
+          "",
+          "```yaml",
+          "status: draft",
+          "```",
+          "U-TRACE-001",
+          "",
+        ].join("\n"),
       );
       writeFileSync(
         join(root, "docs", "test-design", "unknown.md"),
