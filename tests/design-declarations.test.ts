@@ -277,4 +277,37 @@ spec:
       expect.arrayContaining(["HVM-REJECT-01", "HVM-REJECT-02", "HVM-REJECT-03"]),
     );
   });
+
+  it("UTF-8等の技術用語を未宣言のdesign IDとして誤検出しない", () => {
+    const result = analyzeDesignDeclarations([
+      {
+        path: "technical-terms.md",
+        content: `---
+spec:
+  defines:
+    - id: R-001
+      kind: 要求
+---
+
+| ID | 内容 |
+|----|------|
+| R-001 | UTF-8 / ISO-8601 / RFC-3339 を使う |
+| R-UNDECLARED | 未宣言の正当な ID |
+`,
+      },
+    ]);
+
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        code: "undeclared_definition",
+        detail: expect.stringContaining("R-UNDECLARED"),
+      }),
+    );
+    expect(result.findings).not.toContainEqual(
+      expect.objectContaining({
+        code: "undeclared_definition",
+        detail: expect.stringContaining("UTF-8"),
+      }),
+    );
+  });
 });

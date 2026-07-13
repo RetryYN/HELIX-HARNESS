@@ -97,12 +97,16 @@ function bodyHasId(body: string, id: string): boolean {
 
 function bodyDefinitionIds(body: string): string[] {
   const ignoredPrefixes = new Set(["PLAN", "ADR"]);
+  // これらは本文に現れる規格・encoding名であり、design declaration IDではない。
+  // 正当な一段ID (R-001 / TD-001 等) を命名規則だけで落とさないよう狭く除外する。
+  const nonDeclarationTerms = new Set(["UTF-8", "UTF-16", "UTF-32", "ISO-8601", "RFC-3339"]);
   const ids = new Set<string>();
   for (const match of body.matchAll(/\b[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+\b/g)) {
     const id = match[0];
     const end = (match.index ?? 0) + id.length;
     const prefix = id.split("-", 1)[0];
     if (ignoredPrefixes.has(prefix)) continue;
+    if (nonDeclarationTerms.has(id)) continue;
     if (/^L\d+$/i.test(prefix)) continue;
     if (id.endsWith("-ID")) continue;
     if (body.slice(end, end + 2) === "-*") continue;
