@@ -1,5 +1,5 @@
 import type { MetricRow, VisualizationViewModel } from "../state-db/visualization-view-model";
-import { HELIX_COPY_POINTER_COMMAND } from "./extension-manifest";
+import { HELIX_COPY_POINTER_COMMAND } from "../schema/visualization-tree-contract";
 
 export type TreeNodeState = "none" | "collapsed" | "expanded";
 
