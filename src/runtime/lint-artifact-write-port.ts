@@ -23,7 +23,10 @@ export type LintArtifactWriteBoundary =
   | "after_verify";
 
 export interface LintArtifactWritePortOptions {
-  /** Trusted evidence root. Intent paths are always relative to this directory. */
+  /**
+   * HELIX-owned, exclusively writable evidence root. This path API is not an untrusted-filesystem
+   * sandbox; callers must not supply a root writable by non-cooperating actors.
+   */
   root: string;
   hooks?: { afterBoundary?(boundary: LintArtifactWriteBoundary): void };
 }
@@ -66,7 +69,7 @@ function prepareTrustedDirectory(root: string, directory: string): void {
   }
 }
 
-/** Real same-directory temp/fsync/rename/directory-fsync adapter for lint artifacts. */
+/** Cooperative-writer, same-directory temp/fsync/rename/directory-fsync adapter for lint artifacts. */
 export function createLintArtifactWritePort(options: LintArtifactWritePortOptions): WritePort {
   const root = resolve(options.root);
   return {

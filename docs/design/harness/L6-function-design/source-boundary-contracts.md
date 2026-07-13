@@ -49,7 +49,9 @@ probe/materializeだけが明示portを通じてeffectを持つ。
 
 intentはcapability ID、authorization receipt、current HEAD/worktree/inputs snapshot、idempotency key、expiryを必須にする。
 materialize intentはcontentとそのdigestを同時に持ち、executorはport呼出し前に一致を検証する。contentは署名scopeへ束縛するが
-receiptへは転記しない。
+receiptへは転記しない。Node artifact write portはHELIXが排他所有するruntime evidence rootだけを受け取り、untrusted actorが
+書込みまたはrenameできるfilesystemをsecurity sandboxとして受け入れない。before digest compare-and-publishは同一portを使う
+cooperative writer間でtarget lockにより直列化し、非協調external writerを許すrootではfail-closeに利用しない。
 authorization receiptはrepo設定でpinしたtrusted issuerの署名または同等の改ざん検証、actor/tool/target/paramsのexact scope、
 revocation epochを検証する。self-issued/plain object、scope拡大、失効済みreceiptはeffect callback前に拒否する。
 snapshot providerはpreflight、idempotency claim後のdispatch直前、dispatch直後に再観測する。dispatch前のdriftはeffect callback 0の
