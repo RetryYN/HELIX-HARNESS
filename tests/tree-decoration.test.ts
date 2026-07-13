@@ -6,7 +6,7 @@ const commands: CommandCatalog = {
   copy_pointer: { title: "Copy pointer", command: "helix.copyPointer" },
 };
 
-describe("decorateVscodeTree", () => {
+describe("PLAN-L7-450 / decorateVscodeTree", () => {
   it("U-SBOUND-005: generic treeをVS Code固有fieldへ一度だけdecorateする", () => {
     const tree: GenericTree = {
       schema_version: "generic-visualization-tree.v1",
