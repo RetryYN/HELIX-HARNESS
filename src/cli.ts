@@ -1439,7 +1439,7 @@ design
   .command("document-diff")
   .description("二つのrepository内Markdown rootをread-only比較する")
   .requiredOption("--base-root <path>", "基準Markdown root")
-  .option("--current-root <path>", "現在Markdown root", "docs")
+  .requiredOption("--current-root <path>", "現在Markdown root")
   .option("--json", "JSON で出力")
   .action((opts: { baseRoot: string; currentRoot: string; json?: boolean }) => {
     try {

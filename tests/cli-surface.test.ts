@@ -7754,10 +7754,20 @@ describe("document semantic diff CLI (IT-DOCDIFF)", () => {
         "document-diff",
         "--base-root",
         "..",
+        "--current-root",
+        "current",
         "--json",
       ]);
       expect(escapedRoot.status).toBe(1);
       expect(JSON.parse(escapedRoot.stdout)).toMatchObject({ ok: false });
+      const missingCurrent = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--json",
+      ]);
+      expect(missingCurrent.status).toBe(1);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
