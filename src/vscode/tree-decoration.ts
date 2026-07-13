@@ -1,12 +1,15 @@
 import type { GenericTree, GenericTreeNode } from "../schema/visualization-tree-contract";
-import { HELIX_COPY_POINTER_COMMAND } from "./extension-manifest";
 
 export type TreeNodeState = "none" | "collapsed" | "expanded";
 
 export interface TreeViewCommand {
   title: string;
-  command: typeof HELIX_COPY_POINTER_COMMAND;
+  command: string;
   arguments: string[];
+}
+
+export interface CommandCatalog {
+  copy_pointer: { title: string; command: string };
 }
 
 export interface TreeViewNode {
@@ -27,13 +30,11 @@ export interface VisualizationTreeViewModel {
   warnings: string[];
 }
 
-function summaryPointer(pointer: string): string {
-  if (pointer.includes(" --summary-json") || !pointer.endsWith(" --json")) return pointer;
-  return pointer.replace(/ --json$/, " --summary-json");
-}
-
-function decorateNode(node: GenericTreeNode): TreeViewNode {
+function decorateNode(node: GenericTreeNode, commands: CommandCatalog): TreeViewNode {
+  if (!node.id || !node.kind) throw new Error("generic tree node requires id and kind");
   const children = node.children.map(decorateNode);
+  if (node.action && (node.action.kind !== "copy-pointer" || !node.action.pointer.trim()))
+    throw new Error("generic tree action is invalid");
   return {
     id: node.id,
     label: node.label,
@@ -43,9 +44,9 @@ function decorateNode(node: GenericTreeNode): TreeViewNode {
     collapsibleState: children.length === 0 ? "none" : node.expanded ? "expanded" : "collapsed",
     command: node.action
       ? {
-          title: "Copy pointer",
-          command: HELIX_COPY_POINTER_COMMAND,
-          arguments: [summaryPointer(node.action.pointer)],
+          title: commands.copy_pointer.title,
+          command: commands.copy_pointer.command,
+          arguments: [node.action.pointer],
         }
       : undefined,
     children,
@@ -53,11 +54,14 @@ function decorateNode(node: GenericTreeNode): TreeViewNode {
 }
 
 /** L6 `decorateVscodeTree`: resolves generic action intent through the VS Code command catalog. */
-export function decorateVscodeTree(tree: GenericTree): VisualizationTreeViewModel {
+export function decorateVscodeTree(
+  tree: GenericTree,
+  commands: CommandCatalog,
+): VisualizationTreeViewModel {
   return {
     schema_version: "visualization-tree-view.v1",
     source_clock: tree.source_clock,
-    roots: tree.roots.map(decorateNode),
+    roots: tree.roots.map((node) => decorateNode(node, commands)),
     warnings: [...tree.warnings],
   };
 }
