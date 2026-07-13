@@ -17,7 +17,7 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 | IT-SBOUND-005 | 実repoのimport graph | forbidden 0、unspecified 0、全live edgeにtotal decision。`tests/source-boundary-integration.test.ts` |
 | IT-SBOUND-006 | module directionを1 edgeずつ除去するmutation | 全explicit directionがdefault denyへ戻る。`tests/source-boundary-integration.test.ts` |
 | IT-SBOUND-007 | idempotency claim後からdispatch直前、またはprobe dispatch後にHEAD/worktree/inputを変異 | dispatch前driftはeffect 0のblocked receipt、dispatch後driftはacceptedにしないuncertain receipt。`tests/lint-effect-executor.test.ts` |
-| IT-SBOUND-008 | materializeを各durability境界で停止 | partial targetをacceptedにしない |
+| IT-SBOUND-008 | materializeをtemp write/fsync/rename/directory fsync/verifyの各durability境界で停止 | partial targetをacceptedにしない。`tests/lint-artifact-write-port.test.ts` |
 
 headless oracleはmodule cacheによる偽greenを避けるためfresh child processで実行する。effect oracleはFS/process portを
 instrumentし、静的callsite数を実行回数の代用にしない。

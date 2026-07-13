@@ -105,10 +105,14 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       /\| IT-SBOUND-002 \|[^\n]+\|[^\n]+`tests\/visualization-treeview\.test\.ts`/,
     );
     expect(l9).toMatch(/\| IT-SBOUND-007 \|[^\n]+\|[^\n]+`tests\/lint-effect-executor\.test\.ts`/);
+    expect(l9).toMatch(
+      /\| IT-SBOUND-008 \|[^\n]+\|[^\n]+`tests\/lint-artifact-write-port\.test\.ts`/,
+    );
     for (const [oracle, testPath] of [
       ["IT-SBOUND-001", "tests/slow/source-boundary-headless.test.ts"],
       ["IT-SBOUND-002", "tests/visualization-treeview.test.ts"],
       ["IT-SBOUND-007", "tests/lint-effect-executor.test.ts"],
+      ["IT-SBOUND-008", "tests/lint-artifact-write-port.test.ts"],
     ]) {
       expect(read(testPath)).toContain(oracle);
     }
@@ -189,9 +193,11 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       "src/lint/effect-intent.ts",
       "src/runtime/lint-effect-executor.ts",
       "src/runtime/lint-probe-adapter.ts",
+      "src/runtime/lint-artifact-write-port.ts",
       "tests/lint-effect-intent.test.ts",
       "tests/lint-effect-executor.test.ts",
       "tests/lint-probe-adapter.test.ts",
+      "tests/lint-artifact-write-port.test.ts",
     ]);
     expect(l8).toContain("| U-SBOUND-004 | lint analyzer | immutable snapshot");
     for (const oracle of ["U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"]) {
