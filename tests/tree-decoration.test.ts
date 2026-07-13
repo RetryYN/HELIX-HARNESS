@@ -34,6 +34,8 @@ describe("decorateVscodeTree", () => {
         {
           id: "project",
           label: "Project",
+          description: undefined,
+          tooltip: undefined,
           contextValue: "root",
           collapsibleState: "expanded",
           command: {
