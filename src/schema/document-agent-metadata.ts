@@ -58,14 +58,35 @@ function strings(value: unknown): string[] | null {
     : null;
 }
 
+function hasOnlyKeys(value: Record<string, unknown>, keys: readonly string[]): boolean {
+  const allowed = new Set(keys);
+  return Object.keys(value).every((key) => allowed.has(key));
+}
+
 export function parseDocumentAgentScopeManifest(value: unknown): DocumentAgentScopeManifest | null {
-  if (!isRecord(value) || value.schema_version !== 1 || (value.phase !== "check" && value.phase !== "apply"))
+  if (
+    !isRecord(value) ||
+    value.schema_version !== 1 ||
+    (value.phase !== "check" && value.phase !== "apply")
+  )
+    return null;
+  if (
+    !hasOnlyKeys(value, [
+      "schema_version",
+      "include_roots",
+      "exclude_roots",
+      "documents",
+      "required_gates",
+      "phase",
+    ])
+  )
     return null;
   const includeRoots = strings(value.include_roots);
   const excludeRoots = strings(value.exclude_roots);
   const documents = strings(value.documents);
   const requiredGates = strings(value.required_gates);
-  if (!includeRoots || !excludeRoots || !documents || !requiredGates || documents.length === 0) return null;
+  if (!includeRoots || !excludeRoots || !documents || !requiredGates || documents.length === 0)
+    return null;
   return {
     schema_version: 1,
     include_roots: includeRoots,
@@ -78,10 +99,22 @@ export function parseDocumentAgentScopeManifest(value: unknown): DocumentAgentSc
 
 export function parseDocumentAgentMetadata(value: unknown): DocumentAgentMetadata | null {
   if (!isRecord(value)) return null;
+  if (!hasOnlyKeys(value, ["defines", "read_first", "done_when"])) return null;
   const defines = strings(value.defines);
   const readFirst = strings(value.read_first);
   const doneWhen = value.done_when;
-  if (!defines || !readFirst || !isRecord(doneWhen)) return null;
+  if (
+    !defines ||
+    !readFirst ||
+    !isRecord(doneWhen) ||
+    !hasOnlyKeys(doneWhen, [
+      "required_declaration_ids",
+      "required_read_first",
+      "required_pair_artifact",
+      "required_gates",
+    ])
+  )
+    return null;
   const requiredIds = strings(doneWhen.required_declaration_ids);
   const requiredReadFirst = strings(doneWhen.required_read_first);
   const requiredGates = strings(doneWhen.required_gates);

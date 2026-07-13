@@ -170,7 +170,7 @@ function extractSpecBlocks(
 } {
   const blocks: SpecBlock[] = [];
   const findings: DesignDeclarationFinding[] = [];
-  let frontmatter: unknown = undefined;
+  let frontmatter: unknown;
   const fm = frontmatterBlock(content);
   if (fm) {
     const parsed = parseYamlDocument({ path, source: "frontmatter", text: fm });
