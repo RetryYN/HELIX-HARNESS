@@ -17,6 +17,10 @@ import { openHarnessDb } from "../src/state-db";
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 const helixEnvPrefix = ["HE", "LIX"].join("");
+// CLI surface cases launch a real Bun child.  A bounded child keeps a stalled
+// external dependency from consuming the entire Vitest/CI timeout without a
+// useful assertion diagnostic.
+const CLI_CHILD_TIMEOUT_MS = 45_000;
 
 function runCli(args: string[]) {
   return runCliIn(repoRoot, args);
@@ -33,12 +37,14 @@ function runCliIn(
       cwd,
       encoding: "utf8",
       env,
+      timeout: CLI_CHILD_TIMEOUT_MS,
     });
   }
   return spawnSync("bun", [cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env,
+    timeout: CLI_CHILD_TIMEOUT_MS,
   });
 }
 
@@ -54,12 +60,13 @@ function runRepoScriptHelix(args: string[]) {
         join(repoRoot, "scripts", "helix.ps1"),
         ...args,
       ],
-      { cwd: repoRoot, encoding: "utf8" },
+      { cwd: repoRoot, encoding: "utf8", timeout: CLI_CHILD_TIMEOUT_MS },
     );
   }
   return spawnSync(join(repoRoot, "scripts", "helix"), args, {
     cwd: repoRoot,
     encoding: "utf8",
+    timeout: CLI_CHILD_TIMEOUT_MS,
   });
 }
 
