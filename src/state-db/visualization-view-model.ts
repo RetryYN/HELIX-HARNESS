@@ -1,10 +1,16 @@
 import type {
+  ClosureReviewScopeView,
+  ClosureReviewWindowView,
+  DesignTestPairView,
   Drilldown,
   GraphIr,
   GraphIrEdge,
   GraphIrEdgeInput,
   GraphIrNode,
+  LayerProgressView,
   MetricRow,
+  RelationGraphView,
+  RuntimeEvidenceView,
 } from "../schema/visualization-contract";
 import {
   buildProjectClosureBatchReport,
@@ -44,13 +50,19 @@ import { buildVmodelFitReport } from "./vmodel-fit";
  */
 
 export type {
+  ClosureReviewScopeView,
+  ClosureReviewWindowView,
+  DesignTestPairView,
   Drilldown,
   DrilldownKind,
   GraphIr,
   GraphIrEdge,
   GraphIrEdgeInput,
   GraphIrNode,
+  LayerProgressView,
   MetricRow,
+  RelationGraphView,
+  RuntimeEvidenceView,
 } from "../schema/visualization-contract";
 
 export interface ClosureReviewScopeView {
