@@ -476,6 +476,45 @@ describe("db projection ingestion detector", () => {
     }
   });
 
+  it("retains immutable team receipts while rebuilding projections", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      db.prepare(
+        `INSERT INTO team_member_run_receipts
+         (receipt_id, team_run_id, plan_id, team, member_index, role, engine, provider, model,
+          repository_head, slot_id, exit_code, status, verdict, verdict_status, output_digest,
+          output_bytes, output_truncated, completed_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      ).run(
+        "receipt:rebuild",
+        "team:rebuild",
+        "PLAN-TEST",
+        "fixture",
+        0,
+        "qa",
+        "codex",
+        "fixture",
+        "fixture",
+        "head",
+        "slot",
+        0,
+        "passed",
+        "approve",
+        "final",
+        "sha256:test",
+        1,
+        0,
+        "2026-07-13T00:00:00.000Z",
+      );
+      expect(() => rebuildHarnessDb({ repoRoot: process.cwd(), db })).not.toThrow();
+      expect(db.prepare("SELECT receipt_id FROM team_member_run_receipts").all()).toEqual([
+        { receipt_id: "receipt:rebuild" },
+      ]);
+    } finally {
+      db.close();
+    }
+  });
+
   it("fails closed when an automatic projection table is empty", () => {
     const result = analyzeDbProjectionIngestion({
       graph_nodes: 1,

@@ -2387,8 +2387,19 @@ function projectVerificationBandExecution(db: HarnessDb): void {
   }
 }
 
+// Receipt tables are append-only audit evidence, not deterministic projections.  A rebuild must
+// retain them; their immutability triggers deliberately reject DELETE/UPDATE.
+const IMMUTABLE_RECEIPT_TABLES = new Set([
+  "closure_process_receipts",
+  "closure_authority_review_receipts",
+  "team_member_run_receipts",
+  "runner_attestations",
+  "closure_materializations",
+]);
+
 function truncateProjectionTables(db: HarnessDb): void {
   for (const table of [...HARNESS_DB_TABLES].reverse()) {
+    if (IMMUTABLE_RECEIPT_TABLES.has(table.name)) continue;
     db.prepare(`DELETE FROM ${table.name}`).run();
   }
 }
