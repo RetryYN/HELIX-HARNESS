@@ -7,6 +7,7 @@ const l5 = read("docs/design/harness/L5-detailed-design/source-boundary-architec
 const l6 = read("docs/design/harness/L6-function-design/source-boundary-contracts.md");
 const l8 = read("docs/test-design/harness/L8-source-boundary-contracts.md");
 const l9 = read("docs/test-design/harness/L9-source-boundary-integration.md");
+const genericTreeContract = read("src/schema/visualization-tree-contract.ts");
 
 const successorPaths = [
   "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
@@ -149,6 +150,18 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l8).toContain("write/child-process"));
   it("U-SBOUND-005: projectorをadapter-neutralにする", () =>
     expect(l8).toContain("VS Code command constant"));
+  it("U-SBOUND-005: generic tree contractへVS Code decorationを混入させない", () => {
+    expect(genericTreeContract).toContain("interface GenericTreeNode");
+    for (const presentationSymbol of [
+      "HELIX_COPY_POINTER_COMMAND",
+      "TreeViewCommand",
+      "contextValue",
+      "collapsibleState",
+      "command?:",
+    ]) {
+      expect(genericTreeContract).not.toContain(presentationSymbol);
+    }
+  });
   it("U-SBOUND-006: probe failureをtyped receiptにする", () =>
     expect(l8).toContain("timeout/nonzero/missing binary"));
   it("U-SBOUND-007: policy metadata欠落を検出する", () =>
