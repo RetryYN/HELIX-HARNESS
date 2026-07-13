@@ -10,8 +10,8 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 
 | oracle | scenario | 期待結果 |
 |---|---|---|
-| IT-SBOUND-001 | VS Code moduleをload不能にしてDB rebuild/headless doctor実行 | green、presentation import 0 |
-| IT-SBOUND-002 | fake contract DTOだけでVS Code adapter起動 | harness.db不要 |
+| IT-SBOUND-001 | VS Code moduleをload不能にしてDB rebuild/headless doctor実行 | green、presentation import 0。`tests/slow/source-boundary-headless.test.ts` |
+| IT-SBOUND-002 | fake contract DTOだけでVS Code adapter起動 | harness.db不要。`tests/visualization-treeview.test.ts` |
 | IT-SBOUND-003 | lint full read-only routeをinstrument | write set 0、child process 0 |
 | IT-SBOUND-004 | explicitなprobe command | child process 1回、bounded receipt |
 | IT-SBOUND-005 | 実repoのimport graph | forbidden 0、unspecified 0、全live edgeにtotal decision。`tests/source-boundary-integration.test.ts` |

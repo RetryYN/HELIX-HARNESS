@@ -96,6 +96,21 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l9).toContain("partial targetをacceptedにしない");
   });
 
+  it("binds implemented L9 integration oracles to their executable tests", () => {
+    expect(l9).toMatch(
+      /\| IT-SBOUND-001 \|[^\n]+\|[^\n]+`tests\/slow\/source-boundary-headless\.test\.ts`/,
+    );
+    expect(l9).toMatch(
+      /\| IT-SBOUND-002 \|[^\n]+\|[^\n]+`tests\/visualization-treeview\.test\.ts`/,
+    );
+    for (const [oracle, testPath] of [
+      ["IT-SBOUND-001", "tests/slow/source-boundary-headless.test.ts"],
+      ["IT-SBOUND-002", "tests/visualization-treeview.test.ts"],
+    ]) {
+      expect(read(testPath)).toContain(oracle);
+    }
+  });
+
   it("structurally binds every exact successor to the L6/L8 V-pair", () => {
     for (const path of successorPaths) {
       expect(existsSync(path), path).toBe(true);
