@@ -2307,7 +2307,7 @@
     {
       "hit_id": "src/state-db/projection-writer.ts::stableHash:createHash(sha256)::1",
       "path": "src/state-db/projection-writer.ts",
-      "line": 313,
+      "line": 311,
       "symbol": "stableHash",
       "algorithm": "sha256",
       "input_kind": "string",
