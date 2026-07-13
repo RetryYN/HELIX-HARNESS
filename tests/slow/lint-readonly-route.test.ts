@@ -17,14 +17,14 @@ describe("PLAN-L7-451 read-only lint route", () => {
       'for (const name of ["writeFileSync", "appendFileSync", "mkdirSync", "rmSync", "renameSync", "copyFileSync", "chmodSync", "truncateSync", "symlinkSync", "linkSync"]) {',
       "  const original = fs[name];",
       "  if (typeof original !== 'function') continue;",
-      "  fs[name] = (...args) => { writes += 1; throw new Error(`unexpected fs write: ${name}`); };",
+      '  fs[name] = (...args) => { writes += 1; throw new Error("unexpected fs write: " + name); };',
       "}",
       'for (const name of ["spawn", "spawnSync", "exec", "execSync", "execFile", "execFileSync", "fork"]) {',
-      "  child[name] = (...args) => { spawns += 1; throw new Error(`unexpected child process: ${name}`); };",
+      '  child[name] = (...args) => { spawns += 1; throw new Error("unexpected child process: " + name); };',
       "}",
       'process.argv = ["bun", "src/cli.ts", "plan", "lint", "--gate", "governance"];',
       `await import(${JSON.stringify(cliUrl)});`,
-      "process.stdout.write(`\\nIT-SBOUND-003-COUNTS:${JSON.stringify({ writes, spawns })}\\n`);",
+      'process.stdout.write("\\nIT-SBOUND-003-COUNTS:" + JSON.stringify({ writes, spawns }) + "\\n");',
     ].join("\n");
     const result = spawnSync("bun", ["--eval", monitor], {
       cwd: process.cwd(),
