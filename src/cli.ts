@@ -22,7 +22,10 @@ import { homedir, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { loadDocumentAgentMetadataReport } from "./adapters/document-agent-metadata-fs";
-import { loadDocumentSemanticDiffReport } from "./adapters/document-semantic-diff-fs";
+import {
+  loadDocumentSemanticDiffReport,
+  loadDocumentSemanticDiffReportFromGit,
+} from "./adapters/document-semantic-diff-fs";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -1457,6 +1460,31 @@ design
       if (opts.json)
         process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
       else process.stdout.write(`design document-diff: blocked ${detail}\n`);
+    }
+  });
+
+design
+  .command("document-diff-git")
+  .description("git revisionと現在のrepository内Markdown rootをread-only比較する")
+  .requiredOption("--base-ref <ref>", "基準git revision")
+  .requiredOption("--current-root <path>", "現在Markdown root")
+  .option("--json", "JSON で出力")
+  .action((opts: { baseRef: string; currentRoot: string; json?: boolean }) => {
+    try {
+      const report = loadDocumentSemanticDiffReportFromGit({
+        repoRoot: process.cwd(),
+        baseRef: opts.baseRef,
+        currentRoot: opts.currentRoot,
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else process.stdout.write(`${report.markdown}\n`);
+    } catch (error) {
+      process.exitCode = 1;
+      const detail = error instanceof Error ? error.message : String(error);
+      if (opts.json)
+        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+      else process.stdout.write(`design document-diff-git: blocked ${detail}\n`);
     }
   });
 
