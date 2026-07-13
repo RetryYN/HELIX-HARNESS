@@ -142,6 +142,45 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
 
+  it("binds PLAN-L7-451 effect oracles and outputs to dedicated behavior tests", () => {
+    const plan = frontmatter(successorPaths[1]);
+    expect(plan.verification_bindings).toEqual([
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-004",
+        test_path: "tests/lint-effect-intent.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-006",
+        test_path: "tests/lint-effect-executor.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-009",
+        test_path: "tests/lint-effect-executor.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-010",
+        test_path: "tests/lint-effect-executor.test.ts",
+      },
+    ]);
+    expect(plan.generates?.map((item) => item.artifact_path)).toEqual([
+      successorPaths[1],
+      "src/lint/effect-intent.ts",
+      "src/runtime/lint-effect-executor.ts",
+      "tests/lint-effect-intent.test.ts",
+      "tests/lint-effect-executor.test.ts",
+    ]);
+    expect(l8).toContain("| U-SBOUND-004 | lint analyzer | immutable snapshot");
+    for (const oracle of ["U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"]) {
+      const row = l8.split("\n").find((line) => line.startsWith(`| ${oracle} |`));
+      expect(row).toContain("`tests/lint-effect-executor.test.ts`");
+    }
+    expect(l8).toMatch(/\| U-SBOUND-004 \|[^\n]+\| `tests\/lint-effect-intent\.test\.ts`/);
+  });
+
   it("U-SBOUND-001: state-db evidenceからpresentation treeを分離する", () =>
     expect(l8).toContain("presentation treeを読まずsummaryからprojection rowを作る"));
   it("U-SBOUND-002: presentationからpersistence実装を分離する", () =>
@@ -149,7 +188,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
   it("U-SBOUND-003: 未指定policyをfail-closeする", () =>
     expect(l8).toContain("missing owner default"));
   it("U-SBOUND-004: analyzerからeffect authorityを除く", () =>
-    expect(l8).toContain("write/child-process"));
+    expect(l8).toContain("write/process portを受け取らずeffect callback 0"));
   it("U-SBOUND-005: projectorをadapter-neutralにする", () =>
     expect(l8).toContain("VS Code command constant"));
   it("U-SBOUND-005: generic tree contractへVS Code decorationを混入させない", () => {
