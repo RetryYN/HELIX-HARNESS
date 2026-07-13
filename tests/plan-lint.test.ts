@@ -255,6 +255,35 @@ describe("plan schedule lint (IMP-081)", () => {
     );
   });
 
+  it("U-PLANGOV-001b-legacy: enforcement境界前の既存PLANは parent debt を grandfatherする", () => {
+    const r = analyzePlanGovernance([
+      planDoc("PLAN-L4-89-legacy-child", {
+        kind: "design",
+        layer: "L4",
+        dependencies: "  parent: PLAN-L4-404-legacy-missing\n  requires: []\n  blocks: []",
+        extra: "updated: 2026-07-13\n",
+      }),
+    ]);
+
+    expect(r.violations.map((violation) => violation.reason)).not.toContain("parent_missing");
+  });
+
+  it("U-PLANGOV-001c: 非 add-* PLAN は parent 実在性だけを検査する", () => {
+    const r = analyzePlanGovernance([
+      planDoc("PLAN-L4-90-design-parent", { kind: "design", layer: "L4", drive: "db" }),
+      planDoc("PLAN-L4-90-design-child", {
+        kind: "design",
+        layer: "L4",
+        drive: "agent",
+        dependencies: "  parent: PLAN-L4-90-design-parent\n  requires: []\n  blocks: []",
+      }),
+    ]);
+
+    expect(r.violations.map((violation) => violation.reason)).not.toContain(
+      "parent_drive_mismatch",
+    );
+  });
+
   it("U-PLANGOV-002: schema, sub_doc, duplicate, and skip-reason violations are reported", () => {
     const docs = [
       planDoc("PLAN-L4-91-invalid-schema", { extra: 'github_issue_id: "bad"\n' }),
