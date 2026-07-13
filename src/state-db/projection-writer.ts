@@ -60,7 +60,7 @@ import {
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
 import { nowIso } from "../shared/time-utils";
-import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
+import type { VisualizationContract } from "../schema/visualization-view-contract";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -84,7 +84,10 @@ import {
 import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
-import { projectVisualizationEvidence } from "./visualization-evidence";
+import {
+  projectVisualizationEvidence,
+  type VisualizationTreeSummary,
+} from "./visualization-evidence";
 import { buildVisualizationSnapshot } from "./visualization-read-model";
 import { buildVisualizationViewModel } from "./visualization-view-model";
 import { buildVmodelFitReport } from "./vmodel-fit";
@@ -211,6 +214,9 @@ export interface RebuildHarnessDbInput {
   relationGraph?: RelationGraphProjection;
   documentExports?: DocumentExportProjectionRows;
   verificationEvidence?: VerificationEvidenceProjection;
+  buildVisualizationTreeSummary?: (
+    view: VisualizationContract,
+  ) => VisualizationTreeSummary;
   onProfile?: (entry: RebuildHarnessDbProfileEntry) => void;
 }
 
@@ -317,10 +323,6 @@ function uniqueStrings(values: readonly string[]): string[] {
 
 function csv(values: readonly string[]): string {
   return uniqueStrings(values).join(",");
-}
-
-function countTreeNodes(nodes: readonly TreeViewNode[]): number {
-  return nodes.reduce((sum, node) => sum + 1 + countTreeNodes(node.children), 0);
 }
 
 function relationArtifactId(nodeId: string): string {
@@ -4398,7 +4400,11 @@ function projectScreens(repoRoot: string, db: HarnessDb): void {
   }
 }
 
-function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
+function projectVmodelReadModels(
+  repoRoot: string,
+  db: HarnessDb,
+  buildVisualizationTreeSummary?: RebuildHarnessDbInput["buildVisualizationTreeSummary"],
+): void {
   const indexedAt = nowIso();
   const visualizationSnapshot = buildVisualizationSnapshot(db, { repoRoot });
   const snapshot = visualizationSnapshot.project_current_location;
@@ -4408,7 +4414,6 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
     repoRoot,
   });
   const viewModel = buildVisualizationViewModel(visualizationSnapshot);
-  const treeView = buildVisualizationTreeView(viewModel);
   const snapshotId = "project-current-location:latest";
   const snapshotHash = stableJsonHash(snapshot);
   const scrumOperation = snapshot.scrum_operation;
@@ -4837,22 +4842,14 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
     },
   });
 
-  recordProjectionEvent(db, {
-    table: "visualization_tree_view",
-    id: "visualization-tree-view:latest",
-    row: projectVisualizationEvidence(
-      {
-        schema_version: treeView.schema_version,
-        source_clock: treeView.source_clock,
-        root_ids: treeView.roots.map((root) => root.id),
-        root_count: treeView.roots.length,
-        node_count: countTreeNodes(treeView.roots),
-        warnings_count: treeView.warnings.length,
-        snapshot_hash: stableJsonHash(treeView),
-      },
-      indexedAt,
-    ),
-  });
+  const treeSummary = buildVisualizationTreeSummary?.(viewModel);
+  if (treeSummary) {
+    recordProjectionEvent(db, {
+      table: "visualization_tree_view",
+      id: "visualization-tree-view:latest",
+      row: projectVisualizationEvidence(treeSummary, indexedAt),
+    });
+  }
 }
 
 function profiled<T>(name: string, onProfile: RebuildHarnessDbInput["onProfile"], fn: () => T): T {
@@ -5049,7 +5046,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       );
       profiled("projectScreens", input.onProfile, () => projectScreens(repoRoot, db));
       profiled("projectVmodelReadModels", input.onProfile, () =>
-        projectVmodelReadModels(repoRoot, db),
+        projectVmodelReadModels(repoRoot, db, input.buildVisualizationTreeSummary),
       );
       db.exec("COMMIT");
     } catch (error) {

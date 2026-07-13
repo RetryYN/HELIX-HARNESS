@@ -8,7 +8,7 @@ import {
 } from "../src/lint/db-projection-ingestion";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
-import { rebuildHarnessDb } from "../src/state-db/projection-writer";
+import { rebuildHarnessDb } from "../src/runtime/db-rebuild-composition";
 import { buildVisualizationSnapshot } from "../src/state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "../src/state-db/visualization-view-model";
 import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";

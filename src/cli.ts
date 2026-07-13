@@ -468,8 +468,8 @@ import {
   projectFeedbackLifecycle,
   projectModelEvaluations,
   projectTokenUsage,
-  rebuildHarnessDb,
 } from "./state-db/projection-writer";
+import { rebuildHarnessDb } from "./runtime/db-rebuild-composition";
 import { collectReverseCandidates } from "./state-db/reverse-candidates";
 import { compactHarnessDb, databaseFreelist, gcTmp } from "./state-db/state-hygiene";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
