@@ -8,7 +8,7 @@ status: draft
 route_mode: forward
 entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #13 analyzer effect authorityをfail-close分離"]
 created: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-14
 owner: Codex
 agent_slots:
   - { role: se, slot_label: "SE — effect intent/executor port分離" }
@@ -24,6 +24,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-010, test_path: tests/source-boundary-design.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: []
