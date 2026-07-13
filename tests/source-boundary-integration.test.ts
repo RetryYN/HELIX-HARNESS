@@ -15,15 +15,17 @@ import { extractSourceEdges } from "../src/lint/source-edge-extractor";
 // PLAN-L7-450-state-db-vscode-decoupling / U-SBOUND-002
 
 describe("PLAN-L7-452-source-boundary-policy-ratchet integration", () => {
-  it("U-SBOUND-002: vscodeからstate-dbへのdirect/type edgeを持たない", () => {
+  it("U-SBOUND-002: vscode/state-db間とstate-db→vmodelのdirect/type edgeを持たない", () => {
     const forbidden = loadCodingRuleDocs()
       .filter((doc) => doc.scope === "source")
       .flatMap((doc) => extractSourceEdges([{ path: doc.path, source: doc.text }]))
       .filter((edge) => {
         if (!edge.specifier?.startsWith(".")) return false;
+        const from = sourceModule(edge.from);
+        const to = importedSourceModule(edge.from, edge.specifier);
         return (
-          sourceModule(edge.from) === "vscode" &&
-          importedSourceModule(edge.from, edge.specifier) === "state-db"
+          (from === "vscode" && to === "state-db") ||
+          (from === "state-db" && (to === "vscode" || to === "vmodel"))
         );
       });
     expect(forbidden).toStrictEqual([]);
