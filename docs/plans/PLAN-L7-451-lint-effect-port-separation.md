@@ -24,8 +24,6 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-010, test_path: tests/source-boundary-design.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
-  - { artifact_path: src/lint/effect-intent.ts, artifact_type: source_module }
-  - { artifact_path: src/runtime/lint-effect-executor.ts, artifact_type: source_module }
   - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
@@ -38,6 +36,14 @@ dependencies:
 
 analyzerをimmutable snapshotだけのpure functionに限定する。probe/materializeはcapability、authorization、snapshot、
 idempotency、CAS、durabilityを検証するexecutorへ隔離し、partial writeをacceptedにしない。
+
+## 予定出力（draft、未生成）
+
+次の source artifact は本PLANが `confirmed` になる実装時に `generates` へ昇格させる。未実在の
+artifact を `generates` に載せて relation graph の実装済み edge として扱わない。
+
+- `src/lint/effect-intent.ts`
+- `src/runtime/lint-effect-executor.ts`
 
 ## 完了条件
 

@@ -3,7 +3,8 @@
  *
  * l6-fr-coverage は FR→oracle ID の接続のみで、その oracle に対応する**実テストが tests/ に
  * 実在するか**を見ない (coverage≠substance の穴、[[feedback_coverage_not_substance]])。本 lint は
- * test-design で宣言された U-* / IT-* oracle ID が tests/ 内に citation を持つことを検査する。
+ * confirmed な test-design で宣言された U-* / IT-* oracle ID が tests/ 内に citation を持つことを検査する。
+ * draft test-design は将来の検証設計であり、実テスト未着手を「実装済み oracle の欠落」と誤認しない。
  *
  * forward-citation 規律: NEW oracle は tests に ID 明記必須 (未 citation = fail-close)。既存の
  * 未 citation 89 件は baseline (known-debt、縮小のみ可)。素朴 ID マッチは「テスト実在・ID 未記載」
@@ -59,9 +60,34 @@ function collectIds(dir: string, ext: string, acc: Set<string>): void {
   }
 }
 
+/** draft は設計中の将来 oracle であり、confirmed design の fail-close trace 対象外とする。 */
+function isDraftTestDesign(text: string): boolean {
+  return /^---\s*$[\s\S]*?^status:\s*draft\s*$/m.test(text);
+}
+
+function collectDeclaredIds(dir: string, acc: Set<string>): void {
+  let entries: string[];
+  try {
+    entries = readdirSync(dir);
+  } catch {
+    return;
+  }
+  for (const e of entries) {
+    const full = join(dir, e);
+    if (statSync(full).isDirectory()) {
+      collectDeclaredIds(full, acc);
+    } else if (e.endsWith(".md")) {
+      const text = readFileSync(full, "utf8");
+      if (!isDraftTestDesign(text)) {
+        for (const m of text.matchAll(ORACLE_ID)) acc.add(m[0]);
+      }
+    }
+  }
+}
+
 export function loadOracleTestTraceInput(repoRoot: string): OracleTestTraceInput {
   const declaredSet = new Set<string>();
-  collectIds(join(repoRoot, "docs", "test-design"), ".md", declaredSet);
+  collectDeclaredIds(join(repoRoot, "docs", "test-design"), declaredSet);
   const referenced = new Set<string>();
   collectIds(join(repoRoot, "tests"), ".ts", referenced);
   return { declared: [...declaredSet], referenced, baseline: ORACLE_TEST_TRACE_BASELINE };

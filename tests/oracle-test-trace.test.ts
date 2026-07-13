@@ -1,5 +1,8 @@
 // PLAN-REVERSE-41 塊B: oracle 宣言 ⇔ 実テスト citation の突合 (IMP-128、forward-citation 規律)。
 // test-design 宣言 oracle (U-*/IT-*) が tests/ に ID citation を持つか。NEW は fail、既存89は baseline。
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeOracleTestTrace,
@@ -39,5 +42,28 @@ describe("loadOracleTestTraceInput real repo (U-OTT-004/005)", () => {
 
   it("U-OTT-005: baseline は 89 件スナップショット (縮小のみ可)", () => {
     expect(ORACLE_TEST_TRACE_BASELINE.size).toBe(89);
+  });
+
+  it("U-OTT-006: draft test-design の将来 oracle は実装済み oracle trace に混ぜない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-oracle-trace-"));
+    try {
+      mkdirSync(join(root, "docs", "test-design"), { recursive: true });
+      mkdirSync(join(root, "tests"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "test-design", "draft.md"),
+        ["---", "status: draft", "---", "", "IT-FUTURE-001", ""].join("\n"),
+      );
+      writeFileSync(
+        join(root, "docs", "test-design", "confirmed.md"),
+        ["---", "status: confirmed", "---", "", "U-NOW-001", ""].join("\n"),
+      );
+      writeFileSync(join(root, "tests", "now.test.ts"), "// U-NOW-001\n");
+
+      const input = loadOracleTestTraceInput(root);
+      expect(input.declared).toEqual(["U-NOW-001"]);
+      expect(analyzeOracleTestTrace(input).orphans).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
