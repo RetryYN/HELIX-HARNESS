@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import type { GenericTree } from "../src/schema/visualization-tree-contract";
 import { type CommandCatalog, decorateVscodeTree } from "../src/vscode/tree-decoration";
 
+// PLAN-L7-450-state-db-vscode-decoupling / U-SBOUND-005
+
 const commands: CommandCatalog = {
   copy_pointer: { title: "Copy pointer", command: "helix.copyPointer" },
 };
