@@ -3,12 +3,23 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { checkMergedPlanStatus } from "../src/doctor/index";
-import { analyzeMergedPlanStatus, loadMergedPlanStatusInput } from "../src/lint/merged-plan-status";
+import {
+  analyzeMergedPlanStatus,
+  loadMergedPlanStatusInput,
+  selectMergedArtifacts,
+} from "../src/lint/merged-plan-status";
 
 // PO 指摘 2026-06-15: merge 済み generated artifact を持つのに owning PLAN が draft のまま
 // 放置される V-model state 不整合 (PLAN-L7-53 の実例) を機械検出する gate の回帰。
 
 describe("analyzeMergedPlanStatus", () => {
+  it("treats an artifact as merged only when it exists on the published base, not merely on a PR worktree", () => {
+    expect(selectMergedArtifacts(["src/branch-only.ts"], new Set(), process.cwd())).toEqual([]);
+    expect(
+      selectMergedArtifacts(["src/published.ts"], new Set(["src/published.ts"]), process.cwd()),
+    ).toEqual(["src/published.ts"]);
+  });
+
   it("flags an artifact-producing PLAN that is draft but whose src is merged", () => {
     const r = analyzeMergedPlanStatus({
       plans: [{ planId: "PLAN-X", status: "draft", kind: "impl", mergedArtifacts: ["src/x.ts"] }],
