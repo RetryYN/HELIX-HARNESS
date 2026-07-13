@@ -32,7 +32,7 @@ export interface VisualizationTreeViewModel {
 
 function decorateNode(node: GenericTreeNode, commands: CommandCatalog): TreeViewNode {
   if (!node.id || !node.kind) throw new Error("generic tree node requires id and kind");
-  const children = node.children.map(decorateNode);
+  const children = node.children.map((child) => decorateNode(child, commands));
   if (node.action && (node.action.kind !== "copy-pointer" || !node.action.pointer.trim()))
     throw new Error("generic tree action is invalid");
   return {
