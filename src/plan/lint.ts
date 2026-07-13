@@ -742,7 +742,7 @@ export function analyzePlanGovernance(
     }
 
     const parent = stringField(deps.parent);
-    if ((kind === "add-design" || kind === "add-impl") && parent) {
+    if (parent && isPlanRef(parent)) {
       const parentRecord = byRef.get(normalizePlanRef(parent));
       if (!parentRecord) {
         violations.push({ file: entry.file, reason: "parent_missing", detail: parent });

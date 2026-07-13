@@ -240,6 +240,21 @@ describe("plan schedule lint (IMP-081)", () => {
     expect(planGovernanceMessages(r)[0]).toContain("OK");
   });
 
+  it("U-PLANGOV-001b: kindを問わず不存在のPLAN parentをfail-closeにする", () => {
+    const r = analyzePlanGovernance([
+      planDoc("PLAN-L4-90-design-child", {
+        kind: "design",
+        layer: "L4",
+        dependencies: "  parent: PLAN-L4-404-does-not-exist\n  requires: []\n  blocks: []",
+      }),
+    ]);
+
+    expect(r.ok).toBe(false);
+    expect(r.violations).toContainEqual(
+      expect.objectContaining({ reason: "parent_missing", detail: "PLAN-L4-404-does-not-exist" }),
+    );
+  });
+
   it("U-PLANGOV-002: schema, sub_doc, duplicate, and skip-reason violations are reported", () => {
     const docs = [
       planDoc("PLAN-L4-91-invalid-schema", { extra: 'github_issue_id: "bad"\n' }),
