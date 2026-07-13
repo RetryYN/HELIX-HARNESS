@@ -20,6 +20,9 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 - `evaluateSourceBoundary(edge: SourceEdge, policy: BoundaryPolicy): BoundaryDecision`
 - `validateBoundaryPolicyCoverage(catalog: ModuleCatalog, edges: SourceEdge[], policy: BoundaryPolicy): PolicyFinding[]`
 
+`rebuildHarnessDb`のようにownerを跨ぐcompositionは`src/composition/`だけに配置する。`runtime`へ混在させず、
+composition owner以外のstate-db/vmodel/vscode間cross-owner edgeはpolicyでdenyする。
+
 ## 2. DbC
 
 analyzerからwrite/child-process authorityへ直接到達できないことを全contractの共通不変条件とする。

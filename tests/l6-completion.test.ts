@@ -7,6 +7,7 @@ import {
   l6CompletionMessages,
   loadL6CompletionInputs,
 } from "../src/lint/l6-completion";
+import { hasDbcTable } from "../src/lint/shared";
 
 const gatePass = `
 | Gate | Status | Evidence |
@@ -21,6 +22,15 @@ const gateNotReached = `
 `;
 
 describe("L6 completion readiness", () => {
+  it("日本語のcanonical DbC tableを英語見出しと同じunit-contract substanceとして認識する", () => {
+    expect(
+      hasDbcTable(
+        "| 関数 / シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |\n|---|---|---|---|---|",
+      ),
+    ).toBe(true);
+    expect(hasDbcTable("| 関数 | 説明 |\n|---|---|")).toBe(false);
+  });
+
   it("requires confirmed L6 docs, owning PLAN refs, unit-test-design doc refs, confirmed PLANs, confirmed unit design, and G6 PASS", () => {
     const result = analyzeL6Completion({
       l6Docs: [

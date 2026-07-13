@@ -230,7 +230,7 @@ import {
   buildCrossRepoSpecStoreReport,
   type SpecStoreOperation,
 } from "./runtime/cross-repo-spec-store";
-import { rebuildHarnessDb } from "./runtime/db-rebuild-composition";
+import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
 import {
   type BundleCatalog,

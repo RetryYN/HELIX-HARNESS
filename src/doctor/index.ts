@@ -447,7 +447,7 @@ import {
   loadSlots,
   peakParallel,
 } from "../runtime/agent-slots";
-import { rebuildHarnessDb } from "../runtime/db-rebuild-composition";
+import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { detectMode } from "../runtime/detect";
 import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
 import {

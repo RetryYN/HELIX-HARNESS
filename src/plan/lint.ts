@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
+import { analyzeSnapshot } from "../lint/effect-intent";
 import {
   analyzePlanDescent,
   loadPlanDescentBaseline,
@@ -494,6 +495,28 @@ export function analyzePlanGovernance(
   repoRoot?: string,
 ): PlanGovernanceResult {
   const violations: PlanGovernanceViolation[] = [];
+  // PLAN-L7-451: PLAN本文は既にロード済みの immutable snapshot として pure analyzer に渡す。
+  // I/O は loader、violation への変換は governance owner に残す。
+  const frontmatterFindings = analyzeSnapshot(docs, [
+    {
+      id: "plan-frontmatter",
+      evaluate: (snapshot) =>
+        snapshot.flatMap((doc) =>
+          parsePlanFrontmatter(doc)
+            ? []
+            : [
+                {
+                  code: "missing_frontmatter",
+                  severity: "error" as const,
+                  detail: doc.file,
+                },
+              ],
+        ),
+    },
+  ]);
+  for (const finding of frontmatterFindings) {
+    violations.push({ file: finding.detail, reason: "missing_frontmatter" });
+  }
   const parsed = new Map<
     string,
     { file: string; content: string; raw: Record<string, unknown>; parsed?: Frontmatter }
@@ -503,7 +526,6 @@ export function analyzePlanGovernance(
   for (const doc of docs) {
     const raw = parsePlanFrontmatter(doc);
     if (!raw) {
-      violations.push({ file: doc.file, reason: "missing_frontmatter" });
       continue;
     }
     const schemaResult = frontmatterSchema.safeParse(raw);

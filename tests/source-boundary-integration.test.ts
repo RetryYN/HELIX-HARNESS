@@ -15,7 +15,7 @@ import { extractSourceEdges } from "../src/lint/source-edge-extractor";
 // PLAN-L7-450-state-db-vscode-decoupling / U-SBOUND-002
 
 describe("PLAN-L7-452-source-boundary-policy-ratchet integration", () => {
-  it("U-SBOUND-002: vscode/state-db間とstate-db→vmodelのdirect/type edgeを持たない", () => {
+  it("U-SBOUND-002: composition root以外にstate-db/vmodel/vscode間のdirect/type edgeを持たない", () => {
     const forbidden = loadCodingRuleDocs()
       .filter((doc) => doc.scope === "source")
       .flatMap((doc) => extractSourceEdges([{ path: doc.path, source: doc.text }]))
@@ -25,7 +25,8 @@ describe("PLAN-L7-452-source-boundary-policy-ratchet integration", () => {
         const to = importedSourceModule(edge.from, edge.specifier);
         return (
           (from === "vscode" && to === "state-db") ||
-          (from === "state-db" && (to === "vscode" || to === "vmodel"))
+          (from === "state-db" && (to === "vscode" || to === "vmodel")) ||
+          (from === "runtime" && (to === "vscode" || to === "vmodel"))
         );
       });
     expect(forbidden).toStrictEqual([]);

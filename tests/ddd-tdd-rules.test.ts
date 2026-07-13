@@ -127,6 +127,29 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.map((v) => v.rule)).toContain("domain-boundary");
   });
 
+  it("U-DDDTDD-011: owner-crossing compositionは専用moduleだけに置く", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        docs: [
+          {
+            path: "src/composition/db-rebuild-composition.ts",
+            scope: "source",
+            text: 'import { tree } from "../vmodel/visualization-tree-projector";\nexport const x = tree;',
+          },
+          {
+            path: "src/runtime/bad-composition.ts",
+            scope: "source",
+            text: 'import { tree } from "../vmodel/visualization-tree-projector";\nexport const x = tree;',
+          },
+        ],
+      }),
+    );
+
+    expect(result.violations).toEqual([
+      expect.objectContaining({ path: "src/runtime/bad-composition.ts", rule: "domain-boundary" }),
+    ]);
+  });
+
   it("detects invariant rows without L7 oracle trace", () => {
     const result = analyzeDddTddRules(baseInputs({ l7Text: "" }));
     expect(result.ok).toBe(false);

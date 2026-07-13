@@ -24,7 +24,7 @@ describe("PLAN-L7-450 headless DB composition", () => {
         "};",
       ].join("\n"),
     );
-    const compositionUrl = pathToFileURL(resolve("src/runtime/db-rebuild-composition.ts")).href;
+    const compositionUrl = pathToFileURL(resolve("src/composition/db-rebuild-composition.ts")).href;
     const databaseUrl = pathToFileURL(resolve("src/state-db/index.ts")).href;
     const child = [
       `const { rebuildHarnessDb } = await import(${JSON.stringify(compositionUrl)});`,

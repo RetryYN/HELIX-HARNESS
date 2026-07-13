@@ -40,8 +40,9 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 | projection用tree summary | `src/state-db/visualization-evidence.ts` | `src/state-db/projection-writer.ts` |
 
 `schema`はI/Oを持たない最下位contract、`vmodel` projectorはschemaだけを参照する。`vscode`はschema/vmodelを参照できるが
-state-db実装を参照しない。state-dbはschemaを参照できるがvscode/vmodel projectorを参照しない。composition rootだけが
-state-dbのview dataをprojectorとadapterへ渡す。
+state-db実装を参照しない。state-dbはschemaを参照できるがvscode/vmodel projectorを参照しない。composition rootは
+`src/composition/`の専用ownerに置き、state-dbのview dataをprojectorとadapterへ渡す。`runtime`はcomposition rootではなく、
+vmodel/vscodeへのcross-owner importを持たない。
 
 ## 3. 依存規則
 

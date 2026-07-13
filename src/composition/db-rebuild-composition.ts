@@ -12,7 +12,8 @@ import { buildVisualizationTree } from "../vmodel/visualization-tree-projector";
 
 function countTreeNodes(nodes: readonly { children: readonly unknown[] }[]): number {
   return nodes.reduce(
-    (count, node) => count + 1 + countTreeNodes(node.children as readonly { children: readonly unknown[] }[]),
+    (count, node) =>
+      count + 1 + countTreeNodes(node.children as readonly { children: readonly unknown[] }[]),
     0,
   );
 }
@@ -34,5 +35,8 @@ export function summarizeVisualizationTree(view: VisualizationContract): Visuali
 
 /** Composition root: the state-db core receives an adapter-neutral summary port. */
 export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarnessDbResult {
-  return rebuildHarnessDbCore({ ...input, buildVisualizationTreeSummary: summarizeVisualizationTree });
+  return rebuildHarnessDbCore({
+    ...input,
+    buildVisualizationTreeSummary: summarizeVisualizationTree,
+  });
 }

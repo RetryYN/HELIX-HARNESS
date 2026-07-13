@@ -27,7 +27,7 @@ generates:
   - { artifact_path: src/schema/visualization-current-location-contract.ts, artifact_type: source_module }
   - { artifact_path: src/schema/visualization-view-contract.ts, artifact_type: source_module }
   - { artifact_path: src/schema/visualization-tree-contract.ts, artifact_type: source_module }
-  - { artifact_path: src/runtime/db-rebuild-composition.ts, artifact_type: source_module }
+  - { artifact_path: src/composition/db-rebuild-composition.ts, artifact_type: source_module }
   - { artifact_path: src/vmodel/visualization-tree-projector.ts, artifact_type: source_module }
   - { artifact_path: src/vscode/tree-decoration.ts, artifact_type: source_module }
   - { artifact_path: src/vscode/tree-view-provider.ts, artifact_type: source_module }
@@ -44,7 +44,7 @@ dependencies:
 
 ## 実装境界
 
-共有DTO、pure projector、state-db evidence、VS Code decorationを物理分離し、composition rootだけで接続する。
+共有DTO、pure projector、state-db evidence、VS Code decorationを物理分離し、`src/composition/`のcomposition rootだけで接続する。
 既存symbolを新ownerへ移した後、state-dbとVS Code間のdirect/type-only edgeを0にする。
 
 ## 実装済み出力（draft、closure前）
