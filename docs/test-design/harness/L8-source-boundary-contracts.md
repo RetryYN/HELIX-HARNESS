@@ -11,7 +11,7 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-SBOUND-001 | state-db evidence | presentation treeを読まずsummaryからprojection rowを作る | `tests/visualization-evidence.test.ts` |
-| U-SBOUND-002 | vscode→state-db edge | implementation edgeをdeny | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-002 | vscode→state-db edge | direct/type-onlyを含むimplementation edgeを0にする | `tests/source-boundary-integration.test.ts` |
 | U-SBOUND-003 | policy coverage | missing owner default/EMPTY/new from/new toをunspecifiedエラー | `tests/source-boundary-policy.test.ts` |
 | U-SBOUND-004 | lint analyzer | write/child-process importをviolation | `tests/source-boundary-design.test.ts` |
 | U-SBOUND-005 | generic projector | VS Code command constantをviolation、CommandCatalogなしのdecorationを拒否 | `tests/tree-decoration.test.ts` |
