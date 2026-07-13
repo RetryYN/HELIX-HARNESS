@@ -8,6 +8,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { loadDocumentAgentMetadataReport } from "../adapters/document-agent-metadata-fs";
 import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
 import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
@@ -1254,6 +1255,25 @@ export function checkDesignCoverage(repoRoot: string): {
       messages: ["design-coverage - violation: design catalog coverage lint could not run"],
       ok: false,
     };
+  }
+}
+
+/** document_agent metadata は設計宣言からの導出と完全一致しなければ fail-close。 */
+export function checkDocumentAgentMetadata(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const report = loadDocumentAgentMetadataReport(repoRoot);
+    return {
+      ok: report.ok,
+      messages: report.ok
+        ? [`document-agent-metadata - OK (checked=${report.checked_paths.length})`]
+        : report.findings.map(
+            (item) =>
+              `document-agent-metadata - violation ${item.code} path=${item.path}: ${item.detail}`,
+          ),
+    };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    return { messages: [`document-agent-metadata - violation: ${detail}`], ok: false };
   }
 }
 
@@ -6839,6 +6859,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const branchKind = checkBranchKind(deps.repoRoot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const designCoverage = checkDesignCoverage(deps.repoRoot);
+  const documentAgentMetadata = checkDocumentAgentMetadata(deps.repoRoot);
   const leftArmCarryLog = checkLeftArmCarryLog(deps.repoRoot);
   const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
@@ -7008,6 +7029,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       branchKind.ok &&
       codingRules.ok &&
       designCoverage.ok &&
+      documentAgentMetadata.ok &&
       leftArmCarryLog.ok &&
       triageDecisionIntegrity.ok &&
       dddTddRules.ok &&
@@ -7135,6 +7157,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...branchKind.messages.map((m) => `doctor: ${m}`),
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...designCoverage.messages.map((m) => `doctor: ${m}`),
+      ...documentAgentMetadata.messages.map((m) => `doctor: ${m}`),
       ...leftArmCarryLog.messages.map((m) => `doctor: ${m}`),
       ...triageDecisionIntegrity.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
