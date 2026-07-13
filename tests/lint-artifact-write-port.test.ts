@@ -3,17 +3,17 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
-  contentDigest,
-  effectPayloadDigest,
-  materializeLintArtifact,
-  paramsDigest,
-  type EffectSnapshot,
-  type MaterializeIntent,
-} from "../src/runtime/lint-effect-executor";
-import {
   createLintArtifactWritePort,
   type LintArtifactWriteBoundary,
 } from "../src/runtime/lint-artifact-write-port";
+import {
+  contentDigest,
+  type EffectSnapshot,
+  effectPayloadDigest,
+  type MaterializeIntent,
+  materializeLintArtifact,
+  paramsDigest,
+} from "../src/runtime/lint-effect-executor";
 
 // PLAN-L7-451-lint-effect-port-separation
 
