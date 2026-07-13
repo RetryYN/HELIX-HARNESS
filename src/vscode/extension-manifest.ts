@@ -1,6 +1,4 @@
-import { HELIX_COPY_POINTER_COMMAND } from "../schema/visualization-tree-contract";
-
-export { HELIX_COPY_POINTER_COMMAND } from "../schema/visualization-tree-contract";
+export const HELIX_COPY_POINTER_COMMAND = "helix.copyPointer";
 
 export const HELIX_PROJECT_VIEW_ID = "helix.projectView";
 export const HELIX_HARNESS_VIEW_ID = "helix.harnessView";
