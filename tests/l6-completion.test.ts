@@ -182,7 +182,7 @@ describe("L6 completion readiness", () => {
     expect(result.draftPlans).toEqual([]);
   });
 
-  it("dedicated L8 pairはloaderがpath単位statusを保持しdraft/meta偽装を承認しない", () => {
+  it("dedicated L8 pairはloaderがpath単位statusを保持し、draftでもtrace inputとして読める", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-l6-pair-status-"));
     const designDir = join(root, "docs/design/harness/L6-function-design");
     const testDir = join(root, "docs/test-design/harness");
@@ -213,8 +213,7 @@ describe("L6 completion readiness", () => {
         },
       ],
     });
-    expect(result.missingDocPairArtifacts).toEqual([
-      "docs/design/harness/L6-function-design/function-spec.md",
-    ]);
+    expect(result.missingDocPairArtifacts).toEqual([]);
+    expect(result.freezeInputReady).toBe(false); // contract本文が無く、traceだけで凍結可能にはしない
   });
 });

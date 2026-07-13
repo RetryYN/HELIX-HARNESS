@@ -113,7 +113,7 @@ export function analyzeL6Completion(inputs: L6CompletionInputs): L6CompletionRes
       const pair = pairArtifactOf(doc.text);
       return (
         pair === null ||
-        inputs.unitTestDesignStatuses[pair] !== "confirmed" ||
+        !(pair in inputs.unitTestDesignStatuses) ||
         (!UNIT_TEST_DESIGN_PATHS.includes(pair) && !inputs.l7Text.includes(`PAIR_PATH:${pair}`))
       );
     })
@@ -260,9 +260,7 @@ export function l6CompletionMessages(result: L6CompletionResult): string[] {
     );
   }
   if (result.missingDocPairArtifacts.length > 0) {
-    messages.push(
-      `l6-completion — L6 docs without unit test design pair_artifact: ${result.missingDocPairArtifacts.join(", ")}`,
-    );
+    messages.push(`l6-completion — L6 docs without readable unit test design pair_artifact: ${result.missingDocPairArtifacts.join(", ")}`);
   }
   if (result.missingL7DocRefs.length > 0) {
     messages.push(

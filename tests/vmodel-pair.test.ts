@@ -1962,6 +1962,6 @@ describe("verification trigger (U-VTRIG、層群 freeze の機械発火、IMP-06
     expect(surface).toContain("設計検証サイクルゲート");
     expect(surface).toContain("実装検証サイクルゲート");
     expect(surface).toContain("Forward 進行中");
-    expect(groups.find((g) => g.id === "L0-L7")?.frozen).toBe(true);
+    expect(groups.find((g) => g.id === "L0-L7")?.frozen).toBe(false);
   });
 });
