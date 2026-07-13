@@ -7,6 +7,7 @@ import {
   EVIDENCE_GATED_DB_PROJECTION_TABLES,
 } from "../src/lint/db-projection-ingestion";
 import { openHarnessDb } from "../src/state-db/index";
+import { migrate } from "../src/state-db/migration";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 import { buildVisualizationSnapshot } from "../src/state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "../src/state-db/visualization-view-model";
@@ -479,6 +480,7 @@ describe("db projection ingestion detector", () => {
   it("retains immutable team receipts while rebuilding projections", () => {
     const db = openHarnessDb(":memory:");
     try {
+      migrate(db);
       db.prepare(
         `INSERT INTO team_member_run_receipts
          (receipt_id, team_run_id, plan_id, team, member_index, role, engine, provider, model,
