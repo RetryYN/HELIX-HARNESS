@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { projectVisualizationEvidence } from "../src/state-db/visualization-evidence";
 
+// PLAN-L7-450-state-db-vscode-decoupling / U-SBOUND-001
+
 describe("projectVisualizationEvidence", () => {
   it("U-SBOUND-001: presentation-free tree summaryからDB rowを決定論的に作る", () => {
     expect(

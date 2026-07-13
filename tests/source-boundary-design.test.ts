@@ -141,8 +141,8 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
   });
 
-  it("U-SBOUND-001: state-dbからpresentationを分離する", () =>
-    expect(l8).toContain("state-db→vscode"));
+  it("U-SBOUND-001: state-db evidenceからpresentation treeを分離する", () =>
+    expect(l8).toContain("presentation treeを読まずsummaryからprojection rowを作る"));
   it("U-SBOUND-002: presentationからpersistence実装を分離する", () =>
     expect(l8).toContain("vscode→state-db"));
   it("U-SBOUND-003: 未指定policyをfail-closeする", () =>
