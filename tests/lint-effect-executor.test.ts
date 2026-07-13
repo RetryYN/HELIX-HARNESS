@@ -3,6 +3,7 @@ import {
   type EffectAuthorization,
   type EffectSnapshot,
   type ExecutorContext,
+  effectPayloadDigest,
   type MaterializeIntent,
   materializeLintArtifact,
   type ProbeIntent,
@@ -20,7 +21,7 @@ const snapshot: EffectSnapshot = {
 };
 const params = { profile: "bun-unit" } as const;
 
-function authorization(): EffectAuthorization {
+function authorization(effectDigest = sha("e")): EffectAuthorization {
   return {
     issuer: "helix-policy",
     signature: "verified",
@@ -29,13 +30,14 @@ function authorization(): EffectAuthorization {
     tool: "bun",
     target: "bun --version",
     paramsDigest: paramsDigest(params),
+    effectPayloadDigest: effectDigest,
     revocationEpoch: 7,
     expiresAt: "2026-07-15T00:00:00.000Z",
   };
 }
 
 function probe(): ProbeIntent {
-  return {
+  const intent = {
     kind: "probe",
     operationId: "probe-1",
     capabilityId: "lint.probe",
@@ -50,6 +52,21 @@ function probe(): ProbeIntent {
     command: "bun",
     args: ["--version"],
     timeoutMs: 10_000,
+  } satisfies ProbeIntent;
+  intent.authorization = authorization(effectPayloadDigest(intent));
+  return intent;
+}
+
+function durableClaims() {
+  const claims = new Map<string, string>();
+  return {
+    claim({ key, scopeDigest }: { key: string; scopeDigest: string }) {
+      const previous = claims.get(key);
+      if (previous === scopeDigest) return "duplicate" as const;
+      if (previous !== undefined) return "conflict" as const;
+      claims.set(key, scopeDigest);
+      return "claimed" as const;
+    },
   };
 }
 
@@ -58,7 +75,7 @@ function context(overrides: Partial<ExecutorContext> = {}): ExecutorContext {
     currentSnapshot: snapshot,
     trustedIssuers: new Set(["helix-policy"]),
     revocationEpoch: 7,
-    consumedIdempotencyKeys: new Set(),
+    idempotency: durableClaims(),
     verifyAuthorization: (receipt) => receipt.signature === "verified",
     now: () => "2026-07-14T00:00:00.000Z",
     ...overrides,
@@ -79,7 +96,11 @@ describe("PLAN-L7-451 lint effect executor", () => {
       },
       context(),
     );
-    expect(receipt).toMatchObject({ status: "accepted", reason: "probe_succeeded", exitCode: 0 });
+    expect(receipt).toMatchObject({
+      status: "accepted",
+      reason: "probe_succeeded",
+      exitCode: 0,
+    });
     expect(JSON.stringify(receipt)).not.toContain("secret output");
   });
 
@@ -106,7 +127,15 @@ describe("PLAN-L7-451 lint effect executor", () => {
         context({ currentSnapshot: { ...snapshot, head: "d".repeat(40) } }),
         "snapshot_drift",
       ],
-      [probe(), context({ consumedIdempotencyKeys: new Set(["probe-key"]) }), "duplicate_intent"],
+      [
+        probe(),
+        context({
+          idempotency: {
+            claim: () => "duplicate",
+          },
+        }),
+        "duplicate_intent",
+      ],
     ];
     for (const [intent, executorContext, reason] of cases) {
       let calls = 0;
@@ -129,7 +158,10 @@ describe("PLAN-L7-451 lint effect executor", () => {
     const scope = probe();
     scope.params = { profile: "all" };
     const tampered = probe();
-    tampered.authorization = { ...tampered.authorization, signature: "tampered" };
+    tampered.authorization = {
+      ...tampered.authorization,
+      signature: "tampered",
+    };
     for (const intent of [scope, tampered]) {
       let calls = 0;
       expect(
@@ -148,6 +180,62 @@ describe("PLAN-L7-451 lint effect executor", () => {
     }
   });
 
+  it("U-SBOUND-009: effect payload変異とdurable replay/conflictをeffect前に拒否する", () => {
+    const original = probe();
+    const mutated = [
+      { ...original, command: "node" },
+      { ...original, args: ["--help"] },
+      { ...original, timeoutMs: 1 },
+    ] satisfies ProbeIntent[];
+    for (const intent of mutated) {
+      let calls = 0;
+      const receipt = runProbe(
+        intent,
+        {
+          execute: () => {
+            calls += 1;
+            return { exitCode: 0, timedOut: false };
+          },
+        },
+        context(),
+      );
+      expect(receipt).toMatchObject({
+        status: "blocked",
+        reason: "authorization_scope_mismatch",
+      });
+      expect(calls).toBe(0);
+    }
+
+    const idempotency = durableClaims();
+    expect(
+      runProbe(
+        probe(),
+        { execute: () => ({ exitCode: 0, timedOut: false }) },
+        context({ idempotency }),
+      ).status,
+    ).toBe("accepted");
+    expect(
+      runProbe(
+        probe(),
+        { execute: () => ({ exitCode: 0, timedOut: false }) },
+        context({ idempotency }),
+      ),
+    ).toMatchObject({ status: "blocked", reason: "duplicate_intent" });
+    const conflict = probe();
+    conflict.params = { profile: "other" };
+    conflict.authorization = {
+      ...conflict.authorization,
+      paramsDigest: paramsDigest(conflict.params),
+    };
+    expect(
+      runProbe(
+        conflict,
+        { execute: () => ({ exitCode: 0, timedOut: false }) },
+        context({ idempotency }),
+      ),
+    ).toMatchObject({ status: "blocked", reason: "idempotency_conflict" });
+  });
+
   it("U-SBOUND-010: exact CASかつdurableなwriteだけacceptedにする", () => {
     const intent: MaterializeIntent = {
       ...probe(),
@@ -158,6 +246,7 @@ describe("PLAN-L7-451 lint effect executor", () => {
       beforeDigest: sha("0"),
       contentDigest: sha("1"),
     };
+    intent.authorization = authorization(effectPayloadDigest(intent));
     const exact = {
       changedPath: intent.path,
       beforeDigest: intent.beforeDigest,
@@ -186,6 +275,7 @@ describe("PLAN-L7-451 lint effect executor", () => {
       beforeDigest: sha("0"),
       contentDigest: sha("1"),
     };
+    intent.authorization = authorization(effectPayloadDigest(intent));
     expect(
       materializeLintArtifact(
         intent,
@@ -196,6 +286,10 @@ describe("PLAN-L7-451 lint effect executor", () => {
         },
         context(),
       ),
-    ).toMatchObject({ status: "uncertain", reason: "materialize_port_threw", durable: false });
+    ).toMatchObject({
+      status: "uncertain",
+      reason: "materialize_port_threw",
+      durable: false,
+    });
   });
 });

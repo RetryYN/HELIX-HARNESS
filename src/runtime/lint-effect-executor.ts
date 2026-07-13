@@ -17,6 +17,7 @@ export interface EffectAuthorization {
   tool: string;
   target: string;
   paramsDigest: EffectDigest;
+  effectPayloadDigest: EffectDigest;
   revocationEpoch: number;
   expiresAt: string;
 }
@@ -68,11 +69,16 @@ export interface WritePort {
   };
 }
 
+export interface IdempotencyClaimPort {
+  /** Durable, atomic claim. A key reused with another scope must return conflict. */
+  claim(input: { key: string; scopeDigest: EffectDigest }): "claimed" | "duplicate" | "conflict";
+}
+
 export interface ExecutorContext {
   currentSnapshot: EffectSnapshot;
   trustedIssuers: ReadonlySet<string>;
   revocationEpoch: number;
-  consumedIdempotencyKeys: Set<string>;
+  idempotency: IdempotencyClaimPort;
   verifyAuthorization(receipt: EffectAuthorization): boolean;
   now?: () => string;
 }
@@ -127,13 +133,42 @@ export function paramsDigest(params: Readonly<Record<string, unknown>>): EffectD
   return digest(params);
 }
 
-function preflight(intent: EffectIntent, context: ExecutorContext, at: string): string | null {
+export function effectPayloadDigest(intent: ProbeIntent | MaterializeIntent): EffectDigest {
+  return intent.kind === "probe"
+    ? digest({
+        command: intent.command,
+        args: intent.args,
+        timeoutMs: intent.timeoutMs,
+      })
+    : digest({
+        path: intent.path,
+        beforeDigest: intent.beforeDigest,
+        contentDigest: intent.contentDigest,
+      });
+}
+
+function idempotencyScopeDigest(intent: ProbeIntent | MaterializeIntent): EffectDigest {
+  return digest({
+    capabilityId: intent.capabilityId,
+    actor: intent.actor,
+    tool: intent.tool,
+    target: intent.target,
+    paramsDigest: paramsDigest(intent.params),
+    effectPayloadDigest: effectPayloadDigest(intent),
+    snapshot: intent.snapshot,
+  });
+}
+
+function preflight(
+  intent: ProbeIntent | MaterializeIntent,
+  context: ExecutorContext,
+  at: string,
+): string | null {
   if (!intent.operationId || !intent.capabilityId || !intent.idempotencyKey)
     return "invalid_intent";
   if (!SHA256.test(intent.snapshot.worktreeDigest) || !SHA256.test(intent.snapshot.inputsDigest))
     return "invalid_snapshot";
   if (Date.parse(intent.expiresAt) <= Date.parse(at)) return "intent_expired";
-  if (context.consumedIdempotencyKeys.has(intent.idempotencyKey)) return "duplicate_intent";
   if (stable(intent.snapshot) !== stable(context.currentSnapshot)) return "snapshot_drift";
   const authorization = intent.authorization;
   if (!context.trustedIssuers.has(authorization.issuer)) return "untrusted_issuer";
@@ -145,10 +180,28 @@ function preflight(intent: EffectIntent, context: ExecutorContext, at: string): 
     authorization.actor !== intent.actor ||
     authorization.tool !== intent.tool ||
     authorization.target !== intent.target ||
-    authorization.paramsDigest !== paramsDigest(intent.params)
+    authorization.paramsDigest !== paramsDigest(intent.params) ||
+    authorization.effectPayloadDigest !== effectPayloadDigest(intent)
   )
     return "authorization_scope_mismatch";
   return null;
+}
+
+function claimIdempotency(
+  intent: ProbeIntent | MaterializeIntent,
+  context: ExecutorContext,
+): "duplicate_intent" | "idempotency_conflict" | "idempotency_claim_failed" | null {
+  try {
+    const result = context.idempotency.claim({
+      key: intent.idempotencyKey,
+      scopeDigest: idempotencyScopeDigest(intent),
+    });
+    if (result === "duplicate") return "duplicate_intent";
+    if (result === "conflict") return "idempotency_conflict";
+    return null;
+  } catch {
+    return "idempotency_claim_failed";
+  }
 }
 
 function receiptBase(
@@ -191,7 +244,16 @@ export function runProbe(
       binary: intent.command,
       binaryVersion: "",
     };
-  context.consumedIdempotencyKeys.add(intent.idempotencyKey);
+  const claimRejection = claimIdempotency(intent, context);
+  if (claimRejection)
+    return {
+      ...receiptBase(intent, startedAt, startedAt, "blocked", claimRejection, claimRejection),
+      kind: "probe",
+      timedOut: false,
+      exitCode: null,
+      binary: intent.command,
+      binaryVersion: "",
+    };
   try {
     const result = port.execute(intent);
     const reason = result.timedOut
@@ -246,7 +308,8 @@ export function materializeLintArtifact(
   if (rejection) return rejected(rejection);
   if (!SHA256.test(intent.beforeDigest) || !SHA256.test(intent.contentDigest))
     return rejected("invalid_materialize_digest");
-  context.consumedIdempotencyKeys.add(intent.idempotencyKey);
+  const claimRejection = claimIdempotency(intent, context);
+  if (claimRejection) return rejected(claimRejection);
   try {
     const result = port.materialize(intent);
     const accepted =
