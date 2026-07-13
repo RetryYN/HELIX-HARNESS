@@ -104,9 +104,13 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l9).toMatch(
       /\| IT-SBOUND-002 \|[^\n]+\|[^\n]+`tests\/visualization-treeview\.test\.ts`/,
     );
+    expect(l9).toMatch(
+      /\| IT-SBOUND-007 \|[^\n]+\|[^\n]+`tests\/lint-effect-executor\.test\.ts`/,
+    );
     for (const [oracle, testPath] of [
       ["IT-SBOUND-001", "tests/slow/source-boundary-headless.test.ts"],
       ["IT-SBOUND-002", "tests/visualization-treeview.test.ts"],
+      ["IT-SBOUND-007", "tests/lint-effect-executor.test.ts"],
     ]) {
       expect(read(testPath)).toContain(oracle);
     }
