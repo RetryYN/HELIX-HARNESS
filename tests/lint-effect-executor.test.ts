@@ -180,7 +180,7 @@ describe("PLAN-L7-451 lint effect executor", () => {
     }
   });
 
-  it("U-SBOUND-009: effect payload変異とdurable replay/conflictをeffect前に拒否する", () => {
+  it("effect payload変異とdurable replay/conflictをeffect前に拒否する", () => {
     const original = probe();
     const mutated = [
       { ...original, command: "node" },
