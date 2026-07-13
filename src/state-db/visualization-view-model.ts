@@ -1,6 +1,4 @@
 import type {
-  ClosureReviewScopeView,
-  ClosureReviewWindowView,
   DesignTestPairView,
   Drilldown,
   GraphIr,
@@ -15,6 +13,7 @@ import type {
   SkillAgentTelemetryView,
   VisualizationRootBoundary,
 } from "../schema/visualization-contract";
+import type { ProjectCurrentLocationView } from "../schema/visualization-current-location-contract";
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceApplyPlan,
@@ -72,6 +71,7 @@ export type {
   SkillAgentTelemetryView,
   VisualizationRootBoundary,
 } from "../schema/visualization-contract";
+export type { ProjectCurrentLocationView } from "../schema/visualization-current-location-contract";
 
 function emptyScrumOperation(): ProjectScrumOperation {
   return {
@@ -110,7 +110,6 @@ function emptySkillBinding(): ProjectSkillBinding {
     reasons: ["skill binding projection は未提供"],
   };
 }
-
 
 export interface VisualizationViewModel {
   generated_from: "visualization-snapshot.v1";
