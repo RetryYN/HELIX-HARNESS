@@ -8,7 +8,9 @@ export interface VisualizationTreeSummary {
   snapshot_hash: string;
 }
 
-export interface VisualizationTreeEvidenceRow extends VisualizationTreeSummary {
+export interface VisualizationTreeEvidenceRow
+  extends Omit<VisualizationTreeSummary, "source_clock" | "root_ids">,
+    Record<string, unknown> {
   tree_view_id: "visualization-tree-view:latest";
   source_clock: string;
   root_ids: string;
