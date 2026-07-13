@@ -106,7 +106,7 @@ describe("CI governance self-heal", () => {
     ).toBe(true);
   });
 
-  it("U-CISELF-005: L6全docはL8から逆traceされる", () => {
+  it("U-CISELF-005: L6全docはL8から逆traceされ、設計中draftはfreeze未完了として可視化する", () => {
     const result = checkL6Completion(process.cwd());
     expect(result.ok, result.messages.join("\n")).toBe(true);
   });

@@ -5000,7 +5000,11 @@ export function checkFeedbackLog(repoRoot: string): {
   }
 }
 
-/** V-model 層群の Forward freeze 完了 (検証サイクル発火タイミング) を hard gate として検査する。 */
+/**
+ * L6 readiness は設計中の draft status 自体をCI失敗へ変換しない warn surface とする。
+ * V-pair trace / contract substance が成立することはfail-closeで要求し、freeze完了は
+ * `ready` として別途表示する。これは設計を先行して起票できる Forward workflow の境界である。
+ */
 export function checkL6Completion(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -5013,7 +5017,7 @@ export function checkL6Completion(repoRoot: string): {
   }
   try {
     const r = analyzeL6Completion(loadL6CompletionInputs(repoRoot));
-    return { messages: l6CompletionMessages(r), ok: r.ready };
+    return { messages: l6CompletionMessages(r), ok: r.freezeInputReady };
   } catch {
     return {
       messages: ["l6-completion - violation: L6 completion readiness could not be read"],

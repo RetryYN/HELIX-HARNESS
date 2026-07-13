@@ -24,16 +24,17 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 
 analyzerからwrite/child-process authorityへ直接到達できないことを全contractの共通不変条件とする。
 
-| contract | 事前条件 | 事後条件 | 不変条件 |
-|---|---|---|---|
-| tree build | 検証済みDTO | deterministicなgeneric tree | VS Code symbol/import 0 |
-| decoration | generic tree + catalog | adapter用tree | state-db import 0 |
-| evidence projection | view + 検証済みsummary | rows | presentation builder import 0 |
-| analyzer | immutable snapshot | finding一覧 | write/process callback 0 |
-| probe/materialize | typed intent + explicit port | bounded receipt | timeout/nonzeroをsuccess化しない |
-| edge extract | immutable source docs | normalized direct/type/re-export/dynamic/literal-require/import-equals edges | computed/nonliteralをunknownとして落とさない |
-| boundary evaluate | 正規化済みdirect/type edge | allow/deny/unspecified | unspecified≠allow |
-| policy coverage | canonical catalog + live edges | default/exception total decision | missing pair/new moduleを黙認しない |
+| Function / Signature | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `buildVisualizationTree(view: VisualizationContract) => GenericTree` | 検証済みDTO | deterministicなgeneric tree | VS Code symbol/import 0 | U-SBOUND-005 |
+| `decorateVscodeTree(tree: GenericTree, commands: CommandCatalog) => VscodeTree` | generic tree + catalog | adapter用tree | state-db import 0 | U-SBOUND-002 |
+| `projectVisualizationEvidence(view: VisualizationContract, summary: TreeSummary) => ProjectionRows` | view + 検証済みsummary | rows | presentation builder import 0 | U-SBOUND-001 |
+| `analyzeSnapshot<T>(snapshot: T, rules: AnalyzerRules<T>) => Finding[]` | immutable snapshot | finding一覧 | write/process callback 0 | U-SBOUND-004 |
+| `runProbe(intent: ProbeIntent, port: ProbePort) => ProbeReceipt` | typed intent + explicit port | bounded receipt | timeout/nonzeroをsuccess化しない | U-SBOUND-006 |
+| `materializeLintArtifact(intent: MaterializeIntent, port: WritePort) => MaterializeReceipt` | typed intent + explicit port | durable receipt | partial targetをacceptedにしない | U-SBOUND-010 |
+| `extractSourceEdges(docs: SourceDocument[]) => SourceEdge[]` | immutable source docs | normalized edges | computed/nonliteralをunknownとして落とさない | U-SBOUND-008 |
+| `evaluateSourceBoundary(edge: SourceEdge, policy: BoundaryPolicy) => BoundaryDecision` | 正規化済みdirect/type edge | allow/deny/unspecified | unspecified≠allow | U-SBOUND-003 |
+| `validateBoundaryPolicyCoverage(catalog: ModuleCatalog, edges: SourceEdge[], policy: BoundaryPolicy) => PolicyFinding[]` | canonical catalog + live edges | default/exception total decision | missing pair/new moduleを黙認しない | U-SBOUND-007 |
 
 ## 3. receipt
 
