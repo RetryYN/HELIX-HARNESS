@@ -66,4 +66,27 @@ describe("loadOracleTestTraceInput real repo (U-OTT-004/005)", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("U-OTT-007: 本文中の status: draft は frontmatter status を上書きできず、unknown statusはfail-closeで収集する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-oracle-trace-frontmatter-"));
+    try {
+      mkdirSync(join(root, "docs", "test-design"), { recursive: true });
+      mkdirSync(join(root, "tests"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "test-design", "confirmed-with-example.md"),
+        ["---", "status: confirmed", "---", "", "```yaml", "status: draft", "```", "U-TRACE-001", ""].join("\n"),
+      );
+      writeFileSync(
+        join(root, "docs", "test-design", "unknown.md"),
+        ["---", "status: proposed", "---", "", "U-TRACE-002", ""].join("\n"),
+      );
+      writeFileSync(join(root, "tests", "trace.test.ts"), "// U-TRACE-001\n");
+
+      const input = loadOracleTestTraceInput(root);
+      expect(input.declared.sort()).toEqual(["U-TRACE-001", "U-TRACE-002"]);
+      expect(analyzeOracleTestTrace(input).orphans).toEqual(["U-TRACE-002"]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

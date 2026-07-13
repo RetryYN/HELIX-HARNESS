@@ -24,7 +24,6 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-010, test_path: tests/source-boundary-design.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
-  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: []
@@ -44,6 +43,11 @@ artifact を `generates` に載せて relation graph の実装済み edge とし
 
 - `src/lint/effect-intent.ts`
 - `src/runtime/lint-effect-executor.ts`
+
+## 検証境界
+
+`tests/source-boundary-design.test.ts` は既存のV-pair structural guardであり、本PLANの生成物ではない。
+`verification_bindings` は後続実装時に当該oracleを具体的なbehavior testへ拡張する責務を表す。
 
 ## 完了条件
 

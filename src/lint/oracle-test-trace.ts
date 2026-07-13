@@ -12,6 +12,7 @@
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { parse as parseYaml } from "yaml";
 import { ORACLE_TEST_TRACE_BASELINE } from "./oracle-test-trace-baseline";
 
 export { ORACLE_TEST_TRACE_BASELINE };
@@ -60,9 +61,22 @@ function collectIds(dir: string, ext: string, acc: Set<string>): void {
   }
 }
 
-/** draft は設計中の将来 oracle であり、confirmed design の fail-close trace 対象外とする。 */
-function isDraftTestDesign(text: string): boolean {
-  return /^---\s*$[\s\S]*?^status:\s*draft\s*$/m.test(text);
+/** opening YAML frontmatter だけから status を得る。本文・code example は判定対象にしない。 */
+function testDesignStatus(text: string): string | null {
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!match) return null;
+  try {
+    const frontmatter = parseYaml(match[1]) as { status?: unknown } | null;
+    return typeof frontmatter?.status === "string" ? frontmatter.status : null;
+  } catch {
+    return null;
+  }
+}
+
+/** draft/archived は実装済みoracle traceの対象外。status欠落・未知値はfail-closeで収集する。 */
+function isTraceableTestDesign(text: string): boolean {
+  const status = testDesignStatus(text);
+  return status !== "draft" && status !== "archived";
 }
 
 function collectDeclaredIds(dir: string, acc: Set<string>): void {
@@ -78,7 +92,7 @@ function collectDeclaredIds(dir: string, acc: Set<string>): void {
       collectDeclaredIds(full, acc);
     } else if (e.endsWith(".md")) {
       const text = readFileSync(full, "utf8");
-      if (!isDraftTestDesign(text)) {
+      if (isTraceableTestDesign(text)) {
         for (const m of text.matchAll(ORACLE_ID)) acc.add(m[0]);
       }
     }

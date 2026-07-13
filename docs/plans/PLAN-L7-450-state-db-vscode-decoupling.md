@@ -23,7 +23,6 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-005, test_path: tests/source-boundary-design.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md, artifact_type: markdown_doc }
-  - { artifact_path: tests/source-boundary-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: []
@@ -44,6 +43,11 @@ dependencies:
 - `src/schema/visualization-contract.ts`
 - `src/vmodel/visualization-tree-projector.ts`
 - `src/state-db/visualization-evidence.ts`
+
+## 検証境界
+
+`tests/source-boundary-design.test.ts` は既存のV-pair structural guardであり、本PLANの生成物ではない。
+`verification_bindings` は後続実装時に当該oracleを具体的なbehavior testへ拡張する責務を表す。
 
 ## 完了条件
 
