@@ -447,6 +447,7 @@ import {
   loadSlots,
   peakParallel,
 } from "../runtime/agent-slots";
+import { rebuildHarnessDb } from "../runtime/db-rebuild-composition";
 import { detectMode } from "../runtime/detect";
 import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
 import {
@@ -493,7 +494,7 @@ import {
 } from "../state-db/index";
 import { rowCounts } from "../state-db/migration";
 import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
-import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
+import { projectTokenUsage } from "../state-db/projection-writer";
 import {
   analyzeRefactorCandidates,
   candidateRank,
