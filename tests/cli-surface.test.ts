@@ -7725,4 +7725,42 @@ describe("PLAN-L7-417 hook-quiet 出力 (Codex 0.144 Stop/SubagentStop stdout �
     expect(loud.stdout).toContain("agent-slots:");
   }, 30_000);
 });
+
+describe("document semantic diff CLI (IT-DOCDIFF)", () => {
+  it("IT-DOCDIFF-001/002: repository内rootだけをread-only比較し、不正rootを拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-docdiff-"));
+    try {
+      const content = `---\nspec:\n  defines:\n    - id: R-001\n      kind: requirement\n---\n\n# R-001\n\n| ID | 内容 |\n| --- | --- |\n| R-001 | 定義 |\n`;
+      mkdirSync(join(root, "base"), { recursive: true });
+      mkdirSync(join(root, "current"), { recursive: true });
+      writeFileSync(join(root, "base", "a.md"), content, "utf8");
+      writeFileSync(join(root, "current", "a.md"), `${content}\n本文変更\n`, "utf8");
+      const diff = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--json",
+      ]);
+      expect(diff.status).toBe(0);
+      expect(JSON.parse(diff.stdout)).toMatchObject({
+        ok: true,
+        delta: { findings: [expect.objectContaining({ code: "unrecorded_change" })] },
+      });
+      const escapedRoot = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "..",
+        "--json",
+      ]);
+      expect(escapedRoot.status).toBe(1);
+      expect(JSON.parse(escapedRoot.stdout)).toMatchObject({ ok: false });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
+});
 // PLAN-L7-427-active-plan-selection
