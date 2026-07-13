@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import {
@@ -38,12 +39,53 @@ function snapshot(repoRoot: string, path: string) {
   );
 }
 
+function gitSnapshot(repoRoot: string, ref: string, path: string) {
+  if (!/^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(ref) || ref.includes("..")) {
+    throw new Error("invalid git revision");
+  }
+  const base = root(repoRoot, path);
+  const relativeRoot = relative(repoRoot, base).split("\\").join("/");
+  const names = execFileSync(
+    "git",
+    ["-C", repoRoot, "ls-tree", "-r", "--name-only", ref, "--", relativeRoot],
+    { encoding: "utf8", timeout: 10_000 },
+  )
+    .split(/\r?\n/)
+    .filter((name) => name.endsWith(".md"));
+  return buildSemanticDocumentSnapshot(
+    names.sort().map((name) => ({
+      path: name.slice(`${relativeRoot}/`.length),
+      content: execFileSync("git", ["-C", repoRoot, "show", `${ref}:${name}`], {
+        encoding: "utf8",
+        timeout: 10_000,
+      }),
+    })),
+  );
+}
+
 export function loadDocumentSemanticDiffReport(input: {
   repoRoot: string;
   baseRoot: string;
   currentRoot: string;
 }): DocumentChangeReport {
   const base = snapshot(input.repoRoot, input.baseRoot);
+  const current = snapshot(input.repoRoot, input.currentRoot);
+  const delta = diffSemanticDocuments(base.documents, current.documents);
+  delta.findings.push(...base.findings, ...current.findings);
+  delta.ok = !delta.findings.some((finding) => finding.severity === "error");
+  return buildDocumentChangeReport({
+    baseSnapshotDigest: semanticSnapshotDigest(base.documents),
+    currentSnapshotDigest: semanticSnapshotDigest(current.documents),
+    delta,
+  });
+}
+
+export function loadDocumentSemanticDiffReportFromGit(input: {
+  repoRoot: string;
+  baseRef: string;
+  currentRoot: string;
+}): DocumentChangeReport {
+  const base = gitSnapshot(input.repoRoot, input.baseRef, input.currentRoot);
   const current = snapshot(input.repoRoot, input.currentRoot);
   const delta = diffSemanticDocuments(base.documents, current.documents);
   delta.findings.push(...base.findings, ...current.findings);
