@@ -120,10 +120,11 @@ export function publishedBaseRefs(env: NodeJS.ProcessEnv, currentBranch: string 
 function loadPublishedBasePaths(repoRoot: string): ReadonlySet<string> | null {
   let currentBranch: string | null = null;
   try {
-    currentBranch = execFileSync("git", ["branch", "--show-current"], {
-      cwd: repoRoot,
-      encoding: "utf8",
-    }).trim() || null;
+    currentBranch =
+      execFileSync("git", ["branch", "--show-current"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+      }).trim() || null;
   } catch {
     // Gitなしfixtureは下のfallbackを使う。
   }
