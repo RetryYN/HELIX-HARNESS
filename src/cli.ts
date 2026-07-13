@@ -49,6 +49,7 @@ import { planReleaseAutomationDecision } from "./audit/release-automation-decisi
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
+import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
@@ -230,7 +231,6 @@ import {
   buildCrossRepoSpecStoreReport,
   type SpecStoreOperation,
 } from "./runtime/cross-repo-spec-store";
-import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
 import {
   type BundleCatalog,

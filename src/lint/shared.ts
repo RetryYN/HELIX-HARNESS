@@ -324,7 +324,9 @@ const DBC_TABLE_MIN = new RegExp(
 
 /** L6 spec doc が DbC 契約テーブル (Function/Signature/pre/post...) を持つか。 */
 export function hasDbcTable(text: string): boolean {
-  return DBC_TABLE_FULL.test(text) || DBC_TABLE_COMBINED_SIGNATURE.test(text) || DBC_TABLE_MIN.test(text);
+  return (
+    DBC_TABLE_FULL.test(text) || DBC_TABLE_COMBINED_SIGNATURE.test(text) || DBC_TABLE_MIN.test(text)
+  );
 }
 
 // A-120 I-2 / IMP-105: coding-rules / ddd-tdd-rules の import 境界判定を単一正本化する。

@@ -59,8 +59,8 @@ import {
   type RuntimeVerificationLogEvent,
   validateRuntimeVerificationLogCompleteness,
 } from "../schema/runtime-verification";
-import { nowIso } from "../shared/time-utils";
 import type { VisualizationContract } from "../schema/visualization-view-contract";
+import { nowIso } from "../shared/time-utils";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -214,9 +214,7 @@ export interface RebuildHarnessDbInput {
   relationGraph?: RelationGraphProjection;
   documentExports?: DocumentExportProjectionRows;
   verificationEvidence?: VerificationEvidenceProjection;
-  buildVisualizationTreeSummary?: (
-    view: VisualizationContract,
-  ) => VisualizationTreeSummary;
+  buildVisualizationTreeSummary?: (view: VisualizationContract) => VisualizationTreeSummary;
   onProfile?: (entry: RebuildHarnessDbProfileEntry) => void;
 }
 

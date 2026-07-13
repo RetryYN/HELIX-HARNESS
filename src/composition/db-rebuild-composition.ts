@@ -1,14 +1,14 @@
 import { createHash } from "node:crypto";
 import type { VisualizationContract } from "../schema/visualization-view-contract";
 import {
-  rebuildHarnessDb as rebuildHarnessDbCore,
   type RebuildHarnessDbInput,
   type RebuildHarnessDbResult,
+  rebuildHarnessDb as rebuildHarnessDbCore,
 } from "../state-db/projection-writer";
 import type { VisualizationTreeSummary } from "../state-db/visualization-evidence";
+import { buildVisualizationTree } from "../vmodel/visualization-tree-projector";
 import { HELIX_COPY_POINTER_COMMAND } from "../vscode/extension-manifest";
 import { decorateVscodeTree } from "../vscode/tree-decoration";
-import { buildVisualizationTree } from "../vmodel/visualization-tree-projector";
 
 function countTreeNodes(nodes: readonly { children: readonly unknown[] }[]): number {
   return nodes.reduce(

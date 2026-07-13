@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  contentDigest,
   type EffectAuthorization,
   type EffectSnapshot,
   type ExecutorContext,
-  contentDigest,
   effectPayloadDigest,
   type MaterializeIntent,
   materializeLintArtifact,

@@ -9,6 +9,7 @@ import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
+import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
 import {
   actionBindingApprovalReadinessMessages,
@@ -447,7 +448,6 @@ import {
   loadSlots,
   peakParallel,
 } from "../runtime/agent-slots";
-import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { detectMode } from "../runtime/detect";
 import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
 import {

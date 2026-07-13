@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
+import { rebuildHarnessDb } from "../src/composition/db-rebuild-composition";
 import {
   AUTOMATIC_DB_PROJECTION_REQUIREMENTS,
   analyzeDbProjectionIngestion,
@@ -8,7 +9,6 @@ import {
 } from "../src/lint/db-projection-ingestion";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
-import { rebuildHarnessDb } from "../src/composition/db-rebuild-composition";
 import { buildVisualizationSnapshot } from "../src/state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "../src/state-db/visualization-view-model";
 import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";
