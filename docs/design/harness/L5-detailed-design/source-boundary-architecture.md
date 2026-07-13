@@ -34,7 +34,7 @@ plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 | 現symbol/owner | 新owner path | 接続root |
 |---|---|---|
 | `MetricRow` / `VisualizationViewModel` | `src/schema/visualization-contract.ts` | `src/cli.ts` / `src/vscode/extension-adapter.ts` |
-| `TreeViewNode`のadapter-neutral部分 | `GenericTreeNode` in `src/schema/visualization-contract.ts` | `src/vscode/extension-adapter.ts` |
+| `TreeViewNode`のadapter-neutral部分 | `GenericTreeNode` in `src/schema/visualization-tree-contract.ts` | `src/vscode/extension-adapter.ts` |
 | `buildVisualizationTreeView`のpure projection | `buildVisualizationTree` in `src/vmodel/visualization-tree-projector.ts` | `src/vscode/extension-adapter.ts` |
 | VS Code command decoration | `src/vscode/tree-view-provider.ts` | `src/vscode/extension-adapter.ts` |
 | projection用tree summary | `src/state-db/visualization-evidence.ts` | `src/state-db/projection-writer.ts` |

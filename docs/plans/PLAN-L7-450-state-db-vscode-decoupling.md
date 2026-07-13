@@ -23,6 +23,12 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-005, test_path: tests/tree-decoration.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md, artifact_type: markdown_doc }
+  - { artifact_path: src/schema/visualization-contract.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/visualization-tree-contract.ts, artifact_type: source_module }
+  - { artifact_path: src/vmodel/visualization-tree-projector.ts, artifact_type: source_module }
+  - { artifact_path: src/vscode/tree-decoration.ts, artifact_type: source_module }
+  - { artifact_path: src/vscode/tree-view-provider.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/visualization-evidence.ts, artifact_type: source_module }
   - { artifact_path: tests/tree-decoration.test.ts, artifact_type: test_code }
   - { artifact_path: tests/visualization-evidence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/source-boundary-integration.test.ts, artifact_type: test_code }
@@ -38,10 +44,10 @@ dependencies:
 共有DTO、pure projector、state-db evidence、VS Code decorationを物理分離し、composition rootだけで接続する。
 既存symbolを新ownerへ移した後、state-dbとVS Code間のdirect/type-only edgeを0にする。
 
-## 予定出力（draft、未生成）
+## 実装済み出力（draft、closure前）
 
-次の source artifact は本PLANが `confirmed` になる実装時に `generates` へ昇格させる。現時点で
-`generates` に載せると relation graph が未実在 artifact を実装済み edge と誤認するため、予定として明示する。
+次の source artifact は本PLANの実装出力であり、frontmatterの`generates`に登録済みである。
+ただしstate-dbのcomposition反転、L9 integration oracle、independent reviewを終えるまでPLANはdraftのままとする。
 
 - `src/schema/visualization-contract.ts`
 - `src/vmodel/visualization-tree-projector.ts`
