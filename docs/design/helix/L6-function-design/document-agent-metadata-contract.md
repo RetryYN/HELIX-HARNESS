@@ -18,8 +18,8 @@ related_l9: docs/test-design/helix/L9-document-agent-metadata-integration.md
 
 | 関数 | signature | DbC | oracle |
 |---|---|---|---|
-| `deriveDocumentAgentMetadata` | `(documents: DesignDeclarationDocument[], registry: DeclarationRegistry, manifest: DocumentAgentScopeManifest) => DocumentAgentMetadataReport` | typed declaration だけから決定論的に expected metadata を導出し、対象外 path を受理しない | U-AGMETA-001..003 |
-| `validateDocumentAgentMetadata` | `(documents: DesignDeclarationDocument[], registry: DeclarationRegistry, manifest: DocumentAgentScopeManifest) => DocumentAgentMetadataReport` | declared と expected の missing / unknown / stale / mismatch を全件返し、partial success を green にしない | U-AGMETA-004..007 |
+| `deriveDocumentAgentMetadata` | `(documents: ParsedDesignDeclarationDoc[], registry: DeclarationRegistry, manifest: DocumentAgentScopeManifest) => DocumentAgentMetadataReport` | `src/schema/design-declarations.ts` の既存 parser 結果だけから決定論的に expected metadata を導出し、対象外 path を受理しない | U-AGMETA-001..003 |
+| `validateDocumentAgentMetadata` | `(documents: ParsedDesignDeclarationDoc[], registry: DeclarationRegistry, manifest: DocumentAgentScopeManifest) => DocumentAgentMetadataReport` | declared と expected の missing / unknown / stale / mismatch を全件返し、partial success を green にしない | U-AGMETA-004..007 |
 | `checkDocumentAgentMetadata` | `(repoRoot: string, manifest: DocumentAgentScopeManifest) => GateResult` | FS adapter の読み込み結果だけを analyzer に渡す。read-only で JSON result を返す | IT-AGMETA-001..003 |
 | `applyDocumentAgentMetadata` | `(selection: CanonicalPath[], expected: DocumentAgentMetadataReport, port: ArtifactWritePort) => ApplyReceipt` | Phase B only。manifest内の明示選択、digest一致、write port、rollback receipt が揃う場合だけ更新する | IT-AGMETA-004 |
 
@@ -28,7 +28,7 @@ related_l9: docs/test-design/helix/L9-document-agent-metadata-integration.md
 | path | owner | 制約 |
 |---|---|---|
 | `src/schema/document-agent-metadata.ts` | schema | metadata/result の strict 型 |
-| `src/lint/document-agent-metadata.ts` | pure policy | `src/schema/design-declarations.ts` を唯一の typed extractor として再利用 |
+| `src/lint/document-agent-metadata.ts` | pure policy | `ParsedDesignDeclarationDoc` と同一parser由来の `DeclarationRegistry` を入力にし、`src/schema/design-declarations.ts` を唯一の typed extractor として再利用 |
 | `src/adapters/document-agent-metadata-fs.ts` | filesystem adapter | canonical scope の列挙・read のみ |
 | CLI composition / doctor | adapter | `helix design agent-metadata check --json` と hard gate への接続だけ |
 

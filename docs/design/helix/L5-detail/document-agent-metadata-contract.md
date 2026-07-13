@@ -37,8 +37,9 @@ interface DocumentAgentMetadata {
 }
 
 interface DocumentAgentMetadataFinding {
-  code: "scope_invalid" | "declaration_invalid" | "unknown_reference" | "cycle" |
-    "defines_extra" | "read_first_missing" | "read_first_stale" | "done_when_mismatch";
+  code: "manifest_invalid" | "scope_invalid" | "parse_failure" | "duplicate_id" |
+    "metadata_invalid" | "unknown_reference" | "cycle" | "defines_extra" |
+    "read_first_missing" | "read_first_stale" | "done_when_mismatch";
   path: string;
   declaration_id: string | null;
   severity: "error" | "warning";
@@ -61,6 +62,7 @@ interface DocumentAgentMetadataReport {
 `document_agent` は YAML frontmatter の top-level mapping にだけ置く。typed declaration の入力は既存 parser が
 受理する frontmatter と fenced YAML の双方であり、両者の解釈を別実装しない。`required_pair_artifact` は
 document frontmatter の `pair_artifact`、`required_gates` は scope manifest の canonical gate 名から導出する。
+`document_agent` の未知 key は `metadata_invalid` とし、暗黙の拡張を許可しない。
 
 ## §3 不変条件
 
