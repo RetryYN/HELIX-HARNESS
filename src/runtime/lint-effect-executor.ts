@@ -46,6 +46,8 @@ export interface MaterializeIntent extends EffectIntent {
   kind: "materialize";
   path: string;
   beforeDigest: EffectDigest;
+  /** Signed payload; it is never copied into the receipt. */
+  content: string;
   contentDigest: EffectDigest;
 }
 
@@ -144,6 +146,10 @@ function safeDigest(value: unknown): EffectDigest {
 
 export function paramsDigest(params: Readonly<Record<string, unknown>>): EffectDigest {
   return digest(params);
+}
+
+export function contentDigest(content: string): EffectDigest {
+  return digest(content);
 }
 
 export function effectPayloadDigest(intent: ProbeIntent | MaterializeIntent): EffectDigest {
@@ -387,6 +393,8 @@ export function materializeLintArtifact(
   if (rejection) return rejected(rejection);
   if (!SHA256.test(intent.beforeDigest) || !SHA256.test(intent.contentDigest))
     return rejected("invalid_materialize_digest");
+  if (contentDigest(intent.content) !== intent.contentDigest)
+    return rejected("content_digest_mismatch");
   const claimRejection = claimIdempotency(intent, context);
   if (claimRejection) return rejected(claimRejection);
   const dispatchRejection = dispatchSnapshotRejection(intent, context);

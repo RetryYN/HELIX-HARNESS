@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import {
+  closeSync,
   existsSync,
   fsyncSync,
   lstatSync,
@@ -26,35 +27,36 @@ export interface LintArtifactWritePortOptions {
   hooks?: { afterBoundary?(boundary: LintArtifactWriteBoundary): void };
 }
 
-function fsyncPath(path: string): void {
-  const fd = openSync(path, "r");
-  try {
-    fsyncSync(fd);
-  } finally {
-    rmSync(`/proc/self/fd/${fd}`, { force: true });
-  }
-}
-
 function fsyncDirectory(path: string): void {
   const fd = openSync(path, "r");
   try {
     fsyncSync(fd);
   } finally {
-    rmSync(`/proc/self/fd/${fd}`, { force: true });
+    closeSync(fd);
   }
 }
 
-function closeFsync(fd: number): void {
-  fsyncSync(fd);
+function writeAndFsync(fd: number, content: string): void {
+  try {
+    writeFileSync(fd, content, "utf8");
+    fsyncSync(fd);
+  } finally {
+    closeSync(fd);
+  }
 }
 
 function targetPath(root: string, path: string): string {
   if (!path || isAbsolute(path) || path.includes("\0")) throw new Error("invalid_artifact_path");
   const target = resolve(root, path);
   const inside = relative(root, target);
-  if (!inside || inside === ".." || inside.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`))
+  if (
+    !inside ||
+    inside === ".." ||
+    inside.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`)
+  )
     throw new Error("artifact_path_escapes_root");
-  if (existsSync(target) && lstatSync(target).isSymbolicLink()) throw new Error("artifact_target_symlink");
+  if (existsSync(target) && lstatSync(target).isSymbolicLink())
+    throw new Error("artifact_target_symlink");
   return target;
 }
 
@@ -66,18 +68,15 @@ export function createLintArtifactWritePort(options: LintArtifactWritePortOption
       const target = targetPath(root, intent.path);
       const directory = dirname(target);
       mkdirSync(directory, { recursive: true });
-      const before = existsSync(target) ? contentDigest(readFileSync(target, "utf8")) : contentDigest("");
+      const before = existsSync(target)
+        ? contentDigest(readFileSync(target, "utf8"))
+        : contentDigest("");
       if (before !== intent.beforeDigest) throw new Error("artifact_before_digest_mismatch");
       const temp = `${target}.${randomUUID()}.tmp`;
       let renamed = false;
       try {
         const fd = openSync(temp, "wx", 0o600);
-        try {
-          writeFileSync(fd, intent.content, "utf8");
-          closeFsync(fd);
-        } finally {
-          // closeSync is implicit in this small adapter's fsync boundary only after a successful write.
-        }
+        writeAndFsync(fd, intent.content);
         options.hooks?.afterBoundary?.("after_temp_write");
         options.hooks?.afterBoundary?.("after_temp_fsync");
         renameSync(temp, target);

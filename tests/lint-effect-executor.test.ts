@@ -3,6 +3,7 @@ import {
   type EffectAuthorization,
   type EffectSnapshot,
   type ExecutorContext,
+  contentDigest,
   effectPayloadDigest,
   type MaterializeIntent,
   materializeLintArtifact,
@@ -325,7 +326,8 @@ describe("PLAN-L7-451 lint effect executor", () => {
       idempotencyKey: "write-key",
       path: ".helix/evidence/result.json",
       beforeDigest: sha("0"),
-      contentDigest: sha("1"),
+      content: "result",
+      contentDigest: contentDigest("result"),
     };
     intent.authorization = authorization(effectPayloadDigest(intent));
     const exact = {
@@ -354,7 +356,8 @@ describe("PLAN-L7-451 lint effect executor", () => {
       kind: "materialize",
       path: "result.json",
       beforeDigest: sha("0"),
-      contentDigest: sha("1"),
+      content: "result",
+      contentDigest: contentDigest("result"),
     };
     intent.authorization = authorization(effectPayloadDigest(intent));
     expect(
