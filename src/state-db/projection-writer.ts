@@ -84,8 +84,8 @@ import {
 import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
-import { buildVisualizationSnapshot } from "./visualization-read-model";
 import { projectVisualizationEvidence } from "./visualization-evidence";
+import { buildVisualizationSnapshot } from "./visualization-read-model";
 import { buildVisualizationViewModel } from "./visualization-view-model";
 import { buildVmodelFitReport } from "./vmodel-fit";
 
