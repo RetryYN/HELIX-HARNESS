@@ -22,6 +22,7 @@ import { homedir, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
 import { loadDocumentAgentMetadataReport } from "./adapters/document-agent-metadata-fs";
+import { loadDocumentSemanticDiffReport } from "./adapters/document-semantic-diff-fs";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -1431,6 +1432,31 @@ design
       } else {
         process.stdout.write(`design agent-metadata: blocked ${detail}\n`);
       }
+    }
+  });
+
+design
+  .command("document-diff")
+  .description("二つのrepository内Markdown rootをread-only比較する")
+  .requiredOption("--base-root <path>", "基準Markdown root")
+  .option("--current-root <path>", "現在Markdown root", "docs")
+  .option("--json", "JSON で出力")
+  .action((opts: { baseRoot: string; currentRoot: string; json?: boolean }) => {
+    try {
+      const report = loadDocumentSemanticDiffReport({
+        repoRoot: process.cwd(),
+        baseRoot: opts.baseRoot,
+        currentRoot: opts.currentRoot,
+      });
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      else process.stdout.write(`${report.markdown}\n`);
+    } catch (error) {
+      process.exitCode = 1;
+      const detail = error instanceof Error ? error.message : String(error);
+      if (opts.json)
+        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+      else process.stdout.write(`design document-diff: blocked ${detail}\n`);
     }
   });
 
