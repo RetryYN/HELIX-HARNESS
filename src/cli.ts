@@ -21,6 +21,7 @@ import {
 import { homedir, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
+import { loadDocumentAgentMetadataReport } from "./adapters/document-agent-metadata-fs";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -1400,6 +1401,38 @@ program
 program.hook("preAction", () => {
   recoverClosureAutoApprovalTransaction(process.cwd());
 });
+
+const design = program.command("design").description("設計成果物の read-only 検証");
+design
+  .command("agent-metadata")
+  .description("document_agent 宣言を typed design declaration から検査する")
+  .command("check")
+  .description("scope manifest に対する read-only conformance check")
+  .option("--json", "JSON で出力")
+  .action((opts: { json?: boolean }) => {
+    try {
+      const report = loadDocumentAgentMetadataReport(process.cwd());
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `design agent-metadata: ${report.ok ? "ok" : "blocked"} checked=${report.checked_paths.length} findings=${report.findings.length}\n`,
+      );
+      for (const item of report.findings) {
+        process.stdout.write(`  ${item.code}: ${item.path} ${item.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const detail = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+      } else {
+        process.stdout.write(`design agent-metadata: blocked ${detail}\n`);
+      }
+    }
+  });
 
 program
   .command("status")

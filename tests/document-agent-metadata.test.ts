@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { loadDocumentAgentMetadataReport } from "../src/adapters/document-agent-metadata-fs";
 import {
   buildDeclarationRegistry,
   validateDocumentAgentMetadata,
@@ -80,6 +81,13 @@ function report(documents: ReturnType<typeof document>[]) {
 }
 
 describe("document agent metadata (HVM-AGMETA)", () => {
+  it("IT-AGMETA-001: canonical manifest を read-only で実文書へ適用する", () => {
+    expect(loadDocumentAgentMetadataReport(process.cwd())).toMatchObject({
+      ok: true,
+      checked_paths: ["docs/design/helix/L3-requirements/document-agent-metadata.md"],
+    });
+  });
+
   it("U-AGMETA-003: canonical な導出結果を入力順に依存せず返す", () => {
     const a = document("docs/design/helix/a.md", "A-001");
     const b = document("docs/test-design/helix/b.md", "B-001", { refs: ["A-001"] });

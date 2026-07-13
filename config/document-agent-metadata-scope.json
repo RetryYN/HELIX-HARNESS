@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "include_roots": [
+    "docs/design/helix",
+    "docs/test-design/helix"
+  ],
+  "exclude_roots": [
+    "docs/archive",
+    "docs/plans",
+    ".claude/agents"
+  ],
+  "documents": [
+    "docs/design/helix/L3-requirements/document-agent-metadata.md"
+  ],
+  "required_gates": [
+    "design-declarations",
+    "vpair-binding"
+  ],
+  "phase": "check"
+}

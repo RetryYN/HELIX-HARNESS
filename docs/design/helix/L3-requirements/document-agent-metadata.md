@@ -10,6 +10,20 @@ plan: PLAN-L3-13-vmodel-docgen-fit
 related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l12: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
 pair_artifact: docs/test-design/helix/L8-document-agent-metadata-contracts.md
+document_agent:
+  defines:
+    - HVM-FR-AGMETA-01
+  read_first:
+    - docs/design/helix/L3-requirements/vmodel-docgen-fit.md
+  done_when:
+    required_declaration_ids:
+      - HVM-FR-AGMETA-01
+    required_read_first:
+      - docs/design/helix/L3-requirements/vmodel-docgen-fit.md
+    required_pair_artifact: docs/test-design/helix/L8-document-agent-metadata-contracts.md
+    required_gates:
+      - design-declarations
+      - vpair-binding
 spec:
   defines:
     - id: HVM-FR-AGMETA-01
