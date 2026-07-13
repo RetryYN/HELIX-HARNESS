@@ -85,6 +85,7 @@ import { migrate, rowCounts } from "./migration";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
 import { buildVisualizationSnapshot } from "./visualization-read-model";
+import { projectVisualizationEvidence } from "./visualization-evidence";
 import { buildVisualizationViewModel } from "./visualization-view-model";
 import { buildVmodelFitReport } from "./vmodel-fit";
 
@@ -4839,17 +4840,18 @@ function projectVmodelReadModels(repoRoot: string, db: HarnessDb): void {
   recordProjectionEvent(db, {
     table: "visualization_tree_view",
     id: "visualization-tree-view:latest",
-    row: {
-      tree_view_id: "visualization-tree-view:latest",
-      schema_version: treeView.schema_version,
-      source_clock: treeView.source_clock ?? "",
-      root_ids: csv(treeView.roots.map((root) => root.id)),
-      root_count: treeView.roots.length,
-      node_count: countTreeNodes(treeView.roots),
-      warnings_count: treeView.warnings.length,
-      snapshot_hash: stableJsonHash(treeView),
-      indexed_at: indexedAt,
-    },
+    row: projectVisualizationEvidence(
+      {
+        schema_version: treeView.schema_version,
+        source_clock: treeView.source_clock,
+        root_ids: treeView.roots.map((root) => root.id),
+        root_count: treeView.roots.length,
+        node_count: countTreeNodes(treeView.roots),
+        warnings_count: treeView.warnings.length,
+        snapshot_hash: stableJsonHash(treeView),
+      },
+      indexedAt,
+    ),
   });
 }
 
