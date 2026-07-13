@@ -109,9 +109,25 @@ interface PlanFrontmatterGenerates {
   generates?: { artifact_path?: string }[];
 }
 
+/** 実行文脈に応じて公開baseを選ぶ。mainではremote-tracking refでなくHEADを正本にする。 */
+export function publishedBaseRefs(env: NodeJS.ProcessEnv, currentBranch: string | null): string[] {
+  if (env.GITHUB_REF_NAME === "main" || currentBranch === "main") return ["HEAD"];
+  const base = env.GITHUB_BASE_REF;
+  return base ? [`origin/${base}`, base] : ["origin/main", "main"];
+}
+
 /** PR worktreeの実在を「mainへmerge済み」と誤認しないため、公開base treeを一度だけ読む。 */
 function loadPublishedBasePaths(repoRoot: string): ReadonlySet<string> | null {
-  for (const ref of ["origin/main", "main"]) {
+  let currentBranch: string | null = null;
+  try {
+    currentBranch = execFileSync("git", ["branch", "--show-current"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    }).trim() || null;
+  } catch {
+    // Gitなしfixtureは下のfallbackを使う。
+  }
+  for (const ref of publishedBaseRefs(process.env, currentBranch)) {
     try {
       execFileSync("git", ["rev-parse", "--verify", ref], { cwd: repoRoot, stdio: "ignore" });
       const output = execFileSync("git", ["ls-tree", "-r", "--name-only", ref], {

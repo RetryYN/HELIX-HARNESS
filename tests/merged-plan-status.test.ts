@@ -6,6 +6,7 @@ import { checkMergedPlanStatus } from "../src/doctor/index";
 import {
   analyzeMergedPlanStatus,
   loadMergedPlanStatusInput,
+  publishedBaseRefs,
   selectMergedArtifacts,
 } from "../src/lint/merged-plan-status";
 
@@ -18,6 +19,14 @@ describe("analyzeMergedPlanStatus", () => {
     expect(
       selectMergedArtifacts(["src/published.ts"], new Set(["src/published.ts"]), process.cwd()),
     ).toEqual(["src/published.ts"]);
+  });
+
+  it("uses HEAD on main and the explicit PR base elsewhere, so a stale origin/main cannot mask main drift", () => {
+    expect(publishedBaseRefs({ GITHUB_REF_NAME: "main" }, "main")).toEqual(["HEAD"]);
+    expect(publishedBaseRefs({ GITHUB_BASE_REF: "release" }, null)).toEqual([
+      "origin/release",
+      "release",
+    ]);
   });
 
   it("flags an artifact-producing PLAN that is draft but whose src is merged", () => {
