@@ -11,10 +11,9 @@ import type {
   RelationGraphView,
   RuntimeEvidenceView,
   SkillAgentTelemetryView,
-  VisualizationContract,
-  VisualizationRootBoundary,
 } from "../schema/visualization-contract";
 import type { ProjectCurrentLocationView } from "../schema/visualization-current-location-contract";
+import type { VisualizationContract } from "../schema/visualization-view-contract";
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceApplyPlan,
@@ -70,10 +69,10 @@ export type {
   RelationGraphView,
   RuntimeEvidenceView,
   SkillAgentTelemetryView,
-  VisualizationContract,
   VisualizationRootBoundary,
 } from "../schema/visualization-contract";
 export type { ProjectCurrentLocationView } from "../schema/visualization-current-location-contract";
+export type { VisualizationContract } from "../schema/visualization-view-contract";
 
 function emptyScrumOperation(): ProjectScrumOperation {
   return {
