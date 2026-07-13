@@ -1949,11 +1949,12 @@ describe("verification trigger (U-VTRIG、層群 freeze の機械発火、IMP-06
     expect(progress[0]).toContain("Forward 進行中");
   });
 
-  it("U-VTRIG-005: 実 repo ガード — L3/L0-L7 freezeと、進行中L4-L6 draftを正しくsurfaceする", () => {
+  it("U-VTRIG-005: 実 repo ガード — draft を含む層群を未freezeとして正しくsurfaceする", () => {
     const docs = loadPairDocs();
     const { orphans } = analyzePairFreeze(docs);
     const groups = analyzeVerificationGroups(docs, orphans, loadVerificationPlanEvidence());
-    expect(groups.find((g) => g.id === "L0-L3")?.frozen).toBe(true);
+    // HVM-GAP-01 の L3 add-design が draft の間、上流検証サイクルを偽って freeze しない。
+    expect(groups.find((g) => g.id === "L0-L3")?.frozen).toBe(false);
     expect(groups.find((g) => g.id === "L4-L6")?.frozen).toBe(false);
     // 全 3 検証サイクルゲート名が実 repo の surface に出る (PLAN-REVERSE-36、命名の壊れを CI で検知)。
     const surface = verificationGroupMessages(groups).join("\n");
