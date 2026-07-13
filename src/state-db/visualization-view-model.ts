@@ -7,10 +7,15 @@ import type {
   GraphIrEdge,
   GraphIrEdgeInput,
   GraphIrNode,
+  GrowthSeriesPoint,
+  HarnessGrowthCurrentSections,
+  HarnessGrowthView,
   LayerProgressView,
   MetricRow,
   RelationGraphView,
   RuntimeEvidenceView,
+  SkillAgentTelemetryView,
+  VisualizationRootBoundary,
 } from "../schema/visualization-contract";
 import {
   buildProjectClosureBatchReport,
@@ -59,10 +64,15 @@ export type {
   GraphIrEdge,
   GraphIrEdgeInput,
   GraphIrNode,
+  GrowthSeriesPoint,
+  HarnessGrowthCurrentSections,
+  HarnessGrowthView,
   LayerProgressView,
   MetricRow,
   RelationGraphView,
   RuntimeEvidenceView,
+  SkillAgentTelemetryView,
+  VisualizationRootBoundary,
 } from "../schema/visualization-contract";
 
 function emptyScrumOperation(): ProjectScrumOperation {
