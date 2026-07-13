@@ -1,4 +1,4 @@
-import { spawnSync, type SpawnSyncReturns } from "node:child_process";
+import { type SpawnSyncReturns, spawnSync } from "node:child_process";
 import type { ProbeIntent, ProbePort } from "./lint-effect-executor";
 
 const DEFAULT_TIMEOUT_CEILING_MS = 30_000;
@@ -77,7 +77,9 @@ export function createLintProbePort(options: LintProbeAdapterOptions): ProbePort
       });
       return {
         exitCode: result.status,
-        timedOut: result.error?.code === "ETIMEDOUT" || result.signal === "SIGTERM",
+        timedOut:
+          (result.error as NodeJS.ErrnoException | undefined)?.code === "ETIMEDOUT" ||
+          result.signal === "SIGTERM",
         stdout: text(result.stdout),
         stderr: text(result.stderr),
         binaryVersion: "",

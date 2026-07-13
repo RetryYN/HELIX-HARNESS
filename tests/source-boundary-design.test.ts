@@ -104,9 +104,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(l9).toMatch(
       /\| IT-SBOUND-002 \|[^\n]+\|[^\n]+`tests\/visualization-treeview\.test\.ts`/,
     );
-    expect(l9).toMatch(
-      /\| IT-SBOUND-007 \|[^\n]+\|[^\n]+`tests\/lint-effect-executor\.test\.ts`/,
-    );
+    expect(l9).toMatch(/\| IT-SBOUND-007 \|[^\n]+\|[^\n]+`tests\/lint-effect-executor\.test\.ts`/);
     for (const [oracle, testPath] of [
       ["IT-SBOUND-001", "tests/slow/source-boundary-headless.test.ts"],
       ["IT-SBOUND-002", "tests/visualization-treeview.test.ts"],
@@ -190,8 +188,10 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       successorPaths[1],
       "src/lint/effect-intent.ts",
       "src/runtime/lint-effect-executor.ts",
+      "src/runtime/lint-probe-adapter.ts",
       "tests/lint-effect-intent.test.ts",
       "tests/lint-effect-executor.test.ts",
+      "tests/lint-probe-adapter.test.ts",
     ]);
     expect(l8).toContain("| U-SBOUND-004 | lint analyzer | immutable snapshot");
     for (const oracle of ["U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"]) {
@@ -199,6 +199,8 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       expect(row).toContain("`tests/lint-effect-executor.test.ts`");
     }
     expect(l8).toMatch(/\| U-SBOUND-004 \|[^\n]+\| `tests\/lint-effect-intent\.test\.ts`/);
+    expect(l9).toMatch(/\| IT-SBOUND-004 \|[^\n]+\|[^\n]+`tests\/lint-probe-adapter\.test\.ts`/);
+    expect(read("tests/lint-probe-adapter.test.ts")).toContain("IT-SBOUND-004");
   });
 
   it("U-SBOUND-001: state-db evidenceからpresentation treeを分離する", () =>

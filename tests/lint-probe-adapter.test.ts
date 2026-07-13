@@ -1,11 +1,11 @@
-import { spawnSync, type SpawnSyncReturns } from "node:child_process";
+import { type SpawnSyncReturns, spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 import {
+  type EffectSnapshot,
   effectPayloadDigest,
+  type ProbeIntent,
   paramsDigest,
   runProbe,
-  type EffectSnapshot,
-  type ProbeIntent,
 } from "../src/runtime/lint-effect-executor";
 import { createLintProbePort } from "../src/runtime/lint-probe-adapter";
 
