@@ -16,6 +16,8 @@ describe("decorateVscodeTree", () => {
         {
           id: "project",
           label: "Project",
+          description: undefined,
+          tooltip: undefined,
           kind: "root",
           expanded: true,
           action: { kind: "copy-pointer", pointer: "helix current-location --json" },
@@ -43,8 +45,11 @@ describe("decorateVscodeTree", () => {
             {
               id: "project/current",
               label: "Current",
+              description: undefined,
+              tooltip: undefined,
               contextValue: "section",
               collapsibleState: "none",
+              command: undefined,
               children: [],
             },
           ],
@@ -74,9 +79,12 @@ describe("decorateVscodeTree", () => {
     ).toStrictEqual({ title: "Copy", command: "test.copy", arguments: ["helix unknown --json"] });
 
     const forged = structuredClone(valid) as GenericTree;
-    forged.roots[0]!.action = { kind: "unknown", pointer: "x" } as never;
+    const forgedRoot = forged.roots[0];
+    const validRoot = valid.roots[0];
+    if (!forgedRoot || !validRoot) throw new Error("fixture root is missing");
+    forgedRoot.action = { kind: "unknown", pointer: "x" } as never;
     expect(() => decorateVscodeTree(forged, commands)).toThrow("generic tree action is invalid");
-    valid.roots[0]!.action = { kind: "copy-pointer", pointer: " " };
+    validRoot.action = { kind: "copy-pointer", pointer: " " };
     expect(() => decorateVscodeTree(valid, commands)).toThrow("generic tree action is invalid");
   });
 });
