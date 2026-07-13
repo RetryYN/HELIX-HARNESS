@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-451-lint-effect-port-separation
 
 describe("PLAN-L7-451 read-only lint route", () => {
-  it("IT-SBOUND-003: production plan lint routeはwrite/process authorityを使わない", () => {
+  it("U-SBOUND-014: IT-SBOUND-003 production plan lint routeはwrite/process authorityを使わない", () => {
     const cliUrl = pathToFileURL(resolve("src/cli.ts")).href;
     const monitor = [
       'const { createRequire } = await import("node:module");',

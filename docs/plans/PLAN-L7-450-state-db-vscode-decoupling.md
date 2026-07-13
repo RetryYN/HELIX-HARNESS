@@ -24,7 +24,10 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md, artifact_type: markdown_doc }
   - { artifact_path: src/schema/visualization-contract.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/visualization-current-location-contract.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/visualization-view-contract.ts, artifact_type: source_module }
   - { artifact_path: src/schema/visualization-tree-contract.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/db-rebuild-composition.ts, artifact_type: source_module }
   - { artifact_path: src/vmodel/visualization-tree-projector.ts, artifact_type: source_module }
   - { artifact_path: src/vscode/tree-decoration.ts, artifact_type: source_module }
   - { artifact_path: src/vscode/tree-view-provider.ts, artifact_type: source_module }

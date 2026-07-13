@@ -73,7 +73,7 @@ function context() {
 }
 
 describe("PLAN-L7-451 Node probe adapter", () => {
-  it("IT-SBOUND-004: explicit argvをchild process一回だけ起動しbounded receiptを返す", () => {
+  it("U-SBOUND-015: IT-SBOUND-004 explicit argvをchild process一回だけ起動しbounded receiptを返す", () => {
     let spawns = 0;
     let observedShell: boolean | string | undefined;
     const port = createLintProbePort({

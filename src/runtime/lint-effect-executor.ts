@@ -263,14 +263,23 @@ function claimIdempotency(
   }
 }
 
-function receiptBase(
-  intent: EffectIntent,
-  startedAt: string,
-  completedAt: string,
-  status: EffectStatus,
-  reason: string,
-  output: unknown,
-): ReceiptBase {
+interface ReceiptBaseInput {
+  intent: EffectIntent;
+  startedAt: string;
+  completedAt: string;
+  status: EffectStatus;
+  reason: string;
+  output: unknown;
+}
+
+function receiptBase({
+  intent,
+  startedAt,
+  completedAt,
+  status,
+  reason,
+  output,
+}: ReceiptBaseInput): ReceiptBase {
   return {
     operationId: intent.operationId,
     status,
@@ -296,7 +305,14 @@ export function runProbe(
   const rejection = preflight(intent, context, startedAt);
   if (rejection)
     return {
-      ...receiptBase(intent, startedAt, startedAt, "blocked", rejection, rejection),
+      ...receiptBase({
+        intent,
+        startedAt,
+        completedAt: startedAt,
+        status: "blocked",
+        reason: rejection,
+        output: rejection,
+      }),
       kind: "probe",
       timedOut: false,
       exitCode: null,
@@ -306,7 +322,14 @@ export function runProbe(
   const claimRejection = claimIdempotency(intent, context);
   if (claimRejection)
     return {
-      ...receiptBase(intent, startedAt, startedAt, "blocked", claimRejection, claimRejection),
+      ...receiptBase({
+        intent,
+        startedAt,
+        completedAt: startedAt,
+        status: "blocked",
+        reason: claimRejection,
+        output: claimRejection,
+      }),
       kind: "probe",
       timedOut: false,
       exitCode: null,
@@ -316,7 +339,14 @@ export function runProbe(
   const dispatchRejection = dispatchSnapshotRejection(intent, context);
   if (dispatchRejection)
     return {
-      ...receiptBase(intent, startedAt, startedAt, "blocked", dispatchRejection, dispatchRejection),
+      ...receiptBase({
+        intent,
+        startedAt,
+        completedAt: startedAt,
+        status: "blocked",
+        reason: dispatchRejection,
+        output: dispatchRejection,
+      }),
       kind: "probe",
       timedOut: false,
       exitCode: null,
@@ -327,14 +357,14 @@ export function runProbe(
     const result = port.execute(intent);
     if (snapshotChangedAfterDispatch(intent, context))
       return {
-        ...receiptBase(
+        ...receiptBase({
           intent,
           startedAt,
-          now(),
-          "uncertain",
-          "snapshot_drift_after_dispatch",
-          "snapshot_drift_after_dispatch",
-        ),
+          completedAt: now(),
+          status: "uncertain",
+          reason: "snapshot_drift_after_dispatch",
+          output: "snapshot_drift_after_dispatch",
+        }),
         kind: "probe",
         timedOut: false,
         exitCode: null,
@@ -348,11 +378,18 @@ export function runProbe(
         : "probe_nonzero";
     const status = result.timedOut || result.exitCode !== 0 ? "blocked" : "accepted";
     return {
-      ...receiptBase(intent, startedAt, now(), status, reason, {
-        exitCode: result.exitCode,
-        timedOut: result.timedOut,
-        stdoutDigest: digest(result.stdout ?? ""),
-        stderrDigest: digest(result.stderr ?? ""),
+      ...receiptBase({
+        intent,
+        startedAt,
+        completedAt: now(),
+        status,
+        reason,
+        output: {
+          exitCode: result.exitCode,
+          timedOut: result.timedOut,
+          stdoutDigest: digest(result.stdout ?? ""),
+          stderrDigest: digest(result.stderr ?? ""),
+        },
       }),
       kind: "probe",
       timedOut: result.timedOut,
@@ -362,8 +399,15 @@ export function runProbe(
     };
   } catch (error) {
     return {
-      ...receiptBase(intent, startedAt, now(), "uncertain", "probe_port_threw", {
-        error: error instanceof Error ? error.name : "unknown",
+      ...receiptBase({
+        intent,
+        startedAt,
+        completedAt: now(),
+        status: "uncertain",
+        reason: "probe_port_threw",
+        output: {
+          error: error instanceof Error ? error.name : "unknown",
+        },
       }),
       kind: "probe",
       timedOut: false,
@@ -383,7 +427,14 @@ export function materializeLintArtifact(
   const startedAt = now();
   const rejection = preflight(intent, context, startedAt);
   const rejected = (reason: string): MaterializeReceipt => ({
-    ...receiptBase(intent, startedAt, startedAt, "blocked", reason, reason),
+    ...receiptBase({
+      intent,
+      startedAt,
+      completedAt: startedAt,
+      status: "blocked",
+      reason,
+      output: reason,
+    }),
     kind: "materialize",
     changedPath: "",
     beforeDigest: intent.beforeDigest,
@@ -403,14 +454,14 @@ export function materializeLintArtifact(
     const result = port.materialize(intent);
     if (snapshotChangedAfterDispatch(intent, context))
       return {
-        ...receiptBase(
+        ...receiptBase({
           intent,
           startedAt,
-          now(),
-          "uncertain",
-          "snapshot_drift_after_dispatch",
-          "snapshot_drift_after_dispatch",
-        ),
+          completedAt: now(),
+          status: "uncertain",
+          reason: "snapshot_drift_after_dispatch",
+          output: "snapshot_drift_after_dispatch",
+        }),
         kind: "materialize",
         changedPath: "",
         beforeDigest: intent.beforeDigest,
@@ -424,14 +475,14 @@ export function materializeLintArtifact(
       result.beforeDigest === intent.beforeDigest &&
       result.afterDigest === intent.contentDigest;
     return {
-      ...receiptBase(
+      ...receiptBase({
         intent,
         startedAt,
-        now(),
-        accepted ? "accepted" : "uncertain",
-        accepted ? "materialize_succeeded" : "materialize_postcondition_failed",
-        result,
-      ),
+        completedAt: now(),
+        status: accepted ? "accepted" : "uncertain",
+        reason: accepted ? "materialize_succeeded" : "materialize_postcondition_failed",
+        output: result,
+      }),
       kind: "materialize",
       changedPath: result.changedPath,
       beforeDigest: result.beforeDigest,
@@ -440,8 +491,15 @@ export function materializeLintArtifact(
     };
   } catch (error) {
     return {
-      ...receiptBase(intent, startedAt, now(), "uncertain", "materialize_port_threw", {
-        error: error instanceof Error ? error.name : "unknown",
+      ...receiptBase({
+        intent,
+        startedAt,
+        completedAt: now(),
+        status: "uncertain",
+        reason: "materialize_port_threw",
+        output: {
+          error: error instanceof Error ? error.name : "unknown",
+        },
       }),
       kind: "materialize",
       changedPath: "",

@@ -25,6 +25,9 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 | IT-SBOUND-005 | L9 real graph binding | 実repo全live edgeをproduction policyで全域判定 | `tests/source-boundary-integration.test.ts` |
 | IT-SBOUND-006 | L9 direction mutation binding | 全explicit direction除去でdefault denyへ戻す | `tests/source-boundary-integration.test.ts` |
 | U-SBOUND-013 | terminal sequencing | 452 terminal時に450/451 terminalかつtemporary source direction 0を要求 | `tests/source-boundary-design.test.ts` |
+| U-SBOUND-014 | read-only lint route | fresh child のproduction `plan lint --gate governance` がwrite/process authorityを使えばfail | `tests/slow/lint-readonly-route.test.ts` |
+| U-SBOUND-015 | Node probe adapter | explicit argv以外、shell有効、複数spawn、timeout/output上限逸脱をfail | `tests/lint-probe-adapter.test.ts` |
+| U-SBOUND-016 | artifact write port | temp write/fsync/rename/directory fsync/verify の各停止でacceptedを禁止 | `tests/lint-artifact-write-port.test.ts` |
 
 fixtureはset比較だけでなくedge kind、from/to owner、decision reasonを固定する。allowlist件数baseline追加で逃げず、
 各新module、unknown from/to、owner default欠落、explicit exception欠落をunspecifiedとして赤にするmutation oracleを持つ。

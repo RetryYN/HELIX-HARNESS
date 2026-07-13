@@ -60,10 +60,12 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       "runProbe(intent: ProbeIntent, port: ProbePort): ProbeReceipt": [
         "U-SBOUND-006",
         "U-SBOUND-009",
+        "U-SBOUND-015",
       ],
       "materializeLintArtifact(intent: MaterializeIntent, port: WritePort): MaterializeReceipt": [
         "U-SBOUND-009",
         "U-SBOUND-010",
+        "U-SBOUND-016",
       ],
       "extractSourceEdges(docs: SourceDocument[]): SourceEdge[]": ["U-SBOUND-008"],
       "evaluateSourceBoundary(edge: SourceEdge, policy: BoundaryPolicy): BoundaryDecision": [
@@ -79,6 +81,7 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     }
     expect(l6).toContain("partial write");
     expect(l6).toContain("idempotency key");
+    expect(l6).toContain("U-SBOUND-014");
   });
 
   it("assigns one exact extractor owner and treats PLAN-L7-428 as provenance", () => {
@@ -141,7 +144,15 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
   it("binds successor-specific oracle sets and keeps PLAN-L7-428 out of dependencies", () => {
     const expected: Record<string, string[]> = {
       [successorPaths[0]]: ["U-SBOUND-001", "U-SBOUND-002", "U-SBOUND-005"],
-      [successorPaths[1]]: ["U-SBOUND-004", "U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"],
+      [successorPaths[1]]: [
+        "U-SBOUND-004",
+        "U-SBOUND-006",
+        "U-SBOUND-009",
+        "U-SBOUND-010",
+        "U-SBOUND-014",
+        "U-SBOUND-015",
+        "U-SBOUND-016",
+      ],
       [successorPaths[2]]: [
         "U-SBOUND-003",
         "U-SBOUND-007",
@@ -191,6 +202,21 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
         oracle_id: "U-SBOUND-010",
         test_path: "tests/lint-effect-executor.test.ts",
       },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-014",
+        test_path: "tests/slow/lint-readonly-route.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-015",
+        test_path: "tests/lint-probe-adapter.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-016",
+        test_path: "tests/lint-artifact-write-port.test.ts",
+      },
     ]);
     expect(plan.generates?.map((item) => item.artifact_path)).toEqual([
       successorPaths[1],
@@ -205,9 +231,16 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       "tests/slow/lint-readonly-route.test.ts",
     ]);
     expect(l8).toContain("| U-SBOUND-004 | lint analyzer | immutable snapshot");
-    for (const oracle of ["U-SBOUND-006", "U-SBOUND-009", "U-SBOUND-010"]) {
+    for (const [oracle, testPath] of [
+      ["U-SBOUND-006", "tests/lint-effect-executor.test.ts"],
+      ["U-SBOUND-009", "tests/lint-effect-executor.test.ts"],
+      ["U-SBOUND-010", "tests/lint-effect-executor.test.ts"],
+      ["U-SBOUND-014", "tests/slow/lint-readonly-route.test.ts"],
+      ["U-SBOUND-015", "tests/lint-probe-adapter.test.ts"],
+      ["U-SBOUND-016", "tests/lint-artifact-write-port.test.ts"],
+    ] as const) {
       const row = l8.split("\n").find((line) => line.startsWith(`| ${oracle} |`));
-      expect(row).toContain("`tests/lint-effect-executor.test.ts`");
+      expect(row).toContain(`\`${testPath}\``);
     }
     expect(l8).toMatch(/\| U-SBOUND-004 \|[^\n]+\| `tests\/lint-effect-intent\.test\.ts`/);
     expect(l9).toMatch(/\| IT-SBOUND-004 \|[^\n]+\|[^\n]+`tests\/lint-probe-adapter\.test\.ts`/);

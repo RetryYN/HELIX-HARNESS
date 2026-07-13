@@ -43,8 +43,8 @@ describe("static gates", () => {
     expect(result.messages.join("\n")).toContain("g3-trace");
   });
 
-  it("wires G2/G4/G5 to deterministic layer pair gates", () => {
-    for (const gate of ["G2", "G4", "G5"]) {
+  it("wires G2/G4 to deterministic layer pair gates", () => {
+    for (const gate of ["G2", "G4"]) {
       const result = evaluateStaticGate({ gate, repoRoot: process.cwd() });
       expect(result.applicable).toBe(true);
       expect(result.passed).toBe(true);
@@ -52,12 +52,14 @@ describe("static gates", () => {
     }
   });
 
-  it("wires G6 to deterministic layer pair gate and passes after HELIX L6 pair freeze", () => {
-    const result = evaluateStaticGate({ gate: "G6", repoRoot: process.cwd() });
-    expect(result.applicable).toBe(true);
-    expect(result.passed).toBe(true);
-    expect(result.messages.join("\n")).toContain("g6-pair");
-    expect(result.messages.join("\n")).toContain("draft=0");
+  it("keeps G5/G6 fail-closed while the source-boundary design pair is draft", () => {
+    for (const gate of ["G5", "G6"]) {
+      const result = evaluateStaticGate({ gate, repoRoot: process.cwd() });
+      expect(result.applicable).toBe(true);
+      expect(result.passed).toBe(false);
+      expect(result.messages.join("\n")).toContain(`${gate.toLowerCase()}-pair`);
+      expect(result.messages.join("\n")).toContain("draft=1");
+    }
   });
 
   it("fails a layer pair gate when pair evidence is missing", () => {

@@ -199,7 +199,7 @@ describe("PLAN-L7-451 lint effect executor", () => {
     expect(postDispatchCalls).toBe(1);
   });
 
-  it("U-SBOUND-009: 無効な期限と認可検証例外をeffect前のtyped receiptにする", () => {
+  it("rejects invalid expiry and authorization verification exceptions before effect dispatch", () => {
     const invalidIntentExpiry = probe();
     invalidIntentExpiry.expiresAt = "not-a-date";
     const invalidAuthorizationExpiry = probe();

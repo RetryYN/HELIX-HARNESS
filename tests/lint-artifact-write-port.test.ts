@@ -77,7 +77,7 @@ function context() {
 }
 
 describe("PLAN-L7-451 atomic lint artifact write port", () => {
-  it("IT-SBOUND-008: durability境界停止はacceptedにせず、成功時だけ実targetをpublishする", () => {
+  it("U-SBOUND-016: IT-SBOUND-008 durability境界停止はacceptedにせず、成功時だけ実targetをpublishする", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-lint-artifact-"));
     try {
       const successful = intent();

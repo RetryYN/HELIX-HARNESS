@@ -22,6 +22,9 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-006, test_path: tests/lint-effect-executor.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-009, test_path: tests/lint-effect-executor.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-010, test_path: tests/lint-effect-executor.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-014, test_path: tests/slow/lint-readonly-route.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-015, test_path: tests/lint-probe-adapter.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-016, test_path: tests/lint-artifact-write-port.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/effect-intent.ts, artifact_type: source_module }
@@ -67,4 +70,4 @@ effect behaviorは専用testへ限定し、structural guardをruntime behavior�
 
 ## 完了条件
 
-`U-SBOUND-004/006/009/010`と`IT-SBOUND-003/004/007/008`、targeted test、independent reviewがgreenである。
+`U-SBOUND-004/006/009/010/014/015/016`と`IT-SBOUND-003/004/007/008`、targeted test、independent reviewがgreenである。
