@@ -62,7 +62,16 @@ export function createGuardOverrideAuditPort(db: HarnessDb): OverrideAuditPort {
             message.includes("SQLITE_BUSY") ||
             message.includes("SQLITE_LOCKED") ||
             message.includes("DATABASE IS LOCKED");
-          if (!busy || attempt === 4) throw error;
+          if (!busy) throw error;
+          if (attempt === 4) {
+            const committed = db
+              .prepare(
+                "SELECT 1 FROM guard_override_transactions WHERE nonce=? AND status='committed' LIMIT 1",
+              )
+              .get(input.nonce);
+            if (committed) return { status: "reused" };
+            throw error;
+          }
           Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10 * (attempt + 1));
         }
       }
