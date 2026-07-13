@@ -98,7 +98,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   task: ["runtime", "task", "team", "workflow"],
   team: ["orchestration", "runtime", "schema", "team", "workflow"],
   vmodel: ["lint", "plan", "runtime", "schema"],
-  vscode: ["vscode"],
+  vscode: ["schema", "vscode"],
   web: ["web"],
   workflow: ["schema", "shared", "state-db", "workflow"],
 };
