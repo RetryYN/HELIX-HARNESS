@@ -104,3 +104,37 @@ export interface RuntimeEvidenceView {
   runtime_verification: MetricRow[];
   guardrail_decisions: MetricRow[];
 }
+
+export interface GrowthSeriesPoint {
+  at: string;
+  class: string;
+  value: number;
+  recorded: boolean;
+}
+
+export interface HarnessGrowthCurrentSections {
+  artifacts: MetricRow[];
+  plans: MetricRow[];
+  gates: MetricRow[];
+}
+
+export interface HarnessGrowthView {
+  current_sections: HarnessGrowthCurrentSections;
+  current: MetricRow[];
+  growth_series: GrowthSeriesPoint[];
+}
+
+export interface SkillAgentTelemetryView {
+  skill_invocations: MetricRow[];
+  model_runs: MetricRow[];
+}
+
+export interface VisualizationRootBoundary {
+  root: "project" | "harness";
+  label: string;
+  scope: string;
+  owned_views: string[];
+  source_fields: string[];
+  excluded_fields: string[];
+  view_command: "helix progress tree-view --json";
+}
