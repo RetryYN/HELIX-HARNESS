@@ -24,8 +24,8 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/source-boundary-contracts.md, oracle_id: U-SBOUND-010, test_path: tests/lint-effect-executor.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
-  - { artifact_path: src/lint/effect-intent.ts, artifact_type: source_code }
-  - { artifact_path: src/runtime/lint-effect-executor.ts, artifact_type: source_code }
+  - { artifact_path: src/lint/effect-intent.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/lint-effect-executor.ts, artifact_type: source_module }
   - { artifact_path: tests/lint-effect-intent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/lint-effect-executor.test.ts, artifact_type: test_code }
 dependencies:
