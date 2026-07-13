@@ -154,6 +154,43 @@ describe("PLAN-L7-451 lint effect executor", () => {
     }
   });
 
+  it("U-SBOUND-009: 無効な期限と認可検証例外をeffect前のtyped receiptにする", () => {
+    const invalidIntentExpiry = probe();
+    invalidIntentExpiry.expiresAt = "not-a-date";
+    const invalidAuthorizationExpiry = probe();
+    invalidAuthorizationExpiry.authorization = {
+      ...invalidAuthorizationExpiry.authorization,
+      expiresAt: "not-a-date",
+    };
+    for (const [intent, executorContext, reason] of [
+      [invalidIntentExpiry, context(), "invalid_intent_expiry"],
+      [invalidAuthorizationExpiry, context(), "invalid_authorization_expiry"],
+      [
+        probe(),
+        context({
+          verifyAuthorization: () => {
+            throw new Error("verifier unavailable");
+          },
+        }),
+        "authorization_verification_failed",
+      ],
+    ] as const) {
+      let calls = 0;
+      const receipt = runProbe(
+        intent,
+        {
+          execute: () => {
+            calls += 1;
+            return { exitCode: 0, timedOut: false };
+          },
+        },
+        executorContext,
+      );
+      expect(receipt).toMatchObject({ status: "blocked", reason });
+      expect(calls).toBe(0);
+    }
+  });
+
   it("scope拡大と署名改ざんをeffect前に拒否する", () => {
     const scope = probe();
     scope.params = { profile: "all" };

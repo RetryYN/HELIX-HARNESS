@@ -129,6 +129,14 @@ function digest(value: unknown): EffectDigest {
   return `sha256:${createHash("sha256").update(stable(value)).digest("hex")}`;
 }
 
+function safeDigest(value: unknown): EffectDigest {
+  try {
+    return digest(value);
+  } catch {
+    return digest("invalid_canonical_input");
+  }
+}
+
 export function paramsDigest(params: Readonly<Record<string, unknown>>): EffectDigest {
   return digest(params);
 }
@@ -164,27 +172,42 @@ function preflight(
   context: ExecutorContext,
   at: string,
 ): string | null {
-  if (!intent.operationId || !intent.capabilityId || !intent.idempotencyKey)
-    return "invalid_intent";
-  if (!SHA256.test(intent.snapshot.worktreeDigest) || !SHA256.test(intent.snapshot.inputsDigest))
-    return "invalid_snapshot";
-  if (Date.parse(intent.expiresAt) <= Date.parse(at)) return "intent_expired";
-  if (stable(intent.snapshot) !== stable(context.currentSnapshot)) return "snapshot_drift";
-  const authorization = intent.authorization;
-  if (!context.trustedIssuers.has(authorization.issuer)) return "untrusted_issuer";
-  if (!context.verifyAuthorization(authorization)) return "authorization_tampered";
-  if (authorization.revocationEpoch !== context.revocationEpoch) return "authorization_revoked";
-  if (Date.parse(authorization.expiresAt) <= Date.parse(at)) return "authorization_expired";
-  if (
-    authorization.capabilityId !== intent.capabilityId ||
-    authorization.actor !== intent.actor ||
-    authorization.tool !== intent.tool ||
-    authorization.target !== intent.target ||
-    authorization.paramsDigest !== paramsDigest(intent.params) ||
-    authorization.effectPayloadDigest !== effectPayloadDigest(intent)
-  )
-    return "authorization_scope_mismatch";
-  return null;
+  try {
+    if (!intent.operationId || !intent.capabilityId || !intent.idempotencyKey)
+      return "invalid_intent";
+    if (!SHA256.test(intent.snapshot.worktreeDigest) || !SHA256.test(intent.snapshot.inputsDigest))
+      return "invalid_snapshot";
+    const now = Date.parse(at);
+    const intentExpiry = Date.parse(intent.expiresAt);
+    if (!Number.isFinite(now) || !Number.isFinite(intentExpiry)) return "invalid_intent_expiry";
+    if (intentExpiry <= now) return "intent_expired";
+    if (stable(intent.snapshot) !== stable(context.currentSnapshot)) return "snapshot_drift";
+    const authorization = intent.authorization;
+    if (!context.trustedIssuers.has(authorization.issuer)) return "untrusted_issuer";
+    let verified: boolean;
+    try {
+      verified = context.verifyAuthorization(authorization);
+    } catch {
+      return "authorization_verification_failed";
+    }
+    if (!verified) return "authorization_tampered";
+    if (authorization.revocationEpoch !== context.revocationEpoch) return "authorization_revoked";
+    const authorizationExpiry = Date.parse(authorization.expiresAt);
+    if (!Number.isFinite(authorizationExpiry)) return "invalid_authorization_expiry";
+    if (authorizationExpiry <= now) return "authorization_expired";
+    if (
+      authorization.capabilityId !== intent.capabilityId ||
+      authorization.actor !== intent.actor ||
+      authorization.tool !== intent.tool ||
+      authorization.target !== intent.target ||
+      authorization.paramsDigest !== paramsDigest(intent.params) ||
+      authorization.effectPayloadDigest !== effectPayloadDigest(intent)
+    )
+      return "authorization_scope_mismatch";
+    return null;
+  } catch {
+    return "invalid_canonical_input";
+  }
 }
 
 function claimIdempotency(
@@ -219,11 +242,11 @@ function receiptBase(
     actor: intent.actor,
     tool: intent.tool,
     target: intent.target,
-    paramsDigest: paramsDigest(intent.params),
-    snapshotDigest: digest(intent.snapshot),
+    paramsDigest: safeDigest(intent.params),
+    snapshotDigest: safeDigest(intent.snapshot),
     startedAt,
     completedAt,
-    outputDigest: digest(output),
+    outputDigest: safeDigest(output),
   };
 }
 
