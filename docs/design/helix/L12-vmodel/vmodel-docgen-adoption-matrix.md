@@ -4,7 +4,7 @@ layer: L12
 kind: design
 status: confirmed
 created: 2026-07-08
-updated: 2026-07-09
+updated: 2026-07-14
 owner: Codex / TL
 plan: PLAN-L3-13-vmodel-docgen-fit
 related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
@@ -80,6 +80,18 @@ spec:
       layer: L12
       owner: TL
       status: confirmed
+    - id: HVM-GAP-01
+      kind: 実装ギャップ
+      title: agent_meta.py相当(defines/read_first/done_when契約)未移植
+      layer: L12
+      owner: TL
+      status: confirmed
+    - id: HVM-GAP-02
+      kind: 実装ギャップ
+      title: diff_report.py相当(2時点diff・リリースノート自動生成)未移植
+      layer: L12
+      owner: TL
+      status: confirmed
   refs:
     - from: HVM-ADOPT-01
       to: HR-FR-VMFIT-03
@@ -113,6 +125,12 @@ spec:
       kind: constrains
     - from: HVM-REJECT-03
       to: HR-FR-VMFIT-04
+      kind: constrains
+    - from: HVM-GAP-01
+      to: HR-FR-VMFIT-01
+      kind: constrains
+    - from: HVM-GAP-02
+      to: HR-FR-VMFIT-01
       kind: constrains
 ---
 
@@ -220,3 +238,39 @@ ZIP の `catalog.yaml` / `profiles.yaml` / `52_文書化方針・テーラリン
 required / optional / na を typed declaration で明示し、`na` を missing と誤判定しない。
 この profile により、重い独立機能設計は廃止しつつ、L5 詳細設計・typed declaration・TDD closure・runtime evidence へ
 契約を移す。
+
+## §9 実装監査ログ (2026-07-14)
+
+`§4 採用するもの` / `§5 HELIX が補うもの` は L12 の採用判断であり、本書冒頭 §0 と
+`docs/design/helix/L12-vmodel/vmodel-layer-coverage.md` §0 が明記するとおり「実装完了の宣言ではない」。
+2026-07-14、PO 指示 (`/goal` 2026-07-14) により、ZIP の tools/*.py 29本相当と HELIX 側受け皿の
+計36項目について、4パス独立監査 (Claude 主監査 + Codex frontier `gpt-5.6-sol` + Codex worker
+`gpt-5.6-terra` + 独立 Claude 再監査) で `src/` の実コードを確認した。監査手法・individual 判定・
+食い違い項目の裁定記録はセッション transcript および harness memory
+(`harness:hybrid-docgen-engine-audit-2026-07-14`) を参照。
+
+### §9.1 全会一致で未移植 (対応候補)
+
+| ID | ZIP 側の元機能 | 確認結果 | 根拠 |
+|----|-----------------|----------|------|
+| HVM-GAP-01 | `tools/agent_meta.py` (agent メタデータ `defines`/`read_first`/`done_when` の導出・付与・突合) | `src/` に該当契約なし。`.claude/agents/*.md` frontmatter は `name/description/tools/model/effort/memory` のみ | 4/4 監査一致 (未実装) |
+| HVM-GAP-02 | `tools/diff_report.py` (2時点 docs/ 比較による日本語差分レポート・リリースノート自動生成) | `src/` に意味単位 diff・リリースノート生成の実装なし (`change-package-delta-archive.ts` はある種の delta/archive 検査だが 2 スナップショット比較+自然文レポートではない) | 4/4 監査一致 (未実装) |
+
+この 2 件は `§6 採用しないもの` の明示的非採用判断 (HVM-REJECT-01/02/03) の対象外であり、
+「意図的な不採用」ではなく「未着手のまま記録が欠落していた」ギャップである。§4 の採用対象に
+含めるかどうかは後続 PLAN で判断する (本書は監査事実の記録のみを行い、新規実装の意思決定はしない)。
+
+### §9.2 部分実装 (縮小スコープでの代替実装あり)
+
+| ZIP 側の元機能 | HELIX 側の代替 | 差分 |
+|-----------------|-----------------|------|
+| `tools/consistency.py` (表記ゆれ辞書・ADR宣言↔実態突合) | `src/lint/doc-consistency.ts` | carry-consistency / screen-id-validity / nfr-count の3項目限定。ADR横断突合・表記ゆれ辞書は無い |
+| `tools/schedule.py` (WBS×Vモデル×台帳RAG×カバレッジの工程表連携) | `src/lint/roadmap-registry.ts` + `current-location.ts` の roadmap gate | PLAN frontmatter 由来の roadmap 追跡はあるが、WBS/ガント形式の生成は無い |
+| `tools/agent_docs.py` (目的別 Markdown ダイジェスト生成) | `src/context/doc-router.ts` | task 種別に応じた動的 section 選択で代替。静的ダイジェストファイル生成ではない |
+| `tools/verify_files.py` (文字化け・UTF-8・YAML破損の統合検査) | `src/lint/secret-scan.ts` + `src/lint/readability.ts` | secret 検出と mojibake 検出は別々に存在するが、YAML破損・PNG検査を含む統合gateではない |
+
+### §9.3 監査結論
+
+HELIX 側受け皿 (`§4`/`§5` の B系列、18項目) は 4/4 監査で実質満場一致の実装済み。ZIP の Python
+エンジン本体の概念移植 (A系列、18項目) は 3 項目実装済み・13 項目部分実装・2 項目未実装。
+総合搭載率は算定方法により 69%〜76% (単純平均76%、エンジン側を2倍加重した場合69〜72%)。
