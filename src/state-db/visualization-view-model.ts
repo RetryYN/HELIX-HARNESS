@@ -1,3 +1,11 @@
+import type {
+  Drilldown,
+  GraphIr,
+  GraphIrEdge,
+  GraphIrEdgeInput,
+  GraphIrNode,
+  MetricRow,
+} from "../schema/visualization-contract";
 import {
   buildProjectClosureBatchReport,
   buildProjectClosureEvidenceApplyPlan,
@@ -35,41 +43,15 @@ import { buildVmodelFitReport } from "./vmodel-fit";
  * fabricated value ("honest degrade").
  */
 
-export type DrilldownKind = "cli" | "table" | "docs";
-
-export interface Drilldown {
-  kind: DrilldownKind;
-  pointer: string;
-}
-
-export interface MetricRow {
-  label: string;
-  value: number;
-  drilldown: Drilldown | null;
-}
-
-export interface GraphIrNode {
-  id: string;
-  label: string;
-  group: string;
-}
-
-export interface GraphIrEdgeInput {
-  from: string;
-  to: string;
-  kind: string;
-}
-
-export interface GraphIrEdge {
-  from: string;
-  to: string;
-  kind: string;
-}
-
-export interface GraphIr {
-  nodes: GraphIrNode[];
-  edges: GraphIrEdge[];
-}
+export type {
+  Drilldown,
+  DrilldownKind,
+  GraphIr,
+  GraphIrEdge,
+  GraphIrEdgeInput,
+  GraphIrNode,
+  MetricRow,
+} from "../schema/visualization-contract";
 
 export interface ClosureReviewScopeView {
   approval_scope_digest: string;

@@ -8,6 +8,7 @@ const l6 = read("docs/design/harness/L6-function-design/source-boundary-contract
 const l8 = read("docs/test-design/harness/L8-source-boundary-contracts.md");
 const l9 = read("docs/test-design/harness/L9-source-boundary-integration.md");
 const genericTreeContract = read("src/schema/visualization-tree-contract.ts");
+const visualizationContract = read("src/schema/visualization-contract.ts");
 
 const successorPaths = [
   "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
@@ -161,6 +162,20 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     ]) {
       expect(genericTreeContract).not.toContain(presentationSymbol);
     }
+  });
+  it("U-SBOUND-005: extracted visualization DTO is a production-owned schema contract", () => {
+    for (const dto of ["Drilldown", "MetricRow", "GraphIrNode", "GraphIrEdge", "GraphIr"]) {
+      expect(visualizationContract).toContain(`interface ${dto}`);
+    }
+    for (const forbiddenImport of ["node:fs", "node:child_process", "../state-db", "../vscode"]) {
+      expect(visualizationContract).not.toContain(forbiddenImport);
+    }
+    expect(read("src/state-db/visualization-view-model.ts")).toContain(
+      'from "../schema/visualization-contract"',
+    );
+    expect(read("src/vscode/tree-view-provider.ts")).toContain(
+      'from "../schema/visualization-contract"',
+    );
   });
   it("U-SBOUND-006: probe failureをtyped receiptにする", () =>
     expect(l8).toContain("timeout/nonzero/missing binary"));
