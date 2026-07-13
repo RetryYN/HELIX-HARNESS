@@ -230,6 +230,7 @@ import {
   buildCrossRepoSpecStoreReport,
   type SpecStoreOperation,
 } from "./runtime/cross-repo-spec-store";
+import { rebuildHarnessDb } from "./runtime/db-rebuild-composition";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
 import {
   type BundleCatalog,
@@ -469,7 +470,6 @@ import {
   projectModelEvaluations,
   projectTokenUsage,
 } from "./state-db/projection-writer";
-import { rebuildHarnessDb } from "./runtime/db-rebuild-composition";
 import { collectReverseCandidates } from "./state-db/reverse-candidates";
 import { compactHarnessDb, databaseFreelist, gcTmp } from "./state-db/state-hygiene";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
@@ -13120,10 +13120,12 @@ setupCommand
   });
 
 const distribution = program.command("distribution").description("clean distribution planning");
+const resolveDistributionTag = (tag: string | undefined): string =>
+  tag ?? gitHead() ?? "unreleased";
 distribution
   .command("plan")
   .description("emit the clean export, preflight, rollback, and contract plan")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--json", "JSON output")
@@ -13143,7 +13145,7 @@ distribution
     const hasHelixCli = spawnSync("helix", ["--version"], { stdio: "ignore" }).status === 0;
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
-      sourceTag: opts.tag,
+      sourceTag: resolveDistributionTag(opts.tag),
       cleanRepo: opts.cleanRepo,
     });
     const packageRoot = opts.packageRoot ? join(repoRoot, opts.packageRoot) : repoRoot;
@@ -13220,7 +13222,7 @@ distribution
 distribution
   .command("sync-plan")
   .description("emit a non-destructive clean distribution repository sync plan")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--branch <name>", "distribution repository target branch", "main")
   .option("--staging-dir <path>", "local distribution staging clone path")
@@ -13237,7 +13239,7 @@ distribution
       const sourcePaths = collectDistributionCandidatePaths(repoRoot);
       const exportPlan = buildCleanDistributionPlan({
         paths: sourcePaths,
-        sourceTag: opts.tag,
+        sourceTag: resolveDistributionTag(opts.tag),
         cleanRepo: opts.cleanRepo,
       });
       const stagingDir = opts.stagingDir
@@ -13275,7 +13277,7 @@ distribution
 distribution
   .command("sync-stage")
   .description("materialize clean distribution artifacts into a local staging directory")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--branch <name>", "distribution repository target branch", "main")
   .option("--out <dir>", "local staging directory", ".helix/pack-stage")
@@ -13286,7 +13288,7 @@ distribution
       const sourcePaths = collectDistributionCandidatePaths(repoRoot);
       const exportPlan = buildCleanDistributionPlan({
         paths: sourcePaths,
-        sourceTag: opts.tag,
+        sourceTag: resolveDistributionTag(opts.tag),
         cleanRepo: opts.cleanRepo,
       });
       const outDir = opts.out
@@ -13358,7 +13360,7 @@ distribution
 distribution
   .command("sync-pack")
   .description("update a local distribution checkout with clean artifacts; never commits or pushes")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--branch <name>", "distribution repository target branch", "main")
   .requiredOption("--repo-dir <dir>", "local distribution repository checkout to update")
@@ -13379,7 +13381,7 @@ distribution
       const sourcePaths = collectDistributionCandidatePaths(repoRoot);
       const exportPlan = buildCleanDistributionPlan({
         paths: sourcePaths,
-        sourceTag: opts.tag,
+        sourceTag: resolveDistributionTag(opts.tag),
         cleanRepo: opts.cleanRepo,
       });
       const sync = buildPackSyncPlan({
@@ -13512,7 +13514,7 @@ distribution
 distribution
   .command("package")
   .description("create a local clean tarball and sha256 checksum without publishing")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
   .option("--json", "JSON output")
@@ -13520,7 +13522,7 @@ distribution
     const repoRoot = process.cwd();
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
-      sourceTag: opts.tag,
+      sourceTag: resolveDistributionTag(opts.tag),
       cleanRepo: opts.cleanRepo,
     });
     const outDir = opts.out

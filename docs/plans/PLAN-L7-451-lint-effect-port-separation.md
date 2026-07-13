@@ -32,6 +32,7 @@ generates:
   - { artifact_path: tests/lint-effect-executor.test.ts, artifact_type: test_code }
   - { artifact_path: tests/lint-probe-adapter.test.ts, artifact_type: test_code }
   - { artifact_path: tests/lint-artifact-write-port.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/slow/lint-readonly-route.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: []
@@ -57,6 +58,7 @@ idempotency、CAS、durabilityを検証するexecutorへ隔離し、partial writ
 - `tests/lint-effect-executor.test.ts`
 - `tests/lint-probe-adapter.test.ts`
 - `tests/lint-artifact-write-port.test.ts`
+- `tests/slow/lint-readonly-route.test.ts`
 
 ## 検証境界
 
