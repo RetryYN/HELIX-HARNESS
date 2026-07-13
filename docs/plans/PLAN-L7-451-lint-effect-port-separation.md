@@ -26,8 +26,10 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/effect-intent.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/lint-effect-executor.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/lint-probe-adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/lint-effect-intent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/lint-effect-executor.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/lint-probe-adapter.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-79-source-boundary-contracts.md
   requires: []
@@ -47,8 +49,10 @@ idempotency、CAS、durabilityを検証するexecutorへ隔離し、partial writ
 
 - `src/lint/effect-intent.ts`
 - `src/runtime/lint-effect-executor.ts`
+- `src/runtime/lint-probe-adapter.ts`
 - `tests/lint-effect-intent.test.ts`
 - `tests/lint-effect-executor.test.ts`
+- `tests/lint-probe-adapter.test.ts`
 
 ## 検証境界
 
