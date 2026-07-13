@@ -124,6 +124,7 @@ function loadPublishedBasePaths(repoRoot: string): ReadonlySet<string> | null {
       execFileSync("git", ["branch", "--show-current"], {
         cwd: repoRoot,
         encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
       }).trim() || null;
   } catch {
     // Gitなしfixtureは下のfallbackを使う。
