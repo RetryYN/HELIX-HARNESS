@@ -72,7 +72,7 @@ function durableClaims() {
 
 function context(overrides: Partial<ExecutorContext> = {}): ExecutorContext {
   return {
-    currentSnapshot: snapshot,
+    snapshotProvider: { observe: () => snapshot },
     trustedIssuers: new Set(["helix-policy"]),
     revocationEpoch: 7,
     idempotency: durableClaims(),
@@ -124,8 +124,8 @@ describe("PLAN-L7-451 lint effect executor", () => {
       [revoked, context(), "authorization_revoked"],
       [
         probe(),
-        context({ currentSnapshot: { ...snapshot, head: "d".repeat(40) } }),
-        "snapshot_drift",
+        context({ snapshotProvider: { observe: () => ({ ...snapshot, head: "d".repeat(40) }) } }),
+        "snapshot_drift_preflight",
       ],
       [
         probe(),
@@ -152,6 +152,50 @@ describe("PLAN-L7-451 lint effect executor", () => {
       expect(receipt).toMatchObject({ status: "blocked", reason });
       expect(calls).toBe(0);
     }
+  });
+
+  it("IT-SBOUND-007: dispatch直前のsnapshot driftはeffect 0、dispatch後はacceptedにしない", () => {
+    let current = snapshot;
+    const preDispatch = context({
+      idempotency: {
+        claim: () => {
+          current = { ...snapshot, head: "d".repeat(40) };
+          return "claimed";
+        },
+      },
+      snapshotProvider: { observe: () => current },
+    });
+    let preDispatchCalls = 0;
+    expect(
+      runProbe(
+        probe(),
+        {
+          execute: () => {
+            preDispatchCalls += 1;
+            return { exitCode: 0, timedOut: false };
+          },
+        },
+        preDispatch,
+      ),
+    ).toMatchObject({ status: "blocked", reason: "snapshot_drift_pre_dispatch" });
+    expect(preDispatchCalls).toBe(0);
+
+    current = snapshot;
+    let postDispatchCalls = 0;
+    expect(
+      runProbe(
+        probe(),
+        {
+          execute: () => {
+            postDispatchCalls += 1;
+            current = { ...snapshot, inputsDigest: sha("d") };
+            return { exitCode: 0, timedOut: false };
+          },
+        },
+        context({ snapshotProvider: { observe: () => current } }),
+      ),
+    ).toMatchObject({ status: "uncertain", reason: "snapshot_drift_after_dispatch" });
+    expect(postDispatchCalls).toBe(1);
   });
 
   it("U-SBOUND-009: 無効な期限と認可検証例外をeffect前のtyped receiptにする", () => {

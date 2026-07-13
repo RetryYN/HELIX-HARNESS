@@ -92,7 +92,8 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
       expect(l9).toContain(`IT-SBOUND-${String(index).padStart(3, "0")}`);
     }
     expect(l9).toContain("全live edgeにtotal decision");
-    expect(l9).toContain("snapshot driftでeffect 0");
+    expect(l9).toContain("dispatch前driftはeffect 0");
+    expect(l9).toContain("dispatch後driftはacceptedにしない");
     expect(l9).toContain("partial targetをacceptedにしない");
   });
 

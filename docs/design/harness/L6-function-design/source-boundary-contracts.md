@@ -45,7 +45,8 @@ before/after digestを持ち、probe receiptは実行binary/versionを持つ。
 intentはcapability ID、authorization receipt、current HEAD/worktree/inputs snapshot、idempotency key、expiryを必須にする。
 authorization receiptはrepo設定でpinしたtrusted issuerの署名または同等の改ざん検証、actor/tool/target/paramsのexact scope、
 revocation epochを検証する。self-issued/plain object、scope拡大、失効済みreceiptはeffect callback前に拒否する。
-authority不一致、snapshot drift、期限切れ、重複idempotency key、port throw、partial write、timeout、nonzeroはsuccess receiptへ
+snapshot providerはpreflight、idempotency claim後のdispatch直前、dispatch直後に再観測する。dispatch前のdriftはeffect callback 0の
+blocked receipt、dispatch後のdriftはacceptedにしないuncertain receiptとする。authority不一致、snapshot drift、期限切れ、重複idempotency key、port throw、partial write、timeout、nonzeroはsuccess receiptへ
 変換せずblocked/uncertainとして返す。materializeはbefore digest CASとtemp/fsync/renameまたは同等のdurable portを要求し、
 partial targetをacceptedにしない。read-only analyzerはintentやportを受け取らずeffect callbackを0回に固定する。
 

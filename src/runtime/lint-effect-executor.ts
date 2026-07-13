@@ -74,8 +74,13 @@ export interface IdempotencyClaimPort {
   claim(input: { key: string; scopeDigest: EffectDigest }): "claimed" | "duplicate" | "conflict";
 }
 
+export interface SnapshotProvider {
+  /** Reads the current execution snapshot immediately before and after a dispatched effect. */
+  observe(): EffectSnapshot;
+}
+
 export interface ExecutorContext {
-  currentSnapshot: EffectSnapshot;
+  snapshotProvider: SnapshotProvider;
   trustedIssuers: ReadonlySet<string>;
   revocationEpoch: number;
   idempotency: IdempotencyClaimPort;
@@ -181,7 +186,8 @@ function preflight(
     const intentExpiry = Date.parse(intent.expiresAt);
     if (!Number.isFinite(now) || !Number.isFinite(intentExpiry)) return "invalid_intent_expiry";
     if (intentExpiry <= now) return "intent_expired";
-    if (stable(intent.snapshot) !== stable(context.currentSnapshot)) return "snapshot_drift";
+    if (stable(intent.snapshot) !== stable(context.snapshotProvider.observe()))
+      return "snapshot_drift_preflight";
     const authorization = intent.authorization;
     if (!context.trustedIssuers.has(authorization.issuer)) return "untrusted_issuer";
     let verified: boolean;
@@ -207,6 +213,30 @@ function preflight(
     return null;
   } catch {
     return "invalid_canonical_input";
+  }
+}
+
+function dispatchSnapshotRejection(
+  intent: ProbeIntent | MaterializeIntent,
+  context: ExecutorContext,
+): "snapshot_drift_pre_dispatch" | "snapshot_observation_failed" | null {
+  try {
+    return stable(intent.snapshot) === stable(context.snapshotProvider.observe())
+      ? null
+      : "snapshot_drift_pre_dispatch";
+  } catch {
+    return "snapshot_observation_failed";
+  }
+}
+
+function snapshotChangedAfterDispatch(
+  intent: ProbeIntent | MaterializeIntent,
+  context: ExecutorContext,
+): boolean {
+  try {
+    return stable(intent.snapshot) !== stable(context.snapshotProvider.observe());
+  } catch {
+    return true;
   }
 }
 
@@ -277,8 +307,34 @@ export function runProbe(
       binary: intent.command,
       binaryVersion: "",
     };
+  const dispatchRejection = dispatchSnapshotRejection(intent, context);
+  if (dispatchRejection)
+    return {
+      ...receiptBase(intent, startedAt, startedAt, "blocked", dispatchRejection, dispatchRejection),
+      kind: "probe",
+      timedOut: false,
+      exitCode: null,
+      binary: intent.command,
+      binaryVersion: "",
+    };
   try {
     const result = port.execute(intent);
+    if (snapshotChangedAfterDispatch(intent, context))
+      return {
+        ...receiptBase(
+          intent,
+          startedAt,
+          now(),
+          "uncertain",
+          "snapshot_drift_after_dispatch",
+          "snapshot_drift_after_dispatch",
+        ),
+        kind: "probe",
+        timedOut: false,
+        exitCode: null,
+        binary: intent.command,
+        binaryVersion: "",
+      };
     const reason = result.timedOut
       ? "probe_timeout"
       : result.exitCode === 0
@@ -333,8 +389,26 @@ export function materializeLintArtifact(
     return rejected("invalid_materialize_digest");
   const claimRejection = claimIdempotency(intent, context);
   if (claimRejection) return rejected(claimRejection);
+  const dispatchRejection = dispatchSnapshotRejection(intent, context);
+  if (dispatchRejection) return rejected(dispatchRejection);
   try {
     const result = port.materialize(intent);
+    if (snapshotChangedAfterDispatch(intent, context))
+      return {
+        ...receiptBase(
+          intent,
+          startedAt,
+          now(),
+          "uncertain",
+          "snapshot_drift_after_dispatch",
+          "snapshot_drift_after_dispatch",
+        ),
+        kind: "materialize",
+        changedPath: "",
+        beforeDigest: intent.beforeDigest,
+        afterDigest: intent.beforeDigest,
+        durable: false,
+      };
     const accepted =
       !result.partial &&
       result.durable &&
