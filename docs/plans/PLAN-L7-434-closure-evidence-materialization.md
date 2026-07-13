@@ -28,7 +28,6 @@ left_arm_carry:
 parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-001, test_path: tests/closure-authority-registry-gate.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-001, test_path: tests/closure-authority-registry.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-002, test_path: tests/closure-authority-registry.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-003, test_path: tests/closure-evidence-materialization.test.ts }
@@ -36,13 +35,11 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-005, test_path: tests/closure-evidence-runner.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-006, test_path: tests/closure-evidence-materialization.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-007, test_path: tests/closure-evidence-materialization.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-007, test_path: tests/closure-gate-receipt-schema.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-008, test_path: tests/closure-evidence-materialization.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-009, test_path: tests/closure-evidence-materialization.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-010, test_path: tests/closure-evidence-materialization.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-011, test_path: tests/closure-process-receipt-schema.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-012, test_path: tests/closure-materialization-lock.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/closure-evidence-materialization.md, oracle_id: U-CMAT-003, test_path: tests/closure-evidence-materialization-cli.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-434-closure-evidence-materialization.md, artifact_type: markdown_doc }
   - { artifact_path: src/policy/closure-authority-registry.ts, artifact_type: source_module }
@@ -62,9 +59,6 @@ generates:
   - { artifact_path: tests/closure-authority-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-evidence-runner.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-process-receipt-schema.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/closure-authority-registry-gate.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/closure-evidence-materialization-cli.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/closure-gate-receipt-schema.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-72-closure-evidence-materialization.md
   requires: [docs/plans/PLAN-L6-72-closure-evidence-materialization.md]
