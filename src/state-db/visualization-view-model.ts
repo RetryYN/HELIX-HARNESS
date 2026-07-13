@@ -11,6 +11,7 @@ import type {
   RelationGraphView,
   RuntimeEvidenceView,
   SkillAgentTelemetryView,
+  VisualizationContract,
   VisualizationRootBoundary,
 } from "../schema/visualization-contract";
 import type { ProjectCurrentLocationView } from "../schema/visualization-current-location-contract";
@@ -69,6 +70,7 @@ export type {
   RelationGraphView,
   RuntimeEvidenceView,
   SkillAgentTelemetryView,
+  VisualizationContract,
   VisualizationRootBoundary,
 } from "../schema/visualization-contract";
 export type { ProjectCurrentLocationView } from "../schema/visualization-current-location-contract";
@@ -111,26 +113,7 @@ function emptySkillBinding(): ProjectSkillBinding {
   };
 }
 
-export interface VisualizationViewModel {
-  generated_from: "visualization-snapshot.v1";
-  source_clock: string | null;
-  view_boundaries: {
-    project: VisualizationRootBoundary;
-    harness: VisualizationRootBoundary;
-  };
-  project: {
-    current_location: ProjectCurrentLocationView;
-    layer_progress: LayerProgressView;
-    design_test_pair: DesignTestPairView;
-    relation_graph: RelationGraphView;
-    runtime_evidence: RuntimeEvidenceView;
-  };
-  harness: {
-    harness_growth: HarnessGrowthView;
-    skill_agent_telemetry: SkillAgentTelemetryView;
-  };
-  shared_warnings: string[];
-}
+export type VisualizationViewModel = VisualizationContract;
 
 const WARN_DESIGN_TEST_PAIR_UNAVAILABLE =
   "design_test_pair: pair-filtered edge/orphan counts are not available in the current snapshot; showing null instead of a fabricated count.";

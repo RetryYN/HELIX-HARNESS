@@ -1,5 +1,5 @@
 import type { MetricRow } from "../schema/visualization-contract";
-import type { VisualizationViewModel } from "../state-db/visualization-view-model";
+import type { VisualizationContract as VisualizationViewModel } from "../schema/visualization-contract";
 import { HELIX_COPY_POINTER_COMMAND } from "./extension-manifest";
 import type { TreeViewNode, VisualizationTreeViewModel } from "./tree-decoration";
 

@@ -1,3 +1,5 @@
+import type { ProjectCurrentLocationView } from "./visualization-current-location-contract";
+
 /**
  * Adapter-neutral DTO primitives for visualization projections.
  * Builders and adapters may extend these values but must not add I/O ownership here.
@@ -137,4 +139,25 @@ export interface VisualizationRootBoundary {
   source_fields: string[];
   excluded_fields: string[];
   view_command: "helix progress tree-view --json";
+}
+
+export interface VisualizationContract {
+  generated_from: "visualization-snapshot.v1";
+  source_clock: string | null;
+  view_boundaries: {
+    project: VisualizationRootBoundary;
+    harness: VisualizationRootBoundary;
+  };
+  project: {
+    current_location: ProjectCurrentLocationView;
+    layer_progress: LayerProgressView;
+    design_test_pair: DesignTestPairView;
+    relation_graph: RelationGraphView;
+    runtime_evidence: RuntimeEvidenceView;
+  };
+  harness: {
+    harness_growth: HarnessGrowthView;
+    skill_agent_telemetry: SkillAgentTelemetryView;
+  };
+  shared_warnings: string[];
 }
