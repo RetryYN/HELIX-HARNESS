@@ -160,24 +160,6 @@ export function validateDocumentAgentMetadata(
   manifest: DocumentAgentScopeManifest,
 ): DocumentAgentMetadataReport {
   const findings: DocumentAgentMetadataFinding[] = [];
-  const declarationOwners = new Map<string, string>();
-  for (const document of documents) {
-    for (const declaration of document.declarations) {
-      const previous = declarationOwners.get(declaration.id);
-      if (previous && previous !== document.path) {
-        findings.push(
-          finding(
-            "duplicate_id",
-            document.path,
-            `declaration ID ${declaration.id} is also defined by ${previous}`,
-            declaration.id,
-          ),
-        );
-      } else {
-        declarationOwners.set(declaration.id, document.path);
-      }
-    }
-  }
   const paths = stable(manifest.documents);
   if (paths.length === 0 || manifest.phase !== "check")
     findings.push(
@@ -192,6 +174,24 @@ export function validateDocumentAgentMetadata(
       findings.push(finding("manifest_invalid", path, "non-canonical manifest path"));
   }
   const byPath = new Map(documents.map((document) => [document.path.normalize("NFC"), document]));
+  const declarationOwners = new Map<string, string>();
+  for (const path of paths) {
+    for (const declaration of byPath.get(path)?.declarations ?? []) {
+      const previous = declarationOwners.get(declaration.id);
+      if (previous && previous !== path) {
+        findings.push(
+          finding(
+            "duplicate_id",
+            path,
+            `declaration ID ${declaration.id} is also defined by ${previous}`,
+            declaration.id,
+          ),
+        );
+      } else {
+        declarationOwners.set(declaration.id, path);
+      }
+    }
+  }
   const proposed: Record<string, DocumentAgentMetadata> = {};
   const edges = new Map<string, string[]>();
   for (const path of paths) {
