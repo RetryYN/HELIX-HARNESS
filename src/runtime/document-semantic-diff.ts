@@ -122,8 +122,9 @@ export function diffSemanticDocuments(
   const changedSections: Array<{ path: string; section: string }> = [];
   const historyAdded: Array<{ path: string; line: string }> = [];
   for (const path of stable([...after.keys()].filter((key) => before.has(key)))) {
-    const left = before.get(path)!;
-    const right = after.get(path)!;
+    const left = before.get(path);
+    const right = after.get(path);
+    if (!left || !right) continue;
     addedIds.push(...right.declarationIds.filter((id) => !left.declarationIds.includes(id)));
     removedIds.push(...left.declarationIds.filter((id) => !right.declarationIds.includes(id)));
     for (const section of stable(
