@@ -19,6 +19,9 @@ backprop_decision_reason: "PLAN-L6-73とU-CABF-001..010を実装へ降下する�
 parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-002, test_path: tests/closure-authority-backfill-loader.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-002, test_path: tests/closure-authority-backfill-production-e2e.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-006, test_path: tests/closure-authority-review-receipt-schema.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-001, test_path: tests/closure-authority-backfill.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-002, test_path: tests/closure-authority-backfill.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/closure-authority-backfill.md, oracle_id: U-CABF-003, test_path: tests/closure-authority-backfill.test.ts }
