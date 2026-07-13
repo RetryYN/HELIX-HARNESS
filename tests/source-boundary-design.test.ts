@@ -9,6 +9,7 @@ const l8 = read("docs/test-design/harness/L8-source-boundary-contracts.md");
 const l9 = read("docs/test-design/harness/L9-source-boundary-integration.md");
 const genericTreeContract = read("src/schema/visualization-tree-contract.ts");
 const visualizationContract = read("src/schema/visualization-contract.ts");
+const visualizationProjector = read("src/vmodel/visualization-tree-projector.ts");
 
 const successorPaths = [
   "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
@@ -179,6 +180,19 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(read("src/vscode/tree-view-provider.ts")).toContain(
       'from "../schema/visualization-view-contract"',
     );
+  });
+  it("U-SBOUND-005: generic projectorをschema-onlyに固定する", () => {
+    for (const forbidden of [
+      "../state-db",
+      "../vscode",
+      "node:fs",
+      "node:child_process",
+      "HELIX_COPY_POINTER_COMMAND",
+      "collapsibleState",
+    ]) {
+      expect(visualizationProjector).not.toContain(forbidden);
+    }
+    expect(visualizationProjector).toContain("buildVisualizationTree");
   });
   it("U-SBOUND-006: probe failureをtyped receiptにする", () =>
     expect(l8).toContain("timeout/nonzero/missing binary"));

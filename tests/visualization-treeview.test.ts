@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import type { ProjectCurrentLocationSnapshot } from "../src/state-db/current-location";
 import type { VisualizationSnapshot } from "../src/state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "../src/state-db/visualization-view-model";
+import { buildVisualizationTree } from "../src/vmodel/visualization-tree-projector";
+import { HELIX_COPY_POINTER_COMMAND } from "../src/vscode/extension-manifest";
+import { decorateVscodeTree } from "../src/vscode/tree-decoration";
 import { buildVisualizationTreeView } from "../src/vscode/tree-view-provider";
 
 function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
@@ -1143,6 +1146,17 @@ function findTreeNode(
 }
 
 describe("visualization Tree View adapter", () => {
+  it("U-SBOUND-005: generic projectorとVS Code facadeは全tree出力を完全一致させる", () => {
+    const viewModel = buildVisualizationViewModel(snapshot());
+    const generic = buildVisualizationTree(viewModel);
+
+    expect(
+      decorateVscodeTree(generic, {
+        copy_pointer: { title: "Copy pointer", command: HELIX_COPY_POINTER_COMMAND },
+      }),
+    ).toStrictEqual(buildVisualizationTreeView(viewModel));
+  });
+
   it("U-VTREE-001: builds deterministic Project/HARNESS roots with current-location and L12 coverage nodes", () => {
     const vm = buildVisualizationViewModel(snapshot());
     const first = buildVisualizationTreeView(vm);
