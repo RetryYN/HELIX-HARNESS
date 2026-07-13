@@ -1,11 +1,7 @@
 import type { VisualizationContract } from "../schema/visualization-view-contract";
 import { buildVisualizationTree } from "../vmodel/visualization-tree-projector";
 import { HELIX_COPY_POINTER_COMMAND } from "./extension-manifest";
-import {
-  decorateVscodeTree,
-  type TreeViewNode,
-  type VisualizationTreeViewModel,
-} from "./tree-decoration";
+import { decorateVscodeTree, type VisualizationTreeViewModel } from "./tree-decoration";
 
 export type {
   TreeNodeState,

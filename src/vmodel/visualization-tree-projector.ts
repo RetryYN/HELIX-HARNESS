@@ -1,6 +1,6 @@
 import type { MetricRow } from "../schema/visualization-contract";
-import type { VisualizationContract } from "../schema/visualization-view-contract";
 import type { GenericTree, GenericTreeNode } from "../schema/visualization-tree-contract";
+import type { VisualizationContract } from "../schema/visualization-view-contract";
 
 type VmodelWorkBucket = NonNullable<
   VisualizationContract["project"]["current_location"]["vmodel_fit"]["next_actions"][number]["work_bucket"]

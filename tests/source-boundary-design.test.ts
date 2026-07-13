@@ -173,8 +173,11 @@ describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
     expect(read("src/state-db/visualization-view-model.ts")).toContain(
       'from "../schema/visualization-contract"',
     );
-    expect(read("src/vscode/tree-view-provider.ts")).toContain(
+    expect(read("src/vmodel/visualization-tree-projector.ts")).toContain(
       'from "../schema/visualization-contract"',
+    );
+    expect(read("src/vscode/tree-view-provider.ts")).toContain(
+      'from "../schema/visualization-view-contract"',
     );
   });
   it("U-SBOUND-006: probe failureをtyped receiptにする", () =>
