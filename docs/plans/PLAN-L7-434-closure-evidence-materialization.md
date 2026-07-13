@@ -59,6 +59,9 @@ generates:
   - { artifact_path: tests/closure-authority-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-evidence-runner.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-process-receipt-schema.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-authority-registry-gate.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-evidence-materialization-cli.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-gate-receipt-schema.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-72-closure-evidence-materialization.md
   requires: [docs/plans/PLAN-L6-72-closure-evidence-materialization.md]

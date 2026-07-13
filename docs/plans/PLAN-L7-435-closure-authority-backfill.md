@@ -38,6 +38,9 @@ generates:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/closure-authority-backfill.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-authority-backfill-transaction.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-authority-backfill-loader.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-authority-backfill-production-e2e.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/closure-authority-review-receipt-schema.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-73-closure-authority-backfill.md
   requires: [docs/plans/PLAN-L6-73-closure-authority-backfill.md]
