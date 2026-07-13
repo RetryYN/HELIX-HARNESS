@@ -1,12 +1,16 @@
 import { execFile } from "node:child_process";
 import { join } from "node:path";
+import type {
+  TreeNodeState,
+  TreeViewNode,
+  VisualizationTreeViewModel,
+} from "../schema/visualization-tree-contract";
 import {
   HELIX_COPY_POINTER_COMMAND,
   HELIX_HARNESS_VIEW_ID,
   HELIX_PROJECT_VIEW_ID,
   HELIX_REFRESH_VISUALIZATION_COMMAND,
 } from "./extension-manifest";
-import type { TreeNodeState, TreeViewNode, VisualizationTreeViewModel } from "./tree-view-provider";
 
 export interface VscodeDisposableLike {
   dispose(): void;

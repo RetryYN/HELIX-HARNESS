@@ -1,31 +1,17 @@
-import { HELIX_COPY_POINTER_COMMAND } from "../schema/visualization-tree-contract";
+import {
+  HELIX_COPY_POINTER_COMMAND,
+  type TreeViewNode,
+  type VisualizationTreeViewModel,
+} from "../schema/visualization-tree-contract";
 import type { MetricRow, VisualizationViewModel } from "../state-db/visualization-view-model";
 
-export type TreeNodeState = "none" | "collapsed" | "expanded";
-
-export interface TreeViewCommand {
-  title: string;
-  command: typeof HELIX_COPY_POINTER_COMMAND;
-  arguments: string[];
-}
-
-export interface TreeViewNode {
-  id: string;
-  label: string;
-  description?: string;
-  tooltip?: string;
-  contextValue: string;
-  collapsibleState: TreeNodeState;
-  command?: TreeViewCommand;
-  children: TreeViewNode[];
-}
-
-export interface VisualizationTreeViewModel {
-  schema_version: "visualization-tree-view.v1";
-  source_clock: string | null;
-  roots: TreeViewNode[];
-  warnings: string[];
-}
+export {
+  HELIX_COPY_POINTER_COMMAND,
+  type TreeNodeState,
+  type TreeViewCommand,
+  type TreeViewNode,
+  type VisualizationTreeViewModel,
+} from "../schema/visualization-tree-contract";
 
 type VmodelWorkBucket = NonNullable<
   VisualizationViewModel["project"]["current_location"]["vmodel_fit"]["next_actions"][number]["work_bucket"]
