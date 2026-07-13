@@ -9,9 +9,10 @@ import {
   readFileSync,
   renameSync,
   rmSync,
+  unlinkSync,
   writeFileSync,
 } from "node:fs";
-import { dirname, isAbsolute, relative, resolve } from "node:path";
+import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { contentDigest, type MaterializeIntent, type WritePort } from "./lint-effect-executor";
 
 export type LintArtifactWriteBoundary =
@@ -36,15 +37,6 @@ function fsyncDirectory(path: string): void {
   }
 }
 
-function writeAndFsync(fd: number, content: string): void {
-  try {
-    writeFileSync(fd, content, "utf8");
-    fsyncSync(fd);
-  } finally {
-    closeSync(fd);
-  }
-}
-
 function targetPath(root: string, path: string): string {
   if (!path || isAbsolute(path) || path.includes("\0")) throw new Error("invalid_artifact_path");
   const target = resolve(root, path);
@@ -60,6 +52,20 @@ function targetPath(root: string, path: string): string {
   return target;
 }
 
+function prepareTrustedDirectory(root: string, directory: string): void {
+  const rootStat = lstatSync(root);
+  if (!rootStat.isDirectory() || rootStat.isSymbolicLink())
+    throw new Error("artifact_root_untrusted");
+  const segments = relative(root, directory).split(/[\\/]/).filter(Boolean);
+  let current = root;
+  for (const segment of segments) {
+    current = join(current, segment);
+    if (!existsSync(current)) mkdirSync(current);
+    const stat = lstatSync(current);
+    if (!stat.isDirectory() || stat.isSymbolicLink()) throw new Error("artifact_parent_untrusted");
+  }
+}
+
 /** Real same-directory temp/fsync/rename/directory-fsync adapter for lint artifacts. */
 export function createLintArtifactWritePort(options: LintArtifactWritePortOptions): WritePort {
   const root = resolve(options.root);
@@ -67,35 +73,47 @@ export function createLintArtifactWritePort(options: LintArtifactWritePortOption
     materialize(intent: MaterializeIntent) {
       const target = targetPath(root, intent.path);
       const directory = dirname(target);
-      mkdirSync(directory, { recursive: true });
-      const before = existsSync(target)
-        ? contentDigest(readFileSync(target, "utf8"))
-        : contentDigest("");
-      if (before !== intent.beforeDigest) throw new Error("artifact_before_digest_mismatch");
-      const temp = `${target}.${randomUUID()}.tmp`;
-      let renamed = false;
+      prepareTrustedDirectory(root, directory);
+      const lock = `${target}.lock`;
+      const lockFd = openSync(lock, "wx", 0o600);
       try {
-        const fd = openSync(temp, "wx", 0o600);
-        writeAndFsync(fd, intent.content);
-        options.hooks?.afterBoundary?.("after_temp_write");
-        options.hooks?.afterBoundary?.("after_temp_fsync");
-        renameSync(temp, target);
-        renamed = true;
-        options.hooks?.afterBoundary?.("after_rename");
-        fsyncDirectory(directory);
-        options.hooks?.afterBoundary?.("after_directory_fsync");
-        const after = contentDigest(readFileSync(target, "utf8"));
-        options.hooks?.afterBoundary?.("after_verify");
-        return {
-          changedPath: intent.path,
-          beforeDigest: before,
-          afterDigest: after,
-          durable: true,
-          partial: false,
-        };
-      } catch (error) {
-        if (!renamed) rmSync(temp, { force: true });
-        throw error;
+        const before = existsSync(target)
+          ? contentDigest(readFileSync(target, "utf8"))
+          : contentDigest("");
+        if (before !== intent.beforeDigest) throw new Error("artifact_before_digest_mismatch");
+        const temp = `${target}.${randomUUID()}.tmp`;
+        let renamed = false;
+        try {
+          const fd = openSync(temp, "wx", 0o600);
+          try {
+            writeFileSync(fd, intent.content, "utf8");
+            options.hooks?.afterBoundary?.("after_temp_write");
+            fsyncSync(fd);
+            options.hooks?.afterBoundary?.("after_temp_fsync");
+          } finally {
+            closeSync(fd);
+          }
+          renameSync(temp, target);
+          renamed = true;
+          options.hooks?.afterBoundary?.("after_rename");
+          fsyncDirectory(directory);
+          options.hooks?.afterBoundary?.("after_directory_fsync");
+          const after = contentDigest(readFileSync(target, "utf8"));
+          options.hooks?.afterBoundary?.("after_verify");
+          return {
+            changedPath: intent.path,
+            beforeDigest: before,
+            afterDigest: after,
+            durable: true,
+            partial: false,
+          };
+        } catch (error) {
+          if (!renamed) rmSync(temp, { force: true });
+          throw error;
+        }
+      } finally {
+        closeSync(lockFd);
+        unlinkSync(lock);
       }
     },
   };

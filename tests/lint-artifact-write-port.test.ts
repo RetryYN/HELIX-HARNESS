@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -119,6 +119,24 @@ describe("PLAN-L7-451 atomic lint artifact write port", () => {
       }
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects a symlinked intermediate directory before publishing outside the evidence root", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-lint-artifact-root-"));
+    const outside = mkdtempSync(join(tmpdir(), "helix-lint-artifact-outside-"));
+    try {
+      symlinkSync(outside, join(root, "evidence"));
+      const receipt = materializeLintArtifact(
+        intent(),
+        createLintArtifactWritePort({ root }),
+        context(),
+      );
+      expect(receipt).toMatchObject({ status: "uncertain", durable: false });
+      expect(existsSync(join(outside, "result.json"))).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+      rmSync(outside, { recursive: true, force: true });
     }
   });
 });
