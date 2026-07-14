@@ -208,12 +208,12 @@ export function validateDocumentAgentMetadata(
 ): DocumentAgentMetadataReport {
   const findings: DocumentAgentMetadataFinding[] = [];
   const paths = stable(manifest.documents);
-  if (paths.length === 0 || manifest.phase !== "check")
+  if (paths.length === 0)
     findings.push(
       finding({
         code: "manifest_invalid",
         path: "config/document-agent-metadata-scope.json",
-        detail: "invalid Phase A manifest",
+        detail: "invalid document-agent metadata manifest",
       }),
     );
   for (const path of [...manifest.include_roots, ...manifest.exclude_roots, ...paths]) {

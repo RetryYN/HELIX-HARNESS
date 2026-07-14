@@ -177,7 +177,7 @@ describe("document agent metadata (HVM-AGMETA)", () => {
         buildDeclarationRegistry([document("docs/design/helix/a.md", "A-001")]),
         { ...manifest, phase: "apply" },
       ).findings,
-    ).toContainEqual(expect.objectContaining({ code: "manifest_invalid" }));
+    ).toEqual([]);
 
     const duplicateA = document("docs/design/helix/a.md", "DUP-001");
     const duplicateB = document("docs/test-design/helix/b.md", "DUP-001");

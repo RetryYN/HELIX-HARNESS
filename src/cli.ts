@@ -21,7 +21,11 @@ import {
 import { homedir, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
-import { loadDocumentAgentMetadataReport } from "./adapters/document-agent-metadata-fs";
+import {
+  createDocumentAgentMetadataSource,
+  loadDocumentAgentMetadataManifest,
+  loadDocumentAgentMetadataReport,
+} from "./adapters/document-agent-metadata-fs";
 import {
   loadDocumentSemanticDiffReport,
   loadDocumentSemanticDiffReportFromGit,
@@ -237,6 +241,11 @@ import {
   type SpecStoreOperation,
 } from "./runtime/cross-repo-spec-store";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
+import {
+  applyDocumentAgentMetadata,
+  planDocumentAgentMetadataApply,
+} from "./runtime/document-agent-metadata-apply";
+import { createDocumentAgentMetadataWritePort } from "./runtime/document-agent-metadata-write-port";
 import {
   type BundleCatalog,
   type BundleKind,
@@ -1416,9 +1425,10 @@ program.hook("preAction", () => {
 });
 
 const design = program.command("design").description("設計成果物の read-only 検証");
-design
+const agentMetadata = design
   .command("agent-metadata")
-  .description("document_agent 宣言を typed design declaration から検査する")
+  .description("document_agent 宣言を typed design declaration から検査・明示applyする");
+agentMetadata
   .command("check")
   .description("scope manifest に対する read-only conformance check")
   .option("--json", "JSON で出力")
@@ -1444,6 +1454,41 @@ design
       } else {
         process.stdout.write(`design agent-metadata: blocked ${detail}\n`);
       }
+    }
+  });
+
+agentMetadata
+  .command("apply")
+  .description("scope manifest の明示選択へ document_agent を安全に反映する")
+  .requiredOption("--select <path...>", "canonical scope内の更新対象")
+  .option("--json", "JSON で出力")
+  .action((opts: { select: string[]; json?: boolean }) => {
+    try {
+      const repoRoot = process.cwd();
+      const manifest = loadDocumentAgentMetadataManifest(repoRoot);
+      const report = loadDocumentAgentMetadataReport(repoRoot);
+      const plan = planDocumentAgentMetadataApply({
+        manifest,
+        report,
+        selection: opts.select,
+        source: createDocumentAgentMetadataSource(repoRoot),
+      });
+      const receipt = applyDocumentAgentMetadata(
+        plan,
+        createDocumentAgentMetadataWritePort(repoRoot),
+      );
+      process.exitCode = receipt.ok ? 0 : 1;
+      if (opts.json) process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `design agent-metadata apply: ${receipt.ok ? "ok" : "blocked"} changed=${receipt.changes.length} partial=${receipt.partial}\n`,
+        );
+    } catch (error) {
+      process.exitCode = 1;
+      const detail = error instanceof Error ? error.message : String(error);
+      if (opts.json)
+        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+      else process.stdout.write(`design agent-metadata apply: blocked ${detail}\n`);
     }
   });
 

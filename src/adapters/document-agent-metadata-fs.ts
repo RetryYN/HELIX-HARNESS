@@ -1,9 +1,10 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, lstatSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import {
   buildDeclarationRegistry,
   validateDocumentAgentMetadata,
 } from "../lint/document-agent-metadata";
+import type { DocumentAgentMetadataSource } from "../runtime/document-agent-metadata-apply";
 import {
   type DocumentAgentMetadataReport,
   type DocumentAgentScopeManifest,
@@ -52,4 +53,21 @@ export function loadDocumentAgentMetadataReport(repoRoot: string): DocumentAgent
     .map((path) => ({ path, content: readFileSync(join(repoRoot, path), "utf8") }))
     .map(({ path, content }) => parseDesignDeclarationDoc(path, content));
   return validateDocumentAgentMetadata(documents, buildDeclarationRegistry(documents), manifest);
+}
+
+export function createDocumentAgentMetadataSource(repoRoot: string): DocumentAgentMetadataSource {
+  const root = resolve(repoRoot);
+  return {
+    read(path) {
+      if (!canonicalPath(path)) return null;
+      const absolute = resolve(root, path);
+      if (
+        !absolute.startsWith(`${root}/`) ||
+        !existsSync(absolute) ||
+        lstatSync(absolute).isSymbolicLink()
+      )
+        return null;
+      return readFileSync(absolute, "utf8");
+    },
+  };
 }
