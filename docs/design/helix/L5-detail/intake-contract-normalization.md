@@ -37,7 +37,8 @@ source_capabilities:
 本書はuser/chat、GitHub、product、ZIP/sourceの4 ingressを互いに異なるuntrusted envelopeとして受け、
 source、cause、operation ID、payload digest、source schema revision、authority、route、custodyを持つ同一のversioned
 Issue contractへNode authorityで正規化する。外部本文はopaque evidenceであり、command、prompt、task、tool argument、shell、pathへ
-補間しない。Admission成功はcustody、contract revision、route、causality、idempotency receiptのtransactional commitで観測する。
+補間しない。受信custodyはvalidationより先に独立durable化する。Admission成功はそのcurrent custody receiptを参照した
+contract revision、route、causality、handoff、idempotency receiptのtransactional commitで観測する。
 
 HAT-HIL-01はHST-HIL-001 familyを参照するが、case ownershipはprimary L1要求で分割する。本sliceが所有するのは
 `HST-CASE-001-01`、`HST-CASE-001-02`、`HST-CASE-001-03`、`HST-CASE-001-05`、`HST-CASE-001-07`、
@@ -89,7 +90,7 @@ custodyへ残す。declared `authority_class`はtransportが検証したactor id
 | `IssueContractNormalizer` | envelopeから同一Issue contract schemaへ決定論変換 | proposalだけ | source別contract fork、外部本文のobjective化 |
 | `IssueRouteResolver` | primary mode、drive、Reverse、Forward targetをauthority付き決定 | route receiptだけ | route欠落、unknownのForward fallback、自己正当化 |
 | `AdmissionMinimalityGate` | acceptanceに必要なcontract surfaceだけを許可 | minimality receiptだけ | 不要CLI/API/schema/dependency/config追加 |
-| `IssueAdmissionWriter` | custody/idempotency/contract/route/causalityを一transactionでcommit | Node append/CASだけ | partial commit、stale revision、AI direct write |
+| `IssueAdmissionWriter` | 先行custody receiptを検証し、idempotency/contract/route/causality/handoffを一transactionでcommit。custodyは再appendしない | Node append/CASだけ | partial commit、stale custody/revision、AI direct write |
 
 adapter、Python worker、Claude、Codex、GitHub/product connectorはproposalを返せるが、custody、operation reservation、contract revision、
 route、authorityを直接writeしない。Node writerだけがschema/digest/current revisionを再検証してauthoritative eventをappendする。

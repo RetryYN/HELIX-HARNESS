@@ -46,7 +46,7 @@ route catalog、budget policyを値として受け、stable orderのResultを返
 | `detectIntakeOperationConflict` | `(operation, payloadDigest, existing) => Result<Reservation, ConflictReceipt>` | 同operation/異digestは既存contractを変更せずconflict | `U-ICN-003` | `HAC-HIL-01b` | `HST-CASE-001-03` | `admitted` | `admitted` | `HIL_INTAKE_IDEMPOTENCY_CONFLICT` |
 | `resolveIssueAdmissionRoute` | `(ingress, authority, routeCatalog) => Result<IssueRoute, IntakeFailure[]>` | mode/drive/Reverse/Forwardを全ingress同契約へ決定 | `U-ICN-004` | `HAC-HIL-01a` | `HST-CASE-001-05` | `assertion_input_ready` | `assertion_pass` | `HIL_INTAKE_ROUTE_INCOMPLETE` |
 | `validateIssueContractAdmission` | `(proposal, schema, scopeAuthority, surfaceDelta) => Result<ValidatedIssueContract, IntakeFailure[]>` | 必須field/enum/digestとminimum necessaryを検査、不要surface拒否 | `U-ICN-005` | `HAC-HIL-01b` | `HST-CASE-001-07` | `assertion_input_ready` | `assertion_pass` | `HIL_ISSUE_CONTRACT_INCOMPLETE` |
-| `commitIssueAdmissionExactlyOnce` | `(bundle, operation, port) => Promise<Result<AdmissionReceipt, IntakeFailure[]>>` | custody/contract/route/initial handoff/idempotencyをall-or-nothing append | `U-ICN-006` | `HAC-HIL-01b` | `HST-CASE-001-08` | `assertion_input_ready` | `assertion_pass` | `HIL_IDEMPOTENCY_VIOLATION` |
+| `commitIssueAdmissionExactlyOnce` | `(bundle, operation, port) => Promise<Result<AdmissionReceipt, IntakeFailure[]>>` | 先行durable custody receiptを参照し、contract/route/initial handoff/idempotencyだけをall-or-nothing append。custody自体は再appendしない | `U-ICN-006` | `HAC-HIL-01b` | `HST-CASE-001-08` | `assertion_input_ready` | `assertion_pass` | `HIL_IDEMPOTENCY_VIOLATION` |
 | `isolateUntrustedIngressContent` | `(envelope, artifactPort, dispatchSpy) => Promise<Result<TrustReceipt, IntakeFailure>>` | bodyをartifact化しmetadataだけ返す、dispatch count 0 | `U-ICN-007` | `HAC-HIL-01c` | `HST-CASE-001-10` | `assertion_input_ready` | `assertion_pass` | `HIL_UNTRUSTED_INPUT_EXECUTED` |
 | `appendIntakeCustodyBeforeValidation` | `(receipt, store) => Promise<Result<CustodyReceipt, IntakeFailure>>` | invalidを含む受信事実をsemantic validationより先にdurable化。同一source event/op/digestは既存receipt | `U-ICN-008` | `HAC-HIL-01b` | supporting | `received` | `custodied` | `HIL_INTAKE_CUSTODY_CONFLICT` |
 | `validateTransportActorAuthority` | `(header, transportActor, policyReceipt, now) => Result<VerifiedIngressAuthority, IntakeFailure[]>` | actor/source/authority/policy revision/expiryをexact照合 | `U-ICN-009` | `HAC-HIL-01b`, `HAC-HIL-01c` | supporting | `custodied` | `validated` | `HIL_INTAKE_AUTHORITY_INVALID` |
@@ -142,7 +142,7 @@ opaque extension digestへ隔離する。
 1. 4 ingressは全てuntrustedで、source固有metadataを維持したまま一つのIssueContractV1へ収束する。
 2. custodyはclassify/route/admissionより先にappendされる。
 3. operation ID＋payload digestが同じ再送はauthoritative副作用0、同operation異digestはconflictである。
-4. contract revision、route、initial cause/transition/budget metadata、admissionはNode transactionで全commitまたは全rollbackする。
+4. receipt-level custodyは受信時に先行durable化し、admission transactionの外側で保持する。contract revision、route、initial cause/transition/budget metadata、handoff、admission receiptだけをNode transactionで全commitまたは全rollbackし、bundleはcurrent custody receiptを参照する。
 5. 外部本文からcommand/prompt/task/tool dispatchを一件も生成しない。
 6. contractはsource/cause/schema/authority/custody/route/budget/digestを欠かさない。
 7. initial admission transitionはcause/previous digestへbindし、全loop state順序とbudget checkpointはHDS-HIL-02へ委譲する。

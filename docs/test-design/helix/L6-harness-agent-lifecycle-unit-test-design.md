@@ -41,7 +41,7 @@ requirements:
 | `U-AGLC-011` | `createAgentLifecycleInstance` | 同一member/contract/task/attemptから同一identityとmustered seedを生成 | `HAC-HIL-08a` | `HST-CASE-006-01` | `なし（正常系）` | `tests/agent-lifecycle.test.ts` |
 | `U-AGLC-012` | `validateAgentLifecycleTransition` | failed→verified、verification_pending→released、retired→leased等を拒否し合法graphだけ通す | `HAC-HIL-08b` | `HST-CASE-006-08`, `HST-CASE-006-16` | `HIL_AGENT_STATE_TRANSITION_INVALID`; `HIL_AGENT_LIFECYCLE_INVALID` | `tests/agent-lifecycle.test.ts` |
 | `U-AGLC-013` | `appendAgentLifecycleEvent` | sequence gap、重複operation、previous digest mismatchでappend/projection 0 | `HAC-HIL-08a`, `HAC-HIL-08c` | `HST-CASE-006-13` | `HIL_AGENT_EVENT_SEQUENCE_INVALID` | `tests/agent-lifecycle-events.test.ts` |
-| `U-AGLC-014` | `acquireAgentLease` | 2 owner同時CASでwinner 1、loser lease 0、同operation再送増分0 | `HAC-HIL-08b` | `HST-CASE-006-04` | `HIL_AGENT_LEASE_ALREADY_ACTIVE` | `tests/agent-lease.test.ts` |
+| `U-AGLC-014` | `acquireAgentLease` | lease row→instance fence/state→event→projection→receiptの各faultで全増分0。2 owner同時CASはwinner 1、loser全write 0、同operation再送増分0、fence非単調を拒否 | `HAC-HIL-08b` | `HST-CASE-006-04` | `HIL_AGENT_LEASE_ALREADY_ACTIVE` | `tests/agent-lease.test.ts` |
 | `U-AGLC-015` | `evaluateAgentLeaseLiveness` | expiry境界直前/同値/超過とowner/fence mismatchを判定し超過操作0 | `HAC-HIL-08b` | `HST-CASE-006-05` | `HIL_AGENT_LEASE_EXPIRED` | `tests/agent-lease.test.ts` |
 | `U-AGLC-016` | `fenceAgentOperation` | reassign後の旧tool/checkpoint/artifact/completion/resumeを全て拒否 | `HAC-HIL-08b`, `HAC-HIL-08c` | `HST-CASE-006-06`, `HST-CASE-006-22` | `HIL_AGENT_FENCING_REJECTED`; `HIL_AGENT_FENCING_VIOLATION` | `tests/agent-fencing.test.ts` |
 | `U-AGLC-017` | `sealDurableAgentCheckpoint` | schema/context/state/artifact digest欠落、sequence/fence不一致をinvalidにする | `HAC-HIL-08c` | `HST-CASE-006-07` | `HIL_AGENT_CHECKPOINT_INVALID` | `tests/agent-checkpoint.test.ts` |
@@ -51,9 +51,9 @@ requirements:
 | `U-AGLC-021` | `releaseVerifiedAgentInstance` | receiptなし、fail/inconclusive/stale/revoked、別result receiptでrelease 0 | `HAC-HIL-08b` | `HST-CASE-006-09` | `HIL_AGENT_RELEASE_UNVERIFIED` | `tests/agent-verification.test.ts` |
 | `U-AGLC-022` | `planAgentQuarantineOrRetirement` | 同version quarantine復帰、retired reclaim、illegal lifecycle順を拒否しsuperseding eventだけ生成 | `HAC-HIL-08c` | `HST-CASE-006-11`, `HST-CASE-006-12`, `HST-CASE-006-16` | `HIL_AGENT_RETIRED_RECLAIM`; `HIL_AGENT_QUARANTINE_RELEASE_UNAUTHORIZED`; `HIL_AGENT_LIFECYCLE_INVALID` | `tests/agent-disposition.test.ts` |
 
-| `U-AGLC-023` | `buildAgentLifecycleCommitBundle` | mutation別record、current lease/fence、expected event/projection/checkpoint/result heads欠落を拒否し、lease acquisitionを対象外にする | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting | `tests/agent-lifecycle-transaction.test.ts` |
+| `U-AGLC-023` | `buildAgentLifecycleCommitBundle` | mutation別record、current lease/fence、expected event/projection/checkpoint/result heads欠落を拒否し、専用bundleでないlease acquisition混載を拒否 | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting | `tests/agent-lifecycle-transaction.test.ts` |
 | `U-AGLC-024` | `commitAgentLifecycleMutation` | 各append faultで全write 0。同operation同digest一件、異digest/stale head/旧fence conflict | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting | `tests/agent-lifecycle-transaction.test.ts` |
-| `U-AGLC-025` | `reconcileAgentLifecycleMutation` | immutable evidence一致時だけprojection/recordを復元し、lease/pass/release/retireを推測しない | `HAC-HIL-08c` | supporting | `tests/agent-lifecycle-reconcile.test.ts` |
+| `U-AGLC-025` | `reconcileAgentLifecycleMutation` | immutable evidence一致時だけprojection/record/receiptを復元し、新lease/fence/pass/release/retireを推測しない | `HAC-HIL-08c` | supporting | `tests/agent-lifecycle-reconcile.test.ts` |
 
 ## §1 合否
 

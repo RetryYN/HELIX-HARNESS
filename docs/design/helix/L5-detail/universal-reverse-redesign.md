@@ -149,14 +149,17 @@ stale edgeは`unique(route, source_revision, target_revision, edge_kind)`、re-f
 workloadには`check(total >= 1)`、`check(completed >= 0)`、`check(blocked >= 0)`、`check(completed + blocked = total)`を置き、
 blocked 0かつ全obligation semantic passでないpair/refreezeをDB境界でも拒否する。
 
-## §7.1 Reverse／route／re-freezeの不可分commit
+## §7.1 Reverse／stale／re-freezeの順序付き不可分commit
 
-Node `UniversalReverseStore`はmanifest、R0–R4 artifact、workload、drive pair、route、Redesign causality、Retrofit migration evidence、
-stale closure、re-entry、re-freezeを`UniversalReverseCommitBundleV1`へ束ねる。bundleはoperation/payload digest、
-`expected_event_head`、`expected_projection_head`、expected run/route revision、全write set digestを持ち、一つのtransactionでcommitする。
+Node `UniversalReverseStore`は三種類のoperationを混載しない。`UniversalReverseCommitBundleV1`はmanifest、R0–R4 artifact、workload、
+drive pair、route、Redesign causality、Retrofit migration evidenceだけを束ねる。`RedesignStaleCommitBundleV1`はそのReverse receiptを親として
+完全descendant stale closureをcommitし、`ReentryRefreezeCommitBundleV1`はstale receiptを親としてre-entryとre-freezeをcommitする。
+各bundleは固有operation/payload digest、expected event/projection head、対象revision、完全write set digestを持ち、各operation内だけを
+一つのtransactionでcommitする。
 
 同operation・同digestは既存receiptを返すno-op、同operation・異digest、stale head、FK/unique/check違反は全write 0である。
-event、run、各phase/artifact/workload、pair、route、stale edge、re-entry、re-freezeの各append位置へfaultを注入した場合もpartial 0とする。
+event、run、各phase/artifact/workload、pair、route、stale edge、re-entry、re-freezeの各append位置へfaultを注入した場合も、
+該当operationのpartial writeを0とする。Reverse本体へのstale/refreeze混載、stale前のrefreeze、親receipt不一致は全write 0とする。
 rebuildはevent chainからprojectionを決定論再生成し、reconcileはimmutable artifact/evidenceと同operation/headから未完commitを再開するだけで、
 phase pass、route、stale解消、freezeを推測しない。
 

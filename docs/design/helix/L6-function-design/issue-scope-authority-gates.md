@@ -159,6 +159,34 @@ interface IssueGovernanceCommitBundleV1 {
   receipt_evidence_digest: string;
   authority_write_set_digest: string | null;
 }
+
+interface IssueGovernanceCommitReceiptV1 {
+  operation_id: string;
+  payload_digest: string;
+  mutation_kind: IssueGovernanceCommitBundleV1["mutation_kind"];
+  subject_revision: number;
+  before_event_head: string;
+  after_event_head: string;
+  before_projection_head: string;
+  after_projection_head: string;
+  write_set_digest: string;
+  row_count_digest: string;
+}
+
+interface IssueGovernanceStore {
+  commit(bundle: IssueGovernanceCommitBundleV1): Promise<Result<IssueGovernanceCommitReceiptV1, GateFailure>>;
+  readOperation(operationId: string): Promise<IssueGovernanceCommitReceiptV1 | null>;
+  readEventHead(subjectRevision: number): Promise<string>;
+  readProjectionHead(subjectRevision: number): Promise<string>;
+  reconcile(operationId: string, evidence: IssueGovernanceImmutableEvidence): Promise<Result<IssueGovernanceCommitReceiptV1, GateFailure>>;
+  rebuildProjection(subjectRevision: number): Promise<ProjectionDigest>;
+}
+
+type GateFailure = {
+  code: "HIL_ACTION_BINDING_APPROVAL_MISSING" | "HIL_CI_RECEIPT_LINEAGE_INVALID" | "HIL_CI_STAGE_BYPASS" | "HIL_CLOSURE_AUDIT_MISSING" | "HIL_CLOSURE_CHILD_OPEN" | "HIL_CLOSURE_EVIDENCE_MISSING" | "HIL_CLOSURE_MEMORY_MISSING" | "HIL_CLOSURE_ORACLE_MISSING" | "HIL_DIRECTIVE_APPEND_ONLY_VIOLATION" | "HIL_DIRECTIVE_CANCEL_UNAUTHORIZED" | "HIL_DIRECTIVE_CUSTODY_MISSING" | "HIL_DIRECTIVE_CUSTODY_VIOLATION" | "HIL_DIRECTIVE_DUPLICATE_TARGET_MISSING" | "HIL_DIRECTIVE_FALSE_POSITIVE_UNVERIFIED" | "HIL_DIRECTIVE_RISK_APPROVAL_MISSING" | "HIL_DIRECTIVE_TERMINATED_BY_AI" | "HIL_IMPLEMENTATION_NOT_READY" | "HIL_ISSUE_GATE_BYPASS" | "HIL_ISSUE_TRANSACTION_CONFLICT" | "HIL_ISSUE_TRANSACTION_RECONCILE_FAILED" | "HIL_REVERSE_SEMANTIC_COVERAGE_INCOMPLETE" | "HIL_REVERSE_SUBSTANCE_HOLLOW" | "HIL_SCOPE_ALTERNATIVE_MISSING" | "HIL_SCOPE_AUTHORITY_CYCLE" | "HIL_SCOPE_AUTHORITY_INVALID" | "HIL_SCOPE_BUDGET_EXCEEDED" | "HIL_SCOPE_DERIVATION_CYCLE" | "HIL_SCOPE_MINIMUM_NECESSITY_MISSING" | "HIL_SCOPE_NECESSITY_MISSING" | "HIL_UNJUSTIFIED_CAPABILITY";
+  evidence_digest: string;
+  operation_id?: string;
+};
 ```
 
 ## §3 不変条件

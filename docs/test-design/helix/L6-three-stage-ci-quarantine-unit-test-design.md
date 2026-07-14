@@ -53,9 +53,9 @@ source_capabilities:
 | `U-CIQ-019` | `recordCiRecoveryAttemptResult` | retryのsame-tree/full workloadと、repushのprior attempt/rerequest/log/root-cause/diff/green/push/PR head/new-chain三段receiptを一件ずつ欠落・旧head・同chain化しResult失敗、merge 0 | `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING` | `tests/ci-self-heal-attempt.test.ts` |
 | `U-CIQ-020` | `finalizeCiMergeEligibility` | current PR head以外、三段欠落、quarantine-only green、branch policy差をmerge不可にする | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-003-13` → `HIL_CI_RECEIPT_LINEAGE_INVALID`; `HST-CASE-022-01` → `なし（正常系）` | `tests/ci-merge-eligibility.test.ts` |
 
-| `U-CIQ-021` | `buildCiMutationCommitBundle` | 入力順差を同digestへ正規化し、stage/quarantine/self-heal別の必須write set欠落を拒否 | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting | `tests/ci-mutation-transaction.test.ts` |
-| `U-CIQ-022` | `commitCiMutationBundle` | 各append faultで全write 0。同operation同digestは一件、異digest/stale headはconflict | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting | `tests/ci-mutation-transaction.test.ts` |
-| `U-CIQ-023` | `reconcileCiMutationCommit` | immutable evidence一致時だけprojection/receiptを復元し、missing checkやgreenを補完しない | `HAC-HIL-06b` | supporting | `tests/ci-mutation-reconcile.test.ts` |
+| `U-CIQ-021` | `buildCiMutationCommitBundle` | 入力順差を同digestへ正規化し、stage/quarantine/self-healとrule create/update/expire別の必須write set・rule revision・approval/freshness欠落を拒否 | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting | `tests/ci-mutation-transaction.test.ts` |
+| `U-CIQ-022` | `commitCiMutationBundle` | check/event/projection/receipt/lineage/outcomeおよびrule row各append faultで当該transaction全write 0。同operation同digestは一件、異digest/stale event・projection・rule headはconflict | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting | `tests/ci-mutation-transaction.test.ts` |
+| `U-CIQ-023` | `reconcileCiMutationCommit` | immutable evidence一致時だけprojection/receipt/rule expiry eventを復元し、missing rule/check/greenを補完しない | `HAC-HIL-06b` | supporting | `tests/ci-mutation-reconcile.test.ts` |
 
 ### canonical 23件の単体oracle結線
 

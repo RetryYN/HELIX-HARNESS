@@ -62,8 +62,8 @@ claim leaseはinjected Node portだけが行う。
 | `classifyRetrofitDelta` | `(delta, persistedSurfaces, runtimeSurfaces) => Result<RetrofitClassification, ReverseFailure[]>` | state/data/schema/runtime/dependency変更をtyped分類しRedesign併存を分離 | `U-URR-023` | `HAC-HIL-04c` | supporting | `route_pending` | `classified` | `HIL_RETROFIT_CLASSIFICATION_INVALID` |
 | `validateRetrofitMigrationEvidence` | `(classification, plan, dryRun, backup, rollback, monitoring, current) => Result<RetrofitEvidenceReceipt, ReverseFailure[]>` | target snapshot、dry-run、backup、rollback rehearsal、monitoring/abort thresholdをexact照合 | `U-URR-024` | `HAC-HIL-04c` | supporting | `classified` | `migration_ready` | `HIL_RETROFIT_EVIDENCE_INCOMPLETE` |
 | `bindRedesignCausality` | `(finding, route, run, parentIssue, stalePlan) => Result<RedesignCausalityReceipt, ReverseFailure[]>` | finding→run→route→affected layer→stale closureを一因果へbind | `U-URR-025` | `HAC-HIL-04c` | supporting | `route_pending` | `causality_bound` | `HIL_REDESIGN_CAUSALITY_INVALID` |
-| `buildUniversalReverseCommitBundle` | `(run, phases, pair, route, stale, reentry, refreeze, operation) => Result<UniversalReverseCommitBundleV1, ReverseFailure[]>` | 全write set、expected heads/revisions、operation/payload digestを正規化 | `U-URR-026` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `prepared` | `commit_ready` | `HIL_REVERSE_TRANSACTION_INVALID` |
-| `commitUniversalReverseBundle` | `(bundle, store) => Promise<Result<UniversalReverseCommitReceiptV1, ReverseFailure[]>>` | R0–R4/workload/pair/route/stale/reentry/refreezeを単一Node transactionでCAS commit | `U-URR-027` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_ready` | `committed` | `HIL_REVERSE_TRANSACTION_CONFLICT` |
+| `buildUniversalReverseCommitBundle` | `(run, phases, pair, route, operation) => Result<UniversalReverseCommitBundleV1, ReverseFailure[]>` | Reverse本体のmanifest/R0–R4/workload/pair/routeだけのwrite setを正規化し、stale/refreeze payloadの混載を拒否 | `U-URR-026` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `prepared` | `commit_ready` | `HIL_REVERSE_TRANSACTION_INVALID` |
+| `commitUniversalReverseBundle` | `(bundle, store) => Promise<Result<UniversalReverseCommitReceiptV1, ReverseFailure[]>>` | manifest/R0–R4/workload/pair/routeを単一Node transactionでCAS commitし、stale/refreezeは更新しない | `U-URR-027` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_ready` | `committed` | `HIL_REVERSE_TRANSACTION_CONFLICT` |
 | `commitRedesignStaleClosure` | `(bundle, store) => Promise<Result<StaleClosureReceipt, ReverseFailure[]>>` | causalityとdescendant stale edge全件を不可分commit | `U-URR-028` | `HAC-HIL-04c` | supporting | `pair_current` | `pair_stale` | `HIL_REDESIGN_STALE_COMMIT_FAILED` |
 | `commitReentryRefreeze` | `(bundle, store) => Promise<Result<ReentryFreezeReceipt, ReverseFailure[]>>` | stale supersession、pair/oracle再実行、same lineage、freezeを不可分commit | `U-URR-029` | `HAC-HIL-04c` | supporting | `pair_stale` | `refrozen` | `HIL_REDESIGN_REFREEZE_COMMIT_FAILED` |
 | `reconcileUniversalReverseCommit` | `(operationId, immutableEvidence, store) => Promise<Result<UniversalReverseCommitReceiptV1, ReverseFailure[]>>` | event/artifact evidenceからprojectionをrebuildし同headだけresume | `U-URR-030` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_pending` | `committed` | `HIL_REVERSE_RECONCILE_FAILED` |
@@ -102,6 +102,7 @@ type ReverseFailure =
 type Failure = ReverseFailure;
 
 interface UniversalReverseCommitBundleV1 {
+  mutation_kind: "reverse_commit";
   operation_id: string;
   payload_digest: string;
   issue_id: string;
@@ -115,12 +116,41 @@ interface UniversalReverseCommitBundleV1 {
   drive_pair_digest: string;
   route_causality_digest: string;
   retrofit_evidence_digest: string | null;
+}
+
+interface RedesignStaleCommitBundleV1 {
+  mutation_kind: "redesign_stale";
+  operation_id: string;
+  payload_digest: string;
+  parent_reverse_operation_id: string;
+  parent_reverse_receipt_digest: string;
+  issue_id: string;
+  issue_revision: number;
+  expected_event_head: string;
+  expected_projection_head: string;
+  causality_receipt_digest: string;
   stale_edge_set_digest: string;
-  reentry_refreeze_digest: string | null;
+}
+
+interface ReentryRefreezeCommitBundleV1 {
+  mutation_kind: "reentry_refreeze";
+  operation_id: string;
+  payload_digest: string;
+  parent_stale_operation_id: string;
+  parent_stale_receipt_digest: string;
+  issue_id: string;
+  issue_revision: number;
+  expected_event_head: string;
+  expected_projection_head: string;
+  stale_supersession_digest: string;
+  pair_oracle_lineage_digest: string;
+  refreeze_receipt_digest: string;
 }
 
 interface UniversalReverseStore {
   commitBundle(bundle: UniversalReverseCommitBundleV1): Promise<UniversalReverseCommitReceiptV1>;
+  commitRedesignStale(bundle: RedesignStaleCommitBundleV1): Promise<StaleClosureReceipt>;
+  commitReentryRefreeze(bundle: ReentryRefreezeCommitBundleV1): Promise<ReentryFreezeReceipt>;
   readOperation(operationId: string): Promise<UniversalReverseCommitReceiptV1 | null>;
   readEventHead(issueId: string, revision: number): Promise<string>;
   rebuildProjection(issueId: string, revision: number): Promise<ProjectionDigest>;

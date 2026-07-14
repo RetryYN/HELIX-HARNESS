@@ -47,7 +47,7 @@ contract/team/context/adapter/event/checkpoint/result digest、lease/fenceを固
 | `IT-AGLC-013` | contract必須field、schema/version、capability、policy、digestを一つずつ欠落/改変 | registry eligible/muster 0、全field errorを列挙 | `HAC-HIL-08b` | `HST-CASE-006-17` | `HIL_AGENT_CONTRACT_INCOMPLETE` | `§2`, `§8` |
 | `IT-AGLC-014` | generated adapter手編集、marker削除、registry外adapter、別source digestを個別投入 | runtime execution 0、manual内容をregistryへ逆輸入せずdrift evidence | `HAC-HIL-08b` | `HST-CASE-006-18` | `HIL_AGENT_ADAPTER_DRIFT` | `§3`, `§8` |
 
-| `IT-AGLC-015` | checkpoint/result/verify/release/quarantine/retireのevent/projection/record各appendへfault、旧fence、expired lease、stale head、同operation同digest／異digestを投入 | fault/fence/CAS失敗は全write 0。同operation同digestはreceipt一件、異digestはconflict。immutable evidence reconcile後もevent/projection/record headsが一致 | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting lifecycle transaction oracle | supporting | `§5`, `§6`, `§7` |
+| `IT-AGLC-015` | lease acquisitionのlease row/instance fence/event/projection/receiptと、checkpoint/result/verify/release/quarantine/retireの各appendへfault、旧fence、expired lease、stale head、同operation同digest／異digestを投入 | fault/fence/CAS失敗は当該transaction全write 0。同operation同digestはreceipt一件、異digestはconflict。immutable evidence reconcile後もlease/instance/event/projection/record headsが一致し、新lease/fenceを推測しない | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting lifecycle transaction oracle | supporting | `§5`, `§6`, `§7` |
 
 ## §1 合否
 

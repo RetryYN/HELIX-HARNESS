@@ -216,10 +216,9 @@ raw provider log、secret、credential、PIIはschemaへ持たせない。truste
 provider timestampだけで期限を延長しない。check profile、failure normalization、self-heal policyはversion/digestへbindする。
 
 ```ts
-interface CiMutationCommitBundleV1 {
+interface CiMutationCommitBaseV1 {
   operation_id: string;
   payload_digest: string;
-  mutation_kind: "stage_completion" | "quarantine_application" | "self_heal_outcome";
   chain_id: string;
   stage_attempt_id: string;
   expected_event_head: string;
@@ -229,6 +228,48 @@ interface CiMutationCommitBundleV1 {
   lineage_digest: string;
   optional_outcome_digest: string | null;
 }
+
+type CiMutationCommitBundleV1 =
+  | (CiMutationCommitBaseV1 & { mutation_kind: "stage_completion" | "quarantine_application" | "self_heal_outcome" })
+  | (CiMutationCommitBaseV1 & {
+      mutation_kind: "quarantine_rule_create" | "quarantine_rule_update" | "quarantine_rule_expire";
+      rule_id: string;
+      rule_revision: number;
+      prior_rule_revision: number | null;
+      rule_digest: string;
+      expected_rule_head: string;
+      approval_receipt_digest: string;
+      freshness_receipt_digest: string;
+    });
+
+interface CiMutationCommitReceiptV1 {
+  operation_id: string;
+  payload_digest: string;
+  mutation_kind: CiMutationCommitBundleV1["mutation_kind"];
+  before_event_head: string;
+  after_event_head: string;
+  before_projection_head: string;
+  after_projection_head: string;
+  rule_revision: number | null;
+  write_set_digest: string;
+  row_count_digest: string;
+}
+
+interface CiMutationStore {
+  commit(bundle: CiMutationCommitBundleV1): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
+  readOperation(operationId: string): Promise<CiMutationCommitReceiptV1 | null>;
+  readEventHead(chainId: string): Promise<string>;
+  readProjectionHead(chainId: string): Promise<string>;
+  readRuleHead(ruleId: string): Promise<string | null>;
+  reconcile(operationId: string, evidence: CiImmutableEvidence): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
+  rebuildProjection(chainId: string): Promise<ProjectionDigest>;
+}
+
+type CiFailure = {
+  code: "HIL_CI_CONCLUSION_NOT_GREEN" | "HIL_CI_EXTERNAL_FAILED" | "HIL_CI_LINEAGE_MISMATCH" | "HIL_CI_POSTJOIN_FAILED" | "HIL_CI_PREJOIN_FAILED" | "HIL_CI_QUARANTINE_INVALID" | "HIL_CI_RECEIPT_LINEAGE_INVALID" | "HIL_CI_REQUIRED_CHECK_MISSING" | "HIL_CI_SHA_STALE" | "HIL_CI_STAGE_BYPASS" | "HIL_CI_STAGE_LINEAGE_INVALID" | "HIL_CI_TREE_DIGEST_MISMATCH" | "HIL_QUARANTINE_EXHAUSTED" | "HIL_QUARANTINE_EXPIRED" | "HIL_QUARANTINE_FINGERPRINT_MISMATCH" | "HIL_QUARANTINE_MINIMUM_GATE_MISSING" | "HIL_QUARANTINE_OVERBROAD" | "HIL_QUARANTINE_REMEDIATION_MISSING" | "HIL_QUARANTINE_SCOPE_INVALID" | "HIL_QUARANTINE_WILDCARD_FORBIDDEN" | "HIL_CI_TRANSACTION_CONFLICT" | "HIL_CI_TRANSACTION_RECONCILE_FAILED";
+  evidence_digest: string;
+  operation_id?: string;
+};
 ```
 
 ## §3 不変条件

@@ -174,6 +174,42 @@ interface LearningRollbackCommitBundleV1 extends LearningActivationCommitBundleV
   disable_current_digest: string;
   restore_publish_target_digest: string;
 }
+
+interface LearningTransactionReceiptV1 {
+  operation_id: string;
+  payload_digest: string;
+  transaction_kind: "activation" | "rollback";
+  subject_kind: LearningActivationCommitBundleV1["subject_kind"];
+  subject_revision: number;
+  before_active_revision: number | null;
+  after_active_revision: number | null;
+  before_event_head: string;
+  after_event_head: string;
+  before_projection_head: string;
+  after_projection_head: string;
+  write_set_digest: string;
+  row_count_digest: string;
+}
+
+interface LearningActivationReceiptV1 extends LearningTransactionReceiptV1 { transaction_kind: "activation" }
+interface LearningRollbackReceiptV1 extends LearningTransactionReceiptV1 { transaction_kind: "rollback" }
+
+interface LearningPromotionStore {
+  commitActivation(bundle: LearningActivationCommitBundleV1): Promise<Result<LearningActivationReceiptV1, LearningFailure>>;
+  commitRollback(bundle: LearningRollbackCommitBundleV1): Promise<Result<LearningRollbackReceiptV1, LearningFailure>>;
+  readOperation(operationId: string): Promise<LearningTransactionReceiptV1 | null>;
+  readActiveRevision(subjectKind: LearningSubjectKind): Promise<number | null>;
+  readEventHead(subjectKind: LearningSubjectKind): Promise<string>;
+  readProjectionHead(subjectKind: LearningSubjectKind): Promise<string>;
+  reconcile(operationId: string, evidence: LearningImmutableEvidence): Promise<Result<LearningTransactionReceiptV1, LearningFailure>>;
+  rebuildProjection(subjectKind: LearningSubjectKind): Promise<ProjectionDigest>;
+}
+
+type LearningFailure = {
+  code: "HIL_LEARNING_PROMOTION_PREMATURE" | "HIL_MEMORY_COMPACTION_INVALID" | "HIL_MEMORY_EVENT_MIXED" | "HIL_MEMORY_PROGRESS_FORBIDDEN" | "HIL_MEMORY_PROMOTER_NOT_INDEPENDENT" | "HIL_MEMORY_RAW_LOG_FORBIDDEN" | "HIL_MEMORY_SECRET_FORBIDDEN" | "HIL_PROMOTION_ACTIVATION_CONFLICT" | "HIL_PROMOTION_EFFECT_MISSING" | "HIL_PROMOTION_FIXTURE_MISSING" | "HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN" | "HIL_PROMOTION_RECONCILE_FAILED" | "HIL_PROMOTION_ROLLBACK_MISSING" | "HIL_PROMOTION_SHADOW_REGRESSION" | "HIL_PROMOTION_STAGE_BYPASS";
+  evidence_digest: string;
+  operation_id?: string;
+};
 ```
 
 ## §3 不変条件とidempotency

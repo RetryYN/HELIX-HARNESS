@@ -50,7 +50,7 @@ L5のfail-close contractを弱める互換shimは作らない。
 | `createAgentLifecycleInstance` | `(member, contract, task, attempt) => AgentInstanceSeed` | stable identity、mustered初期state、digest完全性 | `U-AGLC-011` | `HAC-HIL-08a` | `HST-CASE-006-01` | `なし（正常系）` |
 | `validateAgentLifecycleTransition` | `(current, next, receiptSet) => TransitionDecision` | 許可graph、terminal、verification prerequisiteを評価 | `U-AGLC-012` | `HAC-HIL-08b` | `HST-CASE-006-08`, `HST-CASE-006-16` | `HIL_AGENT_STATE_TRANSITION_INVALID`; `HIL_AGENT_LIFECYCLE_INVALID` |
 | `appendAgentLifecycleEvent` | `(head, operation, transition, fence) => Result<AgentEvent, AgentLifecycleFailure>` | sequence＋1、operation一意、previous/event digest chain | `U-AGLC-013` | `HAC-HIL-08a`, `HAC-HIL-08c` | `HST-CASE-006-13` | `HIL_AGENT_EVENT_SEQUENCE_INVALID` |
-| `acquireAgentLease` | `(instance, owner, now, ttl, leasePort) => Promise<LeaseDecision>` | active最大1、CAS、単調fence | `U-AGLC-014` | `HAC-HIL-08b` | `HST-CASE-006-04` | `HIL_AGENT_LEASE_ALREADY_ACTIVE` |
+| `acquireAgentLease` | `(bundle: AgentLeaseAcquisitionBundleV1, store: AgentLifecycleStore) => Promise<Result<AgentLeaseAcquisitionReceiptV1, AgentLifecycleFailure>>` | lease row、instance fence/state、event、projection、receiptを単一Node transactionでCAS。active最大1、fence単調 | `U-AGLC-014` | `HAC-HIL-08b` | `HST-CASE-006-04` | `HIL_AGENT_LEASE_ALREADY_ACTIVE` |
 | `evaluateAgentLeaseLiveness` | `(lease, owner, fence, now) => LeaseLivenessDecision` | owner/fence/heartbeat/expiryを一括判定 | `U-AGLC-015` | `HAC-HIL-08b` | `HST-CASE-006-05` | `HIL_AGENT_LEASE_EXPIRED` |
 | `fenceAgentOperation` | `(instance, lease, operationFence, operationKind) => FenceDecision` | tool/checkpoint/artifact/completion/resumeのcurrent fence一致 | `U-AGLC-016` | `HAC-HIL-08b`, `HAC-HIL-08c` | `HST-CASE-006-06`, `HST-CASE-006-22` | `HIL_AGENT_FENCING_REJECTED`; `HIL_AGENT_FENCING_VIOLATION` |
 | `sealDurableAgentCheckpoint` | `(instance, lease, payload, artifactManifest) => Result<AgentCheckpoint, AgentLifecycleFailure>` | schema/context/state/artifact digestとsequence/fenceをseal | `U-AGLC-017` | `HAC-HIL-08c` | `HST-CASE-006-07` | `HIL_AGENT_CHECKPOINT_INVALID` |
@@ -59,7 +59,7 @@ L5のfail-close contractを弱める互換shimは作らない。
 | `evaluateAgentVerificationReceipt` | `(worker, verifier, result, receipt) => VerificationDecision` | oracle/input/result/evidence binding、独立性、pass validity | `U-AGLC-020` | `HAC-HIL-08b` | `HST-CASE-006-10`, `HST-CASE-006-20` | `HIL_AGENT_VERIFIER_NOT_INDEPENDENT`; `HIL_ROLE_SEPARATION_VIOLATION` |
 | `releaseVerifiedAgentInstance` | `(instance, lease, receipts) => ReleaseDecision` | current resultへのvalid pass receipt必須 | `U-AGLC-021` | `HAC-HIL-08b` | `HST-CASE-006-09` | `HIL_AGENT_RELEASE_UNVERIFIED` |
 | `planAgentQuarantineOrRetirement` | `(contract, instance, action, approval) => LifecycleDispositionPlan` | quarantineは新revision、retire不可逆、履歴保持 | `U-AGLC-022` | `HAC-HIL-08c` | `HST-CASE-006-11`, `HST-CASE-006-12`, `HST-CASE-006-16` | `HIL_AGENT_RETIRED_RECLAIM`; `HIL_AGENT_QUARANTINE_RELEASE_UNAUTHORIZED`; `HIL_AGENT_LIFECYCLE_INVALID` |
-| `buildAgentLifecycleCommitBundle` | `(mutation, current, lease, operation) => Result<AgentLifecycleCommitBundleV1, AgentLifecycleFailure>` | lease取得を除くmutation write set、current fence、expected headsを正規化 | `U-AGLC-023` | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting | `HIL_AGENT_TRANSACTION_CONFLICT` |
+| `buildAgentLifecycleCommitBundle` | `(mutation, current, lease, operation) => Result<AgentLifecycleCommitBundleV1, AgentLifecycleFailure>` | lease取得後のmutation write set、current fence、expected headsを正規化。lease acquisition payloadの混載を拒否 | `U-AGLC-023` | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting | `HIL_AGENT_TRANSACTION_CONFLICT` |
 | `commitAgentLifecycleMutation` | `(bundle, store) => Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>` | event/projectionとcheckpoint/result/verify/release/dispositionを単一Node transactionでCAS/fence commit | `U-AGLC-024` | `HAC-HIL-08b`, `HAC-HIL-08c` | supporting | `HIL_AGENT_TRANSACTION_CONFLICT` |
 | `reconcileAgentLifecycleMutation` | `(operationId, immutableEvidence, store) => Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>` | immutable evidenceからのみprojection/recordを復元 | `U-AGLC-025` | `HAC-HIL-08c` | supporting | `HIL_AGENT_TRANSACTION_RECONCILE_FAILED` |
 
@@ -151,6 +151,57 @@ interface AgentLifecycleCommitBundleV1 {
   projection_digest: string;
   mutation_record_digest: string;
 }
+
+interface AgentLeaseAcquisitionBundleV1 {
+  operation_id: string;
+  payload_digest: string;
+  instance_id: string;
+  owner_id: string;
+  expected_instance_revision: number;
+  expected_event_head: string;
+  expected_projection_head: string;
+  expected_lease_head: string | null;
+  next_fence: number;
+  lease_row_digest: string;
+  instance_state_fence_digest: string;
+  transition_event_digest: string;
+  projection_digest: string;
+  receipt_digest: string;
+}
+
+interface AgentLifecycleCommitReceiptV1 {
+  operation_id: string;
+  payload_digest: string;
+  mutation_kind: AgentLifecycleCommitBundleV1["mutation_kind"] | "lease_acquisition";
+  instance_id: string;
+  fence: number;
+  before_event_head: string;
+  after_event_head: string;
+  before_projection_head: string;
+  after_projection_head: string;
+  write_set_digest: string;
+  row_count_digest: string;
+}
+
+interface AgentLeaseAcquisitionReceiptV1 extends AgentLifecycleCommitReceiptV1 { mutation_kind: "lease_acquisition" }
+
+interface AgentLifecycleStore {
+  commitLeaseAcquisition(bundle: AgentLeaseAcquisitionBundleV1): Promise<Result<AgentLeaseAcquisitionReceiptV1, AgentLifecycleFailure>>;
+  commit(bundle: AgentLifecycleCommitBundleV1): Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>;
+  readOperation(operationId: string): Promise<AgentLifecycleCommitReceiptV1 | null>;
+  readInstanceRevision(instanceId: string): Promise<number>;
+  readLeaseHead(instanceId: string): Promise<string | null>;
+  readEventHead(instanceId: string): Promise<string>;
+  readProjectionHead(instanceId: string): Promise<string>;
+  reconcile(operationId: string, evidence: AgentLifecycleImmutableEvidence): Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>;
+  rebuildProjection(instanceId: string): Promise<ProjectionDigest>;
+}
+
+type AgentLifecycleFailure = {
+  code: "HIL_AGENT_ADAPTER_DRIFT" | "HIL_AGENT_BLIND_CONTEXT_LEAK" | "HIL_AGENT_CHECKPOINT_INVALID" | "HIL_AGENT_CONTRACT_INCOMPLETE" | "HIL_AGENT_EVENT_SEQUENCE_INVALID" | "HIL_AGENT_FENCING_REJECTED" | "HIL_AGENT_FENCING_VIOLATION" | "HIL_AGENT_LEASE_ALREADY_ACTIVE" | "HIL_AGENT_LEASE_EXPIRED" | "HIL_AGENT_LIFECYCLE_INVALID" | "HIL_AGENT_MUSTER_NONDETERMINISTIC" | "HIL_AGENT_MUSTER_NO_ELIGIBLE" | "HIL_AGENT_QUARANTINE_RELEASE_UNAUTHORIZED" | "HIL_AGENT_REGISTRY_NOT_REGENERABLE" | "HIL_AGENT_RELEASE_UNVERIFIED" | "HIL_AGENT_RETIRED_RECLAIM" | "HIL_AGENT_STATE_TRANSITION_INVALID" | "HIL_AGENT_TRANSACTION_CONFLICT" | "HIL_AGENT_TRANSACTION_RECONCILE_FAILED" | "HIL_AGENT_VERIFIER_NOT_INDEPENDENT" | "HIL_MUSTER_RESOLUTION_INVALID" | "HIL_ROLE_SEPARATION_VIOLATION";
+  evidence_digest: string;
+  operation_id?: string;
+};
 ```
 
 ## §3 不変条件とidempotency
