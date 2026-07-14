@@ -160,6 +160,7 @@ interface LearningActivationCommitBundleV1 {
   operation_id: string;
   payload_digest: string;
   subject_kind: "skill" | "detector" | "gate";
+  subject_id: string;
   subject_revision: number;
   expected_event_head: string;
   expected_projection_head: string;
@@ -180,6 +181,7 @@ interface LearningTransactionReceiptV1 {
   payload_digest: string;
   transaction_kind: "activation" | "rollback";
   subject_kind: LearningActivationCommitBundleV1["subject_kind"];
+  subject_id: string;
   subject_revision: number;
   before_active_revision: number | null;
   after_active_revision: number | null;
@@ -198,11 +200,11 @@ interface LearningPromotionStore {
   commitActivation(bundle: LearningActivationCommitBundleV1): Promise<Result<LearningActivationReceiptV1, LearningFailure>>;
   commitRollback(bundle: LearningRollbackCommitBundleV1): Promise<Result<LearningRollbackReceiptV1, LearningFailure>>;
   readOperation(operationId: string): Promise<LearningTransactionReceiptV1 | null>;
-  readActiveRevision(subjectKind: LearningSubjectKind): Promise<number | null>;
-  readEventHead(subjectKind: LearningSubjectKind): Promise<string>;
-  readProjectionHead(subjectKind: LearningSubjectKind): Promise<string>;
+  readActiveRevision(subjectKind: LearningSubjectKind, subjectId: string): Promise<number | null>;
+  readEventHead(subjectKind: LearningSubjectKind, subjectId: string): Promise<string>;
+  readProjectionHead(subjectKind: LearningSubjectKind, subjectId: string): Promise<string>;
   reconcile(operationId: string, evidence: LearningImmutableEvidence): Promise<Result<LearningTransactionReceiptV1, LearningFailure>>;
-  rebuildProjection(subjectKind: LearningSubjectKind): Promise<ProjectionDigest>;
+  rebuildProjection(subjectKind: LearningSubjectKind, subjectId: string): Promise<ProjectionDigest>;
 }
 
 type LearningFailure = {

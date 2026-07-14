@@ -61,7 +61,7 @@ source_capabilities:
 | `U-URR-027` | `commitUniversalReverseBundle` | 各append fault、FK/unique/check、CAS、same/different digest retryでpartial 0／exactly-one | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_ready` | `committed` | `HIL_REVERSE_TRANSACTION_CONFLICT` | `tests/universal-reverse-transaction.test.ts` |
 | `U-URR-028` | `commitRedesignStaleClosure` | parent Reverse receipt、causality、descendant edge一件欠落/faultでstale publication 0。Reverse本体operationとの混載を拒否 | `HAC-HIL-04c` | supporting | `pair_current` | `pair_stale` | `HIL_REDESIGN_STALE_COMMIT_FAILED` | `tests/redesign-stale-transaction.test.ts` |
 | `U-URR-029` | `commitReentryRefreeze` | parent stale receipt、stale supersession/pair/oracle/lineage/freeze一件欠落/faultでclaim eligibility 0。stale operationとの混載を拒否 | `HAC-HIL-04c` | supporting | `pair_stale` | `refrozen` | `HIL_REDESIGN_REFREEZE_COMMIT_FAILED` | `tests/redesign-refreeze-transaction.test.ts` |
-| `U-URR-030` | `reconcileUniversalReverseCommit` | immutable evidence/head一致時だけreceipt/projectionを復旧しphase/route/freezeを推測しない | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_pending` | `committed` | `HIL_REVERSE_RECONCILE_FAILED` | `tests/universal-reverse-reconcile.test.ts` |
+| `U-URR-030` | `reconcileUniversalReverseCommit` | base/stale/refreeze各operationのtyped receiptとimmutable evidence/head一致時だけ当該receipt/projectionを復旧し、phase/route/stale/freezeを推測しない | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_pending` | `committed` | `HIL_REVERSE_RECONCILE_FAILED` | `tests/universal-reverse-reconcile.test.ts` |
 
 ## §1 合否
 

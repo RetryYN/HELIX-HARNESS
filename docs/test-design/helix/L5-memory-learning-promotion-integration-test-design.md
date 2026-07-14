@@ -52,8 +52,8 @@ fixture、metric、coverage、review、stage、rollbackのdigestとauthoritative
 | `IT-MLP-014` | supportだけ多いfindingをfixture/shadow/review前にgate化 | active増分0、pattern/recipeへ戻すrouteを記録 | `HAC-HIL-07b`, `HAC-HIL-07c` | `HST-CASE-016-07` | `HIL_LEARNING_PROMOTION_PREMATURE` | `§4`, `§5` |
 | `IT-MLP-015` | stage飛越、逆行、rollback省略、rolled_back revision再activeを個別投入 | 全反例でstage増分0、正順rollback/retireだけappend | `HAC-HIL-07c` | `HST-CASE-016-08` | `HIL_PROMOTION_STAGE_BYPASS` | `§4`, `§6`, `§7` |
 
-| `IT-MLP-016` | skill/detector/gate activationのpointer、artifact/config/gate state、event/projection/receipt各appendへfault、stale shadow/review、role/authority違反、同operation再送を投入 | fault/freshness/authority/CAS失敗はactive変更0。同operation同digestはreceipt一件、異digestはconflict。全write成功時だけactive revisionとartifact/config/gate stateが同時切替 | `HAC-HIL-07b`, `HAC-HIL-07c` | supporting activation oracle | supporting | `tests/learning-activation-transaction.integration.test.ts` |
-| `IT-MLP-017` | rollbackのdisable、target restore/publish、pointer、event/projection/receipt各appendへfaultを注入し、immutable evidenceでreconcile | 部分rollback 0。成功時はcurrent disableとtarget復帰が同時成立し、reconcile/再送後もactive revisionとreceiptは一件 | `HAC-HIL-07c` | supporting rollback oracle | supporting | `tests/learning-rollback-transaction.integration.test.ts` |
+| `IT-MLP-016` | 同kind異subjectを含むskill/detector/gate activationのpointer、artifact/config/gate state、event/projection/receipt各appendへfault、stale shadow/review、role/authority違反、同operation再送を投入 | fault/freshness/authority/CAS失敗はactive変更0。同operation同digestはreceipt一件、異digestはconflict。全write成功時だけ対象`(kind,id)`が切替わり、同kind別subjectは増分0 | `HAC-HIL-07b`, `HAC-HIL-07c` | supporting activation oracle | supporting | `tests/learning-activation-transaction.integration.test.ts` |
+| `IT-MLP-017` | 同kind異subjectを保持したままrollbackのdisable、target restore/publish、pointer、event/projection/receipt各appendへfaultを注入し、immutable evidenceでreconcile | 部分rollback 0。成功時は対象`(kind,id)`だけcurrent disableとtarget復帰が同時成立し、別subject増分0。reconcile/再送後もactive revisionとreceiptは一件 | `HAC-HIL-07c` | supporting rollback oracle | supporting | `tests/learning-rollback-transaction.integration.test.ts` |
 
 ## §1 合否
 

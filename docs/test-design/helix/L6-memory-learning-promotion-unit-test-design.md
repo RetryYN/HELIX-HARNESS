@@ -57,11 +57,11 @@ system_tests:
 | `U-MLP-021` | `planLearningRollback` | regression時はtargetへ戻しartifactをdisable、target欠落時はactive変更0 | `HAC-HIL-07c` | `HST-CASE-016-04`, `HST-CASE-016-06` | `HIL_PROMOTION_SHADOW_REGRESSION`; `HIL_PROMOTION_ROLLBACK_MISSING` | `tests/learning-rollback.test.ts` |
 | `U-MLP-022` | `validateRetiredPromotionReentry` | rolled_back/retired同revisionと同evidence再activeを拒否し新revisionだけ再shadow | `HAC-HIL-07c` | `HST-CASE-016-08` | `HIL_PROMOTION_STAGE_BYPASS` | `tests/learning-rollback.test.ts` |
 
-| `U-MLP-023` | `buildLearningActivationBundle` | skill/detector/gate別write set、rollback target、shadow/effect/review/verifier、authority/freshness、expected heads欠落を拒否 | `HAC-HIL-07b`, `HAC-HIL-07c` | supporting | `tests/learning-activation-transaction.test.ts` |
-| `U-MLP-024` | `commitLearningActivation` | append faultで全write 0。同operation同digest一件、異digest/stale head conflict | `HAC-HIL-07b`, `HAC-HIL-07c` | supporting | `tests/learning-activation-transaction.test.ts` |
+| `U-MLP-023` | `buildLearningActivationBundle` | `(subject_kind, subject_id)`別write set、rollback target、shadow/effect/review/verifier、authority/freshness、expected heads欠落を拒否 | `HAC-HIL-07b`, `HAC-HIL-07c` | supporting | `tests/learning-activation-transaction.test.ts` |
+| `U-MLP-024` | `commitLearningActivation` | append faultで全write 0。同operation同digest一件、異digest/stale head conflict。同kind別subjectのhead/pointerを変更しない | `HAC-HIL-07b`, `HAC-HIL-07c` | supporting | `tests/learning-activation-transaction.test.ts` |
 | `U-MLP-025` | `buildLearningRollbackBundle` | disable/restore/publish/pointer/event/projection/receiptの欠落とstale targetを拒否 | `HAC-HIL-07c` | supporting | `tests/learning-rollback-transaction.test.ts` |
 | `U-MLP-026` | `commitLearningRollback` | 任意append faultでcurrent activeを維持し、全成功時だけtargetへatomic切替 | `HAC-HIL-07c` | supporting | `tests/learning-rollback-transaction.test.ts` |
-| `U-MLP-027` | `reconcileLearningActivationTransaction` | immutable evidence一致時だけactive/rollback projectionを復元し、新revisionを推測しない | `HAC-HIL-07c` | supporting | `tests/learning-promotion-reconcile.test.ts` |
+| `U-MLP-027` | `reconcileLearningActivationTransaction` | `(subject_kind, subject_id)`とimmutable evidence一致時だけactive/rollback projectionを復元し、新revisionや同kind別subjectを推測しない | `HAC-HIL-07c` | supporting | `tests/learning-promotion-reconcile.test.ts` |
 
 ## §1 合否
 

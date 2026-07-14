@@ -151,10 +151,13 @@ interface UniversalReverseStore {
   commitBundle(bundle: UniversalReverseCommitBundleV1): Promise<UniversalReverseCommitReceiptV1>;
   commitRedesignStale(bundle: RedesignStaleCommitBundleV1): Promise<StaleClosureReceipt>;
   commitReentryRefreeze(bundle: ReentryRefreezeCommitBundleV1): Promise<ReentryFreezeReceipt>;
-  readOperation(operationId: string): Promise<UniversalReverseCommitReceiptV1 | null>;
+  readOperation(operationId: string): Promise<UniversalReverseCommitReceiptV1 | StaleClosureReceipt | ReentryFreezeReceipt | null>;
   readEventHead(issueId: string, revision: number): Promise<string>;
+  readProjectionHead(issueId: string, revision: number): Promise<string>;
   rebuildProjection(issueId: string, revision: number): Promise<ProjectionDigest>;
   reconcile(operationId: string, immutableEvidence: ReverseImmutableEvidence): Promise<UniversalReverseCommitReceiptV1>;
+  reconcileRedesignStale(operationId: string, evidence: RedesignStaleImmutableEvidence): Promise<StaleClosureReceipt>;
+  reconcileReentryRefreeze(operationId: string, evidence: ReentryRefreezeImmutableEvidence): Promise<ReentryFreezeReceipt>;
 }
 ```
 

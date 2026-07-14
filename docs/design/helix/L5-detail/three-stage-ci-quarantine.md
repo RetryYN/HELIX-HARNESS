@@ -166,6 +166,8 @@ push receipt、repository/PR/new head SHA/tree、新chain ID、prejoin/postjoin/
 
 L4の`ci_chains`、`ci_stage_runs`、`ci_check_runs`、`ci_stage_receipts`、`ci_quarantine_rules`、
 `ci_quarantine_applications`へ投影する。stage completion transactionはcheck全件、stage receipt、event、lineage edgeを不可分にcommitする。
+quarantine ruleのcreate/update/expireはrule row、revision、approval/freshness、event、projection、receiptを不可分にcommitし、
+expiryをread-time判定だけで済ませずterminal eventとして永続化する。
 partial appendではpassed/currentを0件にし、immutable check evidenceからNodeがreconcileする。
 
 許可chain stateは`created -> prejoin_running -> prejoin_accepted -> postjoin_running -> postjoin_accepted -> external_running ->
@@ -176,10 +178,11 @@ applicationが`failed -> quarantined`、chain stageだけが`accepted_with_quara
 
 ### §7.1 CI commit bundleの不可分化
 
-stage完了、quarantine application、self-heal attempt/resultは`CiMutationCommitBundleV1`へまとめる。bundleは
+stage完了、quarantine application、self-heal attempt/result、quarantine rule create/update/expireは`CiMutationCommitBundleV1`へまとめる。bundleは
 `operation_id`、`payload_digest`、chain/stage/attempt、`expected_event_head`、`expected_projection_head`、
-check全件、stage receipt、quarantine applicationまたはself-heal outcome、lineage edgeを含む。Node `CiStateStore`は
-これらを一つのtransactionでCAS commitし、任意append faultでは全writeをrollbackする。
+check全件、stage receipt、quarantine applicationまたはself-heal outcome、lineage edgeを含む。rule lifecycle bundleはさらにrule ID/revision、
+prior revision、rule digest、expected rule head、approval/freshness receiptを含む。Node `CiMutationStore`はmutation kindごとのwrite setを
+一つのtransactionでCAS commitし、任意append faultでは当該transactionの全writeをrollbackする。
 
 同operation・同digest再送は同receiptを返すno-op、同operation・異digestとstale headはconflictである。reconcileは
 immutable check result、provider delivery、event、lineage evidenceから欠けたprojection/receiptを再構築し、未実行check、
