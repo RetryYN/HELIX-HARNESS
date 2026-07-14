@@ -1,5 +1,7 @@
 # HELIX 目標証跡監査
 
+| G-10 | live completion boundary | blocked | `docs/plans/PLAN-L7-455-sessionstart-feedback-receipt-batch.md` | `outstanding.completionReadiness.ok=false`; `decisionCount=13`; `PLAN-L7-146-serverless-readonly-share` / `PLAN-M-02-helix-identifier-rename` / `PLAN-L7-425-system-review-issue-handoff` / `PLAN-L7-442-quality-sweep-successor-clusters` / `PLAN-L5-79-source-boundary-architecture` / `PLAN-L6-79-source-boundary-contracts` / `PLAN-L7-446-qs4-boundary-inventory` / `PLAN-L7-450-state-db-vscode-decoupling` / `PLAN-L7-451-lint-effect-port-separation` / `PLAN-L7-452-source-boundary-policy-ratchet` / `PLAN-L7-447-qs4-doctor-context-inventory` / `PLAN-L7-448-qs4-test-infra-inventory` / `PLAN-L7-455-sessionstart-feedback-receipt-batch`; `active_draft` / `human_approval_pending` / `irreversible_migration_pending` / `non_terminal_plans` / `semantic_frontier_blocked` / `version_up_parked`; `continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present`; `keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion`; `obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work`; `record required human/action-binding approval before executing the high-impact action`; `resolve semantic feature frontier records before claiming whole-program completion` |
+
 更新日: 2026-07-13
 
 この監査は、現在のユーザー目標をリポジトリ上の証跡へ対応付ける。
