@@ -36,6 +36,18 @@ ZIP正本 `tools/diff_report.py` の二時点文書比較を、TypeScript/Bunの
 - outputはstdoutのみを既定とする。`--out` は明示artifact write portと許可rootを要求し、dry-runは書込み0件である。
 - source本文・secret・provider payloadをreportへ転載しない。digestと構造化finding provenanceだけを残す。
 
+## §3.1 Local artifact output
+
+`--out` は任意 filesystem path ではなく、repository root 配下の HELIX 排他管理 root
+`.helix/artifacts/document-diff/` からの canonical 相対pathだけを受け取る。絶対path、`..`、backslash、NUL、
+symlink、既存 target、root 外への解決は fail-close とする。new-file-only のため既存 artifact の上書き・削除・
+source Markdown の書換えは行わない。
+
+専用 port は temp file (0600) → file fsync → same-directory rename → directory fsync の順で durable に publishし、
+path と content digest と durable status だけを receipt へ返す。`--dry-run` は port を一切呼ばない。既存
+`lint-artifact-write-port` と `document-agent-metadata-write-port` は所有root・authorization・更新契約が異なるため
+直接再利用しない。tag、release、GitHub API、DB、runtime state、subprocess spawn はこの出力機能の非目標である。
+
 ## §4 実装降下
 
 L7実装PLANは本書を`parent_design`、個別L8を`pair_artifact`にし、U-DOCDIFFとIT-DOCDIFFの実test pathを完全bindingする。自動公開・tag・release作成は本機能の非目標である。

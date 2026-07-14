@@ -7727,7 +7727,9 @@ describe("PLAN-L7-417 hook-quiet 出力 (Codex 0.144 Stop/SubagentStop stdout �
 });
 
 describe("document semantic diff CLI (IT-DOCDIFF)", () => {
-  it("IT-DOCDIFF-001/002: repository内rootだけをread-only比較し、不正rootを拒否する", () => {
+  // PLAN-L7-457-document-diff-local-artifact-output
+  // IT-DOCDIFF-003
+  it("IT-DOCDIFF-003: repository内rootだけをread-only比較し、不正rootを拒否する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-docdiff-"));
     try {
       const content = `---\nspec:\n  defines:\n    - id: R-001\n      kind: requirement\n---\n\n# R-001\n\n| ID | 内容 |\n| --- | --- |\n| R-001 | 定義 |\n`;
