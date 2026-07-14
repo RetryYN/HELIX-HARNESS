@@ -202,6 +202,7 @@ function shouldIgnoreLine(line: string, inFrontmatter: boolean): boolean {
   if (trimmed.length === 0) return true;
   if (isFrontmatterLine(line, inFrontmatter)) return true;
   if (isStructuredRecordHeader(line)) return true;
+  if (/^\| G-\d+ \|/.test(trimmed)) return true;
   if (/^[-|: ]+$/.test(trimmed)) return true;
   if (/^```/.test(trimmed)) return true;
   if (/^<!--/.test(trimmed)) return true;
