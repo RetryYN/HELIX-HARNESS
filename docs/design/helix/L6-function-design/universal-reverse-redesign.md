@@ -66,7 +66,7 @@ claim leaseはinjected Node portだけが行う。
 | `commitUniversalReverseBundle` | `(bundle, store) => Promise<Result<UniversalReverseCommitReceiptV1, ReverseFailure[]>>` | manifest/R0–R4/workload/pair/routeを単一Node transactionでCAS commitし、stale/refreezeは更新しない | `U-URR-027` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_ready` | `committed` | `HIL_REVERSE_TRANSACTION_CONFLICT` |
 | `commitRedesignStaleClosure` | `(bundle, store) => Promise<Result<StaleClosureReceipt, ReverseFailure[]>>` | causalityとdescendant stale edge全件を不可分commit | `U-URR-028` | `HAC-HIL-04c` | supporting | `pair_current` | `pair_stale` | `HIL_REDESIGN_STALE_COMMIT_FAILED` |
 | `commitReentryRefreeze` | `(bundle, store) => Promise<Result<ReentryFreezeReceipt, ReverseFailure[]>>` | stale supersession、pair/oracle再実行、same lineage、freezeを不可分commit | `U-URR-029` | `HAC-HIL-04c` | supporting | `pair_stale` | `refrozen` | `HIL_REDESIGN_REFREEZE_COMMIT_FAILED` |
-| `reconcileUniversalReverseCommit` | `(operationId, immutableEvidence, store) => Promise<Result<UniversalReverseCommitReceiptV1, ReverseFailure[]>>` | event/artifact evidenceからprojectionをrebuildし同headだけresume | `U-URR-030` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_pending` | `committed` | `HIL_REVERSE_RECONCILE_FAILED` |
+| `reconcileUniversalReverseCommit` | `(operationId, immutableEvidence, store) => Promise<Result<UniversalReverseCommitReceiptV1 | StaleClosureReceipt | ReentryFreezeReceipt, ReverseFailure[]>>` | operation kindをreceiptから解決し、base/stale/refreeze各evidenceからprojectionをrebuildして同headだけresume | `U-URR-030` | `HAC-HIL-04a`, `HAC-HIL-04b`, `HAC-HIL-04c` | supporting | `commit_pending` | `committed` | `HIL_REVERSE_RECONCILE_FAILED` |
 
 ## §2 schema
 

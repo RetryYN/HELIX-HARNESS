@@ -236,14 +236,17 @@ JSONL再append 0、DB projection一件、terminal receipt exactly-oneで`termina
 
 ### §7.1 promotion active化／rollbackの不可分transaction
 
-skill、detector、blocking gateのactive化はplan生成で完了しない。Node `LearningPromotionStore`はsubject revision、
-active revision pointer、artifact/configまたはgate policy、promotion event/projection、activation receiptを
+skill、detector、blocking gateのactive化はplan生成で完了しない。Node `LearningPromotionStore`は
+`(subject_kind, subject_id)`をauthority keyとし、そのsubject revision、active revision pointer、artifact/configまたはgate policy、
+promotion event/projection、activation receiptを
 `LearningActivationCommitBundleV1`として単一transactionでCAS commitする。bundleはoperation/payload digest、expected event/projection
-head、shadow/effect/review/final verifier receipt、authority、freshness、rollback targetを必須とする。
+head、shadow/effect/review/final verifier receipt、authority、freshness、rollback targetを必須とする。同じkindの別`subject_id`は
+別head/pointerを持ち、対象外subjectのrow/event/projection増分は常に0とする。
 
 rollbackもcurrent revisionのdisable、rollback targetのrestore/publish、active pointer、event/projection、rollback receiptを同じtransactionで
-commitする。role/provider分離、shadow/review freshness、authority、CASのいずれかが不成立ならwrite 0。各append faultで全writeをrollbackし、
-同operation・同digestは既存receipt一件、異digestはconflictとする。reconcileはimmutable event/artifact/review evidenceからのみ復元する。
+commitする。role/provider分離、shadow/review freshness、authority、CASのいずれかが不成立なら対象`(kind,id)`のwrite 0。各append faultで全writeをrollbackし、
+同operation・同digestは既存receipt一件、異digestはconflictとする。reconcileは同じauthority keyのimmutable event/artifact/review evidenceからのみ復元し、
+新activeや同kind別subjectを推測しない。
 
 ## §8 failure契約
 
