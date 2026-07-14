@@ -492,71 +492,149 @@ export function recordFeedbackSurface(
   input: SurfaceFeedbackInput,
   deps: FeedbackLifecycleDeps,
 ): ReconcileFeedbackLifecycleResult {
-  if (
-    !validOperationId(input.operationId) ||
-    !validLimited(input.sourceId, 256) ||
-    !validLimited(input.sessionId, 256) ||
-    isSecretLike(JSON.stringify(input))
-  ) {
-    return { ok: false, appended: [], diagnostics: [], recovered: false, reason: "invalid_input" };
+  return recordFeedbackSurfaces([input], deps);
+}
+
+/**
+ * 同一SessionStartで選択した全source receiptを、単一のjournal snapshotとlockで記録する。
+ * 個別receiptを逐次実行すると refs × journal-size の再読込となるため、batch境界を公開する。
+ */
+export function recordFeedbackSurfaces(
+  inputs: readonly SurfaceFeedbackInput[],
+  deps: FeedbackLifecycleDeps,
+): ReconcileFeedbackLifecycleResult {
+  if (inputs.length === 0) {
+    return { ok: true, appended: [], diagnostics: [], recovered: false };
   }
+  const byOperation = new Map<string, SurfaceFeedbackInput>();
+  for (const input of inputs) {
+    if (
+      !validOperationId(input.operationId) ||
+      !validLimited(input.sourceId, 256) ||
+      !validLimited(input.sessionId, 256) ||
+      isSecretLike(JSON.stringify(input))
+    ) {
+      return {
+        ok: false,
+        appended: [],
+        diagnostics: [],
+        recovered: false,
+        reason: "invalid_input",
+      };
+    }
+    const prior = byOperation.get(input.operationId);
+    if (
+      prior &&
+      (prior.sourceTable !== input.sourceTable ||
+        prior.sourceId !== input.sourceId ||
+        prior.sourceGeneration !== input.sourceGeneration ||
+        prior.sessionId !== input.sessionId)
+    ) {
+      return {
+        ok: false,
+        appended: [],
+        diagnostics: [],
+        recovered: false,
+        reason: "operation_intent_conflict",
+      };
+    }
+    byOperation.set(input.operationId, input);
+  }
+  const canonicalInputs = [...byOperation.values()].sort((a, b) =>
+    a.operationId.localeCompare(b.operationId),
+  );
+  const planned: FeedbackLifecycleEventV1[] = [];
+  if (canonicalInputs.some((input) => !validOperationId(input.operationId)))
+    return { ok: false, appended: [], diagnostics: [], recovered: false, reason: "invalid_input" };
   try {
-    return deps.withLock(`surface:${input.operationId}`, (fence) => {
-      const raw = deps.readEvents();
-      const existing = validEvents(raw).find((event) => event.operationId === input.operationId);
-      if (existing) {
-        return existing.action === "surface" &&
-          existing.sourceTable === input.sourceTable &&
-          existing.sourceId === input.sourceId &&
-          existing.sourceGeneration === input.sourceGeneration &&
-          existing.sessionId === input.sessionId
-          ? { ok: true, appended: [], diagnostics: ["idempotent_replay"], recovered: false }
-          : {
+    return deps.withLock(
+      `surface-batch:${digest(canonicalInputs.map((input) => input.operationId))}`,
+      (fence) => {
+        const raw = deps.readEvents();
+        const events = validEvents(raw);
+        const existingByOperation = new Map(events.map((event) => [event.operationId, event]));
+        const view = resolveFeedbackLifecycle(raw, deps.now());
+        const diagnostics: string[] = [];
+        const plannedSessions = new Set<string>();
+        for (const input of canonicalInputs) {
+          const existing = existingByOperation.get(input.operationId);
+          if (existing) {
+            if (
+              existing.action !== "surface" ||
+              existing.sourceTable !== input.sourceTable ||
+              existing.sourceId !== input.sourceId ||
+              existing.sourceGeneration !== input.sourceGeneration ||
+              existing.sessionId !== input.sessionId
+            ) {
+              return {
+                ok: false,
+                appended: [],
+                diagnostics: [],
+                recovered: false,
+                reason: "operation_intent_conflict",
+              };
+            }
+            diagnostics.push("idempotent_replay");
+            continue;
+          }
+          const current = view.active.get(`${input.sourceTable}:${input.sourceId}`);
+          if (
+            !current ||
+            current.sourceGeneration !== input.sourceGeneration ||
+            (current.state !== "open" && current.state !== "ack")
+          ) {
+            return {
               ok: false,
               appended: [],
               diagnostics: [],
               recovered: false,
-              reason: "operation_intent_conflict",
+              reason: "stale_or_unknown_generation",
             };
-      }
-      const current = resolveFeedbackLifecycle(raw, deps.now()).active.get(
-        `${input.sourceTable}:${input.sourceId}`,
-      );
-      if (
-        !current ||
-        current.sourceGeneration !== input.sourceGeneration ||
-        (current.state !== "open" && current.state !== "ack")
-      ) {
-        return {
-          ok: false,
-          appended: [],
-          diagnostics: [],
-          recovered: false,
-          reason: "stale_or_unknown_generation",
-        };
-      }
-      if (current.surfacedSessions.includes(input.sessionId)) {
-        return { ok: true, appended: [], diagnostics: ["already_surfaced"], recovered: false };
-      }
-      const event = makeEvent({
-        identity: projectionIdentity(current),
-        activityEpoch: current.activityEpoch,
-        policyEpoch: current.policyEpoch,
-        action: "surface",
-        fromState: current.state,
-        toState: current.state,
-        input: { sources: [], mode: "partial", operationId: input.operationId },
-        occurredAt: deps.now(),
-        actor: "system",
-        policyVersion: current.policyVersion,
-        ordinal: 0,
-      });
-      event.sessionId = input.sessionId;
-      event.reason = "session_surface";
-      deps.appendEvent(event, fence);
-      return { ok: true, appended: [event], diagnostics: [], recovered: false };
-    });
+          }
+          const receiptKey = `${input.sourceTable}:${input.sourceId}@${input.sourceGeneration}:${input.sessionId}`;
+          if (
+            current.surfacedSessions.includes(input.sessionId) ||
+            plannedSessions.has(receiptKey)
+          ) {
+            diagnostics.push("already_surfaced");
+            continue;
+          }
+          const event = makeEvent({
+            identity: projectionIdentity(current),
+            activityEpoch: current.activityEpoch,
+            policyEpoch: current.policyEpoch,
+            action: "surface",
+            fromState: current.state,
+            toState: current.state,
+            input: { sources: [], mode: "partial", operationId: input.operationId },
+            occurredAt: deps.now(),
+            actor: "system",
+            policyVersion: current.policyVersion,
+            ordinal: 0,
+          });
+          event.sessionId = input.sessionId;
+          event.reason = "session_surface";
+          planned.push(event);
+          plannedSessions.add(receiptKey);
+        }
+        for (const event of planned) deps.appendEvent(event, fence);
+        return { ok: true, appended: planned, diagnostics, recovered: false };
+      },
+    );
   } catch (error) {
+    const recovered = validEvents(deps.readEvents()).filter((event) =>
+      canonicalInputs.some(
+        (input) => input.operationId === event.operationId && event.action === "surface",
+      ),
+    );
+    if (planned.length > 0 && recovered.length === planned.length) {
+      return {
+        ok: true,
+        appended: recovered,
+        diagnostics: ["coordination_commit_unknown_recovered"],
+        recovered: true,
+      };
+    }
     return {
       ok: false,
       appended: [],

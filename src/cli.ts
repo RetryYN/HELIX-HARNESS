@@ -60,7 +60,7 @@ import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
   reconcileFeedbackLifecycle,
-  recordFeedbackSurface,
+  recordFeedbackSurfaces,
 } from "./feedback/lifecycle";
 import { nodeFeedbackLifecycleDeps } from "./feedback/lifecycle-node";
 import { autoAckTelemetry } from "./feedback/lifecycle-surface";
@@ -1061,30 +1061,34 @@ function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): 
       if (block) {
         process.stdout.write(block);
         const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
-        for (const ref of result.items.flatMap((item) => item.surface_source_refs ?? [])) {
-          const separator = ref.indexOf(":");
-          const generationAt = ref.lastIndexOf("@");
-          if (separator <= 0 || generationAt <= separator) continue;
-          const sourceTable = ref.slice(0, separator);
-          if (
-            !(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable)
-          )
-            continue;
-          const sourceId = ref.slice(separator + 1, generationAt);
-          const sourceGeneration = ref.slice(generationAt + 1);
-          recordFeedbackSurface(
-            {
-              sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
-              sourceId,
-              sourceGeneration,
-              operationId: `surface:${createHash("sha256")
-                .update(`${receiptSession}:${ref}`)
-                .digest("hex")}`,
-              sessionId: receiptSession,
-            },
-            lifecycleDeps,
-          );
-        }
+        const inputs = result.items
+          .flatMap((item) => item.surface_source_refs ?? [])
+          .flatMap((ref) => {
+            const separator = ref.indexOf(":");
+            const generationAt = ref.lastIndexOf("@");
+            if (separator <= 0 || generationAt <= separator) return [];
+            const sourceTable = ref.slice(0, separator);
+            if (
+              !(["findings", "quality_signals", "feedback_events"] as string[]).includes(
+                sourceTable,
+              )
+            )
+              return [];
+            const sourceId = ref.slice(separator + 1, generationAt);
+            const sourceGeneration = ref.slice(generationAt + 1);
+            return [
+              {
+                sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+                sourceId,
+                sourceGeneration,
+                operationId: `surface:${createHash("sha256")
+                  .update(`${receiptSession}:${ref}`)
+                  .digest("hex")}`,
+                sessionId: receiptSession,
+              },
+            ];
+          });
+        recordFeedbackSurfaces(inputs, lifecycleDeps);
         projectFeedbackLifecycle(repoRoot, db);
       }
     } finally {

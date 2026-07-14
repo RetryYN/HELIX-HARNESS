@@ -120,6 +120,7 @@ upstream identityをcloseしない。
 | `reconcileFeedbackLifecycle(sources, mode, deps)` | lock内再読しobserved/supersede/closeを冪等append。partial modeはabsence close禁止 |
 | `ackFeedback(input, deps)` | active generationだけack。operation replayは追記ゼロ、terminal/unknown/conflictは理由付きno-opまたは拒否 |
 | `autoAckTelemetry(now, deps)` | §5対象だけをlock内で再読しTTL境界でack。失敗項目をack扱いしない |
+| `recordFeedbackSurfaces(inputs, deps)` | 同一SessionStartで選択した全source receiptを入力順に依存しない決定論順で検証し、単一lock・単一journal snapshotから必要な`surface` eventだけをappendする。単発`recordFeedbackSurface`と観測可能な結果を一致させ、同一sessionの全refをreceipt化する |
 | `selectFeedbackWithLifecycle(sources, lifecycle, sessionId, budget)` | source直読とfeedback_events表示の双方に同じfilter/dedupeを適用し、表示/hidden/diagnosticを返す |
 | `memoryPromotionNudge(events)` | §7の純判定。session本文/diff/bodyを読まない |
 
@@ -190,3 +191,4 @@ session eventに`outcome=ok`の`commit`または`plan_switch`が1件以上あり
 | FLIFE-S10 | surface receiptは同一sessionだけ抑止し、未ack actionableは次sessionで再表示 |
 | FLIFE-S11 | commit/plan_switch成功かつmemory_write成功なしでnudge 1件。並行Stop/retry/破損行でもfail-open |
 | FLIFE-S12 | lifecycle/nudgeにbody/diff/secret/PIIを保存せず、状態・hidden理由・damaged metricsを出す |
+| FLIFE-S13 | group-firstで多数refを束ねても、receiptは全refへ記録する。batchはlock/journal read/lifecycle resolveを各1回に抑え、同一session replayは追記0、次sessionでは再表示する |
