@@ -51,6 +51,10 @@ contract/team/context/adapter/event/checkpoint/result digest、lease/fenceを固
 
 ## §1 合否
 
+### 補助API→U→IT exact join
+
+`IT-AGLC-015`は`U-AGLC-023`,`U-AGLC-024`,`U-AGLC-025`をexact joinし、bundle build、atomic commit、immutable reconcileをlease acquisitionとは別operationで採点する。
+
 ### 主exact tuple oracle
 
 | HST case識別子 | `pre_state` | `expected_state` | 正本failure | 主IT結線 |

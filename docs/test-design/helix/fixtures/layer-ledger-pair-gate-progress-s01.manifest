@@ -1,0 +1,83 @@
+schema_version: helix-layer-ledger-progress-s01.v1
+fixture_id: llpg-progress-s01-v1
+fixture_revision: 1
+source_snapshot: current-working-tree-design-fixture
+slice_ids:
+  - HDS-HIL-01
+  - HDS-HIL-02
+  - HDS-HIL-03
+  - HDS-HIL-04
+  - HDS-HIL-05
+  - HDS-HIL-06
+  - HDS-HIL-07
+  - HDS-HIL-08
+  - HDS-HIL-09A
+  - HDS-HIL-09B
+  - HDS-HIL-10
+  - HDS-HIL-11
+  - HDS-HIL-12
+  - HDS-HIL-13
+  - HDS-HIL-14
+  - HDS-HIL-15
+  - HDS-HIL-16
+  - HDS-HIL-17
+  - HDS-HIL-18
+slice_count: 19
+slice_set_digest: sha256:9aad5b6740ef751b0f7d4aac927c7f3740bbc579afa364ee275624496f95be4b
+artifact_inventory_source: docs/governance/infinity-loop-design-slice-registry.md
+artifact_count: 76
+artifact_path_content_set_digest: sha256:940a52150314df4eb1dca46bb60a30803c8099f75d27b6930df42c03585af830
+canonical_unit_id_list_source: docs/test-design/helix/L6-*-unit-test-design.md
+canonical_unit_count: 465
+canonical_unit_set_digest: sha256:9f3f36bee36405ca6ab67bb54962c4c39c75bc8009432d7dbc94987b26a50a23
+canonical_integration_id_list_source: docs/test-design/helix/L5-*-integration-test-design.md
+canonical_integration_count: 355
+canonical_integration_set_digest: sha256:05fd1d5542b710acf9e81c54b9f0a75611bec9b523413767e56b2b1aa5b737ff
+canonical_hst_id_list_source: docs/governance/infinity-loop-system-assertion-cases.md
+canonical_hst_count: 411
+canonical_hst_set_digest: sha256:1558c473cac4c1948d73fbf008e1d46059f788771909b80f43344120384f9bb4
+canonical_quartet_count: 820
+canonical_total_count: 1231
+supporting_oracle_ids:
+  - U-LLPG-S01
+  - IT-LLPG-S01
+supporting_included_in_canonical_denominator: false
+expected_terminal_receipt_id: DPR-LLPG-S01-V1
+expected_terminal_receipt_digest: sha256:efc80ac8184b956b8910597a72adb0a52758af9ac7858ac38a91966f6d81f339
+expected_terminal_receipt_digest_algorithm: sha256_utf8_pipe_join_fixture_slice_artifact_unit_integration_hst_digests
+expected_status: designed_not_implemented
+mutations:
+  - mutation_id: authority_unauthorized
+    expected_failure: HIL_LAYER_PROGRESS_DENOMINATOR_UNAUTHORIZED
+    expected_terminal_receipt_count: 0
+  - mutation_id: denominator_list_count_digest_mismatch
+    expected_failure: HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH
+    expected_terminal_receipt_count: 0
+  - mutation_id: stage_inclusion_inverted
+    expected_failure: HIL_LAYER_PROGRESS_STAGE_INCLUSION_INVALID
+    expected_terminal_receipt_count: 0
+  - mutation_id: stage_axis_mixed
+    expected_failure: HIL_LAYER_PROGRESS_STAGE_ORDER_INVALID
+    expected_terminal_receipt_count: 0
+  - mutation_id: evidence_stale_or_source_swapped
+    expected_failure: HIL_LAYER_PROGRESS_EVIDENCE_STALE
+    expected_terminal_receipt_count: 0
+  - mutation_id: reviewer_identity_not_separated
+    expected_failure: HIL_LAYER_PROGRESS_AUDITOR_NOT_INDEPENDENT
+    expected_terminal_receipt_count: 0
+  - mutation_id: evidence_receipt_missing_or_swapped
+    expected_failure: HIL_LAYER_PROGRESS_RECEIPT_MISMATCH
+    expected_terminal_receipt_count: 0
+  - mutation_id: projection_rate_or_digest_mismatch
+    expected_failure: HIL_LAYER_PROGRESS_PROJECTION_MISMATCH
+    expected_terminal_receipt_count: 0
+  - mutation_id: supporting_oracle_included
+    expected_failure: HIL_LAYER_PROGRESS_SUPPORTING_INCLUDED
+    expected_terminal_receipt_count: 0
+  - mutation_id: store_revision_head_cas_loser
+    expected_failure: HIL_LAYER_TRANSACTION_CAS_CONFLICT
+    expected_terminal_receipt_count: 0
+  - mutation_id: append_fault_same_digest_reconcile
+    expected_failure: none
+    expected_terminal_receipt_count: 1
+    expected_terminal_receipt_id: DPR-LLPG-S01-V1

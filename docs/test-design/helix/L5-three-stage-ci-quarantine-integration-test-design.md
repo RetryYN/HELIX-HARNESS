@@ -62,6 +62,10 @@ raw provider log、secret、credential、PIIをmemory/evidence本文へ保存し
 
 ## §1 HST量閉じと合否
 
+### 補助API→U→IT exact join
+
+`IT-CIQ-015`は`U-CIQ-021`,`U-CIQ-022`,`U-CIQ-023`をexact joinし、bundle build、atomic commit、immutable reconcileのfault位置を別々に採点する。
+
 上表は`HST-CASE-003-01`、`HST-CASE-003-02`、`HST-CASE-003-03`、`HST-CASE-003-04`、
 `HST-CASE-003-05`、`HST-CASE-003-06`、`HST-CASE-003-07`、`HST-CASE-003-08`、
 `HST-CASE-003-09`、`HST-CASE-003-10`、`HST-CASE-003-11`、`HST-CASE-003-12`、

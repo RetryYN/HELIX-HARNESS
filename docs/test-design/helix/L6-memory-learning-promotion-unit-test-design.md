@@ -65,6 +65,10 @@ system_tests:
 
 ## §1 合否
 
+### supporting transactionのL8 exact join
+
+`U-MLP-023/024`は`IT-MLP-016`、`U-MLP-025/026`は`IT-MLP-017`、`U-MLP-027`は`IT-MLP-016/017`へexact joinする。`LearningImmutableEvidenceV1`のsubject tuple/head差替えはwrite 0、rebuild結果は`ProjectionDigestV1`で照合する。
+
 `U-MLP-001`から`U-MLP-022`の22件すべてでRed/Green、exact HAC/HST/canonical failure、role、digest、state、
 authoritative増分、effect、coverage、rollbackを保存する。正常caseだけ`なし（正常系）`とし、外部runtimeやnetworkを起動しない。
 

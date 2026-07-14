@@ -156,6 +156,17 @@ receiptはraw body、log、transcript、secret、PII、credentialを持たない
 effectの比率は分母、sample count、policy versionを別evidenceへbindし、値だけの比較を許さない。
 
 ```ts
+interface ProjectionDigestV1 {
+  schema_version: "helix-projection-digest.v1";
+  subject_kind: string;
+  subject_id: string;
+  subject_revision: number;
+  event_head: string;
+  projection_head: string;
+  state_digest: string;
+  row_count_digest: string;
+}
+
 interface LearningActivationCommitBundleV1 {
   operation_id: string;
   payload_digest: string;
@@ -196,6 +207,19 @@ interface LearningTransactionReceiptV1 {
 interface LearningActivationReceiptV1 extends LearningTransactionReceiptV1 { transaction_kind: "activation" }
 interface LearningRollbackReceiptV1 extends LearningTransactionReceiptV1 { transaction_kind: "rollback" }
 
+interface LearningImmutableEvidenceV1 {
+  operation_id: string;
+  payload_digest: string;
+  transaction_kind: LearningTransactionReceiptV1["transaction_kind"];
+  subject_kind: LearningSubjectKind;
+  subject_id: string;
+  subject_revision: number;
+  artifact_config_or_gate_digest: string;
+  rollback_target_digest: string;
+  expected_event_head: string;
+  expected_projection_head: string;
+}
+
 interface LearningPromotionStore {
   commitActivation(bundle: LearningActivationCommitBundleV1): Promise<Result<LearningActivationReceiptV1, LearningFailure>>;
   commitRollback(bundle: LearningRollbackCommitBundleV1): Promise<Result<LearningRollbackReceiptV1, LearningFailure>>;
@@ -203,8 +227,8 @@ interface LearningPromotionStore {
   readActiveRevision(subjectKind: LearningSubjectKind, subjectId: string): Promise<number | null>;
   readEventHead(subjectKind: LearningSubjectKind, subjectId: string): Promise<string>;
   readProjectionHead(subjectKind: LearningSubjectKind, subjectId: string): Promise<string>;
-  reconcile(operationId: string, evidence: LearningImmutableEvidence): Promise<Result<LearningTransactionReceiptV1, LearningFailure>>;
-  rebuildProjection(subjectKind: LearningSubjectKind, subjectId: string): Promise<ProjectionDigest>;
+  reconcile(operationId: string, evidence: LearningImmutableEvidenceV1): Promise<Result<LearningTransactionReceiptV1, LearningFailure>>;
+  rebuildProjection(subjectKind: LearningSubjectKind, subjectId: string): Promise<ProjectionDigestV1>;
 }
 
 type LearningFailure = {
@@ -213,6 +237,8 @@ type LearningFailure = {
   operation_id?: string;
 };
 ```
+
+`ProjectionDigestV1`の共有semantic shape正本はL4基本設計 §2.3とする。reconcileは`LearningImmutableEvidenceV1`のsubject tuple、transaction kind、artifact/rollback/headをexact照合し、新revisionを生成しない。
 
 ## §3 不変条件とidempotency
 

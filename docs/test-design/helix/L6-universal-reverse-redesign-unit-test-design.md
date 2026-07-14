@@ -65,5 +65,15 @@ source_capabilities:
 
 ## §1 合否
 
+### supporting APIのL8 exact join
+
+| L7 oracle | L8 oracle | receipt / faultのoracle |
+|---|---|---|
+| `U-URR-023`, `U-URR-024` | `IT-URR-024` | retrofit分類・migration evidence |
+| `U-URR-025` | `IT-URR-025` | Redesign causality |
+| `U-URR-026`, `U-URR-027` | `IT-URR-023` | `UniversalReverseCommitReceiptV1` / `ProjectionDigestV1` |
+| `U-URR-028`, `U-URR-029` | `IT-URR-026` | `StaleClosureReceiptV1` / `ReentryFreezeReceiptV1` |
+| `U-URR-030` | `IT-URR-027` | mutation別immutable evidence、stale headでwrite 0 |
+
 22/22でexact function、case ID、pre_state、expected_state、canonical failureを一対一で保存する。
 range、まとめcase、代表sampleでの省略を禁止する。

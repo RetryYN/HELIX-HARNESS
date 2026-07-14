@@ -69,6 +69,10 @@ obligation/workload、drive pair、route、stale edge、re-freeze、claim/tool c
 
 ## §1 合否
 
+### 補助API→U→IT exact join
+
+`IT-URR-023`=`U-URR-026`,`U-URR-027`、`IT-URR-024`=`U-URR-023`,`U-URR-024`、`IT-URR-025`=`U-URR-025`、`IT-URR-026`=`U-URR-028`,`U-URR-029`、`IT-URR-027`=`U-URR-030`とする。base/stale/refreezeは各V1 receiptとimmutable evidenceをmutation kindで分離し、rebuild結果を`ProjectionDigestV1`で比較する。
+
 22/22すべてでcase ID、pre_state、expected_state、canonical failureをexactly-onceでassertする。
 range、代表case、まとめ行での代替を禁止する。R0–R4全workload、route minimality、L0 PO authority、
 L1/L2 stale/re-entry、claim-before-tool countも保存する。正常caseだけ`なし（正常系）`とする。

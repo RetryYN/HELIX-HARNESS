@@ -57,6 +57,10 @@ requirements:
 
 ## §1 合否
 
+### supporting transactionのL8 exact join
+
+`U-AGLC-023/024/025`は`IT-AGLC-015`へexact joinする。`AgentLifecycleImmutableEvidenceV1`のinstance/lease/fence/head差替えはwrite 0、muster member順は`AgentMusterMemberV1`、rebuild結果は`ProjectionDigestV1`で比較する。
+
 `U-AGLC-001`から`U-AGLC-022`の22件すべてでRed/Green、exact HAC/HST/canonical failure、result/state/event/team/context/
 adapter/checkpoint/receipt digest、lease/fence、authoritative増分を保存する。正常caseは`なし（正常系）`を保ち、failure tokenを
 作らない。pure testは外部runtimeやnetworkを起動せず、clock、ID、port resultをfixture注入する。

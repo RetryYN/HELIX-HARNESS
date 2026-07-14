@@ -56,6 +56,10 @@ prompt injection、archive traversal、macroを混入し、dispatch/exec/spawn/t
 
 ## §1 合否
 
+### 補助API→U→IT exact join
+
+`IT-ICN-008`は`U-ICN-008`と`U-ICN-009`、`IT-ICN-009`は`U-ICN-010`、`IT-ICN-010`は`U-ICN-011`をexact joinする。fault oracleは`CustodyReceiptV1`、`AdmissionReceiptV1`、`ProjectionDigestV1`のoperation/payload/head/digest一致とwrite count 0を検査する。
+
 本slice所有7/7、HAT-HIL-01、HST-HIL-001の所有7/7 exact pre_state/expected_state/failure、4 ingress、HU-CAP-002 pinned fixture、
 row/event/write/dispatch count、contract/route/initial cause/transition/budget metadata/idempotency digest、minimality反例をassertする。正常caseだけ
 `なし（正常系）`を保持する。外部本文の可読化、Issue row、queue row、LLM summary、追加surfaceの存在で代替しない。

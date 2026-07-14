@@ -239,6 +239,8 @@ quarantine green、推測したself-heal成功を生成しない。
 
 ## §10 freeze条件
 
+L6 failure codeは`CiFailureCodeV1 = CiFailure["code"]`、reconcile evidenceは`CiImmutableEvidenceV1`、event replayはL4基本設計 §2.3の共有semantic shape `ProjectionDigestV1`に固定する。
+
 L5/L8 pairは14/14 integration、canonical 23/23 HST disposition、三段の同一lineage、required workload不変、
 exact quarantine、self-heal/retry全attempt、HU-CAP-006 pinned evidence、別runtime reviewが揃うまでdraftとする。
 外部CIの単発green、GitHub UI表示、quarantine receiptだけ、再pushだけ、check数を減らしたgreenではfreezeしない。

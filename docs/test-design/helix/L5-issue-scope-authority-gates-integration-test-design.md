@@ -84,5 +84,9 @@ failure tokenとは独立に、主oracleは次のatomic tupleをcaseごとにexa
 
 ## §1 合否
 
+### 補助API→U→IT exact join
+
+`IT-ISAG-017`は`U-ISAG-023`,`U-ISAG-024`,`U-ISAG-025`をexact joinし、bundle build、atomic commit、immutable reconcileを一つずつfault injectionする。
+
 16/16、primary HST 26/26、approval/dependency oracle、HAC、failureと独立したexact pre/expected state、event/receipt/digest、write/claim/apply/close countをassertする。
 正常caseは`なし（正常系）`を保持する。AI summary、Issue存在、approval boolean、単独CI greenで代替しない。

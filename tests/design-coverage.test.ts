@@ -316,7 +316,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(result.checked).toBe(122);
     expect(result.violations).toEqual([]);
     expect(result.ok).toBe(true);
-    // PLAN-L7-425再監査: current canonical 3件だけdone。systemのlegacy shimはtodoを維持する。
-    expect(result.counts).toEqual({ done: 46, todo: 48, na: 28 });
+    // PLAN-L1-07: supply-chain設計を採用し、Python runtime導入により旧N/Aをtodoへ戻したsnapshot。
+    expect(result.counts).toEqual({ done: 47, todo: 48, na: 27 });
   });
 });

@@ -204,6 +204,8 @@ digest文字列だけをhandoff実体として扱わない。
 
 ## §9 freeze条件
 
+L6 transaction contractは`CustodyAppendV1`、`CustodyReceiptV1`、`AdmissionReceiptV1`、`IntakeOperationStateV1`、`IntakeAdmissionTxV1`を使う。event replayの共有semantic shapeはL4基本設計 §2.3の`ProjectionDigestV1`を正本とし、unversioned receipt/state名を許可しない。
+
 L5/L8 pairは本slice所有IT 7/7、HST-HIL-001の所有7/7 state/token join、4 ingress fixture、同operation同/異digest、field mutation、
 injection dispatch 0、initial cause/transition/budget metadata handoff、minimality反例、HU-CAP-002 pinned binding、別runtime reviewが揃うまでdraftとする。
 HDS-HIL-02所有の3 caseは同sliceのL5/L8 pairでfreezeし、本sliceの分母へ重複算入しない。

@@ -48,5 +48,14 @@ source_capabilities:
 
 ## §1 合否
 
+### supporting APIのL8 exact join
+
+| L7 oracle | 対象関数 | L8 oracle | typed fault oracle |
+|---|---|---|---|
+| `U-ICN-008` | `appendIntakeCustodyBeforeValidation` | `IT-ICN-008` | `CustodyAppendV1` / `CustodyReceiptV1`、duplicate時write 0 |
+| `U-ICN-009` | `validateTransportActorAuthority` | `IT-ICN-008` | actor/policy不一致でadmission 0 |
+| `U-ICN-010` | `reconcileIssueAdmissionReservation` | `IT-ICN-009` | `AdmissionReceiptV1` / `ProjectionDigestV1`、stale headでwrite 0 |
+| `U-ICN-011` | `loadCurrentInitialHandoff` | `IT-ICN-010` | current Issue/revision以外handoff 0 |
+
 本slice所有7/7でRed/Green、HAT-HIL-01、HAC、exact HST/pre_state/expected_state/failure、Result、stable order、row/event/write/dispatch count、
 contract/initial cause/transition/budget metadata/route/idempotency digestを保存する。pure testはexternal adapterを起動せずport resultを注入する。

@@ -89,6 +89,10 @@ source_capabilities:
 
 ## §1 合否
 
+### supporting transactionのL8 exact join
+
+`U-CIQ-021/022/023`は`IT-CIQ-015`へexact joinする。`CiImmutableEvidenceV1`のchain/stage/lineage/head差替えごとにwrite 0を要求し、rebuild結果は`ProjectionDigestV1`、failure集合は`CiFailureCodeV1`で照合する。
+
 20/20のRed/Green、HAC/HST/failure、required check/fixture count、全attempt、state/receipt digestを保存する。
 mockの`success`、check名の存在、minimum gateだけ、repush plan/push receiptだけでは合格にしない。処理量削減はcanonical
 `HIL_CI_REQUIRED_CHECK_MISSING`とlocal `HIL_CI_WORKLOAD_REDUCTION_FORBIDDEN`の両方をassertする。

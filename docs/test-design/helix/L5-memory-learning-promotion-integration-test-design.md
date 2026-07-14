@@ -57,6 +57,10 @@ fixture、metric、coverage、review、stage、rollbackのdigestとauthoritative
 
 ## §1 合否
 
+### 補助API→U→IT exact join
+
+`IT-MLP-016`は`U-MLP-023`,`U-MLP-024`,`U-MLP-027`、`IT-MLP-017`は`U-MLP-025`,`U-MLP-026`,`U-MLP-027`をexact joinし、activationとrollbackのimmutable evidenceを混同しない。
+
 ### §0.1 主exact tuple oracle
 
 主oracleは次のatomic 4-tupleをcase IDごとにexactly-once評価する。

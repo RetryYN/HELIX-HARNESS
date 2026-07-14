@@ -295,6 +295,8 @@ reconcileはimmutable event/evidenceからprojectionとreceiptを再構成する
 
 ## §10 freeze条件
 
+L6 reconcileは`IssueGovernanceImmutableEvidenceV1`だけを受け、event replayはL4基本設計 §2.3の共有semantic shape `ProjectionDigestV1`で照合する。
+
 L5/L8 pairは16 integration oracle、primary 26 HST case、approval境界、上流receipt dependency、全HAC、authority graph mutation、
 scope diff mutation、approval tuple mutation、authoritative write/transition/close count、別runtime reviewが揃うまでdraftとする。
 Issue row、approval文字列、AIのPASS、CI green一件だけではfreezeしない。

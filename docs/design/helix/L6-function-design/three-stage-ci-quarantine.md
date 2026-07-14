@@ -104,6 +104,18 @@ interface CiStageSourceV1 {
   input_scope_digest: string;
 }
 
+interface ProjectionDigestV1 {
+  schema_version: "helix-projection-digest.v1";
+  subject_kind: string;
+  subject_id: string;
+  subject_revision: number;
+  event_head: string;
+  projection_head: string;
+  state_digest: string;
+  row_count_digest: string;
+}
+type CiFailureCodeV1 = CiFailure["code"];
+
 interface CiStageReceiptV1 {
   schema_version: "helix-ci-stage-receipt.v1";
   ci_chain_id: string;
@@ -118,7 +130,7 @@ interface CiStageReceiptV1 {
   check_result_set_digest: string;
   artifact_set_digest: string;
   event_chain_digest: string;
-  failure_codes: CiFailureCode[];
+  failure_codes: CiFailureCodeV1[];
 }
 
 interface CiSourceBindingV1 {
@@ -255,14 +267,27 @@ interface CiMutationCommitReceiptV1 {
   row_count_digest: string;
 }
 
+interface CiImmutableEvidenceV1 {
+  operation_id: string;
+  payload_digest: string;
+  chain_id: string;
+  stage_attempt_id: string;
+  mutation_kind: CiMutationCommitBundleV1["mutation_kind"];
+  check_result_set_digest: string;
+  stage_receipt_digest: string;
+  lineage_digest: string;
+  expected_event_head: string;
+  expected_projection_head: string;
+}
+
 interface CiMutationStore {
   commit(bundle: CiMutationCommitBundleV1): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
   readOperation(operationId: string): Promise<CiMutationCommitReceiptV1 | null>;
   readEventHead(chainId: string): Promise<string>;
   readProjectionHead(chainId: string): Promise<string>;
   readRuleHead(ruleId: string): Promise<string | null>;
-  reconcile(operationId: string, evidence: CiImmutableEvidence): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
-  rebuildProjection(chainId: string): Promise<ProjectionDigest>;
+  reconcile(operationId: string, evidence: CiImmutableEvidenceV1): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
+  rebuildProjection(chainId: string): Promise<ProjectionDigestV1>;
 }
 
 type CiFailure = {
@@ -271,6 +296,8 @@ type CiFailure = {
   operation_id?: string;
 };
 ```
+
+`ProjectionDigestV1`の共有semantic shape正本はL4基本設計 §2.3、failure codeのexact authorityは`CiFailure["code"]`とする。reconcileは`CiImmutableEvidenceV1`のchain/stage/lineage/headからだけ復元する。
 
 ## §3 不変条件
 

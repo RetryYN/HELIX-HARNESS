@@ -56,6 +56,10 @@ requirements:
 
 ## §1 合否
 
+### supporting transactionのL8 exact join
+
+`U-ISAG-023/024/025`は`IT-ISAG-017`へexact joinする。各faultで`IssueGovernanceCommitReceiptV1`は0、same operation/digestのreplayだけ既存receiptを返し、`IssueGovernanceImmutableEvidenceV1`から再構築した`ProjectionDigestV1`を比較する。
+
 22/22でRed/Green、HAC、exact HST/failure、Result、event/write/claim/apply/close count、digest、stable orderを保存する。
 pure testは外部runtime/GitHubを起動せずport resultを注入する。
 

@@ -64,6 +64,7 @@ items:
     artifact:
       - docs/design/harness/L1-requirements/business-requirements.md
       - docs/design/harness/L1-requirements/functional-requirements.md
+      - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
   - id: requirement-spec
     name: 要件定義書
     category: req
@@ -73,6 +74,7 @@ items:
       - docs/design/helix/L3-requirements/pillar-functional-requirements.md
       - docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md
       - docs/design/helix/L3-requirements/document-agent-metadata.md
+      - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -81,6 +83,7 @@ items:
     artifact:
       - docs/design/harness/L4-basic-design/architecture.md
       - docs/design/helix/L4-basic-design/document-agent-metadata.md
+      - docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -108,6 +111,44 @@ items:
       - docs/design/harness/L5-detailed-design/source-boundary-architecture.md
       - docs/design/harness/L6-function-design/source-boundary-contracts.md
       - docs/design/helix/L5-detail/document-agent-metadata-contract.md
+      - docs/design/helix/L5-detail/source-capability-capture.md
+      - docs/design/helix/L6-function-design/source-capability-capture.md
+      - docs/design/helix/L5-detail/source-capability-atomization-closure.md
+      - docs/design/helix/L6-function-design/source-capability-atomization-closure.md
+      - docs/design/helix/L5-detail/python-worker-runtime.md
+      - docs/design/helix/L6-function-design/python-worker-runtime.md
+      - docs/design/helix/L5-detail/node-runtime-cutover.md
+      - docs/design/helix/L6-function-design/node-runtime-cutover.md
+      - docs/design/helix/L5-detail/os-portability-supply-chain.md
+      - docs/design/helix/L6-function-design/os-portability-supply-chain.md
+      - docs/design/helix/L5-detail/engine-detector-execution.md
+      - docs/design/helix/L6-function-design/engine-detector-execution.md
+      - docs/design/helix/L5-detail/product-data-connector.md
+      - docs/design/helix/L6-function-design/product-data-connector.md
+      - docs/design/helix/L5-detail/harness-agent-lifecycle.md
+      - docs/design/helix/L6-function-design/harness-agent-lifecycle.md
+      - docs/design/helix/L5-detail/memory-learning-promotion.md
+      - docs/design/helix/L6-function-design/memory-learning-promotion.md
+      - docs/design/helix/L5-detail/three-stage-ci-quarantine.md
+      - docs/design/helix/L6-function-design/three-stage-ci-quarantine.md
+      - docs/design/helix/L5-detail/issue-scope-authority-gates.md
+      - docs/design/helix/L6-function-design/issue-scope-authority-gates.md
+      - docs/design/helix/L5-detail/universal-reverse-redesign.md
+      - docs/design/helix/L6-function-design/universal-reverse-redesign.md
+      - docs/design/helix/L5-detail/intake-contract-normalization.md
+      - docs/design/helix/L6-function-design/intake-contract-normalization.md
+      - docs/design/helix/L5-detail/forward-infinity-orchestration.md
+      - docs/design/helix/L6-function-design/forward-infinity-orchestration.md
+      - docs/design/helix/L5-detail/github-pr-audit-promotion.md
+      - docs/design/helix/L6-function-design/github-pr-audit-promotion.md
+      - docs/design/helix/L5-detail/screen-applicability-prototype.md
+      - docs/design/helix/L6-function-design/screen-applicability-prototype.md
+      - docs/design/helix/L5-detail/design-refactoring-domain-model.md
+      - docs/design/helix/L6-function-design/design-refactoring-domain-model.md
+      - docs/design/helix/L5-detail/requirement-translation-obligation.md
+      - docs/design/helix/L6-function-design/requirement-translation-obligation.md
+      - docs/design/helix/L5-detail/layer-ledger-pair-gate.md
+      - docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
       - docs/design/helix/L5-detail/document-semantic-diff.md
       - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
       - docs/design/helix/L6-function-design/document-semantic-diff.md
@@ -123,6 +164,25 @@ items:
       - docs/test-design/harness/closure-evidence-semantic-authority.md
       - docs/test-design/harness/L8-durability-boundaries.md
       - docs/test-design/harness/L8-source-boundary-contracts.md
+      - docs/test-design/helix/L6-design-refactoring-domain-model-unit-test-design.md
+      - docs/test-design/helix/L6-engine-detector-execution-unit-test-design.md
+      - docs/test-design/helix/L6-forward-infinity-orchestration-unit-test-design.md
+      - docs/test-design/helix/L6-github-pr-audit-promotion-unit-test-design.md
+      - docs/test-design/helix/L6-harness-agent-lifecycle-unit-test-design.md
+      - docs/test-design/helix/L6-intake-contract-normalization-unit-test-design.md
+      - docs/test-design/helix/L6-issue-scope-authority-gates-unit-test-design.md
+      - docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md
+      - docs/test-design/helix/L6-memory-learning-promotion-unit-test-design.md
+      - docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md
+      - docs/test-design/helix/L6-os-portability-supply-chain-unit-test-design.md
+      - docs/test-design/helix/L6-product-data-connector-unit-test-design.md
+      - docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md
+      - docs/test-design/helix/L6-requirement-translation-obligation-unit-test-design.md
+      - docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md
+      - docs/test-design/helix/L6-source-capability-atomization-closure-unit-test-design.md
+      - docs/test-design/helix/L6-source-capability-capture-unit-test-design.md
+      - docs/test-design/helix/L6-three-stage-ci-quarantine-unit-test-design.md
+      - docs/test-design/helix/L6-universal-reverse-redesign-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
@@ -132,6 +192,25 @@ items:
       - docs/test-design/harness/L9-integration-test-design.md
       - docs/test-design/harness/L9-durability-boundaries-integration.md
       - docs/test-design/harness/L9-source-boundary-integration.md
+      - docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md
+      - docs/test-design/helix/L5-engine-detector-execution-integration-test-design.md
+      - docs/test-design/helix/L5-forward-infinity-orchestration-integration-test-design.md
+      - docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md
+      - docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md
+      - docs/test-design/helix/L5-intake-contract-normalization-integration-test-design.md
+      - docs/test-design/helix/L5-issue-scope-authority-gates-integration-test-design.md
+      - docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
+      - docs/test-design/helix/L5-memory-learning-promotion-integration-test-design.md
+      - docs/test-design/helix/L5-node-runtime-cutover-integration-test-design.md
+      - docs/test-design/helix/L5-os-portability-supply-chain-integration-test-design.md
+      - docs/test-design/helix/L5-product-data-connector-integration-test-design.md
+      - docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md
+      - docs/test-design/helix/L5-requirement-translation-obligation-integration-test-design.md
+      - docs/test-design/helix/L5-screen-applicability-prototype-integration-test-design.md
+      - docs/test-design/helix/L5-source-capability-atomization-closure-integration-test-design.md
+      - docs/test-design/helix/L5-source-capability-capture-integration-test-design.md
+      - docs/test-design/helix/L5-three-stage-ci-quarantine-integration-test-design.md
+      - docs/test-design/helix/L5-universal-reverse-redesign-integration-test-design.md
   - id: system-test-design
     name: 総合テスト設計書
     category: test
@@ -205,8 +284,16 @@ items:
     name: アプリケーション方式仕様書
     category: std
     source: zip-18
-    status: todo
-    note: architecture.md が方式を部分的に扱うが独立した方式仕様書ではない
+    status: done
+    artifact:
+      - docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
+      - docs/design/helix/L5-detail/python-worker-runtime.md
+      - docs/design/helix/L6-function-design/python-worker-runtime.md
+      - docs/design/helix/L5-detail/node-runtime-cutover.md
+      - docs/design/helix/L6-function-design/node-runtime-cutover.md
+      - docs/design/helix/L5-detail/os-portability-supply-chain.md
+      - docs/design/helix/L6-function-design/os-portability-supply-chain.md
+    note: control/data plane、IPC、runtime cutover、OS adapter、配布方式をL4–L6の独立draftへ降下済み。freezeと実装証拠は別gateで管理する
   - id: workflow-definition
     name: ワークフロー定義
     category: detail
@@ -462,7 +549,10 @@ items:
     category: sec
     source: zip-56
     status: todo
-    note: toolchain-pin.ts は部分的にサプライチェーンを扱うがSBOM/SCA相当の設計書は無い
+    artifact:
+      - docs/design/helix/L5-detail/os-portability-supply-chain.md
+      - docs/design/helix/L6-function-design/os-portability-supply-chain.md
+    note: canonical lock、offline parity、統合SBOM、secret/licenseはdraft設計済み。脆弱性SCA、署名、attestation/provenanceは未設計のためtodoを維持する
   - id: secret-key-management-design
     name: シークレット鍵管理設計書
     category: sec
@@ -776,8 +866,8 @@ items:
     name: TS・Pythonコード生成付録
     category: std
     source: zip-106
-    status: na
-    na_reason: ADR-001によりPython実装を持ち込まずTS/Bunで再実装する方針のため、Pythonコード生成規約という関心事自体を採用しない
+    status: todo
+    note: Python worker runtimeはdraft設計済みだが、TS/Python schema生成・fixture同期・packaging規約は新runtime ADR承認後の未設計slice
   - id: vmodel-level-definition
     name: Vモデル・レベル定義
     category: std

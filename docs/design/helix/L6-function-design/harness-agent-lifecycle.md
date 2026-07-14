@@ -66,6 +66,29 @@ L5のfail-close contractを弱める互換shimは作らない。
 ## §2 schema
 
 ```ts
+interface ProjectionDigestV1 {
+  schema_version: "helix-projection-digest.v1";
+  subject_kind: string;
+  subject_id: string;
+  subject_revision: number;
+  event_head: string;
+  projection_head: string;
+  state_digest: string;
+  row_count_digest: string;
+}
+
+interface AgentMusterMemberV1 {
+  member_index: number;
+  contract_id: string;
+  contract_revision: number;
+  agent_role: "worker" | "verifier" | "consult";
+  provider_family: string;
+  model_family: string;
+  capability_digest: string;
+  context_digest: string;
+  verification_pattern_digest: string;
+}
+
 interface AgentMusterV1 {
   schema_version: "helix-agent-muster.v1";
   muster_id: string;
@@ -185,6 +208,19 @@ interface AgentLifecycleCommitReceiptV1 {
 
 interface AgentLeaseAcquisitionReceiptV1 extends AgentLifecycleCommitReceiptV1 { mutation_kind: "lease_acquisition" }
 
+interface AgentLifecycleImmutableEvidenceV1 {
+  operation_id: string;
+  payload_digest: string;
+  mutation_kind: AgentLifecycleCommitReceiptV1["mutation_kind"];
+  instance_id: string;
+  lease_id: string;
+  fence: number;
+  transition_event_digest: string;
+  mutation_record_digest: string;
+  expected_event_head: string;
+  expected_projection_head: string;
+}
+
 interface AgentLifecycleStore {
   commitLeaseAcquisition(bundle: AgentLeaseAcquisitionBundleV1): Promise<Result<AgentLeaseAcquisitionReceiptV1, AgentLifecycleFailure>>;
   commit(bundle: AgentLifecycleCommitBundleV1): Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>;
@@ -193,8 +229,8 @@ interface AgentLifecycleStore {
   readLeaseHead(instanceId: string): Promise<string | null>;
   readEventHead(instanceId: string): Promise<string>;
   readProjectionHead(instanceId: string): Promise<string>;
-  reconcile(operationId: string, evidence: AgentLifecycleImmutableEvidence): Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>;
-  rebuildProjection(instanceId: string): Promise<ProjectionDigest>;
+  reconcile(operationId: string, evidence: AgentLifecycleImmutableEvidenceV1): Promise<Result<AgentLifecycleCommitReceiptV1, AgentLifecycleFailure>>;
+  rebuildProjection(instanceId: string): Promise<ProjectionDigestV1>;
 }
 
 type AgentLifecycleFailure = {
@@ -203,6 +239,8 @@ type AgentLifecycleFailure = {
   operation_id?: string;
 };
 ```
+
+`ProjectionDigestV1`の共有semantic shape正本はL4基本設計 §2.3とする。muster memberは`AgentMusterMemberV1`で順序・role・provider/model・capability/contextを固定し、reconcileは`AgentLifecycleImmutableEvidenceV1`から新lease/fence/verificationを推測しない。
 
 ## §3 不変条件とidempotency
 
