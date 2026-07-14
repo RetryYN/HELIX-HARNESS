@@ -131,6 +131,9 @@ prototype taskはUI capability ID順で固定する。全decision集合とPLAN a
 `HST-CASE-012-06`の状態遷移authorityは`evaluateScreenApplicability`である。`planPrototypeDiscovery`／`U-SAP-005`は
 `prototype_required`確定後に設計義務からtask一件を生成するsupporting oracle/evidence edgeであり、system正本の期待evidenceを
 同じ`IT-SAP-004` compositionで閉じる。primary Uにはせず、`undecided`からの遷移証拠へ算入しない。
+`canonicalizeScreenScope`／`U-SAP-001`は同compositionの先頭supporting oracleであり、`IT-SAP-004`と
+`HST-CASE-012-08`へreverse joinする。exact function setは`canonicalizeScreenScope` → `evaluateScreenApplicability` →
+`planPrototypeDiscovery`で、scope正規化、route遷移、task生成のmutation laneを分離する。primary U/HST分母は変更しない。
 
 ## §4 完了境界
 

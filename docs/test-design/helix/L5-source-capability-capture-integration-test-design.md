@@ -43,6 +43,25 @@ ref証拠として保持しながらcoverage分母へ重複算入しない。全
 | `IT-SCAP-009` | trusted manifest store→authority→request | capture authority | expected digest、store head/receipt、ZIP SHA、UT 5 ref commit/tree、HEAD、family countを一件ずつ改変 | trusted current manifest exact一致だけplan生成。自己申告、stale head、ref差替え、count差はwrite 0 |
 | `IT-SCAP-010` | sealed artifact→projection_pending→Node reconcile | capture recovery | artifact publish後DB fault、artifact/DB head conflict、同key再送 | silent rewrite 0、pending一件、reconcile成功時だけprojection/current、再送増分0 |
 
+### §0.1 公開API→U→IT exact join
+
+| 公開API | L7 oracle | L8 oracle |
+|---|---|---|
+| `canonicalizeSourceCaptureRequest` | `U-SCAP-001`, `U-SCAP-003` | `IT-SCAP-001` |
+| `deriveSourceSnapshotId` | `U-SCAP-002` | `IT-SCAP-004` |
+| `probeSourceAdapter` | `U-SCAP-004`, `U-SCAP-007`, `U-SCAP-008`, `U-SCAP-009`, `U-SCAP-010`, `U-SCAP-013`, `U-SCAP-014`, `U-SCAP-015`, `U-SCAP-016`, `U-SCAP-017`, `U-SCAP-018`, `U-SCAP-019` | `IT-SCAP-001`, `IT-SCAP-002`, `IT-SCAP-003`, `IT-SCAP-007` |
+| `enumerateSourceEntries` | `U-SCAP-004`, `U-SCAP-005`, `U-SCAP-006`, `U-SCAP-007`, `U-SCAP-008`, `U-SCAP-009`, `U-SCAP-010`, `U-SCAP-014`, `U-SCAP-016`, `U-SCAP-017`, `U-SCAP-018`, `U-SCAP-019` | `IT-SCAP-001`, `IT-SCAP-002`, `IT-SCAP-003`, `IT-SCAP-004` |
+| `deriveGitOverlay` | `U-SCAP-011`, `U-SCAP-012`, `U-SCAP-013`, `U-SCAP-014`, `U-SCAP-015` | `IT-SCAP-002` |
+| `classifySourceEntry` | `U-SCAP-020`, `U-SCAP-021` | `IT-SCAP-004` |
+| `renderSourceCaptureBundle` | `U-SCAP-001`, `U-SCAP-002`, `U-SCAP-003`, `U-SCAP-023` | `IT-SCAP-005` |
+| `planSourceCapture` | `U-SCAP-023` | `IT-SCAP-001`, `IT-SCAP-002`, `IT-SCAP-003`, `IT-SCAP-004` |
+| `commitSourceCapture` | `U-SCAP-022`, `U-SCAP-023` | `IT-SCAP-005`, `IT-SCAP-008` |
+| `verifySourceCapture` | `U-SCAP-022`, `U-SCAP-023` | `IT-SCAP-005` |
+| `activateSourceSnapshot` | `U-SCAP-023` | `IT-SCAP-004`, `IT-SCAP-008` |
+| `markSourceSnapshotStale` | `U-SCAP-022` | `IT-SCAP-006` |
+| `resolveSourceCaptureAuthority` | `U-SCAP-024` | `IT-SCAP-009` |
+| `reconcileSourceCaptureProjection` | `U-SCAP-025` | `IT-SCAP-010` |
+
 ## §1 HST011主系の原子tuple
 
 次の表だけをprimary case joinの正本とする。同じITへ複数fixtureを割り当ててもcase行をまとめない。

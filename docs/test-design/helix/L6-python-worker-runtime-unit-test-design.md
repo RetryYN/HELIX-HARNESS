@@ -41,7 +41,17 @@ requirements:
 | `U-PYWR-014` | `assertPythonProposalOnlyAuthority` | `HAC-HIL-12c` | `HST-CASE-007-15`, `HST-CASE-007-17`, `HST-CASE-008-12` | Python DB/repo/`.helix`/current write企図、DB path要求 | pointer別に`HIL_DB_WRITE_AUTHORITY_INVALID`、`HIL_RESULT_WRITE_AUTHORITY_INVALID`、`HIL_PYTHON_AUTHORITY_BYPASS`で拒否 | `tests/python-worker-authority.test.ts` |
 | `U-PYWR-015` | `commitPythonWorkerResult`, `reconcilePythonWorkerRun` | `HAC-HIL-12a`, `HAC-HIL-12c` | `HST-CASE-007-17`, `HST-CASE-009-08` | 同key再送、同key異digest、event/projection fault、artifact-only状態 | pointer別に`HIL_RESULT_WRITE_AUTHORITY_INVALID`、`HIL_DB_PROJECTION_BOUNDARY_INVALID`。commit詳細causeは`HIL_WORKER_RESULT_COMMIT_FAILED`、failure時current 0 | `tests/python-result-commit.test.ts` |
 | `U-PYWR-016` | `recordWorkerTerminalReceipt`, `reconcilePythonWorkerRun` | `HAC-HIL-12a`, `HAC-HIL-12b`, `HAC-HIL-12c` | `HST-CASE-007-13`, `HST-CASE-007-18` | terminal 0/二重/異status、receipt write failure、projection rebuild | pointer別に`HIL_WORKER_PROTOCOL_INVALID`、`HIL_IPC_FAIL_OPEN`で競合を拒否し、exactly-one receiptを同digestへ再構築 | `tests/python-worker-terminal-receipt.test.ts` |
-| `U-PYWR-017` | accepted／全non-accepted terminal commit/reconcile | `HAC-HIL-12a`, `HAC-HIL-12c` | supporting | acceptedとfailed/quarantined/cancelled/timed_outごとに各append fault、run/projection CAS、同key異digest | 全terminalでpartial 0、exactly-one receipt、同一reconcile同receipt、成功時だけ固定count | `tests/python-result-commit-transaction.test.ts` |
+| `U-PYWR-017` | `commitAcceptedPythonWorkerResult`, `commitPythonWorkerTerminal`, `reconcilePythonWorkerTerminal` | `HAC-HIL-12a`, `HAC-HIL-12c` | supporting | 3関数を個別実行し、acceptedとfailed/quarantined/cancelled/timed_outごとに各append fault、run/projection CAS、同key異digest | 固有mutationをexact照合し、全terminalでpartial 0、exactly-one receipt、同一reconcile同receipt、成功時だけ固定count | `tests/python-result-commit-transaction.test.ts` |
+
+### `U-PYWR-017`のstable exact function composition
+
+| exact function | input | 固有mutation | 個別oracle |
+|---|---|---|---|
+| `commitAcceptedPythonWorkerResult` | `AcceptedWorkerCommitBundleV1` | `accepted_result_commit` | accepted固定append順、各step fault rollback、CAS/idempotency |
+| `commitPythonWorkerTerminal` | `TerminalWorkerCommitBundleV1` | `non_accepted_terminal_commit` | 4種non-accepted terminalごとのauthoritative result 0とexactly-one receipt |
+| `reconcilePythonWorkerTerminal` | `TerminalWorkerReconcileBundleV1` | `terminal_reconcile` | immutable evidence不一致を拒否し、同一bundleは同一receiptへ収束 |
+
+この3実行の論理積を`U-PYWR-017`の合格条件とし、一部関数のgreenで代替しない。
 
 ### canonical assertion primary表
 

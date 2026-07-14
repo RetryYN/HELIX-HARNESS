@@ -137,6 +137,9 @@ L10 UX/VRT/a11yの実装後検証、production UI実装、visual polishは本sli
 
 `HST-CASE-012-06`はprimary遷移を`U-SAP-002`で採点し、system正本の期待evidence「prototype task一件」は
 `U-SAP-005 planPrototypeDiscovery`をsupporting oracleとして同じ`IT-SAP-004` composition内で採点する。
+`U-SAP-001 canonicalizeScreenScope`も`IT-SAP-004`の先頭supporting oracleとし、同caseのscope/capability/phase/public-surface正規化と
+`HST-CASE-012-08`のinvalid scope反例を所有する。primary Uを置換せず、`canonicalizeScreenScope` →
+`evaluateScreenApplicability` → `planPrototypeDiscovery`のexact compositionでAPI→U→IT/HST reverse edgeを閉じる。
 
 ## §6 freeze条件
 

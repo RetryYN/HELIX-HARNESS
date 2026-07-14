@@ -95,20 +95,29 @@ pure functionへ固定port resultを注入し、stale、分母改竄、片方向
 
 | oracle | exact API | fixture／mutation | 反証assertion |
 |---|---|---|---|
-| `U-LLPG-S01`（supporting） | `calculateFixedDesignProgress`、`commitDesignProgress`、`reconcileDesignProgress` | exact 19 slice、76 artifact、canonical U 465/IT 355/quartet 820/HST 411/total 1,231、5 stage receiptを正例とし、ID list欠落/重複/20件目、count/list/digest/rate不一致、fake numerator、stale/superseded authority、receipt swap、axis mixing、missing receipt、reviewer同一runtime-model、sliceごとのfreeze receipt 2件未満、包含逆転、supporting混入、source commit/treeまたはdesign digest swap、projection digest差を一つずつmutateする | 正例だけ5独立axisを返す。各反例はtyped failure、authoritative numerator/receipt増分0。artifact 19/19でも後段を推定しない。U/IT S01はmeta receiptに残るがcanonical list/count/digest/rateへ入らない |
-| `U-LLPG-S01`（supporting fault） | `commitDesignProgress`、`reconcileDesignProgress` | event append後、projection append後、terminal receipt append前後のfault、same operation/digest retry、異digest retry、event-head CAS loser | current evidence storeを再読し、generated event＋projection＋terminal receiptをexactly-once収束する。partial current 0、異digest/CAS loser増分0、replay projection digest一致 |
+| `U-LLPG-S01`（supporting） | `calculateFixedDesignProgress`、`commitDesignProgress`、`reconcileDesignProgress` | exact 19 slice、76 artifact、canonical U 467/IT 355/quartet 822/HST 411/total 1,233、5 stage receiptを正例とし、ID list欠落/重複/20件目、count/list/digest/rate不一致、fake numerator、stale/superseded authority、receipt swap、axis mixing、missing receipt、reviewer同一runtime-model、sliceごとのfreeze receipt 2件未満、freezeのslice/snapshot join差、包含逆転、supporting混入、source commit/treeまたはdesign digest swap、projection digest差を一つずつmutateする | 正例だけ5独立axisを返す。各反例はtyped failure、authoritative numerator/receipt増分0。artifact 19/19でも後段を推定しない。U/IT S01はmeta receiptに残るがcanonical list/count/digest/rateへ入らない |
+| `U-LLPG-S01`（supporting fault） | `commitDesignProgress`、`reconcileDesignProgress` | atomic transaction port内部の6 store read後、revision再検証前、event/projection/terminal receipt append境界のfault、same operation/digest retry、異digest retry、event-head CAS loser、public `commitCurrent`探索 | authority-owned portが6 current evidenceを再読・write直前再検証し、generated event＋projection＋terminal receiptをexactly-once収束する。低水準直書きAPIはpublic contractに0、partial current 0、異digest/CAS loser増分0、replay projection digest一致 |
 
 stale cascade fixtureはregistry/denominator、artifact、audit policy/input、freeze receipt、implementation commit/test/command、source tree、
 design digestを個別変更し、当該stage＋全downstream stageが同一eventでstale、upstream unaffected、旧receipt再利用不可になることを検証する。
 
 fixture正本は`docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest`、fixture IDは
-`llpg-progress-s01-v1`である。同manifestのexact 19 ID list、76 path/content set digest、U 465/IT 355/HST 411のID list source/set digest、
+`llpg-progress-s01-v1`である。同manifest単体に列挙したexact 19 ID list、76 path/content digest、U 467/IT 355/HST 411のexact ID array/set digest、
+固定source commit/tree/design snapshot、supporting U/IT S01 receipt digestをfixture load時に再計測する。globや外部source文字列から分母を補完せず、
 期待terminal receipt `DPR-LLPG-S01-V1`とdigestをfixture load時に再計測し、不一致なら実行前にfail-closeする。
+loaderは`helix-llpg-s01-digest.v1`を独立実装し、UTF-8/BOMなし、LF separator、aggregate末尾LFなし、ASCII byte sort、duplicate 0を検査する。
+artifact recordはexact `path<TAB>content_digest`で`slice_id`を除外する。leaf set→design→supporting→terminalの順で計算し、supporting preimageは
+receipt ID、fixed design snapshot digest、U ID、IT ID、status、included flagの6 record、terminalはfixture IDからsupporting receipt digestまでの
+L6 §3固定8 recordだけを使う。listed field以外、YAML key、count、algorithm名を暗黙に混ぜたloaderは正例として扱わない。
 
 | mutation（変異） | exact failure code | expected receipt |
 |---|---|---|
 | authority欠落、未承認 | `HIL_LAYER_PROGRESS_DENOMINATOR_UNAUTHORIZED` | なし |
-| 19/76、U 465、IT 355、HST 411のlist/count/set digest差 | `HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH` | なし |
+| 19/76、U 467、IT 355、HST 411のlist/count/set digest差 | `HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH` | なし |
+| pair freezeのslice IDまたは固定snapshot join差 | `HIL_LAYER_PROGRESS_RECEIPT_MISMATCH` | なし |
+| atomic port外の`commitCurrent`直呼びを試行 | 型／contract上到達不能 | なし |
+| separator／sort／末尾LF／包含fieldを一つ変更 | `HIL_LAYER_MANIFEST_INVALID` | なし |
+| supporting receipt IDまたはfixed snapshotをswap | `HIL_LAYER_PROGRESS_RECEIPT_MISMATCH` | なし |
 | numerator偽造、前段にない後段ID、包含逆転 | `HIL_LAYER_PROGRESS_STAGE_INCLUSION_INVALID` | なし |
 | stage順序違反、axis mixing | `HIL_LAYER_PROGRESS_STAGE_ORDER_INVALID` | なし |
 | stale/superseded evidence、source commit/tree、design digest差 | `HIL_LAYER_PROGRESS_EVIDENCE_STALE` | なし |

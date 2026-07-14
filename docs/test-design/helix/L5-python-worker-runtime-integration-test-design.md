@@ -39,9 +39,33 @@ Pythonが返すresultはproposalであり、Node validationとtransaction前のr
 | `IT-PYWR-006` | §4、§5、§6 | `HAC-HIL-12c`; `HST-CASE-007-11` | lease再割当後に旧workerがvalid resultを返す | `HIL_WORKER_LATE_RESULT_FENCED`、新owner state不変、旧result commit 0、再開は新run/checkpointから |
 | `IT-PYWR-007` | §1、§5、§6 | `HAC-HIL-12c`; `HST-CASE-007-14`, `HST-CASE-007-15`, `HST-CASE-007-17`, `HST-CASE-008-12` | Pythonからharness.db、repo、`.helix/`、current pointerへ直接writeを試行 | pointer別に`HIL_PYTHON_PLANE_BOUNDARY_INVALID`, `HIL_DB_WRITE_AUTHORITY_INVALID`, `HIL_RESULT_WRITE_AUTHORITY_INVALID`, `HIL_PYTHON_AUTHORITY_BYPASS`、authoritative増分0 |
 | `IT-PYWR-008` | §5、§7 | `HAC-HIL-12a`, `HAC-HIL-12c`; `HST-CASE-007-13`, `HST-CASE-007-18`, `HST-CASE-009-08` | result schema違反、同一result再送、artifact/event/projection faultを個別投入 | `HIL_WORKER_RESULT_SCHEMA_INVALID`, `HIL_WORKER_RESULT_COMMIT_FAILED`, `HIL_WORKER_PROTOCOL_INVALID`, `HIL_DB_PROJECTION_BOUNDARY_INVALID`。`HIL_IPC_FAIL_OPEN`は0 |
-| `IT-PYWR-009` | §5 bundle/store | `HAC-HIL-12a`, `HAC-HIL-12c` | acceptedおよびfailed/quarantined/cancelled/timed_outの各append直後faultとreconcileを個別注入 | 全terminalでpartial 0、exactly-one receipt。同一reconcile同receipt、成功時だけ固定順各1 |
+| `IT-PYWR-009` | §5の`commitAcceptedPythonWorkerResult`、`commitPythonWorkerTerminal`、`reconcilePythonWorkerTerminal` | `HAC-HIL-12a`, `HAC-HIL-12c`; `U-PYWR-017` | 3関数と固有mutationを固定し、acceptedおよびfailed/quarantined/cancelled/timed_outの各append直後faultとreconcileを個別注入 | 全terminalでpartial 0、exactly-one receipt。同一reconcile同receipt、成功時だけ固定順各1 |
 
-### §0.1 canonical assertion primary表
+### §0.1 公開API→U→IT exact join
+
+| 公開API | L7 oracle | L8 oracle |
+|---|---|---|
+| `parsePythonWorkerDescriptor` | `U-PYWR-001` | `IT-PYWR-001`, `IT-PYWR-002` |
+| `negotiatePythonWorkerProtocol` | `U-PYWR-002` | `IT-PYWR-002` |
+| `createPythonWorkerRun` | `U-PYWR-003` | `IT-PYWR-001`, `IT-PYWR-002` |
+| `spawnPythonWorker` | `U-PYWR-004` | `IT-PYWR-007` |
+| `parsePythonWorkerEnvelope` | `U-PYWR-005` | `IT-PYWR-002`, `IT-PYWR-003` |
+| `advancePythonWorkerProtocol` | `U-PYWR-006`, `U-PYWR-007` | `IT-PYWR-002` |
+| `applyWorkerFlowControl` | `U-PYWR-008` | `IT-PYWR-003` |
+| `requestPythonWorkerCancellation` | `U-PYWR-009` | `IT-PYWR-004` |
+| `observePythonWorkerExit` | `U-PYWR-010` | `IT-PYWR-004`, `IT-PYWR-005` |
+| `fencePythonWorkerResult` | `U-PYWR-011` | `IT-PYWR-006` |
+| `stagePythonWorkerResult` | `U-PYWR-012` | `IT-PYWR-008` |
+| `validateWorkerOutputArtifacts` | `U-PYWR-013` | `IT-PYWR-007`, `IT-PYWR-008` |
+| `assertPythonProposalOnlyAuthority` | `U-PYWR-014` | `IT-PYWR-007` |
+| `commitPythonWorkerResult` | `U-PYWR-015` | `IT-PYWR-001`, `IT-PYWR-008` |
+| `recordWorkerTerminalReceipt` | `U-PYWR-016` | `IT-PYWR-008` |
+| `commitAcceptedPythonWorkerResult` | `U-PYWR-017` | `IT-PYWR-009` |
+| `commitPythonWorkerTerminal` | `U-PYWR-017` | `IT-PYWR-009` |
+| `reconcilePythonWorkerTerminal` | `U-PYWR-017` | `IT-PYWR-009` |
+| `reconcilePythonWorkerRun` | `U-PYWR-015`, `U-PYWR-016` | `IT-PYWR-008` |
+
+### §0.2 canonical assertion primary表
 
 次表がHST-HIL-007のprimary integration採点表である。上の9件はscenarioを共有するsupporting実行表であり、
 caseごとのstate/failure合否と18/18分母は次表だけから算出する。主UはL7への追跡参照である。

@@ -27,27 +27,35 @@ requirements:
 
 | API | signature | DbC | L7 oracle |
 |---|---|---|---|
-| `parsePythonWorkerDescriptor` | `(raw: unknown) => Result<PythonWorkerDescriptor, WorkerFailure>` | strict schema、digest、protocol/resource policyを要求しunknown key拒否 | `U-PYWR-001` |
-| `negotiatePythonWorkerProtocol` | `(host: ProtocolOffer, worker: ProtocolOffer) => Result<NegotiatedProtocol, WorkerFailure>` | major一致、minor共通最大、schema capability交差が非空 | `U-PYWR-002` |
+| `parsePythonWorkerDescriptor` | `(raw: unknown) => Result<PythonWorkerDescriptor, WorkerFailureV1>` | strict schema、digest、protocol/resource policyを要求しunknown key拒否 | `U-PYWR-001` |
+| `negotiatePythonWorkerProtocol` | `(host: ProtocolOffer, worker: ProtocolOffer) => Result<NegotiatedProtocol, WorkerFailureV1>` | major一致、minor共通最大、schema capability交差が非空 | `U-PYWR-002` |
 | `createPythonWorkerRun` | `(request, descriptor, lease, limits) => WorkerRunPlan` | operation/input/config/schema/policyから時刻非依存run identity、shell 0 | `U-PYWR-003` |
 | `spawnPythonWorker` | `(plan, sandbox, clock) => Promise<WorkerProcessHandle>` | allowlisted argv/env/cwd/root、process group、親監視を設定 | `U-PYWR-004` |
-| `parsePythonWorkerEnvelope` | `(line: Uint8Array, limits) => Result<WorkerEnvelope, WorkerFailure>` | UTF-8 JSONL、field/type/sizeを厳密検査しstdoutを通信専用にする | `U-PYWR-005` |
-| `advancePythonWorkerProtocol` | `(state, direction, envelope) => Result<ProtocolState, WorkerFailure>` | run/request/lease/fence、方向別sequence、type/state、digestを検査 | `U-PYWR-006, U-PYWR-007` |
+| `parsePythonWorkerEnvelope` | `(line: Uint8Array, limits) => Result<WorkerEnvelope, WorkerFailureV1>` | UTF-8 JSONL、field/type/sizeを厳密検査しstdoutを通信専用にする | `U-PYWR-005` |
+| `advancePythonWorkerProtocol` | `(state, direction, envelope) => Result<ProtocolState, WorkerFailureV1>` | run/request/lease/fence、方向別sequence、type/state、digestを検査 | `U-PYWR-006, U-PYWR-007` |
 | `applyWorkerFlowControl` | `(queue, frame, limits, clock) => FlowControlDecision` | byte/message high-low water、deadline、progress非算入 | `U-PYWR-008` |
 | `requestPythonWorkerCancellation` | `(run, process, reason, clock) => Promise<TerminationEvidence>` | cancel一回、grace後TERM/KILL、fence失効 | `U-PYWR-009` |
 | `observePythonWorkerExit` | `(run, exit, parent, clock) => WorkerTerminalProposal` | normal/crash/parent-lost/timeoutを一つのterminal候補へ正規化 | `U-PYWR-010` |
-| `fencePythonWorkerResult` | `(run, lease, envelope) => Result<WorkerEnvelope, WorkerFailure>` | current lease/fence/deadlineだけ受理しlate result拒否 | `U-PYWR-011` |
-| `stagePythonWorkerResult` | `(run, frames, complete, consumerSchema) => Result<StagedWorkerResult, WorkerFailure>` | complete exactly-one、全chunk/count/set digest、strict schema、provenance | `U-PYWR-012` |
-| `validateWorkerOutputArtifacts` | `(staged, outputRoot, limits) => Result<ValidatedArtifacts, WorkerFailure>` | relative path、root containment、symlink/duplicate/size/digestを検査 | `U-PYWR-013` |
-| `assertPythonProposalOnlyAuthority` | `(sandboxEvidence, writeSet, authorityMap) => Result<AuthorityReceipt, WorkerFailure>` | writable run root以外のwrite 0、Python DB/repo/current authorityなし | `U-PYWR-014` |
-| `commitPythonWorkerResult` | `(staged, artifacts, idempotencyKey) => Result<AcceptedWorkerCommitBundleV1, WorkerFailure>` | authoritative writeをせず、accepted/consumer/projection/terminalを完全bundle化 | `U-PYWR-015` |
-| `recordWorkerTerminalReceipt` | `(run, terminal, bundle) => Result<AcceptedWorkerCommitBundleV1, WorkerFailure>` | bundle内terminalをrunごとexactly-oneにし、単独persistを禁止 | `U-PYWR-016` |
-| `commitAcceptedPythonWorkerResult` | `(bundle: AcceptedWorkerCommitBundleV1, store: PythonWorkerCommitStore) => Promise<Result<AcceptedWorkerCommitReceiptV1, WorkerFailure>>` | Node store一transaction、固定append順、run/projection CAS、各append faultでpartial 0 | `U-PYWR-017` |
-| `commitPythonWorkerTerminal` | `(bundle: TerminalWorkerCommitBundleV1, store: PythonWorkerCommitStore) => Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailure>>` | failed/quarantined/cancelled/timed_outをexactly-one atomic terminalへcommit | `U-PYWR-017` |
-| `reconcilePythonWorkerTerminal` | `(bundle: TerminalWorkerCommitBundleV1, store: PythonWorkerCommitStore) => Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailure>>` | 同一operation/digest/revisionからだけterminal faultを収束 | `U-PYWR-017` |
+| `fencePythonWorkerResult` | `(run, lease, envelope) => Result<WorkerEnvelope, WorkerFailureV1>` | current lease/fence/deadlineだけ受理しlate result拒否 | `U-PYWR-011` |
+| `stagePythonWorkerResult` | `(run, frames, complete, consumerSchema) => Result<StagedWorkerResult, WorkerFailureV1>` | complete exactly-one、全chunk/count/set digest、strict schema、provenance | `U-PYWR-012` |
+| `validateWorkerOutputArtifacts` | `(staged, outputRoot, limits) => Result<ValidatedArtifacts, WorkerFailureV1>` | relative path、root containment、symlink/duplicate/size/digestを検査 | `U-PYWR-013` |
+| `assertPythonProposalOnlyAuthority` | `(sandboxEvidence, writeSet, authorityMap) => Result<AuthorityReceipt, WorkerFailureV1>` | writable run root以外のwrite 0、Python DB/repo/current authorityなし | `U-PYWR-014` |
+| `commitPythonWorkerResult` | `(staged, artifacts, idempotencyKey) => Result<AcceptedWorkerCommitBundleV1, WorkerFailureV1>` | authoritative writeをせず、accepted/consumer/projection/terminalを完全bundle化 | `U-PYWR-015` |
+| `recordWorkerTerminalReceipt` | `(run, terminal, bundle) => Result<AcceptedWorkerCommitBundleV1, WorkerFailureV1>` | bundle内terminalをrunごとexactly-oneにし、単独persistを禁止 | `U-PYWR-016` |
+| `commitAcceptedPythonWorkerResult` | `(bundle: AcceptedWorkerCommitBundleV1, store: PythonWorkerCommitStore) => Promise<Result<AcceptedWorkerCommitReceiptV1, WorkerFailureV1>>` | `accepted_result_commit`だけをNode store一transactionで固定順commit | `U-PYWR-017` |
+| `commitPythonWorkerTerminal` | `(bundle: TerminalWorkerCommitBundleV1, store: PythonWorkerCommitStore) => Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailureV1>>` | `non_accepted_terminal_commit`でfailed/quarantined/cancelled/timed_outをexactly-one commit | `U-PYWR-017` |
+| `reconcilePythonWorkerTerminal` | `(bundle: TerminalWorkerReconcileBundleV1, store: PythonWorkerCommitStore) => Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailureV1>>` | `terminal_reconcile`とimmutable evidenceから同一operation/digest/revisionだけを収束 | `U-PYWR-017` |
 | `reconcilePythonWorkerRun` | `(artifactEvidence, events, projection) => ReconciliationPlan` | immutable evidenceを正本にmissing projectionだけ再構築、Python再commitなし | `U-PYWR-015, U-PYWR-016` |
 
 17 oracleはrange参照だけで消込まず、各APIから上表の個別IDへ双方向traceする。
+
+`U-PYWR-017`のstable exact function setは次の3件であり、まとめ関数や相互代替を許可しない。
+
+| composition順 | exact function | input bundle | 固有mutation |
+|---:|---|---|---|
+| 1 | `commitAcceptedPythonWorkerResult` | `AcceptedWorkerCommitBundleV1` | `accepted_result_commit` |
+| 2 | `commitPythonWorkerTerminal` | `TerminalWorkerCommitBundleV1` | `non_accepted_terminal_commit` |
+| 3 | `reconcilePythonWorkerTerminal` | `TerminalWorkerReconcileBundleV1` | `terminal_reconcile` |
 
 ### §1.1 canonical assertion primary表
 
@@ -82,6 +90,41 @@ type WorkerRunStatus =
   | "queued" | "leased" | "starting" | "negotiating" | "running"
   | "result_staged" | "committed" | "failed" | "quarantined"
   | "cancelled" | "timed_out";
+
+type WorkerFailureCodeV1 =
+  | "HIL_WORKER_PROTOCOL_VERSION_UNSUPPORTED"
+  | "HIL_WORKER_JSON_INVALID"
+  | "HIL_WORKER_PAYLOAD_OVERSIZE"
+  | "HIL_WORKER_SEQUENCE_GAP"
+  | "HIL_WORKER_PAYLOAD_DIGEST_MISMATCH"
+  | "HIL_WORKER_RESULT_SCHEMA_INVALID"
+  | "HIL_WORKER_TIMEOUT"
+  | "HIL_WORKER_CANCELLED"
+  | "HIL_WORKER_CRASHED"
+  | "HIL_WORKER_BACKPRESSURE_EXCEEDED"
+  | "HIL_WORKER_PARENT_LOST"
+  | "HIL_WORKER_LATE_RESULT_FENCED"
+  | "HIL_PYTHON_AUTHORITY_BYPASS"
+  | "HIL_RESULT_WRITE_AUTHORITY_INVALID"
+  | "HIL_WORKER_RESULT_COMMIT_FAILED"
+  | "HIL_IPC_FAIL_OPEN";
+
+interface WorkerFailureV1 {
+  code: WorkerFailureCodeV1;
+  cause_digest: string;
+  operation_id: string | null;
+}
+
+interface WorkerEventV1 {
+  schema_version: "helix-python-worker-event.v1";
+  event_id: string;
+  run_id: string;
+  sequence: number;
+  event_kind: "accepted_result" | "consumer_result" | "terminal_status";
+  previous_event_digest: string | null;
+  payload_digest: string;
+  event_digest: string;
+}
 
 interface PythonWorkerRunRequestV1 {
   schema_version: "helix-python-worker-request.v1";
@@ -128,7 +171,7 @@ interface PythonWorkerTerminalReceiptV1 {
   schema_version: "helix-python-worker-terminal-receipt.v1";
   run_id: string;
   status: "committed" | "failed" | "quarantined" | "cancelled" | "timed_out";
-  failure_codes: WorkerFailureCode[];
+  failure_codes: WorkerFailureCodeV1[];
   process_exit: { code: number | null; signal: string | null };
   result_set_digest: string | null;
   commit_receipt_id: string | null;
@@ -136,11 +179,26 @@ interface PythonWorkerTerminalReceiptV1 {
 }
 
 type AcceptedWorkerAppendStep = "accepted_event" | "consumer_event" | "projection" | "terminal_receipt" | "commit_receipt";
+type NonAcceptedWorkerTerminal = "failed" | "quarantined" | "cancelled" | "timed_out";
+interface WorkerProjectionMutationV1 {
+  schema_version: "helix-python-worker-projection-mutation.v1";
+  mutation_kind: "accepted_result_commit" | "non_accepted_terminal_commit" | "terminal_reconcile";
+  run_id: string;
+  from_status: WorkerRunStatus;
+  to_status: "committed" | NonAcceptedWorkerTerminal;
+  expected_run_revision: number;
+  expected_projection_revision: number;
+  event_head: string;
+  projection_digest: string;
+}
+type AcceptedWorkerProjectionMutationV1 = WorkerProjectionMutationV1 & { mutation_kind: "accepted_result_commit"; to_status: "committed" };
+type TerminalWorkerProjectionMutationV1 = WorkerProjectionMutationV1 & { mutation_kind: "non_accepted_terminal_commit"; to_status: NonAcceptedWorkerTerminal };
+type TerminalReconcileProjectionMutationV1 = WorkerProjectionMutationV1 & { mutation_kind: "terminal_reconcile"; to_status: NonAcceptedWorkerTerminal };
 interface AcceptedWorkerCommitBundleV1 {
   operation_id: string; operation_digest: string; idempotency_key: string; run_id: string; result_set_digest: string;
   expected_run_revision: number; expected_projection_revision: number; append_order: AcceptedWorkerAppendStep[];
   write_set: { table: string; key: string; action: "insert" | "update" }[]; write_set_digest: string;
-  accepted_event: WorkerEventV1; consumer_event: WorkerEventV1; projection: WorkerProjectionMutationV1;
+  accepted_event: WorkerEventV1; consumer_event: WorkerEventV1; projection: AcceptedWorkerProjectionMutationV1;
   terminal_receipt: PythonWorkerTerminalReceiptV1;
 }
 interface AcceptedWorkerCommitReceiptV1 {
@@ -148,10 +206,10 @@ interface AcceptedWorkerCommitReceiptV1 {
   before_projection_revision: number; after_projection_revision: number; event_sequence: number; write_set_digest: string;
   counts: Record<AcceptedWorkerAppendStep, { inserted: number; updated: number }>;
 }
-type NonAcceptedWorkerTerminal = "failed" | "quarantined" | "cancelled" | "timed_out";
-interface TerminalWorkerCommitBundleV1 { operation_id: string; operation_digest: string; idempotency_key: string; run_id: string; terminal: NonAcceptedWorkerTerminal; expected_run_revision: number; terminal_event: WorkerEventV1; terminal_receipt: PythonWorkerTerminalReceiptV1; projection: WorkerProjectionMutationV1; append_order: ["terminal_event", "projection", "terminal_receipt", "commit_receipt"]; exact_write_set: { table: string; key: string; action: "insert" | "update" }[]; write_set_digest: string }
+interface TerminalWorkerCommitBundleV1 { operation_id: string; operation_digest: string; idempotency_key: string; run_id: string; terminal: NonAcceptedWorkerTerminal; expected_run_revision: number; terminal_event: WorkerEventV1; terminal_receipt: PythonWorkerTerminalReceiptV1; projection: TerminalWorkerProjectionMutationV1; append_order: ["terminal_event", "projection", "terminal_receipt", "commit_receipt"]; exact_write_set: { table: string; key: string; action: "insert" | "update" }[]; write_set_digest: string }
+interface TerminalWorkerReconcileBundleV1 { operation_id: string; operation_digest: string; idempotency_key: string; run_id: string; terminal: NonAcceptedWorkerTerminal; expected_run_revision: number; expected_projection_revision: number; terminal_event: WorkerEventV1; terminal_receipt: PythonWorkerTerminalReceiptV1; projection: TerminalReconcileProjectionMutationV1; immutable_evidence_digest: string; write_set_digest: string }
 interface TerminalWorkerCommitReceiptV1 { operation_id: string; operation_digest: string; terminal: NonAcceptedWorkerTerminal; before_run_revision: number; after_run_revision: number; event_sequence: number; terminal_receipt_digest: string; write_set_digest: string; counts: Record<"terminal_event" | "projection" | "terminal_receipt" | "commit_receipt", { inserted: number; updated: number }> }
-interface PythonWorkerCommitStore { commitAcceptedResult(bundle: AcceptedWorkerCommitBundleV1): Promise<Result<AcceptedWorkerCommitReceiptV1, WorkerFailure>>; commitTerminal(bundle: TerminalWorkerCommitBundleV1): Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailure>>; reconcileTerminal(bundle: TerminalWorkerCommitBundleV1): Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailure>> }
+interface PythonWorkerCommitStore { commitAcceptedResult(bundle: AcceptedWorkerCommitBundleV1): Promise<Result<AcceptedWorkerCommitReceiptV1, WorkerFailureV1>>; commitTerminal(bundle: TerminalWorkerCommitBundleV1): Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailureV1>>; reconcileTerminal(bundle: TerminalWorkerReconcileBundleV1): Promise<Result<TerminalWorkerCommitReceiptV1, WorkerFailureV1>> }
 ```
 
 `deadline_at`は外部入力としてrun identityへ含めず、run attemptへbindする。digest計算にwall clock、PID、temp path、
@@ -192,7 +250,7 @@ consumerは`PythonWorkerBroker`と`ResultIngestionPort`のportへ依存し、chi
 
 ## §5 failure unionとexit規律
 
-`WorkerFailureCode`はL5 §6の16詳細codeをallowlistとし、未知例外はcause digest付き
+`WorkerFailureCodeV1`はL5 §6の16詳細codeをallowlistとし、未知例外はcause digest付き
 `HIL_WORKER_PROTOCOL_INVALID`へ境界変換する。既存system assertionの詳細tokenをrenameしない。
 
 CLIは成功0、contract/protocol failure 2、process/I/O failure 3、internal/reconciliation failure 4とする。stdoutは

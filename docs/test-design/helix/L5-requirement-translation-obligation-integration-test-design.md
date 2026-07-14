@@ -131,11 +131,28 @@ runnerは表とmanifestをcase IDで75/75 exact joinし、各caseを個別実行
 pointer CAS直前のfaultとreconcile replayを該当case manifestに明記し、期待外write 0を検証する。将来の実装test fileは未作成であり、L7実装receipt前にgreenを主張しない。
 fixture正本は`docs/test-design/helix/fixtures/requirement-translation-obligation-case.manifest`とする。
 
-integration runnerはL6の`RequirementExecutionApiV1 | RequirementExecutionPipelineV1`とmanifest 75 rowをexact-name joinし、上記8名以外、
-旧型名、暗黙alias、空APIを実行前に拒否する。commit/reconcile fixtureはstoreのcurrent snapshotと`AuthorityReceiptV1`集合を再読し、
+integration runnerはL6の`RequirementExecutionApiV1 | RequirementExecutionPipelineV1`とmanifest 75 rowをexact-name joinし、union外の名前、
+旧型名、暗黙alias、空APIを実行前に拒否する。commit/reconcile fixtureはcommit storeのcurrent snapshotと
+`CurrentRequirementAuthorityStoreV1`の`CurrentAuthoritySnapshotV1`を`TrustedNowV1`で独立再読し、
 template/requirement/obligation heads、projection head、active pointer revision、authority set digestを一つのCASへbindする。events、projection、
 active pointer、terminal receipt各境界のfault後はsame operation ID/digest/snapshotだけをreconcileし、stale・expired・superseded authority、
 CAS loser、異digest retryではevent/projection/pointer/receipt増分をすべて0とする。
-`HST-CASE-028-01` / `IT-RTO-033`は
-`translateRequirementInput+commitRequirementTranslationBundle+reconcileRequirementTranslationBundle`をexact pipelineとして実行し、
-custodied input→proposal→current revision→terminal receiptのdigest chainを一件ずつ検証する。
+`HST-CASE-028-01` / `IT-RTO-033`はpublic callable
+`executeRequirementTranslationNormalPipeline`をmanifest execution APIとして実行し、
+次の型付きstageをexact joinする。
+
+### §2.1 正常公開API→canonical U→IT exact join
+
+| 順序 | 公開API | canonical U | canonical IT | integration境界 |
+|---:|---|---|---|---|
+| 0 | `executeRequirementTranslationNormalPipeline` | `U-RTO-033` | `IT-RTO-033` | 6段compositionのowner callable |
+| 0a | `validateCurrentRequirementAuthorities` | `U-RTO-033` | `IT-RTO-033` | `TrustedNowV1`＋current authority snapshot再読 |
+| 1 | `translateRequirementInput` | `U-RTO-033` | `IT-RTO-033` | custodied input→proposal |
+| 2 | `validateRequirementAtoms` | `U-RTO-033` | `IT-RTO-033` | proposal全atom→validated atom set |
+| 3 | `buildRequirementTranslationCommitBundle` | `U-RTO-033` | `IT-RTO-033` | atom/authority/snapshot→exact bundle構築 |
+| 4 | `commitRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` | event/projection/pointer/receiptのCAS |
+| 5 | `reconcileRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` | fault時だけsame bundle replay |
+
+caller receiptの`status=current`を改変してもstore snapshotがstale/expired/supersededなら全write 0とし、逆にcaller statusだけを
+currentへ書き換えて合格させない。custodied input→proposal→validated atoms→bundle→terminal receiptのdigest chainを一件ずつ検証する。
+manifest execution APIとcase record SHA-256を同期し、expected receipt digestは不変とする。

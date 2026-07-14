@@ -160,11 +160,21 @@ terminal receiptを`HarnessDbPort`の一transactionでcommitする。DB transact
 0件に保ち、immutable staging evidenceから再試行できる。artifact publishとDBを偽のdistributed transactionとして
 説明せず、artifact-first、event/projection transaction、reconciliationの順序をreceiptへ残す。
 
-authoritative commitは単一`AcceptedWorkerCommitBundle`と`PythonWorkerCommitStore.commitAcceptedResult`だけが行う。
+accepted resultのauthoritative commitは`AcceptedWorkerCommitBundleV1`と
+`commitAcceptedPythonWorkerResult`だけが行う。
 bundleはoperation/idempotency/result digest、expected run/projection revision、accepted event、consumer event、projection mutation、
 terminal receipt、固定append順とwrite-set digestを持つ。append順は`accepted_event -> consumer_event -> projection -> terminal_receipt -> commit_receipt`で、
 両event間を含む各append直後faultは全rollbackする。成功receiptはbefore/after revision、event sequence、table別countを返し、
 同key同digest再送は元receiptと増分0、異digest/CAS不一致はauthoritative/terminal増分0とする。個別event/receipt store APIは公開しない。
+
+`U-PYWR-017`が検証するtransaction function setは次の3件に固定する。accepted commit、non-accepted terminal commit、
+terminal reconcileは固有mutationを持ち、一つの曖昧なcommit/reconcile APIへ畳み込まない。
+
+| exact function | bundle | 固有mutation | composition責務 |
+|---|---|---|---|
+| `commitAcceptedPythonWorkerResult` | `AcceptedWorkerCommitBundleV1` | `accepted_result_commit` | accepted/consumer event、projection、terminal/commit receiptを固定順commit |
+| `commitPythonWorkerTerminal` | `TerminalWorkerCommitBundleV1` | `non_accepted_terminal_commit` | failed/quarantined/cancelled/timed_outをauthoritative result 0でcommit |
+| `reconcilePythonWorkerTerminal` | `TerminalWorkerReconcileBundleV1` | `terminal_reconcile` | immutable evidenceと同一operation/digest/revisionだけを収束 |
 
 ## §6 失敗契約
 
@@ -190,6 +200,9 @@ terminal receipt、固定append順とwrite-set digestを持つ。append順は`ac
 上位assertionの`HIL_WORKER_PROTOCOL_INVALID`、`HIL_PYTHON_PLANE_BOUNDARY_INVALID`、
 `HIL_DB_WRITE_AUTHORITY_INVALID`、`HIL_IPC_ENVELOPE_INVALID`、`HIL_DB_PROJECTION_BOUNDARY_INVALID`は、上表の
 詳細causeを失わず集約する境界codeである。
+
+L6の`WorkerFailureCodeV1`は上表16件だけをexact allowlistとする。上位assertion codeは集約結果であり、
+`WorkerFailureV1.code`へ混在させない。
 
 ## §7 traceとfreeze条件
 

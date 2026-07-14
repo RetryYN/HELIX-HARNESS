@@ -40,6 +40,11 @@ projection rowやactive pointerを直接更新せず、Node commit storeがopera
 pointerを再生成する。author/auditor/promoterは別identityで、authority receiptのscope、issued/expiry、freshness evidence、active pointer
 revisionがcurrentでなければpromotionとfreezeを0件にする。
 
+authority receiptにcallerが記載した`status=current`はcurrentnessの証拠にしない。Nodeは`TrustedNowV1`と
+`CurrentRequirementAuthorityStoreV1`からcurrent authority snapshotを独立取得し、expiry、scope、supersession終端、authority event head、
+active pointer revisionを照合した`ValidatedAuthoritySetV1`だけを後段へ渡す。commit/reconcile直前にも同じstoreを再読し、snapshot digestが
+bundle build時からdriftした場合は全write 0とする。
+
 ## primary atomic assertion台帳
 
 supporting caseを混入させず、上下pairと左右V-pairを含む正本primary caseをrangeなしで結線する。
@@ -147,6 +152,13 @@ projection write失敗は`reconcile_pending` receiptをappendし、expected proj
 trusted clock freshness、scope、active pointer revision、supersession終端、template/requirement/obligation event heads、projection headを再読する。
 events→projection→active pointer→terminal receiptは同一operation/snapshotの単一CASで、partial current化を禁止する。reconcileはsame
 operation ID/digest/expected snapshotだけを再開し、CAS loser、stale/expired authority、異digest retryのauthoritative増分は0とする。
+
+正常翻訳は`translateRequirementInput`でproposalを作り、`validateRequirementAtoms`で全atomを原子検証し、
+`buildRequirementTranslationCommitBundle`でexact `RequirementTranslationCommitBundleV1`へ閉じてから、
+`commitRequirementTranslationBundle`を実行する。commit receiptが`reconcile_pending`の場合だけ
+`reconcileRequirementTranslationBundle`を同一bundleで実行する。public callable
+`executeRequirementTranslationNormalPipeline`は先頭の`validateCurrentRequirementAuthorities`を含む6段を所有する。
+この固定compositionからauthority取得、validate、buildをcommit内部の暗黙処理へ省略しない。
 
 75 primary caseはcase ID keyed executable manifestを必須とし、各recordへfixture ID/revision、実行API、fault injection位置、
 expected event/projection/pointer write set、case record SHA-256、実在fixture manifest artifact pathを保持する。共通fixture参照は許すがfield省略や

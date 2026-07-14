@@ -149,6 +149,10 @@ expected artifact head、expected DB headをreceiptに固定し、Node reconcile
 | `HSCAP_ARTIFACT_PUBLISH_FAILED` | fsync/rename/rollback失敗 | projection 0 |
 | `HSCAP_PROJECTION_FAILED` | DB transaction/rebuild失敗 | current pointer 0 |
 | `HSCAP_SNAPSHOT_STALE` | source/rule/schema/HEAD drift |旧receiptをstale化 |
+| `HSCAP_INTERNAL_ERROR` | 未知例外を境界でcause digest付き変換 | current pointer 0、internal failure |
+
+L6の`SourceCaptureFailureCodeV1`は上表13件だけをexact allowlistとする。`SourceCaptureFailureV1`は必ず
+このcodeとcause digestを保持し、unknown文字列や上表外codeを通さない。
 
 ## §6 freeze条件
 

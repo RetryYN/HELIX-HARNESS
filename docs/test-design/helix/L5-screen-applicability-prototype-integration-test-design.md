@@ -36,7 +36,7 @@ digest、CAS、stale lineageをassertし、LLM自由文や画像だけをevidenc
 | `IT-SAP-001` | HARNESS no-UI scopeでdecision/skip evidence transactionをcommitし、current plan route後にstage closureを別operationでcommit。両operationを再送 | skip transaction単独はgate 0。completion/skip authority exact set後の唯一stage closureだけgate 1、再送増分0 | gate 1、task/artifact 0、二段階receipt／`tests/screen-applicability.integration.test.ts` |
 | `IT-SAP-002` | decision欠落、deferred、自由文skip、両route欠落、静的wireframeを個別投入 | freeze/L3開始0、case別failure、partial receipt 0 | passed gate 0／`tests/screen-gate.integration.test.ts` |
 | `IT-SAP-003` | current no-UI後にGUI capabilityを追加しscope digestを変更 | skip/gate stale、prototype task一件、L2 re-entry event | stale 2、task 1／`tests/screen-reentry.integration.test.ts` |
-| `IT-SAP-004` | no-UIとUI scopeを同じruleで`evaluateScreenApplicability`し、UI decisionを`planPrototypeDiscovery`へcomposition | 前者skip、後者prototype_required＋prototype task exactly-one、route交差0。task欠落/重複は不合格 | decision各1、UI task 1／`tests/screen-applicability.integration.test.ts` |
+| `IT-SAP-004` | no-UIとUI raw scopeを`U-SAP-001 canonicalizeScreenScope`で正規化し、同じruleで`U-SAP-002 evaluateScreenApplicability`、UI decisionを`U-SAP-005 planPrototypeDiscovery`へexact composition | scope/capability/phase/public-surface欠落は`HST-CASE-012-08`でdecision/task 0。正常時は前者skip、後者prototype_required＋prototype task exactly-one、route交差0。task欠落/重複は不合格 | decision各1、UI task 1／`tests/screen-applicability.integration.test.ts` |
 | `IT-SAP-005` | screen/interaction/transition/仮dataから起動artifactをbuildし静的-only反例も投入 | executable manifest/trace、static-only ready 0 | ready 1、rejected 1／`tests/prototype-build.integration.test.ts` |
 | `IT-SAP-006` | 9状態全件と8状態欠落fixtureをbuild | exact setだけready、欠落名をfinding化 | ready 1、欠落版0／`tests/prototype-state.integration.test.ts` |
 | `IT-SAP-007` | user walkthroughを観測/delta/no_delta/rebuild付きで反復しreceipt欠落も注入 | version別receipt、agreementはhuman review後一件 | iteration N、agreement 1／`tests/prototype-walkthrough.integration.test.ts` |
@@ -78,7 +78,8 @@ HARNESSはcurrent構造skip、UI対象はagreement/backpropまで揃わなけれ
 stage先行、二重gate、stage/gate CASと各append faultを注入し、完全なcurrent
 plan route＋no-UI/UI completion全件が揃う場合だけ唯一authorityがstage receiptとgate receiptを同時commitする。
 
-`IT-SAP-004`は`U-SAP-002`をprimary状態遷移oracle、`U-SAP-005`をprototype task一件のsupporting evidence oracleとして
-同一fixtureへcompositionし、`HST-CASE-012-06`のexpected stateとexpected evidenceを分離したまま両方閉じる。
+`IT-SAP-004`は`U-SAP-001`をscope正規化の先頭supporting oracle、`U-SAP-002`をprimary状態遷移oracle、`U-SAP-005`を
+prototype task一件のsupporting evidence oracleとして同一fixtureへcompositionする。`HST-CASE-012-06`のexpected state/evidenceと
+`HST-CASE-012-08`のinvalid scope反例を分離したまま、3 APIのU→IT/HST reverse edgeを閉じる。
 
 `IT-SAP-001`はdetector provenance欠落/入替、`IT-SAP-005`/`IT-SAP-006`はcontent/build/startup receiptと4 traceの欠落、`IT-SAP-002`/`IT-SAP-009`はgate receipt内operation/commit/event bindingのswapを注入する。完全binding以外はgate/current/receipt増分0とする。

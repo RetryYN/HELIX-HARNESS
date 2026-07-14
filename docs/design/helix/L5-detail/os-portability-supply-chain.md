@@ -83,6 +83,10 @@ orchestrationにplatform branchが1件でもあれば`HIL_OS_ADAPTER_LEAK`とす
 | SQLite contention | busy期限、transaction rollback、再試行上限を固定 | driver/locking mode | timeoutなし待機、partial commit |
 | executable resolution | explicit pathと検証済みPATH lookupだけを許可 | executable suffix、PATH delimiter | shell暗黙dispatch、別binary採用 |
 
+L6 `OsContractFacetV1`のexact allowlistは表順に`path_separator`、`case_unicode`、`symlink`、
+`permission_executable`、`process_signal`、`atomic_file`、`file_lock`、`sqlite_contention`、`executable_resolution`の9値とする。
+表示名からの推測、自由文字列、複数facetのaggregate aliasを禁止する。
+
 Linuxでは全facetを実filesystem・実process・実SQLiteで実行する。macOS/Windowsも同じfixture IDを実行し、
 環境上実行不能なfacetを暗黙skipしない。実行不能はblocking resultとし、scope変更には上位要求の再承認を要する。
 

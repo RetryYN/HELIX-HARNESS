@@ -100,9 +100,9 @@ appendLayerLedgerRow(proposal: ObligationProposal, authority: AuthorityReceipt, 
 evaluateVerticalLedgerPair(parent: LayerRowSet, child: LayerRowSet, current: SnapshotDigestV1): Result<VerticalPairReceipt, LayerGateFailure[]>;
 evaluateHorizontalVPair(design: PairSide, verification: PairSide, execution: ExecutionReceipt): Result<HorizontalPairReceipt, LayerGateFailure[]>;
 planLedgerDesignRefactor(before: LedgerSnapshot, after: LedgerSnapshot, consumers: ConsumerOracle[], rollback: RollbackTarget): Result<DesignRefactorPlan, LayerGateFailure>;
-calculateFixedDesignProgress(request: DesignProgressCalculationRequestV1, stores: DesignProgressEvidenceStoresV1): Promise<Result<DesignProgressProjectionV1, LayerGateFailure[]>>;
-commitDesignProgress(bundle: DesignProgressCommitBundleV1, stores: DesignProgressEvidenceStoresV1, commitStore: DesignProgressCommitStoreV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
-reconcileDesignProgress(bundle: DesignProgressCommitBundleV1, stores: DesignProgressEvidenceStoresV1, commitStore: DesignProgressCommitStoreV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
+calculateFixedDesignProgress(request: DesignProgressCalculationRequestV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<Result<DesignProgressProjectionV1, LayerGateFailure[]>>;
+commitDesignProgress(bundle: DesignProgressCommitBundleV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
+reconcileDesignProgress(bundle: DesignProgressCommitBundleV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
 authorizeLayerStageTransition(current: StageStateV1, requested: StageStateV1, evidence: StageEvidenceV1): Result<StageTransitionReceiptV1, LayerGateFailure>;
 commitLayerLedgerOperation(bundle: LayerLedgerOperationBundleV1, store: LayerLedgerCommitStore): Promise<Result<LayerLedgerOperationReceiptV1, LayerGateFailure[]>>;
 reconcileLayerLedgerOperation(bundle: LayerLedgerOperationBundleV1, store: LayerLedgerCommitStore): Promise<Result<LayerLedgerOperationReceiptV1, LayerGateFailure[]>>;
@@ -192,7 +192,7 @@ type DesignProgressStageV1 = "artifact_created" | "semantic_closed" | "independe
 type QuartetArtifactKindV1 = "l5_design" | "l8_integration_test_design" | "l6_function_design" | "l7_unit_test_design";
 interface MeasurementProvenanceV1 { source_commit: string; source_tree_digest: string; measurement_command: string; measurement_tool: string; measurement_version: string; measured_at: string; output_digest: string }
 interface SnapshotDigestV1 { snapshot_digest: string; registry_revision: number; registry_digest: string; denominator_digest: string; source_commit: string; source_tree_digest: string; design_digest: string; event_head: string; measured_at: string }
-interface CanonicalOracleInventoryV1 { unit_ids: readonly string[]; unit_count: 465; unit_set_digest: string; integration_ids: readonly string[]; integration_count: 355; integration_set_digest: string; hst_ids: readonly string[]; hst_count: 411; hst_set_digest: string; quartet_count: 820; total_count: 1231; combined_set_digest: string }
+interface CanonicalOracleInventoryV1 { unit_ids: readonly string[]; unit_count: 467; unit_set_digest: string; integration_ids: readonly string[]; integration_count: 355; integration_set_digest: string; hst_ids: readonly string[]; hst_count: 411; hst_set_digest: string; quartet_count: 822; total_count: 1233; combined_set_digest: string }
 interface DenominatorArtifactInventoryV1 { slice_id: DesignSliceIdV1; kind: QuartetArtifactKindV1; path: string; content_digest: string }
 interface ApprovedDenominatorV1 {
   schema_version: "helix-design-progress-denominator.v1";
@@ -221,7 +221,7 @@ interface ApprovedDenominatorV1 {
 interface QuartetArtifactEvidenceV1 { kind: QuartetArtifactKindV1; path: string; content_digest: string; source_commit: string; source_tree_digest: string; design_digest: string }
 interface ArtifactQuartetReceiptV1 { receipt_id: string; receipt_digest: string; slice_id: DesignSliceIdV1; artifacts: readonly [QuartetArtifactEvidenceV1 & { kind: "l5_design" }, QuartetArtifactEvidenceV1 & { kind: "l8_integration_test_design" }, QuartetArtifactEvidenceV1 & { kind: "l6_function_design" }, QuartetArtifactEvidenceV1 & { kind: "l7_unit_test_design" }]; quartet_digest: string; snapshot_digest: string; status: "current" }
 interface IndependentAuditEvidenceV1 { receipt_id: string; receipt_digest: string; slice_id: DesignSliceIdV1; status: "current"; snapshot_digest: string; source_commit: string; source_tree_digest: string; design_digest: string; author_runtime: string; author_model: string; reviewer_runtime: string; reviewer_model: string; runtime_model_separated: true; quartet_digest: string; audit_policy_id: string; audit_policy_version: string; finding_ids: readonly string[]; finding_closure_receipt_ids: readonly string[]; open_finding_count: 0; audit_digest: string }
-interface PairFreezeEvidenceV1 { l5_l8_receipt_id: string; l5_l8_receipt_digest: string; l5_l8_status: "current"; l6_l7_receipt_id: string; l6_l7_receipt_digest: string; l6_l7_status: "current"; quartet_digest: string }
+interface PairFreezeEvidenceV1 { slice_id: DesignSliceIdV1; l5_l8_receipt_id: string; l5_l8_receipt_digest: string; l5_l8_status: "current"; l6_l7_receipt_id: string; l6_l7_receipt_digest: string; l6_l7_status: "current"; quartet_digest: string; snapshot: SnapshotDigestV1 }
 interface OracleExecutionEvidenceV1 { oracle_id: string; command: string; command_version: string; exit_code: 0; output_digest: string; executed_at: string; source_commit: string; source_tree_digest: string; design_digest: string; artifact_or_db_evidence_digest: string }
 interface ImplementationEvidenceV1 { receipt_id: string; receipt_digest: string; slice_id: DesignSliceIdV1; status: "current"; snapshot_digest: string; canonical_unit_count: number; canonical_integration_count: number; canonical_hst_count: number; canonical_unit_ids_digest: string; canonical_integration_ids_digest: string; canonical_hst_ids_digest: string; executions: readonly OracleExecutionEvidenceV1[]; supporting_excluded: readonly ["U-LLPG-S01", "IT-LLPG-S01"] }
 interface StageReceiptBaseV1<S extends DesignProgressStageV1> {
@@ -271,11 +271,16 @@ interface SemanticEvidenceStoreV1 { readCurrentSemanticClosure(sliceIds: readonl
 interface AuditEvidenceStoreV1 { readCurrentAudits(sliceIds: readonly DesignSliceIdV1[]): Promise<CurrentEvidenceReadV1<IndependentAuditEvidenceV1>> }
 interface FreezeEvidenceStoreV1 { readCurrentPairFreezes(sliceIds: readonly DesignSliceIdV1[]): Promise<CurrentEvidenceReadV1<PairFreezeEvidenceV1>> }
 interface ImplementationEvidenceStoreV1 { readCurrentImplementation(sliceIds: readonly DesignSliceIdV1[]): Promise<CurrentEvidenceReadV1<ImplementationEvidenceV1>> }
-interface DesignProgressEvidenceStoresV1 { denominator: DenominatorAuthorityStoreV1; artifacts: ArtifactEvidenceStoreV1; semantic: SemanticEvidenceStoreV1; audits: AuditEvidenceStoreV1; freezes: FreezeEvidenceStoreV1; implementation: ImplementationEvidenceStoreV1 }
+interface DesignProgressAuthorityInternalStoresV1 { denominator: DenominatorAuthorityStoreV1; artifacts: ArtifactEvidenceStoreV1; semantic: SemanticEvidenceStoreV1; audits: AuditEvidenceStoreV1; freezes: FreezeEvidenceStoreV1; implementation: ImplementationEvidenceStoreV1 }
 interface SupportingMetaOracleReceiptV1 { receipt_id: string; receipt_digest: string; oracle_ids: readonly ["U-LLPG-S01", "IT-LLPG-S01"]; status: "designed_not_implemented" | "implemented_verified"; canonical_denominator_included: false; snapshot_digest: string }
 interface DesignProgressCommitBundleV1 { schema_version: "helix-design-progress-commit.v1"; operation_id: string; operation_digest: string; expected_event_head: string; expected_registry_revision: number; expected_store_revision_vector: EvidenceStoreRevisionVectorV1; denominator_hint: Pick<ApprovedDenominatorV1, "denominator_id" | "denominator_digest">; requested_stage_receipt_ids: readonly string[]; expected_projection_digest: string; expected_source_commit: string; expected_source_tree_digest: string; expected_design_digest: string; stale_event: DesignProgressStaleEventV1 | null; supporting_meta_oracle_receipt: SupportingMetaOracleReceiptV1; append_order: readonly ["event", "projection", "terminal_receipt"]; write_set_digest: string }
-interface DesignProgressCommitReceiptV1 { schema_version: "helix-design-progress-commit-receipt.v1"; operation_id: string; operation_digest: string; before_head: string; after_head: string; committed_store_revision_vector: EvidenceStoreRevisionVectorV1; generated_event_digest: string; stale_event_digest: string | null; projection_digest: string; terminal_receipt_id: string; terminal_receipt_digest: string; supporting_meta_oracle_receipt_digest: string; write_set_digest: string; replay_digest: string }
-interface DesignProgressCommitStoreV1 { commitCurrent(bundle: DesignProgressCommitBundleV1, projection: DesignProgressProjectionV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>; reconcileCurrent(bundle: DesignProgressCommitBundleV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>; findTerminalReceipt(operationId: string): Promise<DesignProgressCommitReceiptV1 | null> }
+interface DesignProgressCommitReceiptV1 { schema_version: "helix-design-progress-commit-receipt.v1"; operation_id: string; operation_digest: string; before_head: string; after_head: string; committed_store_revision_vector: EvidenceStoreRevisionVectorV1; generated_event_digest: string; stale_event_digest: string | null; projection_digest: string; source_snapshot_digest: string; canonical_unit_set_digest: string; canonical_integration_set_digest: string; canonical_hst_set_digest: string; terminal_receipt_id: string; terminal_receipt_digest: string; supporting_meta_oracle_receipt_digest: string; write_set_digest: string; replay_digest: string }
+interface DesignProgressAtomicTransactionPortV1 {
+  calculateCurrent(request: DesignProgressCalculationRequestV1): Promise<Result<DesignProgressProjectionV1, LayerGateFailure[]>>;
+  readValidateAndCommit(bundle: DesignProgressCommitBundleV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
+  readValidateAndReconcile(bundle: DesignProgressCommitBundleV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
+  findTerminalReceipt(operationId: string): Promise<DesignProgressCommitReceiptV1 | null>;
+}
 interface DesignRefactorCandidateV1 { candidate_id: string; before_snapshot_digest: string; after_snapshot_digest: string; diff_digest: string; provenance_digest: string; consumer_set_digest: string; behavior_invariant_digest: string; pair_set_digest: string }
 interface DesignRefactorRerouteV1 { route: "redesign" | "retrofit"; reason_code: "HIL_LAYER_REFACTOR_REDESIGN_REQUIRED" | "HIL_LAYER_REFACTOR_RETROFIT_REQUIRED"; target_plan_id: string; target_revision: number; causality_digest: string }
 type LayerLedgerOperationPayloadV1 =
@@ -296,16 +301,17 @@ interface LayerLedgerExecutableCaseV1 { case_id: `HST-CASE-${string}`; fixture_i
 progress APIはstore current値とrequested値の一致、authority freshness、supersession終端、event head CASを必須とする。
 `calculateFixedDesignProgress`はhintをauthorityとして採用せず、6 evidence storeからcurrent authority、artifact、semantic、audit、freeze、
 implementation evidenceとcurrent snapshotを同じrevision/head vectorで読み直す。fixed exact 19 ID集合、76 artifact path/digest集合、
-canonical U 465/IT 355/HST 411のexact ID list/set digest、registry revision/digest、denominator digest、source commit/tree、design digestのいずれかが
+canonical U 467/IT 355/HST 411のexact ID list/set digest、registry revision/digest、denominator digest、source commit/tree、design digestのいずれかが
 不一致ならprojectionを返さない。各stageの分子はexact slice ID集合であり、重複、registry外ID、後段だけのID、別stage receiptの差し替えを
 拒否する。包含不変条件は`implementation_verified ⊆ pair_frozen ⊆ independent_audited ⊆ semantic_closed ⊆ artifact_created`
 である。ただし各率は独立軸のまま保持し、包含を理由に前段receiptを合成しない。
 
 `artifact_created`は各sliceのexact 4 kind、4 path、4 content digestとquartet digestを要求する。`semantic_closed`は同じquartet digestへ
 bindする。`independent_audited`はauthorとreviewerのruntime-model組が異なり、policy/version、finding全件、closure receipt、open 0を要求する。
-`pair_frozen`は同一quartet digestに対するcurrentなL5↔L8とL6↔L7の2 receiptを要求する。`implementation_verified`はslice配下の
+`pair_frozen`は同一slice ID、quartet digest、固定`SnapshotDigestV1`に対するcurrentなL5↔L8とL6↔L7の2 receiptを要求する。receiptごとに
+snapshot/registry/denominator/source commit/tree/design/event headをexact joinし、別sliceまたは別snapshot receiptの組合せを拒否する。`implementation_verified`はslice配下の
 全canonical U/IT/HSTをcommand、command version、exit 0、output digest、source commit/tree、design digest、artifact/DB evidenceへbindする。
-全19 slice完了時だけcanonical U 465、IT 355、HST 411とのexact集合一致を追加検査する。`U-LLPG-S01`と`IT-LLPG-S01`は
+全19 slice完了時だけcanonical U 467、IT 355、HST 411とのexact集合一致を追加検査する。`U-LLPG-S01`と`IT-LLPG-S01`は
 supporting存在inventoryであり、stage分母、canonical execution分母、完了集合へ混入させない。
 
 registry/denominator、artifact、audit policy/input、freeze receipt、implementation commit/test/command、source tree、design digestの変更は、
@@ -313,11 +319,37 @@ registry/denominator、artifact、audit policy/input、freeze receipt、implemen
 superseded authority、期限切れfreshness、receipt swap、missing receipt、commit/tree drift、axis mixingではauthoritative numerator増分を0とする。
 progress transactionはauthority、全stage receipt、projectionが同一denominator/snapshot/store revision-head vectorを持つ一つのpayloadであり、
 append順はevent→projection→terminal receipt、CAS loser、partial write、異digest retryでは増分0とする。execution件数は補助軸でありstage率へ加算しない。
-`commitDesignProgress`と`reconcileDesignProgress`は6 evidence storeをcommit直前にcurrent再読し、生成progress event、
-projection、terminal receiptを単一CAS/reconcile単位にする。caller提供projection、authorityの分裂、terminal receiptだけの先行を許可しない。
+`commitDesignProgress`と`reconcileDesignProgress`は`DesignProgressAtomicTransactionPortV1`だけをpublic write portとして受け取る。同port内部で
+6 evidence storeを同一transaction snapshotからcurrent再読し、計算後かつwrite直前に全revision/headを再検証して、生成progress event、
+projection、terminal receiptを単一CAS/reconcile単位にする。内部6 store、生成projection、低水準commit primitiveをcallerへ公開せず、
+`readValidateAndCommit`を経ない直書き経路を型境界から除外する。caller提供projection、authorityの分裂、terminal receiptだけの先行を許可しない。
 `LayerLedgerOperationPayloadV1`はprogress variantを型として持たない。generic `commitLayerLedgerOperation`からprogress event、stage receipt、
 projection、terminal receiptを書けず、`commitDesignProgress`だけを唯一writerとする。store revision/head vectorの一要素でも再読値と異なれば
 `HIL_LAYER_TRANSACTION_CAS_CONFLICT`でTOCTOUをfail-closeする。
+
+## §3 S01 digest正規preimage規約
+
+共通algorithm IDは`helix-llpg-s01-digest.v1`、hashはSHA-256、出力はlowercase hexへ`sha256:`を付ける。preimageはUTF-8、BOMなし、
+field/record separatorはLF (`0x0A`)、aggregate末尾LFなしとする。ID、path、digest、commit/treeはraw scalar bytesをquote/escapeせず使い、
+booleanはlowercase `true`/`false`とする。対象scalarにTAB、LF、CR、NUL、非ASCIIがあればfail-closeする。arrayはASCII byte昇順へsortし、
+重複を拒否する。manifest記載順やlocale sortはauthorityにしない。nested digestには`sha256:`付きの完全なdigest文字列を入れる。
+
+| digest | exact preimage record順 | sort／包含・除外 |
+|---|---|---|
+| `slice_set_digest` | `slice_ids[*]` | slice IDをsort。countやfield名は除外 |
+| `artifact_path_content_set_digest` | 各recordを`path<TAB>content_digest` | record全体をsort。`slice_id`、count、field名は除外。各`content_digest`はfile exact bytes（file末尾LFを含む）のSHA-256 |
+| `canonical_unit_set_digest` | `canonical_unit_ids[*]` | IDをsort。supporting `U-LLPG-S01`は除外 |
+| `canonical_integration_set_digest` | `canonical_integration_ids[*]` | IDをsort。supporting `IT-LLPG-S01`は除外 |
+| `canonical_hst_set_digest` | `canonical_hst_ids[*]` | IDをsort |
+| `canonical_combined_set_digest` | unit set digest、integration set digest、HST set digest | 左記3 recordの固定順。再sort禁止 |
+| `design_snapshot_digest` | source commit、source tree、slice set、artifact set、unit set、integration set、HST set digest | 左記7 recordの固定順。fixture revision等は除外 |
+| supporting receipt `receipt_digest` | receipt ID、fixed design snapshot digest、`U-LLPG-S01`、`IT-LLPG-S01`、status、included flag | 左記6 recordの固定順。oracle ID arrayを再sortせずexact 2順、flagは`false` |
+| `expected_terminal_receipt_digest` | fixture ID、design snapshot、slice set、artifact set、unit set、integration set、HST set、supporting receipt digest | 左記8 recordの固定順。terminal ID/status/algorithm名は除外 |
+
+依存順はleaf 5集合＋artifact content → combined/design → supporting receipt → terminal receiptとする。manifestの
+`digest_contract.preimages`に同じfield pointer、sort、separator、末尾LF、included/excluded fieldを構造化し、loaderはmanifest以外のsource/globを
+分母解決へ使わない。列挙arrayがcanonical sort済みでない、count不一致、duplicate、規約外scalar、nested digest差は
+`HIL_LAYER_MANIFEST_INVALID`としてcommit前に拒否する。
 
 52-case manifestの空field、重複/range、存在しないfixture manifest artifact pathを拒否する。実装test fileの存在は別のL7 receiptで検証する。
 parserは`none`または`+`区切りallowlistをstable順のexact setへ変換し、unknown/duplicate/順序違反を拒否する。
