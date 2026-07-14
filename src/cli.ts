@@ -1088,7 +1088,12 @@ function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): 
               },
             ];
           });
-        recordFeedbackSurfaces(inputs, lifecycleDeps);
+        const receipt = recordFeedbackSurfaces(inputs, lifecycleDeps);
+        if (!receipt.ok) {
+          process.stdout.write(
+            `HELIX feedback receipt pending: ${receipt.reason ?? "unknown"}; retry on the next SessionStart.\n`,
+          );
+        }
         projectFeedbackLifecycle(repoRoot, db);
       }
     } finally {

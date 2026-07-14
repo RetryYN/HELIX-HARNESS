@@ -552,20 +552,26 @@ export function recordFeedbackSurfaces(
       (fence) => {
         const raw = deps.readEvents();
         const events = validEvents(raw);
-        const existingByOperation = new Map(events.map((event) => [event.operationId, event]));
+        const existingByOperation = new Map<string, FeedbackLifecycleEventV1[]>();
+        for (const event of events) {
+          const existing = existingByOperation.get(event.operationId) ?? [];
+          existing.push(event);
+          existingByOperation.set(event.operationId, existing);
+        }
         const view = resolveFeedbackLifecycle(raw, deps.now());
         const diagnostics: string[] = [];
         const plannedSessions = new Set<string>();
         for (const input of canonicalInputs) {
           const existing = existingByOperation.get(input.operationId);
           if (existing) {
-            if (
-              existing.action !== "surface" ||
-              existing.sourceTable !== input.sourceTable ||
-              existing.sourceId !== input.sourceId ||
-              existing.sourceGeneration !== input.sourceGeneration ||
-              existing.sessionId !== input.sessionId
-            ) {
+            const matches =
+              existing.length === 1 &&
+              existing[0]?.action === "surface" &&
+              existing[0].sourceTable === input.sourceTable &&
+              existing[0].sourceId === input.sourceId &&
+              existing[0].sourceGeneration === input.sourceGeneration &&
+              existing[0].sessionId === input.sessionId;
+            if (!matches) {
               return {
                 ok: false,
                 appended: [],
