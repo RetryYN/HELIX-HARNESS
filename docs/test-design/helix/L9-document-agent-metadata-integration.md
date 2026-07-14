@@ -11,7 +11,7 @@ pair_artifact: docs/design/helix/
 
 # HELIX L9 結合テスト設計 — 文書 agent metadata 契約
 
-| IT-ID | Given | When | Then | test citation |
+| IT-ID | 前提 | 操作 | 期待結果 | テスト参照 |
 |---|---|---|---|---|
 | IT-AGMETA-001 | canonical fixture と scope manifest | repo scan を実行 | stable report が対象集合と metadata closure を返す。未付与を偽 green にしない | `tests/document-agent-metadata-integration.test.ts` |
 | IT-AGMETA-002 | 上流 ID の定義元移動または参照変異 fixture | CLI/doctor check を実行 | stale / missing `read_first` を non-zero finding として返す | `tests/document-agent-metadata-integration.test.ts` |

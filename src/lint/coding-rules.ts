@@ -22,9 +22,11 @@ export const SOURCE_MODULE_CATALOG: ModuleCatalog = {
 };
 
 const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
+  adapters: ["lint", "runtime", "schema", "vmodel"],
   assets: ["lint", "search", "state-db"],
   audit: ["lint", "runtime", "security", "setup", "shared"],
   cli: [
+    "adapters",
     "assets",
     "audit",
     "cli",
@@ -55,6 +57,7 @@ const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
   config: ["config"],
   context: ["task"],
   doctor: [
+    "adapters",
     "audit",
     "config",
     "composition",

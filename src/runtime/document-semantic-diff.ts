@@ -1,4 +1,3 @@
-import { parseCanonicalDocumentStructure } from "../export/document-export";
 import { parseDesignDeclarationDoc } from "../schema/design-declarations";
 import { canonicalJson, sha256Digest } from "./digest";
 
@@ -46,6 +45,28 @@ function stable(values: Iterable<string>): string[] {
   return [...new Set(values)].sort((a, b) => a.localeCompare(b));
 }
 
+function sectionDigests(content: string): Record<string, string> {
+  const sections = new Map<string, string[]>();
+  let anchor: string | null = null;
+  for (const line of content.split(/\r?\n/)) {
+    const heading = /^(#{1,6})\s+(.+)$/.exec(line);
+    if (heading) {
+      anchor = heading[2]
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+      sections.set(anchor, []);
+    } else if (anchor) sections.get(anchor)?.push(line);
+  }
+  return Object.fromEntries(
+    [...sections.entries()].map(([key, lines]) => [
+      key,
+      sha256Digest(lines.join("\n").replace(/\r\n/g, "\n").normalize("NFC")),
+    ]),
+  );
+}
+
 export function buildSemanticDocumentSnapshot(input: DocumentSnapshotInput[]): {
   documents: SemanticDocumentSnapshot[];
   findings: DocumentSemanticFinding[];
@@ -83,21 +104,11 @@ export function buildSemanticDocumentSnapshot(input: DocumentSnapshotInput[]): {
         detail: "typed declaration parse failed",
       });
     }
-    const projection = parseCanonicalDocumentStructure({
-      family: "design",
-      sourcePath: item.path,
-      content: item.content,
-    });
     documents.push({
       path: item.path,
       digest: sha256Digest(item.content.replace(/\r\n/g, "\n").normalize("NFC")),
       declarationIds: stable(parsed.declarations.map((declaration) => declaration.id)),
-      sectionDigests: Object.fromEntries(
-        projection.sections.map((section) => [
-          section.anchor,
-          sha256Digest(section.text.replace(/\r\n/g, "\n").normalize("NFC")),
-        ]),
-      ),
+      sectionDigests: sectionDigests(item.content),
       historyLines: item.content
         .split(/\r?\n/)
         .filter((line) => /改版|revision|version history/i.test(line))

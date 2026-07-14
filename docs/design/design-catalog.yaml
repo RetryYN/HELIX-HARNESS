@@ -72,6 +72,7 @@ items:
     artifact:
       - docs/design/helix/L3-requirements/pillar-functional-requirements.md
       - docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md
+      - docs/design/helix/L3-requirements/document-agent-metadata.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -79,6 +80,7 @@ items:
     status: done
     artifact:
       - docs/design/harness/L4-basic-design/architecture.md
+      - docs/design/helix/L4-basic-design/document-agent-metadata.md
   - id: detailed-design
     name: 詳細設計書
     category: detail
@@ -105,6 +107,10 @@ items:
       - docs/design/harness/L6-function-design/durability-boundaries.md
       - docs/design/harness/L5-detailed-design/source-boundary-architecture.md
       - docs/design/harness/L6-function-design/source-boundary-contracts.md
+      - docs/design/helix/L5-detail/document-agent-metadata-contract.md
+      - docs/design/helix/L5-detail/document-semantic-diff.md
+      - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
+      - docs/design/helix/L6-function-design/document-semantic-diff.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test

@@ -332,6 +332,7 @@ export function hasDbcTable(text: string): boolean {
 // A-120 I-2 / IMP-105: coding-rules / ddd-tdd-rules の import 境界判定を単一正本化する。
 // rule id は module-boundary / domain-boundary のまま分け、禁止 matrix は共有する。
 export const SOURCE_BOUNDARY_MODULES = [
+  "adapters",
   "assets",
   "audit",
   "cli",
@@ -377,6 +378,7 @@ export function isSourceBoundaryModule(value: string): value is SourceBoundaryMo
 }
 
 const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlySet<string>> = {
+  adapters: EMPTY_BOUNDARY,
   assets: EMPTY_BOUNDARY,
   audit: EMPTY_BOUNDARY,
   cli: EMPTY_BOUNDARY,

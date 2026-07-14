@@ -23,6 +23,8 @@ plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 `rebuildHarnessDb`のようにownerを跨ぐcompositionは`src/composition/`だけに配置する。`runtime`へ混在させず、
 composition owner以外のstate-db/vmodel/vscode間cross-owner edgeはpolicyでdenyする。
 
+`adapters` は外部入力を正規化する外縁 owner とし、`lint` / `runtime` / `schema` / `vmodel` への read-only 依存だけを許可する。`cli` と `doctor` は adapter を composition してよいが、adapter は CLI / doctor を逆参照しない。
+
 ## 2. DbC
 
 analyzerからwrite/child-process authorityへ直接到達できないことを全contractの共通不変条件とする。
