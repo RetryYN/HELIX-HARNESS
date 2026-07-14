@@ -335,4 +335,51 @@ describe("feedback lifecycle journal", () => {
     expect(reads).toBe(1);
     expect(locks).toBe(1);
   });
+
+  it("U-FLIFE-013: batch append途中失敗は同一operation retryで不足receiptへ収束する", () => {
+    const repo = root();
+    const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
+    const sources = [finding({ sourceId: "first" }), finding({ sourceId: "second" })];
+    expect(
+      reconcileFeedbackLifecycle(
+        { sources, mode: "partial", operationId: "surface-batch-recovery-seed" },
+        base,
+      ).ok,
+    ).toBe(true);
+    let appendCount = 0;
+    let failSecond = true;
+    const deps: FeedbackLifecycleDeps = {
+      ...base,
+      appendEvent: (value, fence) => {
+        appendCount += 1;
+        if (failSecond && appendCount === 2) throw new Error("simulated_second_append_failure");
+        base.appendEvent(value, fence);
+      },
+    };
+    const inputs = sources.map((source) => ({
+      sourceTable: "findings" as const,
+      sourceId: source.sourceId,
+      sourceGeneration: "1.1",
+      operationId: `surface-batch-recovery-${source.sourceId}`,
+      sessionId: "session-recovery",
+    }));
+    expect(recordFeedbackSurfaces(inputs, deps)).toMatchObject({
+      ok: false,
+      reason: "simulated_second_append_failure",
+    });
+
+    failSecond = false;
+    appendCount = 0;
+    const recovered = recordFeedbackSurfaces(inputs, deps);
+    expect(recovered).toMatchObject({ ok: true, recovered: false });
+    expect(recovered.appended.map((event) => event.sourceId)).toEqual(["second"]);
+    expect(
+      resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:first")
+        ?.surfacedSessions,
+    ).toContain("session-recovery");
+    expect(
+      resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:second")
+        ?.surfacedSessions,
+    ).toContain("session-recovery");
+  });
 });
