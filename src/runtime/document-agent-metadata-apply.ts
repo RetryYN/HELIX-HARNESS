@@ -84,7 +84,9 @@ export function renderDocumentAgentMetadata(
   const rendered = renderMetadata(metadata);
   const body = frontmatter[1];
   const existing = /^document_agent:\r?\n(?:(?:[ \t]+[^\r\n]*|)\r?\n)*/m;
-  const nextBody = existing.test(body) ? body.replace(existing, rendered) : `${rendered}\n${body}`;
+  const nextBody = existing.test(body)
+    ? body.replace(existing, `${rendered}\n`)
+    : `${rendered}\n${body}`;
   return `${content.slice(0, frontmatter.index)}---\n${nextBody}\n---${content.slice(
     (frontmatter.index ?? 0) + frontmatter[0].length,
   )}`;

@@ -98,6 +98,11 @@ describe("document agent metadata Phase B apply", () => {
     expect(rendered).toContain("document_agent:\n  defines:\n    - A-001");
     expect(rendered).toContain("title: テスト\nspec: {}");
     expect(rendered).toContain("# 本文");
+    const replaced = renderDocumentAgentMetadata(
+      sourceText.replace("spec: {}", "document_agent:\n  defines: []\nspec: {}"),
+      metadata,
+    );
+    expect(replaced).toContain("required_gates:\n    - design-declarations\nspec: {}");
   });
 
   it("U-AGMETA-011: port拒否時はwrite後のsuccessを返さない", () => {
