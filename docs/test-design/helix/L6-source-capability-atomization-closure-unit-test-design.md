@@ -58,8 +58,8 @@ requirements:
 | `U-SATOM-030` | missing/stale target | `HAC-HIL-09b`, `HAC-HIL-09c` | `HST-CASE-011-06`, `HST-CASE-011-02` | pointer別にtarget不在は`HIL_SOURCE_ATOM_ORPHAN`、snapshot driftは`HIL_SOURCE_SNAPSHOT_STALE`。edge詳細は`HIL_SOURCE_EDGE_STALE` |
 | `U-SATOM-031` | denominator | `HAC-HIL-09b` | atomization内部oracle | 分母混同を`HIL_ATOMIC_COVERAGE_DENOMINATOR_INVALID`で拒否 |
 | `U-SATOM-032` | invalidation | `HAC-HIL-09c` | atomization内部oracle | extractor等のdriftを`HIL_SOURCE_ATOM_EXTRACTOR_STALE`へ遷移 |
-| `U-SATOM-033` | Node projection commit | `HAC-HIL-09b` | atomization内部oracle | atom/decision/edge/event/projection payload、exact write-set、operation/digest/expected headsを検査し、欠落/余剰payloadと各step faultはcommit 0 |
-| `U-SATOM-034` | reconcile/activate | `HAC-HIL-09b`, `HAC-HIL-09c` | atomization内部oracle | 同一bundle replayだけを許可し、projection検証前active化、暗黙rewrite、順序違反を`HIL_SOURCE_ATOMIZATION_INTERNAL_ERROR`で拒否 |
+| `U-SATOM-033` | immutable commit artifact／projection | `HAC-HIL-09b` | atomization内部oracle | commit artifactをDB前にsealし、`snapshot-initial`はgenesis(null)またはprior-snapshot(exact4 stale lineage＋non-null digest)でsupersession 0／新4行supersedes null、`same-snapshot-revision`はlineage nullで旧current4をsupersession 4／新4行が旧IDをexact参照する。bundle/artifact/receiptのmode/count/lineage nullability、snapshot/activation swap、row omit/extra、shared lifecycle append faultはcommit 0 |
+| `U-SATOM-034` | artifact reconcile／rebuild | `HAC-HIL-09b`, `HAC-HIL-09c` | atomization内部oracle | 同一verified artifact＋shared lifecycle entry replayだけを許可し、S1 activation→S1 initial→S1 revision→S2 activation→S2 initial→S2 revision後DB wipeを`listByLifecycleOrder`でexact復元する。entryなしDB current、別fork、per-snapshot grouped replay、artifact欠落/tamper/head fork、dependency index CAS、暗黙rewriteを`HIL_SOURCE_ATOMIZATION_INTERNAL_ERROR`で拒否 |
 
 ### complete public API→U→IT逆引き
 

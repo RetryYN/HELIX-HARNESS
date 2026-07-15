@@ -10,7 +10,7 @@ requirements:
   - HIL-FR-21
   - HIL-FR-22
 contract: docs/governance/infinity-loop-source-atomization-contract.md
-extractor_version: helix-source-capture.v1
+extractor_version: helix-source-capture.v2-design
 classification_version: helix-source-entry-classification.v1
 captured_at: 2026-07-14T16:48:41Z
 ---
@@ -19,9 +19,10 @@ captured_at: 2026-07-14T16:48:41Z
 
 ## §0 目的と判定境界
 
-本書は、Infinity Loop要件で参照する3つのsource familyについて、source root、固定revision、entry集合、
-再生成command、digest、分類manifest、除外境界を固定する。全pathを本文へ転記せず、同じ母集団を機械的に
-再生成できる情報を正本とする。
+本書は、Infinity Loop要件で参照するZIP、前身Git repository exact 2件、現行HELIXについて、source root、
+authority receipt、entry集合、再生成command、digest、分類manifest、除外境界を固定する。全pathを本文へ転記せず、
+同じ母集団を機械的に再生成できる情報を正本とする。前身Gitはremoteの可変件数を本文へ固定せず、current
+`GitRefAuthorityReceiptV1`のref/content/edge denominatorとdigestだけをauthorityにする。
 
 本書が証明するのは**固定したentry集合の閉包**と**全entryへの構造分類の付与**までである。file、branch、
 module群をbehaviorと同一視しない。`behavior_atom_closed`は3 familyすべて`false`であり、
@@ -32,12 +33,12 @@ module群をbehaviorと同一視しない。`behavior_atom_closed`は3 familyす
 
 | field | 固定値・規則 |
 |---|---|
-| `extractor_version` | `helix-source-capture.v1` |
+| `extractor_version` | `helix-source-capture.v2-design`（実装receipt未生成） |
 | `classification_version` | `helix-source-entry-classification.v1` |
 | text encoding | UTF-8、BOMなし、LF |
 | path order | `LC_ALL=C`のbyte順。ZIP分類だけはJSONLの`source_ref_id,path`順 |
 | digest | SHA-256、小文字hex。machine fieldでは`sha256:` prefixを付ける |
-| current authority | ZIP bytes、Git commit/tree、現行HELIX commit済みHEAD |
+| current authority | ZIP bytes、前身exact 2 repoのsealed Git authority receipts、現行HELIX commit済みHEAD |
 | foreign state | source entryへ混入させず、別観測としてのみ扱う |
 
 ## §1 family要約receipt
@@ -45,19 +46,14 @@ module群をbehaviorと同一視しない。`behavior_atom_closed`は3 familyす
 | family ID | source root | 主count | entry/set digest | 分類manifest digest | entry集合閉包 | behavior atom閉包 |
 |---|---|---:|---|---|---|---|
 | `ZIP-HYBRID-V1` | `repo://ハイブリッド設計ドキュメントv1-fixed.zip` | 703 entries | `sha256:77c6d07b8db1ce6b15a878ebc7ec47ee167f190e24b257ce967ebf29ee2b3fa2` | `sha256:ae0d429a339edf070f9d5ae0a790a051a7cdd140b58a5fa7a4f0fe54b993cd87` | `true` | `false` |
-| `UT-ALL-REMOTE` | `git+https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git` | 5 refs | `sha256:db6c53889752df15487ae64cadab8794dcfdd1c2cc9b7cbe929122500d9fd432` | `sha256:1eb4b1e3e4d086aa1d713b100e013c8970a18a7ac2f7bfa68fb7b3515a43a1cf` | `true`（固定5 ref） | `false` |
+| `PREDECESSOR-UT-GIT` | `git+https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git` | receipt-derived | `pending:git-authority-receipt` | `pending:offline-capture` | `false`（current receipt未生成） | `false` |
+| `LEGACY-HELIX-GIT` | `git+https://github.com/RetryYN/ai-dev-kit-vscode.git` | receipt-derived | `pending:git-authority-receipt` | `pending:offline-capture` | `false`（current receipt未生成） | `false` |
 | `CURRENT-HELIX` | `repo://HELIX-HARNESS@9c8d09c224c5fc506eb314933519981dadfea3e9` | 1,931 full-tree path件数 | `sha256:b9708d6c5a7e85607ec7f481841f50f711f9f6e8fc7fad052d6a71a46d4fec09` | `sha256:d7d54c8bf4a7c1bb15fdbdc85e74a36d61eb33e6c0046a31598cc9974f4a3256` | `true`（full tree） | `false` |
 
-family要約を`family_id<TAB>source_root<TAB>primary_count<TAB>entry_digest<TAB>classification_digest<TAB>extractor_version<LF>`
-としてbyte順に並べたdigestは
-`sha256:a36c7884260dbb86573748a040b7a23ea2463ad612dadc163e664b8abaecfa4b`である。
-`primary_count`はsuffixを含まないJSON integer（703、5、1931）であり、表の`entries/refs/path件数`は表示labelとして
-digest入力へ含めない。
-このdigestはsource familyの同一性確認用であり、behavior coverage receiptではない。
-
-seed captureのcanonical entry分母はZIP 703＋前身main 1,784＋branch overlay 52＋CURRENT full tree 1,931＝
-4,470件である。5 ref full-tree 8,935行はref完全性証拠であり、分母へ重複算入しない。4,470件が分類済みでも
-`behavior_atom_closed=false`であり、atomic behavior coverageは0のままとする。
+v2 family要約digestは、exact 2 Git authority receiptが未生成のため`pending`である。v1のfamily digest、
+4,470 entry、固定5 ref、full-tree 8,935行は2026-07-14時点のhistorical seedとして§3.4へ隔離し、current manifest、
+acceptance denominator、coverage receiptへ再利用しない。v2ではref denominator、unique content denominator、全ref-entry
+edge denominatorを別々にdigest化し、exact 2 receipt setと結合する。いずれが閉じても`behavior_atom_closed=false`である。
 
 ## §2 ZIP source群
 
@@ -182,12 +178,38 @@ PY
 ZIP entryは**除外0件**である。`build/`をsource集合から落とさず、generated候補として分類した上で
 fixture atomへ分離する。archive外の展開directory、OS metadata、inspection用一時pathはsource rootに含めない。
 
-## §3 旧UT Git source family
+## §3 前身2 repository Git authority
 
-### §3.1 ref集合と固定値
+### §3.0 current authority契約
 
-source rootは`git+https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git`とする。
-`origin/HEAD`は`origin/main`と同一commitのsymbolic aliasなのでsource ref分母から除外する。
+required repository setは次のexact 2件である。
+
+| repository ID | canonical owner/repo | authority status | current receipt |
+|---|---|---|---|
+| `predecessor-ut` | `unison-ai-product/UT-TDD_AGENT-HARNESS` | **BLOCKED** | `pending:git-authority-receipt` |
+| `legacy-helix` | `RetryYN/ai-dev-kit-vscode` | **BLOCKED** | `pending:git-authority-receipt` |
+
+namespace policyは`refs/heads/*`、`refs/tags/*`、`refs/pull/*/{head,merge}`をexact対象とする。symbolic `HEAD`と
+annotated tagの`^{}` pseudo-lineはref denominatorへ数えず、symbolic target/tag peel evidenceとして保存する。
+default cloneやheads-only refspecはauthority取得に使用しない。
+
+各repositoryは、advertisement A → advertised exact OIDのquarantine materialize → object/type/tree/reachability/tag peel検証
+→ advertisement B → A/B canonical refname＋OID set完全一致 → sealed bundle → trusted store CASの順でcurrent化する。
+receiptはrepository identity、namespace policy version/digest、A/B raw/canonical digest、kind別ref count、ref set digest、
+sealed mirror digest、unique object/tree/content count、全ref-entry edge count/digest、取得器version、observed/fresh-until、
+authority revision/headを持つ。remote件数はreceiptの観測値であり本設計へ固定しない。
+
+captureはcurrent receiptとsealed local mirrorだけを読み、network/fetch/checkoutを行わない。exact 2 receiptの一方でも
+missing/stale/driftedならmanifest statusはBLOCKED、capture planは0である。Git authority greenでも
+`behavior_atom_closed=false`を維持する。
+
+### §3.1 historical seedの固定値（current authorityではない）
+
+#### §3.1.1 ref集合と固定値
+
+以下は2026-07-14監査の再現用historical seedであり、current ref集合、active denominator、pair-freeze証拠にしない。
+source rootは`git+https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git`だった。
+`origin/HEAD`は`origin/main`と同一commitのsymbolic aliasとして旧ref分母から除外していた。
 
 | remote ref | commit | tree | file数 | entry set SHA-256 | main比behind/ahead | 固有delta file数 | 固有binary diff SHA-256 |
 |---|---|---|---:|---|---:|---:|---|
@@ -203,10 +225,10 @@ source rootは`git+https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git
 `sha256:1eb4b1e3e4d086aa1d713b100e013c8970a18a7ac2f7bfa68fb7b3515a43a1cf`である。
 同一path/blobが複数refに存在してもentry分類では落とさず、behavior atom段階でsource spanを束ねる。
 
-### §3.2 正規再生成command
+### §3.2 historical seed再現command（current authority生成禁止）
 
-`UT_INSPECTION_ROOT`はread-only inspection cloneを指す。remoteの現在状態を取り直す場合は、別receiptに
-fetch時刻とfetch command exitを記録してから以下を実行する。
+`UT_INSPECTION_ROOT`はhistorical inspection cloneを指す。以下のheads-only commandはpull/tagsを欠落させるため、
+current authority生成に使用してはならない。旧digestの調査再現だけに限定する。
 
 ```bash
 git -C "$UT_INSPECTION_ROOT" fetch --prune origin \
@@ -248,17 +270,23 @@ git -C "$UT_INSPECTION_ROOT" ls-tree -r -z --name-only origin/main |
   tr -cd '\n\t' | wc -c
 ```
 
-### §3.3 除外、unique、foreign方針
+### §3.3 historical seedの除外、unique、foreign方針
 
 - `origin/HEAD`はaliasとしてref分母から除外するが、alias target一致はmanifestへ記録する。
 - local branch、inspection cloneのindex/worktree、reflog、object databaseの未到達objectはsource entryに含めない。
-- 観測cloneはtag 0件、working tree change 0件だった。tagが追加された場合は自動採用せずsource scope reviewを行う。
+- 観測cloneは当時tag 0件、working tree change 0件だった。この事実をcurrent namespace policyへ流用しない。
 - main共通entryをbranchごとにbehavior数へ重複算入しない。ただし全5 treeのentry set digestは個別に保持する。
 - unique deltaは`merge-base..branch`の探索面であり、file数をbehavior数へ変換しない。
 - `work/l7-421-test-hygiene-live-tree-fence`はmainのancestor、ahead=0、unique delta=0である。aggregate absorbedを
   示せるが、他branchの子atomを代替しない。
-- 現観測にはfetch完了timestampの永続receiptがない。固定commit/treeのentry閉包は`true`だが、remote ref集合の
-  鮮度は`unproven`とし、最終Source Coverage Gate前に再fetchする。
+- この観測にはfetch完了timestampの永続receiptがなく、remote ref集合の鮮度は`stale`である。v2 current authorityへ
+  昇格せず、§3.0のA/B取得から作り直す。
+
+### §3.4 v1 historical denominator
+
+旧family digest `sha256:a36c7884260dbb86573748a040b7a23ea2463ad612dadc163e664b8abaecfa4b`、
+旧entry分母4,470、旧固定5 ref、旧ref-entry 8,935行はgap比較専用である。`historical_seed=true`、
+`authority_reuse_allowed=false`、`coverage_reuse_allowed=false`として扱い、v2 manifest digestへ含めない。
 
 ## §4 現行HELIX source family
 
@@ -357,16 +385,17 @@ baselineではない。
 | family | source entry閉包 | 構造分類閉包 | remote/current鮮度 | behavior atom閉包 | Source Coverage freeze |
 |---|---|---|---|---|---|
 | ZIP | PASS 703/703 | PASS 703/703 | archive digest固定 | **FAIL** | FAIL |
-| 旧UT | PASS 固定5 tree | PASS 8,935/8,935 ref-entry | fetch receipt未永続化 | **FAIL** | FAIL |
+| predecessor UT Git | **BLOCKED** receipt未生成 | **BLOCKED** offline capture未実行 | current A/B receiptなし | **FAIL** | FAIL |
+| legacy HELIX Git | **BLOCKED** receipt未生成 | **BLOCKED** offline capture未実行 | current A/B receiptなし | **FAIL** | FAIL |
 | 現行HELIX | PASS full-tree 1,931/1,931 | PASS 1,931/1,931 | commit/tree固定 | **FAIL** | FAIL |
 
 次のいずれかで本manifestをstale化する。
 
 1. ZIP archive SHA、entry count、entry set digest、classification digestの変化。
-2. remote refの増減、commit/tree移動、fetch後のref set digest変化。
+2. required repository identity、namespace policy、advertisement A/B、ref set、sealed mirror、authority receipt setの変化。
 3. 現行HELIX baseline commit/tree、full-tree partition rule、count/digestの変更。
 4. extractor/classification version、path ordering、serialization規則の変更。
-5. excluded groupを本scopeへ昇格、または別manifestへ移管するrouting変更。
+5. exact 2 repository setの増減、excluded groupを本scopeへ昇格、または別manifestへ移管するrouting変更。
 
 entry set greenはAtomizer開始条件であり、pair-freeze条件ではない。次段では本manifest digestへbindして
 source spanとbehavior atomを生成し、aggregate parent算入0、generated fixture orphan 0、pending 0、

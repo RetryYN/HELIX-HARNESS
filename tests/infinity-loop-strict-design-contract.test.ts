@@ -399,8 +399,8 @@ describe("Infinity Loop strict design contract", () => {
         }
       }
     }
-    expect(currentUnitIds.size).toBe(469);
-    expect(currentIntegrationIds.size).toBe(357);
+    expect(currentUnitIds.size).toBe(475);
+    expect(currentIntegrationIds.size).toBe(360);
     expect(
       [...currentUnitIds].filter(
         (id) => !manifest.canonical_unit_ids.includes(id),
@@ -778,6 +778,246 @@ describe("Infinity Loop strict design contract", () => {
     );
     expect(integrationDesign).toContain(
       "新terminal writer epoch/lease/fenceとterminal approval",
+    );
+  });
+
+  it("HDS-HIL-09Aのexact-2 all-ref authority契約を固定する", () => {
+    const l1Path =
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md";
+    const l1 = readFileSync(l1Path, "utf8");
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "utf8",
+    );
+    const l5 = readFileSync(
+      "docs/design/helix/L5-detail/source-capability-capture.md",
+      "utf8",
+    );
+    const l6 = readFileSync(
+      "docs/design/helix/L6-function-design/source-capability-capture.md",
+      "utf8",
+    );
+    const unit = readFileSync(
+      "docs/test-design/helix/L6-source-capability-capture-unit-test-design.md",
+      "utf8",
+    );
+    const integration = readFileSync(
+      "docs/test-design/helix/L5-source-capability-capture-integration-test-design.md",
+      "utf8",
+    );
+    const governance = readFileSync(
+      "docs/governance/infinity-loop-source-snapshot-manifest.md",
+      "utf8",
+    );
+    const atomizationL6 = readFileSync(
+      "docs/design/helix/L6-function-design/source-capability-atomization-closure.md",
+      "utf8",
+    );
+    const atomizationUnit = readFileSync(
+      "docs/test-design/helix/L6-source-capability-atomization-closure-unit-test-design.md",
+      "utf8",
+    );
+    const atomizationIntegration = readFileSync(
+      "docs/test-design/helix/L5-source-capability-atomization-closure-integration-test-design.md",
+      "utf8",
+    );
+
+    const apiSection = l6.split("### §1.1", 1)[0] ?? "";
+    const apiNames = [
+      ...apiSection.matchAll(/^\| `([A-Za-z][A-Za-z0-9]+)` \|/gm),
+    ].map((match) => match[1] ?? "");
+    expect(apiNames).toEqual([
+      "canonicalizeSourceCaptureRequest",
+      "deriveSourceSnapshotId",
+      "probeSourceAdapter",
+      "enumerateSourceEntries",
+      "deriveGitOverlay",
+      "observeAdvertisedGitRefs",
+      "materializeAndVerifyGitRefClosure",
+      "commitGitRefAuthority",
+      "classifySourceEntry",
+      "renderSourceCaptureBundle",
+      "planSourceCapture",
+      "commitSourceCapture",
+      "verifySourceCapture",
+      "activateSourceSnapshot",
+      "markSourceSnapshotStale",
+      "resolveSourceCaptureAuthority",
+      "reconcileSourceCaptureProjection",
+    ]);
+
+    const exactIds = (content: string, pattern: RegExp) =>
+      [...new Set([...content.matchAll(pattern)].map((match) => match[0]))].sort();
+    expect(exactIds(unit, /\bU-SCAP-[0-9]{3}\b/g)).toEqual(
+      Array.from(
+        { length: 31 },
+        (_, index) => `U-SCAP-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+    expect(exactIds(integration, /\bIT-SCAP-[0-9]{3}\b/g)).toEqual(
+      Array.from(
+        { length: 13 },
+        (_, index) => `IT-SCAP-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+
+    const requiredAcrossLayers = [
+      "unison-ai-product/UT-TDD_AGENT-HARNESS",
+      "RetryYN/ai-dev-kit-vscode",
+    ];
+    for (const content of [l1, l3, l5, l6, governance]) {
+      for (const required of requiredAcrossLayers) {
+        expect(content).toContain(required);
+      }
+    }
+    for (const namespace of [
+      "refs/heads/*",
+      "refs/tags/*",
+      "refs/pull/*/{head,merge}",
+    ]) {
+      expect(l1).toContain(namespace);
+      expect(governance).toContain(namespace);
+    }
+
+    const requiredTypedEvidence = [
+      "GitAdvertisementExcludedEvidenceV1",
+      "GitAdvertisementEqualityReceiptV1",
+      "GitQuarantineMaterializationReceiptV1",
+      "GitVerifiedClosureManifestV1",
+      "GitSealReceiptV1",
+      "GitAuthorityMembershipProofV1",
+      "GitAuthorityStalePropagationReceiptV1",
+      "GitAuthorityDependencyStaleTransitionV1",
+      "GitAuthorityDependencyRegistrationV1",
+      "GitAuthorityDependencyRetirementV1",
+      "SourceSnapshotActivationArtifactV1",
+      "SourceActivationArtifactStoreV1",
+      "expected_retirement_count: 0 | 2 | 6",
+      "AtomizationCascadeStaleTransitionV1",
+      "CoverageCascadeStaleTransitionV1",
+      "expected_consumer_transition_count: 0 | 2",
+      "SourceGenerationLifecycleArtifactStoreV1",
+      '"consumer_stale_projection"',
+      "stale_event: AtomizationEventV1",
+      "stale_projection: AtomizationProjectionV1",
+      "after_active_pointer: AtomizationActivePointerV1",
+      "stale_receipt_revision: AtomizationCoverageStatusRevisionV1",
+      "after_current_pointer: AtomizationCoverageCurrentPointerV1",
+      '"source_generation_lifecycle_append"',
+      "lifecycle_entry_digest",
+      "git_authority_dependencies",
+      "SealedGitMirrorReadPortV1",
+      'network_capability: "absent"',
+      "unique_entry_set_digest",
+      "SourceDenominatorSetV1",
+      "SourceRefEntryEdgeV1",
+      'exact_denominator_match: true',
+      '"HSCAP_SEALED_BUNDLE_TAMPERED"',
+      '"HSCAP_OFFLINE_NETWORK_ATTEMPT"',
+      '"HIL_PYTHON_AUTHORITY_BYPASS"',
+    ];
+    expect(requiredTypedEvidence.filter((value) => !l6.includes(value))).toEqual(
+      [],
+    );
+    expect(
+      requiredTypedEvidence.filter((value) =>
+        !l6.replaceAll("GitSealReceiptV1", "GitSealReceiptRemovedV1").includes(value),
+      ),
+    ).toEqual(["GitSealReceiptV1"]);
+    for (const contract of [
+      "AtomizationAuthorityDependencyRegistrationV1",
+      "AtomizationAuthorityDependencySupersessionV1",
+      "AtomizationCommitArtifactV1",
+      "AtomizationCommitArtifactReceiptV1",
+      "AtomizationCommitArtifactStoreV1",
+      "listBySnapshotRevisionOrder",
+      "PriorSnapshotStaleLineageV1",
+      "SnapshotInitialAtomizationCommitBundleV1",
+      "SameSnapshotRevisionAtomizationCommitBundleV1",
+      "GenesisSnapshotInitialAtomizationCommitArtifactV1",
+      "PriorSnapshotInitialAtomizationCommitArtifactV1",
+      "SameSnapshotRevisionAtomizationCommitArtifactV1",
+      "GenesisSnapshotInitialAtomizationCommitReceiptV1",
+      "PriorSnapshotInitialAtomizationCommitReceiptV1",
+      "SameSnapshotRevisionAtomizationCommitReceiptV1",
+      'generation_mode: "snapshot-initial"',
+      'generation_mode: "same-snapshot-revision"',
+      'lineage_mode: "genesis"',
+      'lineage_mode: "prior-snapshot"',
+      "SourceGenerationLifecycleArtifactStoreV1",
+      '"source_generation_lifecycle_append"',
+      "lifecycle_entry_digest",
+      "listByLifecycleOrder",
+      "authority_dependency_registrations: readonly [SnapshotInitialAtomizationRegistrationV1",
+      "authority_dependency_registrations: readonly [SameSnapshotRevisionAtomizationRegistrationV1",
+      "expected_supersession_count: 0",
+      "expected_supersession_count: 4",
+      '"authority_dependency_registration"',
+      "git_authority_receipt_set_digest",
+    ]) {
+      expect(atomizationL6).toContain(contract);
+    }
+    expect(atomizationL6).not.toContain("AtomizationSourceGenerationLifecycle");
+    for (const sharedDeclaration of [
+      "SourceGenerationLifecycleFailureV1",
+      "SourceGenerationLifecycleResultV1",
+      "SourceGenerationLifecycleEntryV1",
+      "SourceGenerationLifecycleArtifactStoreV1",
+    ]) {
+      const captureLine = l6
+        .split("\n")
+        .find((line) =>
+          new RegExp(`^(?:interface|type) ${sharedDeclaration}\\b`).test(line),
+        );
+      const atomizationLine = atomizationL6
+        .split("\n")
+        .find((line) =>
+          new RegExp(`^(?:interface|type) ${sharedDeclaration}\\b`).test(line),
+        );
+      expect(atomizationLine).toBe(captureLine);
+    }
+    for (const contract of [
+      "S1 activation→S1 initial→S1 revision→S2 activation→S2 initial→S2 revision後DB wipe",
+      "entryなしDB current",
+      "per-snapshot grouped replay",
+    ]) {
+      expect(atomizationUnit).toContain(contract);
+    }
+    for (const contract of [
+      "S1 activation→S1 genesis initial(0/null)→S1 revision(4)→S2 activation(S1 latest4 stale)→S2 prior-snapshot initial(0＋non-null stale lineage)→S2 revision(4/null)",
+      "S1 rev1 superseded、S1 rev2 stale、S2 rev1 superseded、S2 rev2だけexact4 current",
+      "index/lifecycle/journal/projection/pointer/receipt",
+      "rebuild前後exact",
+    ]) {
+      expect(atomizationIntegration).toContain(contract);
+    }
+
+    const requirementLedger = readFileSync(
+      "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "utf8",
+    );
+    for (const [requirementId, lineNumber] of [
+      ["HIL-BR-14", 59],
+      ["HIL-FR-16", 91],
+      ["HIL-FR-21", 96],
+    ] as const) {
+      const sourceLine = l1.split("\n")[lineNumber - 1] ?? "";
+      const text = sourceLine.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? "";
+      const ledgerLine = requirementLedger
+        .split("\n")
+        .find((line) => line.startsWith(`| ${requirementId} |`));
+      const ledgerDigest = ledgerLine?.match(/`(sha256:[0-9a-f]{64})`/)?.[1];
+      expect(ledgerDigest).toBe(sha256(text));
+      expect(ledgerLine?.split("|")[2]?.trim()).toBe("2");
+    }
+    expect(l6).toContain(
+      "| `HST-CASE-011-03` | `commitGitRefAuthority` | `U-SCAP-031` |",
+    );
+    expect(unit).toContain(
+      "| `HST-CASE-011-03` | `U-SCAP-031` |",
+    );
+    expect(integration).toContain(
+      "| `HST-CASE-011-03` | `IT-SCAP-013` |",
     );
   });
 });

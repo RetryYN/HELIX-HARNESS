@@ -110,7 +110,7 @@ event headをCAS検証して固定分母を解決する。5 stageは固定分母
 | vertical_pair_edges | edge_id、parent/child row revision、derived/backprop digest | 隣接layerのみ、双方向同revision |
 | horizontal_vpair_edges | edge_id、design/verification revision、oracle、snapshot、execution receipt | canonical pairのみ、双方向current |
 | design_refactor_candidates | candidate_id、before/after、consumer set、route、rollback | diff/provenance必須、behavior変更はreroute |
-| design_progress_denominators | denominator ID、exact 19 slice ID、exact 76 artifact path/digest、canonical U 467/IT 355/HST 411 exact ID list/set digest、registry revision/digest、authority/freshness/supersession、source commit/tree/design snapshot、measurement command/version/time | immutable、current authorityだけ有効、supporting U/IT各S01は分母外 |
+| design_progress_denominators | denominator ID、exact 19 slice ID、exact 76 artifact path/digest、canonical U 475/IT 360/HST 411 exact ID list/set digest、registry revision/digest、authority/freshness/supersession、source commit/tree/design snapshot、measurement command/version/time | immutable、current authorityだけ有効、supporting U/IT各S01は分母外 |
 | design_stage_receipts | receipt ID/digest、denominator digest、stage、exact numerator slice ID/digest、evidence receipt ID/digest、snapshot | artifact_created/semantic_closed/independent_audited/pair_frozen/implementation_verifiedを独立row保存 |
 | design_artifact_quartets | slice ID、exact 4 path/digest、quartet digest、source/design digest | 19 slice×4＝76、kind重複・欠落禁止 |
 | design_audit_evidence | slice ID、author/reviewer runtime-model、policy/version、finding closure、quartet digest | runtime-model分離、open finding 0、currentのみ |
@@ -126,7 +126,7 @@ progress固定分母は`HDS-HIL-01`〜`08`、`09A`、`09B`、`10`〜`18`のexact
 5 stageは同じ分母を共有する独立axisで、分子はexact slice ID一覧、一覧digest、count、rate、evidence receipt ID/digestを持つ。
 包含不変条件はimplementation_verified⊆pair_frozen⊆independent_audited⊆semantic_closed⊆artifact_createdである。
 artifactはsliceごとの4 path/digest、auditはauthor/reviewer分離とfinding closure、freezeはsliceごとのcurrent 2 pair receipt、
-implementationは全canonical U/IT/HSTの実行evidenceを要求する。U 467、IT 355、HST 411、quartet 822、全canonical 1,233を固定し、
+implementationは全canonical U/IT/HSTの実行evidenceを要求する。U 475、IT 360、HST 411、quartet 835、全canonical 1,246を固定し、
 `U-LLPG-S01`と`IT-LLPG-S01`はsupporting meta-oracle receiptで追跡するがcanonical分母へ加えない。
 
 registry/denominator、artifact、audit policy/input、freeze、implementation commit/test/command、source tree、design digest変更時は、該当stageと

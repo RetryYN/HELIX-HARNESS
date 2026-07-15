@@ -47,18 +47,18 @@ denominator自体が未抽出のsource behavior atomは、file数を代用せず
 | semantic trace / failure oracle到達 | 115/115 | **100.00%** | 同一requirement＋親HST＋failure code一致 |
 | 全component解決済み要求 | 115/115 | 100.00% | assertion参照componentをL4 catalogへ登録 |
 | L3/L12 exact acceptance trace | 54/54 | 100.00% | 18 FR、54 AC、18 HAT。省略ID 0 |
-| source capture design pair | 4/4 artifacts | 100.00% | U 25＋IT 10＝35 oracle draft、実行0/35 |
+| source capture design pair | 4/4 artifacts | 100.00% | U 31＋IT 13＝44 oracle再設計中、実行0/44 |
 | source atomization closure design pair | 4/4 artifacts | 100.00% | U 34＋IT 13＝47 oracle draft、実行0/47 |
 | canonical design slice採番 | 19/19 | 100.00% | L3 18 FRを19責務sliceへ固定 |
 | quartet成果物作成済み | 76/76 | **100.00%** | 19 slice × L5/L8/L6/L7。HC-CHAT-041の成果物分母 |
 | 旧manual semantic review | 19/19 | 100.00% | strict基準導入で全件stale history。current分子外 |
-| strict typed/API semantic closure | 19/19 | **100.00%** | 全sliceで機械semantic gate＋独立再監査GREEN |
-| fresh横断再監査済み | 19/19 | 100.00% | HDS-HIL-13を含む全sliceのcurrent再監査済み |
+| strict typed/API semantic closure | 18/19 | **94.74%** | HDS-HIL-09Aをall-ref authorityへ再設計中 |
+| fresh横断再監査済み | 18/19 | 94.74% | HDS-HIL-09Aのcurrent再監査receipt待ち |
 | 旧manual audit blocker | 0/19 | **0.00%** | 当時findingは閉鎖済みだがreview自体はstale history |
 | authoritative independent_audited | 0/19 | **0.00%** | runtime receipt未実装。manual reviewを分子へ代入しない |
-| canonical quartet oracle inventory | 826/826 | 100.00% | current quartet再抽出: 数値canonical U 469＋canonical IT 357 |
-| canonical quartet oracle execution | 0/826 | **0.00%** | 設計済みと実行済みを分離。supporting U/IT各1件は分母外 |
-| HST込み全canonical inventory execution | 0/1,237 | **0.00%** | canonical quartet 826＋canonical HST 411 |
+| canonical quartet oracle inventory | 835/835 | 100.00% | current quartet再抽出: 数値canonical U 475＋canonical IT 360 |
+| canonical quartet oracle execution | 0/835 | **0.00%** | 設計済みと実行済みを分離。supporting U/IT各1件は分母外 |
+| HST込み全canonical inventory execution | 0/1,246 | **0.00%** | canonical quartet 835＋canonical HST 411 |
 | pair frozen | 0/19 | **0.00%** | freeze receiptなし |
 | slice implementation verified | 0/19 | **0.00%** | implementation evidenceなし |
 | definition active | 0/115 | **0.00%** | source authority等が未結線 |
@@ -67,11 +67,11 @@ denominator自体が未抽出のsource behavior atomは、file数を代用せず
 | implementation verified | 0/115 | **0.00%** | 全assertion未実装 |
 
 115件すべてがprimary HOT、primary HST、atomic failure oracle、L4 componentへ到達し、19 sliceのquartet成果物76/76も存在する。
-ただし旧manual review 19/19はstale historyである。HDS-HIL-12／13を含む全sliceの独立再監査がGREENとなり、
-strict closureとfresh横断再監査は19/19である。
+ただし旧manual review 19/19はstale historyである。HDS-HIL-09Aの旧fixed-ref strict receiptはsource driftと
+scope不足によりstale化し、strict closureとfresh横断再監査は18/19である。
 authoritative independent_auditedはruntime receipt未実装のため0/19である。source authority、G3以降のfreeze receipt、
-実装、oracle実行evidenceも未閉鎖である。HC-CHAT-041に従い、成果物76/76、strict closure 19/19、pair frozen 0/19、implementation 0/19、
-execution 0/826・0/1,237を混同しない。
+実装、oracle実行evidenceも未閉鎖である。HC-CHAT-041に従い、成果物76/76、strict closure 18/19、pair frozen 0/19、implementation 0/19、
+execution 0/835・0/1,246を混同しない。
 
 ## §2 layer descentの現在地
 
@@ -82,10 +82,10 @@ execution 0/826・0/1,237を混同しない。
 | L2 | no-UI applicability receipt | `not_applicable`を明示記録 | G1/G2 route未freeze | scope digest再検証とre-entry gate |
 | L3 | Infinity Loop system FR 18＋AC 54 | draft作成済み | L1 primary partition 115/115、G3未freeze | PO承認、別runtime review、L12 pair evidenceでG3 |
 | L4 | platform basic design＋L9 HST | draft作成済み | component/oracle 115/115、G3未通過でG4不可 | L3/L12後にdesign obligationとpairをfreeze |
-| L5 | 19/19 sliceの詳細設計 | 成果物19/19、fresh横断再監査19/19 | canonical IT 357件、実行0/357、strict closure 19/19、freeze 0/19 | authoritative receipt、pair-freeze |
-| L6 | 19/19 sliceの関数契約 | 成果物19/19、fresh横断再監査19/19 | numeric canonical U 469、実行0/469、strict closure 19/19、freeze 0/19。supporting U 1件は分母外 | Red実装、authoritative receipt、freeze review |
-| L7 | implementation | 未着手 | slice implementation verified 0/19、canonical unit実行0/469 | G3承認と対象pair-freeze後に実装 |
-| L8 | 19/19 sliceの結合oracle | canonical IT 357件draft閉鎖 | 実行0/357、pair frozen 0/19 | source実run、runtime、gate、memory、CI evidence |
+| L5 | 19/19 sliceの詳細設計 | 成果物19/19、fresh横断再監査18/19 | canonical IT 360件、実行0/360、strict closure 18/19、freeze 0/19 | HDS09A再監査、authoritative receipt、pair-freeze |
+| L6 | 19/19 sliceの関数契約 | 成果物19/19、fresh横断再監査18/19 | numeric canonical U 475、実行0/475、strict closure 18/19、freeze 0/19。supporting U 1件は分母外 | HDS09A再監査、Red実装、authoritative receipt、freeze review |
+| L7 | implementation | 未着手 | slice implementation verified 0/19、canonical unit実行0/475 | G3承認と対象pair-freeze後に実装 |
+| L8 | 19/19 sliceの結合oracle | canonical IT 360件draft閉鎖 | 実行0/360、pair frozen 0/19 | source実run、runtime、gate、memory、CI evidence |
 | L9 | HST 33 family、411 atomic case | draft作成済み | 全case `not-implemented` | L4 semantic edge＋実行evidence |
 | L10 | no-UI route | scope上N/A | re-entry監視未実装 | UI追加時にL2へ戻すgate |
 | L11 | review/UAT support | 未作成 | L3↔L12補助edgeなし | cross-runtime review contract |
@@ -97,20 +97,20 @@ execution 0/826・0/1,237を混同しない。
 
 | workstream | 設計readiness | 実装 | 根拠と残差 |
 |---|---:|---:|---|
-| 全canonical design slice | 76/76成果物、strict closure 19/19、fresh横断再監査19/19 | 0% | authoritative independent_audited 0/19、freeze 0/19、実行0/826 |
+| 全canonical design slice | 76/76成果物、strict closure 18/19、fresh横断再監査18/19 | 0% | HDS09A再設計中、authoritative independent_audited 0/19、freeze 0/19、実行0/835 |
 | Node/Bun cutover | quartet 4/4、U 15＋IT 13＝28 oracle draft | 0% | ADR-009 accepted。forward/terminal唯一writer Redesignと独立strict再監査GREEN、未freeze・未実装 |
 | Python data/detection plane | quartet 4/4、U 17＋IT 9＝26 oracle draft | 0% | Node authority、proposal-only、IPC、sandbox、transactionをL6まで降下。Python packaging実装は未着手 |
 | Linux中心multi-OS / supply chain | quartet 4/4、U 13＋IT 9＝22 oracle draft | 0% | Linux full、macOS/Windows compatibility、lock/offline/SBOM/secret/licenseをL6まで降下 |
-| source capture | quartet 4/4、U 25＋IT 10＝35 oracle draft | 0% | immutable capture、manifest、activation設計。実行0/35 |
+| source capture | quartet 4/4、U 31＋IT 13＝44 oracle再設計中 | 0% | exact 2前身repo all-advertised authority、offline capture、manifest、activation設計。実行0/44 |
 | source atomization closure | quartet 4/4、U 34＋IT 13＝47 oracle draft | 0% | extractor、atomic split、decision、coverage設計。実行0/47 |
 | HARNESS-owned agent | quartet 4/4、U 25＋IT 15＝40 oracle draft | 0% | strict exact join＋semantic gate GREEN。authoritative receipt未実装、実行0/40 |
-| Infinity Loop/Gate/DB | 76/76成果物、strict closure 19/19 | 0% | fresh横断再監査19/19、定義active 0/115、freeze 0/19、implementation 0/19 |
+| Infinity Loop/Gate/DB | 76/76成果物、strict closure 18/19 | 0% | HDS09A再設計中、fresh横断再監査18/19、定義active 0/115、freeze 0/19、implementation 0/19 |
 
-算定規則は、current L7成果物のnumeric canonical `U-*-NNN` 469件とL8のnumeric canonical `IT-*-NNN` 357件を加算し、
-canonical quartet oracleを826件とする。`U-LLPG-S01` 1件と`IT-LLPG-S01` 1件はsupporting存在inventoryとして別記し、
-いずれもcanonical実行分母には加算しない。canonical HST 411件を加えた全canonical inventoryは1,237件である。
-設計inventoryと実行率を混同せず、現在はcanonical quartet oracle execution 0/826、全canonical inventory execution
-0/1,237である。source behavior atom分母は未抽出のため別途unknownを維持する。
+算定規則は、current L7成果物のnumeric canonical `U-*-NNN` 475件とL8のnumeric canonical `IT-*-NNN` 360件を加算し、
+canonical quartet oracleを835件とする。`U-LLPG-S01` 1件と`IT-LLPG-S01` 1件はsupporting存在inventoryとして別記し、
+いずれもcanonical実行分母には加算しない。canonical HST 411件を加えた全canonical inventoryは1,246件である。
+設計inventoryと実行率を混同せず、現在はcanonical quartet oracle execution 0/835、全canonical inventory execution
+0/1,246である。source behavior atom分母は未抽出のため別途unknownを維持する。
 
 ## §4 更新契約
 

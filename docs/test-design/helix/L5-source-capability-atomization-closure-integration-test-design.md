@@ -26,7 +26,7 @@ requirements:
 
 | ID | HAC／supporting境界 | 結合scenario | 期待結果／failure token |
 |---|---|---|---|
-| `IT-SATOM-001` | `HAC-HIL-09a`; atomization内部oracle | active captureの全4,470 entryをdispatch | 正常完了。未処理は`HIL_SOURCE_ATOMIZATION_INCOMPLETE` |
+| `IT-SATOM-001` | `HAC-HIL-09a`; atomization内部oracle | active capture receiptの`content_denominator`全entryをdispatch | expected/observed exactで正常完了。未処理は`HIL_SOURCE_ATOMIZATION_INCOMPLETE` |
 | `IT-SATOM-002` | `HAC-HIL-09a`; atomization内部oracle | TS/Markdown/YAML/workflow Node pluginを実行 | canonical `HIL_SOURCE_ATOMIZATION_INCOMPLETE`。plugin欠落は詳細cause `HIL_SOURCE_EXTRACTOR_PLUGIN_UNREGISTERED` |
 | `IT-SATOM-003` | `HAC-HIL-09b`; `HST-CASE-008-12` | ZIP由来Python pluginをworker経由実行 | Node commitだけを許可し、違反は`HIL_PYTHON_AUTHORITY_BYPASS` |
 | `IT-SATOM-004` | `HAC-HIL-09c`; atomization内部oracle | 同snapshot/plugin/configを再実行 | canonical `HIL_SOURCE_ATOM_EXTRACTOR_STALE`。同入力の差異は`HIL_SOURCE_EXTRACTOR_NONDETERMINISTIC` |
@@ -38,7 +38,7 @@ requirements:
 | `IT-SATOM-010` | `HAC-HIL-09b`; `HST-CASE-011-05`, `HST-CASE-011-06`, `HST-CASE-011-07` | orphan/pending/reject不足/aggregate-onlyを注入 | pointer別に`HIL_SOURCE_AGGREGATE_ONLY`、`HIL_SOURCE_DECISION_PENDING`、`HIL_SOURCE_ATOM_ORPHAN`、`HIL_SOURCE_REJECT_UNJUSTIFIED`でpair-freeze 0 |
 | `IT-SATOM-011` | `HAC-HIL-09c`; `HST-CASE-011-02` | source/plugin/config/targetをdrift | pointer別に`HIL_SOURCE_ATOM_EXTRACTOR_STALE`、`HIL_SOURCE_SNAPSHOT_STALE`。edge詳細は`HIL_SOURCE_EDGE_STALE` |
 | `IT-SATOM-012` | `HAC-HIL-09b`; `HST-CASE-007-06`, `HST-CASE-007-08`, `HST-CASE-007-11`; atomization内部fault oracle | workerとatomization commitへfault injection | worker pointerは`HIL_WORKER_TIMEOUT`、`HIL_WORKER_CRASHED`、`HIL_WORKER_LATE_RESULT_FENCED`。atomization固有faultは`HIL_SOURCE_PROPOSAL_LATE`または`HIL_SOURCE_ATOMIZATION_INTERNAL_ERROR`であり、engine HSTを代用しない |
-| `IT-SATOM-013` | `HAC-HIL-09b`; atomization transaction内部oracle | atom/decision/edge/event/projection/exact write-set欠落・余剰とseal後DB faultを注入しreconcile | 完全payloadだけactive。初回faultは`projection_pending`、同一reconcileは同一receipt、別digest/head/順序/write-set競合はcommit 0 |
+| `IT-SATOM-013` | `HAC-HIL-09b`; atomization transaction内部oracle | S1 activation→S1 genesis initial(0/null)→S1 revision(4)→S2 activation(S1 latest4 stale)→S2 prior-snapshot initial(0＋non-null stale lineage)→S2 revision(4/null)をseal後DB消去し、capture/atomizationの同一shared lifecycle順で再生。lifecycle append失敗／別fork／entryなしDB current、activation/initial swap、per-snapshot grouped replay、lineage/artifact欠落・tamper、exact write-set swap、DB faultを注入 | S1 rev1 superseded、S1 rev2 stale、S2 rev1 superseded、S2 rev2だけexact4 current。index/lifecycle/journal/projection/pointer/receiptがrebuild前後exact。append後faultは`projection_pending`、同一artifact＋entry reconcileだけ冪等、別digest/head/mode/count/lineage競合はcommit 0 |
 
 ### complete public API→U→IT逆引き
 
