@@ -31,6 +31,7 @@
  *
  * 純関数 (analyzeMergedPlanStatus) + I/O loader (loadMergedPlanStatusInput) を分離 (lint 共通様式)。
  */
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -108,6 +109,51 @@ interface PlanFrontmatterGenerates {
   generates?: { artifact_path?: string }[];
 }
 
+/** 実行文脈に応じて公開baseを選ぶ。mainではremote-tracking refでなくHEADを正本にする。 */
+export function publishedBaseRefs(env: NodeJS.ProcessEnv, currentBranch: string | null): string[] {
+  if (env.GITHUB_REF_NAME === "main" || currentBranch === "main") return ["HEAD"];
+  const base = env.GITHUB_BASE_REF;
+  return base ? [`origin/${base}`, base] : ["origin/main", "main"];
+}
+
+/** PR worktreeの実在を「mainへmerge済み」と誤認しないため、公開base treeを一度だけ読む。 */
+function loadPublishedBasePaths(repoRoot: string): ReadonlySet<string> | null {
+  let currentBranch: string | null = null;
+  try {
+    currentBranch =
+      execFileSync("git", ["branch", "--show-current"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim() || null;
+  } catch {
+    // Gitなしfixtureは下のfallbackを使う。
+  }
+  for (const ref of publishedBaseRefs(process.env, currentBranch)) {
+    try {
+      execFileSync("git", ["rev-parse", "--verify", ref], { cwd: repoRoot, stdio: "ignore" });
+      const output = execFileSync("git", ["ls-tree", "-r", "--name-only", ref], {
+        cwd: repoRoot,
+        encoding: "utf8",
+      });
+      return new Set(output.split(/\r?\n/).filter(Boolean));
+    } catch {
+      // 次の候補へ。どちらも無いfixtureでは従来のworktree fallbackを使う。
+    }
+  }
+  return null;
+}
+
+export function selectMergedArtifacts(
+  artifactPaths: readonly string[],
+  publishedBasePaths: ReadonlySet<string> | null,
+  repoRoot: string,
+): string[] {
+  return artifactPaths.filter((path) =>
+    publishedBasePaths === null ? existsSync(join(repoRoot, path)) : publishedBasePaths.has(path),
+  );
+}
+
 function generatesMergedDeliverablePaths(content: string): string[] {
   // CRLF 許容 (Windows-first)。`\n` 固定だと CRLF 保存の PLAN を無言 skip し検出漏れ (PLAN-L7-55
   // review I-1、plan-artifact-existence と同一様式)。
@@ -133,6 +179,7 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
     return { plans: [] }; // docs/plans 不在は空 (fail-open、他 lint と同方針)
   }
   const plansDir = join(repoRoot, "docs", "plans");
+  const publishedBasePaths = loadPublishedBasePaths(repoRoot);
   for (const rp of reviewPlans) {
     if (rp.status === "archived") continue;
     let content = "";
@@ -141,8 +188,10 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
     } catch {
       continue;
     }
-    const mergedArtifacts = generatesMergedDeliverablePaths(content).filter((p) =>
-      existsSync(join(repoRoot, p)),
+    const mergedArtifacts = selectMergedArtifacts(
+      generatesMergedDeliverablePaths(content),
+      publishedBasePaths,
+      repoRoot,
     );
     plans.push({
       planId: rp.plan_id,

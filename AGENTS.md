@@ -36,7 +36,8 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 - `docs/governance/helix-harness-concept_v3.1.md` - 内部展開向け concept
 - `docs/governance/helix-harness-requirements_v1.2.md` - requirements と acceptance criteria
 - `docs/governance/helix-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
-- `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と TypeScript/Bun 実装言語
+- `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と決定史
+- `docs/adr/ADR-009-node-python-linux-runtime.md` - target runtime authority（TS/Node＋Python worker、脱Bun、Linux-primary）
 - `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
 
 ## 配布パッケージ（Distribution）
@@ -55,10 +56,13 @@ regression-source inspection が必要なときだけ読む。HELIX runtime stat
 V-model freeze 境界で verification cycle を走らせるときだけ動的に読む。通常作業は L0 から L14 への
 Forward descent path に従う。
 
-ADR-001 は拘束力を持つ。previous framework は design source のみであり、HELIX core implementation は
-TypeScript/Bun とする。old W1-W3a Python は product runtime として port しない。薄い `.ps1` / `.sh`
-entrypoint は compiled または Bun-based TypeScript core を呼んでよい。HELIX が govern する repository の言語は、
-harness implementation language とは独立である。
+ADR-001のclean rebuild／TypeScript strictは拘束力を維持し、runtime、SQLite driver、build、distributionの
+Bun固有決定はADR-009がtargetとしてsupersedeする。cutover前のactive execution authorityは既存Bun経路、
+terminal activation receipt後はreceiptが指すNode artifactだけである。HELIX control planeはTypeScript/Node、Pythonはproposal-only workerとし、
+old W1-W3a Python runtimeをbulk portしない。薄い`.ps1` / POSIX entrypointは同じNode artifactだけを呼ぶ。
+実cutoverまでは現行Bun経路をknown-good rollbackとして保持する。承認済みrollback時だけNode receiptをstale化して
+Bunを一時再activationし、target authorityやfallback完了条件にはしない。
+HELIXがgovernするrepositoryの言語は、harness implementation languageとは独立である。
 
 `docs/archive/` は canonical ではなく historical material のみ。fork 完了に伴い HELIX vendor snapshot は削除済み
 （`docs/migration/helix-fork-completion-plan.md` §11）。
@@ -72,14 +76,16 @@ harness implementation language とは独立である。
 
 - **precedence**: 仕組み（V モデル・gate・state DB・harness ルール）= HELIX ハーネスが上。個別機能
   （command/skill の中身）= 旧 HELIX が機能ソースとして上。ただし **個別機能は仕組みを超えない**
-  （harness の仕組みに従属して差し込む）。ADR-001 継続で旧ロジックは **TS/Bun 再実装**。
+  （harness の仕組みに従属して差し込む）。ADR-009に従い旧ロジックは **TS/Node再実装またはPython proposal worker化**。
 - **進め方**: L0 から Forward に 1 層ずつ。各層で粒度を合わせて旧 HELIX 機能を取捨選択し、機能一覧を
   都度更新・名称を揃えて登録（一括 import はしない）。L1=機能エリア / L3=機能ユニット / L4–L6=command。
 - **旧 HELIX ソース（機能ソース・常時参照）**: 旧 HELIX = `git@github.com:RetryYN/ai-dev-kit-vscode.git`
   （個別機能ソースの正本）。各層の設計・キュレーション時に **引っ張れる個別機能（command / skill /
   subagent / detector / advisor role〔例: TL advisor〕等）が無いか常にこの repo を確認**（inventory-first の
-  絶対ルールに旧 HELIX を必ず含める）。ただし read-only 参照・設計概念のみ採取・**TS/Bun 再実装**・
-  **bulk import 禁止**で、harden（rename・legacy 前提除去・capability-class 化）して仕組みに従属させて差す。
+  絶対ルールに旧HELIXを必ず含める）。ただしread-only参照・behavior atom採取・**TS/Node再実装**を原則とする。
+  Python化はADR-009のclosed capability class、registry済みdescriptor、strict JSONL、bounded resource、network default deny、
+  proposal-only、Node再検証＋単一transaction commitを満たすworkerだけに限定する。DB path／credential／repository／`.helix/`を渡さず、
+  Python出力のcommand／SQL／absolute path／codeを実行しない。**bulk import禁止**でhardenして仕組みに従属させる。
 - **自律境界**: 人＝L0/L1/L2（モックが最後）＋ L3 承認のみ。AI＝L3 起草＋L4 以降〜GitHub を完全自動。
 - **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `helix`・`.helix/`・`area=helix`・
   rule-drift marker）は据え置き**、後日 専用 migration PLAN で atomic 改名。よって下部 Adapter Rule

@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { analyzeSnapshot } from "../lint/effect-intent";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
 import {
@@ -28,6 +29,7 @@ import {
   INTERNAL_ASSET_EXTENSION_PLAN_IDS,
   KIND_LAYER_ENFORCEMENT_DATE,
   MODE_PATTERN,
+  PARENT_EXISTENCE_ENFORCEMENT_DATE,
   READY_DEPENDENCY_STATUSES,
   REQUIRED_AGENT_ROLE_ENFORCEMENT_DATE,
   REQUIRED_REVERSE_FULLBACK_SCOPE_LAYERS,
@@ -494,6 +496,28 @@ export function analyzePlanGovernance(
   repoRoot?: string,
 ): PlanGovernanceResult {
   const violations: PlanGovernanceViolation[] = [];
+  // PLAN-L7-451: PLAN本文は既にロード済みの immutable snapshot として pure analyzer に渡す。
+  // I/O は loader、violation への変換は governance owner に残す。
+  const frontmatterFindings = analyzeSnapshot(docs, [
+    {
+      id: "plan-frontmatter",
+      evaluate: (snapshot) =>
+        snapshot.flatMap((doc) =>
+          parsePlanFrontmatter(doc)
+            ? []
+            : [
+                {
+                  code: "missing_frontmatter",
+                  severity: "error" as const,
+                  detail: doc.file,
+                },
+              ],
+        ),
+    },
+  ]);
+  for (const finding of frontmatterFindings) {
+    violations.push({ file: finding.detail, reason: "missing_frontmatter" });
+  }
   const parsed = new Map<
     string,
     { file: string; content: string; raw: Record<string, unknown>; parsed?: Frontmatter }
@@ -503,7 +527,6 @@ export function analyzePlanGovernance(
   for (const doc of docs) {
     const raw = parsePlanFrontmatter(doc);
     if (!raw) {
-      violations.push({ file: doc.file, reason: "missing_frontmatter" });
       continue;
     }
     const schemaResult = frontmatterSchema.safeParse(raw);
@@ -720,14 +743,27 @@ export function analyzePlanGovernance(
     }
 
     const parent = stringField(deps.parent);
-    if ((kind === "add-design" || kind === "add-impl") && parent) {
+    const updated = stringField(raw.updated) ?? stringField(raw.created) ?? "";
+    // PLAN-L7-454: legacy PLAN の既存 debt を baseline として固定し、境界日以降に
+    // 起票または更新された PLAN で parent の実在性を fail-close にする。
+    const enforceParentExistence = !updated || updated >= PARENT_EXISTENCE_ENFORCEMENT_DATE;
+    if (enforceParentExistence && parent && isPlanRef(parent)) {
       const parentRecord = byRef.get(normalizePlanRef(parent));
       if (!parentRecord) {
         violations.push({ file: entry.file, reason: "parent_missing", detail: parent });
       } else {
         const parentDrive = stringField(parentRecord.raw.drive);
         const drive = stringField(raw.drive);
-        if (drive && parentDrive && drive !== parentDrive && parentDrive !== "fullstack") {
+        // PLAN-L7-454 は全 kind の parent 実在性を検査する。一方、親子の drive 整合は
+        // 既存要件どおり add-design / add-impl のみの invariant とし、legacy design 系
+        // PLAN へ意味の異なる制約を遡及適用しない。
+        if (
+          (kind === "add-design" || kind === "add-impl") &&
+          drive &&
+          parentDrive &&
+          drive !== parentDrive &&
+          parentDrive !== "fullstack"
+        ) {
           violations.push({
             file: entry.file,
             reason: "parent_drive_mismatch",

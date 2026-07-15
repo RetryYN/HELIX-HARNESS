@@ -2,7 +2,11 @@ import { describe, expect, it } from "vitest";
 import type { ProjectCurrentLocationSnapshot } from "../src/state-db/current-location";
 import type { VisualizationSnapshot } from "../src/state-db/visualization-read-model";
 import { buildVisualizationViewModel } from "../src/state-db/visualization-view-model";
-import { buildVisualizationTreeView } from "../src/vscode/tree-view-provider";
+import { buildVisualizationTree } from "../src/vmodel/visualization-tree-projector";
+import { registerHelixVisualization, type VscodeApiLike } from "../src/vscode/extension-adapter";
+import { HELIX_COPY_POINTER_COMMAND } from "../src/vscode/extension-manifest";
+import { decorateVscodeTree } from "../src/vscode/tree-decoration";
+import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";
 
 function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
   return {
@@ -1143,6 +1147,62 @@ function findTreeNode(
 }
 
 describe("visualization Tree View adapter", () => {
+  it("U-SBOUND-005: generic projectorとVS Code facadeは全tree出力を完全一致させる", () => {
+    const viewModel = buildVisualizationViewModel(snapshot());
+    const generic = buildVisualizationTree(viewModel);
+
+    expect(
+      decorateVscodeTree(generic, {
+        copy_pointer: { title: "Copy pointer", command: HELIX_COPY_POINTER_COMMAND },
+      }),
+    ).toStrictEqual(buildVisualizationTreeView(viewModel));
+  });
+
+  it("IT-SBOUND-002: DTOからDBなしでgeneric treeをVS Code adapterへ接続する", async () => {
+    const dto = buildVisualizationViewModel(snapshot());
+    const decorated = decorateVscodeTree(buildVisualizationTree(dto), {
+      copy_pointer: { title: "Copy pointer", command: HELIX_COPY_POINTER_COMMAND },
+    });
+    const registeredViewIds: string[] = [];
+    const commands = new Map<string, (...args: unknown[]) => unknown>();
+    const vscode: VscodeApiLike = {
+      TreeItemCollapsibleState: { None: 0, Collapsed: 1, Expanded: 2 },
+      EventEmitter: class<T> {
+        event = "event";
+        fire(_value?: T) {}
+        dispose() {}
+      },
+      window: {
+        createTreeView(viewId) {
+          registeredViewIds.push(viewId);
+          return { dispose() {} };
+        },
+      },
+      commands: {
+        registerCommand(command, callback) {
+          commands.set(command, callback);
+          return { dispose() {} };
+        },
+      },
+      env: { clipboard: { writeText() {} } },
+    };
+    const context = { extensionPath: "/fixture/extension", subscriptions: [] };
+
+    const registered = await registerHelixVisualization(context, vscode, {
+      loadTree: () => decorated,
+    });
+
+    expect(registeredViewIds).toEqual(["helix.projectView", "helix.harnessView"]);
+    expect(registered.projectProvider.getChildren().map((node: TreeViewNode) => node.id)).toEqual(
+      decorated.roots[0]?.children.map((node) => node.id),
+    );
+    expect(registered.harnessProvider.getChildren().map((node: TreeViewNode) => node.id)).toEqual(
+      decorated.roots[1]?.children.map((node) => node.id),
+    );
+    expect(commands.has(HELIX_COPY_POINTER_COMMAND)).toBe(true);
+    expect(context.subscriptions).toHaveLength(4);
+  });
+
   it("U-VTREE-001: builds deterministic Project/HARNESS roots with current-location and L12 coverage nodes", () => {
     const vm = buildVisualizationViewModel(snapshot());
     const first = buildVisualizationTreeView(vm);

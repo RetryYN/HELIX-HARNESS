@@ -303,21 +303,40 @@ export function selectedAllowedOutcomeViolation(input: {
 
 // L6 機能設計の DbC テーブル見出し (関数仕様の substance マーカー)。
 // l6-completion (freeze readiness) と l6-fr-coverage (FR 被覆) が同一判定を要するため共有する。
-const DBC_TABLE_FULL =
-  /\|\s*Function\(s\)\s*\|\s*Signature\s*\|\s*pre\s*\|\s*post\s*\|\s*invariant\s*\|\s*oracle\s*\|/i;
-const DBC_TABLE_MIN = /\|\s*Function\s*\|\s*Signature\s*\|\s*pre\s*\|\s*post/i;
+const DBC_FUNCTION_HEADER = "(?:Function(?:\\(s\\))?|関数(?: / シグネチャ)?)";
+const DBC_SIGNATURE_HEADER = "(?:Signature|シグネチャ)";
+const DBC_PRE_HEADER = "(?:pre|事前条件)";
+const DBC_POST_HEADER = "(?:post|事後条件)";
+const DBC_INVARIANT_HEADER = "(?:invariant|不変条件)";
+const DBC_ORACLE_HEADER = "(?:oracle|オラクル)";
+const DBC_TABLE_FULL = new RegExp(
+  `\\|\\s*${DBC_FUNCTION_HEADER}\\s*\\|\\s*${DBC_SIGNATURE_HEADER}\\s*\\|\\s*${DBC_PRE_HEADER}\\s*\\|\\s*${DBC_POST_HEADER}\\s*\\|\\s*${DBC_INVARIANT_HEADER}\\s*\\|\\s*${DBC_ORACLE_HEADER}\\s*\\|`,
+  "i",
+);
+const DBC_TABLE_COMBINED_SIGNATURE = new RegExp(
+  `\\|\\s*${DBC_FUNCTION_HEADER}\\s*\\|\\s*${DBC_PRE_HEADER}\\s*\\|\\s*${DBC_POST_HEADER}\\s*\\|\\s*${DBC_INVARIANT_HEADER}\\s*\\|\\s*${DBC_ORACLE_HEADER}\\s*\\|`,
+  "i",
+);
+const DBC_TABLE_MIN = new RegExp(
+  `\\|\\s*${DBC_FUNCTION_HEADER}\\s*\\|\\s*${DBC_SIGNATURE_HEADER}\\s*\\|\\s*${DBC_PRE_HEADER}\\s*\\|\\s*${DBC_POST_HEADER}`,
+  "i",
+);
 
 /** L6 spec doc が DbC 契約テーブル (Function/Signature/pre/post...) を持つか。 */
 export function hasDbcTable(text: string): boolean {
-  return DBC_TABLE_FULL.test(text) || DBC_TABLE_MIN.test(text);
+  return (
+    DBC_TABLE_FULL.test(text) || DBC_TABLE_COMBINED_SIGNATURE.test(text) || DBC_TABLE_MIN.test(text)
+  );
 }
 
 // A-120 I-2 / IMP-105: coding-rules / ddd-tdd-rules の import 境界判定を単一正本化する。
 // rule id は module-boundary / domain-boundary のまま分け、禁止 matrix は共有する。
 export const SOURCE_BOUNDARY_MODULES = [
+  "adapters",
   "assets",
   "audit",
   "cli",
+  "composition",
   "config",
   "context",
   "doctor",
@@ -359,9 +378,11 @@ export function isSourceBoundaryModule(value: string): value is SourceBoundaryMo
 }
 
 const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlySet<string>> = {
+  adapters: EMPTY_BOUNDARY,
   assets: EMPTY_BOUNDARY,
   audit: EMPTY_BOUNDARY,
   cli: EMPTY_BOUNDARY,
+  composition: EMPTY_BOUNDARY,
   config: EMPTY_BOUNDARY,
   context: EMPTY_BOUNDARY,
   doctor: EMPTY_BOUNDARY,

@@ -44,6 +44,9 @@ export interface DesignDeclarationFinding {
 
 export interface ParsedDesignDeclarationDoc {
   path: string;
+  /** 同一 frontmatter parse 結果から取り出す従属契約。typed spec の再解析は禁止する。 */
+  documentAgent: unknown;
+  pairArtifact?: string;
   declarations: DesignDeclaration[];
   references: DesignReference[];
   findings: DesignDeclarationFinding[];
@@ -94,12 +97,16 @@ function bodyHasId(body: string, id: string): boolean {
 
 function bodyDefinitionIds(body: string): string[] {
   const ignoredPrefixes = new Set(["PLAN", "ADR"]);
+  // これらは本文に現れる規格・encoding名であり、design declaration IDではない。
+  // 正当な一段ID (R-001 / TD-001 等) を命名規則だけで落とさないよう狭く除外する。
+  const nonDeclarationTerms = new Set(["UTF-8", "UTF-16", "UTF-32", "ISO-8601", "RFC-3339"]);
   const ids = new Set<string>();
   for (const match of body.matchAll(/\b[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+\b/g)) {
     const id = match[0];
     const end = (match.index ?? 0) + id.length;
     const prefix = id.split("-", 1)[0];
     if (ignoredPrefixes.has(prefix)) continue;
+    if (nonDeclarationTerms.has(id)) continue;
     if (/^L\d+$/i.test(prefix)) continue;
     if (id.endsWith("-ID")) continue;
     if (body.slice(end, end + 2) === "-*") continue;
@@ -163,12 +170,15 @@ function extractSpecBlocks(
 ): {
   blocks: SpecBlock[];
   findings: DesignDeclarationFinding[];
+  frontmatter: unknown;
 } {
   const blocks: SpecBlock[] = [];
   const findings: DesignDeclarationFinding[] = [];
+  let frontmatter: unknown;
   const fm = frontmatterBlock(content);
   if (fm) {
     const parsed = parseYamlDocument({ path, source: "frontmatter", text: fm });
+    frontmatter = parsed.value;
     if (parsed.finding) findings.push(parsed.finding);
     if (isRecord(parsed.value) && parsed.value.spec !== undefined) {
       blocks.push({ source: "frontmatter", value: parsed.value.spec });
@@ -195,7 +205,7 @@ function extractSpecBlocks(
     });
   }
 
-  return { blocks, findings };
+  return { blocks, findings, frontmatter };
 }
 
 function parseDefine(input: { path: string; source: DesignDeclarationSource; value: unknown }): {
@@ -350,6 +360,10 @@ export function parseDesignDeclarationDoc(
 
   return {
     path,
+    documentAgent: isRecord(extracted.frontmatter)
+      ? extracted.frontmatter.document_agent
+      : undefined,
+    pairArtifact: stringField(extracted.frontmatter, "pair_artifact"),
     declarations,
     references,
     findings,

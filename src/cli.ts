@@ -21,6 +21,15 @@ import {
 import { homedir, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join } from "node:path";
 import { Command } from "commander";
+import {
+  createDocumentAgentMetadataSource,
+  loadDocumentAgentMetadataManifest,
+  loadDocumentAgentMetadataReport,
+} from "./adapters/document-agent-metadata-fs";
+import {
+  loadDocumentSemanticDiffReport,
+  loadDocumentSemanticDiffReportFromGit,
+} from "./adapters/document-semantic-diff-fs";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { gateCiAutoFixRepush } from "./audit/ci-auto-fix-gate";
@@ -49,12 +58,13 @@ import { planReleaseAutomationDecision } from "./audit/release-automation-decisi
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
+import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
   reconcileFeedbackLifecycle,
-  recordFeedbackSurface,
+  recordFeedbackSurfaces,
 } from "./feedback/lifecycle";
 import { nodeFeedbackLifecycleDeps } from "./feedback/lifecycle-node";
 import { autoAckTelemetry } from "./feedback/lifecycle-surface";
@@ -231,6 +241,15 @@ import {
   type SpecStoreOperation,
 } from "./runtime/cross-repo-spec-store";
 import { detectMode, nextActionForMode, type RuntimeDetection } from "./runtime/detect";
+import {
+  applyDocumentAgentMetadata,
+  planDocumentAgentMetadataApply,
+} from "./runtime/document-agent-metadata-apply";
+import { createDocumentAgentMetadataWritePort } from "./runtime/document-agent-metadata-write-port";
+import {
+  validateDocumentReportArtifactPath,
+  writeDocumentReportArtifact,
+} from "./runtime/document-report-write-port";
 import {
   type BundleCatalog,
   type BundleKind,
@@ -468,7 +487,6 @@ import {
   projectFeedbackLifecycle,
   projectModelEvaluations,
   projectTokenUsage,
-  rebuildHarnessDb,
 } from "./state-db/projection-writer";
 import { collectReverseCandidates } from "./state-db/reverse-candidates";
 import { compactHarnessDb, databaseFreelist, gcTmp } from "./state-db/state-hygiene";
@@ -1056,28 +1074,37 @@ function surfaceTakeoverFeedbackToStdout(repoRoot: string, sessionId?: string): 
       if (block) {
         process.stdout.write(block);
         const lifecycleDeps = nodeFeedbackLifecycleDeps(repoRoot);
-        for (const ref of result.items.flatMap((item) => item.surface_source_refs ?? [])) {
-          const separator = ref.indexOf(":");
-          const generationAt = ref.lastIndexOf("@");
-          if (separator <= 0 || generationAt <= separator) continue;
-          const sourceTable = ref.slice(0, separator);
-          if (
-            !(["findings", "quality_signals", "feedback_events"] as string[]).includes(sourceTable)
-          )
-            continue;
-          const sourceId = ref.slice(separator + 1, generationAt);
-          const sourceGeneration = ref.slice(generationAt + 1);
-          recordFeedbackSurface(
-            {
-              sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
-              sourceId,
-              sourceGeneration,
-              operationId: `surface:${createHash("sha256")
-                .update(`${receiptSession}:${ref}`)
-                .digest("hex")}`,
-              sessionId: receiptSession,
-            },
-            lifecycleDeps,
+        const inputs = result.items
+          .flatMap((item) => item.surface_source_refs ?? [])
+          .flatMap((ref) => {
+            const separator = ref.indexOf(":");
+            const generationAt = ref.lastIndexOf("@");
+            if (separator <= 0 || generationAt <= separator) return [];
+            const sourceTable = ref.slice(0, separator);
+            if (
+              !(["findings", "quality_signals", "feedback_events"] as string[]).includes(
+                sourceTable,
+              )
+            )
+              return [];
+            const sourceId = ref.slice(separator + 1, generationAt);
+            const sourceGeneration = ref.slice(generationAt + 1);
+            return [
+              {
+                sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
+                sourceId,
+                sourceGeneration,
+                operationId: `surface:${createHash("sha256")
+                  .update(`${receiptSession}:${ref}`)
+                  .digest("hex")}`,
+                sessionId: receiptSession,
+              },
+            ];
+          });
+        const receipt = recordFeedbackSurfaces(inputs, lifecycleDeps);
+        if (!receipt.ok) {
+          process.stdout.write(
+            `HELIX feedback receipt pending: ${receipt.reason ?? "unknown"}; retry on the next SessionStart.\n`,
           );
         }
         projectFeedbackLifecycle(repoRoot, db);
@@ -1400,6 +1427,184 @@ program
 program.hook("preAction", () => {
   recoverClosureAutoApprovalTransaction(process.cwd());
 });
+
+const design = program.command("design").description("設計成果物の read-only 検証");
+const agentMetadata = design
+  .command("agent-metadata")
+  .description("document_agent 宣言を typed design declaration から検査・明示applyする");
+agentMetadata
+  .command("check")
+  .description("scope manifest に対する read-only conformance check")
+  .option("--json", "JSON で出力")
+  .action((opts: { json?: boolean }) => {
+    try {
+      const report = loadDocumentAgentMetadataReport(process.cwd());
+      process.exitCode = report.ok ? 0 : 1;
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `design agent-metadata: ${report.ok ? "ok" : "blocked"} checked=${report.checked_paths.length} findings=${report.findings.length}\n`,
+      );
+      for (const item of report.findings) {
+        process.stdout.write(`  ${item.code}: ${item.path} ${item.detail}\n`);
+      }
+    } catch (error) {
+      process.exitCode = 1;
+      const detail = error instanceof Error ? error.message : String(error);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+      } else {
+        process.stdout.write(`design agent-metadata: blocked ${detail}\n`);
+      }
+    }
+  });
+
+agentMetadata
+  .command("apply")
+  .description("scope manifest の明示選択へ document_agent を安全に反映する")
+  .requiredOption("--select <path...>", "canonical scope内の更新対象")
+  .option("--json", "JSON で出力")
+  .action((opts: { select: string[]; json?: boolean }) => {
+    try {
+      const repoRoot = process.cwd();
+      const manifest = loadDocumentAgentMetadataManifest(repoRoot);
+      const report = loadDocumentAgentMetadataReport(repoRoot);
+      const plan = planDocumentAgentMetadataApply({
+        manifest,
+        report,
+        selection: opts.select,
+        source: createDocumentAgentMetadataSource(repoRoot),
+      });
+      const receipt = applyDocumentAgentMetadata(
+        plan,
+        createDocumentAgentMetadataWritePort(repoRoot),
+      );
+      process.exitCode = receipt.ok ? 0 : 1;
+      if (opts.json) process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);
+      else
+        process.stdout.write(
+          `design agent-metadata apply: ${receipt.ok ? "ok" : "blocked"} changed=${receipt.changes.length} partial=${receipt.partial}\n`,
+        );
+    } catch (error) {
+      process.exitCode = 1;
+      const detail = error instanceof Error ? error.message : String(error);
+      if (opts.json)
+        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+      else process.stdout.write(`design agent-metadata apply: blocked ${detail}\n`);
+    }
+  });
+
+design
+  .command("document-diff")
+  .description("二つのrepository内Markdown rootを比較し、明示時だけlocal artifactへ保存する")
+  .requiredOption("--base-root <path>", "基準Markdown root")
+  .requiredOption("--current-root <path>", "現在Markdown root")
+  .option("--out <path>", ".helix/artifacts/document-diff/ 配下の新規出力path")
+  .option("--dry-run", "--out の書込みを行わずreportだけ検証する")
+  .option("--json", "JSON で出力")
+  .action(
+    (opts: {
+      baseRoot: string;
+      currentRoot: string;
+      out?: string;
+      dryRun?: boolean;
+      json?: boolean;
+    }) => {
+      try {
+        const repoRoot = process.cwd();
+        if (opts.dryRun && !opts.out) throw new Error("document_report_out_required_for_dry_run");
+        const report = loadDocumentSemanticDiffReport({
+          repoRoot,
+          baseRoot: opts.baseRoot,
+          currentRoot: opts.currentRoot,
+        });
+        if (!report.ok && opts.out) throw new Error("document_report_not_publishable");
+        if (opts.out && opts.dryRun)
+          validateDocumentReportArtifactPath({ repoRoot, path: opts.out });
+        const artifact =
+          opts.out && !opts.dryRun
+            ? writeDocumentReportArtifact({ repoRoot, path: opts.out, content: report.markdown })
+            : null;
+        process.exitCode = report.ok ? 0 : 1;
+        if (opts.json)
+          process.stdout.write(
+            `${JSON.stringify({ ...report, artifact, artifact_path: opts.out ?? null, artifact_dry_run: Boolean(opts.dryRun) }, null, 2)}\n`,
+          );
+        else {
+          process.stdout.write(`${report.markdown}\n`);
+          if (opts.out)
+            process.stdout.write(
+              opts.dryRun
+                ? `document-diff artifact: dry-run path=${opts.out}\n`
+                : `document-diff artifact: path=${artifact?.path} digest=${artifact?.digest} durable=true\n`,
+            );
+        }
+      } catch (error) {
+        process.exitCode = 1;
+        const detail = error instanceof Error ? error.message : String(error);
+        if (opts.json)
+          process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+        else process.stdout.write(`design document-diff: blocked ${detail}\n`);
+      }
+    },
+  );
+
+design
+  .command("document-diff-git")
+  .description("git revisionと現在のMarkdown rootを比較し、明示時だけlocal artifactへ保存する")
+  .requiredOption("--base-ref <ref>", "基準git revision")
+  .requiredOption("--current-root <path>", "現在Markdown root")
+  .option("--out <path>", ".helix/artifacts/document-diff/ 配下の新規出力path")
+  .option("--dry-run", "--out の書込みを行わずreportだけ検証する")
+  .option("--json", "JSON で出力")
+  .action(
+    (opts: {
+      baseRef: string;
+      currentRoot: string;
+      out?: string;
+      dryRun?: boolean;
+      json?: boolean;
+    }) => {
+      try {
+        const repoRoot = process.cwd();
+        if (opts.dryRun && !opts.out) throw new Error("document_report_out_required_for_dry_run");
+        const report = loadDocumentSemanticDiffReportFromGit({
+          repoRoot,
+          baseRef: opts.baseRef,
+          currentRoot: opts.currentRoot,
+        });
+        if (!report.ok && opts.out) throw new Error("document_report_not_publishable");
+        if (opts.out && opts.dryRun)
+          validateDocumentReportArtifactPath({ repoRoot, path: opts.out });
+        const artifact =
+          opts.out && !opts.dryRun
+            ? writeDocumentReportArtifact({ repoRoot, path: opts.out, content: report.markdown })
+            : null;
+        process.exitCode = report.ok ? 0 : 1;
+        if (opts.json)
+          process.stdout.write(
+            `${JSON.stringify({ ...report, artifact, artifact_path: opts.out ?? null, artifact_dry_run: Boolean(opts.dryRun) }, null, 2)}\n`,
+          );
+        else {
+          process.stdout.write(`${report.markdown}\n`);
+          if (opts.out)
+            process.stdout.write(
+              opts.dryRun
+                ? `document-diff-git artifact: dry-run path=${opts.out}\n`
+                : `document-diff-git artifact: path=${artifact?.path} digest=${artifact?.digest} durable=true\n`,
+            );
+        }
+      } catch (error) {
+        process.exitCode = 1;
+        const detail = error instanceof Error ? error.message : String(error);
+        if (opts.json)
+          process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+        else process.stdout.write(`design document-diff-git: blocked ${detail}\n`);
+      }
+    },
+  );
 
 program
   .command("status")
@@ -13120,10 +13325,12 @@ setupCommand
   });
 
 const distribution = program.command("distribution").description("clean distribution planning");
+const resolveDistributionTag = (tag: string | undefined): string =>
+  tag ?? gitHead() ?? "unreleased";
 distribution
   .command("plan")
   .description("emit the clean export, preflight, rollback, and contract plan")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--json", "JSON output")
@@ -13143,7 +13350,7 @@ distribution
     const hasHelixCli = spawnSync("helix", ["--version"], { stdio: "ignore" }).status === 0;
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
-      sourceTag: opts.tag,
+      sourceTag: resolveDistributionTag(opts.tag),
       cleanRepo: opts.cleanRepo,
     });
     const packageRoot = opts.packageRoot ? join(repoRoot, opts.packageRoot) : repoRoot;
@@ -13220,7 +13427,7 @@ distribution
 distribution
   .command("sync-plan")
   .description("emit a non-destructive clean distribution repository sync plan")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--branch <name>", "distribution repository target branch", "main")
   .option("--staging-dir <path>", "local distribution staging clone path")
@@ -13237,7 +13444,7 @@ distribution
       const sourcePaths = collectDistributionCandidatePaths(repoRoot);
       const exportPlan = buildCleanDistributionPlan({
         paths: sourcePaths,
-        sourceTag: opts.tag,
+        sourceTag: resolveDistributionTag(opts.tag),
         cleanRepo: opts.cleanRepo,
       });
       const stagingDir = opts.stagingDir
@@ -13275,7 +13482,7 @@ distribution
 distribution
   .command("sync-stage")
   .description("materialize clean distribution artifacts into a local staging directory")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--branch <name>", "distribution repository target branch", "main")
   .option("--out <dir>", "local staging directory", ".helix/pack-stage")
@@ -13286,7 +13493,7 @@ distribution
       const sourcePaths = collectDistributionCandidatePaths(repoRoot);
       const exportPlan = buildCleanDistributionPlan({
         paths: sourcePaths,
-        sourceTag: opts.tag,
+        sourceTag: resolveDistributionTag(opts.tag),
         cleanRepo: opts.cleanRepo,
       });
       const outDir = opts.out
@@ -13358,7 +13565,7 @@ distribution
 distribution
   .command("sync-pack")
   .description("update a local distribution checkout with clean artifacts; never commits or pushes")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--branch <name>", "distribution repository target branch", "main")
   .requiredOption("--repo-dir <dir>", "local distribution repository checkout to update")
@@ -13379,7 +13586,7 @@ distribution
       const sourcePaths = collectDistributionCandidatePaths(repoRoot);
       const exportPlan = buildCleanDistributionPlan({
         paths: sourcePaths,
-        sourceTag: opts.tag,
+        sourceTag: resolveDistributionTag(opts.tag),
         cleanRepo: opts.cleanRepo,
       });
       const sync = buildPackSyncPlan({
@@ -13512,7 +13719,7 @@ distribution
 distribution
   .command("package")
   .description("create a local clean tarball and sha256 checksum without publishing")
-  .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
+  .option("--tag <tag>", "source/release tag")
   .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
   .option("--json", "JSON output")
@@ -13520,7 +13727,7 @@ distribution
     const repoRoot = process.cwd();
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
-      sourceTag: opts.tag,
+      sourceTag: resolveDistributionTag(opts.tag),
       cleanRepo: opts.cleanRepo,
     });
     const outDir = opts.out

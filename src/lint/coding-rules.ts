@@ -5,9 +5,138 @@ import {
   importedSourceModule,
   lineOf,
   normalizePath,
+  SOURCE_BOUNDARY_MODULES,
   sourceModule,
-  violatesSourceBoundary,
 } from "./shared";
+import {
+  type BoundaryPolicy,
+  evaluateSourceBoundary,
+  type ModuleCatalog,
+} from "./source-boundary-policy";
+import { extractSourceEdges } from "./source-edge-extractor";
+
+export const SOURCE_MODULE_CATALOG: ModuleCatalog = {
+  owners: SOURCE_BOUNDARY_MODULES,
+  ownerOf: sourceModule,
+  resolve: importedSourceModule,
+};
+
+const ALLOWED_SOURCE_DIRECTIONS: Readonly<Record<string, readonly string[]>> = {
+  adapters: ["lint", "runtime", "schema", "vmodel"],
+  assets: ["lint", "search", "state-db"],
+  audit: ["lint", "runtime", "security", "setup", "shared"],
+  cli: [
+    "adapters",
+    "assets",
+    "audit",
+    "cli",
+    "composition",
+    "doctor",
+    "feedback",
+    "gate",
+    "graph",
+    "lint",
+    "memory",
+    "orchestration",
+    "plan",
+    "policy",
+    "runtime",
+    "search",
+    "setup",
+    "shared",
+    "skill-engine",
+    "skills",
+    "state-db",
+    "task",
+    "team",
+    "vmodel",
+    "vscode",
+    "workflow",
+  ],
+  composition: ["schema", "state-db", "vmodel", "vscode"],
+  config: ["config"],
+  context: ["task"],
+  doctor: [
+    "adapters",
+    "audit",
+    "config",
+    "composition",
+    "doctor",
+    "lint",
+    "orchestration",
+    "plan",
+    "runtime",
+    "schema",
+    "setup",
+    "state-db",
+    "task",
+    "team",
+    "vmodel",
+    "vscode",
+  ],
+  export: ["lint"],
+  feedback: ["feedback", "policy", "runtime", "shared", "state-db"],
+  gate: ["gate", "lint", "plan", "runtime", "schema", "vmodel"],
+  graph: ["lint", "vmodel"],
+  guardrail: ["shared", "state-db"],
+  lint: ["config", "lint", "policy", "schema", "security", "shared"],
+  memory: ["memory", "security", "shared", "state-db"],
+  orchestration: ["orchestration", "runtime", "schema", "task", "team"],
+  plan: ["lint", "plan", "schema", "state-db"],
+  policy: ["policy", "security", "shared"],
+  runtime: ["memory", "policy", "runtime", "schema", "shared", "state-db"],
+  schema: ["schema", "shared"],
+  search: ["security", "state-db"],
+  setup: ["setup", "shared"],
+  "skill-engine": ["lint"],
+  skills: ["shared", "state-db", "task"],
+  "state-db": [
+    "config",
+    "export",
+    "graph",
+    "lint",
+    "policy",
+    "schema",
+    "security",
+    "shared",
+    "state-db",
+  ],
+  task: ["runtime", "task", "team", "workflow"],
+  team: ["orchestration", "runtime", "schema", "team", "workflow"],
+  vmodel: ["lint", "plan", "runtime", "schema"],
+  vscode: ["schema", "vmodel", "vscode"],
+  web: ["web"],
+  workflow: ["schema", "shared", "state-db", "workflow"],
+};
+
+const TEMPORARY_SOURCE_DIRECTIONS = [] as const;
+
+export const SOURCE_MODULE_POLICY: BoundaryPolicy = {
+  defaults: Object.fromEntries(SOURCE_BOUNDARY_MODULES.map((owner) => [owner, "deny"])),
+  evaluated_at: new Date().toISOString(),
+  exceptions: [
+    ...Object.entries(ALLOWED_SOURCE_DIRECTIONS).flatMap(([from, destinations]) =>
+      destinations.map((to) => ({
+        from,
+        to,
+        decision: "allow" as const,
+        owner: "coding-rules",
+        rationale: "reviewed live architecture direction",
+        review_trigger: "source module catalog or ownership changes",
+      })),
+    ),
+    ...TEMPORARY_SOURCE_DIRECTIONS.map(({ from, to }) => ({
+      from,
+      to,
+      decision: "allow" as const,
+      owner: "PLAN-L7-450-state-db-vscode-decoupling",
+      rationale: "temporary architecture-cycle migration",
+      review_trigger: "PLAN-L7-450 terminal or ownership changes",
+      expiry: "2026-08-01T00:00:00Z",
+      successor_plan: "PLAN-L7-450-state-db-vscode-decoupling",
+    })),
+  ],
+};
 
 export type CodingRulesScope = "source" | "test";
 
@@ -439,22 +568,21 @@ export function analyzeCodingRules(
     }
 
     const sourceFile = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
-    const visit = (node: ts.Node): void => {
-      if (doc.scope === "source" && ts.isImportDeclaration(node)) {
-        const specifier = node.moduleSpecifier;
-        if (ts.isStringLiteral(specifier)) {
-          const fromModule = sourceModule(doc.path);
-          const toModule = importedSourceModule(doc.path, specifier.text);
-          if (violatesSourceBoundary(fromModule, toModule)) {
-            violations.push({
-              path: doc.path,
-              line: lineOf(sourceFile, specifier.getStart(sourceFile)),
-              rule: "module-boundary",
-              message: `Module ${fromModule} must not import ${toModule}; move shared code to a lower-level module.`,
-            });
-          }
+    if (doc.scope === "source") {
+      for (const edge of extractSourceEdges([{ path: doc.path, source: doc.text }])) {
+        if (edge.specifier !== null && !edge.specifier.startsWith(".")) continue;
+        const decision = evaluateSourceBoundary(edge, SOURCE_MODULE_CATALOG, SOURCE_MODULE_POLICY);
+        if (decision.decision !== "allow") {
+          violations.push({
+            path: doc.path,
+            line: edge.line,
+            rule: "module-boundary",
+            message: `Module boundary ${decision.decision}: ${decision.from_owner ?? "unknown"} -> ${decision.to_owner ?? "unknown"} (${decision.reason}).`,
+          });
         }
       }
+    }
+    const visit = (node: ts.Node): void => {
       if (node.kind === ts.SyntaxKind.AnyKeyword) {
         violations.push({
           path: doc.path,

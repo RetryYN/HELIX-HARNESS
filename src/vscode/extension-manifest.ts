@@ -1,7 +1,8 @@
+export const HELIX_COPY_POINTER_COMMAND = "helix.copyPointer";
+
 export const HELIX_PROJECT_VIEW_ID = "helix.projectView";
 export const HELIX_HARNESS_VIEW_ID = "helix.harnessView";
 export const HELIX_REFRESH_VISUALIZATION_COMMAND = "helix.refreshVisualization";
-export const HELIX_COPY_POINTER_COMMAND = "helix.copyPointer";
 
 export interface VscodeViewContribution {
   id: string;

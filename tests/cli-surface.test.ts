@@ -6,6 +6,7 @@ import {
   mkdtempSync,
   readFileSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -17,6 +18,10 @@ import { openHarnessDb } from "../src/state-db";
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 const helixEnvPrefix = ["HE", "LIX"].join("");
+// CLI surface cases launch a real Bun child.  A bounded child keeps a stalled
+// external dependency from consuming the entire Vitest/CI timeout without a
+// useful assertion diagnostic.
+const CLI_CHILD_TIMEOUT_MS = 45_000;
 
 function runCli(args: string[]) {
   return runCliIn(repoRoot, args);
@@ -33,12 +38,14 @@ function runCliIn(
       cwd,
       encoding: "utf8",
       env,
+      timeout: CLI_CHILD_TIMEOUT_MS,
     });
   }
   return spawnSync("bun", [cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env,
+    timeout: CLI_CHILD_TIMEOUT_MS,
   });
 }
 
@@ -54,12 +61,13 @@ function runRepoScriptHelix(args: string[]) {
         join(repoRoot, "scripts", "helix.ps1"),
         ...args,
       ],
-      { cwd: repoRoot, encoding: "utf8" },
+      { cwd: repoRoot, encoding: "utf8", timeout: CLI_CHILD_TIMEOUT_MS },
     );
   }
   return spawnSync(join(repoRoot, "scripts", "helix"), args, {
     cwd: repoRoot,
     encoding: "utf8",
+    timeout: CLI_CHILD_TIMEOUT_MS,
   });
 }
 
@@ -1533,6 +1541,14 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
+    expect(payload.outstanding.items).toHaveLength(16);
+    expect(payload.outstanding.items.map((item: { planId: string }) => item.planId)).toEqual(
+      expect.arrayContaining([
+        "PLAN-L1-07-infinity-loop-platform-requirements",
+        "PLAN-L7-456-document-agent-metadata-phase-b-apply",
+        "PLAN-L7-457-document-diff-local-artifact-output",
+      ]),
+    );
 
     const text = runCli(["status"]);
     expect(text.status).toBe(0);
@@ -7667,6 +7683,8 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
+  // IT-FLIFE-003: SessionStart integration oracle。feedback receipt batch の件数・replay 規律は
+  // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証し、この test の既存 memory surface 意味は維持する。
   it("U-CLI-MEM-SURFACE: session start surfaces harness-layer memory (HELIX P7, not a per-agent silo)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-mem-surface-"));
     try {
@@ -7717,5 +7735,216 @@ describe("PLAN-L7-417 hook-quiet 出力 (Codex 0.144 Stop/SubagentStop stdout �
     expect(loud.status).toBe(0);
     expect(loud.stdout).toContain("agent-slots:");
   }, 30_000);
+});
+
+describe("document semantic diff CLI (IT-DOCDIFF)", () => {
+  // PLAN-L7-457-document-diff-local-artifact-output
+  // IT-DOCDIFF-003
+  it("IT-DOCDIFF-003: explicit artifactをdurable new-file-onlyで保存し、dry-runと不正pathを拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-docdiff-"));
+    try {
+      const content = `---\nspec:\n  defines:\n    - id: R-001\n      kind: requirement\n---\n\n# R-001\n\n| ID | 内容 |\n| --- | --- |\n| R-001 | 定義 |\n`;
+      mkdirSync(join(root, "base"), { recursive: true });
+      mkdirSync(join(root, "current"), { recursive: true });
+      writeFileSync(join(root, "base", "a.md"), content, "utf8");
+      writeFileSync(join(root, "current", "a.md"), `${content}\n本文変更\n`, "utf8");
+      const diff = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "report.md",
+        "--json",
+      ]);
+      expect(diff.status).toBe(0);
+      const payload = JSON.parse(diff.stdout);
+      expect(payload).toMatchObject({
+        ok: true,
+        delta: { findings: [expect.objectContaining({ code: "unrecorded_change" })] },
+        artifact: { path: "report.md", durable: true },
+        artifact_path: "report.md",
+        artifact_dry_run: false,
+      });
+      const artifactPath = join(root, ".helix", "artifacts", "document-diff", "report.md");
+      expect(readFileSync(artifactPath, "utf8")).toBe(payload.markdown);
+      expect(payload.artifact.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+
+      const duplicate = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "report.md",
+        "--json",
+      ]);
+      expect(duplicate.status).toBe(1);
+      expect(JSON.parse(duplicate.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_target_exists",
+      });
+
+      const dryRun = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "dry-run.md",
+        "--dry-run",
+        "--json",
+      ]);
+      expect(dryRun.status).toBe(0);
+      expect(JSON.parse(dryRun.stdout)).toMatchObject({
+        artifact: null,
+        artifact_path: "dry-run.md",
+        artifact_dry_run: true,
+      });
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "dry-run.md"))).toBe(
+        false,
+      );
+
+      const escapedOutput = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "../escape.md",
+        "--json",
+      ]);
+      expect(escapedOutput.status).toBe(1);
+      expect(JSON.parse(escapedOutput.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_path_escapes_root",
+      });
+
+      const outside = join(root, "outside");
+      mkdirSync(outside);
+      symlinkSync(outside, join(root, ".helix", "artifacts", "document-diff", "link"));
+      const symlinkOutput = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "link/report.md",
+        "--json",
+      ]);
+      expect(symlinkOutput.status).toBe(1);
+      expect(JSON.parse(symlinkOutput.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_parent_untrusted",
+      });
+
+      writeFileSync(join(root, "current", "spec.md"), content);
+      expect(spawnSync("git", ["init", "-q"], { cwd: root }).status).toBe(0);
+      expect(
+        spawnSync("git", ["config", "user.email", "helix-test@example.invalid"], { cwd: root })
+          .status,
+      ).toBe(0);
+      expect(spawnSync("git", ["config", "user.name", "HELIX Test"], { cwd: root }).status).toBe(0);
+      expect(spawnSync("git", ["add", "current/spec.md"], { cwd: root }).status).toBe(0);
+      expect(spawnSync("git", ["commit", "-qm", "test: base"], { cwd: root }).status).toBe(0);
+      writeFileSync(join(root, "current", "spec.md"), content.replace("定義", "変更"));
+
+      const gitDiff = runCliIn(root, [
+        "design",
+        "document-diff-git",
+        "--base-ref",
+        "HEAD",
+        "--current-root",
+        "current",
+        "--out",
+        "git-report.md",
+        "--json",
+      ]);
+      expect(gitDiff.status).toBe(0);
+      expect(JSON.parse(gitDiff.stdout)).toMatchObject({
+        ok: true,
+        artifact: { path: "git-report.md", durable: true },
+        artifact_path: "git-report.md",
+        artifact_dry_run: false,
+      });
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "git-report.md"))).toBe(
+        true,
+      );
+
+      const gitDryRun = runCliIn(root, [
+        "design",
+        "document-diff-git",
+        "--base-ref",
+        "HEAD",
+        "--current-root",
+        "current",
+        "--out",
+        "git-dry-run.md",
+        "--dry-run",
+        "--json",
+      ]);
+      expect(gitDryRun.status).toBe(0);
+      expect(JSON.parse(gitDryRun.stdout)).toMatchObject({
+        artifact: null,
+        artifact_path: "git-dry-run.md",
+        artifact_dry_run: true,
+      });
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "git-dry-run.md"))).toBe(
+        false,
+      );
+
+      writeFileSync(join(root, "current", "spec.md"), "---\nspec: [\n---\n");
+      const invalidReport = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "invalid-report.md",
+        "--json",
+      ]);
+      expect(invalidReport.status).toBe(1);
+      expect(JSON.parse(invalidReport.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_not_publishable",
+      });
+      expect(
+        existsSync(join(root, ".helix", "artifacts", "document-diff", "invalid-report.md")),
+      ).toBe(false);
+      const escapedRoot = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "..",
+        "--current-root",
+        "current",
+        "--json",
+      ]);
+      expect(escapedRoot.status).toBe(1);
+      expect(JSON.parse(escapedRoot.stdout)).toMatchObject({ ok: false });
+      const missingCurrent = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--json",
+      ]);
+      expect(missingCurrent.status).toBe(1);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 45_000);
 });
 // PLAN-L7-427-active-plan-selection

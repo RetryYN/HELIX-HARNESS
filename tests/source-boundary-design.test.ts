@@ -1,0 +1,326 @@
+import { existsSync, readFileSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import { parse } from "yaml";
+
+const read = (path: string) => readFileSync(path, "utf8");
+const l5 = read("docs/design/harness/L5-detailed-design/source-boundary-architecture.md");
+const l6 = read("docs/design/harness/L6-function-design/source-boundary-contracts.md");
+const l8 = read("docs/test-design/harness/L8-source-boundary-contracts.md");
+const l9 = read("docs/test-design/harness/L9-source-boundary-integration.md");
+const genericTreeContract = read("src/schema/visualization-tree-contract.ts");
+const visualizationContract = read("src/schema/visualization-contract.ts");
+const visualizationProjector = read("src/vmodel/visualization-tree-projector.ts");
+
+const successorPaths = [
+  "docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md",
+  "docs/plans/PLAN-L7-451-lint-effect-port-separation.md",
+  "docs/plans/PLAN-L7-452-source-boundary-policy-ratchet.md",
+] as const;
+
+type PlanFrontmatter = {
+  status?: string;
+  parent_design?: string;
+  pair_artifact?: string;
+  verification_bindings?: Array<{ oracle_id?: string; test_path?: string }>;
+  generates?: Array<{ artifact_path?: string }>;
+  dependencies?: { requires?: string[]; references?: string[] };
+};
+
+const frontmatter = (path: string): PlanFrontmatter => {
+  const match = read(path).match(/^---\n([\s\S]*?)\n---/);
+  expect(match, `${path} frontmatter`).not.toBeNull();
+  return parse(match?.[1] ?? "") as PlanFrontmatter;
+};
+
+describe("PLAN-L5/L6-79 source boundary design V-pair", () => {
+  it("freezes forbidden directions and total fail-close policy", () => {
+    expect(l5).toContain("persistence→presentation");
+    expect(l5).toContain("type-only import");
+    expect(l5).toContain("default `deny`");
+    expect(l5).toContain("`unspecified`としてfail-close");
+    for (const id of ["U-SBOUND-001", "U-SBOUND-002", "U-SBOUND-003"]) {
+      expect(l8).toContain(id);
+    }
+  });
+
+  it("binds every public contract to a negative oracle", () => {
+    const contractOracles: Record<string, string[]> = {
+      "buildVisualizationTree(view: VisualizationContract): GenericTree": [
+        "U-SBOUND-001",
+        "U-SBOUND-002",
+        "U-SBOUND-005",
+      ],
+      "decorateVscodeTree(tree: GenericTree, commands: CommandCatalog): VscodeTree": [
+        "U-SBOUND-002",
+        "U-SBOUND-005",
+      ],
+      "projectVisualizationEvidence(view: VisualizationContract, summary: TreeSummary): ProjectionRows":
+        ["U-SBOUND-001"],
+      "analyzeSnapshot<T>(snapshot: T, rules: AnalyzerRules<T>): Finding[]": ["U-SBOUND-004"],
+      "runProbe(intent: ProbeIntent, port: ProbePort): ProbeReceipt": [
+        "U-SBOUND-006",
+        "U-SBOUND-009",
+        "U-SBOUND-015",
+      ],
+      "materializeLintArtifact(intent: MaterializeIntent, port: WritePort): MaterializeReceipt": [
+        "U-SBOUND-009",
+        "U-SBOUND-010",
+        "U-SBOUND-016",
+      ],
+      "extractSourceEdges(docs: SourceDocument[]): SourceEdge[]": ["U-SBOUND-008"],
+      "evaluateSourceBoundary(edge: SourceEdge, policy: BoundaryPolicy): BoundaryDecision": [
+        "U-SBOUND-003",
+        "U-SBOUND-007",
+      ],
+      "validateBoundaryPolicyCoverage(catalog: ModuleCatalog, edges: SourceEdge[], policy: BoundaryPolicy): PolicyFinding[]":
+        ["U-SBOUND-003", "U-SBOUND-007"],
+    };
+    for (const [contract, oracleIds] of Object.entries(contractOracles)) {
+      expect(l6).toContain(`\`${contract}\``);
+      for (const id of oracleIds) expect(l8).toContain(id);
+    }
+    expect(l6).toContain("partial write");
+    expect(l6).toContain("idempotency key");
+    expect(l6).toContain("U-SBOUND-014");
+  });
+
+  it("assigns one exact extractor owner and treats PLAN-L7-428 as provenance", () => {
+    expect(l5).toContain("`src/lint/source-edge-extractor.ts`");
+    expect(l6).toContain("452が`src/lint/source-edge-extractor.ts`を単一owner");
+    expect(l8).toContain("U-SBOUND-008");
+  });
+
+  it("freezes integration, mutation, drift, and durability oracles", () => {
+    for (let index = 1; index <= 8; index += 1) {
+      expect(l9).toContain(`IT-SBOUND-${String(index).padStart(3, "0")}`);
+    }
+    expect(l9).toContain("全live edgeにtotal decision");
+    expect(l9).toContain("dispatch前driftはeffect 0");
+    expect(l9).toContain("dispatch後driftはacceptedにしない");
+    expect(l9).toContain("partial targetをacceptedにしない");
+  });
+
+  it("binds implemented L9 integration oracles to their executable tests", () => {
+    expect(l9).toMatch(
+      /\| IT-SBOUND-001 \|[^\n]+\|[^\n]+`tests\/slow\/source-boundary-headless\.test\.ts`/,
+    );
+    expect(l9).toMatch(
+      /\| IT-SBOUND-002 \|[^\n]+\|[^\n]+`tests\/visualization-treeview\.test\.ts`/,
+    );
+    expect(l9).toMatch(/\| IT-SBOUND-007 \|[^\n]+\|[^\n]+`tests\/lint-effect-executor\.test\.ts`/);
+    expect(l9).toMatch(
+      /\| IT-SBOUND-008 \|[^\n]+\|[^\n]+`tests\/lint-artifact-write-port\.test\.ts`/,
+    );
+    expect(l9).toMatch(
+      /\| IT-SBOUND-003 \|[^\n]+\|[^\n]+`tests\/slow\/lint-readonly-route\.test\.ts`/,
+    );
+    for (const [oracle, testPath] of [
+      ["IT-SBOUND-001", "tests/slow/source-boundary-headless.test.ts"],
+      ["IT-SBOUND-002", "tests/visualization-treeview.test.ts"],
+      ["IT-SBOUND-007", "tests/lint-effect-executor.test.ts"],
+      ["IT-SBOUND-008", "tests/lint-artifact-write-port.test.ts"],
+      ["IT-SBOUND-003", "tests/slow/lint-readonly-route.test.ts"],
+    ]) {
+      expect(read(testPath)).toContain(oracle);
+    }
+  });
+
+  it("structurally binds every exact successor to the L6/L8 V-pair", () => {
+    for (const path of successorPaths) {
+      expect(existsSync(path), path).toBe(true);
+      const plan = frontmatter(path);
+      expect(plan.parent_design).toBe(
+        "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+      );
+      expect(plan.pair_artifact).toBe("docs/test-design/harness/L8-source-boundary-contracts.md");
+      expect(plan.verification_bindings?.length).toBeGreaterThan(0);
+      expect(
+        plan.verification_bindings?.every((binding) => binding.oracle_id && binding.test_path),
+      ).toBe(true);
+      expect(plan.generates?.some((item) => item.artifact_path === path)).toBe(true);
+    }
+  });
+
+  it("binds successor-specific oracle sets and keeps PLAN-L7-428 out of dependencies", () => {
+    const expected: Record<string, string[]> = {
+      [successorPaths[0]]: ["U-SBOUND-001", "U-SBOUND-002", "U-SBOUND-005"],
+      [successorPaths[1]]: [
+        "U-SBOUND-004",
+        "U-SBOUND-006",
+        "U-SBOUND-009",
+        "U-SBOUND-010",
+        "U-SBOUND-014",
+        "U-SBOUND-015",
+        "U-SBOUND-016",
+      ],
+      [successorPaths[2]]: [
+        "U-SBOUND-003",
+        "U-SBOUND-007",
+        "U-SBOUND-008",
+        "U-SBOUND-011",
+        "U-SBOUND-012",
+        "IT-SBOUND-005",
+        "IT-SBOUND-006",
+        "U-SBOUND-013",
+      ],
+    };
+    for (const [path, ids] of Object.entries(expected)) {
+      const plan = frontmatter(path);
+      expect(plan.verification_bindings?.map((binding) => binding.oracle_id)).toEqual(ids);
+    }
+    const ratchet = frontmatter(successorPaths[2]);
+    expect(ratchet.dependencies?.requires).not.toContain(
+      "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md",
+    );
+    expect(ratchet.dependencies?.references).toContain(
+      "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md",
+    );
+    expect(existsSync("docs/plans/PLAN-L7-428-enforcement-wiring-gap.md")).toBe(true);
+    expect(read(successorPaths[2])).toContain("src/lint/source-edge-extractor.ts");
+  });
+
+  it("binds PLAN-L7-451 effect oracles and outputs to dedicated behavior tests", () => {
+    const plan = frontmatter(successorPaths[1]);
+    expect(plan.verification_bindings).toEqual([
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-004",
+        test_path: "tests/lint-effect-intent.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-006",
+        test_path: "tests/lint-effect-executor.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-009",
+        test_path: "tests/lint-effect-executor.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-010",
+        test_path: "tests/lint-effect-executor.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-014",
+        test_path: "tests/slow/lint-readonly-route.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-015",
+        test_path: "tests/lint-probe-adapter.test.ts",
+      },
+      {
+        parent_design: "docs/design/harness/L6-function-design/source-boundary-contracts.md",
+        oracle_id: "U-SBOUND-016",
+        test_path: "tests/lint-artifact-write-port.test.ts",
+      },
+    ]);
+    expect(plan.generates?.map((item) => item.artifact_path)).toEqual([
+      successorPaths[1],
+      "src/lint/effect-intent.ts",
+      "src/runtime/lint-effect-executor.ts",
+      "src/runtime/lint-probe-adapter.ts",
+      "src/runtime/lint-artifact-write-port.ts",
+      "tests/lint-effect-intent.test.ts",
+      "tests/lint-effect-executor.test.ts",
+      "tests/lint-probe-adapter.test.ts",
+      "tests/lint-artifact-write-port.test.ts",
+      "tests/slow/lint-readonly-route.test.ts",
+    ]);
+    expect(l8).toContain("| U-SBOUND-004 | lint analyzer | immutable snapshot");
+    for (const [oracle, testPath] of [
+      ["U-SBOUND-006", "tests/lint-effect-executor.test.ts"],
+      ["U-SBOUND-009", "tests/lint-effect-executor.test.ts"],
+      ["U-SBOUND-010", "tests/lint-effect-executor.test.ts"],
+      ["U-SBOUND-014", "tests/slow/lint-readonly-route.test.ts"],
+      ["U-SBOUND-015", "tests/lint-probe-adapter.test.ts"],
+      ["U-SBOUND-016", "tests/lint-artifact-write-port.test.ts"],
+    ] as const) {
+      const row = l8.split("\n").find((line) => line.startsWith(`| ${oracle} |`));
+      expect(row).toContain(`\`${testPath}\``);
+    }
+    expect(l8).toMatch(/\| U-SBOUND-004 \|[^\n]+\| `tests\/lint-effect-intent\.test\.ts`/);
+    expect(l9).toMatch(/\| IT-SBOUND-004 \|[^\n]+\|[^\n]+`tests\/lint-probe-adapter\.test\.ts`/);
+    expect(read("tests/lint-probe-adapter.test.ts")).toContain("IT-SBOUND-004");
+  });
+
+  it("U-SBOUND-001: state-db evidenceからpresentation treeを分離する", () =>
+    expect(l8).toContain("presentation treeを読まずsummaryからprojection rowを作る"));
+  it("U-SBOUND-002: presentationからpersistence実装を分離する", () =>
+    expect(l8).toContain("vscode→state-db"));
+  it("U-SBOUND-003: 未指定policyをfail-closeする", () =>
+    expect(l8).toContain("missing owner default"));
+  it("U-SBOUND-004: analyzerからeffect authorityを除く", () =>
+    expect(l8).toContain("write/process portを受け取らずeffect callback 0"));
+  it("U-SBOUND-005: projectorをadapter-neutralにする", () =>
+    expect(l8).toContain("VS Code command constant"));
+  it("U-SBOUND-005: generic tree contractへVS Code decorationを混入させない", () => {
+    expect(genericTreeContract).toContain("interface GenericTreeNode");
+    for (const presentationSymbol of [
+      "HELIX_COPY_POINTER_COMMAND",
+      "TreeViewCommand",
+      "contextValue",
+      "collapsibleState",
+      "command?:",
+    ]) {
+      expect(genericTreeContract).not.toContain(presentationSymbol);
+    }
+  });
+  it("U-SBOUND-005: extracted visualization DTO is a production-owned schema contract", () => {
+    for (const dto of ["Drilldown", "MetricRow", "GraphIrNode", "GraphIrEdge", "GraphIr"]) {
+      expect(visualizationContract).toContain(`interface ${dto}`);
+    }
+    for (const forbiddenImport of ["node:fs", "node:child_process", "../state-db", "../vscode"]) {
+      expect(visualizationContract).not.toContain(forbiddenImport);
+    }
+    expect(read("src/state-db/visualization-view-model.ts")).toContain(
+      'from "../schema/visualization-contract"',
+    );
+    expect(read("src/vmodel/visualization-tree-projector.ts")).toContain(
+      'from "../schema/visualization-contract"',
+    );
+    expect(read("src/vscode/tree-view-provider.ts")).toContain(
+      'from "../schema/visualization-view-contract"',
+    );
+  });
+  it("U-SBOUND-005: generic projectorをschema-onlyに固定する", () => {
+    for (const forbidden of [
+      "../state-db",
+      "../vscode",
+      "node:fs",
+      "node:child_process",
+      "HELIX_COPY_POINTER_COMMAND",
+      "collapsibleState",
+    ]) {
+      expect(visualizationProjector).not.toContain(forbidden);
+    }
+    expect(visualizationProjector).toContain("buildVisualizationTree");
+  });
+  it("U-SBOUND-006: probe failureをtyped receiptにする", () =>
+    expect(l8).toContain("timeout/nonzero/missing binary"));
+  it("U-SBOUND-007: policy metadata欠落を検出する", () =>
+    expect(l8).toContain("owner/rationale/review trigger"));
+  it("U-SBOUND-008: source edgeを一意に正規化する", () => {
+    expect(l8).toContain("literal require/import-equals");
+    expect(l8).toContain("computed requireをunknownで拒否");
+  });
+  it("U-SBOUND-009: stale authorityのeffectを拒否する", () => {
+    expect(l8).toContain("untrusted issuer/改ざん/scope拡大/revocation");
+    expect(l6).toContain("self-issued/plain object");
+  });
+  it("U-SBOUND-010: partial materializeをacceptedにしない", () =>
+    expect(l8).toContain("port throw/partial write/CAS drift"));
+
+  it("U-SBOUND-013: 452 terminalを450/451 terminalかつtemporary 0へ拘束する", () => {
+    const ratchet = frontmatter(successorPaths[2]);
+    if (!new Set(["confirmed", "completed"]).has(ratchet.status ?? "")) return;
+    for (const prerequisite of successorPaths.slice(0, 2)) {
+      expect(new Set(["confirmed", "completed"])).toContain(frontmatter(prerequisite).status);
+    }
+    const codingRules = read("src/lint/coding-rules.ts");
+    expect(codingRules).toContain("const TEMPORARY_SOURCE_DIRECTIONS = [] as const");
+  });
+});

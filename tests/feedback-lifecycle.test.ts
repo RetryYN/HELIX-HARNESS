@@ -10,6 +10,7 @@ import {
   type FeedbackSourceLike,
   feedbackSourceIdentity,
   reconcileFeedbackLifecycle,
+  recordFeedbackSurfaces,
   resolveFeedbackLifecycle,
 } from "../src/policy/feedback-lifecycle";
 import { openHarnessDb } from "../src/state-db";
@@ -286,5 +287,99 @@ describe("feedback lifecycle journal", () => {
     } finally {
       db.close();
     }
+  });
+
+  it("U-FLIFE-013: surface receipt batchは多数sourceを単一lock・単一journal snapshotで冪等記録する", () => {
+    const repo = root();
+    const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
+    const sources = Array.from({ length: 512 }, (_, index) =>
+      finding({ sourceId: `finding-${index}` }),
+    );
+    expect(
+      reconcileFeedbackLifecycle(
+        { sources, mode: "partial", operationId: "surface-batch-seed" },
+        base,
+      ).ok,
+    ).toBe(true);
+
+    let reads = 0;
+    let locks = 0;
+    const deps: FeedbackLifecycleDeps = {
+      ...base,
+      readEvents: () => {
+        reads += 1;
+        return base.readEvents();
+      },
+      withLock: (owner, fn) => {
+        locks += 1;
+        return base.withLock(owner, fn);
+      },
+    };
+    const inputs = sources.map((source) => ({
+      sourceTable: "findings" as const,
+      sourceId: source.sourceId,
+      sourceGeneration: "1.1",
+      operationId: `surface-batch-${source.sourceId}`,
+      sessionId: "session-batch",
+    }));
+    const first = recordFeedbackSurfaces(inputs, deps);
+    expect(first).toMatchObject({ ok: true, recovered: false });
+    expect(first.appended).toHaveLength(512);
+    expect(reads).toBe(1);
+    expect(locks).toBe(1);
+
+    reads = 0;
+    locks = 0;
+    const replay = recordFeedbackSurfaces(inputs, deps);
+    expect(replay).toMatchObject({ ok: true, appended: [], recovered: false });
+    expect(reads).toBe(1);
+    expect(locks).toBe(1);
+  });
+
+  it("U-FLIFE-013: batch append途中失敗は同一operation retryで不足receiptへ収束する", () => {
+    const repo = root();
+    const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
+    const sources = [finding({ sourceId: "first" }), finding({ sourceId: "second" })];
+    expect(
+      reconcileFeedbackLifecycle(
+        { sources, mode: "partial", operationId: "surface-batch-recovery-seed" },
+        base,
+      ).ok,
+    ).toBe(true);
+    let appendCount = 0;
+    let failSecond = true;
+    const deps: FeedbackLifecycleDeps = {
+      ...base,
+      appendEvent: (value, fence) => {
+        appendCount += 1;
+        if (failSecond && appendCount === 2) throw new Error("simulated_second_append_failure");
+        base.appendEvent(value, fence);
+      },
+    };
+    const inputs = sources.map((source) => ({
+      sourceTable: "findings" as const,
+      sourceId: source.sourceId,
+      sourceGeneration: "1.1",
+      operationId: `surface-batch-recovery-${source.sourceId}`,
+      sessionId: "session-recovery",
+    }));
+    expect(recordFeedbackSurfaces(inputs, deps)).toMatchObject({
+      ok: false,
+      reason: "simulated_second_append_failure",
+    });
+
+    failSecond = false;
+    appendCount = 0;
+    const recovered = recordFeedbackSurfaces(inputs, deps);
+    expect(recovered).toMatchObject({ ok: true, recovered: false });
+    expect(recovered.appended.map((event) => event.sourceId)).toEqual(["second"]);
+    expect(
+      resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:first")
+        ?.surfacedSessions,
+    ).toContain("session-recovery");
+    expect(
+      resolveFeedbackLifecycle(base.readEvents(), NOW).active.get("findings:second")
+        ?.surfacedSessions,
+    ).toContain("session-recovery");
   });
 });

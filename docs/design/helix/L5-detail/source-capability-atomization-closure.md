@@ -1,0 +1,243 @@
+---
+title: "HELIX L5 詳細設計 — source capability atomization closure"
+layer: L5
+kind: add-design
+status: draft
+created: 2026-07-15
+updated: 2026-07-15
+owner: Codex / TL
+plan: PLAN-L1-07-infinity-loop-platform-requirements
+design_slice: HDS-HIL-09B
+related_hst:
+  - HST-HIL-020
+related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+related_l4: docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md
+depends_on: docs/design/helix/L5-detail/source-capability-capture.md
+pair_artifact: docs/test-design/helix/L5-source-capability-atomization-closure-integration-test-design.md
+next_pair_freeze: L8
+requirements:
+  - HR-FR-HIL-09
+  - HAC-HIL-09a
+  - HAC-HIL-09b
+  - HAC-HIL-09c
+---
+
+# HELIX L5 詳細設計 — source capability atomization closure
+
+## §0 責務境界
+
+本sliceはverifiedかつcurrentなsource capture bundleをread-only入力とし、entryからatomic behavior候補を抽出して
+採否とcoverage chainを閉じる。ZIP/Git/current HEADの取得、active receipt由来のentry分母、entry分類、capture artifact activation、
+capture DB projectionは再実装しない。capture成功だけではatomization、採否、traceのいずれも成功にしない。
+
+```text
+active source capture bundle
+  -> extractor proposal
+  -> Node ingestion validation
+  -> atomic split / semantic signature
+  -> atom kind / fixture lineage
+  -> decision revision
+  -> HIL or authoritative non-goal
+  -> L4/L5/L6 design
+  -> executable assertion
+  -> gate
+  -> coverage receipt
+```
+
+## §1 moduleとauthority
+
+| module | 責務 | authority | fail-close条件 |
+|---|---|---|---|
+| `ExtractorPluginRegistry` | plugin ID/version/runtime/input class/schema/digest/limitsをallowlist | Node registryだけ | 未登録、曖昧選択、digest不一致 |
+| `AtomizationCoordinator` | entry→plugin→proposal→validation→sealを順序制御 | run eventのみ | capture stale、entry欠落、partial run |
+| `PythonExtractorAdapter` | 共通`PythonWorkerBroker`へread-only requestを渡す | proposal受領だけ | protocol、timeout、late、write企図 |
+| `AtomProposalIngestionPort` | source/plugin/run/span/schema/digestをNodeで検証 | validated proposalだけ | sequence、payload、span、terminal不一致 |
+| `AtomicSplitValidator` | 独立採否境界へ分割しgap/overlapを検査 | split findingだけ | 複合behavior、過分割、未所有span |
+| `SemanticSignatureBuilder` | trigger/I/O/effect/failure/stateから意味signatureを生成 | canonical IRだけ | lexical依存、collision、非決定値 |
+| `FixtureLineageResolver` | fixture/evidence/aliasをbehavior分母から分離 | lineage edgeだけ | producer/assertion不明、weight誤算入 |
+| `CapabilityDecisionLedger` | 6 decisionのappend-only revisionを正本化 | review済みdecisionだけ | current 0/複数、根拠不足、self-decision |
+| `CoverageEdgeResolver` | decision→HIL→design→assertion→gateをtarget digest付き解決 | canonical edgeだけ | target不在、stale、自由relation |
+| `CapabilityCoverageGate` | closure率と全failureを別分母で判定 | coverage receiptだけ | 平均で欠落を隠す、reverse片側 |
+
+Python pluginはproposal生成だけを行い、stable atom ID、semantic signature、decision、coverage edge、DB、repo、
+artifact current pointerへwriteしない。Nodeが全proposalを検証してからimmutable manifestをsealし、DBはartifactから
+再構築できるprojectionとする。
+
+## §2 extractor plugin／worker契約
+
+plugin manifestは次を必須にする。
+
+実装スキーマの唯一の定義元はL6
+`docs/design/helix/L6-function-design/source-capability-atomization-closure.md`の
+`ExtractorRuntimeV1`、`ExtractorInputClassV1`、`ExtractorLimitsV1`、`ExtractorCapabilityDescriptorV1`であり、
+L5では同名のTypeScript宣言を再定義しない。
+
+| schema | L5で拘束するfield／値 |
+|---|---|
+| `ExtractorRuntimeV1` | `node\|python` |
+| `ExtractorInputClassV1` | `file\|directory\|archive_entry\|generated_artifact` |
+| `ExtractorLimitsV1` | `max_entries`、`max_payload_bytes`、`deadline_ms`、`max_in_flight` |
+| `ExtractorCapabilityDescriptorV1` | `schema_version=helix-extractor-capability-descriptor.v1`、`plugin_id`／`plugin_version`、`runtime`、`artifact_digest`、readonlyの`input_classes`／`mime_types`、`proposal_schema_version=helix-source-atom-proposal.v1`、`determinism_config_digest`、型付きの`limits`、`descriptor_digest`、`status=active\|retired` |
+
+entryごとexactly-one primary pluginまたはterminal non-behavior routeを要求する。0件は
+`HIL_SOURCE_EXTRACTOR_PLUGIN_UNREGISTERED`、複数件は`HIL_SOURCE_EXTRACTOR_PLUGIN_AMBIGUOUS`で止める。
+任意pluginのdirectory探索やLLMによる即席plugin選択を禁止する。
+
+Python protocolは共通workerの`hello -> proposal* -> complete|error|cancelled`を使い、各frameへrun/request/type、
+monotonic sequence、source/blob/plugin/config digest、payload digestを持たせる。stdoutはprotocol専用、stderrは上限付き診断、
+inputはcontent-addressed read-only artifact、outputはproposalだけとする。crash、timeout、cancel、late、partial completeでは
+当該runのproposal commitを0件にする。
+
+## §3 atomic splitとsemantic signature
+
+candidateは次のいずれかが独立して採否可能なら分割する。
+
+1. 外部から独立に起動できるtrigger。
+2. 別authorityまたは別resourceへ行う副作用。
+3. 別々に変更・retry・拒否できるfailure policy。
+4. 独立oracleを持つstate transition。
+
+一つのprecondition→postconditionを成立させる不可分な複数input/outputは過分割しない。primary source spanはatomic child間で
+重複不可とし、共有import/type/proseは`evidence_only` shared contextへ分離する。意味entryの未所有spanはgapとしてblockする。
+
+semantic IRはtrigger、typed input/output、effect(resource/operation/authority)、failure(condition/code/retry)、
+state transition(from/event/to)、determinism、observableをcanonicalizeする。name、path、function名、extractor名、source spanは
+semantic signatureから除外する。同義別名は同signature候補、同名でもeffect/failure/stateが違えば別signatureになる。
+signature一致だけではabsorbedにせず、ancestry/patch/semantic＋assertion evidenceを別途要求する。
+
+## §4 atom kindとartifact
+
+`behavior_atoms.jsonl`は名称を維持するが、全recordは次のexactly-one `atom_kind`を持つ。
+
+| atom kind | behavior分母weight | 必須lineage |
+|---|---:|---|
+| `behavior` | 1 | source span、semantic IR、oracle候補 |
+| `regression_fixture` | 0 | producer atom＋input/generator digest、またはconsumer assertion |
+| `evidence_only` | 0 | retention/non-goal、consumer証拠 |
+| `duplicate_alias` | 0 | canonical atom、blob/semantic証拠 |
+
+正規artifactは`behavior_atoms.jsonl`、`entry_atom_edges.jsonl`、`extractor_runs.jsonl`、
+`extractor_proposals.jsonl`、`capability_decisions.jsonl`、`coverage_edges.jsonl`、`coverage_receipt.json`である。
+capture bundleと同じsnapshot rootへappendせず、atomization revisionのcontent-addressed child bundleとしてsealする。
+各revisionはさらに`atomization-commit.json`へcommit bundle、coverage receipt、dependency registration/supersession実row、
+exact write-setを含め、独立append-only journal headへbindする。DBはこのcommit artifact列から全projection/indexを再構築できる。
+
+seal後の`commit -> project -> reconcile -> activate`はNodeだけが行う。commit transaction artifactをDBより先にsealし、commit requestは`operation_id`、
+canonical bundle digest、expected artifact head、expected DB projection head、expected active head、idempotency keyを必須とし、
+固定write setをartifact seal、event append、authority dependency registration、projection、active pointer、terminal receiptの順で実行する。
+active source snapshotがbindするexact 2 authorityそれぞれへ`atomization`と`coverage`の2行、合計4 dependency rowを
+`git_authority_dependencies`へ同一transactionでCAS登録する。`snapshot-initial`は全システム初回またはsnapshot cascade後の
+当該snapshot初回であり、直前snapshotのstale lineage（genesisだけnull）をbindしつつsupersession 0、新4行の
+`supersedes_dependency_id`をnullにする。`same-snapshot-revision`だけが同じsnapshotの旧current 4行を`superseded`へ遷移し、
+新4行から旧4 IDをexact参照して各authority＋kindの唯一currentにする。modeと0/4 cardinality、snapshot、lineage、registrationを
+bundleだけでなくartifact/receiptもgenesis、prior-snapshot、same-snapshotのdiscriminated unionで相関させ、stale predecessorを
+current supersessionへ流用しない。index omission/extra、authority/snapshot swap、
+head競合ではatomization/coverage current化を0件にする。artifact seal後に
+各commit artifactはcapture activationと同じshared module／singleton storeの`source-generation` lifecycle headへappendし、その
+lifecycle entryをprojection commitの必須入力へ渡す。append失敗はDB write 0、append後DB faultは同一artifact＋entryからだけpendingを
+reconcileし、orphan DB currentとfork entryを拒否する。domain別のまとめ再生ではなく
+`S1 activation -> S1 initial -> S1 revision -> S2 activation(stale) -> S2 initial -> S2 revision`順を固定する。
+DB projectionが失敗した場合は`projection_pending`を返し、同じoperation/digest/expected headsを受けるNode reconcileだけが
+再開できる。head不一致、同一key別digest、順序違反はfail-closeし、暗黙の再seal、上書き、active化を禁止する。
+
+## §5 decision証拠matrix
+
+| decision | 必須証拠 | covered weight |
+|---|---|---:|
+| `adopt` | 現contract再利用、全coverage chain、実行oracle | 1 |
+| `harden` | 保持invariant、hardening delta、negative oracle、rollback | 1 |
+| `redesign` | 目的/authority保持、旧shape非再利用、Redesign設計/rollback | 1 |
+| `reject` | authoritative HIL/non-goal、反証assertion、再出現gate | 1（disposition済み） |
+| `absorbed` | exactly-one target、identity証拠、targetの完全chain | 0 |
+| `pending` | owner、調査理由、期限 | 0、freeze blocker |
+
+behavior atomはexactly-one current decisionを持つ。過去decisionはappend-only revisionで残し、LLM/pluginはdecisionを
+自己確定しない。reject理由だけ、path/name一致だけ、branch aggregateだけのabsorbedを拒否する。
+
+## §6 coverage閉鎖
+
+closureは`decision -> HIL/non-goal -> L4/L5/L6 design -> executable assertion -> gate`のcanonical edgeと各target content
+digestを要求する。relationは原子化契約の9種allowlistだけを使い、reverse viewは同じedge集合から生成する。
+source/capture receipt、extractor/plugin/config、signature schema、decision、target digestの変更で影響receiptをstale化する。
+
+率は平均せず別々に表示する。
+
+| 指標 | 分子 | 分母 | capture後初期値 |
+|---|---|---|---:|
+| atomization closure | terminal atomを持つentry | active `SourceCaptureReceipt.content_denominator` | 0/receipt-derived |
+| behavior split closure | atomic validation済みbehavior | behavior candidate | 0/unknown |
+| fixture closure | lineage完備fixture | fixture atom | 0/unknown |
+| disposition closure | current decision済みbehavior | behavior atom | 0/unknown |
+| trace closure | full chain済みdisposition | covered decision | 0/unknown |
+
+## §7 L8 integration oracle追跡
+
+| L5境界 | L8 oracle |
+|---|---|
+| active receipt全content entryのexact dispatch | `IT-SATOM-001` |
+| Node extractor群のproposal/atom変換 | `IT-SATOM-002` |
+| ZIP由来Python extractorとNode ingestion | `IT-SATOM-003` |
+| 同snapshot/plugin/configの決定性 | `IT-SATOM-004` |
+| composite sourceのatomic split保存則 | `IT-SATOM-005` |
+| ZIP build fixtureの個別lineage | `IT-SATOM-006` |
+| 6 decision routeとpending block | `IT-SATOM-007` |
+| branch overlay absorbedの一意証明 | `IT-SATOM-008` |
+| decisionからgateまでの正逆join | `IT-SATOM-009` |
+| orphan等negativeのfreeze拒否 | `IT-SATOM-010` |
+| source/plugin/target driftのstale伝播 | `IT-SATOM-011` |
+| worker/artifact/event/DB faultのpartial防止 | `IT-SATOM-012` |
+| Nodeによるcommit／projection／reconcile／activateの一貫処理 | `IT-SATOM-013` |
+
+### §7.1 完全API→U→IT正本
+
+complete signatureとslice-local closed V1 definitionの正本はL6 §1.2/§2とする。未作成`src/schema/*`を
+import authorityにせず、既存34 U／13 ITの分母を次の14 public APIへexact joinする。
+
+| 公開API | 主owner U | 既存IT |
+|---|---|---|
+| `parseExtractorDescriptor` | `U-SATOM-001` | `IT-SATOM-002` |
+| `selectExtractorPlugin` | `U-SATOM-002` | `IT-SATOM-002` |
+| `openExtractorSession` | `U-SATOM-004` | `IT-SATOM-003` |
+| `advanceExtractorProtocol` | `U-SATOM-005` | `IT-SATOM-003`, `IT-SATOM-012` |
+| `validateAtomProposal` | `U-SATOM-010` | `IT-SATOM-002`, `IT-SATOM-003`, `IT-SATOM-004` |
+| `splitAtomicCandidate` | `U-SATOM-013` | `IT-SATOM-005`, `IT-SATOM-006` |
+| `deriveSemanticSignature` | `U-SATOM-019` | `IT-SATOM-004`, `IT-SATOM-005` |
+| `resolveAtomKindAndLineage` | `U-SATOM-022` | `IT-SATOM-006`, `IT-SATOM-007`, `IT-SATOM-010` |
+| `validateCapabilityDecision` | `U-SATOM-025` | `IT-SATOM-007`, `IT-SATOM-008`, `IT-SATOM-010` |
+| `resolveCoverageClosure` | `U-SATOM-029` | `IT-SATOM-009`, `IT-SATOM-010`, `IT-SATOM-011` |
+| `computeAtomizationCoverage` | `U-SATOM-031` | `IT-SATOM-001`, `IT-SATOM-006`, `IT-SATOM-010` |
+| `invalidateAtomizationReceipt` | `U-SATOM-032` | `IT-SATOM-011` |
+| `commitAtomizationProjection` | `U-SATOM-033` | `IT-SATOM-013` |
+| `reconcileAndActivateAtomization` | `U-SATOM-034` | `IT-SATOM-013` |
+
+primary owner外の`U-SATOM-003`, `U-SATOM-006`, `U-SATOM-007`, `U-SATOM-008`, `U-SATOM-009`, `U-SATOM-011`, `U-SATOM-012`, `U-SATOM-014`, `U-SATOM-015`, `U-SATOM-016`, `U-SATOM-017`, `U-SATOM-018`, `U-SATOM-020`, `U-SATOM-021`, `U-SATOM-023`, `U-SATOM-024`, `U-SATOM-026`, `U-SATOM-027`, `U-SATOM-028`, `U-SATOM-030`はcomposition／mutation／supporting laneであり、公開API ownerへ重複加算しない。
+
+`IT-SATOM-013`は`commitAtomizationProjection` → `reconcileAndActivateAtomization`の順序を固定する。
+初回commitとreconcile/activateは別Uのままとし、処理量またはfault mutationを統合・削減しない。
+
+### §7.2 HST020主系の厳密追跡
+
+| HSTケース | L8対応先 | 事前状態 | 期待状態 | 正規failure |
+|---|---|---|---|---|
+| `HST-CASE-020-01` | `IT-SATOM-001` | `snapshot_current` | `atoms_current` | `なし（正常系）` |
+| `HST-CASE-020-02` | `IT-SATOM-010` | `atoms_partial` | `failed` | `HIL_SOURCE_AGGREGATE_ONLY` |
+| `HST-CASE-020-03` | `IT-SATOM-010` | `atoms_partial` | `failed` | `HIL_SOURCE_AGGREGATE_ONLY` |
+| `HST-CASE-020-04` | `IT-SATOM-005` | `staged` | `rejected` | `HIL_SOURCE_ATOM_NOT_ATOMIC` |
+| `HST-CASE-020-05` | `IT-SATOM-007` | `atoms_partial` | `failed` | `HIL_SOURCE_ATOM_UNCLASSIFIED` |
+| `HST-CASE-020-06` | `IT-SATOM-005` | `staged` | `rejected` | `HIL_SOURCE_ATOM_OVERLAP` |
+| `HST-CASE-020-07` | `IT-SATOM-011` | `atoms_current` | `stale` | `HIL_SOURCE_ATOM_EXTRACTOR_STALE` |
+| `HST-CASE-020-08` | `IT-SATOM-002` | `assertion_input_ready` | `assertion_pass` | `HIL_SOURCE_ATOMIZATION_INCOMPLETE` |
+| `HST-CASE-020-09` | `IT-SATOM-006` | `assertion_input_ready` | `assertion_pass` | `HIL_ATOMIC_COVERAGE_DENOMINATOR_INVALID` |
+
+## §8 freeze条件
+
+13/13 integration oracle、34/34 unit oracle、generated atom/decision/edge manifest、各closure率、negative mutation、
+別runtime reviewが揃うまでdraftとする。active receipt全content entryのdispatchを省略せず、代表sample greenを完了証拠にしない。
+
+commit bundleはatom、decision revision、coverage edge、coverage receipt、authority dependency registration、event、projection、
+exact write-setの実payloadを持つ。digest/countだけの
+代理commit、payload欠落・余剰、write-set不一致はactive化0とする。
+
+## §9 DB invariant閉鎖
+
+`source_atoms`は`atom_id + revision`をPK、`source_snapshot_id/entry_id`をcapture projectionへのFKとし、`atom_kind=behavior`だけ`coverage_weight=1`、他kindは0に固定する。`capability_decision_revisions`は`atom_id + decision_revision`をPKとしcurrent partial uniqueを一件、`absorbed`だけ`absorbed_into_atom_id`を必須かつ自己参照禁止にする。`capability_coverage_edges`は`edge_id + revision`をPK、source/target digestとallowlisted relationを必須にし、stale edgeをcurrent closureへ算入しない。`atomization_events`はoperation内sequence uniqueのappend-only、`atomization_projection`はevent head、atom/decision/edge root、active bundle digestを保持するevent由来projectionで直接更新を禁止する。commit/reconcileはatom、decision、edge、coverage receipt、authority dependency 4行、event、projection、active pointer、receiptの実rowからexact write-setを再導出し、宣言との差分、FK違反、weight不一致、absorbed多重化ではtransaction全体をrollbackする。

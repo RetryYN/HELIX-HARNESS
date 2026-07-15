@@ -8,7 +8,9 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { loadDocumentAgentMetadataReport } from "../adapters/document-agent-metadata-fs";
 import { analyzeHandoverResurrectionShadowRepo } from "../audit/handover-resurrection-source";
+import { rebuildHarnessDb } from "../composition/db-rebuild-composition";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
 import {
   actionBindingApprovalReadinessMessages,
@@ -449,6 +451,7 @@ import {
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
 import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
+import { stableCauseDigest } from "../runtime/stable-cause-digest";
 import {
   buildSummarySurfaceCommandAudit,
   buildSummarySurfaceContractPayloads,
@@ -493,7 +496,7 @@ import {
 } from "../state-db/index";
 import { rowCounts } from "../state-db/migration";
 import { loadPlanEntryRoutingDocsFromDb } from "../state-db/plan-entry-routing-input";
-import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
+import { projectTokenUsage } from "../state-db/projection-writer";
 import {
   analyzeRefactorCandidates,
   candidateRank,
@@ -1251,6 +1254,30 @@ export function checkDesignCoverage(repoRoot: string): {
   } catch {
     return {
       messages: ["design-coverage - violation: design catalog coverage lint could not run"],
+      ok: false,
+    };
+  }
+}
+
+/** document_agent metadata は設計宣言からの導出と完全一致しなければ fail-close。 */
+export function checkDocumentAgentMetadata(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const report = loadDocumentAgentMetadataReport(repoRoot);
+    return {
+      ok: report.ok,
+      messages: report.ok
+        ? [`document-agent-metadata - OK (checked=${report.checked_paths.length})`]
+        : report.findings.map(
+            (item) =>
+              `document-agent-metadata - violation ${item.code} path=${item.path}: ${item.detail}`,
+          ),
+    };
+  } catch (error) {
+    const cause = stableCauseDigest(error);
+    return {
+      messages: [
+        `document-agent-metadata - violation: check failed cause_kind=${cause.causeKind} cause_digest=${cause.digest}`,
+      ],
       ok: false,
     };
   }
@@ -5000,7 +5027,11 @@ export function checkFeedbackLog(repoRoot: string): {
   }
 }
 
-/** V-model 層群の Forward freeze 完了 (検証サイクル発火タイミング) を hard gate として検査する。 */
+/**
+ * L6 readiness は設計中の draft status 自体をCI失敗へ変換しない warn surface とする。
+ * V-pair trace / contract substance が成立することはfail-closeで要求し、freeze完了は
+ * `ready` として別途表示する。これは設計を先行して起票できる Forward workflow の境界である。
+ */
 export function checkL6Completion(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -5013,7 +5044,7 @@ export function checkL6Completion(repoRoot: string): {
   }
   try {
     const r = analyzeL6Completion(loadL6CompletionInputs(repoRoot));
-    return { messages: l6CompletionMessages(r), ok: r.ready };
+    return { messages: l6CompletionMessages(r), ok: r.freezeInputReady };
   } catch {
     return {
       messages: ["l6-completion - violation: L6 completion readiness could not be read"],
@@ -6834,6 +6865,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const branchKind = checkBranchKind(deps.repoRoot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const designCoverage = checkDesignCoverage(deps.repoRoot);
+  const documentAgentMetadata = checkDocumentAgentMetadata(deps.repoRoot);
   const leftArmCarryLog = checkLeftArmCarryLog(deps.repoRoot);
   const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
@@ -7003,6 +7035,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       branchKind.ok &&
       codingRules.ok &&
       designCoverage.ok &&
+      documentAgentMetadata.ok &&
       leftArmCarryLog.ok &&
       triageDecisionIntegrity.ok &&
       dddTddRules.ok &&
@@ -7130,6 +7163,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...branchKind.messages.map((m) => `doctor: ${m}`),
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...designCoverage.messages.map((m) => `doctor: ${m}`),
+      ...documentAgentMetadata.messages.map((m) => `doctor: ${m}`),
       ...leftArmCarryLog.messages.map((m) => `doctor: ${m}`),
       ...triageDecisionIntegrity.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),

@@ -149,6 +149,34 @@ describe("design-language lint", () => {
     expect(result.violations).toEqual([]);
   });
 
+  it("U-DESLANG-011: limits the G-10 structured audit exception to its canonical record", () => {
+    const structuredRecord =
+      "| G-10 | This structured evidence record contains machine-only fields |";
+    const canonical = analyzeDesignLanguage(
+      [{ path: "docs/governance/helix-objective-evidence-audit.md", text: structuredRecord }],
+      { baselineViolations: 0 },
+    );
+    const wrongDocument = analyzeDesignLanguage(
+      [{ path: "docs/plans/x.md", text: structuredRecord }],
+      { baselineViolations: 0 },
+    );
+    const wrongRecord = analyzeDesignLanguage(
+      [
+        {
+          path: "docs/governance/helix-objective-evidence-audit.md",
+          text: "| G-11 | This English prose must remain detectable |",
+        },
+      ],
+      { baselineViolations: 0 },
+    );
+
+    expect(canonical.ok).toBe(true);
+    expect(wrongDocument.violations.map((violation) => violation.reason)).toEqual([
+      "english-prose",
+    ]);
+    expect(wrongRecord.violations.map((violation) => violation.reason)).toEqual(["english-prose"]);
+  });
+
   it("U-DESLANG-009: includes every non-README tracked Markdown document in the real repo audit", () => {
     const trackedMarkdown = spawnSync("git", ["ls-files", "*.md"], {
       cwd: process.cwd(),

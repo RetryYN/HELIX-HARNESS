@@ -3,8 +3,8 @@
 - **Status**: accepted
 - **Date**: 2026-05-27
 - **正本**: 本書がリポジトリ配置の **canonical 正本**。`requirements_v1.2 §9.1`（Phase 0 存在チェック）と `CLAUDE.md` のディレクトリ節は本書を参照する。
-- **前提**: ADR-001（harness 実装 = TypeScript/Bun、source snapshot は概念のみ）/ ADR-005（配布 = GitHub-pull、Web UI = 中央・全 project 横断、plugin = 補助チャネル）/ V-model 4 artifact（concept v3.1 §2.3）。
-- **要件同期 (済)**: `docs/process/` (A) / `src/web/` は **requirements_v1.2 §9.1 Phase 0-A 存在チェックツリーに反映済**。canonical ツリーの全ディレクトリは実体 (`.gitkeep`) 作成済 (構成は要件定義で確定するため一括実体化)。各 `[予定]` ディレクトリは **ディレクトリ実体化済 / 中身 (機能・doc) は後続 PLAN で起こす** の意。`src/web/` も実体化済 (Phase 0-A 対象化は後続 PLAN)。
+- **前提**: ADR-001（clean rebuild／TypeScript strict）/ ADR-009（target = Node control plane＋Python proposal worker、Linux-primary）/ ADR-005（配布 = GitHub-pull、Web UI = 中央・全 project 横断、plugin = 補助チャネル）/ V-model 4 artifact（concept v3.1 §2.3）。
+- **要件同期**: `docs/process/` (A) / `src/web/` は **requirements_v1.2 §9.1 Phase 0-A 存在チェックツリーに反映済**で実体化済み。`workers/python/`はADR-009のtarget配置だが未実体化であり、HDS-HIL-12/14 pair-freezeとForward PLAN前に作らない。既存`[予定]`は実体化済み、`[未実体化target]`は配置だけ確定済みを表す。
 - **本 repo の位置づけ (ADR-005)**: 本 repo は **harness engine repo（= 配布の単一真実）**。各 project は本 repo を **git dependency（tag-pin）で pull** し、`helix setup` が adapter を投影する。下記 canonical ツリーは **engine repo の構成**。consume 側 project への投影レイアウトは §9 を参照。
 
 ## 1. canonical ツリー
@@ -17,9 +17,10 @@ HELIX-HARNESS/
 │   ├── config.toml               #   enables project-local hooks
 │   └── hooks.json                #   hook adapter (.claude/settings.json guard parity, PLAN-L7-139)
 ├── README.md                     # project overview / onboarding entrypoint
-├── package.json                  # Node/Bun 依存 + scripts
+├── package.json                  # Node依存 + scripts（cutover中はBun known-goodも保持）
 ├── tsconfig.json                 # TypeScript strict
-├── bun.lock                      # Bun lockfile (tracked)
+├── package-lock.json             # target npm lockfile（HDS-HIL-13 cutoverで生成）
+├── bun.lock                      # cutover前known-good lock（terminal後はinactive historical）
 ├── vitest.config.ts              # Vitest coverage reporter config (G7 coverage-summary evidence)
 ├── vitest.workspace.ts           # Vitest fast/slow project 分割 (PLAN-L7-348)
 ├── .gitattributes                # 改行正規化 (eol=lf、*.ps1 は crlf)
@@ -35,6 +36,8 @@ HELIX-HARNESS/
 │   ├── runtime/                  #   mode 検出 (standalone/claude-only/codex-only/hybrid) / orchestration
 │   ├── doctor/                   #   統合検証 / 横断検出
 │   └── web/                      #   [予定] 中央 Web UI service (15 画面 / 全 project 横断 / GitHub backbone、ADR-005 D2。backend 詳細は L2 設計)
+├── workers/                      # ★[未実体化target] proposal-only worker（authoritative write禁止）
+│   └── python/                   #   [未実体化target] registry済みentrypoint、schema、lock、package metadata
 ├── tests/                        # ★ ④ テストコード (vitest、*.test.ts、src を mirror)
 ├── scripts/                      # ★ 薄い OS entrypoint のみ (core logic を置かない)
 │   ├── helix                    #   POSIX / Git Bash
@@ -82,17 +85,19 @@ HELIX-HARNESS/
 └── legacy local state            # gitignored、正本にしない
 ```
 
-`★` = 配置ルールが特に重要な領域。`[予定]` = **ディレクトリ実体 (`.gitkeep`) は作成済、中身 (機能コード・doc・workflow) は後続 PLAN で起こす**。構成 (どのディレクトリを置くか) は要件定義で確定するため一括実体化する。
+`★` = 配置ルールが特に重要な領域。`[予定]` = **ディレクトリ実体 (`.gitkeep`) は作成済、中身は後続 PLANで起こす**。
+`[未実体化target]` = 配置だけ確定し、pair-freeze／Forward PLANまでdirectory自体を作らない。
 
 ## 2. 配置ルール (どこに何を置くか)
 
 | 対象 | 置き場 | ルール |
 |------|--------|--------|
-| harness TS core (機能) | `src/<domain>/` | **機能の home**。domain 別 (cli/schema/plan/vmodel/runtime/doctor/web)。新機能はどの domain 配下かを要件 (L3) で確定してから追加。**bash / Python を core に置かない** (ADR-001) |
+| harness TS/Node control plane | `src/<domain>/` | **機能のhome**。domain別に配置し、bash／Python実装を混在させない（ADR-009） |
+| Python proposal worker | `workers/python/<capability>/` | HDS-HIL-12/14でfreezeしたdescriptor、entrypoint、schema、lockだけを置く。repository／DB／`.helix` write禁止 |
 | 工程 / 駆動モデル定義 | `docs/process/` | **工程(L0-L14)定義 + 駆動モデル(Forward/Scrum/Reverse/Recovery/Add-feature/Retrofit/Refactor/Research)正本**。「どの工程/駆動を増やすか」は要件 (L3) で決め本 dir に置く (本 session の発端 gap を解消)。既存 `docs/governance/recovery-workflow.md` は **`docs/process/modes/recovery.md` へ統合完了 (2026-06-04、IMP-060)** = recovery 正本は `docs/process/modes/recovery.md`。recovery-workflow.md は superseded (historical、冒頭 banner) |
 | 中央 Web UI service | `src/web/` | [予定] 全 project 横断の管理 UI (15 画面、GitHub backbone、ADR-005 D2)。backend 配置・通信境界は L2 設計 (ADR-003 §IMP-031 参照) |
 | テストコード | `tests/` | vitest、`*.test.ts`、src を mirror |
-| OS entrypoint | `scripts/` | **薄い wrapper のみ**。compiled binary or `bun run` を呼ぶだけで、core logic を持たない |
+| OS entrypoint | `scripts/` | **薄いwrapperのみ**。cutover前はknown-good Bun、terminal後は同じNode artifactだけを呼び、core logicを持たない |
 | enum / 契約 | `src/schema/` | **zod 単一正本**。enum を複数箇所に再定義しない (drift 防止、requirements §1.10 F) |
 | 現行正本 doc | `docs/governance/` | concept v3.1 / requirements v1.2 / README / extraction-plan / 本書 |
 | 決定記録 | `docs/adr/` | `ADR-NNN-slug.md` |
@@ -123,7 +128,8 @@ HELIX-HARNESS/
 ## 5. tracked / gitignored（追跡対象と除外対象）
 
 - **gitignored**: `node_modules/` `dist/` `*.tsbuildinfo` `coverage/` / `.helix/` runtime state (state/cache/logs/tmp/handover CURRENT.*・*.bak/audit *.jsonl・escalation_state.json、local*) / legacy local state / `__pycache__` / `docs/plans/*.lock` / `CLAUDE.local.md` `AGENTS.override.md` `.claude/settings.local.json` / secret 系 (`.env*` `*.key` `*.pem` `credentials.json`)
-- **tracked**: `src/` `tests/` `docs/` (archive 含む) `scripts/` `package.json` `tsconfig.json` `bun.lock` `vitest.config.ts` `vitest.workspace.ts` `.gitattributes` `.editorconfig` / **監査証跡** `.helix/audit/*.md` `.helix/audit/reports/*.md` `.helix/evidence/` `.helix/handover/provider/` / **参照資料** `docs/reference/` (PO 決定 2026-06-10 tracked 化 / 2026-06-25 docs/reference へ移設、A-128 F-1 / IMP-127)
+- **active tracked**: `src/` `tests/` `docs/` (archive含む) `scripts/` `package.json` `tsconfig.json`、cutover中の`bun.lock`、Vitest／editor設定、監査証跡、参照資料。
+- **target tracked（未実体化を含む）**: `workers/python/`、`package-lock.json`。対応pair-freeze／Forward PLANで生成後にactive trackedへ昇格する。
 
 ## 6. 境界
 
@@ -133,7 +139,7 @@ HELIX-HARNESS/
 
 ## 7. 禁止事項
 
-- `src/` core に bash / Python を持ち込まない（ADR-001。OS 差は `scripts/` の薄い wrapper に閉じる）。
+- `src/` control planeにbash／Pythonを混在させない。Pythonは`workers/python/`のproposal-only contractへ隔離する。
 - enum / 契約を `src/schema/` 以外で再定義しない。
 - `.helix/` **runtime state** (state/cache/logs/tmp/handover CURRENT/local*) を docs 目的で Git 追跡しない。**監査証跡** (`audit/*.md` / `audit/reports/*.md` / `evidence/` / `handover/provider/`) は例外として tracked (§5、A-128 F-1)。
 - source process reference を工程定義の正本として参照しない (正本 = `docs/process/`)。
@@ -146,13 +152,13 @@ HELIX-HARNESS/
 
 JS/TS は「1 ツール = 1 設定ファイル」で root に config が溜まりやすい。**フォルダに隠す**のはツールが root を探すため不可（壊れる）。代わりに **ツールを減らす + package.json に集約** で抑える。
 
-- **root config の下限**（避けられない）: `package.json` / `tsconfig.json` / `bun.lock` / `.editorconfig` (cross-editor newline/whitespace contract)。
-- **lint + format = Biome 1 枚 (`biome.json`)**。**eslint + prettier を別々に足さない**（plugin/ignore で 4-6 枚に増えるのを防ぐ）。`bun run lint` / `bun run format`。
+- **root configの下限**（target）: `package.json` / `package-lock.json` / `tsconfig.json` / `.editorconfig`。cutover中だけ`bun.lock`をknown-good証拠として保持する。
+- **lint + format = Biome 1枚 (`biome.json`)**。`npm run lint` / `npm run format`をtarget commandとする。
 - **test = vitest**。`vitest.config.ts` は G7 coverage-summary evidence (`json-summary`) を生成するための tracked exception とする。`vitest.workspace.ts` は fast/slow project 分割 (PLAN-L7-348) のための tracked exception。
 - commitlint 等 **config-in-package.json 対応**のツールは package.json のキーに入れ、新規 dotfile を作らない。
-- **新ツール導入時の判断順**: ① 既存ツール (Biome / Bun / tsc) で代替できるか → ② package.json に同居できるか → ③ どうしても単独 config が要るか。①②で済むなら root に新ファイルを増やさない。
+- **新ツール導入時の判断順**: ① 既存ツール（Biome / Node / tsc）で代替できるか → ② package.jsonに同居できるか → ③ 単独configが必要か。license／SBOM未分類なら導入しない。
 
-→ root config は **`package.json` / `tsconfig.json` / `bun.lock` / `.editorconfig` / `biome.json` / `vitest.config.ts` / `vitest.workspace.ts` の 7 枚で頭打ち**に保つ。
+→ target root configは **`package.json` / `package-lock.json` / `tsconfig.json` / `.editorconfig` / `biome.json` / `vitest.config.ts` / `vitest.workspace.ts`**を上限とする。transition lockは分母外で別管理する。
 
 ## 9. 配布 3 層モデル (ADR-005)
 
@@ -160,7 +166,7 @@ harness の配置は 3 層で分離する。本書 §1 canonical ツリーは **
 
 | 層 | 実体 | 配置 | 更新享受 |
 |----|------|------|---------|
-| **① engine repo (単一真実)** | harness engine + ルール + 工程/駆動モデル定義 (本 repo) | **GitHub repo**。consume 側は git dependency で **tag-pin** (`bun add github:<org>/HELIX-HARNESS-OS#<tag>`、devDependencies にコミット) | tag を bump (`bun update`)。社内既定 = tag-pin + 定期 bump |
+| **① engine repo (単一真実)** | harness engine + ルール + 工程/駆動モデル定義 (本 repo) | **GitHub repo**。consume側はgit dependencyをnpmで**tag-pin**しdevDependenciesへcommit | tagをnpmでbump。社内既定 = tag-pin + 定期bump |
 | **② project 投影 (adapter)** | consume 側 project に展開される `CLAUDE.md` / `.claude/` / `AGENTS.md` 等 | `helix setup` が engine から **投影**。内容を複製せず engine を参照する adapter | engine の tag bump に追従 |
 | **③ 中央 UI service** | 全 project 横断の管理 Web UI (15 画面) | **中央 / team server**。各 project の GitHub repo を data backbone に読む (project-local でない) | UI service コード自体も engine と同 GitHub repo (`src/web/`) で管理 |
 

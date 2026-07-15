@@ -13,7 +13,13 @@ owner: Codex
 backprop_decision: not_required
 backprop_decision_reason: "live import/effect graph測定のみ。禁止方向の設計変更は後続L5/L6 PLANへ送る。"
 agent_slots: [{ role: aim, slot_label: "AIM — module ownership境界" }, { role: se, slot_label: "SE — import/effect graph測定" }, { role: qa, slot_label: "QA — cycle/forbidden edge oracle" }]
-generates: [{ artifact_path: docs/plans/PLAN-L7-446-qs4-boundary-inventory.md, artifact_type: markdown_doc }]
+generates:
+  - { artifact_path: docs/plans/PLAN-L7-446-qs4-boundary-inventory.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L5-79-source-boundary-architecture.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L6-79-source-boundary-contracts.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-450-state-db-vscode-decoupling.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-451-lint-effect-port-separation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-452-source-boundary-policy-ratchet.md, artifact_type: markdown_doc }
 dependencies: { parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.md, requires: [] }
 ---
 # PLAN-L7-446: QS4 module boundary Vペア入口監査
@@ -27,3 +33,10 @@ dependencies: { parent: docs/plans/PLAN-L7-442-quality-sweep-successor-clusters.
 ## 完了条件
 - #11/#13/#15がexact design/impl PLANへ接続される。
 - #14を新規carryに数えずPLAN-L7-428の既出証跡へ一意接続する。
+
+## inventory結果
+
+- #11 → `PLAN-L5-79` / `PLAN-L6-79` → `PLAN-L7-450-state-db-vscode-decoupling`
+- #13 → `PLAN-L5-79` / `PLAN-L6-79` → `PLAN-L7-451-lint-effect-port-separation`
+- #15 → `PLAN-L5-79` / `PLAN-L6-79` → `PLAN-L7-452-source-boundary-policy-ratchet`
+- #14 → `PLAN-L7-428` W2は要求provenance、shared extractor ownerは`PLAN-L7-452`（重複parserなし）
