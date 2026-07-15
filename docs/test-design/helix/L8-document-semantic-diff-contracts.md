@@ -2,15 +2,17 @@
 title: "HELIX L8 単体テスト設計 — 文書semantic diff"
 layer: L8
 artifact_type: test_design
+sub_doc: unit-test-design
 status: draft
 created: 2026-07-14
 updated: 2026-07-14
 pair_artifact: docs/design/helix/L6-function-design/document-semantic-diff.md
+owner: QA / TL
 ---
 
 # 文書semantic diff 単体oracle
 
-| ID | oracle | 期待結果 | 実装test |
+| U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-DOCDIFF-001 | 同一snapshot | empty delta、stable digest | `tests/document-semantic-diff.test.ts` |
 | U-DOCDIFF-002 | 文書/ID追加削除 | canonical順の構造化delta | `tests/document-semantic-diff.test.ts` |

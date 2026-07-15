@@ -13,10 +13,10 @@ owner: Codex
 agent_slots:
   - { role: se, slot_label: "SE — document diff artifact port / CLI" }
   - { role: qa, slot_label: "QA — path / durability / dry-run mutation oracle" }
-backprop_decision: not_required
-backprop_decision_reason: "L6 §3.1のlocal-only artifact出力を実装へ降下し、公開・release境界は含めない。"
+backprop_decision: required
+backprop_decision_reason: "通常renameは競合targetを上書きできnew-file-onlyと両立しないため、L6 §3.1をatomic no-replace publishへ補正した。公開・release境界は含めない。"
 parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md
-pair_artifact: docs/test-design/harness/L8-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-document-semantic-diff-contracts.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md, oracle_id: U-DOCDIFF-008, test_path: tests/document-report-write-port.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md, oracle_id: IT-DOCDIFF-003, test_path: tests/cli-surface.test.ts }
@@ -39,7 +39,9 @@ dependencies:
 
 stdout既定を保ち、明示 `--out` のときだけ `.helix/artifacts/document-diff/` 内へ new-file-only で report を出力する。
 任意path、上書き、source docs更新、release/tag/API/DB/stateへの副作用は含めない。専用write portはpath canonicalization、
-symlink拒否、before不存在確認、temp/fsync/rename/directory-fsync、digest receiptを強制する。
+symlink ancestor拒否、before不存在確認、temp/fsync/atomic no-replace publish/directory-fsync、digest receiptを強制する。
+publish後のdurability検証失敗はreceipt前にcompensating unlinkとdirectory fsyncを行う。補償失敗は
+`document_report_compensation_ambiguous`として通常失敗と区別する。
 
 ## 完了条件
 

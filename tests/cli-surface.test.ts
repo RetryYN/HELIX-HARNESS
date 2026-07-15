@@ -6,6 +6,7 @@ import {
   mkdtempSync,
   readFileSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -7729,7 +7730,7 @@ describe("PLAN-L7-417 hook-quiet 出力 (Codex 0.144 Stop/SubagentStop stdout �
 describe("document semantic diff CLI (IT-DOCDIFF)", () => {
   // PLAN-L7-457-document-diff-local-artifact-output
   // IT-DOCDIFF-003
-  it("IT-DOCDIFF-003: repository内rootだけをread-only比較し、不正rootを拒否する", () => {
+  it("IT-DOCDIFF-003: explicit artifactをdurable new-file-onlyで保存し、dry-runと不正pathを拒否する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-docdiff-"));
     try {
       const content = `---\nspec:\n  defines:\n    - id: R-001\n      kind: requirement\n---\n\n# R-001\n\n| ID | 内容 |\n| --- | --- |\n| R-001 | 定義 |\n`;
@@ -7744,13 +7745,174 @@ describe("document semantic diff CLI (IT-DOCDIFF)", () => {
         "base",
         "--current-root",
         "current",
+        "--out",
+        "report.md",
         "--json",
       ]);
       expect(diff.status).toBe(0);
-      expect(JSON.parse(diff.stdout)).toMatchObject({
+      const payload = JSON.parse(diff.stdout);
+      expect(payload).toMatchObject({
         ok: true,
         delta: { findings: [expect.objectContaining({ code: "unrecorded_change" })] },
+        artifact: { path: "report.md", durable: true },
+        artifact_path: "report.md",
+        artifact_dry_run: false,
       });
+      const artifactPath = join(root, ".helix", "artifacts", "document-diff", "report.md");
+      expect(readFileSync(artifactPath, "utf8")).toBe(payload.markdown);
+      expect(payload.artifact.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+
+      const duplicate = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "report.md",
+        "--json",
+      ]);
+      expect(duplicate.status).toBe(1);
+      expect(JSON.parse(duplicate.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_target_exists",
+      });
+
+      const dryRun = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "dry-run.md",
+        "--dry-run",
+        "--json",
+      ]);
+      expect(dryRun.status).toBe(0);
+      expect(JSON.parse(dryRun.stdout)).toMatchObject({
+        artifact: null,
+        artifact_path: "dry-run.md",
+        artifact_dry_run: true,
+      });
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "dry-run.md"))).toBe(
+        false,
+      );
+
+      const escapedOutput = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "../escape.md",
+        "--json",
+      ]);
+      expect(escapedOutput.status).toBe(1);
+      expect(JSON.parse(escapedOutput.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_path_escapes_root",
+      });
+
+      const outside = join(root, "outside");
+      mkdirSync(outside);
+      symlinkSync(outside, join(root, ".helix", "artifacts", "document-diff", "link"));
+      const symlinkOutput = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "link/report.md",
+        "--json",
+      ]);
+      expect(symlinkOutput.status).toBe(1);
+      expect(JSON.parse(symlinkOutput.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_parent_untrusted",
+      });
+
+      writeFileSync(join(root, "current", "spec.md"), content);
+      expect(spawnSync("git", ["init", "-q"], { cwd: root }).status).toBe(0);
+      expect(
+        spawnSync("git", ["config", "user.email", "helix-test@example.invalid"], { cwd: root })
+          .status,
+      ).toBe(0);
+      expect(spawnSync("git", ["config", "user.name", "HELIX Test"], { cwd: root }).status).toBe(0);
+      expect(spawnSync("git", ["add", "current/spec.md"], { cwd: root }).status).toBe(0);
+      expect(spawnSync("git", ["commit", "-qm", "test: base"], { cwd: root }).status).toBe(0);
+      writeFileSync(join(root, "current", "spec.md"), content.replace("定義", "変更"));
+
+      const gitDiff = runCliIn(root, [
+        "design",
+        "document-diff-git",
+        "--base-ref",
+        "HEAD",
+        "--current-root",
+        "current",
+        "--out",
+        "git-report.md",
+        "--json",
+      ]);
+      expect(gitDiff.status).toBe(0);
+      expect(JSON.parse(gitDiff.stdout)).toMatchObject({
+        ok: true,
+        artifact: { path: "git-report.md", durable: true },
+        artifact_path: "git-report.md",
+        artifact_dry_run: false,
+      });
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "git-report.md"))).toBe(
+        true,
+      );
+
+      const gitDryRun = runCliIn(root, [
+        "design",
+        "document-diff-git",
+        "--base-ref",
+        "HEAD",
+        "--current-root",
+        "current",
+        "--out",
+        "git-dry-run.md",
+        "--dry-run",
+        "--json",
+      ]);
+      expect(gitDryRun.status).toBe(0);
+      expect(JSON.parse(gitDryRun.stdout)).toMatchObject({
+        artifact: null,
+        artifact_path: "git-dry-run.md",
+        artifact_dry_run: true,
+      });
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "git-dry-run.md"))).toBe(
+        false,
+      );
+
+      writeFileSync(join(root, "current", "spec.md"), "---\nspec: [\n---\n");
+      const invalidReport = runCliIn(root, [
+        "design",
+        "document-diff",
+        "--base-root",
+        "base",
+        "--current-root",
+        "current",
+        "--out",
+        "invalid-report.md",
+        "--json",
+      ]);
+      expect(invalidReport.status).toBe(1);
+      expect(JSON.parse(invalidReport.stdout)).toMatchObject({
+        ok: false,
+        error: "document_report_not_publishable",
+      });
+      expect(
+        existsSync(join(root, ".helix", "artifacts", "document-diff", "invalid-report.md")),
+      ).toBe(false);
       const escapedRoot = runCliIn(root, [
         "design",
         "document-diff",
@@ -7773,6 +7935,6 @@ describe("document semantic diff CLI (IT-DOCDIFF)", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
-  }, 20_000);
+  }, 45_000);
 });
 // PLAN-L7-427-active-plan-selection

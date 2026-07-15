@@ -247,6 +247,10 @@ import {
 } from "./runtime/document-agent-metadata-apply";
 import { createDocumentAgentMetadataWritePort } from "./runtime/document-agent-metadata-write-port";
 import {
+  validateDocumentReportArtifactPath,
+  writeDocumentReportArtifact,
+} from "./runtime/document-report-write-port";
+import {
   type BundleCatalog,
   type BundleKind,
   buildExtensionPresetBundleRegistryReport,
@@ -1494,53 +1498,113 @@ agentMetadata
 
 design
   .command("document-diff")
-  .description("二つのrepository内Markdown rootをread-only比較する")
+  .description("二つのrepository内Markdown rootを比較し、明示時だけlocal artifactへ保存する")
   .requiredOption("--base-root <path>", "基準Markdown root")
   .requiredOption("--current-root <path>", "現在Markdown root")
+  .option("--out <path>", ".helix/artifacts/document-diff/ 配下の新規出力path")
+  .option("--dry-run", "--out の書込みを行わずreportだけ検証する")
   .option("--json", "JSON で出力")
-  .action((opts: { baseRoot: string; currentRoot: string; json?: boolean }) => {
-    try {
-      const report = loadDocumentSemanticDiffReport({
-        repoRoot: process.cwd(),
-        baseRoot: opts.baseRoot,
-        currentRoot: opts.currentRoot,
-      });
-      process.exitCode = report.ok ? 0 : 1;
-      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
-      else process.stdout.write(`${report.markdown}\n`);
-    } catch (error) {
-      process.exitCode = 1;
-      const detail = error instanceof Error ? error.message : String(error);
-      if (opts.json)
-        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
-      else process.stdout.write(`design document-diff: blocked ${detail}\n`);
-    }
-  });
+  .action(
+    (opts: {
+      baseRoot: string;
+      currentRoot: string;
+      out?: string;
+      dryRun?: boolean;
+      json?: boolean;
+    }) => {
+      try {
+        const repoRoot = process.cwd();
+        if (opts.dryRun && !opts.out) throw new Error("document_report_out_required_for_dry_run");
+        const report = loadDocumentSemanticDiffReport({
+          repoRoot,
+          baseRoot: opts.baseRoot,
+          currentRoot: opts.currentRoot,
+        });
+        if (!report.ok && opts.out) throw new Error("document_report_not_publishable");
+        if (opts.out && opts.dryRun)
+          validateDocumentReportArtifactPath({ repoRoot, path: opts.out });
+        const artifact =
+          opts.out && !opts.dryRun
+            ? writeDocumentReportArtifact({ repoRoot, path: opts.out, content: report.markdown })
+            : null;
+        process.exitCode = report.ok ? 0 : 1;
+        if (opts.json)
+          process.stdout.write(
+            `${JSON.stringify({ ...report, artifact, artifact_path: opts.out ?? null, artifact_dry_run: Boolean(opts.dryRun) }, null, 2)}\n`,
+          );
+        else {
+          process.stdout.write(`${report.markdown}\n`);
+          if (opts.out)
+            process.stdout.write(
+              opts.dryRun
+                ? `document-diff artifact: dry-run path=${opts.out}\n`
+                : `document-diff artifact: path=${artifact?.path} digest=${artifact?.digest} durable=true\n`,
+            );
+        }
+      } catch (error) {
+        process.exitCode = 1;
+        const detail = error instanceof Error ? error.message : String(error);
+        if (opts.json)
+          process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+        else process.stdout.write(`design document-diff: blocked ${detail}\n`);
+      }
+    },
+  );
 
 design
   .command("document-diff-git")
-  .description("git revisionと現在のrepository内Markdown rootをread-only比較する")
+  .description("git revisionと現在のMarkdown rootを比較し、明示時だけlocal artifactへ保存する")
   .requiredOption("--base-ref <ref>", "基準git revision")
   .requiredOption("--current-root <path>", "現在Markdown root")
+  .option("--out <path>", ".helix/artifacts/document-diff/ 配下の新規出力path")
+  .option("--dry-run", "--out の書込みを行わずreportだけ検証する")
   .option("--json", "JSON で出力")
-  .action((opts: { baseRef: string; currentRoot: string; json?: boolean }) => {
-    try {
-      const report = loadDocumentSemanticDiffReportFromGit({
-        repoRoot: process.cwd(),
-        baseRef: opts.baseRef,
-        currentRoot: opts.currentRoot,
-      });
-      process.exitCode = report.ok ? 0 : 1;
-      if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
-      else process.stdout.write(`${report.markdown}\n`);
-    } catch (error) {
-      process.exitCode = 1;
-      const detail = error instanceof Error ? error.message : String(error);
-      if (opts.json)
-        process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
-      else process.stdout.write(`design document-diff-git: blocked ${detail}\n`);
-    }
-  });
+  .action(
+    (opts: {
+      baseRef: string;
+      currentRoot: string;
+      out?: string;
+      dryRun?: boolean;
+      json?: boolean;
+    }) => {
+      try {
+        const repoRoot = process.cwd();
+        if (opts.dryRun && !opts.out) throw new Error("document_report_out_required_for_dry_run");
+        const report = loadDocumentSemanticDiffReportFromGit({
+          repoRoot,
+          baseRef: opts.baseRef,
+          currentRoot: opts.currentRoot,
+        });
+        if (!report.ok && opts.out) throw new Error("document_report_not_publishable");
+        if (opts.out && opts.dryRun)
+          validateDocumentReportArtifactPath({ repoRoot, path: opts.out });
+        const artifact =
+          opts.out && !opts.dryRun
+            ? writeDocumentReportArtifact({ repoRoot, path: opts.out, content: report.markdown })
+            : null;
+        process.exitCode = report.ok ? 0 : 1;
+        if (opts.json)
+          process.stdout.write(
+            `${JSON.stringify({ ...report, artifact, artifact_path: opts.out ?? null, artifact_dry_run: Boolean(opts.dryRun) }, null, 2)}\n`,
+          );
+        else {
+          process.stdout.write(`${report.markdown}\n`);
+          if (opts.out)
+            process.stdout.write(
+              opts.dryRun
+                ? `document-diff-git artifact: dry-run path=${opts.out}\n`
+                : `document-diff-git artifact: path=${artifact?.path} digest=${artifact?.digest} durable=true\n`,
+            );
+        }
+      } catch (error) {
+        process.exitCode = 1;
+        const detail = error instanceof Error ? error.message : String(error);
+        if (opts.json)
+          process.stdout.write(`${JSON.stringify({ ok: false, error: detail }, null, 2)}\n`);
+        else process.stdout.write(`design document-diff-git: blocked ${detail}\n`);
+      }
+    },
+  );
 
 program
   .command("status")

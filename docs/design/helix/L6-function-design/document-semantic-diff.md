@@ -43,7 +43,11 @@ ZIP正本 `tools/diff_report.py` の二時点文書比較を、TypeScript/Bunの
 symlink、既存 target、root 外への解決は fail-close とする。new-file-only のため既存 artifact の上書き・削除・
 source Markdown の書換えは行わない。
 
-専用 port は temp file (0600) → file fsync → same-directory rename → directory fsync の順で durable に publishし、
+専用 port は temp file (0600) → file fsync → same-directory atomic no-replace publish → temp unlink → directory fsync の順で
+durable にpublishする。既存targetを上書きできる通常renameはnew-file-only契約に使用せず、競合時もfail-closeする。
+publish後のdirectory fsyncまたはcontent再読込が失敗した場合は、receiptを返す前にoutputをcompensating removeし、
+compensating unlink後のdirectory fsyncまで完了させる。補償自体が失敗した場合は
+`document_report_compensation_ambiguous`で通常失敗と区別し、成功artifactとreceiptなしartifactを混在させない。
 path と content digest と durable status だけを receipt へ返す。`--dry-run` は port を一切呼ばない。既存
 `lint-artifact-write-port` と `document-agent-metadata-write-port` は所有root・authorization・更新契約が異なるため
 直接再利用しない。tag、release、GitHub API、DB、runtime state、subprocess spawn はこの出力機能の非目標である。
