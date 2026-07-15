@@ -13,8 +13,6 @@ owner: Codex
 agent_slots:
   - { role: se, slot_label: "SE — document diff artifact port / CLI" }
   - { role: qa, slot_label: "QA — path / durability / dry-run mutation oracle" }
-backprop_decision: required
-backprop_decision_reason: "通常renameは競合targetを上書きできnew-file-onlyと両立しないため、L6 §3.1をatomic no-replace publishへ補正した。公開・release境界は含めない。"
 parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md
 pair_artifact: docs/test-design/helix/L8-document-semantic-diff-contracts.md
 verification_bindings:
@@ -22,6 +20,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md, oracle_id: IT-DOCDIFF-003, test_path: tests/cli-surface.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-457-document-diff-local-artifact-output.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/document-semantic-diff.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/document-report-write-port.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/document-report-write-port.test.ts, artifact_type: test_code }
