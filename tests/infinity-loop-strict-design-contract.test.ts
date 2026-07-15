@@ -1,3 +1,5 @@
+import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
@@ -7,12 +9,45 @@ const MANIFEST_PATH =
   "docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest";
 
 interface ArtifactRecordV1 {
+  content_digest: string;
   path: string;
   slice_id: string;
 }
 
 interface StrictDesignManifestV1 {
   artifact_inventory: ArtifactRecordV1[];
+  artifact_path_content_set_digest: string;
+  canonical_hst_ids: string[];
+  canonical_hst_set_digest: string;
+  canonical_integration_ids: string[];
+  canonical_integration_set_digest: string;
+  canonical_unit_ids: string[];
+  canonical_unit_set_digest: string;
+  expected_terminal_receipt_digest: string;
+  fixture_id: string;
+  slice_ids: string[];
+  slice_set_digest: string;
+  snapshot_binding: {
+    design_snapshot_digest: string;
+    source_commit: string;
+    source_tree: string;
+  };
+  supporting_meta_oracle_receipt: {
+    canonical_denominator_included: false;
+    oracle_ids: [string, string];
+    receipt_digest: string;
+    receipt_id: string;
+    snapshot_digest: string;
+    status: string;
+  };
+}
+
+function sha256(value: string | Buffer): string {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function setDigest(values: string[]): string {
+  return sha256([...values].sort().join("\n"));
 }
 
 function loadManifest(): StrictDesignManifestV1 {
@@ -80,6 +115,80 @@ describe("Infinity Loop strict design contract", () => {
   it("76成果物・19 L6スライスを固定分母として読む", () => {
     expect(artifacts).toHaveLength(76);
     expect(functionDesigns).toHaveLength(19);
+  });
+
+  it("manifestを固定commit/treeと76成果物exact bytesへbindする", () => {
+    const commit = manifest.snapshot_binding.source_commit;
+    const tree = execFileSync("git", ["rev-parse", `${commit}^{tree}`], {
+      encoding: "utf8",
+    }).trim();
+    expect(tree).toBe(manifest.snapshot_binding.source_tree);
+
+    const contentFindings: string[] = [];
+    const artifactRecords = artifacts.map((artifact) => {
+      const bytes = execFileSync("git", ["show", `${commit}:${artifact.path}`], {
+        encoding: "buffer",
+        maxBuffer: 16 * 1024 * 1024,
+      });
+      const actual = sha256(bytes);
+      if (actual !== artifact.content_digest) {
+        contentFindings.push(artifact.path);
+      }
+      return `${artifact.path}\t${actual}`;
+    });
+    expect(contentFindings).toEqual([]);
+
+    const sliceDigest = setDigest(manifest.slice_ids);
+    const artifactDigest = setDigest(artifactRecords);
+    const unitDigest = setDigest(manifest.canonical_unit_ids);
+    const integrationDigest = setDigest(manifest.canonical_integration_ids);
+    const hstDigest = setDigest(manifest.canonical_hst_ids);
+    expect(sliceDigest).toBe(manifest.slice_set_digest);
+    expect(artifactDigest).toBe(manifest.artifact_path_content_set_digest);
+    expect(unitDigest).toBe(manifest.canonical_unit_set_digest);
+    expect(integrationDigest).toBe(manifest.canonical_integration_set_digest);
+    expect(hstDigest).toBe(manifest.canonical_hst_set_digest);
+
+    const designDigest = sha256(
+      [
+        commit,
+        tree,
+        sliceDigest,
+        artifactDigest,
+        unitDigest,
+        integrationDigest,
+        hstDigest,
+      ].join("\n"),
+    );
+    expect(designDigest).toBe(manifest.snapshot_binding.design_snapshot_digest);
+
+    const supporting = manifest.supporting_meta_oracle_receipt;
+    const supportingDigest = sha256(
+      [
+        supporting.receipt_id,
+        designDigest,
+        supporting.oracle_ids[0],
+        supporting.oracle_ids[1],
+        supporting.status,
+        String(supporting.canonical_denominator_included),
+      ].join("\n"),
+    );
+    expect(supporting.snapshot_digest).toBe(designDigest);
+    expect(supporting.receipt_digest).toBe(supportingDigest);
+
+    const terminalDigest = sha256(
+      [
+        manifest.fixture_id,
+        designDigest,
+        sliceDigest,
+        artifactDigest,
+        unitDigest,
+        integrationDigest,
+        hstDigest,
+        supportingDigest,
+      ].join("\n"),
+    );
+    expect(manifest.expected_terminal_receipt_digest).toBe(terminalDigest);
   });
 
   it("76成果物の型宣言名をV1へ閉じる", () => {
