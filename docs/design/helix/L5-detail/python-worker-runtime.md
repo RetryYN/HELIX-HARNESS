@@ -37,15 +37,15 @@ semantic signature、coverage decisionを再実装しない。
 別IPCを持たない。Node/Bun cutover全体、Python dependency packaging、network sandbox、外部service接続は本sliceの
 完了主張に含めない。
 
-現行ADR-001とrepo runtime規則はPythonをproduct runtimeとして許可していないため、本書はPLAN-L1-07が示す
-将来targetのdraft設計であり、実装・active化のauthorityではない。Python workerの実装着手は、Node/Python境界を
-承認する後継ADRによるADR-001の明示的supersedeと、対応するForward PLANの確認後に限る。
+ADR-009はclosed capability classのproposal-only Python workerをtargetとしてacceptedとした。ただし本書はdraftであり、
+Python version、interpreter provenance、package／lock、worker root／entrypoint、wheel／sdist、SBOM／licenseが未freezeである。
+対応するForward PLAN、pair-freeze、Node minimum、HDS-HIL-14 supply-chain gateなしに実装・active化しない。
 
 ## §1 componentとauthority
 
 | component | 責務 | authority | L8 oracle |
 |---|---|---|---|
-| `PythonWorkerRegistry` | worker ID/version、protocol、entrypoint digest、request/result schema、resource policyをallowlist | registry eventだけ | `IT-PYWR-001, IT-PYWR-002` |
+| `PythonWorkerRegistry` | worker ID/version、closed capability class、protocol、entrypoint digest、request/result schema、resource policyをallowlist | registry eventだけ | `IT-PYWR-001, IT-PYWR-002` |
 | `PythonWorkerBroker` | lease、fence、process、handshake、deadline、cancel、backpressure、terminal化を監督 | worker run/eventだけ | `IT-PYWR-001`, `IT-PYWR-002`, `IT-PYWR-003`, `IT-PYWR-004`, `IT-PYWR-005`, `IT-PYWR-006` |
 | `WorkerSandboxPort` | executable、cwd、environment、read/write root、process group、resource limitを適用 |隔離された一時領域だけ | `IT-PYWR-003, IT-PYWR-005, IT-PYWR-007` |
 | `JsonLinesProtocolPort` | stdout frameをstrict parseし、sequence、digest、size、typeを検証 | validated frameだけ | `IT-PYWR-001`, `IT-PYWR-002`, `IT-PYWR-003`, `IT-PYWR-004` |
@@ -63,24 +63,21 @@ fail-closeする。Python側の「書かなかった」という自己申告はa
 
 ## §2 registryと起動契約
 
-worker descriptorは少なくとも次を固定する。
+worker descriptorの型正本はL6 §2の`PythonWorkerDescriptorV1`だけとし、L5で同名型を再宣言しない。
+registryは少なくとも次をexact joinして固定する。
 
-```ts
-interface PythonWorkerDescriptorV1 {
-  worker_id: string;
-  worker_version: string;
-  protocol_major: number;
-  protocol_minor: number;
-  entrypoint: string;
-  entrypoint_digest: string;
-  python_runtime: string;
-  request_schema: string;
-  result_schema: string;
-  input_kinds: string[];
-  resource_policy_id: string;
-  resource_policy_digest: string;
-}
-```
+| field群 | L5拘束 |
+|---|---|
+| 識別 | `schema_version`、worker ID/version、descriptor digest、registry revision/digestを固定 |
+| capability | `source_atomization / document_engine / detector / product_data / analysis`のclosed listからexactly oneを選択 |
+| protocol | majorと互換minor min/maxを固定。単一minorへの縮退禁止 |
+| 実行 | entrypoint＋digest、Python runtime、input kindを固定 |
+| schema／policy | request/result schema、resource policy ID＋digestを固定 |
+
+Nodeはrequested capability、worker ID/version、registry revisionからactive descriptorをexactly-one解決し、descriptorだけでなく
+requested class、registry revision/digest、resolution digestを持つresolution receiptをrunへ渡す。0件、複数件、
+inactive、class不一致、descriptor digest drift、未知／複数／alias capabilityは
+`HIL_PYTHON_PLANE_BOUNDARY_INVALID`でspawn前に拒否する。capability追加はADR-009のRedesignを先行させる。
 
 Nodeはallowlist済みdescriptorをstable IDでexactly-one解決し、shellを介さずargv配列でprocessを起動する。
 working directoryはrun固有temp、environmentはallowlist、stdin/stdout/stderrはpipe、process groupはrun専用とする。
@@ -92,24 +89,9 @@ receiptを再利用しない。
 ### §3.1 envelope
 
 stdoutはprotocol専用とし、一行一object、UTF-8、BOMなし、LF、最大line/payload制限ありとする。診断はstderrへ
-送り、stderrもsize上限とdigestを持つ。protocol frameは次のfieldを必須にする。
-
-```ts
-interface PythonWorkerEnvelopeV1 {
-  schema_version: "helix-python-worker-envelope.v1";
-  protocol_version: string;
-  run_id: string;
-  request_id: string;
-  type: "hello" | "hello_ack" | "request" | "progress" | "result" |
-        "complete" | "error" | "cancel" | "cancelled";
-  sequence: number;
-  deadline_at: string;
-  lease_id: string;
-  fence_token: string;
-  payload_digest: string;
-  payload: unknown;
-}
-```
+送り、stderrもsize上限とdigestを持つ。envelope型の正本もL6 §2の`PythonWorkerEnvelopeV1`だけとする。
+必須fieldはschema/protocol version、run/request ID、方向別type/sequence、deadline、lease/fence、payload digest/payloadであり、
+L5側で同名型を複製しない。
 
 正規sequenceはNode `hello(0)`、Python `hello_ack(0)`、Node `request(1)`、Python `progress|result(1..N)`、
 Python `complete|error|cancelled(N+1)`である。方向ごとにstrict monotonicとし、欠番、重複、巻戻り、terminal後frame、

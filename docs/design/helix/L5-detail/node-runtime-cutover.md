@@ -28,15 +28,14 @@ requirements:
 
 ## §0 決定境界
 
-本書はL4 §10のP0〜P5を、`Node minimum`と`Bun cutover`の二段gateへ詳細化する。ADR-001は現在も
-TypeScript strict/Bun runtime、`bun:sqlite`、`bun build --compile`を拘束するaccepted decisionである。
-したがって本書はADR-001を上書きしない。新しいruntime ADR（ID未採番）がADR-001のruntime、SQLite、build、
-distribution部分を明示的にsupersedeし、POが承認するまでは本書をdraftの設計候補とし、package、lock、CI、runtime、
-distributionを変更しない。TypeScript strict、zod単一正本、clean rebuild、薄いOS入口は維持候補とする。
+本書はL4 §10のP0〜P5を、`Node minimum`と`Bun cutover`の二段gateへ詳細化する。ADR-009はtargetを
+TypeScript strict/Node.js 24 LTS、npm、`package-lock.json`、`node:sqlite`、Linux-primaryへ確定した。
+cutover前のactive execution authorityは既存Bun経路、terminal activation receipt後はreceiptが指すNode artifactだけである。
+本書は引き続きdraftであり、ADR acceptedをpair-freeze、implementation、cutover完了へ読み替えない。
 
-選定候補はNode.js 22 LTS（minimum `22.12.0`）、npm、canonical `package-lock.json`、開発時`tsx`、
-bundled ESM `dist/helix.mjs`である。これはfreeze済み決定ではない。新ADRはADR-005/ADR-007を含む関連決定、
-Windows/Linux配布、単一ファイル要件、`node:sqlite`の安定性を同時に再評価しなければならない。
+Node minimumは`>=24.15.0 <25`とし、exact Node version、`node:sqlite` stability/API、組込SQLite version／compile optionsを
+receiptへbindする。開発loader／bundle tool、forward activation transaction、Python toolchainは未freezeのdesign obligationであり、
+Redesignと独立reviewが閉じるまでimplementation preflightをblockする。
 
 ## §1 二段cutoverと状態機械
 
@@ -45,7 +44,12 @@ Windows/Linux配布、単一ファイル要件、`node:sqlite`の安定性を同
 | `NodeMinimumGate` | P0–P1 | 全surface inventoryと固定Node環境 | BunなしでNode install、typecheck、targeted test、source CLI、SQLite、暫定buildがgreen | Bun残存の完了、HAC-HIL-13a、cutover完了 |
 | `BunCutoverGate` | P2–P5 | Node minimum receipt、全adapter/distribution移行 | clean Linuxの全canonical workflowがgreen、active Bun finding 0、quarantine 0 | 一部互換、期限なしallowlist、Bun fallback |
 
-状態は`inventoried -> node_minimum_ready -> node_minimum_green -> migrating -> cutover_ready -> cutover_green`とする。
+評価状態は`inventoried -> node_minimum_ready -> node_minimum_green -> migrating -> cutover_ready -> cutover_gate_provisional`とする。
+authority変更は別状態機械
+`approval_pending -> activation_planned -> writer_epoch_acquired -> legacy_drained -> staged -> activation_committing -> activated_monitoring -> terminal`
+を正常系とする。recoveryは`activation_committing -> reconcile_required -> activated_monitoring`、rollbackは
+`activated_monitoring -> rollback_required -> rollback_approved -> rolling_back -> rolled_back`だけを許可する。
+`pre_commit_fault`はcurrent不変、`post_commit_fault`は`reconcile_required`、monitoring failureは`rollback_required`へ遷移する。
 inventory、lock、source、workflow、artifact、allowlistのdigest driftは該当receiptを`stale`へ送る。failure後のsilent PASS、
 phase飛越、`node_minimum_green`をterminal completionへ読み替えることを禁止する。
 
@@ -82,28 +86,64 @@ fallbackを「互換」として除外することを禁止する。baseline cou
 | `NodeMinimumGate` | P0–P1の限定PASSを評価 | gate receiptのみ |
 | `BunCutoverGate` | P2–P5、active 0/quarantine 0を評価 | gate receiptのみ |
 | `CutoverEvidenceStore` | content-addressed evidenceをimmutable publish | evidence rootのみ |
+| `NodeCutoverActivationCoordinator` | plan、noncurrent staging、commit/reconcile、monitoring terminalを調整 | 直接writeなし |
+| `NodeCutoverActivationPort` | writer epoch、generation、authority pointer CAS、event/projection/receiptを固定順commit | forward activation唯一writer |
 
 正規bundle候補は`.helix/evidence/node-runtime-cutover/<snapshot_id>/`とし、
 `runtime-surface-inventory.jsonl`、`bun-dependency-findings.jsonl`、`historical-allowlist.jsonl`、
-`node-workflow-evidence.jsonl`、`node-minimum-receipt.json`、`bun-cutover-receipt.json`を持つ。
+`node-workflow-evidence.jsonl`、`node-minimum-receipt.json`、`bun-cutover-receipt.json`、
+`activation-plan.json`、`activation-receipt.json`、`terminal-receipt.json`を持つ。
 各receiptはHEAD、scope、schema/rule/toolchain/lock/artifact/workflow digest、command、exit、stdout/stderr digest、
 producer、created_at、status、failure codesへbindする。secret、credential、環境変数値、source本文は保存しない。
 
 ## §4 Node canonical workflow候補
 
-新ADR承認後の候補順は、clean checkout、Node version検証、`npm ci`、`npm run typecheck`、`npm run lint`、
+ADR-009採択後の候補順は、clean checkout、Node version検証、`npm ci`、`npm run typecheck`、`npm run lint`、
 単体、結合、source CLI smoke、build、built CLI同値性、SQLite再構築、hook/session smoke、package、consumer install、
 offline-cache install、Bun dependency scanである。Node minimumはtargeted testまでを許せるが、cutoverは省略せず全順序を走る。
 Linuxをfull gate、macOS/Windowsを同一fixtureのcompatibility smokeとし、OS別lockを作らない。
 
 ## §5 rollback／failure／exit契約
 
+### §5.0 forward activation唯一writer
+
+`BunCutoverGate` PASSは`terminal:false`のprovisional receiptでありcurrent authorityを変更しない。forward activationは
+`planNodeCutover`→`executeNodeCutover`→`commitNodeCutover`→`reconcileNodeCutover`の固定compositionだけを許可する。
+
+| composition順 | exact function | owner U | owner IT | write境界 |
+|---:|---|---|---|---|
+| 1 | `planNodeCutover` | `U-NCUT-014` | `IT-NCUT-012` | write 0。snapshot、approval scope、fixed write set、expected revisionを固定 |
+| 2 | `executeNodeCutover` | `U-NCUT-014` | `IT-NCUT-012` | immutable noncurrent generationだけをprepare／verify |
+| 3 | `commitNodeCutover` | `U-NCUT-014` | `IT-NCUT-012` | activation port内のsingle authority pointer CASだけをcommit pointにする |
+| 4 | `reconcileNodeCutover` | `U-NCUT-014` | `IT-NCUT-012` | 同operation/digest/revisionのcheckpointだけから収束 |
+| 5 | `commitNodeCutoverTerminal` | `U-NCUT-015` | `IT-NCUT-013` | monitoring receipt後だけterminal authorityをcommit |
+| 6 | `reconcileNodeCutoverTerminal` | `U-NCUT-015` | `IT-NCUT-013` | terminal event／projection／receipt faultを同operationへ収束 |
+
+activation前にactive Bun process/session 0、old hook drain、quiet window、exclusive SQLite/file claim、writer epoch、lease/fenceを
+全て確認する。旧Bun writerは新epochを理解しないため、epoch取得だけをfence証拠にしない。runtime artifact、DB generation、hook、
+package、lock、CIをimmutable generationへstageし、activation前の独立preconditionで既存Bun経路へ導入・検証済みの
+固定bootstrap adapterが読む`runtime generation current` pointer一件のCASへcommit pointを縮約する。bootstrap adapter自身は
+activation write setへ含めない。stale Bunが旧generationへwriteしても新currentへ到達させない。
+
+commit直前にaction-binding approval、HEAD/snapshot、authority revision、writer epoch、lease/fence、legacy drain、fixed write set、
+全staged digestをstoreから再読する。同operation＋同digestは元receiptとaction増分0、異digest、CAS loser、stale epoch、期限切れ
+approvalは全action 0とする。pointer CAS後faultは同operation reconcile以外を拒否し、個別resource writerを公開しない。
+
+forward／rollbackが共有するprivate authority transaction storeのDB正本は`runtime_cutover_writer_epochs`、`runtime_cutover_operations`、`runtime_cutover_events`、
+`runtime_authority_current`、`runtime_cutover_receipts`の5表とする。prepared bytesはDBへ複製せずcontent-addressed generationを参照する。
+activation receiptは`activated_monitoring/terminal:false`、monitoring windowとhealth receiptが閉じた
+`NodeCutoverTerminalReceipt`だけが`terminal:true`である。同一operationのactivation／terminal receiptはappend-onlyで共存し、
+terminal化でactivation rowを更新・削除しない。rollback receiptをterminal receiptへ代用しない。
+
 ### §5.1 cutover rollback契約
 
 cutover実行前にprevious known-good release ID、artifact digest、DB schema/data revisionと新旧binary双方の互換判定、
 state backup digest、復旧command digestを固定する。triggerは起動不能、DB migration/consumer互換違反、required workflow退行、
 監視window内のhealth/error閾値違反へ限定し、実行にはtrigger digestへbindしたaction-binding approvalを必須とする。
-状態は`cutover_applying -> monitoring -> cutover_green`または`rollback_required -> rollback_approved -> rolling_back -> rolled_back -> monitoring`とする。
+状態は§1のauthority状態機械を正本とし、rollbackは
+`activated_monitoring -> rollback_required -> rollback_approved -> rolling_back -> rolled_back`とする。
+`rolled_back`はNode cutoverのterminalではなく、Bunを含み得るprevious known-goodが一時authorityへ戻り、既存Node
+activation／terminal receiptがstaleになった状態である。rollback後のmonitoringは状態名ではなくevidence／receiptとして記録する。
 
 rollbackはartifact、DB/state、current release pointerを一つのoperation bundleでCASし、receiptへbefore/after release、artifact、DB revision、
 approval、trigger、backup、各action count、monitoring windowとhealth receiptを残す。各action直後faultは旧known-goodをcurrentのまま保つか、
@@ -154,6 +194,20 @@ rollback planは実行証拠ではない。公開Node API `executeNodeCutoverRol
 | `HIL_NODE_EVIDENCE_STALE` | HEAD、scope、rule、lock、artifact、workflowのdrift |
 | `HIL_NODE_CUTOVER_ROLLBACK_UNSAFE` | known-good release/artifact/DB互換、backup、trigger、approvalのいずれか欠落 |
 | `HIL_NODE_CUTOVER_MONITORING_FAILED` | cutover後またはrollback後の監視windowでhealth/error閾値違反 |
+| `HIL_NODE_CUTOVER_ACTIVATION_PLAN_INVALID` | snapshot、operation、fixed write setまたはgeneration planが不正 |
+| `HIL_NODE_CUTOVER_APPROVAL_MISSING` | action-binding approval欠落 |
+| `HIL_NODE_CUTOVER_APPROVAL_SCOPE_MISMATCH` | approvalのactor/tool/target/params/snapshot/write setが不一致 |
+| `HIL_NODE_CUTOVER_APPROVAL_STALE` | approval期限切れまたはtrigger/snapshot drift |
+| `HIL_NODE_CUTOVER_WRITER_EPOCH_CONFLICT` | exclusive writer epochを取得できない |
+| `HIL_NODE_CUTOVER_WRITER_LEASE_EXPIRED` | lease/fenceがcommit前に失効 |
+| `HIL_NODE_CUTOVER_LEGACY_WRITER_ACTIVE` | Bun process/session、old hook、quiet window未達 |
+| `HIL_NODE_CUTOVER_AUTHORITY_REVISION_CONFLICT` | authority pointer CASのexpected revision不一致 |
+| `HIL_NODE_CUTOVER_WRITE_SET_MISMATCH` | fixed write setまたはresource digest差異 |
+| `HIL_NODE_CUTOVER_STAGING_INVALID` | immutable generationのprepare／verify不成立 |
+| `HIL_NODE_CUTOVER_COMMIT_AMBIGUOUS` | pointer CAS後のreceipt/event状態を一意判定不能 |
+| `HIL_NODE_CUTOVER_RECEIPT_CONFLICT` | 同operationのreceipt digest競合 |
+| `HIL_NODE_CUTOVER_RECONCILIATION_FAILED` | checkpointから同一authorityへ収束不能 |
+| `HIL_NODE_CUTOVER_TERMINAL_PRECONDITION` | monitoring／health／activation receipt欠落またはrollback代用 |
 
 CLI exit候補は成功0、契約/gate failure 2、I/O 3、internal 4。stdoutはschema準拠JSON、診断はstderrとする。
 
@@ -176,7 +230,7 @@ case分母へ重複加算しない。各行のevidenceは固定HEAD、inventory/
 
 | HST正本 | 主IT | supporting主U | pre_state | expected_state | failure正本 |
 |---|---|---|---|---|---|
-| `HST-CASE-013-01` | `IT-NCUT-008` | `U-NCUT-012` | `verifying` | `verified` | `なし（正常系）` |
+| `HST-CASE-013-01` | `IT-NCUT-013` | `U-NCUT-015` | `activated_monitoring` | `verified` | `なし（正常系）` |
 | `HST-CASE-013-02` | `IT-NCUT-010` | `U-NCUT-004` | `verifying` | `failed` | `HIL_ACTIVE_BUN_DEPENDENCY` |
 | `HST-CASE-013-03` | `IT-NCUT-010` | `U-NCUT-004` | `verifying` | `failed` | `HIL_ACTIVE_BUN_COMMAND` |
 | `HST-CASE-013-04` | `IT-NCUT-010` | `U-NCUT-004` | `verifying` | `failed` | `HIL_ACTIVE_BUN_LOCKFILE` |
@@ -186,11 +240,8 @@ case分母へ重複加算しない。各行のevidenceは固定HEAD、inventory/
 | `HST-CASE-013-08` | `IT-NCUT-008` | `U-NCUT-012` | `assertion_input_ready` | `assertion_pass` | `HIL_ACTIVE_BUN_DEPENDENCY` |
 | `HST-CASE-013-09` | `IT-NCUT-009` | `U-NCUT-003` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_COVERAGE_INCOMPLETE` |
 | `HST-CASE-013-10` | `IT-NCUT-002` | `U-NCUT-008` | `assertion_input_ready` | `assertion_pass` | `HIL_NODE_CONTROL_PLANE_INVALID` |
-| `HST-CASE-013-11` | `IT-NCUT-008` | `U-NCUT-012` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_CUTOVER_INCOMPLETE` |
+| `HST-CASE-013-11` | `IT-NCUT-012` | `U-NCUT-014` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_CUTOVER_INCOMPLETE` |
 
-freezeには新ADRのaccepted/PO承認、11/11 integration、13/13 unit、全surface inventory、active finding 0、
+freezeにはADR-009、13/13 integration、15/15 unit、全surface inventory、active finding 0、
 quarantine 0、clean Linux全workflow、macOS/Windows smoke、lock/offline/SBOM evidence、別runtime reviewを要求する。
 本書とテスト設計だけではcutoverの実装・承認・完了を主張しない。
-
-artifact、DB state、release pointerはheterogeneous resourceとして全件prepare/stage/verifyしてからpointer CASをcommit pointとする。
-commit前faultはcurrent不変、commit後faultはcheckpoint recoveryまたはcompensationで新旧混在を0にする。

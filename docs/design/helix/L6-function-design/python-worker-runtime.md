@@ -27,9 +27,10 @@ requirements:
 
 | API | signature | DbC | L7 oracle |
 |---|---|---|---|
-| `parsePythonWorkerDescriptor` | `(raw: unknown) => ResultV1<PythonWorkerDescriptorV1, WorkerFailureV1>` | strict schema、digest、protocol/resource policyを要求しunknown key拒否 | `U-PYWR-001` |
+| `parsePythonWorkerDescriptor` | `(raw: unknown) => ResultV1<PythonWorkerDescriptorV1, WorkerFailureV1>` | strict schema、closed capability class、digest、protocol/resource policyを要求しunknown key拒否 | `U-PYWR-001` |
+| `resolvePythonWorkerDescriptor` | `(requestedClass: PythonWorkerCapabilityClassV1, workerId: string, workerVersion: string, registry: PythonWorkerRegistrySnapshotV1) => ResultV1<ResolvedPythonWorkerDescriptorV1, WorkerFailureV1>` | active descriptorをexactly-one解決し、0件／複数件／inactive／class不一致／digest driftを拒否。resolution receiptを返す | `U-PYWR-001` |
 | `negotiatePythonWorkerProtocol` | `(host: PythonWorkerProtocolOfferV1, worker: PythonWorkerProtocolOfferV1) => ResultV1<NegotiatedPythonWorkerProtocolV1, WorkerFailureV1>` | major一致、minor共通最大、schema capability交差が非空 | `U-PYWR-002` |
-| `createPythonWorkerRun` | `(request, descriptor, lease, limits) => PythonWorkerRunPlanV1` | operation/input/config/schema/policyから時刻非依存run identity、shell 0 | `U-PYWR-003` |
+| `createPythonWorkerRun` | `(request: PythonWorkerRunRequestV1, resolved: ResolvedPythonWorkerDescriptorV1, lease, limits) => ResultV1<PythonWorkerRunPlanV1, WorkerFailureV1>` | request/resolutionのclass、worker、registry revision/digest、resolution digestをexact照合し、時刻非依存run identity、shell 0 | `U-PYWR-003` |
 | `spawnPythonWorker` | `(plan: PythonWorkerRunPlanV1, sandbox, clock) => Promise<PythonWorkerProcessHandleV1>` | allowlisted argv/env/cwd/root、process group、親監視を設定 | `U-PYWR-004` |
 | `parsePythonWorkerEnvelope` | `(line: Uint8Array, limits) => ResultV1<PythonWorkerEnvelopeV1, WorkerFailureV1>` | UTF-8 JSONL、field/type/sizeを厳密検査しstdoutを通信専用にする | `U-PYWR-005` |
 | `advancePythonWorkerProtocol` | `(state: PythonWorkerProtocolStateV1, direction, envelope: PythonWorkerEnvelopeV1) => ResultV1<PythonWorkerProtocolStateV1, WorkerFailureV1>` | run/request/lease/fence、方向別sequence、type/state、digestを検査 | `U-PYWR-006` |
@@ -37,11 +38,11 @@ requirements:
 | `requestPythonWorkerCancellation` | `(run, process, reason, clock) => Promise<WorkerTerminationEvidenceV1>` | cancel一回、grace後TERM/KILL、fence失効 | `U-PYWR-009` |
 | `observePythonWorkerExit` | `(run, exit, parent, clock) => WorkerTerminalProposalV1` | normal/crash/parent-lost/timeoutを一つのterminal候補へ正規化 | `U-PYWR-010` |
 | `fencePythonWorkerResult` | `(run, lease, envelope: PythonWorkerEnvelopeV1) => ResultV1<PythonWorkerEnvelopeV1, WorkerFailureV1>` | current lease/fence/deadlineだけ受理しlate result拒否 | `U-PYWR-011` |
-| `stagePythonWorkerResult` | `(run, frames, complete, consumerSchema) => ResultV1<StagedPythonWorkerResultV1, WorkerFailureV1>` | complete exactly-one、全chunk/count/set digest、strict schema、provenance | `U-PYWR-012` |
+| `stagePythonWorkerResult` | `(run, frames, complete, consumerSchema) => ResultV1<StagedPythonWorkerResultV1, WorkerFailureV1>` | complete exactly-one、全chunk/count/set digest、strict schema、runとclass/registry/resolution digest一致 | `U-PYWR-012` |
 | `validateWorkerOutputArtifacts` | `(staged: StagedPythonWorkerResultV1, outputRoot, limits) => ResultV1<ValidatedWorkerArtifactsV1, WorkerFailureV1>` | relative path、root containment、symlink/duplicate/size/digestを検査 | `U-PYWR-013` |
 | `assertPythonProposalOnlyAuthority` | `(sandboxEvidence, writeSet, authorityMap) => ResultV1<PythonProposalAuthorityReceiptV1, WorkerFailureV1>` | writable run root以外のwrite 0、Python DB/repo/current authorityなし | `U-PYWR-014` |
 | `commitPythonWorkerResult` | `(staged, artifacts, idempotencyKey) => ResultV1<AcceptedWorkerCommitBundleV1, WorkerFailureV1>` | authoritative writeをせず、accepted/consumer/projection/terminalを完全bundle化 | `U-PYWR-015` |
-| `recordWorkerTerminalReceipt` | `(run, terminal, bundle) => ResultV1<AcceptedWorkerCommitBundleV1, WorkerFailureV1>` | bundle内terminalをrunごとexactly-oneにし、単独persistを禁止 | `U-PYWR-016` |
+| `recordWorkerTerminalReceipt` | `(run, terminal, bundle) => ResultV1<AcceptedWorkerCommitBundleV1, WorkerFailureV1>` | terminalとrunのclass/registry/resolution digestをexact照合し、runごとexactly-one、単独persist禁止 | `U-PYWR-016` |
 | `commitAcceptedPythonWorkerResult` | `(bundle: AcceptedWorkerCommitBundleV1, store: PythonWorkerCommitStoreV1) => Promise<ResultV1<AcceptedWorkerCommitReceiptV1, WorkerFailureV1>>` | `accepted_result_commit`だけをNode store一transactionで固定順commit | `U-PYWR-017` |
 | `commitPythonWorkerTerminal` | `(bundle: TerminalWorkerCommitBundleV1, store: PythonWorkerCommitStoreV1) => Promise<ResultV1<TerminalWorkerCommitReceiptV1, WorkerFailureV1>>` | `non_accepted_terminal_commit`でfailed/quarantined/cancelled/timed_outをexactly-one commit | `U-PYWR-017` |
 | `reconcilePythonWorkerTerminal` | `(bundle: TerminalWorkerReconcileBundleV1, store: PythonWorkerCommitStoreV1) => Promise<ResultV1<TerminalWorkerCommitReceiptV1, WorkerFailureV1>>` | `terminal_reconcile`とimmutable evidenceから同一operation/digest/revisionだけを収束 | `U-PYWR-017` |
@@ -97,12 +98,22 @@ type ResultV1<T, E> =
 interface PythonWorkerDescriptorV1 {
   schema_version: "helix-python-worker-descriptor.v1";
   worker_id: string; worker_version: string; protocol_major: number; protocol_minor_min: number; protocol_minor_max: number;
+  capability_class: PythonWorkerCapabilityClassV1;
   entrypoint: string; entrypoint_digest: string; python_runtime: string; request_schema: string; result_schema: string;
   input_kinds: string[]; resource_policy_id: string; resource_policy_digest: string; descriptor_digest: string;
 }
+type PythonWorkerCapabilityClassV1 =
+  | "source_atomization"
+  | "document_engine"
+  | "detector"
+  | "product_data"
+  | "analysis";
+interface PythonWorkerRegistryEntryV1 { descriptor: PythonWorkerDescriptorV1; status: "active" | "inactive"; entry_digest: string }
+interface PythonWorkerRegistrySnapshotV1 { registry_revision: number; registry_digest: string; entries: PythonWorkerRegistryEntryV1[] }
+interface ResolvedPythonWorkerDescriptorV1 { requested_class: PythonWorkerCapabilityClassV1; registry_revision: number; registry_digest: string; descriptor: PythonWorkerDescriptorV1; resolution_digest: string }
 interface PythonWorkerProtocolOfferV1 { protocol_major: number; protocol_minor_min: number; protocol_minor_max: number; request_schema_ids: string[]; result_schema_ids: string[]; capability_set_digest: string; offer_digest: string }
 interface NegotiatedPythonWorkerProtocolV1 { protocol_major: number; protocol_minor: number; request_schema_id: string; result_schema_id: string; host_offer_digest: string; worker_offer_digest: string; negotiation_digest: string }
-interface PythonWorkerRunPlanV1 { operation_id: string; run_id: string; request_id: string; descriptor_digest: string; request_digest: string; argv: string[]; environment_keys: string[]; working_directory_id: string; read_root_digests: string[]; write_root_digest: string; lease_id: string; fence_token: string; deadline_at: string; limits_digest: string; run_identity_digest: string }
+interface PythonWorkerRunPlanV1 { operation_id: string; run_id: string; request_id: string; capability_class: PythonWorkerCapabilityClassV1; registry_revision: number; registry_digest: string; resolution_digest: string; descriptor_digest: string; request_digest: string; argv: string[]; environment_keys: string[]; working_directory_id: string; read_root_digests: string[]; write_root_digest: string; lease_id: string; fence_token: string; deadline_at: string; limits_digest: string; run_identity_digest: string }
 interface PythonWorkerProcessHandleV1 { run_id: string; process_id: string; process_group_id: string; stdin_channel_id: string; stdout_channel_id: string; stderr_channel_id: string; parent_monitor_receipt_digest: string; sandbox_evidence_digest: string; started_at: string }
 interface PythonWorkerEnvelopeV1 { schema_version: "helix-python-worker-envelope.v1"; protocol_version: string; run_id: string; request_id: string; type: "hello" | "hello_ack" | "request" | "progress" | "result" | "complete" | "error" | "cancel" | "cancelled"; sequence: number; deadline_at: string; lease_id: string; fence_token: string; payload_digest: string; payload: unknown }
 interface PythonWorkerProtocolStateV1 { run_id: string; request_id: string; phase: "negotiating" | "running" | "result_staged" | "terminal"; next_host_sequence: number; next_worker_sequence: number; terminal_seen: boolean; lease_id: string; fence_token: string; result_chunk_digests: string[]; state_digest: string }
@@ -163,6 +174,10 @@ interface PythonWorkerRunRequestV1 {
   request_id: string;
   worker_id: string;
   worker_version: string;
+  capability_class: PythonWorkerCapabilityClassV1;
+  registry_revision: number;
+  registry_digest: string;
+  resolution_digest: string;
   input_artifact_ids: string[];
   input_digest: string;
   config_digest: string;
@@ -186,6 +201,10 @@ interface StagedPythonWorkerResultV1 {
   request_id: string;
   worker_id: string;
   worker_version: string;
+  capability_class: PythonWorkerCapabilityClassV1;
+  registry_revision: number;
+  registry_digest: string;
+  resolution_digest: string;
   protocol_version: string;
   input_digest: string;
   config_digest: string;
@@ -201,6 +220,10 @@ interface StagedPythonWorkerResultV1 {
 interface PythonWorkerTerminalReceiptV1 {
   schema_version: "helix-python-worker-terminal-receipt.v1";
   run_id: string;
+  capability_class: PythonWorkerCapabilityClassV1;
+  registry_revision: number;
+  registry_digest: string;
+  resolution_digest: string;
   status: "committed" | "failed" | "quarantined" | "cancelled" | "timed_out";
   failure_codes: WorkerFailureCodeV1[];
   process_exit: { code: number | null; signal: string | null };
@@ -261,6 +284,11 @@ OS separatorを含めない。receiptには観測時刻を記録できるが、r
 6. `same idempotency key + different digest -> conflict, commit 0`。
 7. accepted/consumer event、projection、terminal/commit receiptは一つのNode DB transactionで、artifactはdigest付きimmutable stagingからreconcile可能。
 8. append順は`accepted_event,consumer_event,projection,terminal_receipt,commit_receipt`、任意step faultで全count 0。
+9. `request.capability_class/registry_revision/registry_digest/resolution_digest == resolved == run == staged == terminal`。
+10. class／registry／resolutionを1 hopでも改変した場合、spawn／stage／terminal／authoritative commitは全て0。
+
+class、registry、resolution digestはrequest digest、run identity digest、result setのprovenance digest、terminal receipt digestへ含め、
+fieldが見かけ上一致してもdigest bindingが異なるcross-class replayを拒否する。
 
 ## §4 実装配置候補と依存方向
 

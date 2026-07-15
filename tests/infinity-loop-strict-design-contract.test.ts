@@ -60,6 +60,80 @@ function extractTypeScriptFences(content: string): string[] {
   );
 }
 
+function topLevelDeclarationNames(content: string): string[] {
+  return extractTypeScriptFences(content).flatMap((fence, index) => {
+    const source = ts.createSourceFile(
+      `design-fence-${index}.ts`,
+      fence,
+      ts.ScriptTarget.ES2022,
+      true,
+    );
+    return source.statements.flatMap((statement) => {
+      if (
+        ts.isInterfaceDeclaration(statement) ||
+        ts.isTypeAliasDeclaration(statement) ||
+        ts.isClassDeclaration(statement) ||
+        ts.isEnumDeclaration(statement)
+      ) {
+        return statement.name ? [statement.name.text] : [];
+      }
+      return [];
+    });
+  });
+}
+
+function declarationOwnerFindings(
+  sources: { path: string; content: string }[],
+  canonicalOwner: string,
+): string[] {
+  const owners = new Map<string, string[]>();
+  for (const source of sources) {
+    for (const name of topLevelDeclarationNames(source.content)) {
+      const current = owners.get(name) ?? [];
+      current.push(source.path);
+      owners.set(name, current);
+    }
+  }
+  return [...owners.entries()].flatMap(([name, paths]) =>
+    paths.length === 1 && paths[0] === canonicalOwner
+      ? []
+      : [`${name}:${paths.join(",")}`],
+  );
+}
+
+function exactStringUnionMembers(
+  content: string,
+  aliasName: string,
+): string[] | null {
+  for (const [index, fence] of extractTypeScriptFences(content).entries()) {
+    const source = ts.createSourceFile(
+      `union-fence-${index}.ts`,
+      fence,
+      ts.ScriptTarget.ES2022,
+      true,
+    );
+    const declaration = source.statements.find(
+      (statement): statement is ts.TypeAliasDeclaration =>
+        ts.isTypeAliasDeclaration(statement) && statement.name.text === aliasName,
+    );
+    if (!declaration || !ts.isUnionTypeNode(declaration.type)) {
+      continue;
+    }
+    const members: string[] = [];
+    for (const node of declaration.type.types) {
+      if (
+        !ts.isLiteralTypeNode(node) ||
+        !ts.isStringLiteral(node.literal)
+      ) {
+        return null;
+      }
+      members.push(node.literal.text);
+    }
+    return members;
+  }
+  return null;
+}
+
 function semanticDiagnostics(path: string, content: string): string[] {
   const virtualPath = `${path}.ts`;
   const options: ts.CompilerOptions = {
@@ -250,4 +324,460 @@ describe("Infinity Loop strict design contract", () => {
     }
     expect(findings).toEqual([]);
   }, 30_000);
+
+  it("HDS-HIL-12の全共有schemaをL6単一ownerへ固定する", () => {
+    const sources = artifacts
+      .filter((artifact) => artifact.slice_id === "HDS-HIL-12")
+      .map((artifact) => ({
+        path: artifact.path,
+        content: readFileSync(artifact.path, "utf8"),
+      }));
+    const owner = "docs/design/helix/L6-function-design/python-worker-runtime.md";
+    expect(declarationOwnerFindings(sources, owner)).toEqual([]);
+
+    const names = topLevelDeclarationNames(
+      sources.find((source) => source.path === owner)?.content ?? "",
+    );
+    expect(names).toContain("PythonWorkerCapabilityClassV1");
+    expect(names).toContain("ResolvedPythonWorkerDescriptorV1");
+
+    const ownerText = sources.find((source) => source.path === owner)?.content ?? "";
+    expect(
+      exactStringUnionMembers(ownerText, "PythonWorkerCapabilityClassV1")?.sort(),
+    ).toEqual([
+      "analysis",
+      "detector",
+      "document_engine",
+      "product_data",
+      "source_atomization",
+    ]);
+  });
+
+  it("HDS-HIL-12の別artifact同名schema driftをnegative mutationで拒否する", () => {
+    expect(
+      declarationOwnerFindings(
+        [
+          { path: "L6.md", content: "```ts\ninterface SharedV1 { id: string }\n```" },
+          { path: "L5.md", content: "```ts\ninterface SharedV1 { id: string; drift: true }\n```" },
+        ],
+        "L6.md",
+      ),
+    ).toEqual(["SharedV1:L6.md,L5.md"]);
+  });
+
+  it("HDS-HIL-12のclosed capability union wideningをnegative mutationで拒否する", () => {
+    const widened = [
+      "```ts",
+      "type PythonWorkerCapabilityClassV1 =",
+      '  | "source_atomization"',
+      '  | "document_engine"',
+      '  | "detector"',
+      '  | "product_data"',
+      '  | "analysis"',
+      "  | string;",
+      "```",
+    ].join("\n");
+    expect(
+      exactStringUnionMembers(widened, "PythonWorkerCapabilityClassV1"),
+    ).toBeNull();
+  });
+
+  it("current quartetのoracle分母とHDS-HIL-13 cardinalityを固定する", () => {
+    const currentUnitIds = new Set<string>();
+    const currentIntegrationIds = new Set<string>();
+    for (const artifact of artifacts) {
+      if (!artifact.path.includes("/test-design/")) continue;
+      const content = readFileSync(artifact.path, "utf8");
+      if (artifact.path.includes("/L6-")) {
+        for (const match of content.matchAll(/\bU-[A-Z0-9]+-[0-9]{3}\b/g)) {
+          currentUnitIds.add(match[0]);
+        }
+      }
+      if (artifact.path.includes("/L5-")) {
+        for (const match of content.matchAll(/\bIT-[A-Z0-9]+-[0-9]{3}\b/g)) {
+          currentIntegrationIds.add(match[0]);
+        }
+      }
+    }
+    expect(currentUnitIds.size).toBe(469);
+    expect(currentIntegrationIds.size).toBe(357);
+    expect(
+      [...currentUnitIds].filter(
+        (id) => !manifest.canonical_unit_ids.includes(id),
+      ).sort(),
+    ).toEqual(["U-NCUT-014", "U-NCUT-015"]);
+    expect(
+      [...currentIntegrationIds].filter(
+        (id) => !manifest.canonical_integration_ids.includes(id),
+      ).sort(),
+    ).toEqual(["IT-NCUT-012", "IT-NCUT-013"]);
+
+    const functionDesign = readFileSync(
+      "docs/design/helix/L6-function-design/node-runtime-cutover.md",
+      "utf8",
+    ).split("### §1.1", 1)[0] ?? "";
+    const apiRows = [
+      ...functionDesign.matchAll(
+        /^\| `([A-Za-z][A-Za-z0-9]+)` \|.*\| `(U-NCUT-[0-9]{3})` \|$/gm,
+      ),
+    ];
+    const apiNames = apiRows.map((match) => match[1]);
+    expect(apiNames).toHaveLength(22);
+    expect(new Set(apiNames).size).toBe(22);
+    const apiOwnerCounts = new Map<string, number>();
+    for (const row of apiRows) {
+      const owner = row[2] ?? "";
+      apiOwnerCounts.set(owner, (apiOwnerCounts.get(owner) ?? 0) + 1);
+    }
+    expect(
+      [...apiOwnerCounts.entries()].sort(([left], [right]) =>
+        left.localeCompare(right),
+      ),
+    ).toEqual([
+      ...Array.from({ length: 12 }, (_, index) => [
+        `U-NCUT-${String(index + 1).padStart(3, "0")}`,
+        1,
+      ] as [string, number]),
+      ["U-NCUT-013", 4],
+      ["U-NCUT-014", 4],
+      ["U-NCUT-015", 2],
+    ]);
+    expect(
+      [...currentUnitIds]
+        .filter((id) => id.startsWith("U-NCUT-"))
+        .sort(),
+    ).toEqual(
+      Array.from(
+        { length: 15 },
+        (_, index) => `U-NCUT-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+    expect(
+      [...currentIntegrationIds]
+        .filter((id) => id.startsWith("IT-NCUT-"))
+        .sort(),
+    ).toEqual(
+      Array.from(
+        { length: 13 },
+        (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+
+    const fullFunctionDesign = readFileSync(
+      "docs/design/helix/L6-function-design/node-runtime-cutover.md",
+      "utf8",
+    );
+    for (const tableName of [
+      "runtime_cutover_writer_epochs",
+      "runtime_cutover_operations",
+      "runtime_cutover_events",
+      "runtime_authority_current",
+      "runtime_cutover_receipts",
+    ]) {
+      expect(fullFunctionDesign).toContain(`| \`${tableName}\` |`);
+    }
+    const requiredContracts = [
+      "RuntimeAuthorityStoreCapabilityV1",
+      "readonly transaction_store: RuntimeAuthorityTransactionStoreV1",
+      'UNIQUE=`(operation_id,receipt_kind)`',
+    ];
+    const missingRequiredContracts = (content: string) =>
+      requiredContracts.filter((contract) => !content.includes(contract));
+    expect(missingRequiredContracts(fullFunctionDesign)).toEqual([]);
+    const interfaceBlock = (content: string, name: string) =>
+      content.match(new RegExp(`interface ${name} \\{[^\\n]+\\}`))?.[0] ?? "";
+    const scopedInterfaceContracts: Record<string, string[]> = {
+      CutoverStateV1: [
+        '"activated_monitoring" | "reconcile_required" | "terminal"',
+        '"rollback_required" | "rollback_approved" | "rolling_back" | "rolled_back"',
+      ],
+      RuntimeCutoverOperationV1: [
+        "writer_epoch: number | null; lease_id: string | null; fence_token: string | null",
+        '"rollback_required" | "rollback_approved" | "rolling_back" | "rolled_back"',
+      ],
+      RuntimeAuthorityProjectionV1: [
+        'phase: "bun_active" | RuntimeCutoverOperationV1["phase"]',
+        "activation_receipt_digest: string | null; terminal_receipt_digest: string | null",
+      ],
+      RuntimeCutoverEventV1: [
+        '"rollback_approved" | "rollback_committed" | "rollback_reconciled"',
+      ],
+      NodeCutoverTerminalApprovalV1: ['action: "node_cutover_terminal"'],
+      NodeCutoverTerminalBundleV1: [
+        "terminal_writer: RuntimeWriterEpochLeaseV1",
+        'exact_write_set: ["terminal_event", "authority_projection", "terminal_receipt"]',
+        "recovery_checkpoint_digest: string",
+      ],
+    };
+    const missingScopedContracts = (content: string) =>
+      Object.entries(scopedInterfaceContracts).flatMap(([name, contracts]) => {
+        const block = interfaceBlock(content, name);
+        return contracts
+          .filter((contract) => !block.includes(contract))
+          .map((contract) => `${name}:${contract}`);
+      });
+    expect(missingScopedContracts(fullFunctionDesign)).toEqual([]);
+    expect(
+      missingScopedContracts(
+        fullFunctionDesign.replace(
+          '"activated_monitoring" | "reconcile_required" | "terminal"',
+          '"activated_monitoring" | "terminal"',
+        ),
+      ),
+    ).toEqual([
+      'CutoverStateV1:"activated_monitoring" | "reconcile_required" | "terminal"',
+    ]);
+    expect(
+      missingScopedContracts(
+        fullFunctionDesign.replace(
+          "terminal_writer: RuntimeWriterEpochLeaseV1",
+          "terminal_writer_removed: unknown",
+        ),
+      ),
+    ).toEqual([
+      "NodeCutoverTerminalBundleV1:terminal_writer: RuntimeWriterEpochLeaseV1",
+    ]);
+    const unitDesign = readFileSync(
+      "docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md",
+      "utf8",
+    );
+    const unitRows = [
+      ...unitDesign.matchAll(
+        /^\| `(U-NCUT-[0-9]{3})` \| (.*?) \| .* \| `tests\//gm,
+      ),
+    ];
+    const l7ApiOwners = unitRows.flatMap((row) => {
+      const owner = row[1] ?? "";
+      return [...(row[2] ?? "").matchAll(/`([A-Za-z][A-Za-z0-9]+)`/g)].map(
+        (api) => [api[1] ?? "", owner] as [string, string],
+      );
+    });
+    const sortedApiOwners = (entries: [string, string][]) =>
+      entries.sort(([leftApi, leftOwner], [rightApi, rightOwner]) =>
+        leftApi.localeCompare(rightApi) || leftOwner.localeCompare(rightOwner),
+      );
+    expect(sortedApiOwners(l7ApiOwners)).toEqual(
+      sortedApiOwners(
+        apiRows.map((row) => [row[1] ?? "", row[2] ?? ""]),
+      ),
+    );
+
+    const l6TraceSection = fullFunctionDesign.split("## §5 双方向trace", 2)[1] ?? "";
+    const l6TraceRows = [
+      ...l6TraceSection.matchAll(
+        /^\| (.*?) \| `(U-NCUT-[0-9]{3})` \| (.*?) \| .* \|$/gm,
+      ),
+    ];
+    const l6ApiOwners = l6TraceRows.flatMap((row) =>
+      [...(row[1] ?? "").matchAll(/`([A-Za-z][A-Za-z0-9]+)`/g)].map(
+        (api) => [api[1] ?? "", row[2] ?? ""] as [string, string],
+      ),
+    );
+    expect(sortedApiOwners(l6ApiOwners)).toEqual(
+      sortedApiOwners(apiRows.map((row) => [row[1] ?? "", row[2] ?? ""])),
+    );
+    const l6UnitIntegrationTrace = Object.fromEntries(
+      Array.from({ length: 15 }, (_, index) => {
+        const unit = `U-NCUT-${String(index + 1).padStart(3, "0")}`;
+        return [
+          unit,
+          [
+            ...new Set(
+              l6TraceRows
+                .filter((row) => row[2] === unit)
+                .flatMap((row) =>
+                  [...(row[3] ?? "").matchAll(/`(IT-NCUT-[0-9]{3})`/g)].map(
+                    (integration) => integration[1] ?? "",
+                  ),
+                ),
+            ),
+          ].sort(),
+        ];
+      }),
+    );
+
+    const traceSection = unitDesign.split("## §1 逆引きtrace", 2)[1] ?? "";
+    const actualUnitIntegrationTrace = Object.fromEntries(
+      [...traceSection.matchAll(/^\| `(U-NCUT-[0-9]{3})` \|.*?\| (.*?) \|/gm)].map(
+        (row) => [
+          row[1] ?? "",
+          [...(row[2] ?? "").matchAll(/`(IT-NCUT-[0-9]{3})`/g)].map(
+            (integration) => integration[1] ?? "",
+          ),
+        ],
+      ),
+    );
+    expect(actualUnitIntegrationTrace).toEqual({
+      "U-NCUT-001": ["IT-NCUT-009"],
+      "U-NCUT-002": ["IT-NCUT-009"],
+      "U-NCUT-003": ["IT-NCUT-009", "IT-NCUT-010"],
+      "U-NCUT-004": ["IT-NCUT-009", "IT-NCUT-010"],
+      "U-NCUT-005": ["IT-NCUT-009", "IT-NCUT-010"],
+      "U-NCUT-006": ["IT-NCUT-001", "IT-NCUT-002"],
+      "U-NCUT-007": ["IT-NCUT-001"],
+      "U-NCUT-008": ["IT-NCUT-003", "IT-NCUT-006"],
+      "U-NCUT-009": ["IT-NCUT-004", "IT-NCUT-008"],
+      "U-NCUT-010": ["IT-NCUT-004", "IT-NCUT-008"],
+      "U-NCUT-011": [
+        "IT-NCUT-001",
+        "IT-NCUT-002",
+        "IT-NCUT-003",
+        "IT-NCUT-004",
+        "IT-NCUT-005",
+      ],
+      "U-NCUT-012": [
+        "IT-NCUT-006",
+        "IT-NCUT-007",
+        "IT-NCUT-008",
+        "IT-NCUT-009",
+        "IT-NCUT-010",
+      ],
+      "U-NCUT-013": ["IT-NCUT-011"],
+      "U-NCUT-014": ["IT-NCUT-012"],
+      "U-NCUT-015": ["IT-NCUT-013"],
+    });
+    expect(l6UnitIntegrationTrace).toEqual(actualUnitIntegrationTrace);
+    expect(
+      [...new Set(Object.values(actualUnitIntegrationTrace).flat())].sort(),
+    ).toEqual(
+      Array.from(
+        { length: 13 },
+        (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+
+    const exactTableRows = [
+      "| `runtime_cutover_writer_epochs` | `RuntimeWriterEpochLeaseV1` | PK=`(scope,writer_epoch)`、`writer_epoch`単調増加、PARTIAL UNIQUE=`scope WHERE released_at IS NULL`、active lease/fence exactly one、released後write禁止 |",
+      "| `runtime_cutover_operations` | `RuntimeCutoverOperationV1` | PK=`operation_id`、operation digest immutable、phaseは上記unionの許可遷移だけ。approval/plan中はepoch/lease/fence/checkpoint null、epoch取得後は全てnon-nullでwriter表へexact join |",
+      "| `runtime_cutover_events` | `RuntimeCutoverEventV1` | PK=`event_id`、UNIQUE=`(operation_id,sequence)`、previous digestは直前event、operationへFK |",
+      "| `runtime_authority_current` | `RuntimeAuthorityProjectionV1` | PK=`authority_id`かつ`control-plane` singleton。初期Bun authorityはphase=`bun_active`、writer_epoch=0、event/activation/terminal digest null。Node CAS後だけactivation digest必須 |",
+      "| `runtime_cutover_receipts` | `RuntimeCutoverReceiptRowV1` | PK=`receipt_id`、UNIQUE=`(operation_id,receipt_kind)`、operationへFK、append-only、terminalはactivation receiptを上書き禁止 |",
+    ];
+    const parsedTableRows = (content: string) => {
+      const section = content.split("5表のexact constraintは次を正本とする。", 2)[1] ?? "";
+      return [
+        ...section.matchAll(
+          /^\| `runtime_[^`]+` \| `[^`]+` \| .* \|$/gm,
+        ),
+      ].map((match) => match[0]);
+    };
+    const missingOrExtraTableRows = (content: string) => ({
+      missing: exactTableRows.filter((row) => !parsedTableRows(content).includes(row)),
+      extra: parsedTableRows(content).filter((row) => !exactTableRows.includes(row)),
+    });
+    expect(parsedTableRows(fullFunctionDesign)).toEqual(exactTableRows);
+    expect(
+      missingOrExtraTableRows(
+        fullFunctionDesign.replace(exactTableRows[0] ?? "", ""),
+      ),
+    ).toEqual({ missing: [exactTableRows[0]], extra: [] });
+    expect(
+      missingOrExtraTableRows(
+        fullFunctionDesign.replace(
+          exactTableRows[4] ?? "",
+          `${exactTableRows[4]}\n| \`runtime_cutover_shadow\` | \`ShadowV1\` | PK=\`shadow_id\` |`,
+        ),
+      ),
+    ).toEqual({
+      missing: [],
+      extra: ["| `runtime_cutover_shadow` | `ShadowV1` | PK=`shadow_id` |"],
+    });
+    const integrationDesign = readFileSync(
+      "docs/test-design/helix/L5-node-runtime-cutover-integration-test-design.md",
+      "utf8",
+    );
+    const integrationRows = [
+      ...integrationDesign.matchAll(
+        /^\| `(IT-NCUT-[0-9]{3})` \| .* \| `tests\//gm,
+      ),
+    ].map((row) => row[1] ?? "");
+    expect(integrationRows).toEqual(
+      Array.from(
+        { length: 13 },
+        (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+    const hstRows = (
+      content: string,
+      order: "api-first" | "unit-first" | "integration-first",
+    ): string[][] => {
+      const section = content.split("canonical assertion primary表", 2)[1] ?? "";
+      return [
+        ...section.matchAll(/^\| `(HST-CASE-013-[0-9]{2})` \| (.*?) \|$/gm),
+      ].map((row) => {
+        const cells = (row[2] ?? "").split(" | ").map((cell) =>
+          cell.replaceAll("`", ""),
+        );
+        if (order === "api-first") return [row[1] ?? "", ...cells];
+        if (order === "unit-first") {
+          const [unit, api, integration, pre, expected, failure] = cells;
+          return [row[1] ?? "", api ?? "", unit ?? "", integration ?? "", pre ?? "", expected ?? "", failure ?? ""];
+        }
+        const [integration, unit, pre, expected, failure] = cells;
+        return [row[1] ?? "", "", unit ?? "", integration ?? "", pre ?? "", expected ?? "", failure ?? ""];
+      });
+    };
+    const l5DetailDesign = readFileSync(
+      "docs/design/helix/L5-detail/node-runtime-cutover.md",
+      "utf8",
+    );
+    const canonicalHstRows = hstRows(fullFunctionDesign, "api-first");
+    const expectedHstIds = Array.from(
+      { length: 11 },
+      (_, index) => `HST-CASE-013-${String(index + 1).padStart(2, "0")}`,
+    );
+    expect(canonicalHstRows).toHaveLength(11);
+    expect(canonicalHstRows.map((row) => row[0])).toEqual(expectedHstIds);
+    const unitHstRows = hstRows(unitDesign, "unit-first");
+    const detailHstRows = hstRows(l5DetailDesign, "integration-first");
+    const integrationHstRows = hstRows(integrationDesign, "integration-first");
+    for (const rows of [unitHstRows, detailHstRows, integrationHstRows]) {
+      expect(rows).toHaveLength(11);
+      expect(rows.map((row) => row[0])).toEqual(expectedHstIds);
+    }
+    expect(unitHstRows).toEqual(canonicalHstRows);
+    const projectWithoutApi = (rows: string[][]) =>
+      rows.map(([hst, _api, unit, integration, pre, expected, failure]) => [
+        hst,
+        unit,
+        integration,
+        pre,
+        expected,
+        failure,
+      ]);
+    expect(projectWithoutApi(detailHstRows)).toEqual(
+      projectWithoutApi(canonicalHstRows),
+    );
+    expect(projectWithoutApi(integrationHstRows)).toEqual(
+      projectWithoutApi(canonicalHstRows),
+    );
+    expect(
+      projectWithoutApi(
+        hstRows(
+          integrationDesign.replace(
+            "`activated_monitoring` | `verified`",
+            "`activated_monitoring` | `failed`",
+          ),
+          "integration-first",
+        ),
+      ),
+    ).not.toEqual(projectWithoutApi(canonicalHstRows));
+    const extraHstRow =
+      "| `HST-CASE-013-12` | `IT-NCUT-012` | `U-NCUT-014` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_CUTOVER_INCOMPLETE` |";
+    const integrationWithExtraHst = integrationDesign.replace(
+      "| `HST-CASE-013-11` | `IT-NCUT-012` | `U-NCUT-014` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_CUTOVER_INCOMPLETE` |",
+      "| `HST-CASE-013-11` | `IT-NCUT-012` | `U-NCUT-014` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_CUTOVER_INCOMPLETE` |\n" +
+        extraHstRow,
+    );
+    expect(hstRows(integrationWithExtraHst, "integration-first")).toHaveLength(12);
+    expect(
+      hstRows(integrationWithExtraHst, "integration-first").map((row) => row[0]),
+    ).not.toEqual(expectedHstIds);
+    expect(unitDesign).toContain(
+      "bootstrap adapter missing／unverified／digest tamper／write-set混入",
+    );
+    expect(integrationDesign).toContain(
+      "新terminal writer epoch/lease/fenceとterminal approval",
+    );
+  });
 });

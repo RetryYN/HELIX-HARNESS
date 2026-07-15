@@ -93,8 +93,10 @@ Linuxでは全facetを実filesystem・実process・実SQLiteで実行する。ma
 ## §4 canonical dependencyとoffline再現性
 
 NodeとPythonはそれぞれ単一のcanonical manifest/lockを持ち、direct/transitive dependency、artifact digest、source identity、
-resolver versionを固定する。package managerとlock形式はL4未確定事項を閉じる別decisionで選定し、本書では複数lockの併存、
-OS別lock、範囲versionだけの固定を許可しない。macOS/WindowsはLinux canonical lockを入力に解決する。
+resolver versionを固定する。Nodeの正本はADR-009で確定したnpm＋`package.json`＋`package-lock.json`であり、別manager、別lock、
+`bun.lock`をtarget dependency graphへ混入させない。Pythonのversion、interpreter provenance、package manager、manifest／lock形式、
+wheel／sdist policyはHDS-HIL-12/14 pairと別runtime reviewで未freezeである。これらがexactly-oneへfreezeされる前は
+`HIL_SUPPLY_CHAIN_LOCK_DRIFT`でPython activationとterminal cutoverを拒否する。macOS/WindowsはLinux canonical lockを入力に解決する。
 
 online installはclean Linuxで取得元、component graph、cache inventory、生成package digestを記録する。offline installはそのcacheを
 唯一の入力とし、network attempt 0、missing cache時fail-close、onlineと同じcomponent identity/version/artifact digestを要求する。

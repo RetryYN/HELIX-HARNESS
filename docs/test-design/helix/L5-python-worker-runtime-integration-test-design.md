@@ -25,14 +25,14 @@ requirements:
 
 ## §0 共通evidence
 
-全caseでNode/Python version、worker descriptor、protocol/request/result schema、entrypoint/resource policy、input/config、
+全caseでNode/Python version、worker descriptor、capability class、registry revision/digest、protocol/request/result schema、entrypoint/resource policy、input/config、
 lease/fence、command、exit code、stdout/stderr、proposal set、artifact、event chain、DB queryのdigestを固定する。
 Pythonが返すresultはproposalであり、Node validationとtransaction前のrowをauthoritative件数へ算入しない。
 
 | ID | L5 pointer | L3/HST trace | 結合scenario | 期待結果／evidence |
 |---|---|---|---|---|
-| `IT-PYWR-001` | §2、§3、§5 | `HAC-HIL-12a`; `HST-CASE-007-01` | compatible workerを起動し複数result proposalを返す | `なし（正常系）`。handshake、request、complete、Node commit、terminal receiptが各一回 |
-| `IT-PYWR-002` | §2、§3、§6 | `HAC-HIL-12b`; `HST-CASE-007-02`, `HST-CASE-007-03`, `HST-CASE-007-05`, `HST-CASE-007-12`, `HST-CASE-007-16` | unsupported major、不正JSON、stdout log、sequence gap/duplicate、digest不一致を個別mutation | `HIL_WORKER_PROTOCOL_VERSION_UNSUPPORTED`, `HIL_WORKER_JSON_INVALID`, `HIL_WORKER_SEQUENCE_GAP`, `HIL_WORKER_PAYLOAD_DIGEST_MISMATCH`, `HIL_IPC_ENVELOPE_INVALID` |
+| `IT-PYWR-001` | §2、§3、§5 | `HAC-HIL-12a`; `HST-CASE-007-01` | 2種以上のcapability classでcompatible workerをexactly-one解決し複数result proposalを返す | `なし（正常系）`。request/run/staged/terminalのclass＋registry digest一致、handshake、Node commit、terminal receiptが各一回 |
+| `IT-PYWR-002` | §2、§3、§6 | `HAC-HIL-12b`; `HST-CASE-007-02`, `HST-CASE-007-03`, `HST-CASE-007-05`, `HST-CASE-007-12`, `HST-CASE-007-16` | unknown／ambiguous／inactive／cross-class descriptor、request→resolution→run→staged→terminal各hopのclass／registry／resolution差替え、unsupported major、不正JSON、sequence/digest違反を個別mutation | capability/hop違反は`HIL_PYTHON_PLANE_BOUNDARY_INVALID`、spawn/stage/commit 0。protocol違反は既定のexact failure code、authoritative増分0 |
 | `IT-PYWR-003` | §3.2、§6 | `HAC-HIL-12b`; `HST-CASE-007-04`, `HST-CASE-007-09` | request/frame/result/stderr oversizeとbounded queue飽和を個別投入 | `HIL_WORKER_PAYLOAD_OVERSIZE`または`HIL_WORKER_BACKPRESSURE_EXCEEDED`、process停止、partial/current 0 |
 | `IT-PYWR-004` | §4、§6 | `HAC-HIL-12b`, `HAC-HIL-12c`; `HST-CASE-007-06`, `HST-CASE-007-07` | deadline無応答と明示cancelを個別実行 | `HIL_WORKER_TIMEOUT`または`HIL_WORKER_CANCELLED`、exactly-one terminal receipt、commit 0 |
 | `IT-PYWR-005` | §1、§4、§6 | `HAC-HIL-12b`; `HST-CASE-007-08`, `HST-CASE-007-10` | worker crashとparent ownership喪失を個別発生 | `HIL_WORKER_CRASHED`または`HIL_WORKER_PARENT_LOST`、process group残存0 |
@@ -46,6 +46,7 @@ Pythonが返すresultはproposalであり、Node validationとtransaction前のr
 | 公開API | L7 oracle | L8 oracle |
 |---|---|---|
 | `parsePythonWorkerDescriptor` | `U-PYWR-001` | `IT-PYWR-001`, `IT-PYWR-002` |
+| `resolvePythonWorkerDescriptor` | `U-PYWR-001` | `IT-PYWR-001`, `IT-PYWR-002` |
 | `negotiatePythonWorkerProtocol` | `U-PYWR-002` | `IT-PYWR-002` |
 | `createPythonWorkerRun` | `U-PYWR-003` | `IT-PYWR-001`, `IT-PYWR-002` |
 | `spawnPythonWorker` | `U-PYWR-004` | `IT-PYWR-007` |
