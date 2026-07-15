@@ -117,7 +117,7 @@ artifact bundleがcapture正本、`harness.db`は再構築可能なprojectionで
 | `source_capture_receipts` | `receipt_id` | snapshot FK一意、artifact root、count/digest、command evidence |
 | `source_capture_events` | `event_id` | snapshot＋sequence一意、previous/event digest、actor、occurred_at |
 | `git_ref_authorities` | `authority_receipt_id` | repository identity＋authority revision一意、A/B digest、sealed mirror digest、status |
-| `git_advertised_refs` | `source_ref_id` | authority receipt FK、full refname、kind、advertised/peeled/tree OID、row digest |
+| `git_advertised_refs` | `source_ref_id` | authority receipt外部key、完全ref名、種別、advertised/peeled/tree OID、行digest |
 | `git_ref_entry_edges` | `edge_id` | authority/ref/entry FKのM:N、peeled object/commit/tree/path、edge digest。alias refも全件保持 |
 | `git_authority_dependencies` | `(authority_receipt_id, dependency_kind, dependency_id, registration_revision)` | snapshot/atomization/coverageへのappend-only世代edge、current digest/head/status、supersedes key、registration/supersession event digest。partial uniqueでauthority＋kindごとのcurrent consumerを一件にする |
 

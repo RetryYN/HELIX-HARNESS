@@ -39,13 +39,15 @@ dependencies:
   references:
     - docs/design/helix/L3-requirements/document-agent-metadata.md
     - docs/design/helix/L5-detail/document-agent-metadata-contract.md
+    - src/lint/document-agent-metadata.ts
+    - src/schema/document-agent-metadata.ts
 ---
 
 # PLAN-L7-456: 文書 agent metadata の明示 apply
 
 ## 実装境界
 
-ZIP正本の `agent_meta.py apply` 相当をTS/Bunへ移植する。選択したmanifest内文書だけを対象に、typed declarationから
+ZIP正本の `agent_meta.py apply` 相当をTS/Nodeへ再実装する。選択したmanifest内文書だけを対象に、typed declarationから
 導出済みmetadataをfrontmatterへ反映する。source writeは専用write portを通し、digest drift・path escape・symlinkを
 fail-closeする。複数更新はreceiptを持つrollback transactionとし、DB、release、runtime state、role prompt、subprocessを
 変更しない。

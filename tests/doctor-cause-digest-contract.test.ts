@@ -1,8 +1,10 @@
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import { doctorFailure, doctorFailureMessage } from "../src/doctor/failure";
+import { checkDocumentAgentMetadata } from "../src/doctor/index";
 import { sha256Digest } from "../src/runtime/digest";
 
 function anonymousCatchOwnerDigest(source: string): { count: number; digest: string } {
@@ -56,5 +58,20 @@ describe("PLAN-L7-449 doctor failure contract (IT-DUR-001)", () => {
       count: 127,
       digest: "sha256:9ad1dbe3da484413684c10e05b577a524f674b3d45adfa94c26b11136fa7f730",
     });
+  });
+
+  it("U-DUR-003: document metadata loader failureを有限causeへ変換してlocal pathを露出しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-private-root-"));
+    try {
+      const result = checkDocumentAgentMetadata(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages).toHaveLength(1);
+      expect(result.messages[0]).toMatch(
+        /^document-agent-metadata - violation: check failed cause_kind=error cause_digest=sha256:[a-f0-9]{64}$/,
+      );
+      expect(result.messages[0]).not.toContain(root);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

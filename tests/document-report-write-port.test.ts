@@ -120,4 +120,36 @@ describe("document report write port", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("publish失敗の補償fsyncも失敗した場合は曖昧なdurability状態をcause付きで返す", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doc-report-compensation-"));
+    let calls = 0;
+    try {
+      let thrown: unknown;
+      try {
+        writeDocumentReportArtifact(
+          { repoRoot: root, path: "report.md", content: "x" },
+          {
+            fsync: (fd) => {
+              calls += 1;
+              if (calls >= 2) throw new Error(`simulated_fsync_failure_${calls}`);
+              fsyncSync(fd);
+            },
+          },
+        );
+      } catch (error) {
+        thrown = error;
+      }
+
+      expect(thrown).toBeInstanceOf(Error);
+      expect((thrown as Error).message).toBe("document_report_compensation_ambiguous");
+      expect((thrown as Error).cause).toMatchObject({ message: "simulated_fsync_failure_3" });
+      expect(calls).toBe(3);
+      expect(existsSync(join(root, ".helix", "artifacts", "document-diff", "report.md"))).toBe(
+        false,
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

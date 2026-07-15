@@ -8,6 +8,12 @@ import {
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
+const LIVE_OUTSTANDING_COUNT = 16;
+const NEW_OUTSTANDING_PLAN_IDS = [
+  "PLAN-L1-07-infinity-loop-platform-requirements",
+  "PLAN-L7-456-document-agent-metadata-phase-b-apply",
+  "PLAN-L7-457-document-diff-local-artifact-output",
+] as const;
 
 function auditText(): string {
   return readFileSync(AUDIT_PATH, "utf8");
@@ -29,7 +35,11 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow, "G-10 row missing").toBeTruthy();
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
+    expect(input.outstanding.items).toHaveLength(LIVE_OUTSTANDING_COUNT);
     expect(completionRow).toContain(`decisionCount=${input.outstanding.items.length}`);
+    for (const planId of NEW_OUTSTANDING_PLAN_IDS) {
+      expect(completionRow).toContain(planId);
+    }
 
     expect(text).toContain("外部ソース HEAD 確認日: 2026-07-13");
     expect(text).toContain("外部 source ledger (checked 2026-07-13)");
@@ -172,6 +182,9 @@ describe("HELIX objective evidence audit", () => {
       "src/lint/version-up-readiness.ts",
       "tests/version-up-readiness.test.ts",
       "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      "docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md",
+      "docs/plans/PLAN-L7-456-document-agent-metadata-phase-b-apply.md",
+      "docs/plans/PLAN-L7-457-document-diff-local-artifact-output.md",
       "src/lint/cutover-readiness.ts",
       "tests/cutover-readiness.test.ts",
       "tests/identifier-rename.test.ts",

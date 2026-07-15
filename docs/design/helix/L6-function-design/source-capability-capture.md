@@ -277,10 +277,10 @@ interface SourceGenerationTransitionStoreV1 { commitActivationCascade(bundle: So
 | `src/source/entry-classifier.ts` | pure規則 | versioned deterministic rules |
 | `src/source/adapters/zip.ts` | 入力adapter | central directory/bytes read-only |
 | `src/source/adapters/git.ts` | input adapter | local Git object read-only、fetch/checkout禁止 |
-| `src/source/git-ref-authority.ts` | authority domain | advertisement canonicalize、A/B equality、sealed bundle、CAS receipt |
-| `src/source/adapters/git-advertisement-node.ts` | network input port | exact repo read-only advertisement、credential redaction、timeout |
+| `src/source/git-ref-authority.ts` | 権限domain | advertisement正規化、A/B一致、sealed bundle、CAS receipt |
+| `src/source/adapters/git-advertisement-node.ts` | network入力port | exact repoのread-only advertisement、credential秘匿、timeout |
 | `src/source/adapters/git-materialization-node.ts` | quarantine port | advertised exact OID refspecだけmaterialize、fsck/object/tree/tag検証 |
-| `src/state-db/git-ref-authority-store.ts` | trusted authority store | expected head/revision CAS、current receipt、stale event |
+| `src/state-db/git-ref-authority-store.ts` | 信頼済みauthority store | 期待head/revision CAS、current receipt、stale event |
 | `src/source/adapters/current-head.ts` | input adapter | commit tree read-only、working tree隔離 |
 | `src/source/artifact-store.ts` | 出力adapter | temp/fsync/rename、content-addressed immutable publish |
 | `src/state-db/source-capture-projection.ts` | Node DB接続 | 10 table transaction、dependency index、rebuild/reprojection |

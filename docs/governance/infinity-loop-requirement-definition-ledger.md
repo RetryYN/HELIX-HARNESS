@@ -147,14 +147,14 @@ schema: requirement-definition-ledger.v1
 | HIL-NFR-28 | 1 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:174` | `sha256:dcd5e597e7ffda1290911e74f7eb29498f59a07062c94c76e44bfe8e87f31357` | pending:source-atom-link | HIA-NFR-028 | RequirementDefinitionLedger | nonfunctional-requirement.v1 | 権限待ち草案（draft-authority-pending） |
 | HIL-NFR-29 | 1 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:175` | `sha256:0b2d77afcc8e27b10ff01daee83df176d72032108580db49f0ee06a6d8a48157` | pending:source-atom-link | HIA-NFR-029 | LedgerPairGate | nonfunctional-requirement.v1 | 権限待ち草案（draft-authority-pending） |
 
-### §2.1 semantic revision history／design-stale receipt
+### §2.1 意味revision履歴／設計stale receipt
 
 receipt digestは`record_id`、`requirement_id`、`prior_revision`、`prior_statement_digest`、`new_revision`、
 `new_statement_digest`、`cause_code`、`status`をこの順でLF連結し、末尾LFなしのUTF-8 bytesへSHA-256を適用する。
 旧revision行はcurrent 115行へ重複算入せず、本表でappend-onlyに保持する。今回stale化するのは旧fixed-ref前提の
 HDS-HIL-09A strict/manual reviewとそのdownstream design projectionであり、runtime freeze receiptは元から0件である。
 
-| record ID | requirement | prior revision／digest | new revision／digest | cause code | stale target | status | receipt digest |
+| record ID（記録ID） | requirement（要求） | prior revision／digest（旧） | new revision／digest（新） | cause code（原因code） | stale target（stale対象） | status（状態） | receipt digest（証跡digest） |
 |---|---|---|---|---|---|---|---|
 | `RDL-STALE-HIL-BR-14-R2` | `HIL-BR-14` | 1／`sha256:e0030f12e15884cc8dd0e160c61d2f44c1ac4f8b0af3f8a9f5a5fc3e2b87f6cb` | 2／`sha256:917252a5fad425980897510684f7ca3053711fe8c0541da3cb2eb2c84873fe5c` | `exact-2-all-advertised-authority` | HDS-HIL-09A旧strict/manual review | `recorded` | `sha256:cc84b1f9aa01065a014ca8ba4f541bc6e8dae29f4ca03e1e6060ca44c37938b2` |
 | `RDL-STALE-HIL-FR-16-R2` | `HIL-FR-16` | 1／`sha256:4deedb4e5fd1dfa4609b385c3508f2603bf474daa8e06dfc3c61624e34ee2397` | 2／`sha256:3f8059576753f54ac5cbc51a29d19afcc1189f6aee6403196ff3ac7540b0c574` | `exact-2-all-advertised-inventory` | HDS-HIL-09A旧strict/manual review | `recorded` | `sha256:5244bd70860131c4dcc52b63012c6a7a44972211c26087dd14abeaf489bdfdc1` |

@@ -451,6 +451,7 @@ import {
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
 import { inspectMemoryCommitHygiene } from "../runtime/memory-commit-hygiene";
+import { stableCauseDigest } from "../runtime/stable-cause-digest";
 import {
   buildSummarySurfaceCommandAudit,
   buildSummarySurfaceContractPayloads,
@@ -1272,8 +1273,13 @@ export function checkDocumentAgentMetadata(repoRoot: string): { messages: string
           ),
     };
   } catch (error) {
-    const detail = error instanceof Error ? error.message : String(error);
-    return { messages: [`document-agent-metadata - violation: ${detail}`], ok: false };
+    const cause = stableCauseDigest(error);
+    return {
+      messages: [
+        `document-agent-metadata - violation: check failed cause_kind=${cause.causeKind} cause_digest=${cause.digest}`,
+      ],
+      ok: false,
+    };
   }
 }
 

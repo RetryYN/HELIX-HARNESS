@@ -162,8 +162,11 @@ export function writeDocumentReportArtifact(
       try {
         rmSync(output, { force: true });
         syncDirectory(directory, deps);
-      } catch {
-        throw new Error("document_report_compensation_ambiguous");
+      } catch (compensationError) {
+        const ambiguous = new Error("document_report_compensation_ambiguous", {
+          cause: compensationError,
+        });
+        throw ambiguous;
       }
     }
     throw error;

@@ -1541,6 +1541,14 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
+    expect(payload.outstanding.items).toHaveLength(16);
+    expect(payload.outstanding.items.map((item: { planId: string }) => item.planId)).toEqual(
+      expect.arrayContaining([
+        "PLAN-L1-07-infinity-loop-platform-requirements",
+        "PLAN-L7-456-document-agent-metadata-phase-b-apply",
+        "PLAN-L7-457-document-diff-local-artifact-output",
+      ]),
+    );
 
     const text = runCli(["status"]);
     expect(text.status).toBe(0);
@@ -7675,6 +7683,8 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
+  // IT-FLIFE-003: SessionStart integration oracle。feedback receipt batch の件数・replay 規律は
+  // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証し、この test の既存 memory surface 意味は維持する。
   it("U-CLI-MEM-SURFACE: session start surfaces harness-layer memory (HELIX P7, not a per-agent silo)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-mem-surface-"));
     try {

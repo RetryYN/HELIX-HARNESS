@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 import { parse, stringify } from "yaml";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = resolve(SCRIPT_DIR, "..");
+const REPO_ROOT = resolve(SCRIPT_DIR, "..", "..");
 const MANIFEST_REPO_PATH =
   "docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest";
 const MANIFEST_PATH = resolve(REPO_ROOT, MANIFEST_REPO_PATH);
@@ -313,8 +313,8 @@ const EXPECTED_MUTATIONS = Object.freeze([
 function usage() {
   return [
     "Usage:",
-    "  node scripts/regenerate-layer-ledger-progress-fixture.mjs --commit <40-char-sha>",
-    "  node scripts/regenerate-layer-ledger-progress-fixture.mjs --commit <40-char-sha> --check",
+    "  node tests/tools/regenerate-layer-ledger-progress-fixture.mjs --commit <40-char-sha>",
+    "  node tests/tools/regenerate-layer-ledger-progress-fixture.mjs --commit <40-char-sha> --check",
     "",
     "The commit must already contain the frozen 19-slice design. --check never writes.",
   ].join("\n");

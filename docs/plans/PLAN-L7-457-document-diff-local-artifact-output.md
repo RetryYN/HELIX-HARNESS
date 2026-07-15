@@ -30,6 +30,9 @@ dependencies:
   requires: []
   references:
     - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
+    - src/adapters/document-semantic-diff-fs.ts
+    - src/runtime/document-change-report.ts
+    - src/runtime/document-semantic-diff.ts
 ---
 
 # PLAN-L7-457: 文書semantic diffのローカルartifact出力

@@ -26,39 +26,78 @@ const doc = (
   status = "confirmed",
 ): PairDoc => ({ path, layer, pairArtifact, status });
 
+function expectDeterministicLayerPairSummary(gate: string, layer: string) {
+  const first = evaluateStaticGate({ gate, repoRoot: process.cwd() });
+  const second = evaluateStaticGate({ gate, repoRoot: process.cwd() });
+
+  expect(second).toEqual(first);
+  expect(first.applicable).toBe(true);
+
+  const pairMessage = first.messages.find((message) =>
+    message.startsWith(`${gate.toLowerCase()}-pair`),
+  );
+  const match = pairMessage?.match(
+    new RegExp(
+      `^${gate.toLowerCase()}-pair - (OK|violation) \\(L${layer} total=(\\d+), confirmed=(\\d+), placeholder=(\\d+), draft=(\\d+), orphans=(\\d+)\\)$`,
+    ),
+  );
+  expect(match, pairMessage).not.toBeNull();
+  if (!match) {
+    throw new Error(`pair summary did not match: ${pairMessage ?? "missing"}`);
+  }
+
+  const [, outcome, total, confirmed, placeholder, draft, orphans] = match;
+  const counts = {
+    total: Number(total),
+    confirmed: Number(confirmed),
+    placeholder: Number(placeholder),
+    draft: Number(draft),
+    orphans: Number(orphans),
+  };
+  expect(counts.total).toBe(counts.confirmed + counts.placeholder + counts.draft);
+  expect(counts.orphans).toBe(0);
+  expect(outcome).toBe(counts.placeholder + counts.draft > 0 ? "violation" : "OK");
+
+  return { result: first, counts };
+}
+
 describe("static gates", () => {
-  it("wires G1 to deterministic pair + trace lint", () => {
-    const result = evaluateStaticGate({ gate: "G1", repoRoot: process.cwd() });
-    expect(result.applicable).toBe(true);
-    expect(result.passed).toBe(true);
+  it("wires G1 to deterministic pair + trace lint and fails closed while drafts exist", () => {
+    const { result, counts } = expectDeterministicLayerPairSummary("G1", "1");
+    expect(counts.draft).toBeGreaterThan(0);
+    expect(result.passed).toBe(false);
     expect(result.messages.join("\n")).toContain("g1-pair");
     expect(result.messages.join("\n")).toContain("g1-trace");
   });
 
-  it("wires G3 to deterministic pair + trace lint", () => {
-    const result = evaluateStaticGate({ gate: "G3", repoRoot: process.cwd() });
-    expect(result.applicable).toBe(true);
-    expect(result.passed).toBe(true);
+  it("wires G3 to deterministic pair + trace lint and fails closed while drafts exist", () => {
+    const { result, counts } = expectDeterministicLayerPairSummary("G3", "3");
+    expect(counts.draft).toBeGreaterThan(0);
+    expect(result.passed).toBe(false);
     expect(result.messages.join("\n")).toContain("g3-pair");
     expect(result.messages.join("\n")).toContain("g3-trace");
   });
 
-  it("wires G2/G4 to deterministic layer pair gates", () => {
-    for (const gate of ["G2", "G4"]) {
-      const result = evaluateStaticGate({ gate, repoRoot: process.cwd() });
-      expect(result.applicable).toBe(true);
-      expect(result.passed).toBe(true);
-      expect(result.messages.join("\n")).toContain(`${gate.toLowerCase()}-pair`);
-    }
+  it("wires G2 to a deterministic complete layer pair gate", () => {
+    const { result, counts } = expectDeterministicLayerPairSummary("G2", "2");
+    expect(counts.placeholder + counts.draft).toBe(0);
+    expect(result.passed).toBe(true);
   });
 
-  it("keeps G5/G6 fail-closed while the source-boundary design pair is draft", () => {
-    for (const gate of ["G5", "G6"]) {
-      const result = evaluateStaticGate({ gate, repoRoot: process.cwd() });
-      expect(result.applicable).toBe(true);
+  it("keeps G4 fail-closed while deterministic draft pair evidence exists", () => {
+    const { result, counts } = expectDeterministicLayerPairSummary("G4", "4");
+    expect(counts.draft).toBeGreaterThan(0);
+    expect(result.passed).toBe(false);
+  });
+
+  it("keeps G5/G6 fail-closed while deterministic draft pair evidence exists", () => {
+    for (const [gate, layer] of [
+      ["G5", "5"],
+      ["G6", "6"],
+    ] as const) {
+      const { result, counts } = expectDeterministicLayerPairSummary(gate, layer);
+      expect(counts.draft).toBeGreaterThan(0);
       expect(result.passed).toBe(false);
-      expect(result.messages.join("\n")).toContain(`${gate.toLowerCase()}-pair`);
-      expect(result.messages.join("\n")).toContain("draft=1");
     }
   });
 

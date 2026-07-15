@@ -184,7 +184,7 @@ fixture atomへ分離する。archive外の展開directory、OS metadata、inspe
 
 required repository setは次のexact 2件である。
 
-| repository ID | canonical owner/repo | authority status | current receipt |
+| repository ID（リポジトリID） | canonical owner/repo（正規owner/repo） | authority status（権限状態） | current receipt（現行receipt） |
 |---|---|---|---|
 | `predecessor-ut` | `unison-ai-product/UT-TDD_AGENT-HARNESS` | **BLOCKED** | `pending:git-authority-receipt` |
 | `legacy-helix` | `RetryYN/ai-dev-kit-vscode` | **BLOCKED** | `pending:git-authority-receipt` |
@@ -282,7 +282,7 @@ git -C "$UT_INSPECTION_ROOT" ls-tree -r -z --name-only origin/main |
 - この観測にはfetch完了timestampの永続receiptがなく、remote ref集合の鮮度は`stale`である。v2 current authorityへ
   昇格せず、§3.0のA/B取得から作り直す。
 
-### §3.4 v1 historical denominator
+### §3.4 v1 historical denominator（履歴分母）
 
 旧family digest `sha256:a36c7884260dbb86573748a040b7a23ea2463ad612dadc163e664b8abaecfa4b`、
 旧entry分母4,470、旧固定5 ref、旧ref-entry 8,935行はgap比較専用である。`historical_seed=true`、
