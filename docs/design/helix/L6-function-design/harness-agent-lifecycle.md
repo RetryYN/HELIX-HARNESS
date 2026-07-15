@@ -66,6 +66,49 @@ L5のfail-close contractを弱める互換shimは作らない。
 ## §2 schema
 
 ```ts
+interface HarnessAgentContractV1 {
+  schema_version: "helix-agent-contract.v1";
+  agent_id: string;
+  contract_version: string;
+  supersedes: string | null;
+  capability_class: string;
+  applicable_layers: string[];
+  applicable_drives: string[];
+  task_kinds: string[];
+  verification_patterns: string[];
+  role_archetype: "worker" | "verifier" | "consult";
+  provider_policy_id: string;
+  model_policy_id: string;
+  context_pack_id: string;
+  required_skills: string[];
+  required_reads: string[];
+  generates: string[];
+  forbidden_paths: string[];
+  blind_policy: "none" | "claim-blind" | "spec-blind";
+  compatibility: string[];
+  status: "registered" | "eligible" | "quarantined" | "retired";
+  source_digest: string;
+}
+
+interface ContractRevisionDecisionV1 { current_agent_id: string; current_version: string; candidate_version: string; supersedes: string; action: "register" | "reject" | "quarantine_supersession" | "retire"; approval_digest: string | null; failure_code: AgentLifecycleFailureV1["code"] | null; pass: boolean; decision_digest: string }
+interface RuntimeProjectionBundleV1 { normalized_input_digest: string; source_digest: string; generator_version: string; runtime: "claude" | "codex"; target_entries: { path: string; content_digest: string; marker_digest: string }[]; target_set_digest: string; projection_digest: string; expected_receipt_digest: string; byte_identical: true }
+interface ProjectionDriftDecisionV1 { expected_projection_digest: string; observed_projection_digest: string; missing_paths: string[]; modified_paths: string[]; extra_paths: string[]; marker_mismatch_paths: string[]; source_digest_mismatch_paths: string[]; drift: boolean; decision_digest: string }
+interface EligibilityDecisionV1 { contract_id: string; contract_revision: number; task_identity_digest: string; matched_constraints: string[]; failed_constraints: string[]; eligible: boolean; decision_digest: string }
+interface VerificationPatternSetV1 { task_kind: string; preset_version: string; task_risk: string; pattern_ids: string[]; pattern_set_digest: string }
+interface MusterComparisonReceiptV1 { normalized_input_digest: string; expected_member_set_digest: string; candidate_member_set_digest: string; expected_context_set_digest: string; candidate_context_set_digest: string; expected_team_digest: string; candidate_team_digest: string; equal: true; receipt_digest: string }
+interface BlindPacketV1 { packet_id: string; contract_id: string; frozen_input_digest: string; allowed_read_paths: string[]; oracle_ids: string[]; artifact_digests: string[]; redacted_evidence_digests: string[]; author_claim_count: 0; private_context_count: 0; packet_digest: string }
+interface SeparationDecisionV1 { worker_instance_id: string; verifier_instance_id: string; worker_role: "worker"; verifier_role: "verifier"; worker_provider_family: string; verifier_provider_family: string; worker_model_family: string; verifier_model_family: string; independent: boolean; failure_code: AgentLifecycleFailureV1["code"] | null; decision_digest: string }
+interface AgentInstanceSeedV1 { instance_id: string; muster_id: string; member_index: number; contract_id: string; contract_revision: number; task_identity_digest: string; attempt: number; initial_state: "mustered"; seed_digest: string }
+interface TransitionDecisionV1 { instance_id: string; from_state: string; to_state: string; receipt_set_digest: string; prerequisite_failures: string[]; allowed: boolean; failure_code: AgentLifecycleFailureV1["code"] | null; decision_digest: string }
+interface AgentEventV1 { instance_id: string; sequence: number; operation_id: string; from_state: string; to_state: string; fence: number; previous_event_digest: string; payload_digest: string; event_digest: string }
+interface LeaseLivenessDecisionV1 { lease_id: string; instance_id: string; owner_match: boolean; fence_match: boolean; heartbeat_current: boolean; expired: boolean; live: boolean; trusted_now: string; decision_digest: string }
+interface FenceDecisionV1 { instance_id: string; lease_id: string; operation_kind: "tool" | "checkpoint" | "artifact" | "completion" | "resume"; current_fence: string; operation_fence: string; accepted: boolean; failure_code: AgentLifecycleFailureV1["code"] | null; decision_digest: string }
+interface AgentCheckpointV1 { checkpoint_id: string; instance_id: string; sequence: number; fence_token: string; contract_digest: string; input_digest: string; context_digest: string; state_digest: string; artifact_manifest_digest: string; status: "durable"; checkpoint_digest: string }
+interface ResumeDecisionV1 { instance_id: string; lease_id: string; fence_token: string; selected_checkpoint_id: string | null; selected_sequence: number | null; rejected_checkpoint_ids: string[]; create_new_instance: boolean; decision_digest: string }
+interface ResultArtifactDecisionV1 { instance_id: string; lease_id: string; relative_path: string; artifact_digest: string; fence_token: string; from_state: "staged"; to_state: "accepted" | "rejected"; accepted: boolean; decision_digest: string }
+interface VerificationDecisionV1 { worker_instance_id: string; verifier_instance_id: string; oracle_id: string; input_digest: string; result_digest: string; evidence_digest: string; receipt_state: "valid" | "stale" | "revoked"; decision: "pass" | "fail" | "inconclusive"; accepted: boolean; decision_digest: string }
+interface ReleaseDecisionV1 { instance_id: string; lease_id: string; current_result_digest: string; accepted_receipt_digests: string[]; rejected_receipt_digests: string[]; release_allowed: boolean; resulting_state: "released" | "verification_pending"; decision_digest: string }
+interface LifecycleDispositionPlanV1 { agent_id: string; current_contract_version: string; instance_id: string; action: "quarantine" | "retire"; superseding_contract_version: string | null; approval_digest: string | null; history_event_digests: string[]; irreversible: boolean; plan_digest: string }
 interface ProjectionDigestV1 {
   schema_version: "helix-projection-digest.v1";
   subject_kind: string;
