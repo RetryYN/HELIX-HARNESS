@@ -116,6 +116,11 @@ current projectionと一致しない限り呼出しを受理しない。単に`d
 AIがterminal verbを要求した場合、guard APIはcanonical failureを持つ`Err`を返し、terminal eventもnonterminal disposition eventも書かない。
 必要な`pending_disposition`提案は、その失敗とは別operationでappendする。単一ResultでOk proposalとErr failureを同時に返さない。
 
+custody admissionのcanonical compositionは`U-ISAG-001`が所有する
+`captureDirectiveBeforeClassification` → `validateDirectiveClassificationAdmission`のstable exact function setである。
+前者のappend durability／operation conflict／receipt発行と、後者のmissing/stale/mismatched receipt／下流副作用0を別mutation laneで採点し、
+`IT-ISAG-001`と`IT-ISAG-002`が同一directive/revision/content/operation identityへjoinする。
+
 ## §3 authority graph（権限根拠graph）
 
 許可rootは、custody済みchat directive、confirmed L0 charter、PO-approved parent scopeの3種だけである。requirement、HIL ID、
@@ -249,7 +254,7 @@ loop budget到達はcloseではない。current gate state、未完obligation、
 
 ## §8.1 governance commitの不可分transaction
 
-Node `IssueGovernanceStore`は`disposition`、`authority_graph`、`scope_receipt`、`gate_transition`を
+Node `IssueGovernanceStoreV1`は`disposition`、`authority_graph`、`scope_receipt`、`gate_transition`を
 `IssueGovernanceCommitBundleV1`へ正規化し、対応event、current projection、receipt/evidence、authority node/edgeを
 一つのDB transactionでcommitする。bundleは`operation_id`、`payload_digest`、対象revision、
 `expected_event_head`、`expected_projection_head`を必須とする。head不一致はCAS conflict、同operation・同digest再送は

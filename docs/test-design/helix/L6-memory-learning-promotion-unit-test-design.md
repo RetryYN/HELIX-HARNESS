@@ -65,6 +65,8 @@ system_tests:
 
 ## §1 合否
 
+L6 §2の公開成功結果23件＋`MemoryLearningFailureV1` 1件がすべて定義済みで、公開signatureに非`V1`の抽象result/failure型が0件であることをstatic oracleとする。これは28 public API functionsと`U-MLP-001`〜`U-MLP-027`のowner（`U-MLP-008`だけ2関数）、既存HAC/HST/failure分母、下記API→U→IT結線を変更しない。
+
 ### supporting transactionのL8 exact join
 
 `U-MLP-023/024`は`IT-MLP-016`、`U-MLP-025/026`は`IT-MLP-017`、`U-MLP-027`は`IT-MLP-016/017`へexact joinする。`LearningImmutableEvidenceV1`のsubject tuple/head差替えはwrite 0、rebuild結果は`ProjectionDigestV1`で照合する。

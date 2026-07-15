@@ -127,21 +127,32 @@ manifestで使用する9 execution名は`appendRequirementRevision`、`commitReq
 `deriveDesignObligations`、`evaluateObligationClosure`、`evaluateTemplateShadow`、`routeTemplateGap`、`validateRequirementAtom`、
 `validateRequirementFreeze`である。各fixtureは全引数をV1型recordで供給し、旧型名・暗黙alias・未知APIを拒否する。authority mutationは
 caller側`AuthorityReceiptV1.status`の変更だけではcurrentnessを成立させず、`TrustedNowV1`と
-`CurrentRequirementAuthorityStoreV1`が返すsnapshotのexpiry、scope、active pointer revision、supersession、event headを一fieldずつ変え、
+`RequirementTranslationAtomicTransactionPortV1`が同一transaction snapshotから返すauthorityのexpiry、scope、active pointer revision、supersession、event headを一fieldずつ変え、
 Err時write 0をassertする。正常翻訳case `HST-CASE-028-01`だけはpublic callable
 `executeRequirementTranslationNormalPipeline`を所有し、次のexact stage joinを検証する。
 
-### §1.1 正常公開API→canonical U→IT exact join
+### §1.1 全public API→canonical primary U→IT exact join
 
-| 順序 | 公開API | canonical U | canonical IT | 型出力／検証対象 |
-|---:|---|---|---|---|
-| 0 | `executeRequirementTranslationNormalPipeline` | `U-RTO-033` | `IT-RTO-033` | 6段compositionのowner callable |
-| 0a | `validateCurrentRequirementAuthorities` | `U-RTO-033` | `IT-RTO-033` | `ValidatedAuthoritySetV1`、caller status非信頼 |
-| 1 | `translateRequirementInput` | `U-RTO-033` | `IT-RTO-033` | `TranslationProposalV1` |
-| 2 | `validateRequirementAtoms` | `U-RTO-033` | `IT-RTO-033` | `ValidatedRequirementAtomSetV1` |
-| 3 | `buildRequirementTranslationCommitBundle` | `U-RTO-033` | `IT-RTO-033` | exact `RequirementTranslationCommitBundleV1` |
-| 4 | `commitRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` | committedまたはreconcile_pending receipt |
-| 5 | `reconcileRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` | pending時だけ同一bundleを収束 |
+| public API | primary U | primary IT |
+|---|---|---|
+| `translateRequirementInput` | `U-RTO-034` | `IT-RTO-034` |
+| `validateRequirementAtom` | `U-RTO-035` | `IT-RTO-035` |
+| `validateRequirementAtoms` | `U-RTO-033` | `IT-RTO-033` |
+| `validateCurrentRequirementAuthorities` | `U-RTO-038` | `IT-RTO-038` |
+| `buildRequirementTranslationCommitBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `executeRequirementTranslationNormalPipeline` | `U-RTO-033` | `IT-RTO-033` |
+| `routeTemplateGap` | `U-RTO-041` | `IT-RTO-041` |
+| `evaluateTemplateShadow` | `U-RTO-045` | `IT-RTO-045` |
+| `deriveDesignObligations` | `U-RTO-001` | `IT-RTO-001` |
+| `evaluateObligationClosure` | `U-RTO-006` | `IT-RTO-006` |
+| `appendRequirementRevision` | `U-RTO-053` | `IT-RTO-053` |
+| `validateRequirementFreeze` | `U-RTO-031` | `IT-RTO-031` |
+| `commitRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `reconcileRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `parseRequirementWriteSet` | `U-RTO-075` | `IT-RTO-075` |
+
+各APIのownerは上表1組だけとする。75 primary caseの残余行はowner APIへ投入するcomposition/mutationであり、
+第2 ownerとして数えない。
 
 `RequirementTranslationNormalPipelineV1.stages`の6段すべてを`U-RTO-033`の合格条件とし、proposal生成またはcommit単体のgreenで代替しない。
 manifest execution APIとcase record SHA-256を同期し、expected receipt digestは不変とする。

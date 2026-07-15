@@ -56,6 +56,25 @@ remote writeと実AIは起動せず、delivery/job/finding/disposition/promotion
 | `IT-GPAP-016` | `U-GPAP-016`: `commitFindingPromotionAtomically` | eventからpromotion projectionをrebuild | open finding/promotion/member-set digest一致 |
 | `IT-GPAP-017` | `U-GPAP-017`: `invalidateAuditJobForBaseChange` | PR head SHAを固定したままbase push/rebaseでbase tree、merge-base、diff-baseを各変更 | 旧job stale、新head job 1、旧job finding/promotion 0 |
 
+### §2.1 完全API→U→IT逆引き
+
+| 公開API | owner U／composition U／port U | 既存IT |
+|---|---|---|
+| `verifyGithubPrDelivery` | `U-GPAP-001`, `U-GPAP-011` | `IT-GPAP-001`, `IT-GPAP-006` |
+| `decidePrDeliveryIdempotency` | `U-GPAP-002`, `U-GPAP-011`, `U-GPAP-012` | `IT-GPAP-001`, `IT-GPAP-002`, `IT-GPAP-007` |
+| `resolveCurrentPrHead` | `U-GPAP-003`, `U-GPAP-011` | `IT-GPAP-001`, `IT-GPAP-003` |
+| `planPrAuditJob` | `U-GPAP-004`, `U-GPAP-011`, `U-GPAP-014` | `IT-GPAP-001`, `IT-GPAP-004`, `IT-GPAP-015` |
+| `buildClaudeAuditTask` | `U-GPAP-005`, `U-GPAP-013`, `U-GPAP-014` | `IT-GPAP-005`, `IT-GPAP-014`, `IT-GPAP-015` |
+| `validateAuditFinding` | `U-GPAP-006`, `U-GPAP-013`, `U-GPAP-014` | `IT-GPAP-014`, `IT-GPAP-015` |
+| `commitPrAuditJobExactlyOnce` | `U-GPAP-007`, `U-GPAP-011`, `U-GPAP-012`, `U-GPAP-015` | `IT-GPAP-001`, `IT-GPAP-007`, `IT-GPAP-013` |
+| `buildFindingPromotion` | `U-GPAP-008` | `IT-GPAP-011` |
+| `commitFindingPromotionAtomically` | `U-GPAP-009`, `U-GPAP-016` | `IT-GPAP-008`, `IT-GPAP-009`, `IT-GPAP-016` |
+| `evaluateFindingDisposition` | `U-GPAP-010` | `IT-GPAP-010`, `IT-GPAP-012` |
+| `invalidateAuditJobForBaseChange` | `U-GPAP-017` | `IT-GPAP-017` |
+
+PR hook監査jobは`IT-GPAP-001`／`007`／`013`でdelivery decisionとatomic job commitを別mutationとして採点する。
+finding promotionは`IT-GPAP-008`／`009`／`016`で4 member全insertとprojectionを不可分に採点し、部分targetを成功へ数えない。
+
 ## §3 合否
 
 主系12件と補助5件を全件実行する。branch sample、代表disposition、4 memberの一部だけで分母を縮小しない。

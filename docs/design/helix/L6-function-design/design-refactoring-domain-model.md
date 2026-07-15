@@ -22,10 +22,10 @@ requirements: [HR-FR-HIL-16, HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c]
 ## §0 typed contractの型定義
 
 ```ts
-type DesignTransform = "externalize" | "commonize" | "objectize" | "semantic_rename";
-type DomainRole = "Entity" | "ValueObject" | "Aggregate" | "DomainService" | "Policy" | "Specification" | "Command" | "Query" | "DomainEvent" | "Receipt" | "Port" | "Adapter" | "Repository";
-type TraceTargetKind = "requirement" | "service" | "domain_object" | "template_obligation" | "unit_oracle" | "integration_oracle" | "implementation_symbol";
-type DesignDomainFailureCode =
+type DesignTransformV1 = "externalize" | "commonize" | "objectize" | "semantic_rename";
+type DomainRoleV1 = "Entity" | "ValueObject" | "Aggregate" | "DomainService" | "Policy" | "Specification" | "Command" | "Query" | "DomainEvent" | "Receipt" | "Port" | "Adapter" | "Repository";
+type TraceTargetKindV1 = "requirement" | "service" | "domain_object" | "template_obligation" | "unit_oracle" | "integration_oracle" | "implementation_symbol";
+type DesignDomainFailureCodeV1 =
   | "HIL_DESIGN_REFACTOR_BEHAVIOR_CHANGED" | "HIL_DESIGN_REFACTOR_RETROFIT_REQUIRED" | "HIL_DESIGN_REFACTOR_NAME_ONLY"
   | "HIL_DESIGN_REFACTOR_CONSUMER_MISSING" | "HIL_DESIGN_REFACTOR_ROLLBACK_MISSING" | "HIL_DESIGN_REFACTOR_UNJUSTIFIED"
   | "HIL_DESIGN_REFACTOR_ROUTE_INVALID" | "HIL_DESIGN_REFACTOR_INVARIANT_BROKEN" | "HIL_DOMAIN_ENTITY_IDENTITY_MISSING"
@@ -36,25 +36,28 @@ type DesignDomainFailureCode =
   | "HIL_DOMAIN_NAME_AMBIGUOUS" | "HIL_DOMAIN_PUBLIC_RENAME_REDESIGN" | "HIL_DOMAIN_PERSISTED_RENAME_RETROFIT"
   | "HIL_DOMAIN_ORACLE_PRIVATE_SYMBOL_BOUND" | "HIL_DOMAIN_CANONICAL_TERM_CONFLICT" | "HIL_DOMAIN_MODEL_CONTRACT_INVALID"
   | "HIL_DESIGN_DOMAIN_INTERNAL_ERROR";
-interface DesignDomainFailure { code: DesignDomainFailureCode; subject_id: string; evidence_digest: string; route?: "Refactor" | "Redesign" | "Retrofit" }
+interface DesignDomainFailureV1 { code: DesignDomainFailureCodeV1; subject_id: string; evidence_digest: string; route?: "Refactor" | "Redesign" | "Retrofit" }
+type DesignDomainResultV1<T> =
+  | { ok: true; value: T }
+  | { ok: false; failures: readonly DesignDomainFailureV1[] };
 interface TrustedExecutionResultBindingV1 { result_bytes_digest: string; observable_bytes_digest: string; behavior_signature_digest: string; target_commit_digest: string }
 interface TrustedExecutionReceiptV1 { receipt_id: string; receipt_revision: number; producer_id: string; producer_version: string; execution_identity_digest: string; result_binding: TrustedExecutionResultBindingV1; commit_head: string; event_head: string; executed_at: string; issued_at: string; fresh_until: string; supersedes_receipt_revision: number | null; supersession_terminal: boolean; receipt_bytes_digest: string }
 interface ObservableSnapshotV1 { observable_digest: string; graph_revision: number; provenance_digest: string; execution_receipt: TrustedExecutionReceiptV1 }
 interface OracleResultV1 { oracle_id: string; result_digest: string; graph_revision: number; provenance_digest: string; execution_receipt: TrustedExecutionReceiptV1 }
-interface OracleTrustContextV1 { current_graph_revision: number; trusted_now: string; allowed_producer_ids: string[]; expected_event_head: string; receipt_store: TrustedExecutionReceiptStore }
+interface OracleTrustContextV1 { current_graph_revision: number; trusted_now: string; allowed_producer_ids: string[]; expected_event_head: string; receipt_store: TrustedExecutionReceiptStoreV1 }
 interface DesignSubjectV1 { subject_id: string; revision: number; kind: string; content_digest: string }
 interface DesignGraphV1 { graph_id: string; revision: number; node_ids: string[]; edge_digest: string }
 interface SemanticSignatureV1 { signature_digest: string; input_digest: string; output_digest: string; effect_digest: string; failure_digest: string; state_digest: string; oracle_digest: string }
-interface CandidateV1 { candidate_id: string; subject_id: string; transform: "externalize" | "commonize" | "objectize" | "semantic_rename"; evidence_digest: string }
+interface CandidateV1 { candidate_id: string; subject_id: string; transform: DesignTransformV1; evidence_digest: string }
 interface AcceptedCandidateV1 { candidate_id: string; authority_receipt_id: string; scope_digest: string; signature_digest: string }
 interface ScopeAuthorityV1 { authority_receipt_id: string; subject_ids: string[]; issued_at: string; fresh_until: string }
-interface RefactorClassificationV1 { candidate_id: string; transform: "externalize" | "commonize" | "objectize" | "semantic_rename"; classification_digest: string }
+interface RefactorClassificationV1 { candidate_id: string; transform: DesignTransformV1; classification_digest: string }
 interface ConsumerContractV1 { consumer_id: string; subject_id: string; contract_digest: string; oracle_id: string }
 interface ConsumerResultV1 { consumer_id: string; result_digest: string; passed: boolean; execution_receipt_id: string }
 interface SemanticEquivalenceV1 { before_signature_digest: string; after_signature_digest: string; difference_set: string[]; equivalent: boolean }
 interface ResponsibilityBoundaryV1 { owner_id: string; state_digest: string; invariant_digest: string; authority_digest: string; lifecycle_digest: string }
 interface NamingCatalogV1 { catalog_id: string; revision: number; term_digest: string }
-interface RefactorStepV1 { step_id: string; candidate_id: string; transform: string; precondition_digest: string; postcondition_digest: string; rollback_digest: string }
+interface RefactorStepV1 { step_id: string; candidate_id: string; transform: DesignTransformV1; precondition_digest: string; postcondition_digest: string; rollback_digest: string }
 interface BehaviorReceiptV1 { before_digest: string; after_digest: string; oracle_set_digest: string; behavior_signature_digest: string; passed: boolean }
 interface CoverageReceiptV1 { expected_consumer_ids: string[]; actual_consumer_ids: string[]; result_set_digest: string; passed: boolean }
 interface DesignDeltaV1 { subject_id: string; behavior_changed: boolean; public_contract_changed: boolean; persisted_schema_changed: boolean; requirement_changed: boolean; delta_digest: string }
@@ -62,16 +65,16 @@ interface PairReceiptV1 { pair_id: string; left_digest: string; right_digest: st
 interface RollbackTargetV1 { target_id: string; revision: number; content_digest: string }
 interface RefactorPlanV1 { plan_id: string; candidate_id: string; step_ids: string[]; consumer_ids: string[]; oracle_ids: string[]; authority_receipt_id: string }
 interface FencedPlanV1 { plan_id: string; pair_receipt_ids: string[]; rollback_target_id: string; fence_digest: string }
-interface DomainSchemaV1 { schema_id: string; revision: number; allowed_roles: string[]; schema_digest: string }
-interface DomainObjectVersionV1 { object_id: string; revision: number; role: string; name: string; identity_digest: string; invariant_digest: string; authority_digest: string; status: "current" | "superseded" }
-interface RoleInvariantReceiptV1 { object_id: string; revision: number; role: string; invariant_digest: string; passed: boolean }
+interface DomainSchemaV1 { schema_id: string; revision: number; allowed_roles: DomainRoleV1[]; schema_digest: string }
+interface DomainObjectVersionV1 { object_id: string; revision: number; role: DomainRoleV1; name: string; identity_digest: string; invariant_digest: string; authority_digest: string; status: "current" | "superseded" }
+interface RoleInvariantReceiptV1 { object_id: string; revision: number; role: DomainRoleV1; invariant_digest: string; passed: boolean }
 interface DomainRelationV1 { relation_id: string; source_object_id: string; target_object_id: string; relation: "depends_on" | "implements" | "persists"; direction_digest: string }
 interface DependencyReceiptV1 { object_ids: string[]; relation_ids: string[]; graph_digest: string; passed: boolean }
 interface TermCatalogV1 { catalog_id: string; revision: number; canonical_terms: Record<string, string>; catalog_digest: string }
 interface NamingDecisionV1 { decision_id: string; object_id: string; canonical_name: string; term_catalog_revision: number; evidence_digest: string }
 interface SymbolEdgeV1 { edge_id: string; object_id: string; symbol_id: string; symbol_visibility: "public" | "internal" | "private"; symbol_digest: string }
 interface OracleEdgeV1 { edge_id: string; object_id: string; oracle_id: string; behavior_signature_digest: string; oracle_digest: string }
-interface TraceBindingV1 { binding_id: string; object_id: string; symbol_edge_id: string; oracle_edge_id: string; binding_digest: string }
+interface TraceBindingV1 { binding_id: string; object_id: string; target_kind: TraceTargetKindV1; symbol_edge_id: string; oracle_edge_id: string; binding_digest: string }
 interface DesignDomainEventV1 { event_id: string; operation_id: string; sequence: number; event_type: "bundle_committed" | "bundle_rejected"; payload_digest: string; previous_event_head: string; event_head: string }
 interface DesignDomainProjectionV1 { graph_id: string; graph_revision: number; catalog_revision: number; object_root_digest: string; relation_root_digest: string; trace_root_digest: string; event_head: string }
 ```
@@ -83,33 +86,33 @@ failure codeはL5 §5の34行にあるexact unionだけをknown failureとして
 
 | API | 完全signature | DbC | 主U |
 |---|---|---|---|
-| `buildDesignSemanticSignature` | `(subject: DesignSubjectV1, graph: DesignGraphV1) => Result<SemanticSignatureV1, DesignDomainFailure[]>` | I/O、副作用、failure、state、call graph、consumer/oracleをcanonical化 | `U-DRDM-001` |
-| `classifyDesignRefactorCandidate` | `(candidate: CandidateV1, signature: SemanticSignatureV1, authority: ScopeAuthorityV1) => Result<RefactorClassificationV1, DesignDomainFailure[]>` | lexical/future-useをrejectしone transformへ分類 | `U-DRDM-002` |
-| `planExternalize` | `(candidate: AcceptedCandidateV1, consumers: ConsumerContractV1[]) => Result<RefactorStepV1, DesignDomainFailure[]>` | policy owner/validation boundaryを維持 | `U-DRDM-003` |
-| `planCommonize` | `(candidate: AcceptedCandidateV1, equivalence: SemanticEquivalenceV1) => Result<RefactorStepV1, DesignDomainFailure[]>` | 全consumer semantic同等と差分吸収規則 | `U-DRDM-004` |
-| `planObjectize` | `(candidate: AcceptedCandidateV1, ownership: ResponsibilityBoundaryV1) => Result<RefactorStepV1, DesignDomainFailure[]>` | responsibility/state/invariant/authority/lifecycleを一ownerへ | `U-DRDM-005` |
-| `planSemanticRename` | `(candidate: AcceptedCandidateV1, naming: NamingCatalogV1) => Result<RefactorStepV1, DesignDomainFailure[]>` | lexical distance単独禁止、stable oracle/object ID | `U-DRDM-006` |
-| `validateBehaviorPreservation` | `(before: ObservableSnapshotV1, after: ObservableSnapshotV1, oracles: OracleResultV1[], trust: OracleTrustContextV1) => Result<BehaviorReceiptV1, DesignDomainFailure[]>` | observable digest、provenance、current graph revision、登録execution receipt、freshnessと全oracle一致 | `U-DRDM-007` |
-| `validateConsumerCompatibility` | `(step: RefactorStepV1, expected: ConsumerContractV1[], actual: ConsumerResultV1[]) => Result<CoverageReceiptV1, DesignDomainFailure[]>` | expected=actualの完全集合、100% passを検査 | `U-DRDM-008` |
-| `routeDesignDelta` | `(delta: DesignDeltaV1) => Result<"Refactor" | "Redesign" | "Retrofit", DesignDomainFailure[]>` | behavior/public/requirementはRedesign、persistedはRetrofit | `U-DRDM-009` |
-| `validateRefactorFence` | `(plan: RefactorPlanV1, pairs: PairReceiptV1[], rollback: RollbackTargetV1) => Result<FencedPlanV1, DesignDomainFailure[]>` | consumer/pair/oracle/authority/rollback必須 | `U-DRDM-010` |
-| `parseDomainObjectVersion` | `(raw: unknown, catalog: DomainSchemaV1) => Result<DomainObjectVersionV1, DesignDomainFailure[]>` | 13 role、unknown field拒否、stable object/revision | `U-DRDM-011` |
-| `validateDomainRoleInvariant` | `(object: DomainObjectVersionV1) => Result<RoleInvariantReceiptV1, DesignDomainFailure[]>` | role固有identity/mutability/root/authority/side-effect等を検査 | `U-DRDM-012` |
-| `validateDomainDependencyDirection` | `(objects: DomainObjectVersionV1[], relations: DomainRelationV1[]) => Result<DependencyReceiptV1, DesignDomainFailure[]>` | domain→Port、Adapter→Port、Repository→Aggregateの方向を検査 | `U-DRDM-013` |
-| `decideCanonicalDomainName` | `(object: DomainObjectVersionV1, signature: SemanticSignatureV1, terms: TermCatalogV1) => Result<NamingDecisionV1, DesignDomainFailure[]>` | ambiguous/conflictをreject、同義統一/異義分離 | `U-DRDM-014` |
-| `bindDomainSymbolAndOracle` | `(object: DomainObjectVersionV1, symbol: SymbolEdgeV1, oracle: OracleEdgeV1) => Result<TraceBindingV1, DesignDomainFailure[]>` | edge分離、private symbolだけへのoracle bind禁止 | `U-DRDM-015` |
-| `commitDesignDomainBundle` | `(bundle: DesignDomainBundleV1, port: DesignDomainTransactionPort) => Promise<Result<CommitReceiptV1, DesignDomainFailure[]>>` | version/relation/trace/name/eventをall-or-nothing CAS | `U-DRDM-016` |
-| `validateOracleTrustBinding` | `(oracles: OracleResultV1[], trust: OracleTrustContextV1) => Result<TrustedOracleSetV1, DesignDomainFailure[]>` | producer/provenance/graph revision/registered receipt/freshnessをexact照合 | `U-DRDM-017` |
-| `commitRefactorPlanFence` | `(bundle, port, graphStore, oracleStore, scopeStore, trustedNow) => Promise<Result<RefactorPlanFenceReceiptV1, DesignDomainFailure[]>>` | 3 authority storeのcurrent head/canonical bytesとcaller snapshot/oracle/Scope Authorityをexact照合後、plan substanceを同一CASでfence | `U-DRDM-018` |
-| `commitRefactorTransformVerification` | `(bundle, port, fenceStore) => Promise<Result<RefactorTransformVerificationReceiptV1, DesignDomainFailure[]>>` | current fence receiptとcandidate/plan/stepを再照合しconsumer/pair/behavior/rollback/refactor/eventを同一CASでverified化 | `U-DRDM-019` |
+| `buildDesignSemanticSignature` | `(subject: DesignSubjectV1, graph: DesignGraphV1) => DesignDomainResultV1<SemanticSignatureV1>` | I/O、副作用、failure、state、call graph、consumer/oracleをcanonical化 | `U-DRDM-001` |
+| `classifyDesignRefactorCandidate` | `(candidate: CandidateV1, signature: SemanticSignatureV1, authority: ScopeAuthorityV1) => DesignDomainResultV1<RefactorClassificationV1>` | lexical/future-useをrejectしone transformへ分類 | `U-DRDM-002` |
+| `planExternalize` | `(candidate: AcceptedCandidateV1, consumers: ConsumerContractV1[]) => DesignDomainResultV1<RefactorStepV1>` | policy owner/validation boundaryを維持 | `U-DRDM-003` |
+| `planCommonize` | `(candidate: AcceptedCandidateV1, equivalence: SemanticEquivalenceV1) => DesignDomainResultV1<RefactorStepV1>` | 全consumer semantic同等と差分吸収規則 | `U-DRDM-004` |
+| `planObjectize` | `(candidate: AcceptedCandidateV1, ownership: ResponsibilityBoundaryV1) => DesignDomainResultV1<RefactorStepV1>` | responsibility/state/invariant/authority/lifecycleを一ownerへ | `U-DRDM-005` |
+| `planSemanticRename` | `(candidate: AcceptedCandidateV1, naming: NamingCatalogV1) => DesignDomainResultV1<RefactorStepV1>` | lexical distance単独禁止、stable oracle/object ID | `U-DRDM-006` |
+| `validateBehaviorPreservation` | `(before: ObservableSnapshotV1, after: ObservableSnapshotV1, oracles: OracleResultV1[], trust: OracleTrustContextV1) => DesignDomainResultV1<BehaviorReceiptV1>` | observable digest、provenance、current graph revision、登録execution receipt、freshnessと全oracle一致 | `U-DRDM-007` |
+| `validateConsumerCompatibility` | `(step: RefactorStepV1, expected: ConsumerContractV1[], actual: ConsumerResultV1[]) => DesignDomainResultV1<CoverageReceiptV1>` | expected=actualの完全集合、100% passを検査 | `U-DRDM-008` |
+| `routeDesignDelta` | `(delta: DesignDeltaV1) => DesignDomainResultV1<"Refactor" | "Redesign" | "Retrofit">` | behavior/public/requirementはRedesign、persistedはRetrofit | `U-DRDM-009` |
+| `validateRefactorFence` | `(plan: RefactorPlanV1, pairs: PairReceiptV1[], rollback: RollbackTargetV1) => DesignDomainResultV1<FencedPlanV1>` | consumer/pair/oracle/authority/rollback必須 | `U-DRDM-010` |
+| `parseDomainObjectVersion` | `(raw: unknown, catalog: DomainSchemaV1) => DesignDomainResultV1<DomainObjectVersionV1>` | 13 role、unknown field拒否、stable object/revision | `U-DRDM-011` |
+| `validateDomainRoleInvariant` | `(object: DomainObjectVersionV1) => DesignDomainResultV1<RoleInvariantReceiptV1>` | role固有identity/mutability/root/authority/side-effect等を検査 | `U-DRDM-012` |
+| `validateDomainDependencyDirection` | `(objects: DomainObjectVersionV1[], relations: DomainRelationV1[]) => DesignDomainResultV1<DependencyReceiptV1>` | domain→Port、Adapter→Port、Repository→Aggregateの方向を検査 | `U-DRDM-013` |
+| `decideCanonicalDomainName` | `(object: DomainObjectVersionV1, signature: SemanticSignatureV1, terms: TermCatalogV1) => DesignDomainResultV1<NamingDecisionV1>` | ambiguous/conflictをreject、同義統一/異義分離 | `U-DRDM-014` |
+| `bindDomainSymbolAndOracle` | `(object: DomainObjectVersionV1, symbol: SymbolEdgeV1, oracle: OracleEdgeV1) => DesignDomainResultV1<TraceBindingV1>` | edge分離、private symbolだけへのoracle bind禁止 | `U-DRDM-015` |
+| `commitDesignDomainBundle` | `(bundle: DesignDomainBundleV1, port: DesignDomainTransactionPortV1) => Promise<DesignDomainResultV1<CommitReceiptV1>>` | version/relation/trace/name/eventをall-or-nothing CAS | `U-DRDM-016` |
+| `validateOracleTrustBinding` | `(oracles: OracleResultV1[], trust: OracleTrustContextV1) => DesignDomainResultV1<TrustedOracleSetV1>` | producer/provenance/graph revision/registered receipt/freshnessをexact照合 | `U-DRDM-017` |
+| `commitRefactorPlanFence` | `(bundle: RefactorPlanFenceBundleV1, port: RefactorPlanFenceTransactionPortV1, graphStore: DesignGraphSnapshotStoreV1, oracleStore: TrustedOracleAuthorityStoreV1, scopeStore: ScopeAuthorityStoreV1, trustedNow: string) => Promise<DesignDomainResultV1<RefactorPlanFenceReceiptV1>>` | 3 authority storeのcurrent head/canonical bytesとcaller snapshot/oracle/Scope Authorityをexact照合後、plan substanceを同一CASでfence | `U-DRDM-018` |
+| `commitRefactorTransformVerification` | `(bundle: RefactorTransformVerificationBundleV1, port: RefactorTransformVerificationTransactionPortV1, fenceStore: RefactorFenceReceiptStoreV1) => Promise<DesignDomainResultV1<RefactorTransformVerificationReceiptV1>>` | current fence receiptとcandidate/plan/stepを再照合しconsumer/pair/behavior/rollback/refactor/eventを同一CASでverified化 | `U-DRDM-019` |
 
 ## §2 bundle／transaction port契約
 
 ```ts
-type DesignDomainAppendStep = "object_versions" | "relations" | "trace_edges" | "naming_decisions" | "design_domain_event" | "projection" | "commit_receipt";
+type DesignDomainAppendStepV1 = "object_versions" | "relations" | "trace_edges" | "naming_decisions" | "design_domain_event" | "projection" | "commit_receipt";
 interface DesignDomainBundleV1 {
   operation_id: string; operation_digest: string; graph_id: string; expected_graph_revision: number;
-  catalog_id: string; expected_catalog_revision: number; append_order: DesignDomainAppendStep[];
+  catalog_id: string; expected_catalog_revision: number; append_order: DesignDomainAppendStepV1[];
   write_set: { table: string; key: string; action: "insert" | "update" }[]; write_set_digest: string;
   object_versions: DomainObjectVersionV1[]; relations: DomainRelationV1[]; trace_edges: TraceBindingV1[];
   naming_decisions: NamingDecisionV1[]; event: DesignDomainEventV1; projection: DesignDomainProjectionV1;
@@ -119,9 +122,9 @@ interface CommitReceiptV1 {
   before_catalog_revision: number; after_catalog_revision: number; event_sequence: number; write_set_digest: string;
   oracle_bindings: { oracle_id: string; result_digest: string; observable_digest: string; execution_receipt_digest: string }[];
   oracle_binding_digest: string;
-  counts: Record<DesignDomainAppendStep, { inserted: number; updated: number }>;
+  counts: Record<DesignDomainAppendStepV1, { inserted: number; updated: number }>;
 }
-interface DesignDomainTransactionPort { commit(bundle: DesignDomainBundleV1): Promise<Result<CommitReceiptV1, DesignDomainFailure[]>> }
+interface DesignDomainTransactionPortV1 { commit(bundle: DesignDomainBundleV1): Promise<DesignDomainResultV1<CommitReceiptV1>> }
 
 interface RefactorPlanFenceBundleV1 {
   operation_id: string; operation_digest: string; candidate: AcceptedCandidateV1; plan: RefactorPlanV1;
@@ -134,10 +137,10 @@ interface RefactorPlanFenceBundleV1 {
   write_set_digest: string;
 }
 interface RefactorPlanFenceReceiptV1 { fence_receipt_id: string; operation_id: string; operation_digest: string; candidate_id: string; plan_id: string; step_set_digest: string; before_plan_head: string; after_plan_head: string; current_fence_head: string; fence_digest: string; receipt_digest: string; write_set_digest: string; status: "fenced" }
-interface DesignGraphSnapshotStore { readCurrent(graphId: string, expectedGraphHead: string): Promise<Result<{ snapshot: DesignGraphV1; snapshot_digest: string; current_graph_head: string; canonical_bytes: string }, DesignDomainFailure[]>> }
-interface TrustedOracleAuthorityStore { readCurrent(oracleSetId: string, expectedAuthorityHead: string, trustedNow: string): Promise<Result<{ oracle_set: TrustedOracleSetV1; current_authority_head: string; canonical_bytes: string }, DesignDomainFailure[]>> }
-interface ScopeAuthorityStore { readCurrent(receiptId: string, expectedAuthorityHead: string, trustedNow: string): Promise<Result<{ authority: ScopeAuthorityV1; canonical_bytes: string; current_authority_head: string }, DesignDomainFailure[]>> }
-interface RefactorPlanFenceTransactionPort { commitFence(bundle: RefactorPlanFenceBundleV1, graphStore: DesignGraphSnapshotStore, oracleStore: TrustedOracleAuthorityStore, scopeStore: ScopeAuthorityStore, trustedNow: string): Promise<Result<RefactorPlanFenceReceiptV1, DesignDomainFailure[]>> }
+interface DesignGraphSnapshotStoreV1 { readCurrent(graphId: string, expectedGraphHead: string): Promise<DesignDomainResultV1<{ snapshot: DesignGraphV1; snapshot_digest: string; current_graph_head: string; canonical_bytes: string }>> }
+interface TrustedOracleAuthorityStoreV1 { readCurrent(oracleSetId: string, expectedAuthorityHead: string, trustedNow: string): Promise<DesignDomainResultV1<{ oracle_set: TrustedOracleSetV1; current_authority_head: string; canonical_bytes: string }>> }
+interface ScopeAuthorityStoreV1 { readCurrent(receiptId: string, expectedAuthorityHead: string, trustedNow: string): Promise<DesignDomainResultV1<{ authority: ScopeAuthorityV1; canonical_bytes: string; current_authority_head: string }>> }
+interface RefactorPlanFenceTransactionPortV1 { commitFence(bundle: RefactorPlanFenceBundleV1, graphStore: DesignGraphSnapshotStoreV1, oracleStore: TrustedOracleAuthorityStoreV1, scopeStore: ScopeAuthorityStoreV1, trustedNow: string): Promise<DesignDomainResultV1<RefactorPlanFenceReceiptV1>> }
 
 interface RefactorTransformVerificationBundleV1 {
   operation_id: string; operation_digest: string; candidate: AcceptedCandidateV1; fenced_plan: FencedPlanV1;
@@ -151,8 +154,8 @@ interface RefactorTransformVerificationBundleV1 {
   write_set_digest: string;
 }
 interface RefactorTransformVerificationReceiptV1 { operation_id: string; operation_digest: string; plan_id: string; fence_receipt_id: string; fence_receipt_digest: string; source_fence_head: string; before_verification_head: string; after_verification_head: string; consumer_set_digest: string; pair_set_digest: string; behavior_digest: string; rollback_digest: string; refactor_receipt_digest: string; status: "verified" }
-interface RefactorFenceReceiptStore { readCurrent(receiptId: string, expectedFenceHead: string): Promise<Result<{ receipt: RefactorPlanFenceReceiptV1; canonical_bytes: string; current_fence_head: string }, DesignDomainFailure[]>> }
-interface RefactorTransformVerificationTransactionPort { commitVerification(bundle: RefactorTransformVerificationBundleV1, fenceStore: RefactorFenceReceiptStore): Promise<Result<RefactorTransformVerificationReceiptV1, DesignDomainFailure[]>> }
+interface RefactorFenceReceiptStoreV1 { readCurrent(receiptId: string, expectedFenceHead: string): Promise<DesignDomainResultV1<{ receipt: RefactorPlanFenceReceiptV1; canonical_bytes: string; current_fence_head: string }>> }
+interface RefactorTransformVerificationTransactionPortV1 { commitVerification(bundle: RefactorTransformVerificationBundleV1, fenceStore: RefactorFenceReceiptStoreV1): Promise<DesignDomainResultV1<RefactorTransformVerificationReceiptV1>> }
 ```
 
 portは`object_versions,relations,trace_edges,naming_decisions,design_domain_event,projection,commit_receipt`のexact順を検査し、
@@ -214,7 +217,7 @@ U 19/19、IT 12/12、canonical 34/34、typed Result、oracle trust反証とtrans
 
 ```ts
 interface TrustedOracleSetV1 { oracle_set_id: string; oracle_ids: string[]; receipt_ids: string[]; behavior_signature_digest: string; target_commit_digest: string; set_digest: string }
-interface TrustedExecutionReceiptStore { readCurrent(receiptId: string, expectedEventHead: string, trustedNow: string): Promise<Result<{ receipt: TrustedExecutionReceiptV1; canonical_bytes: string; current_event_head: string }, DesignDomainFailure[]>> }
+interface TrustedExecutionReceiptStoreV1 { readCurrent(receiptId: string, expectedEventHead: string, trustedNow: string): Promise<DesignDomainResultV1<{ receipt: TrustedExecutionReceiptV1; canonical_bytes: string; current_event_head: string }>> }
 ```
 
 `validateOracleTrustBinding`はstoreから得たcanonical bytesのreceipt digest、producer/version、freshness、supersession terminal、result bindingを再計算し、`TrustedOracleSetV1`のbehavior/commit exact bindを検査する。caller digest authorityは0で、receipt/result/observable/behavior/commit swap、stale、CAS/store faultではcurrent/event/receipt増分0とする。

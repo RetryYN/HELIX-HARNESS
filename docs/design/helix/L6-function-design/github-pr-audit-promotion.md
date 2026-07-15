@@ -28,31 +28,85 @@ requirements:
 ## §0 型付きfailure
 
 ```ts
-type PrAuditFailure =
-  | { code: "HIL_GITHUB_DELIVERY_DUPLICATE" | "HIL_PR_DELIVERY_DUPLICATED"; delivery_id: string }
-  | { code: "HIL_GITHUB_HEAD_MISMATCH" | "HIL_PR_AUDIT_HOOK_MISSED"; expected_head: string; observed_head: string }
-  | { code: "HIL_FORWARD_LOOP_NOT_CONVERGED"; missing_join_ids: string[] }
-  | { code: "HIL_FINDING_PROMOTION_PARTIAL" | "HIL_FINDING_DROPPED"; missing_members: PromotionMemberKind[] }
-  | { code: "HIL_FINDING_DUPLICATE_TARGET_MISSING" | "HIL_FINDING_DISPOSITION_INVALID"; finding_id: string }
+type PromotionMemberKindV1 = "issue" | "reverse" | "memory_summary" | "codex_queue";
+type PrAuditFailureV1 =
+  | { code: "HIL_GITHUB_DELIVERY_DUPLICATE" | "HIL_PR_DELIVERY_DUPLICATED"; delivery_id: string; evidence_digest: string }
+  | { code: "HIL_GITHUB_HEAD_MISMATCH" | "HIL_PR_AUDIT_HOOK_MISSED"; expected_head: string; observed_head: string; evidence_digest: string }
+  | { code: "HIL_FORWARD_LOOP_NOT_CONVERGED"; missing_join_ids: readonly string[]; evidence_digest: string }
+  | { code: "HIL_FINDING_PROMOTION_PARTIAL" | "HIL_FINDING_DROPPED"; missing_members: readonly PromotionMemberKindV1[]; evidence_digest: string }
+  | { code: "HIL_FINDING_DUPLICATE_TARGET_MISSING" | "HIL_FINDING_DISPOSITION_INVALID"; finding_id: string; evidence_digest: string }
   | { code: "HIL_GITHUB_DELIVERY_CONFLICT" | "HIL_AUDIT_ROLE_NOT_SEPARATED" | "HIL_AUDIT_FINDING_STALE"; digest: string };
-type PromotionMemberKind = "issue" | "reverse" | "memory_summary" | "codex_queue";
+type PrAuditResultV1<T> =
+  | { ok: true; value: T }
+  | { ok: false; failures: readonly PrAuditFailureV1[] };
+
+type GithubPrActionV1 = "opened" | "reopened" | "synchronize" | "ready_for_review" | "closed" | "completed";
+interface RawPrDeliveryV1 { schema_version: "helix-github-pr-delivery-input.v1"; provider: "github"; delivery_id: string; event_name: "pull_request" | "workflow_run"; action: GithubPrActionV1; repository_id: string; pr_number: number; base_ref: string; base_sha: string; base_tree_digest: string; head_ref: string; head_sha: string; head_tree_digest: string; payload_digest: string; received_at: string }
+interface DeliverySchemaV1 { schema_version: "helix-github-pr-delivery-schema.v1"; schema_revision: number; allowed_events: readonly ("pull_request" | "workflow_run")[]; allowed_actions: readonly GithubPrActionV1[]; required_field_ids: readonly string[]; schema_digest: string }
+interface TransportReceiptV1 { schema_version: "helix-github-transport-receipt.v1"; provider: "github"; delivery_id: string; signature_algorithm: "sha256"; signature_verified: true; body_digest: string; transport_metadata_digest: string; received_at: string; receipt_digest: string }
+interface VerifiedPrDeliveryV1 { schema_version: "helix-verified-pr-delivery.v1"; pr_delivery_id: string; provider: "github"; delivery_id: string; action: GithubPrActionV1; repository_id: string; pr_number: number; base_ref: string; base_sha: string; base_tree_digest: string; head_ref: string; payload_head_sha: string; payload_head_tree_digest: string; payload_digest: string; transport_receipt_digest: string; delivery_digest: string }
+
+interface PrHeadObservationV1 { schema_version: "helix-pr-head-observation.v1"; repository_id: string; pr_number: number; base_ref: string; base_sha: string; base_tree_digest: string; head_ref: string; head_sha: string; head_tree_digest: string; merge_base_sha: string; merge_base_tree_digest: string; diff_base_digest: string; observed_at: string; provider_receipt_digest: string; observation_digest: string }
+interface CurrentPrHeadV1 { schema_version: "helix-current-pr-head.v1"; pr_head_id: string; repository_id: string; pr_number: number; base_ref: string; base_sha: string; base_tree_digest: string; head_ref: string; head_sha: string; head_tree_digest: string; merge_base_sha: string; merge_base_tree_digest: string; diff_base_digest: string; delivery_digest: string; status: "current"; head_identity_digest: string }
+interface PriorDeliveryV1 { schema_version: "helix-prior-pr-delivery.v1"; pr_delivery_id: string; delivery_id: string; delivery_digest: string; idempotency_receipt_digest: string; job_id: string | null; status: "accepted" | "duplicate" | "conflict" | "stale" }
+interface DeliveryDecisionV1 { schema_version: "helix-pr-delivery-decision.v1"; delivery_id: string; delivery_digest: string; verdict: "accept" | "duplicate_noop" | "conflict"; prior_receipt_digest: string | null; authoritative_increment: 0 | 1; decision_digest: string }
+
+interface AuditPolicyV1 { schema_version: "helix-pr-audit-policy.v1"; policy_id: string; policy_version: string; include_all_base_branches: true; required_view_kinds: readonly ("issue" | "contract" | "design" | "test" | "ci" | "coverage")[]; finding_schema_version: "helix-audit-finding.v1"; policy_digest: string }
+interface AuditRoleIdentityV1 { runtime: "claude" | "codex"; identity_id: string; role: "auditor" | "implementer"; provider_family: string; model_family: string; identity_digest: string }
+interface AuditRoleSetV1 { schema_version: "helix-audit-role-set.v1"; claude: AuditRoleIdentityV1; codex: AuditRoleIdentityV1; separation_policy_digest: string; role_set_digest: string }
+interface PrAuditJobPlanV1 { schema_version: "helix-pr-audit-job-plan.v1"; audit_job_id: string; delivery: VerifiedPrDeliveryV1; head: CurrentPrHeadV1; policy: AuditPolicyV1; roles: AuditRoleSetV1; cause_id: string; input_view_set_digest: string; diff_artifact_digest: string; operation_id: string; expected_event_head: string; job_key_digest: string; plan_digest: string }
+interface PrAuditJobV1 { schema_version: "helix-pr-audit-job.v1"; audit_job_id: string; repository_id: string; pr_number: number; head_identity_digest: string; policy_digest: string; role_set_digest: string; input_view_set_digest: string; diff_artifact_digest: string; state: "queued" | "running" | "completed" | "failed" | "stale"; lease_id: string | null; fence_digest: string | null; current_event_digest: string; job_digest: string }
+interface PrComparisonIdentityV1 { schema_version: "helix-pr-comparison-identity.v1"; repository_id: string; pr_number: number; head_sha: string; head_tree_digest: string; base_sha: string; base_tree_digest: string; merge_base_sha: string; merge_base_tree_digest: string; diff_base_digest: string; identity_digest: string }
+interface AuditJobInvalidationDecisionV1 { schema_version: "helix-audit-job-invalidation-decision.v1"; audit_job_id: string; stale_required: boolean; changed_fields: readonly ("base_sha" | "base_tree" | "merge_base_sha" | "merge_base_tree" | "diff_base")[]; superseding_job_required: boolean; invalidation_digest: string }
+
+interface AuditViewV1 { view_kind: "issue" | "contract" | "design" | "test" | "ci" | "coverage"; subject_id: string; subject_revision: number; subject_digest: string; query_digest: string; status: "current" | "stale" }
+interface AuditViewSetV1 { schema_version: "helix-audit-view-set.v1"; views: readonly AuditViewV1[]; view_ids: readonly string[]; view_set_digest: string }
+interface PrDiffArtifactV1 { schema_version: "helix-pr-diff-artifact.v1"; repository_id: string; pr_number: number; head_identity_digest: string; changed_path_digests: readonly string[]; diff_bytes_digest: string; artifact_digest: string }
+interface ClaudeAuditTaskV1 { schema_version: "helix-claude-audit-task.v1"; task_id: string; audit_job_id: string; head_identity_digest: string; policy_digest: string; view_set_digest: string; diff_artifact_digest: string; auditor_identity_digest: string; implementer_identity_digest: string; role_brief_digest: string; authority_scope: "finding_proposal_only"; read_only: true; task_digest: string }
+
+type AuditFindingCategoryV1 = "bug" | "risk" | "behavior_regression" | "missing_test" | "design_gap" | "telemetry";
+type AuditFindingSeverityV1 = "blocker" | "critical" | "major" | "minor" | "suggestion";
+type DesignLayerV1 = "L0" | "L1" | "L2" | "L3" | "L4" | "L5" | "L6" | "L7" | "L8" | "L9" | "L10" | "L11" | "L12" | "L13" | "L14";
+interface FindingSubjectSpanV1 { artifact_id: string; artifact_digest: string; start_line: number; end_line: number; span_digest: string }
+interface AuditFindingProposalV1 { schema_version: "helix-audit-finding-proposal.v1"; audit_job_id: string; head_identity_digest: string; policy_digest: string; category: AuditFindingCategoryV1; severity: AuditFindingSeverityV1; affected_layer: DesignLayerV1; subject_spans: readonly FindingSubjectSpanV1[]; evidence_digest: string; db_query_digest: string; diff_digest: string; recommended_route: "redesign" | "reverse" | "implementation" | "risk_decision" | "telemetry"; producer_identity_digest: string; producer_role: "auditor"; producer_provider_family: string; proposal_digest: string }
+interface EvidenceIndexEntryV1 { evidence_id: string; evidence_kind: "artifact" | "db_query" | "diff" | "review" | "approval" | "target"; subject_digest: string; locator_digest: string; status: "current" | "stale"; evidence_digest: string }
+interface EvidenceIndexV1 { schema_version: "helix-audit-evidence-index.v1"; entries: readonly EvidenceIndexEntryV1[]; evidence_ids: readonly string[]; index_digest: string }
+interface AuditFindingV1 { schema_version: "helix-audit-finding.v1"; finding_id: string; audit_job_id: string; head_identity_digest: string; policy_digest: string; category: AuditFindingCategoryV1; severity: AuditFindingSeverityV1; affected_layer: DesignLayerV1; subject_spans: readonly FindingSubjectSpanV1[]; evidence_digest: string; db_query_digest: string; diff_digest: string; recommended_route: "redesign" | "reverse" | "implementation" | "risk_decision" | "telemetry"; producer_identity_digest: string; finding_fingerprint: string; state: "finding_open" | "disposition_pending" | "promoted" | "closed" | "stale"; finding_digest: string }
+
+type FindingDispositionKindV1 = "actionable" | "duplicate" | "false_positive" | "accepted_risk" | "telemetry";
+interface DispositionProposalV1 { schema_version: "helix-finding-disposition-proposal.v1"; finding_id: string; expected_finding_digest: string; disposition: FindingDispositionKindV1; target_id: string | null; target_digest: string | null; evidence_digests: readonly string[]; reviewer_receipt_digest: string | null; approval_receipt_digest: string | null; observation_owner: string | null; expires_at: string | null; appeal_route_digest: string; proposal_digest: string }
+interface AuthorityIndexEntryV1 { authority_kind: "independent_review" | "po_approval" | "target_acceptance" | "telemetry_owner"; authority_id: string; subject_digest: string; issued_at: string; fresh_until: string; receipt_digest: string }
+interface AuthorityIndexV1 { schema_version: "helix-finding-authority-index.v1"; entries: readonly AuthorityIndexEntryV1[]; authority_ids: readonly string[]; index_digest: string }
+interface DispositionReceiptV1 { schema_version: "helix-finding-disposition-receipt.v1"; receipt_id: string; finding_id: string; finding_digest: string; revision: number; disposition: FindingDispositionKindV1; status: "actionable" | "closed" | "disposition_pending"; target_id: string | null; target_digest: string | null; evidence_set_digest: string; authority_receipt_digest: string | null; appeal_route_digest: string; receipt_digest: string }
+
+interface IssueContractDraftV1 { schema_version: "helix-promotion-issue-contract-draft.v1"; issue_id: string; issue_revision: number; contract_digest: string; finding_id: string; cause_id: string }
+interface ReverseTaskDraftV1 { schema_version: "helix-promotion-reverse-task-draft.v1"; reverse_run_id: string; phase: "R0"; issue_id: string; issue_revision: number; finding_id: string; cause_id: string; reverse_digest: string }
+interface MemoryIssueSummaryDraftV1 { schema_version: "helix-memory-issue-summary-draft.v1"; summary_id: string; issue_id: string; issue_revision: number; finding_id: string; cause_id: string; sanitized_summary_digest: string; raw_finding_included: false; summary_digest: string }
+interface CodexQueueDraftV1 { schema_version: "helix-codex-queue-draft.v1"; queue_item_id: string; issue_id: string; issue_revision: number; reverse_run_id: string; gate_reference_digest: string; finding_id: string; cause_id: string; state: "blocked_on_reverse"; queue_digest: string }
+interface FindingPromotionMemberV1 { member_kind: PromotionMemberKindV1; target_id: string; target_revision: number; target_digest: string; cause_id: string; state: "prepared" }
+interface FindingPromotionBundleV1 { schema_version: "helix-finding-promotion-bundle.v1"; promotion_id: string; cause_id: string; operation_id: string; operation_digest: string; finding: AuditFindingV1; disposition: DispositionReceiptV1; head_identity_digest: string; issue: IssueContractDraftV1; reverse: ReverseTaskDraftV1; memory: MemoryIssueSummaryDraftV1; queue: CodexQueueDraftV1; members: readonly [FindingPromotionMemberV1, FindingPromotionMemberV1, FindingPromotionMemberV1, FindingPromotionMemberV1]; member_set_digest: string; expected_event_head: string; expected_projection_digest: string; bundle_digest: string }
+
+interface AuditJobReceiptV1 { schema_version: "helix-pr-audit-job-receipt.v1"; operation_id: string; delivery_id: string; audit_job_id: string; before_event_head: string; after_event_head: string; job_state: "queued"; authoritative_increment: 0 | 1; write_set_digest: string; receipt_digest: string }
+interface PromotionReceiptV1 { schema_version: "helix-finding-promotion-receipt.v1"; promotion_id: string; operation_id: string; finding_id: string; cause_id: string; issue_member_digest: string; reverse_member_digest: string; memory_member_digest: string; queue_member_digest: string; member_set_digest: string; status: "queue_ready"; before_projection_digest: string; after_projection_digest: string; authoritative_increment: 0 | 1; receipt_digest: string }
+interface PrAuditStorePortV1 { commitJob(plan: PrAuditJobPlanV1): Promise<PrAuditResultV1<AuditJobReceiptV1>> }
+interface FindingPromotionStorePortV1 { commitPromotion(bundle: FindingPromotionBundleV1): Promise<PrAuditResultV1<PromotionReceiptV1>> }
 ```
 
 ## §1 完全signatureとDbC
 
 | function | TypeScript signature | DbC | 一意owner U |
 |---|---|---|---|
-| `verifyGithubPrDelivery` | `(raw: unknown, schema: DeliverySchema, transport: TransportReceipt) => Result<VerifiedPrDelivery, PrAuditFailure[]>` | 必須field、action allowlist、payload/transport digest | `U-GPAP-001` |
-| `resolveCurrentPrHead` | `(delivery: VerifiedPrDelivery, observed: PrHeadObservation) => Result<CurrentPrHead, PrAuditFailure>` | repo/PR/SHA/tree exact、lookup failureはjob 0 | `U-GPAP-003` |
-| `decidePrDeliveryIdempotency` | `(delivery: VerifiedPrDelivery, prior: PriorDelivery | null) => DeliveryDecision` | 同一digestは増分0、異digestはconflict | `U-GPAP-002` |
-| `planPrAuditJob` | `(delivery: VerifiedPrDelivery, head: CurrentPrHead, policy: AuditPolicy, roles: AuditRoleSet) => Result<PrAuditJobPlan, PrAuditFailure[]>` | base filterなし、job key一意、Claude≠Codex | `U-GPAP-004` |
-| `invalidateAuditJobForBaseChange` | `(current: PrAuditJob, observed: PrComparisonIdentity) => AuditJobInvalidationDecision` | head不変でもbase SHA/tree、merge-base SHA/tree、diff-base変更で旧job stale | `U-GPAP-017` |
-| `commitPrAuditJobExactlyOnce` | `(plan: PrAuditJobPlan, port: PrAuditStorePort) => Promise<Result<AuditJobReceipt, PrAuditFailure[]>>` | delivery/head/job/event/projectionを不可分commit | `U-GPAP-007` |
-| `buildClaudeAuditTask` | `(job: PrAuditJob, views: AuditViewSet, diff: PrDiffArtifact) => Result<ClaudeAuditTask, PrAuditFailure[]>` | current head、DB view digest、読取専用、role brief | `U-GPAP-005` |
-| `validateAuditFinding` | `(proposal: unknown, job: PrAuditJob, evidence: EvidenceIndex) => Result<AuditFinding, PrAuditFailure[]>` | affected layer/span/evidence/fingerprint、producer分離 | `U-GPAP-006` |
-| `evaluateFindingDisposition` | `(finding: AuditFinding, proposal: DispositionProposal, authority: AuthorityIndex) => Result<DispositionReceipt, PrAuditFailure>` | kind別evidence、non-terminal、appeal route | `U-GPAP-010` |
-| `buildFindingPromotion` | `(finding: AuditFinding, disposition: DispositionReceipt, issue: IssueContractDraft, reverse: ReverseTaskDraft, memory: MemoryIssueSummaryDraft, queue: CodexQueueDraft) => Result<FindingPromotionBundle, PrAuditFailure[]>` | 4 member exactly-once、同cause/head/digest | `U-GPAP-008` |
-| `commitFindingPromotionAtomically` | `(bundle: FindingPromotionBundle, port: FindingPromotionStorePort) => Promise<Result<PromotionReceipt, PrAuditFailure[]>>` | finding/disposition/promotion/4 target/event/projection全commit | `U-GPAP-009` |
+| `verifyGithubPrDelivery` | `(raw: RawPrDeliveryV1, schema: DeliverySchemaV1, transport: TransportReceiptV1) => PrAuditResultV1<VerifiedPrDeliveryV1>` | 必須field、action allowlist、payload/transport digest | `U-GPAP-001` |
+| `resolveCurrentPrHead` | `(delivery: VerifiedPrDeliveryV1, observed: PrHeadObservationV1) => PrAuditResultV1<CurrentPrHeadV1>` | repo/PR/SHA/tree exact、lookup failureはjob 0 | `U-GPAP-003` |
+| `decidePrDeliveryIdempotency` | `(delivery: VerifiedPrDeliveryV1, prior: PriorDeliveryV1 | null) => PrAuditResultV1<DeliveryDecisionV1>` | 同一digestは増分0、異digestはconflict | `U-GPAP-002` |
+| `planPrAuditJob` | `(delivery: VerifiedPrDeliveryV1, head: CurrentPrHeadV1, policy: AuditPolicyV1, roles: AuditRoleSetV1) => PrAuditResultV1<PrAuditJobPlanV1>` | base filterなし、job key一意、Claude≠Codex | `U-GPAP-004` |
+| `invalidateAuditJobForBaseChange` | `(current: PrAuditJobV1, observed: PrComparisonIdentityV1) => PrAuditResultV1<AuditJobInvalidationDecisionV1>` | head不変でもbase SHA/tree、merge-base SHA/tree、diff-base変更で旧job stale | `U-GPAP-017` |
+| `commitPrAuditJobExactlyOnce` | `(plan: PrAuditJobPlanV1, port: PrAuditStorePortV1) => Promise<PrAuditResultV1<AuditJobReceiptV1>>` | delivery/head/job/event/projectionを不可分commit | `U-GPAP-007` |
+| `buildClaudeAuditTask` | `(job: PrAuditJobV1, views: AuditViewSetV1, diff: PrDiffArtifactV1) => PrAuditResultV1<ClaudeAuditTaskV1>` | current head、DB view digest、読取専用、role brief | `U-GPAP-005` |
+| `validateAuditFinding` | `(proposal: AuditFindingProposalV1, job: PrAuditJobV1, evidence: EvidenceIndexV1) => PrAuditResultV1<AuditFindingV1>` | affected layer/span/evidence/fingerprint、producer分離 | `U-GPAP-006` |
+| `evaluateFindingDisposition` | `(finding: AuditFindingV1, proposal: DispositionProposalV1, authority: AuthorityIndexV1) => PrAuditResultV1<DispositionReceiptV1>` | kind別evidence、non-terminal、appeal route | `U-GPAP-010` |
+| `buildFindingPromotion` | `(finding: AuditFindingV1, disposition: DispositionReceiptV1, issue: IssueContractDraftV1, reverse: ReverseTaskDraftV1, memory: MemoryIssueSummaryDraftV1, queue: CodexQueueDraftV1) => PrAuditResultV1<FindingPromotionBundleV1>` | 4 member exactly-once、同cause/head/digest | `U-GPAP-008` |
+| `commitFindingPromotionAtomically` | `(bundle: FindingPromotionBundleV1, port: FindingPromotionStorePortV1) => Promise<PrAuditResultV1<PromotionReceiptV1>>` | finding/disposition/promotion/4 target/event/projection全commit | `U-GPAP-009` |
 
 上表はpublic APIごとの単体責務を所有する唯一のUである。composition Uは複数owner Uを置換せず、境界間の引き渡しと
 all-or-nothing性だけを検証する。canonical分母は既存の`U-GPAP-001`〜`U-GPAP-017`から増やさない。
@@ -63,10 +117,28 @@ all-or-nothing性だけを検証する。canonical分母は既存の`U-GPAP-001`
 | `U-GPAP-012` | `decidePrDeliveryIdempotency` → `commitPrAuditJobExactlyOnce` | concurrent duplicateのpure decisionとDB winner/loser receiptを同じoperation identityで照合する | `IT-GPAP-007` |
 | `U-GPAP-013` | `buildClaudeAuditTask` → `validateAuditFinding` | read-only監査taskから返るproposalが同じjob/head/policy/evidenceへbindする境界を検証する | `IT-GPAP-014` |
 | `U-GPAP-014` | `planPrAuditJob` → `buildClaudeAuditTask` → `validateAuditFinding` | planner、dispatch、ingestの全境界でClaude/Codex identity-role-provider分離を維持する | `IT-GPAP-015` |
-| `U-GPAP-015` | `commitPrAuditJobExactlyOnce` | public APIの別ownerではなく、同APIが使用する`PrAuditStorePort`の各append fault/retry protocolを検証する | `IT-GPAP-013` |
-| `U-GPAP-016` | `commitFindingPromotionAtomically` | public APIの別ownerではなく、同APIが使用する`FindingPromotionStorePort`のidempotent retry/rebuild protocolを検証する | `IT-GPAP-016` |
+| `U-GPAP-015` | `commitPrAuditJobExactlyOnce` | public APIの別ownerではなく、同APIが使用する`PrAuditStorePortV1`の各append fault/retry protocolを検証する | `IT-GPAP-013` |
+| `U-GPAP-016` | `commitFindingPromotionAtomically` | public APIの別ownerではなく、同APIが使用する`FindingPromotionStorePortV1`のidempotent retry/rebuild protocolを検証する | `IT-GPAP-016` |
 
 `U-GPAP-017`はcompositionではなく、`invalidateAuditJobForBaseChange`の一意owner Uであり`IT-GPAP-017`へ結線する。
+
+### §1.1 API→U→IT厳密結線
+
+owner Uを先頭に置き、そのAPIを使うcomposition／port protocol Uと既存ITを同じ行へexact joinする。
+
+| 公開API | owner U／composition U／port U | 既存IT |
+|---|---|---|
+| `verifyGithubPrDelivery` | `U-GPAP-001`, `U-GPAP-011` | `IT-GPAP-001`, `IT-GPAP-006` |
+| `decidePrDeliveryIdempotency` | `U-GPAP-002`, `U-GPAP-011`, `U-GPAP-012` | `IT-GPAP-001`, `IT-GPAP-002`, `IT-GPAP-007` |
+| `resolveCurrentPrHead` | `U-GPAP-003`, `U-GPAP-011` | `IT-GPAP-001`, `IT-GPAP-003` |
+| `planPrAuditJob` | `U-GPAP-004`, `U-GPAP-011`, `U-GPAP-014` | `IT-GPAP-001`, `IT-GPAP-004`, `IT-GPAP-015` |
+| `buildClaudeAuditTask` | `U-GPAP-005`, `U-GPAP-013`, `U-GPAP-014` | `IT-GPAP-005`, `IT-GPAP-014`, `IT-GPAP-015` |
+| `validateAuditFinding` | `U-GPAP-006`, `U-GPAP-013`, `U-GPAP-014` | `IT-GPAP-014`, `IT-GPAP-015` |
+| `commitPrAuditJobExactlyOnce` | `U-GPAP-007`, `U-GPAP-011`, `U-GPAP-012`, `U-GPAP-015` | `IT-GPAP-001`, `IT-GPAP-007`, `IT-GPAP-013` |
+| `buildFindingPromotion` | `U-GPAP-008` | `IT-GPAP-011` |
+| `commitFindingPromotionAtomically` | `U-GPAP-009`, `U-GPAP-016` | `IT-GPAP-008`, `IT-GPAP-009`, `IT-GPAP-016` |
+| `evaluateFindingDisposition` | `U-GPAP-010` | `IT-GPAP-010`, `IT-GPAP-012` |
+| `invalidateAuditJobForBaseChange` | `U-GPAP-017` | `IT-GPAP-017` |
 
 ## §2 主系API tuple
 
@@ -87,10 +159,10 @@ all-or-nothing性だけを検証する。canonical分母は既存の`U-GPAP-001`
 
 ## §3 schema要点と配置
 
-`VerifiedPrDelivery`はrepository/PR/base/head SHA/tree/delivery/action/payload/transport digest、`PrAuditJob`は
-head/base/merge-base/diff-base/policy/view-set/diffとClaude/Codex roleのdigest、`AuditFinding`は
+`VerifiedPrDeliveryV1`はrepository/PR/base/head SHA/tree/delivery/action/payload/transport digest、`PrAuditJobV1`は
+head/base/merge-base/diff-base/policy/view-set/diffとClaude/Codex roleのdigest、`AuditFindingV1`は
 監査対象のjob/head/category/severity/layer/span/evidence/fingerprint、
-`FindingPromotionBundle`はpromotion/cause/operation/headとIssue/Reverse/memory/queueの実在target keyを持つ。raw body/log/credential/PIIは型へ入れない。
+`FindingPromotionBundleV1`はpromotion/cause/operation/headとIssue/Reverse/memory/queueの実在target keyを持つ。raw body/log/credential/PIIは型へ入れない。
 
 pure coreは`src/github/pr-delivery.ts`、`pr-audit-job.ts`、`src/audit/finding-disposition.ts`、`finding-promotion.ts`、
 adapterは`src/runtime/claude-audit-adapter.ts`、Node portは`src/state-db/pr-audit-projection.ts`へ置く候補とする。

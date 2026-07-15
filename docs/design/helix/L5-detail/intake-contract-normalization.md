@@ -185,7 +185,7 @@ digest文字列だけをhandoff実体として扱わない。
 | `intake_validation_receipts` | custody、schema/actor/policy revision、failure set、operation/payload digest | invalid入力も一件、authoritative proposal 0 |
 | `issue_initial_handoffs` | Issue/revision、admission operation、cause/transition/budget、contract/route/snapshot/policy digest | Issue＋revision一意、operation一意、admissionと同一transaction |
 
-`IntakeAdmissionStore`はcustody→validation→reservation→contract/route/causality/handoff→admission receiptのappend順を固定し、
+`IntakeAdmissionStoreV1`はcustody→validation→reservation→contract/route/causality/handoff→admission receiptのappend順を固定し、
 `expected_operation_head`と`expected_issue_revision`をCASする。全append位置のfaultはtransaction全体をrollbackする。ただし受信時に
 先行durable化したreceipt-level custodyはinvalid/faultでも保持する。reconcileはそのcustody、reservation、immutable artifact digestから
 同じreceiptを復元し、新しいauthority、route、objectiveを推測しない。
@@ -204,7 +204,7 @@ digest文字列だけをhandoff実体として扱わない。
 
 ## §9 freeze条件
 
-L6 transaction contractは`CustodyAppendV1`、`CustodyReceiptV1`、`AdmissionReceiptV1`、`IntakeOperationStateV1`、`IntakeAdmissionTxV1`を使う。event replayの共有semantic shapeはL4基本設計 §2.3の`ProjectionDigestV1`を正本とし、unversioned receipt/state名を許可しない。
+L6 transaction contractは`CustodyAppendV1`、`CustodyReceiptV1`、`AdmissionReceiptV1`、`IntakeOperationStateV1`、`IntakeAdmissionTxV1`を使う。pure decisionも`NormalizedIngressV1`、`DuplicateReceiptV1`、`IntakeReservationV1`、`IntakeConflictReceiptV1`、`IssueRouteReceiptV1`、`ValidatedIssueContractV1`、`TrustReceiptV1`、`VerifiedIngressAuthorityV1`、`IntakeFailureV1`へ閉じる。event replayの共有semantic shapeはL4基本設計 §2.3の`ProjectionDigestV1`を正本とし、unversioned receipt/state名を許可しない。
 
 L5/L8 pairは本slice所有IT 7/7、HST-HIL-001の所有7/7 state/token join、4 ingress fixture、同operation同/異digest、field mutation、
 injection dispatch 0、initial cause/transition/budget metadata handoff、minimality反例、HU-CAP-002 pinned binding、別runtime reviewが揃うまでdraftとする。

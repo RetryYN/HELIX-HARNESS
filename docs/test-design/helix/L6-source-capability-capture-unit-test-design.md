@@ -52,6 +52,40 @@ requirements:
 | `U-SCAP-024` | capture authority binding | `HAC-HIL-09a`, `HAC-HIL-09c` | capture内部oracle | trusted store head/receipt/expected manifest digest、ZIP SHA、UT exact 5 commit/tree、HEAD、expected countを個別改変しcaller自己申告をwrite 0で拒否 | `tests/source-capture-authority.test.ts` |
 | `U-SCAP-025` | projection reconcile | `HAC-HIL-09a` | capture内部supporting fault | expected artifact/DB head、operation/digest/idempotencyを改変し、同key再送とDB faultを評価。silent rewrite/current増分0 | `tests/source-capture-reconcile.test.ts` |
 
+### §0.1 主所有APIと変異構成要素
+
+25 Uは次のexact ownerへ一度だけ属する。API名以外の旧「対象」ラベルはscenarioの短縮名でありowner authorityではない。
+
+| owner API | U | exact IT | 変異構成API |
+|---|---|---|---|
+| `canonicalizeSourceCaptureRequest` | `U-SCAP-001` | `IT-SCAP-001` | なし |
+| `deriveSourceSnapshotId` | `U-SCAP-002` | `IT-SCAP-004` | なし |
+| `renderSourceCaptureBundle` | `U-SCAP-003` | `IT-SCAP-005` | なし |
+| `probeSourceAdapter` | `U-SCAP-004` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-005` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-006` | `IT-SCAP-001` | なし |
+| `probeSourceAdapter` | `U-SCAP-007` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-008` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-009` | `IT-SCAP-001` | なし |
+| `probeSourceAdapter` | `U-SCAP-010` | `IT-SCAP-001` | なし |
+| `deriveGitOverlay` | `U-SCAP-011` | `IT-SCAP-002` | なし |
+| `deriveGitOverlay` | `U-SCAP-012` | `IT-SCAP-002` | なし |
+| `probeSourceAdapter` | `U-SCAP-013` | `IT-SCAP-002` | なし |
+| `enumerateSourceEntries` | `U-SCAP-014` | `IT-SCAP-002` | なし |
+| `deriveGitOverlay` | `U-SCAP-015` | `IT-SCAP-002` | なし |
+| `enumerateSourceEntries` | `U-SCAP-016` | `IT-SCAP-003` | なし |
+| `enumerateSourceEntries` | `U-SCAP-017` | `IT-SCAP-003` | なし |
+| `enumerateSourceEntries` | `U-SCAP-018` | `IT-SCAP-003` | なし |
+| `probeSourceAdapter` | `U-SCAP-019` | `IT-SCAP-003`, `IT-SCAP-007` | なし |
+| `classifySourceEntry` | `U-SCAP-020` | `IT-SCAP-004` | なし |
+| `classifySourceEntry` | `U-SCAP-021` | `IT-SCAP-004` | なし |
+| `commitSourceCapture` | `U-SCAP-022` | `IT-SCAP-005`, `IT-SCAP-006`, `IT-SCAP-008` | `markSourceSnapshotStale` |
+| `verifySourceCapture` | `U-SCAP-023` | `IT-SCAP-004`, `IT-SCAP-005`, `IT-SCAP-008` | `activateSourceSnapshot` |
+| `resolveSourceCaptureAuthority` | `U-SCAP-024` | `IT-SCAP-009` | `planSourceCapture` |
+| `reconcileSourceCaptureProjection` | `U-SCAP-025` | `IT-SCAP-010` | なし |
+
+各owner testはL6のclosed V1 result全fieldをmutationする。component APIはowner Uの同じfixture identityを使い、新規Uや追加分母を作らない。
+
 ## §1 HST011主系のunit tuple
 
 | HSTケース | unit oracle | 事前状態 | 期待状態 | 正規failure |

@@ -58,7 +58,9 @@ prompt injection、archive traversal、macroを混入し、dispatch/exec/spawn/t
 
 ### 補助API→U→IT exact join
 
-`IT-ICN-008`は`U-ICN-008`と`U-ICN-009`、`IT-ICN-009`は`U-ICN-010`、`IT-ICN-010`は`U-ICN-011`をexact joinする。fault oracleは`CustodyReceiptV1`、`AdmissionReceiptV1`、`ProjectionDigestV1`のoperation/payload/head/digest一致とwrite count 0を検査する。
+`IT-ICN-008`は`U-ICN-008`と`U-ICN-009`、`IT-ICN-009`は`U-ICN-010`、`IT-ICN-010`は`U-ICN-011`をexact joinする。fault oracleは`CustodyReceiptV1`、`VerifiedIngressAuthorityV1`、`AdmissionReceiptV1`、`InitialOrchestrationHandoffV1`、`ProjectionDigestV1`のoperation/payload/head/digest一致とwrite count 0を検査する。
+
+主系も`U-ICN-001`→`IT-ICN-001`=`NormalizedIngressV1`、`U-ICN-002`→`IT-ICN-002`=`DuplicateReceiptV1`、`U-ICN-003`→`IT-ICN-003`=`IntakeConflictReceiptV1`、`U-ICN-004`→`IT-ICN-004`=`IssueRouteReceiptV1`、`U-ICN-005`→`IT-ICN-005`=`ValidatedIssueContractV1`、`U-ICN-006`→`IT-ICN-006`=`AdmissionReceiptV1`、`U-ICN-007`→`IT-ICN-007`=`TrustReceiptV1`としてexact receipt joinする。API/U/ITとHST ownershipは変更しない。
 
 本slice所有7/7、HAT-HIL-01、HST-HIL-001の所有7/7 exact pre_state/expected_state/failure、4 ingress、HU-CAP-002 pinned fixture、
 row/event/write/dispatch count、contract/route/initial cause/transition/budget metadata/idempotency digest、minimality反例をassertする。正常caseだけ

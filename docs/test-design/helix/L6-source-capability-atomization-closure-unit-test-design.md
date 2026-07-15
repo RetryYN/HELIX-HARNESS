@@ -61,6 +61,29 @@ requirements:
 | `U-SATOM-033` | Node projection commit | `HAC-HIL-09b` | atomization内部oracle | atom/decision/edge/event/projection payload、exact write-set、operation/digest/expected headsを検査し、欠落/余剰payloadと各step faultはcommit 0 |
 | `U-SATOM-034` | reconcile/activate | `HAC-HIL-09b`, `HAC-HIL-09c` | atomization内部oracle | 同一bundle replayだけを許可し、projection検証前active化、暗黙rewrite、順序違反を`HIL_SOURCE_ATOMIZATION_INTERNAL_ERROR`で拒否 |
 
+### complete public API→U→IT逆引き
+
+全input/outputのexact V1 signatureはpair先L6 §1.2/§2を正本とし、34 Uの各mutation laneを次の14 APIへ固定する。
+
+| 公開API | 主owner U | 既存IT |
+|---|---|---|
+| `parseExtractorDescriptor` | `U-SATOM-001` | `IT-SATOM-002` |
+| `selectExtractorPlugin` | `U-SATOM-002` | `IT-SATOM-002` |
+| `openExtractorSession` | `U-SATOM-004` | `IT-SATOM-003` |
+| `advanceExtractorProtocol` | `U-SATOM-005` | `IT-SATOM-003`, `IT-SATOM-012` |
+| `validateAtomProposal` | `U-SATOM-010` | `IT-SATOM-002`, `IT-SATOM-003`, `IT-SATOM-004` |
+| `splitAtomicCandidate` | `U-SATOM-013` | `IT-SATOM-005`, `IT-SATOM-006` |
+| `deriveSemanticSignature` | `U-SATOM-019` | `IT-SATOM-004`, `IT-SATOM-005` |
+| `resolveAtomKindAndLineage` | `U-SATOM-022` | `IT-SATOM-006`, `IT-SATOM-007`, `IT-SATOM-010` |
+| `validateCapabilityDecision` | `U-SATOM-025` | `IT-SATOM-007`, `IT-SATOM-008`, `IT-SATOM-010` |
+| `resolveCoverageClosure` | `U-SATOM-029` | `IT-SATOM-009`, `IT-SATOM-010`, `IT-SATOM-011` |
+| `computeAtomizationCoverage` | `U-SATOM-031` | `IT-SATOM-001`, `IT-SATOM-006`, `IT-SATOM-010` |
+| `invalidateAtomizationReceipt` | `U-SATOM-032` | `IT-SATOM-011` |
+| `commitAtomizationProjection` | `U-SATOM-033` | `IT-SATOM-013` |
+| `reconcileAndActivateAtomization` | `U-SATOM-034` | `IT-SATOM-013` |
+
+primary owner外の`U-SATOM-003`,`006`〜`009`,`011`〜`012`,`014`〜`018`,`020`〜`021`,`023`〜`024`,`026`〜`028`,`030`はcomposition／mutation／supporting laneとして34 U分母に残し、owner joinへ重複加算しない。
+
 ## §1 HST020主系のunit tuple
 
 | HSTケース | L7 unit oracle | 事前状態 | 期待状態 | 正規failure |

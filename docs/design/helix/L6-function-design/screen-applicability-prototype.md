@@ -31,32 +31,35 @@ pure APIはfilesystem、clock、DB、browserを直接読まず、versioned input
 prototype builderはartifact proposal、人reviewはagreement inputだけを返す。
 
 ```ts
-type ScreenRoute = "prototype_required" | "not_applicable" | "deferred";
-type SettledScreenRoute = Exclude<ScreenRoute, "deferred">;
-type PrototypeStateKind = "empty" | "loading" | "loaded" | "partial" | "error" |
+type ScreenRouteV1 = "prototype_required" | "not_applicable" | "deferred";
+type SettledScreenRouteV1 = Exclude<ScreenRouteV1, "deferred">;
+type PrototypeStateKindV1 = "empty" | "loading" | "loaded" | "partial" | "error" |
   "permission_denied" | "offline" | "conflict" | "completed";
-type ScreenFailure =
+type ScreenFailureV1 =
   | { code: "HIL_SCREEN_DECISION_MISSING" | "HIL_SCREEN_RECEIPT_STALE" | "HIL_SCREEN_SKIP_EVIDENCE_MISSING" | "HIL_SCREEN_DEFERRED_NOT_CLOSED" | "HIL_SCREEN_APPLICABILITY_INVALID" | "HIL_SCREEN_GATE_EVIDENCE_MISSING" | "HIL_SCREEN_IMPLICIT_SKIP"; evidence_digest: string }
   | { code: "HIL_PROTOTYPE_NOT_EXECUTABLE" | "HIL_PROTOTYPE_STATE_MISSING" | "HIL_PROTOTYPE_WALKTHROUGH_MISSING" | "HIL_PROTOTYPE_DELTA_MISSING" | "HIL_PROTOTYPE_BACKPROP_MISSING" | "HIL_PROTOTYPE_ARTIFACT_INCOMPLETE" | "HIL_WALKTHROUGH_RECEIPT_MISSING"; evidence_digest: string };
+type ScreenResultV1<T> =
+  | { ok: true; value: T }
+  | { ok: false; failures: readonly ScreenFailureV1[] };
 ```
 
 ## §1 public API／DbCの契約
 
 | API | 完全signature | DbC | 主U |
 |---|---|---|---|
-| `canonicalizeScreenScope` | `(raw: unknown, policy: ScreenPolicyV1) => Result<ScreenScopeSnapshotV1, ScreenFailure[]>` | scope/capability/phase/public surfaceをstable sortしdigest化 | `U-SAP-001` |
-| `evaluateScreenApplicability` | `(scope: ScreenScopeSnapshotV1, rules: ScreenRuleSetV1) => Result<ScreenDecisionV1, ScreenFailure[]>` | UI有無をdeterministic評価、自由文/deferredをpassしない | `U-SAP-002` |
-| `validateNoUiReceipt` | `(decision: ScreenDecisionV1, candidate: NoUiReceiptV1, trustedNow: string) => Result<NoUiReceiptV1, ScreenFailure[]>` | reason/actor/evidence/reentry/scope/rule/expiryを完全照合 | `U-SAP-003` |
-| `evaluateScreenReentry` | `(prior: NoUiReceiptV1, current: ScreenScopeSnapshotV1) => Result<ReentryPlanV1, ScreenFailure[]>` | scope/capability/rule差でstale＋task一件 | `U-SAP-004` |
-| `planPrototypeDiscovery` | `(decision: ScreenDecisionV1, requirements: ScreenRequirementV1[]) => Result<PrototypeTaskV1, ScreenFailure[]>` | prototype_requiredだけ、screen/interaction/state/data義務を全保持 | `U-SAP-005` |
-| `validatePrototypeArtifact` | `(task: PrototypeTaskV1, manifest: PrototypeManifestV1, states: PrototypeStateFixtureV1[]) => Result<PrototypeReadyReceiptV1, ScreenFailure[]>` | executable/startup、trace、exact 9 state、digest/provenance必須 | `U-SAP-006` |
-| `recordWalkthroughIteration` | `(artifact: PrototypeReadyReceiptV1, input: WalkthroughInputV1, prior: WalkthroughReceiptV1[]) => Result<WalkthroughReceiptV1, ScreenFailure[]>` | user actor、observation、delta/no_delta、target、rebuild、bounded iterationを検査 | `U-SAP-007` |
-| `evaluatePrototypeAgreement` | `(artifact: PrototypeReadyReceiptV1, walkthrough: WalkthroughReceiptV1[], review: HumanReviewV1) => Result<PrototypeAgreementV1, ScreenFailure[]>` | latest artifact、complete walkthrough、人reviewを同digestへbind | `U-SAP-008` |
-| `validateRequirementsBackprop` | `(agreement: PrototypeAgreementV1, l1Revision: RequirementRevisionV1) => Result<BackpropReceiptV1, ScreenFailure[]>` | 全delta dispositionまたはno_delta、revision trace必須 | `U-SAP-009` |
-| `evaluateScreenFreeze` | `(scope: ScreenScopeSnapshotV1, decision: ScreenDecisionV1, skip: NoUiReceiptV1 | null, agreement: PrototypeAgreementV1 | null, backprop: BackpropReceiptV1 | null) => Result<ScreenGateReceiptV1, ScreenFailure[]>` | currentな二routeのexactly-oneをpure評価するcandidate生成だけ。gate write authorityは0 | `U-SAP-010` |
-| `aggregatePlanScreenRoute` | `(scope: ScreenScopeSnapshotV1, decisions: ScreenDecisionV1[]) => Result<PlanScreenDecisionV1, ScreenFailure[]>` | capability ID exact set、全decision current/settled、set digest一致を要求し、一件でもUIならprototype_requiredを優先 | `U-SAP-012` |
-| `commitPlanScreenRoute` | `(bundle: PlanScreenRouteCommitBundleV1, port: ScreenTransactionPort) => Promise<Result<PlanScreenRouteReceiptV1, ScreenFailure[]>>` | decision、PLAN aggregate、prototype task、stage projectionだけをCAS commitしgateを書かない | `U-SAP-012` |
-| `commitStageClosureAndGate` | `(bundle: ScreenStageClosureCommitV1, store: ScreenApplicabilityStore, trustedNow: string) => Promise<Result<ScreenStageReceiptV1, ScreenFailure[]>>` | current plan route後、UI/no-UI completion＋全authority exact setを検証し、唯一のgate write authorityでstageとpassed gateをatomic commit | `U-SAP-011` |
+| `canonicalizeScreenScope` | `(raw: unknown, policy: ScreenPolicyV1) => ScreenResultV1<ScreenScopeSnapshotV1>` | scope/capability/phase/public surfaceをstable sortしdigest化 | `U-SAP-001` |
+| `evaluateScreenApplicability` | `(scope: ScreenScopeSnapshotV1, rules: ScreenRuleSetV1) => ScreenResultV1<ScreenDecisionV1>` | UI有無をdeterministic評価、自由文/deferredをpassしない | `U-SAP-002` |
+| `validateNoUiReceipt` | `(decision: ScreenDecisionV1, candidate: NoUiReceiptV1, trustedNow: string) => ScreenResultV1<NoUiReceiptV1>` | reason/actor/evidence/reentry/scope/rule/expiryを完全照合 | `U-SAP-003` |
+| `evaluateScreenReentry` | `(prior: NoUiReceiptV1, current: ScreenScopeSnapshotV1) => ScreenResultV1<ReentryPlanV1>` | scope/capability/rule差でstale＋task一件 | `U-SAP-004` |
+| `planPrototypeDiscovery` | `(decision: ScreenDecisionV1, requirements: ScreenRequirementV1[]) => ScreenResultV1<PrototypeTaskV1>` | prototype_requiredだけ、screen/interaction/state/data義務を全保持 | `U-SAP-005` |
+| `validatePrototypeArtifact` | `(task: PrototypeTaskV1, manifest: PrototypeManifestV1, states: PrototypeStateFixtureV1[]) => ScreenResultV1<PrototypeReadyReceiptV1>` | executable/startup、trace、exact 9 state、digest/provenance必須 | `U-SAP-006` |
+| `recordWalkthroughIteration` | `(artifact: PrototypeReadyReceiptV1, input: WalkthroughInputV1, prior: WalkthroughReceiptV1[]) => ScreenResultV1<WalkthroughReceiptV1>` | user actor、observation、delta/no_delta、target、rebuild、bounded iterationを検査 | `U-SAP-007` |
+| `evaluatePrototypeAgreement` | `(artifact: PrototypeReadyReceiptV1, walkthrough: WalkthroughReceiptV1[], review: HumanReviewV1) => ScreenResultV1<PrototypeAgreementV1>` | latest artifact、complete walkthrough、人reviewを同digestへbind | `U-SAP-008` |
+| `validateRequirementsBackprop` | `(agreement: PrototypeAgreementV1, l1Revision: RequirementRevisionV1) => ScreenResultV1<BackpropReceiptV1>` | 全delta dispositionまたはno_delta、revision trace必須 | `U-SAP-009` |
+| `evaluateScreenFreeze` | `(scope: ScreenScopeSnapshotV1, decision: ScreenDecisionV1, skip: NoUiReceiptV1 | null, agreement: PrototypeAgreementV1 | null, backprop: BackpropReceiptV1 | null) => ScreenResultV1<ScreenGateReceiptV1>` | currentな二routeのexactly-oneをpure評価するcandidate生成だけ。gate write authorityは0 | `U-SAP-010` |
+| `aggregatePlanScreenRoute` | `(scope: ScreenScopeSnapshotV1, decisions: ScreenDecisionV1[]) => ScreenResultV1<PlanScreenDecisionV1>` | capability ID exact set、全decision current/settled、set digest一致を要求し、一件でもUIならprototype_requiredを優先 | `U-SAP-012` |
+| `commitPlanScreenRoute` | `(bundle: PlanScreenRouteCommitBundleV1, port: ScreenTransactionPortV1) => Promise<ScreenResultV1<PlanScreenRouteReceiptV1>>` | decision、PLAN aggregate、prototype task、stage projectionだけをCAS commitしgateを書かない | `U-SAP-012` |
+| `commitStageClosureAndGate` | `(bundle: ScreenStageClosureCommitV1, store: ScreenApplicabilityStoreV1, trustedNow: string) => Promise<ScreenResultV1<ScreenStageReceiptV1>>` | current plan route後、UI/no-UI completion＋全authority exact setを検証し、唯一のgate write authorityでstageとpassed gateをatomic commit | `U-SAP-011` |
 
 `U-SAP-012`は`aggregatePlanScreenRoute` → `commitPlanScreenRoute`のstable順exact function setを持つplan-route compositionである。
 aggregate固有mutationはcapability ID exact set、decision current/settled、set digest、UI優先route、prototype task集合であり、commit固有mutationは
@@ -66,13 +69,13 @@ bundle/receipt、expected head、CAS、stage projection、port委譲回数、`ga
 ## §2 schemaとtransaction port
 
 ```ts
-interface ScreenDecisionV1 { decision_id: string; decision_revision: number; scope_digest: string; capability_id: string; phase: "L2"; status: "current" | "stale"; route: ScreenRoute; reason_code: string; evidence_digest: string; detector_id: string; detector_version: string; detector_result_digest: string; detector_provenance_digest: string; actor_id: string; rule_digest: string; reentry_trigger: string; decision_digest: string }
+interface ScreenDecisionV1 { decision_id: string; decision_revision: number; scope_digest: string; capability_id: string; phase: "L2"; status: "current" | "stale"; route: ScreenRouteV1; reason_code: string; evidence_digest: string; detector_id: string; detector_version: string; detector_result_digest: string; detector_provenance_digest: string; actor_id: string; rule_digest: string; reentry_trigger: string; decision_digest: string }
 interface ScreenPolicyV1 { policy_id: string; revision: number; capability_ids: string[]; rule_set_digest: string }
 interface ScreenScopeSnapshotV1 { snapshot_id: string; revision: number; capability_ids: string[]; phase: "L2"; public_surface_digest: string; scope_digest: string }
 interface ScreenRuleSetV1 { rule_set_id: string; revision: number; rules_digest: string; authority_receipt_id: string }
 interface ScreenRequirementV1 { requirement_id: string; revision: number; capability_id: string; screen_obligation_digest: string; interaction_obligation_digest: string; state_obligation_digest: string; data_obligation_digest: string }
 interface PrototypeTaskV1 { task_id: string; capability_id: string; requirement_revision: number; obligation_digest: string; status: "planned" | "building" | "complete" }
-interface PrototypeStateFixtureV1 { state: PrototypeStateKind; fixture_id: string; input_digest: string; expected_view_digest: string }
+interface PrototypeStateFixtureV1 { state: PrototypeStateKindV1; fixture_id: string; input_digest: string; expected_view_digest: string }
 interface PrototypeReadyReceiptV1 { artifact_id: string; revision: number; manifest_digest: string; state_set_digest: string; capability_id: string; receipt_digest: string }
 interface WalkthroughInputV1 { actor_id: string; artifact_revision: number; observation_digest: string; disposition: "delta" | "no_delta"; target_requirement_id: string | null }
 interface WalkthroughReceiptV1 { receipt_id: string; artifact_id: string; iteration: number; actor_id: string; observation_digest: string; delta_digest: string | null; rebuilt_artifact_revision: number | null; receipt_digest: string }
@@ -83,18 +86,18 @@ interface BackpropReceiptV1 { receipt_id: string; agreement_id: string; from_req
 interface ReentryPlanV1 { capability_id: string; stale_receipt_id: string; trigger_digest: string; task_id: string; expected_revision: number }
 interface NoUiReceiptV1 { receipt_id: string; decision_id: string; decision_revision: number; capability_id: string; capability_revision: number; scope_digest: string; rule_digest: string; reason_code: string; evidence_digest: string; actor_id: string; reentry_trigger_digest: string; issued_at: string; expires_at: string; receipt_digest: string }
 interface PrototypeManifestV1 { artifact_id: string; revision: number; executable_locator: string; content_digest: string; build_digest: string; startup_command_digest: string; startup_receipt_digest: string; manifest_digest: string; screen_trace_digest: string; interaction_trace_digest: string; state_trace_digest: string; data_trace_digest: string; temporary_data_boundary_digest: string; producer_digest: string }
-interface PlanScreenDecisionV1 { snapshot_id: string; snapshot_revision: number; capability_ids: string[]; capability_set_digest: string; decision_ids: string[]; decision_aggregate_digest: string; route: SettledScreenRoute }
-interface ScreenGateReceiptV1 { gate_receipt_id: string; operation_id: string; operation_digest: string; commit_receipt_digest: string; before_revision: number; after_revision: number; event_head: string; snapshot_id: string; snapshot_revision: number; capability_set_digest: string; decision_aggregate_digest: string; route: SettledScreenRoute; skip_digest: string | null; agreement_digest: string | null; l1_revision: number; verdict: "passed" | "failed"; failure_codes: ScreenFailure["code"][] }
-type ScreenAppendStep = "decision" | "no_ui_receipt" | "artifact_state_set" | "walkthrough" | "backprop" | "agreement" | "decision_stale" | "skip_stale" | "artifact_stale" | "walkthrough_stale" | "agreement_stale" | "gate_stale" | "process_event" | "prototype_task" | "projection" | "gate_receipt";
-interface ScreenOperationEnvelopeV1 { operation_id: string; operation_digest: string; snapshot_id: string; capability_set_digest: string; expected_snapshot_revision: number; expected_subject_revisions: Record<string, number>; append_order: ScreenAppendStep[]; write_set: { table: string; key: string; action: "insert" | "update" }[]; write_set_digest: string }
+interface PlanScreenDecisionV1 { snapshot_id: string; snapshot_revision: number; capability_ids: string[]; capability_set_digest: string; decision_ids: string[]; decision_aggregate_digest: string; route: SettledScreenRouteV1 }
+interface ScreenGateReceiptV1 { gate_receipt_id: string; operation_id: string; operation_digest: string; commit_receipt_digest: string; before_revision: number; after_revision: number; event_head: string; snapshot_id: string; snapshot_revision: number; capability_set_digest: string; decision_aggregate_digest: string; route: SettledScreenRouteV1; skip_digest: string | null; agreement_digest: string | null; l1_revision: number; verdict: "passed" | "failed"; failure_codes: ScreenFailureV1["code"][] }
+type ScreenAppendStepV1 = "decision" | "no_ui_receipt" | "artifact_state_set" | "walkthrough" | "backprop" | "agreement" | "decision_stale" | "skip_stale" | "artifact_stale" | "walkthrough_stale" | "agreement_stale" | "gate_stale" | "process_event" | "prototype_task" | "projection" | "gate_receipt";
+interface ScreenOperationEnvelopeV1 { operation_id: string; operation_digest: string; snapshot_id: string; capability_set_digest: string; expected_snapshot_revision: number; expected_subject_revisions: Record<string, number>; append_order: ScreenAppendStepV1[]; write_set: { table: string; key: string; action: "insert" | "update" }[]; write_set_digest: string }
 interface SkipCommitBundleV1 extends ScreenOperationEnvelopeV1 { kind: "skip"; append_order: ["decision", "no_ui_receipt", "process_event", "projection"]; decision: ScreenDecisionV1; skip: NoUiReceiptV1 }
 interface AgreementCommitBundleV1 extends ScreenOperationEnvelopeV1 { kind: "agreement"; append_order: ["artifact_state_set", "walkthrough", "backprop", "agreement", "process_event", "projection"]; artifact: PrototypeReadyReceiptV1; walkthrough: WalkthroughReceiptV1[]; backprop: BackpropReceiptV1; agreement: PrototypeAgreementV1 }
 interface ReentryCommitBundleV1 extends ScreenOperationEnvelopeV1 { kind: "reentry"; prior_decision_ids: string[]; stale_subject_ids: string[]; task: PrototypeTaskV1 }
 interface PrototypeCapabilityCompletionV1 { capability_id: string; task: PrototypeTaskV1; agreement: PrototypeAgreementV1; backprop: BackpropReceiptV1; completion_digest: string }
 interface PlanScreenRouteCommitBundleV1 extends ScreenOperationEnvelopeV1 { kind: "plan_screen_route"; append_order: ["decision", "prototype_task", "process_event", "projection"]; decisions: ScreenDecisionV1[]; plan: PlanScreenDecisionV1; prototype_tasks: PrototypeTaskV1[] }
-interface PlanScreenRouteReceiptV1 { plan_route_receipt_id: string; operation_id: string; snapshot_id: string; snapshot_revision: number; capability_set_digest: string; decision_aggregate_digest: string; route: SettledScreenRoute; prototype_task_set_digest: string; stage_head: string; receipt_digest: string; gate_write_count: 0 }
+interface PlanScreenRouteReceiptV1 { plan_route_receipt_id: string; operation_id: string; snapshot_id: string; snapshot_revision: number; capability_set_digest: string; decision_aggregate_digest: string; route: SettledScreenRouteV1; prototype_task_set_digest: string; stage_head: string; receipt_digest: string; gate_write_count: 0 }
 interface ScreenCommitReceiptV1 { operation_id: string; operation_digest: string; before_revision: number; after_revision: number; event_sequence: number; write_set_digest: string; counts: Record<string, { inserted: number; updated: number }> }
-interface ScreenTransactionPort { commitSkip(bundle: SkipCommitBundleV1): Promise<Result<ScreenCommitReceiptV1, ScreenFailure[]>>; commitAgreement(bundle: AgreementCommitBundleV1): Promise<Result<ScreenCommitReceiptV1, ScreenFailure[]>>; staleForReentry(bundle: ReentryCommitBundleV1): Promise<Result<ReentryPlanV1 & { commit_receipt: ScreenCommitReceiptV1 }, ScreenFailure[]>>; commitPlanScreenRoute(bundle: PlanScreenRouteCommitBundleV1): Promise<Result<PlanScreenRouteReceiptV1, ScreenFailure[]>> }
+interface ScreenTransactionPortV1 { commitSkip(bundle: SkipCommitBundleV1): Promise<ScreenResultV1<ScreenCommitReceiptV1>>; commitAgreement(bundle: AgreementCommitBundleV1): Promise<ScreenResultV1<ScreenCommitReceiptV1>>; staleForReentry(bundle: ReentryCommitBundleV1): Promise<ScreenResultV1<ReentryPlanV1 & { commit_receipt: ScreenCommitReceiptV1 }>>; commitPlanScreenRoute(bundle: PlanScreenRouteCommitBundleV1): Promise<ScreenResultV1<PlanScreenRouteReceiptV1>> }
 ```
 
 append順はskip=`decision,no_ui_receipt,process_event,projection`、agreement=
@@ -150,15 +153,15 @@ interface CurrentBackpropAuthorityV1 { authority_receipt_id: string; authority_r
 interface ScreenStageClosureV1 { denominator_revision: number; denominator_capability_ids: string[]; ui_capability_ids: string[]; no_ui_completions: NoUiCapabilityCompletionV1[]; ui_completions: UiCapabilityCompletionV1[]; agreement_receipt_exact_set_digest: string; backprop_receipt_exact_set_digest: string; stage_receipt_digest: string }
 interface ScreenStageClosureCommitV1 { operation_id: string; operation_digest: string; plan_route_receipt: PlanScreenRouteReceiptV1; closure: ScreenStageClosureV1; gate: ScreenGateReceiptV1; expected_stage_head: string; expected_gate_head: string; exact_write_set: { table: string; key: string; action: "insert" | "update" }[]; append_order: ["stage_completion", "stage_projection", "gate_receipt", "terminal_receipt"]; write_set_digest: string }
 interface ScreenStageReceiptV1 { operation_id: string; operation_digest: string; denominator_revision: number; before_stage_head: string; after_stage_head: string; before_gate_head: string; after_gate_head: string; closure_digest: string; gate_receipt_digest: string; status: "committed"; inserted_completion_count: number; write_set_digest: string }
-interface ScreenApplicabilityStore {
+interface ScreenApplicabilityStoreV1 {
   gate_write_authority: "screen_stage_closure_store";
-  readPlanRouteReceipt(receiptId: string, expectedStageHead: string): Promise<Result<PlanScreenRouteReceiptV1, ScreenFailure>>;
-  readSkipReceipt(receiptId: string, trustedNow: string): Promise<Result<NoUiReceiptV1, ScreenFailure>>;
-  readSkipAuthority(authorityReceiptId: string, expectedAuthorityHead: string, trustedNow: string): Promise<Result<NoUiSkipAuthorityV1, ScreenFailure>>;
-  readAgreementAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<Result<CurrentAgreementAuthorityV1, ScreenFailure>>;
-  readBackpropAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<Result<CurrentBackpropAuthorityV1, ScreenFailure>>;
-  validateAgreementBackpropPair(agreement: PrototypeAgreementV1, backprop: BackpropReceiptV1, completion: UiCapabilityCompletionV1): Promise<Result<UiCapabilityCompletionV1, ScreenFailure>>;
-  commitStageClosureAndGate(bundle: ScreenStageClosureCommitV1): Promise<Result<ScreenStageReceiptV1, ScreenFailure>>;
+  readPlanRouteReceipt(receiptId: string, expectedStageHead: string): Promise<ScreenResultV1<PlanScreenRouteReceiptV1>>;
+  readSkipReceipt(receiptId: string, trustedNow: string): Promise<ScreenResultV1<NoUiReceiptV1>>;
+  readSkipAuthority(authorityReceiptId: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<NoUiSkipAuthorityV1>>;
+  readAgreementAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<CurrentAgreementAuthorityV1>>;
+  readBackpropAuthority(authorityReceiptId: string, expectedReceiptId: string, expectedReceiptDigest: string, expectedAuthorityHead: string, trustedNow: string): Promise<ScreenResultV1<CurrentBackpropAuthorityV1>>;
+  validateAgreementBackpropPair(agreement: PrototypeAgreementV1, backprop: BackpropReceiptV1, completion: UiCapabilityCompletionV1): Promise<ScreenResultV1<UiCapabilityCompletionV1>>;
+  commitStageClosureAndGate(bundle: ScreenStageClosureCommitV1): Promise<ScreenResultV1<ScreenStageReceiptV1>>;
 }
 ```
 
@@ -167,6 +170,6 @@ interface ScreenApplicabilityStore {
 storeは3者のID/revision exact equalityを検査してから固定分母のUI/no-UI disjoint exact setを再導出し、各skip receiptのcapability/rule/scope/revision/digest/freshness、
 各UI completionのagreement/backprop authority receipt ID/digest、expected current head、canonical current receipt、trustedNow freshness、
 requirement revision連鎖を照合する。stale/superseded authorityやcaller receipt swapは受理しない。stage closureとgate receiptは同じ
-operation、CAS、exact write-setでatomic commitする。`ScreenApplicabilityStore.commitStageClosureAndGate`だけがgate rowへのwrite authorityを持ち、
+operation、CAS、exact write-setでatomic commitする。`ScreenApplicabilityStoreV1.commitStageClosureAndGate`だけがgate rowへのwrite authorityを持ち、
 plan route、skip、agreement portのgate writeは型上0とする。current plan routeより先のgate commit、同operationの二重gate、順序逆転、
 caller集計、agreement/backprop/skip authority swap、stale、CAS、各append faultではstage/gate増分0とする。

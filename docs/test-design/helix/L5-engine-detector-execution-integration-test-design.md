@@ -63,6 +63,36 @@ Python workerはproposalだけを返し、Node commit前後のauthoritative row 
 14/14、全22 HST、failure token、authoritative row count、rerun digest、別runtime reviewが揃うまでL8をgreenにしない。
 worker mockのexit 0、代表engine/detector、artifact file存在、prose PASSだけでは合格にしない。
 
+### §1.1 complete public API→U→IT逆引き
+
+| 公開API | 既存U | 既存IT |
+|---|---|---|
+| `parseEngineVersionDescriptor` | `U-EDX-001` | `IT-EDX-001`, `IT-EDX-003` |
+| `parseDetectorVersionDescriptor` | `U-EDX-002` | `IT-EDX-001`, `IT-EDX-004` |
+| `resolveRegisteredVersion` | `U-EDX-003` | `IT-EDX-002` |
+| `deriveExecutionIdentity` | `U-EDX-004` | `IT-EDX-008`, `IT-EDX-009`, `IT-EDX-012` |
+| `validateFixedExecutionInput` | `U-EDX-005` | `IT-EDX-003`, `IT-EDX-004` |
+| `createEngineRunPlan` | `U-EDX-006` | `IT-EDX-003`, `IT-EDX-005` |
+| `validateEngineResultProposal` | `U-EDX-007` | `IT-EDX-003`, `IT-EDX-005` |
+| `validateArtifactPath` | `U-EDX-008` | `IT-EDX-006` |
+| `validateArtifactManifest` | `U-EDX-009` | `IT-EDX-003`, `IT-EDX-006` |
+| `createDetectorRunPlan` | `U-EDX-010` | `IT-EDX-004`, `IT-EDX-005` |
+| `validateDetectorResultProposal` | `U-EDX-011` | `IT-EDX-004`, `IT-EDX-007` |
+| `canonicalizeFindingEvidence` | `U-EDX-012` | `IT-EDX-007`, `IT-EDX-009` |
+| `deriveDetectorFingerprint` | `U-EDX-013` | `IT-EDX-007`, `IT-EDX-009` |
+| `evaluateDetectorSuppression` | `U-EDX-014` | `IT-EDX-007` |
+| `compareDeterministicRerun` | `U-EDX-015` | `IT-EDX-008`, `IT-EDX-009`, `IT-EDX-012` |
+| `planEngineAuthorityCommit` | `U-EDX-016` | `IT-EDX-010`, `IT-EDX-011` |
+| `planDetectorAuthorityCommit` | `U-EDX-017` | `IT-EDX-009`, `IT-EDX-010`, `IT-EDX-011` |
+| `invalidateExecutionEvidence` | `U-EDX-018` | `IT-EDX-012` |
+| `resolveCurrentExecutionAuthority` | `U-EDX-019` | `IT-EDX-013`, `IT-EDX-014` |
+| `commitExecutionAuthority` | `U-EDX-019` | `IT-EDX-013`, `IT-EDX-014` |
+| `reconcileExecutionAuthority` | `U-EDX-020` | `IT-EDX-014` |
+
+`IT-EDX-014`は先に`U-EDX-019`の
+`resolveCurrentExecutionAuthority` → `commitExecutionAuthority`を採点する。seal後fault/pending時だけ、別laneの
+`U-EDX-020 reconcileExecutionAuthority`を実行する。resolve/commitとreconcileのfixture、fault位置、write countを混ぜない。
+
 ## primary atomic assertion台帳
 
 supporting caseを混入させず、正本primary caseをrangeなしで主IT/Uへ結線する。

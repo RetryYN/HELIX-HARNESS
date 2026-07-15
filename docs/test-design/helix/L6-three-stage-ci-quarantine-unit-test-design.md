@@ -57,6 +57,35 @@ source_capabilities:
 | `U-CIQ-022` | `commitCiMutationBundle` | check/event/projection/receipt/lineage/outcomeおよびrule row各append faultで当該transaction全write 0。同operation同digestは一件、異digest/stale event・projection・rule headはconflict | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting | `tests/ci-mutation-transaction.test.ts` |
 | `U-CIQ-023` | `reconcileCiMutationCommit` | immutable evidence一致時だけprojection/receipt/rule expiry eventを復元し、missing rule/check/greenを補完しない | `HAC-HIL-06b` | supporting | `tests/ci-mutation-reconcile.test.ts` |
 
+### public APIのclosed V1 result mutation
+
+| L7 oracle | exact result |
+|---|---|
+| `U-CIQ-001` | `CiSourceBindingV1` / `CiFailureV1` |
+| `U-CIQ-002` | `CiCheckProfileV1` / `CiFailureV1` |
+| `U-CIQ-003` | `CiChainPlanV1` |
+| `U-CIQ-004` | `StageRunPlanV1` |
+| `U-CIQ-005` | `ForwardJoinBindingV1` / `CiFailureV1` |
+| `U-CIQ-006` | `StageRunPlanV1` |
+| `U-CIQ-007` | `GithubDeliveryV1` / `CiFailureV1` |
+| `U-CIQ-008` | `StageRunPlanV1` |
+| `U-CIQ-009` | `StageOrderDecisionV1` |
+| `U-CIQ-010` | `CiLineageDecisionV1` |
+| `U-CIQ-011` | `CiStageAggregationV1` |
+| `U-CIQ-012` | `CiInvalidationPlanV1` |
+| `U-CIQ-013` | `FailureFingerprintV1` |
+| `U-CIQ-014` | `CiQuarantineRuleV1` / `CiFailureV1` |
+| `U-CIQ-015` | `CiQuarantineDecisionV1` |
+| `U-CIQ-016` | `MinimumGateDecisionV1` |
+| `U-CIQ-017` | `QuarantineFreshnessV1` |
+| `U-CIQ-018` | `CiSelfHealPlanV1` |
+| `U-CIQ-019` | `CiRecoveryAttemptResultV1` / `CiFailureV1[]` |
+| `U-CIQ-020` | `CiMergeEligibilityV1` |
+| `U-CIQ-021` | `CiMutationCommitBundleV1` / `CiFailureV1` |
+| `U-CIQ-022`, `U-CIQ-023` | `CiMutationCommitReceiptV1` / `CiFailureV1` |
+
+各testは対応V1の全identity、SHA/tree/check-set/input-scope、predecessor、count、status、digest fieldを一件ずつmutationする。`U-CIQ-011`と`U-CIQ-019`は詳細cause `HIL_CI_WORKLOAD_REDUCTION_FORBIDDEN`、`HIL_CI_SELF_HEAL_EVIDENCE_MISSING`もcanonical failureと同時に保持する。
+
 ### canonical 23件の単体oracle結線
 
 次表をcase単位のatomic合否正本とし、各caseの主unit oracle、state pair、failureを同じ行でassertする。

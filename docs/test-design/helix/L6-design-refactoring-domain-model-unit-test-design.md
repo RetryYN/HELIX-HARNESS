@@ -39,7 +39,7 @@ fixed graph、all-consumer fixture、13 role mutation、in-memory transaction po
 | `U-DRDM-014` | `decideCanonicalDomainName` | ambiguous/conflict/synonym/homonymを評価 | `tests/domain-naming.test.ts` |
 | `U-DRDM-015` | `bindDomainSymbolAndOracle` | private-only oracle、edge混載、internal renameを評価 | `tests/domain-trace-edge.test.ts` |
 | `U-DRDM-016` | `commitDesignDomainBundle` | object/relation/trace/name/event/projection bundleの各append直後fault、同key再送、異digest conflictでdomain catalog増分0 | `tests/design-domain-transaction.test.ts` |
-| `U-DRDM-017` | oracle trust＋commit receipt binding | oracle_id/result_digest/observable_digest/execution receiptの欠落・入替とproducer/provenance/revision/freshnessを個別偽装しcommit 0 | `tests/design-oracle-trust.test.ts` |
+| `U-DRDM-017` | `validateOracleTrustBinding` | oracle trust→`commitDesignDomainBundle`のsupporting compositionでoracle_id/result_digest/observable_digest/execution receiptの欠落・入替とproducer/provenance/revision/freshnessを個別偽装しcommit 0 | `tests/design-oracle-trust.test.ts` |
 | `U-DRDM-018` | `commitRefactorPlanFence` | graph/oracle/scope各storeのcanonical bytes/current headとcaller snapshot/oracle/authorityを1 fieldずつswapし、candidate/plan/step/consumer/pair/rollback欠落、各append fault/CASでfence増分0 | `tests/design-refactor-fence-transaction.test.ts` |
 | `U-DRDM-019` | `commitRefactorTransformVerification` | fence storeのcurrent receiptに対しfence receipt ID/digest/head、candidate/plan/step digestを1 fieldずつswapし、consumer/pair/behavior/rollback/refactor receipt/event欠落と各append fault/CASでverified増分0 | `tests/design-refactor-verification-transaction.test.ts` |
 
@@ -88,3 +88,4 @@ U 19/19、canonical 34/34、forged/stale oracleを含む全mutation、stable ord
 
 `U-DRDM-017`は`TrustedExecutionReceiptV1.result_binding`がreceipt自身のcanonical bytesへ含まれることをassertし、別object/caller digestをauthorityにしない。storeのcurrent bytes/head/producer/freshness、`TrustedOracleSetV1`のbehavior/commit bindingを個別mutationし、swap/stale/CAS/faultの全反例でwrite count 0とする。
 さらに`executed_at <= issued_at < fresh_until`、worker clock非採用、実行後発行という時刻意味を個別に反転して拒否する。
+exact function setは`validateOracleTrustBinding` → `commitDesignDomainBundle`であり、公開 API ownerは前者=`U-DRDM-017`、後者=`U-DRDM-016`のまま分離する。`IT-DRDM-012`が同じtrusted oracle set／commit receipt identityで両Uを結合し、primary U/HST分母を重複加算しない。

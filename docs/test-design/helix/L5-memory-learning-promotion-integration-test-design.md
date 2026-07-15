@@ -57,6 +57,8 @@ fixture、metric、coverage、review、stage、rollbackのdigestとauthoritative
 
 ## §1 合否
 
+L6 public APIの成功結果23件＋共通failure 1件はslice-local closed `*V1`契約として解決し、非`V1`の抽象result/failure型を許さない。型閉包後も`IT-MLP-001`〜`IT-MLP-017`、15 HST/canonical failure、authority増分とownerの分母は固定し、plan/resultの生成だけでmemory/recipe/skill/detector/gateをactive扱いしない。
+
 ### 補助API→U→IT exact join
 
 `IT-MLP-016`は`U-MLP-023`,`U-MLP-024`,`U-MLP-027`、`IT-MLP-017`は`U-MLP-025`,`U-MLP-026`,`U-MLP-027`をexact joinし、activationとrollbackのimmutable evidenceを混同しない。

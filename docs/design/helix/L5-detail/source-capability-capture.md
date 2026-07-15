@@ -62,13 +62,13 @@ requestとexact照合する。不一致、ref差替え、件数自己申告はwr
 adapter contractは次で固定する。
 
 ```ts
-interface SourceCaptureAdapter {
-  probe(request: SourceProbeRequest): Promise<SourceProbeResult>;
-  entries(probe: SourceProbeResult): AsyncIterable<SourceEntryCandidate>;
+interface SourceCaptureAdapterV1 {
+  probe(request: SourceCaptureRequestV1): Promise<SourceProbeResultV1>;
+  entries(probe: SourceProbeResultV1): AsyncIterable<SourceEntryV1>;
 }
 
-type SourceFamily = "zip" | "git" | "current-head";
-type EntryClass =
+type SourceFamilyV1 = "zip" | "git" | "current-head";
+type EntryClassV1 =
   | "runtime-source" | "test" | "design" | "rule" | "workflow"
   | "generated-fixture" | "binary" | "duplicate-alias" | "evidence-only"
   | "unclassified";
@@ -76,6 +76,7 @@ type EntryClass =
 
 `probe`はsource identity、固定revision、期待count/digest、local-only制約を検証する。`entries`は副作用を持たず、
 順序非依存の入力をcanonical sort可能なrecordへ変換する。adapterはDB、repo正本、remoteへ書かない。
+`SourceCaptureRequestV1`、`SourceProbeResultV1`、`SourceEntryV1`のexact fieldはL6 §2を正本とし、unversioned request/result/candidate名へ縮退しない。
 
 ## §2 正規bundle
 
@@ -151,8 +152,9 @@ expected artifact head、expected DB headをreceiptに固定し、Node reconcile
 | `HSCAP_SNAPSHOT_STALE` | source/rule/schema/HEAD drift |旧receiptをstale化 |
 | `HSCAP_INTERNAL_ERROR` | 未知例外を境界でcause digest付き変換 | current pointer 0、internal failure |
 
-L6の`SourceCaptureFailureCodeV1`は上表13件だけをexact allowlistとする。`SourceCaptureFailureV1`は必ず
-このcodeとcause digestを保持し、unknown文字列や上表外codeを通さない。
+L6の`SourceCaptureFailureCodeV1`は上表13件のcapture-local causeに、HST/L3境界で正本化された
+`HIL_SOURCE_*`／`HIL_ASSET_*` 7件を加えたclosed unionとする。`SourceCaptureFailureV1`は必ず
+このcodeとcause digestを保持し、unknown文字列やunion外codeを通さない。
 
 ## §6 freeze条件
 
@@ -172,6 +174,42 @@ negative fixture、別runtime reviewが揃うまでdraftのままとする。cap
 | source/rule driftとstale伝播 | `IT-SCAP-006` |
 | Linux primary、Node authority、Bunなし実行 | `IT-SCAP-007` |
 | cross-resource faultとfalse-active防止 | `IT-SCAP-008` |
+| trusted manifest authorityとplan component | `IT-SCAP-009` |
+| projection pending reconcile | `IT-SCAP-010` |
+
+14 public APIはL6のprimary owner台帳に各一回だけ現れ、`planSourceCapture`は`resolveSourceCaptureAuthority`、`activateSourceSnapshot`は`verifySourceCapture`、`markSourceSnapshotStale`は`commitSourceCapture`の`mutation_component_of`として採点する。25 U、10 IT、4,470 entry分母は増減させない。
+
+#### U単位のexact API→U→IT結線
+
+API単位のIT集合を全owned Uへ直積展開してはならない。次表を25 Uの唯一のexact joinとする。
+
+| owner API | U | exact IT | 変異構成API |
+|---|---|---|---|
+| `canonicalizeSourceCaptureRequest` | `U-SCAP-001` | `IT-SCAP-001` | なし |
+| `deriveSourceSnapshotId` | `U-SCAP-002` | `IT-SCAP-004` | なし |
+| `renderSourceCaptureBundle` | `U-SCAP-003` | `IT-SCAP-005` | なし |
+| `probeSourceAdapter` | `U-SCAP-004` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-005` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-006` | `IT-SCAP-001` | なし |
+| `probeSourceAdapter` | `U-SCAP-007` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-008` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-009` | `IT-SCAP-001` | なし |
+| `probeSourceAdapter` | `U-SCAP-010` | `IT-SCAP-001` | なし |
+| `deriveGitOverlay` | `U-SCAP-011` | `IT-SCAP-002` | なし |
+| `deriveGitOverlay` | `U-SCAP-012` | `IT-SCAP-002` | なし |
+| `probeSourceAdapter` | `U-SCAP-013` | `IT-SCAP-002` | なし |
+| `enumerateSourceEntries` | `U-SCAP-014` | `IT-SCAP-002` | なし |
+| `deriveGitOverlay` | `U-SCAP-015` | `IT-SCAP-002` | なし |
+| `enumerateSourceEntries` | `U-SCAP-016` | `IT-SCAP-003` | なし |
+| `enumerateSourceEntries` | `U-SCAP-017` | `IT-SCAP-003` | なし |
+| `enumerateSourceEntries` | `U-SCAP-018` | `IT-SCAP-003` | なし |
+| `probeSourceAdapter` | `U-SCAP-019` | `IT-SCAP-003`, `IT-SCAP-007` | なし |
+| `classifySourceEntry` | `U-SCAP-020` | `IT-SCAP-004` | なし |
+| `classifySourceEntry` | `U-SCAP-021` | `IT-SCAP-004` | なし |
+| `commitSourceCapture` | `U-SCAP-022` | `IT-SCAP-005`, `IT-SCAP-006`, `IT-SCAP-008` | `markSourceSnapshotStale` |
+| `verifySourceCapture` | `U-SCAP-023` | `IT-SCAP-004`, `IT-SCAP-005`, `IT-SCAP-008` | `activateSourceSnapshot` |
+| `resolveSourceCaptureAuthority` | `U-SCAP-024` | `IT-SCAP-009` | `planSourceCapture` |
+| `reconcileSourceCaptureProjection` | `U-SCAP-025` | `IT-SCAP-010` | なし |
 
 ### §6.2 HST011主系の厳密追跡
 

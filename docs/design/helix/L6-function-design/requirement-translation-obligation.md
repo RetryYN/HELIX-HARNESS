@@ -119,7 +119,7 @@ supporting caseを混入させず、上下pairと左右V-pairを含む正本prim
 ## §1 完全signatureとDbC
 
 ```ts
-type RequirementTranslationFailureCode =
+type RequirementTranslationFailureCodeV1 =
   | "HIL_DESIGN_AGGREGATE_ONLY"
   | "HIL_DESIGN_APPLICABILITY_MISSING"
   | "HIL_DESIGN_CAPABILITY_SERVICE_MISSING"
@@ -192,22 +192,22 @@ type RequirementTranslationFailureCode =
   | "HIL_REQUIREMENT_TRANSACTION_CAS_CONFLICT"
   | "HIL_REQUIREMENT_TRANSACTION_STORE_FAILURE"
   | "HIL_REQUIREMENT_MANIFEST_INVALID";
-interface RequirementTranslationFailureV1 { code: RequirementTranslationFailureCode; evidence_digest: string; retryable: boolean }
+interface RequirementTranslationFailureV1 { code: RequirementTranslationFailureCodeV1; evidence_digest: string; retryable: boolean }
 type RequirementTranslationResultV1<T> = { ok: true; value: T } | { ok: false; error: RequirementTranslationFailureV1 };
-translateRequirementInput(input: CustodiedRequirementInputV1, template: TemplateSnapshotV1, policy: TranslationPolicyV1): RequirementTranslationResultV1<TranslationProposalV1>;
-validateRequirementAtom(proposal: TranslationProposalV1, authority: ValidatedAuthoritySetV1, current: RequirementProjectionV1): RequirementTranslationResultV1<ValidatedAtomV1>;
-validateRequirementAtoms(proposal: TranslationProposalV1, authority: ValidatedAuthoritySetV1, current: RequirementProjectionV1): RequirementTranslationResultV1<ValidatedRequirementAtomSetV1>;
-validateCurrentRequirementAuthorities(receiptIds: readonly string[], trustedNow: TrustedNowV1, store: CurrentRequirementAuthorityStoreV1): Promise<RequirementTranslationResultV1<ValidatedAuthoritySetV1>>;
-buildRequirementTranslationCommitBundle(proposal: TranslationProposalV1, atoms: ValidatedRequirementAtomSetV1, authority: ValidatedAuthoritySetV1, current: RequirementProjectionV1, snapshot: SnapshotDigestV1, operation: OperationIdV1): RequirementTranslationResultV1<RequirementTranslationCommitBundleV1>;
-executeRequirementTranslationNormalPipeline(input: RequirementTranslationNormalPipelineInputV1, authorityStore: CurrentRequirementAuthorityStoreV1, store: RequirementTranslationCommitStoreV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>;
-routeTemplateGap(atom: ValidatedAtomV1, template: TemplateSnapshotV1, proof: TemplateGapProofV1, missing: MissingSchemaAtomV1[], applicability: ApplicabilityDecisionV1, causality: TemplateGapCausalityV1, operation: OperationIdV1): RequirementTranslationResultV1<TemplateGapCommitPlanV1>;
-evaluateTemplateShadow(candidate: TemplateCandidateV1, samples: ShadowSampleV1[], audit: IndependentAuditReceiptV1, current: TemplatePointerV1): RequirementTranslationResultV1<TemplatePromotionDecisionV1>;
-deriveDesignObligations(requirement: RequirementRevisionV1, service: ServiceGraphV1, templates: TemplateSnapshotV1): RequirementTranslationResultV1<DesignObligationSetV1>;
-evaluateObligationClosure(set: DesignObligationSetV1, evidence: DischargeEvidenceV1[], pair: PairSnapshotV1): RequirementTranslationResultV1<ObligationClosureReceiptV1>;
-appendRequirementRevision(current: RequirementRevisionV1, change: RequirementChangeReceiptV1, operation: OperationIdV1): RequirementTranslationResultV1<RequirementRevisionCommitPlanV1>;
-validateRequirementFreeze(revision: RequirementRevisionV1, closure: RequirementClosureBundleV1, current: SnapshotDigestV1): RequirementTranslationResultV1<RequirementFreezeReceiptV1>;
-commitRequirementTranslationBundle(bundle: RequirementTranslationCommitBundleV1, trustedNow: TrustedNowV1, authorityStore: CurrentRequirementAuthorityStoreV1, store: RequirementTranslationCommitStoreV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>;
-reconcileRequirementTranslationBundle(bundle: RequirementTranslationCommitBundleV1, trustedNow: TrustedNowV1, authorityStore: CurrentRequirementAuthorityStoreV1, store: RequirementTranslationCommitStoreV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>;
+declare function translateRequirementInput(input: CustodiedRequirementInputV1, template: TemplateSnapshotV1, policy: TranslationPolicyV1): RequirementTranslationResultV1<TranslationProposalV1>;
+declare function validateRequirementAtom(proposal: TranslationProposalV1, authority: ValidatedAuthoritySetV1, current: RequirementProjectionV1): RequirementTranslationResultV1<ValidatedAtomV1>;
+declare function validateRequirementAtoms(proposal: TranslationProposalV1, authority: ValidatedAuthoritySetV1, current: RequirementProjectionV1): RequirementTranslationResultV1<ValidatedRequirementAtomSetV1>;
+declare function validateCurrentRequirementAuthorities(receiptIds: readonly string[], trustedNow: TrustedNowV1, transaction: RequirementTranslationAtomicTransactionPortV1): Promise<RequirementTranslationResultV1<ValidatedAuthoritySetV1>>;
+declare function buildRequirementTranslationCommitBundle(proposal: TranslationProposalV1, atoms: ValidatedRequirementAtomSetV1, authority: ValidatedAuthoritySetV1, current: RequirementProjectionV1, snapshot: SnapshotDigestV1, operation: OperationIdV1): RequirementTranslationResultV1<RequirementTranslationCommitBundleV1>;
+declare function executeRequirementTranslationNormalPipeline(input: RequirementTranslationNormalPipelineInputV1, transaction: RequirementTranslationAtomicTransactionPortV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>;
+declare function routeTemplateGap(atom: ValidatedAtomV1, template: TemplateSnapshotV1, proof: TemplateGapProofV1, missing: MissingSchemaAtomV1[], applicability: ApplicabilityDecisionV1, causality: TemplateGapCausalityV1, operation: OperationIdV1): RequirementTranslationResultV1<TemplateGapCommitPlanV1>;
+declare function evaluateTemplateShadow(candidate: TemplateCandidateV1, samples: ShadowSampleV1[], audit: IndependentAuditReceiptV1, current: TemplatePointerV1): RequirementTranslationResultV1<TemplatePromotionDecisionV1>;
+declare function deriveDesignObligations(requirement: RequirementRevisionV1, service: ServiceGraphV1, templates: TemplateSnapshotV1): RequirementTranslationResultV1<DesignObligationSetV1>;
+declare function evaluateObligationClosure(set: DesignObligationSetV1, evidence: DischargeEvidenceV1[], pair: PairSnapshotV1): RequirementTranslationResultV1<ObligationClosureReceiptV1>;
+declare function appendRequirementRevision(current: RequirementRevisionV1, change: RequirementChangeReceiptV1, operation: OperationIdV1): RequirementTranslationResultV1<RequirementRevisionCommitPlanV1>;
+declare function validateRequirementFreeze(revision: RequirementRevisionV1, closure: RequirementClosureBundleV1, current: SnapshotDigestV1): RequirementTranslationResultV1<RequirementFreezeReceiptV1>;
+declare function commitRequirementTranslationBundle(bundle: RequirementTranslationCommitBundleV1, trustedNow: TrustedNowV1, transaction: RequirementTranslationAtomicTransactionPortV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>;
+declare function reconcileRequirementTranslationBundle(bundle: RequirementTranslationCommitBundleV1, trustedNow: TrustedNowV1, transaction: RequirementTranslationAtomicTransactionPortV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>;
 ```
 
 全入力digest/current revision/authority/expiryを照合する。atomは1 outcome/constraint、gap planはIssue/Reverse/queue各一件、promotionはauthor≠auditor≠promoter、obligationはfacet/pair/oracle/gate完全、changeは全source disposition必須。Err時write 0、commit port CAS loser 0、同operation再送0。
@@ -217,7 +217,6 @@ interface AuthorityReceiptV1 { receipt_id: string; receipt_digest: string; role:
 interface TrustedNowV1 { instant: string; clock_source_id: string; clock_receipt_digest: string; max_clock_skew_ms: number; trusted_now_digest: string }
 interface CurrentAuthoritySnapshotV1 { snapshot_id: string; snapshot_revision: number; authority_receipts: readonly AuthorityReceiptV1[]; active_pointer_revision: number; authority_event_head: string; authority_set_digest: string; snapshot_digest: string }
 interface ValidatedAuthoritySetV1 { receipt_ids: readonly string[]; roles: readonly AuthorityReceiptV1["role"][]; scope_digest: string; active_pointer_revision: number; authority_event_head: string; authority_set_digest: string; current_snapshot_digest: string; trusted_now_digest: string; validation_digest: string }
-interface CurrentRequirementAuthorityStoreV1 { readCurrentSnapshot(receiptIds: readonly string[], trustedNow: TrustedNowV1): Promise<CurrentAuthoritySnapshotV1> }
 type OperationIdV1 = string & { readonly __brand: "OperationIdV1" };
 interface SnapshotDigestV1 { snapshot_digest: string; source_commit: string; source_tree_digest: string; template_head: string; requirement_head: string; obligation_head: string; projection_head: string; active_pointer_revision: number; measured_at: string }
 interface CustodiedRequirementInputV1 { input_id: string; source_kind: "chat" | "github" | "product_data" | "source"; source_span: string; source_digest: string; statement: string; custody: AuthorityReceiptV1; received_at: string; operation_id: OperationIdV1 }
@@ -256,12 +255,12 @@ interface TemplateGapCausalityV1 { issue: TemplateGapIssueEntryV1; reverse: Temp
 interface TemplateGapCommitPlanV1 { operation_id: OperationIdV1; operation_digest: string; proof: TemplateGapProofV1; missing_atoms: MissingSchemaAtomV1[]; applicability: ApplicabilityDecisionV1; issue: TemplateGapIssueEntryV1; reverse: TemplateGapReverseEntryV1; queue: TemplateGapQueueEntryV1; causality_digest: string; expected_heads: { issue: string; reverse: string; queue: string }; append_order: readonly ["issue", "reverse", "queue", "receipt"]; write_set_digest: string }
 type RequirementWriteTargetV1 = "event" | "projection" | "receipt";
 interface RequirementWriteSetSchemaV1 { schema_version: "helix-requirement-write-set.v1"; targets: RequirementWriteTargetV1[] }
-parseRequirementWriteSet(raw: string): RequirementTranslationResultV1<RequirementWriteSetSchemaV1>;
+declare function parseRequirementWriteSet(raw: string): RequirementTranslationResultV1<RequirementWriteSetSchemaV1>;
 interface RequirementTranslationCommitBundleV1 { schema_version: "helix-requirement-translation-commit-bundle.v1"; operation_id: OperationIdV1; operation_digest: string; proposal_digest: string; validated_atom_set: ValidatedRequirementAtomSetV1; authority_validation_digest: string; trusted_now_digest: string; expected_snapshot: SnapshotDigestV1; expected_event_heads: Record<"template" | "requirement" | "obligation", string>; expected_projection_head: string; expected_active_pointer_revision: number; expected_authority_receipt_ids: readonly string[]; expected_authority_set_digest: string; expected_authority_snapshot_digest: string; template_events: RequirementTranslationEventV1[]; requirement_events: RequirementTranslationEventV1[]; obligation_events: RequirementTranslationEventV1[]; template_gap: TemplateGapCommitPlanV1 | null; expected_write_set: RequirementWriteTargetV1[]; append_order: readonly ["events", "projection", "active_pointer", "terminal_receipt"]; write_set_digest: string; bundle_digest: string }
 interface RequirementTranslationCommitReceiptV1 { operation_id: OperationIdV1; operation_digest: string; committed_snapshot_digest: string; committed_authority_set_digest: string; before_heads: Record<string, string>; after_heads: Record<string, string>; before_projection_head: string; after_projection_head: string; event_counts: Record<string, number>; projection_digest: string; active_pointer_revision: number; terminal_receipt_digest: string; status: "committed" | "reconcile_pending"; write_set_digest: string; replay_digest: string }
-interface RequirementTranslationCommitStoreV1 { readCurrentSnapshot(trustedNow: TrustedNowV1): Promise<SnapshotDigestV1>; commitCas(bundle: RequirementTranslationCommitBundleV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>; reconcileCas(bundle: RequirementTranslationCommitBundleV1, pending: RequirementTranslationCommitReceiptV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>; findReceipt(operationId: OperationIdV1): Promise<RequirementTranslationCommitReceiptV1 | null>; replay(eventHeads: Record<string, string>): Promise<{ projection_head: string; projection_digest: string; active_pointer_revision: number }> }
+interface RequirementTranslationAtomicTransactionPortV1 { readCurrentAuthoritySnapshot(receiptIds: readonly string[], trustedNow: TrustedNowV1): Promise<CurrentAuthoritySnapshotV1>; readCurrentSnapshot(trustedNow: TrustedNowV1): Promise<SnapshotDigestV1>; readValidateAndCommit(bundle: RequirementTranslationCommitBundleV1, trustedNow: TrustedNowV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>; readValidateAndReconcile(bundle: RequirementTranslationCommitBundleV1, pending: RequirementTranslationCommitReceiptV1, trustedNow: TrustedNowV1): Promise<RequirementTranslationResultV1<RequirementTranslationCommitReceiptV1>>; findReceipt(operationId: OperationIdV1): Promise<RequirementTranslationCommitReceiptV1 | null>; replay(eventHeads: Record<string, string>): Promise<{ projection_head: string; projection_digest: string; active_pointer_revision: number }> }
 interface RequirementTranslationNormalPipelineInputV1 { input: CustodiedRequirementInputV1; template: TemplateSnapshotV1; policy: TranslationPolicyV1; authority_receipt_ids: readonly string[]; trusted_now: TrustedNowV1; current_projection: RequirementProjectionV1; expected_snapshot: SnapshotDigestV1; operation_id: OperationIdV1 }
-type RequirementExecutionApiV1 = "translateRequirementInput" | "validateRequirementAtom" | "validateRequirementAtoms" | "validateCurrentRequirementAuthorities" | "buildRequirementTranslationCommitBundle" | "executeRequirementTranslationNormalPipeline" | "routeTemplateGap" | "evaluateTemplateShadow" | "deriveDesignObligations" | "evaluateObligationClosure" | "appendRequirementRevision" | "validateRequirementFreeze" | "commitRequirementTranslationBundle" | "reconcileRequirementTranslationBundle";
+type RequirementExecutionApiV1 = "translateRequirementInput" | "validateRequirementAtom" | "validateRequirementAtoms" | "validateCurrentRequirementAuthorities" | "buildRequirementTranslationCommitBundle" | "executeRequirementTranslationNormalPipeline" | "routeTemplateGap" | "evaluateTemplateShadow" | "deriveDesignObligations" | "evaluateObligationClosure" | "appendRequirementRevision" | "validateRequirementFreeze" | "commitRequirementTranslationBundle" | "reconcileRequirementTranslationBundle" | "parseRequirementWriteSet";
 type RequirementExecutionPipelineV1 = "commitRequirementTranslationBundle+reconcileRequirementTranslationBundle";
 interface RequirementTranslationNormalPipelineV1 { pipeline_id: "executeRequirementTranslationNormalPipeline"; stages: readonly ["validateCurrentRequirementAuthorities", "translateRequirementInput", "validateRequirementAtoms", "buildRequirementTranslationCommitBundle", "commitRequirementTranslationBundle", "reconcileRequirementTranslationBundle"]; proposal: TranslationProposalV1; validated_atoms: ValidatedRequirementAtomSetV1; authority: ValidatedAuthoritySetV1; bundle: RequirementTranslationCommitBundleV1; receipt: RequirementTranslationCommitReceiptV1 }
 interface RequirementTranslationExecutableCaseV1 { case_id: `HST-CASE-${string}`; fixture_id: string; fixture_revision: number; execution_api: RequirementExecutionApiV1 | RequirementExecutionPipelineV1; fault_position: string | null; expected_write_set: RequirementWriteTargetV1[]; expected_receipt_digest: string; fixture_manifest_path: "docs/test-design/helix/fixtures/requirement-translation-obligation-case.manifest" }
@@ -269,11 +268,11 @@ interface RequirementTranslationExecutableCaseV1 { case_id: `HST-CASE-${string}`
 
 `deriveDesignObligations`は`requirement → capability → service → domain object`の各edgeをcurrent revision付きで要求する。
 全public signatureはV1型だけを受け渡す。callerが渡す`AuthorityReceiptV1.status`はcurrentnessの証拠として信頼しない。
-`validateCurrentRequirementAuthorities`は`TrustedNowV1`と`CurrentRequirementAuthorityStoreV1`から
+`validateCurrentRequirementAuthorities`は`TrustedNowV1`と`RequirementTranslationAtomicTransactionPortV1`から
 `CurrentAuthoritySnapshotV1`を独立取得し、issued/expiry、scope、active pointer revision、supersession chain終端、event headを検証して
 `ValidatedAuthoritySetV1`を返す。pure API、bundle build、commit/reconcileはこのvalidation digestだけを受理し、caller receipt集合の
-自己申告statusや時刻文字列からcurrentnessを導出しない。commit/reconcileはauthority storeとcommit storeからcurrent snapshotを
-commit直前に再読し、bundleのsnapshot、event heads、projection head、pointer revision、authority set/snapshot digestを単一CASで
+自己申告statusや時刻文字列からcurrentnessを導出しない。commit/reconcileは単一atomic transaction port内部でauthorityとcommit snapshotを
+commit直前に同一transaction snapshotから再読し、bundleのsnapshot、event heads、projection head、pointer revision、authority set/snapshot digestを単一CASで
 照合する。events→projection→active pointer→terminal receiptを一transactionとし、fault後は同じ
 operation ID/digest/expected snapshotだけをreconcileする。CAS loser、stale/expired/superseded authority、異digest retry、partial appendは
 authoritative count 0とする。
@@ -291,3 +290,26 @@ executable case manifestはprimary表の75 IDとexact joinし、空field、重�
 parserは`none`を空集合、`event+projection+receipt`をstable exact setへ変換し、unknown/duplicate/順序違反をmanifest failureにする。
 正常caseのmanifest `execution_api`はpublic callable `executeRequirementTranslationNormalPipeline`へ同期し、case record SHA-256を再計算する。
 expected receipt payloadは不変なのでexpected receipt digestは変更しない。
+
+## §2 public API primary owner正本
+
+次表の15 APIは各1組のprimary U/ITだけをownerとする。75 primary caseの残余行はowner APIへ投入する
+composition/mutationであり、第2 ownerとして数えない。
+
+| public API | primary U | primary IT |
+|---|---|---|
+| `translateRequirementInput` | `U-RTO-034` | `IT-RTO-034` |
+| `validateRequirementAtom` | `U-RTO-035` | `IT-RTO-035` |
+| `validateRequirementAtoms` | `U-RTO-033` | `IT-RTO-033` |
+| `validateCurrentRequirementAuthorities` | `U-RTO-038` | `IT-RTO-038` |
+| `buildRequirementTranslationCommitBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `executeRequirementTranslationNormalPipeline` | `U-RTO-033` | `IT-RTO-033` |
+| `routeTemplateGap` | `U-RTO-041` | `IT-RTO-041` |
+| `evaluateTemplateShadow` | `U-RTO-045` | `IT-RTO-045` |
+| `deriveDesignObligations` | `U-RTO-001` | `IT-RTO-001` |
+| `evaluateObligationClosure` | `U-RTO-006` | `IT-RTO-006` |
+| `appendRequirementRevision` | `U-RTO-053` | `IT-RTO-053` |
+| `validateRequirementFreeze` | `U-RTO-031` | `IT-RTO-031` |
+| `commitRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `reconcileRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `parseRequirementWriteSet` | `U-RTO-075` | `IT-RTO-075` |

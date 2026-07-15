@@ -45,22 +45,35 @@ ref証拠として保持しながらcoverage分母へ重複算入しない。全
 
 ### §0.1 公開API→U→IT exact join
 
-| 公開API | L7 oracle | L8 oracle |
-|---|---|---|
-| `canonicalizeSourceCaptureRequest` | `U-SCAP-001`, `U-SCAP-003` | `IT-SCAP-001` |
-| `deriveSourceSnapshotId` | `U-SCAP-002` | `IT-SCAP-004` |
-| `probeSourceAdapter` | `U-SCAP-004`, `U-SCAP-007`, `U-SCAP-008`, `U-SCAP-009`, `U-SCAP-010`, `U-SCAP-013`, `U-SCAP-014`, `U-SCAP-015`, `U-SCAP-016`, `U-SCAP-017`, `U-SCAP-018`, `U-SCAP-019` | `IT-SCAP-001`, `IT-SCAP-002`, `IT-SCAP-003`, `IT-SCAP-007` |
-| `enumerateSourceEntries` | `U-SCAP-004`, `U-SCAP-005`, `U-SCAP-006`, `U-SCAP-007`, `U-SCAP-008`, `U-SCAP-009`, `U-SCAP-010`, `U-SCAP-014`, `U-SCAP-016`, `U-SCAP-017`, `U-SCAP-018`, `U-SCAP-019` | `IT-SCAP-001`, `IT-SCAP-002`, `IT-SCAP-003`, `IT-SCAP-004` |
-| `deriveGitOverlay` | `U-SCAP-011`, `U-SCAP-012`, `U-SCAP-013`, `U-SCAP-014`, `U-SCAP-015` | `IT-SCAP-002` |
-| `classifySourceEntry` | `U-SCAP-020`, `U-SCAP-021` | `IT-SCAP-004` |
-| `renderSourceCaptureBundle` | `U-SCAP-001`, `U-SCAP-002`, `U-SCAP-003`, `U-SCAP-023` | `IT-SCAP-005` |
-| `planSourceCapture` | `U-SCAP-023` | `IT-SCAP-001`, `IT-SCAP-002`, `IT-SCAP-003`, `IT-SCAP-004` |
-| `commitSourceCapture` | `U-SCAP-022`, `U-SCAP-023` | `IT-SCAP-005`, `IT-SCAP-008` |
-| `verifySourceCapture` | `U-SCAP-022`, `U-SCAP-023` | `IT-SCAP-005` |
-| `activateSourceSnapshot` | `U-SCAP-023` | `IT-SCAP-004`, `IT-SCAP-008` |
-| `markSourceSnapshotStale` | `U-SCAP-022` | `IT-SCAP-006` |
-| `resolveSourceCaptureAuthority` | `U-SCAP-024` | `IT-SCAP-009` |
-| `reconcileSourceCaptureProjection` | `U-SCAP-025` | `IT-SCAP-010` |
+| owner API | U | exact IT | 変異構成API |
+|---|---|---|---|
+| `canonicalizeSourceCaptureRequest` | `U-SCAP-001` | `IT-SCAP-001` | なし |
+| `deriveSourceSnapshotId` | `U-SCAP-002` | `IT-SCAP-004` | なし |
+| `renderSourceCaptureBundle` | `U-SCAP-003` | `IT-SCAP-005` | なし |
+| `probeSourceAdapter` | `U-SCAP-004` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-005` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-006` | `IT-SCAP-001` | なし |
+| `probeSourceAdapter` | `U-SCAP-007` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-008` | `IT-SCAP-001` | なし |
+| `enumerateSourceEntries` | `U-SCAP-009` | `IT-SCAP-001` | なし |
+| `probeSourceAdapter` | `U-SCAP-010` | `IT-SCAP-001` | なし |
+| `deriveGitOverlay` | `U-SCAP-011` | `IT-SCAP-002` | なし |
+| `deriveGitOverlay` | `U-SCAP-012` | `IT-SCAP-002` | なし |
+| `probeSourceAdapter` | `U-SCAP-013` | `IT-SCAP-002` | なし |
+| `enumerateSourceEntries` | `U-SCAP-014` | `IT-SCAP-002` | なし |
+| `deriveGitOverlay` | `U-SCAP-015` | `IT-SCAP-002` | なし |
+| `enumerateSourceEntries` | `U-SCAP-016` | `IT-SCAP-003` | なし |
+| `enumerateSourceEntries` | `U-SCAP-017` | `IT-SCAP-003` | なし |
+| `enumerateSourceEntries` | `U-SCAP-018` | `IT-SCAP-003` | なし |
+| `probeSourceAdapter` | `U-SCAP-019` | `IT-SCAP-003`, `IT-SCAP-007` | なし |
+| `classifySourceEntry` | `U-SCAP-020` | `IT-SCAP-004` | なし |
+| `classifySourceEntry` | `U-SCAP-021` | `IT-SCAP-004` | なし |
+| `commitSourceCapture` | `U-SCAP-022` | `IT-SCAP-005`, `IT-SCAP-006`, `IT-SCAP-008` | `markSourceSnapshotStale` |
+| `verifySourceCapture` | `U-SCAP-023` | `IT-SCAP-004`, `IT-SCAP-005`, `IT-SCAP-008` | `activateSourceSnapshot` |
+| `resolveSourceCaptureAuthority` | `U-SCAP-024` | `IT-SCAP-009` | `planSourceCapture` |
+| `reconcileSourceCaptureProjection` | `U-SCAP-025` | `IT-SCAP-010` | なし |
+
+primary owner Uはcomponent API行でprotocol参照として再掲するが、U coverage分母へはprimary owner APIのowned setから一度だけ算入する。owned setはL6/L7のpartition台帳を正本とし、`U-SCAP-001`〜`U-SCAP-025`を欠落・重複なく覆う。
 
 ## §1 HST011主系の原子tuple
 

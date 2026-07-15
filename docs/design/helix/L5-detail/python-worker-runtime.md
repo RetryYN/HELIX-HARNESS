@@ -66,7 +66,7 @@ fail-closeする。Python側の「書かなかった」という自己申告はa
 worker descriptorは少なくとも次を固定する。
 
 ```ts
-interface PythonWorkerDescriptor {
+interface PythonWorkerDescriptorV1 {
   worker_id: string;
   worker_version: string;
   protocol_major: number;
@@ -176,10 +176,24 @@ terminal reconcileは固有mutationを持ち、一つの曖昧なcommit/reconcil
 | `commitPythonWorkerTerminal` | `TerminalWorkerCommitBundleV1` | `non_accepted_terminal_commit` | failed/quarantined/cancelled/timed_outをauthoritative result 0でcommit |
 | `reconcilePythonWorkerTerminal` | `TerminalWorkerReconcileBundleV1` | `terminal_reconcile` | immutable evidenceと同一operation/digest/revisionだけを収束 |
 
+| legacy composition API | single owner U | owner IT | mutation責務 |
+|---|---|---|---|
+| `commitPythonWorkerResult` | `U-PYWR-015` | `IT-PYWR-001`, `IT-PYWR-008` | accepted bundle、idempotency、commit前検証 |
+| `reconcilePythonWorkerRun` | `U-PYWR-015` | `IT-PYWR-008` | immutable evidenceからmissing projectionを再構築 |
+| `recordWorkerTerminalReceipt` | `U-PYWR-016` | `IT-PYWR-008` | runごとのexactly-one terminal receipt |
+
+projection rebuild mutationは`U-PYWR-015`だけが所有し、`U-PYWR-016`はterminal receiptのexactly-onceを所有する。
+`U-PYWR-017`の3関数composition、17 unit、9 integrationの分母は変更しない。
+
+`advancePythonWorkerProtocol`の公開API ownerは`U-PYWR-006`だけとし、`U-PYWR-007`は
+`payload_identity_guard` composition mutationを所有するsupporting oracleとする。これによりAPI ownerを一意化しつつ、
+`HST-CASE-007-12`の主Uと17 unit分母を維持する。
+
 ## §6 失敗契約
 
 | failure code | 条件 | terminal／副作用 |
 |---|---|---|
+| `HIL_WORKER_PROTOCOL_INVALID` | terminal receiptまたはprotocol集約契約が不正 | `quarantined`、partial/current増分0 |
 | `HIL_WORKER_PROTOCOL_VERSION_UNSUPPORTED` | protocol major不一致 | `quarantined`、request送信0 |
 | `HIL_WORKER_JSON_INVALID` | stdoutがJSONLでない、log混入 | `quarantined`、proposal commit 0 |
 | `HIL_WORKER_PAYLOAD_OVERSIZE` | request/frame/result/stderr上限超過 | dispatchまたはrun停止、commit 0 |
@@ -192,17 +206,18 @@ terminal reconcileは固有mutationを持ち、一つの曖昧なcommit/reconcil
 | `HIL_WORKER_BACKPRESSURE_EXCEEDED` | bounded queueを期限内に解消不能 | `quarantined`、process停止、commit 0 |
 | `HIL_WORKER_PARENT_LOST` | parent ownership／heartbeat失効 | `failed`、process group停止、commit 0 |
 | `HIL_WORKER_LATE_RESULT_FENCED` | lease/fence失効後のresult | 現run状態不変、commit 0、finding追加 |
+| `HIL_PYTHON_PLANE_BOUNDARY_INVALID` | spawnまたはsandboxがPython plane境界外 | spawnまたはrun拒否、authoritative増分0 |
 | `HIL_PYTHON_AUTHORITY_BYPASS` | Pythonが保護root/DB/repoへwrite企図 | `quarantined`、authoritative増分0 |
+| `HIL_DB_WRITE_AUTHORITY_INVALID` | Pythonがharness.dbへの直接writeを企図 | transaction拒否、DB増分0 |
 | `HIL_RESULT_WRITE_AUTHORITY_INVALID` | Node外commit、未検証/partial result commit | transaction拒否、projection増分0 |
 | `HIL_WORKER_RESULT_COMMIT_FAILED` | artifact/DB reconciliationまたはtransaction失敗 | current増分0、再試行可能 |
+| `HIL_IPC_ENVELOPE_INVALID` | JSONL envelopeの境界schemaまたは必須fieldが不正 | `quarantined`、proposal commit 0 |
 | `HIL_IPC_FAIL_OPEN` | 上記異常後にpartial/currentが生じた | runtime Gate失敗、完了claim 0 |
 
-上位assertionの`HIL_WORKER_PROTOCOL_INVALID`、`HIL_PYTHON_PLANE_BOUNDARY_INVALID`、
-`HIL_DB_WRITE_AUTHORITY_INVALID`、`HIL_IPC_ENVELOPE_INVALID`、`HIL_DB_PROJECTION_BOUNDARY_INVALID`は、上表の
-詳細causeを失わず集約する境界codeである。
+`HIL_DB_PROJECTION_BOUNDARY_INVALID`はconsumer側projection assertionであり、本runtimeのfailure unionには含めない。
+上表の境界codeは詳細causeを失わず`WorkerFailureV1`へ正規化する。
 
-L6の`WorkerFailureCodeV1`は上表16件だけをexact allowlistとする。上位assertion codeは集約結果であり、
-`WorkerFailureV1.code`へ混在させない。
+L6の`WorkerFailureCodeV1`は上表20件だけをexact allowlistとする。
 
 ## §7 traceとfreeze条件
 

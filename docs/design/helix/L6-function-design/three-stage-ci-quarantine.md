@@ -37,29 +37,29 @@ adapterはprovider observationを返すだけで、chain、stage、quarantine、
 
 | API | signature | DbC／result | L7 oracle | HAC | exact HST dispositionの対応 |
 |---|---|---|---|---|---|
-| `parseCiSourceCapabilityBinding` | `(raw, pinnedEvidence) => Result<CiSourceBinding, CiFailure>` | `HU-CAP-006`、root/base/source commit/tree、11-entry set/unique delta、全blob/span/dispositionをstrict照合しmain既存PLANを分離 | `U-CIQ-001` | `HAC-HIL-06a` | `HST-CASE-003-01` → `なし（正常系）` |
-| `buildCiRequiredCheckProfile` | `(sourceBinding, profile, phase) => Result<CiCheckProfile, CiFailure>` | universal PR、source/pack別check、command/input scopeをversioned固定 | `U-CIQ-002` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING` |
-| `createThreeStageCiChain` | `(issue, reverseTask, prejoinSource, profile) => CiChainPlan` | causality、Reverse候補SHA/tree/check-setから一意chainを生成 | `U-CIQ-003` | `HAC-HIL-06a` | `HST-CASE-003-01` → `なし（正常系）` |
-| `planReversePrejoinStage` | `(chain, source, profile) => StageRunPlan` | ordinal 1、Forward join前、全required checkを要求 | `U-CIQ-004` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-02` → `HIL_CI_PREJOIN_FAILED` |
-| `validateForwardJoinReceipt` | `(prejoin, joinReceipt) => Result<ForwardJoinBinding, CiFailure>` | prejoin accepted、candidate parent SHA/tree、result SHA/treeを要求 | `U-CIQ-005` | `HAC-HIL-06b` | `HST-CASE-003-05` → `HIL_CI_STAGE_BYPASS` |
-| `planForwardPostjoinStage` | `(chain, prejoin, joinBinding, profile) => StageRunPlan` | ordinal 2、合流SHA/tree、prejoin predecessorを固定 | `U-CIQ-006` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-03` → `HIL_CI_POSTJOIN_FAILED` |
-| `parseGithubExternalDelivery` | `(payload, repository, pr, postjoin) => Result<GithubDelivery, CiFailure>` | delivery/check suite/run、PR head SHA/tree、workflowをstrict検証 | `U-CIQ-007` | `HAC-HIL-06b` | `HST-CASE-003-09` → `HIL_CI_SHA_STALE` |
-| `planGithubExternalStage` | `(chain, postjoin, delivery, profile) => StageRunPlan` | ordinal 3、postjoin SHA/treeとPR head一致、universal triggerを要求 | `U-CIQ-008` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-04` → `HIL_CI_EXTERNAL_FAILED` |
-| `validateCiStageOrder` | `(chain, candidateStage, predecessor) => StageOrderDecision` | ordinal単調、直前receipt、terminal/stale非再開 | `U-CIQ-009` | `HAC-HIL-06b` | `HST-CASE-003-11` → `HIL_CI_STAGE_BYPASS`; `HST-CASE-003-12` → `HIL_CI_STAGE_LINEAGE_INVALID` |
-| `validateCiStageLineage` | `(chain, stage, source, predecessor) => CiLineageDecision` | chain/SHA/tree/check-set/input-scope/predecessorを全件照合 | `U-CIQ-010` | `HAC-HIL-06b` | `HST-CASE-003-06` → `HIL_CI_LINEAGE_MISMATCH`; `HST-CASE-003-07` → `HIL_CI_TREE_DIGEST_MISMATCH`; `HST-CASE-003-13` → `HIL_CI_RECEIPT_LINEAGE_INVALID` |
-| `aggregateCiCheckResults` | `(stage, profile, checkRuns) => CiStageAggregation` | required check全件、exact command/scope、green conclusionだけを集計 | `U-CIQ-011` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING`; `HST-CASE-003-10` → `HIL_CI_CONCLUSION_NOT_GREEN` |
-| `invalidateCiChainForHeadChange` | `(chain, priorHead, currentHead, delivery) => CiInvalidationPlan` | SHA/tree変更時に旧stage/eligibilityをstale化 | `U-CIQ-012` | `HAC-HIL-06b` | `HST-CASE-003-09` → `HIL_CI_SHA_STALE` |
-| `deriveCiFailureFingerprint` | `(check, normalizedDiagnostic, toolchain, profile) => FailureFingerprint` | volatile path/time/run IDを除外し意味差は保持 | `U-CIQ-013` | `HAC-HIL-06c` | `HST-CASE-022-02` → `HIL_QUARANTINE_FINGERPRINT_MISMATCH` |
-| `parseCiQuarantineRule` | `(raw, trustedNow, sourceProfile, packProfile, checkProfile) => Result<CiQuarantineRule, CiFailure>` | typed scope kind/ID、reason/evidence、source/pack/check profile、approvalを必須化し空・重複・unknownを拒否 | `U-CIQ-014` | `HAC-HIL-06c` | `HST-CASE-022-05` → `HIL_QUARANTINE_WILDCARD_FORBIDDEN`; `HST-CASE-022-06` → `HIL_QUARANTINE_REMEDIATION_MISSING`; `HST-CASE-022-10` → `HIL_QUARANTINE_OVERBROAD` |
-| `evaluateCiQuarantineApplication` | `(stage, failures, ruleSet, workload) => CiQuarantineDecision` | 全workload完走後、全failure exact一致だけをcanonical `quarantined`へ遷移 | `U-CIQ-015` | `HAC-HIL-06c` | `HST-CASE-022-01` → `なし（正常系）`; `HST-CASE-022-02` → `HIL_QUARANTINE_FINGERPRINT_MISMATCH`; `HST-CASE-022-08` → `HIL_CI_QUARANTINE_INVALID`; `HST-CASE-022-09` → `HIL_QUARANTINE_SCOPE_INVALID` |
-| `validateCiMinimumGate` | `(application, gateRun, originalWorkload) => MinimumGateDecision` | 追加gate green、元check非省略、minimum gate自身の隔離禁止 | `U-CIQ-016` | `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-022-04` → `HIL_QUARANTINE_MINIMUM_GATE_MISSING` |
-| `evaluateCiQuarantineExpiry` | `(rule, trustedClockReceipt, currentProfile) => QuarantineFreshness` | trusted clock、baseline/tree/profile/scope driftで失効 | `U-CIQ-017` | `HAC-HIL-06c` | `HST-CASE-022-03` → `HIL_QUARANTINE_EXPIRED` |
-| `planCiSelfHealRoute` | `(failurePacket, policy, history) => CiSelfHealPlan` | confidence、failure kind、上限からretry/repush/quarantine/Issueを選択 | `U-CIQ-018` | `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-022-07` → `HIL_QUARANTINE_EXHAUSTED` |
-| `recordCiRecoveryAttemptResult` | `(prior, candidate, workload, evidence, newChain) => Result<CiRecoveryAttemptResult, CiFailure[]>` | retryはsame-tree全workload、repushはprior/rerequest/log/root-cause/diff/green/push/PR headと新chain三段完走を要求 | `U-CIQ-019` | `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING` |
-| `finalizeCiMergeEligibility` | `(chain, external, quarantines, branchPolicy) => CiMergeEligibility` | current PR head、三段完了、quarantine非green、required policyを照合 | `U-CIQ-020` | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-003-13` → `HIL_CI_RECEIPT_LINEAGE_INVALID`; `HST-CASE-022-01` → `なし（正常系）` |
-| `buildCiMutationCommitBundle` | `(mutation, current, operation) => Result<CiMutationCommitBundleV1, CiFailure>` | stage/quarantine/self-heal write setとexpected headsを正規化 | `U-CIQ-021` | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting |
-| `commitCiMutationBundle` | `(bundle, store) => Promise<Result<CiMutationCommitReceiptV1, CiFailure>>` | check/receipt/event/projection/lineage/outcomeを単一Node transactionでCAS commit | `U-CIQ-022` | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting |
-| `reconcileCiMutationCommit` | `(operationId, evidence, store) => Promise<Result<CiMutationCommitReceiptV1, CiFailure>>` | immutable evidenceからのみprojection/receiptを復元 | `U-CIQ-023` | `HAC-HIL-06b` | supporting |
+| `parseCiSourceCapabilityBinding` | `(raw, pinnedEvidence) => CiResultV1<CiSourceBindingV1, CiFailureV1>` | `HU-CAP-006`、root/base/source commit/tree、11-entry set/unique delta、全blob/span/dispositionをstrict照合しmain既存PLANを分離 | `U-CIQ-001` | `HAC-HIL-06a` | `HST-CASE-003-01` → `なし（正常系）` |
+| `buildCiRequiredCheckProfile` | `(sourceBinding, profile, phase) => CiResultV1<CiCheckProfileV1, CiFailureV1>` | universal PR、source/pack別check、command/input scopeをversioned固定 | `U-CIQ-002` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING` |
+| `createThreeStageCiChain` | `(issue, reverseTask, prejoinSource, profile) => CiChainPlanV1` | causality、Reverse候補SHA/tree/check-setから一意chainを生成 | `U-CIQ-003` | `HAC-HIL-06a` | `HST-CASE-003-01` → `なし（正常系）` |
+| `planReversePrejoinStage` | `(chain, source, profile) => StageRunPlanV1` | ordinal 1、Forward join前、全required checkを要求 | `U-CIQ-004` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-02` → `HIL_CI_PREJOIN_FAILED` |
+| `validateForwardJoinReceipt` | `(prejoin, joinReceipt) => CiResultV1<ForwardJoinBindingV1, CiFailureV1>` | prejoin accepted、candidate parent SHA/tree、result SHA/treeを要求 | `U-CIQ-005` | `HAC-HIL-06b` | `HST-CASE-003-05` → `HIL_CI_STAGE_BYPASS` |
+| `planForwardPostjoinStage` | `(chain, prejoin, joinBinding, profile) => StageRunPlanV1` | ordinal 2、合流SHA/tree、prejoin predecessorを固定 | `U-CIQ-006` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-03` → `HIL_CI_POSTJOIN_FAILED` |
+| `parseGithubExternalDelivery` | `(payload, repository, pr, postjoin) => CiResultV1<GithubDeliveryV1, CiFailureV1>` | delivery/check suite/run、PR head SHA/tree、workflowをstrict検証 | `U-CIQ-007` | `HAC-HIL-06b` | `HST-CASE-003-09` → `HIL_CI_SHA_STALE` |
+| `planGithubExternalStage` | `(chain, postjoin, delivery, profile) => StageRunPlanV1` | ordinal 3、postjoin SHA/treeとPR head一致、universal triggerを要求 | `U-CIQ-008` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-04` → `HIL_CI_EXTERNAL_FAILED` |
+| `validateCiStageOrder` | `(chain, candidateStage, predecessor) => StageOrderDecisionV1` | ordinal単調、直前receipt、terminal/stale非再開 | `U-CIQ-009` | `HAC-HIL-06b` | `HST-CASE-003-11` → `HIL_CI_STAGE_BYPASS`; `HST-CASE-003-12` → `HIL_CI_STAGE_LINEAGE_INVALID` |
+| `validateCiStageLineage` | `(chain, stage, source, predecessor) => CiLineageDecisionV1` | chain/SHA/tree/check-set/input-scope/predecessorを全件照合 | `U-CIQ-010` | `HAC-HIL-06b` | `HST-CASE-003-06` → `HIL_CI_LINEAGE_MISMATCH`; `HST-CASE-003-07` → `HIL_CI_TREE_DIGEST_MISMATCH`; `HST-CASE-003-13` → `HIL_CI_RECEIPT_LINEAGE_INVALID` |
+| `aggregateCiCheckResults` | `(stage, profile, checkRuns) => CiStageAggregationV1` | required check全件、exact command/scope、green conclusionだけを集計 | `U-CIQ-011` | `HAC-HIL-06a`, `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING`; `HST-CASE-003-10` → `HIL_CI_CONCLUSION_NOT_GREEN` |
+| `invalidateCiChainForHeadChange` | `(chain, priorHead, currentHead, delivery) => CiInvalidationPlanV1` | SHA/tree変更時に旧stage/eligibilityをstale化 | `U-CIQ-012` | `HAC-HIL-06b` | `HST-CASE-003-09` → `HIL_CI_SHA_STALE` |
+| `deriveCiFailureFingerprint` | `(check, normalizedDiagnostic, toolchain, profile) => FailureFingerprintV1` | volatile path/time/run IDを除外し意味差は保持 | `U-CIQ-013` | `HAC-HIL-06c` | `HST-CASE-022-02` → `HIL_QUARANTINE_FINGERPRINT_MISMATCH` |
+| `parseCiQuarantineRule` | `(raw, trustedNow, sourceProfile, packProfile, checkProfile) => CiResultV1<CiQuarantineRuleV1, CiFailureV1>` | typed scope kind/ID、reason/evidence、source/pack/check profile、approvalを必須化し空・重複・unknownを拒否 | `U-CIQ-014` | `HAC-HIL-06c` | `HST-CASE-022-05` → `HIL_QUARANTINE_WILDCARD_FORBIDDEN`; `HST-CASE-022-06` → `HIL_QUARANTINE_REMEDIATION_MISSING`; `HST-CASE-022-10` → `HIL_QUARANTINE_OVERBROAD` |
+| `evaluateCiQuarantineApplication` | `(stage, failures, ruleSet, workload) => CiQuarantineDecisionV1` | 全workload完走後、全failure exact一致だけをcanonical `quarantined`へ遷移 | `U-CIQ-015` | `HAC-HIL-06c` | `HST-CASE-022-01` → `なし（正常系）`; `HST-CASE-022-02` → `HIL_QUARANTINE_FINGERPRINT_MISMATCH`; `HST-CASE-022-08` → `HIL_CI_QUARANTINE_INVALID`; `HST-CASE-022-09` → `HIL_QUARANTINE_SCOPE_INVALID` |
+| `validateCiMinimumGate` | `(application, gateRun, originalWorkload) => MinimumGateDecisionV1` | 追加gate green、元check非省略、minimum gate自身の隔離禁止 | `U-CIQ-016` | `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-022-04` → `HIL_QUARANTINE_MINIMUM_GATE_MISSING` |
+| `evaluateCiQuarantineExpiry` | `(rule, trustedClockReceipt, currentProfile) => QuarantineFreshnessV1` | trusted clock、baseline/tree/profile/scope driftで失効 | `U-CIQ-017` | `HAC-HIL-06c` | `HST-CASE-022-03` → `HIL_QUARANTINE_EXPIRED` |
+| `planCiSelfHealRoute` | `(failurePacket, policy, history) => CiSelfHealPlanV1` | confidence、failure kind、上限からretry/repush/quarantine/Issueを選択 | `U-CIQ-018` | `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-022-07` → `HIL_QUARANTINE_EXHAUSTED` |
+| `recordCiRecoveryAttemptResult` | `(prior, candidate, workload, evidence, newChain) => CiResultV1<CiRecoveryAttemptResultV1, CiFailureV1[]>` | retryはsame-tree全workload、repushはprior/rerequest/log/root-cause/diff/green/push/PR headと新chain三段完走を要求 | `U-CIQ-019` | `HAC-HIL-06b` | `HST-CASE-003-08` → `HIL_CI_REQUIRED_CHECK_MISSING` |
+| `finalizeCiMergeEligibility` | `(chain, external, quarantines, branchPolicy) => CiMergeEligibilityV1` | current PR head、三段完了、quarantine非green、required policyを照合 | `U-CIQ-020` | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | `HST-CASE-003-13` → `HIL_CI_RECEIPT_LINEAGE_INVALID`; `HST-CASE-022-01` → `なし（正常系）` |
+| `buildCiMutationCommitBundle` | `(mutation, current, operation) => CiResultV1<CiMutationCommitBundleV1, CiFailureV1>` | stage/quarantine/self-heal write setとexpected headsを正規化 | `U-CIQ-021` | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting |
+| `commitCiMutationBundle` | `(bundle, store) => Promise<CiResultV1<CiMutationCommitReceiptV1, CiFailureV1>>` | check/receipt/event/projection/lineage/outcomeを単一Node transactionでCAS commit | `U-CIQ-022` | `HAC-HIL-06a`, `HAC-HIL-06b`, `HAC-HIL-06c` | supporting |
+| `reconcileCiMutationCommit` | `(operationId, evidence, store) => Promise<CiResultV1<CiMutationCommitReceiptV1, CiFailureV1>>` | immutable evidenceからのみprojection/receiptを復元 | `U-CIQ-023` | `HAC-HIL-06b` | supporting |
 
 ### §1.1 canonical 23件のAPI／単体oracle結線
 
@@ -95,7 +95,11 @@ state/failureの合否と23/23分母はこの表だけから採点する。
 ## §2 schema
 
 ```ts
-type CiStageKind = "local_prejoin" | "internal_postjoin" | "github_external";
+type CiResultV1<T, E> =
+  | { ok: true; value: T }
+  | { ok: false; error: E };
+
+type CiStageKindV1 = "local_prejoin" | "internal_postjoin" | "github_external";
 
 interface CiStageSourceV1 {
   sha: string;
@@ -114,12 +118,12 @@ interface ProjectionDigestV1 {
   state_digest: string;
   row_count_digest: string;
 }
-type CiFailureCodeV1 = CiFailure["code"];
+type CiFailureCodeV1 = CiFailureV1["code"];
 
 interface CiStageReceiptV1 {
   schema_version: "helix-ci-stage-receipt.v1";
   ci_chain_id: string;
-  stage: CiStageKind;
+  stage: CiStageKindV1;
   ordinal: 1 | 2 | 3;
   attempt: number;
   source: CiStageSourceV1;
@@ -153,7 +157,35 @@ interface CiSourceBindingV1 {
   main_existing_asset_digests: string[];
 }
 
-type CiQuarantineScopeKind =
+interface CiCheckProfileV1 {
+  schema_version: "helix-ci-check-profile.v1";
+  profile_id: string;
+  profile_version: string;
+  source_kind: "source" | "pack";
+  stage: CiStageKindV1;
+  required_check_ids: string[];
+  command_argv_digest: string;
+  fixture_set_digest: string;
+  input_scope_digest: string;
+  timeout_policy_digest: string;
+  resource_policy_digest: string;
+  artifact_schema_digest: string;
+  provider_expectation_digest: string;
+  universal_pr_trigger: true;
+  profile_digest: string;
+}
+
+interface CiChainPlanV1 { schema_version: "helix-ci-chain-plan.v1"; ci_chain_id: string; issue_id: string; reverse_task_id: string; causality_digest: string; prejoin_source: CiStageSourceV1; source_profile_digest: string; state: "created"; chain_digest: string }
+interface StageRunPlanV1 { schema_version: "helix-ci-stage-run-plan.v1"; ci_chain_id: string; stage: CiStageKindV1; ordinal: 1 | 2 | 3; attempt: number; source: CiStageSourceV1; profile_digest: string; required_check_ids: string[]; predecessor_receipt_digest: string | null; forward_join_receipt_digest: string | null; github_delivery_digest: string | null; state: "planned"; plan_digest: string }
+interface ForwardJoinBindingV1 { schema_version: "helix-ci-forward-join-binding.v1"; ci_chain_id: string; prejoin_receipt_digest: string; candidate_parent: CiStageSourceV1; join_result: CiStageSourceV1; join_receipt_digest: string; binding_digest: string }
+interface GithubDeliveryV1 { schema_version: "helix-ci-github-delivery.v1"; delivery_id: string; repository_id: string; pr_number: number; pr_head_sha: string; pr_head_tree_digest: string; workflow_id: string; check_suite_id: string; check_run_ids: string[]; postjoin_receipt_digest: string; delivery_digest: string }
+interface StageOrderDecisionV1 { ci_chain_id: string; candidate_stage: CiStageKindV1; candidate_ordinal: 1 | 2 | 3; predecessor_stage: CiStageKindV1 | null; predecessor_receipt_digest: string | null; current_chain_state: string; allowed: boolean; failure_codes: CiFailureCodeV1[]; decision_digest: string }
+interface CiLineageDecisionV1 { ci_chain_id: string; stage: CiStageKindV1; source: CiStageSourceV1; expected_source_digest: string; predecessor_receipt_digest: string | null; lineage_edge_digest: string; matched_fields: Array<"chain" | "sha" | "tree" | "check_set" | "input_scope" | "predecessor">; failure_codes: CiFailureCodeV1[]; valid: boolean; decision_digest: string }
+interface CiStageAggregationV1 { ci_chain_id: string; stage: CiStageKindV1; attempt: number; required_check_set_digest: string; submitted_check_set_digest: string; fixture_set_digest: string; input_scope_digest: string; passed_check_count: number; failed_check_count: number; missing_check_ids: string[]; non_green_check_ids: string[]; workload_complete: boolean; result: "passed" | "failed"; failure_codes: CiFailureCodeV1[]; aggregation_digest: string }
+interface CiInvalidationPlanV1 { prior_chain_id: string; prior_head_sha: string; prior_head_tree_digest: string; current_head_sha: string; current_head_tree_digest: string; stale_stage_receipt_digests: string[]; stale_merge_eligibility_digest: string | null; superseding_chain_id: string; github_delivery_digest: string; resulting_state: "stale"; plan_digest: string }
+interface FailureFingerprintV1 { check_id: string; normalized_diagnostic_digest: string; toolchain_digest: string; profile_digest: string; excluded_volatile_field_digest: string; fingerprint: string; fingerprint_version: string }
+
+type CiQuarantineScopeKindV1 =
   | "check"
   | "test_oracle"
   | "platform"
@@ -161,7 +193,7 @@ type CiQuarantineScopeKind =
   | "pack_profile";
 
 interface CiQuarantineScopeAtomV1 {
-  kind: CiQuarantineScopeKind;
+  kind: CiQuarantineScopeKindV1;
   id: string;
 }
 
@@ -187,6 +219,12 @@ interface CiQuarantineRuleV1 {
   minimum_gate_profile_digest: string;
   approval_receipt_digest: string;
 }
+
+interface CiQuarantineDecisionV1 { application_id: string; ci_chain_id: string; stage: CiStageKindV1; rule_set_digest: string; observed_failure_set_digest: string; matched_failure_count: number; unmatched_failure_count: number; original_workload_receipt_digest: string; minimum_gate_receipt_digest: string | null; application_state: "quarantined" | "failed"; stage_projection: "accepted_with_quarantine" | "failed"; green_count_increment: 0; failure_codes: CiFailureCodeV1[]; decision_digest: string }
+interface MinimumGateDecisionV1 { application_id: string; minimum_gate_profile_digest: string; gate_run_receipt_digest: string | null; original_workload_receipt_digest: string; original_workload_complete: boolean; minimum_gate_green: boolean; minimum_gate_quarantined: boolean; accepted: boolean; failure_codes: CiFailureCodeV1[]; decision_digest: string }
+interface QuarantineFreshnessV1 { rule_digest: string; trusted_clock_receipt_digest: string; evaluated_at: string; expires_at: string; baseline_tree_matches: boolean; profile_matches: boolean; scope_matches: boolean; status: "current" | "expired" | "stale"; failure_codes: CiFailureCodeV1[]; freshness_digest: string }
+interface CiSelfHealPlanV1 { failure_packet_digest: string; policy_version: string; history_digest: string; confidence: number; iteration: number; maximum_iterations: number; route: "same_tree_retry" | "repush_new_chain" | "quarantine" | "issue_escalation"; requires_full_workload: true; source_before: CiStageSourceV1; expected_source_after: CiStageSourceV1 | null; remediation_issue_id: string | null; plan_digest: string }
+interface CiMergeEligibilityV1 { ci_chain_id: string; current_pr_head_sha: string; current_pr_head_tree_digest: string; prejoin_receipt_digest: string; postjoin_receipt_digest: string; external_receipt_digest: string; quarantine_application_digests: string[]; branch_policy_digest: string; required_check_set_digest: string; green_quarantine_count: 0; eligible: boolean; failure_codes: CiFailureCodeV1[]; decision_digest: string }
 
 interface CiSelfHealAttemptV1 {
   attempt: number;
@@ -280,24 +318,24 @@ interface CiImmutableEvidenceV1 {
   expected_projection_head: string;
 }
 
-interface CiMutationStore {
-  commit(bundle: CiMutationCommitBundleV1): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
+interface CiMutationStoreV1 {
+  commit(bundle: CiMutationCommitBundleV1): Promise<CiResultV1<CiMutationCommitReceiptV1, CiFailureV1>>;
   readOperation(operationId: string): Promise<CiMutationCommitReceiptV1 | null>;
   readEventHead(chainId: string): Promise<string>;
   readProjectionHead(chainId: string): Promise<string>;
   readRuleHead(ruleId: string): Promise<string | null>;
-  reconcile(operationId: string, evidence: CiImmutableEvidenceV1): Promise<Result<CiMutationCommitReceiptV1, CiFailure>>;
+  reconcile(operationId: string, evidence: CiImmutableEvidenceV1): Promise<CiResultV1<CiMutationCommitReceiptV1, CiFailureV1>>;
   rebuildProjection(chainId: string): Promise<ProjectionDigestV1>;
 }
 
-type CiFailure = {
-  code: "HIL_CI_CONCLUSION_NOT_GREEN" | "HIL_CI_EXTERNAL_FAILED" | "HIL_CI_LINEAGE_MISMATCH" | "HIL_CI_POSTJOIN_FAILED" | "HIL_CI_PREJOIN_FAILED" | "HIL_CI_QUARANTINE_INVALID" | "HIL_CI_RECEIPT_LINEAGE_INVALID" | "HIL_CI_REQUIRED_CHECK_MISSING" | "HIL_CI_SHA_STALE" | "HIL_CI_STAGE_BYPASS" | "HIL_CI_STAGE_LINEAGE_INVALID" | "HIL_CI_TREE_DIGEST_MISMATCH" | "HIL_QUARANTINE_EXHAUSTED" | "HIL_QUARANTINE_EXPIRED" | "HIL_QUARANTINE_FINGERPRINT_MISMATCH" | "HIL_QUARANTINE_MINIMUM_GATE_MISSING" | "HIL_QUARANTINE_OVERBROAD" | "HIL_QUARANTINE_REMEDIATION_MISSING" | "HIL_QUARANTINE_SCOPE_INVALID" | "HIL_QUARANTINE_WILDCARD_FORBIDDEN" | "HIL_CI_TRANSACTION_CONFLICT" | "HIL_CI_TRANSACTION_RECONCILE_FAILED";
+type CiFailureV1 = {
+  code: "HIL_CI_CONCLUSION_NOT_GREEN" | "HIL_CI_EXTERNAL_FAILED" | "HIL_CI_LINEAGE_MISMATCH" | "HIL_CI_POSTJOIN_FAILED" | "HIL_CI_PREJOIN_FAILED" | "HIL_CI_QUARANTINE_INVALID" | "HIL_CI_RECEIPT_LINEAGE_INVALID" | "HIL_CI_REQUIRED_CHECK_MISSING" | "HIL_CI_SHA_STALE" | "HIL_CI_STAGE_BYPASS" | "HIL_CI_STAGE_LINEAGE_INVALID" | "HIL_CI_TREE_DIGEST_MISMATCH" | "HIL_QUARANTINE_EXHAUSTED" | "HIL_QUARANTINE_EXPIRED" | "HIL_QUARANTINE_FINGERPRINT_MISMATCH" | "HIL_QUARANTINE_MINIMUM_GATE_MISSING" | "HIL_QUARANTINE_OVERBROAD" | "HIL_QUARANTINE_REMEDIATION_MISSING" | "HIL_QUARANTINE_SCOPE_INVALID" | "HIL_QUARANTINE_WILDCARD_FORBIDDEN" | "HIL_CI_WORKLOAD_REDUCTION_FORBIDDEN" | "HIL_CI_SELF_HEAL_EVIDENCE_MISSING" | "HIL_CI_TRANSACTION_CONFLICT" | "HIL_CI_TRANSACTION_RECONCILE_FAILED";
   evidence_digest: string;
   operation_id?: string;
 };
 ```
 
-`ProjectionDigestV1`の共有semantic shape正本はL4基本設計 §2.3、failure codeのexact authorityは`CiFailure["code"]`とする。reconcileは`CiImmutableEvidenceV1`のchain/stage/lineage/headからだけ復元する。
+`ProjectionDigestV1`の共有semantic shape正本はL4基本設計 §2.3、failure codeのexact authorityは`CiFailureV1["code"]`とする。reconcileは`CiImmutableEvidenceV1`のchain/stage/lineage/headからだけ復元する。
 
 ## §3 不変条件
 

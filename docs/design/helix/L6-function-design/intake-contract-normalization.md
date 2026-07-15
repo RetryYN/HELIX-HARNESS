@@ -41,17 +41,17 @@ route catalog、budget policyを値として受け、stable orderのResultを返
 
 | API（関数） | signature（型） | DbC／result（契約） | L7 oracle（単体） | HAC | exact HST（正本） | pre_state（前） | expected_state（後） | canonical failure（失敗） |
 |---|---|---|---|---|---|---|---|---|
-| `normalizeUntrustedIngress` | `(envelope, schemaRegistry, trustPolicy) => Result<NormalizedIngress, IntakeFailure[]>` | 4 unionをsource固有metadata付きcommon headerへ変換、本文はopaque | `U-ICN-001` | `HAC-HIL-01a` | `HST-CASE-001-01` | `intake` | `admitted` | `なし（正常系）` |
-| `evaluateIntakeDuplicate` | `(operation, payloadDigest, existing) => Result<DuplicateReceipt, IntakeFailure>` | 同operation/同digestはprior receipt、副作用増分0 | `U-ICN-002` | `HAC-HIL-01b` | `HST-CASE-001-02` | `admitted` | `admitted` | `HIL_INTAKE_DUPLICATE_EFFECT` |
-| `detectIntakeOperationConflict` | `(operation, payloadDigest, existing) => Result<Reservation, ConflictReceipt>` | 同operation/異digestは既存contractを変更せずconflict | `U-ICN-003` | `HAC-HIL-01b` | `HST-CASE-001-03` | `admitted` | `admitted` | `HIL_INTAKE_IDEMPOTENCY_CONFLICT` |
-| `resolveIssueAdmissionRoute` | `(ingress, authority, routeCatalog) => Result<IssueRoute, IntakeFailure[]>` | mode/drive/Reverse/Forwardを全ingress同契約へ決定 | `U-ICN-004` | `HAC-HIL-01a` | `HST-CASE-001-05` | `assertion_input_ready` | `assertion_pass` | `HIL_INTAKE_ROUTE_INCOMPLETE` |
-| `validateIssueContractAdmission` | `(proposal, schema, scopeAuthority, surfaceDelta) => Result<ValidatedIssueContract, IntakeFailure[]>` | 必須field/enum/digestとminimum necessaryを検査、不要surface拒否 | `U-ICN-005` | `HAC-HIL-01b` | `HST-CASE-001-07` | `assertion_input_ready` | `assertion_pass` | `HIL_ISSUE_CONTRACT_INCOMPLETE` |
-| `commitIssueAdmissionExactlyOnce` | `(bundle, operation, port) => Promise<Result<AdmissionReceiptV1, IntakeFailure[]>>` | 先行durable custody receiptを参照し、contract/route/initial handoff/idempotencyだけをall-or-nothing append。custody自体は再appendしない | `U-ICN-006` | `HAC-HIL-01b` | `HST-CASE-001-08` | `assertion_input_ready` | `assertion_pass` | `HIL_IDEMPOTENCY_VIOLATION` |
-| `isolateUntrustedIngressContent` | `(envelope, artifactPort, dispatchSpy) => Promise<Result<TrustReceipt, IntakeFailure>>` | bodyをartifact化しmetadataだけ返す、dispatch count 0 | `U-ICN-007` | `HAC-HIL-01c` | `HST-CASE-001-10` | `assertion_input_ready` | `assertion_pass` | `HIL_UNTRUSTED_INPUT_EXECUTED` |
-| `appendIntakeCustodyBeforeValidation` | `(receipt, store) => Promise<Result<CustodyReceiptV1, IntakeFailure>>` | invalidを含む受信事実をsemantic validationより先にdurable化。同一source event/op/digestは既存receipt | `U-ICN-008` | `HAC-HIL-01b` | supporting | `received` | `custodied` | `HIL_INTAKE_CUSTODY_CONFLICT` |
-| `validateTransportActorAuthority` | `(header, transportActor, policyReceipt, now) => Result<VerifiedIngressAuthority, IntakeFailure[]>` | actor/source/authority/policy revision/expiryをexact照合 | `U-ICN-009` | `HAC-HIL-01b`, `HAC-HIL-01c` | supporting | `custodied` | `validated` | `HIL_INTAKE_AUTHORITY_INVALID` |
-| `reconcileIssueAdmissionReservation` | `(operation, immutableEvidence, store) => Promise<Result<AdmissionReceiptV1, IntakeFailure[]>>` | reserved/committing crashを同digest/headだけでresumeしcustody/Issue再append 0 | `U-ICN-010` | `HAC-HIL-01b` | supporting | `reserved` | `committed` | `HIL_INTAKE_RECONCILE_FAILED` |
-| `loadCurrentInitialHandoff` | `(issueId, revision, store) => Promise<Result<InitialOrchestrationHandoffV1, IntakeFailure>>` | HDS02向けhandoff実体をIssue/revision一意keyで取得しsnapshot/policy freshnessを検証 | `U-ICN-011` | `HAC-HIL-01a` | supporting | `admitted` | `handoff_ready` | `HIL_INTAKE_HANDOFF_STALE` |
+| `normalizeUntrustedIngress` | `(envelope, schemaRegistry, trustPolicy) => IntakeResultV1<NormalizedIngressV1, IntakeFailureV1[]>` | 4 unionをsource固有metadata付きcommon headerへ変換、本文はopaque | `U-ICN-001` | `HAC-HIL-01a` | `HST-CASE-001-01` | `intake` | `admitted` | `なし（正常系）` |
+| `evaluateIntakeDuplicate` | `(operation, payloadDigest, existing) => IntakeResultV1<DuplicateReceiptV1, IntakeFailureV1>` | 同operation/同digestはprior receipt、副作用増分0 | `U-ICN-002` | `HAC-HIL-01b` | `HST-CASE-001-02` | `admitted` | `admitted` | `HIL_INTAKE_DUPLICATE_EFFECT` |
+| `detectIntakeOperationConflict` | `(operation, payloadDigest, existing) => IntakeResultV1<IntakeReservationV1, IntakeConflictReceiptV1>` | 同operation/異digestは既存contractを変更せずconflict | `U-ICN-003` | `HAC-HIL-01b` | `HST-CASE-001-03` | `admitted` | `admitted` | `HIL_INTAKE_IDEMPOTENCY_CONFLICT` |
+| `resolveIssueAdmissionRoute` | `(ingress, authority, routeCatalog) => IntakeResultV1<IssueRouteReceiptV1, IntakeFailureV1[]>` | mode/drive/Reverse/Forwardを全ingress同契約へ決定 | `U-ICN-004` | `HAC-HIL-01a` | `HST-CASE-001-05` | `assertion_input_ready` | `assertion_pass` | `HIL_INTAKE_ROUTE_INCOMPLETE` |
+| `validateIssueContractAdmission` | `(proposal, schema, scopeAuthority, surfaceDelta) => IntakeResultV1<ValidatedIssueContractV1, IntakeFailureV1[]>` | 必須field/enum/digestとminimum necessaryを検査、不要surface拒否 | `U-ICN-005` | `HAC-HIL-01b` | `HST-CASE-001-07` | `assertion_input_ready` | `assertion_pass` | `HIL_ISSUE_CONTRACT_INCOMPLETE` |
+| `commitIssueAdmissionExactlyOnce` | `(bundle, operation, port) => Promise<IntakeResultV1<AdmissionReceiptV1, IntakeFailureV1[]>>` | 先行durable custody receiptを参照し、contract/route/initial handoff/idempotencyだけをall-or-nothing append。custody自体は再appendしない | `U-ICN-006` | `HAC-HIL-01b` | `HST-CASE-001-08` | `assertion_input_ready` | `assertion_pass` | `HIL_IDEMPOTENCY_VIOLATION` |
+| `isolateUntrustedIngressContent` | `(envelope, artifactPort, dispatchSpy) => Promise<IntakeResultV1<TrustReceiptV1, IntakeFailureV1>>` | bodyをartifact化しmetadataだけ返す、dispatch count 0 | `U-ICN-007` | `HAC-HIL-01c` | `HST-CASE-001-10` | `assertion_input_ready` | `assertion_pass` | `HIL_UNTRUSTED_INPUT_EXECUTED` |
+| `appendIntakeCustodyBeforeValidation` | `(receipt, store) => Promise<IntakeResultV1<CustodyReceiptV1, IntakeFailureV1>>` | invalidを含む受信事実をsemantic validationより先にdurable化。同一source event/op/digestは既存receipt | `U-ICN-008` | `HAC-HIL-01b` | supporting | `received` | `custodied` | `HIL_INTAKE_CUSTODY_CONFLICT` |
+| `validateTransportActorAuthority` | `(header, transportActor, policyReceipt, now) => IntakeResultV1<VerifiedIngressAuthorityV1, IntakeFailureV1[]>` | actor/source/authority/policy revision/expiryをexact照合 | `U-ICN-009` | `HAC-HIL-01b`, `HAC-HIL-01c` | supporting | `custodied` | `validated` | `HIL_INTAKE_AUTHORITY_INVALID` |
+| `reconcileIssueAdmissionReservation` | `(operation, immutableEvidence, store) => Promise<IntakeResultV1<AdmissionReceiptV1, IntakeFailureV1[]>>` | reserved/committing crashを同digest/headだけでresumeしcustody/Issue再append 0 | `U-ICN-010` | `HAC-HIL-01b` | supporting | `reserved` | `committed` | `HIL_INTAKE_RECONCILE_FAILED` |
+| `loadCurrentInitialHandoff` | `(issueId, revision, store) => Promise<IntakeResultV1<InitialOrchestrationHandoffV1, IntakeFailureV1>>` | HDS02向けhandoff実体をIssue/revision一意keyで取得しsnapshot/policy freshnessを検証 | `U-ICN-011` | `HAC-HIL-01a` | supporting | `admitted` | `handoff_ready` | `HIL_INTAKE_HANDOFF_STALE` |
 
 `validateIssueContractAdmission`は不足fieldのcanonical tokenを保持し、不要CLI/API/schema/dependency/configにはlocal cause
 `HIL_UNJUSTIFIED_CAPABILITY`を併記する。minimality failureをfield欠落へ偽装せず、どちらもadmission 0とする。
@@ -59,6 +59,10 @@ route catalog、budget policyを値として受け、stable orderのResultを返
 ## §2 schema
 
 ```ts
+type IntakeResultV1<T, E> =
+  | { ok: true; value: T }
+  | { ok: false; error: E };
+
 interface ProjectionDigestV1 {
   schema_version: "helix-projection-digest.v1";
   subject_kind: string;
@@ -95,6 +99,28 @@ interface UserChatIngressEnvelopeV1 { header: IntakeEnvelopeHeaderV1 & { ingress
 interface GithubIngressEnvelopeV1 { header: IntakeEnvelopeHeaderV1 & { ingress_kind: "github" }; metadata: { delivery_id: string; repository_id: string; event: string; action: string; issue_or_pr_number: number | null; head_sha: string | null } }
 interface ProductIngressEnvelopeV1 { header: IntakeEnvelopeHeaderV1 & { ingress_kind: "product" }; metadata: { connector_id: string; connector_version: string; snapshot_id: string; entity_id: string; cursor_digest: string; classification: string } }
 interface ZipSourceIngressEnvelopeV1 { header: IntakeEnvelopeHeaderV1 & { ingress_kind: "zip_source" }; metadata: { source_family: string; ref: string; tree_digest: string; entry_path: string; span_digest: string; manifest_revision: string } }
+
+type IntakeFailureCodeV1 =
+  | "HIL_INTAKE_DUPLICATE_EFFECT"
+  | "HIL_INTAKE_IDEMPOTENCY_CONFLICT"
+  | "HIL_INTAKE_ROUTE_INCOMPLETE"
+  | "HIL_ISSUE_CONTRACT_INCOMPLETE"
+  | "HIL_IDEMPOTENCY_VIOLATION"
+  | "HIL_UNTRUSTED_INPUT_EXECUTED"
+  | "HIL_INTAKE_CUSTODY_CONFLICT"
+  | "HIL_INTAKE_AUTHORITY_INVALID"
+  | "HIL_INTAKE_RECONCILE_FAILED"
+  | "HIL_INTAKE_HANDOFF_STALE"
+  | "HIL_UNJUSTIFIED_CAPABILITY";
+
+interface IntakeFailureV1 { code: IntakeFailureCodeV1; evidence_digest: string; cause_code: string | null }
+interface NormalizedIngressV1 { schema_version: "helix-normalized-ingress.v1"; header: IntakeEnvelopeHeaderV1; source_metadata_digest: string; source_locator_digest: string; opaque_payload_artifact_ref: string; normalized_digest: string }
+interface DuplicateReceiptV1 { schema_version: "helix-intake-duplicate.v1"; operation_id: string; payload_digest: string; prior_admission_receipt_digest: string; authoritative_write_count: 0; receipt_digest: string }
+interface IntakeReservationV1 { schema_version: "helix-intake-reservation.v1"; operation_id: string; payload_digest: string; source_event_id: string; expected_operation_head: string; reservation_token_digest: string; status: "reserved" }
+interface IssueRouteReceiptV1 { schema_version: "helix-issue-route.v1"; issue_id: string; issue_revision: number; primary_mode: string; drive: string; reverse_contract_ref: string; forward_target: string; authority_receipt_digest: string; route_catalog_revision: string; route_digest: string }
+interface ValidatedIssueContractV1 { schema_version: "helix-validated-issue-contract.v1"; contract: IssueContractV1; schema_revision: string; scope_authority_digest: string; minimality_receipt_digest: string; surface_delta_digest: string; validation_digest: string }
+interface TrustReceiptV1 { schema_version: "helix-ingress-trust-receipt.v1"; operation_id: string; payload_digest: string; artifact_ref: string; artifact_digest: string; transport_metadata_digest: string; dispatch_count: 0; receipt_digest: string }
+interface VerifiedIngressAuthorityV1 { schema_version: "helix-ingress-authority.v1"; actor_id: string; actor_identity_digest: string; ingress_kind: IntakeEnvelopeHeaderV1["ingress_kind"]; authority_class: IntakeEnvelopeHeaderV1["authority_class"]; policy_revision: string; policy_receipt_digest: string; verified_at: string; expires_at: string; authority_digest: string }
 
 interface IssueContractV1 {
   schema_version: "helix-issue-contract.v1";
@@ -172,7 +198,7 @@ interface InitialOrchestrationHandoffV1 {
   policy_revision_digest: string;
 }
 
-interface IntakeAdmissionStore {
+interface IntakeAdmissionStoreV1 {
   appendCustodyBeforeValidation(input: CustodyAppendV1): Promise<CustodyReceiptV1>;
   transactAdmission<T>(expectedOperationHead: string, expectedIssueRevision: number | null, fn: (tx: IntakeAdmissionTxV1) => Promise<T>): Promise<T>;
   readOperation(operationId: string): Promise<IntakeOperationStateV1 | null>;

@@ -65,6 +65,9 @@ requirements:
 adapter/checkpoint/receipt digest、lease/fence、authoritative増分を保存する。正常caseは`なし（正常系）`を保ち、failure tokenを
 作らない。pure testは外部runtimeやnetworkを起動せず、clock、ID、port resultをfixture注入する。
 
+全public result `*V1`の必須field、closed enum、nested digest、count、lease/fence/authority fieldを一件ずつmutationし、
+欠落・余剰・旧抽象名・`unknown`への弱化を型契約Redとして採点する。
+
 ## atomic state tuple台帳
 
 各caseを正本stateとU oracleへ一対一で結線する。

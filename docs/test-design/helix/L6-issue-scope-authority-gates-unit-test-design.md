@@ -28,7 +28,7 @@ requirements:
 
 | ID | exact function | scenarioと期待結果 | HAC | exact HST disposition | test参照先 |
 |---|---|---|---|---|---|
-| `U-ISAG-001` | `captureDirectiveBeforeClassification` / `validateDirectiveClassificationAdmission` | append成功かつcurrentなdirective/revision/content digestのcustody bindingだけclassifiable。receipt欠落、port failure、stale revision、digest不一致では全classify/dedupe/disposition 0 | `HAC-HIL-05a`, `HAC-HIL-05b` | `HST-CASE-019-01` → `なし（正常系）`; `HST-CASE-019-02` → `HIL_DIRECTIVE_CUSTODY_MISSING` | `tests/directive-custody.test.ts` |
+| `U-ISAG-001` | composition: `captureDirectiveBeforeClassification` → `validateDirectiveClassificationAdmission` | append成功かつcurrentなdirective/revision/content digestのcustody bindingだけclassifiable。capture laneはport/operation conflict/receipt、admission laneはreceipt欠落、stale revision、digest不一致と全classify/dedupe/disposition 0を別採点 | `HAC-HIL-05a`, `HAC-HIL-05b` | `HST-CASE-019-01` → `なし（正常系）`; `HST-CASE-019-02` → `HIL_DIRECTIVE_CUSTODY_MISSING` | `tests/directive-custody.test.ts` |
 | `U-ISAG-002` | `validateDirectiveAppendOnly` | current custody binding下だけsuperseding appendを許可し、UPDATE/DELETE、receipt欠落、stale revisionを拒否 | `HAC-HIL-05b` | `HST-CASE-019-07` → `HIL_DIRECTIVE_APPEND_ONLY_VIOLATION` | `tests/directive-custody.test.ts` |
 | `U-ISAG-003` | `resolveDirectiveDuplicate` | current custody欠落/stale、dead target、oracle非包含、appeal欠落でterminal 0 | `HAC-HIL-05b` | `HST-CASE-019-03` → `HIL_DIRECTIVE_DUPLICATE_TARGET_MISSING` | `tests/directive-disposition.test.ts` |
 | `U-ISAG-004` | `validateDirectiveFalsePositive` | current custody欠落/stale、same provider/role、反証digest欠落で確定0 | `HAC-HIL-05b` | `HST-CASE-019-04` → `HIL_DIRECTIVE_FALSE_POSITIVE_UNVERIFIED` | `tests/directive-disposition.test.ts` |
@@ -55,6 +55,9 @@ requirements:
 | `U-ISAG-025` | `reconcileIssueGovernanceCommit` | immutable evidence一致時だけprojection/receiptを再構築し、authority/scopeを新規推論しない | `HAC-HIL-05a` | supporting | `tests/issue-governance-reconcile.test.ts` |
 
 ## §1 合否
+
+`U-ISAG-001`のstable exact function setは`captureDirectiveBeforeClassification` →
+`validateDirectiveClassificationAdmission`で、`IT-ISAG-001`と`IT-ISAG-002`へ同じdirective/revision/content/operation identityでjoinする。
 
 ### supporting transactionのL8 exact join
 

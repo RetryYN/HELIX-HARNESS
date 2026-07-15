@@ -94,26 +94,26 @@ progressは固定分母revisionとcurrent snapshotへbindし、artifact、semant
 ## §1 完全signatureとDbC
 
 ```ts
-registerLayerLedgerType(input: LayerRegistryEntry, current: RegistrySnapshot): Result<RegistryReceipt, LayerGateFailure>;
-extractTemplateObligations(template: TemplateSnapshot, schema: TemplateSchema, operation: OperationId): Result<ObligationProposalSet, LayerGateFailure>;
-appendLayerLedgerRow(proposal: ObligationProposal, authority: AuthorityReceipt, current: LayerLedgerHead): Result<LayerRowCommitPlan, LayerGateFailure>;
-evaluateVerticalLedgerPair(parent: LayerRowSet, child: LayerRowSet, current: SnapshotDigestV1): Result<VerticalPairReceipt, LayerGateFailure[]>;
-evaluateHorizontalVPair(design: PairSide, verification: PairSide, execution: ExecutionReceipt): Result<HorizontalPairReceipt, LayerGateFailure[]>;
-planLedgerDesignRefactor(before: LedgerSnapshot, after: LedgerSnapshot, consumers: ConsumerOracle[], rollback: RollbackTarget): Result<DesignRefactorPlan, LayerGateFailure>;
-calculateFixedDesignProgress(request: DesignProgressCalculationRequestV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<Result<DesignProgressProjectionV1, LayerGateFailure[]>>;
-commitDesignProgress(bundle: DesignProgressCommitBundleV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
-reconcileDesignProgress(bundle: DesignProgressCommitBundleV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
-authorizeLayerStageTransition(current: StageStateV1, requested: StageStateV1, evidence: StageEvidenceV1): Result<StageTransitionReceiptV1, LayerGateFailure>;
-commitLayerLedgerOperation(bundle: LayerLedgerOperationBundleV1, store: LayerLedgerCommitStore): Promise<Result<LayerLedgerOperationReceiptV1, LayerGateFailure[]>>;
-reconcileLayerLedgerOperation(bundle: LayerLedgerOperationBundleV1, store: LayerLedgerCommitStore): Promise<Result<LayerLedgerOperationReceiptV1, LayerGateFailure[]>>;
-commitLedgerRefactorBundle(bundle: LedgerRefactorCommitBundleV1, store: LayerLedgerCommitStore): Promise<Result<LedgerRefactorCommitReceiptV1, LayerGateFailure[]>>;
-reconcileLedgerRefactorBundle(bundle: LedgerRefactorCommitBundleV1, store: LayerLedgerCommitStore): Promise<Result<LedgerRefactorCommitReceiptV1, LayerGateFailure[]>>;
+declare function registerLayerLedgerType(input: LayerRegistryEntryV1, current: RegistrySnapshotV1): LayerGateResultV1<RegistryReceiptV1, LayerGateFailureV1>;
+declare function extractTemplateObligations(template: TemplateSnapshotV1, schema: TemplateSchemaV1, operation: OperationIdV1): LayerGateResultV1<ObligationProposalSetV1, LayerGateFailureV1>;
+declare function appendLayerLedgerRow(proposal: ObligationProposalV1, authority: AuthorityReceiptV1, current: LayerLedgerHeadV1): LayerGateResultV1<LayerRowCommitPlanV1, LayerGateFailureV1>;
+declare function evaluateVerticalLedgerPair(parent: LayerRowSetV1, child: LayerRowSetV1, current: SnapshotDigestV1): LayerGateResultV1<VerticalPairReceiptV1, LayerGateFailureV1[]>;
+declare function evaluateHorizontalVPair(design: PairSideV1, verification: PairSideV1, execution: ExecutionReceiptV1): LayerGateResultV1<HorizontalPairReceiptV1, LayerGateFailureV1[]>;
+declare function planLedgerDesignRefactor(before: LedgerSnapshotV1, after: LedgerSnapshotV1, consumers: ConsumerOracleV1[], rollback: RollbackTargetV1): LayerGateResultV1<DesignRefactorPlanV1, LayerGateFailureV1>;
+declare function calculateFixedDesignProgress(request: DesignProgressCalculationRequestV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<LayerGateResultV1<DesignProgressProjectionV1, LayerGateFailureV1[]>>;
+declare function commitDesignProgress(bundle: DesignProgressCommitBundleV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<LayerGateResultV1<DesignProgressCommitReceiptV1, LayerGateFailureV1[]>>;
+declare function reconcileDesignProgress(bundle: DesignProgressCommitBundleV1, transaction: DesignProgressAtomicTransactionPortV1): Promise<LayerGateResultV1<DesignProgressCommitReceiptV1, LayerGateFailureV1[]>>;
+declare function authorizeLayerStageTransition(current: StageStateV1, requested: StageStateV1, evidence: StageEvidenceV1): LayerGateResultV1<StageTransitionReceiptV1, LayerGateFailureV1>;
+declare function commitLayerLedgerOperation(bundle: LayerLedgerOperationBundleV1, store: LayerLedgerCommitStoreV1): Promise<LayerGateResultV1<LayerLedgerOperationReceiptV1, LayerGateFailureV1[]>>;
+declare function reconcileLayerLedgerOperation(bundle: LayerLedgerOperationBundleV1, store: LayerLedgerCommitStoreV1): Promise<LayerGateResultV1<LayerLedgerOperationReceiptV1, LayerGateFailureV1[]>>;
+declare function commitLedgerRefactorBundle(bundle: LedgerRefactorCommitBundleV1, store: LayerLedgerCommitStoreV1): Promise<LayerGateResultV1<LedgerRefactorCommitReceiptV1, LayerGateFailureV1[]>>;
+declare function reconcileLedgerRefactorBundle(bundle: LedgerRefactorCommitBundleV1, store: LayerLedgerCommitStoreV1): Promise<LayerGateResultV1<LedgerRefactorCommitReceiptV1, LayerGateFailureV1[]>>;
 ```
 
 registry completeness、template span、atomicity、adjacency、canonical V-pair、same revision/snapshot/oracle、execution receipt、fixed denominator authorityをDbCとする。Err時row/edge/receipt 0。
 
 ```ts
-type LayerGateFailureCode =
+type LayerGateFailureCodeV1 =
   | "HIL_LAYER_AGGREGATE_ONLY"
   | "HIL_LAYER_EXTRACTION_NONDETERMINISTIC"
   | "HIL_LAYER_LEDGER_CHAIN_INCOMPLETE"
@@ -169,7 +169,28 @@ type LayerGateFailureCode =
   | "HIL_LAYER_PROGRESS_RECEIPT_MISMATCH"
   | "HIL_LAYER_PROGRESS_PROJECTION_MISMATCH"
   | "HIL_LAYER_PROGRESS_SUPPORTING_INCLUDED";
-interface LayerGateFailure { code: LayerGateFailureCode; evidence_digest: string; retryable: boolean }
+interface LayerGateFailureV1 { code: LayerGateFailureCodeV1; evidence_digest: string; retryable: boolean }
+type LayerGateResultV1<T, E extends LayerGateFailureV1 | readonly LayerGateFailureV1[]> = { ok: true; value: T } | { ok: false; error: E };
+interface LayerRegistryEntryV1 { schema_version: "helix-layer-registry-entry.v1"; layer_id: string; layer_revision: number; parent_layer_id: string | null; pair_layer_id: string; template_id: string; entry_digest: string }
+interface RegistrySnapshotV1 { schema_version: "helix-layer-registry-snapshot.v1"; registry_revision: number; registry_digest: string; entry_ids: readonly string[]; event_head: string; snapshot_digest: string }
+interface RegistryReceiptV1 { schema_version: "helix-layer-registry-receipt.v1"; layer_id: string; registry_revision: number; before_registry_digest: string; after_registry_digest: string; entry_digest: string; receipt_digest: string }
+interface TemplateSnapshotV1 { schema_version: "helix-layer-template-snapshot.v1"; template_id: string; template_revision: number; schema_digest: string; content_digest: string; source_snapshot_digest: string }
+interface TemplateSchemaV1 { schema_version: "helix-layer-template-schema.v1"; field_paths: readonly string[]; required_field_paths: readonly string[]; placeholder_policy_digest: string; schema_digest: string }
+interface OperationIdV1 { schema_version: "helix-layer-operation.v1"; operation_id: string; operation_digest: string; idempotency_key: string }
+interface ObligationProposalV1 { schema_version: "helix-layer-obligation-proposal.v1"; proposal_id: string; layer_id: string; source_span_digest: string; semantic_digest: string; provenance_digest: string; proposal_digest: string }
+interface ObligationProposalSetV1 { schema_version: "helix-layer-obligation-proposal-set.v1"; operation_id: string; proposals: readonly ObligationProposalV1[]; proposal_ids: readonly string[]; proposal_set_digest: string }
+interface AuthorityReceiptV1 { schema_version: "helix-layer-authority-receipt.v1"; receipt_id: string; authority_scope: "layer_ledger_write"; actor_identity_digest: string; issued_at: string; expires_at: string; registry_revision: number; receipt_digest: string }
+interface LayerLedgerHeadV1 { schema_version: "helix-layer-ledger-head.v1"; layer_id: string; row_revision: number; event_head: string; row_set_digest: string; head_digest: string }
+interface LayerRowCommitPlanV1 { schema_version: "helix-layer-row-commit-plan.v1"; operation_id: string; expected_head_digest: string; proposal_digest: string; authority_receipt_digest: string; next_row_digest: string; plan_digest: string }
+interface LayerRowSetV1 { schema_version: "helix-layer-row-set.v1"; layer_id: string; registry_revision: number; row_ids: readonly string[]; row_set_digest: string; snapshot_digest: string }
+interface VerticalPairReceiptV1 { schema_version: "helix-vertical-layer-pair-receipt.v1"; upper_layer_id: string; lower_layer_id: string; derived_from_digest: string; backprop_digest: string; snapshot_digest: string; verdict: "verified" | "failed" | "stale"; receipt_digest: string }
+interface PairSideV1 { schema_version: "helix-horizontal-pair-side.v1"; layer_id: string; artifact_digest: string; oracle_digest: string; snapshot_digest: string; revision: number }
+interface ExecutionReceiptV1 { schema_version: "helix-layer-execution-receipt.v1"; execution_id: string; oracle_digest: string; exit_code: number; output_digest: string; source_snapshot_digest: string; receipt_digest: string }
+interface HorizontalPairReceiptV1 { schema_version: "helix-horizontal-layer-pair-receipt.v1"; forward_layer_id: string; reverse_layer_id: string; forward_digest: string; reverse_digest: string; execution_receipt_digest: string; verdict: "verified" | "failed" | "stale"; receipt_digest: string }
+interface LedgerSnapshotV1 { schema_version: "helix-ledger-refactor-snapshot.v1"; registry_revision: number; row_set_digest: string; vertical_pair_digest: string; horizontal_pair_digest: string; consumer_set_digest: string; snapshot_digest: string }
+interface ConsumerOracleV1 { schema_version: "helix-ledger-consumer-oracle.v1"; consumer_id: string; input_digest: string; expected_output_digest: string; oracle_digest: string }
+interface RollbackTargetV1 { schema_version: "helix-ledger-rollback-target.v1"; target_revision: number; target_snapshot_digest: string; restore_receipt_digest: string }
+interface DesignRefactorPlanV1 { schema_version: "helix-ledger-design-refactor-plan.v1"; before_snapshot_digest: string; after_snapshot_digest: string; consumer_oracle_digests: readonly string[]; rollback_target_digest: string; semantic_delta_digest: string; plan_digest: string }
 interface LayerLedgerSnapshotV1 { snapshot_id: string; registry_revision: number; event_head: string; row_set_digest: string; vertical_pair_digest: string; horizontal_pair_digest: string; projection_digest: string }
 interface LayerLedgerAdditionV1 { addition_id: string; layer_id: string; source_span_digest: string; authority_receipt_digest: string; semantic_digest: string; operation_id: string }
 interface VerticalPairEdgeV1 { edge_id: string; upper_layer: string; lower_layer: string; derived_from_digest: string; backprop_digest: string; snapshot_digest: string; revision: number; status: "current" | "stale" }
@@ -276,26 +297,34 @@ interface SupportingMetaOracleReceiptV1 { receipt_id: string; receipt_digest: st
 interface DesignProgressCommitBundleV1 { schema_version: "helix-design-progress-commit.v1"; operation_id: string; operation_digest: string; expected_event_head: string; expected_registry_revision: number; expected_store_revision_vector: EvidenceStoreRevisionVectorV1; denominator_hint: Pick<ApprovedDenominatorV1, "denominator_id" | "denominator_digest">; requested_stage_receipt_ids: readonly string[]; expected_projection_digest: string; expected_source_commit: string; expected_source_tree_digest: string; expected_design_digest: string; stale_event: DesignProgressStaleEventV1 | null; supporting_meta_oracle_receipt: SupportingMetaOracleReceiptV1; append_order: readonly ["event", "projection", "terminal_receipt"]; write_set_digest: string }
 interface DesignProgressCommitReceiptV1 { schema_version: "helix-design-progress-commit-receipt.v1"; operation_id: string; operation_digest: string; before_head: string; after_head: string; committed_store_revision_vector: EvidenceStoreRevisionVectorV1; generated_event_digest: string; stale_event_digest: string | null; projection_digest: string; source_snapshot_digest: string; canonical_unit_set_digest: string; canonical_integration_set_digest: string; canonical_hst_set_digest: string; terminal_receipt_id: string; terminal_receipt_digest: string; supporting_meta_oracle_receipt_digest: string; write_set_digest: string; replay_digest: string }
 interface DesignProgressAtomicTransactionPortV1 {
-  calculateCurrent(request: DesignProgressCalculationRequestV1): Promise<Result<DesignProgressProjectionV1, LayerGateFailure[]>>;
-  readValidateAndCommit(bundle: DesignProgressCommitBundleV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
-  readValidateAndReconcile(bundle: DesignProgressCommitBundleV1): Promise<Result<DesignProgressCommitReceiptV1, LayerGateFailure[]>>;
+  calculateCurrent(request: DesignProgressCalculationRequestV1): Promise<LayerGateResultV1<DesignProgressProjectionV1, LayerGateFailureV1[]>>;
+  readValidateAndCommit(bundle: DesignProgressCommitBundleV1): Promise<LayerGateResultV1<DesignProgressCommitReceiptV1, LayerGateFailureV1[]>>;
+  readValidateAndReconcile(bundle: DesignProgressCommitBundleV1): Promise<LayerGateResultV1<DesignProgressCommitReceiptV1, LayerGateFailureV1[]>>;
   findTerminalReceipt(operationId: string): Promise<DesignProgressCommitReceiptV1 | null>;
 }
 interface DesignRefactorCandidateV1 { candidate_id: string; before_snapshot_digest: string; after_snapshot_digest: string; diff_digest: string; provenance_digest: string; consumer_set_digest: string; behavior_invariant_digest: string; pair_set_digest: string }
 interface DesignRefactorRerouteV1 { route: "redesign" | "retrofit"; reason_code: "HIL_LAYER_REFACTOR_REDESIGN_REQUIRED" | "HIL_LAYER_REFACTOR_RETROFIT_REQUIRED"; target_plan_id: string; target_revision: number; causality_digest: string }
 type LayerLedgerOperationPayloadV1 =
-  | { kind: "registry"; value: LayerRegistryEntry }
-  | { kind: "extraction_rows"; extraction: ObligationProposalSet; rows: LayerLedgerAdditionV1[] }
+  | { kind: "registry"; value: LayerRegistryEntryV1 }
+  | { kind: "extraction_rows"; extraction: ObligationProposalSetV1; rows: LayerLedgerAdditionV1[] }
   | { kind: "pair_edges_receipt"; edges: Array<VerticalPairEdgeV1 | HorizontalPairEdgeV1>; receipt: LayerPairReceiptV1 };
 interface LayerLedgerOperationBundleV1 { operation_id: string; operation_digest: string; expected_ledger_head: string; expected_registry_revision: number; expected_subject_revision: number; payload: LayerLedgerOperationPayloadV1; append_order: ["event", "projection", "receipt"]; write_set_digest: string }
 interface LayerLedgerOperationReceiptV1 { operation_id: string; operation_digest: string; before_head: string; after_head: string; subject_revision: number; event_sequence: number; projection_digest: string; write_set_digest: string; replay_digest: string }
 interface LedgerRefactorCommitBundleV1 { operation_id: string; operation_digest: string; expected_ledger_head: string; expected_registry_revision: number; candidate: DesignRefactorCandidateV1; reroute: DesignRefactorRerouteV1 | null; pair_receipts: LayerPairReceiptV1[]; rollback_target_digest: string; append_order: ["candidate", "reroute", "pair_receipts", "rollback_receipt", "projection", "receipt"]; write_set_digest: string }
 interface LedgerRefactorCommitReceiptV1 { operation_id: string; operation_digest: string; before_head: string; after_head: string; candidate_count: number; reroute_count: number; pair_receipt_count: number; rollback_receipt_digest: string; projection_digest: string; write_set_digest: string }
-interface LayerLedgerCommitStore { commitOperation(bundle: LayerLedgerOperationBundleV1): Promise<Result<LayerLedgerOperationReceiptV1, LayerGateFailure[]>>; reconcileOperation(bundle: LayerLedgerOperationBundleV1): Promise<Result<LayerLedgerOperationReceiptV1, LayerGateFailure[]>>; commitRefactor(bundle: LedgerRefactorCommitBundleV1): Promise<Result<LedgerRefactorCommitReceiptV1, LayerGateFailure[]>>; reconcileRefactor(bundle: LedgerRefactorCommitBundleV1): Promise<Result<LedgerRefactorCommitReceiptV1, LayerGateFailure[]>>; findReceipt(operationId: string): Promise<LayerLedgerOperationReceiptV1 | LedgerRefactorCommitReceiptV1 | null>; replay(head: string): Promise<LayerLedgerSnapshotV1> }
-type LayerLedgerWriteTarget = "event" | "projection" | "receipt" | "pair_receipt" | "stage_receipt";
-interface LayerLedgerWriteSetSchemaV1 { schema_version: "helix-layer-ledger-write-set.v1"; targets: LayerLedgerWriteTarget[] }
-parseLayerLedgerWriteSet(raw: string): Result<LayerLedgerWriteSetSchemaV1, LayerGateFailure>;
-interface LayerLedgerExecutableCaseV1 { case_id: `HST-CASE-${string}`; fixture_id: string; fixture_revision: number; execution_api: string; fault_position: string | null; expected_write_set: LayerLedgerWriteTarget[]; expected_receipt_digest: string; fixture_manifest_path: string }
+interface LayerLedgerCommitStoreV1 { commitOperation(bundle: LayerLedgerOperationBundleV1): Promise<LayerGateResultV1<LayerLedgerOperationReceiptV1, LayerGateFailureV1[]>>; reconcileOperation(bundle: LayerLedgerOperationBundleV1): Promise<LayerGateResultV1<LayerLedgerOperationReceiptV1, LayerGateFailureV1[]>>; commitRefactor(bundle: LedgerRefactorCommitBundleV1): Promise<LayerGateResultV1<LedgerRefactorCommitReceiptV1, LayerGateFailureV1[]>>; reconcileRefactor(bundle: LedgerRefactorCommitBundleV1): Promise<LayerGateResultV1<LedgerRefactorCommitReceiptV1, LayerGateFailureV1[]>>; findReceipt(operationId: string): Promise<LayerLedgerOperationReceiptV1 | LedgerRefactorCommitReceiptV1 | null>; replay(head: string): Promise<LayerLedgerSnapshotV1> }
+type LayerLedgerWriteTargetV1 = "event" | "projection" | "receipt" | "pair_receipt" | "stage_receipt";
+interface LayerLedgerWriteSetSchemaV1 { schema_version: "helix-layer-ledger-write-set.v1"; targets: LayerLedgerWriteTargetV1[] }
+declare function parseLayerLedgerWriteSet(raw: string): LayerGateResultV1<LayerLedgerWriteSetSchemaV1, LayerGateFailureV1>;
+type LayerLedgerExecutionApiV1 =
+  | "registerLayerLedgerType" | "extractTemplateObligations" | "appendLayerLedgerRow"
+  | "evaluateVerticalLedgerPair" | "evaluateHorizontalVPair" | "planLedgerDesignRefactor"
+  | "calculateFixedDesignProgress" | "commitDesignProgress" | "reconcileDesignProgress"
+  | "authorizeLayerStageTransition" | "commitLayerLedgerOperation" | "reconcileLayerLedgerOperation"
+  | "commitLedgerRefactorBundle" | "reconcileLedgerRefactorBundle" | "parseLayerLedgerWriteSet";
+type LayerLedgerExecutionPipelineV1 = "commitLedgerRefactorBundle+reconcileLedgerRefactorBundle";
+type LayerLedgerFixtureManifestPathV1 = "docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest";
+interface LayerLedgerExecutableCaseV1 { case_id: `HST-CASE-${string}`; fixture_id: string; fixture_revision: number; execution_api: LayerLedgerExecutionApiV1 | LayerLedgerExecutionPipelineV1; fault_position: string | null; expected_write_set: LayerLedgerWriteTargetV1[]; expected_receipt_digest: string; fixture_manifest_path: LayerLedgerFixtureManifestPathV1 }
 ```
 
 progress APIはstore current値とrequested値の一致、authority freshness、supersession終端、event head CASを必須とする。
@@ -353,3 +382,29 @@ booleanはlowercase `true`/`false`とする。対象scalarにTAB、LF、CR、NUL
 
 52-case manifestの空field、重複/range、存在しないfixture manifest artifact pathを拒否する。実装test fileの存在は別のL7 receiptで検証する。
 parserは`none`または`+`区切りallowlistをstable順のexact setへ変換し、unknown/duplicate/順序違反を拒否する。
+
+## §4 public API primary owner正本
+
+15 public APIは次のprimary U/ITへ一意にbindする。52 primary caseの残余行とsupporting S01は各owner APIの
+composition/mutationであり、第2 ownerまたはcanonical分母として数えない。
+
+| public API | primary U | primary IT |
+|---|---|---|
+| `registerLayerLedgerType` | `U-LLPG-002` | `IT-LLPG-002` |
+| `extractTemplateObligations` | `U-LLPG-001` | `IT-LLPG-001` |
+| `appendLayerLedgerRow` | `U-LLPG-003` | `IT-LLPG-003` |
+| `evaluateVerticalLedgerPair` | `U-LLPG-016` | `IT-LLPG-016` |
+| `evaluateHorizontalVPair` | `U-LLPG-025` | `IT-LLPG-025` |
+| `planLedgerDesignRefactor` | `U-LLPG-039` | `IT-LLPG-039` |
+| `calculateFixedDesignProgress` | `U-LLPG-011` | `IT-LLPG-011` |
+| `commitDesignProgress` | `U-LLPG-012` | `IT-LLPG-012` |
+| `reconcileDesignProgress` | `U-LLPG-015` | `IT-LLPG-015` |
+| `authorizeLayerStageTransition` | `U-LLPG-015` | `IT-LLPG-015` |
+| `commitLayerLedgerOperation` | `U-LLPG-001` | `IT-LLPG-001` |
+| `reconcileLayerLedgerOperation` | `U-LLPG-016` | `IT-LLPG-016` |
+| `commitLedgerRefactorBundle` | `U-LLPG-039` | `IT-LLPG-039` |
+| `reconcileLedgerRefactorBundle` | `U-LLPG-039` | `IT-LLPG-039` |
+| `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
+
+`LayerLedgerExecutionApiV1 | LayerLedgerExecutionPipelineV1`と
+`LayerLedgerFixtureManifestPathV1`だけをexecutable caseへ許可し、未知API、暗黙alias、別fixture pathを実行前に拒否する。

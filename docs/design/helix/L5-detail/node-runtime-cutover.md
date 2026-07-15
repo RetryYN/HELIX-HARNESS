@@ -113,6 +113,15 @@ rollback planは実行証拠ではない。公開Node API `executeNodeCutoverRol
 `commitRollback(bundle)`だけを呼び、restore action、CAS、event、receipt、monitoring開始をport内部の固定順で不可分実行する。
 途中faultは同一operation/digest/expected revisionによる`reconcileNodeCutoverRollback`だけが再開し、個別restore methodを公開しない。
 
+| composition順 | exact function | owner U | owner IT | 固有責務 |
+|---:|---|---|---|---|
+| 1 | `planNodeCutoverRollback` | `U-NCUT-013` | `IT-NCUT-011` | compatibility、backup、trigger-bound approval、policy、固定action順を検証 |
+| 2 | `executeNodeCutoverRollback` | `U-NCUT-013` | `IT-NCUT-011` | 非current stagingへ全resourceをprepareし検証 |
+| 3 | `commitNodeCutoverRollback` | `U-NCUT-013` | `IT-NCUT-011` | pointer CAS、event、receipt、monitoring開始を単一portでcommit |
+| 4 | `reconcileNodeCutoverRollback` | `U-NCUT-013` | `IT-NCUT-011` | 同一operation/digest/revisionのcheckpoint recoveryまたはcompensationへ収束 |
+
+4関数の論理積を`U-NCUT-013`／`IT-NCUT-011`の合格条件とし、planだけ、executeだけ、commitだけのgreenで代替しない。
+
 ### §5.2 failure code定義
 
 | code | 条件 |
@@ -123,7 +132,7 @@ rollback planは実行証拠ではない。公開Node API `executeNodeCutoverRol
 | `HIL_NODE_SOURCE_ENTRY_UNRESOLVABLE` | Node source CLIがmodule解決不能 |
 | `HIL_NODE_BUILD_ARTIFACT_INVALID` | artifact/bin/parity/digest不正 |
 | `HIL_NODE_WORKFLOW_UNVERIFIED` | 必須workflow evidence欠落または非green |
-| `HIL_BUN_ACTIVE_DEPENDENCY` | active Bun依存を1件以上検出 |
+| `HIL_ACTIVE_BUN_DEPENDENCY` | active Bun依存を1件以上検出 |
 | `HIL_BUN_COVERAGE_INCOMPLETE` | surface未分類、分母欠落、generated未走査 |
 | `HIL_ACTIVE_BUN_RUNTIME_API` | active source/importがBun APIまたはglobalを参照 |
 | `HIL_ACTIVE_BUN_LOADER` | shebang、source runner、dynamic loaderがBunを要求 |
@@ -174,7 +183,7 @@ case分母へ重複加算しない。各行のevidenceは固定HEAD、inventory/
 | `HST-CASE-013-05` | `IT-NCUT-010` | `U-NCUT-004` | `verifying` | `failed` | `HIL_ACTIVE_BUN_CI` |
 | `HST-CASE-013-06` | `IT-NCUT-010` | `U-NCUT-004` | `verifying` | `failed` | `HIL_ACTIVE_BUN_DISTRIBUTION` |
 | `HST-CASE-013-07` | `IT-NCUT-010` | `U-NCUT-012` | `verifying` | `verifying` | `HIL_BUN_CUTOVER_QUARANTINE_REMAINS` |
-| `HST-CASE-013-08` | `IT-NCUT-008` | `U-NCUT-012` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_ACTIVE_DEPENDENCY` |
+| `HST-CASE-013-08` | `IT-NCUT-008` | `U-NCUT-012` | `assertion_input_ready` | `assertion_pass` | `HIL_ACTIVE_BUN_DEPENDENCY` |
 | `HST-CASE-013-09` | `IT-NCUT-009` | `U-NCUT-003` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_COVERAGE_INCOMPLETE` |
 | `HST-CASE-013-10` | `IT-NCUT-002` | `U-NCUT-008` | `assertion_input_ready` | `assertion_pass` | `HIL_NODE_CONTROL_PLANE_INVALID` |
 | `HST-CASE-013-11` | `IT-NCUT-008` | `U-NCUT-012` | `assertion_input_ready` | `assertion_pass` | `HIL_BUN_CUTOVER_INCOMPLETE` |

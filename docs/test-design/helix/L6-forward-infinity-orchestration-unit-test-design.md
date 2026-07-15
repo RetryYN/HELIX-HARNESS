@@ -46,6 +46,22 @@ requirements:
 | `U-FIO-008` | `evaluateForwardClosure` | PR/CI/audit/oracle/memory/child digestを各欠落・別head化しclosure 0 |
 | `U-FIO-009` | `commitForwardResume` | 全resume target、片辺fault、nonce再送を検査し2 event＋projectionが全commitまたは全rollback |
 
+### §2.1 完全API→U→IT逆引き
+
+exact V1 signatureはpair先L6 §0/§1を正本とし、各Uのownerとmutation処理量を次へ固定する。
+
+| public API | existing U | existing IT |
+|---|---|---|
+| `validateCausalityClosure` | `U-FIO-001` | `IT-FIO-001`, `IT-FIO-008` |
+| `decideForwardTransition` | `U-FIO-002` | `IT-FIO-002`, `IT-FIO-008`, `IT-FIO-009` |
+| `evaluateLoopBudget` | `U-FIO-003` | `IT-FIO-003` |
+| `startForwardRun` | `U-FIO-004` | `IT-FIO-001`, `IT-FIO-006` |
+| `buildForwardCheckpoint` | `U-FIO-005` | `IT-FIO-003`, `IT-FIO-004` |
+| `validateForwardResume` | `U-FIO-006` | `IT-FIO-003`, `IT-FIO-005`, `IT-FIO-009` |
+| `commitForwardStep` | `U-FIO-007` | `IT-FIO-002`, `IT-FIO-004`, `IT-FIO-006`, `IT-FIO-007` |
+| `evaluateForwardClosure` | `U-FIO-008` | `IT-FIO-001`, `IT-FIO-008` |
+| `commitForwardResume` | `U-FIO-009` | `IT-FIO-003`, `IT-FIO-005`, `IT-FIO-009` |
+
 ## §3 合否
 
 主系3件をまとめず各case ID、pre/post/failure、主unitへ一意bindする。全caseでResult、stable error順、

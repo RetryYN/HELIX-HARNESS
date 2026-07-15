@@ -46,6 +46,24 @@ source_capabilities:
 | `U-ICN-010` | `reconcileIssueAdmissionReservation` | reserved/committing crash、same/different digest、stale operation headをmatrix化しsame digestだけreceipt一件 | `HAC-HIL-01b` | supporting | `reserved` | `committed` | `HIL_INTAKE_RECONCILE_FAILED` | `tests/intake-admission-reconcile.test.ts` |
 | `U-ICN-011` | `loadCurrentInitialHandoff` | Issue/revision key、contract/route/snapshot/policy digestを個別変異しstale handoff 0 | `HAC-HIL-01a` | supporting | `admitted` | `handoff_ready` | `HIL_INTAKE_HANDOFF_STALE` | `tests/intake-handoff.test.ts` |
 
+### V1結果の変異契約
+
+各Uは次のclosed V1 resultを直接mutationし、unversioned aliasやprose PASSをoracleにしない。
+
+| U | 厳密なV1結果 | 必須変異 |
+|---|---|---|
+| `U-ICN-001` | `NormalizedIngressV1` / `IntakeFailureV1[]` | `header`、sourceのmetadata/locator、不透明artifact、正規化digest |
+| `U-ICN-002` | `DuplicateReceiptV1` / `IntakeFailureV1` | operation、payload、先行receipt、write件数、receipt digest |
+| `U-ICN-003` | `IntakeReservationV1` / `IntakeConflictReceiptV1` | operation、先行/candidate payload、期待head、解決route、event digest |
+| `U-ICN-004` | `IssueRouteReceiptV1` / `IntakeFailureV1[]` | `mode/drive/Reverse/Forward/authority/catalog_revision/route_digest`を個別変異 |
+| `U-ICN-005` | `ValidatedIssueContractV1` / `IntakeFailureV1[]` | contract全field、schema、scope authority、minimality、surface差分、validation digest |
+| `U-ICN-006` | `AdmissionReceiptV1` / `IntakeFailureV1[]` | custody/contract/route/handoff/event/projection digestと厳密なwrite件数 |
+| `U-ICN-007` | `TrustReceiptV1` / `IntakeFailureV1` | artifact/transport digestと`dispatch_count: 0` |
+| `U-ICN-008` | `CustodyReceiptV1` / `IntakeFailureV1` | `source_event/operation/payload/status/event_digest`を個別変異 |
+| `U-ICN-009` | `VerifiedIngressAuthorityV1` / `IntakeFailureV1[]` | actor/source/authority/policy/expiryとauthority digest |
+| `U-ICN-010` | `AdmissionReceiptV1` / `IntakeFailureV1[]` | immutable operation/payload/head、同一receipt、partial write 0 |
+| `U-ICN-011` | `InitialOrchestrationHandoffV1` / `IntakeFailureV1` | `issue/revision/contract/route/snapshot/policy/cause/transition/budget_digest`を個別変異 |
+
 ## §1 合否
 
 ### supporting APIのL8 exact join

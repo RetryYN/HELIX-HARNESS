@@ -80,6 +80,35 @@ artifact/finding authorityを直接assertする。
 | `U-EDX-019` | `IT-EDX-013`, `IT-EDX-014` |
 | `U-EDX-020` | `IT-EDX-014` |
 
+### §1.1 完全public API所有関係
+
+全input/outputのexact V1 signatureはpair先L6 §1.1/§2を正本とする。20 Uの分母は不変で、
+`U-EDX-019`だけが2 APIのstable compositionを所有する。
+
+| 公開API | 既存U | 既存IT |
+|---|---|---|
+| `parseEngineVersionDescriptor` | `U-EDX-001` | `IT-EDX-001`, `IT-EDX-003` |
+| `parseDetectorVersionDescriptor` | `U-EDX-002` | `IT-EDX-001`, `IT-EDX-004` |
+| `resolveRegisteredVersion` | `U-EDX-003` | `IT-EDX-002` |
+| `deriveExecutionIdentity` | `U-EDX-004` | `IT-EDX-008`, `IT-EDX-009`, `IT-EDX-012` |
+| `validateFixedExecutionInput` | `U-EDX-005` | `IT-EDX-003`, `IT-EDX-004` |
+| `createEngineRunPlan` | `U-EDX-006` | `IT-EDX-003`, `IT-EDX-005` |
+| `validateEngineResultProposal` | `U-EDX-007` | `IT-EDX-003`, `IT-EDX-005` |
+| `validateArtifactPath` | `U-EDX-008` | `IT-EDX-006` |
+| `validateArtifactManifest` | `U-EDX-009` | `IT-EDX-003`, `IT-EDX-006` |
+| `createDetectorRunPlan` | `U-EDX-010` | `IT-EDX-004`, `IT-EDX-005` |
+| `validateDetectorResultProposal` | `U-EDX-011` | `IT-EDX-004`, `IT-EDX-007` |
+| `canonicalizeFindingEvidence` | `U-EDX-012` | `IT-EDX-007`, `IT-EDX-009` |
+| `deriveDetectorFingerprint` | `U-EDX-013` | `IT-EDX-007`, `IT-EDX-009` |
+| `evaluateDetectorSuppression` | `U-EDX-014` | `IT-EDX-007` |
+| `compareDeterministicRerun` | `U-EDX-015` | `IT-EDX-008`, `IT-EDX-009`, `IT-EDX-012` |
+| `planEngineAuthorityCommit` | `U-EDX-016` | `IT-EDX-010`, `IT-EDX-011` |
+| `planDetectorAuthorityCommit` | `U-EDX-017` | `IT-EDX-009`, `IT-EDX-010`, `IT-EDX-011` |
+| `invalidateExecutionEvidence` | `U-EDX-018` | `IT-EDX-012` |
+| `resolveCurrentExecutionAuthority` | `U-EDX-019` | `IT-EDX-013`, `IT-EDX-014` |
+| `commitExecutionAuthority` | `U-EDX-019` | `IT-EDX-013`, `IT-EDX-014` |
+| `reconcileExecutionAuthority` | `U-EDX-020` | `IT-EDX-014` |
+
 20/20のRed/Green、全HAC/HST/failure bind、mutation、write count、digest、別runtime reviewが揃うまでL7をgreenにしない。
 
 ## primary atomic assertion台帳

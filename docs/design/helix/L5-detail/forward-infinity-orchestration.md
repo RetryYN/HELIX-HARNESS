@@ -103,6 +103,27 @@ resume commitはnonce消費、2 transition event、projection、checkpointの`re
 | `HST-CASE-001-06` | `IT-FIO-002` | `assertion_input_ready` | `assertion_pass` | `HIL_STATE_TRANSITION_INVALID` |
 | `HST-CASE-001-09` | `IT-FIO-003` | `assertion_input_ready` | `assertion_pass` | `HIL_LOOP_BUDGET_UNBOUNDED` |
 
+### §7.1 完全API→U→IT正本
+
+全input/outputのslice-local closed V1契約はL6 §0/§1を正本とする。既存owner、9 U、9 IT、主系3 HSTの
+分母を増減せず、公開APIを次のexact joinへ固定する。
+
+| public API | existing U | existing IT |
+|---|---|---|
+| `validateCausalityClosure` | `U-FIO-001` | `IT-FIO-001`, `IT-FIO-008` |
+| `decideForwardTransition` | `U-FIO-002` | `IT-FIO-002`, `IT-FIO-008`, `IT-FIO-009` |
+| `evaluateLoopBudget` | `U-FIO-003` | `IT-FIO-003` |
+| `startForwardRun` | `U-FIO-004` | `IT-FIO-001`, `IT-FIO-006` |
+| `buildForwardCheckpoint` | `U-FIO-005` | `IT-FIO-003`, `IT-FIO-004` |
+| `validateForwardResume` | `U-FIO-006` | `IT-FIO-003`, `IT-FIO-005`, `IT-FIO-009` |
+| `commitForwardStep` | `U-FIO-007` | `IT-FIO-002`, `IT-FIO-004`, `IT-FIO-006`, `IT-FIO-007` |
+| `evaluateForwardClosure` | `U-FIO-008` | `IT-FIO-001`, `IT-FIO-008` |
+| `commitForwardResume` | `U-FIO-009` | `IT-FIO-003`, `IT-FIO-005`, `IT-FIO-009` |
+
+Forward収束ownerは`decideForwardTransition`／`commitForwardStep`／`evaluateForwardClosure`、因果閉鎖ownerは
+`validateCausalityClosure`、budget checkpoint ownerは`evaluateLoopBudget`／`buildForwardCheckpoint`／
+`validateForwardResume`／`commitForwardResume`とし、owner移管やcase統合を行わない。
+
 ## §8 freeze条件
 
 主系3/3、全state隣接辺mutation、必須causality node/edge mutation、5 budget軸、checkpoint crash/reconcile、

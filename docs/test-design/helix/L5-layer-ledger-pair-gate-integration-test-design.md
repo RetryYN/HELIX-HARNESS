@@ -134,3 +134,28 @@ supporting receiptはreceipt IDとfixed design snapshot digestをU/IT ID、statu
 pair/pointer write set、case record SHA-256、実在fixture manifest artifact pathを埋める。runnerは52/52 exact join後に個別実行する。
 refactor caseはcandidate/reroute/pair/rollback/receipt各append後faultとreconcileを明記し、partial current 0を測定する。将来の実装test fileは未作成であり、L7実装receipt前にgreenを主張しない。
 fixture正本は`docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest`とする。
+
+## §3 public API primary owner正本
+
+15 public APIは次のprimary U/ITへ一意にbindする。52 primary caseの残余行とsupporting S01は各ownerの
+composition/mutationであり、API ownerまたはcanonical分母へ重複加算しない。
+
+| public API | primary U | primary IT |
+|---|---|---|
+| `registerLayerLedgerType` | `U-LLPG-002` | `IT-LLPG-002` |
+| `extractTemplateObligations` | `U-LLPG-001` | `IT-LLPG-001` |
+| `appendLayerLedgerRow` | `U-LLPG-003` | `IT-LLPG-003` |
+| `evaluateVerticalLedgerPair` | `U-LLPG-016` | `IT-LLPG-016` |
+| `evaluateHorizontalVPair` | `U-LLPG-025` | `IT-LLPG-025` |
+| `planLedgerDesignRefactor` | `U-LLPG-039` | `IT-LLPG-039` |
+| `calculateFixedDesignProgress` | `U-LLPG-011` | `IT-LLPG-011` |
+| `commitDesignProgress` | `U-LLPG-012` | `IT-LLPG-012` |
+| `reconcileDesignProgress` | `U-LLPG-015` | `IT-LLPG-015` |
+| `authorizeLayerStageTransition` | `U-LLPG-015` | `IT-LLPG-015` |
+| `commitLayerLedgerOperation` | `U-LLPG-001` | `IT-LLPG-001` |
+| `reconcileLayerLedgerOperation` | `U-LLPG-016` | `IT-LLPG-016` |
+| `commitLedgerRefactorBundle` | `U-LLPG-039` | `IT-LLPG-039` |
+| `reconcileLedgerRefactorBundle` | `U-LLPG-039` | `IT-LLPG-039` |
+| `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
+
+integration runnerはL6のclosed API/pipeline unionとtyped fixture pathを使用し、未知API、暗黙alias、別pathを実行前に拒否する。

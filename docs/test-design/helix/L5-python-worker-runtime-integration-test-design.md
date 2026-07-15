@@ -50,7 +50,7 @@ Pythonが返すresultはproposalであり、Node validationとtransaction前のr
 | `createPythonWorkerRun` | `U-PYWR-003` | `IT-PYWR-001`, `IT-PYWR-002` |
 | `spawnPythonWorker` | `U-PYWR-004` | `IT-PYWR-007` |
 | `parsePythonWorkerEnvelope` | `U-PYWR-005` | `IT-PYWR-002`, `IT-PYWR-003` |
-| `advancePythonWorkerProtocol` | `U-PYWR-006`, `U-PYWR-007` | `IT-PYWR-002` |
+| `advancePythonWorkerProtocol` | `U-PYWR-006` | `IT-PYWR-002` |
 | `applyWorkerFlowControl` | `U-PYWR-008` | `IT-PYWR-003` |
 | `requestPythonWorkerCancellation` | `U-PYWR-009` | `IT-PYWR-004` |
 | `observePythonWorkerExit` | `U-PYWR-010` | `IT-PYWR-004`, `IT-PYWR-005` |
@@ -63,7 +63,10 @@ Pythonが返すresultはproposalであり、Node validationとtransaction前のr
 | `commitAcceptedPythonWorkerResult` | `U-PYWR-017` | `IT-PYWR-009` |
 | `commitPythonWorkerTerminal` | `U-PYWR-017` | `IT-PYWR-009` |
 | `reconcilePythonWorkerTerminal` | `U-PYWR-017` | `IT-PYWR-009` |
-| `reconcilePythonWorkerRun` | `U-PYWR-015`, `U-PYWR-016` | `IT-PYWR-008` |
+| `reconcilePythonWorkerRun` | `U-PYWR-015` | `IT-PYWR-008` |
+
+`U-PYWR-007`は`advancePythonWorkerProtocol`の`payload_identity_guard` composition mutationを所有する
+supporting oracleであり、公開API owner joinへ重複加算しない。`HST-CASE-007-12`の主Uと17 unit分母は維持する。
 
 ### §0.2 canonical assertion primary表
 

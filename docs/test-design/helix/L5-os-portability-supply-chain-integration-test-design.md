@@ -52,8 +52,13 @@ Linux full未実行、macOS/Windows fixture差替え、offline時network attempt
 L8合格にしない。
 
 9 ITからL7の13 UとL6の13 public APIへ全edgeを逆引きし、ownerなしAPI/U、別owner重複、API名差を0件とする。L5 §3の
-9 facet allowlistとL6 `OsContractFacetV1`、L5 §6の12 failureとL6 `OsSupplyChainFailureCodeV1`を集合比較し、primary各caseの
+9 facet allowlistとL6 `OsContractFacetV1`、L5 §6の詳細failure 12件＋HST境界failure 7件＋adapter境界internal failure 2件とL6 `OsSupplyChainFailureCodeV1`の21値を集合比較し、primary各caseの
 pre/expected state、failure、U、ITがL6/L7/L8でexact一致しない場合はintegration closureを拒否する。
+OS matrix、dependency graph、install parity、SBOM、policy、completion、provenance joinはL6のclosed `*V1` field集合でdecodeし、
+同一run/snapshot/envelopeへのexact join、未知field、旧抽象名、OS別schema差をmutationして全反例を拒否する。
+`IT-OSSC-001`のOS adapterと`IT-OSSC-005`のsupply-chain adapterへunexpected exceptionを注入し、
+`HIL_OS_INTERNAL_ERROR`／`HIL_SUPPLY_CHAIN_INTERNAL_ERROR`へのcause digest付き境界変換とcurrent増分0を検証する。
+internal 2 mutationは既存19 HSTの分母を増やさない。
 
 ## primary atomic assertion台帳
 

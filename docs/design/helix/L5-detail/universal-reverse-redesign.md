@@ -202,6 +202,8 @@ same snapshot lineageを不可分にcommitする。stale appendまたはrefreeze
 ## §9 freeze条件
 
 L6 transaction contractは`UniversalReverseCommitReceiptV1`、`StaleClosureReceiptV1`、`ReentryFreezeReceiptV1`とmutation別immutable evidence V1を使う。event replayの共有semantic shapeはL4基本設計 §2.3の`ProjectionDigestV1`を正本とする。
+30 public APIの全result/failure契約もL6 §2のlocal closed `*V1`を正本とし、抽象`Manifest`、`StalePlan`、`Receipt`等への弱化や
+未作成schema moduleからの先取りimportを禁止する。API→U→IT件数、case/state/failure tupleは型閉包の前後で不変とする。
 
 L5/L8 pairは22/22 exact tuple、全R0–R4 workload、hollow/skip mutation、Universal Reverse pair、
 Redesign/Retrofit/L0 route、L1/L2 stale closure、re-freeze前claim/tool 0、pinned source fixture、

@@ -84,6 +84,12 @@ failure tokenとは独立に、主oracleは次のatomic tupleをcaseごとにexa
 
 ## §1 合否
 
+### custody admissionのAPI→U→IT厳密結線
+
+| stable exact function set | owner U | owner IT | 固有mutation |
+|---|---|---|---|
+| `captureDirectiveBeforeClassification` → `validateDirectiveClassificationAdmission` | `U-ISAG-001` | `IT-ISAG-001`, `IT-ISAG-002` | captureはappend durability／operation conflict／receipt発行、admissionはmissing/stale/mismatched receiptと下流副作用0 |
+
 ### 補助API→U→IT exact join
 
 `IT-ISAG-017`は`U-ISAG-023`,`U-ISAG-024`,`U-ISAG-025`をexact joinし、bundle build、atomic commit、immutable reconcileを一つずつfault injectionする。

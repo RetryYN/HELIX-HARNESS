@@ -85,3 +85,6 @@ contract/team/context/adapter/event/checkpoint/result digest、lease/fenceを固
 `IT-AGLC-001`から`IT-AGLC-014`の14件すべてで、対応する22 HST case、HAC、canonical failure、state transition、
 DB/event/adapter/team/context/checkpoint/result digest、lease/fence、authoritative増分を直接assertする。正常caseのfailureは
 `なし（正常系）`とし、別tokenを捏造しない。agentの自然言語応答、mock call countだけ、runtime自己申告で代替しない。
+
+registry、projection、muster、packet、instance、event、lease、checkpoint、verification、release、dispositionはL6のclosed
+`*V1` field集合でdecodeし、同一task/contract/instance/lease/fence/result identityへのexact joinとschema mutationを検査する。

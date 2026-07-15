@@ -181,7 +181,7 @@ applicationが`failed -> quarantined`、chain stageだけが`accepted_with_quara
 stage完了、quarantine application、self-heal attempt/result、quarantine rule create/update/expireは`CiMutationCommitBundleV1`へまとめる。bundleは
 `operation_id`、`payload_digest`、chain/stage/attempt、`expected_event_head`、`expected_projection_head`、
 check全件、stage receipt、quarantine applicationまたはself-heal outcome、lineage edgeを含む。rule lifecycle bundleはさらにrule ID/revision、
-prior revision、rule digest、expected rule head、approval/freshness receiptを含む。Node `CiMutationStore`はmutation kindごとのwrite setを
+prior revision、rule digest、expected rule head、approval/freshness receiptを含む。Node `CiMutationStoreV1`はmutation kindごとのwrite setを
 一つのtransactionでCAS commitし、任意append faultでは当該transactionの全writeをrollbackする。
 
 同operation・同digest再送は同receiptを返すno-op、同operation・異digestとstale headはconflictである。reconcileは
@@ -239,7 +239,7 @@ quarantine green、推測したself-heal成功を生成しない。
 
 ## §10 freeze条件
 
-L6 failure codeは`CiFailureCodeV1 = CiFailure["code"]`、reconcile evidenceは`CiImmutableEvidenceV1`、event replayはL4基本設計 §2.3の共有semantic shape `ProjectionDigestV1`に固定する。
+L6 public resultは`CiSourceBindingV1`から`CiMergeEligibilityV1`までの18 closed V1型、failure codeは`CiFailureCodeV1 = CiFailureV1["code"]`、reconcile evidenceは`CiImmutableEvidenceV1`、event replayはL4基本設計 §2.3の共有semantic shape `ProjectionDigestV1`に固定する。unversioned result/failure名と外部schema importへ縮退しない。
 
 L5/L8 pairは14/14 integration、canonical 23/23 HST disposition、三段の同一lineage、required workload不変、
 exact quarantine、self-heal/retry全attempt、HU-CAP-006 pinned evidence、別runtime reviewが揃うまでdraftとする。

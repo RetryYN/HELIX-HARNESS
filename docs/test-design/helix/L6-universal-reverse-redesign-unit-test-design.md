@@ -65,6 +65,9 @@ source_capabilities:
 
 ## §1 合否
 
+L6の30 public APIすべてのresult/failure契約はL6 §2のlocal closed `*V1`とexact joinし、旧抽象名、未定義result、自由形receiptをfixtureで拒否する。
+この型検査は既存30 API、30 unit、canonical failure、pre/expected state、supporting IT ownerを増減・置換しない。
+
 ### supporting APIのL8 exact join
 
 | L7 oracle | L8 oracle | receipt / faultのoracle |

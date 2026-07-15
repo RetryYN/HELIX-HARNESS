@@ -73,6 +73,24 @@ requirements:
 | `U-GPAP-016` | port protocol: `commitFindingPromotionAtomically` | `FindingPromotionStorePort`へsame operation/digest再送時は増分0、異digest時は既存target変更0 |
 | `U-GPAP-017` | owner: `invalidateAuditJobForBaseChange` | head固定でbase SHA/tree、merge-base SHA/tree、diff-baseを各変異し旧job stale、新job required |
 
+### §2.1 完全API→U→IT逆引き
+
+exact V1 signatureはpair先L6 §0/§1を正本とし、ownerとcomposition／port protocolを次へ固定する。
+
+| 公開API | owner U／composition U／port U | 既存IT |
+|---|---|---|
+| `verifyGithubPrDelivery` | `U-GPAP-001`, `U-GPAP-011` | `IT-GPAP-001`, `IT-GPAP-006` |
+| `decidePrDeliveryIdempotency` | `U-GPAP-002`, `U-GPAP-011`, `U-GPAP-012` | `IT-GPAP-001`, `IT-GPAP-002`, `IT-GPAP-007` |
+| `resolveCurrentPrHead` | `U-GPAP-003`, `U-GPAP-011` | `IT-GPAP-001`, `IT-GPAP-003` |
+| `planPrAuditJob` | `U-GPAP-004`, `U-GPAP-011`, `U-GPAP-014` | `IT-GPAP-001`, `IT-GPAP-004`, `IT-GPAP-015` |
+| `buildClaudeAuditTask` | `U-GPAP-005`, `U-GPAP-013`, `U-GPAP-014` | `IT-GPAP-005`, `IT-GPAP-014`, `IT-GPAP-015` |
+| `validateAuditFinding` | `U-GPAP-006`, `U-GPAP-013`, `U-GPAP-014` | `IT-GPAP-014`, `IT-GPAP-015` |
+| `commitPrAuditJobExactlyOnce` | `U-GPAP-007`, `U-GPAP-011`, `U-GPAP-012`, `U-GPAP-015` | `IT-GPAP-001`, `IT-GPAP-007`, `IT-GPAP-013` |
+| `buildFindingPromotion` | `U-GPAP-008` | `IT-GPAP-011` |
+| `commitFindingPromotionAtomically` | `U-GPAP-009`, `U-GPAP-016` | `IT-GPAP-008`, `IT-GPAP-009`, `IT-GPAP-016` |
+| `evaluateFindingDisposition` | `U-GPAP-010` | `IT-GPAP-010`, `IT-GPAP-012` |
+| `invalidateAuditJobForBaseChange` | `U-GPAP-017` | `IT-GPAP-017` |
+
 ## §3 合否
 
 public APIの一意ownerは`U-GPAP-001`〜`010`と`017`、composition/port protocolは`U-GPAP-011`〜`016`である。

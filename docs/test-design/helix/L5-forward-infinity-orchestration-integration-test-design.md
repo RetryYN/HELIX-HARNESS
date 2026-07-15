@@ -47,6 +47,24 @@ isolated harness.db、固定clock、HDS01 handoff fixture、fake gate/CI/PR/audi
 | `IT-FIO-008` | Redesign/child Issue分岐を作りre-entry edgeを欠落 | Forward継続0、未完obligation保持、closure 0 |
 | `IT-FIO-009` | 全spine stateをresume targetにしてcheckpoint後再開し、2 event間へfault注入 | `checkpointed -> resumed -> target`だけ成立。fault時event/projection/nonce消費0、再送commit一回 |
 
+### §2.1 完全API→U→IT逆引き
+
+| public API | existing U | existing IT |
+|---|---|---|
+| `validateCausalityClosure` | `U-FIO-001` | `IT-FIO-001`, `IT-FIO-008` |
+| `decideForwardTransition` | `U-FIO-002` | `IT-FIO-002`, `IT-FIO-008`, `IT-FIO-009` |
+| `evaluateLoopBudget` | `U-FIO-003` | `IT-FIO-003` |
+| `startForwardRun` | `U-FIO-004` | `IT-FIO-001`, `IT-FIO-006` |
+| `buildForwardCheckpoint` | `U-FIO-005` | `IT-FIO-003`, `IT-FIO-004` |
+| `validateForwardResume` | `U-FIO-006` | `IT-FIO-003`, `IT-FIO-005`, `IT-FIO-009` |
+| `commitForwardStep` | `U-FIO-007` | `IT-FIO-002`, `IT-FIO-004`, `IT-FIO-006`, `IT-FIO-007` |
+| `evaluateForwardClosure` | `U-FIO-008` | `IT-FIO-001`, `IT-FIO-008` |
+| `commitForwardResume` | `U-FIO-009` | `IT-FIO-003`, `IT-FIO-005`, `IT-FIO-009` |
+
+`IT-FIO-003`／`IT-FIO-005`／`IT-FIO-009`はbudget判定、checkpoint生成、freshness検証、
+`checkpointed -> resumed -> resume_target_state`の2 event commitを別mutationとして全件採点する。
+checkpoint row単独や片辺だけの成功へ収束させない。
+
 ## §3 合否
 
 主系3/3と補助6件を全件実行し、処理量をsampleへ縮小しない。正常prose、current state文字列、

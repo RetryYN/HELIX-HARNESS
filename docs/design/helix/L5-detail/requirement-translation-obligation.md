@@ -41,7 +41,7 @@ pointerを再生成する。author/auditor/promoterは別identityで、authority
 revisionがcurrentでなければpromotionとfreezeを0件にする。
 
 authority receiptにcallerが記載した`status=current`はcurrentnessの証拠にしない。Nodeは`TrustedNowV1`と
-`CurrentRequirementAuthorityStoreV1`からcurrent authority snapshotを独立取得し、expiry、scope、supersession終端、authority event head、
+`RequirementTranslationAtomicTransactionPortV1`からcurrent authority snapshotを独立取得し、expiry、scope、supersession終端、authority event head、
 active pointer revisionを照合した`ValidatedAuthoritySetV1`だけを後段へ渡す。commit/reconcile直前にも同じstoreを再読し、snapshot digestが
 bundle build時からdriftした場合は全write 0とする。
 
@@ -164,3 +164,29 @@ operation ID/digest/expected snapshotだけを再開し、CAS loser、stale/expi
 expected event/projection/pointer write set、case record SHA-256、実在fixture manifest artifact pathを保持する。共通fixture参照は許すがfield省略や
 range aliasは禁止し、manifest 75/75と上表75/75のcase ID、public `execution_api` exact-name、failure、expected receipt digestのexact joinを
 freeze条件とする。fixture manifestは設計実行可能性の証拠であり、将来の実装test file作成済みを主張しない。
+
+## §4 public API primary owner正本
+
+15 public APIは次のprimary U/ITへ一意にbindする。75 primary caseの残余行は各owner APIの
+composition/mutationであり、API owner分母へ重複加算しない。
+
+| public API | primary U | primary IT |
+|---|---|---|
+| `translateRequirementInput` | `U-RTO-034` | `IT-RTO-034` |
+| `validateRequirementAtom` | `U-RTO-035` | `IT-RTO-035` |
+| `validateRequirementAtoms` | `U-RTO-033` | `IT-RTO-033` |
+| `validateCurrentRequirementAuthorities` | `U-RTO-038` | `IT-RTO-038` |
+| `buildRequirementTranslationCommitBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `executeRequirementTranslationNormalPipeline` | `U-RTO-033` | `IT-RTO-033` |
+| `routeTemplateGap` | `U-RTO-041` | `IT-RTO-041` |
+| `evaluateTemplateShadow` | `U-RTO-045` | `IT-RTO-045` |
+| `deriveDesignObligations` | `U-RTO-001` | `IT-RTO-001` |
+| `evaluateObligationClosure` | `U-RTO-006` | `IT-RTO-006` |
+| `appendRequirementRevision` | `U-RTO-053` | `IT-RTO-053` |
+| `validateRequirementFreeze` | `U-RTO-031` | `IT-RTO-031` |
+| `commitRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `reconcileRequirementTranslationBundle` | `U-RTO-033` | `IT-RTO-033` |
+| `parseRequirementWriteSet` | `U-RTO-075` | `IT-RTO-075` |
+
+authority readとcommitはL6の単一`RequirementTranslationAtomicTransactionPortV1`内で同一snapshotを再読し、
+write直前CASまで不可分にする。分離authority portまたは分離commit portはpublic contractに含めない。

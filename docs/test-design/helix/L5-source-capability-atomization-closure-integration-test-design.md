@@ -40,6 +40,31 @@ requirements:
 | `IT-SATOM-012` | `HAC-HIL-09b`; `HST-CASE-007-06`, `HST-CASE-007-08`, `HST-CASE-007-11`; atomization内部fault oracle | workerとatomization commitへfault injection | worker pointerは`HIL_WORKER_TIMEOUT`、`HIL_WORKER_CRASHED`、`HIL_WORKER_LATE_RESULT_FENCED`。atomization固有faultは`HIL_SOURCE_PROPOSAL_LATE`または`HIL_SOURCE_ATOMIZATION_INTERNAL_ERROR`であり、engine HSTを代用しない |
 | `IT-SATOM-013` | `HAC-HIL-09b`; atomization transaction内部oracle | atom/decision/edge/event/projection/exact write-set欠落・余剰とseal後DB faultを注入しreconcile | 完全payloadだけactive。初回faultは`projection_pending`、同一reconcileは同一receipt、別digest/head/順序/write-set競合はcommit 0 |
 
+### complete public API→U→IT逆引き
+
+| 公開API | 主owner U | 既存IT |
+|---|---|---|
+| `parseExtractorDescriptor` | `U-SATOM-001` | `IT-SATOM-002` |
+| `selectExtractorPlugin` | `U-SATOM-002` | `IT-SATOM-002` |
+| `openExtractorSession` | `U-SATOM-004` | `IT-SATOM-003` |
+| `advanceExtractorProtocol` | `U-SATOM-005` | `IT-SATOM-003`, `IT-SATOM-012` |
+| `validateAtomProposal` | `U-SATOM-010` | `IT-SATOM-002`, `IT-SATOM-003`, `IT-SATOM-004` |
+| `splitAtomicCandidate` | `U-SATOM-013` | `IT-SATOM-005`, `IT-SATOM-006` |
+| `deriveSemanticSignature` | `U-SATOM-019` | `IT-SATOM-004`, `IT-SATOM-005` |
+| `resolveAtomKindAndLineage` | `U-SATOM-022` | `IT-SATOM-006`, `IT-SATOM-007`, `IT-SATOM-010` |
+| `validateCapabilityDecision` | `U-SATOM-025` | `IT-SATOM-007`, `IT-SATOM-008`, `IT-SATOM-010` |
+| `resolveCoverageClosure` | `U-SATOM-029` | `IT-SATOM-009`, `IT-SATOM-010`, `IT-SATOM-011` |
+| `computeAtomizationCoverage` | `U-SATOM-031` | `IT-SATOM-001`, `IT-SATOM-006`, `IT-SATOM-010` |
+| `invalidateAtomizationReceipt` | `U-SATOM-032` | `IT-SATOM-011` |
+| `commitAtomizationProjection` | `U-SATOM-033` | `IT-SATOM-013` |
+| `reconcileAndActivateAtomization` | `U-SATOM-034` | `IT-SATOM-013` |
+
+primary owner外の`U-SATOM-003`, `U-SATOM-006`, `U-SATOM-007`, `U-SATOM-008`, `U-SATOM-009`, `U-SATOM-011`, `U-SATOM-012`, `U-SATOM-014`, `U-SATOM-015`, `U-SATOM-016`, `U-SATOM-017`, `U-SATOM-018`, `U-SATOM-020`, `U-SATOM-021`, `U-SATOM-023`, `U-SATOM-024`, `U-SATOM-026`, `U-SATOM-027`, `U-SATOM-028`, `U-SATOM-030`はcomposition／mutation／supporting laneであり、13 ITへの反例結線を維持したままowner joinへ重複加算しない。
+
+`IT-SATOM-013`は`commitAtomizationProjection`を先に実行し、`projection_pending`の場合だけ同じ
+operation/digest/expected headsで`reconcileAndActivateAtomization`を実行する。前者のU-033と後者のU-034を
+一つのoracleへ圧縮せず、両方のfault位置とwrite countを採点する。
+
 ## §1 HST020主系の原子tuple
 
 | HSTケース | L8対応先 | 事前状態 | 期待状態 | 正規failure |

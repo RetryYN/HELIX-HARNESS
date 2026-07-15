@@ -187,3 +187,28 @@ fixture manifest artifact pathを個別検証する。refactor Uはcandidate、r
 | `HST-CASE-033-12` | `llpg-hst-case-033-12` | 1 | `reconcileLedgerRefactorBundle` | `before_commit:HIL_LAYER_REFACTOR_REDESIGN_REQUIRED` | `none` | `sha256:b6e9b10c51515549305adcedea47abc31dc1d16164af98ffe2398cccb50320ee` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-033-13` | `llpg-hst-case-033-13` | 1 | `commitLedgerRefactorBundle` | `before_commit:HIL_LAYER_REFACTOR_ROLLBACK_MISSING` | `none` | `sha256:6ec86663e35d82f20bd5e50462c36bb5b9d06218048eff43a2066bf443085b9f` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-033-14` | `llpg-hst-case-033-14` | 1 | `commitLedgerRefactorBundle` | `before_commit:HIL_LAYER_LEDGER_REFACTOR_INVALID` | `none` | `sha256:d9c4b618709db88deedbec10c06b7af81865085da42da3d3128d441b791982e6` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+
+## §3 public API primary owner正本
+
+15 public APIは次のprimary U/ITへ一意にbindする。52 primary caseの残余行とsupporting S01は各ownerの
+composition/mutationとして実行し、第2 ownerまたはcanonical分母にしない。
+
+| public API | primary U | primary IT |
+|---|---|---|
+| `registerLayerLedgerType` | `U-LLPG-002` | `IT-LLPG-002` |
+| `extractTemplateObligations` | `U-LLPG-001` | `IT-LLPG-001` |
+| `appendLayerLedgerRow` | `U-LLPG-003` | `IT-LLPG-003` |
+| `evaluateVerticalLedgerPair` | `U-LLPG-016` | `IT-LLPG-016` |
+| `evaluateHorizontalVPair` | `U-LLPG-025` | `IT-LLPG-025` |
+| `planLedgerDesignRefactor` | `U-LLPG-039` | `IT-LLPG-039` |
+| `calculateFixedDesignProgress` | `U-LLPG-011` | `IT-LLPG-011` |
+| `commitDesignProgress` | `U-LLPG-012` | `IT-LLPG-012` |
+| `reconcileDesignProgress` | `U-LLPG-015` | `IT-LLPG-015` |
+| `authorizeLayerStageTransition` | `U-LLPG-015` | `IT-LLPG-015` |
+| `commitLayerLedgerOperation` | `U-LLPG-001` | `IT-LLPG-001` |
+| `reconcileLayerLedgerOperation` | `U-LLPG-016` | `IT-LLPG-016` |
+| `commitLedgerRefactorBundle` | `U-LLPG-039` | `IT-LLPG-039` |
+| `reconcileLedgerRefactorBundle` | `U-LLPG-039` | `IT-LLPG-039` |
+| `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
+
+runnerはL6のclosed API/pipeline unionとtyped fixture pathへexact joinし、未知API、alias、空名、別pathをfixture load前に拒否する。

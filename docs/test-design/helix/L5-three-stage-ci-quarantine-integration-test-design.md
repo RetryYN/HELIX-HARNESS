@@ -66,6 +66,34 @@ raw provider log、secret、credential、PIIをmemory/evidence本文へ保存し
 
 `IT-CIQ-015`は`U-CIQ-021`,`U-CIQ-022`,`U-CIQ-023`をexact joinし、bundle build、atomic commit、immutable reconcileのfault位置を別々に採点する。
 
+| public API | L7 oracle | L8 oracle |
+|---|---|---|
+| `parseCiSourceCapabilityBinding` | `U-CIQ-001` | `IT-CIQ-001` |
+| `buildCiRequiredCheckProfile` | `U-CIQ-002` | `IT-CIQ-007` |
+| `createThreeStageCiChain` | `U-CIQ-003` | `IT-CIQ-001` |
+| `planReversePrejoinStage` | `U-CIQ-004` | `IT-CIQ-002` |
+| `validateForwardJoinReceipt` | `U-CIQ-005` | `IT-CIQ-005` |
+| `planForwardPostjoinStage` | `U-CIQ-006` | `IT-CIQ-003` |
+| `parseGithubExternalDelivery` | `U-CIQ-007` | `IT-CIQ-008` |
+| `planGithubExternalStage` | `U-CIQ-008` | `IT-CIQ-004` |
+| `validateCiStageOrder` | `U-CIQ-009` | `IT-CIQ-005` |
+| `validateCiStageLineage` | `U-CIQ-010` | `IT-CIQ-006` |
+| `aggregateCiCheckResults` | `U-CIQ-011` | `IT-CIQ-007` |
+| `invalidateCiChainForHeadChange` | `U-CIQ-012` | `IT-CIQ-008` |
+| `deriveCiFailureFingerprint` | `U-CIQ-013` | `IT-CIQ-010` |
+| `parseCiQuarantineRule` | `U-CIQ-014` | `IT-CIQ-012`, `IT-CIQ-013` |
+| `evaluateCiQuarantineApplication` | `U-CIQ-015` | `IT-CIQ-009`, `IT-CIQ-010`, `IT-CIQ-011` |
+| `validateCiMinimumGate` | `U-CIQ-016` | `IT-CIQ-012` |
+| `evaluateCiQuarantineExpiry` | `U-CIQ-017` | `IT-CIQ-011` |
+| `planCiSelfHealRoute` | `U-CIQ-018` | `IT-CIQ-014` |
+| `recordCiRecoveryAttemptResult` | `U-CIQ-019` | `IT-CIQ-014` |
+| `finalizeCiMergeEligibility` | `U-CIQ-020` | `IT-CIQ-006`, `IT-CIQ-009` |
+| `buildCiMutationCommitBundle` | `U-CIQ-021` | `IT-CIQ-015` |
+| `commitCiMutationBundle` | `U-CIQ-022` | `IT-CIQ-015` |
+| `reconcileCiMutationCommit` | `U-CIQ-023` | `IT-CIQ-015` |
+
+この表はL6 public API 23件を各一回だけ結線する。canonical HST 23件、primary IT 14件、supporting IT 1件、failure tokenと処理量分母は既存表から変更しない。
+
 上表は`HST-CASE-003-01`、`HST-CASE-003-02`、`HST-CASE-003-03`、`HST-CASE-003-04`、
 `HST-CASE-003-05`、`HST-CASE-003-06`、`HST-CASE-003-07`、`HST-CASE-003-08`、
 `HST-CASE-003-09`、`HST-CASE-003-10`、`HST-CASE-003-11`、`HST-CASE-003-12`、

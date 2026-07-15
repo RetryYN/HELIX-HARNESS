@@ -26,18 +26,18 @@ isolated DB、fixed design graph、requirement/service/template/UT/symbol regist
 
 | ID | scenario／fault | 期待結果 | citation |
 |---|---|---|---|
-| `IT-DRDM-001` | 4 transformを一件ずつ適用しsemantic/consumer/oracleをmutation | 同等時だけverified、複合step 0 | `tests/design-refactor.integration.test.ts` |
+| `IT-DRDM-001` | `U-DRDM-001 buildDesignSemanticSignature` → `U-DRDM-002 classifyDesignRefactorCandidate` → `U-DRDM-003`〜`006`の4 plan API → `U-DRDM-007 validateBehaviorPreservation`をstable順に実行し、transformごとにsemantic/consumer/oracleをmutation | 同等時だけverified、複合step 0 | `tests/design-refactor.integration.test.ts` |
 | `IT-DRDM-002` | observable I/O/failure/stateを一件変更 | Redesign一件、Refactor receipt 0 | `tests/design-refactor-route.integration.test.ts` |
 | `IT-DRDM-003` | DB field/state semanticを変更 | Retrofit一件、直接apply 0 | `tests/design-refactor-route.integration.test.ts` |
 | `IT-DRDM-004` | lexical-onlyとfuture-use base/configを投入 | candidate reject、capability増分0 | `tests/design-refactor-minimality.integration.test.ts` |
-| `IT-DRDM-005` | graph/oracle/scope authority storeからcurrent headを解決して`commitRefactorPlanFence`、続いてfence storeからcurrent receiptを解決して`commitRefactorTransformVerification`を実行。caller current偽装、fence ID/digest/head、candidate/plan/step swap、両transactionの各append fault/CASを注入 | caller申告だけではfence/verified 0。3 authority storeとcurrent fence receiptへexact一致する同一candidate/plan/step chainだけfenced→verified | `tests/design-refactor-transaction.integration.test.ts` |
-| `IT-DRDM-006` | 13 role catalog、曖昧名、全contract mutationを評価 | valid catalogだけcurrent、全違反列挙 | `tests/domain-model-catalog.integration.test.ts` |
+| `IT-DRDM-005` | `U-DRDM-008 validateConsumerCompatibility`／`U-DRDM-010 validateRefactorFence`後、graph/oracle/scope authority storeからcurrent headを解決して`U-DRDM-018 commitRefactorPlanFence`、続いてfence storeからcurrent receiptを解決して`U-DRDM-019 commitRefactorTransformVerification`を実行。caller current偽装、fence ID/digest/head、candidate/plan/step swap、両transactionの各append fault/CASを注入 | caller申告だけではfence/verified 0。3 authority storeとcurrent fence receiptへexact一致する同一candidate/plan/step chainだけfenced→verified | `tests/design-refactor-transaction.integration.test.ts` |
+| `IT-DRDM-006` | `U-DRDM-011 parseDomainObjectVersion` → `U-DRDM-012 validateDomainRoleInvariant` → `U-DRDM-013 validateDomainDependencyDirection` → `U-DRDM-014 decideCanonicalDomainName` → `U-DRDM-015 bindDomainSymbolAndOracle` → `U-DRDM-016 commitDesignDomainBundle`をstable順に実行し、13 role catalog、曖昧名、全contract mutationを評価 | valid catalogだけcurrent、全違反列挙 | `tests/domain-model-catalog.integration.test.ts` |
 | `IT-DRDM-007` | EntityからSpecificationまでのinvariantを個別破壊 | object増分0、case別failure | `tests/domain-role.integration.test.ts` |
 | `IT-DRDM-008` | Command/Query/Event/Receipt invariantを個別破壊 | object増分0 | `tests/domain-message-role.integration.test.ts` |
 | `IT-DRDM-009` | Port/Adapter/Repository方向を逆転 | relation/object増分0 | `tests/domain-boundary.integration.test.ts` |
 | `IT-DRDM-010` | 曖昧名、internal rename、private-symbol oracle、term conflict | stable object/oracle ID、invalid edge 0 | `tests/domain-naming.integration.test.ts` |
 | `IT-DRDM-011` | public APIとpersisted field rename | Redesign/Retrofitを各一件 | `tests/domain-rename-route.integration.test.ts` |
-| `IT-DRDM-012` | oracle_id/result/observable/execution receipt bindingを一件ずつ欠落・入替し、未知producer、旧revision、期限切れ、append faultも注入 | binding exact setだけcommit。forged/stale/missing oracle pass 0、current/receipt増分0、CAS rollback後partial 0 | `tests/design-oracle-trust.integration.test.ts` |
+| `IT-DRDM-012` | `U-DRDM-017 validateOracleTrustBinding` → `U-DRDM-016 commitDesignDomainBundle`をstable順に実行し、oracle_id/result/observable/execution receipt bindingを一件ずつ欠落・入替し、未知producer、旧revision、期限切れ、append faultも注入 | binding exact setだけcommit。forged/stale/missing oracle pass 0、current/receipt増分0、CAS rollback後partial 0 | `tests/design-oracle-trust.integration.test.ts` |
 
 ## §1 canonical assertion primary表
 
@@ -82,4 +82,5 @@ isolated DB、fixed design graph、requirement/service/template/UT/symbol regist
 
 IT 12/12、canonical 34/34、全consumer/oracle、forged/stale反証、fault/write-count、route/rollback、13 roleをassertする。
 
-`IT-DRDM-012`は`TrustedExecutionReceiptStore`のcurrent canonical bytes/headを基準に、producer/version、result/observable、behavior signature、target commit、freshness、supersession terminalを一件ずつswapする。oracle set/event/projection/receipt各append faultとCAS競合を含め、完全一致以外はcurrent化0、partial 0とする。
+`IT-DRDM-012`は`TrustedExecutionReceiptStoreV1`のcurrent canonical bytes/headを基準に、producer/version、result/observable、behavior signature、target commit、freshness、supersession terminalを一件ずつswapする。oracle set/event/projection/receipt各append faultとCAS競合を含め、完全一致以外はcurrent化0、partial 0とする。
+このscenarioのexact function setは`validateOracleTrustBinding` → `commitDesignDomainBundle`であり、前者のtrust判定と後者のtransaction mutationを別Uで採点しつつ、同じtrusted oracle set／commit receipt identityへ結合する。
