@@ -1,6 +1,6 @@
 schema_version: helix-layer-ledger-progress-s01.v2
 fixture_id: llpg-progress-s01-v1
-fixture_revision: 2
+fixture_revision: 3
 digest_contract:
   algorithm_id: helix-llpg-s01-digest.v1
   hash: SHA-256
@@ -11,7 +11,12 @@ digest_contract:
   aggregate_trailing_lf: false
   scalar_serialization: raw_unquoted_unescaped_ascii
   boolean_serialization: lowercase_true_false
-  forbidden_scalar_bytes: [TAB_0x09, LF_0x0A, CR_0x0D, NUL_0x00, NON_ASCII]
+  forbidden_scalar_bytes:
+    - TAB_0x09
+    - LF_0x0A
+    - CR_0x0D
+    - NUL_0x00
+    - NON_ASCII
   nested_digest_serialization: full_sha256_colon_lowercase_hex
   unspecified_fields: excluded
   dependency_order:
@@ -23,87 +28,148 @@ digest_contract:
     - expected_terminal_receipt_digest
   preimages:
     artifact_content_digest:
-      output_field: "artifact_inventory[*].content_digest"
-      input_bytes: "exact_file_bytes_at_artifact_inventory[*].path"
+      output_field: artifact_inventory[*].content_digest
+      input_bytes: exact_file_bytes_at_artifact_inventory[*].path
       file_trailing_lf: include_if_present
       aggregate_separator: none
-      excluded_fields: ["artifact_inventory[*].slice_id", "artifact_inventory[*].path"]
+      excluded_fields:
+        - artifact_inventory[*].slice_id
+        - artifact_inventory[*].path
     slice_set_digest:
       output_field: slice_set_digest
-      ordered_fields: ["slice_ids[*]"]
+      ordered_fields:
+        - slice_ids[*]
       record_schema: raw_slice_id
       array_sort: ascii_byte_ascending
       duplicate_policy: reject
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: [slice_count, all_unspecified_fields]
+      excluded_fields:
+        - slice_count
+        - all_unspecified_fields
     artifact_path_content_set_digest:
       output_field: artifact_path_content_set_digest
-      ordered_fields: ["artifact_inventory[*].path", "artifact_inventory[*].content_digest"]
+      ordered_fields:
+        - artifact_inventory[*].path
+        - artifact_inventory[*].content_digest
       record_schema: path_TAB_0x09_content_digest
       record_sort: ascii_byte_ascending_on_complete_record
       duplicate_path_policy: reject
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: ["artifact_inventory[*].slice_id", artifact_count, all_unspecified_fields]
+      excluded_fields:
+        - artifact_inventory[*].slice_id
+        - artifact_count
+        - all_unspecified_fields
     canonical_unit_set_digest:
       output_field: canonical_unit_set_digest
-      ordered_fields: ["canonical_unit_ids[*]"]
+      ordered_fields:
+        - canonical_unit_ids[*]
       array_sort: ascii_byte_ascending
       duplicate_policy: reject
       separator: LF_0x0A
       trailing_lf: false
-      excluded_values: [U-LLPG-S01]
-      excluded_fields: [canonical_unit_count, all_unspecified_fields]
+      excluded_values:
+        - U-LLPG-S01
+      excluded_fields:
+        - canonical_unit_count
+        - all_unspecified_fields
     canonical_integration_set_digest:
       output_field: canonical_integration_set_digest
-      ordered_fields: ["canonical_integration_ids[*]"]
+      ordered_fields:
+        - canonical_integration_ids[*]
       array_sort: ascii_byte_ascending
       duplicate_policy: reject
       separator: LF_0x0A
       trailing_lf: false
-      excluded_values: [IT-LLPG-S01]
-      excluded_fields: [canonical_integration_count, all_unspecified_fields]
+      excluded_values:
+        - IT-LLPG-S01
+      excluded_fields:
+        - canonical_integration_count
+        - all_unspecified_fields
     canonical_hst_set_digest:
       output_field: canonical_hst_set_digest
-      ordered_fields: ["canonical_hst_ids[*]"]
+      ordered_fields:
+        - canonical_hst_ids[*]
       array_sort: ascii_byte_ascending
       duplicate_policy: reject
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: [canonical_hst_count, all_unspecified_fields]
+      excluded_fields:
+        - canonical_hst_count
+        - all_unspecified_fields
     canonical_combined_set_digest:
       output_field: canonical_combined_set_digest
-      ordered_fields: [canonical_unit_set_digest, canonical_integration_set_digest, canonical_hst_set_digest]
+      ordered_fields:
+        - canonical_unit_set_digest
+        - canonical_integration_set_digest
+        - canonical_hst_set_digest
       array_sort: none_fixed_field_order
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: [canonical_quartet_count, canonical_total_count, all_unspecified_fields]
+      excluded_fields:
+        - canonical_quartet_count
+        - canonical_total_count
+        - all_unspecified_fields
     design_snapshot_digest:
       output_field: snapshot_binding.design_snapshot_digest
-      ordered_fields: [snapshot_binding.source_commit, snapshot_binding.source_tree, slice_set_digest, artifact_path_content_set_digest, canonical_unit_set_digest, canonical_integration_set_digest, canonical_hst_set_digest]
+      ordered_fields:
+        - snapshot_binding.source_commit
+        - snapshot_binding.source_tree
+        - slice_set_digest
+        - artifact_path_content_set_digest
+        - canonical_unit_set_digest
+        - canonical_integration_set_digest
+        - canonical_hst_set_digest
       array_sort: none_fixed_field_order
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: [fixture_id, fixture_revision, canonical_combined_set_digest, digest_contract, all_unspecified_fields]
+      excluded_fields:
+        - fixture_id
+        - fixture_revision
+        - canonical_combined_set_digest
+        - digest_contract
+        - all_unspecified_fields
     supporting_meta_oracle_receipt_digest:
       output_field: supporting_meta_oracle_receipt.receipt_digest
-      ordered_fields: [supporting_meta_oracle_receipt.receipt_id, supporting_meta_oracle_receipt.snapshot_digest, "supporting_meta_oracle_receipt.oracle_ids[0]", "supporting_meta_oracle_receipt.oracle_ids[1]", supporting_meta_oracle_receipt.status, supporting_meta_oracle_receipt.canonical_denominator_included]
+      ordered_fields:
+        - supporting_meta_oracle_receipt.receipt_id
+        - supporting_meta_oracle_receipt.snapshot_digest
+        - supporting_meta_oracle_receipt.oracle_ids[0]
+        - supporting_meta_oracle_receipt.oracle_ids[1]
+        - supporting_meta_oracle_receipt.status
+        - supporting_meta_oracle_receipt.canonical_denominator_included
       oracle_id_array_sort: none_exact_U_then_IT
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: [expected_terminal_receipt_id, digest_contract, all_unspecified_fields]
+      excluded_fields:
+        - expected_terminal_receipt_id
+        - digest_contract
+        - all_unspecified_fields
     expected_terminal_receipt_digest:
       output_field: expected_terminal_receipt_digest
-      ordered_fields: [fixture_id, snapshot_binding.design_snapshot_digest, slice_set_digest, artifact_path_content_set_digest, canonical_unit_set_digest, canonical_integration_set_digest, canonical_hst_set_digest, supporting_meta_oracle_receipt.receipt_digest]
+      ordered_fields:
+        - fixture_id
+        - snapshot_binding.design_snapshot_digest
+        - slice_set_digest
+        - artifact_path_content_set_digest
+        - canonical_unit_set_digest
+        - canonical_integration_set_digest
+        - canonical_hst_set_digest
+        - supporting_meta_oracle_receipt.receipt_digest
       array_sort: none_fixed_field_order
       separator: LF_0x0A
       trailing_lf: false
-      excluded_fields: [expected_terminal_receipt_id, expected_status, expected_terminal_receipt_digest_algorithm, digest_contract, all_unspecified_fields]
+      excluded_fields:
+        - expected_terminal_receipt_id
+        - expected_status
+        - expected_terminal_receipt_digest_algorithm
+        - digest_contract
+        - all_unspecified_fields
 snapshot_binding:
-  source_commit: d09c998991c6ceebf48876544f38442b91556c3e
-  source_tree: febeeef48f459931918a21381eb7238f8d3de6a0
-  design_snapshot_digest: sha256:6b7a3c19101b01f3bb31e87bb6e0a46364b4b4aed4c7218dd8f3f673aadcd8b1
+  source_commit: f38f55dc118a9689d2060aed2c669ba321252d2c
+  source_tree: 1f66bb6ac0acc303d054513317dbdd42c5e32825
+  design_snapshot_digest: sha256:dc4e0db20aae136252ee18a6aee55eb90cf25e5b88b831717ccc6d8eca58c5f6
   digest_algorithm: helix-llpg-s01-digest.v1
 slice_ids:
   - HDS-HIL-01
@@ -226,28 +292,28 @@ artifact_inventory:
     content_digest: sha256:224bc00a7e225287033310972204bc9fff3efbc3b379758e9540139e16d46faa
   - slice_id: HDS-HIL-09A
     path: docs/design/helix/L5-detail/source-capability-capture.md
-    content_digest: sha256:2769642788d808ba7533b421d1943b9390bb0c1799e93f50eb5f5f59470650e1
+    content_digest: sha256:5a32de1be9c30997e1c8b054374ba6e4fb92c6fdde8c5fda2e0703dc8873b0be
   - slice_id: HDS-HIL-09A
     path: docs/test-design/helix/L5-source-capability-capture-integration-test-design.md
-    content_digest: sha256:255f131827f4bd27b5654a1b33c649c6c866573f63c3a1f0dec8321e4600bc1a
+    content_digest: sha256:5e8a7707259eb4e44881be81c353b5371b86e08722ae345baca6537e27c43ef4
   - slice_id: HDS-HIL-09A
     path: docs/design/helix/L6-function-design/source-capability-capture.md
-    content_digest: sha256:3564c019db6ee7d6bb956306ed6f98d55b5fd15823beff8ecec3a9fefc2582d5
+    content_digest: sha256:008e6d408aa937a5259bac51d962b495766346e97e126f19dd153c06ab3d8cab
   - slice_id: HDS-HIL-09A
     path: docs/test-design/helix/L6-source-capability-capture-unit-test-design.md
-    content_digest: sha256:5eddd055ee7136a8a263a0a6fba65ace18319125df86f2c93b5b982a952afbe6
+    content_digest: sha256:f77c04770e1abf17ad20f0665522ef54329a820db5e0076373599d8b88f14e53
   - slice_id: HDS-HIL-09B
     path: docs/design/helix/L5-detail/source-capability-atomization-closure.md
-    content_digest: sha256:b7ce4f06bedc22eee487dc2a65abf9f709730f6db1eac68c7fd3c15f4c151520
+    content_digest: sha256:e9351367647cbe24e5185d84cf1597f37e2f2fbbb3a686023ecd12bb7e55954f
   - slice_id: HDS-HIL-09B
     path: docs/test-design/helix/L5-source-capability-atomization-closure-integration-test-design.md
-    content_digest: sha256:f0fae0e4ff6e7083e49c54b28bae01958c23b7542de92989521726d5acce7a4e
+    content_digest: sha256:ce9811f072d444044e94e2d638e6943e8bd34363b7c6fe485de07fcf8d26648e
   - slice_id: HDS-HIL-09B
     path: docs/design/helix/L6-function-design/source-capability-atomization-closure.md
-    content_digest: sha256:3ed28b3eb18ef09e6053d2d501f308d5b48642cd0c23a032d059f920bca41cc7
+    content_digest: sha256:9619b0b2a017cbd4ce01d71ef18c3202cf235618e0c0e0124bf9ab4bd7ed7bef
   - slice_id: HDS-HIL-09B
     path: docs/test-design/helix/L6-source-capability-atomization-closure-unit-test-design.md
-    content_digest: sha256:940426072d61aaf7c39eb8287030edd36ba6c0c54558c4891efd6af4a1b09f63
+    content_digest: sha256:e966b3513c960f626e1c355db0e221c4d36d2683e2e40703a635e01c7c2119fc
   - slice_id: HDS-HIL-10
     path: docs/design/helix/L5-detail/engine-detector-execution.md
     content_digest: sha256:72624b0d343dd9a107e5984666f018ccca348ae6bd868a714ece63d908f1c9a6
@@ -274,40 +340,40 @@ artifact_inventory:
     content_digest: sha256:a245ed54bc0fc941877ef5b29224c4fb9c70e98f1f62dacbbb8c71d92ac9389d
   - slice_id: HDS-HIL-12
     path: docs/design/helix/L5-detail/python-worker-runtime.md
-    content_digest: sha256:47d8102bd77cdc3d79865a230b547dc6caa949931822b9d124459b60389b8516
+    content_digest: sha256:643a668ebbe335ef2ca5b2c5eb67055975c1c3f65e633ffff20c9df4b6ea7881
   - slice_id: HDS-HIL-12
     path: docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md
-    content_digest: sha256:9be2f8ddc87f026ce9b7d727171dd59cbec4ce4e2b4f35e3f8574c693920142c
+    content_digest: sha256:06f494572775b32583fc4d1a23e4a602f088aa08c65f59ba93fac4e84dfa0c7c
   - slice_id: HDS-HIL-12
     path: docs/design/helix/L6-function-design/python-worker-runtime.md
-    content_digest: sha256:d8e7ab16b1c41bd7919979b3e85eff232d791e81ade2174d584ee665d35ade77
+    content_digest: sha256:80a93f39ea4c61c0cec17efcc69700b577ad9eda23a477d1b18163a98e60a289
   - slice_id: HDS-HIL-12
     path: docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md
-    content_digest: sha256:a3c1c57700527c0b4f1b222e456fc6d27eeff5e547c78562de4527427864e443
+    content_digest: sha256:291d8bb12e386558af74b0bd087ca26540a4e88a6b31b50319a3e157222772b1
   - slice_id: HDS-HIL-13
     path: docs/design/helix/L5-detail/node-runtime-cutover.md
-    content_digest: sha256:b9bb4a3b38e3b308c73aaa54ba4d7e7b733ecfb9cf7c4c6df9fa1baba2ce4766
+    content_digest: sha256:023eeb01fef0bfd99941c611b9d9ff5245f2168be926caf819a3b2de0f51b188
   - slice_id: HDS-HIL-13
     path: docs/test-design/helix/L5-node-runtime-cutover-integration-test-design.md
-    content_digest: sha256:22d300407031e9d324ebe962b3a09c9e138bed7c7d71fde6cccb0706f5e5fde1
+    content_digest: sha256:b89080f8726709d68f0eef7a714b36df63df294caf944dc49a555abbd4c16d22
   - slice_id: HDS-HIL-13
     path: docs/design/helix/L6-function-design/node-runtime-cutover.md
-    content_digest: sha256:8aeb29d561188d8e9b842bbd061fb434a7e8cdf863340d82211c38002d38bb30
+    content_digest: sha256:de5230d8fe9e30e48db2e26cd06e8270e323c2651132fd3709e0533c501b1f57
   - slice_id: HDS-HIL-13
     path: docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md
-    content_digest: sha256:3ac0321be28ae1610709ad1e2b0abc5a28e1b7784e6a45ed71893cbcf41315b7
+    content_digest: sha256:b96c4765faae73ff5ba695bbb47fb8ab216dae82d96f2703667afae1aa4d3bc5
   - slice_id: HDS-HIL-14
     path: docs/design/helix/L5-detail/os-portability-supply-chain.md
-    content_digest: sha256:b0cbe1e9f61bdf3b8379918b9ef894bfbd1b4b8cfdd7202ffd55fb752d8175c5
+    content_digest: sha256:3903ab1b5a1b4d42571120b9d310ad93291daf27c8c88bd2f65abc462246de40
   - slice_id: HDS-HIL-14
     path: docs/test-design/helix/L5-os-portability-supply-chain-integration-test-design.md
-    content_digest: sha256:d9c0bed39daf499182350b03aee3f0ea56288d3e6af9fb4782744a764db1eacf
+    content_digest: sha256:fe8a08a9a251c86b1ec295d3d4c40f4055020b79a987f8e88d6569c47ff1e0d5
   - slice_id: HDS-HIL-14
     path: docs/design/helix/L6-function-design/os-portability-supply-chain.md
-    content_digest: sha256:41d199f27c091063ef625e1108f937b7e56e1f8d5a6bc8fbb9d1e25adcd7dd1c
+    content_digest: sha256:b9976277c2d025b9ab0ae9454be97b679416e44823198d41b9b4aae127ffbc66
   - slice_id: HDS-HIL-14
     path: docs/test-design/helix/L6-os-portability-supply-chain-unit-test-design.md
-    content_digest: sha256:e38eb774ef238a3a2eb1c338a5d6f0e2f9321faa571536a0794415eb7a71ddcd
+    content_digest: sha256:947ac36e26182e6818db8f8d9f6f83694a00850ee4e1b33018b3fc64c6b7bf67
   - slice_id: HDS-HIL-15
     path: docs/design/helix/L5-detail/screen-applicability-prototype.md
     content_digest: sha256:aa744b5d6eb4121c14cd8f2e8660dac200183a1359b4f3cf6bdc3b5a14d882c0
@@ -346,18 +412,18 @@ artifact_inventory:
     content_digest: sha256:81f1e3945b04fa33aeae11daf77e06b63d7d0e90ce11ea7a16348af2bbd8a479
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L5-detail/layer-ledger-pair-gate.md
-    content_digest: sha256:cf5aa42a72feb175d1a4a9c4790da6433ec6039becd94fd7c9869d1a2d652680
+    content_digest: sha256:2046501f6cc5a7c4f241fd97b8d061a2bd0d148274f6801261b5fca099b71b1a
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
-    content_digest: sha256:484d7c56c371dc9930d69b8d600d2efb16e71836fa3dd29fb907a7e63e8e514d
+    content_digest: sha256:bfc5e7ba3a2e88fcb4c0baaba990be2074a71110676db8eb7481dbe002446c27
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
-    content_digest: sha256:072b420bebffa9e36d837c2577603bb20f89889af71141fdbb36ccfbdbbc2f88
+    content_digest: sha256:423a651eff2bccc1a6e299b6f200075ffed63696303f8e1fee16f2f13afd0c66
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md
-    content_digest: sha256:0efe8558d7ce7bdb103249ac0c42129f3ac830aa1459ab40e2f4e7109f632062
+    content_digest: sha256:dfa0d5325671b99b8eb65727f25ddced3d9ad041011b0584effae017e7a0884f
 artifact_count: 76
-artifact_path_content_set_digest: sha256:ec7cb5048df191d839e909798f83f50d7e406bffdd91d697c52cf1c66fcd07d9
+artifact_path_content_set_digest: sha256:2f7fdf7d34967144e4a36f2277441327e7f4f8faaa04ae51f1e60645485627f7
 canonical_unit_ids:
   - U-AGLC-001
   - U-AGLC-002
@@ -600,6 +666,8 @@ canonical_unit_ids:
   - U-NCUT-011
   - U-NCUT-012
   - U-NCUT-013
+  - U-NCUT-014
+  - U-NCUT-015
   - U-OSSC-001
   - U-OSSC-002
   - U-OSSC-003
@@ -796,6 +864,12 @@ canonical_unit_ids:
   - U-SCAP-023
   - U-SCAP-024
   - U-SCAP-025
+  - U-SCAP-026
+  - U-SCAP-027
+  - U-SCAP-028
+  - U-SCAP-029
+  - U-SCAP-030
+  - U-SCAP-031
   - U-URR-001
   - U-URR-002
   - U-URR-003
@@ -826,8 +900,8 @@ canonical_unit_ids:
   - U-URR-028
   - U-URR-029
   - U-URR-030
-canonical_unit_count: 467
-canonical_unit_set_digest: sha256:9d1e7c8907a1100b95f5fe38a9a50f2b6386ea85e4c1a62e7db35c80833d0db5
+canonical_unit_count: 475
+canonical_unit_set_digest: sha256:89482bf87122c1576a0fcc8319bc9d286f36b150d7722b324e04a00a5e7977ac
 canonical_integration_ids:
   - IT-AGLC-001
   - IT-AGLC-002
@@ -1018,6 +1092,8 @@ canonical_integration_ids:
   - IT-NCUT-009
   - IT-NCUT-010
   - IT-NCUT-011
+  - IT-NCUT-012
+  - IT-NCUT-013
   - IT-OSSC-001
   - IT-OSSC-002
   - IT-OSSC-003
@@ -1157,6 +1233,9 @@ canonical_integration_ids:
   - IT-SCAP-008
   - IT-SCAP-009
   - IT-SCAP-010
+  - IT-SCAP-011
+  - IT-SCAP-012
+  - IT-SCAP-013
   - IT-URR-001
   - IT-URR-002
   - IT-URR-003
@@ -1184,8 +1263,8 @@ canonical_integration_ids:
   - IT-URR-025
   - IT-URR-026
   - IT-URR-027
-canonical_integration_count: 355
-canonical_integration_set_digest: sha256:05fd1d5542b710acf9e81c54b9f0a75611bec9b523413767e56b2b1aa5b737ff
+canonical_integration_count: 360
+canonical_integration_set_digest: sha256:e51121f2e87d91f3a77326872db4d20999f4ef43ca8e9f788b40b40e797d8559
 canonical_hst_ids:
   - HST-CASE-001-01
   - HST-CASE-001-02
@@ -1600,20 +1679,20 @@ canonical_hst_ids:
   - HST-CASE-033-14
 canonical_hst_count: 411
 canonical_hst_set_digest: sha256:1558c473cac4c1948d73fbf008e1d46059f788771909b80f43344120384f9bb4
-canonical_quartet_count: 822
-canonical_total_count: 1233
-canonical_combined_set_digest: sha256:d0fa1f50ff757df4428f3d0e8f1c5f9e33c132f1f8fa763a84d6777af449aa2b
+canonical_quartet_count: 835
+canonical_total_count: 1246
+canonical_combined_set_digest: sha256:9d5c3beb54b778c05d577f83915c5782ebf671137a7e146f2237ed1c71cb27bc
 supporting_meta_oracle_receipt:
   receipt_id: SMOR-LLPG-S01-V1
-  receipt_digest: sha256:babef4ebc70b49fdd797ed6a3cb73653007b472cf189437a79cf1f53bde9edb8
+  receipt_digest: sha256:02a63bfab405fba37a057124add6e5e2b9988e608aa0f097f79ba1c554348247
   oracle_ids:
     - U-LLPG-S01
     - IT-LLPG-S01
   status: designed_not_implemented
   canonical_denominator_included: false
-  snapshot_digest: sha256:6b7a3c19101b01f3bb31e87bb6e0a46364b4b4aed4c7218dd8f3f673aadcd8b1
+  snapshot_digest: sha256:dc4e0db20aae136252ee18a6aee55eb90cf25e5b88b831717ccc6d8eca58c5f6
 expected_terminal_receipt_id: DPR-LLPG-S01-V1
-expected_terminal_receipt_digest: sha256:22f79f8d479cf6cfefb5ce1806112d668de731462fc753548118081551fbcbf3
+expected_terminal_receipt_digest: sha256:3316a9211f2b6a144931f890cdcee1907b73afe2f25a8e6a4f6f5f5746d076b5
 expected_terminal_receipt_digest_algorithm: helix-llpg-s01-digest.v1
 expected_status: designed_not_implemented
 mutations:

@@ -401,16 +401,12 @@ describe("Infinity Loop strict design contract", () => {
     }
     expect(currentUnitIds.size).toBe(475);
     expect(currentIntegrationIds.size).toBe(360);
-    expect(
-      [...currentUnitIds].filter(
-        (id) => !manifest.canonical_unit_ids.includes(id),
-      ).sort(),
-    ).toEqual(["U-NCUT-014", "U-NCUT-015"]);
-    expect(
-      [...currentIntegrationIds].filter(
-        (id) => !manifest.canonical_integration_ids.includes(id),
-      ).sort(),
-    ).toEqual(["IT-NCUT-012", "IT-NCUT-013"]);
+    expect([...currentUnitIds].sort()).toEqual(
+      [...manifest.canonical_unit_ids].sort(),
+    );
+    expect([...currentIntegrationIds].sort()).toEqual(
+      [...manifest.canonical_integration_ids].sort(),
+    );
 
     const functionDesign = readFileSync(
       "docs/design/helix/L6-function-design/node-runtime-cutover.md",
@@ -809,6 +805,10 @@ describe("Infinity Loop strict design contract", () => {
       "docs/governance/infinity-loop-source-snapshot-manifest.md",
       "utf8",
     );
+    const sliceRegistry = readFileSync(
+      "docs/governance/infinity-loop-design-slice-registry.md",
+      "utf8",
+    );
     const atomizationL6 = readFileSync(
       "docs/design/helix/L6-function-design/source-capability-atomization-closure.md",
       "utf8",
@@ -870,6 +870,14 @@ describe("Infinity Loop strict design contract", () => {
         expect(content).toContain(required);
       }
     }
+    const registryRows = sliceRegistry
+      .split("\n")
+      .filter((line) => /^\| HDS-HIL-[0-9]+[A-Z]? \|/.test(line));
+    expect(registryRows).toHaveLength(19);
+    expect(registryRows.filter((line) => line.includes("strict GREEN"))).toHaveLength(19);
+    expect(
+      registryRows.find((line) => line.startsWith("| HDS-HIL-09A |")),
+    ).toContain("all-ref authority／consumer cascade／shared lifecycle rebuild");
     for (const namespace of [
       "refs/heads/*",
       "refs/tags/*",
