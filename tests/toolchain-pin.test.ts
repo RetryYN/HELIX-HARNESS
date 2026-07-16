@@ -9,12 +9,9 @@ import {
 const validInput: ToolchainPinInput = {
   packageJson: {
     path: "package.json",
-    text: JSON.stringify({
-      packageManager: "npm@11.12.1",
-      engines: { node: ">=24.15.0 <25", bun: ">=1.3" },
-    }),
+    text: JSON.stringify({ engines: { bun: ">=1.3" } }),
   },
-  lockfiles: ["package-lock.json", "bun.lock"],
+  lockfiles: ["bun.lock"],
   workflowFiles: [
     {
       path: ".github/workflows/harness-check.yml",
@@ -23,10 +20,10 @@ const validInput: ToolchainPinInput = {
         "jobs:",
         "  harness-check:",
         "    steps:",
-        "      - uses: actions/setup-node@v4",
+        "      - uses: oven-sh/setup-bun@v2",
         "        with:",
-        '          node-version: "24.15"',
-        "      - run: npm ci",
+        '          bun-version: "1.3"',
+        "      - run: bun install --frozen-lockfile",
       ].join("\n"),
     },
     {
@@ -36,26 +33,26 @@ const validInput: ToolchainPinInput = {
         "jobs:",
         "  harness-check:",
         "    steps:",
-        "      - uses: actions/setup-node@v4",
-        "      - run: npm ci",
+        "      - uses: oven-sh/setup-bun@v2",
+        "      - run: bun install --frozen-lockfile",
       ].join("\n"),
     },
   ],
 };
 
 describe("toolchain-pin lint", () => {
-  it("U-TOOLCHAIN-PIN-001: accepts pinned Node/npm, package lock, and npm ci", () => {
+  it("U-TOOLCHAIN-PIN-001: accepts pinned Bun engine, committed lockfile, and frozen CI installs", () => {
     const result = analyzeToolchainPin(validInput);
 
     expect(result.ok).toBe(true);
     expect(toolchainPinMessages(result)[0]).toContain("OK");
   });
 
-  it("U-TOOLCHAIN-PIN-002: rejects invalid Node/npm pins, missing lock, and npm install", () => {
+  it("U-TOOLCHAIN-PIN-002: rejects missing Bun pin, missing lockfile, and non-frozen install", () => {
     const result = analyzeToolchainPin({
       packageJson: {
         path: "package.json",
-        text: JSON.stringify({ packageManager: "npm@latest", engines: { node: "latest" } }),
+        text: JSON.stringify({ engines: { bun: "latest" } }),
       },
       lockfiles: [],
       workflowFiles: [
@@ -66,8 +63,8 @@ describe("toolchain-pin lint", () => {
             "jobs:",
             "  harness-check:",
             "    steps:",
-            "      - uses: actions/setup-node@v4",
-            "      - run: npm install",
+            "      - uses: oven-sh/setup-bun@v2",
+            "      - run: bun install",
           ].join("\n"),
         },
       ],
@@ -76,16 +73,15 @@ describe("toolchain-pin lint", () => {
     expect(result.ok).toBe(false);
     expect(result.violations.map((violation) => violation.rule)).toEqual(
       expect.arrayContaining([
-        "node-engine-unpinned",
-        "npm-version-unpinned",
-        "node-lockfile-missing",
-        "npm-install-not-frozen",
-        "source-harness-check-node-version-missing",
+        "bun-engine-unpinned",
+        "bun-lockfile-missing",
+        "bun-install-not-frozen",
+        "source-harness-check-bun-version-missing",
       ]),
     );
   });
 
-  it("U-TOOLCHAIN-PIN-003: rejects source harness-check Node version drift", () => {
+  it("U-TOOLCHAIN-PIN-003: rejects source harness-check bun-version drift from package engine floor", () => {
     const result = analyzeToolchainPin({
       ...validInput,
       workflowFiles: [
@@ -96,10 +92,10 @@ describe("toolchain-pin lint", () => {
             "jobs:",
             "  harness-check:",
             "    steps:",
-            "      - uses: actions/setup-node@v4",
+            "      - uses: oven-sh/setup-bun@v2",
             "        with:",
-            '          node-version: "22.23"',
-            "      - run: npm ci",
+            '          bun-version: "1.4"',
+            "      - run: bun install --frozen-lockfile",
           ].join("\n"),
         },
       ],
@@ -107,7 +103,7 @@ describe("toolchain-pin lint", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations.map((violation) => violation.rule)).toContain(
-      "source-harness-check-node-version-mismatch",
+      "source-harness-check-bun-version-mismatch",
     );
   });
 

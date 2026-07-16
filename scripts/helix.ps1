@@ -4,7 +4,7 @@ $root = Split-Path -Parent $PSScriptRoot
 $source = Join-Path $root "src\cli.ts"
 
 if (Test-Path $source) {
-    & node (Join-Path $root "node_modules\tsx\dist\cli.mjs") $source @args
+    & bun run $source @args
     exit $LASTEXITCODE
 }
 

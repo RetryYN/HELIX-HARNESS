@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 import { execFileSync, spawn, spawnSync } from "node:child_process";
 /**
  * HELIX-HARNESS CLI (TypeScript core, ADR-001).

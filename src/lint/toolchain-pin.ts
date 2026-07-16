@@ -24,15 +24,12 @@ export interface ToolchainPinResult {
   checkedWorkflows: number;
   lockfiles: string[];
   bunEngine?: string;
-  nodeEngine?: string;
-  packageManager?: string;
   violations: ToolchainPinViolation[];
   ok: boolean;
 }
 
 type PackageJson = {
-  engines?: { bun?: string; node?: string };
-  packageManager?: string;
+  engines?: { bun?: string };
 };
 
 const WORKFLOW_DIRS = [".github/workflows", "docs/templates/github/common"] as const;
@@ -58,9 +55,7 @@ function collectWorkflowFiles(root: string): ToolchainPinFile[] {
 }
 
 export function loadToolchainPinInput(root = process.cwd()): ToolchainPinInput {
-  const lockfiles = ["package-lock.json", "bun.lock", "bun.lockb"].filter((path) =>
-    existsSync(join(root, path)),
-  );
+  const lockfiles = ["bun.lock", "bun.lockb"].filter((path) => existsSync(join(root, path)));
   return {
     packageJson: readIfExists(root, "package.json"),
     lockfiles,
@@ -94,38 +89,22 @@ function parsePackageJson(doc: ToolchainPinFile | undefined): {
   }
 }
 
-function pinnedNodeEngineViolation(engine: string | undefined): ToolchainPinViolation | null {
+function pinnedBunEngineViolation(engine: string | undefined): ToolchainPinViolation | null {
   if (!engine) {
     return {
       path: "package.json",
-      rule: "node-engine-missing",
-      message: "package.json engines.node must declare the Node 24 runtime range.",
+      rule: "bun-engine-missing",
+      message: "package.json engines.bun must declare the Bun runtime floor.",
     };
   }
   if (!/(?:^|[<>=~^ ])\d+\.\d+(?:\.\d+)?/.test(engine) || /\b(?:latest|\*)\b/i.test(engine)) {
     return {
       path: "package.json",
-      rule: "node-engine-unpinned",
-      message: "engines.node must be a concrete semver range, not latest or wildcard.",
-    };
-  }
-  if (!/>=\s*24\.15\.0/.test(engine) || !/<\s*25/.test(engine)) {
-    return {
-      path: "package.json",
-      rule: "node-engine-range-mismatch",
-      message: "engines.node must enforce >=24.15.0 <25 for the Node Minimum gate.",
+      rule: "bun-engine-unpinned",
+      message: "engines.bun must be a concrete semver range, not latest or wildcard.",
     };
   }
   return null;
-}
-
-function packageManagerViolation(value: string | undefined): ToolchainPinViolation | null {
-  if (/^npm@\d+\.\d+\.\d+$/.test(value ?? "")) return null;
-  return {
-    path: "package.json",
-    rule: "npm-version-unpinned",
-    message: "packageManager must pin an exact npm version.",
-  };
 }
 
 function yamlDoc(doc: ToolchainPinFile): unknown | null {
@@ -152,18 +131,18 @@ function collectWorkflowSteps(parsed: unknown): Array<Record<string, unknown>> {
   return steps;
 }
 
-function firstNodeVersion(steps: Array<Record<string, unknown>>): string | undefined {
+function firstBunVersion(steps: Array<Record<string, unknown>>): string | undefined {
   for (const step of steps) {
-    if (step.uses !== "actions/setup-node@v4") continue;
+    if (step.uses !== "oven-sh/setup-bun@v2") continue;
     const withBlock = step.with;
     if (!withBlock || typeof withBlock !== "object") return undefined;
-    const version = (withBlock as Record<string, unknown>)["node-version"];
+    const version = (withBlock as Record<string, unknown>)["bun-version"];
     return typeof version === "string" ? version : undefined;
   }
   return undefined;
 }
 
-function nodeEngineFloor(engine: string | undefined): string | undefined {
+function bunEngineFloor(engine: string | undefined): string | undefined {
   return engine?.match(/\d+\.\d+(?:\.\d+)?/)?.[0];
 }
 
@@ -190,30 +169,33 @@ function workflowViolations(
   const violations: ToolchainPinViolation[] = [];
   const runCommands = steps.flatMap((step) => (typeof step.run === "string" ? [step.run] : []));
   for (const command of runCommands) {
-    if (/\bnpm\s+install\b/.test(command) && !/\bnpm\s+ci\b/.test(command)) {
+    if (
+      /\bbun\s+install\b/.test(command) &&
+      !/\bbun\s+install\s+--frozen-lockfile\b/.test(command)
+    ) {
       violations.push({
         path: doc.path,
-        rule: "npm-install-not-frozen",
-        message: "workflow installs must use `npm ci` rather than `npm install`.",
+        rule: "bun-install-not-frozen",
+        message: "workflow Bun install commands must use `bun install --frozen-lockfile`.",
       });
     }
   }
 
   const sourceHarnessCheck = doc.path === ".github/workflows/harness-check.yml";
   if (sourceHarnessCheck) {
-    const workflowVersion = firstNodeVersion(steps);
-    const floor = nodeEngineFloor(engine);
+    const workflowVersion = firstBunVersion(steps);
+    const floor = bunEngineFloor(engine);
     if (!workflowVersion) {
       violations.push({
         path: doc.path,
-        rule: "source-harness-check-node-version-missing",
-        message: "source harness-check must pin setup-node node-version.",
+        rule: "source-harness-check-bun-version-missing",
+        message: "source harness-check must pin setup-bun bun-version.",
       });
     } else if (floor && majorMinor(workflowVersion) !== majorMinor(floor)) {
       violations.push({
         path: doc.path,
-        rule: "source-harness-check-node-version-mismatch",
-        message: `source harness-check node-version (${workflowVersion}) must match engines.node floor (${floor}).`,
+        rule: "source-harness-check-bun-version-mismatch",
+        message: `source harness-check bun-version (${workflowVersion}) must match engines.bun floor (${floor}).`,
       });
     }
   }
@@ -226,31 +208,25 @@ export function analyzeToolchainPin(input: ToolchainPinInput): ToolchainPinResul
   const parsedPackage = parsePackageJson(input.packageJson);
   if (parsedPackage.violation) violations.push(parsedPackage.violation);
   const bunEngine = parsedPackage.pkg?.engines?.bun;
-  const nodeEngine = parsedPackage.pkg?.engines?.node;
-  const packageManager = parsedPackage.pkg?.packageManager;
-  const engineViolation = pinnedNodeEngineViolation(nodeEngine);
+  const engineViolation = pinnedBunEngineViolation(bunEngine);
   if (engineViolation) violations.push(engineViolation);
-  const managerViolation = packageManagerViolation(packageManager);
-  if (managerViolation) violations.push(managerViolation);
 
-  if (!input.lockfiles.includes("package-lock.json")) {
+  if (input.lockfiles.length === 0) {
     violations.push({
-      path: "package-lock.json",
-      rule: "node-lockfile-missing",
-      message: "source package must commit package-lock.json for npm ci.",
+      path: "bun.lock",
+      rule: "bun-lockfile-missing",
+      message: "source package must commit bun.lock or bun.lockb for frozen CI installs.",
     });
   }
 
   for (const doc of input.workflowFiles) {
-    violations.push(...workflowViolations(doc, nodeEngine));
+    violations.push(...workflowViolations(doc, bunEngine));
   }
 
   return {
     checkedWorkflows: input.workflowFiles.length,
     lockfiles: input.lockfiles,
     bunEngine,
-    nodeEngine,
-    packageManager,
     violations,
     ok: violations.length === 0,
   };
@@ -259,7 +235,7 @@ export function analyzeToolchainPin(input: ToolchainPinInput): ToolchainPinResul
 export function toolchainPinMessages(result: ToolchainPinResult): string[] {
   if (result.ok) {
     return [
-      `toolchain-pin - OK (node=${result.nodeEngine ?? "unknown"}, npm=${result.packageManager ?? "unknown"}, rollback-bun=${result.bunEngine ?? "none"}, lockfiles=${result.lockfiles.join("|")}, workflows=${result.checkedWorkflows}, frozen install=true)`,
+      `toolchain-pin - OK (bun=${result.bunEngine ?? "unknown"}, lockfiles=${result.lockfiles.join("|")}, workflows=${result.checkedWorkflows}, frozen install=true)`,
     ];
   }
   const sample = result.violations

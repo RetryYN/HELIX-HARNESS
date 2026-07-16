@@ -59,28 +59,7 @@ function cleanupRepo(repo: string): void {
  * 設計 pair: docs/test-design/harness/L8-integration-test-design.md IT-DB-01。
  */
 // PLAN-L7-459-design-freeze-authority-transition
-// PLAN-L7-458-node-minimum-p0-p1
 describe("IT-DB-01: harness.db state-db foundation", () => {
-  it("IT-NCUT-005: node:sqliteでmigration・transaction・queueを同一control plane上で実行する", () => {
-    const db = openHarnessDb(":memory:");
-    try {
-      expect(db.driver).toBe("node");
-      expect(migrate(db).applied).toBe(true);
-      db.exec("BEGIN IMMEDIATE");
-      db.prepare(
-        "INSERT INTO issue_queue (issue_queue_id, title, status, human_approval_required) VALUES (?, ?, ?, ?)",
-      ).run("IT-NCUT-005", "Node queue smoke", "queued", 0);
-      db.exec("COMMIT");
-      expect(
-        db.prepare("SELECT status FROM issue_queue WHERE issue_queue_id = ?").get("IT-NCUT-005"),
-      ).toEqual({ status: "queued" });
-      expect(migrate(db).applied).toBe(false);
-      expect(missingTables(db)).toEqual([]);
-    } finally {
-      db.close();
-    }
-  });
-
   it("uses node:sqlite fallback when the test worker is running under Node", () => {
     const db = openHarnessDb(":memory:");
     try {

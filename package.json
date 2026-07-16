@@ -8,15 +8,13 @@
   "bin": {
     "helix": "./dist/helix"
   },
-  "packageManager": "npm@11.12.1",
   "engines": {
-    "node": ">=24.15.0 <25",
     "bun": ">=1.3"
   },
   "scripts": {
-    "dev": "tsx src/cli.ts",
-    "helix": "tsx src/cli.ts",
-    "build": "tsx src/build/node-build-cli.ts",
+    "dev": "bun run src/cli.ts",
+    "helix": "bun run src/cli.ts",
+    "build": "bun build src/cli.ts --compile --outfile dist/helix",
     "typecheck": "tsc --noEmit",
     "lint": "biome check src tests",
     "format": "biome check --write src tests",
@@ -38,10 +36,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.15",
-    "@types/node": "^24.10.0",
+    "@types/node": "^22.7.4",
     "@vitest/coverage-v8": "2.1.9",
-    "esbuild": "^0.25.0",
-    "tsx": "^4.20.0",
     "vitest": "^2.1.2"
   }
 }

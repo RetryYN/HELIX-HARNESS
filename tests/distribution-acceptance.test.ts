@@ -12,8 +12,6 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
-
-// PLAN-L7-458-node-minimum-p0-p1
 import {
   buildCleanDistributionPlan,
   CONSUMER_CI_RUN_COMMANDS,
@@ -173,43 +171,6 @@ function runWorkflowCommand(
 }
 
 describe("clean distribution local acceptance smoke", () => {
-  it("IT-NCUT-004: Node source CLIとESM build artifactのversion・schema・exitを比較する", () => {
-    const tsxCli = join(repoRoot, "node_modules", "tsx", "dist", "cli.mjs");
-    const sourceCli = join(repoRoot, "src", "cli.ts");
-    const buildCli = join(repoRoot, "src", "build", "node-build-cli.ts");
-    const artifact = join(repoRoot, "dist", "helix");
-    const runNode = (args: string[]) =>
-      spawnSync(process.execPath, args, {
-        cwd: repoRoot,
-        encoding: "utf8",
-        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-        timeout: 120_000,
-      });
-
-    const build = runNode([tsxCli, buildCli]);
-    expect(build.status, build.stderr || build.stdout).toBe(0);
-    expect(existsSync(artifact)).toBe(true);
-    expect(readFileSync(artifact, "utf8").startsWith("#!/usr/bin/env node\n")).toBe(true);
-
-    for (const args of [["--version"], ["doctor", "--help"]]) {
-      const source = runNode([tsxCli, sourceCli, ...args]);
-      const built = runNode([artifact, ...args]);
-      expect(source.status, source.stderr || source.stdout).toBe(0);
-      expect(built.status, built.stderr || built.stdout).toBe(source.status);
-      expect(built.stdout).toBe(source.stdout);
-      expect(built.stderr).toBe(source.stderr);
-    }
-
-    const sourceStatus = runNode([tsxCli, sourceCli, "status", "--json"]);
-    const builtStatus = runNode([artifact, "status", "--json"]);
-    expect(sourceStatus.status, sourceStatus.stderr || sourceStatus.stdout).toBe(0);
-    expect(builtStatus.status, builtStatus.stderr || builtStatus.stdout).toBe(0);
-    const sourcePayload = JSON.parse(sourceStatus.stdout);
-    const builtPayload = JSON.parse(builtStatus.stdout);
-    expect(Object.keys(builtPayload).sort()).toEqual(Object.keys(sourcePayload).sort());
-    expect(builtPayload).toMatchObject({ mode: sourcePayload.mode });
-  });
-
   it("U-SETUP-013 / AT-DIST-001: clean artifact installs and exposes the same core CLI surfaces", () => {
     const plan = buildCleanDistributionPlan({
       paths: walkCandidatePaths(repoRoot),
@@ -249,7 +210,7 @@ describe("clean distribution local acceptance smoke", () => {
         scripts?: { helix?: string };
       };
       expect(packageJson.bin?.helix).toBe("./dist/helix");
-      expect(packageJson.scripts?.helix).toBe("tsx src/cli.ts");
+      expect(packageJson.scripts?.helix).toBe("bun run src/cli.ts");
       expect(existsSync(join(cleanRoot, packageJson.bin?.helix ?? ""))).toBe(true);
 
       const packageScriptVersion = runBun(cleanRoot, ["run", "helix", "--version"], env);

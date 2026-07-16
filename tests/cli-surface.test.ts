@@ -12,8 +12,6 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-
-// PLAN-L7-458-node-minimum-p0-p1
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 
@@ -27,19 +25,6 @@ const CLI_CHILD_TIMEOUT_MS = 45_000;
 
 function runCli(args: string[]) {
   return runCliIn(repoRoot, args);
-}
-
-function runNodeSourceCli(args: string[]) {
-  return spawnSync(
-    process.execPath,
-    [join(repoRoot, "node_modules", "tsx", "dist", "cli.mjs"), cliPath, ...args],
-    {
-      cwd: repoRoot,
-      encoding: "utf8",
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-      timeout: CLI_CHILD_TIMEOUT_MS,
-    },
-  );
 }
 
 function runCliIn(
@@ -205,27 +190,6 @@ function writeFakeGitLsRemote(
 }
 
 describe("L7 CLI surface closure", () => {
-  it("IT-NCUT-003: Node source runnerでread-only CLI surfaceをBun loaderなしで解決する", () => {
-    const packageJson = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
-      version: string;
-    };
-    const version = runNodeSourceCli(["--version"]);
-    expect(version.status, version.stderr || version.stdout).toBe(0);
-    expect(version.stdout.trim()).toBe(packageJson.version);
-
-    const status = runNodeSourceCli(["status", "--json"]);
-    expect(status.status, status.stderr || status.stdout).toBe(0);
-    expect(JSON.parse(status.stdout)).toMatchObject({
-      mode: expect.stringMatching(/^(standalone|claude-only|codex-only|hybrid)$/),
-      availableRuntimes: expect.any(Array),
-    });
-
-    const doctor = runNodeSourceCli(["doctor", "--help"]);
-    expect(doctor.status, doctor.stderr || doctor.stdout).toBe(0);
-    expect(doctor.stdout).toContain("Usage: helix doctor");
-    expect(process.execPath.toLowerCase()).toMatch(/(?:^|[\\/])node(?:\.exe)?$/);
-  });
-
   it("keeps CLI --version bound to package.json version", () => {
     const packageJson = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
       version: string;
@@ -1583,7 +1547,7 @@ describe("L7 CLI surface closure", () => {
         "PLAN-L1-07-infinity-loop-platform-requirements",
         "PLAN-L7-456-document-agent-metadata-phase-b-apply",
         "PLAN-L7-457-document-diff-local-artifact-output",
-        "PLAN-L7-458-node-minimum-p0-p1",
+        "PLAN-L7-459-design-freeze-authority-transition",
       ]),
     );
 
