@@ -122,6 +122,42 @@ describe("document agent metadata Phase B apply", () => {
     });
   });
 
+  it("U-AGMETA-011: batch preflightが全件PASSするまでwriteを開始しない", () => {
+    const second = "docs/design/helix/b.md";
+    const plan = planDocumentAgentMetadataApply({
+      manifest: { ...manifest, documents: [path, second] },
+      report: { ...report, proposed: { [path]: metadata, [second]: metadata } },
+      selection: [path, second],
+      source: { read: () => sourceText },
+    });
+    const preflighted: string[] = [];
+    let writes = 0;
+    let restores = 0;
+    const port: DocumentAgentMetadataWritePort = {
+      preflight: (change) => {
+        preflighted.push(change.path);
+        if (change.path === second) throw new DocumentAgentMetadataWriteError("second rejected");
+      },
+      write: () => {
+        writes += 1;
+        return { durable: true };
+      },
+      restore: () => {
+        restores += 1;
+        return { durable: true };
+      },
+    };
+
+    expect(applyDocumentAgentMetadata(plan, port)).toMatchObject({
+      ok: false,
+      partial: false,
+      ambiguous: false,
+      changes: [],
+    });
+    expect(preflighted).toEqual([path, second]);
+    expect({ writes, restores }).toEqual({ writes: 0, restores: 0 });
+  });
+
   it("U-AGMETA-012: publish途中失敗をreverse rollbackする", () => {
     const second = "docs/design/helix/b.md";
     const plan = planDocumentAgentMetadataApply({
