@@ -7,6 +7,7 @@ import { activatePo7Decision } from "../../state-db/po7-decision-activation";
 import { commitPostPoDesignFreezeTransition } from "../../state-db/post-po-design-freeze-transition";
 import { commitPostPoDesignFreezeTransitionV2 } from "../../state-db/post-po-design-freeze-transition-v2";
 import { createHash } from "node:crypto";
+import { HARNESS_DB_TABLE_BY_NAME } from "../../schema/harness-db";
 
 export function registerAuthorityCommands(program: Command): void {
   const authority = program.command("authority").description("authority receipt operations");
@@ -73,17 +74,18 @@ export function registerAuthorityCommands(program: Command): void {
     .description("commit the hardened four-head/19-slice/76-artifact Design Freeze transition")
     .requiredOption("--operation-id <id>").requiredOption("--idempotency-key <key>")
     .requiredOption("--expected-po7-event <sha256>").option("--expected-epoch <number>", "expected PO7 epoch", "1")
+    .option("--expected-authority-head <sha256>").option("--expected-freeze-head <sha256>").option("--expected-progress-head <sha256>").option("--expected-candidate-head <sha256>").option("--supersedes-receipt <sha256>")
     .requiredOption("--expires-at <iso8601>").requiredOption("--receipt-out <path>").requiredOption("--full-row-export-out <path>")
     .option("--execute").option("--json")
-    .action((opts: { operationId: string; idempotencyKey: string; expectedPo7Event: string; expectedEpoch: string; expiresAt: string; receiptOut: string; fullRowExportOut: string; execute?: boolean; json?: boolean }) => {
+    .action((opts: { operationId: string; idempotencyKey: string; expectedPo7Event: string; expectedEpoch: string; expectedAuthorityHead?: string; expectedFreezeHead?: string; expectedProgressHead?: string; expectedCandidateHead?: string; supersedesReceipt?: string; expiresAt: string; receiptOut: string; fullRowExportOut: string; execute?: boolean; json?: boolean }) => {
       if (!opts.execute) throw new Error("v2 transition requires --execute after a clean pushed HEAD preflight");
       const repoRoot=process.cwd();const epoch=Number(opts.expectedEpoch);const zero=createHash("sha256").update("genesis").digest("hex");const db=openHarnessDb(defaultHarnessDbPath(repoRoot),{repoRoot});
-      try { migrate(db); const receipt=commitPostPoDesignFreezeTransitionV2(db,{repoRoot,operationId:opts.operationId,idempotencyKey:opts.idempotencyKey,expectedPo7Epoch:epoch,expectedPo7EventDigest:opts.expectedPo7Event,expectedHeads:{authority:zero,freeze:zero,progress:zero,candidate:zero},expiresAt:opts.expiresAt,supersedesReceiptDigest:zero});
+      try { migrate(db); const receipt=commitPostPoDesignFreezeTransitionV2(db,{repoRoot,operationId:opts.operationId,idempotencyKey:opts.idempotencyKey,expectedPo7Epoch:epoch,expectedPo7EventDigest:opts.expectedPo7Event,expectedHeads:{authority:opts.expectedAuthorityHead??zero,freeze:opts.expectedFreezeHead??zero,progress:opts.expectedProgressHead??zero,candidate:opts.expectedCandidateHead??zero},expiresAt:opts.expiresAt,supersedesReceiptDigest:opts.supersedesReceipt??zero});
         const v2Tables=["design_freeze_v2_transition_operations","design_freeze_v2_authority_link_events","design_freeze_v2_receipts","design_freeze_v2_projections","design_freeze_v2_progress_projections","design_freeze_v2_l01_candidates","design_freeze_v2_l01_handoffs","design_freeze_v2_transition_outbox","design_freeze_v2_transition_terminal_receipts"];
         const po7Tables=["po7_activation_operations","po7_activation_projections","po7_activation_terminal_receipts","po7_vmodel_authority_events","po7_group_option_receipts","po7_question_answer_receipts"];
         const tables=Object.fromEntries([...v2Tables.map((table)=>[table,db.prepare(`SELECT * FROM ${table} WHERE operation_id=?`).all(receipt.operationId)]),...po7Tables.map((table)=>[table,db.prepare(`SELECT * FROM ${table}`).all()])]);
-        const ordered_write_set=v2Tables.slice(0,-1).map((table)=>({table,row:(tables[table] as unknown[])[0]}));const op=(tables[v2Tables[0]] as any[])[0];
-        const fullExport={schema_version:"helix.post-po-design-freeze-transition-full-row-export.v2",operation_id:receipt.operationId,tables,ordered_write_set,digest_preimages:{[`${v2Tables[0]}.full_preimage_digest`]:JSON.parse(op.full_preimage_json),[`${v2Tables[2]}.full_preimage_digest`]:JSON.parse(op.full_preimage_json)}};const exportRendered=`${JSON.stringify(fullExport,null,2)}\n`;writeFileSync(resolve(repoRoot,opts.fullRowExportOut),exportRendered,"utf8");const exportSha=createHash("sha256").update(exportRendered).digest("hex");
+        const column_orders=Object.fromEntries(v2Tables.map((table)=>[table,HARNESS_DB_TABLE_BY_NAME.get(table)?.columns.map((column)=>column.name)??[]]));const ordered_write_set=v2Tables.slice(0,-1).map((table)=>{const object=(tables[table] as any[])[0];return {table,row:column_orders[table].map((column)=>object[column])};});const op=(tables[v2Tables[0]] as any[])[0];
+        const fullExport={schema_version:"helix.post-po-design-freeze-transition-full-row-export.v2",operation_id:receipt.operationId,tables,column_orders,ordered_write_set,digest_preimages:{[`${v2Tables[0]}.full_preimage_digest`]:JSON.parse(op.full_preimage_json),[`${v2Tables[2]}.full_preimage_digest`]:JSON.parse(op.full_preimage_json)}};const exportRendered=`${JSON.stringify(fullExport,null,2)}\n`;writeFileSync(resolve(repoRoot,opts.fullRowExportOut),exportRendered,"utf8");const exportSha=createHash("sha256").update(exportRendered).digest("hex");
         const output={schema_version:"helix.post-po-design-freeze-transition-command-receipt.v2",executed:true,db_path:".helix/harness.db",...receipt,fullRowExportPath:opts.fullRowExportOut,fullRowExportSha256:exportSha};const rendered=`${JSON.stringify(output,null,2)}\n`;writeFileSync(resolve(repoRoot,opts.receiptOut),rendered,"utf8");process.stdout.write(opts.json?rendered:`Design Freeze v2 current candidate=${receipt.candidateDigest}\n`);
       } finally {db.close();}
     });

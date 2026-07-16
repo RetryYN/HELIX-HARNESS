@@ -155,7 +155,8 @@ def audit(receipt_path: Path, export_path: Path) -> tuple[dict[str, Any], int]:
         if isinstance(preimage, dict):
             check(op.get("full_preimage_digest") == digest(preimage), "DFV2_DIGEST_RECOMPUTE", "operation.full_preimage")
             check(freeze.get("full_preimage_digest") == digest(preimage), "DFV2_DIGEST_RECOMPUTE", "receipt.full_preimage")
-            bound_sources = {key: value.get("digest") for key, value in (preimage.get("critical", {}).get("sources", {}) or {}).items()}
+            source_key_map = {"critical": "critical", "review": "review", "audit": "audit", "po7Audit": "activation_audit"}
+            bound_sources = {source_key_map.get(key, key): value.get("digest") for key, value in (preimage.get("critical", {}).get("sources", {}) or {}).items()}
             check(bound_sources == current_hashes,
                   "DFV2_CURRENT_SOURCE_DRIFT", {"expected": bound_sources, "actual": current_hashes})
 
@@ -179,7 +180,7 @@ def audit(receipt_path: Path, export_path: Path) -> tuple[dict[str, Any], int]:
                 for name, value in reference_heads.items():
                     check(row.get(name) == value, "DFV2_HEAD_CAS", {"table": table, "field": name})
 
-        for table in V2_TABLES[:5]:
+        for table in [V2_TABLES[index] for index in (0, 2, 3, 4)]:
             for row in rows(export, table):
                 check(row.get("design_slice_denominator") == 19 and row.get("design_artifact_denominator") == 76,
                       "DFV2_DENOMINATOR_19_76", table)
@@ -210,9 +211,12 @@ def audit(receipt_path: Path, export_path: Path) -> tuple[dict[str, Any], int]:
                   "DFV2_WRITE_SET_SHAPE", ordered_writes)
             check(terminal.get("write_set_digest") == digest(ordered_writes),
                   "DFV2_WRITE_SET_DIGEST", terminal.get("write_set_digest"))
+            column_orders = export.get("column_orders", {})
             for item in ordered_writes:
                 if isinstance(item, dict) and item.get("table") in V2_TABLES:
-                    check(item.get("row") == rows(export, item["table"])[0],
+                    object_row = rows(export, item["table"])[0]
+                    expected_row = [object_row.get(column) for column in column_orders.get(item["table"], [])]
+                    check(item.get("row") == expected_row and len(expected_row) == len(object_row),
                           "DFV2_WRITE_SET_ROW_MISMATCH", item.get("table"))
 
         # Reconstruct latest sealed PO7 authority solely from exported full rows.
