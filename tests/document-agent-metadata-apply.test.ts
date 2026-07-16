@@ -122,7 +122,7 @@ describe("document agent metadata Phase B apply", () => {
     });
   });
 
-  it("U-AGMETA-011: batch preflightが全件PASSするまでwriteを開始しない", () => {
+  it("batch preflight regression: 全件PASSするまでwriteを開始しない", () => {
     const second = "docs/design/helix/b.md";
     const plan = planDocumentAgentMetadataApply({
       manifest: { ...manifest, documents: [path, second] },
@@ -190,7 +190,7 @@ describe("document agent metadata Phase B apply", () => {
     expect(restored).toEqual([second, path]);
   });
 
-  it("U-AGMETA-012: publish後throwした当該changeもrollback対象に含める", () => {
+  it("rollback regression: publish後throwした当該changeもrollback対象に含める", () => {
     const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
     let content = sourceText;
     const port: DocumentAgentMetadataWritePort = {
@@ -215,7 +215,7 @@ describe("document agent metadata Phase B apply", () => {
     expect(content).toBe(sourceText);
   });
 
-  it("U-AGMETA-012: ambiguous publishのrollback失敗をpartialかつambiguousにする", () => {
+  it("rollback regression: ambiguous publishのrollback失敗をpartialかつambiguousにする", () => {
     const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
     const port: DocumentAgentMetadataWritePort = {
       preflight: () => {},

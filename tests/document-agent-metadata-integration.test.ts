@@ -93,7 +93,7 @@ describe("document agent metadata integration", () => {
     }
   });
 
-  it("IT-AGMETA-005: real portのpublish後faultで当該targetを含め逆順rollbackする", () => {
+  it("integration rollback regression: real portのpublish後faultで当該targetを含め逆順rollbackする", () => {
     const { root, absolute } = fixture();
     const secondPath = "docs/design/helix/b.md";
     const secondAbsolute = join(root, secondPath);
@@ -154,7 +154,7 @@ describe("document agent metadata integration", () => {
     }
   });
 
-  it("IT-AGMETA-005: real portのrestore publish前faultはsource残存をambiguousにする", () => {
+  it("integration rollback regression: real portのrestore publish前faultはsource残存をambiguousにする", () => {
     const { root, absolute } = fixture();
     const before = readFileSync(absolute, "utf8");
     try {
