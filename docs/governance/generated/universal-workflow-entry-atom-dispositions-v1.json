@@ -1,0 +1,303 @@
+{
+  "schema_version": "helix.universal-workflow-entry-atom-dispositions.v1",
+  "source": {
+    "archive": "UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip",
+    "archive_sha256": "b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26",
+    "family_id": "ZIP-UNIVERSAL-WORKFLOW-V110",
+    "entry_count": 14
+  },
+  "policy": {
+    "allowed_dispositions": ["adopt", "new", "redesign", "reject", "reference"],
+    "coverage_credit": false,
+    "judgment_core_absorption": "forbidden_without_semantic_identity",
+    "status": "entry_atomized_runtime_verification_pending"
+  },
+  "entries": [
+    {
+      "entry_id": "UWR-E-001",
+      "path": "README.md",
+      "blob_sha256": "d7d0c862c8442a1bc567656640dd272dd28e8315ec93339c82978718ba57aec4",
+      "disposition": "reference",
+      "canonical_target": "docs/governance/universal-workflow-source-manifest.md",
+      "test_or_gate": "HIL_UNIVERSAL_SOURCE_ENTRY_CLOSURE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E001-PACKAGE-GUIDE",
+          "semantic_signature": "入力=package reader; 出力=workflow-first成果物とdirectoryの案内; 副作用=なし; failure=実行契約と誤認",
+          "source_span": "README.md#中核モデル..Runtime-Orchestration",
+          "assertion": "案内文をactive skillまたはruntime authorityとして実行しない",
+          "requirements": ["HIL-FR-51"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-002",
+      "path": "SKILL.md",
+      "blob_sha256": "8404f7926814171ffbdaa30927cb5291c81a17e73a2a91beda5d3268eaf9cd75",
+      "disposition": "redesign",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_PROPOSAL_STAGE_CONTRACT",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E002-WORKFLOW-NORMALIZE",
+          "semantic_signature": "入力=自然言語業務; 出力=状態・発火・条件・action・次状態; 副作用=なし; failure=未定義遷移",
+          "source_span": "SKILL.md#2-Objective..3-Mandatory-Rules",
+          "assertion": "状態遷移proposalはstrict adapter検証前に正本化されない",
+          "requirements": ["HIL-FR-53", "HIL-TR-12"]
+        },
+        {
+          "atom_id": "UWR-A-E002-CONDITIONAL-INTERVIEW",
+          "semantic_signature": "入力=業務語彙; 出力=core質問と条件付き追加質問; 副作用=unresolved登録; failure=推測確定",
+          "source_span": "SKILL.md#4-Interview-Strategy",
+          "assertion": "未回答値はunresolvedのまま保持しPO authorityを偽装しない",
+          "requirements": ["HIL-FR-52", "HIL-NFR-32"]
+        },
+        {
+          "atom_id": "UWR-A-E002-COMPLETENESS",
+          "semantic_signature": "入力=遷移・分岐・loop; 出力=不足field findings; 副作用=生成停止; failure=不完全model通過",
+          "source_span": "SKILL.md#5-Completeness-Gate..6-Output",
+          "assertion": "current_state/trigger/action/next_stateとloop三条件を欠くproposalを拒否する",
+          "requirements": ["HIL-FR-54", "HIL-NFR-31"]
+        },
+        {
+          "atom_id": "UWR-A-E002-ORCHESTRATION-INTERVIEW",
+          "semantic_signature": "入力=候補・経路・資源制約; 出力=switch/routing/allocation proposal; 副作用=なし; failure=fallbackまたは縮退欠落",
+          "source_span": "SKILL.md#7-Runtime-Orchestration-Layer",
+          "assertion": "runtime orchestrationは設計proposalに限定しexecution authorityを付与しない",
+          "requirements": ["HIL-FR-56", "HIL-NFR-33"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-003",
+      "path": "schemas/workflow-model.schema.json",
+      "blob_sha256": "27517ed8bbef8501c77a41130bc7fb6f7f0eae9ded91b6d355d126e4c9cc7229",
+      "disposition": "redesign",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_CLOSED_SCHEMA_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E003-STATE-MODEL-SCHEMA",
+          "semantic_signature": "入力=workflow JSON; 出力=closed state/transition/loop/terminal validation; 副作用=なし; failure=schema rejection",
+          "source_span": "schemas/workflow-model.schema.json#/properties/workflow_id..terminals",
+          "assertion": "参照state、terminal到達性、condition適用をcross-field oracleで追加検証する",
+          "requirements": ["HIL-FR-53", "HIL-FR-54"]
+        },
+        {
+          "atom_id": "UWR-A-E003-ORCHESTRATION-SCHEMA",
+          "semantic_signature": "入力=orchestration JSON; 出力=switch/route/resource/allocation validation; 副作用=なし; failure=schema rejection",
+          "source_span": "schemas/workflow-model.schema.json#/properties/switching..allocation_policies",
+          "assertion": "schedule entityと命名driftを解消したHELIX schemaへ再設計する",
+          "requirements": ["HIL-FR-56", "HIL-NFR-33"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-004",
+      "path": "schemas/derived-requirements.schema.json",
+      "blob_sha256": "bba19443b5d440743f24e2d52bd5cf7548988d7c218265f02c34a8c2e5989585",
+      "disposition": "redesign",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_DERIVED_REQUIREMENT_TYPED_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E004-DERIVED-SURFACES",
+          "semantic_signature": "入力=validated workflow; 出力=business/screen/API/data/permission/notification/audit/test surfaces; 副作用=なし; failure=untyped arbitrary object",
+          "source_span": "schemas/derived-requirements.schema.json#/properties",
+          "assertion": "空object許容を廃し各派生surfaceをversioned typed contractへ結ぶ",
+          "requirements": ["HIL-FR-55", "HIL-NFR-34"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-005",
+      "path": "catalogs/conditional-question-catalog.yaml",
+      "blob_sha256": "568129425a016144d028bddda523a42030ed82860712bb7925419f5ae26b1cec",
+      "disposition": "adopt",
+      "canonical_target": "docs/governance/universal-workflow-question-ledger.md",
+      "test_or_gate": "UNIVERSAL_QUESTION_VALUE_DIGEST_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E005-CONDITIONAL-CATALOG",
+          "semantic_signature": "入力=検出語彙; 出力=approval/money/deadline/external/PII/AI追加質問と派生先; 副作用=question ledger登録; failure=無条件質問または無権限回答",
+          "source_span": "catalogs/conditional-question-catalog.yaml#all-mappings",
+          "assertion": "27質問をsource value digestとauthority dispositionへ個別bindする",
+          "requirements": ["HIL-FR-52", "HIL-NFR-32"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-006",
+      "path": "catalogs/base-question-catalog.md",
+      "blob_sha256": "e3792cb1d62db0ea23097bced7e985351e2257a04ef7359b75284453c0f9375b",
+      "disposition": "adopt",
+      "canonical_target": "docs/governance/universal-workflow-question-ledger.md",
+      "test_or_gate": "UNIVERSAL_QUESTION_VALUE_DIGEST_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E006-BASE-CATALOG",
+          "semantic_signature": "入力=workflow interview開始; 出力=対象/状態/分岐/処理/loop/terminal/例外監査質問; 副作用=question ledger登録; failure=質問欠落",
+          "source_span": "catalogs/base-question-catalog.md#業務識別..例外・監査",
+          "assertion": "24質問をstable IDと回答authorityへ個別bindする",
+          "requirements": ["HIL-FR-52", "HIL-NFR-32"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-007",
+      "path": "catalogs/runtime-orchestration-question-catalog.md",
+      "blob_sha256": "c8176370f425b9409e5137c6fa88642cb719b008d34a308ceca309981fa3efc0",
+      "disposition": "adopt",
+      "canonical_target": "docs/governance/universal-workflow-question-ledger.md",
+      "test_or_gate": "UNIVERSAL_QUESTION_VALUE_DIGEST_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E007-ORCHESTRATION-CATALOG",
+          "semantic_signature": "入力=runtime orchestration探索; 出力=switch/routing/resource/allocation質問; 副作用=question ledger登録; failure=capacity/fallback/escalation未質問",
+          "source_span": "catalogs/runtime-orchestration-question-catalog.md#スイッチング..配分",
+          "assertion": "25質問をstable IDと回答authorityへ個別bindする",
+          "requirements": ["HIL-FR-52", "HIL-FR-56"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-008",
+      "path": "examples/approval-workflow.example.json",
+      "blob_sha256": "d29adddf911770be7a949c8dccd644b50431abf1f0d6ebe4efa10cd2deedd25d",
+      "disposition": "reference",
+      "canonical_target": "docs/test-design/helix/universal-workflow-conflict-test-design-v1.json",
+      "test_or_gate": "UNIVERSAL_FIXTURE_NEGATIVE_ORACLE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E008-APPROVAL-FIXTURE",
+          "semantic_signature": "入力=approval fixture; 出力=branch/loop/terminal test vector; 副作用=なし; failure=到達不能terminalを正例扱い",
+          "source_span": "examples/approval-workflow.example.json#/",
+          "assertion": "APPROVED/CANCELLED到達不能をnegative oracleとして保持しruntime能力へ数えない",
+          "requirements": ["HIL-FR-54"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-009",
+      "path": "examples/runtime-orchestration.example.json",
+      "blob_sha256": "ea360a0c9d9cea33d585f4cff515ef9feb0253bd09550f7534f49dc6f9d5e3fb",
+      "disposition": "reference",
+      "canonical_target": "docs/test-design/helix/universal-workflow-conflict-test-design-v1.json",
+      "test_or_gate": "UNIVERSAL_FIXTURE_NEGATIVE_ORACLE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E009-ORCHESTRATION-FIXTURE",
+          "semantic_signature": "入力=orchestration fixture; 出力=switch/route/resource/allocation test vector; 副作用=なし; failure=欠落schedule/fieldを正例扱い",
+          "source_span": "examples/runtime-orchestration.example.json#/",
+          "assertion": "schema/contract driftをnegative oracleとして保持しexecution authorityへ数えない",
+          "requirements": ["HIL-FR-56"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-010",
+      "path": "contracts/workflow-to-requirement-contract.md",
+      "blob_sha256": "56609bc0f9c41f315c9767790d03c462b36bc0eabaf63625fe4573aa63942886",
+      "disposition": "redesign",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_REQUIREMENT_TRACE_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E010-TRANSITION-REQUIREMENT",
+          "semantic_signature": "入力=transition; 出力=FR/AC/test IDsとGiven-When-Then; 副作用=ledger proposal; failure=source transition trace欠落",
+          "source_span": "contracts/workflow-to-requirement-contract.md#2-変換単位..5-受入条件契約",
+          "assertion": "各transitionをrequirement/AC/test/gateのexact joinへ変換する",
+          "requirements": ["HIL-FR-55", "HIL-NFR-31"]
+        },
+        {
+          "atom_id": "UWR-A-E010-COMPLETENESS-ORACLES",
+          "semantic_signature": "入力=loop/terminal/data/actor references; 出力=completeness findings; 副作用=生成停止; failure=参照不整合通過",
+          "source_span": "contracts/workflow-to-requirement-contract.md#6-ループ契約..9-完全性ゲート",
+          "assertion": "loop・terminal・data・permissionのcross-referenceを機械検証する",
+          "requirements": ["HIL-FR-54", "HIL-NFR-31"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-011",
+      "path": "contracts/requirement-contract.schema.json",
+      "blob_sha256": "277db0d25cc1bcc824ebd7134109ff3859682d433c14d488062bac0caf067dfd",
+      "disposition": "redesign",
+      "canonical_target": "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "test_or_gate": "UNIVERSAL_REQUIREMENT_SCHEMA_PARITY_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E011-REQUIREMENT-SCHEMA",
+          "semantic_signature": "入力=requirement proposal; 出力=actor/precondition/trigger/behavior/state/data/permission/exception/postcondition validation; 副作用=なし; failure=prose必須field drift",
+          "source_span": "contracts/requirement-contract.schema.json#/",
+          "assertion": "proseとschemaの必須field denominatorを一致させledger schemaへ再設計する",
+          "requirements": ["HIL-FR-55", "HIL-NFR-34"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-012",
+      "path": "contracts/derived-mapping.md",
+      "blob_sha256": "d2aa3864f6b4a632200f8dcce4b753de73b4a837f77f915018589445bf8f5894",
+      "disposition": "adopt",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_DERIVED_EDGE_CLOSURE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E012-DERIVED-MAPPING",
+          "semantic_signature": "入力=state/transition/permission/notification/audit/timeout/exception/loop/terminal; 出力=UI/API/DB/test派生edge; 副作用=design proposal; failure=source edge欠落",
+          "source_span": "contracts/derived-mapping.md#派生マッピング/table/all-rows",
+          "assertion": "各派生物をsource semantic IDへ逆追跡可能にする",
+          "requirements": ["HIL-FR-55"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-013",
+      "path": "contracts/runtime-orchestration-contract.md",
+      "blob_sha256": "30f975bc054fe5f054e5416f2476ff5f974c08c68127c8ee10299b96a0270f36",
+      "disposition": "redesign",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_ORCHESTRATION_COMPLETENESS_GATE",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E013-ORCHESTRATION-CONTRACT",
+          "semantic_signature": "入力=ready taskとresource observations; 出力=switch/route/allocation/reallocation proposal; 副作用=なし; failure=capacity/fallback/dead-letter欠落",
+          "source_span": "contracts/runtime-orchestration-contract.md#2-実行モデル..9-完全性ゲート",
+          "assertion": "schedule、canonical naming、fallback/dead-letterを閉じたproposal-only契約へ再設計する",
+          "requirements": ["HIL-FR-56", "HIL-NFR-33", "HIL-TR-12"]
+        }
+      ]
+    },
+    {
+      "entry_id": "UWR-E-014",
+      "path": "prompts/workflow-extraction-prompt.md",
+      "blob_sha256": "2d9f8729914845f7e61255c6868f8bce98851e1e5d5ab056bce6cb48141a39e1",
+      "disposition": "redesign",
+      "canonical_target": "docs/design/helix/L6-function-design/universal-reverse-redesign.md",
+      "test_or_gate": "UNIVERSAL_PROPOSAL_STAGE_CONTRACT",
+      "behavior_atoms": [
+        {
+          "atom_id": "UWR-A-E014-EXTRACTION-PROMPT",
+          "semantic_signature": "入力=業務説明; 出力=workflow proposal/unresolved/derived proposal; 副作用=なし; failure=二schema単一JSONまたは推測確定",
+          "source_span": "prompts/workflow-extraction-prompt.md#処理手順..出力",
+          "assertion": "workflowとderived outputをtyped stage別proposalへ分割しNodeが再検証する",
+          "requirements": ["HIL-FR-53", "HIL-FR-55", "HIL-TR-12"]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "entries_atomized": 14,
+    "entries_total": 14,
+    "behavior_atoms": 19,
+    "dispositions": {
+      "adopt": 4,
+      "new": 0,
+      "redesign": 7,
+      "reject": 0,
+      "reference": 3
+    },
+    "runtime_verified_entries": 0
+  }
+}

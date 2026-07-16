@@ -14,6 +14,36 @@ interface ArtifactRecordV1 {
   slice_id: string;
 }
 
+interface UniversalEntryAtomLedgerV1 {
+  entries: Array<{
+    behavior_atoms: Array<{
+      assertion: string;
+      atom_id: string;
+      requirements: string[];
+      semantic_signature: string;
+      source_span: string;
+    }>;
+    blob_sha256: string;
+    canonical_target: string;
+    disposition: string;
+    entry_id: string;
+    path: string;
+    test_or_gate: string;
+  }>;
+  policy: {
+    allowed_dispositions: string[];
+    coverage_credit: boolean;
+    judgment_core_absorption: string;
+  };
+  source: { archive_sha256: string; entry_count: number; family_id: string };
+  summary: {
+    behavior_atoms: number;
+    entries_atomized: number;
+    entries_total: number;
+    runtime_verified_entries: number;
+  };
+}
+
 interface StrictDesignManifestV1 {
   artifact_inventory: ArtifactRecordV1[];
   artifact_path_content_set_digest: string;
@@ -179,6 +209,64 @@ describe("Infinity Loop strict design contract", () => {
     ]) {
       expect(sourceManifest).toContain(contract);
     }
+  });
+
+  it("HIL-FR-16: Universal Workflow 14/14を内容由来atom・採否・target・gateへ閉じる", () => {
+    const ledger = JSON.parse(
+      readFileSync(
+        "docs/governance/generated/universal-workflow-entry-atom-dispositions-v1.json",
+        "utf8",
+      ),
+    ) as UniversalEntryAtomLedgerV1;
+    const sourceManifest = readFileSync(
+      "docs/governance/universal-workflow-source-manifest.md",
+      "utf8",
+    );
+    const inventoryRows = [
+      ...sourceManifest.matchAll(/\| (UWR-E-\d{3}) \| `([^`]+)` \| \d+ \| `([a-f0-9]{64})` \|/g),
+    ].map((match) => ({ blob_sha256: match[3], entry_id: match[1], path: match[2] }));
+
+    expect(ledger.source).toMatchObject({
+      archive_sha256: "b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26",
+      entry_count: 14,
+      family_id: "ZIP-UNIVERSAL-WORKFLOW-V110",
+    });
+    expect(inventoryRows).toHaveLength(14);
+    expect(
+      ledger.entries.map(({ blob_sha256, entry_id, path }) => ({ blob_sha256, entry_id, path })),
+    ).toEqual(inventoryRows);
+    expect(new Set(ledger.entries.map((entry) => entry.entry_id)).size).toBe(14);
+    expect(ledger.policy.allowed_dispositions).toEqual([
+      "adopt",
+      "new",
+      "redesign",
+      "reject",
+      "reference",
+    ]);
+    expect(ledger.policy.coverage_credit).toBe(false);
+    expect(ledger.policy.judgment_core_absorption).toBe("forbidden_without_semantic_identity");
+
+    const atoms = ledger.entries.flatMap((entry) => {
+      expect(ledger.policy.allowed_dispositions).toContain(entry.disposition);
+      expect(entry.canonical_target).not.toBe("docs/skills/judgment-core.md");
+      expect(entry.test_or_gate.length).toBeGreaterThan(0);
+      expect(entry.behavior_atoms.length).toBeGreaterThan(0);
+      return entry.behavior_atoms;
+    });
+    expect(atoms).toHaveLength(19);
+    expect(new Set(atoms.map((atom) => atom.atom_id)).size).toBe(19);
+    for (const atom of atoms) {
+      expect(atom.semantic_signature).toMatch(/入力=.*出力=.*副作用=.*failure=/);
+      expect(atom.source_span.length).toBeGreaterThan(0);
+      expect(atom.assertion.length).toBeGreaterThan(0);
+      expect(atom.requirements.length).toBeGreaterThan(0);
+    }
+    expect(ledger.summary).toMatchObject({
+      behavior_atoms: 19,
+      entries_atomized: 14,
+      entries_total: 14,
+      runtime_verified_entries: 0,
+    });
   });
 
   const manifest = loadManifest();
