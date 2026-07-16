@@ -54,6 +54,10 @@ const inputSchema = z
       .string()
       .regex(/^[0-9a-f]{64}$/)
       .default(ZERO),
+    evidencePaths: z
+      .object({ fullExport: z.string().min(1), commandReceipt: z.string().min(1) })
+      .strict()
+      .optional(),
     faultAfterWrite: z.number().int().positive().optional(),
   })
   .strict();
@@ -280,6 +284,7 @@ export function commitPostPoDesignFreezeTransitionV2(
     expectedHeads: input.expectedHeads,
     expiresAt: input.expiresAt,
     supersedesReceiptDigest: input.supersedesReceiptDigest,
+    evidencePaths: input.evidencePaths,
   });
   db.exec("BEGIN IMMEDIATE");
   try {
@@ -655,6 +660,90 @@ export function commitPostPoDesignFreezeTransitionV2(
     };
     for (const [table, row] of writes) insert(table, row);
     insert("design_freeze_v2_transition_terminal_receipts", terminalRow);
+    if (input.evidencePaths) {
+      const v2Tables = [
+        "design_freeze_v2_transition_operations",
+        "design_freeze_v2_authority_link_events",
+        "design_freeze_v2_receipts",
+        "design_freeze_v2_projections",
+        "design_freeze_v2_progress_projections",
+        "design_freeze_v2_l01_candidates",
+        "design_freeze_v2_l01_handoffs",
+        "design_freeze_v2_transition_outbox",
+        "design_freeze_v2_transition_terminal_receipts",
+      ];
+      const po7Tables = [
+        "po7_activation_operations",
+        "po7_activation_projections",
+        "po7_activation_terminal_receipts",
+        "po7_vmodel_authority_events",
+        "po7_group_option_receipts",
+        "po7_question_answer_receipts",
+      ];
+      const columnOrders = Object.fromEntries(
+        v2Tables.map((table) => [
+          table,
+          (
+            db.prepare("SELECT name FROM pragma_table_info(?) ORDER BY cid").all(table) as Array<{
+              name: string;
+            }>
+          ).map((column) => column.name),
+        ]),
+      );
+      const tables = Object.fromEntries([
+        ...v2Tables.map((table) => [
+          table,
+          db.prepare(`SELECT * FROM ${table} WHERE operation_id=?`).all(input.operationId),
+        ]),
+        ...po7Tables.map((table) => [
+          table,
+          db.prepare(`SELECT * FROM ${table} WHERE operation_id=?`).all(po7.operationId),
+        ]),
+      ]);
+      const orderedWriteSet = v2Tables.slice(0, -1).map((table) => {
+        const object = (tables[table] as Array<Record<string, unknown>>)[0];
+        return { table, row: columnOrders[table].map((column) => object[column]) };
+      });
+      const fullExport = {
+        schema_version: "helix.post-po-design-freeze-transition-full-row-export.v2",
+        operation_id: input.operationId,
+        tables,
+        column_orders: columnOrders,
+        ordered_write_set: orderedWriteSet,
+        digest_preimages: {
+          [`${v2Tables[0]}.full_preimage_digest`]: fullPreimage,
+          [`${v2Tables[2]}.full_preimage_digest`]: fullPreimage,
+        },
+      };
+      const fullExportJson = `${JSON.stringify(fullExport, null, 2)}\n`;
+      const fullExportDigest = digest(fullExportJson);
+      const commandReceipt = {
+        schema_version: "helix.post-po-design-freeze-transition-command-receipt.v2",
+        executed: true,
+        db_path: ".helix/harness.db",
+        operationId: input.operationId,
+        payloadDigest,
+        freezeReceiptDigest,
+        candidateDigest,
+        writeSetDigest,
+        replay: false,
+        fullRowExportPath: input.evidencePaths.fullExport,
+        fullRowExportSha256: fullExportDigest,
+      };
+      const commandReceiptJson = `${JSON.stringify(commandReceipt, null, 2)}\n`;
+      insert("design_freeze_v2_evidence_outbox", [
+        input.operationId,
+        payloadDigest,
+        input.evidencePaths.fullExport,
+        fullExportJson,
+        fullExportDigest,
+        input.evidencePaths.commandReceipt,
+        commandReceiptJson,
+        digest(commandReceiptJson),
+        "pending_materialization",
+        issuedAt,
+      ]);
+    }
     const afterPo7 = readAndValidateLatestSealedPo7Authority(
       db,
       input.expectedPo7Epoch,

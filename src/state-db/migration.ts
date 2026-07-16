@@ -235,6 +235,8 @@ function ensureDesignFreezeV2ReceiptImmutability(db: HarnessDb): void {
     "design_freeze_v2_l01_handoffs",
     "design_freeze_v2_transition_outbox",
     "design_freeze_v2_transition_terminal_receipts",
+    "design_freeze_v2_evidence_outbox",
+    "design_freeze_v2_evidence_terminal_receipts",
   ]) {
     if (!present.has(table)) continue;
     db.exec(

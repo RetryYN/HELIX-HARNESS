@@ -15,4 +15,4 @@ plan: docs/plans/PLAN-L7-459-design-freeze-authority-transition.md
 | U-DFA-003 | freeze v2 atomicity | 9 write境界の各faultで全tableが0へrollbackする | `tests/post-po-design-freeze-transition-v2.test.ts` |
 | U-DFA-004 | replay | 同一key/同一inputだけexact replayし、異なるoperationを拒否する | `tests/post-po-design-freeze-transition-v2.test.ts` |
 | U-DFA-005 | supersession | 不正receiptまたはstale headによる後継transitionを拒否する | `tests/post-po-design-freeze-transition-v2.test.ts` |
-| U-DFA-006 | schema/CLI | authority table欠落または未観測状態を成功表示しない | `tests/state-db.test.ts`, `tests/authority-cli.test.ts` |
+| U-DFA-006 | schema/CLI transaction・path | authority table欠落を許さない。CLI evidenceは専用rootからの相対pathだけを受理し、absolute/traversal/symlinkをDB migration前に拒否する。immutable outbox、temp no-replace publish、file/dir fsync、ancestor identity再検査を強制し、partial temp write、parent symlink race、terminal済み欠落、full export成功/receipt失敗、ENOSPC、後発別PO7 rowをreconcile反例にする | `tests/state-db.test.ts`, `tests/authority-cli.test.ts`, `tests/post-po-design-freeze-transition-v2.test.ts` |

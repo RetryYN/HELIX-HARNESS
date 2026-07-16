@@ -222,4 +222,53 @@ describe("post-PO Design Freeze transition v2", () => {
     expect(count(db, "design_freeze_v2_receipts")).toBe(2);
     db.close();
   });
+  it("U-DFA-006: immutable exportは後発の別PO7 operation rowを取り込まない", () => {
+    const { db, po7, input } = seeded("OP-BOUND");
+    commitPostPoDesignFreezeTransitionV2(
+      db,
+      {
+        ...input,
+        evidencePaths: {
+          fullExport: ".helix/evidence/authority/op-bound/full.json",
+          commandReceipt: ".helix/evidence/authority/op-bound/receipt.json",
+        },
+      },
+      deps,
+    );
+    const before = String(
+      db.prepare("SELECT full_export_json value FROM design_freeze_v2_evidence_outbox").get()
+        ?.value,
+    );
+    transitionPo7Authority(db, {
+      repoRoot,
+      operationId: "PO7-V2-OP-BOUND-LATER",
+      idempotencyKey: "PO7-V2-OP-BOUND-LATER-ID",
+      expectedActivationEpoch: 1,
+      expectedPreviousEventDigest: po7.eventDigest,
+      status: "revoked",
+      reason: "operation-bound export oracle",
+    });
+    const after = String(
+      db.prepare("SELECT full_export_json value FROM design_freeze_v2_evidence_outbox").get()
+        ?.value,
+    );
+    expect(after).toBe(before);
+    const exported = JSON.parse(after);
+    for (const table of [
+      "po7_activation_operations",
+      "po7_activation_projections",
+      "po7_activation_terminal_receipts",
+      "po7_vmodel_authority_events",
+      "po7_group_option_receipts",
+      "po7_question_answer_receipts",
+    ]) {
+      expect(
+        exported.tables[table].every(
+          (row: { operation_id: string }) => row.operation_id === po7.operationId,
+        ),
+      ).toBe(true);
+    }
+    expect(after).not.toContain("PO7-V2-OP-BOUND-LATER");
+    db.close();
+  });
 });

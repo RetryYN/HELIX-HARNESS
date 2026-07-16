@@ -537,4 +537,15 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["operation_id"],
     unique: true,
   },
+  {
+    name: "idx_design_freeze_v2_evidence_outbox_status",
+    table: "design_freeze_v2_evidence_outbox",
+    columns: ["status", "issued_at"],
+  },
+  {
+    name: "uq_design_freeze_v2_evidence_terminal_operation",
+    table: "design_freeze_v2_evidence_terminal_receipts",
+    columns: ["operation_id"],
+    unique: true,
+  },
 ];
