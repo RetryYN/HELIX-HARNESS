@@ -372,6 +372,56 @@ export interface AgentResultArtifactAdmissionDecisionV1 {
   decision_digest: string;
 }
 
+export interface AgentVerificationSubjectV1 {
+  schema_version: "helix-agent-verification-subject.v1";
+  instance_id: string;
+  role: "worker" | "verifier";
+  provider_family: string;
+  model_family: string;
+}
+
+export interface AgentVerificationResultV1 {
+  schema_version: "helix-agent-verification-result.v1";
+  worker_instance_id: string;
+  oracle_id: string;
+  input_digest: string;
+  result_digest: string;
+  evidence_digest: string;
+  artifact_admission_decision_digest: string;
+}
+
+export interface AgentVerificationReceiptV1 {
+  schema_version: "helix-agent-verification-receipt.v1";
+  worker_instance_id: string;
+  verifier_instance_id: string;
+  oracle_id: string;
+  input_digest: string;
+  result_digest: string;
+  evidence_digest: string;
+  artifact_admission_decision_digest: string;
+  receipt_state: "valid" | "stale" | "revoked";
+  decision: "pass" | "fail" | "inconclusive";
+  receipt_digest: string;
+}
+
+export interface AgentVerificationDecisionV1 {
+  schema_version: "helix-agent-verification-decision.v1";
+  worker_instance_id: string;
+  verifier_instance_id: string;
+  oracle_id: string;
+  input_digest: string;
+  result_digest: string;
+  evidence_digest: string;
+  artifact_admission_decision_digest: string;
+  receipt_state: "valid" | "stale" | "revoked";
+  decision: "pass" | "fail" | "inconclusive";
+  accepted: boolean;
+  release_authority: false;
+  terminal: false;
+  failure_code: "HIL_AGENT_VERIFIER_NOT_INDEPENDENT" | "HIL_ROLE_SEPARATION_VIOLATION" | null;
+  decision_digest: string;
+}
+
 const CONTRACT_KEYS = [
   "schema_version",
   "agent_id",
@@ -1033,6 +1083,21 @@ function validEvidenceDigest(value: string): boolean {
   return /^[0-9a-f]{64}$/.test(value);
 }
 
+function canonicalAgentEvidence(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalAgentEvidence).join(",")}]`;
+  if (value !== null && typeof value === "object") {
+    return `{${Object.entries(value as Record<string, unknown>)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, child]) => `${JSON.stringify(key)}:${canonicalAgentEvidence(child)}`)
+      .join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function agentEvidenceDigest(value: unknown): string {
+  return createHash("sha256").update(canonicalAgentEvidence(value)).digest("hex");
+}
+
 function hasExactKeys(value: unknown, keys: readonly string[]): value is Record<string, unknown> {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
   const prototype = Object.getPrototypeOf(value);
@@ -1318,6 +1383,141 @@ export function admitAgentResultArtifact(
     terminal: false as const,
     verification_pending: true as const,
     failure_code: admitted ? null : ("HIL_AGENT_FENCING_REJECTED" as const),
+  };
+  return { ...payload, decision_digest: digest(payload) };
+}
+
+export function evaluateAgentVerificationReceipt(
+  worker: AgentVerificationSubjectV1,
+  verifier: AgentVerificationSubjectV1,
+  result: AgentVerificationResultV1,
+  receipt: AgentVerificationReceiptV1,
+): AgentVerificationDecisionV1 {
+  const workerShape =
+    hasExactKeys(worker, [
+      "schema_version",
+      "instance_id",
+      "role",
+      "provider_family",
+      "model_family",
+    ]) &&
+    worker.schema_version === "helix-agent-verification-subject.v1" &&
+    worker.role === "worker";
+  const verifierShape =
+    hasExactKeys(verifier, [
+      "schema_version",
+      "instance_id",
+      "role",
+      "provider_family",
+      "model_family",
+    ]) &&
+    verifier.schema_version === "helix-agent-verification-subject.v1" &&
+    verifier.role === "verifier";
+  const independent =
+    workerShape &&
+    verifierShape &&
+    nonEmptyString(worker.instance_id) &&
+    nonEmptyString(verifier.instance_id) &&
+    worker.instance_id !== verifier.instance_id &&
+    nonEmptyString(worker.provider_family) &&
+    nonEmptyString(verifier.provider_family) &&
+    worker.provider_family !== verifier.provider_family &&
+    nonEmptyString(worker.model_family) &&
+    nonEmptyString(verifier.model_family) &&
+    worker.model_family !== verifier.model_family;
+  const resultShape =
+    hasExactKeys(result, [
+      "schema_version",
+      "worker_instance_id",
+      "oracle_id",
+      "input_digest",
+      "result_digest",
+      "evidence_digest",
+      "artifact_admission_decision_digest",
+    ]) &&
+    result.schema_version === "helix-agent-verification-result.v1" &&
+    nonEmptyString(result.oracle_id) &&
+    [
+      result.input_digest,
+      result.result_digest,
+      result.evidence_digest,
+      result.artifact_admission_decision_digest,
+    ].every(validEvidenceDigest);
+  const receiptShape =
+    hasExactKeys(receipt, [
+      "schema_version",
+      "worker_instance_id",
+      "verifier_instance_id",
+      "oracle_id",
+      "input_digest",
+      "result_digest",
+      "evidence_digest",
+      "artifact_admission_decision_digest",
+      "receipt_state",
+      "decision",
+      "receipt_digest",
+    ]) &&
+    receipt.schema_version === "helix-agent-verification-receipt.v1" &&
+    ["valid", "stale", "revoked"].includes(receipt.receipt_state) &&
+    ["pass", "fail", "inconclusive"].includes(receipt.decision) &&
+    [
+      receipt.input_digest,
+      receipt.result_digest,
+      receipt.evidence_digest,
+      receipt.artifact_admission_decision_digest,
+    ].every(validEvidenceDigest) &&
+    validEvidenceDigest(receipt.receipt_digest);
+  let receiptDigestValid = false;
+  if (receiptShape) {
+    const { receipt_digest: receiptDigest, ...preimage } = receipt;
+    receiptDigestValid = agentEvidenceDigest(preimage) === receiptDigest;
+  }
+  const bindingValid =
+    workerShape &&
+    verifierShape &&
+    resultShape &&
+    receiptShape &&
+    result.worker_instance_id === worker.instance_id &&
+    receipt.worker_instance_id === worker.instance_id &&
+    receipt.verifier_instance_id === verifier.instance_id &&
+    receipt.oracle_id === result.oracle_id &&
+    receipt.input_digest === result.input_digest &&
+    receipt.result_digest === result.result_digest &&
+    receipt.evidence_digest === result.evidence_digest &&
+    receipt.artifact_admission_decision_digest === result.artifact_admission_decision_digest;
+  const accepted =
+    independent &&
+    bindingValid &&
+    receiptDigestValid &&
+    receipt.receipt_state === "valid" &&
+    receipt.decision === "pass";
+  const sameProviderOrModel =
+    workerShape &&
+    verifierShape &&
+    (worker.provider_family === verifier.provider_family ||
+      worker.model_family === verifier.model_family);
+  const failureCode = accepted
+    ? null
+    : sameProviderOrModel
+      ? ("HIL_AGENT_VERIFIER_NOT_INDEPENDENT" as const)
+      : ("HIL_ROLE_SEPARATION_VIOLATION" as const);
+  const payload = {
+    schema_version: "helix-agent-verification-decision.v1" as const,
+    worker_instance_id: workerShape ? worker.instance_id : "invalid",
+    verifier_instance_id: verifierShape ? verifier.instance_id : "invalid",
+    oracle_id: resultShape ? result.oracle_id : "invalid",
+    input_digest: resultShape ? result.input_digest : "invalid",
+    result_digest: resultShape ? result.result_digest : "invalid",
+    evidence_digest: resultShape ? result.evidence_digest : "invalid",
+    artifact_admission_decision_digest: resultShape
+      ? result.artifact_admission_decision_digest
+      : "invalid",
+    receipt_state: receiptShape ? receipt.receipt_state : ("revoked" as const),
+    decision: receiptShape ? receipt.decision : ("inconclusive" as const),
+    accepted,
+    release_authority: false as const,
+    terminal: false as const,
+    failure_code: failureCode,
   };
   return { ...payload, decision_digest: digest(payload) };
 }
