@@ -10,15 +10,26 @@ entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #11 architecture cycleをex
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-16T17:15:12Z"
+  review_binding:
+    reviewer: node_evidence_audit
+    reviewed_at: "2026-07-16T17:15:12Z"
+    evidence_digest: "sha256:c6d5bd74decf942595bac26befd7f5475cd82edf16eb9f84ebc3f4d6d5c1a5ad"
+  entries: []
 review_evidence:
   - reviewer: node_evidence_audit
     review_kind: intra_runtime_subagent
     worker_model: codex
     reviewer_model: gpt-5
-    reviewed_at: "2026-07-17T02:15:12+09:00"
-    tests_green_at: "2026-07-17T02:14:52+09:00"
+    reviewed_at: "2026-07-16T17:15:12Z"
+    tests_green_at: "2026-07-16T17:14:52Z"
     verdict: pass
     scope: "source boundary設計、V-pair、state-db/VS Code分離、headless composition、policy/effect/durability負例を独立監査。Blocker/High 0、関連63 tests・typecheck・Biome green。"
+    green_commands:
+      - { kind: integration_test, command: "bunx vitest run source-boundary targeted set --reporter=dot", runner: bun, scope: targeted, exit_code: 0, evidence_path: docs/evidence/requirements-reseal-source-boundary-green.md, output_digest: "sha256:220e68956e72bd4bff61299657b08dc069a94edb6895bfb19534d242d47efb47" }
 agent_slots:
   - { role: se, slot_label: "SE — contract/projector/evidence owner分離" }
   - { role: qa, slot_label: "QA — cycle/headless adapter oracle" }

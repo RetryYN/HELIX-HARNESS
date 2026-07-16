@@ -10,15 +10,26 @@ entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #13 analyzer effect authori
 created: 2026-07-13
 updated: 2026-07-14
 owner: Codex
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-16T17:18:00Z"
+  review_binding:
+    reviewer: agent_lease_cluster
+    reviewed_at: "2026-07-16T17:18:00Z"
+    evidence_digest: "sha256:81bdbde816b10e352f1456d38fe7ca2fb3c5790944ba349b835aa0981646e3b2"
+  entries: []
 review_evidence:
   - reviewer: agent_lease_cluster
     review_kind: intra_runtime_subagent
     worker_model: codex
     reviewer_model: gpt-5
-    reviewed_at: "2026-07-17T02:18:00+09:00"
-    tests_green_at: "2026-07-17T02:17:45+09:00"
+    reviewed_at: "2026-07-16T17:18:00Z"
+    tests_green_at: "2026-07-16T17:17:45Z"
     verdict: pass
     scope: "source boundary effect/policy oracle、実repository graph、temporary direction除去、450/451 terminal依存を独立監査。Blocker/High 0、関連tests・typecheck・Biome green。"
+    green_commands:
+      - { kind: integration_test, command: "bunx vitest run source-boundary targeted set --reporter=dot", runner: bun, scope: targeted, exit_code: 0, evidence_path: docs/evidence/requirements-reseal-source-boundary-green.md, output_digest: "sha256:220e68956e72bd4bff61299657b08dc069a94edb6895bfb19534d242d47efb47" }
 agent_slots:
   - { role: se, slot_label: "SE — effect intent/executor port分離" }
   - { role: qa, slot_label: "QA — authority/drift/durability負例" }

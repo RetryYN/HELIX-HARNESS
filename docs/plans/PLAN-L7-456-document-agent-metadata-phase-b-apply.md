@@ -4,12 +4,32 @@ title: "PLAN-L7-456 (impl): document agent metadata Phase B apply transaction"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-14 /goal『設計とテスト設計/検証設計でVペアを作る』に基づくhybrid-docgen GAP-01 apply parity"]
 created: 2026-07-14
 updated: 2026-07-14
 owner: Codex
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-16T17:38:00Z"
+  review_binding:
+    reviewer: universal_atomization
+    reviewed_at: "2026-07-16T17:38:00Z"
+    evidence_digest: "sha256:03440589def7b0c344c19483a17233aee268473a2d25e231caea7787a846bd15"
+  entries: []
+review_evidence:
+  - reviewer: universal_atomization
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-16T17:38:00Z"
+    tests_green_at: "2026-07-16T17:37:28Z"
+    verdict: pass
+    scope: "batch preflight、publish後throw、逆順rollback、real-port restore fault、ancestor symlink、partial/ambiguous receiptを独立監査。指摘反例追加後Blocker/High 0。"
+    green_commands:
+      - { kind: integration_test, command: "bunx vitest run document-engine targeted set --reporter=dot", runner: bun, scope: targeted, exit_code: 0, evidence_path: docs/evidence/requirements-reseal-document-engine-green.md, output_digest: "sha256:68e2e3e9b9a9c353864c46a23c5a9c2990c2feba14a824bab106f2f0062dc5e8" }
 agent_slots:
   - { role: se, slot_label: "SE — apply plan / source transaction" }
   - { role: qa, slot_label: "QA — digest / rollback mutation oracle" }
@@ -27,6 +47,11 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/document-agent-metadata-contract.md, oracle_id: IT-AGMETA-005, test_path: tests/document-agent-metadata-integration.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-456-document-agent-metadata-phase-b-apply.md, artifact_type: markdown_doc }
+  - { artifact_path: src/adapters/document-agent-metadata-fs.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/document-agent-metadata-apply.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/document-agent-metadata-write-port.ts, artifact_type: source_module }
+  - { artifact_path: tests/document-agent-metadata-apply.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/document-agent-metadata-integration.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-13-vmodel-docgen-fit.md
   requires: []

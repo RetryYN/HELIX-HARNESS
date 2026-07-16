@@ -20,6 +20,8 @@ review_evidence:
     tests_green_at: "2026-07-17T02:14:52+09:00"
     verdict: pass
     scope: "source boundary設計、V-pair、state-db/VS Code分離、headless composition、policy/effect/durability負例を独立監査。Blocker/High 0、関連63 tests・typecheck・Biome green。"
+    green_commands:
+      - { kind: integration_test, command: "bunx vitest run source-boundary targeted set --reporter=dot", runner: bun, scope: targeted, exit_code: 0, evidence_path: docs/evidence/requirements-reseal-source-boundary-green.md, output_digest: "sha256:220e68956e72bd4bff61299657b08dc069a94edb6895bfb19534d242d47efb47" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L5-79を変更せず、公開contractとpolicy evaluatorを具体化する。"
 pair_artifact: docs/test-design/harness/L8-source-boundary-contracts.md

@@ -3,11 +3,11 @@ title: "HELIX L8 単体テスト設計 — 文書 agent metadata 契約"
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-07-14
 updated: 2026-07-14
 owner: QA / TL
-pair_artifact: docs/design/helix/
+pair_artifact: docs/design/helix/L6-function-design/document-agent-metadata-contract.md
 ---
 
 # HELIX L8 単体テスト設計 — 文書 agent metadata 契約
