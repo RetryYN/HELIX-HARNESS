@@ -1064,6 +1064,7 @@ baseline:
   - docs/design/helix/L5-detail/upstream-substance-gap.md
   - docs/design/helix/L6-function-design/legacy-helix-extension.md
   - docs/design/helix/L6-function-design/design-freeze-authority-transition.md
+  - docs/design/helix/L6-function-design/node-minimum-provisional-evidence.md
   - docs/design/helix/L6-function-design/orchestration-memory.md
   - docs/design/helix/L6-function-design/pillar-function-design.md
   - docs/design/helix/L6-function-design/upstream-substance-gap.md
