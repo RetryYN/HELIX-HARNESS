@@ -39,6 +39,10 @@ export type AgentStandardFailureCode =
   | "HIL_AGENT_STATE_TRANSITION_INVALID"
   | "HIL_AGENT_LIFECYCLE_INVALID"
   | "HIL_AGENT_EVENT_SEQUENCE_INVALID"
+  | "HIL_AGENT_FENCING_REJECTED"
+  | "HIL_AGENT_FENCING_VIOLATION"
+  | "HIL_AGENT_LEASE_ALREADY_ACTIVE"
+  | "HIL_AGENT_LEASE_EXPIRED"
   | "HIL_AGENT_BLIND_CONTEXT_LEAK"
   | "HIL_AGENT_VERIFIER_NOT_INDEPENDENT"
   | "HIL_ROLE_SEPARATION_VIOLATION";
@@ -201,6 +205,91 @@ export interface AgentLifecycleEventV1 {
   previous_event_digest: string;
   payload_digest: string;
   event_digest: string;
+}
+
+export interface AgentLeaseV1 {
+  schema_version: "helix-agent-lease.v1";
+  lease_id: string;
+  instance_id: string;
+  owner_session_id: string;
+  owner_run_id: string;
+  fence: number;
+  acquired_at: string;
+  heartbeat_at: string;
+  expires_at: string;
+  state: "active" | "released" | "expired" | "revoked";
+}
+
+export interface AgentLeaseAcquisitionBundleV1 {
+  operation_id: string;
+  payload_digest: string;
+  instance_id: string;
+  owner_id: string;
+  expected_instance_revision: number;
+  expected_event_head: string;
+  expected_projection_head: string;
+  expected_lease_head: string | null;
+  next_fence: number;
+  lease_row_digest: string;
+  instance_state_fence_digest: string;
+  transition_event_digest: string;
+  projection_digest: string;
+  receipt_digest: string;
+}
+
+export interface AgentLeaseAcquisitionReceiptV1 {
+  operation_id: string;
+  payload_digest: string;
+  mutation_kind: "lease_acquisition";
+  instance_id: string;
+  fence: number;
+  before_event_head: string;
+  after_event_head: string;
+  before_projection_head: string;
+  after_projection_head: string;
+  write_set_digest: string;
+  row_count_digest: string;
+}
+
+export type AgentLeaseAcquisitionResultV1 =
+  | { ok: true; value: AgentLeaseAcquisitionReceiptV1 }
+  | {
+      ok: false;
+      code: "HIL_AGENT_LEASE_ALREADY_ACTIVE" | "HIL_AGENT_LIFECYCLE_INVALID";
+      findings: string[];
+    };
+
+export interface AgentLeaseAcquisitionStoreV1 {
+  /** lease/event/projection/instance fence/receiptを一つのtransactionでCASする。 */
+  commitLeaseAcquisition(
+    bundle: AgentLeaseAcquisitionBundleV1,
+  ): Promise<AgentLeaseAcquisitionResultV1>;
+}
+
+export interface LeaseLivenessDecisionV1 {
+  lease_id: string;
+  instance_id: string;
+  owner_match: boolean;
+  fence_match: boolean;
+  heartbeat_current: boolean;
+  expired: boolean;
+  live: boolean;
+  trusted_now: string;
+  failure_code: "HIL_AGENT_LEASE_EXPIRED" | null;
+  decision_digest: string;
+}
+
+export type AgentFencedOperationKind = "tool" | "checkpoint" | "artifact" | "completion" | "resume";
+
+export interface FenceDecisionV1 {
+  instance_id: string;
+  lease_id: string;
+  operation_kind: AgentFencedOperationKind;
+  current_fence: number;
+  operation_fence: number;
+  accepted: boolean;
+  failure_code: "HIL_AGENT_FENCING_REJECTED" | "HIL_AGENT_FENCING_VIOLATION" | null;
+  decision_digest: string;
 }
 
 const CONTRACT_KEYS = [
@@ -746,4 +835,108 @@ export function appendAgentLifecycleEvent(
     payload_digest: operation.payload_digest,
   };
   return { ok: true, value: { ...payload, event_digest: digest(payload) } };
+}
+
+/**
+ * Acquisitionのwrite setを分解せず、保存層の単一CAS transactionへそのまま渡す。
+ * この関数自身はleaseの存在確認やfence採番をread-then-writeで行わない。
+ */
+export async function acquireAgentLease(
+  bundle: AgentLeaseAcquisitionBundleV1,
+  store: AgentLeaseAcquisitionStoreV1,
+): Promise<AgentLeaseAcquisitionResultV1> {
+  const strings = [
+    bundle.operation_id,
+    bundle.payload_digest,
+    bundle.instance_id,
+    bundle.owner_id,
+    bundle.expected_event_head,
+    bundle.expected_projection_head,
+    bundle.lease_row_digest,
+    bundle.instance_state_fence_digest,
+    bundle.transition_event_digest,
+    bundle.projection_digest,
+    bundle.receipt_digest,
+  ];
+  const validRevision =
+    Number.isSafeInteger(bundle.expected_instance_revision) &&
+    bundle.expected_instance_revision >= 0;
+  const validFence = Number.isSafeInteger(bundle.next_fence) && bundle.next_fence > 0;
+  if (
+    strings.some((value) => !nonEmptyString(value)) ||
+    !validRevision ||
+    !validFence ||
+    (bundle.expected_lease_head !== null && !nonEmptyString(bundle.expected_lease_head))
+  ) {
+    return {
+      ok: false,
+      code: "HIL_AGENT_LIFECYCLE_INVALID",
+      findings: ["lease_acquisition_bundle"],
+    };
+  }
+  return store.commitLeaseAcquisition(bundle);
+}
+
+export function evaluateAgentLeaseLiveness(
+  lease: AgentLeaseV1,
+  owner: { session_id: string; run_id: string },
+  fence: number,
+  trustedNow: string,
+): LeaseLivenessDecisionV1 {
+  const acquiredAt = Date.parse(lease.acquired_at);
+  const heartbeatAt = Date.parse(lease.heartbeat_at);
+  const expiresAt = Date.parse(lease.expires_at);
+  const now = Date.parse(trustedNow);
+  const validTimeline =
+    [acquiredAt, heartbeatAt, expiresAt, now].every(Number.isFinite) &&
+    acquiredAt <= heartbeatAt &&
+    heartbeatAt <= now &&
+    acquiredAt < expiresAt;
+  const ownerMatch =
+    owner.session_id === lease.owner_session_id && owner.run_id === lease.owner_run_id;
+  const fenceMatch = Number.isSafeInteger(fence) && fence === lease.fence;
+  const heartbeatCurrent = validTimeline && heartbeatAt < expiresAt && now < expiresAt;
+  const expired = !validTimeline || now >= expiresAt || lease.state !== "active";
+  const live = ownerMatch && fenceMatch && heartbeatCurrent && !expired;
+  const payload = {
+    lease_id: lease.lease_id,
+    instance_id: lease.instance_id,
+    owner_match: ownerMatch,
+    fence_match: fenceMatch,
+    heartbeat_current: heartbeatCurrent,
+    expired,
+    live,
+    trusted_now: trustedNow,
+    failure_code: expired ? ("HIL_AGENT_LEASE_EXPIRED" as const) : null,
+  };
+  return { ...payload, decision_digest: digest(payload) };
+}
+
+export function fenceAgentOperation(
+  instanceId: string,
+  lease: AgentLeaseV1,
+  operationFence: number,
+  operationKind: AgentFencedOperationKind,
+): FenceDecisionV1 {
+  const accepted =
+    nonEmptyString(instanceId) &&
+    instanceId === lease.instance_id &&
+    lease.state === "active" &&
+    Number.isSafeInteger(operationFence) &&
+    operationFence === lease.fence;
+  const failureCode = accepted
+    ? null
+    : operationKind === "completion"
+      ? ("HIL_AGENT_FENCING_REJECTED" as const)
+      : ("HIL_AGENT_FENCING_VIOLATION" as const);
+  const payload = {
+    instance_id: instanceId,
+    lease_id: lease.lease_id,
+    operation_kind: operationKind,
+    current_fence: lease.fence,
+    operation_fence: operationFence,
+    accepted,
+    failure_code: failureCode,
+  };
+  return { ...payload, decision_digest: digest(payload) };
 }
