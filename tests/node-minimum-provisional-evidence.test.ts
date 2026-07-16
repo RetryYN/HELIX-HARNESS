@@ -45,7 +45,10 @@ describe("Node Minimum provisional evidence", () => {
 
   it("U-NMIN-004: fixed authority bindingの変更をreceipt digestへ反映する", () => {
     const first = evaluateNodeMinimumProvisional(binding, exact);
-    const drift = evaluateNodeMinimumProvisional({ ...binding, authority_head: "c".repeat(40) }, exact);
+    const drift = evaluateNodeMinimumProvisional(
+      { ...binding, authority_head: "c".repeat(40) },
+      exact,
+    );
     expect(first.receipt_digest).not.toBe(drift.receipt_digest);
   });
 });
