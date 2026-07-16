@@ -59,6 +59,7 @@ function cleanupRepo(repo: string): void {
  * 設計 pair: docs/test-design/harness/L8-integration-test-design.md IT-DB-01。
  */
 // PLAN-L7-459-design-freeze-authority-transition
+// PLAN-L7-458-node-minimum-p0-p1
 describe("IT-DB-01: harness.db state-db foundation", () => {
   it("IT-NCUT-005: node:sqliteでmigration・transaction・queueを同一control plane上で実行する", () => {
     const db = openHarnessDb(":memory:");

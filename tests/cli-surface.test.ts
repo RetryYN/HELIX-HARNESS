@@ -12,6 +12,8 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-458-node-minimum-p0-p1
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 

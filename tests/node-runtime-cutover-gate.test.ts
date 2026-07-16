@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-458-node-minimum-p0-p1
 import {
   evaluateNodeMinimum,
   type NodeMinimumInventoryV1,
@@ -48,7 +50,7 @@ const lock = validateNodeLock(
 );
 
 describe("NodeMinimumGate U-NCUT-011", () => {
-  it("全P0-P1 evidence greenでもterminal=falseのprovisional PASSだけを返す", () => {
+  it("U-NCUT-011: 全P0-P1 evidence greenでもterminal=falseのprovisional PASSだけを返す", () => {
     const receipt = evaluateNodeMinimum(
       inventory,
       runtime,

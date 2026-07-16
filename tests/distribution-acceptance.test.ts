@@ -12,6 +12,8 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-L7-458-node-minimum-p0-p1
 import {
   buildCleanDistributionPlan,
   CONSUMER_CI_RUN_COMMANDS,

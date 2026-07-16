@@ -8,7 +8,7 @@ import {
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 16;
+const LIVE_OUTSTANDING_COUNT = 17;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
   "PLAN-L7-456-document-agent-metadata-phase-b-apply",

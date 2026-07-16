@@ -14,22 +14,24 @@ owner: Codex / TL
 irreversible_impact: none
 backprop_decision: not_required
 backprop_decision_reason: "HDS-HIL-13のconfirmed scopeを変更せず、P0–P1のisolated evidenceだけをL7へ降下する。"
-parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md
-pair_artifact: docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md
+parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md
+pair_artifact: docs/test-design/helix/L8-node-minimum-p0-p1-contracts.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: U-NCUT-006, test_path: tests/node-runtime-cutover-toolchain.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: U-NCUT-007, test_path: tests/node-runtime-cutover-toolchain.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: U-NCUT-008, test_path: tests/node-runtime-cutover-toolchain.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: U-NCUT-009, test_path: tests/node-runtime-cutover-toolchain.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: U-NCUT-010, test_path: tests/node-runtime-cutover-toolchain.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: U-NCUT-011, test_path: tests/node-runtime-cutover-gate.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: IT-NCUT-001, test_path: tests/node-runtime-cutover-integration.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: IT-NCUT-002, test_path: tests/node-runtime-cutover-integration.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: IT-NCUT-003, test_path: tests/cli-surface.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: IT-NCUT-004, test_path: tests/distribution-acceptance.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md, oracle_id: IT-NCUT-005, test_path: tests/state-db.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: U-NCUT-006, test_path: tests/node-runtime-cutover-toolchain.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: U-NCUT-007, test_path: tests/node-runtime-cutover-toolchain.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: U-NCUT-008, test_path: tests/node-runtime-cutover-toolchain.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: U-NCUT-009, test_path: tests/node-runtime-cutover-toolchain.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: U-NCUT-010, test_path: tests/node-runtime-cutover-toolchain.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: U-NCUT-011, test_path: tests/node-runtime-cutover-gate.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: IT-NCUT-001, test_path: tests/node-runtime-cutover-integration.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: IT-NCUT-002, test_path: tests/node-runtime-cutover-integration.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: IT-NCUT-003, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: IT-NCUT-004, test_path: tests/distribution-acceptance.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, oracle_id: IT-NCUT-005, test_path: tests/state-db.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-458-node-minimum-p0-p1.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/node-minimum-p0-p1.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-node-minimum-p0-p1-contracts.md, artifact_type: test_design }
   - { artifact_path: tests/node-runtime-cutover-toolchain.test.ts, artifact_type: test_code }
   - { artifact_path: tests/node-runtime-cutover-gate.test.ts, artifact_type: test_code }
   - { artifact_path: tests/node-runtime-cutover-integration.test.ts, artifact_type: test_code }

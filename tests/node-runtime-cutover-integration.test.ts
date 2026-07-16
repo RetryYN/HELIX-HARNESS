@@ -13,6 +13,8 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
+// PLAN-L7-458-node-minimum-p0-p1
+
 interface CommandReceipt {
   executable_id: "node";
   argv: string[];
