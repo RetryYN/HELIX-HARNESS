@@ -7,11 +7,13 @@ Claude Code はこのリポジトリでは以下を canonical として扱う。
 1. `CLAUDE.md`
 2. `.claude/CLAUDE.md`
 3. `docs/governance/README.md`
-4. `docs/governance/helix-harness-concept_v3.1.md`
-5. `docs/governance/helix-harness-requirements_v1.2.md`
-6. `docs/governance/helix-harness-extraction-plan_v0.1.md`
-7. `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
-8. `docs/adr/ADR-009-node-python-linux-runtime.md`
+4. `docs/governance/vmodel-authority-receipt-v1.md`
+5. `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`
+6. `docs/governance/helix-harness-concept_v3.1.md`
+7. `docs/governance/helix-harness-requirements_v1.2.md`
+8. `docs/governance/helix-harness-extraction-plan_v0.1.md`
+9. `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
+10. `docs/adr/ADR-009-node-python-linux-runtime.md`
 
 Migration snapshots と migration docs は通常 startup reads ではない。migration、gap audit、
 regression-source inspection が必要なときだけ読む。
@@ -26,13 +28,20 @@ canonical runtime state ではない。Migration source material は historical 
 ADR-001のclean rebuild／TypeScript strictは維持し、Bun固有のtarget runtime決定はADR-009がsupersedeする。
 terminal receipt前のactive execution authorityは既存Bun、terminal後はreceipt-bound TypeScript/Node、承認済みrollback時は
 Node receiptをstale化したBun一時再activationである。Pythonはproposal-only workerであり、old W1-W3a Python runtimeはbulk portしない。
+Hybrid Design Document由来の検証済みPython toolは第一級workerとしてPythonのまま採用し、Nodeがcontract、gate、
+authoritative DB commitを担う。既存Python engineのTS全面移植や既存Node control planeのPython全面移植は行わない。
+
+V-modelの新規authoring候補は`vmodel-l1-l12-v1`である。activation状態の正本は
+`docs/governance/vmodel-authority-receipt-v1.md`、候補意味は`vmodel-canonical-authority-cutover.md`とする。
+receipt pending中はL1-L12候補でも旧L0-L14意味でも新規freeze/実装へ進まない。旧L0-L14はactive runtime/schemaと
+既存artifact解釈のcompatibility authorityであり、implementation preflightはauthoring承認後も独立してblockedである。
 
 ## HELIX 再構築方針（現行・最優先）
 
 本リポジトリは **HELIX（超個人開発システム）** を構築する場である。HELIX は別プロジェクトではなく、
 **Vモデル harness の「仕組み」をそのまま土台に、その上へ HELIX の機能を積んで harness 自身を
-HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
-`docs/design/helix/L0-charter/helix-charter_v0.1.md`（status=confirmed, 10 本柱 P0–P9）と起票
+HELIX へ進化させる**もの。P0–P9の価値・scope正本はlegacy L0配置の企画書
+`docs/design/helix/L0-charter/helix-charter_v0.1.md`（status=confirmed）であり、receipt承認後はcanonical L1へ投影する。起票は
 `docs/plans/PLAN-L0-01-helix-charter.md`。
 
 ### precedence（拘束原則）
@@ -45,9 +54,10 @@ HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
 
 ### 進め方（design-driven 漸進）
 
-- harness の V モデルを **L0 から Forward に 1 層ずつ設計で進める**。各層で**その粒度に合う旧 HELIX の
+- receipt confirmed後、harnessのVモデルを **canonical L1からForwardに1層ずつ設計で進める**。pending中はfreeze/実装しない。各層で**その粒度に合う旧 HELIX の
   個別機能を突き合わせ → 取捨選択 → 機能一覧（FR）を都度更新 → 名称も揃えて登録**する。
-- 取捨選択は粒度を合わせる: L1 = 機能エリア（BR/NFR）、L3 = 機能ユニット（FR）、L4–L6 = command/algorithm。
+- 取捨選択は粒度を合わせる: L1=企画、L2=要求・prototype/no-UI receipt、L3=要件freeze、L4=基本設計、
+  L5=詳細/test design、L6=product code。
 - 大きな一括 import（capability map / bulk import）はしない。
 
 ### 旧 HELIX ソースリポジトリ（機能ソース・常時参照）
@@ -62,7 +72,7 @@ HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
 
 ### 自律境界（charter §3）
 
-- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。
+- **人**: L1企画 / L2要求・prototype判断 / L3要件は**承認のみ**。
 - **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。
 
 ### リネーム方針（段階）
@@ -111,6 +121,8 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 ## 正本 Docs
 
+- `docs/governance/vmodel-authority-receipt-v1.md`
+- `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`
 - `docs/governance/helix-harness-concept_v3.1.md`
 - `docs/governance/helix-harness-requirements_v1.2.md`
 - `docs/governance/helix-harness-extraction-plan_v0.1.md`
@@ -242,7 +254,8 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
-- Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
+- Production Scrum: receipt confirmed後のproduct backlog / sprint / BDD横軸で、各sliceが該当範囲のL1-L12縮約Vを完走する。
+- Discovery / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
 - Continuation: `harness.db` の continuation projection が non-stale なら確認する。
 
 ## 指示ファイル

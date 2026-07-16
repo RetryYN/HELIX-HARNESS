@@ -2,7 +2,12 @@ import { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
 import type { IndexDef, TableDef } from "./harness-db-types";
 
 export { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
-export type { ColumnDef, ColumnType, IndexDef, TableDef } from "./harness-db-types";
+export type {
+  ColumnDef,
+  ColumnType,
+  IndexDef,
+  TableDef,
+} from "./harness-db-types";
 
 /**
  * harness.db projection schema — 単一正本 (PLAN-L7-45, 工程表 PLAN-L7-44 span ①)。
@@ -21,7 +26,7 @@ export type { ColumnDef, ColumnType, IndexDef, TableDef } from "./harness-db-typ
  * affinity ヒント)。各 table の列・PK・index は §2.7/§9.1/§9.3 に準拠。
  */
 
-export const SCHEMA_VERSION = 39;
+export const SCHEMA_VERSION = 42;
 
 /**
  * SQL 識別子検証 (injection 防止)。table / column / index 名は ? でバインドできず DDL/DML に
@@ -31,7 +36,9 @@ export const SCHEMA_VERSION = 39;
 export const SQL_IDENTIFIER = /^[A-Za-z_][A-Za-z0-9_]*$/;
 export function assertSqlIdentifier(name: string): void {
   if (!SQL_IDENTIFIER.test(name)) {
-    throw new Error(`不正な SQL 識別子 (英数字/アンダースコアのみ許可): ${name}`);
+    throw new Error(
+      `不正な SQL 識別子 (英数字/アンダースコアのみ許可): ${name}`,
+    );
   }
 }
 
@@ -41,10 +48,11 @@ export const HARNESS_DB_TABLE_BY_NAME: ReadonlyMap<string, TableDef> = new Map(
 
 /** CREATE TABLE DDL を registry から生成 (deterministic、IF NOT EXISTS)。 */
 export function createTableSql(table: TableDef): string {
-  const cols = table.columns.map((c) => {
-    const constraint = c.primaryKey ? " PRIMARY KEY" : "";
+  const cols: string[] = table.columns.map((c) => {
+    const constraint = `${c.primaryKey ? " PRIMARY KEY" : ""}${c.notNull ? " NOT NULL" : ""}`;
     return `  ${c.name} ${c.type}${constraint}`;
   });
+  for (const check of table.checks ?? []) cols.push(`  CHECK (${check})`);
   return `CREATE TABLE IF NOT EXISTS ${table.name} (\n${cols.join(",\n")}\n)`;
 }
 
@@ -55,7 +63,10 @@ export function createIndexSql(index: IndexDef): string {
 
 /** schema 全体の DDL 文 (table → index の順、deterministic)。 */
 export function schemaDdl(): string[] {
-  return [...HARNESS_DB_TABLES.map(createTableSql), ...HARNESS_DB_INDEXES.map(createIndexSql)];
+  return [
+    ...HARNESS_DB_TABLES.map(createTableSql),
+    ...HARNESS_DB_INDEXES.map(createIndexSql),
+  ];
 }
 // registry identifiers are validated at module load so invalid DDL fails before projection writes.
 for (const table of HARNESS_DB_TABLES) {
