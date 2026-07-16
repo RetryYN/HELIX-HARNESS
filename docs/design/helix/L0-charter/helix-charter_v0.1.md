@@ -1,8 +1,12 @@
 # HELIX 企画書 — 超個人開発システム
 
+> **Canonical projection banner — `VMAUTH-2026-07-16-01`**
+> P0–P9の価値、scope、自律化目標はconfirmedのまま維持する。L0配置とL0–L14層番号はlegacy表現で、L1–L12 candidateでは
+> charter意味をL1企画へ投影する。receipt承認前は新規freeze/実装へ進まない。TS/Bunはactive runtime説明でありtargetではない。
+
 > 版: v0.2 ／ status: confirmed（G0.5 PASS 2026-06-28）／ 起票 PLAN: PLAN-L0-01-helix-charter ／ drive: agent
 > 改訂: v0.2 (2026-06-28) — Scrum を「大規模開発を機能ユニット分割し L4–L7 を反復着地させる機構」として対象内に訂正（v0.1 で誤って非目標化）。version-up 定義を追加（L1 back-propagation）。
-> 位置づけ: 本書は HELIX の L0 企画書（charter）。具体機構（アルゴリズム・スキーマ・gate 配線）は持たず、背景・目的・スコープを高レベルで定め、L1 要求へ trace させる。土台は HELIX-HARNESS（V モデル工程・gate・state DB 実装済み）。
+> 位置づけ: 本書はlegacy L0配置の価値・scope charter。具体機構（アルゴリズム・スキーマ・gate配線）は持たず、receipt承認後はcanonical L1へ投影する。
 
 ## §1 背景
 

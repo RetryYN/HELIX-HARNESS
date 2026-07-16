@@ -1,0 +1,3795 @@
+{
+  "schema_version": "helix.universal-nonpo-question-design-closure.v1",
+  "status": "ai_only_reaudit_complete_po22_untouched",
+  "generated_at": "2026-07-16",
+  "sources": [
+    {
+      "path": "docs/governance/generated/universal-workflow-interview-answerability-audit-v1.json",
+      "sha256": "747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec"
+    },
+    {
+      "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+      "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+    },
+    {
+      "path": "docs/governance/generated/universal-workflow-question-migration-queue-v1.json",
+      "sha256": "7259788121ef37795acaaf75144976c70bc04f90e13ce4d4e3847c870b6df524"
+    },
+    {
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c"
+    },
+    {
+      "path": "docs/governance/generated/universal-workflow-semantic-decisions-v1.json",
+      "sha256": "3cac117a33302c64ea6200910be43d326ae310e4794de860574e27d0a2009c38"
+    },
+    {
+      "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+      "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+    },
+    {
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f"
+    },
+    {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/product-data-connector.md",
+      "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+    }
+  ],
+  "scope": {
+    "all_questions": 76,
+    "excluded_po_questions": 22,
+    "excluded_po_decision_groups": 6,
+    "non_po_questions": 54
+  },
+  "summary": {
+    "records": 54,
+    "existing_po_chat_answer_design_receipts": 12,
+    "evidence_answered_challenged": 37,
+    "evidence_answered_rebound_authority_pending": 37,
+    "dependency_deferred_or_challenged": 5,
+    "design_answer_receipt_activated": 12,
+    "activation_blocked": 42,
+    "id_migration_overlap": 13,
+    "semantic_decision_overlap": 0,
+    "remaining12_id_migration_overlap": 0,
+    "remaining12_semantic_decision_overlap": 0,
+    "po_rows_modified": 0,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "records=54 and excluded PO questions=22/6 groups",
+    "37 evidence rows + 5 dependency rows + 12 existing PO chat answer rows = 54",
+    "AI never synthesizes an answer value or selects a PO option",
+    "stale provenance and missing dependency authority fail closed",
+    "Design answer receipt does not grant runtime or coverage credit"
+  ],
+  "records": [
+    {
+      "question_id": "UWR-Q-C-APPROVAL-01",
+      "source_question": "誰が承認できますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "POのL3/企画/scope/high-impact承認と別runtime gate authority候補。",
+        "answer_value_sha256": "80c24e6538b09d7f9dbfb3cac0c27b8ba857ba8ebbb31be44e25de28745d6d90",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "自律境界"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-02",
+      "source_question": "承認者が不在の場合はどうしますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "不在/判断不能時は未承認のままcheckpoint/escalation候補。",
+        "answer_value_sha256": "5850ab3eeff06598d981201652c853a754098921226e711ab7b43c6fbe02b0a3",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "不可逆・高影響"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-04",
+      "source_question": "差し戻し時はどの状態へ戻しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "差戻しをaffected layerのRedesign/Reverseへ戻す候補。",
+        "answer_value_sha256": "e03d264b8fa9a64877a41c042a2fb7d888852b9bc61954126aefda14b3c62c2b",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-05",
+              "HIL-FR-31"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "HELIX Workflow"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-05",
+      "source_question": "多段承認の場合、順序と省略条件は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "人=L1/L2決定＋L3承認、AI=L3起草＋L4以降、不可逆境界は別承認という順序候補。",
+        "answer_value_sha256": "a38b2dcf57d7b83ad4cd49808d4a702f431743ef1a3a01c3e2b5598dec2b34f2",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-BR-01",
+              "HIL-NFR-06"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "自律境界"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-DEADLINE-02",
+      "source_question": "期限超過時に何を発火しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "期限/iteration超過をcheckpoint、queue、escalation eventへ送る候補。",
+        "answer_value_sha256": "9d765b74cd0a12c987e52734d3109a48d91bd8fc5ef6c0bbfc61d9d0bf228a8e",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-33",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-DEADLINE-03",
+      "source_question": "自動終了、再通知、エスカレーションのどれですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "silent retryせずbounded retry後checkpoint/escalationとする候補。",
+        "answer_value_sha256": "4e36e32019dc8852d023e74b46d5edfbefa56cccc2abaded79bafcb91d0cad6b",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+      "source_question": "同期ですか非同期ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "PR hook/event、product snapshot、worker IPCごとにasync/sync contractを分離する候補。",
+        "answer_value_sha256": "9a86fc52c68e202bd5d1b8f1f64c4842c5614ad692fc3af09117bc467724ad18",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-02",
+              "HIL-FR-24",
+              "HIL-TR-07"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+      "source_question": "重複実行をどう防ぎますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "delivery/operation IDとpayload digestによる冪等化候補。",
+        "answer_value_sha256": "9ee2ba8033dd47a34ae8a7750dd4d618021027f567101ff10e3cb4a4ddf58fe5",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-01",
+              "HIL-FR-60"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+      "source_question": "失敗時の再試行回数と間隔は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "dependency_reaudit",
+        "status": "terminal_defer_dependency_not_activated",
+        "answer_value": "bounded retryを必須とするが回数/間隔はoperation別未freeze。",
+        "answer_value_sha256": "1a4f1f3f3c5652857734091b9279eeb7b52bc42a80dcadb3502fbdafdafe9d76",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-60",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "waiting"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all dependency resolution conditions and authority receipts current"
+        },
+        "dependencies": [
+          {
+            "dependency_id": "connector_registry_scope",
+            "artifacts": [
+              {
+                "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+                "sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0"
+              },
+              {
+                "path": "docs/design/helix/L5-detail/product-data-connector.md",
+                "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+              }
+            ],
+            "resolution": "registered connector/actionごとのretry class、回数、interval、timeout、idempotencyを同一revisionでfreezeしnegative oracleへbindする"
+          },
+          {
+            "dependency_id": "VMAUTH-2026-07-16-01",
+            "artifacts": [
+              {
+                "path": "docs/governance/vmodel-authority-receipt-v1.md",
+                "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+              }
+            ],
+            "resolution": "current packet digestに対するPO approval eventを記録する。AIは代行しない"
+          }
+        ],
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+      "source_question": "部分成功を許可しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "Node commitはsingle transaction、partial result/partial promotionを拒否する候補。",
+        "answer_value_sha256": "ae5021f0bc4068a4f1604057bbb6f7540a38a8c90198a2a53d82bab4b6216685",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-TR-08",
+              "HIL-NFR-01"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "単一transaction commit"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+      "source_question": "外部側の応答がない場合はどうしますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "timeout後late result拒否、checkpoint/fallback/escalation候補。",
+        "answer_value_sha256": "ef93d1fd80b3cebd86b0847f0f1d2aab90578ab116cd3adb0c49b023f1f8050f",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-TR-08",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+      "source_question": "マスキング対象は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "PII/secret/raw payloadをredactionし通常projection/contextへ複製しない候補。",
+        "answer_value_sha256": "7d0ff87553ab04c42f00205f5391afb72f975afaf21a655efd700d1cf523a59b",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-17"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+      "source_question": "保存期間と削除条件は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "dependency_reaudit",
+        "status": "terminal_defer_dependency_not_activated",
+        "answer_value": "classification別retentionとdestructive purge approval候補だが期間値未freeze。",
+        "answer_value_sha256": "c19c70821d35e3a00b1de2cc8ea092849761661234e122764c3e42c53f6ed0de",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-17",
+              "HIL-NFR-06"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "waiting"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all dependency resolution conditions and authority receipts current"
+        },
+        "dependencies": [
+          {
+            "dependency_id": "product_data.classification_policy",
+            "artifacts": [
+              {
+                "path": "docs/design/helix/L5-detail/product-data-connector.md",
+                "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+              }
+            ],
+            "resolution": "data class別retention period、purge authority、tombstone、legal/security review receiptをfreezeする"
+          }
+        ],
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+      "source_question": "操作履歴をどの粒度で残しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "actor/tool/target/params/event/digestをappend-only監査する候補。",
+        "answer_value_sha256": "4ea48a1ca36ca0d773ff3d3df1e9c50a2881a010b04b738e5fbae941d69efd6a",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-45",
+              "HIL-FR-60"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-01",
+      "source_question": "AIの出力は確定処理ですか、提案ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "Universal/Python/subagentはproposal-only、Node gateがcommit authority候補。",
+        "answer_value_sha256": "6165fcb241c0d6c61ecdf2d170ba18882f0badd1ef43781b03bdc26246fadcb4",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-TR-12",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "proposal-only worker"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-02",
+      "source_question": "人間の承認が必要な条件は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "L3価値/scope、不可逆、高影響操作、人間visual acceptanceを人間承認候補。",
+        "answer_value_sha256": "fb2e83b6aa3a1a4c1b499aeed6ec34d872df6aff50a711fc1a5edb7660a66994",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-06",
+              "HIL-FR-79"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "自律境界"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule",
+            "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 4,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-03",
+      "source_question": "信頼度が低い場合の戻り先はどこですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "低confidenceはIssue/challenge/escalationまたは別runtime reviewへ戻す候補。",
+        "answer_value_sha256": "0748e938052d43781372c6a20e95db01eba7541e05efd6cd322aebecdefa07d3",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-04",
+      "source_question": "根拠とモデル情報を記録しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "model/provider/role/input/output/evidence digestをrun receiptへ記録する候補。",
+        "answer_value_sha256": "750be6efe477b69f4d2866c82cbed51d7bac296267c3067982a67d303cf1ad0b",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-30"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-05",
+      "source_question": "再実行時の入力・モデル・設定を固定しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": true,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "再実行をinput snapshot/model/config/version digestへbindする候補。",
+        "answer_value_sha256": "1e0192013f332195a56cd4a1bc09b2465e1d19bc1fa62c3ba67aaf9188964bce",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-30"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-001",
+      "source_question": "この業務で扱う対象は何ですか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-001",
+          "answer_value": "HELIX-HARNESS自身の構築・運用・自己監査/改善workflow。",
+          "original_value_digest": "ec9ec90135823fe7fd64f5cfae9572b382ca1752bdaef4783aa2151c42377910",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-001",
+              "HC-CHAT-006",
+              "HC-CHAT-023"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "2d61eff10ccf4817479558ea297cd85c476e610aeec1dd0eb894c81f268f18b2",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-002",
+      "source_question": "誰が関与しますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-002",
+          "answer_value": "PO/ユーザー、Codex実行側、Claude Code監査・改善側、HARNESS-owned subagent、GitHub/登録外部service。",
+          "original_value_digest": "e2e2e1e4ab08147b0dcd9083afe7e4713fa17fb0247198286627d0a844680d4f",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-007",
+              "HC-CHAT-009",
+              "HC-CHAT-017",
+              "HC-CHAT-044"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "4099ae5a72d32e57cfc94ddb9ab37af420717a092491fd6cd99f68886f46a054",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-003",
+      "source_question": "何をきっかけに開始しますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-003",
+          "answer_value": "ユーザーchat/Issue/PLAN、GitHub PR hook event、監査finding、CI failureをintake triggerとする。",
+          "original_value_digest": "6a37fe2162563af044ad1e5526d4768ead37c644b33593348e5f13a382735b5e",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-007",
+              "HC-CHAT-008",
+              "HC-CHAT-010",
+              "HC-CHAT-015"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "2ad6a80ae1f8457d1fa07782f07116fd5e7d84a9ded5824c15f071e21f2553d5",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-004",
+      "source_question": "開始時点の状態は何ですか",
+      "original_disposition": "unresolved",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "dependency_reaudit",
+        "status": "terminal_challenge_missing_value_not_activated",
+        "answer_value": null,
+        "answer_value_sha256": null,
+        "provenance": [],
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "waiting"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all dependency resolution conditions and authority receipts current"
+        },
+        "dependencies": [
+          {
+            "dependency_id": "VMAUTH-2026-07-16-01",
+            "artifacts": [
+              {
+                "path": "docs/governance/vmodel-authority-receipt-v1.md",
+                "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+              }
+            ],
+            "resolution": "current packet digestに対するPO approval eventを記録する。AIは代行しない"
+          },
+          {
+            "dependency_id": "canonical_workflow_state_model",
+            "artifacts": [
+              {
+                "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+                "sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0"
+              }
+            ],
+            "resolution": "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+          }
+        ],
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-005",
+      "source_question": "途中で取り得る状態は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "Forward/Reverse/Redesign/Scrumとgate/job statesをtyped state machine化する候補。",
+        "answer_value_sha256": "6e909d648200b345abaa2a9c2e4783a39d7f33dedce1aa50f505fcf985623d3c",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-006",
+      "source_question": "待機・保留・失敗を別状態として扱いますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "pending/deferred/failed/stale/blockedを別状態として扱う候補。",
+        "answer_value_sha256": "86bb503fb8ced82105bc3fb352051f997599b7b9d6a72765038eba0e48c7ce0a",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-007",
+      "source_question": "どんな場合に対応が変わりますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "authority、scope、gate、CI、design finding、resource状態でbranchする候補。",
+        "answer_value_sha256": "cba58010c56a8bdef4743235c2b445f8326ac89dd88f883e0a0cdb63137503e9",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-008",
+      "source_question": "次に進めない条件は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "unresolved、missing evidence、gate red、approval pending、staleで進行不可候補。",
+        "answer_value_sha256": "3e8b5b99d6106d210b14eaca281209cd7230a1b4826bacf0a7605d1bc1ba03e1",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-009",
+      "source_question": "誰の判断や権限で分岐しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "PO/Node deterministic gate/別runtime verifierのauthority matrix候補。",
+        "answer_value_sha256": "f21435c96d6428b479b050dfc5478cb8634d482b72aff55a0963676cc4947fb9",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-010",
+      "source_question": "各分岐で何を実行しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "branchごとのactionをtyped drive/state transitionへ割り当てる候補。",
+        "answer_value_sha256": "440a19cf69102b74c7b1fd6a7055a24d5cc26014f1c5b0e9ea6fb10fc5526bbe",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-011",
+      "source_question": "実行時に必要なデータは何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "source digest、authority、state、gate evidence、resource/policy snapshotを要求する候補。",
+        "answer_value_sha256": "49dda28c89bfa50139750fe77c4f02f72d49141ace0ec515857d740da18ce02c",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-45",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-012",
+      "source_question": "処理後に何を更新しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "append-only event/current projection/checkpointとdownstream stale edgeを更新する候補。",
+        "answer_value_sha256": "e09077cf3f5a36e78c598e58caa63b066cba8eb53101d0ec4bb518f87da321fb",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-25",
+              "HIL-FR-45"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-013",
+      "source_question": "やり直しになるのはどんな場合ですか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-013",
+          "answer_value": "監査finding、設計欠陥、CI failure、要件/template gap、Redesign対象化でやり直す。",
+          "original_value_digest": "afd3808c34367e3133ee7edaa5715ebedcaf44c6b5b05e77003e346304f0fd6b",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-008",
+              "HC-CHAT-014",
+              "HC-CHAT-015",
+              "HC-CHAT-038"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "d27c8178473f9e9c4747710a330dfffc5f7cd5a510adfb880c151481560c524b",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-014",
+      "source_question": "どこへ戻りますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-014",
+          "answer_value": "欠陥種別に応じReverse、affected design layerのRedesign、またはGate前へ戻し、再freeze後Forwardへ再合流する。",
+          "original_value_digest": "a6f691f92920a3710bae4a77d6d01ea00685ecd55dafcf00ae66fb392a546881",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-011",
+              "HC-CHAT-013",
+              "HC-CHAT-014"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "bb6ffe629070f2171bc7e603a5e01456a0bd5226705fcf8a3db39711928e423c",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-015",
+      "source_question": "何回まで繰り返しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "dependency_reaudit",
+        "status": "terminal_defer_dependency_not_activated",
+        "answer_value": "loopごとのbounded iteration/lease/deadlineを必須化するが数値は未freeze。",
+        "answer_value_sha256": "58de1d2dd91976faa3b94062f89874cd0f635306e723d7cb33dab4c4baacb3d0",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "waiting"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all dependency resolution conditions and authority receipts current"
+        },
+        "dependencies": [
+          {
+            "dependency_id": "VMAUTH-2026-07-16-01",
+            "artifacts": [
+              {
+                "path": "docs/governance/vmodel-authority-receipt-v1.md",
+                "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+              }
+            ],
+            "resolution": "current packet digestに対するPO approval eventを記録する。AIは代行しない"
+          },
+          {
+            "dependency_id": "canonical_workflow_state_model",
+            "artifacts": [
+              {
+                "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+                "sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0"
+              }
+            ],
+            "resolution": "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+          }
+        ],
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-016",
+      "source_question": "ループを止める条件は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "acceptance/gate terminal、bounded limit、escalationで停止する候補。",
+        "answer_value_sha256": "54cec4328e739a293e34be1e1478e63311e8a5bb3dd3550474d60e0795e12da9",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-017",
+      "source_question": "正常終了の条件は何ですか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-017",
+          "answer_value": "要件freeze後の設計・実装・検証・PR・CI・監査/改善が証拠付きで収束し、必要gateを通過すること。",
+          "original_value_digest": "9e3c3e681deabce0cd78996ae99e8af7f01dc72af26fcc804426881f1389217c",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-015",
+              "HC-CHAT-023"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "c2fefc2ace18d9ce1199102419b11aec7654e67025550cd06ebf59da8a0d48a2",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-019",
+      "source_question": "失敗終了や期限切れ終了はありますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "success/cancel/fail/expire terminalを分離する候補。",
+        "answer_value_sha256": "ffd76e37f5d66a42d0ba92b7a2ac1fcdc3d4d488460ff99714a455fc5c6d8deb",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-020",
+      "source_question": "終了後に発火する処理は何ですか",
+      "original_disposition": "unresolved",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "dependency_reaudit",
+        "status": "terminal_challenge_missing_value_not_activated",
+        "answer_value": null,
+        "answer_value_sha256": null,
+        "provenance": [],
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "waiting"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all dependency resolution conditions and authority receipts current"
+        },
+        "dependencies": [
+          {
+            "dependency_id": "VMAUTH-2026-07-16-01",
+            "artifacts": [
+              {
+                "path": "docs/governance/vmodel-authority-receipt-v1.md",
+                "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+              }
+            ],
+            "resolution": "current packet digestに対するPO approval eventを記録する。AIは代行しない"
+          },
+          {
+            "dependency_id": "canonical_workflow_state_model",
+            "artifacts": [
+              {
+                "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+                "sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0"
+              }
+            ],
+            "resolution": "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+          }
+        ],
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-021",
+      "source_question": "システム障害時はどうしますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "retry/replay/checkpoint/rollback/escalationをfailure class別に使う候補。",
+        "answer_value_sha256": "c50d590e92462ca9a04fc42e5a3a1ee75de7d7397ab6596dd8baf375836139c7",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-023",
+      "source_question": "誰が、いつ、何をしたかをどこまで記録しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "actor、timestamp、action、before/after、digest、authorityを記録する候補。",
+        "answer_value_sha256": "f4a84dac8a5eadcfa462b44282b88adf1d05fefe44338b0a125bed555d06fe1a",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-45",
+              "HIL-NFR-30"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-024",
+      "source_question": "未定義ケースを誰が判断しますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-B-024",
+          "answer_value": "機械gateで決定可能な範囲はgate、実行/監査はCodex/Claude分離、企画・scope・高影響境界はPOが判断する。",
+          "original_value_digest": "086a64fe835246957a612584026bd6fb756b5974441d29488ebd4d45ca4e375f",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-009",
+              "HC-CHAT-021",
+              "HC-CHAT-053"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "d79d28ae763e9695dfa799530a2e7af7f51542c33b057f2c1f7048f96f73aecb",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-001",
+      "source_question": "どの時点で実行候補を切り替えますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "failure、capacity/budget/deadline、quality、policy changeでswitch再評価する候補。",
+        "answer_value_sha256": "46ac6b8a8568ee8022e64f7b75a3b99bd02722fc111fed26b1ff3998067642b0",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-006",
+      "source_question": "再判定を行うきっかけは何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "failure/SLA/budget/resource/priority/quality/API/person/model/queue trigger候補。",
+        "answer_value_sha256": "6ce52aea45eb38c11ddfdee4b33f03e55bec4a09a062fda4d9f928ecd1b7bdb6",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-007",
+      "source_question": "対象をどこへ送りますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-R-007",
+          "answer_value": "Codex実装queue、Claude監査/改善、GitHub PR/CI、harness.db memory/Issue projection、登録external serviceへtyped routeする。",
+          "original_value_digest": "10efc63c254f96bfca99225758a5b5d523856fe73e1253d8a598a51d5ec567d7",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-007",
+              "HC-CHAT-008",
+              "HC-CHAT-009",
+              "HC-CHAT-010",
+              "HC-CHAT-044"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "595525e7a5578541109e2dc3c0e67cfa4bf591c13a3f4083005c8d96e1a2659f",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-008",
+      "source_question": "人、人間チーム、AI、システム、外部サービスのどれですか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-R-008",
+          "answer_value": "人、AI runtime、HARNESS system、GitHub等の登録external serviceを役割別に使用する。",
+          "original_value_digest": "10a677c65a819e4c9117e7216757f04e160bda82194e08de9d90de97f782074c",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-007",
+              "HC-CHAT-017",
+              "HC-CHAT-044"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "e7a568f2fa9f563f1fbf8c2082ce6982c4852fe37caa7dbb705596c995e2854f",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-009",
+      "source_question": "受け入れ側に必要な能力・権限・空き容量は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "capability、authority、capacity、concurrencyを受入制約にする候補。",
+        "answer_value_sha256": "a9d98eb6c44d1bbf5d6aa9bff51bc6ee612d662fd2caee207ec821929e54cb4d",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-010",
+      "source_question": "混雑時の代替経路は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "bounded fallback/checkpoint routeを要求する候補。",
+        "answer_value_sha256": "29b1e44fb6a030c8f479b1ddc89feaf3ede53b4c6303da72a0caad3baed3e7fc",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-013",
+      "source_question": "制約になる資源は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "capability、capacity、concurrency、budget、deadline、cost、token/API/timeをresource制約候補とする。",
+        "answer_value_sha256": "7517708660c2432cc875ae7121ad6b4946d43c54b7380065adf65a9d5186ec28",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-015",
+      "source_question": "各資源が持つ能力差は何ですか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "registered capability classとprovider/runtime roleで差を表現する候補。",
+        "answer_value_sha256": "4377bee9d802612a8cd48b0a6f2f5bcb5f281737c484a8c262114f5fa46c2921",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-11",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-018",
+      "source_question": "何を最適化しますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-R-018",
+          "answer_value": "証拠を省かない完全性と自動収束を第一目的とし、処理量削減を最適化目的にしない。",
+          "original_value_digest": "d0585c03a51d300059640778a79ed1ac067b27f1029c76e6a435c8e8dba2b23a",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-012",
+              "HC-CHAT-032"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "e6e2e9b15a53ce03b7f8058e2abce7512022f95d8a3920e9c25e6f8b0c627e13",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-019",
+      "source_question": "品質、速度、コスト、成功率の優先順位は何ですか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-R-019",
+          "answer_value": "品質・証拠完全性・成功を速度/コストより優先する。時間を要しても処理量を省かない。",
+          "original_value_digest": "1845e3e12f0c67d1f814eca9291fdc1457a097a8657d61a609e342fab6115567",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-012",
+              "HC-CHAT-032"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "426f696ec91ef8edfafca49b65688cf8150069aea8d80d9e4f60be17603ed6a0",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-023",
+      "source_question": "どの条件で再配分しますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "failure、deadline/budget risk、resource depletion、quality不足でreallocation候補。",
+        "answer_value_sha256": "0040a4c6a027e82c815aa802027d4b5deb0491cfd0587055b6b638b302d84f7b",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-024",
+      "source_question": "資源不足時に品質・速度・件数のどれを落としますか",
+      "original_disposition": "answered",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "existing_po_chat_answer_design_receipt",
+        "status": "design_answer_receipt_activated_source_limited",
+        "answer": {
+          "question_id": "UWR-Q-R-024",
+          "answer_value": "品質・速度・件数のいずれも証拠省略のためには落とさず、checkpoint/queue/bounded continuationへ送る。",
+          "original_value_digest": "703d51284cbe51945cbd70c1f776d46399cc5b96241cda8b3bb5bc573e53fbf1",
+          "provenance": [
+            {
+              "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+              "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+            },
+            {
+              "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+              "sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a"
+            }
+          ],
+          "authority": {
+            "kind": "PO_chat_primary",
+            "status": "current",
+            "source_ids": [
+              "HC-CHAT-012",
+              "HC-CHAT-032"
+            ]
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "assertion": "typed question answer preserves source IDs, authority and no-guess provenance"
+          }
+        },
+        "answer_receipt_sha256": "15881d9c211eefe36e8d7ace50101e9e6f543c16f329e6fac66678150819babf",
+        "activation_basis": "existing current PO_chat_primary disposition; no option selected or answer synthesized by AI",
+        "freeze_credit": true
+      },
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-025",
+      "source_question": "完全に処理不能な場合、誰へエスカレーションしますか",
+      "original_disposition": "deferred",
+      "id_migration_overlap": false,
+      "semantic_decision_overlap": false,
+      "closure": {
+        "class": "evidence_answered_reaudit",
+        "status": "design_evidence_rebound_authority_not_activated",
+        "answer_value": "bounded route不能時はIssue/checkpoint、high-impact/authority不足はPO escalation候補。",
+        "answer_value_sha256": "cc4efe6e538e75bba9dcf1a8d87e294a39d293713edd177198fb8fd98ff63c6c",
+        "provenance": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed",
+            "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "semantic_binding_current": true
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval",
+            "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "digest_matches_current": false,
+            "ids_exist_in_current": true,
+            "rebound_artifact_digest": "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "semantic_binding_current": true
+          }
+        ],
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "oracle": {
+          "acceptance_id": "HAT-HIL-20",
+          "system_id": "HST-HIL-035",
+          "required": "all evidence digests current and every required activation authority receipt current"
+        },
+        "challenge": {
+          "stale_observed_digest_count": 3,
+          "unbound_current_evidence_count": 0,
+          "resolution": "current semantic IDsへdigestを再bind済み。listed authority receiptsをAI代行なしで取得する"
+        },
+        "freeze_credit": false
+      },
+      "coverage_credit": false
+    }
+  ]
+}

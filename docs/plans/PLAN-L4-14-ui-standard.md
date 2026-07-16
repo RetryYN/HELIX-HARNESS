@@ -148,7 +148,7 @@ L2 画面設計 (画面一覧/遷移/UI要素/wireframe, G2)
   → L4 ui-standard (UI設計標準 + 部品カタログ + tokens, 本 PLAN, impl 前)
   → L6 機能設計 (per-screen function-spec)
   → L7 src/web 実装 (component-derived, L2 部品 × L4 標準)
-  → L10 UX 磨き / WCAG 検証 (impl 後, L2 の右腕ペア)
+  → L10 UX 磨き / WCAG 検証 (impl 後, L2 の右腕ペア) （層意味論: canonical L10=system/Real UX evidence）
 ```
 
 test-design coverage (proposal-document-coverage-routing §2 `frontend-design` 行 → L7/L8/L9/L12/L14) は

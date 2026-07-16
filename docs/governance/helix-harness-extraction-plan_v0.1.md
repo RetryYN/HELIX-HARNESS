@@ -1,5 +1,10 @@
 # HELIX-HARNESS 切り出し計画 v0.1
 
+> **Runtime supersession banner — ADR-009 / `VMAUTH-2026-07-16-01`**
+> 本書のTS全面再実装、Windows-first、旧Python code-port記述はmigration historyでありtarget authorityではない。
+> targetはTypeScript/Node control plane＋closed Python proposal worker＋Linux-primary multi-OSである。Hybrid Design Document由来の
+> Python toolはtool/anchor単位で保全・hardenし、全面TS移植しない。authoring receipt pending中は新規freeze/実装へ進まない。
+
 > **ADR-001 連動 (2026-05-27、一部 superseded)**: 実装方針は **「HELIX は設計概念のみ取り込み + TypeScript で全面再実装」** に更新された。本書 §初期パッケージ範囲〜§切り出し順の **旧 Python code-port 前提、および `helix-porting-map.md` / `PLAN-001..004` の code-port 計画は superseded**。HELIX snapshot は **能力インベントリ / 再設計思想の参考**としてのみ用い、コードは port せず TS で再実装する。OS ネイティブ化・`.helix/` state・mode 検出・docs 主語差し替え等の **方針 (§基本方針 / §合流の考え方 / §受入条件) は引き続き有効**。正本構想/要件は `concept_v3.1` / `requirements_v1.2`、実装言語は ADR-001 を参照。
 
 ## 目的

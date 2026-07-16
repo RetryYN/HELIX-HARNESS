@@ -47,7 +47,7 @@ review_evidence:
 
 > **正本宣言**: 本 PLAN は **中間準備ドシエ** (ヒアリング項目・調査メモ・工程表)。
 > **本 PLAN が産出する正本 doc**: `docs/design/harness/L3-functional/functional-requirements.md` (上記 frontmatter generates 参照)。
-> **V-model pair**: L3 機能要件 sub-doc ↔ L12 受入テスト設計 1 doc。本 PLAN 完了時に G3 pair freeze の対象 (next_pair_freeze: L12)。
+> **V-model pair**: L3 機能要件 sub-doc ↔ L12 受入テスト設計 1 doc。本 PLAN 完了時に G3 pair freeze の対象 (next_pair_freeze: L12)。 （層意味論: canonical L12=operational/value）
 
 ## §0 本 PLAN の役割
 
@@ -91,9 +91,9 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 
 | ID | ヒアリング項目 | 着地先 | status (TL 推奨採用) |
 |----|--------------|--------|--------|
-| U-L3-4 | AC 形式 | functional sub-doc §2 各 FR-* | 🆕 **Given-When-Then 形式 default**。理由: BDD 業界標準、L12 受入テスト → 実装テスト変換が機械化容易、ISO/IEC/IEEE 29148 整合 |
+| U-L3-4 | AC 形式 | functional sub-doc §2 各 FR-* | 🆕 **Given-When-Then 形式 default**。理由: BDD 業界標準、L12 受入テスト → 実装テスト変換が機械化容易、ISO/IEC/IEEE 29148 整合 | （層意味論: canonical L12=operational/value）
 | U-L3-5 | AC 数下限 | functional sub-doc §2 / G3 lint | 🆕 **正常 1 + 異常 1 + 境界 1 = 最低 3 件**。理由: 境界値分析の基本テスト戦略、ISTQB Foundation Level 整合、L7 TDD Red 入力として網羅性確保 |
-| U-L3-6 | AC ID 形式 | functional sub-doc §2 + §6 DoD | 🆕 **AC-{FR-ID}-{NN} 形式** (例: AC-FR-L1-01-01)。理由: ID で双方向 trace を機械化、独立採番だと L12 受入テストとの紐付け orphan リスク |
+| U-L3-6 | AC ID 形式 | functional sub-doc §2 + §6 DoD | 🆕 **AC-{FR-ID}-{NN} 形式** (例: AC-FR-L1-01-01)。理由: ID で双方向 trace を機械化、独立採番だと L12 受入テストとの紐付け orphan リスク | （層意味論: canonical L12=operational/value）
 
 ### 3.3 画面紐付き (L2 deep-link) 確定
 
@@ -152,7 +152,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 ### 手順 7: レビュー (Step 7 / review: self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須 (`.claude/CLAUDE.md` Guard Rules)。FR-L3 全件 AC 完備・対応画面 trace 整合・孤児 L1 FR 0 を確認
-- 進捗: ⬜ (G3 readiness 整備時に実施、本 sub-doc + business-detail + nfr-grade + L12 受入テスト 4 doc 全件確定後)
+- 進捗: ⬜ (G3 readiness 整備時に実施、本 sub-doc + business-detail + nfr-grade + L12 受入テスト 4 doc 全件確定後) （層意味論: canonical L12=operational/value）
 
 ## §5 実装計画
 
@@ -175,7 +175,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 - [ ] AC-* が Given-When-Then 形式 (U-L3-4 確定後)
 - [ ] frontmatter 必須フィールド完備 (sub_doc / pair_artifact / related_l0 / related_br / related_l1_functional / related_l1_screen / next_pair_freeze=L12)
 - [ ] G3-trace 機械検証通過 (FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト の R-trace 整合)
-- [ ] L12 受入テスト設計で本 sub-doc 由来 AC が被覆 (孤児 AC = 0)
+- [ ] L12 受入テスト設計で本 sub-doc 由来 AC が被覆 (孤児 AC = 0) （層意味論: canonical L12=operational/value）
 - [ ] 専門サブエージェントレビュー (Step 7 / review) 通過記録
 - [ ] **PO サインオフ準備完了** (G3 readiness ready-for-G3-signoff)
 

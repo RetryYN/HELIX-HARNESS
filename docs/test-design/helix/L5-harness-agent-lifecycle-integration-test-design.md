@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — harness agent lifecycle"
+title: "HELIX L9 結合テスト設計 — harness agent lifecycle"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -22,7 +22,7 @@ requirements:
   - HAC-HIL-08c
 ---
 
-# HELIX L8 結合テスト設計 — harness agent lifecycle
+# HELIX L9 結合テスト設計 — harness agent lifecycle
 
 ## §0 共通oracle
 

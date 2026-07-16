@@ -20,7 +20,7 @@ next_pair_freeze: L12
 
 本書は `PLAN-L3-07` Step 3 の HELIX 版 NFR グレード表である。既存の
 `pillar-functional-requirements.md`、`pillar-requirements.md`、L6 function design に散在していた
-数値閾値を一覧化し、L12 受入観測と後続 L7 実装で参照しやすくする。
+数値閾値を一覧化し、L12 運用/価値観測と後続 L7 実装で参照しやすくする。
 
 本書は新しい閾値を発明しない。閾値変更が必要な場合は、該当する L1/L3 正本へ back-merge し、
 その後に本 projection を更新する。

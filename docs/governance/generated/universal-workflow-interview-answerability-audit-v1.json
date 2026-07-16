@@ -1,0 +1,2733 @@
+{
+  "document": {
+    "audit_rule": {
+      "digest": "sha256:e8b28e3f3cbdeb9f1dd03ef083208a843511db70dbb361306f6df54ea1ece52f",
+      "spec": {
+        "answer_copy_policy": "existing queue candidate only; never synthesize",
+        "deferred_queue_ordinals": [
+          16,
+          21,
+          28,
+          37,
+          41
+        ],
+        "evidence_answered_queue_ordinals": [
+          1,
+          2,
+          4,
+          5,
+          11,
+          12,
+          14,
+          15,
+          17,
+          18,
+          20,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          38,
+          40,
+          42,
+          44,
+          45,
+          50,
+          51,
+          52,
+          55,
+          57,
+          63,
+          64
+        ],
+        "not_applicable_requires_explicit_scope_evidence": true,
+        "remaining": "PO_authority_required",
+        "version": "helix.uwr-interview-answerability-audit.v1"
+      }
+    },
+    "records": [
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "POのL3/企画/scope/high-impact承認と別runtime gate authority候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "自律境界"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-APPROVAL-01",
+        "queue_id": "UWR-IQ-001"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "不在/判断不能時は未承認のままcheckpoint/escalation候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "不可逆・高影響"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-APPROVAL-02",
+        "queue_id": "UWR-IQ-002"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-APPROVAL-03",
+        "queue_id": "UWR-IQ-003"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "差戻しをaffected layerのRedesign/Reverseへ戻す候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-05",
+              "HIL-FR-31"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "HELIX Workflow"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-APPROVAL-04",
+        "queue_id": "UWR-IQ-004"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "人=L1/L2決定＋L3承認、AI=L3起草＋L4以降、不可逆境界は別承認という順序候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-BR-01",
+              "HIL-NFR-06"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "自律境界"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-APPROVAL-05",
+        "queue_id": "UWR-IQ-005"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "security_or_finance_owner_if_payment"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-MONEY-01",
+        "queue_id": "UWR-IQ-006"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "security_or_finance_owner_if_payment"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-MONEY-02",
+        "queue_id": "UWR-IQ-007"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "security_or_finance_owner_if_payment"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-MONEY-03",
+        "queue_id": "UWR-IQ-008"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "security_or_finance_owner_if_payment"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-MONEY-04",
+        "queue_id": "UWR-IQ-009"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-DEADLINE-01",
+        "queue_id": "UWR-IQ-010"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "期限/iteration超過をcheckpoint、queue、escalation eventへ送る候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-33",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-DEADLINE-02",
+        "queue_id": "UWR-IQ-011"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "silent retryせずbounded retry後checkpoint/escalationとする候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-DEADLINE-03",
+        "queue_id": "UWR-IQ-012"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-DEADLINE-04",
+        "queue_id": "UWR-IQ-013"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "PR hook/event、product snapshot、worker IPCごとにasync/sync contractを分離する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-02",
+              "HIL-FR-24",
+              "HIL-TR-07"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+        "queue_id": "UWR-IQ-014"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "delivery/operation IDとpayload digestによる冪等化候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-01",
+              "HIL-FR-60"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+        "queue_id": "UWR-IQ-015"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "waiting"
+        },
+        "candidate_answer": "bounded retryを必須とするが回数/間隔はoperation別未freeze。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "deferred_dependency",
+        "classification_reason": "数値・canonical state・後続処理がdependency closureなしに一意化しない。既存candidateがある場合も確定回答へ昇格しない。",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-60",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+        "queue_id": "UWR-IQ-016"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "Node commitはsingle transaction、partial result/partial promotionを拒否する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-TR-08",
+              "HIL-NFR-01"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "単一transaction commit"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+        "queue_id": "UWR-IQ-017"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter",
+            "security_authority_for_high_impact"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "timeout後late result拒否、checkpoint/fallback/escalation候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-TR-08",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+        "queue_id": "UWR-IQ-018"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-PERSONAL-DATA-01",
+        "queue_id": "UWR-IQ-019"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "PII/secret/raw payloadをredactionし通常projection/contextへ複製しない候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-17"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+        "queue_id": "UWR-IQ-020"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "waiting"
+        },
+        "candidate_answer": "classification別retentionとdestructive purge approval候補だが期間値未freeze。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "deferred_dependency",
+        "classification_reason": "数値・canonical state・後続処理がdependency closureなしに一意化しない。既存candidateがある場合も確定回答へ昇格しない。",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-17",
+              "HIL-NFR-06"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+        "queue_id": "UWR-IQ-021"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "security_privacy_authority"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "actor/tool/target/params/event/digestをappend-only監査する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-45",
+              "HIL-FR-60"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+        "queue_id": "UWR-IQ-022"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "Universal/Python/subagentはproposal-only、Node gateがcommit authority候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-TR-12",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "proposal-only worker"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-AI-DECISION-01",
+        "queue_id": "UWR-IQ-023"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "L3価値/scope、不可逆、高影響操作、人間visual acceptanceを人間承認候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-06",
+              "HIL-FR-79"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          },
+          {
+            "artifact_digest": null,
+            "ids": [
+              "自律境界"
+            ],
+            "path": "AGENTS.md",
+            "source_status": "repo-rule"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-AI-DECISION-02",
+        "queue_id": "UWR-IQ-024"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "低confidenceはIssue/challenge/escalationまたは別runtime reviewへ戻す候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-AI-DECISION-03",
+        "queue_id": "UWR-IQ-025"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "model/provider/role/input/output/evidence digestをrun receiptへ記録する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-30"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-AI-DECISION-04",
+        "queue_id": "UWR-IQ-026"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "再実行をinput snapshot/model/config/version digestへbindする候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-30"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-C-AI-DECISION-05",
+        "queue_id": "UWR-IQ-027"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "waiting"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "deferred_dependency",
+        "classification_reason": "数値・canonical state・後続処理がdependency closureなしに一意化しない。既存candidateがある場合も確定回答へ昇格しない。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-004",
+        "queue_id": "UWR-IQ-028"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "Forward/Reverse/Redesign/Scrumとgate/job statesをtyped state machine化する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-005",
+        "queue_id": "UWR-IQ-029"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "pending/deferred/failed/stale/blockedを別状態として扱う候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-006",
+        "queue_id": "UWR-IQ-030"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "authority、scope、gate、CI、design finding、resource状態でbranchする候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-007",
+        "queue_id": "UWR-IQ-031"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "unresolved、missing evidence、gate red、approval pending、staleで進行不可候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-008",
+        "queue_id": "UWR-IQ-032"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "PO/Node deterministic gate/別runtime verifierのauthority matrix候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-34"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-009",
+        "queue_id": "UWR-IQ-033"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "branchごとのactionをtyped drive/state transitionへ割り当てる候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-010",
+        "queue_id": "UWR-IQ-034"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "source digest、authority、state、gate evidence、resource/policy snapshotを要求する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-45",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-011",
+        "queue_id": "UWR-IQ-035"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "append-only event/current projection/checkpointとdownstream stale edgeを更新する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-25",
+              "HIL-FR-45"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-20"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-012",
+        "queue_id": "UWR-IQ-036"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "waiting"
+        },
+        "candidate_answer": "loopごとのbounded iteration/lease/deadlineを必須化するが数値は未freeze。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "deferred_dependency",
+        "classification_reason": "数値・canonical state・後続処理がdependency closureなしに一意化しない。既存candidateがある場合も確定回答へ昇格しない。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-01",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-015",
+        "queue_id": "UWR-IQ-037"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "acceptance/gate terminal、bounded limit、escalationで停止する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-016",
+        "queue_id": "UWR-IQ-038"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-018",
+        "queue_id": "UWR-IQ-039"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "success/cancel/fail/expire terminalを分離する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-019",
+        "queue_id": "UWR-IQ-040"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "dependency-derived",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "waiting"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "deferred_dependency",
+        "classification_reason": "数値・canonical state・後続処理がdependency closureなしに一意化しない。既存candidateがある場合も確定回答へ昇格しない。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-020",
+        "queue_id": "UWR-IQ-041"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "retry/replay/checkpoint/rollback/escalationをfailure class別に使う候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-021",
+        "queue_id": "UWR-IQ-042"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-022",
+        "queue_id": "UWR-IQ-043"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "actor、timestamp、action、before/after、digest、authorityを記録する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-45",
+              "HIL-NFR-30"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-21"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-B-023",
+        "queue_id": "UWR-IQ-044"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "failure、capacity/budget/deadline、quality、policy changeでswitch再評価する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-001",
+        "queue_id": "UWR-IQ-045"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-002",
+        "queue_id": "UWR-IQ-046"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-003",
+        "queue_id": "UWR-IQ-047"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-004",
+        "queue_id": "UWR-IQ-048"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-005",
+        "queue_id": "UWR-IQ-049"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "failure/SLA/budget/resource/priority/quality/API/person/model/queue trigger候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-006",
+        "queue_id": "UWR-IQ-050"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "capability、authority、capacity、concurrencyを受入制約にする候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-009",
+        "queue_id": "UWR-IQ-051"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "bounded fallback/checkpoint routeを要求する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-010",
+        "queue_id": "UWR-IQ-052"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-011",
+        "queue_id": "UWR-IQ-053"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-012",
+        "queue_id": "UWR-IQ-054"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "capability、capacity、concurrency、budget、deadline、cost、token/API/timeをresource制約候補とする。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-013",
+        "queue_id": "UWR-IQ-055"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-014",
+        "queue_id": "UWR-IQ-056"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "registered capability classとprovider/runtime roleで差を表現する候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-11",
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-015",
+        "queue_id": "UWR-IQ-057"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-016",
+        "queue_id": "UWR-IQ-058"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-017",
+        "queue_id": "UWR-IQ-059"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-020",
+        "queue_id": "UWR-IQ-060"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-021",
+        "queue_id": "UWR-IQ-061"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "PO-decision",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "required-not-recorded"
+        },
+        "candidate_answer": null,
+        "candidate_answer_source": null,
+        "classification": "PO_authority_required",
+        "classification_reason": "既存正本は選択肢を一意に決めない。POまたは明示された高影響authorityの判断が必要。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-022",
+        "queue_id": "UWR-IQ-062"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "failure、deadline/budget risk、resource depletion、quality不足でreallocation候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-FR-56"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-023",
+        "queue_id": "UWR-IQ-063"
+      },
+      {
+        "answer_activation_status": "not-activated",
+        "authority": {
+          "kind": "existing_repo_evidence",
+          "required_for_activation": [
+            "PO",
+            "TL_drafter"
+          ],
+          "status": "candidate-not-frozen"
+        },
+        "candidate_answer": "bounded route不能時はIssue/checkpoint、high-impact/authority不足はPO escalation候補。",
+        "candidate_answer_source": "existing_queue_candidate",
+        "classification": "evidence_answered",
+        "classification_reason": "既存requirements/design/repo ruleが同じ回答方向を一意に拘束する。authority receipt未確定のためcandidate止まり。",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "evidence": [
+          {
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+            "ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-33"
+            ],
+            "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40",
+            "ids": [
+              "HR-FR-HIL-22"
+            ],
+            "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "source_status": "observed"
+          },
+          {
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "path": "docs/governance/vmodel-authority-receipt-v1.md",
+            "source_status": "pending-po-approval"
+          }
+        ],
+        "freeze_credit": false,
+        "no_guess": true,
+        "question_id": "UWR-Q-R-025",
+        "queue_id": "UWR-IQ-064"
+      }
+    ],
+    "schema_version": "helix.uwr-interview-answerability-audit.v1",
+    "source_queue": "docs/governance/generated/universal-workflow-question-migration-queue-v1.json",
+    "source_queue_sha256": "sha256:7259788121ef37795acaaf75144976c70bc04f90e13ce4d4e3847c870b6df524",
+    "summary": {
+      "PO_authority_required": 22,
+      "activated_answers": 0,
+      "deferred_dependency": 5,
+      "evidence_answered": 37,
+      "fabricated_answers": 0,
+      "freeze_credit_true": 0,
+      "not_applicable_candidate": 0,
+      "question_id_unique": 64,
+      "queue_id_unique": 64,
+      "status": "candidate-audit-not-activated",
+      "total": 64
+    }
+  },
+  "schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "records": {
+        "items": {
+          "properties": {
+            "answer_activation_status": {
+              "const": "not-activated"
+            },
+            "classification": {
+              "enum": [
+                "evidence_answered",
+                "PO_authority_required",
+                "deferred_dependency",
+                "not_applicable_candidate"
+              ]
+            },
+            "freeze_credit": {
+              "const": false
+            },
+            "no_guess": {
+              "const": true
+            }
+          },
+          "required": [
+            "queue_id",
+            "question_id",
+            "classification",
+            "candidate_answer",
+            "evidence",
+            "dependencies",
+            "authority",
+            "no_guess",
+            "classification_reason",
+            "freeze_credit",
+            "answer_activation_status"
+          ],
+          "type": "object"
+        },
+        "maxItems": 64,
+        "minItems": 64,
+        "type": "array"
+      },
+      "schema_version": {
+        "const": "helix.uwr-interview-answerability-audit.v1"
+      },
+      "summary": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "schema_version",
+      "source_queue_sha256",
+      "audit_rule",
+      "records",
+      "summary"
+    ],
+    "type": "object"
+  }
+}

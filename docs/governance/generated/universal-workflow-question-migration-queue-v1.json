@@ -1,0 +1,2978 @@
+{
+  "schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "status",
+      "source_disposition_digest",
+      "id_migration",
+      "interview_queue",
+      "summary"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "uwr-question-migration-queue.v1"
+      },
+      "status": {
+        "const": "designed_not_executed"
+      },
+      "source_disposition_digest": {
+        "const": "sha256:c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+      },
+      "id_migration": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "policy",
+          "mappings",
+          "consumer_impact",
+          "migration_receipt",
+          "gates"
+        ],
+        "properties": {
+          "policy": {
+            "type": "object"
+          },
+          "mappings": {
+            "type": "array",
+            "minItems": 14,
+            "maxItems": 14,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "old_id",
+                "canonical_id",
+                "relation",
+                "input_policy",
+                "output_policy",
+                "alias_expiry",
+                "source_anchor_id"
+              ],
+              "properties": {
+                "old_id": {
+                  "pattern": "_"
+                },
+                "canonical_id": {
+                  "pattern": "^UWR-Q-C-[A-Z]+(?:-[A-Z]+)*-[0-9]{2}$"
+                },
+                "relation": {
+                  "const": "input_alias_of"
+                },
+                "input_policy": {
+                  "const": "accept_with_deprecation_receipt"
+                },
+                "output_policy": {
+                  "const": "canonical_id_only"
+                },
+                "alias_expiry": {
+                  "type": "object"
+                },
+                "source_anchor_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "consumer_impact": {
+            "type": "array",
+            "minItems": 5
+          },
+          "migration_receipt": {
+            "type": "object"
+          },
+          "gates": {
+            "type": "array",
+            "minItems": 3
+          }
+        }
+      },
+      "interview_queue": {
+        "type": "array",
+        "minItems": 64,
+        "maxItems": 64,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "queue_id",
+            "question_id",
+            "current_disposition",
+            "priority",
+            "dependencies",
+            "ask_when",
+            "required_authority",
+            "resume_trigger",
+            "candidate_answer",
+            "answer_state",
+            "evidence",
+            "status",
+            "freeze_blocking"
+          ],
+          "properties": {
+            "queue_id": {
+              "pattern": "^UWR-IQ-[0-9]{3}$"
+            },
+            "question_id": {
+              "type": "string"
+            },
+            "current_disposition": {
+              "enum": [
+                "deferred",
+                "unresolved"
+              ]
+            },
+            "priority": {
+              "enum": [
+                "P0",
+                "P1",
+                "P2"
+              ]
+            },
+            "dependencies": {
+              "type": "array"
+            },
+            "ask_when": {
+              "type": "string"
+            },
+            "required_authority": {
+              "type": "array",
+              "minItems": 1
+            },
+            "resume_trigger": {
+              "type": "array",
+              "minItems": 1
+            },
+            "candidate_answer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "answer_state": {
+              "enum": [
+                "candidate_not_authoritative",
+                "missing_no_guess"
+              ]
+            },
+            "evidence": {
+              "type": "array"
+            },
+            "status": {
+              "const": "queued"
+            },
+            "freeze_blocking": {
+              "const": true
+            }
+          }
+        }
+      },
+      "summary": {
+        "type": "object"
+      }
+    }
+  },
+  "document": {
+    "schema_version": "uwr-question-migration-queue.v1",
+    "status": "designed_not_executed",
+    "source_disposition_digest": "sha256:c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44",
+    "id_migration": {
+      "policy": {
+        "canonical_format": "hyphenated family tokens",
+        "old_format": "underscore compound family tokens",
+        "direction": "old_input_to_canonical",
+        "canonical_output_only": true,
+        "alias_expiry_event": "UWR-QUESTION-ID-V2-ACTIVATED"
+      },
+      "mappings": [
+        {
+          "old_id": "UWR-Q-C-EXTERNAL_INTEGRATION-01",
+          "canonical_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-M2LGSA46BJKQHXZSMRXC"
+        },
+        {
+          "old_id": "UWR-Q-C-EXTERNAL_INTEGRATION-02",
+          "canonical_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-RSNI2E5WALK6EL364XEE"
+        },
+        {
+          "old_id": "UWR-Q-C-EXTERNAL_INTEGRATION-03",
+          "canonical_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-VE2AJC2AKTPWBBRDSXS4"
+        },
+        {
+          "old_id": "UWR-Q-C-EXTERNAL_INTEGRATION-04",
+          "canonical_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-ANAQJCUBK3E6A5ZBOVBG"
+        },
+        {
+          "old_id": "UWR-Q-C-EXTERNAL_INTEGRATION-05",
+          "canonical_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-WKOLJ5TVNYE2IQHATCZJ"
+        },
+        {
+          "old_id": "UWR-Q-C-PERSONAL_DATA-01",
+          "canonical_id": "UWR-Q-C-PERSONAL-DATA-01",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-A2YPYPBMAA7AEEAWGY5V"
+        },
+        {
+          "old_id": "UWR-Q-C-PERSONAL_DATA-02",
+          "canonical_id": "UWR-Q-C-PERSONAL-DATA-02",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-KBFRW2NF4TPLZHX7QFAJ"
+        },
+        {
+          "old_id": "UWR-Q-C-PERSONAL_DATA-03",
+          "canonical_id": "UWR-Q-C-PERSONAL-DATA-03",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-QKOD2UMREM27ACTMFAKS"
+        },
+        {
+          "old_id": "UWR-Q-C-PERSONAL_DATA-04",
+          "canonical_id": "UWR-Q-C-PERSONAL-DATA-04",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-AFX5O4ZM7OCQKZR2SXAG"
+        },
+        {
+          "old_id": "UWR-Q-C-AI_DECISION-01",
+          "canonical_id": "UWR-Q-C-AI-DECISION-01",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-TNVNFFURRK3Q3WJXNSUF"
+        },
+        {
+          "old_id": "UWR-Q-C-AI_DECISION-02",
+          "canonical_id": "UWR-Q-C-AI-DECISION-02",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-NBRQPQGR62FSMGXPHI7W"
+        },
+        {
+          "old_id": "UWR-Q-C-AI_DECISION-03",
+          "canonical_id": "UWR-Q-C-AI-DECISION-03",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-OWU4FCLDCZXK5TZ4K2BS"
+        },
+        {
+          "old_id": "UWR-Q-C-AI_DECISION-04",
+          "canonical_id": "UWR-Q-C-AI-DECISION-04",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-6XCQG4FONMJ7OVFPREDQ"
+        },
+        {
+          "old_id": "UWR-Q-C-AI_DECISION-05",
+          "canonical_id": "UWR-Q-C-AI-DECISION-05",
+          "relation": "input_alias_of",
+          "input_policy": "accept_with_deprecation_receipt",
+          "output_policy": "canonical_id_only",
+          "alias_expiry": {
+            "trigger_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+            "latest_boundary": "next_major_schema_activation",
+            "extension_forbidden_without_new_migration_revision": true
+          },
+          "source_anchor_id": "UWR-A1-E005-Q-5FLAW2QI4FLKPEANGHIL"
+        }
+      ],
+      "consumer_impact": [
+        {
+          "consumer": "generated universal anchor artifact",
+          "impact": "regenerate source_id to canonical; preserve old_id relation",
+          "required_evidence": "328 stable lineage and 14 alias receipts"
+        },
+        {
+          "consumer": "universal-workflow-question-ledger",
+          "impact": "canonical ID remains hyphen form",
+          "required_evidence": "76 ID exact bijection"
+        },
+        {
+          "consumer": "universal_questions DB projection",
+          "impact": "canonical PK/new revision plus input_alias edge",
+          "required_evidence": "14 old -> 14 new, collision 0"
+        },
+        {
+          "consumer": "interview_question_dispositions",
+          "impact": "rewrite FK through migration transaction",
+          "required_evidence": "row count/value digest unchanged"
+        },
+        {
+          "consumer": "source_anchor_routes/relations",
+          "impact": "retarget question relation without changing anchor source span",
+          "required_evidence": "dangling target 0"
+        },
+        {
+          "consumer": "requirement/AC/test/gate edges",
+          "impact": "retarget canonical question ID and stale old receipts",
+          "required_evidence": "orphan 0 and stale propagation receipt"
+        },
+        {
+          "consumer": "JSONL/API/evidence readers",
+          "impact": "accept old input until event; emit canonical only and deprecation receipt",
+          "required_evidence": "old/new compatibility fixtures"
+        }
+      ],
+      "migration_receipt": {
+        "receipt_type": "uwr-question-id-migration-receipt.v1",
+        "receipt_id": "UWR-QID-MIG-R1",
+        "mapping_digest": "sha256:62de8023af9f0a3b110263d64169e9b52a111e492260f0d0a691c0da7560159d",
+        "source_anchor_artifact_digest": "sha256:ed8ce174a563343d0f0eb449bd908f9ce940acfb5fba1a0eadc34f98c779c2e1",
+        "source_disposition_digest": "sha256:c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44",
+        "target_registry_digest": null,
+        "consumer_inventory_digest": "sha256:ccdfee6c8cdb8fbdea9e37eca54d904e5ea9bc4e9e31e5e527b8dbabead26082",
+        "dry_run_receipt": null,
+        "transaction_receipt": null,
+        "independent_review_receipt": null,
+        "activation_event": "UWR-QUESTION-ID-V2-ACTIVATED",
+        "status": "designed_not_executed"
+      },
+      "gates": [
+        {
+          "gate_id": "HIL_UWR_QID_BIJECTION",
+          "oracle": "old_count=14 AND canonical_count=14 AND mapping_count=14 AND old_unique=14 AND canonical_unique=14",
+          "failure_code": "HIL_UWR_QUESTION_ID_MAPPING_INVALID"
+        },
+        {
+          "gate_id": "HIL_UWR_QID_COLLISION",
+          "oracle": "canonical ID collision=0; existing canonical value digest equals migrated value digest",
+          "failure_code": "HIL_UWR_QUESTION_ID_COLLISION"
+        },
+        {
+          "gate_id": "HIL_UWR_QID_ORPHAN",
+          "oracle": "all question/answer/requirement/AC/test/gate/receipt consumers resolve canonical ID; dangling old/new FK=0",
+          "failure_code": "HIL_UWR_QUESTION_ID_ORPHAN"
+        },
+        {
+          "gate_id": "HIL_UWR_QID_ALIAS_EXPIRY",
+          "oracle": "before activation old input emits deprecation; after activation old input fails; canonical output never emits old ID",
+          "failure_code": "HIL_UWR_QUESTION_ID_ALIAS_EXPIRED_OR_LEAKED"
+        }
+      ]
+    },
+    "interview_queue": [
+      {
+        "queue_id": "UWR-IQ-001",
+        "question_id": "UWR-Q-C-APPROVAL-01",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "POのL3/企画/scope/high-impact承認と別runtime gate authority候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-002",
+        "question_id": "UWR-Q-C-APPROVAL-02",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "不在/判断不能時は未承認のままcheckpoint/escalation候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-003",
+        "question_id": "UWR-Q-C-APPROVAL-03",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-004",
+        "question_id": "UWR-Q-C-APPROVAL-04",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "差戻しをaffected layerのRedesign/Reverseへ戻す候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-05",
+              "HIL-FR-31"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-005",
+        "question_id": "UWR-Q-C-APPROVAL-05",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "人=L1/L2決定＋L3承認、AI=L3起草＋L4以降、不可逆境界は別承認という順序候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-BR-01",
+              "HIL-NFR-06"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-006",
+        "question_id": "UWR-Q-C-MONEY-01",
+        "current_disposition": "unresolved",
+        "priority": "P2",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "ask_when": "after scope classifies payment vs orchestration budget, before requirement freeze",
+        "required_authority": [
+          "PO",
+          "security_or_finance_owner_if_payment"
+        ],
+        "resume_trigger": [
+          "scope_classification_recorded",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-007",
+        "question_id": "UWR-Q-C-MONEY-02",
+        "current_disposition": "unresolved",
+        "priority": "P2",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "ask_when": "after scope classifies payment vs orchestration budget, before requirement freeze",
+        "required_authority": [
+          "PO",
+          "security_or_finance_owner_if_payment"
+        ],
+        "resume_trigger": [
+          "scope_classification_recorded",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-008",
+        "question_id": "UWR-Q-C-MONEY-03",
+        "current_disposition": "unresolved",
+        "priority": "P2",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "ask_when": "after scope classifies payment vs orchestration budget, before requirement freeze",
+        "required_authority": [
+          "PO",
+          "security_or_finance_owner_if_payment"
+        ],
+        "resume_trigger": [
+          "scope_classification_recorded",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-009",
+        "question_id": "UWR-Q-C-MONEY-04",
+        "current_disposition": "unresolved",
+        "priority": "P2",
+        "dependencies": [
+          "scope.payment_or_budget_classification"
+        ],
+        "ask_when": "after scope classifies payment vs orchestration budget, before requirement freeze",
+        "required_authority": [
+          "PO",
+          "security_or_finance_owner_if_payment"
+        ],
+        "resume_trigger": [
+          "scope_classification_recorded",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-010",
+        "question_id": "UWR-Q-C-DEADLINE-01",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "ask_when": "when runtime deadline policy is drafted, before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "deadline_policy_drafted",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-011",
+        "question_id": "UWR-Q-C-DEADLINE-02",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "ask_when": "when runtime deadline policy is drafted, before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "deadline_policy_drafted",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "期限/iteration超過をcheckpoint、queue、escalation eventへ送る候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-33",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-012",
+        "question_id": "UWR-Q-C-DEADLINE-03",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "ask_when": "when runtime deadline policy is drafted, before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "deadline_policy_drafted",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "silent retryせずbounded retry後checkpoint/escalationとする候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-013",
+        "question_id": "UWR-Q-C-DEADLINE-04",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "runtime.deadline_and_calendar_policy"
+        ],
+        "ask_when": "when runtime deadline policy is drafted, before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "deadline_policy_drafted",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-014",
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "before connector/PR hook/product-data contract freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "resume_trigger": [
+          "connector_contract_drafted",
+          "authority_receipt_decided"
+        ],
+        "candidate_answer": "PR hook/event、product snapshot、worker IPCごとにasync/sync contractを分離する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-02",
+              "HIL-FR-24",
+              "HIL-TR-07"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-015",
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "before connector/PR hook/product-data contract freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "resume_trigger": [
+          "connector_contract_drafted",
+          "authority_receipt_decided"
+        ],
+        "candidate_answer": "delivery/operation IDとpayload digestによる冪等化候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-01",
+              "HIL-FR-60"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-016",
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "before connector/PR hook/product-data contract freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "resume_trigger": [
+          "connector_contract_drafted",
+          "authority_receipt_decided"
+        ],
+        "candidate_answer": "bounded retryを必須とするが回数/間隔はoperation別未freeze。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-60",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-017",
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "before connector/PR hook/product-data contract freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "resume_trigger": [
+          "connector_contract_drafted",
+          "authority_receipt_decided"
+        ],
+        "candidate_answer": "Node commitはsingle transaction、partial result/partial promotionを拒否する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-TR-08",
+              "HIL-NFR-01"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-018",
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "connector_registry_scope",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "before connector/PR hook/product-data contract freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "resume_trigger": [
+          "connector_contract_drafted",
+          "authority_receipt_decided"
+        ],
+        "candidate_answer": "timeout後late result拒否、checkpoint/fallback/escalation候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-TR-08",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-019",
+        "question_id": "UWR-Q-C-PERSONAL-DATA-01",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "ask_when": "before any product-data connector or PII-bearing fixture is activated",
+        "required_authority": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "resume_trigger": [
+          "data_classification_recorded",
+          "authority_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-020",
+        "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "ask_when": "before any product-data connector or PII-bearing fixture is activated",
+        "required_authority": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "resume_trigger": [
+          "data_classification_recorded",
+          "authority_answer_recorded"
+        ],
+        "candidate_answer": "PII/secret/raw payloadをredactionし通常projection/contextへ複製しない候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-17"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-021",
+        "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "ask_when": "before any product-data connector or PII-bearing fixture is activated",
+        "required_authority": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "resume_trigger": [
+          "data_classification_recorded",
+          "authority_answer_recorded"
+        ],
+        "candidate_answer": "classification別retentionとdestructive purge approval候補だが期間値未freeze。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-17",
+              "HIL-NFR-06"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-022",
+        "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "product_data.classification_policy"
+        ],
+        "ask_when": "before any product-data connector or PII-bearing fixture is activated",
+        "required_authority": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "resume_trigger": [
+          "data_classification_recorded",
+          "authority_answer_recorded"
+        ],
+        "candidate_answer": "actor/tool/target/params/event/digestをappend-only監査する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-45",
+              "HIL-FR-60"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-023",
+        "question_id": "UWR-Q-C-AI-DECISION-01",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "Universal/Python/subagentはproposal-only、Node gateがcommit authority候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-TR-12",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-024",
+        "question_id": "UWR-Q-C-AI-DECISION-02",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "L3価値/scope、不可逆、高影響操作、人間visual acceptanceを人間承認候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-FR-79"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-025",
+        "question_id": "UWR-Q-C-AI-DECISION-03",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "低confidenceはIssue/challenge/escalationまたは別runtime reviewへ戻す候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-026",
+        "question_id": "UWR-Q-C-AI-DECISION-04",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "model/provider/role/input/output/evidence digestをrun receiptへ記録する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-30"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-027",
+        "question_id": "UWR-Q-C-AI-DECISION-05",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "at authority interview before L3 freeze",
+        "required_authority": [
+          "PO"
+        ],
+        "resume_trigger": [
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "再実行をinput snapshot/model/config/version digestへbindする候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-30"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-028",
+        "question_id": "UWR-Q-B-004",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-029",
+        "question_id": "UWR-Q-B-005",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "Forward/Reverse/Redesign/Scrumとgate/job statesをtyped state machine化する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-030",
+        "question_id": "UWR-Q-B-006",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "pending/deferred/failed/stale/blockedを別状態として扱う候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-031",
+        "question_id": "UWR-Q-B-007",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "authority、scope、gate、CI、design finding、resource状態でbranchする候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-032",
+        "question_id": "UWR-Q-B-008",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "unresolved、missing evidence、gate red、approval pending、staleで進行不可候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-033",
+        "question_id": "UWR-Q-B-009",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "PO/Node deterministic gate/別runtime verifierのauthority matrix候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-034",
+        "question_id": "UWR-Q-B-010",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "branchごとのactionをtyped drive/state transitionへ割り当てる候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-035",
+        "question_id": "UWR-Q-B-011",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "source digest、authority、state、gate evidence、resource/policy snapshotを要求する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-45",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-036",
+        "question_id": "UWR-Q-B-012",
+        "current_disposition": "deferred",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "append-only event/current projection/checkpointとdownstream stale edgeを更新する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-25",
+              "HIL-FR-45"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-037",
+        "question_id": "UWR-Q-B-015",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "loopごとのbounded iteration/lease/deadlineを必須化するが数値は未freeze。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-038",
+        "question_id": "UWR-Q-B-016",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "acceptance/gate terminal、bounded limit、escalationで停止する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-039",
+        "question_id": "UWR-Q-B-018",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-040",
+        "question_id": "UWR-Q-B-019",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "success/cancel/fail/expire terminalを分離する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-041",
+        "question_id": "UWR-Q-B-020",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-042",
+        "question_id": "UWR-Q-B-021",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "retry/replay/checkpoint/rollback/escalationをfailure class別に使う候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-043",
+        "question_id": "UWR-Q-B-022",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-044",
+        "question_id": "UWR-Q-B-023",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "ask_when": "during core workflow interview before L3 freeze",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "workflow_model_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "actor、timestamp、action、before/after、digest、authorityを記録する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-45",
+              "HIL-NFR-30"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-045",
+        "question_id": "UWR-Q-R-001",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "failure、capacity/budget/deadline、quality、policy changeでswitch再評価する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-046",
+        "question_id": "UWR-Q-R-002",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-047",
+        "question_id": "UWR-Q-R-003",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-048",
+        "question_id": "UWR-Q-R-004",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-049",
+        "question_id": "UWR-Q-R-005",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-050",
+        "question_id": "UWR-Q-R-006",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "failure/SLA/budget/resource/priority/quality/API/person/model/queue trigger候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-051",
+        "question_id": "UWR-Q-R-009",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "capability、authority、capacity、concurrencyを受入制約にする候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-052",
+        "question_id": "UWR-Q-R-010",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "bounded fallback/checkpoint routeを要求する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-053",
+        "question_id": "UWR-Q-R-011",
+        "current_disposition": "unresolved",
+        "priority": "P0",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-054",
+        "question_id": "UWR-Q-R-012",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-055",
+        "question_id": "UWR-Q-R-013",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "capability、capacity、concurrency、budget、deadline、cost、token/API/timeをresource制約候補とする。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-056",
+        "question_id": "UWR-Q-R-014",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-057",
+        "question_id": "UWR-Q-R-015",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "registered capability classとprovider/runtime roleで差を表現する候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-11",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-058",
+        "question_id": "UWR-Q-R-016",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-059",
+        "question_id": "UWR-Q-R-017",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-060",
+        "question_id": "UWR-Q-R-020",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-061",
+        "question_id": "UWR-Q-R-021",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-062",
+        "question_id": "UWR-Q-R-022",
+        "current_disposition": "unresolved",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": null,
+        "answer_state": "missing_no_guess",
+        "evidence": [],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-063",
+        "question_id": "UWR-Q-R-023",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "failure、deadline/budget risk、resource depletion、quality不足でreallocation候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      },
+      {
+        "queue_id": "UWR-IQ-064",
+        "question_id": "UWR-Q-R-025",
+        "current_disposition": "deferred",
+        "priority": "P1",
+        "dependencies": [
+          "UWR-DEC-C05-R1",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "ask_when": "during Runtime Orchestration Planner policy interview before C-UWR-05 gate",
+        "required_authority": [
+          "PO",
+          "TL_drafter"
+        ],
+        "resume_trigger": [
+          "orchestration_policy_drafted",
+          "authority_receipt_decided",
+          "po_answer_recorded"
+        ],
+        "candidate_answer": "bounded route不能時はIssue/checkpoint、high-impact/authority不足はPO escalation候補。",
+        "answer_state": "candidate_not_authoritative",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "status": "queued",
+        "freeze_blocking": true
+      }
+    ],
+    "summary": {
+      "mapping_count": 14,
+      "mapping_old_unique": 14,
+      "mapping_new_unique": 14,
+      "queue_count": 64,
+      "disposition": {
+        "deferred": 40,
+        "unresolved": 24
+      },
+      "priority": {
+        "P0": 31,
+        "P2": 4,
+        "P1": 29
+      },
+      "fabricated_answers": 0,
+      "executed": 0,
+      "answered_by_queue": 0,
+      "freeze_blockers": 64,
+      "answerability_audit": {
+        "artifact": "docs/governance/generated/universal-workflow-interview-answerability-audit-v1.json",
+        "status": "candidate-audit-not-activated",
+        "freeze_credit": false
+      }
+    }
+  },
+  "validation": {
+    "json_schema": "passed",
+    "mapping_bijection": "passed",
+    "no_unresolved_answer_fabrication": "passed",
+    "execution": "not_run"
+  }
+}

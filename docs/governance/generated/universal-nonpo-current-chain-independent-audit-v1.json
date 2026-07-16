@@ -1,0 +1,212 @@
+{
+  "digest_checks": [
+    {
+      "current": true,
+      "current_sha256": "747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec",
+      "embedded_sha256": "747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec",
+      "owner": "closure_candidate",
+      "path": "docs/governance/generated/universal-workflow-interview-answerability-audit-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44",
+      "embedded_sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44",
+      "owner": "closure_candidate",
+      "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "7259788121ef37795acaaf75144976c70bc04f90e13ce4d4e3847c870b6df524",
+      "embedded_sha256": "7259788121ef37795acaaf75144976c70bc04f90e13ce4d4e3847c870b6df524",
+      "owner": "closure_candidate",
+      "path": "docs/governance/generated/universal-workflow-question-migration-queue-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+      "embedded_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+      "owner": "closure_candidate",
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "3cac117a33302c64ea6200910be43d326ae310e4794de860574e27d0a2009c38",
+      "embedded_sha256": "3cac117a33302c64ea6200910be43d326ae310e4794de860574e27d0a2009c38",
+      "owner": "closure_candidate",
+      "path": "docs/governance/generated/universal-workflow-semantic-decisions-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a",
+      "embedded_sha256": "21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a",
+      "owner": "closure_candidate",
+      "path": "docs/governance/generated/chat-independent-review-receipt-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+      "embedded_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+      "owner": "closure_candidate",
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+      "embedded_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+      "owner": "closure_candidate",
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+      "embedded_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+      "owner": "closure_candidate",
+      "path": "docs/governance/vmodel-authority-receipt-v1.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0",
+      "embedded_sha256": "785066d1d9844cd955832c49792254986723de929b013ef62c8835023920caa0",
+      "owner": "closure_candidate",
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "embedded_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "owner": "closure_candidate",
+      "path": "docs/design/helix/L5-detail/product-data-connector.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1",
+      "embedded_sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1",
+      "owner": "closure_review",
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1",
+      "embedded_sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1",
+      "owner": "authority_candidate",
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532",
+      "embedded_sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532",
+      "owner": "authority_candidate",
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-independent-review-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+      "embedded_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+      "owner": "authority_candidate",
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+      "embedded_sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9",
+      "owner": "authority_candidate",
+      "path": "AGENTS.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+      "embedded_sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+      "owner": "authority_candidate",
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+      "embedded_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+      "owner": "authority_candidate",
+      "path": "docs/governance/vmodel-authority-receipt-v1.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "bd67690eda7a477adf6ba271be9b43026b942b74b982f4283fb37d8e60e097e5",
+      "embedded_sha256": "bd67690eda7a477adf6ba271be9b43026b942b74b982f4283fb37d8e60e097e5",
+      "owner": "authority_review",
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1",
+      "embedded_sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1",
+      "owner": "authority_review",
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532",
+      "embedded_sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532",
+      "owner": "authority_review",
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-independent-review-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+      "embedded_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+      "owner": "authority_review",
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json"
+    },
+    {
+      "current": true,
+      "current_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+      "embedded_sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+      "owner": "authority_review",
+      "path": "docs/governance/vmodel-authority-receipt-v1.md"
+    }
+  ],
+  "findings": [],
+  "recalculated": {
+    "additional_individual_po_units_for_37": 0,
+    "authority_exact_set_match": true,
+    "authority_partition": {
+      "dependency_reaudit": 5,
+      "evidence_answered_reaudit": 37
+    },
+    "authority_records": 42,
+    "closure_partition": {
+      "dependency_reaudit": 5,
+      "evidence_answered_reaudit": 37,
+      "existing_po_chat_answer_design_receipt": 12
+    },
+    "closure_records": 54,
+    "coverage_credit_true": 0,
+    "embedded_source_digest_checks": 23,
+    "embedded_source_digests_current": 23,
+    "po_decision_units": {
+      "additional_vmodel_authority": 1,
+      "existing_universal_groups": 6,
+      "total": 7
+    },
+    "provenance_current_digest_checks": 118,
+    "runtime_verified_true": 0,
+    "upstream_review_findings": 0
+  },
+  "schema_version": "helix.universal-nonpo-current-chain-independent-audit.v1",
+  "sources": {
+    "authority_candidate": {
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-v1.json",
+      "sha256": "bd67690eda7a477adf6ba271be9b43026b942b74b982f4283fb37d8e60e097e5"
+    },
+    "authority_review": {
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-independent-review-v1.json",
+      "sha256": "e7182483cc17a70679dc42959d6326d9cf22ebdc013db43908b1aac3f2635f5e"
+    },
+    "closure_candidate": {
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json",
+      "sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1"
+    },
+    "closure_review": {
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-independent-review-v1.json",
+      "sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532"
+    }
+  },
+  "status": "independent_audit_pass"
+}

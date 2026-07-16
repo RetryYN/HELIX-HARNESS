@@ -354,7 +354,7 @@ GD: ガイド・トラブルシューティング (参照)
 
 L2 画面設計 sub-doc 4 種への carry (旧 SCR-NN → PM/HM/GD-NN 再採番を反映):
 
-> **L2 必須実施判定 (2026-05-28 PO 指摘で修正)**: drive=be であっても helix は **「UI を持つ be」** (15 画面 dashboard) のため、**画面要求 3 sub-doc (screen-list / screen-flow / ui-element) は必須実施**、wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。PLAN-L2-03 は `skip_sub_doc: ["L2-wireframe"]` + 理由明記で省略可。詳細は concept §3.7「L2 sub-doc skip ルール」参照。
+> **L2 必須実施判定 (2026-05-28 PO 指摘で修正)**: drive=be であっても helix は **「UI を持つ be」** (15 画面 dashboard) のため、**画面要求 3 sub-doc (screen-list / screen-flow / ui-element) は必須実施**、wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。PLAN-L2-03 は `skip_sub_doc: ["L2-wireframe"]` + 理由明記で省略可。詳細は concept §3.7「L2 sub-doc skip ルール」参照。 （層意味論: canonical L10=system/Real UX evidence）
 
 | L2 sub-doc | 役割 | 本 L1 からの引き継ぎ | 必須/省略可 |
 |-----------|------|---------------------|-------------|

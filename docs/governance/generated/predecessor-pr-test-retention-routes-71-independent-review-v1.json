@@ -1,0 +1,1568 @@
+{
+  "findings": [
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 1,
+      "pr_id": "predecessor-ut#1",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "5902af678ff36cf5d26675df09a053fd1a02dbbfabdd76d4f982aac7bf21230a",
+      "runtime_verified": false,
+      "title": "[codex] add proposal document coverage routing",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 2,
+      "pr_id": "predecessor-ut#2",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "61d7102e8b7a711b153be05c37edd00735eb2171757b6aa6797bbcfc41cb9adf",
+      "runtime_verified": false,
+      "title": "chore: close local l10-l14 validation gates",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 3,
+      "pr_id": "predecessor-ut#3",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "58c0449d401bfedae8186bbb08891bfd3ee1dff10c0928a61e12c109fd18cb4a",
+      "runtime_verified": false,
+      "title": "refactor(doctor): centralize run profile registry",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 4,
+      "pr_id": "predecessor-ut#4",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "1ca02a7ac1b9f7f5c62370931c9712839a05915a65cc94a7168409f3dc16f43d",
+      "runtime_verified": false,
+      "title": "refactor(doctor): expose profile audience helpers",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 5,
+      "pr_id": "predecessor-ut#5",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "9b4dc64dddefeecc05eb1da885d122f4d0960fe948f24f0fba7c4392b2e3949d",
+      "runtime_verified": false,
+      "title": "refactor(doctor): guard consumer-safe profiles",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 6,
+      "pr_id": "predecessor-ut#6",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "877e242148e7b49209b4672a7b4179c1677ec75afa19be21ca05bf57c24bafbd",
+      "runtime_verified": false,
+      "title": "docs(plan): register db-driven refactor follow-ups",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 7,
+      "pr_id": "predecessor-ut#7",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "81495b5992e730c1926c1ccd620129577dbd793ae1ffaa99ed21206a83c182fa",
+      "runtime_verified": false,
+      "title": "refactor(doctor): split db currency gate",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 8,
+      "pr_id": "predecessor-ut#8",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "90bd5f0e716bf44a3343cd0a7e46d124092eeaa304cf73ac701c0338d4c447f1",
+      "runtime_verified": false,
+      "title": "refactor(feedback): surface actionable takeover events",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 9,
+      "pr_id": "predecessor-ut#9",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "d843ab6a29cfe8c969078a0c13c593ea94ac5fe324fd43da48536994efa6c9bd",
+      "runtime_verified": false,
+      "title": "refactor(doctor): expose run profiles",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 10,
+      "pr_id": "predecessor-ut#10",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "7011c0dff3d6f0529af79159fa307a92eed6da084640f57e46c37efeb3f5f877",
+      "runtime_verified": false,
+      "title": "refactor(setup): allow standalone readiness",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 11,
+      "pr_id": "predecessor-ut#11",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "05620ea7fbb939e07d0f4588af9c6cee6f5cb1fd7de0d0235bee924cc2023fa6",
+      "runtime_verified": false,
+      "title": "refactor(setup): use consumer doctor profile in templates",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 12,
+      "pr_id": "predecessor-ut#12",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "1ac8429af3f634422181f329d1083d59cae8b4504592081fe8f96a84e49f2d25",
+      "runtime_verified": false,
+      "title": "refactor: extract doctor profile registry",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 13,
+      "pr_id": "predecessor-ut#13",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "bf2187104f593ff060e36737250a2a98a44cde3cb27f6c2353c02d2ff0baeb4c",
+      "runtime_verified": false,
+      "title": "refactor: split doctor runner modules",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 14,
+      "pr_id": "predecessor-ut#14",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "833b57125dceddf83d279f1995f2f194d64eeaf825776090cf1c1f9f3d4682da",
+      "runtime_verified": false,
+      "title": "feat: add consumer toolchain doctor profile",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 15,
+      "pr_id": "predecessor-ut#15",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "a19b243181cfd9433204422cec1d6ab16a6386fb8ff58dd34601bcb4b4717dc8",
+      "runtime_verified": false,
+      "title": "[codex] Sync consumer toolchain adapter guidance",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 16,
+      "pr_id": "predecessor-ut#16",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "09f8b50ed013cda68977dc2b261e2a1f334a0258b235325380247804cc0c79b3",
+      "runtime_verified": false,
+      "title": "[codex] Group doctor check definitions",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 17,
+      "pr_id": "predecessor-ut#17",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "53901c7c95fc9fc354e463c947d55133144413ff81d5b7cb6670b18f0241c8c7",
+      "runtime_verified": false,
+      "title": "refactor: lazy-cache doctor test fixture",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 18,
+      "pr_id": "predecessor-ut#18",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "ef32fe0eba87c81fca1099bdfa2fe4c40477547461189f2620f997181912c3ff",
+      "runtime_verified": false,
+      "title": "test: add direct doctor submodule checks",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 19,
+      "pr_id": "predecessor-ut#19",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "0b850b7ff2c87b1bc36f97e89b44190eda43ec0a22bedd54423b6f8d6113a69a",
+      "runtime_verified": false,
+      "title": "test: add direct doctor runtime-state checks",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 20,
+      "pr_id": "predecessor-ut#20",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "100dd940f7e2d5a0e7bb823976189022f0cdc69381279fb53fcb49023367517e",
+      "runtime_verified": false,
+      "title": "feat(recovery): RECOVERY-10 Stage 1 (route_mode fail-close) + vmodel-docgen reference-mining, merge Codex doctor refactor",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 21,
+      "pr_id": "predecessor-ut#21",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "e630f14321c6ca17336a7ad3ced73333659de3e446b64ebe42afa9aba2bf74e3",
+      "runtime_verified": false,
+      "title": "[codex] Preserve context diversity in session surfaces",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 22,
+      "pr_id": "predecessor-ut#22",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "dffccc7e16c9f383e5091cfd2b8eb6a1b6487f3fd21a5c76e8e8c4f451d9058c",
+      "runtime_verified": false,
+      "title": "Add design doc cross integrity gate",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 23,
+      "pr_id": "predecessor-ut#23",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "17d0c082ff8215e85701a675ca3c2b7287490565fb50d762c7bae9b0e96028b6",
+      "runtime_verified": false,
+      "title": "Backfill CLI command boundary design",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 24,
+      "pr_id": "predecessor-ut#24",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "6f76176c9738366c1cac974c89a9583b182c7509f495e8f6f8418ea4771cfb25",
+      "runtime_verified": false,
+      "title": "Confirm L4 security slot",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 25,
+      "pr_id": "predecessor-ut#25",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "17bc0806d0b1b91f50504048fda10d5c84c5c756224900ede142392fc7c2b4c5",
+      "runtime_verified": false,
+      "title": "Add docs-wide secret scan gate",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 26,
+      "pr_id": "predecessor-ut#26",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "bf8c6ed4d53185874768018733f93da8cb7a2739e28540e4acaeec1012096b83",
+      "runtime_verified": false,
+      "title": "fix(skill): connect recommendation scoring loop",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 27,
+      "pr_id": "predecessor-ut#27",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "b6d653d973b43bfa0b6348b562f5580d0eea0dceedc623c21b3b916f696fd811",
+      "runtime_verified": false,
+      "title": "fix(spec-ir): tighten detector projection boundaries",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 28,
+      "pr_id": "predecessor-ut#28",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "e8efe56167c9003ccb7ca01469562e02f98c124c653b94f390e103c65c1e99e6",
+      "runtime_verified": false,
+      "title": "fix: consolidate stable ID generation",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 29,
+      "pr_id": "predecessor-ut#29",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "4f9a05cedb6806df90dbe79368322525360e215da58b0a66dc158dba387b23be",
+      "runtime_verified": false,
+      "title": "fix: complete route mode allowlists",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 30,
+      "pr_id": "predecessor-ut#30",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "bcb4634da3c0ff24bfb3f4658479b941608f7d4f37b27046503522ab317b44c6",
+      "runtime_verified": false,
+      "title": "docs: backfill test plan generates",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 31,
+      "pr_id": "predecessor-ut#31",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "e43fa47fe0e50994051c06085f5330dc9b9d337e0edd15fc341d2fce744a5ce5",
+      "runtime_verified": false,
+      "title": "fix: separate stale runtime plan context findings",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 32,
+      "pr_id": "predecessor-ut#32",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "7be90c361baccb56709ac6d3dd4baa2d8f2b9bb20de0c65acfe9c72a88f1b289",
+      "runtime_verified": false,
+      "title": "[codex] execute green command digest anchors",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 33,
+      "pr_id": "predecessor-ut#33",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "a3352e59c7b73ceb88dcb3eae70f187f24315db94dff57fbed63ff96f510e17b",
+      "runtime_verified": false,
+      "title": "[codex] rebind digest suspect evidence",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 34,
+      "pr_id": "predecessor-ut#34",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "971e92402542176e7c1edaaf665a2896f9f9f8b652c64804280bdff17685559d",
+      "runtime_verified": false,
+      "title": "[codex] freeze execution assignment ledger design",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 35,
+      "pr_id": "predecessor-ut#35",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "221c79e833862365a573ac518ef76f5b0385ad4ac21cf3d2a06a8323146b9b85",
+      "runtime_verified": false,
+      "title": "feat(gate): persist gate run evidence",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 36,
+      "pr_id": "predecessor-ut#36",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "05aba3cdc195f320f33cee40df863709389fa604388ccf7efba752f28c78f393",
+      "runtime_verified": false,
+      "title": "[codex] Route verification defects to refactor lifecycle",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 37,
+      "pr_id": "predecessor-ut#37",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "3860be9a34649e234fabd85975f5e3f920f11170d85eff3ed604a3bc30e15ee8",
+      "runtime_verified": false,
+      "title": "[codex] freeze domain and skill admission design",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 38,
+      "pr_id": "predecessor-ut#38",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "79a765f0d0ef3990607c832326b4c285338c3fbb79cb714a9178874de7f5a6c2",
+      "runtime_verified": false,
+      "title": "docs(plan): PLAN-DISCOVERY-10 GPT-5.6 tier routing bench (S1)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 39,
+      "pr_id": "predecessor-ut#39",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "ec76459a5ea1660f7e61c7e2cf79bb54c00d2b6eaa220c79f6f521e30632578d",
+      "runtime_verified": false,
+      "title": "feat: integrate V-model live SessionStart digest",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 40,
+      "pr_id": "predecessor-ut#40",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "5b23e993cb885d68724de0778092ab9115b93f41d93a4a443eac4dda3c2522d0",
+      "runtime_verified": false,
+      "title": "fix: complete feedback lifecycle and memory promotion",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 41,
+      "pr_id": "predecessor-ut#41",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "af3ba642053eb3edc8f40d1b35c260abb2077a6637d0ee19f2f5911315cae9f5",
+      "runtime_verified": false,
+      "title": "feat(routing): adopt gpt-5.6 tier routing (PLAN-L7-415)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 42,
+      "pr_id": "predecessor-ut#42",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "8689a55a5d29297435e9b9aa3b26dfda5b2e47bbc5049bfb8052823d6a9f265c",
+      "runtime_verified": false,
+      "title": "fix(distribution): close export integrity defects (PLAN-L7-413)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 43,
+      "pr_id": "predecessor-ut#43",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "8689a55a5d29297435e9b9aa3b26dfda5b2e47bbc5049bfb8052823d6a9f265c",
+      "runtime_verified": false,
+      "title": "fix(distribution): correct D-2 denylist semantics to output guard (PLAN-L7-413 followup)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 44,
+      "pr_id": "predecessor-ut#44",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "9ef3469c87cf9aa89c9ae30941efa7c23f6beb051fa05418634b29b63a90bbc7",
+      "runtime_verified": false,
+      "title": "fix(agent-guard): reserve fable for quality gates",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "ui_visual"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 45,
+      "pr_id": "predecessor-ut#45",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "a92b84747a0d864f893b2c946f037609aac1cb6df42947770b31bded8c8c9e88",
+      "runtime_verified": false,
+      "title": "feat(vmodel): establish engine-swap foundation",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 46,
+      "pr_id": "predecessor-ut#46",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "be824dd3ae6d0a471a9c6076408a5f1cac8cb1dfbd242db1fc0aa4f9e7e9e49d",
+      "runtime_verified": false,
+      "title": "feat(vmodel): compile engine-swap contract foundation",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 47,
+      "pr_id": "predecessor-ut#47",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "a50a80013dda4fb5118751a66642aa8a93279808793918fbf44e4c6047ea56b2",
+      "runtime_verified": false,
+      "title": "feat(vmodel): rebuild harness engine and self-proof lifecycle",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 48,
+      "pr_id": "predecessor-ut#48",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "ae8c9a4f2defeb6c66f046a9e42db0fcb64dec0f0447a070c94a38dae6e32070",
+      "runtime_verified": false,
+      "title": "docs(skills): add structured decision_points to all 54 baseline skills (PLAN-L7-417)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 49,
+      "pr_id": "predecessor-ut#49",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "28f4636c8ab08d6d77289629c989a6f5d19876f68b1a131f37706f281e48411d",
+      "runtime_verified": false,
+      "title": "docs(skills): vmodel judgement skill pack — 8 new skills + adversarial addendum (PLAN-L6-70)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 50,
+      "pr_id": "predecessor-ut#50",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "2a9cef5a1ae39281df5f4d49995e9f265d3d95dc07b45970e65084230e7e46b9",
+      "runtime_verified": false,
+      "title": "docs(skills): stage / design-family / product-profile skill slices (PLAN-L6-70 slice 2)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 51,
+      "pr_id": "predecessor-ut#51",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "7f382ede49606397fa938d323bc979da34814292e80914e43a1428e2fe01f0c6",
+      "runtime_verified": false,
+      "title": "feat(review): add blind-reviewer subagent and Codex delegation role (PLAN-L6-53 rescue)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 52,
+      "pr_id": "predecessor-ut#52",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "bd51011c434959bb38b925921fd04e761502a4535345e2a81a5e4d2162dc32d2",
+      "runtime_verified": false,
+      "title": "docs(audit): A-187 checked-ZIP divergence audit + gap routing (PLAN-L4-29 / L6-78 / L6-79)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 53,
+      "pr_id": "predecessor-ut#53",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "4c06c3575e9c37cd601514a7a8077c4175d570706920f2e733c094cadf57037b",
+      "runtime_verified": false,
+      "title": "refactor(projection): split engine-swap application and persistence boundaries",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 54,
+      "pr_id": "predecessor-ut#54",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "0c1c27c7a76d1c25ef7687d963877f0377942e34249854727d617675ba65be91",
+      "runtime_verified": false,
+      "title": "test: close L7-421 live-tree hygiene fence",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 55,
+      "pr_id": "predecessor-ut#55",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "326ec02ecfd8a6e48523fddd6041353331d3f64079e7b95bc1ae96bbf9298861",
+      "runtime_verified": false,
+      "title": "docs(engine): define projection rebuild boundaries",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 56,
+      "pr_id": "predecessor-ut#56",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "475fae28aa3af080073807d5c609761122179516e4998406acbe090e547ccd05",
+      "runtime_verified": false,
+      "title": "fix(projection): guard legacy finding payloads",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 58,
+      "pr_id": "predecessor-ut#58",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "53acf33a46a2a4879ba3c62f970f864e9492660d2b6625dbba8e9171308dd3e7",
+      "runtime_verified": false,
+      "title": "docs(engine): close projection rebuild design review",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "test_verification",
+        "design_governance",
+        "setup_distribution"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 59,
+      "pr_id": "predecessor-ut#59",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "5b16e74149209bf7ef39333b9e599adddcbb473fd84ffd8df988e7a12d627c2b",
+      "runtime_verified": false,
+      "title": "test: reland L7-421 residual test hygiene + PLAN-L7-245 promotion",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "database_state"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 60,
+      "pr_id": "predecessor-ut#60",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "67689dbf01b8ad02183a63207c9cb3f7ad6224739eb812affa1bbac41a0b15e7",
+      "runtime_verified": false,
+      "title": "feat(routing): adopt task-kind model routing v2",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "setup_distribution",
+        "ui_visual"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 61,
+      "pr_id": "predecessor-ut#61",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "281b09cddb3bb8374c66c1bd3fe9da7b590fc9b50b92bc269ccd74d6485f5522",
+      "runtime_verified": false,
+      "title": "feat(ci): universal PR trigger + fail-close detector (PLAN-L6-82/L7-434, issue #57)",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 62,
+      "pr_id": "predecessor-ut#62",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "3a591b4c5ceef358e2a4f6bf18be5952fcdb21ead99097904ea96900c85f8a76",
+      "runtime_verified": false,
+      "title": "feat(plan-asset): implement canonical v2 migration ledger",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 63,
+      "pr_id": "predecessor-ut#63",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "fd4c2464dec8fcaef885124f60c205615187afc0e3972c26eb2c54e52acd5161",
+      "runtime_verified": false,
+      "title": "docs(vmodel): design execution ledger GitHub reentry",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "family_specific_exact_edge_mismatch",
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 64,
+      "pr_id": "predecessor-ut#64",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "89bbe213b39124baf6cbaa5ea7469516dbe78efac24af457db70228e582bca85",
+      "runtime_verified": false,
+      "title": "feat(plan): drive-aware admission policy",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "test_verification",
+        "runtime_orchestration",
+        "design_governance",
+        "ui_visual",
+        "database_state"
+      ],
+      "candidate_correction": "semantic_review_required_not_complete",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [
+        "hil_hst_exact_edge_mismatch"
+      ],
+      "number": 65,
+      "pr_id": "predecessor-ut#65",
+      "repository_id": "predecessor-ut",
+      "route_fingerprint_sha256": "c2a84900188940446b10b8186175a1ffd85be003d2d4b25fc5e810d380152f44",
+      "runtime_verified": false,
+      "title": "docs(plan): PLAN-L1-08 design harness internalization + plan_id taxonomy gate",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "setup_distribution"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 1,
+      "pr_id": "legacy-helix#1",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "27b87f7247b6e6f8787ab602834a7074a4659d73f26a7e409a339e779033734e",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): Bump actions/setup-node from 4 to 6",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 2,
+      "pr_id": "legacy-helix#2",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "92cf0aca5bfeaef1fbbcc96626475fc264c8dad47caa0bcc963c03c43bff9689",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): Bump actions/checkout from 4 to 6",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate",
+        "setup_distribution"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 3,
+      "pr_id": "legacy-helix#3",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "023ca9da0a0f301feba890e87babcf37c29837d99907b0f0ddac27af0f05ddda",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): Bump actions/setup-python from 5 to 6",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 4,
+      "pr_id": "legacy-helix#4",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "c833836b0233a54e41cf78d6be7778c7632cc696557f6d2a939bf1ddc3b886d9",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): Bump github/codeql-action from 8c78abb9b62512e3c45dea6559ffd924ed8549c8 to 48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 5,
+      "pr_id": "legacy-helix#5",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "c833836b0233a54e41cf78d6be7778c7632cc696557f6d2a939bf1ddc3b886d9",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): bump github/codeql-action from 8c78abb9b62512e3c45dea6559ffd924ed8549c8 to 48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 6,
+      "pr_id": "legacy-helix#6",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "92cf0aca5bfeaef1fbbcc96626475fc264c8dad47caa0bcc963c03c43bff9689",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): Bump actions/checkout from 4 to 7",
+      "trusted": false
+    },
+    {
+      "behavior_families": [
+        "ci_gate"
+      ],
+      "candidate_correction": "candidate_semantically_aligned_not_verified",
+      "coverage_credit": false,
+      "current": false,
+      "issues": [],
+      "number": 7,
+      "pr_id": "legacy-helix#7",
+      "repository_id": "legacy-helix",
+      "route_fingerprint_sha256": "c833836b0233a54e41cf78d6be7778c7632cc696557f6d2a939bf1ddc3b886d9",
+      "runtime_verified": false,
+      "title": "chore(actions)(deps): Bump github/codeql-action/upload-sarif from 8c78abb9b62512e3c45dea6559ffd924ed8549c8 to 48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
+      "trusted": false
+    }
+  ],
+  "schema_checks": {
+    "issues": [],
+    "required_field_groups": {
+      "evidence": [
+        "annotations_manifest_sha256",
+        "artifact_manifest_sha256",
+        "provenance_manifest_sha256",
+        "sanitized_log_sha256",
+        "test_report_sha256"
+      ],
+      "identity": [
+        "check_run_id",
+        "check_suite_id",
+        "head_oid",
+        "merge_oid",
+        "pr_number",
+        "repository_id",
+        "workflow_attempt",
+        "workflow_run_id"
+      ],
+      "lineage": [
+        "base_ref",
+        "behavior_family_manifest_sha256",
+        "changed_path_manifest_sha256",
+        "commit_range_manifest_sha256",
+        "event_name",
+        "head_ref",
+        "head_sha",
+        "merge_sha",
+        "pr_title_sha256",
+        "semantic_reconciliation_sha256",
+        "workflow_path",
+        "workflow_sha"
+      ],
+      "result": [
+        "app_slug",
+        "check_name",
+        "completed_at",
+        "conclusion",
+        "started_at",
+        "status"
+      ]
+    },
+    "secret_pii_exclusions_required": [
+      "secret",
+      "credential",
+      "PII",
+      "unsanitized_raw_payload"
+    ]
+  },
+  "schema_version": "helix.predecessor-pr-test-retention-routes-independent-review.v1",
+  "sources": {
+    "HAT": {
+      "path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "sha256": "9655a7cffd465b7b449903028d2dc34fe052b90400934eead272e05bb990b37a"
+    },
+    "HST": {
+      "path": "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md",
+      "sha256": "6b6c46fe9274e00132a1a920bea687018cdbaeb715fe81401fc1c875e5e0ee94"
+    },
+    "L1": {
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7"
+    },
+    "L3": {
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f"
+    },
+    "Visual": {
+      "path": "docs/test-design/helix/L8-L11-visual-design-harness-verification.md",
+      "sha256": "93dd45c9e543dbb0c550bd00fa130f011fefb725cb9e65bb814b9aadf1c046a5"
+    },
+    "candidate": {
+      "path": "docs/governance/generated/predecessor-pr-test-retention-routes-71-v1.json",
+      "sha256": "158791e60da9f07f106813ab822ac5a1b60b074aaa7d00eb409620174616032c"
+    },
+    "reconciliation": {
+      "path": "docs/governance/generated/predecessor-pr-semantic-reconciliation-71-v1.json",
+      "sha256": "ee44144100246ed19e19519d1b970438d5d0a055219f4e393763639f484ce942"
+    }
+  },
+  "status": "independent_review_complete_candidates_not_trusted",
+  "summary": {
+    "blocked_no_current_test_id": 5,
+    "challenge_gap_obligations": 130,
+    "coverage_credit_true": 0,
+    "current": 0,
+    "family_specific_not_verified": 2,
+    "family_specific_partial_challenge_gap": 56,
+    "issue_counts": {
+      "family_specific_exact_edge_mismatch": 40,
+      "hil_hst_exact_edge_mismatch": 47
+    },
+    "records_reviewed": 71,
+    "records_with_findings": 47,
+    "runtime_verified": 0,
+    "semantic_aligned_not_verified": 13,
+    "trusted": 0,
+    "unique_expected_manifest_sha256": 71,
+    "unique_pr_ids": 71
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "helix.legacy-helix-pr-hil-candidate-mapping.v1",
+  "status": "candidate_not_verified",
+  "repository_id": "legacy-helix",
+  "sources": {
+    "pr_plan_join": {"path": "docs/governance/generated/predecessor-pr-plan-join-71-v1.json", "sha256": "bb8187cdfa28da6c906a672a51ac3f8534a5bfe311120d2e2363bf2a2013dbb6"},
+    "semantic_review": {"path": "docs/governance/generated/predecessor-pr-semantic-review-71-v1.json", "sha256": "6455ca3f29124310a69a9ce7db4eb79994e3d242c46570fb61438e3b3fd66bc8"}
+  },
+  "method": {
+    "inputs": ["Dependabot title", "open/closed state", "current check classification/count/digest", "changed-path count/digest", "behavior families"],
+    "dispositions": ["adopt", "harden", "redesign", "reject", "defer"],
+    "failure_rule": "current failure forbids adopt and verified credit; it does not prove historical behavior invalid",
+    "changed_path_limitation": "upstream artifacts retain changed-path count/digest and derived behavior families, but not the path list; no exact path names are fabricated"
+  },
+  "records": [
+    {
+      "pr_id": "legacy-helix#1", "number": 1, "title": "chore(actions)(deps): Bump actions/setup-node from 4 to 6", "dependabot": true, "state": "open",
+      "check": {"classification": "failure", "count": 16, "digest": "e6ea3753578dd45df67d5507592d31c53323c9bf3d6541f37ef9169c17d0309d"},
+      "changed_paths": {"count": 1, "digest": "353522d2a33fd1c33f7b8a30df0eb270e0209957002ff1149e993338b94a54e1", "exact_list_available": false, "behavior_families": ["ci_gate", "setup_distribution"]},
+      "candidate_disposition": "redesign", "hil_ids": ["HIL-BR-14", "HIL-BR-16", "HIL-FR-13", "HIL-FR-14", "HIL-TR-01", "HIL-TR-04"], "hr_ids": ["HR-FR-HIL-06", "HR-FR-HIL-09", "HR-FR-HIL-13", "HR-FR-HIL-14", "HR-FR-HIL-26"],
+      "reason": "setup-node更新意図は現行Node 24/npm/Linux-primary matrixへ移し替える必要があり、旧workflow version bumpをそのまま採用しない。failure 16のためreplacement CI証拠待ち。", "verified": false, "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#2", "number": 2, "title": "chore(actions)(deps): Bump actions/checkout from 4 to 6", "dependabot": true, "state": "closed",
+      "check": {"classification": "failure", "count": 16, "digest": "d9d12e2a92f7e25886df4bb2b9a16ca07ea5555aa46ee737852bbd57fc98054f"},
+      "changed_paths": {"count": 7, "digest": "b7b468a00cbee7061ce8bacc32b3de0b8ac3edcd8852cf5169ff3ac1a03825a0", "exact_list_available": false, "behavior_families": ["ci_gate"]},
+      "candidate_disposition": "reject", "hil_ids": ["HIL-BR-14", "HIL-BR-16", "HIL-FR-28", "HIL-FR-29"], "hr_ids": ["HR-FR-HIL-06", "HR-FR-HIL-09", "HR-FR-HIL-26"],
+      "reason": "closedかつfailureで、同じchanged-path digestを持つcheckout v7 PR #6に更新意図がsupersedeされる。独立behavior atomを増やさない。", "verified": false, "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#3", "number": 3, "title": "chore(actions)(deps): Bump actions/setup-python from 5 to 6", "dependabot": true, "state": "open",
+      "check": {"classification": "failure", "count": 16, "digest": "1cd45627f9f7716de1e1c2a6f11e3f229beb5ce156c347c2f29f9dfe71cc5f76"},
+      "changed_paths": {"count": 6, "digest": "08e5c50e3245e707cc08d241c4603c456f614047791dadac4814feb3dae56054", "exact_list_available": false, "behavior_families": ["ci_gate", "setup_distribution"]},
+      "candidate_disposition": "harden", "hil_ids": ["HIL-BR-14", "HIL-BR-16", "HIL-FR-15", "HIL-FR-27", "HIL-TR-03", "HIL-TR-04"], "hr_ids": ["HR-FR-HIL-06", "HR-FR-HIL-10", "HR-FR-HIL-12", "HR-FR-HIL-14", "HR-FR-HIL-26"],
+      "reason": "setup-python更新はproposal-only workerのLinux/macOS/Windows toolchain hardening候補。open failureのためpin、license、fixture matrixを閉じるまで採用しない。", "verified": false, "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#4", "number": 4, "title": "chore(actions)(deps): Bump github/codeql-action to 48ab28a", "dependabot": true, "state": "closed",
+      "check": {"classification": "failure", "count": 16, "digest": "78aeec747aeae3272627d3667dd450026f41c4591decc6d969f95ea008fa87c3"},
+      "changed_paths": {"count": 1, "digest": "7f4fd5b4c5bfbea79106da34e3498038ed5841ff112bdf17247365d64b302c8a", "exact_list_available": false, "behavior_families": ["ci_gate"]},
+      "candidate_disposition": "reject", "hil_ids": ["HIL-FR-09", "HIL-FR-10", "HIL-FR-28", "HIL-FR-29"], "hr_ids": ["HR-FR-HIL-03", "HR-FR-HIL-06", "HR-FR-HIL-07", "HR-FR-HIL-09", "HR-FR-HIL-26"],
+      "reason": "closed failureで、同じchanged-path digestとtarget revisionを持つ#5/#7が重複する。source履歴のみ保持し独立採用しない。", "verified": false, "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#5", "number": 5, "title": "chore(actions)(deps): bump github/codeql-action to 48ab28a", "dependabot": true, "state": "open",
+      "check": {"classification": "failure", "count": 16, "digest": "efc4f44c19f3c840f0a6dbcbd997236191c13199c85147134609b9bcadcaecf5"},
+      "changed_paths": {"count": 1, "digest": "7f4fd5b4c5bfbea79106da34e3498038ed5841ff112bdf17247365d64b302c8a", "exact_list_available": false, "behavior_families": ["ci_gate"]},
+      "candidate_disposition": "reject", "hil_ids": ["HIL-FR-09", "HIL-FR-10", "HIL-FR-28", "HIL-FR-29"], "hr_ids": ["HR-FR-HIL-03", "HR-FR-HIL-06", "HR-FR-HIL-07", "HR-FR-HIL-09", "HR-FR-HIL-26"],
+      "reason": "#4/#7と同一changed-path digestの重複PRで、全check failure。独立behaviorを作らずsecurity CI意図は#7 hardeningへ集約する。", "verified": false, "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#6", "number": 6, "title": "chore(actions)(deps): Bump actions/checkout from 4 to 7", "dependabot": true, "state": "open",
+      "check": {"classification": "failure", "count": 16, "digest": "cf4a2612ed957b761875b47a7cb9830d8801b73d05ff1bf34d8b3df61bdf3b3f"},
+      "changed_paths": {"count": 7, "digest": "b7b468a00cbee7061ce8bacc32b3de0b8ac3edcd8852cf5169ff3ac1a03825a0", "exact_list_available": false, "behavior_families": ["ci_gate"]},
+      "candidate_disposition": "harden", "hil_ids": ["HIL-BR-14", "HIL-BR-16", "HIL-FR-28", "HIL-FR-29", "HIL-TR-04"], "hr_ids": ["HR-FR-HIL-06", "HR-FR-HIL-09", "HR-FR-HIL-14", "HR-FR-HIL-26"],
+      "reason": "checkout v7は#2をsupersedeする最新候補だがfailure。current Git authority、Linux matrix、pin/supply-chain gateでhardeningしてから採否する。", "verified": false, "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#7", "number": 7, "title": "chore(actions)(deps): Bump github/codeql-action/upload-sarif to 48ab28a", "dependabot": true, "state": "open",
+      "check": {"classification": "failure", "count": 16, "digest": "d75fcdce8eea50a423efbba9bf76b9a5aa59ce17da12ddfd7f42916bd40953fe"},
+      "changed_paths": {"count": 1, "digest": "7f4fd5b4c5bfbea79106da34e3498038ed5841ff112bdf17247365d64b302c8a", "exact_list_available": false, "behavior_families": ["ci_gate"]},
+      "candidate_disposition": "harden", "hil_ids": ["HIL-FR-09", "HIL-FR-10", "HIL-FR-28", "HIL-FR-29", "HIL-NFR-06"], "hr_ids": ["HR-FR-HIL-03", "HR-FR-HIL-06", "HR-FR-HIL-07", "HR-FR-HIL-09", "HR-FR-HIL-26"],
+      "reason": "upload-sarifはsecurity CIの限定hardening候補。重複general CodeQL PRを吸収するが、failureとcurrent workflow/supply-chain検証未完のためadoptしない。", "verified": false, "coverage_credit": false
+    }
+  ],
+  "summary": {"rows": 7, "unique_pr_ids": 7, "dependabot": 7, "open": 5, "closed": 2, "check_failure": 7, "by_disposition": {"adopt": 0, "harden": 3, "redesign": 1, "reject": 3, "defer": 0}, "verified": 0, "coverage_credit_true": 0},
+  "invariants": ["source legacy-helix PR set equals records 7/7", "every record has state/check/changed-path digest/HIL/HR/reason", "failure forbids adopt and verified credit", "duplicate changed-path digests are explicitly dispositioned", "no exact changed path is invented when upstream list is absent"]
+}

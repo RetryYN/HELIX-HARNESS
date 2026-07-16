@@ -100,7 +100,7 @@ PO 指示「L4 の見直し・改善」を受け、L4 core 4 doc (data/architect
 - **architecture.md** (情報源: src/ ディレクトリ実体 + ADR-005): §3.1 lint/runtime/handover/setup/web / §4 Handover / §6 commit-msg hook / §7 ADR-005。
 - **function.md** (情報源: review_evidence schema + checkScrumReverse + concept §2.6): §3.1 Research defer / §3.6 review_kind 着地 / §3.2 scrum-reverse 参照 / §3.7 Scrum L8-L14。
 - **external-if.md** (情報源: function §3.6 4 mode): §4 codex-only / §3(d) typo。
-- **L9-system-test-design.md** (情報源: 上記設計変更): ST 整合 + 量閉じ。
+- **L9-system-test-design.md** (情報源: 上記設計変更): ST 整合 + 量閉じ。 （層意味論: canonical L9=integration）
 
 ## §6 用語更新
 

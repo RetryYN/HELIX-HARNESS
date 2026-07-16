@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — Universal Reverse／Redesign"
+title: "HELIX L9 結合テスト設計 — Universal Reverse／Redesign"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -25,7 +25,7 @@ source_capabilities:
   - HU-CAP-001
 ---
 
-# HELIX L8 結合テスト設計 — Universal Reverse／Redesign
+# HELIX L9 結合テスト設計 — Universal Reverse／Redesign
 
 ## §0 共通oracle
 

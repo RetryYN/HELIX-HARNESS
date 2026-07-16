@@ -82,4 +82,4 @@ L1 §2 の横断シナリオ (S2/S3/S5/S6) を deep-link として一般化:
 
 - 上流: L1 [screen-requirements.md §2](../L1-requirements/screen-requirements.md) 6 遷移シナリオ。
 - L2 内: [screen-list.md](./screen-list.md) (ID/URL) → 本 screen-flow (遷移) → [ui-element.md](./ui-element.md) (部品) → [wireframe.md](./wireframe.md) (レイアウト = ③ pair)。
-- 下流: L10 UX refinement → src/web 実装 (Phase B)。
+- 下流: L10 system/Real UX evidence → src/web 実装 (Phase B)。

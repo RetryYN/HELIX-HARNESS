@@ -30,7 +30,7 @@ parent_g1: docs/handover/G1-readiness-report-2026-05-28.md (G1 v8 PASS)
 > **PO 指摘 2 件 (別 commit 対応)**:
 >   1. PLAN 起票時の Web 検索 + フォーク + pdm 組込 process 改善 (PLAN テンプレ §3 ヒアリングに Step 0 = 外部調査追加)
 >   2. agent-guard に opus pdm-* 系の追加制約 (明示 --allow 必要、weekly quota 保護)
-> **PO に求める判断**: L3 機能要件の **G3 ゲート凍結サインオフ** (3 sub-doc + L12 受入テスト 1 doc + 3 PLAN の pair freeze + 12 carry 拡張、L4 起票への進行承認)
+> **PO に求める判断**: L3 機能要件の **G3 ゲート凍結サインオフ** (3 sub-doc + L12 受入テスト 1 doc + 3 PLAN の pair freeze + 12 carry 拡張、L4 起票への進行承認) （層意味論: canonical L12=operational/value）
 
 ## §1 サマリ (PO スキャン用)
 
@@ -53,7 +53,7 @@ parent_g1: docs/handover/G1-readiness-report-2026-05-28.md (G1 v8 PASS)
 - **§3 carry 宣言**: P1 18 件 + P2 5 件 = L4 carry default / FR-L1-19 = Phase B / FR-L1-36/38/43 = PLAN-L3-02 委譲
 - **§4 画面 trace**: screen §5 G1-trace マトリクス継承 + AC レベル拡張 6 件サンプル
 - **§5 9 mode × FR**: P0 18 件で 6 mode 直接被覆 / 4 mode は L4 carry
-- **§7 carry**: L4 基本設計 + L4 データ設計 + L7 TDD + L12 受入テスト + CC2 carry 強化
+- **§7 carry**: L4 基本設計 + L4 データ設計 + L7 TDD + L12 受入テスト + CC2 carry 強化 （層意味論: canonical L12=operational/value）
 
 ### 確認 2: L3 業務要件詳細 (BR-21 + HM-08 + FR-BR21-36/38/43)
 
@@ -123,7 +123,7 @@ L1 G1-trace と同構造で 4 軸検証 (本起草時点で人手確認):
 29df198 L3 起票フレーム着地 (PLAN-L3-01〜03 + L3-functional/ + L12 placeholder)
 301498c L3 ヒアリング項目 TL レビュー反映 (PO 直問 36→2)
 6ef4da6 L3 ヒアリング PO 直問 0 件達成 (残 2 件も AI 採用)
-<本commit> L3 sub-doc 本起草完了 (functional / business-detail / nfr-grade + L12 受入テスト + G3 readiness、ledger A-45)
+<本commit> L3 sub-doc 本起草完了 (functional / business-detail / nfr-grade + L12 受入テスト + G3 readiness、ledger A-45) （層意味論: canonical L12=operational/value）
 ```
 
 合計 4 commit、L1 G1 v8 PASS 後の L3 整備完了。
@@ -144,6 +144,6 @@ L1 G1-trace と同構造で 4 軸検証 (本起草時点で人手確認):
 
 - L1 G1 PASS: `docs/handover/G1-readiness-report-2026-05-28.md` (v8)
 - L3 3 sub-doc: `docs/design/harness/L3-functional/*.md`
-- L12 受入テスト: `docs/test-design/harness/L3-acceptance-test-design.md`
+- L12 受入テスト: `docs/test-design/harness/L3-acceptance-test-design.md` （層意味論: canonical L12=operational/value）
 - L3 3 PLAN: `docs/plans/PLAN-L3-0{1,2,3}-*.md`
 - v2 取り込み軌跡: `docs/migration/v2-import-ledger.md` §5 A-42〜A-45

@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — source capability capture"
+title: "HELIX L9 結合テスト設計 — source capability capture"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -22,7 +22,7 @@ requirements:
   - HAC-HIL-09c
 ---
 
-# HELIX L8 結合テスト設計 — source capability capture
+# HELIX L9 結合テスト設計 — source capability capture
 
 ## §0 共通oracle
 

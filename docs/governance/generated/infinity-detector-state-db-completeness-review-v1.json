@@ -1,0 +1,820 @@
+{
+  "artifact_id": "HELIX-INFINITY-DETECTOR-STATE-DB-COMPLETENESS-REVIEW-V1",
+  "schema_version": "helix.infinity-detector-state-db-completeness-review.v1",
+  "status": "design_completeness_review_pass_after_correction",
+  "authority": "design-review-only-no-runtime-activation",
+  "input_digests": {
+    "l1": {
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "5ea931e4322a913437aa09276589178919e3933d49c4ffdd2bafead0a707b54b"
+    },
+    "l3": {
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "9d13c59b25c965411c309c4f4c2959331d493790e2dddb5a1840e200cf6e8dda"
+    },
+    "l4": {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "cd92f1abc7106caa176417e2c7427d9fd726c0830101fb5e270d8e663a168a3e"
+    },
+    "assertions": {
+      "path": "docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "sha256": "6a05b7d837221e711547c38a057650cc18c940578df1462a13040bee7f5cb7c9"
+    },
+    "trace": {
+      "path": "docs/governance/infinity-loop-l1-l3-trace-ledger.md",
+      "sha256": "90daceb6f02c40bea90391794b8f4cdd8dd0cc0dbb63b53c9802bbc3c345d45a"
+    },
+    "hat": {
+      "path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "sha256": "38e1aa483c114452777f14f2e299e58e7cb32150327efa0290bbeea3fcd713b4"
+    }
+  },
+  "denominators": {
+    "selected_l1_requirements": 20,
+    "global_l3_acceptance_criteria": 141,
+    "relevant_l3_acceptance_criteria": 33,
+    "canonical_states": 29,
+    "canonical_transitions": 32,
+    "infinity_core_tables": 20,
+    "detector_engine_physical_tables": 12,
+    "canonical_queries": 5,
+    "receipt_types": 10
+  },
+  "pre_correction_findings": [
+    {
+      "code": "HIL_INFINITY_STATE_DB_PROSE_ONLY",
+      "severity": "blocker",
+      "correction": "Infinity core physical table 20件とquery 5件をL4正本化"
+    },
+    {
+      "code": "HIL_INFINITY_AXIS_JOIN_UNMATERIALIZED",
+      "severity": "blocker",
+      "correction": "audit/improvement/gate/autorunを独立aggregate＋causality joinへ分離"
+    },
+    {
+      "code": "HIL_DETECTOR_TABLE_AUTHORITY_AMBIGUOUS",
+      "severity": "blocker",
+      "correction": "§6をconceptual inventory、§6.1を唯一のphysical authorityとしdetector_registry parallel tableを禁止"
+    }
+  ],
+  "post_correction": {
+    "orphan_requirements": [],
+    "orphan_states": [],
+    "orphan_transitions": [],
+    "orphan_tables": [],
+    "orphan_queries": [],
+    "one_sided_axes": [],
+    "detector_parallel_authority": false,
+    "issue_gate_join": "closed_by_design",
+    "reverse_precedence": "closed_by_design",
+    "redesign_route": "closed_by_design",
+    "memory_separation": "closed_by_design"
+  },
+  "requirement_routes": [
+    {
+      "requirement_id": "HIL-FR-01",
+      "assertion_id": "HIA-FR-001",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-19"
+      ],
+      "hac_ids": [
+        "HAC-HIL-02a",
+        "HAC-HIL-02b",
+        "HAC-HIL-02c",
+        "HAC-HIL-19a",
+        "HAC-HIL-19b",
+        "HAC-HIL-19c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-02",
+        "HAT-HIL-19"
+      ],
+      "hst_ids": [
+        "HST-HIL-001",
+        "HST-HIL-034"
+      ],
+      "component_candidates": "InfinityCoordinator",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-02",
+      "assertion_id": "HIA-FR-002",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-01"
+      ],
+      "hac_ids": [
+        "HAC-HIL-01a",
+        "HAC-HIL-01b",
+        "HAC-HIL-01c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-01"
+      ],
+      "hst_ids": [
+        "HST-HIL-001"
+      ],
+      "component_candidates": "GitHubEventBridge",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-03",
+      "assertion_id": "HIA-FR-003",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-01"
+      ],
+      "hac_ids": [
+        "HAC-HIL-01a",
+        "HAC-HIL-01b",
+        "HAC-HIL-01c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-01"
+      ],
+      "hst_ids": [
+        "HST-HIL-001"
+      ],
+      "component_candidates": "IssueContractStore",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-04",
+      "assertion_id": "HIA-FR-004",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-04"
+      ],
+      "hac_ids": [
+        "HAC-HIL-04a",
+        "HAC-HIL-04b",
+        "HAC-HIL-04c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-04"
+      ],
+      "hst_ids": [
+        "HST-HIL-002",
+        "HST-HIL-018"
+      ],
+      "component_candidates": "UniversalReverseGate",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-05",
+      "assertion_id": "HIA-FR-005",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-04",
+        "HR-FR-HIL-19"
+      ],
+      "hac_ids": [
+        "HAC-HIL-04a",
+        "HAC-HIL-04b",
+        "HAC-HIL-04c",
+        "HAC-HIL-19a",
+        "HAC-HIL-19b",
+        "HAC-HIL-19c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-04",
+        "HAT-HIL-19"
+      ],
+      "hst_ids": [
+        "HST-HIL-002",
+        "HST-HIL-018",
+        "HST-HIL-034"
+      ],
+      "component_candidates": "RedesignRouter",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-06",
+      "assertion_id": "HIA-FR-006",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-05"
+      ],
+      "hac_ids": [
+        "HAC-HIL-05a",
+        "HAC-HIL-05b",
+        "HAC-HIL-05c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-05"
+      ],
+      "hst_ids": [
+        "HST-HIL-019",
+        "HST-HIL-021",
+        "HST-HIL-023"
+      ],
+      "component_candidates": "ScopeAuthorityGate",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-07",
+      "assertion_id": "HIA-FR-007",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-05"
+      ],
+      "hac_ids": [
+        "HAC-HIL-05a",
+        "HAC-HIL-05b",
+        "HAC-HIL-05c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-05"
+      ],
+      "hst_ids": [
+        "HST-HIL-019",
+        "HST-HIL-021",
+        "HST-HIL-023"
+      ],
+      "component_candidates": "ClosureGate",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-08",
+      "assertion_id": "HIA-FR-008",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-04"
+      ],
+      "hac_ids": [
+        "HAC-HIL-04a",
+        "HAC-HIL-04b",
+        "HAC-HIL-04c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-04"
+      ],
+      "hst_ids": [
+        "HST-HIL-002",
+        "HST-HIL-018"
+      ],
+      "component_candidates": "CodexExecutionAdapter",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-09",
+      "assertion_id": "HIA-FR-009",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-03"
+      ],
+      "hac_ids": [
+        "HAC-HIL-03a",
+        "HAC-HIL-03b",
+        "HAC-HIL-03c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-03"
+      ],
+      "hst_ids": [
+        "HST-HIL-004",
+        "HST-HIL-005"
+      ],
+      "component_candidates": "ClaudeAuditAdapter; DirectiveCustodyLedger",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-10",
+      "assertion_id": "HIA-FR-010",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-07"
+      ],
+      "hac_ids": [
+        "HAC-HIL-07a",
+        "HAC-HIL-07b",
+        "HAC-HIL-07c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-07"
+      ],
+      "hst_ids": [
+        "HST-HIL-015",
+        "HST-HIL-016"
+      ],
+      "component_candidates": "MemoryCompactionCoordinator",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-25",
+      "assertion_id": "HIA-FR-025",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-10"
+      ],
+      "hac_ids": [
+        "HAC-HIL-10a",
+        "HAC-HIL-10b",
+        "HAC-HIL-10c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-10"
+      ],
+      "hst_ids": [
+        "HST-HIL-008",
+        "HST-HIL-009"
+      ],
+      "component_candidates": "HybridDocumentCoreEngineRegistry",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-26",
+      "assertion_id": "HIA-FR-026",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-10"
+      ],
+      "hac_ids": [
+        "HAC-HIL-10a",
+        "HAC-HIL-10b",
+        "HAC-HIL-10c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-10"
+      ],
+      "hst_ids": [
+        "HST-HIL-008",
+        "HST-HIL-009"
+      ],
+      "component_candidates": "DetectorRegistryRunner",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-43",
+      "assertion_id": "HIA-FR-043",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-25"
+      ],
+      "hac_ids": [
+        "HAC-HIL-17a",
+        "HAC-HIL-17b",
+        "HAC-HIL-17c",
+        "HAC-HIL-25a",
+        "HAC-HIL-25b",
+        "HAC-HIL-25c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-17",
+        "HAT-HIL-25"
+      ],
+      "hst_ids": [
+        "HST-HIL-027",
+        "HST-HIL-028",
+        "HST-HIL-029",
+        "HST-HIL-040"
+      ],
+      "component_candidates": "RequirementTranslator",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-44",
+      "assertion_id": "HIA-FR-044",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-17"
+      ],
+      "hac_ids": [
+        "HAC-HIL-17a",
+        "HAC-HIL-17b",
+        "HAC-HIL-17c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-17"
+      ],
+      "hst_ids": [
+        "HST-HIL-027",
+        "HST-HIL-028",
+        "HST-HIL-029"
+      ],
+      "component_candidates": "TemplateImprovementCoordinator",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-45",
+      "assertion_id": "HIA-FR-045",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-25"
+      ],
+      "hac_ids": [
+        "HAC-HIL-17a",
+        "HAC-HIL-17b",
+        "HAC-HIL-17c",
+        "HAC-HIL-25a",
+        "HAC-HIL-25b",
+        "HAC-HIL-25c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-17",
+        "HAT-HIL-25"
+      ],
+      "hst_ids": [
+        "HST-HIL-027",
+        "HST-HIL-028",
+        "HST-HIL-029",
+        "HST-HIL-040"
+      ],
+      "component_candidates": "RequirementDefinitionLedger",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-46",
+      "assertion_id": "HIA-FR-046",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-18"
+      ],
+      "hac_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-18"
+      ],
+      "hst_ids": [
+        "HST-HIL-030",
+        "HST-HIL-031",
+        "HST-HIL-032",
+        "HST-HIL-033"
+      ],
+      "component_candidates": "LayerLedgerRegistry",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-47",
+      "assertion_id": "HIA-FR-047",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-18"
+      ],
+      "hac_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-18"
+      ],
+      "hst_ids": [
+        "HST-HIL-030",
+        "HST-HIL-031",
+        "HST-HIL-032",
+        "HST-HIL-033"
+      ],
+      "component_candidates": "TemplateObligationExtractor",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-48",
+      "assertion_id": "HIA-FR-048",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-18"
+      ],
+      "hac_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-18"
+      ],
+      "hst_ids": [
+        "HST-HIL-030",
+        "HST-HIL-031",
+        "HST-HIL-032",
+        "HST-HIL-033"
+      ],
+      "component_candidates": "LedgerPairGate",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-49",
+      "assertion_id": "HIA-FR-049",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19"
+      ],
+      "hac_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c",
+        "HAC-HIL-19a",
+        "HAC-HIL-19b",
+        "HAC-HIL-19c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-18",
+        "HAT-HIL-19"
+      ],
+      "hst_ids": [
+        "HST-HIL-030",
+        "HST-HIL-031",
+        "HST-HIL-032",
+        "HST-HIL-033",
+        "HST-HIL-034"
+      ],
+      "component_candidates": "LedgerPairGate",
+      "execution_status": "not-implemented"
+    },
+    {
+      "requirement_id": "HIL-FR-50",
+      "assertion_id": "HIA-FR-050",
+      "l3_requirement_ids": [
+        "HR-FR-HIL-18"
+      ],
+      "hac_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c"
+      ],
+      "hat_ids": [
+        "HAT-HIL-18"
+      ],
+      "hst_ids": [
+        "HST-HIL-030",
+        "HST-HIL-031",
+        "HST-HIL-032",
+        "HST-HIL-033"
+      ],
+      "component_candidates": "LedgerDesignRefactorPlanner",
+      "execution_status": "not-implemented"
+    }
+  ],
+  "states": [
+    "intake",
+    "directive_captured",
+    "admitted",
+    "reverse_r0",
+    "reverse_r1",
+    "reverse_r2",
+    "reverse_r3",
+    "reverse_r4",
+    "redesign",
+    "design_refactor",
+    "l3_acceptance_freeze",
+    "l4_basic_design_freeze",
+    "l5_test_design_freeze",
+    "l7_red_test",
+    "implementation_preflight",
+    "l6_green_implementation",
+    "l7_refactor_trace_closure",
+    "local_prejoin_ci",
+    "forward_join",
+    "internal_postjoin_ci",
+    "pr_open_or_updated",
+    "github_external_ci",
+    "claude_audit",
+    "finding_promoted",
+    "child_issue",
+    "audit_pass",
+    "memory_compacted",
+    "closure_ready",
+    "merged_closed"
+  ],
+  "transitions": [
+    {
+      "transition_id": "ILT-001",
+      "from": "intake",
+      "to": "directive_captured"
+    },
+    {
+      "transition_id": "ILT-002",
+      "from": "directive_captured",
+      "to": "admitted"
+    },
+    {
+      "transition_id": "ILT-003",
+      "from": "admitted",
+      "to": "reverse_r0"
+    },
+    {
+      "transition_id": "ILT-004",
+      "from": "reverse_r0",
+      "to": "reverse_r1"
+    },
+    {
+      "transition_id": "ILT-005",
+      "from": "reverse_r1",
+      "to": "reverse_r2"
+    },
+    {
+      "transition_id": "ILT-006",
+      "from": "reverse_r2",
+      "to": "reverse_r3"
+    },
+    {
+      "transition_id": "ILT-007",
+      "from": "reverse_r3",
+      "to": "reverse_r4"
+    },
+    {
+      "transition_id": "ILT-008",
+      "from": "reverse_r4",
+      "to": "redesign"
+    },
+    {
+      "transition_id": "ILT-009",
+      "from": "reverse_r4",
+      "to": "design_refactor"
+    },
+    {
+      "transition_id": "ILT-010",
+      "from": "reverse_r4",
+      "to": "l3_acceptance_freeze"
+    },
+    {
+      "transition_id": "ILT-011",
+      "from": "redesign",
+      "to": "design_refactor"
+    },
+    {
+      "transition_id": "ILT-012",
+      "from": "redesign",
+      "to": "l3_acceptance_freeze"
+    },
+    {
+      "transition_id": "ILT-013",
+      "from": "design_refactor",
+      "to": "l3_acceptance_freeze"
+    },
+    {
+      "transition_id": "ILT-014",
+      "from": "l3_acceptance_freeze",
+      "to": "l4_basic_design_freeze"
+    },
+    {
+      "transition_id": "ILT-015",
+      "from": "l4_basic_design_freeze",
+      "to": "l5_test_design_freeze"
+    },
+    {
+      "transition_id": "ILT-016",
+      "from": "l5_test_design_freeze",
+      "to": "l7_red_test"
+    },
+    {
+      "transition_id": "ILT-017",
+      "from": "l7_red_test",
+      "to": "implementation_preflight"
+    },
+    {
+      "transition_id": "ILT-018",
+      "from": "implementation_preflight",
+      "to": "l6_green_implementation"
+    },
+    {
+      "transition_id": "ILT-019",
+      "from": "l6_green_implementation",
+      "to": "l7_refactor_trace_closure"
+    },
+    {
+      "transition_id": "ILT-020",
+      "from": "l7_refactor_trace_closure",
+      "to": "local_prejoin_ci"
+    },
+    {
+      "transition_id": "ILT-021",
+      "from": "local_prejoin_ci",
+      "to": "forward_join"
+    },
+    {
+      "transition_id": "ILT-022",
+      "from": "forward_join",
+      "to": "internal_postjoin_ci"
+    },
+    {
+      "transition_id": "ILT-023",
+      "from": "internal_postjoin_ci",
+      "to": "pr_open_or_updated"
+    },
+    {
+      "transition_id": "ILT-024",
+      "from": "pr_open_or_updated",
+      "to": "github_external_ci"
+    },
+    {
+      "transition_id": "ILT-025",
+      "from": "github_external_ci",
+      "to": "claude_audit"
+    },
+    {
+      "transition_id": "ILT-026",
+      "from": "claude_audit",
+      "to": "finding_promoted"
+    },
+    {
+      "transition_id": "ILT-027",
+      "from": "finding_promoted",
+      "to": "child_issue"
+    },
+    {
+      "transition_id": "ILT-028",
+      "from": "child_issue",
+      "to": "intake"
+    },
+    {
+      "transition_id": "ILT-029",
+      "from": "claude_audit",
+      "to": "audit_pass"
+    },
+    {
+      "transition_id": "ILT-030",
+      "from": "audit_pass",
+      "to": "memory_compacted"
+    },
+    {
+      "transition_id": "ILT-031",
+      "from": "memory_compacted",
+      "to": "closure_ready"
+    },
+    {
+      "transition_id": "ILT-032",
+      "from": "closure_ready",
+      "to": "merged_closed"
+    }
+  ],
+  "infinity_axes": {
+    "audit": [
+      "audit_runs",
+      "audit_findings"
+    ],
+    "improvement": [
+      "improvement_candidates",
+      "improvement_events"
+    ],
+    "gate": [
+      "issue_gate_runs",
+      "issue_gate_receipts"
+    ],
+    "autorun": [
+      "autorun_claims",
+      "autorun_events"
+    ]
+  },
+  "tables": {
+    "infinity_core": [
+      "infinity_issues",
+      "infinity_issue_events",
+      "infinity_transition_rules",
+      "issue_gate_runs",
+      "issue_gate_receipts",
+      "reverse_runs",
+      "reverse_stage_results",
+      "reverse_receipts",
+      "redesign_routes",
+      "redesign_events",
+      "audit_runs",
+      "audit_findings",
+      "improvement_candidates",
+      "improvement_events",
+      "autorun_claims",
+      "autorun_events",
+      "memory_compaction_runs",
+      "memory_promotion_receipts",
+      "finding_promotion_transactions",
+      "infinity_closure_receipts"
+    ],
+    "detector_engine_physical": [
+      "engine_versions",
+      "engine_runs",
+      "engine_artifacts",
+      "engine_run_events",
+      "detector_versions",
+      "detector_runs",
+      "detector_findings",
+      "detector_finding_occurrences",
+      "detector_baselines",
+      "detector_baseline_fingerprints",
+      "detector_suppressions",
+      "detector_run_events"
+    ]
+  },
+  "queries": [
+    "infinity_ready_issue_query",
+    "infinity_transition_legality_query",
+    "infinity_cycle_orphan_query",
+    "infinity_closure_readiness_query",
+    "improvement_promotion_eligibility_query"
+  ],
+  "receipt_types": [
+    "directive_custody",
+    "admission",
+    "reverse",
+    "redesign",
+    "issue_gate",
+    "autorun",
+    "audit",
+    "improvement",
+    "memory_promotion",
+    "closure"
+  ],
+  "execution": {
+    "implemented": 0,
+    "executed": 0,
+    "verified": 0,
+    "coverage_credit": false
+  },
+  "invariants": [
+    "design completeness does not imply runtime schema implementation",
+    "all selected FR routes terminate in HIA, HR, HAC, HAT and HST identifiers",
+    "all 141 HAC IDs remain the global acceptance denominator",
+    "Reverse receipt precedes autorun claim",
+    "Redesign is a typed route and only typed not-triggered receipt is optional",
+    "memory knowledge and continuation/raw progress remain separate",
+    "detector conceptual inventory does not create a second physical writer"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "approval_boundary": {
+    "activation_performed": false,
+    "packet_approval": {
+      "actor": null,
+      "approved_at": null,
+      "approved_digest": null,
+      "event_id": null
+    },
+    "packet_invariants": {
+      "approved": false,
+      "implementation_preflight": "blocked",
+      "legacy_target_mixed_evidence_allowed": false,
+      "python_tool_activation": "0/29",
+      "requirements_authoring_freeze": "pending",
+      "runtime_cutover": "pending",
+      "target_evidence_active_credit": 0
+    },
+    "packet_status": "pending_po_activation",
+    "receipt_fields": {
+      "active_runtime_compatibility": "legacy-l0-l14",
+      "implementation_preflight": "blocked",
+      "python_policy_supersession": "pending",
+      "python_tool_activation": "0/29",
+      "requirements_authoring_freeze": "pending",
+      "runtime_cutover": "pending",
+      "status": "pending-po-approval"
+    },
+    "receipt_placeholders": {
+      "approval_event_id": "pending",
+      "approved_actor": "pending",
+      "approved_at": "pending",
+      "approved_digest": "pending"
+    }
+  },
+  "decision_table": {
+    "all_equal": true,
+    "binding_row_sha256": "34d0fad1281157ac0c96a891b4b3f252bd1b475b472649a5cf5a580cec3c64f6",
+    "byte_span": "§1 heading inclusive to §1.1 heading exclusive",
+    "bytes": 1678,
+    "current_sha256": "34d0fad1281157ac0c96a891b4b3f252bd1b475b472649a5cf5a580cec3c64f6",
+    "frontmatter_sha256": "34d0fad1281157ac0c96a891b4b3f252bd1b475b472649a5cf5a580cec3c64f6"
+  },
+  "findings": [],
+  "packet_binding": {
+    "current": true,
+    "current_sha256": "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333",
+    "embedded_sha256": "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333",
+    "source_snapshots": [
+      {
+        "current": true,
+        "current_sha256": "b35b527b14b8152faefb6f22b47ba5c908b827a1fc9c8881ccafd55c35a0db0c",
+        "embedded_sha256": "b35b527b14b8152faefb6f22b47ba5c908b827a1fc9c8881ccafd55c35a0db0c",
+        "name": "adr_009",
+        "path": "docs/adr/ADR-009-node-python-linux-runtime.md"
+      },
+      {
+        "current": true,
+        "current_sha256": "c3c2f53e46f6c04705d25e3c1c8592200be6634bcb3f78de23f55289450ba8e1",
+        "embedded_sha256": "c3c2f53e46f6c04705d25e3c1c8592200be6634bcb3f78de23f55289450ba8e1",
+        "name": "chat_ledger",
+        "path": "docs/governance/infinity-loop-source-capability-ledger.md"
+      },
+      {
+        "current": true,
+        "current_sha256": "6865b7468eefd8e754b377f27e88325361d5ea0479ea49103a12a06db788901a",
+        "embedded_sha256": "6865b7468eefd8e754b377f27e88325361d5ea0479ea49103a12a06db788901a",
+        "name": "l0",
+        "path": "docs/design/helix/L0-charter/helix-charter_v0.1.md"
+      },
+      {
+        "current": true,
+        "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+        "embedded_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+        "name": "l1",
+        "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md"
+      },
+      {
+        "current": true,
+        "current_sha256": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd",
+        "embedded_sha256": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd",
+        "name": "l3",
+        "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md"
+      },
+      {
+        "current": true,
+        "current_sha256": "c9db6a2dff2f259f157a835b03bac9f1124256f44ff570deeb743d002445a828",
+        "embedded_sha256": "c9db6a2dff2f259f157a835b03bac9f1124256f44ff570deeb743d002445a828",
+        "name": "l3_cutover",
+        "path": "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md"
+      },
+      {
+        "current": true,
+        "current_sha256": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715",
+        "embedded_sha256": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715",
+        "name": "l4",
+        "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md"
+      }
+    ]
+  },
+  "receipt_source_bindings": [
+    {
+      "current": true,
+      "current_sha256": "c9db6a2dff2f259f157a835b03bac9f1124256f44ff570deeb743d002445a828",
+      "embedded_sha256": "c9db6a2dff2f259f157a835b03bac9f1124256f44ff570deeb743d002445a828",
+      "label": "vmodel-canonical-authority-cutover.md",
+      "path": "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "b35b527b14b8152faefb6f22b47ba5c908b827a1fc9c8881ccafd55c35a0db0c",
+      "embedded_sha256": "b35b527b14b8152faefb6f22b47ba5c908b827a1fc9c8881ccafd55c35a0db0c",
+      "label": "ADR-009-node-python-linux-runtime.md",
+      "path": "docs/adr/ADR-009-node-python-linux-runtime.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+      "embedded_sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+      "label": "infinity-loop-platform-requirements.md",
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd",
+      "embedded_sha256": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd",
+      "label": "infinity-loop-functional-requirements.md",
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "457b075701d400c2b5e721d8560b4a2c1e12fc7d42987f2226fa2955e00db3b2",
+      "embedded_sha256": "457b075701d400c2b5e721d8560b4a2c1e12fc7d42987f2226fa2955e00db3b2",
+      "label": "helix-harness-concept_v3.1.md",
+      "path": "docs/governance/helix-harness-concept_v3.1.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "26b12be8fb480e7d58f91076e215e8539c862711ebc7a883912be4f43e9bc099",
+      "embedded_sha256": "26b12be8fb480e7d58f91076e215e8539c862711ebc7a883912be4f43e9bc099",
+      "label": "helix-harness-requirements_v1.2.md",
+      "path": "docs/governance/helix-harness-requirements_v1.2.md"
+    },
+    {
+      "current": true,
+      "current_sha256": "6865b7468eefd8e754b377f27e88325361d5ea0479ea49103a12a06db788901a",
+      "embedded_sha256": "6865b7468eefd8e754b377f27e88325361d5ea0479ea49103a12a06db788901a",
+      "label": "helix-charter_v0.1.md",
+      "path": "docs/design/helix/L0-charter/helix-charter_v0.1.md"
+    }
+  ],
+  "refresh_policy": "Pending candidate source/packet digests may be refreshed, but refresh cannot inherit or synthesize approval and cannot change runtime/implementation/Python activation boundaries.",
+  "schema_version": "helix.vmodel-authority-candidate-binding-independent-audit.v1",
+  "sources": {
+    "packet": {
+      "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
+      "sha256": "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333"
+    },
+    "receipt": {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "sha256": "d5e59a89d241c97baa43fb6da5f60ef9c379e8abb87f3150da579d91d068a056"
+    }
+  },
+  "status": "candidate_binding_current_pending_approval_preserved",
+  "summary": {
+    "approval_placeholders_pending": true,
+    "decision_table_current": true,
+    "packet_digest_current": true,
+    "packet_source_snapshots": 7,
+    "packet_source_snapshots_current": 7,
+    "receipt_source_bindings": 7,
+    "receipt_source_bindings_current": 7,
+    "runtime_boundaries_preserved": true
+  }
+}

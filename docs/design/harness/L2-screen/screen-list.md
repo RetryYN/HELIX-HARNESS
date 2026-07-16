@@ -76,5 +76,5 @@ updated: 2026-06-24
 
 - 上流: L1 [screen-requirements.md](../L1-requirements/screen-requirements.md) §1 (15 画面) + §2 (遷移) + 4 横断原則 (CC1-CC4) + G1-trace R1-R4 通過済。
 - L2 内連携: 本 screen-list (ID/URL/認可/state) → [screen-flow.md](./screen-flow.md) (遷移) → [ui-element.md](./ui-element.md) (UI 部品) → [wireframe.md](./wireframe.md) (レイアウト = ③ pair)。
-- 下流: L10 UX refinement (High-Fi 判断) → src/web 実装 (Phase B)。
+- 下流: L10 system/Real UX evidence (High-Fi 判断) → src/web 実装 (Phase B)。
 - pair: `wireframe.md` (mock = ③ test design、L2↔L10 右腕)。

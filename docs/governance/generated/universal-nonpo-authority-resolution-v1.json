@@ -1,0 +1,2163 @@
+{
+  "schema_version": "helix.universal-nonpo-authority-resolution.v1",
+  "status": "authority_resolution_corrected_information_questions_terminal_single_PO_unit_pending",
+  "generated_at": "2026-07-16",
+  "sources": [
+    {
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json",
+      "sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1"
+    },
+    {
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-independent-review-v1.json",
+      "sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532"
+    },
+    {
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f"
+    },
+    {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+    }
+  ],
+  "policy": {
+    "standing_authorization_boundary": "routine execution permission cannot activate pending requirements authoring authority and cannot override PO/high-impact gates",
+    "ai_terminal_receipt_boundary": "AI may terminally defer/challenge a dependency question without choosing its answer; activation conditions remain explicit",
+    "non_po_boundary": "the 37 evidence-current rows are information/design questions outside the six PO option groups; AI design authority may close their answer obligation, while one aggregate VMAUTH approval activates the current packet"
+  },
+  "summary": {
+    "records": 42,
+    "evidence_information_terminal_activation_pending": 37,
+    "dependency_rows": 5,
+    "ai_design_authority_information_rows": 37,
+    "evidence_rows_with_grouped_high_impact_gate": 6,
+    "ai_terminal_defer_receipt_candidates": 3,
+    "ai_terminal_challenge_receipt_candidates": 2,
+    "authority_pending_not_activated": 0,
+    "design_question_obligations_closed_by_terminal_receipt": 42,
+    "answer_activated": 0,
+    "po22_overlap": 0,
+    "po_decision_units_existing_universal_groups": 6,
+    "po_decision_units_additional_vmodel_authority": 1,
+    "po_decision_units_total": 7,
+    "individual_po_answers_required_for_evidence_rows": 0,
+    "grouped_high_impact_authority_units": 2,
+    "runtime_verified": 0,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "records=37+5=42",
+    "PO22 overlap=0",
+    "37 non-PO information answers require zero individual PO decisions",
+    "six Universal decision groups plus one VMAUTH approval = seven PO decision units",
+    "standing authorization never substitutes PO/high-impact authoring authority",
+    "terminal defer/challenge does not activate an answer",
+    "runtime/coverage remain zero"
+  ],
+  "records": [
+    {
+      "question_id": "UWR-Q-C-APPROVAL-01",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "80c24e6538b09d7f9dbfb3cac0c27b8ba857ba8ebbb31be44e25de28745d6d90",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-NFR-06",
+          "HIL-NFR-34",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "自律境界"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-APPROVAL-01",
+          "answer_value_sha256": "80c24e6538b09d7f9dbfb3cac0c27b8ba857ba8ebbb31be44e25de28745d6d90",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "0549d891674191bad16dfbc96d014c983e28b0a1ee486ff0d54cb3d93e9cd9cf"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-02",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "5850ab3eeff06598d981201652c853a754098921226e711ab7b43c6fbe02b0a3",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-NFR-32",
+          "HIL-NFR-33",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "不可逆・高影響"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-APPROVAL-02",
+          "answer_value_sha256": "5850ab3eeff06598d981201652c853a754098921226e711ab7b43c6fbe02b0a3",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "f3ebd2ef39a27493ae9ffbbcab593b2d51c04bbf8e015b589efacecff0d6d338"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-04",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "e03d264b8fa9a64877a41c042a2fb7d888852b9bc61954126aefda14b3c62c2b",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HELIX Workflow",
+          "HIL-FR-05",
+          "HIL-FR-31",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-APPROVAL-04",
+          "answer_value_sha256": "e03d264b8fa9a64877a41c042a2fb7d888852b9bc61954126aefda14b3c62c2b",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "61cbf3120898aa4897120bba96c186ceb1154cb1fec235a9af1e7c8e89fc01c7"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-05",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "a38b2dcf57d7b83ad4cd49808d4a702f431743ef1a3a01c3e2b5598dec2b34f2",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-BR-01",
+          "HIL-NFR-06",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "自律境界"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-APPROVAL-05",
+          "answer_value_sha256": "a38b2dcf57d7b83ad4cd49808d4a702f431743ef1a3a01c3e2b5598dec2b34f2",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "6ad3552c815014469aa48408dba1450728aaa6b9e977a09801a1602bde234f37"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-DEADLINE-02",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "9d765b74cd0a12c987e52734d3109a48d91bd8fc5ef6c0bbfc61d9d0bf228a8e",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HIL-NFR-33",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-DEADLINE-02",
+          "answer_value_sha256": "9d765b74cd0a12c987e52734d3109a48d91bd8fc5ef6c0bbfc61d9d0bf228a8e",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "8ee1630572e429403c04d461fbe0a5b75752727486a616c531858f8417609bee"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-DEADLINE-03",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "4e36e32019dc8852d023e74b46d5edfbefa56cccc2abaded79bafcb91d0cad6b",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-54",
+          "HIL-NFR-33",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-DEADLINE-03",
+          "answer_value_sha256": "4e36e32019dc8852d023e74b46d5edfbefa56cccc2abaded79bafcb91d0cad6b",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "2a280d277426672da74f00f5ea3c14c13613040a4e2552303c511b4e278bcc1d"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "9a86fc52c68e202bd5d1b8f1f64c4842c5614ad692fc3af09117bc467724ad18",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "source_ids": [
+          "HIL-FR-02",
+          "HIL-FR-24",
+          "HIL-TR-07",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_with_grouped_high_impact_activation_gate",
+        "authority_classification": "information_answer_terminal_grouped_high_impact_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+          "answer_value_sha256": "9a86fc52c68e202bd5d1b8f1f64c4842c5614ad692fc3af09117bc467724ad18",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": "external_integration_security_scope",
+          "answer_activated": false,
+          "receipt_sha256": "4458abf537d50dc8037f1e2dfa396f1f09e62f3ac9b5f5503d3f6ef1e406f9e6"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest",
+          "external_integration_security_scope grouped authority approval for the exact shared scope"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "9ee2ba8033dd47a34ae8a7750dd4d618021027f567101ff10e3cb4a4ddf58fe5",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "source_ids": [
+          "HIL-FR-60",
+          "HIL-NFR-01",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [
+          "HIL-FR-60"
+        ],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "design_defined_not_runtime_authority_and_not_PO_substitute"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_with_grouped_high_impact_activation_gate",
+        "authority_classification": "information_answer_terminal_grouped_high_impact_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+          "answer_value_sha256": "9ee2ba8033dd47a34ae8a7750dd4d618021027f567101ff10e3cb4a4ddf58fe5",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": "external_integration_security_scope",
+          "answer_activated": false,
+          "receipt_sha256": "0cccccca7f5f44f1603836c57e23ad21c71543f141868ac0fe5c86c28584fc9f"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest",
+          "external_integration_security_scope grouped authority approval for the exact shared scope"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+      "po22_overlap": false,
+      "original_class": "dependency_reaudit",
+      "answer_value_sha256": "1a4f1f3f3c5652857734091b9279eeb7b52bc42a80dcadb3502fbdafdafe9d76",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "source_ids": [
+          "HIL-FR-60",
+          "HIL-NFR-33",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "connector_registry_scope"
+        ],
+        "standing_authorization_ids": [
+          "HIL-FR-60"
+        ],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "design_defined_not_runtime_authority_and_not_PO_substitute"
+      },
+      "resolution": {
+        "owner_class": "PO_and_high_impact_authority",
+        "authority_classification": "high_impact_authority_required_no_AI_substitution",
+        "status": "ai_terminal_defer_receipt_candidate",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+          "disposition": "terminal_defer",
+          "answer_activated": false,
+          "dependency_ids": [
+            "connector_registry_scope",
+            "VMAUTH-2026-07-16-01"
+          ],
+          "activation_condition": [
+            "registered connector/actionごとのretry class、回数、interval、timeout、idempotencyを同一revisionでfreezeしnegative oracleへbindする",
+            "current packet digestに対するPO approval eventを記録する。AIは代行しない"
+          ],
+          "authority_source": {
+            "required_authorities": [
+              "PO",
+              "TL_drafter",
+              "security_authority_for_high_impact"
+            ],
+            "source_ids": [
+              "HIL-FR-60",
+              "HIL-NFR-33",
+              "HR-FR-HIL-20",
+              "VMAUTH-2026-07-16-01",
+              "connector_registry_scope"
+            ],
+            "standing_authorization_ids": [
+              "HIL-FR-60"
+            ],
+            "vmodel_authority_status": "pending_po_approval",
+            "standing_authorization_design_status": "design_defined_not_runtime_authority_and_not_PO_substitute"
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "required": "all dependency resolution conditions and authority receipts current"
+          },
+          "receipt_sha256": "6899aab6cbba016b41abfb4dfaae0deb1ffb34da75f3d95d1c79cc614e0c0bb0"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "registered connector/actionごとのretry class、回数、interval、timeout、idempotencyを同一revisionでfreezeしnegative oracleへbindする",
+          "current packet digestに対するPO approval eventを記録する。AIは代行しない"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "ae5021f0bc4068a4f1604057bbb6f7540a38a8c90198a2a53d82bab4b6216685",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "source_ids": [
+          "HIL-NFR-01",
+          "HIL-TR-08",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "単一transaction commit"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_with_grouped_high_impact_activation_gate",
+        "authority_classification": "information_answer_terminal_grouped_high_impact_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+          "answer_value_sha256": "ae5021f0bc4068a4f1604057bbb6f7540a38a8c90198a2a53d82bab4b6216685",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": "external_integration_security_scope",
+          "answer_activated": false,
+          "receipt_sha256": "e43ca9c3af60b04800829b40486cbeb94aee83d763f1bc7ad9c7dc1cab3c425f"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest",
+          "external_integration_security_scope grouped authority approval for the exact shared scope"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "ef93d1fd80b3cebd86b0847f0f1d2aab90578ab116cd3adb0c49b023f1f8050f",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter",
+          "security_authority_for_high_impact"
+        ],
+        "source_ids": [
+          "HIL-NFR-33",
+          "HIL-TR-08",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_with_grouped_high_impact_activation_gate",
+        "authority_classification": "information_answer_terminal_grouped_high_impact_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+          "answer_value_sha256": "ef93d1fd80b3cebd86b0847f0f1d2aab90578ab116cd3adb0c49b023f1f8050f",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": "external_integration_security_scope",
+          "answer_activated": false,
+          "receipt_sha256": "ec66383f9d32fa4064df1057e2acd0519120469c18a4c4f54e844a5b8d39661c"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest",
+          "external_integration_security_scope grouped authority approval for the exact shared scope"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "7d0ff87553ab04c42f00205f5391afb72f975afaf21a655efd700d1cf523a59b",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "source_ids": [
+          "HIL-NFR-17",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_with_grouped_high_impact_activation_gate",
+        "authority_classification": "information_answer_terminal_grouped_high_impact_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+          "answer_value_sha256": "7d0ff87553ab04c42f00205f5391afb72f975afaf21a655efd700d1cf523a59b",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": "privacy_security_scope",
+          "answer_activated": false,
+          "receipt_sha256": "1540a431543a0057d833a6169a788a0244d44a2017787307a3da71ffbaf75177"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest",
+          "privacy_security_scope grouped authority approval for the exact shared scope"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+      "po22_overlap": false,
+      "original_class": "dependency_reaudit",
+      "answer_value_sha256": "c19c70821d35e3a00b1de2cc8ea092849761661234e122764c3e42c53f6ed0de",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "source_ids": [
+          "HIL-NFR-06",
+          "HIL-NFR-17",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "product_data.classification_policy"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "PO_and_high_impact_authority",
+        "authority_classification": "high_impact_authority_required_no_AI_substitution",
+        "status": "ai_terminal_defer_receipt_candidate",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+          "disposition": "terminal_defer",
+          "answer_activated": false,
+          "dependency_ids": [
+            "product_data.classification_policy"
+          ],
+          "activation_condition": [
+            "data class別retention period、purge authority、tombstone、legal/security review receiptをfreezeする"
+          ],
+          "authority_source": {
+            "required_authorities": [
+              "PO",
+              "security_privacy_authority"
+            ],
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-17",
+              "HR-FR-HIL-20",
+              "VMAUTH-2026-07-16-01",
+              "product_data.classification_policy"
+            ],
+            "standing_authorization_ids": [],
+            "vmodel_authority_status": "pending_po_approval",
+            "standing_authorization_design_status": "not_applicable"
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "required": "all dependency resolution conditions and authority receipts current"
+          },
+          "receipt_sha256": "eef261a912e23934fd467d1c465238d0ff994552046b5b82730864f54956ee4f"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "data class別retention period、purge authority、tombstone、legal/security review receiptをfreezeする"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "4ea48a1ca36ca0d773ff3d3df1e9c50a2881a010b04b738e5fbae941d69efd6a",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "security_privacy_authority"
+        ],
+        "source_ids": [
+          "HIL-FR-45",
+          "HIL-FR-60",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [
+          "HIL-FR-60"
+        ],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "design_defined_not_runtime_authority_and_not_PO_substitute"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_with_grouped_high_impact_activation_gate",
+        "authority_classification": "information_answer_terminal_grouped_high_impact_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+          "answer_value_sha256": "4ea48a1ca36ca0d773ff3d3df1e9c50a2881a010b04b738e5fbae941d69efd6a",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": "privacy_security_scope",
+          "answer_activated": false,
+          "receipt_sha256": "574620133bdd38d14162774636806fc562d05e44a777b369dfd8a98f15c11d16"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest",
+          "privacy_security_scope grouped authority approval for the exact shared scope"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-01",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "6165fcb241c0d6c61ecdf2d170ba18882f0badd1ef43781b03bdc26246fadcb4",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-NFR-34",
+          "HIL-TR-12",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "proposal-only worker"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-AI-DECISION-01",
+          "answer_value_sha256": "6165fcb241c0d6c61ecdf2d170ba18882f0badd1ef43781b03bdc26246fadcb4",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "8d5fc95482a9721c73a5ac2efcc6feac93141f53b453e71a8b9d51be67dd02fb"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-02",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "fb2e83b6aa3a1a4c1b499aeed6ec34d872df6aff50a711fc1a5edb7660a66994",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-FR-79",
+          "HIL-NFR-06",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01",
+          "自律境界"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-AI-DECISION-02",
+          "answer_value_sha256": "fb2e83b6aa3a1a4c1b499aeed6ec34d872df6aff50a711fc1a5edb7660a66994",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c",
+            "sha256:66a7d4d43498bed199f202d19e04c1c0667e8921f64e0ee763c411ac874544f9"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "8c70b9e0eb643a341a5a68c3913c346396a290538c5cee4072ca92e51c6f4ec3"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-03",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "0748e938052d43781372c6a20e95db01eba7541e05efd6cd322aebecdefa07d3",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-NFR-32",
+          "HIL-NFR-34",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-AI-DECISION-03",
+          "answer_value_sha256": "0748e938052d43781372c6a20e95db01eba7541e05efd6cd322aebecdefa07d3",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "298794953db134ce383c657226d6a8764c570c1168614f6d497eba8f4b1eeb26"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-04",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "750be6efe477b69f4d2866c82cbed51d7bac296267c3067982a67d303cf1ad0b",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-NFR-02",
+          "HIL-NFR-30",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-AI-DECISION-04",
+          "answer_value_sha256": "750be6efe477b69f4d2866c82cbed51d7bac296267c3067982a67d303cf1ad0b",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "924ad21f02aef961b47233cfc5891a4fda8bbe4b3328e73880b0dea7d95cc5e0"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-05",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "1e0192013f332195a56cd4a1bc09b2465e1d19bc1fa62c3ba67aaf9188964bce",
+      "authority_source": {
+        "required_authorities": [
+          "PO"
+        ],
+        "source_ids": [
+          "HIL-NFR-30",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-C-AI-DECISION-05",
+          "answer_value_sha256": "1e0192013f332195a56cd4a1bc09b2465e1d19bc1fa62c3ba67aaf9188964bce",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "386911bebc91ab8c8f878a35caebc543dab79188bd0d5b67ccc7131dfa221eda"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-004",
+      "po22_overlap": false,
+      "original_class": "dependency_reaudit",
+      "answer_value_sha256": null,
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "PO_authority_with_AI_drafter",
+        "authority_classification": "PO_authority_required_no_AI_substitution",
+        "status": "ai_terminal_challenge_receipt_candidate",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-004",
+          "disposition": "terminal_challenge",
+          "answer_activated": false,
+          "dependency_ids": [
+            "VMAUTH-2026-07-16-01",
+            "canonical_workflow_state_model"
+          ],
+          "activation_condition": [
+            "current packet digestに対するPO approval eventを記録する。AIは代行しない",
+            "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+          ],
+          "authority_source": {
+            "required_authorities": [
+              "PO",
+              "TL_drafter"
+            ],
+            "source_ids": [
+              "VMAUTH-2026-07-16-01",
+              "canonical_workflow_state_model"
+            ],
+            "standing_authorization_ids": [],
+            "vmodel_authority_status": "pending_po_approval",
+            "standing_authorization_design_status": "not_applicable"
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "required": "all dependency resolution conditions and authority receipts current"
+          },
+          "receipt_sha256": "926d8ceb24cf45274f500f9fecc9e8b3e9ce8977f56cd15e812dd9357cad07e3"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "current packet digestに対するPO approval eventを記録する。AIは代行しない",
+          "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-005",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "6e909d648200b345abaa2a9c2e4783a39d7f33dedce1aa50f505fcf985623d3c",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-01",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-005",
+          "answer_value_sha256": "6e909d648200b345abaa2a9c2e4783a39d7f33dedce1aa50f505fcf985623d3c",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "a280aa8a7351bcdb9cc81ade770cbd2f32a565a4e35df13ebe219d1c83fb7094"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-006",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "86bb503fb8ced82105bc3fb352051f997599b7b9d6a72765038eba0e48c7ce0a",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-NFR-28",
+          "HIL-NFR-32",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-006",
+          "answer_value_sha256": "86bb503fb8ced82105bc3fb352051f997599b7b9d6a72765038eba0e48c7ce0a",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "46f747fc367d204fcd48bdfe37d4a45889cb87d2aeb7acf0eacec98f2b4ce6f5"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-007",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "cba58010c56a8bdef4743235c2b445f8326ac89dd88f883e0a0cdb63137503e9",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-01",
+          "HIL-FR-56",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-007",
+          "answer_value_sha256": "cba58010c56a8bdef4743235c2b445f8326ac89dd88f883e0a0cdb63137503e9",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "e9940ff562d23722734c2fdf2fa44a6010250f1b94df8532b3c10621bdd13aaa"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-008",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "3e8b5b99d6106d210b14eaca281209cd7230a1b4826bacf0a7605d1bc1ba03e1",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-NFR-28",
+          "HIL-NFR-32",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-008",
+          "answer_value_sha256": "3e8b5b99d6106d210b14eaca281209cd7230a1b4826bacf0a7605d1bc1ba03e1",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "186bd16b7f43eb3210a38e4e7454e99f084d188433326118fc6bef88f9f5f0dd"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-009",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "f21435c96d6428b479b050dfc5478cb8634d482b72aff55a0963676cc4947fb9",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-NFR-02",
+          "HIL-NFR-34",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-009",
+          "answer_value_sha256": "f21435c96d6428b479b050dfc5478cb8634d482b72aff55a0963676cc4947fb9",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "1f11ee6f46eb35756c62ebc538bd16f9c757aad81e7b307593be1a5d7d9f2b98"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-010",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "440a19cf69102b74c7b1fd6a7055a24d5cc26014f1c5b0e9ea6fb10fc5526bbe",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-01",
+          "HIL-FR-56",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-010",
+          "answer_value_sha256": "440a19cf69102b74c7b1fd6a7055a24d5cc26014f1c5b0e9ea6fb10fc5526bbe",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "41cc8ead349fb20ccfd9afdbbaeb7ea5b16de0523e039455a8c6b7018249d5f7"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-011",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "49dda28c89bfa50139750fe77c4f02f72d49141ace0ec515857d740da18ce02c",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-45",
+          "HIL-FR-56",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-011",
+          "answer_value_sha256": "49dda28c89bfa50139750fe77c4f02f72d49141ace0ec515857d740da18ce02c",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "125526ed4c496032852f584e9fb2f243d4d49568fe1f48ee9ac70498f9df3850"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-012",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "e09077cf3f5a36e78c598e58caa63b066cba8eb53101d0ec4bb518f87da321fb",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-25",
+          "HIL-FR-45",
+          "HR-FR-HIL-20",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-012",
+          "answer_value_sha256": "e09077cf3f5a36e78c598e58caa63b066cba8eb53101d0ec4bb518f87da321fb",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "d67df86d4e3574cad9b17fc624a769d84ac4c8b13b79d1a45fcf7ef5d54e899f"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-015",
+      "po22_overlap": false,
+      "original_class": "dependency_reaudit",
+      "answer_value_sha256": "58de1d2dd91976faa3b94062f89874cd0f635306e723d7cb33dab4c4baacb3d0",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-01",
+          "HIL-NFR-33",
+          "HR-FR-HIL-21",
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "PO_authority_with_AI_drafter",
+        "authority_classification": "PO_authority_required_no_AI_substitution",
+        "status": "ai_terminal_defer_receipt_candidate",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-015",
+          "disposition": "terminal_defer",
+          "answer_activated": false,
+          "dependency_ids": [
+            "VMAUTH-2026-07-16-01",
+            "canonical_workflow_state_model"
+          ],
+          "activation_condition": [
+            "current packet digestに対するPO approval eventを記録する。AIは代行しない",
+            "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+          ],
+          "authority_source": {
+            "required_authorities": [
+              "PO",
+              "TL_drafter"
+            ],
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-NFR-33",
+              "HR-FR-HIL-21",
+              "VMAUTH-2026-07-16-01",
+              "canonical_workflow_state_model"
+            ],
+            "standing_authorization_ids": [],
+            "vmodel_authority_status": "pending_po_approval",
+            "standing_authorization_design_status": "not_applicable"
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "required": "all dependency resolution conditions and authority receipts current"
+          },
+          "receipt_sha256": "0cf61f00fd1ad38ab8064f890aa717850f0fdc4f8c5fbe2592204b173d0da374"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "current packet digestに対するPO approval eventを記録する。AIは代行しない",
+          "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-016",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "54cec4328e739a293e34be1e1478e63311e8a5bb3dd3550474d60e0795e12da9",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-54",
+          "HIL-NFR-33",
+          "HR-FR-HIL-21",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-016",
+          "answer_value_sha256": "54cec4328e739a293e34be1e1478e63311e8a5bb3dd3550474d60e0795e12da9",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "c0111954928d494c7540c29e454b7fc1519133cf7af981e9cab784d24477c900"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-019",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "ffd76e37f5d66a42d0ba92b7a2ac1fcdc3d4d488460ff99714a455fc5c6d8deb",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-54",
+          "HR-FR-HIL-21",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-019",
+          "answer_value_sha256": "ffd76e37f5d66a42d0ba92b7a2ac1fcdc3d4d488460ff99714a455fc5c6d8deb",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "cca2f22fbe02b3c896e8426642a8bbdc007c2e6011f775e7e409cfac8726be4b"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-020",
+      "po22_overlap": false,
+      "original_class": "dependency_reaudit",
+      "answer_value_sha256": null,
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "VMAUTH-2026-07-16-01",
+          "canonical_workflow_state_model"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "PO_authority_with_AI_drafter",
+        "authority_classification": "PO_authority_required_no_AI_substitution",
+        "status": "ai_terminal_challenge_receipt_candidate",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-020",
+          "disposition": "terminal_challenge",
+          "answer_activated": false,
+          "dependency_ids": [
+            "VMAUTH-2026-07-16-01",
+            "canonical_workflow_state_model"
+          ],
+          "activation_condition": [
+            "current packet digestに対するPO approval eventを記録する。AIは代行しない",
+            "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+          ],
+          "authority_source": {
+            "required_authorities": [
+              "PO",
+              "TL_drafter"
+            ],
+            "source_ids": [
+              "VMAUTH-2026-07-16-01",
+              "canonical_workflow_state_model"
+            ],
+            "standing_authorization_ids": [],
+            "vmodel_authority_status": "pending_po_approval",
+            "standing_authorization_design_status": "not_applicable"
+          },
+          "oracle": {
+            "acceptance_id": "HAT-HIL-20",
+            "system_id": "HST-HIL-035",
+            "required": "all dependency resolution conditions and authority receipts current"
+          },
+          "receipt_sha256": "3d4c068eba95d9719eecb5e7508884df32ff6b476e0cfcb6c9aef9a93f96fc91"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "current packet digestに対するPO approval eventを記録する。AIは代行しない",
+          "canonical state/transition/terminal/loop budgetを固定しHST-HIL-035/036/037へexact bindする"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-021",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "c50d590e92462ca9a04fc42e5a3a1ee75de7d7397ab6596dd8baf375836139c7",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-54",
+          "HIL-NFR-33",
+          "HR-FR-HIL-21",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-021",
+          "answer_value_sha256": "c50d590e92462ca9a04fc42e5a3a1ee75de7d7397ab6596dd8baf375836139c7",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "980842108e4b79667c39a4d93229703ce1a980d0765720593257993739f196e7"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-B-023",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "f4a84dac8a5eadcfa462b44282b88adf1d05fefe44338b0a125bed555d06fe1a",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-45",
+          "HIL-NFR-30",
+          "HR-FR-HIL-21",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-B-023",
+          "answer_value_sha256": "f4a84dac8a5eadcfa462b44282b88adf1d05fefe44338b0a125bed555d06fe1a",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "4e11e2852442643186b443bc846deaa3d3b877706ab91771d17b3886d5b2c2a0"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-001",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "46ac6b8a8568ee8022e64f7b75a3b99bd02722fc111fed26b1ff3998067642b0",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-001",
+          "answer_value_sha256": "46ac6b8a8568ee8022e64f7b75a3b99bd02722fc111fed26b1ff3998067642b0",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "7099d87f20aef2aa82ecd10acc75511742398217ac518d888cb2e20ecd62d318"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-006",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "6ce52aea45eb38c11ddfdee4b33f03e55bec4a09a062fda4d9f928ecd1b7bdb6",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-006",
+          "answer_value_sha256": "6ce52aea45eb38c11ddfdee4b33f03e55bec4a09a062fda4d9f928ecd1b7bdb6",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "22d9a38fac86b7cbb54f9d51396f0448e53956599ecd71ea5d7b66a8e5da3a6c"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-009",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "a9d98eb6c44d1bbf5d6aa9bff51bc6ee612d662fd2caee207ec821929e54cb4d",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-009",
+          "answer_value_sha256": "a9d98eb6c44d1bbf5d6aa9bff51bc6ee612d662fd2caee207ec821929e54cb4d",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "2d12a5e7f14b941148ae99b03cfa24d13a6a2d5fd1c08540fda2378c1b41a749"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-010",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "29b1e44fb6a030c8f479b1ddc89feaf3ede53b4c6303da72a0caad3baed3e7fc",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HIL-NFR-33",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-010",
+          "answer_value_sha256": "29b1e44fb6a030c8f479b1ddc89feaf3ede53b4c6303da72a0caad3baed3e7fc",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "8b7dc4b1718938b7557029ada27b62d21e05fb047e8f3fff7344a51a19cb72cc"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-013",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "7517708660c2432cc875ae7121ad6b4946d43c54b7380065adf65a9d5186ec28",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-013",
+          "answer_value_sha256": "7517708660c2432cc875ae7121ad6b4946d43c54b7380065adf65a9d5186ec28",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "971500690d39c6143a7e602373c98e015cc61233d7a68af791c718344dedc648"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-015",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "4377bee9d802612a8cd48b0a6f2f5bcb5f281737c484a8c262114f5fa46c2921",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-11",
+          "HIL-FR-56",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-015",
+          "answer_value_sha256": "4377bee9d802612a8cd48b0a6f2f5bcb5f281737c484a8c262114f5fa46c2921",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "8ece741441cbec174f2353745a82635504995c301ea7b376710431671658d955"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-023",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "0040a4c6a027e82c815aa802027d4b5deb0491cfd0587055b6b638b302d84f7b",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-FR-56",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-023",
+          "answer_value_sha256": "0040a4c6a027e82c815aa802027d4b5deb0491cfd0587055b6b638b302d84f7b",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "c03c2605bbd22a5e7bf60e2aad7364b135d7a09dc1265c55c9a673acc7d31cb1"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    },
+    {
+      "question_id": "UWR-Q-R-025",
+      "po22_overlap": false,
+      "original_class": "evidence_answered_reaudit",
+      "answer_value_sha256": "cc4efe6e538e75bba9dcf1a8d87e294a39d293713edd177198fb8fd98ff63c6c",
+      "authority_source": {
+        "required_authorities": [
+          "PO",
+          "TL_drafter"
+        ],
+        "source_ids": [
+          "HIL-NFR-06",
+          "HIL-NFR-33",
+          "HR-FR-HIL-22",
+          "VMAUTH-2026-07-16-01"
+        ],
+        "standing_authorization_ids": [],
+        "vmodel_authority_status": "pending_po_approval",
+        "standing_authorization_design_status": "not_applicable"
+      },
+      "resolution": {
+        "owner_class": "AI_design_authority_pending_single_VMAUTH_activation",
+        "authority_classification": "information_answer_terminal_single_VMAUTH_activation_pending",
+        "status": "terminal_design_evidence_current_activation_pending",
+        "terminal_design_receipt": {
+          "question_id": "UWR-Q-R-025",
+          "answer_value_sha256": "cc4efe6e538e75bba9dcf1a8d87e294a39d293713edd177198fb8fd98ff63c6c",
+          "evidence_digests": [
+            "sha256:2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+            "sha256:142c0181e28c6ecc2ade890382bd362a2846608824c004ae4562ff7844445d3f",
+            "sha256:cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+          ],
+          "activation_scope": "VMAUTH-PO-01 exact current packet",
+          "high_impact_domain": null,
+          "answer_activated": false,
+          "receipt_sha256": "94e5a7dbb878cd3b532711bf3b37da4beb86144fecab7fe6208d426144b23419"
+        },
+        "design_question_obligation_closed_by_terminal_receipt": true,
+        "answer_activated": false,
+        "activation_condition": [
+          "VMAUTH-PO-01 approval bound to current packet digest"
+        ],
+        "design_freeze_credit": true
+      },
+      "runtime_verified": false,
+      "coverage_credit": false
+    }
+  ]
+}

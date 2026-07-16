@@ -49,7 +49,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ## §0 PLAN
 
-L4-11 (roster+command、FR-L1-46/48) の L5 詳細化。**per-requirement PLAN** (PO 確定 2026-06-01「設計書化が要る要件ごとに 1 PLAN」、[[feedback-plan-per-requirement]])。L4=system 粒度 → 本 PLAN L5=module 結合粒度 (⇔L8) → L6=関数仕様 (⇔L7)。成果物 = module-decomposition + internal-processing 増分 ⇔ L8 結合テスト設計ペア。
+L4-11 (roster+command、FR-L1-46/48) の L5 詳細化。**per-requirement PLAN** (PO 確定 2026-06-01「設計書化が要る要件ごとに 1 PLAN」、[[feedback-plan-per-requirement]])。L4=system 粒度 → 本 PLAN L5=module 結合粒度 (⇔L8) → L6=関数仕様 (⇔L7)。成果物 = module-decomposition + internal-processing 増分 ⇔ L8 結合テスト設計ペア。 （層意味論: canonical L8=unit/detail）
 
 ## §1 目的
 

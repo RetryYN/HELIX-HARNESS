@@ -178,7 +178,7 @@ S4 source ledger 意味レビュー証跡:
 |-----------------|--------|
 | 確定した要求・要件 | L1 要求定義 / L3 要件定義 |
 | 実装された設計 (方式・機能・データ) | L4 基本設計 / L5 詳細設計 / L6 機能設計 |
-| 実装済みのテスト | L8 結合テスト / L9 総合テスト |
+| 実装済みのテスト | L9 結合テスト / L10 システム/Real UX evidence 検証 |
 | 運用・受入・文書整合 | L11-L14 |
 
 完成機能の文書化は **`kind=reverse` (fullback type)** を経由し、F0-F4 成果物 (evidence / contracts / as-is review / handover checklist / routing) から各工程ドキュメントへ整備する。

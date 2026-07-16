@@ -230,7 +230,7 @@ priority: P1」
 - L1 画面要求 HM-08: `docs/design/harness/L1-requirements/screen-requirements.md` §1.HM.08
 - L3 functional (P0 FR-01〜18): `docs/design/harness/L3-functional/functional-requirements.md`
 - L3 nfr-grade (NFR 閾値): `docs/design/harness/L3-functional/nfr-grade.md`
-- L12 受入テスト: `docs/test-design/harness/L3-acceptance-test-design.md`
+- L12 運用/価値検証: `docs/test-design/harness/L3-acceptance-test-design.md`
 - PLAN: `docs/plans/PLAN-L3-02-business-detail.md`
 
 ## §9 引き継ぎ / 次工程 (L4 / Phase B)
@@ -239,7 +239,7 @@ priority: P1」
 - **L4 データ設計**: 評価指標 entity (PlanEvaluation / SkillEvaluation / ModelEvaluation / PocEvaluation) は L4 データ設計で確定し、L7 projection 実装と整合させる
 - **実装済み projection**: FR-L1-36/38/43 の projection は PLAN-L7-53/57/58 で実装済み。後続は HM-08 表示・改善アクション適用ループ
 - **NFR-18 (telemetry PII redaction)**: nfr-grade.md §7.3 引き継ぎと整合、Phase B 着手時に確定 (旧 NFR-17 を A-54 で NFR-18 にリネーム、NFR-17 = 統合セキュリティとの ID 衝突解消)
-- **L10 UX 磨き**: HM-08 画面の最終 UX 確定は L10 UX 磨きへ送り
+- **L10 システム/Real UX evidence**: HM-08 画面の最終 UX 確定は L10 システム/Real UX evidenceへ送り
 - **CC2 引き継ぎ強化**: 全 §4 改善アクションは半自動 (提案 + 人間承認) の二段階を厳守、L4 / L5 で詳細実装
 
 ### §9.1 PdM / tech-docs / fork 提案の引き継ぎ (A-46、functional §7.1-§7.3 にも集約)

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L12-00-acceptance-verification-master
-title: "PLAN-L12-00: L12 受入検証 master coverage"
+title: "PLAN-L12-00: L12 受入検証 master coverage" （層意味論: canonical L12=operational/value）
 kind: design
 layer: L12
 drive: fullstack
@@ -11,7 +11,7 @@ owner: Codex
 master_hub: true
 agent_slots:
   - role: tl
-    slot_label: "TL - L12 受入検証 coverage 境界"
+    slot_label: "TL - L12 受入検証 coverage 境界" （層意味論: canonical L12=operational/value）
   - role: qa
     slot_label: "QA - L12 acceptance 証跡レビュー"
 generates:
@@ -54,7 +54,7 @@ review_evidence:
         output_digest: "sha256:c332c8a8074edbb4c7e093d3b594c44acf364ec366c98a68a6787a3223d5412b"
 ---
 
-# PLAN-L12-00: L12 受入検証 master coverage
+# PLAN-L12-00: L12 受入検証 master coverage （層意味論: canonical L12=operational/value）
 
 ## 目的
 

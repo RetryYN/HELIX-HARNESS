@@ -1,0 +1,60 @@
+{
+  "schema_version": "helix.l-unit-git-tag-mechanical-savepoint-independent-audit.v1",
+  "status": "independent_audit_design_closed_not_implemented",
+  "scope": "L01-L12 Git tag as roadmap/ledger mechanical savepoint",
+  "sources": {
+    "l3": {"path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md", "sha256": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd"},
+    "l4": {"path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md", "sha256": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715"},
+    "l6_progress": {"path": "docs/design/helix/L6-function-design/layer-ledger-pair-gate.md", "sha256": "423a651eff2bccc1a6e299b6f200075ffed63696303f8e1fee16f2f13afd0c66"},
+    "post_po_transition": {"path": "docs/governance/post-po-design-freeze-transition-contract-v1.md", "sha256": "8821a03d73271b34aaa5b420db45e216b7cc96755527446db511233133e3fd69"},
+    "hat": {"path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md", "sha256": "9655a7cffd465b7b449903028d2dc34fe052b90400934eead272e05bb990b37a"},
+    "hst": {"path": "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md", "sha256": "45925eabce6683bc1c3306c37fbad376af0df43940af6ff36f6268809de44791"},
+    "atomic_cases": {"path": "docs/governance/infinity-loop-l10-system-assertion-cases.md", "sha256": "7793fddfa204bca7154a63f903327d66e92962ed4b5c4f36de6e944c779e275c"},
+    "prior_tag_review": {"path": "docs/governance/generated/repository-savepoint-layer-tag-design-independent-review-v1.json", "sha256": "0a22e740dd36ca6bcd4bb9346edd00d6301a4347f34b37b63efbb8954cd3c9eb"},
+    "post_po_audit": {"path": "docs/governance/generated/post-po-design-freeze-transition-independent-audit-v1.json", "sha256": "b8a39048e5f0f70f9ecadea4cdc41e56b7b3e855c514db203b2f57bcac5760e1"}
+  },
+  "checks": {
+    "roadmap_ledger_binding": {"status": "pass_design_only", "evidence": "roadmap registry/program/slice/task-set/evidence denominator/ledger revisionをtag projectionへbind"},
+    "live_freeze_separation": {"status": "pass_design_only", "evidence": "freeze_progressはL01から連続するcurrent chain count/12、chain digest、freeze denominator digestだけから再投影し、live/in_progress/pending/staleを分子へ使わない"},
+    "v_pair_bootstrap": {"status": "pass_design_only", "evidence": "L01-L06 pending_pairとL12-L07 terminalizationの二相CASで循環を回避"},
+    "pending_pair_non_credit": {"status": "pass_design_only", "evidence": "pending_pairをfrozen/percentage/pair PASSへ算入しない"},
+    "stale_propagation": {"status": "pass_design_only", "evidence": "affected→L12とcanonical V-pair counterpart tag/binding/receipt/projectionをexpected-head CAS単一transactionでstale化し、fault/reconcileでも片側currentと旧pair creditを0にする"},
+    "remote_tag_db_crash_reconcile": {"status": "pass_design_only", "evidence": "remote_created_projection_pendingとoperation/payload/OID exact adoption、異digest quarantine"},
+    "github_protection": {"status": "pass_design_only", "evidence": "ruleset snapshot、visibility/pagination/retry/read permission、bypass allowlist/expiryをfail-close"},
+    "l01_candidate_generation": {"status": "pass_design_only", "evidence": "post-PO単一transactionでlocal proposed/pending_pair/not_frozen/not_counted candidateを生成しremote tagは作らない"},
+    "implementation_and_execution": {"status": "not_implemented", "evidence": "runtime command、DB query evidence、remote tag receiptは0"}
+  },
+  "closed_findings": [
+    {
+      "finding_id": "LTAG-IR-001",
+      "severity": "high",
+      "axis": "live/freeze progress separation",
+      "status": "closed_design_not_implemented",
+      "gap": "工程表projectionはlive_progress、in_progress、last_frozen_chain、stale_from_layerを分けるが、current freeze chainだけから導くfreeze_progressのfield、query、denominator digestが明示されない。consumerがin_progressまたはlast_frozenをfreeze完了率として表示できる。",
+      "closure_evidence": "L3 HR-FR-HIL-47、L4 §3.3/§3.3.1、HST-HIL-061 boundaryはcount/12＋chain/denominator digest、live非混入、refreeze/stale非増加を固定した。"
+    },
+    {
+      "finding_id": "LTAG-IR-002",
+      "severity": "high",
+      "axis": "V-pair stale cascade",
+      "status": "closed_design_not_implemented",
+      "gap": "affected layerからL12へのdownstream stale化とpair receiptのone-sided判定はあるが、一方のtag/gate/snapshotがstaleになった時、対向tag、layer_vpair_tag_binding、pair receipt、progress projectionを同じevent chainでどうstale化するかがない。特にL08以降の変更では対向L05以下がdownstream range外に残る。",
+      "closure_evidence": "L3 HR-FR-HIL-47、L4 §3.3/§3.3.1、HST-HIL-061 boundaryはcounterpart expected set、expected-head CAS、all-or-zero、fault/reconcile中の片側current/旧pair credit 0を固定した。"
+    }
+  ],
+  "summary": {
+    "checks": 9,
+    "pass_design_only": 8,
+    "partial": 0,
+    "not_implemented": 1,
+    "findings_open": 0,
+    "prior_findings_closed_design_not_implemented": 2,
+    "runtime_mutations": 0,
+    "tags_created": 0,
+    "commits_created": 0,
+    "verified_true": 0,
+    "coverage_credit_true": 0
+  },
+  "findings": [],
+  "decision": "旧2 findingはL3/L4/HSTへ設計降下済み。L単位tagのmechanical savepoint設計はclosedだが未実装であり、runtime tag、commit、verified、coverage creditは0。"
+}

@@ -78,7 +78,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ## §0 位置づけ
 
-L5 (詳細設計 = 内部設計) を **メタモデル ①必須 + ②プロダクト選択** で起票する Master hub (要件 §1.10.G.13 導線)。G4 = CONDITIONAL PASS (A-67) を前提に、L4 基本設計 4 sub-doc を詳細化する。L5 sub-doc enum (§1.10.G.1) = `internal-processing / module-decomposition / physical-data / if-detail` (4 種)。V-pair = **L8 結合テスト設計** (L5↔L8)。
+L5 (詳細設計 = 内部設計) を **メタモデル ①必須 + ②プロダクト選択** で起票する Master hub (要件 §1.10.G.13 導線)。G4 = CONDITIONAL PASS (A-67) を前提に、L4 基本設計 4 sub-doc を詳細化する。L5 sub-doc enum (§1.10.G.1) = `internal-processing / module-decomposition / physical-data / if-detail` (4 種)。V-pair = **L8 結合テスト設計** (L5↔L8)。 （層意味論: canonical L8=unit/detail）
 
 ## §1 triage (HELIX harness のプロダクト特性)
 
@@ -135,7 +135,7 @@ child PLAN 起票時に以下を織り込む:
 - [x] §2 の必須 3 + 選択 1 = child PLAN 4 件を起票 (physical-data/module-decomposition/internal-processing/if-detail)
 - [x] **内部資産 per-requirement child 3 件を起票** (PLAN-L5-05-roster / L5-06-skill / L5-07-drift、A-92、[[feedback-plan-per-requirement]])
 - [x] skip 候補なし (L5 全 sub-doc がプロダクト適合) を記録
-- [x] 各 child が L8 結合テスト設計と pair_artifact 接続 (L8 §5 で全 IT-* を GWT 粒度に展開済み = candidate skeleton から confirmed へ upgrade、A-104)
+- [x] 各 child が L8 結合テスト設計と pair_artifact 接続 (L8 §5 で全 IT-* を GWT 粒度に展開済み = candidate skeleton から confirmed へ upgrade、A-104) （層意味論: canonical L8=unit/detail）
 - [x] G4 escalation ①② を child PLAN の §4 carry に織り込み
 - [x] 全 child 完了で G5 (詳細設計ゲート = DbC freeze 点、document-system-map §3) freeze 済 (A-104 PASS、認証/秘密管理は human/security carry)
 ## 付録 B: PLAN-L5-08 Add-Design 登録 (2026-06-08)

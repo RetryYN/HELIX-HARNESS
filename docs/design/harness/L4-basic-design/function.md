@@ -13,7 +13,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **SSoT 参照**: 構造 (集約) = [data.md](./data.md) / 方式 (module・依存) = [architecture.md](./architecture.md) / 上流 FR = [L3 functional-requirements](../../../design/harness/L3-functional/functional-requirements.md) / HELIX pillar 上流 = [pillar-functional-requirements](../../../design/helix/L3-requirements/pillar-functional-requirements.md) / HELIX L4 addendum = [pillar-basic-design](../../../design/helix/L4-basic-design/pillar-basic-design.md) / 様式 = arc42 §5 (functional building block) + IEEE 1016 §5 ([document-system-map](../../../governance/document-system-map.md) §2)。本 doc は L3 FR を**どの機能単位で実現するか**を担い、構造/方式は data/architecture に委ねる。
 >
 > **用語更新 (G.9) / 機能要求更新 (G.10) の所在**: per-工程 delta は生成元 [PLAN-L4-03](../../../plans/PLAN-L4-03-function.md) の §6/§7 に記録 (data.md/architecture.md と同規約)。
-> **V-pair**: `pair_artifact = L9-system-test-design.md` は L4 sub-doc 群の集合 pair (PLAN-L4-00-master 経由)。
+> **V-pair**: `pair_artifact = L9-system-test-design.md` は L4 sub-doc 群の集合 pair (PLAN-L4-00-master 経由)。 （層意味論: canonical L9=integration）
 
 # HELIX-HARNESS — L4 基本設計: 機能設計 (Function)
 
@@ -75,7 +75,7 @@ ADR-004 の **層1 markdown 正本 / 層2 TS 統制**境界に従う。TS は ma
 
 > **roster ↔ guard の関係 (依存方向、Critical-1 是正)**: agent-guard.ts は既存実装 (subagent_type allowlist 15 + model family 一致、fail-close)。roster registry はその allowlist の **設計上の SSoT** を `.claude/agents/*.md` 群から構築する層 (依存先 = schema/fs のみ、guard に依存しない)。統合は **agent-guard (runtime) が roster を読む = `runtime → roster` の一方向**で実現 (循環なし、architecture §3.1)。
 > **roster / guard 統合状態 (Critical-2 closure)**: agent-guard は fail-close allowlist enforcement path を維持する。roster capability resolver は `src/runtime/agent-slots.ts#resolveRosterCapability` として実装済みであり、guard/asset consistency は `src/lint/asset-drift.ts` で検査する。古い L7-waiting placeholder は専用の `placeholder-deps` doctor gate が block する。旧 implementation-state bridge は close 済み。
-> **粒度 (L4=L9 総合テスト)**: 本 §1.1 は「内部資産 roster が system として動く」を L9 総合テスト粒度で束ねる。各 subcommand signature / capability resolver アルゴリズム / model family 解決の関数粒度は **L5 (module 結合) → L6 (関数仕様=単体テスト設計) で段階分解** (PLAN-L4-11 §3、L5 を挟む)。L4 で書けない関数仕様は placeholder + 依存 (`waiting_layer: L6`) として残し back-fill (PLAN-L4-10 §0.1)。
+> **粒度 (L4=L10 システム/Real UX evidence 検証)**: 本 §1.1 は「内部資産 roster が system として動く」を L10 システム/Real UX evidence 検証粒度で束ねる。各 subcommand signature / capability resolver アルゴリズム / model family 解決の関数粒度は **L5 (module 結合) → L6 (関数仕様=単体テスト設計) で段階分解** (PLAN-L4-11 §3、L5 を挟む)。L4 で書けない関数仕様は placeholder + 依存 (`waiting_layer: L6`) として残し back-fill (PLAN-L4-10 §0.1)。
 
 ### §1.2 C2 trace の descent-obligation building block (FR-03 / FR-L1-03、PLAN-L6-35 add-design)
 
@@ -89,7 +89,7 @@ C2 (TDD・gate・trace) の FR-03 (V字双方向 trace) は当初「宣言され
 | **上流駆動 obligation 生成** | 層2 (TS) | lint + relation-graph 再利用 | 上流 (要件 FR) + matrix から「在るべき下流/pair 成果物」を生成し、不在を fail-close。下流の自己宣言に依存しない (pair-freeze の一般化) |
 | **defer ledger + impl-ahead ガード** | 層2 (TS) | lint + placeholder_deps (physical-data §7) | open defer を `(traceKey, waitingLayer, dischargeCondition, owner)` で台帳化。src 着地済 + 未 discharge defer = impl-ahead 違反 (impl→設計 back-fill 未完の機械検出) |
 
-> **粒度 (L4=L9 総合テスト)**: 本 §1.2 は「降下鎖が層を取りこぼさず system として閉じる」を L9 総合テスト粒度で束ねる。各関数 signature / obligation 生成アルゴリズム / defer 有効性判定は **L5 (module 結合) → L6 (関数仕様=単体テスト設計) で段階分解** (機能設計 = `descent-obligation.md`、③ ペア = L7-unit §1.22 U-DESC)。lint 実装 + harness.db `descent_obligations` projection + doctor 配線は L7 (別 add-impl PLAN、Codex 委譲)。
+> **粒度 (L4=L10 システム/Real UX evidence 検証)**: 本 §1.2 は「降下鎖が層を取りこぼさず system として閉じる」を L10 システム/Real UX evidence 検証粒度で束ねる。各関数 signature / obligation 生成アルゴリズム / defer 有効性判定は **L5 (module 結合) → L6 (関数仕様=単体テスト設計) で段階分解** (機能設計 = `descent-obligation.md`、③ ペア = L7-unit §1.22 U-DESC)。lint 実装 + harness.db `descent_obligations` projection + doctor 配線は L7 (別 add-impl PLAN、Codex 委譲)。
 
 ## §2 CLI コマンド面の機能 building block
 

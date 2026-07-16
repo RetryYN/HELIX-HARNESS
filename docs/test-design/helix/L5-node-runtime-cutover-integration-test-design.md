@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — Node runtime cutover"
+title: "HELIX L9 結合テスト設計 — Node runtime cutover"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -21,7 +21,7 @@ requirements:
   - HAC-HIL-13c
 ---
 
-# HELIX L8 結合テスト設計 — Node runtime cutover
+# HELIX L9 結合テスト設計 — Node runtime cutover
 
 ## §0 共通oracle
 

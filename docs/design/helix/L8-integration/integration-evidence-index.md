@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト証跡インデックス"
+title: "HELIX L9 結合テスト証跡インデックス"
 layer: L8
 kind: design
 status: confirmed
@@ -9,7 +9,7 @@ owner: Codex
 pair_artifact: docs/test-design/helix/L5-pillar-integration-test-design.md
 ---
 
-# HELIX L8 結合テスト証跡インデックス
+# HELIX L9 結合テスト証跡インデックス
 
 本書は L5 integration contract と L8 実行証跡の対応を示す。現時点で close しているのは selected G8 profile であり、全 delivery ではない。
 

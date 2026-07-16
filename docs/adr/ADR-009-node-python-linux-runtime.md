@@ -15,6 +15,7 @@ related_design:
   - docs/design/helix/L5-detail/node-runtime-cutover.md
   - docs/design/helix/L5-detail/python-worker-runtime.md
   - docs/design/helix/L5-detail/os-portability-supply-chain.md
+runtime_surface_inventory: docs/governance/node-python-linux-runtime-surface-ledger.md
 related_chat: [HC-CHAT-002, HC-CHAT-003, HC-CHAT-004]
 related_design_slices: [HDS-HIL-12, HDS-HIL-13, HDS-HIL-14]
 related_requirements:

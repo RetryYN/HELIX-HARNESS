@@ -17,7 +17,7 @@ next_pair_freeze: L3
 
 ## §0 位置づけ
 
-本書は `retention-purge-policy.md` の L12 受入テスト設計である。L1 正本への back-merge は
+本書は `retention-purge-policy.md` の L12 運用/価値検証設計である。L1 正本への back-merge は
 PO 承認待ちのため、本書は placeholder の pair artifact として扱う。
 
 ## §1 受入観測

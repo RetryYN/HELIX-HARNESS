@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — intake contract normalization"
+title: "HELIX L9 結合テスト設計 — intake contract normalization"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -26,7 +26,7 @@ source_capabilities:
   - HU-CAP-002
 ---
 
-# HELIX L8 結合テスト設計 — intake contract normalization
+# HELIX L9 結合テスト設計 — intake contract normalization
 
 ## §0 共通oracle
 

@@ -47,7 +47,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 PLAN-L4-10 (Master) §2 triage の child。**FR-L1-49 (内部資産 drift lint)** を L4 基本設計 (architecture.md) に増分する。**新規 lint を手書きせず、IMP-033 cross-check rule engine (gate-design §4/§5) の rule 型インスタンスとして実現** (Master §5)。ADR-004 の境界番人 = 「正本 .md に HELIX 前提が残らないか fail-close」。成果物 = architecture 増分 ⇔ L9 ペア。
 
-## §1 doc 化スコープ (L4 = L9 総合テスト粒度)
+## §1 doc 化スコープ (L4 = L9 総合テスト粒度) （層意味論: canonical L9=integration）
 
 drift lint の検査項目 (system 粒度で確定するもの) を architecture lint building block + ADR-004 Consequences に記述:
 
@@ -66,7 +66,7 @@ drift lint の検査項目 (system 粒度で確定するもの) を architecture
 2. Step 2: 検査項目 4 種を ADR-004 Consequences / inventory §1 と trace して列挙
 3. Step 3: auto-enroll (doc registry が `.claude/agents/*.md` と `docs/skills/` を scan) を gate-design §4 機構に接続
 4. Step 4: fail-close 経路 (doctor / gate exit) + DB 未充足検知統合を記述
-5. Step 5: L9 総合テスト設計に drift lint system 観点追加 + 未確定 placeholder + 依存
+5. Step 5: L9 総合テスト設計に drift lint system 観点追加 + 未確定 placeholder + 依存 （層意味論: canonical L9=integration）
 6. Step 6: self-review
 
 ## §3 carry (PLAN-L4-10 §4/§5 由来)
@@ -82,5 +82,5 @@ drift lint の検査項目 (system 粒度で確定するもの) を architecture
 - [x] 検査項目 4 種 (HELIX パス / helix codex 直叩き / docs-skills 空 / roster↔guard 整合) を inventory §1 / ADR-004 と trace
 - [x] auto-enroll + fail-close 経路を gate-design §4 機構に接続
 - [x] DB 未充足検知統合 (PLAN-L4-10 §0.1) を記述
-- [x] L9 総合テスト設計にペア観点追加 + 未確定 placeholder + 依存
+- [x] L9 総合テスト設計にペア観点追加 + 未確定 placeholder + 依存 （層意味論: canonical L9=integration）
 - [x] self-review 通過

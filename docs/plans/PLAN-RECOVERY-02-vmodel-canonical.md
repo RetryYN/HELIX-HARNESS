@@ -72,7 +72,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 | # | 当初仮説 (PM 誤認識) | 実際 (PO 対話で確定) |
 |---|---|---|
-| 1 | 「L8 単体」は PO の言い違いで、doc (L8=結合) が正。PM が PO を 2 回「言い違いでは」と訂正 | **PO のモデルが正**。現 V-model 定義 (単体を L7 内包・L0 ペア無し・検証本質未言語化) の方が不備で、訂正対象は PO でなく doc |
+| 1 | 「L8 単体」は PO の言い違いで、doc (L8=結合) が正。PM が PO を 2 回「言い違いでは」と訂正 | **PO のモデルが正**。現 V-model 定義 (単体を L7 内包・L0 ペア無し・検証本質未言語化) の方が不備で、訂正対象は PO でなく doc | （層意味論: canonical L8=unit/detail）
 | 2 | 粒度対照は監査・記録 + REVERSE-01 への routing で足りる | **改善そのものを実装**する必要 (Stop hook 差し戻し、[[feedback_improve_means_implement_not_route]]) |
 | 3 | 「6 V-pair 中 5/6 が対照」は確定結論 | spine は L3 停止 (L1/L3/L4 全 draft、L5/L6 は Add-feature slice のみ confirmed)。L4-L6 は draft 同士の構造並行で**確定対照でない** (over-claim を訂正) |
 | 4 | 正規式採用は **全面再番号が要る / V が崩れる** | **非破壊**。既存 6 V-pair は元から正規式と一致 (L6⇔L7/L5⇔L8/L4⇔L9/L3⇔L12/L2⇔L10/L1⇔L14)。足すのは L0⇔価値の 1 ペアと明確化のみ |
@@ -97,10 +97,10 @@ v2_import: docs/migration/v2-import-ledger.md
 |---|---|---|
 | **L0 企画** | (価値検証 = L14→L0 feedback) | **価値**: 事業目的・価値の実現 (実成果) ← 新設 |
 | L1 要求定義 | L14 運用検証 | **運用**: 実データ × 継続運用 (時間) |
-| L2 画面設計 | L10 UX 磨き | **実データ検証**: 本番の実データで画面が成立するか |
-| L3 要件定義 | L12 デプロイ+受入 | **本番受入**: 本番環境で要件 (FR+AC) が満たせるか |
-| L4 基本設計 | L9 総合テスト | **総合**: テスト環境・全体 |
-| L5 詳細設計 | L8 結合テスト | **結合**: テスト環境・モジュール |
+| L2 画面設計 | L10 UX 磨き | **実データ検証**: 本番の実データで画面が成立するか | （層意味論: canonical L10=system/Real UX evidence）
+| L3 要件定義 | L12 デプロイ+受入 | **本番受入**: 本番環境で要件 (FR+AC) が満たせるか | （層意味論: canonical L12=operational/value）
+| L4 基本設計 | L9 総合テスト | **総合**: テスト環境・全体 | （層意味論: canonical L9=integration）
+| L5 詳細設計 | L8 結合テスト | **結合**: テスト環境・モジュール | （層意味論: canonical L8=unit/detail）
 | L6 機能設計 | L7 谷 (3 点合算) | **単体**: テスト環境・関数 |
 
 - **現在地**: Forward spine は L3 停止 (L1/L3/L4 全 draft、L5/L6 は Add-feature slice のみ confirmed)。本 Recovery で L0-L3 を正規式整合 → フィックス → L4 へ。

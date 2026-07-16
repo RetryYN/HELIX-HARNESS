@@ -1,0 +1,2766 @@
+{
+  "schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "required": [
+      "schema_version",
+      "source_anchor_digest",
+      "authority_receipt_status",
+      "questions",
+      "summary",
+      "freeze"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "uwr-question-disposition.v1"
+      },
+      "source_anchor_digest": {
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      },
+      "authority_receipt_status": {
+        "const": "pending-po-approval"
+      },
+      "questions": {
+        "type": "array",
+        "minItems": 76,
+        "maxItems": 76,
+        "items": {
+          "type": "object",
+          "required": [
+            "question_id",
+            "source_anchor_question_id",
+            "anchor_id",
+            "question",
+            "value_digest",
+            "disposition",
+            "answer",
+            "evidence",
+            "authority",
+            "confidence",
+            "re_entry",
+            "freeze_credit"
+          ],
+          "properties": {
+            "question_id": {
+              "type": "string"
+            },
+            "source_anchor_question_id": {
+              "type": "string"
+            },
+            "anchor_id": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "value_digest": {
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "disposition": {
+              "enum": [
+                "answered",
+                "N/A",
+                "deferred",
+                "unresolved",
+                "rejected"
+              ]
+            },
+            "answer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "evidence": {
+              "type": "array"
+            },
+            "authority": {
+              "type": "object"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "re_entry": {
+              "type": "string"
+            },
+            "freeze_credit": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "summary": {
+        "type": "object"
+      },
+      "freeze": {
+        "type": "object"
+      }
+    },
+    "additionalProperties": false
+  },
+  "document": {
+    "schema_version": "uwr-question-disposition.v1",
+    "source_anchor_digest": "sha256:ed8ce174a563343d0f0eb449bd908f9ce940acfb5fba1a0eadc34f98c779c2e1",
+    "authority_receipt_status": "pending-po-approval",
+    "questions": [
+      {
+        "question_id": "UWR-Q-C-APPROVAL-01",
+        "source_anchor_question_id": "UWR-Q-C-APPROVAL-01",
+        "anchor_id": "UWR-A1-E005-Q-BOIBLSY5HOE47YNWX7YQ",
+        "question": "誰が承認できますか",
+        "value_digest": "d0f54be4ec27619222a3e367bbc854a2849c2efa0de5ebe7570c6fdbe9ac1ee1",
+        "disposition": "deferred",
+        "answer": "POのL3/企画/scope/high-impact承認と別runtime gate authority候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-06",
+            "HIL-NFR-34"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-APPROVAL-02",
+        "source_anchor_question_id": "UWR-Q-C-APPROVAL-02",
+        "anchor_id": "UWR-A1-E005-Q-EYI2GZU52CHHPQZ2RO35",
+        "question": "承認者が不在の場合はどうしますか",
+        "value_digest": "c63c34d16bea602aadf09ec68f0a0086126897cc15ae180b8c07086d673a9d73",
+        "disposition": "deferred",
+        "answer": "不在/判断不能時は未承認のままcheckpoint/escalation候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-32",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-APPROVAL-03",
+        "source_anchor_question_id": "UWR-Q-C-APPROVAL-03",
+        "anchor_id": "UWR-A1-E005-Q-MCLJ3UMWSCLCFUYQ4FKW",
+        "question": "承認後の取消は可能ですか",
+        "value_digest": "09bc58b7dc23d01415fa434a9fc90970e0f57fc6f4b116b4485928397ed3eae2",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-APPROVAL-04",
+        "source_anchor_question_id": "UWR-Q-C-APPROVAL-04",
+        "anchor_id": "UWR-A1-E005-Q-ISJ37RLIDF443MP32MIP",
+        "question": "差し戻し時はどの状態へ戻しますか",
+        "value_digest": "4ce5495d54463f3523c1136da5736e4d90c5b7f1b5950202eccbe7c50e3bd306",
+        "disposition": "deferred",
+        "answer": "差戻しをaffected layerのRedesign/Reverseへ戻す候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-05",
+              "HIL-FR-31"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-05",
+            "HIL-FR-31"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-APPROVAL-05",
+        "source_anchor_question_id": "UWR-Q-C-APPROVAL-05",
+        "anchor_id": "UWR-A1-E005-Q-647VQG36R23A3YZLIZOH",
+        "question": "多段承認の場合、順序と省略条件は何ですか",
+        "value_digest": "9aaa4aba013114f9ccf52ee243f943a81eef38cf60808f48eadbb8110ae7d1ae",
+        "disposition": "deferred",
+        "answer": "人=L1/L2決定＋L3承認、AI=L3起草＋L4以降、不可逆境界は別承認という順序候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-BR-01",
+              "HIL-NFR-06"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-BR-01",
+            "HIL-NFR-06"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-MONEY-01",
+        "source_anchor_question_id": "UWR-Q-C-MONEY-01",
+        "anchor_id": "UWR-A1-E005-Q-655LQLSMQX5TBNGIZ2W6",
+        "question": "通貨と税込・税抜の扱いは何ですか",
+        "value_digest": "930cb94287f87de639301de8ddb049696109483c4ce0efb5c49cc31bcd593fac",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-MONEY-02",
+        "source_anchor_question_id": "UWR-Q-C-MONEY-02",
+        "anchor_id": "UWR-A1-E005-Q-2DXDAYEDZR4T7I3YWH35",
+        "question": "金額によって承認経路は変わりますか",
+        "value_digest": "b426edc3a273c4f3b101833eb836bbde0e7c88a921f0a92834885e642b250001",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-MONEY-03",
+        "source_anchor_question_id": "UWR-Q-C-MONEY-03",
+        "anchor_id": "UWR-A1-E005-Q-O5YC53LL67OBYINWPRTO",
+        "question": "上限・下限・丸め規則はありますか",
+        "value_digest": "8d8f63eb44babac6f93ce2c7d536e2ebb4e3f2fe95bcc59d8f487844aed85021",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-MONEY-04",
+        "source_anchor_question_id": "UWR-Q-C-MONEY-04",
+        "anchor_id": "UWR-A1-E005-Q-ZLVJPU6TGJIKON6UUUXC",
+        "question": "返金・取消・再請求はありますか",
+        "value_digest": "fdd0bd423a103ea69d4fc52c29c0b8dce119c1fe2406032988758466c5bc8f5c",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-DEADLINE-01",
+        "source_anchor_question_id": "UWR-Q-C-DEADLINE-01",
+        "anchor_id": "UWR-A1-E005-Q-FAEG6AMVHQFN34KKJZJF",
+        "question": "期限は固定ですか、業務日計算ですか",
+        "value_digest": "d8e41931b352adc2cfda73cbaff238dbb1021a27be4a917176aba6b0883540e8",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-DEADLINE-02",
+        "source_anchor_question_id": "UWR-Q-C-DEADLINE-02",
+        "anchor_id": "UWR-A1-E005-Q-PYYK4XNNYCRU5TE6BHNS",
+        "question": "期限超過時に何を発火しますか",
+        "value_digest": "f5e77d97f2038e0fcc595704e86c362c8dad8bed18be610b1b9ff21077f05bbb",
+        "disposition": "deferred",
+        "answer": "期限/iteration超過をcheckpoint、queue、escalation eventへ送る候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-33",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-33",
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-DEADLINE-03",
+        "source_anchor_question_id": "UWR-Q-C-DEADLINE-03",
+        "anchor_id": "UWR-A1-E005-Q-EFERV6DDHO3XJWQKYXB6",
+        "question": "自動終了、再通知、エスカレーションのどれですか",
+        "value_digest": "8325575d72f0e617153f1f975ab6ba976bdfe4535256fbf67c7d0f357b213265",
+        "disposition": "deferred",
+        "answer": "silent retryせずbounded retry後checkpoint/escalationとする候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-54",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-DEADLINE-04",
+        "source_anchor_question_id": "UWR-Q-C-DEADLINE-04",
+        "anchor_id": "UWR-A1-E005-Q-QLYFH7IJBDJTKYTVKCPI",
+        "question": "延長できる権限者は誰ですか",
+        "value_digest": "4d750dba41dc65af7c43fef7ba8e40d4c1cbea526c41813021be2805ad595a21",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+        "source_anchor_question_id": "UWR-Q-C-EXTERNAL_INTEGRATION-01",
+        "anchor_id": "UWR-A1-E005-Q-M2LGSA46BJKQHXZSMRXC",
+        "question": "同期ですか非同期ですか",
+        "value_digest": "04f3a7ae7237d19be17ab9baa7fdab829a83390aec920983acf001093b29bc13",
+        "disposition": "deferred",
+        "answer": "PR hook/event、product snapshot、worker IPCごとにasync/sync contractを分離する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-02",
+              "HIL-FR-24",
+              "HIL-TR-07"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-02",
+            "HIL-FR-24",
+            "HIL-TR-07"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+        "source_anchor_question_id": "UWR-Q-C-EXTERNAL_INTEGRATION-02",
+        "anchor_id": "UWR-A1-E005-Q-RSNI2E5WALK6EL364XEE",
+        "question": "重複実行をどう防ぎますか",
+        "value_digest": "6aa2f61163c77a2c5128ac957ca272c374712a1365bfa19c024a5800b51efcf9",
+        "disposition": "deferred",
+        "answer": "delivery/operation IDとpayload digestによる冪等化候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-01",
+              "HIL-FR-60"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-01",
+            "HIL-FR-60"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+        "source_anchor_question_id": "UWR-Q-C-EXTERNAL_INTEGRATION-03",
+        "anchor_id": "UWR-A1-E005-Q-VE2AJC2AKTPWBBRDSXS4",
+        "question": "失敗時の再試行回数と間隔は何ですか",
+        "value_digest": "79e34e687fedf7b4fe5cd047ba6df0b54d64ea97ae8698829c5710d78e15ad79",
+        "disposition": "deferred",
+        "answer": "bounded retryを必須とするが回数/間隔はoperation別未freeze。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-60",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-60",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+        "source_anchor_question_id": "UWR-Q-C-EXTERNAL_INTEGRATION-04",
+        "anchor_id": "UWR-A1-E005-Q-ANAQJCUBK3E6A5ZBOVBG",
+        "question": "部分成功を許可しますか",
+        "value_digest": "e43357e51d0bbb52e40119b8f83310db0c66dbaaded3210f782a5cebfef9cb86",
+        "disposition": "deferred",
+        "answer": "Node commitはsingle transaction、partial result/partial promotionを拒否する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-TR-08",
+              "HIL-NFR-01"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-TR-08",
+            "HIL-NFR-01"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+        "source_anchor_question_id": "UWR-Q-C-EXTERNAL_INTEGRATION-05",
+        "anchor_id": "UWR-A1-E005-Q-WKOLJ5TVNYE2IQHATCZJ",
+        "question": "外部側の応答がない場合はどうしますか",
+        "value_digest": "2fe38e72bc5eeeb20852150338be4defad9ea702cdbe9f087ee704aecc11360f",
+        "disposition": "deferred",
+        "answer": "timeout後late result拒否、checkpoint/fallback/escalation候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-TR-08",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-TR-08",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-PERSONAL-DATA-01",
+        "source_anchor_question_id": "UWR-Q-C-PERSONAL_DATA-01",
+        "anchor_id": "UWR-A1-E005-Q-A2YPYPBMAA7AEEAWGY5V",
+        "question": "閲覧できる役割は誰ですか",
+        "value_digest": "8c6dd4b88127ad1063d8e2d6166c86f542f0bb031ca51e2c45a871e38231ec0f",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+        "source_anchor_question_id": "UWR-Q-C-PERSONAL_DATA-02",
+        "anchor_id": "UWR-A1-E005-Q-KBFRW2NF4TPLZHX7QFAJ",
+        "question": "マスキング対象は何ですか",
+        "value_digest": "0023c7d90193d3d7a40486eeb762891d972c56d114b7ca2e2a70d5881828db28",
+        "disposition": "deferred",
+        "answer": "PII/secret/raw payloadをredactionし通常projection/contextへ複製しない候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-17"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-17"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+        "source_anchor_question_id": "UWR-Q-C-PERSONAL_DATA-03",
+        "anchor_id": "UWR-A1-E005-Q-QKOD2UMREM27ACTMFAKS",
+        "question": "保存期間と削除条件は何ですか",
+        "value_digest": "8215b4f5480f55536ed49996a7b65a6d7659790d271ecbe6e23fd0ea19ab57c0",
+        "disposition": "deferred",
+        "answer": "classification別retentionとdestructive purge approval候補だが期間値未freeze。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-17",
+              "HIL-NFR-06"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-17",
+            "HIL-NFR-06"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+        "source_anchor_question_id": "UWR-Q-C-PERSONAL_DATA-04",
+        "anchor_id": "UWR-A1-E005-Q-AFX5O4ZM7OCQKZR2SXAG",
+        "question": "操作履歴をどの粒度で残しますか",
+        "value_digest": "bf0bd273faf0929a0bbbf90f780488068eafaac5cc03d6b041d946ca14a70786",
+        "disposition": "deferred",
+        "answer": "actor/tool/target/params/event/digestをappend-only監査する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-45",
+              "HIL-FR-60"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-45",
+            "HIL-FR-60"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-AI-DECISION-01",
+        "source_anchor_question_id": "UWR-Q-C-AI_DECISION-01",
+        "anchor_id": "UWR-A1-E005-Q-TNVNFFURRK3Q3WJXNSUF",
+        "question": "AIの出力は確定処理ですか、提案ですか",
+        "value_digest": "ac23af69cf70de6146c3f7475f2bcc4e898e4e3e599b5e92fe6df73ee27b0ace",
+        "disposition": "deferred",
+        "answer": "Universal/Python/subagentはproposal-only、Node gateがcommit authority候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-TR-12",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-TR-12",
+            "HIL-NFR-34"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-AI-DECISION-02",
+        "source_anchor_question_id": "UWR-Q-C-AI_DECISION-02",
+        "anchor_id": "UWR-A1-E005-Q-NBRQPQGR62FSMGXPHI7W",
+        "question": "人間の承認が必要な条件は何ですか",
+        "value_digest": "ef76a1964bb807662b873b9e4efbd6406c662439f4072f9b54e0c279d3d88b00",
+        "disposition": "deferred",
+        "answer": "L3価値/scope、不可逆、高影響操作、人間visual acceptanceを人間承認候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-FR-79"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-06",
+            "HIL-FR-79"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-AI-DECISION-03",
+        "source_anchor_question_id": "UWR-Q-C-AI_DECISION-03",
+        "anchor_id": "UWR-A1-E005-Q-OWU4FCLDCZXK5TZ4K2BS",
+        "question": "信頼度が低い場合の戻り先はどこですか",
+        "value_digest": "b04b6855f1953bc8d1a485a2df43578a927862d2856a5c1d8cf4460dcc97dc75",
+        "disposition": "deferred",
+        "answer": "低confidenceはIssue/challenge/escalationまたは別runtime reviewへ戻す候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-32",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-32",
+            "HIL-NFR-34"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-AI-DECISION-04",
+        "source_anchor_question_id": "UWR-Q-C-AI_DECISION-04",
+        "anchor_id": "UWR-A1-E005-Q-6XCQG4FONMJ7OVFPREDQ",
+        "question": "根拠とモデル情報を記録しますか",
+        "value_digest": "66be45927ffc9ba9b1f93e432f525e61750788df49b84b804d5908337bc5919b",
+        "disposition": "deferred",
+        "answer": "model/provider/role/input/output/evidence digestをrun receiptへ記録する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-30"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-02",
+            "HIL-NFR-30"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-C-AI-DECISION-05",
+        "source_anchor_question_id": "UWR-Q-C-AI_DECISION-05",
+        "anchor_id": "UWR-A1-E005-Q-5FLAW2QI4FLKPEANGHIL",
+        "question": "再実行時の入力・モデル・設定を固定しますか",
+        "value_digest": "b92a31eaa2b97fa7f0d2670865cdfb6e5fb8144d7929b473bbbb4005dbfc34b1",
+        "disposition": "deferred",
+        "answer": "再実行をinput snapshot/model/config/version digestへbindする候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-30"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-30"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-001",
+        "source_anchor_question_id": "UWR-Q-B-001",
+        "anchor_id": "UWR-A1-E006-Q-RUNVZ2MJW6VXWDJOGIAP",
+        "question": "この業務で扱う対象は何ですか",
+        "value_digest": "ec9ec90135823fe7fd64f5cfae9572b382ca1752bdaef4783aa2151c42377910",
+        "disposition": "answered",
+        "answer": "HELIX-HARNESS自身の構築・運用・自己監査/改善workflow。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-001",
+              "HC-CHAT-006",
+              "HC-CHAT-023"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-001",
+            "HC-CHAT-006",
+            "HC-CHAT-023"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-002",
+        "source_anchor_question_id": "UWR-Q-B-002",
+        "anchor_id": "UWR-A1-E006-Q-6W7D5RCQS2F5TSEBFVZF",
+        "question": "誰が関与しますか",
+        "value_digest": "e2e2e1e4ab08147b0dcd9083afe7e4713fa17fb0247198286627d0a844680d4f",
+        "disposition": "answered",
+        "answer": "PO/ユーザー、Codex実行側、Claude Code監査・改善側、HARNESS-owned subagent、GitHub/登録外部service。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-007",
+              "HC-CHAT-009",
+              "HC-CHAT-017",
+              "HC-CHAT-044"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-006",
+            "HC-CHAT-007",
+            "HC-CHAT-009",
+            "HC-CHAT-017",
+            "HC-CHAT-044"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-003",
+        "source_anchor_question_id": "UWR-Q-B-003",
+        "anchor_id": "UWR-A1-E006-Q-IB2E453RBKMIPYNIIOXM",
+        "question": "何をきっかけに開始しますか",
+        "value_digest": "6a37fe2162563af044ad1e5526d4768ead37c644b33593348e5f13a382735b5e",
+        "disposition": "answered",
+        "answer": "ユーザーchat/Issue/PLAN、GitHub PR hook event、監査finding、CI failureをintake triggerとする。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-007",
+              "HC-CHAT-008",
+              "HC-CHAT-010",
+              "HC-CHAT-015"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-007",
+            "HC-CHAT-008",
+            "HC-CHAT-010",
+            "HC-CHAT-015"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-004",
+        "source_anchor_question_id": "UWR-Q-B-004",
+        "anchor_id": "UWR-A1-E006-Q-5GQKHPF3FW5BHNBIAET4",
+        "question": "開始時点の状態は何ですか",
+        "value_digest": "9100f47e5dc892bedb5ec6b8977a97badc58e7803e0451f73328764bb7323006",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-005",
+        "source_anchor_question_id": "UWR-Q-B-005",
+        "anchor_id": "UWR-A1-E006-Q-ZYA5SSIMY2YOE4U3YEIV",
+        "question": "途中で取り得る状態は何ですか",
+        "value_digest": "7f5974beaa890c6f834101fab78b5b5bec972b5b578d3acbd4dc1efff75e4374",
+        "disposition": "deferred",
+        "answer": "Forward/Reverse/Redesign/Scrumとgate/job statesをtyped state machine化する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-01"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-006",
+        "source_anchor_question_id": "UWR-Q-B-006",
+        "anchor_id": "UWR-A1-E006-Q-VCALMOY45XHM6TFPEDFP",
+        "question": "待機・保留・失敗を別状態として扱いますか",
+        "value_digest": "25d335216b60d2942da82223d95913bb400a42b1ef2200bdd8811b773e0bb11c",
+        "disposition": "deferred",
+        "answer": "pending/deferred/failed/stale/blockedを別状態として扱う候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-28",
+            "HIL-NFR-32"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-007",
+        "source_anchor_question_id": "UWR-Q-B-007",
+        "anchor_id": "UWR-A1-E006-Q-4NDLTNGMZX642T2VQVF3",
+        "question": "どんな場合に対応が変わりますか",
+        "value_digest": "02819f69e297e84551d6ddbf3ed02e45074ab60094707d21b54b1d377b127b45",
+        "disposition": "deferred",
+        "answer": "authority、scope、gate、CI、design finding、resource状態でbranchする候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-01",
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-008",
+        "source_anchor_question_id": "UWR-Q-B-008",
+        "anchor_id": "UWR-A1-E006-Q-BQ2LHUIZZ42FPMO5AFQV",
+        "question": "次に進めない条件は何ですか",
+        "value_digest": "e249a93625694dc9b5b89d713565fdbad286ee1789dd6ab287ebc9057355bf3b",
+        "disposition": "deferred",
+        "answer": "unresolved、missing evidence、gate red、approval pending、staleで進行不可候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-28",
+              "HIL-NFR-32"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-28",
+            "HIL-NFR-32"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-009",
+        "source_anchor_question_id": "UWR-Q-B-009",
+        "anchor_id": "UWR-A1-E006-Q-BBM5KELB7ZE6N3X6WEIX",
+        "question": "誰の判断や権限で分岐しますか",
+        "value_digest": "4f7a65205631ec47eb4d44c3175d6d4ba25260cd48f130fe5439a1e530c90f12",
+        "disposition": "deferred",
+        "answer": "PO/Node deterministic gate/別runtime verifierのauthority matrix候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-02",
+              "HIL-NFR-34"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-02",
+            "HIL-NFR-34"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-010",
+        "source_anchor_question_id": "UWR-Q-B-010",
+        "anchor_id": "UWR-A1-E006-Q-QBNUUJP7T3IGV5O26MI3",
+        "question": "各分岐で何を実行しますか",
+        "value_digest": "62e7538b953ad63364c9dd41bcf5d9060174b1c7ed5aeff1246321a086eb1e65",
+        "disposition": "deferred",
+        "answer": "branchごとのactionをtyped drive/state transitionへ割り当てる候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-01",
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-011",
+        "source_anchor_question_id": "UWR-Q-B-011",
+        "anchor_id": "UWR-A1-E006-Q-EE6FG2WSQEXROM236QZS",
+        "question": "実行時に必要なデータは何ですか",
+        "value_digest": "0f0b223510ac9df05527218e9862bf697708f3662203302654187fd31308c629",
+        "disposition": "deferred",
+        "answer": "source digest、authority、state、gate evidence、resource/policy snapshotを要求する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-45",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-45",
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-012",
+        "source_anchor_question_id": "UWR-Q-B-012",
+        "anchor_id": "UWR-A1-E006-Q-7DLKYYDKGZ6VQT3IFMWN",
+        "question": "処理後に何を更新しますか",
+        "value_digest": "fcda65d3efc053f9300e508b63c133b5ea757673162436f4af76fd2f8c792913",
+        "disposition": "deferred",
+        "answer": "append-only event/current projection/checkpointとdownstream stale edgeを更新する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-25",
+              "HIL-FR-45"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-20"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-25",
+            "HIL-FR-45"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-013",
+        "source_anchor_question_id": "UWR-Q-B-013",
+        "anchor_id": "UWR-A1-E006-Q-RZHFR4XEPEPARGDMMPF5",
+        "question": "やり直しになるのはどんな場合ですか",
+        "value_digest": "afd3808c34367e3133ee7edaa5715ebedcaf44c6b5b05e77003e346304f0fd6b",
+        "disposition": "answered",
+        "answer": "監査finding、設計欠陥、CI failure、要件/template gap、Redesign対象化でやり直す。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-008",
+              "HC-CHAT-014",
+              "HC-CHAT-015",
+              "HC-CHAT-038"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-008",
+            "HC-CHAT-014",
+            "HC-CHAT-015",
+            "HC-CHAT-038"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-014",
+        "source_anchor_question_id": "UWR-Q-B-014",
+        "anchor_id": "UWR-A1-E006-Q-QMXBV73T5VHHGGA4N7MD",
+        "question": "どこへ戻りますか",
+        "value_digest": "a6f691f92920a3710bae4a77d6d01ea00685ecd55dafcf00ae66fb392a546881",
+        "disposition": "answered",
+        "answer": "欠陥種別に応じReverse、affected design layerのRedesign、またはGate前へ戻し、再freeze後Forwardへ再合流する。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-011",
+              "HC-CHAT-013",
+              "HC-CHAT-014"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-011",
+            "HC-CHAT-013",
+            "HC-CHAT-014"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-015",
+        "source_anchor_question_id": "UWR-Q-B-015",
+        "anchor_id": "UWR-A1-E006-Q-FMV27GS7JEB5F2L657GG",
+        "question": "何回まで繰り返しますか",
+        "value_digest": "188f88558e75f120b0d0bd7a620c91c3ff5a384906f8ef5eb25459e773602181",
+        "disposition": "deferred",
+        "answer": "loopごとのbounded iteration/lease/deadlineを必須化するが数値は未freeze。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-01",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-01",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-016",
+        "source_anchor_question_id": "UWR-Q-B-016",
+        "anchor_id": "UWR-A1-E006-Q-VIL3FMTEAC2QL7MILQ3L",
+        "question": "ループを止める条件は何ですか",
+        "value_digest": "5fbe8f117969d5861fdfd24570562f97ada475b8aa48979156c7775c291325b5",
+        "disposition": "deferred",
+        "answer": "acceptance/gate terminal、bounded limit、escalationで停止する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-54",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-017",
+        "source_anchor_question_id": "UWR-Q-B-017",
+        "anchor_id": "UWR-A1-E006-Q-FD6ZLIFQWZMBLW3KSME2",
+        "question": "正常終了の条件は何ですか",
+        "value_digest": "9e3c3e681deabce0cd78996ae99e8af7f01dc72af26fcc804426881f1389217c",
+        "disposition": "answered",
+        "answer": "要件freeze後の設計・実装・検証・PR・CI・監査/改善が証拠付きで収束し、必要gateを通過すること。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-015",
+              "HC-CHAT-023"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-006",
+            "HC-CHAT-015",
+            "HC-CHAT-023"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-018",
+        "source_anchor_question_id": "UWR-Q-B-018",
+        "anchor_id": "UWR-A1-E006-Q-OMJJ3ECHZRGBZGG5I2DL",
+        "question": "取消終了はありますか",
+        "value_digest": "737be4fc0a3dda413aa420b4e42e8eacbab23e710ff620bff49039174de6b98d",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-019",
+        "source_anchor_question_id": "UWR-Q-B-019",
+        "anchor_id": "UWR-A1-E006-Q-F4QJ7YBZ5JHJJXQJU5SJ",
+        "question": "失敗終了や期限切れ終了はありますか",
+        "value_digest": "b55adeb7be26e6bba2ff111657995a183e7f8b08cf6cdbdb25b2432e830ffef9",
+        "disposition": "deferred",
+        "answer": "success/cancel/fail/expire terminalを分離する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-54"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-020",
+        "source_anchor_question_id": "UWR-Q-B-020",
+        "anchor_id": "UWR-A1-E006-Q-MF67XNB3UGOIJ7EIY55C",
+        "question": "終了後に発火する処理は何ですか",
+        "value_digest": "3a2d8b8eca517d8768e370766d34638003c9ecf2e6823d4d1c9249f0546f1300",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-021",
+        "source_anchor_question_id": "UWR-Q-B-021",
+        "anchor_id": "UWR-A1-E006-Q-TBUELU4ZVSAWCCOMQKU2",
+        "question": "システム障害時はどうしますか",
+        "value_digest": "fa2f4784e948214abda6c898b325f8af50d432119cc229062ac1b0cb5e1618c0",
+        "disposition": "deferred",
+        "answer": "retry/replay/checkpoint/rollback/escalationをfailure class別に使う候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-54",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-54",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-022",
+        "source_anchor_question_id": "UWR-Q-B-022",
+        "anchor_id": "UWR-A1-E006-Q-J4TIUVBSR2MUF5KS4B2I",
+        "question": "誰へ通知しますか",
+        "value_digest": "0ca57d5d7570ae06b12eec2d5ce76655fe57f57bdd473a9fe40a727d8af0de59",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-023",
+        "source_anchor_question_id": "UWR-Q-B-023",
+        "anchor_id": "UWR-A1-E006-Q-AWUWUAPVZWI7TQ3SWUDS",
+        "question": "誰が、いつ、何をしたかをどこまで記録しますか",
+        "value_digest": "6b44ce7ce6ee4347e393e1b9a80654e36a98f11465672036955da449d02cf1ed",
+        "disposition": "deferred",
+        "answer": "actor、timestamp、action、before/after、digest、authorityを記録する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-45",
+              "HIL-NFR-30"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-21"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-45",
+            "HIL-NFR-30"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-B-024",
+        "source_anchor_question_id": "UWR-Q-B-024",
+        "anchor_id": "UWR-A1-E006-Q-QYI4K23X3XOCV6JKKSBF",
+        "question": "未定義ケースを誰が判断しますか",
+        "value_digest": "086a64fe835246957a612584026bd6fb756b5974441d29488ebd4d45ca4e375f",
+        "disposition": "answered",
+        "answer": "機械gateで決定可能な範囲はgate、実行/監査はCodex/Claude分離、企画・scope・高影響境界はPOが判断する。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-009",
+              "HC-CHAT-021",
+              "HC-CHAT-053"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-006",
+            "HC-CHAT-009",
+            "HC-CHAT-021",
+            "HC-CHAT-053"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-001",
+        "source_anchor_question_id": "UWR-Q-R-001",
+        "anchor_id": "UWR-A1-E007-Q-6NTNDEY2SPUDBIVYFYWZ",
+        "question": "どの時点で実行候補を切り替えますか",
+        "value_digest": "de2c6de83a5d3c9c866e12245442419c5896e6397213aa234ba9037f80421c12",
+        "disposition": "deferred",
+        "answer": "failure、capacity/budget/deadline、quality、policy changeでswitch再評価する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-002",
+        "source_anchor_question_id": "UWR-Q-R-002",
+        "anchor_id": "UWR-A1-E007-Q-UW3RS4ILT25NHWY7CI5B",
+        "question": "候補には何がありますか",
+        "value_digest": "339f6b85089cd5cf9d6ba80a0bfedc2403f4bae7f887410b8f7a9c9457c439e2",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-003",
+        "source_anchor_question_id": "UWR-Q-R-003",
+        "anchor_id": "UWR-A1-E007-Q-J4BVEWPHBWUDJDLFYKX5",
+        "question": "各候補を有効・無効にする条件は何ですか",
+        "value_digest": "af4e560ea95a73728aad8dccd46739f5ab31b9605b8b5e3f20f3f0bcd16d6d29",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-004",
+        "source_anchor_question_id": "UWR-Q-R-004",
+        "anchor_id": "UWR-A1-E007-Q-IOCGAYEYN7AEFG6ZKOO5",
+        "question": "候補が複数有効な場合、何を優先しますか",
+        "value_digest": "53d9bf75f0c55d5d8013d8453d622fa48a43f47f7844573d0a311eaffe1c88cd",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-005",
+        "source_anchor_question_id": "UWR-Q-R-005",
+        "anchor_id": "UWR-A1-E007-Q-HYFUCZPQOG4RJTHGTAEC",
+        "question": "どの候補も選べない場合の代替先は何ですか",
+        "value_digest": "ec4cbe41fb5f4ada7c90227720c9bb630eef3911ade108a20231c90093f6d9fe",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-006",
+        "source_anchor_question_id": "UWR-Q-R-006",
+        "anchor_id": "UWR-A1-E007-Q-QSORWOZBT263VV2T2EH6",
+        "question": "再判定を行うきっかけは何ですか",
+        "value_digest": "50162dd597276cf3c0eaf3ca38ef1af573ff5e7be5de06fd0bc3a74f866c2795",
+        "disposition": "deferred",
+        "answer": "failure/SLA/budget/resource/priority/quality/API/person/model/queue trigger候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-007",
+        "source_anchor_question_id": "UWR-Q-R-007",
+        "anchor_id": "UWR-A1-E007-Q-RO47BUTBO4P6ZXJYXCW5",
+        "question": "対象をどこへ送りますか",
+        "value_digest": "10efc63c254f96bfca99225758a5b5d523856fe73e1253d8a598a51d5ec567d7",
+        "disposition": "answered",
+        "answer": "Codex実装queue、Claude監査/改善、GitHub PR/CI、harness.db memory/Issue projection、登録external serviceへtyped routeする。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-007",
+              "HC-CHAT-008",
+              "HC-CHAT-009",
+              "HC-CHAT-010",
+              "HC-CHAT-044"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-007",
+            "HC-CHAT-008",
+            "HC-CHAT-009",
+            "HC-CHAT-010",
+            "HC-CHAT-044"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-008",
+        "source_anchor_question_id": "UWR-Q-R-008",
+        "anchor_id": "UWR-A1-E007-Q-64USBBWIZMYB4YWBGXN2",
+        "question": "人、人間チーム、AI、システム、外部サービスのどれですか",
+        "value_digest": "10a677c65a819e4c9117e7216757f04e160bda82194e08de9d90de97f782074c",
+        "disposition": "answered",
+        "answer": "人、AI runtime、HARNESS system、GitHub等の登録external serviceを役割別に使用する。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-006",
+              "HC-CHAT-007",
+              "HC-CHAT-017",
+              "HC-CHAT-044"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-006",
+            "HC-CHAT-007",
+            "HC-CHAT-017",
+            "HC-CHAT-044"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-009",
+        "source_anchor_question_id": "UWR-Q-R-009",
+        "anchor_id": "UWR-A1-E007-Q-VXB2F4HQFONXTSJL6V4B",
+        "question": "受け入れ側に必要な能力・権限・空き容量は何ですか",
+        "value_digest": "b8380086ceb120250cdf3d96609e80092387b1f5976ecbb0b0e371eb41c08033",
+        "disposition": "deferred",
+        "answer": "capability、authority、capacity、concurrencyを受入制約にする候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-010",
+        "source_anchor_question_id": "UWR-Q-R-010",
+        "anchor_id": "UWR-A1-E007-Q-TV6YWLUQVPOBBVROD3OP",
+        "question": "混雑時の代替経路は何ですか",
+        "value_digest": "b2e8ab694dde9544f2975bdae6b09b2d7eb90c112f16b64321a85665000565d2",
+        "disposition": "deferred",
+        "answer": "bounded fallback/checkpoint routeを要求する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-56",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-011",
+        "source_anchor_question_id": "UWR-Q-R-011",
+        "anchor_id": "UWR-A1-E007-Q-MKQZXG6WARLB4PTDHBCA",
+        "question": "配送不能時のデッドレター先は何ですか",
+        "value_digest": "f8e83a7a1d64a8bfd5cbae40d9232d8bd87d4a9ffaa71361141e1d453959478d",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-012",
+        "source_anchor_question_id": "UWR-Q-R-012",
+        "anchor_id": "UWR-A1-E007-Q-SH55WZGYA5PZMFVJQWT7",
+        "question": "同じ対象を複数経路へ送ることはありますか",
+        "value_digest": "0b0062ebeaa2098b232d9fa9d1f876ba85b5034e02767e796cf9ba18adda4e6a",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-013",
+        "source_anchor_question_id": "UWR-Q-R-013",
+        "anchor_id": "UWR-A1-E007-Q-ZIWCZPKV2XDIADN5YKC5",
+        "question": "制約になる資源は何ですか",
+        "value_digest": "b15a5972849941abaaff27c777e91febe20f5e8b836bee166ff3af7f4a8728f2",
+        "disposition": "deferred",
+        "answer": "capability、capacity、concurrency、budget、deadline、cost、token/API/timeをresource制約候補とする。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-014",
+        "source_anchor_question_id": "UWR-Q-R-014",
+        "anchor_id": "UWR-A1-E007-Q-O6TVJPVDZKCLDO3QMQLK",
+        "question": "人数、同時実行数、予算、トークン、API枠、時間の上限は何ですか",
+        "value_digest": "8c504bd725a68eda814bdd9cfae33cdb35549e93c72f8300258d98cdeb5b7c80",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-015",
+        "source_anchor_question_id": "UWR-Q-R-015",
+        "anchor_id": "UWR-A1-E007-Q-RUIZEJEF47HYS3RICUZN",
+        "question": "各資源が持つ能力差は何ですか",
+        "value_digest": "e299f9ea0c6ff859915a3bd4fa97784741db2069453f6abb420ad4631edd3ea3",
+        "disposition": "deferred",
+        "answer": "registered capability classとprovider/runtime roleで差を表現する候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-11",
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-11",
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-016",
+        "source_anchor_question_id": "UWR-Q-R-016",
+        "anchor_id": "UWR-A1-E007-Q-ULHMMQPWEKJBS5UTQBRF",
+        "question": "資源はいつ回復・補充されますか",
+        "value_digest": "e9b5ba00cbde67fb511bebc16188ac2ebe347edf5009b884a8234abf969985aa",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-017",
+        "source_anchor_question_id": "UWR-Q-R-017",
+        "anchor_id": "UWR-A1-E007-Q-EZWMWHANCEU45G2DNQEA",
+        "question": "1タスク当たりの想定コストと時間は何ですか",
+        "value_digest": "1f870f86d5c6b0df526f41fcd74fc424b8984a3087e7c1eb59ecfd22a5af568c",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-018",
+        "source_anchor_question_id": "UWR-Q-R-018",
+        "anchor_id": "UWR-A1-E007-Q-VKCV4TWRQSQHDD3XHKAH",
+        "question": "何を最適化しますか",
+        "value_digest": "d0585c03a51d300059640778a79ed1ac067b27f1029c76e6a435c8e8dba2b23a",
+        "disposition": "answered",
+        "answer": "証拠を省かない完全性と自動収束を第一目的とし、処理量削減を最適化目的にしない。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-012",
+              "HC-CHAT-032"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-012",
+            "HC-CHAT-032"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-019",
+        "source_anchor_question_id": "UWR-Q-R-019",
+        "anchor_id": "UWR-A1-E007-Q-PPMAF7BMGAZQBR7MHDHO",
+        "question": "品質、速度、コスト、成功率の優先順位は何ですか",
+        "value_digest": "1845e3e12f0c67d1f814eca9291fdc1457a097a8657d61a609e342fab6115567",
+        "disposition": "answered",
+        "answer": "品質・証拠完全性・成功を速度/コストより優先する。時間を要しても処理量を省かない。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-012",
+              "HC-CHAT-032"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-012",
+            "HC-CHAT-032"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-020",
+        "source_anchor_question_id": "UWR-Q-R-020",
+        "anchor_id": "UWR-A1-E007-Q-AKAHT47TLOTYNNHH2EGH",
+        "question": "締切が競合した場合の優先規則は何ですか",
+        "value_digest": "d5b6e36fefdc03530d1284a2708b4aa99d1358c7fb3b9d04006559e0fb0e440f",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-021",
+        "source_anchor_question_id": "UWR-Q-R-021",
+        "anchor_id": "UWR-A1-E007-Q-UPWGEQQP4GN6BL4FTVKZ",
+        "question": "高優先タスクが来た場合、実行中タスクを中断できますか",
+        "value_digest": "438a0df9862e0d63b7fcbd5380b96d50f548b9981661f7cb8cbed8f344316962",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-022",
+        "source_anchor_question_id": "UWR-Q-R-022",
+        "anchor_id": "UWR-A1-E007-Q-QZHNJI4SBUPNA7QQ4WKS",
+        "question": "公平性や特定担当への偏りをどう防ぎますか",
+        "value_digest": "3618d69205fe9f5fcf29672977f404cf2efe1ae011807304da57414a5676ddbd",
+        "disposition": "unresolved",
+        "answer": null,
+        "evidence": [],
+        "authority": {
+          "kind": "none",
+          "status": "missing",
+          "source_ids": []
+        },
+        "confidence": 1.0,
+        "re_entry": "explicit PO answer or authority-bound design decision required",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-023",
+        "source_anchor_question_id": "UWR-Q-R-023",
+        "anchor_id": "UWR-A1-E007-Q-O66A2E24WPGROIGOY4MB",
+        "question": "どの条件で再配分しますか",
+        "value_digest": "d2215b6441a0dad07d6f81ee2a332ead4f46020b1b0f1d90770b2f7f7e3bfcec",
+        "disposition": "deferred",
+        "answer": "failure、deadline/budget risk、resource depletion、quality不足でreallocation候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-FR-56"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-FR-56"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-024",
+        "source_anchor_question_id": "UWR-Q-R-024",
+        "anchor_id": "UWR-A1-E007-Q-ID2WGHESYXPELAXM2BHN",
+        "question": "資源不足時に品質・速度・件数のどれを落としますか",
+        "value_digest": "703d51284cbe51945cbd70c1f776d46399cc5b96241cda8b3bb5bc573e53fbf1",
+        "disposition": "answered",
+        "answer": "品質・速度・件数のいずれも証拠省略のためには落とさず、checkpoint/queue/bounded continuationへ送る。",
+        "evidence": [
+          {
+            "source_kind": "chat",
+            "source_ids": [
+              "HC-CHAT-012",
+              "HC-CHAT-032"
+            ],
+            "artifact_digest": "sha256:791a8d027d1381d5277e5cac2605b587afdbbe6bae7afd4f3fa16bc0b67e32ca"
+          }
+        ],
+        "authority": {
+          "kind": "PO_chat_primary",
+          "status": "current",
+          "source_ids": [
+            "HC-CHAT-012",
+            "HC-CHAT-032"
+          ]
+        },
+        "confidence": 0.95,
+        "re_entry": "chat requirement supersession or workflow scope change",
+        "freeze_credit": false
+      },
+      {
+        "question_id": "UWR-Q-R-025",
+        "source_anchor_question_id": "UWR-Q-R-025",
+        "anchor_id": "UWR-A1-E007-Q-DC6JROCRPOCQLV2ZUJDL",
+        "question": "完全に処理不能な場合、誰へエスカレーションしますか",
+        "value_digest": "c1b9f03b6574abb68ae06249d08a20ca6a4084742cbcfdebbf17e00deebb6632",
+        "disposition": "deferred",
+        "answer": "bounded route不能時はIssue/checkpoint、high-impact/authority不足はPO escalation候補。",
+        "evidence": [
+          {
+            "source_kind": "L1_draft",
+            "source_ids": [
+              "HIL-NFR-06",
+              "HIL-NFR-33"
+            ],
+            "artifact_digest": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f"
+          },
+          {
+            "source_kind": "L3_draft",
+            "source_ids": [
+              "HR-FR-HIL-22"
+            ],
+            "artifact_digest": "sha256:f4ee092ca334465099bd700e673e9c53ea8fa9381215535c5e8c1aab42cc5e40"
+          },
+          {
+            "source_kind": "authority_receipt",
+            "source_ids": [
+              "VMAUTH-2026-07-16-01"
+            ],
+            "artifact_digest": "sha256:ebd1d7604aa41a1ddad48d4341cce9244612c8547069530d22816b6b51adb5a9",
+            "status": "pending-po-approval"
+          }
+        ],
+        "authority": {
+          "kind": "repo_draft_requirement",
+          "status": "pending-po-approval",
+          "source_ids": [
+            "HIL-NFR-06",
+            "HIL-NFR-33"
+          ]
+        },
+        "confidence": 0.85,
+        "re_entry": "VMAUTH-2026-07-16-01 confirmation or candidate design revision",
+        "freeze_credit": false
+      }
+    ],
+    "summary": {
+      "total": 76,
+      "distribution": {
+        "answered": 12,
+        "N/A": 0,
+        "deferred": 40,
+        "unresolved": 24,
+        "rejected": 0
+      },
+      "canonical_id_unique": 76,
+      "value_digest_unique": 76,
+      "source_id_format_drift_count": 14,
+      "source_id_format_drift": [
+        "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+        "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+        "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+        "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+        "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+        "UWR-Q-C-PERSONAL-DATA-01",
+        "UWR-Q-C-PERSONAL-DATA-02",
+        "UWR-Q-C-PERSONAL-DATA-03",
+        "UWR-Q-C-PERSONAL-DATA-04",
+        "UWR-Q-C-AI-DECISION-01",
+        "UWR-Q-C-AI-DECISION-02",
+        "UWR-Q-C-AI-DECISION-03",
+        "UWR-Q-C-AI-DECISION-04",
+        "UWR-Q-C-AI-DECISION-05"
+      ]
+    },
+    "freeze": {
+      "verdict": "failed",
+      "blockers": {
+        "deferred": 40,
+        "unresolved": 24,
+        "authority_receipt_pending": 1,
+        "source_id_format_drift": 14,
+        "freeze_credit_false": 76
+      },
+      "reason": "all applicable questions need current authority; answered chat rows still require exact requirement/AC/test/gate joins before freeze"
+    }
+  },
+  "validation": {
+    "json_schema": "passed",
+    "question_bijection": "passed",
+    "execution": "not_applicable_design_classification"
+  }
+}

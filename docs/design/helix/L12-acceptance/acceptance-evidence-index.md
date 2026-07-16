@@ -1,5 +1,5 @@
 ---
-title: "HELIX L12 受入証跡インデックス"
+title: "HELIX L12 運用/価値証跡インデックス"
 layer: L12
 kind: design
 status: confirmed
@@ -9,7 +9,7 @@ owner: Codex
 pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
 ---
 
-# HELIX L12 受入証跡インデックス
+# HELIX L12 運用/価値証跡インデックス
 
 L12 は L3 acceptance test design の実施層である。acceptance は projection や doctor green だけでは閉じず、未完了 frontier が無いことを completion packet で確認する。
 
@@ -33,4 +33,4 @@ L12 は L3 acceptance test design の実施層である。acceptance は project
 
 ## 受入境界
 
-`outstanding.completionReadiness.ok=false` の間は、L12 受入を全体完了根拠にしない。S4、version-up、cutover の packet が stale または未記録なら受入は frontier のまま残す。
+`outstanding.completionReadiness.ok=false` の間は、L12 運用/価値検証を全体完了根拠にしない。S4、version-up、cutover の packet が stale または未記録なら運用/価値検証は frontier のまま残す。

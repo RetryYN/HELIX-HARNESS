@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+"""Independent currentness review of the readiness ledger and progress model."""
+from __future__ import annotations
+import hashlib,json,re
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];GEN=ROOT/'docs/governance/generated';LEDGER=ROOT/'docs/governance/helix-requirements-freeze-readiness-ledger.md';MODEL=GEN/'requirements-freeze-progress-independent-audit-v1.json';SCRIPT=ROOT/'scripts/audit/audit-readiness-progress-model.py';OUTPUT=GEN/'requirements-freeze-readiness-ledger-independent-review-v1.json'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def main():
+ text=LEDGER.read_text();model=json.loads(MODEL.read_text());critical=json.loads((GEN/'design-freeze-critical-path-v1.json').read_text());section0=text.split('## §1')[0];section1=text.split('## §1',1)[1].split('## §2',1)[0];section2=text.split('## §2',1)[1].split('## §3',1)[0];section3=text.split('## §3',1)[1]
+ current={sha(p):p.name for p in GEN.glob('*.json')};baseline_hashes=re.findall(r'`([0-9a-f]{64})`',section0);missing=[h for h in baseline_hashes if h not in current]
+ stale_patterns=[('generic_route_zero',r'generic[^\n]{0,80}(?:route complete 0|atom固有route 0/2,210)'),('savepoint_six_only',r'atomic case 6/6'),('universal_37_open',r'(?:challenge|追加PO)[^\n]{0,30}37|37[^\n]{0,30}(?:challenge|追加PO)')];section1_stale=[name for name,rx in stale_patterns if re.search(rx,section1,re.I)]
+ critical_ok=critical['summary']['design_freeze_rows']==8 and critical['summary']['design_freeze_open_rows']==0 and critical['summary']['open_by_owner_class']=={} and critical['summary'].get('po_authority_activated_units')==7 and all(x in section2 for x in ['open 0','7/7 activated'])
+ rows=model['workstreams'];weights=sum(x['weight'] for x in rows);gate_shapes=all(x['design_gate_denominator']==4 and len(x['gates'])==4 for x in rows);recalc=sum(x['weight']*sum(x['gates'].values())/4 for x in rows);runtime=sum(x['runtime_credit'] for x in rows)
+ table_rows=re.findall(r'^\| ([^|]+) \| ([^|]+) \|',section3,re.M);workstream_rows=[x for x in table_rows if x[0].strip()!='workstream' and not x[0].strip().startswith('overall')];section3_ok=len(workstream_rows)==10 and '100% Design / 0% Runtime' in section3
+ audit_ref_ok=all(token in section3 for token in ['`requirements-freeze-progress-independent-audit-v1.json`','schema v1','self-digest循環を避け','bytes SHAはgenerated indexを正本']) and model['schema_version']=='helix.requirements-freeze-progress-independent-audit.v1'
+ independent_stale=[]
+ if missing:independent_stale.append({'code':'section0_artifact_sha_not_current','hashes':missing})
+ if section1_stale:independent_stale.append({'code':'section1_stale_claims','patterns':section1_stale})
+ if not critical_ok:independent_stale.append({'code':'section2_critical_mismatch'})
+ if not (len(rows)==10 and weights==100 and gate_shapes and recalc==100 and runtime==0 and section3_ok):independent_stale.append({'code':'section3_model_mismatch','rows':len(rows),'weights':weights,'recalculated':recalc,'runtime':runtime,'ledger_rows':len(workstream_rows)})
+ if not audit_ref_ok:independent_stale.append({'code':'section3_model_path_schema_or_index_authority_missing','current_sha256':sha(MODEL),'schema_version':model.get('schema_version')})
+ if model['summary']['stale_ledger_statements']!=0:independent_stale.append({'code':'producer_stale_not_zero'})
+ out={'schema_version':'helix.requirements-freeze-readiness-ledger-independent-review.v1','status':'independent_review_pass_current' if not independent_stale else 'independent_review_stale_findings_open','sources':{'ledger':{'sha256':sha(LEDGER)},'model_script':{'sha256':sha(SCRIPT)},'model_artifact':{'sha256':sha(MODEL)},'critical_path':{'sha256':sha(GEN/'design-freeze-critical-path-v1.json')}},'summary':{'section0_sha_references':len(baseline_hashes),'section0_stale_sha':len(missing),'section1_stale_claims':len(section1_stale),'critical_design_rows':critical['summary']['design_freeze_rows'],'critical_open_rows':critical['summary']['design_freeze_open_rows'],'critical_authority_activated':critical['summary'].get('po_authority_activated_units')==7,'workstreams':len(rows),'weights':weights,'design_gates':sum(x['design_gate_denominator'] for x in rows),'design_points_recalculated':recalc,'runtime_points_recalculated':runtime,'producer_stale_claim':model['summary']['stale_ledger_statements'],'independent_stale_findings':len(independent_stale),'coverage_credit_true':0,'verified_true':0},'checks':{'section0_current':not missing,'section1_current':not section1_stale,'section2_critical_current':critical_ok,'section3_fixed_model_current':len(rows)==10 and weights==100 and gate_shapes and recalc==100 and runtime==0 and section3_ok,'section3_model_sha_current':audit_ref_ok,'producer_stale_zero':model['summary']['stale_ledger_statements']==0},'findings':independent_stale,'decision':'Design Freeze receiptと100/100 Designは支持する。Runtime Acceptanceは0/100の別軸で、baseline SHAまたはmodel参照がstaleなら台帳currentnessを支持しない。'}
+ OUTPUT.write_text(json.dumps(out,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
+if __name__=='__main__':main()

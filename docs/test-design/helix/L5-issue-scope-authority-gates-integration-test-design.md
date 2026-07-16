@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — Issue・scope・authority gate"
+title: "HELIX L9 結合テスト設計 — Issue・scope・authority gate"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -24,7 +24,7 @@ requirements:
   - HAC-HIL-05c
 ---
 
-# HELIX L8 結合テスト設計 — Issue・scope・authority gate
+# HELIX L9 結合テスト設計 — Issue・scope・authority gate
 
 ## §0 共通oracle
 

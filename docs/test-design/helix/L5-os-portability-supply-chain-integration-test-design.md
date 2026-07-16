@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — OS portability / supply chain"
+title: "HELIX L9 結合テスト設計 — OS portability / supply chain"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -23,7 +23,7 @@ requirements:
   - HAC-HIL-14c
 ---
 
-# HELIX L8 結合テスト設計 — OS portability / supply chain
+# HELIX L9 結合テスト設計 — OS portability / supply chain
 
 ## §0 共通oracle
 

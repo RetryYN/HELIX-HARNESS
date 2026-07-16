@@ -1,0 +1,210 @@
+schema: universal-workflow-anchor-extraction.v1
+status: draft
+archive_sha256: sha256:b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26
+authority: source_snapshot_proposal
+coverage_credit: false
+expected:
+  entries: 14
+  anchors: 328
+  kinds:
+    question: 76
+    normative_rule: 218
+    schema_object_contract: 21
+    fixture_case: 13
+  entry_counts:
+    UWR-E-001: 26
+    UWR-E-002: 63
+    UWR-E-003: 18
+    UWR-E-004: 1
+    UWR-E-005: 27
+    UWR-E-006: 24
+    UWR-E-007: 25
+    UWR-E-008: 5
+    UWR-E-009: 8
+    UWR-E-010: 47
+    UWR-E-011: 2
+    UWR-E-012: 12
+    UWR-E-013: 54
+    UWR-E-014: 16
+required_anchor_fields:
+  - schema_version
+  - archive_sha256
+  - entry_id
+  - entry_path
+  - entry_blob_sha256
+  - anchor_id
+  - anchor_kind
+  - extraction_profile_id
+  - extraction_profile_version
+  - canonical_pointer
+  - source_span
+  - raw_sha256
+  - normalized_sha256
+  - parent_context_sha256
+  - occurrence_ordinal
+  - semantic_fingerprint
+  - route
+  - relations
+stable_id:
+  algorithm: sha256-base32-prefix20
+  input: entry_path NUL anchor_kind NUL canonical_pointer NUL normalized_sha256
+  format: UWR-A1-{entry_id}-{kind_code}-{digest20}
+semantic_fingerprint:
+  algorithm: sha256
+  input: anchor_kind NUL normalized_value
+normalization:
+  - Unicode NFC
+  - CRLF and CR to LF
+  - parse Markdown markers through CommonMark AST
+  - collapse inline whitespace
+  - trim boundaries
+  - preserve Japanese punctuation
+pointer_profiles:
+  json_yaml:
+    standard: RFC6901
+    array_index: zero_based
+    escape: ["~ to ~0", "/ to ~1"]
+  markdown:
+    standard: commonmark-logical-pointer-v1
+    heading: /md/section/{level}-{heading_digest12}-{occurrence}
+    node: /node/{type}/{ordinal}
+    table_row: /table/{ordinal}/row/{one_based_data_row}
+    code_line: /code_block/{ordinal}/line/{ordinal}
+profiles:
+  questions:
+    UWR-E-005: RFC6901 catalog question selectors; expected 27
+    UWR-E-006: ordered question items; expected 24
+    UWR-E-007: ordered question items; expected 25
+  schema_objects:
+    entries: [UWR-E-003, UWR-E-004, UWR-E-011]
+    rule: object with properties or named object property; exclude unconstrained array item object
+    expected: 21
+  fixtures:
+    UWR-E-008: transitions, loops, terminals selectors; expected 5
+    UWR-E-009: switching, candidates, routing, destinations, resource pools, allocation policies; expected 8
+  normative_rules:
+    mode: entry_specific_commonmark_selector
+    entries:
+      UWR-E-001: 26
+      UWR-E-002: 63
+      UWR-E-010: 47
+      UWR-E-012: 12
+      UWR-E-013: 54
+      UWR-E-014: 16
+    blocker: include and exclude selectors are not yet materialized
+invariants:
+  - archive and all entry digests match manifest
+  - anchor IDs are unique and total 328
+  - kind and entry counts equal expected values
+  - every pointer resolves exactly once
+  - raw and normalized digests recompute exactly
+  - primary spans do not overlap unless an explicit relation permits it
+  - every anchor has exactly one primary route
+  - aliases, containers, and fixtures have coverage weight zero
+  - pending, orphan, and unjustified reject counts are zero before freeze
+  - two extractions are byte-identical excluding timestamp
+  - source modification creates a new anchor ID and explicit lineage
+  - 76 question IDs and question anchors form an exact bijection
+  - compound conditional family IDs use hyphenated canonical output; underscore IDs are input-only aliases until the activation-bound expiry receipt
+  - question ID migration has collision zero, orphan zero, and all consumer edges retargeted before activation
+  - unresolved conflict groups C-UWR-01 through C-UWR-05 cannot be verified
+current:
+  aggregate_denominator_confirmed: 328
+  individual_anchor_rows: 328
+  individual_anchor_artifact: docs/governance/generated/universal-workflow-anchors-328-v2.json
+  individual_anchor_artifact_sha256: sha256:ed8ce174a563343d0f0eb449bd908f9ce940acfb5fba1a0eadc34f98c779c2e1
+  deterministic_reruns: 3
+  materialized_kinds:
+    question: 76
+    normative_rule: 218
+    schema_object_contract: 21
+    fixture_case: 13
+  normative_rule_rows: 218
+  structural_digest_unique: 328
+  normalized_semantic_digest_unique: 309
+  semantic_duplicate_occurrences: 19
+  semantic_duplicate_disposition: designed_19_of_19_execution_pending
+  semantic_decision_artifact: docs/governance/generated/universal-workflow-semantic-decisions-v1.json
+  semantic_decision_artifact_sha256: sha256:3cac117a33302c64ea6200910be43d326ae310e4794de860574e27d0a2009c38
+  semantic_decision_set_digest: sha256:b8a343ab58f80c392d17027d19826fd5a5f91e68819a094a71139092ff80b04d
+  contract_conformance: true
+  exact_route_candidate_artifact: docs/governance/generated/universal-workflow-anchor-routes-328-v1.json
+  exact_route_candidate_artifact_sha256: sha256:d07a9c150b2956fdd4685b67ad923a67ced365a4297d1f104be944af199a9d0c
+  exact_route_candidate_rows: 328
+  exact_route_candidate_anchor_unique: 328
+  exact_route_candidate_route_unique: 328
+  exact_route_adopt: 31
+  exact_route_alias: 17
+  exact_route_composes: 2
+  exact_route_specifies: 34
+  exact_route_defer: 244
+  exact_route_reject: 0
+  exact_route_target_empty: 0
+  exact_route_unresolved_reason_rows: 328
+  exact_route_coverage_true: 0
+  exact_route_row_digest: sha256:7845011597e0a0aff5e5551285a85c85e923e842b19e3dca555b18d24858d7f0
+  exact_route_candidate_denominator_closed: true
+  exact_route_verified_denominator_closed: false
+  verified_routes: 0
+  independent_semantic_review_artifact: docs/governance/generated/universal-workflow-anchor-route-semantic-review-v1.json
+  independent_semantic_review_artifact_sha256: sha256:b65b8fb6600b4d6bf730e8c56dc2f992f283625c1e0bc94fc3abfd5e72444caf
+  independent_semantic_review_rows: 328
+  independent_semantic_review_normative_defer_rows: 180
+  independent_semantic_review_question_rows: 76
+  semantic_route_correction_overlay_rows: 180
+  reviewed_candidate_adopt: 211
+  reviewed_candidate_alias: 17
+  reviewed_candidate_composes: 2
+  reviewed_candidate_specifies: 34
+  reviewed_candidate_defer: 64
+  independent_semantic_review_activation_verified: 0
+  independent_semantic_review_coverage_true: 0
+  conflict_decisions_designed: 5
+  conflict_test_design_artifact: docs/test-design/helix/universal-workflow-conflict-test-design-v1.json
+  conflict_test_design_artifact_sha256: sha256:a1cd0bd8befe92360b95cbccc7299493d19d0860eab7a041cf7855be54deea20
+  conflict_fixtures_designed: 16
+  conflict_positive_fixtures: 5
+  conflict_negative_fixtures: 11
+  conflict_db_queries_designed: 20
+  conflict_independent_verifiers: 5
+  conflict_oracles_executed: 0
+  conflict_gate_receipts: 0
+  question_disposition_artifact: docs/governance/generated/universal-workflow-question-dispositions-v1.json
+  question_disposition_artifact_sha256: sha256:c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44
+  questions_answered: 12
+  questions_na: 0
+  questions_deferred: 40
+  questions_unresolved: 24
+  questions_rejected: 0
+  question_id_drift: 14
+  question_id_migration_artifact: docs/governance/generated/universal-workflow-question-migration-queue-v1.json
+  question_id_migration_artifact_sha256: sha256:7259788121ef37795acaaf75144976c70bc04f90e13ce4d4e3847c870b6df524
+  question_id_mapping_rows: 14
+  question_id_mapping_old_unique: 14
+  question_id_mapping_canonical_unique: 14
+  question_id_alias_policy: input_only_until_UWR-QUESTION-ID-V2-ACTIVATED
+  question_id_migration_executed: 0
+  question_id_migration_coverage_credit: false
+  interview_queue_total: 64
+  interview_queue_p0: 31
+  interview_queue_p1: 29
+  interview_queue_p2: 4
+  interview_queue_deferred: 40
+  interview_queue_unresolved: 24
+  interview_queue_executed: 0
+  interview_queue_answered: 0
+  interview_queue_coverage_credit: false
+  interview_answerability_audit_artifact: docs/governance/generated/universal-workflow-interview-answerability-audit-v1.json
+  interview_answerability_audit_artifact_sha256: sha256:747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec
+  interview_answerability_audit_status: candidate-audit-not-activated
+  interview_answerability_total: 64
+  interview_answerability_evidence_answered: 37
+  interview_answerability_po_authority_required: 22
+  interview_answerability_deferred_dependency: 5
+  interview_answerability_not_applicable_candidate: 0
+  interview_answerability_fabricated: 0
+  interview_answerability_activated: 0
+  interview_answerability_coverage_credit: false
+  question_freeze_credit: 0
+  extraction_profiles_complete: true
+  freeze_verdict: failed

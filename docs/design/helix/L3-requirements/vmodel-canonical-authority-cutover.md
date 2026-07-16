@@ -4,13 +4,31 @@ layer: L3
 kind: add-design
 status: confirmed
 created: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-16
 owner: Codex / TL
 plan: PLAN-L3-14-vmodel-canonical-authority-cutover
+authority_kind: canonical-supersession
+authority_epoch: vmodel-l1-l12-v1
+authority_scope: requirement-and-design-authoring
+design_authority_state: pending-receipt
+authority_activation_status: pending-po-approval
+runtime_cutover_state: pending
+active_runtime_compatibility: legacy-l0-l14
+requirements_authority_freeze_blocking: true
+implementation_preflight_blocking: true
+runtime_cutover_blocking: true
+authority_receipt: docs/governance/vmodel-authority-receipt-v1.md
+runtime_authority: docs/adr/ADR-009-node-python-linux-runtime.md
+supersedes_scope:
+  - concept-v3.1-vmodel-layer-numbering
+  - requirements-v1.2-vmodel-layer-numbering
+  - scrum-equals-poc-only
+  - implementation-at-legacy-l7
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l12: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
-pair_artifact: docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md
+pair_artifact: docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md
+supporting_acceptance: docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md
 spec:
   defines:
     - { id: HR-FR-VMCUT-01, kind: 正本権限, title: canonical authority precedence, layer: L3, owner: TL, status: confirmed }
@@ -22,7 +40,25 @@ spec:
 
 # HELIX L3要件 — ZIP L1-L12 canonical authority cutover
 
+> Authority Banner — `vmodel-l1-l12-v1`
+> 本文はauthoring authority候補であり、`VMAUTH-2026-07-16-01`承認前はpendingである。承認後も現行L0–L14 schemaは
+> runtime compatibilityであり、implementation preflightとruntime cutoverをgreenにしない。
+
 ## §0 判断
+
+### §0.1 適用・非適用
+
+- `VMAUTH-2026-07-16-01`承認後の新規要求、設計、template、generator、pair意味のauthoring authorityは本書のL1–L12とする。
+  承認前はcandidateであり、旧L0–L14へ戻して新規freezeすることも禁止する。
+- schema、CLI、path、DB、hookのactive executionはterminal cutover receiptまでlegacy L0–L14 compatibilityを維持する。
+  design authority activeをruntime cutover完了へ読み替えない。
+- L1企画からL2要求・画面/flow/prototypeを作り、walkthrough反映または構造化no-UI skip後だけL3をfreezeする。
+- L5で詳細設計とtest design/acceptance oracleを先にfreezeし、L7 artifact familyへRed evidenceを記録してから
+  L6 Green実装へ入る。L7はtest implementation、refactor、trace/TDD closureであり、test designの初出層ではない。
+- Scrumはproduct backlog/sprint/BDDの横軸overlayで、各production vertical sliceが該当範囲の縮約Vを完走する。
+  PoC `S0–S4`はDiscovery/spike routeであり、production Scrum全体の定義ではない。
+- authority driftをviewやcompat projectionだけで補正せず、Core Readsとauthoring sourceが同じepochを指すまで
+  requirements freezeをfail-closeする。
 
 ### HR-FR-VMCUT-01 正本権限
 
@@ -49,11 +85,35 @@ spec:
 | L4 | L4 基本設計 | 維持 |
 | L5 + 旧独立L6機能設計 | L5 詳細設計+test contract | 必要契約を吸収し、重い独立成果物を新規生成しない |
 | L7 implementation | L6 実装 | source bindingをtyped宣言へ接続 |
-| L8-L12 test-design/verification | L7-L11 TDD・単体・結合・総合・受入 |VペアIDを保持して再投影 |
+| L8-L12 test-design/verification | L7-L11 TDD・単体・結合・総合・受入 | VペアIDを保持して再投影 |
 | L13/L14 operation/release | L12 運用テスト・release | runtime evidenceとpost-release verificationを維持 |
 
 既存artifactは一括renameしない。`legacy_layer`と`canonical_layer`の両方をprojectionし、compat期限までは旧入力を
 受理するが、新規generator/PLAN/templateはcanonical layerだけを出力する。
+
+#### token単位remap
+
+| legacy token | canonical token | semantic disposition |
+|---|---|---|
+| L0 | L1 | charter/価値/scopeを企画へ投影 |
+| L1 | L2 | business要求を要求探索へ投影 |
+| L2 | L2 | screen/mock/flow/prototypeを要求探索へ統合 |
+| L3 | L3 | FR/AC freezeを維持 |
+| L4 | L4 | 基本設計を維持 |
+| L5 | L5 | 詳細設計を維持 |
+| L6 | L5 | 旧独立機能設計を詳細設計へ吸収 |
+| L7 | L6 | product code/implementationを実装へ投影 |
+| L8 | L7 | test implementation/Red/refactor/trace closureへ投影 |
+| L9 | L8 | 単体検証へ投影 |
+| L10 | L9 | 結合検証へ投影 |
+| L11 | L10 | 総合検証へ投影 |
+| L12 | L11 | 受入検証へ投影 |
+| L13 | L12 | deploy/post-deploy evidenceを運用・価値へ統合 |
+| L14 | L12 | operation/value evidenceを運用・価値へ統合 |
+| cross | cross | layer横断型として維持し、layer completenessへ算入しない |
+
+正規V-pairは`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`の6組である。
+range集約や算術offsetだけをremap証拠にせず、各legacy tokenは上表の一意なcanonical tokenへ解決する。
 
 ### HR-FR-VMCUT-03 独立L6成果物の移行
 

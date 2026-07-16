@@ -1,0 +1,75 @@
+{
+  "executed": false,
+  "findings": [],
+  "negative_test_matrix": [
+    {
+      "expected": "not_executed, exit 0",
+      "id": "DFV2-N-01",
+      "mutation": "v2 receipt absent"
+    },
+    {
+      "expected": "fail_closed",
+      "id": "DFV2-N-02",
+      "mutation": "full-row export absent or receipt/export digest mismatch"
+    },
+    {
+      "expected": "DFV2_FULL_ROW_DENOMINATOR",
+      "id": "DFV2-N-03",
+      "mutation": "one of nine v2 rows omitted/duplicated"
+    },
+    {
+      "expected": "DFV2_CURRENT_SOURCE_DRIFT",
+      "id": "DFV2-N-04",
+      "mutation": "current source changed after command"
+    },
+    {
+      "expected": "DFV2_DIGEST_RECOMPUTE",
+      "id": "DFV2-N-05",
+      "mutation": "full preimage or declared digest preimage changed"
+    },
+    {
+      "expected": "DFV2_WRITE_SET_DIGEST",
+      "id": "DFV2-N-06",
+      "mutation": "ordered write-set row/order changed"
+    },
+    {
+      "expected": "DFV2_HEAD_CAS",
+      "id": "DFV2-N-07",
+      "mutation": "any expected/current CAS head changed"
+    },
+    {
+      "expected": "DFV2_DENOMINATOR_19_76",
+      "id": "DFV2-N-08",
+      "mutation": "19/76 denominator changed"
+    },
+    {
+      "expected": "DFV2_REVIEW_IDENTITY",
+      "id": "DFV2-N-09",
+      "mutation": "review identity/runtime changed"
+    },
+    {
+      "expected": "DFV2_PO7_LATEST",
+      "id": "DFV2-N-10",
+      "mutation": "PO7 latest epoch/event/status or 6/22/A set changed"
+    },
+    {
+      "expected": "DFV2_REPOSITORY_SNAPSHOT",
+      "id": "DFV2-N-11",
+      "mutation": "repository HEAD/tree/remote-containing refs changed"
+    },
+    {
+      "expected": "DFV2_RECEIPT_SELF_REPORT_MISMATCH",
+      "id": "DFV2-N-12",
+      "mutation": "receipt summary differs from reconstructed terminal row"
+    }
+  ],
+  "safety": {
+    "authority_credit": 0,
+    "freeze_credit": 0
+  },
+  "schema_version": "helix.post-po-design-freeze-transition-runtime-independent-audit.v2",
+  "sources": {
+    "receipt": "docs/governance/generated/post-po-design-freeze-transition-command-receipt-v2.json"
+  },
+  "status": "not_executed"
+}

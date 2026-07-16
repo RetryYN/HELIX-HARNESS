@@ -1,0 +1,144 @@
+{
+  "decision": "7 findingは設計正本とatomic caseへ降下済み。runtime implementation/execution/verificationは0のため、Design closureをruntime acceptanceへ読み替えない。",
+  "findings": [
+    {
+      "axis": "L01-L12/V-pair chain",
+      "evidence": [
+        "L02以降は直前layerのcurrent tagをpredecessor",
+        "V-pairは両側current",
+        "layer gate/pair receiptを要求"
+      ],
+      "finding_id": "SP-IR-001",
+      "gap": "逐次L01→L12 chainと、各layer tag前提の両側current V-pair receiptが循環する。L01はL12 current前に作れず、L12はL01 predecessor chainなしに作れない。",
+      "required_design": "left-side provisional freezeとpair terminalizationの二相状態、またはpair completion tagを別ref/receiptに分離し、各相のCAS・stale・progress算入規則を定義する。",
+      "severity": "critical",
+      "status": "closed_design_not_implemented"
+    },
+    {
+      "axis": "remote/DB atomicity and reconciliation",
+      "evidence": [
+        "expected-absent compare-and-create",
+        "local DBだけを成功へ進めない"
+      ],
+      "finding_id": "SP-IR-002",
+      "gap": "remote annotated tag作成成功後、DB event/receipt transactionが失敗・crashした場合のremote-only orphanを検出・adopt/challengeする状態とreconcile queryがない。",
+      "required_design": "remote_created_projection_pending状態、operation/payload/tag-object OIDによるexact adoption、異digest quarantine、retry/fencing、reconcile receiptとfailure codeを追加する。",
+      "severity": "high",
+      "status": "closed_design_not_implemented"
+    },
+    {
+      "axis": "roadmap/ledger mechanical binding",
+      "evidence": [
+        "工程表snapshot",
+        "layer_progress_projections"
+      ],
+      "finding_id": "SP-IR-003",
+      "gap": "工程表のcanonical path、program/slice/task denominator ID、ledger revision/digestがtag/receipt必須fieldへexact bindingされず、percentage sourceを別工程表へ差し替えられる。",
+      "required_design": "roadmap registry ID、program/slice/task-set digest、ledger revision、denominator receiptをlayer progress event/tag receipt/HAT/HSTへ結合する。",
+      "severity": "high",
+      "status": "closed_design_not_implemented"
+    },
+    {
+      "axis": "working-tree exclusion",
+      "evidence": [
+        "dirty treeを拒否",
+        "隔離branch/worktree"
+      ],
+      "finding_id": "SP-IR-004",
+      "gap": "dirtyのclosed-world定義（index、unstaged、untracked、ignored、submodule、sparse checkout）と、live working treeをfreeze/savepoint digest・restore inputから除外した証明がない。",
+      "required_design": "HEAD/tree/index/worktree/submodule statusの固定分類、untracked/ignored policy、working_tree_excluded receipt、隔離restoreの外部path・既存worktree非変更oracleを定義する。",
+      "severity": "high",
+      "status": "closed_design_not_implemented"
+    },
+    {
+      "axis": "GitHub visibility/ruleset authority",
+      "evidence": [
+        "github_tag_ruleset_snapshots",
+        "bypass actor集合",
+        "remote tag query"
+      ],
+      "finding_id": "SP-IR-005",
+      "gap": "tagのGitHub API/UI可視性、read permission、pagination/eventual consistency、ruleset bypass actorの許容判定と失効を検証するcase/receiptがない。",
+      "required_design": "GitHub tag visibility observation、ruleset target match、bypass allow/deny/expiry、API pagination/retry/freshnessを独立receiptとfailure codeへする。",
+      "severity": "medium",
+      "status": "closed_design_not_implemented"
+    },
+    {
+      "axis": "failure-code atomic coverage",
+      "evidence": [
+        "16 granular failure codes",
+        "HST-HIL-060/061 umbrella codes"
+      ],
+      "finding_id": "SP-IR-006",
+      "gap": "L4の16 granular codeがHAT/HST/assertion caseでは2 umbrella codeに圧縮され、各原因のpositive/negative/boundary fixtureとexact expected codeが未結合。",
+      "required_design": "16 codeごとの最低1 negative case、CAS/race/idempotent retry/crash boundary、umbrella→cause mappingを原子的case台帳へ追加する。",
+      "severity": "medium",
+      "status": "closed_design_not_implemented"
+    },
+    {
+      "axis": "refreeze/live-progress separation",
+      "evidence": [
+        "affected layerからL12までstale",
+        "tagは進捗値をauthoredしない"
+      ],
+      "finding_id": "SP-IR-007",
+      "gap": "live task progressとfreeze chainの分離方針はあるが、refreeze中のlive percentage、last-known frozen、stale chainを同時表示・queryする投影fieldと誤集計caseが不足する。",
+      "required_design": "live_progress、freeze_progress、last_frozen_chain、stale_from_layerを別field/queryにし、refreeze途中で旧freezeをlive完了へ混入しないoracleを追加する。",
+      "severity": "medium",
+      "status": "closed_design_not_implemented"
+    }
+  ],
+  "passed_baselines": {
+    "CAS_race_idempotency_baseline": true,
+    "annotated_remote_tag_and_immutability": true,
+    "isolated_restore_baseline": true,
+    "ruleset_observation_fail_closed": true,
+    "runtime_credit_zero": true
+  },
+  "schema_version": "repository-savepoint-layer-tag-design-independent-review/v1",
+  "source": {
+    "path": "docs/governance/generated/repository-savepoint-layer-tag-design-audit-v1.json",
+    "sha256": "0ec16424222455f43839bc13eeddf81b4109ea0d9d1838b13dfc225280d40f17"
+  },
+  "source_set": [
+    {
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715"
+    },
+    {
+      "path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "sha256": "9655a7cffd465b7b449903028d2dc34fe052b90400934eead272e05bb990b37a"
+    },
+    {
+      "path": "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md",
+      "sha256": "45925eabce6683bc1c3306c37fbad376af0df43940af6ff36f6268809de44791"
+    },
+    {
+      "path": "docs/governance/infinity-loop-l10-system-assertion-cases.md",
+      "sha256": "7793fddfa204bca7154a63f903327d66e92962ed4b5c4f36de6e944c779e275c"
+    }
+  ],
+  "status": "independent_review_design_gaps_closed_not_executed",
+  "summary": {
+    "closed_design_not_implemented": 7,
+    "coverage_credit_true": 0,
+    "critical": 1,
+    "executed": 0,
+    "findings": 7,
+    "high": 3,
+    "implemented": 0,
+    "medium": 3,
+    "open": 0,
+    "passed_baselines": 5,
+    "runtime_mutations": 0,
+    "verified_true": 0
+  }
+}

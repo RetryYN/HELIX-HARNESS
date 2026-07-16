@@ -43,7 +43,7 @@ review_evidence:
 
 > **正本宣言**: 本 PLAN は **中間準備ドシエ** (ヒアリング項目・調査メモ・工程表)。
 > **本 PLAN が産出する正本 doc**: `docs/design/harness/L3-functional/business-detail.md` (上記 frontmatter generates 参照)。
-> **V-model pair**: L3 business-detail sub-doc ↔ L12 受入テスト設計 1 doc。本 PLAN 完了時に G3 pair freeze の対象。
+> **V-model pair**: L3 business-detail sub-doc ↔ L12 受入テスト設計 1 doc。本 PLAN 完了時に G3 pair freeze の対象。 （層意味論: canonical L12=operational/value）
 > **スコープ**: BR-21 + FR-L1-36/38/43 (Learning Engine 系、P2 起点、現行 projection 実装済み) + HM-08 画面連動 の 3 軸詳細化のみ。FR 一般詳細化は PLAN-L3-01 が担当。
 
 ## §0 本 PLAN の役割
@@ -127,15 +127,15 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 - 内容: 3 FR の入出力 / AC / projection 実装契約を business-detail §7 で詳細化 (PLAN-L3-01 の AC 形式と整合)
 - 進捗: ✅ (§7 FR-BR21-36/38/43 各 AC 2 件 計 6 AC 起草完了。projection は PLAN-L7-53/57/58 で実装済み)
 
-### 手順 6: 機械検証 + L12 受入テスト pair 凍結 (Step 6)
+### 手順 6: 機械検証 + L12 受入テスト pair 凍結 (Step 6) （層意味論: canonical L12=operational/value）
 - 担当: qa
-- 内容: BR-21 / FR-L1-36/38/43 全件が L12 受入テストで被覆されているか確認
+- 内容: BR-21 / FR-L1-36/38/43 全件が L12 受入テストで被覆されているか確認 （層意味論: canonical L12=operational/value）
 - 進捗: ✅ (L12 受入テスト設計 §1.2 で AT-BR21-01〜09 + AT-FR-BR21-36/38/43 全 15 件被覆、孤児 0)
 
 ### 手順 7: レビュー (Step 7 / review: self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須。BR-21 詳細化 / HM-08 連動 / projection 契約明示・孤児 BR-21 由来 0 を確認
-- 進捗: ⬜ (G3 readiness 整備時に L3 3 sub-doc + L12 受入テスト 4 doc 全件まとめて review)
+- 進捗: ⬜ (G3 readiness 整備時に L3 3 sub-doc + L12 受入テスト 4 doc 全件まとめて review) （層意味論: canonical L12=operational/value）
 
 ## §5 実装計画
 
@@ -157,7 +157,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 - [ ] Phase A / Phase B 境界が明示され、Phase B 着手条件が記載
 - [ ] FR-L1-36/38/43 が AC-* と pair で詳細化されている (孤児 0)
 - [ ] frontmatter 必須フィールド完備
-- [ ] L12 受入テスト設計で本 sub-doc 由来要求が被覆
+- [ ] L12 受入テスト設計で本 sub-doc 由来要求が被覆 （層意味論: canonical L12=operational/value）
 - [ ] 専門サブエージェントレビュー (Step 7 / review) 通過記録
 - [ ] **PO サインオフ準備完了**
 
@@ -167,5 +167,5 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 - **L4 データ設計**: 評価指標 entity (例: PlanEvaluation / SkillEvaluation / ModelEvaluation) は L4 データ設計で確定
 - **Phase B 実装 PLAN**: Phase B 着手時に PLAN-Phase-B-NN として Learning Engine 本実装を起票
 - **NFR-16 telemetry 連動**: telemetry default + PII redaction 設計は NFR-16 / PLAN-L3-03 と連携
-- **HM-08 L10 UX refinement**: HM-08 画面の最終 UX 確定は L10 UX 磨きへ送り
+- **HM-08 L10 UX refinement**: HM-08 画面の最終 UX 確定は L10 UX 磨きへ送り （層意味論: canonical L10=system/Real UX evidence）
 - **KPI D-07 目標達成**: Phase A 完了時点で KPI D-07 ≥ 50% 達成を Phase B 着手条件とする (U-BR21-9 確定後)

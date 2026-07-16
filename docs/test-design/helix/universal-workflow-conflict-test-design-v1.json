@@ -1,0 +1,1129 @@
+{
+  "schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "status",
+      "authority",
+      "source_decision_digest",
+      "conflicts",
+      "summary"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "uwr-conflict-l5-test-design.v1"
+      },
+      "status": {
+        "const": "designed_not_executed"
+      },
+      "authority": {
+        "const": "proposal"
+      },
+      "source_decision_digest": {
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      },
+      "summary": {
+        "type": "object",
+        "required": [
+          "conflicts",
+          "fixtures",
+          "executed",
+          "passed",
+          "closed"
+        ],
+        "properties": {
+          "conflicts": {
+            "const": 5
+          },
+          "fixtures": {
+            "type": "integer",
+            "minimum": 10
+          },
+          "executed": {
+            "const": 0
+          },
+          "passed": {
+            "const": 0
+          },
+          "closed": {
+            "const": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "conflicts": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "$ref": "#/$defs/conflict"
+        }
+      }
+    },
+    "$defs": {
+      "expected": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "verdict",
+          "failure_code",
+          "receipt_required"
+        ],
+        "properties": {
+          "verdict": {
+            "enum": [
+              "passed",
+              "failed"
+            ]
+          },
+          "failure_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "receipt_required": {
+            "const": true
+          }
+        }
+      },
+      "fixture": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fixture_id",
+          "polarity",
+          "input_contract",
+          "expected",
+          "current_receipt_written",
+          "execution_state"
+        ],
+        "properties": {
+          "fixture_id": {
+            "pattern": "^UWR-C0[1-5]-[PN][0-9]{2}$"
+          },
+          "polarity": {
+            "enum": [
+              "positive",
+              "negative"
+            ]
+          },
+          "input_contract": {
+            "type": "object"
+          },
+          "expected": {
+            "$ref": "#/$defs/expected"
+          },
+          "current_receipt_written": {
+            "const": false
+          },
+          "execution_state": {
+            "const": "designed_not_executed"
+          }
+        }
+      },
+      "query": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "query_id",
+          "schema_binding",
+          "sql",
+          "parameters",
+          "expected"
+        ],
+        "properties": {
+          "query_id": {
+            "type": "string"
+          },
+          "schema_binding": {
+            "const": "L4-proposed-projection"
+          },
+          "sql": {
+            "pattern": "^SELECT\\b"
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "expected": {
+            "type": "object"
+          }
+        }
+      },
+      "verifier": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "provider_constraint",
+          "input_digests",
+          "output_receipt",
+          "self_verification_forbidden"
+        ],
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "provider_constraint": {
+            "const": "different_runtime_or_model_family_from_producer_and_decider"
+          },
+          "input_digests": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "string"
+            }
+          },
+          "output_receipt": {
+            "type": "string"
+          },
+          "self_verification_forbidden": {
+            "const": true
+          }
+        }
+      },
+      "conflict": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "conflict_id",
+          "decision_revision",
+          "replacement_design",
+          "execution_preconditions",
+          "fixtures",
+          "oracle",
+          "gate",
+          "independent_verifier",
+          "execution_state"
+        ],
+        "properties": {
+          "conflict_id": {
+            "pattern": "^C-UWR-0[1-5]$"
+          },
+          "decision_revision": {
+            "pattern": "^UWR-DEC-C0[1-5]-R1$"
+          },
+          "replacement_design": {
+            "type": "object",
+            "required": [
+              "design_id",
+              "version",
+              "contract",
+              "digest_precondition"
+            ],
+            "properties": {
+              "design_id": {
+                "type": "string"
+              },
+              "version": {
+                "const": "1.0.0"
+              },
+              "contract": {
+                "type": "object"
+              },
+              "digest_precondition": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "execution_preconditions": {
+            "type": "array",
+            "minItems": 5,
+            "items": {
+              "type": "string"
+            }
+          },
+          "fixtures": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "$ref": "#/$defs/fixture"
+            }
+          },
+          "oracle": {
+            "type": "object",
+            "required": [
+              "oracle_id",
+              "deterministic_checks",
+              "forbidden_false_green"
+            ],
+            "properties": {
+              "oracle_id": {
+                "type": "string"
+              },
+              "deterministic_checks": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "forbidden_false_green": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "gate": {
+            "type": "object",
+            "required": [
+              "gate_id",
+              "receipt_type",
+              "db_receipt_queries",
+              "pass_condition"
+            ],
+            "properties": {
+              "gate_id": {
+                "type": "string"
+              },
+              "receipt_type": {
+                "type": "string"
+              },
+              "db_receipt_queries": {
+                "type": "array",
+                "minItems": 3,
+                "items": {
+                  "$ref": "#/$defs/query"
+                }
+              },
+              "pass_condition": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "independent_verifier": {
+            "$ref": "#/$defs/verifier"
+          },
+          "execution_state": {
+            "const": "designed_not_executed"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "schema_version": "uwr-conflict-l5-test-design.v1",
+    "status": "designed_not_executed",
+    "authority": "proposal",
+    "source_decision_digest": "sha256:3cac117a33302c64ea6200910be43d326ae310e4794de860574e27d0a2009c38",
+    "conflicts": [
+      {
+        "conflict_id": "C-UWR-01",
+        "decision_revision": "UWR-DEC-C01-R1",
+        "replacement_design": {
+          "design_id": "UWR-DESIGN-STRICT-ADAPTER",
+          "version": "1.0.0",
+          "contract": {
+            "pipeline": [
+              "registered_descriptor",
+              "node_input_gate",
+              "proposal_worker_optional",
+              "node_output_gate",
+              "single_transaction_candidate"
+            ],
+            "forbidden_authority": [
+              "raw_prompt",
+              "direct_db",
+              "command",
+              "sql",
+              "absolute_path",
+              "credential",
+              "self_approval"
+            ]
+          },
+          "digest_precondition": "sha256(replacement canonical JSON) must equal decision receipt replacement_design_digest"
+        },
+        "execution_preconditions": [
+          "sealed Universal ZIP/archive and 14 entry digests verified",
+          "328-anchor v2 artifact validates and stable IDs recompute",
+          "replacement design artifact has immutable digest",
+          "L4 proposed projection migration is installed in isolated test DB",
+          "producer, decider and verifier identities are registered and separable",
+          "fixture input contains no secret/PII and uses isolated result directory"
+        ],
+        "fixtures": [
+          {
+            "fixture_id": "UWR-C01-P01",
+            "polarity": "positive",
+            "input_contract": {
+              "descriptor": "allowlisted",
+              "input_digest": "sealed",
+              "worker_output": "typed proposal only",
+              "repeated_runs": 2
+            },
+            "expected": {
+              "verdict": "passed",
+              "failure_code": null,
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C01-N01",
+            "polarity": "negative",
+            "input_contract": {
+              "activation": "raw SKILL/prompt direct"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UWR_RAW_ACTIVATION",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C01-N02",
+            "polarity": "negative",
+            "input_contract": {
+              "worker_output": "direct DB mutation/command/SQL/path/code"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UNIVERSAL_ADAPTER_AUTHORITY_BYPASS",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          }
+        ],
+        "oracle": {
+          "oracle_id": "C-UWR-01-ORACLE-V1",
+          "deterministic_checks": [
+            "two identical inputs produce identical proposal digest",
+            "authoritative state count remains zero before Node commit",
+            "descriptor/input/output/provenance digests form one chain"
+          ],
+          "forbidden_false_green": [
+            "process exit 0 without authority check",
+            "proposal file existence",
+            "worker self-review"
+          ]
+        },
+        "gate": {
+          "gate_id": "HIL_UWR_CONFLICT_01",
+          "receipt_type": "universal_conflict_gate_receipt.v1",
+          "db_receipt_queries": [
+            {
+              "query_id": "C-UWR-01-Q01",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_conflicts WHERE conflict_id = :conflict_id AND revision = :revision AND receipt_digest IS NOT NULL",
+              "parameters": {
+                "conflict_id": "C-UWR-01",
+                "revision": "UWR-DEC-C01-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-01-Q02",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_fixture_cases WHERE conflict_id = :conflict_id AND execution_status = 'passed' AND actual_verdict = expected_verdict AND COALESCE(actual_failure_code, '') = COALESCE(expected_failure_code, '')",
+              "parameters": {
+                "conflict_id": "C-UWR-01"
+              },
+              "expected": {
+                "n": 3
+              }
+            },
+            {
+              "query_id": "C-UWR-01-Q03",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM gate_runs WHERE gate_id = :gate_id AND status = 'passed' AND evidence_path <> ''",
+              "parameters": {
+                "gate_id": "HIL_UWR_CONFLICT_01"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-01-Q04",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_family_receipts WHERE family = :family AND authority_revision = :revision AND verdict = 'passed' AND review_receipt_digest IS NOT NULL",
+              "parameters": {
+                "family": "C-UWR-01",
+                "revision": "UWR-DEC-C01-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            }
+          ],
+          "pass_condition": "all fixtures executed with exact expected verdict/code, all four DB queries match, independent receipt digest binds same fixture/oracle/replacement digests"
+        },
+        "independent_verifier": {
+          "role": "StrictAdapterIndependentVerifier",
+          "provider_constraint": "different_runtime_or_model_family_from_producer_and_decider",
+          "input_digests": [
+            "anchor_artifact_digest",
+            "replacement_design_digest",
+            "fixture_bundle_digest",
+            "oracle_version_digest"
+          ],
+          "output_receipt": "c-uwr-01-independent-verification-receipt.v1",
+          "self_verification_forbidden": true
+        },
+        "execution_state": "designed_not_executed"
+      },
+      {
+        "conflict_id": "C-UWR-02",
+        "decision_revision": "UWR-DEC-C02-R1",
+        "replacement_design": {
+          "design_id": "UWR-DESIGN-STAGED-ENVELOPE",
+          "version": "1.0.0",
+          "contract": {
+            "stages": [
+              "workflow_model_proposal.v1",
+              "workflow_completeness_receipt.v1",
+              "derived_requirements_proposal.v1",
+              "workflow_derivation_bundle.v1"
+            ],
+            "predecessor_digest_required": true
+          },
+          "digest_precondition": "sha256(replacement canonical JSON) must equal decision receipt replacement_design_digest"
+        },
+        "execution_preconditions": [
+          "sealed Universal ZIP/archive and 14 entry digests verified",
+          "328-anchor v2 artifact validates and stable IDs recompute",
+          "replacement design artifact has immutable digest",
+          "L4 proposed projection migration is installed in isolated test DB",
+          "producer, decider and verifier identities are registered and separable",
+          "fixture input contains no secret/PII and uses isolated result directory"
+        ],
+        "fixtures": [
+          {
+            "fixture_id": "UWR-C02-P01",
+            "polarity": "positive",
+            "input_contract": {
+              "four_stages": "valid",
+              "predecessor_digests": "exact",
+              "completeness": "passed"
+            },
+            "expected": {
+              "verdict": "passed",
+              "failure_code": null,
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C02-N01",
+            "polarity": "negative",
+            "input_contract": {
+              "single_root": "claims two incompatible schemas"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UWR_OUTPUT_ENVELOPE_INCOMPATIBLE",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C02-N02",
+            "polarity": "negative",
+            "input_contract": {
+              "derived_stage": "before completeness or wrong predecessor digest"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_WORKFLOW_MODEL_INCOMPLETE",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          }
+        ],
+        "oracle": {
+          "oracle_id": "C-UWR-02-ORACLE-V1",
+          "deterministic_checks": [
+            "each stage validates only its named schema",
+            "derived stage references green completeness digest",
+            "every transition joins requirement/AC/test/surface"
+          ],
+          "forbidden_false_green": [
+            "one JSON parses successfully",
+            "later stage exists without predecessor",
+            "aggregate edge count without exact joins"
+          ]
+        },
+        "gate": {
+          "gate_id": "HIL_UWR_CONFLICT_02",
+          "receipt_type": "universal_conflict_gate_receipt.v1",
+          "db_receipt_queries": [
+            {
+              "query_id": "C-UWR-02-Q01",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_conflicts WHERE conflict_id = :conflict_id AND revision = :revision AND receipt_digest IS NOT NULL",
+              "parameters": {
+                "conflict_id": "C-UWR-02",
+                "revision": "UWR-DEC-C02-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-02-Q02",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_fixture_cases WHERE conflict_id = :conflict_id AND execution_status = 'passed' AND actual_verdict = expected_verdict AND COALESCE(actual_failure_code, '') = COALESCE(expected_failure_code, '')",
+              "parameters": {
+                "conflict_id": "C-UWR-02"
+              },
+              "expected": {
+                "n": 3
+              }
+            },
+            {
+              "query_id": "C-UWR-02-Q03",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM gate_runs WHERE gate_id = :gate_id AND status = 'passed' AND evidence_path <> ''",
+              "parameters": {
+                "gate_id": "HIL_UWR_CONFLICT_02"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-02-Q04",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_family_receipts WHERE family = :family AND authority_revision = :revision AND verdict = 'passed' AND review_receipt_digest IS NOT NULL",
+              "parameters": {
+                "family": "C-UWR-02",
+                "revision": "UWR-DEC-C02-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            }
+          ],
+          "pass_condition": "all fixtures executed with exact expected verdict/code, all four DB queries match, independent receipt digest binds same fixture/oracle/replacement digests"
+        },
+        "independent_verifier": {
+          "role": "WorkflowEnvelopeIndependentVerifier",
+          "provider_constraint": "different_runtime_or_model_family_from_producer_and_decider",
+          "input_digests": [
+            "anchor_artifact_digest",
+            "replacement_design_digest",
+            "fixture_bundle_digest",
+            "oracle_version_digest"
+          ],
+          "output_receipt": "c-uwr-02-independent-verification-receipt.v1",
+          "self_verification_forbidden": true
+        },
+        "execution_state": "designed_not_executed"
+      },
+      {
+        "conflict_id": "C-UWR-03",
+        "decision_revision": "UWR-DEC-C03-R1",
+        "replacement_design": {
+          "design_id": "UWR-DESIGN-CANONICAL-SCHEMA-FAMILIES",
+          "version": "1.0.0",
+          "contract": {
+            "families": [
+              "workflow",
+              "requirement",
+              "derived_surface",
+              "test"
+            ],
+            "requirement_field_denominator": 12,
+            "legacy_alias": "input-only, versioned expiry",
+            "untyped_object_forbidden": true
+          },
+          "digest_precondition": "sha256(replacement canonical JSON) must equal decision receipt replacement_design_digest"
+        },
+        "execution_preconditions": [
+          "sealed Universal ZIP/archive and 14 entry digests verified",
+          "328-anchor v2 artifact validates and stable IDs recompute",
+          "replacement design artifact has immutable digest",
+          "L4 proposed projection migration is installed in isolated test DB",
+          "producer, decider and verifier identities are registered and separable",
+          "fixture input contains no secret/PII and uses isolated result directory"
+        ],
+        "fixtures": [
+          {
+            "fixture_id": "UWR-C03-P01",
+            "polarity": "positive",
+            "input_contract": {
+              "schemas": "canonical",
+              "all_12_fields": "typed with explicit applicability",
+              "clause_edges": "complete"
+            },
+            "expected": {
+              "verdict": "passed",
+              "failure_code": null,
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C03-N01",
+            "polarity": "negative",
+            "input_contract": {
+              "schema": "omits prose-required field"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UWR_SCHEMA_PROSE_DRIFT",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C03-N02",
+            "polarity": "negative",
+            "input_contract": {
+              "canonical_output": "legacy alias or untyped object item"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UWR_FIELD_APPLICABILITY_UNRESOLVED",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          }
+        ],
+        "oracle": {
+          "oracle_id": "C-UWR-03-ORACLE-V1",
+          "deterministic_checks": [
+            "schema/prose field denominator difference is zero",
+            "every prose clause reaches one field constraint",
+            "legacy aliases absent from canonical output"
+          ],
+          "forbidden_false_green": [
+            "additionalProperties accepted",
+            "empty field treated as applicable",
+            "file/schema presence only"
+          ]
+        },
+        "gate": {
+          "gate_id": "HIL_UWR_CONFLICT_03",
+          "receipt_type": "universal_conflict_gate_receipt.v1",
+          "db_receipt_queries": [
+            {
+              "query_id": "C-UWR-03-Q01",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_conflicts WHERE conflict_id = :conflict_id AND revision = :revision AND receipt_digest IS NOT NULL",
+              "parameters": {
+                "conflict_id": "C-UWR-03",
+                "revision": "UWR-DEC-C03-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-03-Q02",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_fixture_cases WHERE conflict_id = :conflict_id AND execution_status = 'passed' AND actual_verdict = expected_verdict AND COALESCE(actual_failure_code, '') = COALESCE(expected_failure_code, '')",
+              "parameters": {
+                "conflict_id": "C-UWR-03"
+              },
+              "expected": {
+                "n": 3
+              }
+            },
+            {
+              "query_id": "C-UWR-03-Q03",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM gate_runs WHERE gate_id = :gate_id AND status = 'passed' AND evidence_path <> ''",
+              "parameters": {
+                "gate_id": "HIL_UWR_CONFLICT_03"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-03-Q04",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_family_receipts WHERE family = :family AND authority_revision = :revision AND verdict = 'passed' AND review_receipt_digest IS NOT NULL",
+              "parameters": {
+                "family": "C-UWR-03",
+                "revision": "UWR-DEC-C03-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            }
+          ],
+          "pass_condition": "all fixtures executed with exact expected verdict/code, all four DB queries match, independent receipt digest binds same fixture/oracle/replacement digests"
+        },
+        "independent_verifier": {
+          "role": "SchemaContractDiffIndependentVerifier",
+          "provider_constraint": "different_runtime_or_model_family_from_producer_and_decider",
+          "input_digests": [
+            "anchor_artifact_digest",
+            "replacement_design_digest",
+            "fixture_bundle_digest",
+            "oracle_version_digest"
+          ],
+          "output_receipt": "c-uwr-03-independent-verification-receipt.v1",
+          "self_verification_forbidden": true
+        },
+        "execution_state": "designed_not_executed"
+      },
+      {
+        "conflict_id": "C-UWR-04",
+        "decision_revision": "UWR-DEC-C04-R1",
+        "replacement_design": {
+          "design_id": "UWR-DESIGN-REACHABILITY-FIXTURE-PAIR",
+          "version": "1.0.0",
+          "contract": {
+            "negative_fixture": "original E008 digest immutable",
+            "positive_fixture": "distinct digest with APPROVED/CANCELLED routes",
+            "terminal_outgoing_mutation_forbidden": true
+          },
+          "digest_precondition": "sha256(replacement canonical JSON) must equal decision receipt replacement_design_digest"
+        },
+        "execution_preconditions": [
+          "sealed Universal ZIP/archive and 14 entry digests verified",
+          "328-anchor v2 artifact validates and stable IDs recompute",
+          "replacement design artifact has immutable digest",
+          "L4 proposed projection migration is installed in isolated test DB",
+          "producer, decider and verifier identities are registered and separable",
+          "fixture input contains no secret/PII and uses isolated result directory"
+        ],
+        "fixtures": [
+          {
+            "fixture_id": "UWR-C04-P01",
+            "polarity": "positive",
+            "input_contract": {
+              "initial": "DRAFT",
+              "added_routes": [
+                "MANAGER_REVIEW->APPROVED",
+                "EXECUTIVE_REVIEW->APPROVED",
+                "reachable nonterminal->CANCELLED"
+              ]
+            },
+            "expected": {
+              "verdict": "passed",
+              "failure_code": null,
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C04-N01",
+            "polarity": "negative",
+            "input_contract": {
+              "fixture": "original E008",
+              "expected_unreachable": [
+                "APPROVED",
+                "CANCELLED"
+              ]
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UWR_TERMINAL_UNREACHABLE",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C04-N02",
+            "polarity": "negative",
+            "input_contract": {
+              "terminal": "outgoing state mutation"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_WORKFLOW_COMPLETENESS_FAILED",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          }
+        ],
+        "oracle": {
+          "oracle_id": "C-UWR-04-ORACLE-V1",
+          "deterministic_checks": [
+            "graph traversal reaches every declared terminal from initial state in positive fixture",
+            "original digest fails with exact unreachable terminal set",
+            "terminal has no outgoing state mutation"
+          ],
+          "forbidden_false_green": [
+            "declared terminal count",
+            "state object existence",
+            "negative fixture counted as positive coverage"
+          ]
+        },
+        "gate": {
+          "gate_id": "HIL_UWR_CONFLICT_04",
+          "receipt_type": "universal_conflict_gate_receipt.v1",
+          "db_receipt_queries": [
+            {
+              "query_id": "C-UWR-04-Q01",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_conflicts WHERE conflict_id = :conflict_id AND revision = :revision AND receipt_digest IS NOT NULL",
+              "parameters": {
+                "conflict_id": "C-UWR-04",
+                "revision": "UWR-DEC-C04-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-04-Q02",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_fixture_cases WHERE conflict_id = :conflict_id AND execution_status = 'passed' AND actual_verdict = expected_verdict AND COALESCE(actual_failure_code, '') = COALESCE(expected_failure_code, '')",
+              "parameters": {
+                "conflict_id": "C-UWR-04"
+              },
+              "expected": {
+                "n": 3
+              }
+            },
+            {
+              "query_id": "C-UWR-04-Q03",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM gate_runs WHERE gate_id = :gate_id AND status = 'passed' AND evidence_path <> ''",
+              "parameters": {
+                "gate_id": "HIL_UWR_CONFLICT_04"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-04-Q04",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_family_receipts WHERE family = :family AND authority_revision = :revision AND verdict = 'passed' AND review_receipt_digest IS NOT NULL",
+              "parameters": {
+                "family": "C-UWR-04",
+                "revision": "UWR-DEC-C04-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            }
+          ],
+          "pass_condition": "all fixtures executed with exact expected verdict/code, all four DB queries match, independent receipt digest binds same fixture/oracle/replacement digests"
+        },
+        "independent_verifier": {
+          "role": "WorkflowReachabilityIndependentVerifier",
+          "provider_constraint": "different_runtime_or_model_family_from_producer_and_decider",
+          "input_digests": [
+            "anchor_artifact_digest",
+            "replacement_design_digest",
+            "fixture_bundle_digest",
+            "oracle_version_digest"
+          ],
+          "output_receipt": "c-uwr-04-independent-verification-receipt.v1",
+          "self_verification_forbidden": true
+        },
+        "execution_state": "designed_not_executed"
+      },
+      {
+        "conflict_id": "C-UWR-05",
+        "decision_revision": "UWR-DEC-C05-R1",
+        "replacement_design": {
+          "design_id": "UWR-DESIGN-RUNTIME-ORCHESTRATION-V2",
+          "version": "1.0.0",
+          "contract": {
+            "canonical_names": [
+              "candidates",
+              "destinations",
+              "deadline_policy"
+            ],
+            "entities": [
+              "task",
+              "schedule",
+              "resource",
+              "allocation_policy"
+            ],
+            "mandatory_routes": [
+              "fallback",
+              "dead_letter"
+            ],
+            "legacy_alias": "input-only with expiry"
+          },
+          "digest_precondition": "sha256(replacement canonical JSON) must equal decision receipt replacement_design_digest"
+        },
+        "execution_preconditions": [
+          "sealed Universal ZIP/archive and 14 entry digests verified",
+          "328-anchor v2 artifact validates and stable IDs recompute",
+          "replacement design artifact has immutable digest",
+          "L4 proposed projection migration is installed in isolated test DB",
+          "producer, decider and verifier identities are registered and separable",
+          "fixture input contains no secret/PII and uses isolated result directory"
+        ],
+        "fixtures": [
+          {
+            "fixture_id": "UWR-C05-P01",
+            "polarity": "positive",
+            "input_contract": {
+              "ready_tasks": "scheduled",
+              "allocation": "capability/capacity valid",
+              "terminal_routes": "bounded"
+            },
+            "expected": {
+              "verdict": "passed",
+              "failure_code": null,
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C05-N01",
+            "polarity": "negative",
+            "input_contract": {
+              "schedule_entity": "missing"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_UWR_ORCHESTRATION_SCHEMA_DRIFT",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C05-N02",
+            "polarity": "negative",
+            "input_contract": {
+              "allocation": "over capacity and drops required work"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_REQUIRED_PROCESSING_DROPPED",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          },
+          {
+            "fixture_id": "UWR-C05-N03",
+            "polarity": "negative",
+            "input_contract": {
+              "canonical_output": "legacy alias",
+              "retry": "unbounded",
+              "dead_letter": "missing"
+            },
+            "expected": {
+              "verdict": "failed",
+              "failure_code": "HIL_RUNTIME_ORCHESTRATION_ROUTE_MISSING",
+              "receipt_required": true
+            },
+            "current_receipt_written": false,
+            "execution_state": "designed_not_executed"
+          }
+        ],
+        "oracle": {
+          "oracle_id": "C-UWR-05-ORACLE-V1",
+          "deterministic_checks": [
+            "every ready task receives schedule/allocation or explicit checkpoint/fallback/dead-letter",
+            "sum allocation never exceeds capacity/concurrency/budget",
+            "canonical output has no legacy alias",
+            "resource exhaustion does not reduce required evidence"
+          ],
+          "forbidden_false_green": [
+            "some tasks successfully allocated",
+            "aggregate capacity only",
+            "retry exists without bound",
+            "resource limit used to drop work"
+          ]
+        },
+        "gate": {
+          "gate_id": "HIL_UWR_CONFLICT_05",
+          "receipt_type": "universal_conflict_gate_receipt.v1",
+          "db_receipt_queries": [
+            {
+              "query_id": "C-UWR-05-Q01",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_conflicts WHERE conflict_id = :conflict_id AND revision = :revision AND receipt_digest IS NOT NULL",
+              "parameters": {
+                "conflict_id": "C-UWR-05",
+                "revision": "UWR-DEC-C05-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-05-Q02",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_fixture_cases WHERE conflict_id = :conflict_id AND execution_status = 'passed' AND actual_verdict = expected_verdict AND COALESCE(actual_failure_code, '') = COALESCE(expected_failure_code, '')",
+              "parameters": {
+                "conflict_id": "C-UWR-05"
+              },
+              "expected": {
+                "n": 4
+              }
+            },
+            {
+              "query_id": "C-UWR-05-Q03",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM gate_runs WHERE gate_id = :gate_id AND status = 'passed' AND evidence_path <> ''",
+              "parameters": {
+                "gate_id": "HIL_UWR_CONFLICT_05"
+              },
+              "expected": {
+                "n": 1
+              }
+            },
+            {
+              "query_id": "C-UWR-05-Q04",
+              "schema_binding": "L4-proposed-projection",
+              "sql": "SELECT COUNT(*) AS n FROM universal_family_receipts WHERE family = :family AND authority_revision = :revision AND verdict = 'passed' AND review_receipt_digest IS NOT NULL",
+              "parameters": {
+                "family": "C-UWR-05",
+                "revision": "UWR-DEC-C05-R1"
+              },
+              "expected": {
+                "n": 1
+              }
+            }
+          ],
+          "pass_condition": "all fixtures executed with exact expected verdict/code, all four DB queries match, independent receipt digest binds same fixture/oracle/replacement digests"
+        },
+        "independent_verifier": {
+          "role": "RuntimeOrchestrationIndependentVerifier",
+          "provider_constraint": "different_runtime_or_model_family_from_producer_and_decider",
+          "input_digests": [
+            "anchor_artifact_digest",
+            "replacement_design_digest",
+            "fixture_bundle_digest",
+            "oracle_version_digest"
+          ],
+          "output_receipt": "c-uwr-05-independent-verification-receipt.v1",
+          "self_verification_forbidden": true
+        },
+        "execution_state": "designed_not_executed"
+      }
+    ],
+    "summary": {
+      "conflicts": 5,
+      "fixtures": 16,
+      "executed": 0,
+      "passed": 0,
+      "closed": 0
+    }
+  },
+  "validation": {
+    "json_schema": "passed",
+    "read_only_query_check": "passed",
+    "execution": "not_run"
+  }
+}

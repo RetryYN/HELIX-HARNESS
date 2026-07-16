@@ -1,0 +1,141 @@
+schema: hybrid-python-callable-edge.v1
+status: draft
+archive_sha256: sha256:9c547ba8bc9eaf3a12f27254fd3eb6d04b37fb8c899f13d56ceb0d2cff179fb3
+authority: source_snapshot_proposal
+coverage_credit: false
+expected:
+  modules: 29
+  callables: 229
+  kinds:
+    top: 188
+    method: 18
+    nested: 23
+  missing_end_span: 0
+  unique_ast_structural_digest: 229
+  qualified_name_duplicate_groups: 1
+known_duplicate:
+  entry_path: hybrid-docgen/tools/schedule.py
+  qualified_name: analyze._lv_in
+  occurrences:
+    - {line: 286, branch_signature: Try.body}
+    - {line: 292, branch_signature: "Try.handlers[Exception]"}
+stable_ids:
+  callable_id:
+    format: HPY-CALL-{digest20}
+    algorithm: sha256-prefix20
+    input: canonical_path NUL kind NUL qualified_name NUL lexical_branch_signature NUL same_signature_ordinal
+  anchor_version_id:
+    format: HPY-AV-{sha256}
+    algorithm: sha256
+    input: archive_sha256 NUL module_sha256 NUL ast_structural_sha256 NUL exact_span_sha256
+required_record_fields:
+  - schema_version
+  - extractor
+  - callable_id
+  - anchor_version_id
+  - source
+  - symbol
+  - route
+  - ownership
+  - effects
+  - failure
+  - fixtures
+  - edges
+  - disposition
+  - disposition.authority_receipt
+  - coverage_credit
+route:
+  primary_enum: [behavior, container, exposure, fixture, support]
+  status_enum: [proposed, verified]
+  exactly_one_primary: true
+ownership:
+  runtime_owner_enum: [node_control, python_proposal, fixture_only, none]
+  required_edges:
+    - requirement_ids
+    - l3_fr_ids
+    - acceptance_ids
+    - design_component_ids
+    - decision_owner
+    - effect_authority
+effects:
+  kind_enum: [fs_read, fs_write, process, network, env, clock, random, memory]
+  directness_enum: [direct, transitive, unknown]
+failure:
+  fail_mode_enum: [closed, open, mixed, unknown]
+  required_contracts: [contract_codes, retry, idempotency, timeout, cancel, verified_by]
+disposition:
+  semantic_enum: [pending, adopt, harden, redesign, reject, absorbed]
+  runtime_enum: [pending, reuse_as_is, reuse_with_adapter, redesign]
+invariants:
+  - callable path, kind, qualified name, parent, branch, ordinal, spans, and digests are source-derived
+  - proposed route always has coverage credit false
+  - verified route alone cannot activate adoption
+  - ownership, effect, failure, fixture, design, test, and gate edges must all close before adoption
+  - Python output remains proposal-only and Node revalidates schema, authority, and digest
+  - duplicate qualified names are separated by branch signature and ordinal
+  - dynamic loader modules require runtime fixture closure
+current:
+  source_candidate_rows_generatable: 229
+  source_candidate_rows_materialized: 229
+  source_candidate_artifact: docs/governance/generated/hybrid-python-callables-semantic-229-v2.json
+  source_candidate_artifact_sha256: sha256:782f36dc37cd17ae6de462da55a86aed79d82a62e3ca70f2e57c7a57696615b7
+  deterministic_reruns: 2
+  source_candidate_schema_validation: passed
+  closure_edge_schema_validation: failed
+  static_rule_id: hybrid-callable-static-rules.v1
+  static_rule_digest: sha256:e93a3dfd628cbd03c52e5f4b931b8425ca2cef545050d328ea79326fee7f38df
+  route_candidate_nonempty: 55
+  primary_fixture_candidate: 18
+  primary_route_pending: 211
+  exposure_candidate_nonempty: 37
+  effect_candidate_nonempty: 81
+  effect_unknown: 148
+  semantic_rule_id: hybrid-callable-semantic-proposal.v1
+  semantic_rule_digest: sha256:7df772c2ae9dc30d1c04b1fa6f764cb080b43e927f8100081d98e7d27606c97e
+  semantic_family_candidate_nonempty: 229
+  semantic_family_ambiguous_pending: 0
+  semantic_family_candidate_unique: 121
+  runtime_owner_candidate_nonempty: 229
+  effect_authority_candidate_nonempty: 229
+  static_rule_v2_digest: sha256:fe46c91b9763a5588eee66a7cf03b151ad45d61577e91b0c16859bfbc5f78852
+  ambiguous_adjudication_digest: sha256:0931ae534ed8abceb5337264df48e1426ecbe2458311cf7662f9e284239f7bcd
+  integration_digest: sha256:847c4e2169a6eddafa961b4d97476fee51e999f6d50ffa6c10c294cda35d7d22
+  fixture_contract_artifact: docs/test-design/helix/hybrid-python-callable-fixture-contracts-v1.json
+  fixture_contract_artifact_sha256: sha256:2c0e8ed4cadb2fa76eb8ab4b41a41a42d7d120433e0b866dd42fe819d0a49067
+  fixture_rule_digest: sha256:ec51df8b5c6aa8d345b6d2c0f613bf528c759dd39607e5a2a29573af179d7f4e
+  disposition_candidate_artifact: docs/governance/generated/hybrid-python-callable-disposition-candidates-v1.json
+  disposition_candidate_artifact_sha256: sha256:2995c3fd76df58a748157c4a769608b01b4da528579ec68a0641476b7a5b029e
+  disposition_candidate_content_sha256: sha256:8a434639fcd3fc65e42143484d16b3c5b68f8d769d738e51b34142b3aaab92dd
+  disposition_candidate_rows: 229
+  disposition_candidate_unique_callables: 229
+  disposition_candidate_adopt: 84
+  disposition_candidate_redesign: 7
+  disposition_candidate_reject: 18
+  disposition_candidate_defer: 120
+  fixtures_designed: 229
+  fixtures_design_pending: 0
+  fixture_positive_cases: 229
+  fixture_negative_cases: 229
+  fixture_boundary_cases: 229
+  fixture_total_cases: 687
+  fixtures_executed: 0
+  fixture_cases_executed: 0
+  verified_routes: 0
+  verified_callable_edges: 0
+  adopted_callables: 0
+  callable_ownership_edges: 0
+  dynamic_module_traces: 0
+  active_modules: 0
+  local_import_edges_pending: 51
+  external_top_modules_pending: 23
+  dynamic_loader_modules: [build.py, util.py, spec_types.py, spec_check.py]
+  disposition_semantic_review_artifact: docs/governance/generated/hybrid-python-disposition-semantic-review-v1.json
+  disposition_semantic_review_sha256: sha256:23da39faf27529a08ed530b4b874a75aa4174c18586c28ae4c16dd3c33e76aa3
+  disposition_semantic_review_rows: 229
+  disposition_semantic_review_misclassifications: 0
+  disposition_semantic_review_overlay_rows: 0
+  disposition_semantic_review_adopt_static_edge_failures: 0
+  disposition_semantic_review_nonadopt_expected_boundary_mismatches: 26
+  disposition_semantic_review_verified_adoptions: 0
+  disposition_semantic_review_coverage_credit_true: 0
+  freeze_verdict: failed

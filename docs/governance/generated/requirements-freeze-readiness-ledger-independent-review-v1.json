@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "producer_stale_zero": true,
+    "section0_current": true,
+    "section1_current": true,
+    "section2_critical_current": true,
+    "section3_fixed_model_current": true,
+    "section3_model_sha_current": true
+  },
+  "decision": "Design Freeze receiptと100/100 Designは支持する。Runtime Acceptanceは0/100の別軸で、baseline SHAまたはmodel参照がstaleなら台帳currentnessを支持しない。",
+  "findings": [],
+  "schema_version": "helix.requirements-freeze-readiness-ledger-independent-review.v1",
+  "sources": {
+    "critical_path": {
+      "sha256": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8"
+    },
+    "ledger": {
+      "sha256": "10d5eb5d2653906a8cfc29e7323dc84e0724e0c9bd649ddb4f61153cf8f84515"
+    },
+    "model_artifact": {
+      "sha256": "90745b8ea51891883db52b2ef41a993507de128514cccdfb42ff7e17edf6c3a1"
+    },
+    "model_script": {
+      "sha256": "871acf50a73670e9eda376015d6e04fef03e3bbff59577183f703fb484d0822b"
+    }
+  },
+  "status": "independent_review_pass_current",
+  "summary": {
+    "coverage_credit_true": 0,
+    "critical_authority_activated": true,
+    "critical_design_rows": 8,
+    "critical_open_rows": 0,
+    "design_gates": 40,
+    "design_points_recalculated": 100.0,
+    "independent_stale_findings": 0,
+    "producer_stale_claim": 0,
+    "runtime_points_recalculated": 0,
+    "section0_sha_references": 44,
+    "section0_stale_sha": 0,
+    "section1_stale_claims": 0,
+    "verified_true": 0,
+    "weights": 100,
+    "workstreams": 10
+  }
+}

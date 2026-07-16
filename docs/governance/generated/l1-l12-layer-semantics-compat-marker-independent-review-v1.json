@@ -1,0 +1,28 @@
+{
+  "claim_boundary": "互換checkのみ。Design closure判定はstrict v3を正本とし、本artifact単独で判定・coverage昇格しない。",
+  "schema_version": "helix.layer-semantics-compat-marker-independent-review.v3-compat",
+  "sources": {
+    "compatibility_ledger": {
+      "path": "docs/governance/generated/l1-l12-layer-semantics-compatibility-ledger-v1.json",
+      "sha256": "dabe9cb677c5d43904905c83b555cb5e20968df0c413aa3b03a05432e5bb6d73"
+    },
+    "inventory": {
+      "path": "docs/governance/generated/l1-l12-layer-semantics-drift-inventory-v1.json",
+      "sha256": "4139955e67dc7f1c8f5e11b2c0f14f105412fb32cbaede55dcdeb6b126537c71"
+    }
+  },
+  "status": "superseded_by_strict_v3_current",
+  "summary": {
+    "coverage_credit_true": 0,
+    "marker_files": 0,
+    "runtime_mutations": 0,
+    "strict_unresolved": 0,
+    "verified_true": 0
+  },
+  "superseded_by": {
+    "path": "docs/governance/generated/l1-l12-layer-semantics-remediation-independent-review-v3.json",
+    "schema_version": "helix.layer-semantics-remediation-independent-review.v3",
+    "sha256": "ea722f49b9d83e07c477431a19852a0e397762a8cb2f3587cd1251f24c60ef9b",
+    "status": "independent_review_pass_design_closed_runtime_unchanged"
+  }
+}

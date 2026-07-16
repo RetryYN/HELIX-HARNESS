@@ -1,0 +1,4052 @@
+{
+  "schema_version": "helix.predecessor-pr-semantic-review.v1",
+  "status": "semantic_review_complete_authority_and_runtime_verification_pending",
+  "generated_at": "2026-07-16",
+  "source": {
+    "path": "docs/governance/generated/predecessor-pr-plan-join-71-v1.json",
+    "sha256": "bb8187cdfa28da6c906a672a51ac3f8534a5bfe311120d2e2363bf2a2013dbb6",
+    "rows": 71
+  },
+  "method": {
+    "evidence_basis": [
+      "title",
+      "body_presence",
+      "commit_range_digest",
+      "changed_path_digest",
+      "behavior_families",
+      "current_check_observation"
+    ],
+    "historical_plan_ids_are_authority": false,
+    "current_check_is_behavior_verification": false,
+    "dispositions": [
+      "adopt",
+      "harden",
+      "redesign",
+      "reject",
+      "defer"
+    ]
+  },
+  "summary": {
+    "rows": 71,
+    "unique_pr_ids": 71,
+    "no_explicit_plan": 9,
+    "by_disposition": {
+      "harden": 51,
+      "adopt": 5,
+      "redesign": 8,
+      "defer": 6,
+      "reject": 1
+    },
+    "verified": 0,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "all_71_rows_reviewed",
+    "no_plan_9_preserved",
+    "every_row_has_current_hil_and_hr_mapping",
+    "historical_plan_name_join_not_used_as_current_authority",
+    "verified_zero",
+    "coverage_credit_zero"
+  ],
+  "records": [
+    {
+      "pr_id": "predecessor-ut#1",
+      "repository_id": "predecessor-ut",
+      "number": 1,
+      "title": "[codex] add proposal document coverage routing",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "60637235ec3560c28323bd3ec62e3371c82312a0",
+        "merge_oid": "e7c49b5309f2dddf0bec361ac7f27e964b83dd12",
+        "commit_range_digest": "b6fd6c70abf6bc051f02a07263dfa50b713feb5568667934103fb98835d33da9",
+        "changed_path_digest": "5dd80aba50a9c1ab57ba8a3751bf189b88299d6775b724c80d3f8ded0daf9c90",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "routingは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "0b52a58861df1968d9da5b3468789a5acb3181d57df1673e192bfde62de6c166",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#2",
+      "repository_id": "predecessor-ut",
+      "number": 2,
+      "title": "chore: close local l10-l14 validation gates",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "fc488322fbef03f513fa76068d411611da8c70d4",
+        "merge_oid": "2692de191d7b7b6c3535fd2fe3fa00fecd61029a",
+        "commit_range_digest": "f792f2f253883262eb29e9287910319446273620d2dc7c8d3ee1762b98e0b047",
+        "changed_path_digest": "aa39885002b969df6ad65d5a7b1197ce7bec534a91faa4ae7502e1f7453397e9",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "58e9f42ff7fdbfd34f70352e9cf75e7ff271bb7413235e6301ccb62ec2bdff30",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#3",
+      "repository_id": "predecessor-ut",
+      "number": 3,
+      "title": "refactor(doctor): centralize run profile registry",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "ada3b126a660275d088ee41f980591ce570ed631",
+        "merge_oid": "1e414abcff1afc75de140b2d5f1df0bfbf01e13a",
+        "commit_range_digest": "bb6cd14eecb2e1c1f847f2982f74c629deb3aaf400217741066984093a0f8998",
+        "changed_path_digest": "70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c",
+        "behavior_families": [
+          "test_verification"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "db11f8a2aac1efb3d379b65c924ac6ed2772d936b70a891b42a76ef6b87dcec8",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#4",
+      "repository_id": "predecessor-ut",
+      "number": 4,
+      "title": "refactor(doctor): expose profile audience helpers",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "744cc2786dc45ed01d15b39ba4c6a3cf6f4544ce",
+        "merge_oid": "349b2794cfc788f57f2489844abb83b3686ad97d",
+        "commit_range_digest": "2791bdf83f597eaabd948f6cb814585a8d1033cd5981e5e305bcc390a9925b38",
+        "changed_path_digest": "70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c",
+        "behavior_families": [
+          "test_verification"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "8277459833b9fabe2356cd107f6df56bcad9d98d747d7845afcb5c2772db8513",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#5",
+      "repository_id": "predecessor-ut",
+      "number": 5,
+      "title": "refactor(doctor): guard consumer-safe profiles",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "f2e82d5ac980b8d8cd504592b8e14a207a09e8f0",
+        "merge_oid": "7aa4b8b06e74c8dc1cf33dfb4f5a257fd5d13210",
+        "commit_range_digest": "c0054c5a4b6f190907b0ba76bacd7430d43fa9628f7b6f089617aa96675464a4",
+        "changed_path_digest": "70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c",
+        "behavior_families": [
+          "test_verification"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "ac1dae0e385c165497eae5781d0f2004cd8e117d94920ee657b78326ccf9f330",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#6",
+      "repository_id": "predecessor-ut",
+      "number": 6,
+      "title": "docs(plan): register db-driven refactor follow-ups",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "b582adde5a475bb6918333ad5f6d39993aac19ae",
+        "merge_oid": "02ad2e493e8cdb7be7fed31f3f63c861a3bd217a",
+        "commit_range_digest": "17e05c164c30939ce0055f2f5d39a35ec56714098e6616438b7d4ee7f9bbba4b",
+        "changed_path_digest": "320fb25edb02e5847bee49b157a5211b9c609fc9965bc9ee25d421f0b23000a3",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projection・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "24ed06f5b71fd38fd892a7558ad6cc5a0e792781f650e530705b785f11e4968f",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#7",
+      "repository_id": "predecessor-ut",
+      "number": 7,
+      "title": "refactor(doctor): split db currency gate",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "0d8c635f1bb91483055d5f9e7c1fafb7d767e034",
+        "merge_oid": "cd84be23bb3cabc8a663ba8dc71490309769aba7",
+        "commit_range_digest": "e19c740ea55bf359c5a7f998ba02acbfb1cf191c9e072a586fdbd05d3f97a554",
+        "changed_path_digest": "99f7134f18166c953043f8a0f85dad59d8d320830500987b6ad1b9a47c0876c6",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・検証・gate証拠・DB/event projectionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "90c8aae6325d92eb3700eaff773018498e48ae0efca8113502e359f77277f313",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#8",
+      "repository_id": "predecessor-ut",
+      "number": 8,
+      "title": "refactor(feedback): surface actionable takeover events",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "374d4ee130e0d53da441dd1a1c6d140ab8041c50",
+        "merge_oid": "d0521b67931d8bd623c3bdb72f819b6841c7c4c7",
+        "commit_range_digest": "ec7167c62336ca14f46325e4919076d6546dbd153346e69b7d7fe0d1b8359b39",
+        "changed_path_digest": "318a6b4886d727fe287945d750052109ef2e564b4f34378509bd68971ee1ad22",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projectionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "f34bea8263ec177ff8f5ee6b0da561f336b7181ae0eb40132c4c060abf0112a8",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#9",
+      "repository_id": "predecessor-ut",
+      "number": 9,
+      "title": "refactor(doctor): expose run profiles",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "9f8ee327b2473e2badc18fbb6c8d8da28a352e8b",
+        "merge_oid": "925ea2aefcc3545f4898f1053053b2a2ee7963cf",
+        "commit_range_digest": "e9ce19b7479cbeb4d91e4e401167f4bc2058402a21c061cc048870af5a116491",
+        "changed_path_digest": "ab576d05e104d1092c8e7542591ddc1b43f9a2d5d0f096800dbf74db6fca2fb8",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "79a7bf0bff15ed84af3c809a46b53cc6cdbfe681b689150a0cb78730ba3c3046",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#10",
+      "repository_id": "predecessor-ut",
+      "number": 10,
+      "title": "refactor(setup): allow standalone readiness",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "f54f9cacdb2d20c20e32d98081c9d948a494c2e5",
+        "merge_oid": "8c748fd428b099656e158b83b1377b7f528e8287",
+        "commit_range_digest": "d4ee530dd46e8edf2ea1bb039d8886229e659628518ac037b52aff0c14f831bb",
+        "changed_path_digest": "9e7eb3913e98e637016af572428b9fd9fc71c41e1517f5916b9baeeeab03471b",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "setup/distributionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "29131764383f001031eb0bc2c525571ed6e546e0f1d2394718b201b4e857dbcf",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#11",
+      "repository_id": "predecessor-ut",
+      "number": 11,
+      "title": "refactor(setup): use consumer doctor profile in templates",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "261d749f80222529e7b2abacffb847ac3a8823f8",
+        "merge_oid": "2d9c647f50e5652d4afe66a766e59a7ed82722db",
+        "commit_range_digest": "06510b9e93f8cb012a45fe14844a3e17b7dfd2450d3de685506d74c2b2791cc2",
+        "changed_path_digest": "1421dbae50bbb20a950a92a0537b79e3574749c4cd7ff83e34aae7196043cb55",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・setup/distributionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "2ca0ae905b3732ce39da3a60899ce9a934216d42a41f0ed67cd885fa8b373b59",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#12",
+      "repository_id": "predecessor-ut",
+      "number": 12,
+      "title": "refactor: extract doctor profile registry",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "e6596c07b22f3dbf8b51bb1fa7c22553de331f3b",
+        "merge_oid": "700b817ea39c92eab949d0028833b5f22de3e01d",
+        "commit_range_digest": "3172256ec46529816695a5200f2c8407689f93714efc62c6a5aeb15b35169748",
+        "changed_path_digest": "ce6894b01c37a4adaf0526d7155753f9385b3e9f3a3ba057912f4a5c6429e1a9",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "2d28cd57e0e2bda95d439bf97a6e422f9fd542cb3798124c6424f61152df3bd9",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#13",
+      "repository_id": "predecessor-ut",
+      "number": 13,
+      "title": "refactor: split doctor runner modules",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "150d69492846f24ee7d13fcc7a8dbc7f61e4629f",
+        "merge_oid": "efa3e01e4f663bec6efcb1da49e9148757da28d8",
+        "commit_range_digest": "a41eafb06bf33dad1f59de5dc7bdeb77df4ec930a9664424a2ef7b9d87376a6a",
+        "changed_path_digest": "b43150c6f8f83f28534259165f080e8b610bf41e743c7467c367d572eadb8838",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "fa9dd69308927f98fd48fc35bb64ff4103beca64194463f484fb2a749c16b2b3",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#14",
+      "repository_id": "predecessor-ut",
+      "number": 14,
+      "title": "feat: add consumer toolchain doctor profile",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "af658d515e923c5a5b7d35e6e96d6aa894caca47",
+        "merge_oid": "50fc0170151f8225a5ffe5fb38a9efd31aa2ccfc",
+        "commit_range_digest": "765ad28d6f5165da3ffe128439f26bb93d6111aa8503bacac50856fb5023b36d",
+        "changed_path_digest": "7d5f470289a61aa24a61ceefb1a7eecb6bf6a8ac988063ca0419ef141710001d",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・setup/distributionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "c240af590aad9942ebd0a5eda868cc7d1334820e4da03d498b833084a1406db0",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#15",
+      "repository_id": "predecessor-ut",
+      "number": 15,
+      "title": "[codex] Sync consumer toolchain adapter guidance",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "abab4dd09c08d255a799bbb2675a5b026256937e",
+        "merge_oid": "5c424eb5d1231964a97b7f575349c8958c8adbd0",
+        "commit_range_digest": "d0de20ca023f2b1295c095f3796218a0a78ce6a1aa9132bfd9025b3cc9042d9d",
+        "changed_path_digest": "239390dc020a8def4c583e5e9ee9aa018748392603e73986ff0a3c973767f7fb",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "setup/distributionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "ac2678bd338260ba0e21bf528bd89bb5e54742d60eb907c8de2e1e1fa32d007e",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#16",
+      "repository_id": "predecessor-ut",
+      "number": 16,
+      "title": "[codex] Group doctor check definitions",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "65e7e0b8659c35a5ca1a32761c5d9e7406388211",
+        "merge_oid": "0bf9f45d4a266fbb95272bff72f28da6d00b14a2",
+        "commit_range_digest": "feb085555255895741a5c3fef0e3b19b64f541844bcf11cf5f4aa64e76da5cfc",
+        "changed_path_digest": "0fe1de55a100be1cc8478abe5c0516b9a26361823cde36611e54a4cbfc5d845c",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・検証・gate証拠は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "67d0c0f5df3fa84541a267e6a257fccc621b252a71627f339c0cbe2dc7d62e2b",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#17",
+      "repository_id": "predecessor-ut",
+      "number": 17,
+      "title": "refactor: lazy-cache doctor test fixture",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "b78dacee146bf5f7a3183795ebf7aa53a09a85be",
+        "merge_oid": "302f6163bf48d779ba392af9e29eaed887acb8ef",
+        "commit_range_digest": "b9f9c31425114d31ccb184c69d041086359148de82694358f4564b73239ec0d5",
+        "changed_path_digest": "88591e8f1195083ace0d08835dcefb02e5e8439a66d81b373a2970c432ed0070",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界は有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "3d092a2d2e0e86f01f6886d794653666fa0ac6776eef069dc82f4d776e62e952",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#18",
+      "repository_id": "predecessor-ut",
+      "number": 18,
+      "title": "test: add direct doctor submodule checks",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "0b30834f92b4d99806fa8614a8984e74938c76e7",
+        "merge_oid": "25513aaf0473ab33f4b515acb6516dca5d387a94",
+        "commit_range_digest": "055fee5095d01a9caf26424bf49b12961d3d19c3d5683df3b7e552264deebbea",
+        "changed_path_digest": "2a511688da3ce94ea26038bca12b4e5f0256ed1e731efb03eafa30332583387e",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・検証・gate証拠の原子的oracleは現行要件へ直接採用候補。ただし現行実装で再検証が必要。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "afd877a543c14a865937545ee31f3742010298ec0571d00392cb378a1e520fc7",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#19",
+      "repository_id": "predecessor-ut",
+      "number": 19,
+      "title": "test: add direct doctor runtime-state checks",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "661d7a07ace63111507699625a1fec82245443e6",
+        "merge_oid": "10fa97ddd5f8c0c9dc971add8e6f8756e0017b1d",
+        "commit_range_digest": "17041527e25c8c73c2bf32a407174621235ea9252b0031009d9cc9cf0f42f9b2",
+        "changed_path_digest": "b20aeb946bf760cc988be2594cdb9c892d78609089f75e93c956e2380f71b984",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・検証・gate証拠の原子的oracleは現行要件へ直接採用候補。ただし現行実装で再検証が必要。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "fca7b29294d1f67d837af2aa25eeae73f2a2358ec59692dec1d7c9054a39942d",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#20",
+      "repository_id": "predecessor-ut",
+      "number": 20,
+      "title": "feat(recovery): RECOVERY-10 Stage 1 (route_mode fail-close) + vmodel-docgen reference-mining, merge Codex doctor refactor",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "8f549a83b6d590be4441d22537bb7c3755c3f2ca",
+        "merge_oid": "aaa40d065c73fecc96952e7c76b4e9c0d4ff7857",
+        "commit_range_digest": "08b8ab65c418b4587c26323801386a2244f4e26594e8fe7a7839c9a8c978df36",
+        "changed_path_digest": "0e013569fea2317ac0fc3be7164b7d03e141e7f81096cc42edb42f72cdfe78b1",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・routing・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "eed36615b1e79d9d1046aed705e7ca862cbc1fdec980bf2d65230b8356674153",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#21",
+      "repository_id": "predecessor-ut",
+      "number": 21,
+      "title": "[codex] Preserve context diversity in session surfaces",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "b9e7b4243fcbccc5a1423fe0c266828dd8f0b4bd",
+        "merge_oid": "e9610dfefe87a99a608936455c0b0c7b8855b0c2",
+        "commit_range_digest": "bb4414ee77f84c4f3251990b6e9ebb13966c59246beacbacfb12ef358294c232",
+        "changed_path_digest": "16807e334a92f036a759021d264aa76ecfe1efd605c9f520d94dfcb5420c3a40",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projectionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "0bd78901599c5aec90d4bb25a8610a8fb91a98371a4f0bef737230f5791d0931",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#22",
+      "repository_id": "predecessor-ut",
+      "number": 22,
+      "title": "Add design doc cross integrity gate",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "8ce5feb56aa4e4db61773490f97cf1744185992e",
+        "merge_oid": "3b1d77db5c5915e586741279be713e771ada0a2b",
+        "commit_range_digest": "7201ddcde72f565f478d93412e52b0ed975e6b55b2892e4bb1bd29a8713bd680",
+        "changed_path_digest": "0eb9cee4c593bd2db4afc1bc02fd35f0bd9d16c1d08b72d6255ec078031deb8e",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "1cbaf63265a74c8b593a8c7a6195f2ac970372deb1f15b4169fce2630afe558f",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#23",
+      "repository_id": "predecessor-ut",
+      "number": 23,
+      "title": "Backfill CLI command boundary design",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "3d352708ddb9e06d81b8a9dc10b5414f6a357d43",
+        "merge_oid": "d4a32d5f328a4f2b89223b6b5902c7a7f87ec5a6",
+        "commit_range_digest": "67aa3c2c3b2e48c1a00c9c01502aa5dd3dcea99c88f11b70d8b2040dee482ec4",
+        "changed_path_digest": "672e2e126319a25ef1697a6d391088690f77c1513362965d3433280927cf29c9",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "0e8af44528806cf17463fd61f69842987ccb80af44ec85eadf901c585b1af0f2",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#24",
+      "repository_id": "predecessor-ut",
+      "number": 24,
+      "title": "Confirm L4 security slot",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "49ccaf025b9143e5c8f41595fc95f131b4ed896e",
+        "merge_oid": "225b732aabc23c1530885f612d080497471e2243",
+        "commit_range_digest": "b4d11c8d0a89c1d3279732f46cfa80a63452edb0d82131131ee10f5697efbcdf",
+        "changed_path_digest": "6794535a5f8cd4a055dfb2cf2f375a8619ccbeb7582df272a9266fd0d6f46583",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-06",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-38",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-05",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "ci_gate+test_verification+runtime_orchestration+design_governance+ui_visualは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "b35132e212f2c43a7b7a5e791b011a44e8eb0d657644871c24728ea6238f0c08",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#25",
+      "repository_id": "predecessor-ut",
+      "number": 25,
+      "title": "Add docs-wide secret scan gate",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "d86aff1dbf8e4cc6a2631de979eb121bbdb5cc0a",
+        "merge_oid": "59e811509cb049ed7787b7a735bbce1d1ddfa407",
+        "commit_range_digest": "9e98f6c665a025bd397b51e70845f1991690bb1a2f9f672f46083ee6c05e7f1e",
+        "changed_path_digest": "1e5e3c44f6c7e22061fb67a5481b4115789343bb29249e134dbc0d99e32f9dab",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-06",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-38",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-05",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠の原子的oracleは現行要件へ直接採用候補。ただし現行実装で再検証が必要。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "1e20ca7153ad170aa42d7546d48b40ea8ea66fdf811ad28436d7b94361e7bcde",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#26",
+      "repository_id": "predecessor-ut",
+      "number": 26,
+      "title": "fix(skill): connect recommendation scoring loop",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "58057838dd85bcfef17a6db575ef6f8c23cb7e0f",
+        "merge_oid": "db92a0614b8cbb6579d733f9f6efa4803ed80d5d",
+        "commit_range_digest": "971b4759942970ebca415729129c9ebc57e08d7c49ed2dd49da7865a43862b01",
+        "changed_path_digest": "29e3698f560bf1b39c94026e1df661708c09b675c682ee098a4c63c83250b408",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-41",
+        "HIL-FR-42",
+        "HIL-FR-44",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "agent/skill orchestrationは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "0f523e58c22091bceb7282007341796f46b1a8a7f6c786b17182ca249ee21564",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#27",
+      "repository_id": "predecessor-ut",
+      "number": 27,
+      "title": "fix(spec-ir): tighten detector projection boundaries",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "93d044a2656b490a0ea70179ad76c3410e717db1",
+        "merge_oid": "f6a42849f49aa5abfe7d1860416098b0670f4c8e",
+        "commit_range_digest": "2ba5b2c5cd10c7d8952983d3b29ba59b8399b0456b1e61460c95850880954e76",
+        "changed_path_digest": "d9db2e7f08c5b6178f9a3e21b24e5a79a883842dea143d473f001053562ba7ab",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projection・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "209066fd9ff1eb37a1ab526a256b61cb4872403e5820b93b0ab31081a2bfcd2c",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#28",
+      "repository_id": "predecessor-ut",
+      "number": 28,
+      "title": "fix: consolidate stable ID generation",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "740f83f985da717310271e2e2d46ce2a5e4134a5",
+        "merge_oid": "0afb86d551ed210e176d855e429d3c2db6086185",
+        "commit_range_digest": "bced54d9d13453a9b8834e4edbc54c5b133799f4c28463bf9e3820c8eeff42ce",
+        "changed_path_digest": "d3f5ba13eed097134d1b124b9fc41e06e6c0757fea551835dfa7ef90a2b2f731",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "ci_gate+test_verification+runtime_orchestration+design_governance+database_stateは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "85dc318942faf28aa2bf5d3a4094fd7ced7ea7d34461cea1a1831df408bc9870",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#29",
+      "repository_id": "predecessor-ut",
+      "number": 29,
+      "title": "fix: complete route mode allowlists",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "3718267ac0b5d179a4e6cbfa7c03e0572ec49a84",
+        "merge_oid": "a2edf631504900d9acc176db3d601e3798ecf5f6",
+        "commit_range_digest": "faac4b2518974b446f58c6598327cc2cb729cf07e1aede03d5e63bb2a36b80a8",
+        "changed_path_digest": "63576c22383d4dd345fb181f58aab121266720c0702141477c2abcbf5ba6e67a",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "routingは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "407fd872c358eeac5ec4db9f5b8c9e55f483a43c05b1c56ca36e93e027bb87cd",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#30",
+      "repository_id": "predecessor-ut",
+      "number": 30,
+      "title": "docs: backfill test plan generates",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "f384062df5eca3af20bd5e3d0401a3eda637c0d0",
+        "merge_oid": "add3742ceba7e3ab7956205824e4e733fa0f701a",
+        "commit_range_digest": "c98e5391fc368bc6c4906f6c909d665932fce6ff0ef1a330fb891a68bdaf431c",
+        "changed_path_digest": "5cb3aa6a68aef04568f76082f79567be5a514f56700804a762fe20d4e78deb8e",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 1,
+        "digest": "d61967d08f46eb12507f965440e39ebc5e48ee836b0cfb4678e006d73f84eda3",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#31",
+      "repository_id": "predecessor-ut",
+      "number": 31,
+      "title": "fix: separate stale runtime plan context findings",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "6da19b4756d7cf63a536418d1b14dada24bf5f4e",
+        "merge_oid": "185088a141ad05e3e4143328c370487f98112e99",
+        "commit_range_digest": "c2c7868204aac0a1c85418492cf3e387b16bcdefd76a1daffd84f010d491d4e1",
+        "changed_path_digest": "a1b05b9ced941da8bd83f2d714f93f9bac419bbc44609a16532777273a4dbcc1",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "041b256372a31ee53be95bd58fd43935861186bc95daf7ac09b4b9fbd2ba64e1",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#32",
+      "repository_id": "predecessor-ut",
+      "number": 32,
+      "title": "[codex] execute green command digest anchors",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "647c1606db8e946fc3aa8c3c6127c234cabf652e",
+        "merge_oid": "1afa132c9368fc362706db102880e020d7ba3d24",
+        "commit_range_digest": "f5721802daf283f82d98388dcebbbe17fef5dfb1f6d1b9ec37bd4ff961286202",
+        "changed_path_digest": "f7c00cbcfca5c992023fe6cd492df44b1fccc612d469a49e9b30c4e820ec2d31",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠の原子的oracleは現行要件へ直接採用候補。ただし現行実装で再検証が必要。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "719c4776de22d0dcc267790b3820ea65f7ef8caa62d3900337c388c405df4e15",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#33",
+      "repository_id": "predecessor-ut",
+      "number": 33,
+      "title": "[codex] rebind digest suspect evidence",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "b4491f75321f689e0a8700bcf1e434254db38064",
+        "merge_oid": "69c69504ae9d0133e7c8b5fe083f52153c2df010",
+        "commit_range_digest": "5ba2c078896b91de09fc0cbf1a5c74835495b4fd7a0a960dd8ed047fb403df7c",
+        "changed_path_digest": "aa72ad9e8058d48b320e77a79aac5c3cf34aa77bf673a99228fc99d4f918b99e",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "589d294380d2c0fc251ec5b6323367d9fbe72469764cba8538741ba1c5725a35",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#34",
+      "repository_id": "predecessor-ut",
+      "number": 34,
+      "title": "[codex] freeze execution assignment ledger design",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "634e9d41edb6a8d7e1167091fbf0acca1a347417",
+        "merge_oid": "0b0e967df127c100a24d6c7d55b80532207e88ad",
+        "commit_range_digest": "c95686c93cc4af5b087b4a48acd9456bde06641e83c831c82759b99e79087b1a",
+        "changed_path_digest": "d4dcbd9238e505dde0ca314462e3812453583bbaa2346c85d953db7c147c5335",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "agent/skill orchestration・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "343f23a6b9acd50460724d82af531d2da2e060c3fd5d12dffbd00bf1abb45563",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#35",
+      "repository_id": "predecessor-ut",
+      "number": 35,
+      "title": "feat(gate): persist gate run evidence",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "86667a9d73544a3631350d5b37b059008d5d6de4",
+        "merge_oid": "9f3c638d2fef4c65ff9d3254f9e5a89fc598f19d",
+        "commit_range_digest": "eba30742395c65c92f270487966f3482acc93f78a956ad77874fa25aa43935f3",
+        "changed_path_digest": "7fa542da2c71ed985865bdcc7bde231dc607f8d97e9aa66ccd545dc55134d1e9",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠の原子的oracleは現行要件へ直接採用候補。ただし現行実装で再検証が必要。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "d1a8bc39c23cd18c9ea113677690f29ad20df8428cac9a7bfa672eb2b1d849ab",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#36",
+      "repository_id": "predecessor-ut",
+      "number": 36,
+      "title": "[codex] Route verification defects to refactor lifecycle",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "889ee823ed04d4bcef62ba7edafbdaf3c3be8c77",
+        "merge_oid": "7651ae88655dab6c411a8900f35bd979af4929fa",
+        "commit_range_digest": "d766fc9409fce2b06b7d7dd98d76137f9478a1b1d7e0e6be2fc4b1f0f92fde9f",
+        "changed_path_digest": "367f6d34435697675e10f1db66ec13707e1bd31999a7733a61fcbb30a2f7a08f",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "routingは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "88c913047908d6142dc06c9424038a8950e6692602b959e3fa0e64ac9450e8a1",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#37",
+      "repository_id": "predecessor-ut",
+      "number": 37,
+      "title": "[codex] freeze domain and skill admission design",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "c7bbff1f95da8d79da825b8d563c9f73ae205a45",
+        "merge_oid": "62907903eaf15e80e79f15a611cc303687cd4511",
+        "commit_range_digest": "69bee8beea050dd6e0cb9cb00976b5fa188a3f8e2f6d5704d43b67b35b9ca35e",
+        "changed_path_digest": "d2b7854b70e8802d7c5fdde00678d24e617ae45873a4039593d12cbfa70a78ab",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-41",
+        "HIL-FR-42",
+        "HIL-FR-44",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "agent/skill orchestration・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "31796aac9b7fc4761f8e256ae46777c8ac3dff0389ae2676b53d5b700b78e059",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#38",
+      "repository_id": "predecessor-ut",
+      "number": 38,
+      "title": "docs(plan): PLAN-DISCOVERY-10 GPT-5.6 tier routing bench (S1)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "42f9cbf081e9d9b0dfc508acb71bdab5d3b55d71",
+        "merge_oid": "26e5454c15247ef551f873d0cbd1931a8af0277a",
+        "commit_range_digest": "1a17253e64eb135479fcabad83ad2e2081a34576dfcb676d09db729fd3e300bd",
+        "changed_path_digest": "25241b40d5364703321df94a86075ab30f6a77340d73c42cbe7a3d1cf715bf19",
+        "behavior_families": [
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "routing・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "fa3ab93df89d3cc1f09779ce9cdcb06ac3db879a85f9656132b26daff27c0cdb",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#39",
+      "repository_id": "predecessor-ut",
+      "number": 39,
+      "title": "feat: integrate V-model live SessionStart digest",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "b19c7ee3add6143594302d1ee80f75e663fe4495",
+        "merge_oid": "e948f2f4582157ad3bf0a7b5d4c45154874115c0",
+        "commit_range_digest": "616e6f8df7ed554811885e768f84d2b7cf63b19313d46b40568ff367d3fcd34d",
+        "changed_path_digest": "d5b831467243dbb7498aa6d2f25919aaad8ba541b8194a64775704ed0bcb2c9a",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・DB/event projectionは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "66c9ef1b1afe29acadb49d0c9fd3b0019d2024dd4b36c46b479458ed659f2549",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#40",
+      "repository_id": "predecessor-ut",
+      "number": 40,
+      "title": "fix: complete feedback lifecycle and memory promotion",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "7345d7e3b030512fdf361b1fcb9c40d276a63428",
+        "merge_oid": "71a023b2c74ca15dbc88c4453ca7c9adb05ca58a",
+        "commit_range_digest": "53901044d1407fe9b3a1a76e334d2a7c68afad1601b9a1823f7269efe31a2bf4",
+        "changed_path_digest": "38f65d02be568c5511f80d6114097d7e4f6294f6a0922d0d029523ab753ec96e",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projectionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "c996625b2e46dfc9eae11320b60081ce456f2cd9ced2b050e136b92d363f721f",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#41",
+      "repository_id": "predecessor-ut",
+      "number": 41,
+      "title": "feat(routing): adopt gpt-5.6 tier routing (PLAN-L7-415)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "c7b434809102e7a762a6d4bd06c563552225322e",
+        "merge_oid": "88bd16355b3ad7cd0b1b7eb65b318102f4ba23d1",
+        "commit_range_digest": "211f2cccebd944fe0b7f3045367efc2176b11a5e660515b1082d6f472d93bcc7",
+        "changed_path_digest": "0bf1bd929b2a32b06db8c6145172873b85408416071ecb6f8f77c2792d70fd50",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "routing・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "951f733d8c46ec14d2d07b7c5a072d54106142c5284e0da1b197620dad80a02b",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#42",
+      "repository_id": "predecessor-ut",
+      "number": 42,
+      "title": "fix(distribution): close export integrity defects (PLAN-L7-413)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "f7ba1c6d07024f48aa6b1e5c10b3e9c4c16144eb",
+        "merge_oid": "639fd28983a95c7dfcf1c64631f7defffe1aa33c",
+        "commit_range_digest": "6540b02010e3e33571faf96b1edf884519e04cc3a009a20da36334020feebb01",
+        "changed_path_digest": "3dbdc7ea5991e29ee2a4b51709f4c16d7a7cf55debc98cfacc6b5adb5432b1be",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "setup/distribution・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 1,
+        "digest": "2306317d3ee079f1e664b8155beb361e634dd837f3ce745e3d1e891cede89b00",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#43",
+      "repository_id": "predecessor-ut",
+      "number": 43,
+      "title": "fix(distribution): correct D-2 denylist semantics to output guard (PLAN-L7-413 followup)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "2698035910233969a76e5c2a9d91587648aea8f9",
+        "merge_oid": "044717096d5c54f41f0895b98c2a26786322410f",
+        "commit_range_digest": "e996875c98247f01b75c03e5a46c10108edfc338db18f7c026f0e3fb73be4310",
+        "changed_path_digest": "734ed64dffe03b0a25d94980a2bfb484862562baabad7044677d6476b88a978f",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "setup/distribution・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "c1c70c9073022f0b078046e7c2b7919bb6057f9262d53db04a2e5b0919fa57e6",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#44",
+      "repository_id": "predecessor-ut",
+      "number": 44,
+      "title": "fix(agent-guard): reserve fable for quality gates",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "166dceb824683b36f4d487838505da51eccfae6a",
+        "merge_oid": "158d8f4d051fc711ef6a4944b09c4d025f5f6440",
+        "commit_range_digest": "940e573287071040bb321c4e5fcc13d6a2c681c07483d0e82192c5e2731d4a01",
+        "changed_path_digest": "5da3f464caf57aba062bf918136bcc01f12c601ce614bf407bee87cc632239b4",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・agent/skill orchestrationは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "dde701a838b03bbe3a083a24f38a0cf04198e6f52a3bc08a1d230cf6910e787e",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#45",
+      "repository_id": "predecessor-ut",
+      "number": 45,
+      "title": "feat(vmodel): establish engine-swap foundation",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "ac3ad90eb66a129e60b9df9272f366023b4da3f9",
+        "merge_oid": "3d232e9cc187bc06006896dadc6774148a871a0b",
+        "commit_range_digest": "39ac662b83dea24c26b0178765f2525997e9ece86d74360ef8370761a0af86b2",
+        "changed_path_digest": "a0501340802ca6d4e03ce39653bcd5acb9af3998d6d171fbb39d575b761b9289",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "386d4257dd782085b0b65e2c8ffae4184cb9ef8de9312705f7f62f9ebee2b7b1",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#46",
+      "repository_id": "predecessor-ut",
+      "number": 46,
+      "title": "feat(vmodel): compile engine-swap contract foundation",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "44a614018b6c2faf3756c764a3fdbe83d6320d5b",
+        "merge_oid": "ef43caa0cfe6dde338d516bb4c41a732c32d2d94",
+        "commit_range_digest": "29bcbdfb5de8f6dd8333c190aab76d6ec1db49264003baeaa15a404a47da5917",
+        "changed_path_digest": "0581e564e62fa0565dacb013b19bc2fcd0cf6708b4f90bc5656bc985a46a7b35",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "994b0caba05cd58e5a506591f9c64e190485cfea5cb53256079e4355a7ee0179",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#47",
+      "repository_id": "predecessor-ut",
+      "number": 47,
+      "title": "feat(vmodel): rebuild harness engine and self-proof lifecycle",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "60e2e6a080d1b823bc3d4fee9c21a766b5fe5e70",
+        "merge_oid": "894692289031faee6c5c2e229ce8474ce4cf1ac5",
+        "commit_range_digest": "41a07fcf9c5953e4b9d9293463eb20a063f279923105815fbd74eaa256cd1a87",
+        "changed_path_digest": "0201cc1a76e28d30d35361dcdbf90ad1ac6e9a981af7763464eea7b8486b500c",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "8418c3107d2fc1d8daa468df87c690f0c5a406b256703769f38d4efd10fb2b28",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#48",
+      "repository_id": "predecessor-ut",
+      "number": 48,
+      "title": "docs(skills): add structured decision_points to all 54 baseline skills (PLAN-L7-417)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "020a298e6d29b7df0f2996ab102820ea4cf2407a",
+        "merge_oid": "d752fca6a789aa780eac7bcdd678ee425a919a95",
+        "commit_range_digest": "2e735ae0fc39c03d77c6254092ceb60a47b847063ee2522d62371d83be9214ec",
+        "changed_path_digest": "fb6ebff24407196444b1dc22a0b27370bc434f1e1dc67de75e43e9931da7a238",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-41",
+        "HIL-FR-42",
+        "HIL-FR-44",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・agent/skill orchestration・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "8cb22065021d8eb6cbfeb0c2fa713ea67a373716f6ee66cabe318e430d760ff9",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#49",
+      "repository_id": "predecessor-ut",
+      "number": 49,
+      "title": "docs(skills): vmodel judgement skill pack — 8 new skills + adversarial addendum (PLAN-L6-70)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "b9d8a2fa244049f0941b4fd69719c2a3762c5cae",
+        "merge_oid": "5db1af28845ef2df9922ffbd32507dcb15963915",
+        "commit_range_digest": "d1c9e8844112251d7796f93e2665d96898f21b6decb8212ffd2c77f14dca3d12",
+        "changed_path_digest": "60020e3e5e60995563b6c8ba39cabcdbafa645fbcef29790242305d96d7a76d5",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-39",
+        "HIL-FR-41",
+        "HIL-FR-42",
+        "HIL-FR-44",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "agent/skill orchestration・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "4593f83f939c69b73edf80aad4c585ea20a5e5b0e45fc60867bd508bc1d987d1",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#50",
+      "repository_id": "predecessor-ut",
+      "number": 50,
+      "title": "docs(skills): stage / design-family / product-profile skill slices (PLAN-L6-70 slice 2)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "fe99a0eef0d6b92bf644e335e0eb04adadd8e2c4",
+        "merge_oid": "ee007bf0352d22f36ac57e901e24acf7bb1df949",
+        "commit_range_digest": "26b3bffd41ba40c310f8556001c1dbb8e8c4b1fa902844055f71b4beaaa59d0c",
+        "changed_path_digest": "5becf57a9e9f78dccf159cac6f098b504097c6bd688cd1d7a81b62d1cc933fc6",
+        "behavior_families": [
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-41",
+        "HIL-FR-42",
+        "HIL-FR-44",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "doctor/profile境界・agent/skill orchestration・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "6d88686f59a44d9312dd545475c21ebf8792b26149134dca8e8bff06e7694df7",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#51",
+      "repository_id": "predecessor-ut",
+      "number": 51,
+      "title": "feat(review): add blind-reviewer subagent and Codex delegation role (PLAN-L6-53 rescue)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "53bcc7031a51c3cf7b30a8304597af94aca22c9d",
+        "merge_oid": "c3389733ba184f4b76b10dfba4af0a9ae73b1117",
+        "commit_range_digest": "e944146055faa75741e51982125ccb79923d0e12e8d4128e190243b88c5c1e75",
+        "changed_path_digest": "7fd6652977180f8c0054c7d2f6510877b4511fef550d704b7aa8c0db661d2e8c",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "agent/skill orchestration・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "9aa42e50c0584a8ac0e248156ed7ddb26527b2670167c49b6e288088f62e4330",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#52",
+      "repository_id": "predecessor-ut",
+      "number": 52,
+      "title": "docs(audit): A-187 checked-ZIP divergence audit + gap routing (PLAN-L4-29 / L6-78 / L6-79)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "3cd8987c75afbe617f377dcf505370dcaa7f96d6",
+        "merge_oid": "97a91757a927d136448cfe9b40fa8b0c97e23f90",
+        "commit_range_digest": "4ecb1b59700f65b91c0dcdc2017b80ab65ad4f2ea3b2786f8525b7182ffdbaae",
+        "changed_path_digest": "09e3fa35574e21626c4dfb9d70cb3a3c17f5f5d4d124ee4985d8205c537727e4",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・routing・設計governanceは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "857e0c8f6950f0fcc8360438b3f9c34b98e467008d6f62a4c7f1ca5e5cd8b5d2",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#53",
+      "repository_id": "predecessor-ut",
+      "number": 53,
+      "title": "refactor(projection): split engine-swap application and persistence boundaries",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "34faba133759f55f466bfe8253f992b130ebd3e6",
+        "merge_oid": "c7b6c0046cf12602b7e8c7a2237eb00b1ed11da0",
+        "commit_range_digest": "a73f1e189b9bc94fc95e0c3e1cf89b0960ed2749f348f6187753aabb269beea6",
+        "changed_path_digest": "aa5e35226607c60a5dbceb33c28332ae943678649272f9d32bc2c7f1c0ee8d2f",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projectionは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "none",
+        "count": 0,
+        "digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "limitation_code": "no_current_check_observation_and_no_historical_check_retention_proof"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#54",
+      "repository_id": "predecessor-ut",
+      "number": 54,
+      "title": "test: close L7-421 live-tree hygiene fence",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "c163e6e5d4ec41c8b5192355e10cc5cc88102e50",
+        "merge_oid": "5d7939ad1bcfd531f17b0d2b5928f4d6b4a65f41",
+        "commit_range_digest": "f3c4365c37ff9e5dfbccf166a410579330bc8c914dfa545b0f31f2c3741cc3db",
+        "changed_path_digest": "b0a5134ab17e1b98f26c34bb4bd408427310446ac27b39da4fc37ed52c7161eb",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "test_verification+design_governance+setup_distributionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "60d2a001bdd094a1440c534b2bad01dcd3ff51ebaa4b24a22f04bbfe229f553d",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#55",
+      "repository_id": "predecessor-ut",
+      "number": 55,
+      "title": "docs(engine): define projection rebuild boundaries",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "12e503a49902e2548bc98e0498e508a9abcd6dc3",
+        "merge_oid": "56c0f6678763ab19f23f3cc56e73b081f43544aa",
+        "commit_range_digest": "a254055b22adc9807be5fde4c948e3a33cfa17a094ddaa6d72313ad631e49efc",
+        "changed_path_digest": "8ddba3a85fa61b05011ff5c7a553ec54737638575cdf09aa9af06296200e3be4",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projectionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "31f95ab16bd1571ff86c119ab63e53959c225ee2912d745c81ce5367ef23e681",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#56",
+      "repository_id": "predecessor-ut",
+      "number": 56,
+      "title": "fix(projection): guard legacy finding payloads",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "9353d2e83b1732295bc3288331f56b8bec0f34e4",
+        "merge_oid": "29ce65c1d88bcf97e2830cc316f06a4fbc94e80b",
+        "commit_range_digest": "fca92424fc3778efdcfa24a43d7b8116bd82295c6c129045bd858de7acb32c08",
+        "changed_path_digest": "0b8e36c7e6a95e02c1bb4d4e2aebd78e8b3ef5cd85e56b7168f7d61b8165d2b7",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projectionは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "2f71268473d8154a547b0188c148d33f8adfffa199d027c3b4b51e5f2e85479a",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#58",
+      "repository_id": "predecessor-ut",
+      "number": 58,
+      "title": "docs(engine): close projection rebuild design review",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "54a8fb1f4fc4b5f544f0edaf8385cf30196a2d94",
+        "merge_oid": "ac4c43f16ffc6972a54f1a0ded162c43aad6e2d6",
+        "commit_range_digest": "8d2378edc479a4fa6cfe06ddecf2af09a6402bf4fcfced34c1c37f15f5a83514",
+        "changed_path_digest": "578f541688bcb528b994bf5eec7a9d79dc4f4c494b56c9957da2d7826c7eb0b8",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "DB/event projection・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "e187c31d5a2de922eb1e4c6d1839b036dbc0d28a743d27bdf96e583c5e5c78ce",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#59",
+      "repository_id": "predecessor-ut",
+      "number": 59,
+      "title": "test: reland L7-421 residual test hygiene + PLAN-L7-245 promotion",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "1dea0bc9dd5daeb6d5a052d63e236fe23ae5efa9",
+        "merge_oid": "7ad8ebbd6b91a722f5b9fd728194820d07035fe8",
+        "commit_range_digest": "4770fe3f8971043414e2c81490ab7f84de8dda7598e7f39d86eff45a272b526b",
+        "changed_path_digest": "b0a5134ab17e1b98f26c34bb4bd408427310446ac27b39da4fc37ed52c7161eb",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "3b2f3b93ccaabf04419b3e27b5d992f296a7daa084f776426ca543d18c5e89fd",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#60",
+      "repository_id": "predecessor-ut",
+      "number": 60,
+      "title": "feat(routing): adopt task-kind model routing v2",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "8f10a1071e7b6780bbc2235a7147ee169ab8ed5e",
+        "merge_oid": "e506a67e9c243cc9781ff4a6d8d1870b072fd37b",
+        "commit_range_digest": "2add880d248e079db3fe4341303f559fce7464f8a8c85091484a12acaf5ed35c",
+        "changed_path_digest": "d4c502dcdd23b84c6c479c929cd3ad95b0acd90952ea468981654b10f2c1e304",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "routingは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "b721a08908dd5b1fb93ccfe4a7bf451f71e65a50f98859f336e9b6eaba01aaeb",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#61",
+      "repository_id": "predecessor-ut",
+      "number": 61,
+      "title": "feat(ci): universal PR trigger + fail-close detector (PLAN-L6-82/L7-434, issue #57)",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "a3f96696a18613b03eb6f46b18be5399445ed9db",
+        "merge_oid": "22d9ae0b671950c24d6794018328bc5c8f19c178",
+        "commit_range_digest": "8e09f72b59231bc13da464d3924a29e4d6804f8f897893068f004d74534e696f",
+        "changed_path_digest": "52ac75749498a422bc4922c86892775dc7bf2d24069659aa595397a9b2a18479",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-02",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-30",
+        "HIL-FR-32",
+        "HIL-FR-33",
+        "HIL-FR-34",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "検証・gate証拠・設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "3f823e780d6694a0452bc8f410715dae023416f081edfa5f5a64cca002007a7d",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#62",
+      "repository_id": "predecessor-ut",
+      "number": 62,
+      "title": "feat(plan-asset): implement canonical v2 migration ledger",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "7414aca6f1318eb82ff6ea458466307c493d2832",
+        "merge_oid": "7739b6ce4fdc6f619b507b1e70af267668c2316a",
+        "commit_range_digest": "203b6fac06d1746b904c1c6c0105379df40ccbe5cc20b1c4e856d9139fc2994c",
+        "changed_path_digest": "538763f5fe9a412b484b33ac91f4ebdc71945ca24eff87f704ec9ef11b6407d4",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "2317201c5abcded4420095bf2cbba9f24f813507a0480f030075c1b01a8a5644",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#63",
+      "repository_id": "predecessor-ut",
+      "number": 63,
+      "title": "docs(vmodel): design execution ledger GitHub reentry",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "54e02c98cbdeadf6ed1ff1d8be013f5ebcfa8ab1",
+        "merge_oid": "fcf483210cb57b5d7319f9d46c3a22d6f6cebb14",
+        "commit_range_digest": "973aea42bb3b7ad72a0db33bdd18173b67939cba12826c5dfc3fc5c80252b559",
+        "changed_path_digest": "9fb962e2f503b529485944da795e457872d20cf881e63b7e831b61bb39c94961",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-02",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-30",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "f65321a951e916a613b2b97f29390657ff14921e4826d0606e7dcf63f8d1b2b8",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#64",
+      "repository_id": "predecessor-ut",
+      "number": 64,
+      "title": "feat(plan): drive-aware admission policy",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "87bc2879b81fb258a66d863d3fc2e810f66654e3",
+        "merge_oid": "fdfb2120f47202e2315aa573d654134fa8d20f84",
+        "commit_range_digest": "fe12a864238453af17add3e55a5de78c61ffc2013a4eaf1e501800f39a95383c",
+        "changed_path_digest": "6a4d88fc913751eaa25b89678a60d2aed04c8edb033e907e1d722e0da8781925",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "設計governanceは有用だが、旧UTのlayer/runtime/authorityを持ち込まず現行契約へanti-corruption変換する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 1,
+        "digest": "3e3d3e2c6da52ca7ac2e75d8541685da1458043865e816fbf22096ad70b2a3de",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#65",
+      "repository_id": "predecessor-ut",
+      "number": 65,
+      "title": "docs(plan): PLAN-L1-08 design harness internalization + plan_id taxonomy gate",
+      "no_explicit_plan": false,
+      "source_evidence": {
+        "head_oid": "802a4cf37d7f307048f35af5a6972021fcb7ef8a",
+        "merge_oid": "ce87b9696e9529951137fbd184930263f12de66c",
+        "commit_range_digest": "596f3150bdd65705f766aea320c3d455014a9e5fecf39ae2d0aa523605d2675f",
+        "changed_path_digest": "44572f1e6b018acfa85fc9ea044508132a0b47a69050ec280226fdfaa75ca1cb",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-11",
+        "HIL-FR-13",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-32",
+        "HIL-FR-39",
+        "HIL-FR-42",
+        "HIL-FR-45",
+        "HIL-FR-46",
+        "HIL-FR-49",
+        "HIL-FR-56",
+        "HIL-FR-61",
+        "HIL-FR-65",
+        "HIL-FR-78"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-16",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-26",
+        "HR-FR-HIL-27",
+        "HR-FR-HIL-31",
+        "HR-FR-HIL-44"
+      ],
+      "reason": "検証・gate証拠・設計governanceは有用だが、旧engine/layer authorityまたは複合変更を現行L1–L12、Node authority、gate契約へ再設計する。",
+      "check_observation": {
+        "classification": "success",
+        "count": 1,
+        "digest": "c992afb4f97589cc595a3408f75f0103159d5057cc63cef0d663bbbdda62fbdd",
+        "limitation_code": "observed_current_check_success_is_not_historical_head_or_merge_lineage_and_not_behavior_verification"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#1",
+      "repository_id": "legacy-helix",
+      "number": 1,
+      "title": "chore(actions)(deps): Bump actions/setup-node from 4 to 6",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "625e0f4a262238afd2b03183fe2b3c28b36645d2",
+        "merge_oid": "41e8438e4fcf9e7f53e4ab4bc37e68b92f67341a",
+        "commit_range_digest": "5bac8138dd07e79f982b6e5d68741bf64e9dcef28d9598636cac5b84b1d97ec1",
+        "changed_path_digest": "353522d2a33fd1c33f7b8a30df0eb270e0209957002ff1149e993338b94a54e1",
+        "behavior_families": [
+          "ci_gate",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-33",
+        "HIL-FR-34"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "依存version更新は時点依存であり、現行Node/Linux/supply-chain inventoryとversion policyを確認するまで採用を延期する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "e6ea3753578dd45df67d5507592d31c53323c9bf3d6541f37ef9169c17d0309d",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#2",
+      "repository_id": "legacy-helix",
+      "number": 2,
+      "title": "chore(actions)(deps): Bump actions/checkout from 4 to 6",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "64d6d33eb2b2e85af454fc67977f522f1b35eb2b",
+        "merge_oid": "07823b97e849faf90511a674751829d2efc4d472",
+        "commit_range_digest": "a2525a39d3040ef3a7370a05aaf318ff6a6224fc94a34642cb822e1f192a817e",
+        "changed_path_digest": "b7b468a00cbee7061ce8bacc32b3de0b8ac3edcd8852cf5169ff3ac1a03825a0",
+        "behavior_families": [
+          "ci_gate"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-33",
+        "HIL-FR-34"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "依存version更新は時点依存であり、現行Node/Linux/supply-chain inventoryとversion policyを確認するまで採用を延期する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "d9d12e2a92f7e25886df4bb2b9a16ca07ea5555aa46ee737852bbd57fc98054f",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#3",
+      "repository_id": "legacy-helix",
+      "number": 3,
+      "title": "chore(actions)(deps): Bump actions/setup-python from 5 to 6",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "99f5ec1ae4181aa1cfec93bf86756ae5db34d5a4",
+        "merge_oid": "cf1ded81f8905e006422b3be9ecd3f47eb1c33f2",
+        "commit_range_digest": "d7b164a2e2a59c3a3bac5d1cadfba6e4e5c4a3b0e71c2dd9884e74ea2d3a13c0",
+        "changed_path_digest": "08e5c50e3245e707cc08d241c4603c456f614047791dadac4814feb3dae56054",
+        "behavior_families": [
+          "ci_gate",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-33",
+        "HIL-FR-34"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "依存version更新は時点依存であり、現行Node/Linux/supply-chain inventoryとversion policyを確認するまで採用を延期する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "1cd45627f9f7716de1e1c2a6f11e3f229beb5ce156c347c2f29f9dfe71cc5f76",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#4",
+      "repository_id": "legacy-helix",
+      "number": 4,
+      "title": "chore(actions)(deps): Bump github/codeql-action from 8c78abb9b62512e3c45dea6559ffd924ed8549c8 to 48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "0f814ee36ab539d082bb44b3cb9d757fb72b895d",
+        "merge_oid": "b27f9e0c67a53d5f129ea00160ccfb29c52401b8",
+        "commit_range_digest": "b40137a8e61c18617e796b198c3647dd6085d5bb6f5ab42084d3ed32588bf82e",
+        "changed_path_digest": "7f4fd5b4c5bfbea79106da34e3498038ed5841ff112bdf17247365d64b302c8a",
+        "behavior_families": [
+          "ci_gate"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "依存version更新は時点依存であり、現行Node/Linux/supply-chain inventoryとversion policyを確認するまで採用を延期する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "78aeec747aeae3272627d3667dd450026f41c4591decc6d969f95ea008fa87c3",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#5",
+      "repository_id": "legacy-helix",
+      "number": 5,
+      "title": "chore(actions)(deps): bump github/codeql-action from 8c78abb9b62512e3c45dea6559ffd924ed8549c8 to 48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "9ad75272d06278f301e241429bd1d05c19617205",
+        "merge_oid": "37c632baddbee0b3a918a866feaf261b24a5f25a",
+        "commit_range_digest": "03c9dff89ff7956d9f756d954fd1350828f8c3fa913def9bd2689f2fe8acfb81",
+        "changed_path_digest": "7f4fd5b4c5bfbea79106da34e3498038ed5841ff112bdf17247365d64b302c8a",
+        "behavior_families": [
+          "ci_gate"
+        ]
+      },
+      "candidate_disposition": "reject",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "同一CodeQL更新内容の重複PRで独立behaviorを増やさない。source履歴としてのみ保持する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "efc4f44c19f3c840f0a6dbcbd997236191c13199c85147134609b9bcadcaecf5",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#6",
+      "repository_id": "legacy-helix",
+      "number": 6,
+      "title": "chore(actions)(deps): Bump actions/checkout from 4 to 7",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "00a8b8732d61612128512d2069e7787d743b607d",
+        "merge_oid": "3be4a7330497dec3f3c0193651a2dad0a4faca2a",
+        "commit_range_digest": "7f6f917c4b7c6d093f2ec8f4e9c31830547764f5f04a06f49c92b59b94d72ec2",
+        "changed_path_digest": "b7b468a00cbee7061ce8bacc32b3de0b8ac3edcd8852cf5169ff3ac1a03825a0",
+        "behavior_families": [
+          "ci_gate"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29",
+        "HIL-FR-33",
+        "HIL-FR-34"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-14",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "依存version更新は時点依存であり、現行Node/Linux/supply-chain inventoryとversion policyを確認するまで採用を延期する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "cf4a2612ed957b761875b47a7cb9830d8801b73d05ff1bf34d8b3df61bdf3b3f",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "legacy-helix#7",
+      "repository_id": "legacy-helix",
+      "number": 7,
+      "title": "chore(actions)(deps): Bump github/codeql-action/upload-sarif from 8c78abb9b62512e3c45dea6559ffd924ed8549c8 to 48ab28a6f5dbc2a99bf1e0131198dd8f1df78169",
+      "no_explicit_plan": true,
+      "source_evidence": {
+        "head_oid": "f7c18f562b38d67f99c2935209eafd7100b9a6d5",
+        "merge_oid": "231b0f5b7c12f375c4d99bd9e3ae0bd573fb036c",
+        "commit_range_digest": "0bd7d2856329365a70b41e8595ba062571e603260ebc4d118199f11ae522ba50",
+        "changed_path_digest": "7f4fd5b4c5bfbea79106da34e3498038ed5841ff112bdf17247365d64b302c8a",
+        "behavior_families": [
+          "ci_gate"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_ids": [
+        "HIL-BR-14",
+        "HIL-BR-16",
+        "HIL-FR-01",
+        "HIL-FR-09",
+        "HIL-FR-10",
+        "HIL-FR-16",
+        "HIL-FR-22",
+        "HIL-FR-28",
+        "HIL-FR-29"
+      ],
+      "current_hr_ids": [
+        "HR-FR-HIL-02",
+        "HR-FR-HIL-03",
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-07",
+        "HR-FR-HIL-09",
+        "HR-FR-HIL-26"
+      ],
+      "reason": "依存version更新は時点依存であり、現行Node/Linux/supply-chain inventoryとversion policyを確認するまで採用を延期する。",
+      "check_observation": {
+        "classification": "failure",
+        "count": 16,
+        "digest": "d75fcdce8eea50a423efbba9bf76b9a5aa59ce17da12ddfd7f42916bd40953fe",
+        "limitation_code": "observed_current_check_failure_is_current_state_only_and_does_not_adjudicate_historical_behavior"
+      },
+      "semantic_review": "candidate_not_activated",
+      "verified": false,
+      "coverage_credit": false
+    }
+  ]
+}

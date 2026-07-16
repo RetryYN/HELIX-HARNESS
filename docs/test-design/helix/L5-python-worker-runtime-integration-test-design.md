@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — Python worker runtime"
+title: "HELIX L9 結合テスト設計 — Python worker runtime"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -21,7 +21,7 @@ requirements:
   - HAC-HIL-12c
 ---
 
-# HELIX L8 結合テスト設計 — Python worker runtime
+# HELIX L9 結合テスト設計 — Python worker runtime
 
 ## §0 共通evidence
 

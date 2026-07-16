@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — screen applicability prototype"
+title: "HELIX L9 結合テスト設計 — screen applicability prototype"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -23,7 +23,7 @@ requirements:
   - HAC-HIL-15c
 ---
 
-# HELIX L8 結合テスト設計 — screen applicability prototype
+# HELIX L9 結合テスト設計 — screen applicability prototype
 
 ## §0 fixtureと共通oracle
 

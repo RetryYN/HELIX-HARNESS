@@ -1,0 +1,138 @@
+{
+  "checks": {
+    "ancestor_chain": true,
+    "atomic_failure_cases": true,
+    "canonical_queries": true,
+    "execution_credit_zero": true,
+    "failure_taxonomy": true,
+    "freeze_progress_independent_projection": true,
+    "github_authority_observation_separated": true,
+    "github_visibility_and_bypass_expiry": true,
+    "namespace_grammars": true,
+    "physical_indexes": true,
+    "physical_tables": true,
+    "receipt_types": true,
+    "refreeze_progress_separation": true,
+    "remote_db_crash_reconciliation": true,
+    "roadmap_denominator_binding": true,
+    "trace_edges": true,
+    "v_pairs": true,
+    "vpair_atomic_stale_cascade": true,
+    "vpair_two_phase_bootstrap": true,
+    "working_tree_closed_world": true
+  },
+  "claim_boundary": "設計分母とtrace tokenの静的監査だけであり、Git/GitHub操作・runtime検証・coverage creditではない。",
+  "execution": {
+    "coverage_credit": false,
+    "executed": 0,
+    "github_ruleset_observed": 0,
+    "implemented": 0,
+    "remote_tags_verified": 0,
+    "restore_runs": 0,
+    "verified": 0
+  },
+  "fixed_denominator": {
+    "failure_codes": [
+      "HIL_SAVEPOINT_NAMESPACE_INVALID",
+      "HIL_SAVEPOINT_TAG_NOT_ANNOTATED",
+      "HIL_SAVEPOINT_REMOTE_REF_MISMATCH",
+      "HIL_SAVEPOINT_RULESET_AUTHORITY_MISSING",
+      "HIL_SAVEPOINT_BINDING_DIGEST_MISMATCH",
+      "HIL_SAVEPOINT_IDEMPOTENCY_CONFLICT",
+      "HIL_REMOTE_TAG_CONCURRENT_REF_RACE",
+      "HIL_SAVEPOINT_RESTORE_MISMATCH",
+      "HIL_LAYER_TAG_NAMESPACE_INVALID",
+      "HIL_LAYER_TAG_ANCESTRY_INVALID",
+      "HIL_LAYER_TAG_SKIP",
+      "HIL_LAYER_TAG_VPAIR_ONE_SIDED",
+      "HIL_LAYER_TAG_GATE_SHA_MISMATCH",
+      "HIL_LAYER_TAG_SUPERSESSION_INVALID",
+      "HIL_LAYER_PROGRESS_PROJECTION_INVALID",
+      "HIL_LAYER_TAG_IDEMPOTENCY_CONFLICT"
+    ],
+    "indexes": [
+      "uq_savepoint_namespace_version",
+      "uq_savepoint_operation_id",
+      "ix_savepoint_commit_checkpoint",
+      "uq_remote_tag_observation_sequence",
+      "ix_remote_tag_current_ref",
+      "uq_layer_authority_layer_version",
+      "uq_layer_tag_operation_id",
+      "ix_layer_predecessor",
+      "uq_layer_vpair_revision",
+      "ix_layer_progress_current_chain"
+    ],
+    "queries": [
+      "repository_savepoint_create_readiness_query",
+      "repository_savepoint_remote_integrity_query",
+      "repository_restore_verification_query",
+      "layer_tag_create_readiness_query",
+      "layer_freeze_chain_continuity_query",
+      "layer_progress_projection_query"
+    ],
+    "receipt_types": [
+      "savepoint_create_receipt",
+      "remote_tag_verification_receipt",
+      "github_tag_ruleset_authority_receipt",
+      "restore_dry_run_receipt",
+      "layer_tag_receipt",
+      "layer_ancestry_receipt",
+      "layer_vpair_receipt",
+      "layer_progress_projection_receipt"
+    ],
+    "tables": [
+      "repository_savepoints",
+      "repository_savepoint_artifacts",
+      "repository_restore_runs",
+      "layer_freeze_tags",
+      "layer_tag_ancestry_receipts",
+      "layer_pair_tag_receipts",
+      "layer_progress_projections",
+      "tag_namespace_policies",
+      "github_tag_ruleset_snapshots",
+      "remote_tag_observations",
+      "repository_savepoint_events",
+      "repository_restore_checks",
+      "layer_tag_events",
+      "layer_vpair_tag_bindings",
+      "layer_progress_events"
+    ],
+    "v_pairs": [
+      "L01↔L12",
+      "L02↔L11",
+      "L03↔L10",
+      "L04↔L09",
+      "L05↔L08",
+      "L06↔L07"
+    ]
+  },
+  "input_sha256": {
+    "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md": "2f53ae4490ce723daed51277d63f8d9de01e7a95ab53866ad3924074ffc9aaf7",
+    "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md": "2d3f4a57ca3835efcbb791ba52aa7ab80f84947c30868ab9458d3dd99ce58ebd",
+    "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715",
+    "docs/governance/infinity-loop-assertion-coverage-ledger.md": "7a2c9cc08386496986b703a904239edf5218ba6f603eae3bbffb4dd2a8d1bc23",
+    "docs/governance/infinity-loop-l10-system-assertion-cases.md": "7793fddfa204bca7154a63f903327d66e92962ed4b5c4f36de6e944c779e275c",
+    "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md": "45925eabce6683bc1c3306c37fbad376af0df43940af6ff36f6268809de44791",
+    "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md": "9655a7cffd465b7b449903028d2dc34fe052b90400934eead272e05bb990b37a"
+  },
+  "schema_version": "repository-savepoint-layer-tag-design-audit/v1",
+  "scope": [
+    "RepositorySavepointService",
+    "LayerFreezeTagGate"
+  ],
+  "status": "design_completeness_review_pass_not_executed",
+  "trace": {
+    "layer_freeze": [
+      "HIL-FR-81",
+      "HR-FR-HIL-47",
+      "HAT-HIL-47",
+      "HST-HIL-061"
+    ],
+    "savepoint": [
+      "HIL-FR-80",
+      "HR-FR-HIL-46",
+      "HAT-HIL-46",
+      "HST-HIL-060"
+    ]
+  }
+}

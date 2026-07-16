@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — engine / detector execution"
+title: "HELIX L9 結合テスト設計 — engine / detector execution"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -27,7 +27,7 @@ system_tests:
   - HST-HIL-009
 ---
 
-# HELIX L8 結合テスト設計 — engine / detector execution
+# HELIX L9 結合テスト設計 — engine / detector execution
 
 ## §0 共通oracle
 

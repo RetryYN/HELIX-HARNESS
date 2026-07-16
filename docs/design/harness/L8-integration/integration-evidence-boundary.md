@@ -1,5 +1,5 @@
 ---
-title: "Harness L8 結合検証証跡境界"
+title: "Harness L9 結合検証証跡境界"
 layer: L8
 kind: design
 status: confirmed
@@ -9,9 +9,9 @@ owner: Codex
 pair_artifact: docs/test-design/harness/L8-integration-test-design.md
 ---
 
-# Harness L8 結合検証証跡境界
+# Harness L9 結合検証証跡境界
 
-本書は L5 詳細設計と L8 結合検証の対応を示す。現在の L8 は selected integration profile を証跡化しており、外部環境や本番相当の全結合を完了扱いにしない。
+本書は L5 詳細設計と L9 結合検証の対応を示す。現在の L8 は selected integration profile を証跡化しており、外部環境や本番相当の全結合を完了扱いにしない。
 
 ## 対象
 

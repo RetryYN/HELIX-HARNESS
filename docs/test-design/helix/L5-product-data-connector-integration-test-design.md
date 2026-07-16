@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — product data connector"
+title: "HELIX L9 結合テスト設計 — product data connector"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -22,7 +22,7 @@ requirements:
   - HAC-HIL-11c
 ---
 
-# HELIX L8 結合テスト設計 — product data connector
+# HELIX L9 結合テスト設計 — product data connector
 
 ## §0 共通oracle
 

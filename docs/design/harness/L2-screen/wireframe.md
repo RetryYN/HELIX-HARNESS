@@ -146,7 +146,7 @@ updated: 2026-06-22
   ↓ 成果物が戻る
 [harness 照合: screen-requirements.md §1 (15 画面) と突合]
   ↓ 不整合 → L1 screen/business/functional 修正 + G1-trace 再検証 (R1-R4)
-[L10 UX refinement: 外部成果物 URL を参照欄に記載、最終 UX 確定]
+[L10 system/Real UX evidence: 外部成果物 URL を参照欄に記載、最終 UX 確定]
 ```
 
 > 「L2 で本来やる工程をある程度確定した状態で出す」(PO) が原則。確定なし外部依頼は手戻りを招く。
@@ -155,4 +155,4 @@ updated: 2026-06-22
 
 - 本 Low-Fi (§1-§2) が L2↔L10 の③ pair (self)。confirmed 昇格は G2 freeze (PLAN-L2-00 Step 4)。
 - **High-Fi 所在**: ケース別 (harness 内 OR 外部依頼)。外部選択時は back-propagation を通常運用として想定 (G1-trace 再検証必須)。
-- 下流: L10 UX refinement (High-Fi 判断 / デザイントークン実値 / a11y AA 実測) → src/web 実装 (Phase B)。
+- 下流: L10 system/Real UX evidence (High-Fi 判断 / デザイントークン実値 / a11y AA 実測) → src/web 実装 (Phase B)。

@@ -15,6 +15,12 @@ updated: 2026-06-24
 
 # L10 UX 検証境界 — impl 後の UX 確定 / WCAG 検証
 
+> **Canonical visual verification supersession — `vmodel-l1-l12-v1`**
+> 本文の`L2↔L10 self-pair`、L10=UX polish、G10一括family、L7=implementationはlegacy runtime compatibilityである。
+> current authoring candidateでは、L5↔L8=atomic visual contract、L4↔L9=cross-screen visual integration、
+> L3↔L10=browser/data visual system、L2↔L11=human visual acceptanceへ分解する。本書のmarker/manifest存在確認は
+> `contract_present/designed_not_executed`であり、実browser、screenshot、axe、VRT、matrix cell evidenceなしにPASSを主張しない。
+
 > **層配置是正 (PLAN-L4-14、2026-06-24)**: 本 doc は当初 (`d8a5d2c`) **再利用 FE 設計標準 (部品/色/
 > design tokens)** を author していたが、それは impl **前**に要る方式設計/開発標準であり L10 ではなく
 > **L4** に降ろすのが正しい (`data` = DB 設計標準の FE 対応物、document-system-map §1b)。よって設計標準の
@@ -68,4 +74,4 @@ test-design doc は作らない)。
 ## trace
 
 - 上流: [L2 wireframe](../L2-screen/wireframe.md) (mock = self-pair) + [L4 ui-standard](../L4-basic-design/ui-standard.md) (FE 設計標準) + L7 src/web 実装。
-- 下流: G10 UX 承認 → L11 総合レビュー+UAT。
+- 下流: G10 UX 承認 → L11 受入/human visual。

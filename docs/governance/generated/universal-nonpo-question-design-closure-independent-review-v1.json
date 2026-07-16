@@ -1,0 +1,406 @@
+{
+  "decision": "current digestへsemantic IDを再bindできる設計証拠と、activation authority未取得を別状態として扱う。source-limited receiptは原chat authorityを超えず、dependency defer/challengeはterminal not-activatedを維持する。",
+  "findings": [
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-APPROVAL-01",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-APPROVAL-02",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-APPROVAL-04",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-APPROVAL-05",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-DEADLINE-02",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-DEADLINE-03",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "dependency_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+      "status": "terminal_defer_dependency_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "dependency_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+      "status": "terminal_defer_dependency_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-AI-DECISION-01",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-AI-DECISION-02",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-AI-DECISION-03",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-AI-DECISION-04",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-C-AI-DECISION-05",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-001",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-002",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-003",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "dependency_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-004",
+      "status": "terminal_challenge_missing_value_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-005",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-006",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-007",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-008",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-009",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-010",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-011",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-012",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-013",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-014",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "dependency_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-015",
+      "status": "terminal_defer_dependency_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-016",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-017",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-019",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "dependency_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-020",
+      "status": "terminal_challenge_missing_value_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-021",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-023",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-B-024",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-001",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-006",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-007",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-008",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-009",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-010",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-013",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-015",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-018",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-019",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-023",
+      "status": "design_evidence_rebound_authority_not_activated"
+    },
+    {
+      "class": "existing_po_chat_answer_design_receipt",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-024",
+      "status": "design_answer_receipt_activated_source_limited"
+    },
+    {
+      "class": "evidence_answered_reaudit",
+      "coverage_credit": false,
+      "issues": [],
+      "question_id": "UWR-Q-R-025",
+      "status": "design_evidence_rebound_authority_not_activated"
+    }
+  ],
+  "schema_version": "helix.universal-nonpo-question-design-closure-independent-review.v1",
+  "source": {
+    "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json",
+    "sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1"
+  },
+  "status": "independent_review_pass_design_evidence_rebound_authority_separated",
+  "summary": {
+    "classes": {
+      "dependency_reaudit": 5,
+      "evidence_answered_reaudit": 37,
+      "existing_po_chat_answer_design_receipt": 12
+    },
+    "coverage_credit_true": 0,
+    "issue_counts": {},
+    "records": 54,
+    "records_with_findings": 0,
+    "statuses": {
+      "design_answer_receipt_activated_source_limited": 12,
+      "design_evidence_rebound_authority_not_activated": 37,
+      "terminal_challenge_missing_value_not_activated": 2,
+      "terminal_defer_dependency_not_activated": 3
+    }
+  }
+}
