@@ -109,9 +109,10 @@ describe("document agent metadata Phase B apply", () => {
   it("U-AGMETA-011: port拒否時はwrite後のsuccessを返さない", () => {
     const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
     const port: DocumentAgentMetadataWritePort = {
-      write: () => {
+      preflight: () => {
         throw new DocumentAgentMetadataWriteError("rejected before publish");
       },
+      write: () => ({ durable: true }),
       restore: () => ({ durable: true }),
     };
     expect(applyDocumentAgentMetadata(plan, port)).toMatchObject({
@@ -131,6 +132,7 @@ describe("document agent metadata Phase B apply", () => {
     });
     const restored: string[] = [];
     const port: DocumentAgentMetadataWritePort = {
+      preflight: () => {},
       write: (change) => {
         if (change.path === second) throw new Error("fault");
         return { durable: true };
@@ -156,6 +158,7 @@ describe("document agent metadata Phase B apply", () => {
     const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
     let content = sourceText;
     const port: DocumentAgentMetadataWritePort = {
+      preflight: () => {},
       write: (change) => {
         content = change.content;
         throw new Error("fault after publish");
@@ -179,6 +182,7 @@ describe("document agent metadata Phase B apply", () => {
   it("U-AGMETA-012: ambiguous publishのrollback失敗をpartialかつambiguousにする", () => {
     const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
     const port: DocumentAgentMetadataWritePort = {
+      preflight: () => {},
       write: () => {
         throw new Error("unknown publish state");
       },

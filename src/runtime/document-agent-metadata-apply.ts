@@ -24,6 +24,7 @@ export interface DocumentAgentMetadataApplyPlan {
 }
 
 export interface DocumentAgentMetadataWritePort {
+  preflight(change: DocumentAgentMetadataChange): void;
   write(change: DocumentAgentMetadataChange): { durable: boolean };
   restore(change: DocumentAgentMetadataChange): { durable: boolean };
 }
@@ -150,6 +151,7 @@ export function applyDocumentAgentMetadata(
 ): DocumentAgentMetadataApplyReceipt {
   const receipts: DocumentAgentMetadataApplyReceipt["changes"] = [];
   try {
+    for (const change of plan.changes) port.preflight(change);
     for (const change of plan.changes) {
       const receipt: DocumentAgentMetadataApplyReceipt["changes"][number] = {
         path: change.path,

@@ -153,4 +153,38 @@ describe("document agent metadata integration", () => {
       rmSync(outside, { recursive: true, force: true });
     }
   });
+
+  it("IT-AGMETA-005: real portのrestore publish前faultはsource残存をambiguousにする", () => {
+    const { root, absolute } = fixture();
+    const before = readFileSync(absolute, "utf8");
+    try {
+      const plan = planDocumentAgentMetadataApply({
+        manifest,
+        report,
+        selection: [path],
+        source: { read: () => before },
+      });
+      const receipt = applyDocumentAgentMetadata(
+        plan,
+        createDocumentAgentMetadataWritePort(root, {
+          afterPublish: (_change, operation) => {
+            if (operation === "write") throw new Error("fault after forward publish");
+          },
+          beforePublish: (_change, operation) => {
+            if (operation === "restore") throw new Error("fault before restore publish");
+          },
+        }),
+      );
+
+      expect(receipt).toMatchObject({
+        ok: false,
+        partial: true,
+        ambiguous: true,
+        changes: [{ path, publishState: "ambiguous", rolledBack: false }],
+      });
+      expect(readFileSync(absolute, "utf8")).not.toBe(before);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

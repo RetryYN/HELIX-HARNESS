@@ -74,6 +74,7 @@ function atomicReplace(targetPath: string, content: string): void {
 export function createDocumentAgentMetadataWritePort(
   repoRoot: string,
   options: {
+    beforePublish?: (change: DocumentAgentMetadataChange, operation: "write" | "restore") => void;
     afterPublish?: (change: DocumentAgentMetadataChange, operation: "write" | "restore") => void;
   } = {},
 ): DocumentAgentMetadataWritePort {
@@ -81,22 +82,26 @@ export function createDocumentAgentMetadataWritePort(
   const rootStat = lstatSync(root);
   if (!rootStat.isDirectory() || rootStat.isSymbolicLink())
     throw new Error("document_agent_root_untrusted");
+  const preflight = (change: DocumentAgentMetadataChange, expected: string): string => {
+    try {
+      const targetPath = target(root, change.path);
+      const current = readFileSync(targetPath, "utf8");
+      if (digest(current) !== expected) throw new Error("document_agent_before_digest_mismatch");
+      return targetPath;
+    } catch (error) {
+      throw new DocumentAgentMetadataWriteError(
+        error instanceof Error ? error.message : "document_agent_write_preflight_failed",
+      );
+    }
+  };
   const write = (
     change: DocumentAgentMetadataChange,
     expected: string,
     content: string,
     operation: "write" | "restore",
   ) => {
-    let targetPath: string;
-    try {
-      targetPath = target(root, change.path);
-      const current = readFileSync(targetPath, "utf8");
-      if (digest(current) !== expected) throw new Error("document_agent_before_digest_mismatch");
-    } catch (error) {
-      throw new DocumentAgentMetadataWriteError(
-        error instanceof Error ? error.message : "document_agent_write_preflight_failed",
-      );
-    }
+    const targetPath = preflight(change, expected);
+    options.beforePublish?.(change, operation);
     atomicReplace(targetPath, content);
     if (digest(readFileSync(targetPath, "utf8")) !== digest(content))
       throw new Error("document_agent_after_digest_mismatch");
@@ -104,6 +109,9 @@ export function createDocumentAgentMetadataWritePort(
     return { durable: true };
   };
   return {
+    preflight: (change) => {
+      preflight(change, change.beforeDigest);
+    },
     write: (change) => write(change, change.beforeDigest, change.content, "write"),
     restore: (change) => write(change, change.afterDigest, change.beforeContent, "restore"),
   };
