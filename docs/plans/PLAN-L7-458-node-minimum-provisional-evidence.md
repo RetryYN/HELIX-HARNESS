@@ -8,6 +8,14 @@ status: draft
 created: 2026-07-16
 updated: 2026-07-16
 owner: Codex / TL
+dependencies:
+  parent: docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md
+  requires:
+    - docs/adr/ADR-009-node-python-linux-runtime.md
+    - docs/design/helix/L5-detail/node-runtime-cutover.md
+agent_slots:
+  - { role: se, slot_label: "SE — Node実観測と非active receipt" }
+  - { role: qa, slot_label: "QA — exact workflow・drift・authority非切替" }
 parent_design: docs/design/helix/L6-function-design/node-minimum-provisional-evidence.md
 pair_artifact: docs/test-design/helix/L8-node-minimum-provisional-evidence.md
 verification_bindings:
