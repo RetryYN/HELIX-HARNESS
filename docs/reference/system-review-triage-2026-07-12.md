@@ -107,7 +107,7 @@ catalog = `docs/design/design-catalog.yaml`（122 項目）。
 
 - **(a) catalog 記述ミス 3 件（再監査で是正）**: unit-test-design / integration-test-design /
   acceptance-test-design は現行confirmed正本が実在するためdoneへ更新する。system-test-designは
-  `L9-system-test-design.md`がlegacy shimであり、新規PLANの現行正本として扱えないためtodoを維持する。
+  `L9-system-test-design.md`がlegacy shimであり、新規PLANの現行正本として扱えないためtodoを維持する。 （層意味論: canonical L9=integration）
 - **na 化 6 件（訂正 2026-07-12: PO escalate 不要、AI 判断可）**: `server-infra` /
   `capacity-autoscale` / `identity-provisioning` / `compliance-mapping` / `api-portal-sdk` /
   `webhook-event-delivery` の各 design。当初 PO 境界として escalate したが、L0 charter

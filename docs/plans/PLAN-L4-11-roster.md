@@ -48,18 +48,18 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ## §0 位置づけ
 
-PLAN-L4-10 (Master) §2 triage の child。**FR-L1-46 (subagent roster の HELIX 化) + FR-L1-48 (内部資産 command の CLI 化)** を L4 基本設計 (function.md) に増分する。ADR-004 確定境界 (層1 markdown 正本 / 層2 TS 統制) を前提とする。**成果物 = 基本設計書 (function.md 増分) ⇔ L9 総合テスト設計ペア** (PLAN-L4-10 §0.1)。
+PLAN-L4-10 (Master) §2 triage の child。**FR-L1-46 (subagent roster の HELIX 化) + FR-L1-48 (内部資産 command の CLI 化)** を L4 基本設計 (function.md) に増分する。ADR-004 確定境界 (層1 markdown 正本 / 層2 TS 統制) を前提とする。**成果物 = 基本設計書 (function.md 増分) ⇔ L9 総合テスト設計ペア** (PLAN-L4-10 §0.1)。 （層意味論: canonical L9=integration）
 
-## §1 doc 化スコープ (どこまで書くか = L4 = L9 総合テスト粒度)
+## §1 doc 化スコープ (どこまで書くか = L4 = L9 総合テスト粒度) （層意味論: canonical L9=integration）
 
-L4 = システム粒度 (L9 総合テスト設計と対)。本 PLAN で **function.md に書く**範囲:
+L4 = システム粒度 (L9 総合テスト設計と対)。本 PLAN で **function.md に書く**範囲: （層意味論: canonical L9=integration）
 
 1. **C12 内部資産 roster カテゴリ新設** (§1 機能カテゴリ表に追加): subagent roster registry + command を機能構成単位 (building block) 化
 2. **roster registry の機能**: `.claude/agents/*.md` (層1 markdown 正本) を TS (層2) が読み、capability class / model family / guard allowlist 整合を検証/注入/統制 (生成でない、ADR-004)
 3. **command CLI の機能**: 内部資産 command (`helix asset` / `helix roster` 等) を §2 CLI コマンド表に追加
 4. **guard 統合**: 既存 agent-guard (実装済) と roster registry の関係を明示 (roster が allowlist の SSoT、guard が enforcement)
 
-> **粒度 (L4)**: 「内部資産 roster が system として動く」を L9 総合テスト粒度で 1 観点に束ねる。各 subcommand / 各 subagent の関数粒度は L5 (module 結合) → L6 (関数仕様=単体) で段階分解 (PLAN-L4-10 §2、L5 を挟む)。
+> **粒度 (L4)**: 「内部資産 roster が system として動く」を L9 総合テスト粒度で 1 観点に束ねる。各 subcommand / 各 subagent の関数粒度は L5 (module 結合) → L6 (関数仕様=単体) で段階分解 (PLAN-L4-10 §2、L5 を挟む)。 （層意味論: canonical L9=integration）
 
 ## §2 設計計画 (Step)
 
@@ -67,7 +67,7 @@ L4 = システム粒度 (L9 総合テスト設計と対)。本 PLAN で **functi
 2. 手順 2 (Step 2): roster registry の機能構成単位 (building block) 記述 (層1 .md 読込 → 層2 検証/注入/統制、capability class 解決)
 3. 手順 3 (Step 3): function §2 CLI コマンド表に内部資産 command 追加 (`helix roster` / `helix asset`)
 4. 手順 4 (Step 4): guard 統合の明示 (roster = allowlist SSoT / agent-guard = enforcement)
-5. 手順 5 (Step 5): L9 総合テスト設計に内部資産 system テスト観点を追加 (ペア③、書ける範囲)
+5. 手順 5 (Step 5): L9 総合テスト設計に内部資産 system テスト観点を追加 (ペア③、書ける範囲) （層意味論: canonical L9=integration）
 6. 手順 6 (Step 6): **未確定 placeholder + 依存明示**: L5/L6 で確定する関数粒度仕様 (各 subcommand signature 等) は L4 では書けない → placeholder + 「L5 module 結合 / L6 関数仕様で確定」を §3 持ち越し (carry) に列挙 (PLAN-L4-10 §0.1、back-fill 対象)
 7. 手順 7 (Step 7): 自己レビュー (self-review、pmo-sonnet / code-reviewer)
 
@@ -85,6 +85,6 @@ L4 = システム粒度 (L9 総合テスト設計と対)。本 PLAN で **functi
 - [x] roster registry 機能構成単位 (building block) 記述 (ADR-004 層1/層2 境界準拠)
 - [x] function §2 CLI コマンド表に内部資産 command 追加
 - [x] guard 統合 (roster=SSoT / agent-guard=enforcement) 明示
-- [x] L9 総合テスト設計にペア観点追加 (書ける範囲) + 未確定は placeholder + 依存明示
+- [x] L9 総合テスト設計にペア観点追加 (書ける範囲) + 未確定は placeholder + 依存明示 （層意味論: canonical L9=integration）
 - [x] 粒度段階分解可能性 (L5→L6) を §3 持ち越し (carry) に明記
 - [x] 自己レビュー (self-review) 通過

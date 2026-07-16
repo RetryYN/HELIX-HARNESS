@@ -1,0 +1,732 @@
+{
+  "changed_paths": [
+    {
+      "path": "AGENTS.md",
+      "state": " M"
+    },
+    {
+      "path": "CLAUDE.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/adr/ADR-009-node-python-linux-runtime.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/archive/handover/G1-readiness-report-2026-05-28.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/archive/handover/SESSION-2026-05-27b-handover.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/design-catalog.yaml",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L1-requirements/functional-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L1-requirements/screen-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L10-ux/visual-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L11-uat/uat-evidence-boundary.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L12-acceptance/acceptance-evidence-boundary.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/README.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/business-flow.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/screen-detail.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/screen-flow.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/screen-list.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/ui-element.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L2-screen/wireframe.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L3-functional/README.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L3-functional/business-detail.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L3-functional/functional-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L3-functional/nfr-grade.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L3-functional/roadmap.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L4-basic-design/architecture.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L4-basic-design/external-if.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L4-basic-design/function.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L4-basic-design/ui-standard.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L5-detailed-design/if-detail.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L5-detailed-design/internal-processing.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L5-detailed-design/physical-data.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L6-function-design/edge-case.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L8-integration/integration-evidence-boundary.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/harness/L9-system/system-evidence-boundary.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L0-charter/helix-charter_v0.1.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L2-screen/screen-mock-boundary.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/nfr-grade.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/design/helix/L9-system/system-evidence-index.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/document-system-map.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/gate-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/helix-harness-concept_v3.1.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/helix-harness-extraction-plan_v0.1.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/helix-harness-requirements_v1.2.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/helix-l0-l8-design-consistency-audit.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-design-slice-registry.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-requirement-coverage-ledger.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-source-atomization-contract.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-source-capability-ledger.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/infinity-loop-source-snapshot-manifest.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/improvement-backlog.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/migration/v2-import-ledger.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L1-03-screen-requirements.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L11-00-uat-verification-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L12-00-acceptance-verification-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L2-00-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L3-01-functional-detail.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L3-02-business-detail.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L3-06-helix-pillar-descent.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L3-07-requirements-binding-enforcement.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-00-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-01-data.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-06-design-refresh.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-11-roster.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-12-skill-pack.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-13-drift-lint.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L4-14-ui-standard.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L5-00-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L5-05-roster.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L7-44-harness-db-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L7-45-harness-db-foundation.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-L9-00-system-verification-master.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-REVERSE-02-session-log.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-REVERSE-219-semantic-frontier-midlayer-closure.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/plans/PLAN-REVERSE-41-substance-lints.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/README.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/forward/L08-L14-verification-phase.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/forward/overview.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/modes/add-feature.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/modes/incident.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/modes/retrofit.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/process/modes/scrum.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/reference/system-review-triage-2026-07-12.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/harness/L1-operational-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/harness/L8-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/harness/L9-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/harness/L9-system-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L2-screen-ux-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L3-retention-purge-acceptance-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-engine-detector-execution-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-forward-infinity-orchestration-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-intake-contract-normalization-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-issue-scope-authority-gates-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-memory-learning-promotion-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-node-runtime-cutover-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-os-portability-supply-chain-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-product-data-connector-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-screen-applicability-prototype-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-source-capability-atomization-closure-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-source-capability-capture-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-three-stage-ci-quarantine-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/L5-universal-reverse-redesign-integration-test-design.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+      "state": " M"
+    },
+    {
+      "path": "docs/governance/chat-source-limitation-receipt-v1.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/design-harness-ac-closure-edges.yaml",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/design-harness-requirement-trace-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/generated/",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/helix-rebaseline-v040-adoption-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/helix-rebaseline-v040-source-trace-audit.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/helix-requirements-freeze-readiness-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/hybrid-python-callable-edge-contract.yaml",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/hybrid-python-engine-adoption-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/hybrid-python-module-anchor-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/hybrid-universal-mechanical-anchor-inventory.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/infinity-loop-git-authority-observation-2026-07-16.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/infinity-loop-l1-l3-trace-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/infinity-loop-l10-system-assertion-cases.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/infinity-loop-predecessor-pr-ci-inventory.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/node-python-linux-runtime-surface-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/post-po-design-freeze-transition-contract-v1.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/universal-workflow-anchor-extraction-contract.yaml",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/universal-workflow-anchor-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/universal-workflow-question-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/universal-workflow-source-manifest.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/visual-design-harness-verification-ledger.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/test-design/helix/L8-L11-visual-design-harness-verification.md",
+      "state": "??"
+    },
+    {
+      "path": "docs/test-design/helix/hybrid-python-callable-fixture-contracts-v1.json",
+      "state": "??"
+    },
+    {
+      "path": "docs/test-design/helix/universal-workflow-conflict-test-design-v1.json",
+      "state": "??"
+    },
+    {
+      "path": "scripts/audit/",
+      "state": "??"
+    }
+  ],
+  "commit_split_candidates": {
+    "authority_and_runtime_policy_docs": 3,
+    "generated_evidence_and_independent_reviews": 1,
+    "governance_ledgers_contracts_and_freeze": 36,
+    "historical_and_reference_alignment": 6,
+    "layered_design_and_test_design": 74,
+    "plans_and_process_alignment": 37,
+    "replay_and_independent_audit_scripts": 1
+  },
+  "custody": {
+    "accidental_paths": [],
+    "binary_or_compressed_count": 228,
+    "compressed_shard_sha256_set_digest": "f0fdfc84a558274e577d05c4d00a85a0c9d4f960ab092ba5597ae38120820ccf",
+    "generated_boundary": "docs/governance/generated is an untracked generated evidence root and must be committed with its producer/reviewer scripts and digest manifests, never as an opaque bulk add.",
+    "large_files": [
+      {
+        "bytes": 5482802,
+        "path": "docs/governance/generated/helix-bun-disposition-candidates-v1.json",
+        "sha256": "cba4235afb7d8d07d6c75df7b6700fd397e19ff3df756c5d583d902bf3186886"
+      },
+      {
+        "bytes": 37958782,
+        "path": "docs/governance/generated/helix-bun-historical-retain-evidence-readjudication-v1.json",
+        "sha256": "6934c8215d70b879c9668feaafc199cc679d6514271ac66a3bd483bcaf5c349a"
+      },
+      {
+        "bytes": 60289916,
+        "path": "docs/governance/generated/helix-bun-historical-stale-adjudication-v1.json",
+        "sha256": "6394375e6106ae1de4477e41c5b256be4e854854ba457d4018c80fe4c7069c37"
+      },
+      {
+        "bytes": 6265105,
+        "path": "docs/governance/generated/helix-bun-plan-exact-design-route-candidates-v1.json",
+        "sha256": "a05d41417ab170a42acd4ad1bd4446f05a9f77160aa1c15453ca9d5882a1a559"
+      },
+      {
+        "bytes": 9208770,
+        "path": "docs/governance/generated/helix-bun-plan-semantic-adjudication-v1.json",
+        "sha256": "63b8d354a03f01137378124ee3aee262c74c77fe5246968abbdbf3ba4664da2b"
+      }
+    ]
+  },
+  "findings": [],
+  "freeze_block": {
+    "commit_or_pr_allowed": false,
+    "reasons": [
+      "requirements freeze and PO/VMAUTH activation are not complete",
+      "generated evidence custody must be split with exact producer/reviewer/digest ownership",
+      "the uncommitted batch spans multiple independently reviewable design and governance concerns",
+      "large generated and compressed artifacts require repository-size and publication-policy review before staging",
+      "accidental path candidates must be adjudicated before an explicit-path stage"
+    ]
+  },
+  "schema_version": "helix.hybrid-freeze-worktree-boundary-independent-audit.v1",
+  "scope": {
+    "audit_files_excluded_from_batch_inventory": [
+      "docs/governance/generated/README.md",
+      "docs/governance/generated/hybrid-freeze-worktree-boundary-independent-audit-v1.json",
+      "scripts/audit/audit-hybrid-freeze-worktree-boundary.py"
+    ],
+    "observable_write_boundary": "git worktree inventory only",
+    "project_external_write_claim": "No project-external path is present in the Git-observable change set; filesystem-wide provenance is not inferable from Git.",
+    "project_external_write_count": 0
+  },
+  "security_scan": {
+    "pii_candidates": [],
+    "secret_pattern_counts": {
+      "aws_access_key": 0,
+      "github_token": 0,
+      "openai_style_key": 0,
+      "private_key": 0
+    }
+  },
+  "status": "boundary_observed_freeze_not_committable",
+  "summary": {
+    "accidental_path_candidates": 0,
+    "binary_or_compressed_files": 228,
+    "changed_paths": 158,
+    "compressed_shards": 228,
+    "generated_custody_bytes": 236277092,
+    "generated_files_under_roots": 303,
+    "generated_untracked_roots": 1,
+    "high_confidence_secret_candidates": 0,
+    "large_files_at_least_5MiB": 5,
+    "non_example_email_pii_candidates": 0,
+    "runtime_implementation_changes": 0,
+    "text_files_secret_scanned": 280,
+    "tracked_modified": 130,
+    "untracked_roots": 28
+  },
+  "worktree": {
+    "base_head": "fcbf942835d0014e38c7e20fbd471580fd41af33",
+    "base_head_kind": "worktree HEAD before uncommitted freeze batch",
+    "branch": "codex/hybrid-requirements-freeze",
+    "path": "/tmp/helix-hybrid-requirements"
+  }
+}

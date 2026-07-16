@@ -1,0 +1,553 @@
+{
+  "schema_version": "helix.universal-nonpo-authority-resolution-independent-review.v1",
+  "status": "independent_review_pass",
+  "sources": {
+    "candidate": {
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-v1.json",
+      "sha256": "bd67690eda7a477adf6ba271be9b43026b942b74b982f4283fb37d8e60e097e5"
+    },
+    "closure": {
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-v1.json",
+      "sha256": "d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1"
+    },
+    "closure_review": {
+      "path": "docs/governance/generated/universal-nonpo-question-design-closure-independent-review-v1.json",
+      "sha256": "24ff2097a2937dbe966dd77b9d499d8c5048c457efdb23f19bc765d188246532"
+    },
+    "po_packet": {
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c"
+    },
+    "vmodel_authority": {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+    }
+  },
+  "decision": {
+    "non_po_semantics": "37 evidence-current rows are information/design questions, not 37 PO option decisions",
+    "po_decision_units": {
+      "existing_universal_groups": 6,
+      "additional_VMAUTH": 1,
+      "total": 7,
+      "individual_answers_for_37": 0
+    },
+    "high_impact_authority_units": [
+      "external_integration_security_scope",
+      "privacy_security_scope"
+    ],
+    "standing_authorization_substitution": 0,
+    "activation": "pending"
+  },
+  "summary": {
+    "records": 42,
+    "evidence_terminal_receipts": 37,
+    "dependency_terminal_receipts": 5,
+    "records_with_findings": 0,
+    "finding_count": 0,
+    "runtime_verified": 0,
+    "coverage_credit_true": 0
+  },
+  "findings": [],
+  "records": [
+    {
+      "question_id": "UWR-Q-C-APPROVAL-01",
+      "source_question": "誰が承認できますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-02",
+      "source_question": "承認者が不在の場合はどうしますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-04",
+      "source_question": "差し戻し時はどの状態へ戻しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-APPROVAL-05",
+      "source_question": "多段承認の場合、順序と省略条件は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-DEADLINE-02",
+      "source_question": "期限超過時に何を発火しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-DEADLINE-03",
+      "source_question": "自動終了、再通知、エスカレーションのどれですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-01",
+      "source_question": "同期ですか非同期ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter",
+        "security_authority_for_high_impact"
+      ],
+      "resolution_owner": "AI_design_authority_with_grouped_high_impact_activation_gate",
+      "high_impact_domain": "external_integration_security_scope",
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-02",
+      "source_question": "重複実行をどう防ぎますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter",
+        "security_authority_for_high_impact"
+      ],
+      "resolution_owner": "AI_design_authority_with_grouped_high_impact_activation_gate",
+      "high_impact_domain": "external_integration_security_scope",
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-03",
+      "source_question": "失敗時の再試行回数と間隔は何ですか",
+      "original_class": "dependency_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter",
+        "security_authority_for_high_impact"
+      ],
+      "resolution_owner": "PO_and_high_impact_authority",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-04",
+      "source_question": "部分成功を許可しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter",
+        "security_authority_for_high_impact"
+      ],
+      "resolution_owner": "AI_design_authority_with_grouped_high_impact_activation_gate",
+      "high_impact_domain": "external_integration_security_scope",
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-EXTERNAL-INTEGRATION-05",
+      "source_question": "外部側の応答がない場合はどうしますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter",
+        "security_authority_for_high_impact"
+      ],
+      "resolution_owner": "AI_design_authority_with_grouped_high_impact_activation_gate",
+      "high_impact_domain": "external_integration_security_scope",
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-02",
+      "source_question": "マスキング対象は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "security_privacy_authority"
+      ],
+      "resolution_owner": "AI_design_authority_with_grouped_high_impact_activation_gate",
+      "high_impact_domain": "privacy_security_scope",
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-03",
+      "source_question": "保存期間と削除条件は何ですか",
+      "original_class": "dependency_reaudit",
+      "authority_fields": [
+        "PO",
+        "security_privacy_authority"
+      ],
+      "resolution_owner": "PO_and_high_impact_authority",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-PERSONAL-DATA-04",
+      "source_question": "操作履歴をどの粒度で残しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "security_privacy_authority"
+      ],
+      "resolution_owner": "AI_design_authority_with_grouped_high_impact_activation_gate",
+      "high_impact_domain": "privacy_security_scope",
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-01",
+      "source_question": "AIの出力は確定処理ですか、提案ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-02",
+      "source_question": "人間の承認が必要な条件は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-03",
+      "source_question": "信頼度が低い場合の戻り先はどこですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-04",
+      "source_question": "根拠とモデル情報を記録しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-C-AI-DECISION-05",
+      "source_question": "再実行時の入力・モデル・設定を固定しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-004",
+      "source_question": "開始時点の状態は何ですか",
+      "original_class": "dependency_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "PO_authority_with_AI_drafter",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-005",
+      "source_question": "途中で取り得る状態は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-006",
+      "source_question": "待機・保留・失敗を別状態として扱いますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-007",
+      "source_question": "どんな場合に対応が変わりますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-008",
+      "source_question": "次に進めない条件は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-009",
+      "source_question": "誰の判断や権限で分岐しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-010",
+      "source_question": "各分岐で何を実行しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-011",
+      "source_question": "実行時に必要なデータは何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-012",
+      "source_question": "処理後に何を更新しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-015",
+      "source_question": "何回まで繰り返しますか",
+      "original_class": "dependency_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "PO_authority_with_AI_drafter",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-016",
+      "source_question": "ループを止める条件は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-019",
+      "source_question": "失敗終了や期限切れ終了はありますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-020",
+      "source_question": "終了後に発火する処理は何ですか",
+      "original_class": "dependency_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "PO_authority_with_AI_drafter",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-021",
+      "source_question": "システム障害時はどうしますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-B-023",
+      "source_question": "誰が、いつ、何をしたかをどこまで記録しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-001",
+      "source_question": "どの時点で実行候補を切り替えますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-006",
+      "source_question": "再判定を行うきっかけは何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-009",
+      "source_question": "受け入れ側に必要な能力・権限・空き容量は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-010",
+      "source_question": "混雑時の代替経路は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-013",
+      "source_question": "制約になる資源は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-015",
+      "source_question": "各資源が持つ能力差は何ですか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-023",
+      "source_question": "どの条件で再配分しますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    },
+    {
+      "question_id": "UWR-Q-R-025",
+      "source_question": "完全に処理不能な場合、誰へエスカレーションしますか",
+      "original_class": "evidence_answered_reaudit",
+      "authority_fields": [
+        "PO",
+        "TL_drafter"
+      ],
+      "resolution_owner": "AI_design_authority_pending_single_VMAUTH_activation",
+      "high_impact_domain": null,
+      "findings": []
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — three-stage CI quarantine"
+title: "HELIX L9 結合テスト設計 — three-stage CI quarantine"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -25,7 +25,7 @@ source_capabilities:
   - HU-CAP-006
 ---
 
-# HELIX L8 結合テスト設計 — three-stage CI quarantine
+# HELIX L9 結合テスト設計 — three-stage CI quarantine
 
 ## §0 共通oracle
 

@@ -1,5 +1,5 @@
 ---
-title: "HELIX L9 総合テスト証跡インデックス"
+title: "HELIX L10 システム/Real UX evidence 検証証跡インデックス"
 layer: L9
 kind: design
 status: confirmed
@@ -9,7 +9,7 @@ owner: Codex
 pair_artifact: docs/test-design/helix/L4-pillar-system-test-design.md
 ---
 
-# HELIX L9 総合テスト証跡インデックス
+# HELIX L10 システム/Real UX evidence 検証証跡インデックス
 
 L9 は L4 basic design の system test pair である。現状は selected system behavior の証跡があり、実 remote / production 相当の全 system delivery ではない。
 

@@ -1,0 +1,95 @@
+{
+  "decision": {
+    "pending_zero_claimed": true,
+    "pending_zero_recognized_as_design_closure": true,
+    "reason": "all candidates have a mechanically supported Design disposition",
+    "required_correction": null
+  },
+  "findings": {
+    "issue_counts": {},
+    "samples": {}
+  },
+  "generated_at": "2026-07-16",
+  "physical": {
+    "content_addressed_determinism": true,
+    "global_stream_sha256": "6dbe44e6c4acca0586bd0df21dc4b4f0fd5f6ba78d713df612deaa4682609362",
+    "raw_secret_or_pii_findings": 0,
+    "record_counts": {
+      "canonical_behavior": 156508,
+      "entry_disposition": 6667,
+      "parser_split_child": 42388,
+      "source_occurrence": 340984
+    }
+  },
+  "safety": {
+    "coverage_credit": false,
+    "current": false,
+    "trusted": false,
+    "verified": false
+  },
+  "schema_version": "helix.exact2-semantic-normalization-independent-review.v1",
+  "semantic": {
+    "baseline_needs_review": {
+      "denominator": 263877,
+      "routes": {
+        "candidate_adopt_concrete_contract": 14067,
+        "superseded_by_parser_split_children": 366,
+        "terminal_non_adopt_insufficient_contract": 175180,
+        "terminal_non_adopt_true_over_split_fragment": 74214,
+        "terminal_non_adopt_under_split_parser_unresolved": 50
+      }
+    },
+    "candidate_concrete_dimension_counts": {
+      "1": 37730,
+      "2": 5131,
+      "3": 850,
+      "4": 78,
+      "5": 5
+    },
+    "canonical_behaviors": 156508,
+    "canonical_disposition_conflicts_fail_closed": 62,
+    "generic_lexeme_only": {
+      "denominator": 77107,
+      "routes": {
+        "candidate_adopt_concrete_contract": 29727,
+        "superseded_by_parser_split_children": 4327,
+        "terminal_non_adopt_generic_lexeme_only": 26787,
+        "terminal_non_adopt_true_over_split_fragment": 15362,
+        "terminal_non_adopt_under_split_parser_unresolved": 904
+      }
+    },
+    "orphan_terminal_non_adopt": 426,
+    "same_span_edge_errors": 0,
+    "same_span_independent_atom_members": {
+      "distinct_behavior_co_located_edge": 12323,
+      "duplicate_same_behavior_occurrence_edge": 36,
+      "single_span_occurrence_edge": 237969,
+      "true_over_split_fragment_edge": 90656
+    },
+    "source_atoms": 340984,
+    "source_occurrence_bijection": 340984,
+    "terminal_non_adopt_atoms": 292497,
+    "unclassified_terminal_non_adopt": 416,
+    "under_split": {
+      "denominator": 5647,
+      "parser_resolved": 4693,
+      "projection_errors": 0,
+      "terminal_unresolved": 954
+    }
+  },
+  "sources": {
+    "normalization_manifest": {
+      "path": "docs/governance/generated/exact2-semantic-normalization-manifest-v1.json",
+      "sha256": "3e618b27e3dece15e4f8a7a5cefdbe3cc832e1c2c0cc3425232bea48e1207a56"
+    },
+    "source_manifest": {
+      "path": "docs/governance/generated/exact2-atomic-behavior-manifest-v1.json",
+      "sha256": "fe5f602446172c91a0d1842144415ee586e19bd3ac0ed56ee06338ccc61cbbd8"
+    },
+    "source_review": {
+      "path": "docs/governance/generated/exact2-semantic-extractor-v2-independent-review-v1.json",
+      "sha256": "a62f1ef415844973d18317fb5422436d06e99b0f8359b56677c53472c1dd477c"
+    }
+  },
+  "status": "design_closure_accepted_candidate_not_verified"
+}

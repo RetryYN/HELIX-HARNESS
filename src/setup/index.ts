@@ -1129,6 +1129,7 @@ const CLEAN_DENY_PREFIXES = [
   "docs/test-design/",
   "docs/handover/",
   "docs/archive/",
+  "docs/governance/generated/",
   "src/web/",
   "vendor/",
   "legacy local state/",

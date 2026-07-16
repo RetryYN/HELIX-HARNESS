@@ -81,7 +81,7 @@ Reverse-first 骨格。baseline は known-debt を許容し NEW のみ fail-clos
 
 ## §実装計画
 
-- **Step 1**: 情報源 = docs/test-design/harness/L7-unit-test-design.md / L8-integration-test-design.md (oracle ID) + tests/*.ts + src/lint/impl-plan-trace.ts (baseline パターン)。
+- **Step 1**: 情報源 = docs/test-design/harness/L7-unit-test-design.md / L8-integration-test-design.md (oracle ID) + tests/*.ts + src/lint/impl-plan-trace.ts (baseline パターン)。 （層意味論: canonical L8=unit/detail）
 - **Step 2**: 情報源 = docs/governance/repository-structure.md (canonical ツリー) + git tracked + src/lint/asset-drift.ts。
 - **Step 3**: requirements §7.8.7。
 

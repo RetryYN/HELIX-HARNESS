@@ -51,9 +51,9 @@ state dir や CLI alias の不可逆 rename は実行しない。
 | L7 実装 | `docs/design/helix/L7-implementation/implementation-evidence-index.md` / `src/**` / `tests/**` / L7 PLAN 群 | proved | future version と approval-gated cutover は L7 完了に混ぜない |
 | L8 結合テスト | `docs/design/helix/L8-integration/integration-evidence-index.md` / `docs/test-design/harness/L8-integration-test-design.md` / `tests/g8-integration-workflow.test.ts` | proved | selected G8 profile の完了であり universal delivery ではない |
 | L9 総合テスト | `docs/design/helix/L9-system/system-evidence-index.md` / `docs/test-design/helix/L4-pillar-system-test-design.md` | proved | selected HST green を全 system block 完了へ拡大しない |
-| L10 UX | `docs/design/helix/L10-ux/ux-evidence-boundary.md` / `docs/test-design/helix/L2-screen-ux-test-design.md` | proved | L10 UX/WCAG pair は境界文書として保持し、現行 completion scope の blocker ではない |
-| L11 総合レビュー + UAT | `docs/design/helix/L11-uat/uat-evidence-boundary.md` / completion packet | frontier | completion decision packet の未決項目が残る場合は UAT close 不可 |
-| L12 デプロイ + 受入 | `docs/design/helix/L12-acceptance/acceptance-evidence-index.md` / `docs/test-design/helix/L3-pillar-acceptance-test-design.md` | proved | S4/version-up/cutover packet が fresh でなければ L14 完了に接続しない |
+| L10 system/Real UX evidence | `docs/design/helix/L10-ux/ux-evidence-boundary.md` / `docs/test-design/helix/L2-screen-ux-test-design.md` | proved | L10 system/Real UX evidence pair は境界文書として保持し、現行 completion scope の blocker ではない |
+| L11 受入/human visual | `docs/design/helix/L11-uat/uat-evidence-boundary.md` / completion packet | frontier | completion decision packet の未決項目が残る場合は UAT close 不可 |
+| L12 運用/価値 | `docs/design/helix/L12-acceptance/acceptance-evidence-index.md` / `docs/test-design/helix/L3-pillar-acceptance-test-design.md` | proved | S4/version-up/cutover packet が fresh でなければ L14 完了に接続しない |
 | L13 デプロイ後検証 | `docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md` | proved | 実 remote / deployment smoke は将来新規 PLAN の対象であり、現行 blocker ではない |
 | L14 運用検証 + 改善 | `docs/design/helix/L14-operations/operations-feedback-boundary.md` / completion decision packet / handover outstanding / rename plan | frontier | `po_decision_pending` / `version_up_parked` / `human_approval_pending` / `irreversible_migration_pending`、action-binding、cutover approval と追加 PLAN 実装が残る |
 

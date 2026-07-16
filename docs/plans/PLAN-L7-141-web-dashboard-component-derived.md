@@ -100,7 +100,7 @@ slice を再開した。
 設計部品 (`HierarchyPulldown` / `HeatmapGrid` / `LayerTemplate` 等) から降ろさず、harness.db を
 `SELECT` して汎用テーブル描画する **table-dumper prototype** だった (中央UIの mission=工程管理表を
 測れない、[[feedback_central_ui_kouteihyou_mission_not_coverage]])。さらに画面 V-model 鎖
-`L2 画面設計 → L4 FE 設計標準 (ui-standard) → L6 機能設計 → src/web 実装 → L10 UX 磨き(impl後)` の
+`L2 画面設計 → L4 FE 設計標準 (ui-standard) → L6 機能設計 → src/web 実装 → L10 UX 磨き(impl後)` の （層意味論: canonical L10=system/Real UX evidence）
 **設計標準 (部品/色) を飛ばして** 実装に着手していた。よって prototype を破棄し、要件 (component-derived +
 段階順) を正して再起票する。
 
@@ -116,7 +116,7 @@ prototype コード (`src/web/*.ts`) と `tests/web.test.ts`、`cli web` command
 
 1. **component-derived**: 各画面は L2 ui-element §2 の設計部品から構成する。汎用 table dumper 禁止。
 2. **段階順 (V-model、PLAN-L4-14 §3.3)**: `L2 画面設計(G2) → L4 ui-standard (FE 設計標準) → L6 機能設計
-   → src/web 実装 → L10 UX 磨き(impl後)`。L4 FE 設計標準 (ui-standard + tokens) 到達まで
+   → src/web 実装 → L10 UX 磨き(impl後)`。L4 FE 設計標準 (ui-standard + tokens) 到達まで （層意味論: canonical L10=system/Real UX evidence）
    `implemented_screens` を立てない (`screen-impl-pair-freeze` gate が fail-close)。
 3. **mission で測る**: 完遂判定は工程管理表 (mission) で行う。描画数や implemented flip の coverage で
    「Phase B 完遂」と名乗らない ([[feedback_coverage_not_substance]])。
@@ -128,7 +128,7 @@ prototype コード (`src/web/*.ts`) と `tests/web.test.ts`、`cli web` command
 - `src/web/` を ui-element §2 部品ベースで再構築 (component catalog → 15 screen composition → static app shell)。
 - `cli web render` command 再配線、`tests/web.test.ts` を部品単位で再設計。
 - L4 FE 設計標準 (ui-standard、PLAN-L4-14) 到達済み。`tokens.yaml` を唯一のtoken sourceとして読む。
-- Serverless共有・runtime配信・L10 UX磨きは本 first slice の外。後続 frontier として残す。
+- Serverless共有・runtime配信・L10 UX磨きは本 first slice の外。後続 frontier として残す。 （層意味論: canonical L10=system/Real UX evidence）
 
 ## 3. 受入条件
 

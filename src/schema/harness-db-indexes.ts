@@ -2,6 +2,102 @@ import type { IndexDef } from "./harness-db-types";
 
 export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
+    name: "uq_design_freeze_transition_idempotency",
+    table: "design_freeze_transition_operations",
+    columns: ["idempotency_key"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_current_status",
+    table: "design_freeze_receipts",
+    columns: ["status"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_terminal_operation",
+    table: "design_freeze_transition_terminal_receipts",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_authority_link_operation",
+    table: "design_freeze_authority_link_events",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_projection_operation",
+    table: "design_freeze_projections",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_progress_operation",
+    table: "design_freeze_progress_projections",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_l01_candidate_operation",
+    table: "design_freeze_l01_candidates",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_l01_handoff_operation",
+    table: "design_freeze_l01_handoffs",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_operation_idempotency",
+    table: "po7_activation_operations",
+    columns: ["idempotency_key"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_group_operation_group",
+    table: "po7_group_option_receipts",
+    columns: ["operation_id", "decision_group_id"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_question_operation_question",
+    table: "po7_question_answer_receipts",
+    columns: ["operation_id", "question_id"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_question_operation_queue",
+    table: "po7_question_answer_receipts",
+    columns: ["operation_id", "queue_id"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_vmodel_operation",
+    table: "po7_vmodel_authority_events",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_vmodel_sequence",
+    table: "po7_vmodel_authority_events",
+    columns: ["event_sequence"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_projection_epoch_status",
+    table: "po7_activation_projections",
+    columns: ["authority_epoch", "status"],
+    unique: true,
+  },
+  {
+    name: "uq_po7_terminal_operation",
+    table: "po7_activation_terminal_receipts",
+    columns: ["operation_id"],
+    unique: true,
+  },
+  {
     name: "idx_team_member_receipts_run_member",
     table: "team_member_run_receipts",
     columns: ["team_run_id", "member_index"],
@@ -72,7 +168,11 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     // physical-data §9.3 準拠: (plan_id, layer, drive, status)。plan_id は PK だが doc 宣言に整合させる。
     columns: ["plan_id", "layer", "drive", "status"],
   },
-  { name: "idx_trace_from_to", table: "trace_edges", columns: ["from_artifact", "to_artifact"] },
+  {
+    name: "idx_trace_from_to",
+    table: "trace_edges",
+    columns: ["from_artifact", "to_artifact"],
+  },
   {
     name: "idx_findings_subject_status",
     table: "findings",
@@ -113,7 +213,11 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     table: "improvement_log",
     columns: ["status", "created_at"],
   },
-  { name: "idx_search_subject", table: "search_index", columns: ["subject_type", "subject_id"] },
+  {
+    name: "idx_search_subject",
+    table: "search_index",
+    columns: ["subject_type", "subject_id"],
+  },
   {
     name: "idx_design_declarations_defined",
     table: "design_declarations",
@@ -370,7 +474,11 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     table: "model_evaluations",
     columns: ["success_rate", "evaluated_at"],
   },
-  { name: "idx_screens_category", table: "screens", columns: ["category", "screen_id"] },
+  {
+    name: "idx_screens_category",
+    table: "screens",
+    columns: ["category", "screen_id"],
+  },
   {
     name: "idx_screen_trace_screen",
     table: "screen_trace",
@@ -380,5 +488,53 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     name: "idx_loop_iterations_plan",
     table: "loop_iterations",
     columns: ["plan_id", "iteration"],
+  },
+  {
+    name: "uq_design_freeze_v2_operation_idempotency",
+    table: "design_freeze_v2_transition_operations",
+    columns: ["idempotency_key"],
+    unique: true,
+  },
+  {
+    name: "uq_design_freeze_v2_authority_event_sequence",
+    table: "design_freeze_v2_authority_link_events",
+    columns: ["operation_id", "event_sequence"],
+    unique: true,
+  },
+  {
+    name: "idx_design_freeze_v2_receipt_lifecycle",
+    table: "design_freeze_v2_receipts",
+    columns: ["status", "issued_at"],
+  },
+  {
+    name: "idx_design_freeze_v2_projection_head",
+    table: "design_freeze_v2_projections",
+    columns: ["current_freeze_head_digest", "status"],
+  },
+  {
+    name: "idx_design_freeze_v2_progress_head",
+    table: "design_freeze_v2_progress_projections",
+    columns: ["current_progress_head_digest", "status"],
+  },
+  {
+    name: "idx_design_freeze_v2_candidate_head",
+    table: "design_freeze_v2_l01_candidates",
+    columns: ["current_candidate_head_digest", "status"],
+  },
+  {
+    name: "idx_design_freeze_v2_handoff_expiry",
+    table: "design_freeze_v2_l01_handoffs",
+    columns: ["expires_at", "status"],
+  },
+  {
+    name: "idx_design_freeze_v2_outbox_status",
+    table: "design_freeze_v2_transition_outbox",
+    columns: ["status", "issued_at"],
+  },
+  {
+    name: "uq_design_freeze_v2_terminal_operation",
+    table: "design_freeze_v2_transition_terminal_receipts",
+    columns: ["operation_id"],
+    unique: true,
   },
 ];

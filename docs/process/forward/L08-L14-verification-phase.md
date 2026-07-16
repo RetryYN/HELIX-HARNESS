@@ -50,7 +50,7 @@ Source ledger 意味レビュー証跡:
 - `adoption_decision_delta`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の右腕 evidence 用 adoption decision に変更なし。
 - `workflow_route_impact`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / version-up / action-binding / cutover / completion の route 変更なし。
 
-> **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
+> **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 単体・詳細 ⇔ L5 / L9 結合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 単体・詳細 / L9 結合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
 
 ### 右腕 evidence profile (G8-G14)
 
@@ -261,7 +261,7 @@ version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migr
 
 ## 各層定義
 
-### L8 結合テスト
+### L8 単体・詳細検証
 
 | 項目 | 内容 |
 |------|------|
@@ -279,7 +279,7 @@ version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migr
 
 ---
 
-### L9 総合テスト
+### L9 結合検証
 
 | 項目 | 内容 |
 |------|------|
@@ -297,7 +297,7 @@ version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migr
 
 ---
 
-### L10 UX 磨き
+### L10 システム検証＋Real UX evidence
 
 | 項目 | 内容 |
 |------|------|
@@ -339,7 +339,7 @@ default runnable profile は restricted network でも実行できる local regr
 
 ---
 
-### L11 総合レビュー + UAT
+### L11 受入＋human visual acceptance
 
 | 項目 | 内容 |
 |------|------|
@@ -357,7 +357,7 @@ default runnable profile は restricted network でも実行できる local regr
 
 ---
 
-### L12 デプロイ + 受入
+### L12 運用・価値検証
 
 | 項目 | 内容 |
 |------|------|
@@ -416,11 +416,11 @@ default runnable profile は restricted network でも実行できる local regr
 
 | 失敗工程 | 差し戻し先 |
 |---------|-----------|
-| L8 結合テスト失敗 | L5 詳細設計 または L7 実装 |
-| L9 総合テスト失敗 | L4 基本設計 |
+| L8 単体・詳細検証失敗 | L5 詳細設計 または L7 実装 |
+| L9 結合検証失敗 | L4 基本設計 |
 | L10 UX 不承認 | L2 画面設計 (モック再確認) |
-| L11 UAT フィードバック | **L3 要件**: `kind=add-design layer=L3` 差分起票 / **L1 業務要求**: `kind=design layer=L1` 新規 PLAN (add-design は L3-L6 限定のため L1 不可。schema fail-close、§1.3 / frontmatter.ts)。既存 doc は不可変 |
-| L12 受入テスト失敗 | L3 要件定義 または L7 実装 |
+| L11 受入＋human visual acceptance フィードバック | **L3 要件**: `kind=add-design layer=L3` 差分起票 / **L1 業務要求**: `kind=design layer=L1` 新規 PLAN (add-design は L3-L6 限定のため L1 不可。schema fail-close、§1.3 / frontmatter.ts)。既存 doc は不可変 |
+| L12 運用・価値検証テスト失敗 | L3 要件定義 または L7 実装 |
 | L13 デプロイ後検証 失敗 | smoke 全断・本番回帰 → `regression_prod` signal で **Incident mode** 起動 (incident.md §2、三者承認必須) / 軽微な設定ミス → L12 再デプロイ |
 | L14 運用検証 失敗 | 運用テスト観点不足 → 次サイクル L1/L3 設計 feedback / 重大 NFR 逸脱 → Incident または L1 要求見直し |
 

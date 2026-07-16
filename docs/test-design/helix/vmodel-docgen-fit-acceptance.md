@@ -1,11 +1,11 @@
 ---
-title: "HELIX L12 受入テスト設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合"
+title: "HELIX L12 運用/価値検証設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合"
 layer: L3
 executed_at_layer: L12
 artifact_type: test_design
 status: confirmed
 created: 2026-07-08
-updated: 2026-07-09
+updated: 2026-07-16
 owner: Codex / TL
 plan: PLAN-L3-13-vmodel-docgen-fit
 pair_artifact: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
@@ -268,7 +268,7 @@ spec:
       kind: verifies
 ---
 
-# HELIX L12 受入テスト設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合
+# HELIX L12 運用/価値検証設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合
 
 ## §0 位置づけ
 
@@ -279,7 +279,7 @@ spec:
 
 | HAT-ID | 対応 L3 | 対応 AC | 受入観測 | 機械検証候補 |
 |--------|---------|---------|----------|--------------|
-| HAT-VMFIT-01 | HR-FR-VMFIT-01 | HAC-VMFIT-01a/b | ZIP の採用対象が L12/typed spec/impact/tailoring の概念に限定され、Python generator / Excel builder が core runtime に登録されない | plan lint / import boundary lint / architecture guard |
+| HAT-VMFIT-01 | HR-FR-VMFIT-01 | HAC-VMFIT-01a/b | ZIPの設計契約とPython engine/toolがtool別receiptで採否され、Python workerはNode control/gate/DB commitを迂回せず、Excel buildは正本にならない | adoption ledger / worker contract / architecture guard |
 | HAT-VMFIT-02 | HR-FR-VMFIT-02 | HAC-VMFIT-02a/b | L12 canonical map と L0-L14 compatibility projection が同時に表示でき、機能設計の契約が L5 詳細設計/typed declaration/TDD closure へ移される | layer-map tests / schema compatibility tests |
 | HAT-VMFIT-03 | HR-FR-VMFIT-03 | HAC-VMFIT-03a/b | design declaration の defined id / kind / layer / source が機械読取でき、heuristic-only の検出結果は pass 根拠にならない | declaration parser tests / heuristic downgrade tests |
 | HAT-VMFIT-04 | HR-FR-VMFIT-04 | HAC-VMFIT-04a/b | declaration、reference、impact、live evidence が harness.db に投影され、工程表と DB 現在地から current-location が返る | projection-writer tests / current-location read-model tests |
@@ -293,8 +293,8 @@ spec:
 
 | AC-ID | Given | When | Then |
 |-------|-------|------|------|
-| HAC-VMFIT-01a | ZIP を HELIX へ取り込む | 採用可否台帳を検査 | 採用対象は L12 レベル定義、typed spec、impact、tailoring、工程表、spec gate の概念であり、core runtime は TS/Bun のまま |
-| HAC-VMFIT-01b | ZIP の Python tool や Excel build を core に登録しようとする | architecture/import guard を実行 | reference-only として拒否または補助出力扱いになり、HELIX core dependency に昇格しない |
+| HAC-VMFIT-01a | ZIPをHELIXへ取り込む | tool別runtime reuse/semantic採否台帳を検査 | L12、typed spec、impact、tailoring、工程表とPython engine behaviorを個別採否し、Node control/gate/DB commitへversioned contractで接続する |
+| HAC-VMFIT-01b | Python→Node bulk port、Node control→Python移植、Python direct write、Excel正本化を試す | architecture/import/authority guardを実行 | 根拠なき相互移植、logic fork、direct writeを拒否し、Excelは補助fixtureだけになる |
 | HAC-VMFIT-02a | 現行 L0-L14 成果物がある | L12 compatibility projection を生成 | L0 は V 字成立のためのスライド調整として L1 企画側へ投影され、ZIP の設計カバレッジに従って未分類は finding になる |
 | HAC-VMFIT-02b | 独立 L6 機能設計を廃止する | migration plan を検査 | 契約、型、テスト oracle、runtime evidence の移転先が L5 詳細設計/typed declaration/L7 closure に明示され、契約消失は fail |
 | HAC-VMFIT-02c | `layer: cross` の Discovery/Reverse/Recovery PLAN がある | artifact remap を生成 | Discovery は L3、Reverse は L5、Recovery は L12 へ再投影され、未知 cross のみ unmapped finding になる |

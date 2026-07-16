@@ -21,7 +21,7 @@
 
 ### drive (専門職) を詳しく — 「どの専門職を招集するか」
 
-drive は「**その PLAN にどの専門職 (specialist) / 専門エージェントを招集するか**」を表す。これで **L10 UX 磨きの要否 / owner role / mandatory_agents / orchestration_mode** が変わる (concept §2.6.4)。**入口パターンは driveでなく駆動モデル (mode) が担う** (両者は別軸)。
+drive は「**その PLAN にどの専門職 (specialist) / 専門エージェントを招集するか**」を表す。これで **L10 システム/Real UX evidenceの要否 / owner role / mandatory_agents / orchestration_mode** が変わる (concept §2.6.4)。**入口パターンは driveでなく駆動モデル (mode) が担う** (両者は別軸)。
 
 **drive = 専門職 5 種** (V7 再設計済、§1.6):
 

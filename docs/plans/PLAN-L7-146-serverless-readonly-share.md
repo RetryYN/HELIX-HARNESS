@@ -148,10 +148,10 @@ PO 元来の狙い「全員で進捗・設計書を共有して見る」(ADR-005
 - **L2 (起点・G2 freeze 済)**: [screen-list](../design/harness/L2-screen/screen-list.md) 15 画面 / [screen-flow](../design/harness/L2-screen/screen-flow.md) / [ui-element](../design/harness/L2-screen/ui-element.md) §2 部品 / [wireframe](../design/harness/L2-screen/wireframe.md)。read-only + CLI コピーのみ (S5=b)、ID↔URL 1:1、30 秒ポーリング (S2=b)。
 - **L4 FE 設計標準 (ui-standard ✓ 2026-06-24、PLAN-L4-14)**: [ui-standard](../design/harness/L4-basic-design/ui-standard.md) + [tokens.yaml](../design/harness/L4-basic-design/tokens.yaml)。component-derived 再利用 FE 設計標準 (部品/色)。`data`=DB 設計標準の FE 対応物 (document-system-map §1b)。
 - **src/web 実装**: [PLAN-L7-141](./PLAN-L7-141-web-dashboard-component-derived.md)(component-derived 15 画面、read-only)。本 PLAN の `requires`。
-- **L10 UX 磨き (impl 後)**: 実装済 UI を磨き WCAG 検証 (L2 の右腕ペア)。配信・実装の前提ではない。
+- **L10 UX 磨き (impl 後)**: 実装済 UI を磨き WCAG 検証 (L2 の右腕ペア)。配信・実装の前提ではない。 （層意味論: canonical L10=system/Real UX evidence）
 - **本 PLAN (L7-146)**: その read-only UI を **無料 serverless で配信し全 project 横断・多人数で共有**する delivery 層 (ADR-005 D2 Phase B server sync を無料・read-only に具体化)。
 
-> descent 順 (PLAN-L4-14 §3.3): `L2 画面設計(✓) → L4 FE 設計標準 ui-standard(✓) → L6 機能設計 → read-only src/web 実装(L7-141) → 無料 serverless 配信/共有(本 PLAN) → L10 UX 磨き(impl後)`。
+> descent 順 (PLAN-L4-14 §3.3): `L2 画面設計(✓) → L4 FE 設計標準 ui-standard(✓) → L6 機能設計 → read-only src/web 実装(L7-141) → 無料 serverless 配信/共有(本 PLAN) → L10 UX 磨き(impl後)`。 （層意味論: canonical L10=system/Real UX evidence）
 > L2/L4 設計標準を飛ばして配信や実装に着手しない (L7-102 table-dumper 失敗の再発防止)。
 
 ## 2. スコープ

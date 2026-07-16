@@ -1,0 +1,146 @@
+{
+  "decision": {
+    "accepted_atomic_behavior_atoms": 0,
+    "candidate_lines_reviewed": 340984,
+    "reason": "single-line regex hit、generic I/O placeholder、未解決failure、multi-clause/doc table候補をsemantic atom確定へ昇格できない",
+    "required_next": "language-aware AST/Markdown block/config parserでspan、symbol owner、input/output/side effect/failure/oracleを抽出し、over/under split challengeを個票解消する"
+  },
+  "layered_semantics": {
+    "binary_entries": 2,
+    "by_disposition": {
+      "atomize_code": 1772,
+      "atomize_config": 235,
+      "atomize_normative_doc": 4226,
+      "binary_explicit": 2,
+      "historical_explicit": 16,
+      "unclassified_explicit": 416
+    },
+    "by_kind": {
+      "ci_hook_semantics": 1534,
+      "normative_code_block": 7100,
+      "normative_list_item": 165165,
+      "normative_paragraph_clause": 17760,
+      "normative_table_row": 128496,
+      "query": 1899,
+      "script_dependency_semantics": 1295,
+      "symbol": 11814,
+      "test_oracle": 5921
+    },
+    "by_repository_atoms": {
+      "legacy-helix": 160636,
+      "predecessor-ut": 180348
+    },
+    "historical_entries": 16,
+    "orphan_candidates": 426,
+    "semantic_findings": {
+      "excerpt_truncated_semantic_unverifiable": 19,
+      "under_split_multi_clause_line": 28718
+    },
+    "unclassified_entries": 416
+  },
+  "physical": {
+    "atom_schema_dispatch": {
+      "legacy_atom_v1": 0,
+      "semantic_behavior_v2": 340984
+    },
+    "atoms": 340984,
+    "entries": 6667,
+    "error_counts": {
+      "compressed_integrity_failure": 0,
+      "duplicate_record_id": 0,
+      "global_stream_digest_mismatch": 0,
+      "non_atom_shape_invalid": 0,
+      "ordinal_mismatch": 0,
+      "overlap_denominator_mismatch": 0,
+      "overlap_group_shape_invalid": 0,
+      "parent_entry_missing": 0,
+      "shard_descriptor_mismatch": 0,
+      "uncompressed_integrity_failure": 0
+    },
+    "errors": 0,
+    "global_stream_sha256": "2d869c97b00bb266befaff09f6e787f168a7d3cb694c761ae905a5f76a716002",
+    "non_atoms": 26111,
+    "overlap_groups": 70271,
+    "shards": 116
+  },
+  "safety": {
+    "coverage_credit": false,
+    "current": false,
+    "secret_or_pii_values_emitted": false,
+    "trusted": false,
+    "verified": false
+  },
+  "samples_by_finding_atom_id_only": {
+    "excerpt_truncated_semantic_unverifiable": [
+      "legacy-helix:ATOM:00191:0058",
+      "legacy-helix:ATOM:00531:0015",
+      "legacy-helix:ATOM:00532:0028",
+      "legacy-helix:ATOM:00777:0006",
+      "legacy-helix:ATOM:00778:0006",
+      "legacy-helix:ATOM:00783:0013",
+      "legacy-helix:ATOM:00801:0041",
+      "legacy-helix:ATOM:00840:0003",
+      "legacy-helix:ATOM:01018:0001",
+      "legacy-helix:ATOM:01691:0046",
+      "legacy-helix:ATOM:02024:0032",
+      "legacy-helix:ATOM:02025:0033",
+      "legacy-helix:ATOM:02240:0033",
+      "legacy-helix:ATOM:02245:0001",
+      "legacy-helix:ATOM:02260:0014",
+      "legacy-helix:ATOM:02709:0013",
+      "legacy-helix:ATOM:02861:0113",
+      "legacy-helix:ATOM:03236:0003",
+      "legacy-helix:ATOM:03237:0003"
+    ],
+    "invalid_single_line_span": [
+      "predecessor-ut:ATOM:00001:0005",
+      "predecessor-ut:ATOM:00001:0012",
+      "predecessor-ut:ATOM:00001:0025",
+      "predecessor-ut:ATOM:00001:0026",
+      "predecessor-ut:ATOM:00001:0034",
+      "predecessor-ut:ATOM:00001:0035",
+      "predecessor-ut:ATOM:00001:0036",
+      "predecessor-ut:ATOM:00001:0037",
+      "predecessor-ut:ATOM:00002:0005",
+      "predecessor-ut:ATOM:00002:0012",
+      "predecessor-ut:ATOM:00002:0025",
+      "predecessor-ut:ATOM:00002:0026",
+      "predecessor-ut:ATOM:00002:0034",
+      "predecessor-ut:ATOM:00002:0035",
+      "predecessor-ut:ATOM:00002:0036",
+      "predecessor-ut:ATOM:00002:0037",
+      "predecessor-ut:ATOM:00002:0042",
+      "predecessor-ut:ATOM:00002:0043",
+      "predecessor-ut:ATOM:00002:0044",
+      "predecessor-ut:ATOM:00002:0045"
+    ],
+    "under_split_multi_clause_line": [
+      "predecessor-ut:ATOM:00002:0071",
+      "predecessor-ut:ATOM:00003:0071",
+      "predecessor-ut:ATOM:00010:0019",
+      "predecessor-ut:ATOM:00011:0012",
+      "predecessor-ut:ATOM:00011:0040",
+      "predecessor-ut:ATOM:00011:0044",
+      "predecessor-ut:ATOM:00012:0012",
+      "predecessor-ut:ATOM:00012:0040",
+      "predecessor-ut:ATOM:00012:0044",
+      "predecessor-ut:ATOM:00013:0012",
+      "predecessor-ut:ATOM:00013:0040",
+      "predecessor-ut:ATOM:00013:0044",
+      "predecessor-ut:ATOM:00028:0013",
+      "predecessor-ut:ATOM:00028:0014",
+      "predecessor-ut:ATOM:00029:0013",
+      "predecessor-ut:ATOM:00029:0014",
+      "predecessor-ut:ATOM:00032:0003",
+      "predecessor-ut:ATOM:00032:0008",
+      "predecessor-ut:ATOM:00032:0033",
+      "predecessor-ut:ATOM:00032:0037"
+    ]
+  },
+  "schema_version": "helix.exact2-atomic-behavior-independent-review.v1",
+  "source": {
+    "path": "docs/governance/generated/exact2-atomic-behavior-manifest-v1.json",
+    "sha256": "fe5f602446172c91a0d1842144415ee586e19bd3ac0ed56ee06338ccc61cbbd8"
+  },
+  "status": "physical_shards_pass_semantic_atomization_fail_closed_not_trusted"
+}

@@ -111,7 +111,7 @@ secret 非保存・deterministic rebuild を review し evidence に残す。
 
 - 情報源: `physical-data.md` §2.7 / §9.1 (table/PK/join key/invariant)、`module-decomposition.md`
   (state-db 責務・依存方向 = schema にのみ依存、CLI adapter を import しない)、`if-detail.md`
-  (`db status/rebuild` 出力契約)、`L8-integration-test-design.md` IT-DB-01。
+  (`db status/rebuild` 出力契約)、`L8-integration-test-design.md` IT-DB-01。 （層意味論: canonical L8=unit/detail）
 - adapter は `bun:sqlite` を first、不在時 Node fallback (ADR-001 cross-runtime 方針)。
 
 ## §4 DoD

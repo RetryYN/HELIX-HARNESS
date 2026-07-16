@@ -15,7 +15,7 @@ next_pair_freeze: L3
 
 # HELIX L3 受入テスト設計 — pillar FR/AC
 
-> L3 要件 `pillar-functional-requirements.md` の L12 受入テスト設計。status は `confirmed`。
+> L3 要件 `pillar-functional-requirements.md` の L12 運用/価値検証設計。status は `confirmed`。
 > 本書は acceptance の名前・観測条件を確定する正本であり、実装済みテストの存在を主張しない。
 
 ## §0 量閉じ
@@ -44,14 +44,14 @@ G-SF oracle: confirmed 46 件の overlay 内では `confirmed_overlay_frontier_c
 
 ## §0.2 HELIX 検証戦略
 
-本書は L12 受入テスト設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。
+本書は L12 運用/価値検証設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。
 HELIX ではこれに加え、受入 claim を閉じる **検証戦略**を要求する。
 
 - HAT が runtime behavior を観測する場合、合格根拠は実 command / adapter / hook / session 由来の evidence
   でなければならない。DB projection、計画表、coverage 数値だけでは `works` claim を閉じない。
 - P2/P7/HNFR-AC の Claude/Codex runtime parity は、direct hook が効く surface と hosted/API preflight-only
   surface を分け、どちらの evidence で受け入れるかを記録する。
-- P3/P9 の実装精度・DB 収束は、L7.5 RUN & Debug で捕捉した runtime provenance を L12 受入 evidence
+- P3/P9 の実装精度・DB 収束は、L7.5 RUN & Debug で捕捉した runtime provenance を L12 operational/value evidence
   に接続する。projection-only telemetry は未検証として扱う。
 
 ### §0.3 HELIX NFR グレード projection oracle

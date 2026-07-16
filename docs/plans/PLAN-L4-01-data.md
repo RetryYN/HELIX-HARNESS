@@ -87,7 +87,7 @@ YAML/JSON state のディレクトリ/ファイル schema と SQLite projection 
 - [x] entity が 5 集約 (Plan / Artifact / Workflow / Handover / Evaluation) と値オブジェクト / projection に分類され、集約ルート/境界が明示
 - [x] 各集約に不変条件 (DbC invariant) が最低 1 件
 - [x] `src/schema/index.ts` の enum と値オブジェクト定義が 1:1 整合 (齟齬 0)
-- [x] V-model 4 artifact 双方向 trace 明示 (L9 総合テスト設計 pair)
+- [x] V-model 4 artifact 双方向 trace 明示 (L9 総合テスト設計 pair) （層意味論: canonical L9=integration）
 - [x] §6 用語更新 が存在 (要件 §1.10.G.9)
 - [x] §7 機能要求更新 が存在 (要件 §1.10.G.10)
 - [x] frontmatter `kind == design`、§0〜§7 完備

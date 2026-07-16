@@ -1,0 +1,18 @@
+{
+  "schema_version": "helix.runtime-surface-inventory-digests.v1",
+  "generated_artifacts_excluded_from_inventory_input": true,
+  "artifacts": {
+    "docs/governance/generated/helix-bun-surface-inventory-v1.json": {
+      "sha256": "807ab6ca4ac2f13680cc3933b9d8e84977f17ee2a2d5db8dd2f51ac6cb5020e3",
+      "replay": "byte-identical",
+      "candidate_only": true,
+      "verified_count": 0
+    },
+    "docs/governance/generated/helix-os-portability-surface-inventory-v1.json": {
+      "sha256": "192d4ff04f4bb1a8cf81577289a023630135eeae431a15528fbe005a02398de7",
+      "replay": "byte-identical",
+      "candidate_only": true,
+      "verified_count": 0
+    }
+  }
+}

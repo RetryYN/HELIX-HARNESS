@@ -206,7 +206,7 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   小 slice へ分割する。新規 product requirement / DB schema / public contract は追加しない。
 - **Step 4 AI 側完了**: PO 決定済み方針（期限付き物理削除は採用しない、append-only +
   superseded compaction / archive / projection rebuild）を L3 要件案
-  `docs/design/helix/L3-requirements/retention-purge-policy.md` と L12 受入テスト設計
+  `docs/design/helix/L3-requirements/retention-purge-policy.md` と L12 受入テスト設計 （層意味論: canonical L12=operational/value）
   `docs/test-design/helix/L3-retention-purge-acceptance-test-design.md` に降下した。L1 正本への追記は
   charter §3 に従い PO 起草・承認待ちであり、AI は候補 trace の提示に留める。
 - **AI 側 terminal 化**: Step 1/2/3/5/6 と Step 4 AI 側 L3/L12 降下は generated artifact と

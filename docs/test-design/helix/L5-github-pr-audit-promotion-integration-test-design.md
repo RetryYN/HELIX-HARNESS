@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — GitHub PR audit promotion"
+title: "HELIX L9 結合テスト設計 — GitHub PR audit promotion"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -24,7 +24,7 @@ requirements:
   - HAC-HIL-03c
 ---
 
-# HELIX L8 結合テスト設計 — GitHub PR audit promotion
+# HELIX L9 結合テスト設計 — GitHub PR audit promotion
 
 isolated harness.db、fake GitHub delivery/current-head reader、fake Claude audit adapter、Codex queue spy、固定clock/IDを使う。
 remote writeと実AIは起動せず、delivery/job/finding/disposition/promotion/member/event/projectionのcountとdigestをassertする。

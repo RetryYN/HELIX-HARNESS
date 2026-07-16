@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — memory learning promotion"
+title: "HELIX L9 結合テスト設計 — memory learning promotion"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -26,7 +26,7 @@ system_tests:
   - HST-HIL-016
 ---
 
-# HELIX L8 結合テスト設計 — memory learning promotion
+# HELIX L9 結合テスト設計 — memory learning promotion
 
 ## §0 共通oracle
 

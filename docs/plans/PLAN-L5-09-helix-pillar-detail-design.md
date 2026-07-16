@@ -71,10 +71,10 @@ review_evidence:
 
 `PLAN-L4-51` で HELIX L3 43件は L4 基本設計（basic design）へ降下済みになった。一方、既存 L5 正本は
 harness core の 4 sub-doc と内部資産/DB feedback を対象にしており、HELIX pillar 名前空間の `HB-*`
-10 block を L5 詳細契約（detailed contract）と L8 結合観測（integration observation）へ降ろしていなかった。
+10 block を L5 詳細契約（detailed contract）と L8 結合観測（integration observation）へ降ろしていなかった。 （層意味論: canonical L8=unit/detail）
 
 本 PLAN は L5 add-design として、L4 10 block / 43 件を L5 詳細契約（detailed contract）と
-L8 結合テスト設計（integration test design）へ漏れなく降下する。既存 harness L5 4 sub-doc は破壊的に置換しない。
+L8 結合テスト設計（integration test design）へ漏れなく降下する。既存 harness L5 4 sub-doc は破壊的に置換しない。 （層意味論: canonical L8=unit/detail）
 
 ## §工程表
 
@@ -88,7 +88,7 @@ L8 結合テスト設計（integration test design）へ漏れなく降下する
 - 成果: `docs/design/helix/L5-detail/pillar-detail-design.md`。
 - 内容: L5 contract 10 種、L4/L3 43 件の全件降下表、物理データ（physical data）/ module boundary / D-CONTRACT / fail-close の L5 設計判断。
 
-### Step 3: [直列] L8 結合テスト設計（integration test design）作成
+### Step 3: [直列] L8 結合テスト設計（integration test design）作成 （層意味論: canonical L8=unit/detail）
 
 - 成果: `docs/test-design/helix/L5-pillar-integration-test-design.md`。
 - 内容: `LIT-*` 46 件を L3 46 件へ 1:1 接続。各 L5 contract の結合境界（integration boundary）を Given/When/Then で観測する。

@@ -38,7 +38,7 @@ HELIX-HARNESS の wireframe 運用は **柔軟方針 (ケース別判断)**:
 選択基準 (PLAN-L2-04 本起票時 or L10 着手時に決定):
 - 画面の複雑度 / 設計レビュー深度
 - PO の design tool 採用状況
-- L10 UX refinement で必要な詳細度
+- L10 system/Real UX evidence で必要な詳細度
 
 > **外部依頼は許容するが必須ではない**。harness 内に High-Fi を保持する選択も可。「**必ず外部にはならない**」(PO 訂正 2026-05-28)。
 
@@ -48,7 +48,7 @@ HELIX-HARNESS の wireframe 運用は **柔軟方針 (ケース別判断)**:
 1. **L2 確定が前提**: 画面要求 + UI 要素を確定した状態で外部に input を渡す (「L2 で本来やる工程をある程度確定した状態で出す」PO 指示)
 2. **外部成果物を harness 側でレビュー**: L1 画面要求と照合
 3. **要件修正 back-propagation の可能性**: モックと要件に不整合あれば L1 screen / business / functional 修正 → G1-trace 再検証
-4. **L10 UX refinement で参照**: 外部成果物 URL を参照欄に記載
+4. **L10 system/Real UX evidence で参照**: 外部成果物 URL を参照欄に記載
 
 詳細は `wireframe.md` 参照。
 

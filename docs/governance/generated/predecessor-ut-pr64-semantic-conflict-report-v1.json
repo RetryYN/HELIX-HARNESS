@@ -1,0 +1,5067 @@
+{
+  "artifact_id": "PREDECESSOR-UT-PR64-SEMANTIC-CONFLICT-REPORT-V1",
+  "schema_version": "helix.predecessor-ut.pr-semantic-conflict-report.v1",
+  "status": "candidate_conflict_report_not_adjudicated",
+  "inputs": {
+    "full71": {
+      "path": "docs/governance/generated/predecessor-pr-semantic-review-71-v1.json",
+      "sha256": "6455ca3f29124310a69a9ce7db4eb79994e3d242c46570fb61438e3b3fd66bc8"
+    },
+    "ut64": {
+      "path": "docs/governance/generated/predecessor-ut-pr64-semantic-join-v1.json",
+      "sha256": "403bf3b77393bfbf09c2cb2c61f6f2fa366ac1733ec30ccfc879a25868d3d92e"
+    }
+  },
+  "denominator": 64,
+  "summary": {
+    "common_prs": 64,
+    "disposition_differences": 35,
+    "hil_set_differences": 64,
+    "hr_set_differences": 64,
+    "common_source_evidence_digest_mismatches": 0,
+    "fully_identical_semantic_rows": 0,
+    "cause_patterns": {
+      "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule": 35,
+      "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline": 64,
+      "hr_difference_is_downstream_of_hil_set_difference": 64
+    },
+    "source_evidence_precedence": "complementary_no_global_winner",
+    "adjudicated": 0,
+    "verified": 0,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "comparison set is exactly the 64 predecessor-ut PR IDs common to both artifacts",
+    "common commit/path/check/family digests must match before semantic comparison",
+    "difference reporting does not select an adoption winner",
+    "source evidence richness is axis-specific and neither candidate globally supersedes the other",
+    "verified and coverage credit remain zero"
+  ],
+  "rows": [
+    {
+      "pr_id": "predecessor-ut#1",
+      "number": 1,
+      "title": "[codex] add proposal document coverage routing",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-NFR-34"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#2",
+      "number": 2,
+      "title": "chore: close local l10-l14 validation gates",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#3",
+      "number": 3,
+      "title": "refactor(doctor): centralize run profile registry",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": []
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#4",
+      "number": 4,
+      "title": "refactor(doctor): expose profile audience helpers",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": []
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#5",
+      "number": 5,
+      "title": "refactor(doctor): guard consumer-safe profiles",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-33",
+            "HIL-FR-34",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": []
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#6",
+      "number": 6,
+      "title": "docs(plan): register db-driven refactor follow-ups",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#7",
+      "number": 7,
+      "title": "refactor(doctor): split db currency gate",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#8",
+      "number": 8,
+      "title": "refactor(feedback): surface actionable takeover events",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#9",
+      "number": 9,
+      "title": "refactor(doctor): expose run profiles",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#10",
+      "number": 10,
+      "title": "refactor(setup): allow standalone readiness",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#11",
+      "number": 11,
+      "title": "refactor(setup): use consumer doctor profile in templates",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#12",
+      "number": 12,
+      "title": "refactor: extract doctor profile registry",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#13",
+      "number": 13,
+      "title": "refactor: split doctor runner modules",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#14",
+      "number": 14,
+      "title": "feat: add consumer toolchain doctor profile",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-33",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#15",
+      "number": 15,
+      "title": "[codex] Sync consumer toolchain adapter guidance",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#16",
+      "number": 16,
+      "title": "[codex] Group doctor check definitions",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-BR-16",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-28",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#17",
+      "number": 17,
+      "title": "refactor: lazy-cache doctor test fixture",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#18",
+      "number": 18,
+      "title": "test: add direct doctor submodule checks",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "adopt",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#19",
+      "number": 19,
+      "title": "test: add direct doctor runtime-state checks",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "adopt",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-BR-16",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-28",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#20",
+      "number": 20,
+      "title": "feat(recovery): RECOVERY-10 Stage 1 (route_mode fail-close) + vmodel-docgen reference-mining, merge Codex doctor refactor",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#21",
+      "number": 21,
+      "title": "[codex] Preserve context diversity in session surfaces",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#22",
+      "number": 22,
+      "title": "Add design doc cross integrity gate",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#23",
+      "number": 23,
+      "title": "Backfill CLI command boundary design",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#24",
+      "number": 24,
+      "title": "Confirm L4 security slot",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-06",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-38",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-05",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#25",
+      "number": 25,
+      "title": "Add docs-wide secret scan gate",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "adopt",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-06",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-34",
+            "HIL-FR-38",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-05",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#26",
+      "number": 26,
+      "title": "fix(skill): connect recommendation scoring loop",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-41",
+            "HIL-FR-42",
+            "HIL-FR-44",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#27",
+      "number": 27,
+      "title": "fix(spec-ir): tighten detector projection boundaries",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#28",
+      "number": 28,
+      "title": "fix: consolidate stable ID generation",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#29",
+      "number": 29,
+      "title": "fix: complete route mode allowlists",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-13",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-22",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#30",
+      "number": 30,
+      "title": "docs: backfill test plan generates",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#31",
+      "number": 31,
+      "title": "fix: separate stale runtime plan context findings",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#32",
+      "number": 32,
+      "title": "[codex] execute green command digest anchors",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "adopt",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#33",
+      "number": 33,
+      "title": "[codex] rebind digest suspect evidence",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#34",
+      "number": 34,
+      "title": "[codex] freeze execution assignment ledger design",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-13",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-22",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#35",
+      "number": 35,
+      "title": "feat(gate): persist gate run evidence",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "adopt",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#36",
+      "number": 36,
+      "title": "[codex] Route verification defects to refactor lifecycle",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-13",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-22",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#37",
+      "number": 37,
+      "title": "[codex] freeze domain and skill admission design",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-41",
+            "HIL-FR-42",
+            "HIL-FR-44",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#38",
+      "number": 38,
+      "title": "docs(plan): PLAN-DISCOVERY-10 GPT-5.6 tier routing bench (S1)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#39",
+      "number": 39,
+      "title": "feat: integrate V-model live SessionStart digest",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#40",
+      "number": 40,
+      "title": "fix: complete feedback lifecycle and memory promotion",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#41",
+      "number": 41,
+      "title": "feat(routing): adopt gpt-5.6 tier routing (PLAN-L7-415)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#42",
+      "number": 42,
+      "title": "fix(distribution): close export integrity defects (PLAN-L7-413)",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#43",
+      "number": 43,
+      "title": "fix(distribution): correct D-2 denylist semantics to output guard (PLAN-L7-413 followup)",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#44",
+      "number": 44,
+      "title": "fix(agent-guard): reserve fable for quality gates",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#45",
+      "number": 45,
+      "title": "feat(vmodel): establish engine-swap foundation",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#46",
+      "number": 46,
+      "title": "feat(vmodel): compile engine-swap contract foundation",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#47",
+      "number": 47,
+      "title": "feat(vmodel): rebuild harness engine and self-proof lifecycle",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#48",
+      "number": 48,
+      "title": "docs(skills): add structured decision_points to all 54 baseline skills (PLAN-L7-417)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-41",
+            "HIL-FR-42",
+            "HIL-FR-44",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#49",
+      "number": 49,
+      "title": "docs(skills): vmodel judgement skill pack — 8 new skills + adversarial addendum (PLAN-L6-70)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-39",
+            "HIL-FR-41",
+            "HIL-FR-42",
+            "HIL-FR-44",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#50",
+      "number": 50,
+      "title": "docs(skills): stage / design-family / product-profile skill slices (PLAN-L6-70 slice 2)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-41",
+            "HIL-FR-42",
+            "HIL-FR-44",
+            "HIL-FR-45",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-NFR-34"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#51",
+      "number": 51,
+      "title": "feat(review): add blind-reviewer subagent and Codex delegation role (PLAN-L6-53 rescue)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#52",
+      "number": 52,
+      "title": "docs(audit): A-187 checked-ZIP divergence audit + gap routing (PLAN-L4-29 / L6-78 / L6-79)",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#53",
+      "number": 53,
+      "title": "refactor(projection): split engine-swap application and persistence boundaries",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "defer"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#54",
+      "number": 54,
+      "title": "test: close L7-421 live-tree hygiene fence",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#55",
+      "number": 55,
+      "title": "docs(engine): define projection rebuild boundaries",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#56",
+      "number": 56,
+      "title": "fix(projection): guard legacy finding payloads",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-13",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#58",
+      "number": 58,
+      "title": "docs(engine): close projection rebuild design review",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-29",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#59",
+      "number": 59,
+      "title": "test: reland L7-421 residual test hygiene + PLAN-L7-245 promotion",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49"
+          ],
+          "ut64_only": [
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-29",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#60",
+      "number": 60,
+      "title": "feat(routing): adopt task-kind model routing v2",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#61",
+      "number": 61,
+      "title": "feat(ci): universal PR trigger + fail-close detector (PLAN-L6-82/L7-434, issue #57)",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "harden",
+          "ut64": "harden"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-33",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-02",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-30",
+            "HIL-FR-32",
+            "HIL-FR-34",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-19",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-11"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-13",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-14",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#62",
+      "number": 62,
+      "title": "feat(plan-asset): implement canonical v2 migration ledger",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "redesign",
+          "ut64": "adopt"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#63",
+      "number": 63,
+      "title": "docs(vmodel): design execution ledger GitHub reentry",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-02",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-30",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#64",
+      "number": 64,
+      "title": "feat(plan): drive-aware admission policy",
+      "differences": {
+        "disposition": {
+          "different": true,
+          "full71": "harden",
+          "ut64": "defer"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "classification_policy_divergence:title-specific-anti-corruption-vs-lifecycle-check-title-rule",
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#65",
+      "number": 65,
+      "title": "docs(plan): PLAN-L1-08 design harness internalization + plan_id taxonomy gate",
+      "differences": {
+        "disposition": {
+          "different": false,
+          "full71": "redesign",
+          "ut64": "redesign"
+        },
+        "hil": {
+          "different": true,
+          "common": [
+            "HIL-BR-16",
+            "HIL-FR-13",
+            "HIL-FR-28",
+            "HIL-FR-46"
+          ],
+          "full71_only": [
+            "HIL-BR-14",
+            "HIL-FR-01",
+            "HIL-FR-09",
+            "HIL-FR-10",
+            "HIL-FR-11",
+            "HIL-FR-16",
+            "HIL-FR-22",
+            "HIL-FR-29",
+            "HIL-FR-32",
+            "HIL-FR-39",
+            "HIL-FR-42",
+            "HIL-FR-45",
+            "HIL-FR-49",
+            "HIL-FR-56",
+            "HIL-FR-61",
+            "HIL-FR-65",
+            "HIL-FR-78"
+          ],
+          "ut64_only": [
+            "HIL-BR-09",
+            "HIL-BR-22",
+            "HIL-BR-25",
+            "HIL-FR-48",
+            "HIL-FR-76",
+            "HIL-NFR-15",
+            "HIL-NFR-29",
+            "HIL-NFR-34",
+            "HIL-TR-07",
+            "HIL-TR-10"
+          ]
+        },
+        "hr": {
+          "different": true,
+          "common": [
+            "HR-FR-HIL-06",
+            "HR-FR-HIL-08",
+            "HR-FR-HIL-17",
+            "HR-FR-HIL-18",
+            "HR-FR-HIL-19",
+            "HR-FR-HIL-22"
+          ],
+          "full71_only": [
+            "HR-FR-HIL-02",
+            "HR-FR-HIL-03",
+            "HR-FR-HIL-07",
+            "HR-FR-HIL-09",
+            "HR-FR-HIL-16",
+            "HR-FR-HIL-26",
+            "HR-FR-HIL-27",
+            "HR-FR-HIL-31",
+            "HR-FR-HIL-44"
+          ],
+          "ut64_only": [
+            "HR-FR-HIL-12",
+            "HR-FR-HIL-20",
+            "HR-FR-HIL-25",
+            "HR-FR-HIL-42"
+          ]
+        },
+        "common_source_evidence_digest_mismatch": false
+      },
+      "cause_patterns": [
+        "hil_mapping_policy_divergence:title-specific-semantic-enrichment-vs-behavior-family-baseline",
+        "hr_difference_is_downstream_of_hil_set_difference"
+      ],
+      "source_evidence_precedence": {
+        "verdict": "complementary_no_global_winner",
+        "authoritative_root": "predecessor-pr-plan-join-71-v1.json candidate source observation",
+        "full71_advantage": "head_oid and title-specific semantic review reason",
+        "ut64_advantage": "state, draft, body presence, materialization flags, path count, merged_candidate limitation",
+        "rule": "common digest mismatch blocks both; otherwise neither candidate review supersedes the other"
+      },
+      "resolution": "retain_conflict_for_independent_behavior_atom_review",
+      "verified": false,
+      "coverage_credit": false
+    }
+  ]
+}

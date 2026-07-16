@@ -26,12 +26,12 @@ PO 指示（2026-07-08）により、結合テスト設計の正本 path を
 L9 結合テスト設計は、L5 詳細設計の module boundary、adapter boundary、state boundary、DB projection、
 search / feedback / automation / guardrail / asset catalog boundary を、IT-* の Given / When / Then 粒度で検証する。
 
-初期移行では、既存 `L8-integration-test-design.md` の IT-* 行を legacy oracle として参照する。
+初期移行では、既存 `L8-integration-test-design.md` の IT-* 行を legacy oracle として参照する。 （層意味論: canonical L8=unit/detail）
 新規 PLAN では、L8 を単体テスト設計、L9 を結合テスト設計として扱い、L7 起票 gate の unit pair と混同しない。
 
 | 結合 family | trace | oracle route |
 |---|---|---|
-| module / adapter boundary | FR-L1-01..FR-L1-51 | legacy `L8-integration-test-design.md` の IT-* 行を L9 結合 oracle として段階移行する |
+| module / adapter boundary | FR-L1-01..FR-L1-51 | legacy `L8-integration-test-design.md` の IT-* 行を L9 結合 oracle として段階移行する | （層意味論: canonical L8=unit/detail）
 | DB / state projection（DB / state 投影） | FR-L1-03 / FR-L1-07 / FR-L1-47 | IT-DB / IT-STATE / IT-FEEDBACK family（系列） |
 | automation / guardrail / asset catalog（自動化 / 防護 / 資産 catalog） | FR-L1-09 / FR-L1-46..FR-L1-49 | IT-AUTOMATION / IT-GUARDRAIL / IT-ASSET family（系列） |
 

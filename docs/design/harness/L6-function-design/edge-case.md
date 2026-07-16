@@ -16,7 +16,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **SSoT 参照**: 関数 signature = [function-spec.md](./function-spec.md) §1/§2 / edge docstring 枠 = [internal-processing.md](../L5-detailed-design/internal-processing.md) §7 (G5 凍結) / fail-close 形式 = internal-processing §6。本 doc は各関数に `@edge-normal/error/boundary/throws` の 4 観点を per-function 確定する (L6、IMP-014)。
 >
 > **V-pair**: `pair_artifact = L7-unit-test-design.md` (L6↔L7)。各 edge → U-* test oracle (孤児 0)。
-> **edge 5-8 形式** (internal-processing §7): `@edge-normal`→01 / `@edge-error`→02 / `@edge-boundary`→03 / `@throws`→exit code。**trace 先の系統分岐**: L7 単体テストは **U-***-NN (本 doc の右列)、L12 受入テストは **AT-***-NN (internal-processing §7 の AT-* は受入系)。L6↔L7 pair では U-* が正本 oracle。
+> **edge 5-8 形式** (internal-processing §7): `@edge-normal`→01 / `@edge-error`→02 / `@edge-boundary`→03 / `@throws`→exit code。**trace 先の系統分岐**: L7 単体テストは **U-***-NN (本 doc の右列)、L12 運用/価値検証は **AT-***-NN (internal-processing §7 の AT-* は受入系)。L6↔L7 pair では U-* が正本 oracle。
 
 # HELIX-HARNESS — L6 機能設計: エッジケース (Edge-Case)
 

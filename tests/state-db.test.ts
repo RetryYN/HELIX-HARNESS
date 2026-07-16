@@ -8,16 +8,34 @@ import {
   SCHEMA_VERSION,
   schemaDdl,
 } from "../src/schema/harness-db";
-import { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "../src/schema/harness-db-catalog";
+import {
+  HARNESS_DB_INDEXES,
+  HARNESS_DB_TABLES,
+} from "../src/schema/harness-db-catalog";
 import { HARNESS_DB_INDEXES as SECTION_HARNESS_DB_INDEXES } from "../src/schema/harness-db-indexes";
 import { col, pk } from "../src/schema/harness-db-table-builders";
 import { HARNESS_DB_CORE_TABLES } from "../src/schema/harness-db-tables-core";
 import { HARNESS_DB_DESIGN_TABLES } from "../src/schema/harness-db-tables-design";
 import { HARNESS_DB_EVALUATION_TABLES } from "../src/schema/harness-db-tables-evaluation";
 import { HARNESS_DB_GRAPH_EXPORT_TABLES } from "../src/schema/harness-db-tables-graph";
-import { assertWithinHelixStateDir, openHarnessDb, upsertRow } from "../src/state-db/index";
-import { ensureHarnessSchema, harnessDbStatus } from "../src/state-db/maintenance";
-import { migrate, missingTables, rowCounts, tableNames } from "../src/state-db/migration";
+import { HARNESS_DB_PO7_TABLES } from "../src/schema/harness-db-tables-po7";
+import { HARNESS_DB_DESIGN_FREEZE_TABLES } from "../src/schema/harness-db-tables-design-freeze";
+import { HARNESS_DB_DESIGN_FREEZE_V2_TABLES } from "../src/schema/harness-db-tables-design-freeze-v2";
+import {
+  assertWithinHelixStateDir,
+  openHarnessDb,
+  upsertRow,
+} from "../src/state-db/index";
+import {
+  ensureHarnessSchema,
+  harnessDbStatus,
+} from "../src/state-db/maintenance";
+import {
+  migrate,
+  missingTables,
+  rowCounts,
+  tableNames,
+} from "../src/state-db/migration";
 
 /**
  * bun:sqlite releases the OS file handle on GC finalization rather than synchronously on
@@ -27,7 +45,12 @@ import { migrate, missingTables, rowCounts, tableNames } from "../src/state-db/m
  */
 function cleanupRepo(repo: string): void {
   (globalThis as { Bun?: { gc: (sync: boolean) => void } }).Bun?.gc(true);
-  rmSync(repo, { recursive: true, force: true, maxRetries: 10, retryDelay: 50 });
+  rmSync(repo, {
+    recursive: true,
+    force: true,
+    maxRetries: 10,
+    retryDelay: 50,
+  });
 }
 
 /**
@@ -35,12 +58,15 @@ function cleanupRepo(repo: string): void {
  * table 作成 (registry-driven migration) + idempotent upsert 基盤 + DB path guard。
  * 設計 pair: docs/test-design/harness/L8-integration-test-design.md IT-DB-01。
  */
+// PLAN-L7-459-design-freeze-authority-transition
 describe("IT-DB-01: harness.db state-db foundation", () => {
   it("uses node:sqlite fallback when the test worker is running under Node", () => {
     const db = openHarnessDb(":memory:");
     try {
       const expectedDriver =
-        typeof (globalThis as { Bun?: unknown }).Bun === "undefined" ? "node" : "bun";
+        typeof (globalThis as { Bun?: unknown }).Bun === "undefined"
+          ? "node"
+          : "bun";
       expect(db.driver).toBe(expectedDriver);
       db.exec("CREATE TABLE fallback_smoke (id TEXT PRIMARY KEY)");
       db.prepare("INSERT INTO fallback_smoke (id) VALUES (?)").run("ok");
@@ -52,11 +78,15 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
 
   it("file-backed harness.db enables WAL and busy timeout for rebuild/read concurrency", () => {
     const repo = mkdtempSync(join(tmpdir(), "utdb-"));
-    const db = openHarnessDb(join(repo, ".helix", "harness.db"), { repoRoot: repo });
+    const db = openHarnessDb(join(repo, ".helix", "harness.db"), {
+      repoRoot: repo,
+    });
     try {
       const journalMode = db.prepare("PRAGMA journal_mode").get();
       const busyTimeout = db.prepare("PRAGMA busy_timeout").get();
-      const timeout = Number(busyTimeout?.timeout ?? busyTimeout?.busy_timeout ?? 0);
+      const timeout = Number(
+        busyTimeout?.timeout ?? busyTimeout?.busy_timeout ?? 0,
+      );
 
       expect(String(journalMode?.journal_mode ?? "").toLowerCase()).toBe("wal");
       expect(timeout).toBeGreaterThanOrEqual(5000);
@@ -72,13 +102,21 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     const writer = openHarnessDb(dbPath, { repoRoot: repo });
     const reader = openHarnessDb(dbPath, { repoRoot: repo });
     try {
-      writer.exec("CREATE TABLE snapshot_smoke (id TEXT PRIMARY KEY, value TEXT)");
-      writer.prepare("INSERT INTO snapshot_smoke (id, value) VALUES (?, ?)").run("row", "old");
+      writer.exec(
+        "CREATE TABLE snapshot_smoke (id TEXT PRIMARY KEY, value TEXT)",
+      );
+      writer
+        .prepare("INSERT INTO snapshot_smoke (id, value) VALUES (?, ?)")
+        .run("row", "old");
 
       writer.exec("BEGIN IMMEDIATE");
-      writer.prepare("UPDATE snapshot_smoke SET value = ? WHERE id = ?").run("new", "row");
+      writer
+        .prepare("UPDATE snapshot_smoke SET value = ? WHERE id = ?")
+        .run("new", "row");
       expect(
-        reader.prepare("SELECT value FROM snapshot_smoke WHERE id = ?").get("row")?.value,
+        reader
+          .prepare("SELECT value FROM snapshot_smoke WHERE id = ?")
+          .get("row")?.value,
       ).toBe("old");
       writer.exec("ROLLBACK");
     } finally {
@@ -88,7 +126,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     }
   });
 
-  it("migrate が registry の全 table を作成し user_version を設定する", () => {
+  it("U-DFA-006: migrate が registry の全 table を作成し user_version を設定する", () => {
     const db = openHarnessDb(":memory:");
     const result = migrate(db);
 
@@ -96,14 +134,23 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     expect(result.fromVersion).toBe(0);
     expect(result.toVersion).toBe(SCHEMA_VERSION);
     expect(db.userVersion()).toBe(SCHEMA_VERSION);
-    expect(pk("fixture_id")).toMatchObject({ name: "fixture_id", primaryKey: true });
-    expect(col("fixture_count", "INTEGER")).toEqual({ name: "fixture_count", type: "INTEGER" });
+    expect(pk("fixture_id")).toMatchObject({
+      name: "fixture_id",
+      primaryKey: true,
+    });
+    expect(col("fixture_count", "INTEGER")).toEqual({
+      name: "fixture_count",
+      type: "INTEGER",
+    });
     expect(HARNESS_DB_TABLES.map((t) => t.name)).toEqual(
       [
         ...HARNESS_DB_CORE_TABLES,
         ...HARNESS_DB_DESIGN_TABLES,
         ...HARNESS_DB_GRAPH_EXPORT_TABLES,
         ...HARNESS_DB_EVALUATION_TABLES,
+        ...HARNESS_DB_PO7_TABLES,
+        ...HARNESS_DB_DESIGN_FREEZE_TABLES,
+        ...HARNESS_DB_DESIGN_FREEZE_V2_TABLES,
       ].map((t) => t.name),
     );
     expect(HARNESS_DB_INDEXES.map((i) => i.name)).toEqual(
@@ -365,7 +412,11 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       status: "draft",
     };
     upsertRow(db, { table: "plan_registry", primaryKey: pk, row });
-    upsertRow(db, { table: "plan_registry", primaryKey: pk, row: { ...row, status: "confirmed" } });
+    upsertRow(db, {
+      table: "plan_registry",
+      primaryKey: pk,
+      row: { ...row, status: "confirmed" },
+    });
 
     expect(rowCounts(db).plan_registry).toBe(1);
     const stored = db
@@ -379,7 +430,11 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     const db = openHarnessDb(":memory:");
     migrate(db);
     expect(() =>
-      upsertRow(db, { table: "plan_registry", primaryKey: "plan_id", row: { kind: "impl" } }),
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: { kind: "impl" },
+      }),
     ).toThrow();
     db.close();
   });
@@ -407,8 +462,12 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
   it("assertWithinHelixStateDir は .helix 配下と :memory: を許可し外を拒否する", () => {
     const repo = process.cwd();
     expect(() => assertWithinHelixStateDir(":memory:", repo)).not.toThrow();
-    expect(() => assertWithinHelixStateDir(".helix/harness.db", repo)).not.toThrow();
-    expect(() => assertWithinHelixStateDir(".helix/sub/x.db", repo)).not.toThrow();
+    expect(() =>
+      assertWithinHelixStateDir(".helix/harness.db", repo),
+    ).not.toThrow();
+    expect(() =>
+      assertWithinHelixStateDir(".helix/sub/x.db", repo),
+    ).not.toThrow();
     expect(() => assertWithinHelixStateDir("harness.db", repo)).toThrow();
     expect(() => assertWithinHelixStateDir("../escape.db", repo)).toThrow();
   });
@@ -423,9 +482,11 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
 
   it("schemaDdl は deterministic (同一順序の DDL を返す)", () => {
     expect(schemaDdl()).toEqual(schemaDdl());
-    expect(schemaDdl().some((s) => s.startsWith("CREATE TABLE IF NOT EXISTS plan_registry"))).toBe(
-      true,
-    );
+    expect(
+      schemaDdl().some((s) =>
+        s.startsWith("CREATE TABLE IF NOT EXISTS plan_registry"),
+      ),
+    ).toBe(true);
   });
 });
 

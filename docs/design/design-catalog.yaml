@@ -216,7 +216,7 @@ items:
     category: test
     source: zip-08
     status: todo
-    note: 現行正本の総合テスト設計書は未着手。L9-system-test-design.md はlegacy shimでありdone根拠にしない
+    note: "現行正本の総合テスト設計書は未着手。L9-system-test-design.md はlegacy shimでありdone根拠にしない（層意味論: canonical L9=integration）"
   - id: acceptance-test-design
     name: 受入テスト設計書
     category: test

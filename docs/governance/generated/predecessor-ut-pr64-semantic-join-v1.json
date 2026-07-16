@@ -1,0 +1,3413 @@
+{
+  "artifact_id": "PREDECESSOR-UT-PR64-SEMANTIC-JOIN-V1",
+  "schema_version": "helix.predecessor-ut.pr-semantic-join.v1",
+  "status": "candidate_semantic_join_not_verified",
+  "repository_id": "predecessor-ut",
+  "source_artifact": "docs/governance/generated/predecessor-pr-plan-join-71-v1.json",
+  "source_artifact_sha256": "bb8187cdfa28da6c906a672a51ac3f8534a5bfe311120d2e2363bf2a2013dbb6",
+  "denominator": 64,
+  "summary": {
+    "rows": 64,
+    "unique_pr_ids": 64,
+    "dispositions": {
+      "redesign": 12,
+      "adopt": 25,
+      "harden": 25,
+      "defer": 2,
+      "reject": 0
+    },
+    "verified": 0,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "repository denominator is exactly predecessor-ut 64 rows",
+    "merged_candidate and current check are observations, not trusted historical retention",
+    "title/body/path-family mapping is candidate semantic routing, not behavior parity",
+    "every HIL ID resolves to current L1 and every HR ID is derived from the current L1-L3 trace ledger",
+    "candidate disposition is not adoption authority",
+    "verified and coverage credit remain zero"
+  ],
+  "rows": [
+    {
+      "pr_id": "predecessor-ut#1",
+      "number": 1,
+      "title": "[codex] add proposal document coverage routing",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "e7c49b5309f2dddf0bec361ac7f27e964b83dd12",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "0b52a58861df1968d9da5b3468789a5acb3181d57df1673e192bfde62de6c166"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "b6fd6c70abf6bc051f02a07263dfa50b713feb5568667934103fb98835d33da9",
+        "changed_paths_materialized": true,
+        "changed_path_count": 34,
+        "changed_path_digest": "5dd80aba50a9c1ab57ba8a3751bf189b88299d6775b724c80d3f8ded0daf9c90",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-NFR-34"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=34/5dd80aba50a9c1ab57ba8a3751bf189b88299d6775b724c80d3f8ded0daf9c90, families=test_verification,runtime_orchestration,design_governance,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#2",
+      "number": 2,
+      "title": "chore: close local l10-l14 validation gates",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "2692de191d7b7b6c3535fd2fe3fa00fecd61029a",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "58e9f42ff7fdbfd34f70352e9cf75e7ff271bb7413235e6301ccb62ec2bdff30"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "f792f2f253883262eb29e9287910319446273620d2dc7c8d3ee1762b98e0b047",
+        "changed_paths_materialized": true,
+        "changed_path_count": 680,
+        "changed_path_digest": "aa39885002b969df6ad65d5a7b1197ce7bec534a91faa4ae7502e1f7453397e9",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=680/aa39885002b969df6ad65d5a7b1197ce7bec534a91faa4ae7502e1f7453397e9, families=ci_gate,test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#3",
+      "number": 3,
+      "title": "refactor(doctor): centralize run profile registry",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "1e414abcff1afc75de140b2d5f1df0bfbf01e13a",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "db11f8a2aac1efb3d379b65c924ac6ed2772d936b70a891b42a76ef6b87dcec8"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "bb6cd14eecb2e1c1f847f2982f74c629deb3aaf400217741066984093a0f8998",
+        "changed_paths_materialized": true,
+        "changed_path_count": 2,
+        "changed_path_digest": "70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c",
+        "behavior_families": [
+          "test_verification"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-25",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=2/70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c, families=test_verification",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#4",
+      "number": 4,
+      "title": "refactor(doctor): expose profile audience helpers",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "349b2794cfc788f57f2489844abb83b3686ad97d",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "8277459833b9fabe2356cd107f6df56bcad9d98d747d7845afcb5c2772db8513"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "2791bdf83f597eaabd948f6cb814585a8d1033cd5981e5e305bcc390a9925b38",
+        "changed_paths_materialized": true,
+        "changed_path_count": 2,
+        "changed_path_digest": "70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c",
+        "behavior_families": [
+          "test_verification"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-25",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=2/70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c, families=test_verification",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#5",
+      "number": 5,
+      "title": "refactor(doctor): guard consumer-safe profiles",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "7aa4b8b06e74c8dc1cf33dfb4f5a257fd5d13210",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "ac1dae0e385c165497eae5781d0f2004cd8e117d94920ee657b78326ccf9f330"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "c0054c5a4b6f190907b0ba76bacd7430d43fa9628f7b6f089617aa96675464a4",
+        "changed_paths_materialized": true,
+        "changed_path_count": 2,
+        "changed_path_digest": "70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c",
+        "behavior_families": [
+          "test_verification"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-25",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=2/70607c5e4f3b4726560509fd6a4b01895ca32760438488c0725fc7d5422a505c, families=test_verification",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#6",
+      "number": 6,
+      "title": "docs(plan): register db-driven refactor follow-ups",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "02ad2e493e8cdb7be7fed31f3f63c861a3bd217a",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "24ed06f5b71fd38fd892a7558ad6cc5a0e792781f650e530705b785f11e4968f"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "17e05c164c30939ce0055f2f5d39a35ec56714098e6616438b7d4ee7f9bbba4b",
+        "changed_paths_materialized": true,
+        "changed_path_count": 9,
+        "changed_path_digest": "320fb25edb02e5847bee49b157a5211b9c609fc9965bc9ee25d421f0b23000a3",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=9/320fb25edb02e5847bee49b157a5211b9c609fc9965bc9ee25d421f0b23000a3, families=ci_gate,test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#7",
+      "number": 7,
+      "title": "refactor(doctor): split db currency gate",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "cd84be23bb3cabc8a663ba8dc71490309769aba7",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "90c8aae6325d92eb3700eaff773018498e48ae0efca8113502e359f77277f313"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "e19c740ea55bf359c5a7f998ba02acbfb1cf191c9e072a586fdbd05d3f97a554",
+        "changed_paths_materialized": true,
+        "changed_path_count": 11,
+        "changed_path_digest": "99f7134f18166c953043f8a0f85dad59d8d320830500987b6ad1b9a47c0876c6",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=11/99f7134f18166c953043f8a0f85dad59d8d320830500987b6ad1b9a47c0876c6, families=ci_gate,test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#8",
+      "number": 8,
+      "title": "refactor(feedback): surface actionable takeover events",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "d0521b67931d8bd623c3bdb72f819b6841c7c4c7",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "f34bea8263ec177ff8f5ee6b0da561f336b7181ae0eb40132c4c060abf0112a8"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "ec7167c62336ca14f46325e4919076d6546dbd153346e69b7d7fe0d1b8359b39",
+        "changed_paths_materialized": true,
+        "changed_path_count": 7,
+        "changed_path_digest": "318a6b4886d727fe287945d750052109ef2e564b4f34378509bd68971ee1ad22",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=7/318a6b4886d727fe287945d750052109ef2e564b4f34378509bd68971ee1ad22, families=test_verification,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#9",
+      "number": 9,
+      "title": "refactor(doctor): expose run profiles",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "925ea2aefcc3545f4898f1053053b2a2ee7963cf",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "79a7bf0bff15ed84af3c809a46b53cc6cdbfe681b689150a0cb78730ba3c3046"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "e9ce19b7479cbeb4d91e4e401167f4bc2058402a21c061cc048870af5a116491",
+        "changed_paths_materialized": true,
+        "changed_path_count": 5,
+        "changed_path_digest": "ab576d05e104d1092c8e7542591ddc1b43f9a2d5d0f096800dbf74db6fca2fb8",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=5/ab576d05e104d1092c8e7542591ddc1b43f9a2d5d0f096800dbf74db6fca2fb8, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#10",
+      "number": 10,
+      "title": "refactor(setup): allow standalone readiness",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "8c748fd428b099656e158b83b1377b7f528e8287",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "29131764383f001031eb0bc2c525571ed6e546e0f1d2394718b201b4e857dbcf"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "d4ee530dd46e8edf2ea1bb039d8886229e659628518ac037b52aff0c14f831bb",
+        "changed_paths_materialized": true,
+        "changed_path_count": 5,
+        "changed_path_digest": "9e7eb3913e98e637016af572428b9fd9fc71c41e1517f5916b9baeeeab03471b",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=5/9e7eb3913e98e637016af572428b9fd9fc71c41e1517f5916b9baeeeab03471b, families=test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#11",
+      "number": 11,
+      "title": "refactor(setup): use consumer doctor profile in templates",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "2d9c647f50e5652d4afe66a766e59a7ed82722db",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "2ca0ae905b3732ce39da3a60899ce9a934216d42a41f0ed67cd885fa8b373b59"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "06510b9e93f8cb012a45fe14844a3e17b7dfd2450d3de685506d74c2b2791cc2",
+        "changed_paths_materialized": true,
+        "changed_path_count": 36,
+        "changed_path_digest": "1421dbae50bbb20a950a92a0537b79e3574749c4cd7ff83e34aae7196043cb55",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=36/1421dbae50bbb20a950a92a0537b79e3574749c4cd7ff83e34aae7196043cb55, families=test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#12",
+      "number": 12,
+      "title": "refactor: extract doctor profile registry",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "700b817ea39c92eab949d0028833b5f22de3e01d",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "2d28cd57e0e2bda95d439bf97a6e422f9fd542cb3798124c6424f61152df3bd9"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "3172256ec46529816695a5200f2c8407689f93714efc62c6a5aeb15b35169748",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "ce6894b01c37a4adaf0526d7155753f9385b3e9f3a3ba057912f4a5c6429e1a9",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/ce6894b01c37a4adaf0526d7155753f9385b3e9f3a3ba057912f4a5c6429e1a9, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#13",
+      "number": 13,
+      "title": "refactor: split doctor runner modules",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "efa3e01e4f663bec6efcb1da49e9148757da28d8",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "fa9dd69308927f98fd48fc35bb64ff4103beca64194463f484fb2a749c16b2b3"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "a41eafb06bf33dad1f59de5dc7bdeb77df4ec930a9664424a2ef7b9d87376a6a",
+        "changed_paths_materialized": true,
+        "changed_path_count": 5,
+        "changed_path_digest": "b43150c6f8f83f28534259165f080e8b610bf41e743c7467c367d572eadb8838",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=5/b43150c6f8f83f28534259165f080e8b610bf41e743c7467c367d572eadb8838, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#14",
+      "number": 14,
+      "title": "feat: add consumer toolchain doctor profile",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "50fc0170151f8225a5ffe5fb38a9efd31aa2ccfc",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "c240af590aad9942ebd0a5eda868cc7d1334820e4da03d498b833084a1406db0"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "765ad28d6f5165da3ffe128439f26bb93d6111aa8503bacac50856fb5023b36d",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "7d5f470289a61aa24a61ceefb1a7eecb6bf6a8ac988063ca0419ef141710001d",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/7d5f470289a61aa24a61ceefb1a7eecb6bf6a8ac988063ca0419ef141710001d, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#15",
+      "number": 15,
+      "title": "[codex] Sync consumer toolchain adapter guidance",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "5c424eb5d1231964a97b7f575349c8958c8adbd0",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "ac2678bd338260ba0e21bf528bd89bb5e54742d60eb907c8de2e1e1fa32d007e"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "d0de20ca023f2b1295c095f3796218a0a78ce6a1aa9132bfd9025b3cc9042d9d",
+        "changed_paths_materialized": true,
+        "changed_path_count": 34,
+        "changed_path_digest": "239390dc020a8def4c583e5e9ee9aa018748392603e73986ff0a3c973767f7fb",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=34/239390dc020a8def4c583e5e9ee9aa018748392603e73986ff0a3c973767f7fb, families=test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#16",
+      "number": 16,
+      "title": "[codex] Group doctor check definitions",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "0bf9f45d4a266fbb95272bff72f28da6d00b14a2",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "67d0c0f5df3fa84541a267e6a257fccc621b252a71627f339c0cbe2dc7d62e2b"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "feb085555255895741a5c3fef0e3b19b64f541844bcf11cf5f4aa64e76da5cfc",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "0fe1de55a100be1cc8478abe5c0516b9a26361823cde36611e54a4cbfc5d845c",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/0fe1de55a100be1cc8478abe5c0516b9a26361823cde36611e54a4cbfc5d845c, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#17",
+      "number": 17,
+      "title": "refactor: lazy-cache doctor test fixture",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "302f6163bf48d779ba392af9e29eaed887acb8ef",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "3d092a2d2e0e86f01f6886d794653666fa0ac6776eef069dc82f4d776e62e952"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "b9f9c31425114d31ccb184c69d041086359148de82694358f4564b73239ec0d5",
+        "changed_paths_materialized": true,
+        "changed_path_count": 2,
+        "changed_path_digest": "88591e8f1195083ace0d08835dcefb02e5e8439a66d81b373a2970c432ed0070",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=2/88591e8f1195083ace0d08835dcefb02e5e8439a66d81b373a2970c432ed0070, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#18",
+      "number": 18,
+      "title": "test: add direct doctor submodule checks",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "25513aaf0473ab33f4b515acb6516dca5d387a94",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "afd877a543c14a865937545ee31f3742010298ec0571d00392cb378a1e520fc7"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "055fee5095d01a9caf26424bf49b12961d3d19c3d5683df3b7e552264deebbea",
+        "changed_paths_materialized": true,
+        "changed_path_count": 3,
+        "changed_path_digest": "2a511688da3ce94ea26038bca12b4e5f0256ed1e731efb03eafa30332583387e",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=3/2a511688da3ce94ea26038bca12b4e5f0256ed1e731efb03eafa30332583387e, families=ci_gate,test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#19",
+      "number": 19,
+      "title": "test: add direct doctor runtime-state checks",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "10fa97ddd5f8c0c9dc971add8e6f8756e0017b1d",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "fca7b29294d1f67d837af2aa25eeae73f2a2358ec59692dec1d7c9054a39942d"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "17041527e25c8c73c2bf32a407174621235ea9252b0031009d9cc9cf0f42f9b2",
+        "changed_paths_materialized": true,
+        "changed_path_count": 2,
+        "changed_path_digest": "b20aeb946bf760cc988be2594cdb9c892d78609089f75e93c956e2380f71b984",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=2/b20aeb946bf760cc988be2594cdb9c892d78609089f75e93c956e2380f71b984, families=test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#20",
+      "number": 20,
+      "title": "feat(recovery): RECOVERY-10 Stage 1 (route_mode fail-close) + vmodel-docgen reference-mining, merge Codex doctor refactor",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "aaa40d065c73fecc96952e7c76b4e9c0d4ff7857",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "eed36615b1e79d9d1046aed705e7ca862cbc1fdec980bf2d65230b8356674153"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "08b8ab65c418b4587c26323801386a2244f4e26594e8fe7a7839c9a8c978df36",
+        "changed_paths_materialized": true,
+        "changed_path_count": 272,
+        "changed_path_digest": "0e013569fea2317ac0fc3be7164b7d03e141e7f81096cc42edb42f72cdfe78b1",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=272/0e013569fea2317ac0fc3be7164b7d03e141e7f81096cc42edb42f72cdfe78b1, families=ci_gate,test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#21",
+      "number": 21,
+      "title": "[codex] Preserve context diversity in session surfaces",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "e9610dfefe87a99a608936455c0b0c7b8855b0c2",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "0bd78901599c5aec90d4bb25a8610a8fb91a98371a4f0bef737230f5791d0931"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "bb4414ee77f84c4f3251990b6e9ebb13966c59246beacbacfb12ef358294c232",
+        "changed_paths_materialized": true,
+        "changed_path_count": 12,
+        "changed_path_digest": "16807e334a92f036a759021d264aa76ecfe1efd605c9f520d94dfcb5420c3a40",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=12/16807e334a92f036a759021d264aa76ecfe1efd605c9f520d94dfcb5420c3a40, families=ci_gate,test_verification,runtime_orchestration,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#22",
+      "number": 22,
+      "title": "Add design doc cross integrity gate",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "3b1d77db5c5915e586741279be713e771ada0a2b",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "1cbaf63265a74c8b593a8c7a6195f2ac970372deb1f15b4169fce2630afe558f"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "7201ddcde72f565f478d93412e52b0ed975e6b55b2892e4bb1bd29a8713bd680",
+        "changed_paths_materialized": true,
+        "changed_path_count": 13,
+        "changed_path_digest": "0eb9cee4c593bd2db4afc1bc02fd35f0bd9d16c1d08b72d6255ec078031deb8e",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=13/0eb9cee4c593bd2db4afc1bc02fd35f0bd9d16c1d08b72d6255ec078031deb8e, families=ci_gate,test_verification,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#23",
+      "number": 23,
+      "title": "Backfill CLI command boundary design",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "d4a32d5f328a4f2b89223b6b5902c7a7f87ec5a6",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "0e8af44528806cf17463fd61f69842987ccb80af44ec85eadf901c585b1af0f2"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "67aa3c2c3b2e48c1a00c9c01502aa5dd3dcea99c88f11b70d8b2040dee482ec4",
+        "changed_paths_materialized": true,
+        "changed_path_count": 8,
+        "changed_path_digest": "672e2e126319a25ef1697a6d391088690f77c1513362965d3433280927cf29c9",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=8/672e2e126319a25ef1697a6d391088690f77c1513362965d3433280927cf29c9, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#24",
+      "number": 24,
+      "title": "Confirm L4 security slot",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "225b732aabc23c1530885f612d080497471e2243",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "b35132e212f2c43a7b7a5e791b011a44e8eb0d657644871c24728ea6238f0c08"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "b4d11c8d0a89c1d3279732f46cfa80a63452edb0d82131131ee10f5697efbcdf",
+        "changed_paths_materialized": true,
+        "changed_path_count": 11,
+        "changed_path_digest": "6794535a5f8cd4a055dfb2cf2f375a8619ccbeb7582df272a9266fd0d6f46583",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=11/6794535a5f8cd4a055dfb2cf2f375a8619ccbeb7582df272a9266fd0d6f46583, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#25",
+      "number": 25,
+      "title": "Add docs-wide secret scan gate",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "59e811509cb049ed7787b7a735bbce1d1ddfa407",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "1e20ca7153ad170aa42d7546d48b40ea8ea66fdf811ad28436d7b94361e7bcde"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "9e98f6c665a025bd397b51e70845f1991690bb1a2f9f672f46083ee6c05e7f1e",
+        "changed_paths_materialized": true,
+        "changed_path_count": 15,
+        "changed_path_digest": "1e5e3c44f6c7e22061fb67a5481b4115789343bb29249e134dbc0d99e32f9dab",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=15/1e5e3c44f6c7e22061fb67a5481b4115789343bb29249e134dbc0d99e32f9dab, families=ci_gate,test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#26",
+      "number": 26,
+      "title": "fix(skill): connect recommendation scoring loop",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "db92a0614b8cbb6579d733f9f6efa4803ed80d5d",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "0f523e58c22091bceb7282007341796f46b1a8a7f6c786b17182ca249ee21564"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "971b4759942970ebca415729129c9ebc57e08d7c49ed2dd49da7865a43862b01",
+        "changed_paths_materialized": true,
+        "changed_path_count": 16,
+        "changed_path_digest": "29e3698f560bf1b39c94026e1df661708c09b675c682ee098a4c63c83250b408",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=16/29e3698f560bf1b39c94026e1df661708c09b675c682ee098a4c63c83250b408, families=test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#27",
+      "number": 27,
+      "title": "fix(spec-ir): tighten detector projection boundaries",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "f6a42849f49aa5abfe7d1860416098b0670f4c8e",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "209066fd9ff1eb37a1ab526a256b61cb4872403e5820b93b0ab31081a2bfcd2c"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "2ba5b2c5cd10c7d8952983d3b29ba59b8399b0456b1e61460c95850880954e76",
+        "changed_paths_materialized": true,
+        "changed_path_count": 6,
+        "changed_path_digest": "d9db2e7f08c5b6178f9a3e21b24e5a79a883842dea143d473f001053562ba7ab",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=6/d9db2e7f08c5b6178f9a3e21b24e5a79a883842dea143d473f001053562ba7ab, families=ci_gate,test_verification,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#28",
+      "number": 28,
+      "title": "fix: consolidate stable ID generation",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "0afb86d551ed210e176d855e429d3c2db6086185",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "85dc318942faf28aa2bf5d3a4094fd7ced7ea7d34461cea1a1831df408bc9870"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "bced54d9d13453a9b8834e4edbc54c5b133799f4c28463bf9e3820c8eeff42ce",
+        "changed_paths_materialized": true,
+        "changed_path_count": 18,
+        "changed_path_digest": "d3f5ba13eed097134d1b124b9fc41e06e6c0757fea551835dfa7ef90a2b2f731",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=18/d3f5ba13eed097134d1b124b9fc41e06e6c0757fea551835dfa7ef90a2b2f731, families=ci_gate,test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#29",
+      "number": 29,
+      "title": "fix: complete route mode allowlists",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "a2edf631504900d9acc176db3d601e3798ecf5f6",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "407fd872c358eeac5ec4db9f5b8c9e55f483a43c05b1c56ca36e93e027bb87cd"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "faac4b2518974b446f58c6598327cc2cb729cf07e1aede03d5e63bb2a36b80a8",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "63576c22383d4dd345fb181f58aab121266720c0702141477c2abcbf5ba6e67a",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/63576c22383d4dd345fb181f58aab121266720c0702141477c2abcbf5ba6e67a, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#30",
+      "number": 30,
+      "title": "docs: backfill test plan generates",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "add3742ceba7e3ab7956205824e4e733fa0f701a",
+        "current_check": {
+          "classification": "failure",
+          "count": 1,
+          "digest": "d61967d08f46eb12507f965440e39ebc5e48ee836b0cfb4678e006d73f84eda3"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "c98e5391fc368bc6c4906f6c909d665932fce6ff0ef1a330fb891a68bdaf431c",
+        "changed_paths_materialized": true,
+        "changed_path_count": 2,
+        "changed_path_digest": "5cb3aa6a68aef04568f76082f79567be5a514f56700804a762fe20d4e78deb8e",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=failure, body=present, paths=2/5cb3aa6a68aef04568f76082f79567be5a514f56700804a762fe20d4e78deb8e, families=test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#31",
+      "number": 31,
+      "title": "fix: separate stale runtime plan context findings",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "185088a141ad05e3e4143328c370487f98112e99",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "041b256372a31ee53be95bd58fd43935861186bc95daf7ac09b4b9fbd2ba64e1"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "c2c7868204aac0a1c85418492cf3e387b16bcdefd76a1daffd84f010d491d4e1",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "a1b05b9ced941da8bd83f2d714f93f9bac419bbc44609a16532777273a4dbcc1",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/a1b05b9ced941da8bd83f2d714f93f9bac419bbc44609a16532777273a4dbcc1, families=test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#32",
+      "number": 32,
+      "title": "[codex] execute green command digest anchors",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "1afa132c9368fc362706db102880e020d7ba3d24",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "719c4776de22d0dcc267790b3820ea65f7ef8caa62d3900337c388c405df4e15"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "f5721802daf283f82d98388dcebbbe17fef5dfb1f6d1b9ec37bd4ff961286202",
+        "changed_paths_materialized": true,
+        "changed_path_count": 303,
+        "changed_path_digest": "f7c00cbcfca5c992023fe6cd492df44b1fccc612d469a49e9b30c4e820ec2d31",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=303/f7c00cbcfca5c992023fe6cd492df44b1fccc612d469a49e9b30c4e820ec2d31, families=ci_gate,test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#33",
+      "number": 33,
+      "title": "[codex] rebind digest suspect evidence",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "69c69504ae9d0133e7c8b5fe083f52153c2df010",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "589d294380d2c0fc251ec5b6323367d9fbe72469764cba8538741ba1c5725a35"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "5ba2c078896b91de09fc0cbf1a5c74835495b4fd7a0a960dd8ed047fb403df7c",
+        "changed_paths_materialized": true,
+        "changed_path_count": 8,
+        "changed_path_digest": "aa72ad9e8058d48b320e77a79aac5c3cf34aa77bf673a99228fc99d4f918b99e",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=8/aa72ad9e8058d48b320e77a79aac5c3cf34aa77bf673a99228fc99d4f918b99e, families=ci_gate,test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#34",
+      "number": 34,
+      "title": "[codex] freeze execution assignment ledger design",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "0b0e967df127c100a24d6c7d55b80532207e88ad",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "343f23a6b9acd50460724d82af531d2da2e060c3fd5d12dffbd00bf1abb45563"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "c95686c93cc4af5b087b4a48acd9456bde06641e83c831c82759b99e79087b1a",
+        "changed_paths_materialized": true,
+        "changed_path_count": 5,
+        "changed_path_digest": "d4dcbd9238e505dde0ca314462e3812453583bbaa2346c85d953db7c147c5335",
+        "behavior_families": [
+          "test_verification",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=5/d4dcbd9238e505dde0ca314462e3812453583bbaa2346c85d953db7c147c5335, families=test_verification,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#35",
+      "number": 35,
+      "title": "feat(gate): persist gate run evidence",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "9f3c638d2fef4c65ff9d3254f9e5a89fc598f19d",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "d1a8bc39c23cd18c9ea113677690f29ad20df8428cac9a7bfa672eb2b1d849ab"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "eba30742395c65c92f270487966f3482acc93f78a956ad77874fa25aa43935f3",
+        "changed_paths_materialized": true,
+        "changed_path_count": 15,
+        "changed_path_digest": "7fa542da2c71ed985865bdcc7bde231dc607f8d97e9aa66ccd545dc55134d1e9",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=15/7fa542da2c71ed985865bdcc7bde231dc607f8d97e9aa66ccd545dc55134d1e9, families=ci_gate,test_verification,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#36",
+      "number": 36,
+      "title": "[codex] Route verification defects to refactor lifecycle",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "7651ae88655dab6c411a8900f35bd979af4929fa",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "88c913047908d6142dc06c9424038a8950e6692602b959e3fa0e64ac9450e8a1"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "d766fc9409fce2b06b7d7dd98d76137f9478a1b1d7e0e6be2fc4b1f0f92fde9f",
+        "changed_paths_materialized": true,
+        "changed_path_count": 9,
+        "changed_path_digest": "367f6d34435697675e10f1db66ec13707e1bd31999a7733a61fcbb30a2f7a08f",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=9/367f6d34435697675e10f1db66ec13707e1bd31999a7733a61fcbb30a2f7a08f, families=test_verification,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#37",
+      "number": 37,
+      "title": "[codex] freeze domain and skill admission design",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "62907903eaf15e80e79f15a611cc303687cd4511",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "31796aac9b7fc4761f8e256ae46777c8ac3dff0389ae2676b53d5b700b78e059"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "69bee8beea050dd6e0cb9cb00976b5fa188a3f8e2f6d5704d43b67b35b9ca35e",
+        "changed_paths_materialized": true,
+        "changed_path_count": 10,
+        "changed_path_digest": "d2b7854b70e8802d7c5fdde00678d24e617ae45873a4039593d12cbfa70a78ab",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=10/d2b7854b70e8802d7c5fdde00678d24e617ae45873a4039593d12cbfa70a78ab, families=ci_gate,test_verification,runtime_orchestration,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#38",
+      "number": 38,
+      "title": "docs(plan): PLAN-DISCOVERY-10 GPT-5.6 tier routing bench (S1)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "26e5454c15247ef551f873d0cbd1931a8af0277a",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "fa3ab93df89d3cc1f09779ce9cdcb06ac3db879a85f9656132b26daff27c0cdb"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "1a17253e64eb135479fcabad83ad2e2081a34576dfcb676d09db729fd3e300bd",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "25241b40d5364703321df94a86075ab30f6a77340d73c42cbe7a3d1cf715bf19",
+        "behavior_families": [
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-FR-13",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/25241b40d5364703321df94a86075ab30f6a77340d73c42cbe7a3d1cf715bf19, families=runtime_orchestration,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#39",
+      "number": 39,
+      "title": "feat: integrate V-model live SessionStart digest",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "e948f2f4582157ad3bf0a7b5d4c45154874115c0",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "66c9ef1b1afe29acadb49d0c9fd3b0019d2024dd4b36c46b479458ed659f2549"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "616e6f8df7ed554811885e768f84d2b7cf63b19313d46b40568ff367d3fcd34d",
+        "changed_paths_materialized": true,
+        "changed_path_count": 31,
+        "changed_path_digest": "d5b831467243dbb7498aa6d2f25919aaad8ba541b8194a64775704ed0bcb2c9a",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=31/d5b831467243dbb7498aa6d2f25919aaad8ba541b8194a64775704ed0bcb2c9a, families=test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#40",
+      "number": 40,
+      "title": "fix: complete feedback lifecycle and memory promotion",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "71a023b2c74ca15dbc88c4453ca7c9adb05ca58a",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "c996625b2e46dfc9eae11320b60081ce456f2cd9ced2b050e136b92d363f721f"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "53901044d1407fe9b3a1a76e334d2a7c68afad1601b9a1823f7269efe31a2bf4",
+        "changed_paths_materialized": true,
+        "changed_path_count": 25,
+        "changed_path_digest": "38f65d02be568c5511f80d6114097d7e4f6294f6a0922d0d029523ab753ec96e",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=25/38f65d02be568c5511f80d6114097d7e4f6294f6a0922d0d029523ab753ec96e, families=test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#41",
+      "number": 41,
+      "title": "feat(routing): adopt gpt-5.6 tier routing (PLAN-L7-415)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "88bd16355b3ad7cd0b1b7eb65b318102f4ba23d1",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "951f733d8c46ec14d2d07b7c5a072d54106142c5284e0da1b197620dad80a02b"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "211f2cccebd944fe0b7f3045367efc2176b11a5e660515b1082d6f472d93bcc7",
+        "changed_paths_materialized": true,
+        "changed_path_count": 10,
+        "changed_path_digest": "0bf1bd929b2a32b06db8c6145172873b85408416071ecb6f8f77c2792d70fd50",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=10/0bf1bd929b2a32b06db8c6145172873b85408416071ecb6f8f77c2792d70fd50, families=test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#42",
+      "number": 42,
+      "title": "fix(distribution): close export integrity defects (PLAN-L7-413)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "639fd28983a95c7dfcf1c64631f7defffe1aa33c",
+        "current_check": {
+          "classification": "failure",
+          "count": 1,
+          "digest": "2306317d3ee079f1e664b8155beb361e634dd837f3ce745e3d1e891cede89b00"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "6540b02010e3e33571faf96b1edf884519e04cc3a009a20da36334020feebb01",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "3dbdc7ea5991e29ee2a4b51709f4c16d7a7cf55debc98cfacc6b5adb5432b1be",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=failure, body=present, paths=4/3dbdc7ea5991e29ee2a4b51709f4c16d7a7cf55debc98cfacc6b5adb5432b1be, families=test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#43",
+      "number": 43,
+      "title": "fix(distribution): correct D-2 denylist semantics to output guard (PLAN-L7-413 followup)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "044717096d5c54f41f0895b98c2a26786322410f",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "c1c70c9073022f0b078046e7c2b7919bb6057f9262d53db04a2e5b0919fa57e6"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "e996875c98247f01b75c03e5a46c10108edfc338db18f7c026f0e3fb73be4310",
+        "changed_paths_materialized": true,
+        "changed_path_count": 6,
+        "changed_path_digest": "734ed64dffe03b0a25d94980a2bfb484862562baabad7044677d6476b88a978f",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=6/734ed64dffe03b0a25d94980a2bfb484862562baabad7044677d6476b88a978f, families=test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#44",
+      "number": 44,
+      "title": "fix(agent-guard): reserve fable for quality gates",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "158d8f4d051fc711ef6a4944b09c4d025f5f6440",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "dde701a838b03bbe3a083a24f38a0cf04198e6f52a3bc08a1d230cf6910e787e"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "940e573287071040bb321c4e5fcc13d6a2c681c07483d0e82192c5e2731d4a01",
+        "changed_paths_materialized": true,
+        "changed_path_count": 5,
+        "changed_path_digest": "5da3f464caf57aba062bf918136bcc01f12c601ce614bf407bee87cc632239b4",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=5/5da3f464caf57aba062bf918136bcc01f12c601ce614bf407bee87cc632239b4, families=ci_gate,test_verification,runtime_orchestration,design_governance",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#45",
+      "number": 45,
+      "title": "feat(vmodel): establish engine-swap foundation",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "3d232e9cc187bc06006896dadc6774148a871a0b",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "386d4257dd782085b0b65e2c8ffae4184cb9ef8de9312705f7f62f9ebee2b7b1"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "39ac662b83dea24c26b0178765f2525997e9ece86d74360ef8370761a0af86b2",
+        "changed_paths_materialized": true,
+        "changed_path_count": 44,
+        "changed_path_digest": "a0501340802ca6d4e03ce39653bcd5acb9af3998d6d171fbb39d575b761b9289",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=44/a0501340802ca6d4e03ce39653bcd5acb9af3998d6d171fbb39d575b761b9289, families=ci_gate,test_verification,design_governance,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#46",
+      "number": 46,
+      "title": "feat(vmodel): compile engine-swap contract foundation",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "ef43caa0cfe6dde338d516bb4c41a732c32d2d94",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "994b0caba05cd58e5a506591f9c64e190485cfea5cb53256079e4355a7ee0179"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "29bcbdfb5de8f6dd8333c190aab76d6ec1db49264003baeaa15a404a47da5917",
+        "changed_paths_materialized": true,
+        "changed_path_count": 75,
+        "changed_path_digest": "0581e564e62fa0565dacb013b19bc2fcd0cf6708b4f90bc5656bc985a46a7b35",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=75/0581e564e62fa0565dacb013b19bc2fcd0cf6708b4f90bc5656bc985a46a7b35, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#47",
+      "number": 47,
+      "title": "feat(vmodel): rebuild harness engine and self-proof lifecycle",
+      "source_evidence": {
+        "state": "closed",
+        "draft": true,
+        "merged_candidate": true,
+        "merge_oid": "894692289031faee6c5c2e229ce8474ce4cf1ac5",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "8418c3107d2fc1d8daa468df87c690f0c5a406b256703769f38d4efd10fb2b28"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "41a07fcf9c5953e4b9d9293463eb20a063f279923105815fbd74eaa256cd1a87",
+        "changed_paths_materialized": true,
+        "changed_path_count": 113,
+        "changed_path_digest": "0201cc1a76e28d30d35361dcdbf90ad1ac6e9a981af7763464eea7b8486b500c",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=113/0201cc1a76e28d30d35361dcdbf90ad1ac6e9a981af7763464eea7b8486b500c, families=ci_gate,test_verification,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#48",
+      "number": 48,
+      "title": "docs(skills): add structured decision_points to all 54 baseline skills (PLAN-L7-417)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "d752fca6a789aa780eac7bcdd678ee425a919a95",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "8cb22065021d8eb6cbfeb0c2fa713ea67a373716f6ee66cabe318e430d760ff9"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "2e735ae0fc39c03d77c6254092ceb60a47b847063ee2522d62371d83be9214ec",
+        "changed_paths_materialized": true,
+        "changed_path_count": 56,
+        "changed_path_digest": "fb6ebff24407196444b1dc22a0b27370bc434f1e1dc67de75e43e9931da7a238",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=56/fb6ebff24407196444b1dc22a0b27370bc434f1e1dc67de75e43e9931da7a238, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#49",
+      "number": 49,
+      "title": "docs(skills): vmodel judgement skill pack — 8 new skills + adversarial addendum (PLAN-L6-70)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "5db1af28845ef2df9922ffbd32507dcb15963915",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "4593f83f939c69b73edf80aad4c585ea20a5e5b0e45fc60867bd508bc1d987d1"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "d1c9e8844112251d7796f93e2665d96898f21b6decb8212ffd2c77f14dca3d12",
+        "changed_paths_materialized": true,
+        "changed_path_count": 11,
+        "changed_path_digest": "60020e3e5e60995563b6c8ba39cabcdbafa645fbcef29790242305d96d7a76d5",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=11/60020e3e5e60995563b6c8ba39cabcdbafa645fbcef29790242305d96d7a76d5, families=ci_gate,test_verification,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#50",
+      "number": 50,
+      "title": "docs(skills): stage / design-family / product-profile skill slices (PLAN-L6-70 slice 2)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "ee007bf0352d22f36ac57e901e24acf7bb1df949",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "6d88686f59a44d9312dd545475c21ebf8792b26149134dca8e8bff06e7694df7"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "26b3bffd41ba40c310f8556001c1dbb8e8c4b1fa902844055f71b4beaaa59d0c",
+        "changed_paths_materialized": true,
+        "changed_path_count": 17,
+        "changed_path_digest": "5becf57a9e9f78dccf159cac6f098b504097c6bd688cd1d7a81b62d1cc933fc6",
+        "behavior_families": [
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-NFR-34"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=17/5becf57a9e9f78dccf159cac6f098b504097c6bd688cd1d7a81b62d1cc933fc6, families=runtime_orchestration,design_governance,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#51",
+      "number": 51,
+      "title": "feat(review): add blind-reviewer subagent and Codex delegation role (PLAN-L6-53 rescue)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "c3389733ba184f4b76b10dfba4af0a9ae73b1117",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "9aa42e50c0584a8ac0e248156ed7ddb26527b2670167c49b6e288088f62e4330"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "e944146055faa75741e51982125ccb79923d0e12e8d4128e190243b88c5c1e75",
+        "changed_paths_materialized": true,
+        "changed_path_count": 12,
+        "changed_path_digest": "7fd6652977180f8c0054c7d2f6510877b4511fef550d704b7aa8c0db661d2e8c",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=12/7fd6652977180f8c0054c7d2f6510877b4511fef550d704b7aa8c0db661d2e8c, families=test_verification,runtime_orchestration,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#52",
+      "number": 52,
+      "title": "docs(audit): A-187 checked-ZIP divergence audit + gap routing (PLAN-L4-29 / L6-78 / L6-79)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "97a91757a927d136448cfe9b40fa8b0c97e23f90",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "857e0c8f6950f0fcc8360438b3f9c34b98e467008d6f62a4c7f1ca5e5cd8b5d2"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "4ecb1b59700f65b91c0dcdc2017b80ab65ad4f2ea3b2786f8525b7182ffdbaae",
+        "changed_paths_materialized": true,
+        "changed_path_count": 32,
+        "changed_path_digest": "09e3fa35574e21626c4dfb9d70cb3a3c17f5f5d4d124ee4985d8205c537727e4",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=32/09e3fa35574e21626c4dfb9d70cb3a3c17f5f5d4d124ee4985d8205c537727e4, families=ci_gate,test_verification,runtime_orchestration,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#53",
+      "number": 53,
+      "title": "refactor(projection): split engine-swap application and persistence boundaries",
+      "source_evidence": {
+        "state": "closed",
+        "draft": true,
+        "merged_candidate": true,
+        "merge_oid": "c7b6c0046cf12602b7e8c7a2237eb00b1ed11da0",
+        "current_check": {
+          "classification": "none",
+          "count": 0,
+          "digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "a73f1e189b9bc94fc95e0c3e1cf89b0960ed2749f348f6187753aabb269beea6",
+        "changed_paths_materialized": true,
+        "changed_path_count": 118,
+        "changed_path_digest": "aa5e35226607c60a5dbceb33c28332ae943678649272f9d32bc2c7f1c0ee8d2f",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "open、checkなし、または未収束draftのため意味採否を保留する。merged_candidate=true; state=closed, merge_oid=present, check=none, body=present, paths=118/aa5e35226607c60a5dbceb33c28332ae943678649272f9d32bc2c7f1c0ee8d2f, families=ci_gate,test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#54",
+      "number": 54,
+      "title": "test: close L7-421 live-tree hygiene fence",
+      "source_evidence": {
+        "state": "closed",
+        "draft": true,
+        "merged_candidate": true,
+        "merge_oid": "5d7939ad1bcfd531f17b0d2b5928f4d6b4a65f41",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "60d2a001bdd094a1440c534b2bad01dcd3ff51ebaa4b24a22f04bbfe229f553d"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "f3c4365c37ff9e5dfbccf166a410579330bc8c914dfa545b0f31f2c3741cc3db",
+        "changed_paths_materialized": true,
+        "changed_path_count": 11,
+        "changed_path_digest": "b0a5134ab17e1b98f26c34bb4bd408427310446ac27b39da4fc37ed52c7161eb",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=11/b0a5134ab17e1b98f26c34bb4bd408427310446ac27b39da4fc37ed52c7161eb, families=test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#55",
+      "number": 55,
+      "title": "docs(engine): define projection rebuild boundaries",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "56c0f6678763ab19f23f3cc56e73b081f43544aa",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "31f95ab16bd1571ff86c119ab63e53959c225ee2912d745c81ce5367ef23e681"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "a254055b22adc9807be5fde4c948e3a33cfa17a094ddaa6d72313ad631e49efc",
+        "changed_paths_materialized": true,
+        "changed_path_count": 6,
+        "changed_path_digest": "8ddba3a85fa61b05011ff5c7a553ec54737638575cdf09aa9af06296200e3be4",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=6/8ddba3a85fa61b05011ff5c7a553ec54737638575cdf09aa9af06296200e3be4, families=test_verification,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#56",
+      "number": 56,
+      "title": "fix(projection): guard legacy finding payloads",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "29ce65c1d88bcf97e2830cc316f06a4fbc94e80b",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "2f71268473d8154a547b0188c148d33f8adfffa199d027c3b4b51e5f2e85479a"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "fca92424fc3778efdcfa24a43d7b8116bd82295c6c129045bd858de7acb32c08",
+        "changed_paths_materialized": true,
+        "changed_path_count": 11,
+        "changed_path_digest": "0b8e36c7e6a95e02c1bb4d4e2aebd78e8b3ef5cd85e56b7168f7d61b8165d2b7",
+        "behavior_families": [
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=11/0b8e36c7e6a95e02c1bb4d4e2aebd78e8b3ef5cd85e56b7168f7d61b8165d2b7, families=test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#58",
+      "number": 58,
+      "title": "docs(engine): close projection rebuild design review",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "ac4c43f16ffc6972a54f1a0ded162c43aad6e2d6",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "e187c31d5a2de922eb1e4c6d1839b036dbc0d28a743d27bdf96e583c5e5c78ce"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "8d2378edc479a4fa6cfe06ddecf2af09a6402bf4fcfced34c1c37f15f5a83514",
+        "changed_paths_materialized": true,
+        "changed_path_count": 4,
+        "changed_path_digest": "578f541688bcb528b994bf5eec7a9d79dc4f4c494b56c9957da2d7826c7eb0b8",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-29",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=4/578f541688bcb528b994bf5eec7a9d79dc4f4c494b56c9957da2d7826c7eb0b8, families=test_verification,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#59",
+      "number": 59,
+      "title": "test: reland L7-421 residual test hygiene + PLAN-L7-245 promotion",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "7ad8ebbd6b91a722f5b9fd728194820d07035fe8",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "3b2f3b93ccaabf04419b3e27b5d992f296a7daa084f776426ca543d18c5e89fd"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "4770fe3f8971043414e2c81490ab7f84de8dda7598e7f39d86eff45a272b526b",
+        "changed_paths_materialized": true,
+        "changed_path_count": 11,
+        "changed_path_digest": "b0a5134ab17e1b98f26c34bb4bd408427310446ac27b39da4fc37ed52c7161eb",
+        "behavior_families": [
+          "test_verification",
+          "design_governance",
+          "setup_distribution"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-29",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=11/b0a5134ab17e1b98f26c34bb4bd408427310446ac27b39da4fc37ed52c7161eb, families=test_verification,design_governance,setup_distribution",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#60",
+      "number": 60,
+      "title": "feat(routing): adopt task-kind model routing v2",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "e506a67e9c243cc9781ff4a6d8d1870b072fd37b",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "b721a08908dd5b1fb93ccfe4a7bf451f71e65a50f98859f336e9b6eaba01aaeb"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "2add880d248e079db3fe4341303f559fce7464f8a8c85091484a12acaf5ed35c",
+        "changed_paths_materialized": true,
+        "changed_path_count": 17,
+        "changed_path_digest": "d4c502dcdd23b84c6c479c929cd3ad95b0acd90952ea468981654b10f2c1e304",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=17/d4c502dcdd23b84c6c479c929cd3ad95b0acd90952ea468981654b10f2c1e304, families=ci_gate,test_verification,runtime_orchestration,design_governance,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#61",
+      "number": 61,
+      "title": "feat(ci): universal PR trigger + fail-close detector (PLAN-L6-82/L7-434, issue #57)",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "22d9ae0b671950c24d6794018328bc5c8f19c178",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "3f823e780d6694a0452bc8f410715dae023416f081edfa5f5a64cca002007a7d"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "8e09f72b59231bc13da464d3924a29e4d6804f8f897893068f004d74534e696f",
+        "changed_paths_materialized": true,
+        "changed_path_count": 16,
+        "changed_path_digest": "52ac75749498a422bc4922c86892775dc7bf2d24069659aa595397a9b2a18479",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "setup_distribution",
+          "ui_visual"
+        ]
+      },
+      "candidate_disposition": "harden",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-19",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-33",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-11"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-13",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "failureまたはrefactor/fix/security/fail-close信号があり、契約・negative oracleを保った硬化候補に限定する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=16/52ac75749498a422bc4922c86892775dc7bf2d24069659aa595397a9b2a18479, families=ci_gate,test_verification,runtime_orchestration,design_governance,setup_distribution,ui_visual",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#62",
+      "number": 62,
+      "title": "feat(plan-asset): implement canonical v2 migration ledger",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "7739b6ce4fdc6f619b507b1e70af267668c2316a",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "2317201c5abcded4420095bf2cbba9f24f813507a0480f030075c1b01a8a5644"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "203b6fac06d1746b904c1c6c0105379df40ccbe5cc20b1c4e856d9139fc2994c",
+        "changed_paths_materialized": true,
+        "changed_path_count": 40,
+        "changed_path_digest": "538763f5fe9a412b484b33ac91f4ebdc71945ca24eff87f704ec9ef11b6407d4",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "adopt",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "closed＋check successの機能/テスト成果を現行ownerへの再実装候補として採取する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=40/538763f5fe9a412b484b33ac91f4ebdc71945ca24eff87f704ec9ef11b6407d4, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#63",
+      "number": 63,
+      "title": "docs(vmodel): design execution ledger GitHub reentry",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "fcf483210cb57b5d7319f9d46c3a22d6f6cebb14",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "f65321a951e916a613b2b97f29390657ff14921e4826d0606e7dcf63f8d1b2b8"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "973aea42bb3b7ad72a0db33bdd18173b67939cba12826c5dfc3fc5c80252b559",
+        "changed_paths_materialized": true,
+        "changed_path_count": 27,
+        "changed_path_digest": "9fb962e2f503b529485944da795e457872d20cf881e63b7e831b61bb39c94961",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=27/9fb962e2f503b529485944da795e457872d20cf881e63b7e831b61bb39c94961, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#64",
+      "number": 64,
+      "title": "feat(plan): drive-aware admission policy",
+      "source_evidence": {
+        "state": "open",
+        "draft": true,
+        "merged_candidate": false,
+        "merge_oid": "fdfb2120f47202e2315aa573d654134fa8d20f84",
+        "current_check": {
+          "classification": "failure",
+          "count": 1,
+          "digest": "3e3d3e2c6da52ca7ac2e75d8541685da1458043865e816fbf22096ad70b2a3de"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "fe12a864238453af17add3e55a5de78c61ffc2013a4eaf1e501800f39a95383c",
+        "changed_paths_materialized": true,
+        "changed_path_count": 55,
+        "changed_path_digest": "6a4d88fc913751eaa25b89678a60d2aed04c8edb033e907e1d722e0da8781925",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "defer",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "open、checkなし、または未収束draftのため意味採否を保留する。merged_candidate=false; state=open, merge_oid=present, check=failure, body=present, paths=55/6a4d88fc913751eaa25b89678a60d2aed04c8edb033e907e1d722e0da8781925, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "pr_id": "predecessor-ut#65",
+      "number": 65,
+      "title": "docs(plan): PLAN-L1-08 design harness internalization + plan_id taxonomy gate",
+      "source_evidence": {
+        "state": "closed",
+        "draft": false,
+        "merged_candidate": true,
+        "merge_oid": "ce87b9696e9529951137fbd184930263f12de66c",
+        "current_check": {
+          "classification": "success",
+          "count": 1,
+          "digest": "c992afb4f97589cc595a3408f75f0103159d5057cc63cef0d663bbbdda62fbdd"
+        },
+        "body_present": true,
+        "commit_range_materialized": true,
+        "commit_range_digest": "596f3150bdd65705f766aea320c3d455014a9e5fecf39ae2d0aa523605d2675f",
+        "changed_paths_materialized": true,
+        "changed_path_count": 55,
+        "changed_path_digest": "44572f1e6b018acfa85fc9ea044508132a0b47a69050ec280226fdfaa75ca1cb",
+        "behavior_families": [
+          "ci_gate",
+          "test_verification",
+          "runtime_orchestration",
+          "design_governance",
+          "ui_visual",
+          "database_state"
+        ]
+      },
+      "candidate_disposition": "redesign",
+      "current_hil_requirement_ids": [
+        "HIL-BR-09",
+        "HIL-BR-16",
+        "HIL-BR-22",
+        "HIL-BR-25",
+        "HIL-FR-13",
+        "HIL-FR-28",
+        "HIL-FR-46",
+        "HIL-FR-48",
+        "HIL-FR-76",
+        "HIL-NFR-15",
+        "HIL-NFR-29",
+        "HIL-NFR-34",
+        "HIL-TR-07",
+        "HIL-TR-10"
+      ],
+      "current_hr_requirement_ids": [
+        "HR-FR-HIL-06",
+        "HR-FR-HIL-08",
+        "HR-FR-HIL-12",
+        "HR-FR-HIL-17",
+        "HR-FR-HIL-18",
+        "HR-FR-HIL-19",
+        "HR-FR-HIL-20",
+        "HR-FR-HIL-22",
+        "HR-FR-HIL-25",
+        "HR-FR-HIL-42"
+      ],
+      "reason": "proposal/design/PLAN文書信号が強く、旧layer/identifierを直接移植せず現行L1–L12へ意味再設計する。merged_candidate=true; state=closed, merge_oid=present, check=success, body=present, paths=55/44572f1e6b018acfa85fc9ea044508132a0b47a69050ec280226fdfaa75ca1cb, families=ci_gate,test_verification,runtime_orchestration,design_governance,ui_visual,database_state",
+      "verified": false,
+      "coverage_credit": false
+    }
+  ]
+}

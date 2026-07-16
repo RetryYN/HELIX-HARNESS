@@ -1,0 +1,97 @@
+{
+  "schema_version": "helix.design-freeze-critical-path-independent-review.v2",
+  "status": "independent_review_pass_current_evidence_runtime_separated",
+  "generated_at": "2026-07-16",
+  "review_authority": {
+    "producer_identity": "python:generate-design-freeze-critical-path.py",
+    "producer_runtime": "python3",
+    "reviewer_identity": "node:review-design-freeze-critical-path.mjs",
+    "reviewer_runtime": "node",
+    "reviewer_model": "deterministic-source-rebound-review-v2",
+    "runtime_model_separated": true
+  },
+  "sources": [
+    {
+      "path": "docs/governance/generated/design-freeze-critical-path-v1.json",
+      "sha256": "057b41dacabb0f3f642422f4b91d4cf7316d229d81144510917971a316b734cb"
+    },
+    {
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c"
+    },
+    {
+      "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
+      "sha256": "236c858e2d00aaa399078799d4e3ce6b31dc70ee1aa49fa10b748fc2107e1a78"
+    },
+    {
+      "path": "docs/governance/generated/helix-df-bun-002-terminal-design-receipts-v1.json",
+      "sha256": "a16ae98d7ce2d470aca93658be61dfb1f2811d29efe716c1dbc3036f1e6bd865"
+    },
+    {
+      "path": "docs/governance/generated/helix-df-bun-002-terminal-design-receipts-independent-review-v1.json",
+      "sha256": "013a1d29edebab49d3ffdf057b2fe501d33c8f1b1aa689f5837de5b2e47370d5"
+    },
+    {
+      "path": "docs/governance/generated/exact2-semantic-normalization-manifest-v1.json",
+      "sha256": "3e618b27e3dece15e4f8a7a5cefdbe3cc832e1c2c0cc3425232bea48e1207a56"
+    },
+    {
+      "path": "docs/governance/generated/exact2-semantic-normalization-independent-review-v1.json",
+      "sha256": "6fca2ed56641869d7cc8d7797e13d5fe11232d6753fb79d2367508bbb454813d"
+    },
+    {
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-independent-review-v1.json",
+      "sha256": "e7182483cc17a70679dc42959d6326d9cf22ebdc013db43908b1aac3f2635f5e"
+    },
+    {
+      "path": "docs/governance/generated/repository-savepoint-layer-tag-design-independent-review-v1.json",
+      "sha256": "0a22e740dd36ca6bcd4bb9346edd00d6301a4347f34b37b63efbb8954cd3c9eb"
+    },
+    {
+      "path": "docs/governance/generated/l1-l12-layer-semantics-remediation-independent-review-v3.json",
+      "sha256": "ea722f49b9d83e07c477431a19852a0e397762a8cb2f3587cd1251f24c60ef9b"
+    },
+    {
+      "path": "docs/governance/generated/po7-activation-runtime-independent-audit-v1.json",
+      "sha256": "3e9f6ab4428eb60ab539aad72ac3fa8598a88181081480d71f470711117fd475"
+    }
+  ],
+  "projection": {
+    "design_rows": 8,
+    "design_open_rows": 0,
+    "runtime_rows": 5,
+    "po_decision_units": 7,
+    "df_bun_002": {
+      "review_pass": true,
+      "design_status": "closed",
+      "runtime_status": "open"
+    },
+    "df_exact2_001": {
+      "review_current": true,
+      "review_pass": true,
+      "design_status": "closed",
+      "runtime_status": "open"
+    },
+    "df_layer_sem_001": {
+      "review_pass": true,
+      "review_open": {
+        "findings": 0,
+        "independent_open_backlog": 0,
+        "producer_open_backlog": 0,
+        "unresolved": 0
+      },
+      "design_status": "closed"
+    },
+    "nonblocking_current_reviews": [
+      "po7_authority_activation",
+      "savepoint_layer_tag_design",
+      "universal_nonpo_authority"
+    ]
+  },
+  "findings": [],
+  "safety": {
+    "runtime_execution_credit": 0,
+    "verified": false,
+    "coverage_credit": false
+  }
+}

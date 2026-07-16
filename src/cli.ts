@@ -57,6 +57,7 @@ import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
+import { registerAuthorityCommands } from "./cli/commands/authority";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { runConsumerDoctor, runDoctor } from "./doctor";
@@ -3019,6 +3020,7 @@ pairAgent
   );
 
 registerRenameCommands(program);
+registerAuthorityCommands(program);
 const versionUp = program
   .command("version-up")
   .description("version-up parked work decision surfaces");

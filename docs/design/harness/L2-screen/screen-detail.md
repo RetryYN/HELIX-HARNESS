@@ -89,6 +89,6 @@ screen ID と URL の正本は [screen-list.md](./screen-list.md) に置く。tr
 
 ## 5. Carry
 
-- L10 UX refinement では、この detail sheet を actual label、spacing、color contrast、screenshot evidence を含む high-fi review check へ具体化する。
+- L10 system/Real UX evidence では、この detail sheet を actual label、spacing、color contrast、screenshot evidence を含む high-fi review check へ具体化する。
 - L7/L8/L9 test design は、screen implementation 開始時に `Test / Review Hook` column を参照する。
 - PM-06 は、doc catalog が L2 追加文書を読む段階で、この文書を design doc tree に含める。

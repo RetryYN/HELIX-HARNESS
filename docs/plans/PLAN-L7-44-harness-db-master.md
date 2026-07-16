@@ -154,7 +154,7 @@ code-reviewer) で、roadmap 構造 (gate 順序 / span 実在予定 / IT pairin
   rebuildHarnessDb / computeSkillMetrics / findReference / emitFeedbackEvents / の処理契約、
   evaluateAutomationReadiness / recordGuardrailDecision / catalogAutomationAssets の DbC)、
   `if-detail.md` (`helix db/find/metrics/feedback/automation/guardrail/asset` CLI 契約)、
-  `L8-integration-test-design.md` (IT-DB-01..03 / IT-SEARCH-01 / IT-FEEDBACK-01 / IT-AUTOMATION-01 /
+  `L8-integration-test-design.md` (IT-DB-01..03 / IT-SEARCH-01 / IT-FEEDBACK-01 / IT-AUTOMATION-01 / （層意味論: canonical L8=unit/detail）
   IT-GUARDRAIL-01 / IT-ASSET-DB-01)。
 - 本 master は工程表 (gate+span) の宣言と triage のみ。実装本体は各 child span PLAN が持つ。
 - §9.5 relation-graph / §9.6 MCP / §9.7 doc-export の projection table は Phase 3 で**ロジック実装済**。

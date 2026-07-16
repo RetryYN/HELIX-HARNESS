@@ -1,0 +1,730 @@
+{
+  "schema": "universal-workflow-semantic-decisions.v1",
+  "authority": "proposal_independent_review_and_gate_receipts_pending",
+  "source_anchor_artifact_sha256": "sha256:ed8ce174a563343d0f0eb449bd908f9ce940acfb5fba1a0eadc34f98c779c2e1",
+  "authority_digests": {
+    "l1_requirements": "sha256:90533dd4b1a73e8373788b29656c6b50d0ae1d517e261c67e47ee1d58513296f",
+    "source_manifest": "sha256:cfd8b58a212408d06c2671fa2b323dce62c911a08f0b4c714f4dd8d12003688e",
+    "anchor_ledger": "sha256:5ae818ea5d97dd3b279c9accd6716fbd05ecf3502c0363bca8bb2dad3cda2915",
+    "assertion_ledger": "sha256:f8cbbdf192c8110c5cb90f92fa2b7511e9f759e3287b57babf6e69ac88bc90ff"
+  },
+  "duplicate_summary": {
+    "groups": 19,
+    "occurrences": 38,
+    "roles": {
+      "alias": 17,
+      "canonical": 19,
+      "composes": 2
+    },
+    "specifies_edges": 2,
+    "unresolved": 0
+  },
+  "duplicate_decisions": [
+    {
+      "decision_id": "UWR-DUP-DEC-001-R1",
+      "semantic_digest": "06b913ed79cc0bda66b8a8a5ea1c4fd2dd4671b66eb3bd5f65497652182a8ee2",
+      "normalized_value": "reassessment_trigger",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-F4YDJ5NQWSVCYUHHRL4D",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-JAVK7P34PSFF3ANR7BNK",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-JAVK7P34PSFF3ANR7BNK",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-F4YDJ5NQWSVCYUHHRL4D"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-002-R1",
+      "semantic_digest": "17d925b14f5d52e41ec1c525609d3051ded5c2978f97d65b5a269a340f276212",
+      "normalized_value": "routing_rule",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-BCVJUESPMX3U5EUKIBPW",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-YXVMEDB37JOT72IL4DEB",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-YXVMEDB37JOT72IL4DEB",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-BCVJUESPMX3U5EUKIBPW"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-003-R1",
+      "semantic_digest": "1f990a647cd047c6ac6e3269018e8f04028e5c7d7ce065113e35688728a8c113",
+      "normalized_value": "条件分岐を列挙する",
+      "canonical": {
+        "anchor_id": "UWR-A1-E014-NR-WQJY3BIEROZJKXILMO6C",
+        "entry_id": "UWR-E-014",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E001-NR-4V6T2EVWD2DMG2UO3YX7",
+        "entry_id": "UWR-E-001",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E001-NR-4V6T2EVWD2DMG2UO3YX7",
+        "type": "alias_of",
+        "to": "UWR-A1-E014-NR-WQJY3BIEROZJKXILMO6C"
+      },
+      "rationale": "同じprocessing stepを同じworkflow extraction文脈で繰り返す。実行prompt側をcanonical source clauseとするがraw activation authorityは与えない。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-004-R1",
+      "semantic_digest": "2207c788530b0459e7bf847b481eebf5f261d08245dd371033e1e4e555df389c",
+      "normalized_value": "dead_letter_route",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-VCMZGMKUSZYFC4QIFOC4",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-ACPFEOPBN63FUKPSMZZG",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-ACPFEOPBN63FUKPSMZZG",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-VCMZGMKUSZYFC4QIFOC4"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-005-R1",
+      "semantic_digest": "2b6f35f406edc18524c4ff559c2c6e161af097cac2f6ea644e2c0cbcab166c77",
+      "normalized_value": "fallback_route",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-OTUDHOKCGBOZDM45H7ZO",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-37WBOTGAYYHMUWGZ3XQQ",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-37WBOTGAYYHMUWGZ3XQQ",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-OTUDHOKCGBOZDM45H7ZO"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-006-R1",
+      "semantic_digest": "3e8ba93b7a013100c1c9463fc01da3fa862aa8bbd61f891647047db90915d8f4",
+      "normalized_value": "degradation_policy",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-AZIJVUWW53PLKKRR2SLV",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-DMUZIPJEGIMHCCHBVTVC",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-DMUZIPJEGIMHCCHBVTVC",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-AZIJVUWW53PLKKRR2SLV"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-007-R1",
+      "semantic_digest": "41cf6794ba4200b839c53531555f0f3998df4cbb01a4d5cb0b94e3ca5e23947d",
+      "normalized_value": "source",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-6VFJBH6ZO3ZMNQXXEAPO",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-7LV4PNIMBNF6RJCZK6S3",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-7LV4PNIMBNF6RJCZK6S3",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-6VFJBH6ZO3ZMNQXXEAPO"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-008-R1",
+      "semantic_digest": "62e06f34763e9fb324706746539148257ccd737065a227d744f450a25d0b78fd",
+      "normalized_value": "fallback_policy",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-NF2DE2YOXCGGTOA56S2T",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-2N4KNI66AAUMX2JMPUH2",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-2N4KNI66AAUMX2JMPUH2",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-NF2DE2YOXCGGTOA56S2T"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-009-R1",
+      "semantic_digest": "683259feabbf5eb39895d7a5d3f4872d6989d5fa7a3eca713251d996d99a1630",
+      "normalized_value": "trigger",
+      "canonical": {
+        "anchor_id": "UWR-A1-E010-NR-4ZO4O7ICRHVUV2GEGOSV",
+        "entry_id": "UWR-E-010",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-XWRHDILDSZXAD3K4HAN7",
+        "entry_id": "UWR-E-002",
+        "role": "composes",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-XWRHDILDSZXAD3K4HAN7",
+        "type": "specified_by",
+        "to": "UWR-A1-E010-NR-4ZO4O7ICRHVUV2GEGOSV"
+      },
+      "rationale": "trigger文字列は一致するが、SKILLはtransition completeness、contractはderived requirement fieldでstageが異なる。contractをcanonical field clause、SKILLをupstream completeness compositionとして保持する。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-010-R1",
+      "semantic_digest": "7a05750d6f05e56c58f7433da53f839016cbb83d956483eebe1ef885b00c6132",
+      "normalized_value": "decision_point",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-C2MOJNNFLLPODRL7BYTY",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-MJH6CBMXBVORLILU5QZP",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-MJH6CBMXBVORLILU5QZP",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-C2MOJNNFLLPODRL7BYTY"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-011-R1",
+      "semantic_digest": "8bc208a2d403fd949b83ca1aa300a920ee97237236f9483e680cd19aa74a9e2a",
+      "normalized_value": "fallback_candidate",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-KDNY27GZL7MFZFCRKDUP",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-4JD2SDLRDZAUTITH3SXY",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-4JD2SDLRDZAUTITH3SXY",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-KDNY27GZL7MFZFCRKDUP"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-012-R1",
+      "semantic_digest": "98e1034beebba253e80a91eebd22895dafb1051e148a4aebda0e67368ffa64c3",
+      "normalized_value": "allocation_rule",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-MA6HORQSXE2P6V2D5HPW",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-OBXC3ZXMUTVILSZ6DVDA",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-OBXC3ZXMUTVILSZ6DVDA",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-MA6HORQSXE2P6V2D5HPW"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-013-R1",
+      "semantic_digest": "b348ae376a9ec26e4bac7c0182ab615387671ef996e4d4dfbf448db944118a30",
+      "normalized_value": "selection_rule",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-DTRZYRMSNDBL4ML7ZVPP",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-ULRFEYR6SWBW2FHVWOGV",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-ULRFEYR6SWBW2FHVWOGV",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-DTRZYRMSNDBL4ML7ZVPP"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-014-R1",
+      "semantic_digest": "cac94a6a0919fb23abdb02e39b7640c68e401c01f72cb55298e7a6de51a43ac5",
+      "normalized_value": "enable_condition",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-54LPX5R76DKZNAL3CGQZ",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-BZOJPSTDGHZBFLKTRHAT",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-BZOJPSTDGHZBFLKTRHAT",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-54LPX5R76DKZNAL3CGQZ"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-015-R1",
+      "semantic_digest": "cd2e91fa4bb55acb465acbebab3f8765818816f2a8b40c99bd39d3a663b39000",
+      "normalized_value": "reallocation_trigger",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-DF6EG4ERJH33HOMENXXV",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-W5SQIJLLPQSMGKRTKM77",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-W5SQIJLLPQSMGKRTKM77",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-DF6EG4ERJH33HOMENXXV"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-016-R1",
+      "semantic_digest": "d454bec656d32723404961023ed9cb3c37221687c40b498a57b3eefa93c4c5f4",
+      "normalized_value": "objective",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-2PBZB5LABMY5DA53ZDPN",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-7S2MRPJE3RR7A2SR4RQV",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-7S2MRPJE3RR7A2SR4RQV",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-2PBZB5LABMY5DA53ZDPN"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-017-R1",
+      "semantic_digest": "e5361466d42068163cc14d8047c903f1d5ed9d284ea80ba0049f2cff0fddcf19",
+      "normalized_value": "priority_rule",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-4BKSKYCWPONAUKCECIDR",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-H466WRJYPC26PS4OCKDS",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-H466WRJYPC26PS4OCKDS",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-4BKSKYCWPONAUKCECIDR"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-018-R1",
+      "semantic_digest": "eceda2dfd6f87e150cb694079e90d5d68a149da3c007c0bcf5241ac7d3dce64d",
+      "normalized_value": "監査ログ",
+      "canonical": {
+        "anchor_id": "UWR-A1-E010-NR-NLDVRKO5MSE4QX5T3YZ3",
+        "entry_id": "UWR-E-010",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E001-NR-77MKV7522TQQM3ALNX2F",
+        "entry_id": "UWR-E-001",
+        "role": "composes",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E001-NR-77MKV7522TQQM3ALNX2F",
+        "type": "specified_by",
+        "to": "UWR-A1-E010-NR-NLDVRKO5MSE4QX5T3YZ3"
+      },
+      "rationale": "文字列は監査ログで一致するが、READMEはderived surface、contractはterminal verificationで文脈が異なる。contract clauseをcanonicalとし、README clauseは同一behavior familyを構成する上位surface obligationとして保持する。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    },
+    {
+      "decision_id": "UWR-DUP-DEC-019-R1",
+      "semantic_digest": "fbb540e7d37c5d7fe6aaf1b6bd6b9587161567c31d7c39d6e9d99cb39b69f5e0",
+      "normalized_value": "concurrency_limit",
+      "canonical": {
+        "anchor_id": "UWR-A1-E013-NR-7PXWREME6XQS7DGY32W7",
+        "entry_id": "UWR-E-013",
+        "role": "canonical",
+        "coverage_weight": 1
+      },
+      "secondary": {
+        "anchor_id": "UWR-A1-E002-NR-D3KBLS26IFOBO5NKGWNL",
+        "entry_id": "UWR-E-002",
+        "role": "alias",
+        "coverage_weight": 0
+      },
+      "relation": {
+        "from": "UWR-A1-E002-NR-D3KBLS26IFOBO5NKGWNL",
+        "type": "alias_of",
+        "to": "UWR-A1-E013-NR-7PXWREME6XQS7DGY32W7"
+      },
+      "rationale": "同一runtime contract fieldをSKILLが再掲している。source contract proseをcanonical、SKILL occurrenceをweight-zero aliasとする。",
+      "authority_rule": "HIL normalized authority > source contract prose > SKILL/prompt/README; cross-stage clauses are not collapsed as aliases",
+      "status": "proposed_independent_review_pending"
+    }
+  ],
+  "conflict_summary": {
+    "groups": 5,
+    "design_decisions": 5,
+    "executed_positive_oracles": 0,
+    "executed_negative_oracles": 0,
+    "gate_receipts": 0,
+    "closed": 0
+  },
+  "conflict_decisions": [
+    {
+      "conflict_id": "C-UWR-01",
+      "decision_revision": "UWR-DEC-C01-R1",
+      "decision": "reject_direct_activation_and_harden_adapter",
+      "source_entries": [
+        "UWR-E-002",
+        "UWR-E-014"
+      ],
+      "requirement_ids": [
+        "HIL-TR-12",
+        "HIL-NFR-30",
+        "HIL-NFR-34"
+      ],
+      "replacement_design": "registered descriptor -> Node strict adapter -> optional closed proposal-only Python worker -> Node schema/provenance revalidation -> single transaction candidate; raw prompt/SKILL has no DB, Issue, PLAN, gate, command, network, credential, repository or state authority",
+      "positive_oracle": "allowlisted descriptor and sealed entry/input digests produce a versioned proposal; repeated input is byte-identical; Node revalidation receipt exists; no authoritative state changes before commit gate",
+      "negative_oracle": "raw prompt/SKILL invocation, unregistered descriptor, direct write/command/SQL/path/code output, credential/repository/.helix input, self-approval or direct state mutation is rejected before side effect",
+      "failure_codes": [
+        "HIL_UWR_RAW_ACTIVATION",
+        "HIL_UNIVERSAL_ADAPTER_AUTHORITY_BYPASS",
+        "HIL_UNIVERSAL_AUTHORITY_OR_PROVENANCE_INVALID",
+        "HIL_JUDGMENT_AUTHORITY_INVERTED"
+      ],
+      "assertion_ids": [
+        "HIA-TR-012",
+        "HIA-NFR-030",
+        "HIA-NFR-034",
+        "HST-A-035-F06",
+        "HST-A-035-F07",
+        "HST-A-035-F09"
+      ],
+      "receipt_required": [
+        "decision_revision",
+        "authority_digests",
+        "source_anchor_ids",
+        "replacement_design_digest",
+        "positive_oracle_receipt",
+        "negative_oracle_receipt",
+        "assertion_ids",
+        "gate_receipt",
+        "independent_review_receipt"
+      ],
+      "status": "design_decided_execution_pending"
+    },
+    {
+      "conflict_id": "C-UWR-02",
+      "decision_revision": "UWR-DEC-C02-R1",
+      "decision": "redesign_staged_envelope",
+      "source_entries": [
+        "UWR-E-002",
+        "UWR-E-003",
+        "UWR-E-004",
+        "UWR-E-014"
+      ],
+      "requirement_ids": [
+        "HIL-BR-26",
+        "HIL-FR-53",
+        "HIL-FR-54",
+        "HIL-FR-55"
+      ],
+      "replacement_design": "workflow_model_proposal.v1 -> workflow_completeness_receipt.v1 -> derived_requirements_proposal.v1 -> workflow_derivation_bundle.v1; every stage references predecessor digest and no single JSON object is required to validate against two incompatible root schemas",
+      "positive_oracle": "each envelope validates only its named canonical schema, predecessor digests match, completeness is green before derivation, and bundle has exact transition-to-requirement/AC/test/surface joins",
+      "negative_oracle": "single root claims simultaneous workflow-model and derived-requirements schema conformance, derived stage precedes completeness, stage digest mismatches, or unresolved items are silently omitted",
+      "failure_codes": [
+        "HIL_UWR_OUTPUT_ENVELOPE_INCOMPATIBLE",
+        "HIL_WORKFLOW_MODEL_INCOMPLETE",
+        "HIL_WORKFLOW_REQUIREMENT_TRACE_MISSING"
+      ],
+      "assertion_ids": [
+        "HIA-BR-026",
+        "HIA-FR-053",
+        "HIA-FR-054",
+        "HIA-FR-055",
+        "HST-A-035-F05",
+        "HST-A-036-F02",
+        "HST-A-036-F03"
+      ],
+      "receipt_required": [
+        "decision_revision",
+        "authority_digests",
+        "source_anchor_ids",
+        "replacement_design_digest",
+        "positive_oracle_receipt",
+        "negative_oracle_receipt",
+        "assertion_ids",
+        "gate_receipt",
+        "independent_review_receipt"
+      ],
+      "status": "design_decided_execution_pending"
+    },
+    {
+      "conflict_id": "C-UWR-03",
+      "decision_revision": "UWR-DEC-C03-R1",
+      "decision": "harden_family_canonical_schemas",
+      "source_entries": [
+        "UWR-E-003",
+        "UWR-E-004",
+        "UWR-E-010",
+        "UWR-E-011"
+      ],
+      "requirement_ids": [
+        "HIL-BR-28",
+        "HIL-FR-54",
+        "HIL-FR-55",
+        "HIL-NFR-31"
+      ],
+      "replacement_design": "one versioned canonical schema per workflow, requirement, derived-surface and test family; all 12 prose requirement fields are represented, with typed empty/N-A disposition rather than field deletion; prose clauses become field-constraint edges; legacy names are input-only aliases with expiry and migration receipts",
+      "positive_oracle": "schema/prose field denominator and required/applicability matrix agree; examples validate; every clause reaches one field constraint and every required field reaches an assertion",
+      "negative_oracle": "additionalProperties drift, prose-required field absent from schema, untyped object item, silent legacy alias acceptance, or field existence used as behavior completion",
+      "failure_codes": [
+        "HIL_UWR_SCHEMA_PROSE_DRIFT",
+        "HIL_UWR_FIELD_APPLICABILITY_UNRESOLVED",
+        "HIL_WORKFLOW_ATOMIC_GAP"
+      ],
+      "assertion_ids": [
+        "HIA-BR-028",
+        "HIA-FR-054",
+        "HIA-FR-055",
+        "HIA-NFR-031",
+        "HST-A-036-F01",
+        "HST-A-036-F04"
+      ],
+      "receipt_required": [
+        "decision_revision",
+        "authority_digests",
+        "source_anchor_ids",
+        "replacement_design_digest",
+        "positive_oracle_receipt",
+        "negative_oracle_receipt",
+        "assertion_ids",
+        "gate_receipt",
+        "independent_review_receipt"
+      ],
+      "status": "design_decided_execution_pending"
+    },
+    {
+      "conflict_id": "C-UWR-04",
+      "decision_revision": "UWR-DEC-C04-R1",
+      "decision": "retain_original_as_negative_fixture_and_add_positive_fixture",
+      "source_entries": [
+        "UWR-E-008"
+      ],
+      "requirement_ids": [
+        "HIL-FR-54",
+        "HIL-NFR-31"
+      ],
+      "replacement_design": "seal original approval fixture as expected-unreachable negative; positive fixture adds manager/executive approval transitions to APPROVED and authorized cancellation transitions from every reachable nonterminal state to CANCELLED; positive and negative use distinct IDs and digests",
+      "positive_oracle": "graph traversal from initial_state reaches every declared success/cancel terminal, no terminal has outgoing state mutation, and each added transition satisfies trigger/action/next-state/actor/data/permission constraints",
+      "negative_oracle": "original digest deterministically reports APPROVED and CANCELLED unreachable and cannot be counted as positive coverage",
+      "failure_codes": [
+        "HIL_UWR_TERMINAL_UNREACHABLE",
+        "HIL_WORKFLOW_COMPLETENESS_FAILED",
+        "HIL_WORKFLOW_ATOMIC_GAP"
+      ],
+      "assertion_ids": [
+        "HIA-FR-054",
+        "HIA-NFR-031",
+        "HST-A-036-F02",
+        "HST-A-036-F04"
+      ],
+      "receipt_required": [
+        "decision_revision",
+        "authority_digests",
+        "source_anchor_ids",
+        "replacement_design_digest",
+        "positive_oracle_receipt",
+        "negative_oracle_receipt",
+        "assertion_ids",
+        "gate_receipt",
+        "independent_review_receipt"
+      ],
+      "status": "design_decided_execution_pending"
+    },
+    {
+      "conflict_id": "C-UWR-05",
+      "decision_revision": "UWR-DEC-C05-R1",
+      "decision": "redesign_and_harden_orchestration_schema",
+      "source_entries": [
+        "UWR-E-003",
+        "UWR-E-007",
+        "UWR-E-009",
+        "UWR-E-013"
+      ],
+      "requirement_ids": [
+        "HIL-BR-29",
+        "HIL-FR-56",
+        "HIL-NFR-33",
+        "HIL-NFR-34"
+      ],
+      "replacement_design": "canonical names candidates, destinations and deadline_policy; candidate_set/destination candidates/deadline handling are expiring input aliases. Add schedule_id/task_id/ready_at/deadline/dependencies/order/preemption/time basis, resource capability/capacity/concurrency/cost/budget/recovery, allocation objective/priority/fairness/reallocation/degradation/fallback/dead-letter and bounded terminal route",
+      "positive_oracle": "all ready tasks receive a deterministic schedule and capability/capacity-valid allocation or explicit bounded checkpoint/fallback/dead-letter; resource exhaustion never drops required work; canonical output contains no legacy names",
+      "negative_oracle": "missing schedule entity, alias in canonical output, capacity over-allocation, undefined deadline/preemption/fairness, unbounded retry, absent fallback/dead-letter, or required processing dropped",
+      "failure_codes": [
+        "HIL_UWR_ORCHESTRATION_SCHEMA_DRIFT",
+        "HIL_ORCHESTRATION_PLAN_INCOMPLETE",
+        "HIL_RUNTIME_ORCHESTRATION_ROUTE_MISSING",
+        "HIL_REQUIRED_PROCESSING_DROPPED"
+      ],
+      "assertion_ids": [
+        "HIA-BR-029",
+        "HIA-FR-056",
+        "HIA-NFR-033",
+        "HIA-NFR-034",
+        "HST-A-037-F01",
+        "HST-A-037-F02",
+        "HST-A-037-F03",
+        "HST-A-037-F04"
+      ],
+      "receipt_required": [
+        "decision_revision",
+        "authority_digests",
+        "source_anchor_ids",
+        "replacement_design_digest",
+        "positive_oracle_receipt",
+        "negative_oracle_receipt",
+        "assertion_ids",
+        "gate_receipt",
+        "independent_review_receipt"
+      ],
+      "status": "design_decided_execution_pending"
+    }
+  ],
+  "decision_set_sha256": "b8a343ab58f80c392d17027d19826fd5a5f91e68819a094a71139092ff80b04d"
+}

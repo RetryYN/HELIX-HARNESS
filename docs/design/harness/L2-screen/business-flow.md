@@ -139,6 +139,6 @@ flowchart LR
 
 ## 6. Carry
 
-- L10 UX refinement では、各 business flow が hidden navigation なしで完了できるかを検証する。
+- L10 system/Real UX evidence では、各 business flow が hidden navigation なしで完了できるかを検証する。
 - PM-06 は business-flow docs を screen-flow docs の隣に表示し、PO が workflow narrative を確認できるようにする。
 - future implementation では、daily operation と failure recovery を覆う BF-01、BF-02、BF-03、BF-05 の screenshot evidence を先に追加する。

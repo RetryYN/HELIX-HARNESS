@@ -1,0 +1,2422 @@
+{
+  "aliases": [
+    {
+      "alias_key": "LSC-L8-LEGACY-INTEGRATION",
+      "canonical_layer": "L8",
+      "canonical_meaning": "unit/detail",
+      "consumer_count": 117,
+      "consumer_edges": [
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 1038,
+          "line_sha256": "dd4bff55c7304cb42bc9c466b72c3d52c7789314588af76070ead48588aa9512",
+          "path": "docs/design/design-catalog.yaml",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 1071,
+          "line_sha256": "f9faab2de8ffb0ddd5ee00b5181a4482f7488d745d9a55dcee72decfe070c8bf",
+          "path": "docs/design/design-catalog.yaml",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 97,
+          "line_sha256": "099938d74c70351c0dd7aa4e5d603c84636925d757d48d07715f8a56e63d8a6c",
+          "path": "docs/design/harness/L3-functional/roadmap.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/design/harness/L5-detailed-design/if-detail.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "bcc9d3ac630196cb625a9fd82547836b51b4191a754812bbe31161d495f22ffa",
+          "path": "docs/design/harness/L5-detailed-design/if-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/design/harness/L5-detailed-design/internal-processing.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "bcc9d3ac630196cb625a9fd82547836b51b4191a754812bbe31161d495f22ffa",
+          "path": "docs/design/harness/L5-detailed-design/internal-processing.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/design/harness/L5-detailed-design/module-decomposition.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "f03f983f5d4a239b619d6b8db1f24f0a44a8d111e13eacafee5209a96df1e785",
+          "path": "docs/design/harness/L5-detailed-design/module-decomposition.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/design/harness/L5-detailed-design/physical-data.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "5579249391fbaee69308ba6833fbd84bb47a76b9a20d9974fca65aa5b94a5672",
+          "path": "docs/design/harness/L5-detailed-design/physical-data.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 9,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/design/harness/L8-integration/integration-evidence-boundary.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 20,
+          "line_sha256": "646a5eaa2b50c462bbd55b3086fd030ba2de40f4f93355bd28ed9cacf337379b",
+          "path": "docs/design/harness/L8-integration/integration-evidence-boundary.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 21,
+          "line_sha256": "6003736222037a96555136e18044f2f233ea1319a419086a851f09cafb527c10",
+          "path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 98,
+          "line_sha256": "9e2830e085467fad1b466802b149b792fc5aea04b5409038bfaad56cbb5059b5",
+          "path": "docs/governance/document-system-map.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 1282,
+          "line_sha256": "dbbbbe889ce38a113d7438f76450cfc3e46cd0615b30b4c65f12229131836f37",
+          "path": "docs/governance/helix-harness-requirements_v1.2.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 52,
+          "line_sha256": "c054f8fd5501b6a9934825dd583c5b0db5dedb7ac115e41a719395c3ef305f02",
+          "path": "docs/governance/helix-l0-l8-design-consistency-audit.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 71,
+          "line_sha256": "3b7e0207342c7552e2b3aeb35d71a5d46a60cdb2d7960b6ebc1cdd02f46faec1",
+          "path": "docs/governance/helix-l0-l8-design-consistency-audit.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 50,
+          "line_sha256": "5144fca2b3f98b3fd811ed20032aaf11b48b7538c6524a5415e72b34e20fd5ff",
+          "path": "docs/governance/helix-objective-evidence-audit.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 135,
+          "line_sha256": "0a021802f453d61558d0df21a679f2c2869485d69e428310bab3cb2d253d6f4b",
+          "path": "docs/improvement-backlog.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 154,
+          "line_sha256": "4ae0567b27915c28cbf44336f756dd7359111f2680a4ed6071f54abee7496aa2",
+          "path": "docs/improvement-backlog.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 210,
+          "line_sha256": "4f8d04526bb9641bec124517a7ae4b87bc5191be5ddea43833d82a83fb2fd1ed",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 212,
+          "line_sha256": "bee1ce3bb2acd246224d99c5495309af3eea1a04e5a7adcbd3f015e9388641c6",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 219,
+          "line_sha256": "1b6af66f9277700f2c5214743f202140c68852110cd62d867deb35a480d20aed",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 236,
+          "line_sha256": "f735d4ef1ff461c48362dd6705644dbf6854afd5eb535e49334f44a0777025de",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 60,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L3-05-harness-telemetry-closure.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 53,
+          "line_sha256": "50646d2d95b1656c7ab3ed3d394f054a927b92c320852fb98bc89a1007b621e1",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 80,
+          "line_sha256": "743a20aaf4fba6a061ccc4dcc83833a300b6b677bb1158a40aadbe66902d5b51",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 83,
+          "line_sha256": "e4d38ff95c6bee5b1a2edf6eca9ba4cb607e32ab250226a642d286ac80807063",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 81,
+          "line_sha256": "0d52656cbe447bfb9db9537118ee79503ff0ed5782977dc5ff40092b2de7fc7f",
+          "path": "docs/plans/PLAN-L5-00-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 122,
+          "line_sha256": "c91bbbff36829dccd4d23f6c617ef21ebef9abbe50917f8c84276695501ce051",
+          "path": "docs/plans/PLAN-L5-00-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 138,
+          "line_sha256": "ebd7d66d3add26fd5841a54f4301c54370c71fb76b6b318ca1f5d59d9d824452",
+          "path": "docs/plans/PLAN-L5-00-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 26,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-01-physical-data.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 26,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-02-module-decomposition.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 26,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-03-internal-processing.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 28,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-04-if-detail.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 28,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-05-roster.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 52,
+          "line_sha256": "a07bef042b1bacaa884c2c3caae22b02c6afdea40d2bdd65bc44e2a1211a9318",
+          "path": "docs/plans/PLAN-L5-05-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 28,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-06-skill.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 26,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-07-drift.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 45,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-L5-08-harness-db-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 48,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L5-08-harness-db-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 58,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L5-08-harness-db-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 118,
+          "line_sha256": "a5dc1b3b58fc46a345e1949b5e241bba71e6b80efb839176452a71b428fe400a",
+          "path": "docs/plans/PLAN-L5-08-harness-db-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 136,
+          "line_sha256": "396065f53cfdad85ec2bb96f461242d192dbf57931119c31d44e372f4fd0fd94",
+          "path": "docs/plans/PLAN-L5-08-harness-db-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 74,
+          "line_sha256": "2b8a438c02e079c4bf4a8a0f92990c94cbaafaeba27e801752520971d3d05cff",
+          "path": "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 77,
+          "line_sha256": "64451abc7ed5fa2b16df22b9d84e760a3b65be109d4124bc125123e8da88b487",
+          "path": "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 91,
+          "line_sha256": "c5fa3dd091147859a6ffa2da6df456fe98ff7fa212b22a9eeb507f3772c60d9a",
+          "path": "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 17,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-L6-30-integration-gwt-lint.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 46,
+          "line_sha256": "08e01ff21053caaae614d943e87885169df316bff8fc71fcee5fe148ea4cc60a",
+          "path": "docs/plans/PLAN-L6-30-integration-gwt-lint.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 28,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-L6-31-cross-artifact-relation-graph.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 11,
+          "line_sha256": "6f4d4dac483c2af66981cf7d387e4f6a1e54b24ada551bee6797d72272f80737",
+          "path": "docs/plans/PLAN-L7-168-g8-integration-workflow.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 20,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-L7-168-g8-integration-workflow.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 34,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-168-g8-integration-workflow.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 11,
+          "line_sha256": "6f4d4dac483c2af66981cf7d387e4f6a1e54b24ada551bee6797d72272f80737",
+          "path": "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 20,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 41,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 244,
+          "line_sha256": "8ad8ff280ee6a204eb962fb3e4b15cf38820101c1c1be8dfb1886474c691008d",
+          "path": "docs/plans/PLAN-L7-210-l0-l8-design-consistency-audit.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 73,
+          "line_sha256": "08e01ff21053caaae614d943e87885169df316bff8fc71fcee5fe148ea4cc60a",
+          "path": "docs/plans/PLAN-L7-31-integration-gwt-lint.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 90,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-44-harness-db-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 157,
+          "line_sha256": "95b66241ded93374733d71ba7279cf5323dee28b5e4569cbf8cb2e88f34831c5",
+          "path": "docs/plans/PLAN-L7-44-harness-db-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 178,
+          "line_sha256": "195a89281033b3b54c4296d880bc9bda5575704c8fcbe1b695b6d5165b4cd1a6",
+          "path": "docs/plans/PLAN-L7-44-harness-db-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 54,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L7-45-harness-db-foundation.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 61,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-45-harness-db-foundation.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 114,
+          "line_sha256": "1806b1a747fb02db44f58f8222c7319510ad50a5e9b1ec7e86bbc02f8111ee16",
+          "path": "docs/plans/PLAN-L7-45-harness-db-foundation.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 97,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L7-46-projection-writer.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 105,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-46-projection-writer.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 32,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 40,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 32,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 40,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 30,
+          "line_sha256": "36af6f73ccbf8f1e9ae8a8e0e2a82a6df2f4c34ab0bcc77771b331772976d8cb",
+          "path": "docs/plans/PLAN-L7-49-asset-catalog.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 38,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-49-asset-catalog.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 85,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L7-52-l7-completion-audit-closure.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 3,
+          "line_sha256": "f8b7fc25f1524b20c693991175440a13fcb21d0d39f63999a79d59c3ebf32cd0",
+          "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 14,
+          "line_sha256": "90abd7900238d772ea160cbc91c221e2ef4e9dc85d074a756f55e8ece4c519ab",
+          "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 20,
+          "line_sha256": "1db37ba7b28841e0fb1b86cc2484763a31c763fd6ad525d0325bf3f306f002ee",
+          "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 25,
+          "line_sha256": "96b17b6709e1432afcdc1f0b56ca69bab0d9a564e99cc0d959edc454172fa07e",
+          "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 57,
+          "line_sha256": "02076beab7f4111238b4f3e5e400c9289dea3ecd4f09b79ee821a9a3b5554e67",
+          "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 66,
+          "line_sha256": "9aebcd0e9f00bf9f46be7d6107dee7eca10eea812e6670bb3a2d79aca92ec60d",
+          "path": "docs/plans/PLAN-L8-00-integration-verification-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 75,
+          "line_sha256": "4b4dd49db661a5c378fc7676342c4f03edaa02b8becaaec8839f6e25d685c761",
+          "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 103,
+          "line_sha256": "b880209e926b55f7a58fcdce95b604c6aae2e96c751cfa6cb9696be1c46ad5ac",
+          "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 30,
+          "line_sha256": "20d9a724c3264bcd1f452b761468ef47f663b0f90ad38a528fafa2148795ce65",
+          "path": "docs/plans/PLAN-REVERSE-168-g8-integration-workflow.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 54,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-REVERSE-168-g8-integration-workflow.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 30,
+          "line_sha256": "20d9a724c3264bcd1f452b761468ef47f663b0f90ad38a528fafa2148795ce65",
+          "path": "docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 62,
+          "line_sha256": "853b6881043a38b0527a9b7599215aaa56d4b08b65984e8d1fe7064ec6d81970",
+          "path": "docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 49,
+          "line_sha256": "e4461127a81205dcdf3de99f4ea947b6ac310d355456f2aae1fac426fc42e0a2",
+          "path": "docs/plans/PLAN-REVERSE-219-semantic-frontier-midlayer-closure.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 84,
+          "line_sha256": "66a049209c4b238235c9e6a0ca0797d960fea4a310e38b25b162246bc1edad1e",
+          "path": "docs/plans/PLAN-REVERSE-41-substance-lints.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 21,
+          "line_sha256": "4e293a13b5b159908cf7234d6a4e09c60ac4131c6b3a95d92085f1fdb8140b2a",
+          "path": "docs/process/gates.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 8,
+          "line_sha256": "26ddb3a4cdf1dd06bf743c7ef270fa2ac9467e10800ecf33e960c1312bf22991",
+          "path": "docs/test-design/harness/L9-integration-test-design.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 9,
+          "line_sha256": "c0fdc35c7d718c8ac3d1ae485ebd62f643f981b4738133fce28942e433541f95",
+          "path": "docs/test-design/harness/L9-integration-test-design.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 22,
+          "line_sha256": "c03c5657b7124e7a3eca7b1544f1055d354ea06a8d1f1042220725a93e395675",
+          "path": "docs/test-design/harness/L9-integration-test-design.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 29,
+          "line_sha256": "a816d9dd37d62c8bfbbf7e1373ec74f69b653e7d19a427295a8920bf556203e4",
+          "path": "docs/test-design/harness/L9-integration-test-design.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 34,
+          "line_sha256": "08b000e5480aeb06758c3ee626109a3931d6756980bacd1c2da6ae3c5b71415e",
+          "path": "docs/test-design/harness/L9-integration-test-design.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 175,
+          "line_sha256": "c910b0683f622b75a957650b6665b4e3b2374f944524916fecf3caee655be982",
+          "path": "src/lint/descent-obligation.ts",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 91,
+          "line_sha256": "723ac2c0681399110e615d50125d61a4807720aaf886839e845cbef70507b9b4",
+          "path": "src/lint/g8-integration-workflow.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 365,
+          "line_sha256": "82b83537630015673bc7c1a1af687fc84879dbd9e5af8fe4af8c4142fab694be",
+          "path": "src/lint/g8-integration-workflow.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 105,
+          "line_sha256": "006b3a2fff86bc6fc5dbc5bd79b4c82a8328b1c99b693e96d0e1153eff63d2df",
+          "path": "src/lint/objective-evidence-audit.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 120,
+          "line_sha256": "0a627d5495c86a924dfeee05b061c058b69edcec804a5698077b14757ee11c0c",
+          "path": "src/lint/objective-evidence-audit.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 42,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 186,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 228,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 279,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 385,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 445,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 44,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 355,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 452,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 484,
+          "line_sha256": "e9e13f904d7988cff1e2420ef343ba3b5daf46abf1354412de02f7546a44da16",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 122,
+          "line_sha256": "006b3a2fff86bc6fc5dbc5bd79b4c82a8328b1c99b693e96d0e1153eff63d2df",
+          "path": "tests/goal-evidence-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 137,
+          "line_sha256": "0a627d5495c86a924dfeee05b061c058b69edcec804a5698077b14757ee11c0c",
+          "path": "tests/goal-evidence-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 95,
+          "line_sha256": "006b3a2fff86bc6fc5dbc5bd79b4c82a8328b1c99b693e96d0e1153eff63d2df",
+          "path": "tests/l0-l8-design-consistency-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 102,
+          "line_sha256": "0a627d5495c86a924dfeee05b061c058b69edcec804a5698077b14757ee11c0c",
+          "path": "tests/l0-l8-design-consistency-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 483,
+          "line_sha256": "fe1b0e8c6fac8065fe502681044373e728bb8c81d772cdb1d5074c60d3498441",
+          "path": "tests/relation-graph.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 36,
+          "line_sha256": "8c19a5ba3b2b1129e40e1c9f5e05d963f10cf54c78ae53f3d476643b1f7bdc8a",
+          "path": "tests/state-db.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 289,
+          "line_sha256": "26ddb3a4cdf1dd06bf743c7ef270fa2ac9467e10800ecf33e960c1312bf22991",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 297,
+          "line_sha256": "d056c18e40be0255d8342efe60b74aa2eae20740eefcaeaa634ecdefc467ac64",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        }
+      ],
+      "expiry": "only after an approved atomic path/ID migration proves zero legacy consumers",
+      "legacy_meaning": "L8 integration",
+      "legacy_token_pattern": "L8(?:-integration|\\s*(?:=|:)\\s*(?:integration|結合)|\\s+結合(?:テスト)?)",
+      "reopen_rule": "reopen when any bound line digest, canonical authority, or migration approval changes",
+      "runtime_authority": false,
+      "source_epoch": "pre-vmodel-l1-l12-v1"
+    },
+    {
+      "alias_key": "LSC-L9-LEGACY-SYSTEM",
+      "canonical_layer": "L9",
+      "canonical_meaning": "integration",
+      "consumer_count": 113,
+      "consumer_edges": [
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 219,
+          "line_sha256": "980aa95f2885a01d3f0e128c43aec16ef398353436dadb1b05c640da0ca5649c",
+          "path": "docs/design/design-catalog.yaml",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 1039,
+          "line_sha256": "72e3757b7e3ddeb4431d88d73203c0bbc06270af13a50011bdc3221c53f8b6fb",
+          "path": "docs/design/design-catalog.yaml",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 1072,
+          "line_sha256": "fb7de7e5e068096f4bdce1abc109616d50c38689137caa88d10b21ae39a2b0f5",
+          "path": "docs/design/design-catalog.yaml",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 97,
+          "line_sha256": "099938d74c70351c0dd7aa4e5d603c84636925d757d48d07715f8a56e63d8a6c",
+          "path": "docs/design/harness/L3-functional/roadmap.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/design/harness/L4-basic-design/architecture.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "c855f4011e2e0f5aa43ff36a359dd187784c055a5e528217c1a7432e3be1c9a6",
+          "path": "docs/design/harness/L4-basic-design/architecture.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/design/harness/L4-basic-design/data.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/design/harness/L4-basic-design/external-if.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "0c7d9269c2a04431f9021d2fa55789ba9b70e0e6a0a9d086d869a4b25fcc3816",
+          "path": "docs/design/harness/L4-basic-design/external-if.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/design/harness/L4-basic-design/function.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 16,
+          "line_sha256": "0c7d9269c2a04431f9021d2fa55789ba9b70e0e6a0a9d086d869a4b25fcc3816",
+          "path": "docs/design/harness/L4-basic-design/function.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 6,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/design/harness/L4-basic-design/ui-standard.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 9,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/design/harness/L9-system/system-evidence-boundary.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 21,
+          "line_sha256": "dd083496a682afa7ad5ad79acb1943887d27ff86e5cc676d9c17224a43d5e4eb",
+          "path": "docs/design/harness/L9-system/system-evidence-boundary.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 99,
+          "line_sha256": "88129a75a3074ac3d1de8b4b1cfa67c51a303fdd9cdf85067a52e6cc67f4709a",
+          "path": "docs/governance/document-system-map.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 82,
+          "line_sha256": "b20a6a265117076ea45eba5920d53aaf7979d559a7655104122ccf244a33121e",
+          "path": "docs/governance/gate-design.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 96,
+          "line_sha256": "6f6e0a58e8040d7a026101031dc10ca9518ea48082fb2bd7d816ad5b166c2cd1",
+          "path": "docs/governance/gate-design.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 806,
+          "line_sha256": "6e75b211be31577259505eb9d62dec298b15bb3651492c1013d7e8da4de06b36",
+          "path": "docs/governance/helix-harness-concept_v3.1.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 197,
+          "line_sha256": "5bd3e968427770cef2d977392e369aac8624efdd29c7b490cca80aaf05ac1dc7",
+          "path": "docs/governance/helix-harness-requirements_v1.2.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 752,
+          "line_sha256": "5b80e2b5869841e7dd4ab1f7323ced95b2feeb487c036a0cd807c4e3e0e090cc",
+          "path": "docs/governance/helix-harness-requirements_v1.2.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 806,
+          "line_sha256": "341a9d190519fa6c0c09fd80f508beaaee561b8895f0da38d0024aa6d807870c",
+          "path": "docs/governance/helix-harness-requirements_v1.2.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 53,
+          "line_sha256": "78991a3d1136e67e8c32fe8f464060f8c12ba0e15433cda6c72296ce4cccdc13",
+          "path": "docs/governance/helix-l0-l8-design-consistency-audit.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 50,
+          "line_sha256": "5144fca2b3f98b3fd811ed20032aaf11b48b7538c6524a5415e72b34e20fd5ff",
+          "path": "docs/governance/helix-objective-evidence-audit.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 9,
+          "line_sha256": "a90288f13569337b09368f2b9798cbb1a92ac3283ef35641f6e0dcfda4f9d310",
+          "path": "docs/governance/system-review-triage-decisions.yaml",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 58,
+          "line_sha256": "ad33beefe9ca06c856791eb78c70eaeb8acca788e6e050730a16f8f45dccb0a1",
+          "path": "docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 90,
+          "line_sha256": "52e3e4e51fc0c70b16c895e687770e07375318070148c5c665deff11d5591768",
+          "path": "docs/improvement-backlog.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 125,
+          "line_sha256": "5b0ab96639a879c52e0ad14ec4fdca5ef9c8cab0be2e9906ed239ca0107334d4",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 209,
+          "line_sha256": "e3ea13250f613a302e46e6ce31c0bb3d6df1de017615d189452cc0b331cb8210",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 227,
+          "line_sha256": "20f0cb5349c543098333ccb67179d2117a0ab97970745b1a02f056774c7b47d6",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 231,
+          "line_sha256": "827e81a94bff339abeddac1c9b4e41091d17f998f284b304792c9df90ed6ecad",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 232,
+          "line_sha256": "fb13f61741c94be9c567ba93640e20de81c02eb3f12f7a7ed90982121d579b13",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 236,
+          "line_sha256": "f735d4ef1ff461c48362dd6705644dbf6854afd5eb535e49334f44a0777025de",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 243,
+          "line_sha256": "843d411e0129b001527a39d50eb92a88a1607cb8f9fb88cba3a205506b5c0106",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 244,
+          "line_sha256": "f3d73a0bf5f0c29cad10d13e6a88ff50e72c9200b0acb8d3dd339fe7c8245f20",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 61,
+          "line_sha256": "d885794805bd51613ede87f16f103f4b6602e6bc48d5de7ae654b9d079f0f359",
+          "path": "docs/plans/PLAN-L3-05-harness-telemetry-closure.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 141,
+          "line_sha256": "d06ae75203bb3196388b8478249c8aaac0cdfbae4ca742604420a41bc10f461d",
+          "path": "docs/plans/PLAN-L4-00-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 156,
+          "line_sha256": "3a51cc28b7d92f8c5d07d6c6cf722e9691235aff73b5424d79f8c81e39670325",
+          "path": "docs/plans/PLAN-L4-00-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 159,
+          "line_sha256": "791c9104b58c53f7f6d86b2c410b5d2c49b3d14a5db191867f8095319b9fa757",
+          "path": "docs/plans/PLAN-L4-00-master.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 19,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-01-data.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 90,
+          "line_sha256": "94eabe36d3cee495618e1c8f14913007216500676b8eb5e67a7eeb6803d198dc",
+          "path": "docs/plans/PLAN-L4-01-data.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 19,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-02-architecture.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 19,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-03-function.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 19,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-04-external-if.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 18,
+          "line_sha256": "89b1f583fb5120d716addd5a830d4cb0aebc9c4710573d5b6a3f5408e5353f09",
+          "path": "docs/plans/PLAN-L4-05-workflow-orchestration.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 21,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-05-workflow-orchestration.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 58,
+          "line_sha256": "4098799836df8e81ef3ed95dce16a004ac4a83f0713c443364a036fbfaf0021f",
+          "path": "docs/plans/PLAN-L4-05-workflow-orchestration.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 80,
+          "line_sha256": "c618ec209f9a70ae31ab4659af1a05dd3e12efb8a407cb91696b8397fc81cb44",
+          "path": "docs/plans/PLAN-L4-05-workflow-orchestration.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 81,
+          "line_sha256": "30ef2473866031e059b27229908050ba837ed939de37612354ba709f84154834",
+          "path": "docs/plans/PLAN-L4-05-workflow-orchestration.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 30,
+          "line_sha256": "89b1f583fb5120d716addd5a830d4cb0aebc9c4710573d5b6a3f5408e5353f09",
+          "path": "docs/plans/PLAN-L4-06-design-refresh.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 32,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-06-design-refresh.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 103,
+          "line_sha256": "4e1b2b82f731b3296454e6e94a80ae74e72fa875804239776c5b3d1a6307986f",
+          "path": "docs/plans/PLAN-L4-06-design-refresh.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 53,
+          "line_sha256": "50646d2d95b1656c7ab3ed3d394f054a927b92c320852fb98bc89a1007b621e1",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 79,
+          "line_sha256": "6294be76042f7a68fd5d8ceedda009d519c0270a9c9c7bd24a9ff5ad5781fd4d",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 83,
+          "line_sha256": "e4d38ff95c6bee5b1a2edf6eca9ba4cb607e32ab250226a642d286ac80807063",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 110,
+          "line_sha256": "2679653f8852afe837144262f92e172168802c241ea5ecdebc6b17421e192531",
+          "path": "docs/plans/PLAN-L4-10-internal-asset-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 29,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 51,
+          "line_sha256": "2e7067b6017856f74cc4c4f32bac1245c9c4d156ce75f3d0b9209fffc8516353",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 53,
+          "line_sha256": "3b93987ca4d21585462be7c33a97d3ad3bcfd8c5b10a68d5ea050b9e292eb3a4",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 55,
+          "line_sha256": "6bcd57158c0ab7343c99ad5405f5adecdd72496bf1bfc68e507ea22975898e62",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 62,
+          "line_sha256": "6efb2fdac49bbeacccf3915ea41322003e5830464593127fef0396f44df406cd",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 70,
+          "line_sha256": "1b433379e64945f6c7d4c5536b7e38b8df08609b8ecb339d1c55d18b6cb7e435",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 88,
+          "line_sha256": "01c3eee26b78fce33ee0422f92ac5aa30b7106a94b1f29c3afa8fdb3ed7b129f",
+          "path": "docs/plans/PLAN-L4-11-roster.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 27,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-12-skill-pack.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 47,
+          "line_sha256": "7c829ea0f493978430213bdb2f6bff91351d989ff850fd79cebc7b31f976a715",
+          "path": "docs/plans/PLAN-L4-12-skill-pack.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 49,
+          "line_sha256": "1bfe50e2a819fc957213efb955e83470a406981c3041af32b561818093d12df3",
+          "path": "docs/plans/PLAN-L4-12-skill-pack.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 62,
+          "line_sha256": "b1a0c9bc5889dcffbd43be51a8d827e04ee0b56a3a7a238d9153a77e79f6d6cd",
+          "path": "docs/plans/PLAN-L4-12-skill-pack.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 79,
+          "line_sha256": "d7b727b059d1fcc375228893eacfca3727d28589d51f9bd997d5cfffa7e4b548",
+          "path": "docs/plans/PLAN-L4-12-skill-pack.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 27,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-13-drift-lint.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 50,
+          "line_sha256": "1bfe50e2a819fc957213efb955e83470a406981c3041af32b561818093d12df3",
+          "path": "docs/plans/PLAN-L4-13-drift-lint.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 69,
+          "line_sha256": "6ecac9ed14f5d1fde484a245ea9b9f2f90fb7fb68676ece6cd6d758e18e3f318",
+          "path": "docs/plans/PLAN-L4-13-drift-lint.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 85,
+          "line_sha256": "a2005a26db887df2fe957c9b67c52d323e2294a04f59f9964e4d2864d504ac43",
+          "path": "docs/plans/PLAN-L4-13-drift-lint.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 34,
+          "line_sha256": "a0593b7964d4981530cf090208f03c2d2463ce6a62506a5a6f7859e029fbb8a3",
+          "path": "docs/plans/PLAN-L4-14-ui-standard.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 43,
+          "line_sha256": "4d249efb75c1c675075e48bae7a6937a3797871b3362eedd86edbe877ca0486f",
+          "path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 80,
+          "line_sha256": "d885794805bd51613ede87f16f103f4b6602e6bc48d5de7ae654b9d079f0f359",
+          "path": "docs/plans/PLAN-L7-416-session-handover-runtime-retirement.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 3,
+          "line_sha256": "ef02dc1dfe0e7082f7f6e4e62adfc5d3052578d73e024803ed5a8ec9e3646908",
+          "path": "docs/plans/PLAN-L9-00-system-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 14,
+          "line_sha256": "dc470663795d5218e5b0953ce6bb41338648d940a9badce35c03aced607344a1",
+          "path": "docs/plans/PLAN-L9-00-system-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 20,
+          "line_sha256": "4d249efb75c1c675075e48bae7a6937a3797871b3362eedd86edbe877ca0486f",
+          "path": "docs/plans/PLAN-L9-00-system-verification-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 25,
+          "line_sha256": "d885794805bd51613ede87f16f103f4b6602e6bc48d5de7ae654b9d079f0f359",
+          "path": "docs/plans/PLAN-L9-00-system-verification-master.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 57,
+          "line_sha256": "8b9038f4728b90e91afc390d045b2c41fc0118335898bf9dfe4ebffad3fe932c",
+          "path": "docs/plans/PLAN-L9-00-system-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 102,
+          "line_sha256": "26e55a466dd8f738784172d24d44c2f3d7fb87b96e6f43ac98c228696fbe13df",
+          "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 45,
+          "line_sha256": "72576c76e73dd5c79fdbd73f68fda8bfb9071cf94f2ea7a295a4cd34e29c3352",
+          "path": "docs/plans/PLAN-REVERSE-219-semantic-frontier-midlayer-closure.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 116,
+          "line_sha256": "89b1f583fb5120d716addd5a830d4cb0aebc9c4710573d5b6a3f5408e5353f09",
+          "path": "docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 110,
+          "line_sha256": "5a215f1b6f117f5e2c830edea3cf5983589d7e107e3cc4349e7f08243ddf7c6e",
+          "path": "docs/reference/system-review-triage-2026-07-12.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 176,
+          "line_sha256": "0980addd8d3878a647bbc42c23b31ff3842ff8f842281ab4dac1dc33db556fd9",
+          "path": "src/lint/descent-obligation.ts",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 71,
+          "line_sha256": "6090330f621e0ab32ff4883701a2239fcfc835385aed65ebd43310d1ccb9d34e",
+          "path": "src/lint/g9-system-workflow.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 75,
+          "line_sha256": "92213ec5dfabd2d625fa4e0add43c93f0ed21664153910fbc0df89a458f05501",
+          "path": "src/lint/g9-system-workflow.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 85,
+          "line_sha256": "0cb354f5d85fdd29bd6e274a181a3f93444a7ac37c911f7476dc3b8f7bf05de0",
+          "path": "src/lint/g9-system-workflow.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 86,
+          "line_sha256": "8808b74e837e2945c27723fb88e9f3e003f9db7f74ecabf2d996296da2cf3fc9",
+          "path": "src/lint/g9-system-workflow.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 106,
+          "line_sha256": "e468f0ee4d31825c486bdee41881f6b025742cc8e8edaccea9a1e8c3a1589224",
+          "path": "src/lint/objective-evidence-audit.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 122,
+          "line_sha256": "4550956174a4ef66a0a8ca912c99dee1a7ec4fef057334172223117167a03f08",
+          "path": "src/lint/objective-evidence-audit.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 13,
+          "line_sha256": "8db55ea5bbdf37edcb12a3b0ef5d3d2beaa224891ff1b0f6e4b9ab1f8b267997",
+          "path": "src/lint/triage-decision-integrity.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 415,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/classify.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 104,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 150,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 191,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 284,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 333,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 390,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-core.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 112,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 182,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 245,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 300,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 360,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "src/task/proposal-document-packs-operations.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 123,
+          "line_sha256": "e468f0ee4d31825c486bdee41881f6b025742cc8e8edaccea9a1e8c3a1589224",
+          "path": "tests/goal-evidence-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 139,
+          "line_sha256": "4550956174a4ef66a0a8ca912c99dee1a7ec4fef057334172223117167a03f08",
+          "path": "tests/goal-evidence-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 96,
+          "line_sha256": "e468f0ee4d31825c486bdee41881f6b025742cc8e8edaccea9a1e8c3a1589224",
+          "path": "tests/l0-l8-design-consistency-audit.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 64,
+          "line_sha256": "65d64743363f62e8aea57faf50cb78f57c3e6ada7f5a18e66c79b370d4e408c0",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 65,
+          "line_sha256": "4550956174a4ef66a0a8ca912c99dee1a7ec4fef057334172223117167a03f08",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 94,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 97,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 109,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 112,
+          "line_sha256": "94b26e074160354b5801813a51bed5178a6e52ea121e7f44f9af61fdbb12d3e7",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 1377,
+          "line_sha256": "7d50eeec220c4f622553fb2c0f0e6d469c8d9491811b65fd64e4a61a0962db28",
+          "path": "tests/vmodel-pair.test.ts",
+          "reason": "legacy_path_consumer_requires_atomic_migration",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        }
+      ],
+      "expiry": "only after an approved atomic path/ID migration proves zero legacy consumers",
+      "legacy_meaning": "L9 system",
+      "legacy_token_pattern": "L9(?:-system|\\s*(?:=|:)\\s*(?:system|総合)|\\s+総合(?:テスト)?)",
+      "reopen_rule": "reopen when any bound line digest, canonical authority, or migration approval changes",
+      "runtime_authority": false,
+      "source_epoch": "pre-vmodel-l1-l12-v1"
+    },
+    {
+      "alias_key": "LSC-L10-LEGACY-UX",
+      "canonical_layer": "L10",
+      "canonical_meaning": "system plus Real UX evidence",
+      "consumer_count": 19,
+      "consumer_edges": [
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 28,
+          "line_sha256": "59722b1d6a315e3911f75ec948f3b9d6339e3935ba12c27a02f3543c0392d2f1",
+          "path": "docs/archive/handover/G1-readiness-report-2026-05-28.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 147,
+          "line_sha256": "733e1db9daf7e6151f414e5e8ecf621646b4616034fc5fbbf63d1d325b14d80e",
+          "path": "docs/archive/handover/G1-readiness-report-2026-05-28.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 33,
+          "line_sha256": "6fa552fe846cf3aadc58d9952797d162a99fd01ae1fdb3accce19424678a8391",
+          "path": "docs/archive/handover/SESSION-2026-05-27b-handover.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 340,
+          "line_sha256": "483d1cf72a443d9ec63a89a7aae444a8fbbdbf7ff64fce671fdaf2e94cea1956",
+          "path": "docs/design/harness/L1-requirements/business-requirements.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 357,
+          "line_sha256": "f6708d3a0eb70833ce74e2f20f934760376f796163d6d812ebdb4b0c5403fcc5",
+          "path": "docs/design/harness/L1-requirements/screen-requirements.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 806,
+          "line_sha256": "6e75b211be31577259505eb9d62dec298b15bb3651492c1013d7e8da4de06b36",
+          "path": "docs/governance/helix-harness-concept_v3.1.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 201,
+          "line_sha256": "d6ddabe722f7bcf0dc6a5cd48f59b5232fec4025ce7ed64dc863ca2037c7a631",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 202,
+          "line_sha256": "ac29a31ac4af0b6f93deb717cd462bcfbd1924af3cba252ea3b14d3a11e8c906",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 72,
+          "line_sha256": "7444c85bdd26409b6366ec38e25a2b210d69e231ec127fdf1563f15367102acb",
+          "path": "docs/plans/PLAN-L1-03-screen-requirements.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 76,
+          "line_sha256": "612460dedea89c21c299641dd6b7158d52dc508cc33b4bbfc452013b5aeb5489",
+          "path": "docs/plans/PLAN-L2-00-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 170,
+          "line_sha256": "ab5263d9dd4c5e64aac04e97200bbd7d393f25c2f0a0b504492a41dcae66e0c0",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 151,
+          "line_sha256": "8ed28412683b49519f29ff201bff07aed71a2ab64abc33e834d25091ca59c6f2",
+          "path": "docs/plans/PLAN-L4-14-ui-standard.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 103,
+          "line_sha256": "e8455ce9e8f04c0acb7495363a972ed493f784a1010654f03e744cbff0e51b11",
+          "path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 119,
+          "line_sha256": "63a5e6853bb120ffdc1a2c40b9e9fb66c4fbe287995289e578e8ebd0c0b9f300",
+          "path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 131,
+          "line_sha256": "52c7ca6f8f65f224814ca91dee29fbb11b7c7793a337d271b43988d5646689d0",
+          "path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 151,
+          "line_sha256": "84fc2153a9be333b489f9a54a3a44f6ac9d63acb3bfa660bc36498776cda9552",
+          "path": "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 154,
+          "line_sha256": "ec6cc8d54a26d84c03c2e798edbd76846e87beb5f48df12eb1250645d3f043c8",
+          "path": "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 100,
+          "line_sha256": "cc3fa3c978875ef5a9ab02c6275adf55bb82079f8b52c143fb389f468a92b0cf",
+          "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 5,
+          "line_sha256": "7cbb09e43e4e0ec4b175879ec18f74601a396aa2c683fde35bab5401b95f196b",
+          "path": "src/lint/screen-impl-pair-freeze.ts",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        }
+      ],
+      "expiry": "only after an approved atomic path/ID migration proves zero legacy consumers",
+      "legacy_meaning": "L10 UX-only",
+      "legacy_token_pattern": "L10\\s*(?:=|:)?\\s*(?:UX\\s*磨き|UX refinement|UX/WCAG)",
+      "reopen_rule": "reopen when any bound line digest, canonical authority, or migration approval changes",
+      "runtime_authority": false,
+      "source_epoch": "pre-vmodel-l1-l12-v1"
+    },
+    {
+      "alias_key": "LSC-L11-LEGACY-UAT",
+      "canonical_layer": "L11",
+      "canonical_meaning": "acceptance plus human visual acceptance",
+      "consumer_count": 4,
+      "consumer_edges": [
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 806,
+          "line_sha256": "6e75b211be31577259505eb9d62dec298b15bb3651492c1013d7e8da4de06b36",
+          "path": "docs/governance/helix-harness-concept_v3.1.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 3,
+          "line_sha256": "1bc6c33de128609cb0f9673c54034899293fee752601b4fc847167aed700b19f",
+          "path": "docs/plans/PLAN-L11-00-uat-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 14,
+          "line_sha256": "444285d5bfdbb328f9cedacb46dad612e5e86cc61c0e7b1479841ae1a329672e",
+          "path": "docs/plans/PLAN-L11-00-uat-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 56,
+          "line_sha256": "f602b39a27be819aca5cf1c4da16d0fbf2d0abcb84b59926c7fe26d8ebbc223b",
+          "path": "docs/plans/PLAN-L11-00-uat-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        }
+      ],
+      "expiry": "only after an approved atomic path/ID migration proves zero legacy consumers",
+      "legacy_meaning": "L11 review/UAT",
+      "legacy_token_pattern": "L11\\s*(?:=|:)?\\s*(?:総合レビュー|UAT)",
+      "reopen_rule": "reopen when any bound line digest, canonical authority, or migration approval changes",
+      "runtime_authority": false,
+      "source_epoch": "pre-vmodel-l1-l12-v1"
+    },
+    {
+      "alias_key": "LSC-L12-LEGACY-DEPLOY",
+      "canonical_layer": "L12",
+      "canonical_meaning": "operational/value",
+      "consumer_count": 38,
+      "consumer_edges": [
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 33,
+          "line_sha256": "475d5f30e59f783ff1a63d506b228d0c003c776edbef2eba99faeb5fa9dfd929",
+          "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 40,
+          "line_sha256": "ceb9f4c8740d7e7e483557a3518c5aa2e40cfaa86494316490ad1e16853e1de1",
+          "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 56,
+          "line_sha256": "eed18277b453654ba5bcd7b66ac3e902b51702190a62151e5fcdfff8b837094b",
+          "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 79,
+          "line_sha256": "cb649a63c1ccb92a1b216f8b8cd5dc8734ba5f8f2f97b65d33088745c8b68f27",
+          "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 126,
+          "line_sha256": "c99ef069a546c9f0ba84eee0933fb94b2635440edf2893f2930f852ae45904f2",
+          "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 147,
+          "line_sha256": "b3eddf4f26e2998292b29cae889b09f68b79ee6d961d440ca83b97015bbd0171",
+          "path": "docs/archive/handover/G3-readiness-report-2026-05-28.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 806,
+          "line_sha256": "6e75b211be31577259505eb9d62dec298b15bb3651492c1013d7e8da4de06b36",
+          "path": "docs/governance/helix-harness-concept_v3.1.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 203,
+          "line_sha256": "f4696760cbcf3474f5a9eb6a475638fc8a6306a80be06ef336dfe5c0466d4929",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 256,
+          "line_sha256": "a96d35bc6eccf8ec1dbb579ff34a68ed68b7ef81bd35678f64c6899cd3c5784b",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 257,
+          "line_sha256": "be87ec5213d2fa406a222474862b292fc3b5d977ced12bd7727dce37d90be524",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 258,
+          "line_sha256": "0e17d14ebbcf8ecd484e2a4e7a4306d400618b2f9658b880fcbe69c6579913fb",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 259,
+          "line_sha256": "436f74b0943fc689aaa2b32e9070f60cf4d4ca390d7014da83d944cc32919f54",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 261,
+          "line_sha256": "092694e48e792d3d3bc2c205308cd6d805004db0df50fe23147a97fb682e26ec",
+          "path": "docs/migration/v2-import-ledger.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 3,
+          "line_sha256": "f90d43c9a86c7e1d50448c0bbafbb2c05fb7f12e3d6b903f53ed37a9a20798d2",
+          "path": "docs/plans/PLAN-L12-00-acceptance-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 14,
+          "line_sha256": "9328cfbf22c1038429ac1f9d8e7adad30e62b6adadc66d20b6b4cd0f177303e6",
+          "path": "docs/plans/PLAN-L12-00-acceptance-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 57,
+          "line_sha256": "17ac5aedf5b5e8cba4bbd6ea950ca8ede0bb39682d55a983be363b9882292bba",
+          "path": "docs/plans/PLAN-L12-00-acceptance-verification-master.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 50,
+          "line_sha256": "c0747adc1527f666622b31a20226afb2f7aac91f54ef83d4f6967ccc779ad8a8",
+          "path": "docs/plans/PLAN-L3-01-functional-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 94,
+          "line_sha256": "a6b1a1891b9d5aeb7aa693e448e4910efe533aa984ddce02ab50401dbf3eee47",
+          "path": "docs/plans/PLAN-L3-01-functional-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 96,
+          "line_sha256": "dc3617bdf4a775336fbdffb6c23d9bde6495832e38cfcb89551f72a9bbe95d7b",
+          "path": "docs/plans/PLAN-L3-01-functional-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 155,
+          "line_sha256": "5332ebabe46ca9e16bd12e31577b50400a2205957aa0cf531a75b7b874d545f9",
+          "path": "docs/plans/PLAN-L3-01-functional-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 178,
+          "line_sha256": "42181e9c5bd4620753f85613c5d193c21509072d2e18d8a64d37e00f66b80a12",
+          "path": "docs/plans/PLAN-L3-01-functional-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 46,
+          "line_sha256": "f02fe8844baf74b922c159424fbc9c1b8fdc970bd9dc074d02a5553105765495",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 130,
+          "line_sha256": "2e487d3ecc47fbc8486492b6dd4886827ddcfccb46822bac2d784c049bd08d6c",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 132,
+          "line_sha256": "bfaa812e03fbd365dc299f5d57ee61167918ac707b68a6fdb2c471549784cc51",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 133,
+          "line_sha256": "95944016d889910a3abbece0d605ef71161a7740f86fee330ce3cc09450c6c3a",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 138,
+          "line_sha256": "b396ef6ff9015ff2bb7733b7170a7ffe91607a710616ec6663af34c905d9b75b",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 160,
+          "line_sha256": "9159144b0ef37a91054044bcb2a294e34824d21d4ade31c808574388adf90c17",
+          "path": "docs/plans/PLAN-L3-02-business-detail.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 47,
+          "line_sha256": "0109d2313e2595467bce46b9f88b350582b970479157308c73dd1d8884b60503",
+          "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 54,
+          "line_sha256": "99b457c8777bb9ca2940e7774060326de947c7b6a37149da404eacff7f8f6f22",
+          "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 141,
+          "line_sha256": "9aaa7f11c80db498e5f94d77f9c18cd8b3fdf2afd32c63358e45f32a613ab88f",
+          "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 146,
+          "line_sha256": "b396ef6ff9015ff2bb7733b7170a7ffe91607a710616ec6663af34c905d9b75b",
+          "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 167,
+          "line_sha256": "b81354ad9e34a06d1827b7549323bde2c6c4b49bca7433284f5eaafaf45037d4",
+          "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 176,
+          "line_sha256": "76c2eaeb0e7c38091375b467037b770327f353c2388dab018a082d0e01050b0c",
+          "path": "docs/plans/PLAN-L3-03-nfr-grade.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 112,
+          "line_sha256": "3abd735123d1a40470209e48818ca68a3629a8249c28f069b3a16f12198cf359",
+          "path": "docs/plans/PLAN-L3-06-helix-pillar-descent.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 209,
+          "line_sha256": "399413799d086fd7c19fcf851914a0e323a8739f83a2bc20f8b9e076840ce268",
+          "path": "docs/plans/PLAN-L3-07-requirements-binding-enforcement.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 101,
+          "line_sha256": "f1dfda302946282b2abe0b83f3f0fd0c0d5018d7da1042cf434ef019b7bf8f22",
+          "path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 73,
+          "line_sha256": "79e7060b6a0029ee98d0a772230f369576a68494a40477001205bbd727b6ea46",
+          "path": "docs/plans/PLAN-REVERSE-02-session-log.md",
+          "reason": "pre_cutover_prose_consumer",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        },
+        {
+          "expiry": "after approved atomic path/ID migration and a regenerated zero-consumer receipt",
+          "line": 96,
+          "line_sha256": "1b2351f8888de74a5d00b0ab6995176e908fa03c557c9f19b185033999659dc0",
+          "path": "src/lint/g3-trace.ts",
+          "reason": "legacy_id_or_completed_audit_consumer_requires_line_binding",
+          "reopen_rule": "reopen when this line digest, canonical authority, alias owner, or migration approval changes"
+        }
+      ],
+      "expiry": "only after an approved atomic path/ID migration proves zero legacy consumers",
+      "legacy_meaning": "L12 deploy/acceptance",
+      "legacy_token_pattern": "L12(?:-deploy|\\s*(?:=|:)?\\s*(?:デプロイ|受入))",
+      "reopen_rule": "reopen when any bound line digest, canonical authority, or migration approval changes",
+      "runtime_authority": false,
+      "source_epoch": "pre-vmodel-l1-l12-v1"
+    }
+  ],
+  "authority": {
+    "activation": "pending-po-approval",
+    "epoch": "vmodel-l1-l12-v1",
+    "runtime_cutover": false
+  },
+  "invariants": [
+    "per-file compatibility markers are forbidden",
+    "legacy path and ID spellings are not renamed in this slice",
+    "line-specific normative drift remains visible",
+    "Design HARNESS means visual design only"
+  ],
+  "schema_version": "helix.layer-semantics-compatibility-ledger.v1",
+  "status": "central_alias_registry_current_runtime_not_cutover",
+  "summary": {
+    "aliases": 5,
+    "consumer_edges": 291,
+    "coverage_credit_true": 0,
+    "runtime_mutations": 0,
+    "verified_true": 0
+  }
+}

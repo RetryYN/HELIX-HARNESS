@@ -1,0 +1,1191 @@
+{
+  "schema_version": "helix.visual-design-harness-semantic-review.v1",
+  "status": "independent_semantic_review_pass_after_correction_not_executed",
+  "generated_at": "2026-07-16",
+  "sources": [
+    {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "cd92f1abc7106caa176417e2c7427d9fd726c0830101fb5e270d8e663a168a3e",
+      "scope": "visual schema v2"
+    },
+    {
+      "path": "docs/test-design/helix/L8-L11-visual-design-harness-verification.md",
+      "sha256": "93dd45c9e543dbb0c550bd00fa130f011fefb725cb9e65bb814b9aadf1c046a5",
+      "scope": "28 verification cases"
+    },
+    {
+      "path": "docs/governance/design-harness-ac-closure-edges.yaml",
+      "sha256": "24d89b9660a2d99fd774fc168abce25a5e16f5aeb71812e3592bce0e205a3b37",
+      "scope": "Design AC18 closure joins"
+    }
+  ],
+  "review_scope": {
+    "layers": {
+      "L8": "atomic visual/binding",
+      "L9": "cross-screen visual integration",
+      "L10": "browser/data visual system",
+      "L11": "human visual authority"
+    },
+    "schema_v2_tables": 14,
+    "cases": 28,
+    "design_ac_closure_edges": 18
+  },
+  "corrections": [
+    {
+      "case_id": "VIS-L8-F01",
+      "finding": "fixture used hover/focus outside required 9-state denominator",
+      "correction": "use unauthorized/offline missing-state fixture"
+    },
+    {
+      "case_id": "VIS-L8-B01",
+      "finding": "CAS digest/path/redaction/retention had no direct negative case",
+      "correction": "replace redundant L8 stale boundary with artifact security boundary"
+    },
+    {
+      "case_id": "VIS-L9-N01",
+      "finding": "three-screen minimum could falsely close all critical denominator",
+      "correction": "require all critical cells and selected noncritical cells; three screens is fixture minimum only"
+    },
+    {
+      "case_id": "VIS-L11-N01",
+      "finding": "blind evidence packet could mean evidence omission",
+      "correction": "blind producer identity only and retain complete evidence"
+    }
+  ],
+  "schema_v2_review": [
+    {
+      "table": "visual_contract_versions",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_obligations",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_baseline_versions",
+      "semantic_role": "independent human-approved baseline lifecycle",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_verification_runs",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_matrix_cells",
+      "semantic_role": "explicit denominator cell and applicability",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_render_observations",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_assertion_results",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_cas_artifacts",
+      "semantic_role": "content-addressed bytes identity with redaction/scan/retention",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_artifact_edges",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_evidence_packets",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_acceptance_sessions",
+      "semantic_role": "L11 human authority isolated from machine green",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_judgments",
+      "semantic_role": "L11 human authority isolated from machine green",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_pair_receipts",
+      "semantic_role": "typed packet/run/assertion/provenance chain",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    },
+    {
+      "table": "visual_authority_models",
+      "semantic_role": "pending/activated/superseded authority isolation",
+      "orphan": false,
+      "implemented": false,
+      "authority_status": "pending",
+      "coverage_credit": false
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "VIS-L8-N01",
+      "layer": "L8",
+      "kind": "positive",
+      "fixture": "全Region/Slot、9状態、current L5 bindingをrender",
+      "oracle": "semantic selector、DOM/a11y tree、computed token/style、geometry、focus",
+      "expected": "全obligation/binding exact join",
+      "obligation_ids": [
+        "HIL-FR-68"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-34"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-11",
+        "AC-DH-20"
+      ],
+      "failure_code": null,
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "subject×required-state×theme×viewport×binding-negative-path",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L8-F01",
+      "layer": "L8",
+      "kind": "negative",
+      "fixture": "required 9状態のうちunauthorizedまたはofflineを1件欠落",
+      "oracle": "state denominator",
+      "expected": "`HIL_VIS_L8_STATE_COVERAGE_INCOMPLETE`",
+      "obligation_ids": [
+        "HIL-FR-68"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-34"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-11",
+        "AC-DH-20"
+      ],
+      "failure_code": "HIL_VIS_L8_STATE_COVERAGE_INCOMPLETE",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "subject×required-state×theme×viewport×binding-negative-path",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L8-F02",
+      "layer": "L8",
+      "kind": "negative",
+      "fixture": "raw color/spacing、token provenance欠落",
+      "oracle": "computed style→token trace",
+      "expected": "`HIL_VIS_L8_TOKEN_PROVENANCE_MISSING`",
+      "obligation_ids": [
+        "HIL-FR-68"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-34"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-11",
+        "AC-DH-20"
+      ],
+      "failure_code": "HIL_VIS_L8_TOKEN_PROVENANCE_MISSING",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "subject×required-state×theme×viewport×binding-negative-path",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L8-F03",
+      "layer": "L8",
+      "kind": "negative",
+      "fixture": "route/query/data/view-state/action/permission/log/error edgeを各1件欠落",
+      "oracle": "six-dimension/network/event/state trace",
+      "expected": "`HIL_VIS_L8_BINDING_EDGE_MISSING`",
+      "obligation_ids": [
+        "HIL-FR-68"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-34"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-11",
+        "AC-DH-20"
+      ],
+      "failure_code": "HIL_VIS_L8_BINDING_EDGE_MISSING",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "subject×required-state×theme×viewport×binding-negative-path",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L8-F04",
+      "layer": "L8",
+      "kind": "negative",
+      "fixture": "同入力でfont/render digestを揺らす",
+      "oracle": "deterministic rerun",
+      "expected": "`HIL_VIS_L8_RENDER_NONDETERMINISTIC`",
+      "obligation_ids": [
+        "HIL-FR-68"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-34"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-11",
+        "AC-DH-20"
+      ],
+      "failure_code": "HIL_VIS_L8_RENDER_NONDETERMINISTIC",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "subject×required-state×theme×viewport×binding-negative-path",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L8-B01",
+      "layer": "L8",
+      "kind": "boundary",
+      "fixture": "CAS artifactのbytes/digest不一致、project外path、未redact PII/secret、期限切れretentionを各1件投入",
+      "oracle": "CAS identity、project-root、redaction/scan/retention receipt",
+      "expected": "`HIL_VIS_ARTIFACT_SECURITY_INVALID`",
+      "obligation_ids": [
+        "HIL-FR-68"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-34"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-11",
+        "AC-DH-20"
+      ],
+      "failure_code": "HIL_VIS_ARTIFACT_SECURITY_INVALID",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "subject×required-state×theme×viewport×binding-negative-path",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-N01",
+      "layer": "L9",
+      "kind": "positive",
+      "fixture": "全critical screen/flowとpairwise選定済みnoncritical cell（fixture最小3画面）でshared pattern/profileを全breakpoint render",
+      "oracle": "token、typography、spacing、density、hierarchy、asset、navigation continuity",
+      "expected": "critical full matrix diff 0、selected noncriticalはapproved threshold内",
+      "obligation_ids": [
+        "HIL-FR-72",
+        "HIL-FR-74"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38",
+        "HR-FR-HIL-40"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": null,
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-F01",
+      "layer": "L9",
+      "kind": "negative",
+      "fixture": "1画面だけspacing/token/icon variantをdrift",
+      "oracle": "cross-screen computed style/diff",
+      "expected": "`HIL_VIS_L9_PATTERN_DRIFT`",
+      "obligation_ids": [
+        "HIL-FR-72",
+        "HIL-FR-74"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38",
+        "HR-FR-HIL-40"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": "HIL_VIS_L9_PATTERN_DRIFT",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-F02",
+      "layer": "L9",
+      "kind": "negative",
+      "fixture": "breakpointでlayout jump/overflow/clipping",
+      "oracle": "geometry/flow continuity",
+      "expected": "`HIL_VIS_L9_BREAKPOINT_DISCONTINUITY`",
+      "obligation_ids": [
+        "HIL-FR-72"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": "HIL_VIS_L9_BREAKPOINT_DISCONTINUITY",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-F03",
+      "layer": "L9",
+      "kind": "negative",
+      "fixture": "modal/nav/toastのz-index・focus collision",
+      "oracle": "overlay/focus oracle",
+      "expected": "`HIL_VIS_L9_OVERLAY_COLLISION`",
+      "obligation_ids": [
+        "HIL-FR-72",
+        "HIL-FR-74"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38",
+        "HR-FR-HIL-40"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": "HIL_VIS_L9_OVERLAY_COLLISION",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-F04",
+      "layer": "L9",
+      "kind": "negative",
+      "fixture": "motion duration/repeat/layout shift/reduced-motion drift",
+      "oracle": "runtime motion trace",
+      "expected": "`HIL_VIS_L9_MOTION_CONTRACT_DRIFT`",
+      "obligation_ids": [
+        "HIL-FR-72",
+        "HIL-FR-73"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38",
+        "HR-FR-HIL-39"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-18",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": "HIL_VIS_L9_MOTION_CONTRACT_DRIFT",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-F05",
+      "layer": "L9",
+      "kind": "negative",
+      "fixture": "failure後に同producerがbaselineを更新してPASS",
+      "oracle": "baseline lifecycle/role separation",
+      "expected": "`HIL_VIS_L9_BASELINE_LAUNDERING`",
+      "obligation_ids": [
+        "HIL-FR-72",
+        "HIL-FR-73"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38",
+        "HR-FR-HIL-39"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-18",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": "HIL_VIS_L9_BASELINE_LAUNDERING",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L9-B01",
+      "layer": "L9",
+      "kind": "boundary",
+      "fixture": "font/theme/localeの一つをmatrixへ追加",
+      "oracle": "matrix denominator stale判定",
+      "expected": "`HIL_VIS_L9_MATRIX_STALE`",
+      "obligation_ids": [
+        "HIL-FR-72",
+        "HIL-FR-73",
+        "HIL-FR-74"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-38",
+        "HR-FR-HIL-39",
+        "HR-FR-HIL-40"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-18",
+        "AC-DH-20",
+        "AC-DH-23"
+      ],
+      "failure_code": "HIL_VIS_L9_MATRIX_STALE",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "critical-full＋versioned-pairwise-noncritical screen×state×viewport×theme×locale×text-scale×motion",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-N01",
+      "layer": "L10",
+      "kind": "positive",
+      "fixture": "pinned sanitized product snapshotでempty/nominal/long/error/slow/offline/multi-role journey",
+      "oracle": "task到達、情報優先順位、recovery、next action、NFR、visual-a11y",
+      "expected": "全AC/matrix cell current",
+      "obligation_ids": [
+        "HIL-FR-75",
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-41",
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": null,
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-F01",
+      "layer": "L10",
+      "kind": "negative",
+      "fixture": "synthetic fixtureだけでreal-data familyをPASS",
+      "oracle": "product snapshot lineage",
+      "expected": "`HIL_VIS_L10_DATA_SCENARIO_SYNTHETIC_ONLY`",
+      "obligation_ids": [
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VIS_L10_DATA_SCENARIO_SYNTHETIC_ONLY",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-F02",
+      "layer": "L10",
+      "kind": "negative",
+      "fixture": "stale product snapshotをcurrent扱い",
+      "oracle": "freshness/lineage",
+      "expected": "`HIL_VIS_L10_PRODUCT_SNAPSHOT_STALE`",
+      "obligation_ids": [
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VIS_L10_PRODUCT_SNAPSHOT_STALE",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-F03",
+      "layer": "L10",
+      "kind": "negative",
+      "fixture": "WebKit/font fallback、200% zoom、long localeでclip/reflow失敗",
+      "oracle": "browser/font/geometry matrix",
+      "expected": "`HIL_VIS_L10_ENVIRONMENT_ROBUSTNESS_FAILED`",
+      "obligation_ids": [
+        "HIL-FR-75",
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-41",
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VIS_L10_ENVIRONMENT_ROBUSTNESS_FAILED",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-F04",
+      "layer": "L10",
+      "kind": "negative",
+      "fixture": "reduced-motion/high-contrast preference違反",
+      "oracle": "preference runtime oracle",
+      "expected": "`HIL_VIS_L10_PREFERENCE_CONTRACT_FAILED`",
+      "obligation_ids": [
+        "HIL-FR-75",
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-41",
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VIS_L10_PREFERENCE_CONTRACT_FAILED",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-F05",
+      "layer": "L10",
+      "kind": "negative",
+      "fixture": "aggregate screenshot 1枚を複数AC/cellへ割当",
+      "oracle": "evidence cardinality/provenance",
+      "expected": "`HIL_VIS_L10_EVIDENCE_REUSED_ACROSS_CELLS`",
+      "obligation_ids": [
+        "HIL-FR-71",
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-37",
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-03",
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VIS_L10_EVIDENCE_REUSED_ACROSS_CELLS",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-F06",
+      "layer": "L10",
+      "kind": "negative",
+      "fixture": "marker/test/docだけでRENDER/A11Yをpassed",
+      "oracle": "actual browser/artifact substance",
+      "expected": "`HIL_VISUAL_CONTRACT_ONLY_FALSE_PASS`",
+      "obligation_ids": [
+        "HIL-FR-71",
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-37",
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-03",
+        "AC-DH-07",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VISUAL_CONTRACT_ONLY_FALSE_PASS",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L10-B01",
+      "layer": "L10",
+      "kind": "boundary",
+      "fixture": "browser/OS/viewport/data revisionを一つ更新",
+      "oracle": "matrix/receipt stale propagation",
+      "expected": "`HIL_VIS_L10_MATRIX_STALE`",
+      "obligation_ids": [
+        "HIL-FR-76"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-42"
+      ],
+      "design_ac18_join": [
+        "AC-DH-07",
+        "AC-DH-18",
+        "AC-DH-20",
+        "AC-DH-21"
+      ],
+      "failure_code": "HIL_VIS_L10_MATRIX_STALE",
+      "authority_owner": "node_deterministic_gate_with_independent_verifier",
+      "matrix_denominator": "AC×role×journey×browser×OS×viewport/DPR×theme/preferences×data-scenario",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-N01",
+      "layer": "L11",
+      "kind": "positive",
+      "fixture": "current agreementとproducer identityをblind化した完全evidence packetを人へ提示",
+      "oracle": "目的、情報階層、affordance、brand/expression、視認性、responsive/motion、反復利用",
+      "expected": "criteria別PASS＋revision-bound receipt",
+      "obligation_ids": [
+        "HIL-FR-61",
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-27",
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-24"
+      ],
+      "failure_code": null,
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-F01",
+      "layer": "L11",
+      "kind": "negative",
+      "fixture": "AI/workerがhuman receiptを生成",
+      "oracle": "actor/authority",
+      "expected": "`HIL_VIS_L11_SELF_APPROVAL`",
+      "obligation_ids": [
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-24"
+      ],
+      "failure_code": "HIL_VIS_L11_SELF_APPROVAL",
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-F02",
+      "layer": "L11",
+      "kind": "negative",
+      "fixture": "old prototypeまたはstale evidence packet",
+      "oracle": "revision/freshness",
+      "expected": "`HIL_VIS_L11_PROTOTYPE_REVISION_MISMATCH`",
+      "obligation_ids": [
+        "HIL-FR-61",
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-27",
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-24"
+      ],
+      "failure_code": "HIL_VIS_L11_PROTOTYPE_REVISION_MISMATCH",
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-F03",
+      "layer": "L11",
+      "kind": "negative",
+      "fixture": "criterionなしの「好み」だけでaccept",
+      "oracle": "declared preference scope",
+      "expected": "`HIL_VIS_L11_PREFERENCE_SCOPE_MISSING`",
+      "obligation_ids": [
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-24"
+      ],
+      "failure_code": "HIL_VIS_L11_PREFERENCE_SCOPE_MISSING",
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-F04",
+      "layer": "L11",
+      "kind": "negative",
+      "fixture": "FAIL/UNCERTAIN/dissentをclose扱い",
+      "oracle": "terminal/routing",
+      "expected": "`HIL_VIS_L11_DISSENT_UNRESOLVED`",
+      "obligation_ids": [
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-24"
+      ],
+      "failure_code": "HIL_VIS_L11_DISSENT_UNRESOLVED",
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-F05",
+      "layer": "L11",
+      "kind": "negative",
+      "fixture": "rejected visual deltaからRedesign Issueを作らない",
+      "oracle": "backprop causality",
+      "expected": "`HIL_VIS_L11_REJECTION_NOT_ROUTED`",
+      "obligation_ids": [
+        "HIL-FR-77",
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-43",
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-18",
+        "AC-DH-24"
+      ],
+      "failure_code": "HIL_VIS_L11_REJECTION_NOT_ROUTED",
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "case_id": "VIS-L11-B01",
+      "layer": "L11",
+      "kind": "boundary",
+      "fixture": "agreementまたはbaseline revision更新",
+      "oracle": "prior receipt stale化",
+      "expected": "`HIL_VIS_L11_EVIDENCE_STALE`",
+      "obligation_ids": [
+        "HIL-FR-61",
+        "HIL-FR-79"
+      ],
+      "l3_oracle_ids": [
+        "HR-FR-HIL-27",
+        "HR-FR-HIL-45"
+      ],
+      "design_ac18_join": [
+        "AC-DH-04",
+        "AC-DH-24"
+      ],
+      "failure_code": "HIL_VIS_L11_EVIDENCE_STALE",
+      "authority_owner": "human_visual_authority_with_node_prerequisite_gate",
+      "matrix_denominator": "agreement-criterion×current-packet×human-actor",
+      "orphan": {
+        "case": false,
+        "obligation": false,
+        "oracle": false,
+        "failure": false,
+        "authority": false,
+        "design_ac18": false
+      },
+      "execution_status": "not_executed",
+      "authority_status": "pending",
+      "verified": false,
+      "coverage_credit": false
+    }
+  ],
+  "summary": {
+    "schema_tables_reviewed": 14,
+    "cases_reviewed": 28,
+    "by_layer": {
+      "L8": 6,
+      "L9": 7,
+      "L10": 8,
+      "L11": 7
+    },
+    "corrections": 4,
+    "orphans": {
+      "case": 0,
+      "obligation": 0,
+      "oracle": 0,
+      "failure": 0,
+      "authority": 0,
+      "design_ac18": 0,
+      "schema": 0
+    },
+    "cas_security_case": "VIS-L8-B01",
+    "baseline_lifecycle_case": "VIS-L9-F05",
+    "executed": 0,
+    "authority_activated": 0,
+    "verified": 0,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "case_count_28",
+    "layer_counts_6_7_8_7",
+    "schema_v2_table_count_14",
+    "every_case_has_obligation_oracle_authority_and_design_ac18_join",
+    "negative_and_boundary_cases_have_failure_code",
+    "execution_zero",
+    "authority_pending",
+    "coverage_zero"
+  ]
+}

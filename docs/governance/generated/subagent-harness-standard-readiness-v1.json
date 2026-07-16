@@ -1,0 +1,309 @@
+{
+  "schema_version": "helix.subagent-harness-standard-readiness.v1",
+  "status": "design_edges_complete_not_executed",
+  "generated_at": "2026-07-16",
+  "authority": "candidate_design_review_only",
+  "inputs": [
+    {
+      "key": "l1",
+      "path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "5ea931e4322a913437aa09276589178919e3933d49c4ffdd2bafead0a707b54b"
+    },
+    {
+      "key": "l3",
+      "path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "9d13c59b25c965411c309c4f4c2959331d493790e2dddb5a1840e200cf6e8dda"
+    },
+    {
+      "key": "l4",
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "cd92f1abc7106caa176417e2c7427d9fd726c0830101fb5e270d8e663a168a3e"
+    },
+    {
+      "key": "hat",
+      "path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "sha256": "38e1aa483c114452777f14f2e299e58e7cb32150327efa0290bbeea3fcd713b4"
+    },
+    {
+      "key": "hst",
+      "path": "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md",
+      "sha256": "29b3ac1fda8062c6bc148f53da3dcb255dbad1a09873163d5ad4a28b3d679792"
+    }
+  ],
+  "trace": {
+    "l1": [
+      "HIL-BR-09",
+      "HIL-BR-18",
+      "HIL-FR-10",
+      "HIL-FR-11",
+      "HIL-FR-12",
+      "HIL-FR-13",
+      "HIL-FR-32",
+      "HIL-NFR-02",
+      "HIL-NFR-10",
+      "HIL-NFR-18"
+    ],
+    "l3": "HR-FR-HIL-08",
+    "acceptance_conditions": [
+      "HAC-HIL-08a",
+      "HAC-HIL-08b",
+      "HAC-HIL-08c"
+    ],
+    "acceptance_test": "HAT-HIL-08",
+    "system_test": "HST-HIL-006"
+  },
+  "dimensions": [
+    {
+      "dimension": "harness_ownership",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "HIL-FR-11",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "HR-FR-HIL-08",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "HARNESS registry",
+          "present": true
+        },
+        {
+          "source": "hat",
+          "marker": "HAT-HIL-08",
+          "present": true
+        },
+        {
+          "source": "hst",
+          "marker": "HST-HIL-006",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "role_separation",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "HIL-NFR-02",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "worker≠verifier",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "HIL_AGENT_VERIFIER_NOT_INDEPENDENT",
+          "present": true
+        },
+        {
+          "source": "hat",
+          "marker": "self-verify",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "bounded_spawn",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "最大spawn depth",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "fan-out",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "global active ceiling",
+          "present": true
+        },
+        {
+          "source": "hat",
+          "marker": "recursive spawn",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "role_authority",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "role別read/write/tool/delegation authority",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "role authority",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "authority matrix",
+          "present": true
+        },
+        {
+          "source": "hat",
+          "marker": "越権tool",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "lifecycle_and_fencing",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "timed_out",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "fencing",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "agent_instance_events",
+          "present": true
+        },
+        {
+          "source": "hst",
+          "marker": "durable checkpoint",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "timeout_retry_dead_letter",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "retry max/backoff/exhaustion",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "dead-letter",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "dead_lettered",
+          "present": true
+        },
+        {
+          "source": "hat",
+          "marker": "retry exhaustion",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "completion_compaction",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "no-promotion",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "compaction receipt",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "agent_compaction_receipts",
+          "present": true
+        },
+        {
+          "source": "hst",
+          "marker": "compaction→release",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    },
+    {
+      "dimension": "evidence_custody",
+      "checks": [
+        {
+          "source": "l1",
+          "marker": "chain-of-custody receipt",
+          "present": true
+        },
+        {
+          "source": "l3",
+          "marker": "chain-of-custody receipt",
+          "present": true
+        },
+        {
+          "source": "l4",
+          "marker": "agent_evidence_custody_events",
+          "present": true
+        },
+        {
+          "source": "hat",
+          "marker": "custody切断",
+          "present": true
+        }
+      ],
+      "design_edge_complete": true,
+      "executed": false,
+      "verified": false,
+      "coverage_credit": false
+    }
+  ],
+  "summary": {
+    "dimensions": 8,
+    "design_complete": 8,
+    "executed": 0,
+    "verified": 0,
+    "coverage_credit_true": 0
+  },
+  "freeze": false,
+  "invariants": [
+    "all_8_design_dimensions_present",
+    "execution_zero",
+    "verification_zero",
+    "coverage_zero",
+    "freeze_false_until_runtime_receipts"
+  ]
+}

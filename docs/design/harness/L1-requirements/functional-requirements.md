@@ -52,7 +52,7 @@ FR-L1-01〜35: v2-import-ledger §6 より転写 (1:1 コピー)。FR-L1-37/39/4
 | **FR-L1-27** | Research ワークフロー (技術調査 → 比較評価 → ADR、kind=research、generates=research-memo + ADR) | research-workflow | 調査課題、選択肢・制約 | research-memo、ADR | P1 | PM-02 / GD-01 (ADR) |
 | **FR-L1-28** | HELIX W 2 段設計 (Phase 1 一般システム + Phase 2 エージェント昇華を L10 で合流、drive=agent 追加) | two-stage-agent-design | Phase 1/2 各 L9 成果物 | L10 合流済み成果物、L11-L14 統合フロー | P1 | (L10 carry、画面紐付け薄い) |
 | **FR-L1-29** | 画面設計ワークフロー (L2: IA → 画面一覧・遷移 → ワイヤーフレーム Low-Fi/High-Fi → モックアップ → ユーザビリティテスト → コンポーネント化) | screen-design-workflow | L1 要求定義 | L2 成果物 (画面一覧 / 遷移図 / ワイヤーフレーム / UI 要素)、G2 モック凍結 | P1 | PM-02 (L2 工程進捗管理) |
-| **FR-L1-30** | フロントデザイン UX ワークフロー (L10: ビジュアルデザイン → デザイントークン SSOT → a11y → ビジュアル回帰 → UX 磨き上げ) | frontend-design-workflow | L9 総合テスト結果、L2 ワイヤーフレーム | L10 成果物、デザイントークン定義、L11 への引き渡し | P1 | (L10 carry) |
+| **FR-L1-30** | フロントデザイン UX ワークフロー (L10: ビジュアルデザイン → デザイントークン SSOT → a11y → ビジュアル回帰 → UX 磨き上げ) | frontend-design-workflow | L10 システム/Real UX evidence 検証結果、L2 ワイヤーフレーム | L10 成果物、デザイントークン定義、L11 への引き渡し | P1 | (L10 carry) |
 | **FR-L1-31** | コンテキスト管理・自動走行 (Claude+Codex セッションクリーナー PoC: context 0.70 で fresh 再起動、DB continuation 引き継ぎ) | continuous-run-context-management | context 使用率、`harness.db` continuation projection | fresh Claude セッション、検証済み next action による作業継続、サブスク課金内維持 | P2 | PM-05 (Continuation) |
 | **FR-L1-32** | フォルダ構成ルール (source process reference 文書 → 既存 docs/ への統合方針、tests 分散の役割明確化) | folder-structure-review | repo 文書群 | docs/ への配置マッピング定義 | P2 | GD-01 (Architecture) |
 | **FR-L1-33** | 既存資産棚卸し・充足度マッピング (コマンド / スキル / detector / template / state / hook / docs / tests の網羅確認) | asset-mapping | リポジトリ全資産 | 充足度レポート、不足項目リスト。※ extended (既存 source capability W11/W12/W16 突合、2026-06-04): workflow/task/agent builder、audit/metrics/dashboard、asset/code catalog は本機能の棚卸し対象に含め、Phase 0 の必須開発導線ではなく、後続 PLAN の候補機能・trace hint・CI summary として分類する | P2 | HM-01 / HM-02 |
@@ -150,7 +150,7 @@ L3 詳細化フェーズで発生した「L1 に存在しない新概念」を L
 4. L4-L6 設計層を起票、G4-G6 で凍結
 5. L7 TDD 実装スプリント: Red → 本体実装 → 3 点レビュー → Green
 6. L8-L9 結合・総合テスト、G8-G9 で通過
-7. L11 UAT、G11 で PO 最終承認、L13 リリース
+7. L11 受入/human visual、G11 で PO 最終承認、L13 リリース
 
 ### シナリオ 2: Reverse (既存コードのドキュメント化)
 

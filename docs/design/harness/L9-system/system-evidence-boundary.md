@@ -1,5 +1,5 @@
 ---
-title: "Harness L9 総合検証証跡境界"
+title: "Harness L10 システム/Real UX evidence 検証証跡境界"
 layer: L9
 kind: design
 status: confirmed
@@ -9,7 +9,7 @@ owner: Codex
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
 ---
 
-# Harness L9 総合検証証跡境界
+# Harness L10 システム/Real UX evidence 検証証跡境界
 
 L9 は L4 architecture / ADR / system contract を system behavior として検査する層である。現時点では doctor と system-oriented regression により selected behavior を検査する。
 

@@ -69,7 +69,7 @@ review_evidence:
 
 **注意**: L1 画面要求は「業務要求視点の必要画面列挙 + データ表示要望」。UI 具体化 (レイアウト / ワイヤーフレーム / UI 要素) は L2 画面設計 4 sub-doc に委ねる。
 
-**drive=be 注記 (2026-05-28 PO 指摘で修正)**: harness core は be 駆動だが、helix は **dashboard (14 画面 PM/HM/GD) を持つ「UI を持つ be」** であるため、**L2 画面設計 3 sub-doc (画面一覧 / 遷移 / UI 要素) は必須実施**。wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。詳細は concept §3.7 「L2 sub-doc skip ルール」参照。
+**drive=be 注記 (2026-05-28 PO 指摘で修正)**: harness core は be 駆動だが、helix は **dashboard (14 画面 PM/HM/GD) を持つ「UI を持つ be」** であるため、**L2 画面設計 3 sub-doc (画面一覧 / 遷移 / UI 要素) は必須実施**。wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。詳細は concept §3.7 「L2 sub-doc skip ルール」参照。 （層意味論: canonical L10=system/Real UX evidence）
 
 > **PO 指摘 (2026-05-28)**: 「L2 スキップすんな。モックは作らなくてもせめて画面要求は作れよ」 — 旧版で「drive=be で L2 全 skip 可」と判定していたが撤回。画面要求 3 sub-doc は drive 非依存で必須。
 

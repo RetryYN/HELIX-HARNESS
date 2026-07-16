@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — design refactoring domain model"
+title: "HELIX L9 結合テスト設計 — design refactoring domain model"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -17,7 +17,7 @@ next_pair_freeze: L5
 requirements: [HR-FR-HIL-16, HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c]
 ---
 
-# HELIX L8 結合テスト設計 — design refactoring domain model
+# HELIX L9 結合テスト設計 — design refactoring domain model
 
 ## §0 fixture／scenarioの構成
 

@@ -127,7 +127,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
-      "plan_semantic_digest": "sha256:3dc549a7b8f67313306a296660d7296bf048655bddaecbb011cad00c0a2db4b3"
+      "plan_semantic_digest": "sha256:7745bd9ac72484abdb624e0334281482fda05ca8dc2132cc1c336f2b547c8213"
     },
     {
       "fingerprint": "sha256:1331ad7c6afabf0b0a549011053e3e47e97536c3f9bbe0948c1be6ed94d9728b",
@@ -519,7 +519,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
-      "plan_semantic_digest": "sha256:a0fa8b06be008726d2c65826599372cfc6efda04152a9768c3f80d4c57e732a4"
+      "plan_semantic_digest": "sha256:4e25506c50b3fe5bfa92ac496141e6ff8ef10150e7f00a055fb13dc05b009132"
     },
     {
       "fingerprint": "sha256:40728f89fc8c1cdabbf29c40a864485fbd95d8c69c2adb7939581cb738459c3a",
@@ -703,7 +703,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-45-harness-db-foundation.md",
-      "plan_semantic_digest": "sha256:18d145b4d42454786ce6e4120bb925b3de040012ec7cf773e1c17dcc579932ab"
+      "plan_semantic_digest": "sha256:f8eaf9ce82ff4e138b043d8d46a6c0f789d4caec994cae3a20af0c0c268bd3c0"
     },
     {
       "fingerprint": "sha256:58ada8ae815256114c7aeb5ba26fa5ff0e8a316a15ec447e394b295153fc0677",
@@ -1343,7 +1343,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-44-harness-db-master.md",
-      "plan_semantic_digest": "sha256:f920eb5fd0959b76caca77111aba2a6dc790b41dd3c8deea6bc3a13be43956c8"
+      "plan_semantic_digest": "sha256:077931acd58aa632872ea4cd31ff8dcae16dd603d4c60b544e37ed3bb2c7ffac"
     },
     {
       "fingerprint": "sha256:907899db0a0fcbd1c3daa8f47509b6d01f3bb005cb7ef74cf845b8909ec8a340",
@@ -2296,8 +2296,8 @@
       "resolved_at": "2026-07-11T18:03:20Z",
       "resolution_plan_id": "PLAN-L7-424-fe-roster-vpair-resolution",
       "resolution_plan_semantic_digest": "sha256:81b22ae106c2d579359f6f770d4788a8cca6262a122eaab550461ef3760b6c79",
-      "previous_digest": "sha256:72513d28aad7493ec3622480118566f1dad9dcafc0ce8f0df95a62d17d0230b1",
-      "entry_digest": "sha256:e4597b9cee47d583ac999c0da8f827e069c25c7d87f339e0ba1c31ed201283a2"
+      "previous_digest": "sha256:bce8ab65d48750e30f39aeb673267bcf60a85da5f58eeeb8b42d7a7cd713787e",
+      "entry_digest": "sha256:315c1a96a957f6d272b02af3cd65518665acb84d23fd33fe64c117fdb546000b"
     }
   ]
 }

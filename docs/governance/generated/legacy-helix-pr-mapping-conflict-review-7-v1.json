@@ -1,0 +1,40 @@
+{
+  "schema_version": "helix.legacy-helix-pr-mapping-conflict-review.v1",
+  "status": "candidate_conflict_review_not_activated",
+  "sources": {
+    "full71": {"path": "docs/governance/generated/predecessor-pr-semantic-review-71-v1.json", "sha256": "6455ca3f29124310a69a9ce7db4eb79994e3d242c46570fb61438e3b3fd66bc8"},
+    "legacy7": {"path": "docs/governance/generated/legacy-helix-pr-hil-candidate-mapping-7-v1.json", "sha256": "9340807ce27263321243d5314df42a4f88af1f4fe83edf66db26a0fc586ca62e"}
+  },
+  "comparison_rule": {
+    "join_key": "pr_id",
+    "list_comparison": "set difference after stable lexical sort",
+    "authority_rule": "source-evidence advantage selects the better candidate explanation only; it does not activate disposition, HIL/HR trace, verified, or coverage",
+    "path_limitation": "both sources retain changed-path digest/family but not exact path list"
+  },
+  "records": [
+    {"pr_id":"legacy-helix#1","disposition":{"full71":"defer","legacy7":"redesign","different":true},"hil":{"full71_only":["HIL-FR-16","HIL-FR-22","HIL-FR-28","HIL-FR-29","HIL-FR-33","HIL-FR-34"],"legacy7_only":["HIL-FR-13","HIL-FR-14","HIL-TR-01","HIL-TR-04"]},"hr":{"full71_only":[],"legacy7_only":[]},"source_evidence_advantage":"legacy7","reason":"state、changed-path count、Node setup versionとcurrent Node24/npm/Linux targetのrepo-specific relationを追加評価している。"},
+    {"pr_id":"legacy-helix#2","disposition":{"full71":"defer","legacy7":"reject","different":true},"hil":{"full71_only":["HIL-FR-16","HIL-FR-22","HIL-FR-33","HIL-FR-34"],"legacy7_only":[]},"hr":{"full71_only":["HR-FR-HIL-13","HR-FR-HIL-14"],"legacy7_only":[]},"source_evidence_advantage":"legacy7","reason":"closed stateと同一changed-path digestのcheckout v7 PR #6によるsupersessionを明示評価している。"},
+    {"pr_id":"legacy-helix#3","disposition":{"full71":"defer","legacy7":"harden","different":true},"hil":{"full71_only":["HIL-FR-16","HIL-FR-22","HIL-FR-28","HIL-FR-29","HIL-FR-33","HIL-FR-34"],"legacy7_only":["HIL-FR-15","HIL-FR-27","HIL-TR-03","HIL-TR-04"]},"hr":{"full71_only":["HR-FR-HIL-09","HR-FR-HIL-13"],"legacy7_only":["HR-FR-HIL-10","HR-FR-HIL-12"]},"source_evidence_advantage":"legacy7","reason":"setup-pythonをADR-009 proposal-only workerとmulti-OS toolchainへrepo-specific接続している。"},
+    {"pr_id":"legacy-helix#4","disposition":{"full71":"defer","legacy7":"reject","different":true},"hil":{"full71_only":["HIL-BR-14","HIL-BR-16","HIL-FR-01","HIL-FR-16","HIL-FR-22"],"legacy7_only":[]},"hr":{"full71_only":["HR-FR-HIL-02"],"legacy7_only":[]},"source_evidence_advantage":"legacy7","reason":"closed stateと#5/#7の同一changed-path digest重複を明示評価している。"},
+    {"pr_id":"legacy-helix#5","disposition":{"full71":"reject","legacy7":"reject","different":false},"hil":{"full71_only":["HIL-BR-14","HIL-BR-16","HIL-FR-01","HIL-FR-16","HIL-FR-22"],"legacy7_only":[]},"hr":{"full71_only":["HR-FR-HIL-02"],"legacy7_only":[]},"source_evidence_advantage":"legacy7","reason":"dispositionは一致。legacy7は#4/#7とのduplicate digestと吸収先を明示して説明力が高い。"},
+    {"pr_id":"legacy-helix#6","disposition":{"full71":"defer","legacy7":"harden","different":true},"hil":{"full71_only":["HIL-FR-16","HIL-FR-22","HIL-FR-33","HIL-FR-34"],"legacy7_only":["HIL-TR-04"]},"hr":{"full71_only":["HR-FR-HIL-13"],"legacy7_only":[]},"source_evidence_advantage":"legacy7","reason":"checkout v7が#2をsupersedeする最新open candidateであることとLinux/supply-chain hardeningを明示している。"},
+    {"pr_id":"legacy-helix#7","disposition":{"full71":"defer","legacy7":"harden","different":true},"hil":{"full71_only":["HIL-BR-14","HIL-BR-16","HIL-FR-01","HIL-FR-16","HIL-FR-22"],"legacy7_only":["HIL-NFR-06"]},"hr":{"full71_only":["HR-FR-HIL-02"],"legacy7_only":[]},"source_evidence_advantage":"legacy7","reason":"upload-sarif限定surfaceと#4/#5重複吸収を明示し、security CI hardeningへ狭めている。"}
+  ],
+  "summary": {
+    "joined_prs": 7,
+    "unique_pr_ids": 7,
+    "disposition_differences": 6,
+    "hil_set_differences": 7,
+    "hr_set_differences": 6,
+    "hil_full71_only_occurrences": 35,
+    "hil_legacy7_only_occurrences": 10,
+    "hr_full71_only_occurrences": 8,
+    "hr_legacy7_only_occurrences": 2,
+    "source_evidence_advantage": {"legacy7": 7, "full71": 0, "tie": 0},
+    "activated_resolutions": 0,
+    "verified": 0,
+    "coverage_credit_true": 0
+  },
+  "verdict": "legacy7 is the more specific candidate explanation for these seven PRs; full71 remains the cross-repository baseline and neither artifact is activation authority",
+  "invariants": ["same legacy-helix PR set joins 7/7", "every disposition and HIL/HR set difference is explicit", "source advantage never grants verified or coverage", "shared ledgers are not mutated by this report"]
+}

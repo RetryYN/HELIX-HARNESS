@@ -1,0 +1,139 @@
+{
+  "closed_findings": [
+    {
+      "closed": true,
+      "code": "PO7_UNIVERSAL_OPTION_RECEIPT_SCHEMA_ABSENT",
+      "contract": "Universal option receipt schema"
+    },
+    {
+      "closed": true,
+      "code": "PO7_MUTUAL_EXCLUSION_NOT_ENFORCED_AT_ACTIVATION",
+      "contract": "exactly-one option enforcement"
+    },
+    {
+      "closed": true,
+      "code": "PO7_UNIVERSAL_ACTIVATION_NOT_BOUND_TO_PACKET_DIGEST",
+      "contract": "packet/source digest binding"
+    },
+    {
+      "closed": true,
+      "code": "PO7_ACTOR_AND_AUTHORITY_PROOF_NOT_MACHINE_BOUND",
+      "contract": "actor/authority proof binding"
+    },
+    {
+      "closed": true,
+      "code": "PO7_IDEMPOTENCY_AND_CAS_CONTRACT_ABSENT",
+      "contract": "idempotency and CAS"
+    },
+    {
+      "closed": true,
+      "code": "PO7_PARTIAL_ACTIVATION_NOT_PROHIBITED_MECHANICALLY",
+      "contract": "all-or-nothing activation"
+    },
+    {
+      "closed": true,
+      "code": "PO7_REVOKE_SUPERSEDE_LIFECYCLE_INCOMPLETE",
+      "contract": "append-only lifecycle"
+    },
+    {
+      "closed": true,
+      "code": "PO7_CHAT_ANSWER_CUSTODY_NOT_BOUND_TO_RECEIPT",
+      "contract": "chat answer custody"
+    },
+    {
+      "closed": true,
+      "code": "PO7_HIGH_IMPACT_BC_ESCALATION_NOT_OPTION_BOUND",
+      "contract": "B/C option co-authority"
+    },
+    {
+      "closed": true,
+      "code": "PO7_VMAUTH_ACTIVATION_EVENT_SCHEMA_INCOMPLETE",
+      "contract": "VMAUTH event schema"
+    }
+  ],
+  "contract_checks": {
+    "PO7_ACTOR_AND_AUTHORITY_PROOF_NOT_MACHINE_BOUND": true,
+    "PO7_CHAT_ANSWER_CUSTODY_NOT_BOUND_TO_RECEIPT": true,
+    "PO7_HIGH_IMPACT_BC_ESCALATION_NOT_OPTION_BOUND": true,
+    "PO7_IDEMPOTENCY_AND_CAS_CONTRACT_ABSENT": true,
+    "PO7_MUTUAL_EXCLUSION_NOT_ENFORCED_AT_ACTIVATION": true,
+    "PO7_PARTIAL_ACTIVATION_NOT_PROHIBITED_MECHANICALLY": true,
+    "PO7_REVOKE_SUPERSEDE_LIFECYCLE_INCOMPLETE": true,
+    "PO7_UNIVERSAL_ACTIVATION_NOT_BOUND_TO_PACKET_DIGEST": true,
+    "PO7_UNIVERSAL_OPTION_RECEIPT_SCHEMA_ABSENT": true,
+    "PO7_VMAUTH_ACTIVATION_EVENT_SCHEMA_INCOMPLETE": true
+  },
+  "decision": "10 findingは設計契約とHAT/HST negative oracleでclosed。実装・実行証拠ではなく、PO選択、activation、runtime、verified、coverageは0のまま。",
+  "findings": [],
+  "packet_state": {
+    "target_evidence_active_credit": 0,
+    "universal_activated_answers": 0,
+    "universal_groups": 6,
+    "universal_questions": 22,
+    "universal_selected_options": 0,
+    "vmauth_approved": false,
+    "vmauth_event_id": null,
+    "vmauth_missing_po_decisions": 1
+  },
+  "preservation": {
+    "coverage_credit_true": 0,
+    "packet_activation_zero": true,
+    "packet_selection_zero": true,
+    "runtime_mutations": 0,
+    "runtime_verified": 0,
+    "vmauth_not_activated": true
+  },
+  "schema_version": "helix.po7-decision-activation-contract-independent-audit.v2",
+  "scope": {
+    "previous_findings": 10,
+    "universal_decision_groups": 6,
+    "universal_questions": 22,
+    "vmauth_decisions": 1
+  },
+  "sources": {
+    "chat_ledger": {
+      "path": "docs/governance/infinity-loop-source-capability-ledger.md",
+      "sha256": "eda4b9295c27e7e502e4ad7b20a2198bb2f8ebb90fa24f554afd641932fbddd0"
+    },
+    "hat_design": {
+      "path": "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "sha256": "9655a7cffd465b7b449903028d2dc34fe052b90400934eead272e05bb990b37a"
+    },
+    "hst_design": {
+      "path": "docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md",
+      "sha256": "45925eabce6683bc1c3306c37fbad376af0df43940af6ff36f6268809de44791"
+    },
+    "l4_activation_design": {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715"
+    },
+    "post_po_governance": {
+      "path": "docs/governance/post-po-design-freeze-transition-contract-v1.md",
+      "sha256": "8821a03d73271b34aaa5b420db45e216b7cc96755527446db511233133e3fd69"
+    },
+    "universal_packet": {
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c"
+    },
+    "vmauth_packet": {
+      "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
+      "sha256": "7b0387a755c4120785a3604554f1af2618cd41e0ab6cc0743ece12be8850d424"
+    },
+    "vmauth_receipt": {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+    }
+  },
+  "status": "independent_audit_design_contract_closed_not_activated",
+  "summary": {
+    "activated_answers": 0,
+    "activation_receipts_created": 0,
+    "closed_findings": 10,
+    "coverage_credit_true": 0,
+    "open_findings": 0,
+    "previous_findings": 10,
+    "runtime_mutations": 0,
+    "runtime_verified": 0,
+    "selected_options": 0
+  }
+}

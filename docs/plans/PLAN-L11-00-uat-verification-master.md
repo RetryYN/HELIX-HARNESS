@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L11-00-uat-verification-master
-title: "PLAN-L11-00: L11 総合レビュー・UAT master coverage"
+title: "PLAN-L11-00: L11 総合レビュー・UAT master coverage（層意味論: canonical L11=acceptance/human visual）"
 kind: design
 layer: L11
 drive: fullstack
@@ -11,7 +11,7 @@ owner: Codex
 master_hub: true
 agent_slots:
   - role: tl
-    slot_label: "TL - L11 UAT coverage 境界"
+    slot_label: "TL - L11 UAT coverage 境界（層意味論: canonical L11=acceptance/human visual）"
   - role: qa
     slot_label: "QA - L11 completion packet レビュー"
 generates:
@@ -53,7 +53,7 @@ review_evidence:
         output_digest: "sha256:90ccfd71541469004e891e0a5661cb7bceb46c499d4488375ca7d3486d42141d"
 ---
 
-# PLAN-L11-00: L11 総合レビュー・UAT master coverage
+# PLAN-L11-00: L11 総合レビュー・UAT master coverage （層意味論: canonical L11=acceptance/human visual）
 
 ## 目的
 

@@ -1,0 +1,418 @@
+{
+  "derived_payload": {
+    "activation_transaction": {
+      "activation_transaction_id": null,
+      "all_or_nothing": true,
+      "expected_activation_epoch": null,
+      "expected_answer_receipt_count": 22,
+      "expected_event_head": null,
+      "expected_group_receipt_count": 6,
+      "idempotency_key": null,
+      "ordered_write_set": [
+        "universal_group_receipts[6]",
+        "question_answer_receipts[22]",
+        "vmodel_authority_event[1]",
+        "disposition_queue_projection",
+        "terminal_activation_receipt"
+      ]
+    },
+    "question_answer_expansion": [
+      {
+        "answer_value": "実行前の承認は取消可能。実行後は履歴を破壊せず補償遷移とし、actor、owner、audit/review queueへ通知する。",
+        "decision_group_id": "UWR-PO-DG-01",
+        "question_id": "UWR-Q-C-APPROVAL-03",
+        "queue_id": "UWR-IQ-003",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "実行前の承認は取消可能。実行後は履歴を破壊せず補償遷移とし、actor、owner、audit/review queueへ通知する。",
+        "decision_group_id": "UWR-PO-DG-01",
+        "question_id": "UWR-Q-B-018",
+        "queue_id": "UWR-IQ-039",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "実行前の承認は取消可能。実行後は履歴を破壊せず補償遷移とし、actor、owner、audit/review queueへ通知する。",
+        "decision_group_id": "UWR-PO-DG-01",
+        "question_id": "UWR-Q-B-022",
+        "queue_id": "UWR-IQ-043",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "現scopeにpayment、tax、refund、rebillingを含めない。budget/costはruntime resource値であり通貨決済ではない。将来追加はRedesign＋finance/security approvalとする。",
+        "decision_group_id": "UWR-PO-DG-02",
+        "question_id": "UWR-Q-C-MONEY-01",
+        "queue_id": "UWR-IQ-006",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "現scopeにpayment、tax、refund、rebillingを含めない。budget/costはruntime resource値であり通貨決済ではない。将来追加はRedesign＋finance/security approvalとする。",
+        "decision_group_id": "UWR-PO-DG-02",
+        "question_id": "UWR-Q-C-MONEY-02",
+        "queue_id": "UWR-IQ-007",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "現scopeにpayment、tax、refund、rebillingを含めない。budget/costはruntime resource値であり通貨決済ではない。将来追加はRedesign＋finance/security approvalとする。",
+        "decision_group_id": "UWR-PO-DG-02",
+        "question_id": "UWR-Q-C-MONEY-03",
+        "queue_id": "UWR-IQ-008",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "現scopeにpayment、tax、refund、rebillingを含めない。budget/costはruntime resource値であり通貨決済ではない。将来追加はRedesign＋finance/security approvalとする。",
+        "decision_group_id": "UWR-PO-DG-02",
+        "question_id": "UWR-Q-C-MONEY-04",
+        "queue_id": "UWR-IQ-009",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "runtime期限はduration/absolute timestamp＋timezoneで固定し、業務日計算は明示calendarがある場合だけ使う。延長はPO/owner receipt必須。高優先taskはsafe checkpointで再配分し、atomic commit/gateを途中中断しない。",
+        "decision_group_id": "UWR-PO-DG-03",
+        "question_id": "UWR-Q-C-DEADLINE-01",
+        "queue_id": "UWR-IQ-010",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "runtime期限はduration/absolute timestamp＋timezoneで固定し、業務日計算は明示calendarがある場合だけ使う。延長はPO/owner receipt必須。高優先taskはsafe checkpointで再配分し、atomic commit/gateを途中中断しない。",
+        "decision_group_id": "UWR-PO-DG-03",
+        "question_id": "UWR-Q-C-DEADLINE-04",
+        "queue_id": "UWR-IQ-013",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "runtime期限はduration/absolute timestamp＋timezoneで固定し、業務日計算は明示calendarがある場合だけ使う。延長はPO/owner receipt必須。高優先taskはsafe checkpointで再配分し、atomic commit/gateを途中中断しない。",
+        "decision_group_id": "UWR-PO-DG-03",
+        "question_id": "UWR-Q-R-020",
+        "queue_id": "UWR-IQ-060",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "runtime期限はduration/absolute timestamp＋timezoneで固定し、業務日計算は明示calendarがある場合だけ使う。延長はPO/owner receipt必須。高優先taskはsafe checkpointで再配分し、atomic commit/gateを途中中断しない。",
+        "decision_group_id": "UWR-PO-DG-03",
+        "question_id": "UWR-Q-R-021",
+        "queue_id": "UWR-IQ-061",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "PIIは既定で取得・agent context投入を拒否し、classification済みredacted projectionだけをpolicyで許可された最小役割が閲覧する。",
+        "decision_group_id": "UWR-PO-DG-04",
+        "question_id": "UWR-Q-C-PERSONAL-DATA-01",
+        "queue_id": "UWR-IQ-019",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "decision_group_id": "UWR-PO-DG-05",
+        "question_id": "UWR-Q-R-002",
+        "queue_id": "UWR-IQ-046",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "decision_group_id": "UWR-PO-DG-05",
+        "question_id": "UWR-Q-R-003",
+        "queue_id": "UWR-IQ-047",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "decision_group_id": "UWR-PO-DG-05",
+        "question_id": "UWR-Q-R-004",
+        "queue_id": "UWR-IQ-048",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "decision_group_id": "UWR-PO-DG-05",
+        "question_id": "UWR-Q-R-005",
+        "queue_id": "UWR-IQ-049",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "decision_group_id": "UWR-PO-DG-05",
+        "question_id": "UWR-Q-R-011",
+        "queue_id": "UWR-IQ-053",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "decision_group_id": "UWR-PO-DG-05",
+        "question_id": "UWR-Q-R-012",
+        "queue_id": "UWR-IQ-054",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "concurrency/token/API/time/costはprofile別上限と観測値を持ち、到達時は必須処理を省略せずcheckpoint＋queue＋bounded fallbackへ送る。補充はprovider/configのwindow、想定値は実測receiptで更新し、priority＋agingでstarvationを防ぐ。",
+        "decision_group_id": "UWR-PO-DG-06",
+        "question_id": "UWR-Q-R-014",
+        "queue_id": "UWR-IQ-056",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "concurrency/token/API/time/costはprofile別上限と観測値を持ち、到達時は必須処理を省略せずcheckpoint＋queue＋bounded fallbackへ送る。補充はprovider/configのwindow、想定値は実測receiptで更新し、priority＋agingでstarvationを防ぐ。",
+        "decision_group_id": "UWR-PO-DG-06",
+        "question_id": "UWR-Q-R-016",
+        "queue_id": "UWR-IQ-058",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "concurrency/token/API/time/costはprofile別上限と観測値を持ち、到達時は必須処理を省略せずcheckpoint＋queue＋bounded fallbackへ送る。補充はprovider/configのwindow、想定値は実測receiptで更新し、priority＋agingでstarvationを防ぐ。",
+        "decision_group_id": "UWR-PO-DG-06",
+        "question_id": "UWR-Q-R-017",
+        "queue_id": "UWR-IQ-059",
+        "selected_option_id": "A"
+      },
+      {
+        "answer_value": "concurrency/token/API/time/costはprofile別上限と観測値を持ち、到達時は必須処理を省略せずcheckpoint＋queue＋bounded fallbackへ送る。補充はprovider/configのwindow、想定値は実測receiptで更新し、priority＋agingでstarvationを防ぐ。",
+        "decision_group_id": "UWR-PO-DG-06",
+        "question_id": "UWR-Q-R-022",
+        "queue_id": "UWR-IQ-062",
+        "selected_option_id": "A"
+      }
+    ],
+    "universal_option_receipts": [
+      {
+        "actor_authority": null,
+        "actor_id": null,
+        "answer_event_id": null,
+        "answer_message_sha256": null,
+        "authority_evidence_sha256": null,
+        "decision_group_id": "UWR-PO-DG-01",
+        "expected_activation_epoch": null,
+        "idempotency_key": null,
+        "normalized_answer_sha256": null,
+        "packet_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+        "previous_receipt_sha256": null,
+        "receipt_id": null,
+        "selected_option_decision": "実行前の承認は取消可能。実行後は履歴を破壊せず補償遷移とし、actor、owner、audit/review queueへ通知する。",
+        "selected_option_id": "A",
+        "source_revision_sha256": null,
+        "status": "active"
+      },
+      {
+        "actor_authority": null,
+        "actor_id": null,
+        "answer_event_id": null,
+        "answer_message_sha256": null,
+        "authority_evidence_sha256": null,
+        "decision_group_id": "UWR-PO-DG-02",
+        "expected_activation_epoch": null,
+        "idempotency_key": null,
+        "normalized_answer_sha256": null,
+        "packet_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+        "previous_receipt_sha256": null,
+        "receipt_id": null,
+        "selected_option_decision": "現scopeにpayment、tax、refund、rebillingを含めない。budget/costはruntime resource値であり通貨決済ではない。将来追加はRedesign＋finance/security approvalとする。",
+        "selected_option_id": "A",
+        "source_revision_sha256": null,
+        "status": "active"
+      },
+      {
+        "actor_authority": null,
+        "actor_id": null,
+        "answer_event_id": null,
+        "answer_message_sha256": null,
+        "authority_evidence_sha256": null,
+        "decision_group_id": "UWR-PO-DG-03",
+        "expected_activation_epoch": null,
+        "idempotency_key": null,
+        "normalized_answer_sha256": null,
+        "packet_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+        "previous_receipt_sha256": null,
+        "receipt_id": null,
+        "selected_option_decision": "runtime期限はduration/absolute timestamp＋timezoneで固定し、業務日計算は明示calendarがある場合だけ使う。延長はPO/owner receipt必須。高優先taskはsafe checkpointで再配分し、atomic commit/gateを途中中断しない。",
+        "selected_option_id": "A",
+        "source_revision_sha256": null,
+        "status": "active"
+      },
+      {
+        "actor_authority": null,
+        "actor_id": null,
+        "answer_event_id": null,
+        "answer_message_sha256": null,
+        "authority_evidence_sha256": null,
+        "decision_group_id": "UWR-PO-DG-04",
+        "expected_activation_epoch": null,
+        "idempotency_key": null,
+        "normalized_answer_sha256": null,
+        "packet_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+        "previous_receipt_sha256": null,
+        "receipt_id": null,
+        "selected_option_decision": "PIIは既定で取得・agent context投入を拒否し、classification済みredacted projectionだけをpolicyで許可された最小役割が閲覧する。",
+        "selected_option_id": "A",
+        "source_revision_sha256": null,
+        "status": "active"
+      },
+      {
+        "actor_authority": null,
+        "actor_id": null,
+        "answer_event_id": null,
+        "answer_message_sha256": null,
+        "authority_evidence_sha256": null,
+        "decision_group_id": "UWR-PO-DG-05",
+        "expected_activation_epoch": null,
+        "idempotency_key": null,
+        "normalized_answer_sha256": null,
+        "packet_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+        "previous_receipt_sha256": null,
+        "receipt_id": null,
+        "selected_option_decision": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。",
+        "selected_option_id": "A",
+        "source_revision_sha256": null,
+        "status": "active"
+      },
+      {
+        "actor_authority": null,
+        "actor_id": null,
+        "answer_event_id": null,
+        "answer_message_sha256": null,
+        "authority_evidence_sha256": null,
+        "decision_group_id": "UWR-PO-DG-06",
+        "expected_activation_epoch": null,
+        "idempotency_key": null,
+        "normalized_answer_sha256": null,
+        "packet_sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c",
+        "previous_receipt_sha256": null,
+        "receipt_id": null,
+        "selected_option_decision": "concurrency/token/API/time/costはprofile別上限と観測値を持ち、到達時は必須処理を省略せずcheckpoint＋queue＋bounded fallbackへ送る。補充はprovider/configのwindow、想定値は実測receiptで更新し、priority＋agingでstarvationを防ぐ。",
+        "selected_option_id": "A",
+        "source_revision_sha256": null,
+        "status": "active"
+      }
+    ],
+    "vmodel_authority_activation_event": {
+      "actor_authority": null,
+      "actor_id": null,
+      "answer_event_id": null,
+      "answer_message_sha256": null,
+      "authority_evidence_sha256": null,
+      "co_authority_receipt_digests": [],
+      "decision_table_sha256": "34d0fad1281157ac0c96a891b4b3f252bd1b475b472649a5cf5a580cec3c64f6",
+      "event_digest": null,
+      "event_id": null,
+      "event_sequence": null,
+      "expected_activation_epoch": null,
+      "idempotency_key": null,
+      "issued_at": null,
+      "normalized_answer_sha256": "542bdbd4e9bc57abbb87e247fef4919239bacb6acfbb88b53b6851cbf2ec9736",
+      "packet_sha256": "7b0387a755c4120785a3604554f1af2618cd41e0ab6cc0743ece12be8850d424",
+      "previous_event_sha256": null,
+      "source_set_sha256": null,
+      "status": "active"
+    }
+  },
+  "execution": {
+    "authorized": false,
+    "commit": false,
+    "db_mutation": false,
+    "performed": false,
+    "push": false,
+    "tag": false
+  },
+  "findings": [
+    {
+      "code": "PO_GO_CHAT_ANSWER_CUSTODY_UNAVAILABLE",
+      "detail": "trusted answer_event_id、raw message bytes digest、actor identity/authority proof、trusted timestampが現行artifactに無い。proposed normalized stringはraw chat receiptを代替しない。",
+      "severity": "blocker"
+    },
+    {
+      "code": "PO_GO_SOURCE_SET_CANONICALIZATION_UNDERDEFINED",
+      "detail": "source artifact ordered-set digestは要求されるが、exact member list、order、canonical byte framing/versionがmachine schemaまたはgeneratorに固定されていない。",
+      "severity": "blocker"
+    },
+    {
+      "code": "PO_GO_ACTIVATION_GENERATOR_NOT_IMPLEMENTED",
+      "detail": "scripts/srcにUniversalOptionReceiptV1 6件、22 answer receipts、VMAUTH event、terminal receiptを生成するproducer/writerが存在しない。現存するのはdesign contractとread-only auditだけ。",
+      "severity": "blocker"
+    },
+    {
+      "code": "PO_GO_DB_CAS_INPUTS_UNAVAILABLE",
+      "detail": "activation epoch、previous receipt/event heads、event sequence、receipt/event IDs、idempotency keyはstate DBからread-validate-commit時に取得する必要があるが、実pathが未実装。",
+      "severity": "blocker"
+    }
+  ],
+  "interpretation": {
+    "normalized_answer_proposal": "UWR-PO-DG-01=A;UWR-PO-DG-02=A;UWR-PO-DG-03=A;UWR-PO-DG-04=A;UWR-PO-DG-05=A;UWR-PO-DG-06=A;VMAUTH-PO-01=approve",
+    "po_go": "Universal six groups select recommended option A and VMAUTH-PO-01 approve",
+    "warning": "proposal digest is not chat answer custody"
+  },
+  "path_discovery": {
+    "design_contracts": [
+      "docs/governance/universal-workflow-question-ledger.md §5.3",
+      "docs/governance/vmodel-authority-receipt-v1.md §3",
+      "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md §11/§13"
+    ],
+    "existing_activation_writer": null,
+    "existing_generator": null,
+    "read_only_audits": [
+      "scripts/audit/audit-po7-decision-activation-contract.py",
+      "scripts/audit/audit-post-po-design-freeze-transition.py"
+    ]
+  },
+  "schema_version": "helix.po-go-activation-preflight-independent-audit.v1",
+  "sources": {
+    "l4_contract": {
+      "path": "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "a9710a63965e079a8fbbce35b37cf659d689e2390d446238044af2327522b715"
+    },
+    "question_ledger": {
+      "path": "docs/governance/universal-workflow-question-ledger.md",
+      "sha256": "ec659c82f69ac8f939b4c40bfd136f7466f3cf35602df3ba4c5fa89e57f6a06e"
+    },
+    "universal_packet": {
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "sha256": "9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c"
+    },
+    "vmodel_packet": {
+      "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
+      "sha256": "7b0387a755c4120785a3604554f1af2618cd41e0ab6cc0743ece12be8850d424"
+    },
+    "vmodel_receipt": {
+      "path": "docs/governance/vmodel-authority-receipt-v1.md",
+      "sha256": "cc47aae6f6135b05e6ee74816f28f786c620532d331bfb8713ec0a2cff69c53c"
+    }
+  },
+  "status": "preflight_blocked_exact_payload_not_executable",
+  "validation": {
+    "all_selected_A": true,
+    "chat_answer_custody_complete": false,
+    "groups": 6,
+    "question_group_mapping_exact": {
+      "UWR-PO-DG-01": 3,
+      "UWR-PO-DG-02": 4,
+      "UWR-PO-DG-03": 4,
+      "UWR-PO-DG-04": 1,
+      "UWR-PO-DG-05": 6,
+      "UWR-PO-DG-06": 4
+    },
+    "questions": 22,
+    "recommended_A_in_packet": true,
+    "runtime_required_fields": [
+      "actor_authority",
+      "actor_id",
+      "answer_event_id",
+      "answer_message_sha256",
+      "authority_evidence_sha256",
+      "event_digest",
+      "event_id",
+      "event_sequence",
+      "expected_activation_epoch",
+      "idempotency_key",
+      "issued_at",
+      "normalized_answer_sha256",
+      "previous_event_sha256",
+      "previous_receipt_sha256",
+      "receipt_id",
+      "source_revision_sha256",
+      "source_set_sha256"
+    ],
+    "unique_question_ids": 22,
+    "unique_queue_ids": 22,
+    "vmauth_decision_ids": [
+      "VMAUTH-PO-01"
+    ],
+    "vmauth_packet_current_sha256": "7b0387a755c4120785a3604554f1af2618cd41e0ab6cc0743ece12be8850d424"
+  }
+}

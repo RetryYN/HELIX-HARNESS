@@ -1,0 +1,176 @@
+{
+  "schema_version": "helix.uwr-po-decision-packet.v1",
+  "status": "candidate_not_activated",
+  "authority": {
+    "answer_authority": "PO",
+    "activation_authority": "PO plus declared high-impact authority where applicable",
+    "self_activation_forbidden": true,
+    "coverage_credit": false
+  },
+  "source_artifacts": {
+    "answerability_audit": {
+      "path": "docs/governance/generated/universal-workflow-interview-answerability-audit-v1.json",
+      "sha256": "747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec"
+    },
+    "question_dispositions": {
+      "path": "docs/governance/generated/universal-workflow-question-dispositions-v1.json",
+      "sha256": "c4df9af2041cb5cb0a92fc73c682a2d4d65c62135c5d1ea53844e0c0a3e4de44"
+    },
+    "migration_queue": {
+      "path": "docs/governance/generated/universal-workflow-question-migration-queue-v1.json",
+      "sha256": "7259788121ef37795acaaf75144976c70bc04f90e13ce4d4e3847c870b6df524"
+    }
+  },
+  "connections": {
+    "question_ledger": "docs/governance/universal-workflow-question-ledger.md",
+    "freeze_readiness": "docs/governance/helix-requirements-freeze-readiness-ledger.md",
+    "activation_receipt_required": "UWR-PO-DECISION-ACTIVATION-R1",
+    "on_activation": "write one answer receipt per original question, rerun disposition/queue/answerability, then independently verify L1/L3/L4 and test/gate joins",
+    "on_no_decision": "all 22 original questions remain freeze blockers"
+  },
+  "decision_groups": [
+    {
+      "decision_group_id": "UWR-PO-DG-01",
+      "short_prompt": "取消・終了・通知は推奨defaultで進める？",
+      "question_ids": ["UWR-Q-C-APPROVAL-03", "UWR-Q-B-018", "UWR-Q-B-022"],
+      "options": [
+        {"option_id": "A", "label": "推奨default", "decision": "実行前の承認は取消可能。実行後は履歴を破壊せず補償遷移とし、actor、owner、audit/review queueへ通知する。"},
+        {"option_id": "B", "label": "取消不可", "decision": "承認後は取消不能とし、失敗または後続Issueだけで処理する。"},
+        {"option_id": "C", "label": "個別指定", "decision": "A/Bの共通policyを選ばず、取消可能点、terminal、通知先の完全な個別policyで置換する。"}
+      ],
+      "recommended_default": "A",
+      "mutual_exclusion_rule": "A=compensation共通policy、B=取消不可共通policy、C=A/Bを使わない完全個別policyのいずれか1件",
+      "default_basis": ["HIL-FR-53", "HIL-FR-54", "HIL-FR-58", "HIL-BR-28", "L4 StandingAuthorizationRegistry"],
+      "impact": {"L1": ["HIL-FR-53", "HIL-FR-54", "HIL-FR-58"], "L3": ["HR-FR-HIL-05", "HR-FR-HIL-22"], "L4": ["StandingAuthorizationRegistry", "WorkflowCompletenessGate", "workflow terminal/notification model"]},
+      "high_impact_authority": ["PO", "action-binding authority when cancellation compensates an external or destructive action"],
+      "no_decision_freeze_blocker": "approval revocation、cancel terminal、notification recipientが未定義"
+    },
+    {
+      "decision_group_id": "UWR-PO-DG-02",
+      "short_prompt": "金銭4問はHARNESS非決済scopeとして扱う？",
+      "question_ids": ["UWR-Q-C-MONEY-01", "UWR-Q-C-MONEY-02", "UWR-Q-C-MONEY-03", "UWR-Q-C-MONEY-04"],
+      "options": [
+        {"option_id": "A", "label": "推奨default", "decision": "現scopeにpayment、tax、refund、rebillingを含めない。budget/costはruntime resource値であり通貨決済ではない。将来追加はRedesign＋finance/security approvalとする。"},
+        {"option_id": "B", "label": "予算のみ金額化", "decision": "orchestration budgetを指定通貨の内部上限として扱うが、課金・税・返金は含めない。"},
+        {"option_id": "C", "label": "決済を含める", "decision": "通貨、税、金額別approval、丸め、refund/rebillを別途全指定する。"}
+      ],
+      "recommended_default": "A",
+      "mutual_exclusion_rule": "A=非金銭scope、B=内部通貨budgetのみ、C=決済/tax/refund/rebill scopeのいずれか1件",
+      "default_basis": ["HIL-FR-56", "HIL-NFR-06", "HIL-NFR-33", "current HARNESS orchestration scope"],
+      "impact": {"L1": ["HIL-FR-56", "HIL-NFR-06", "HIL-NFR-33"], "L3": ["HR-FR-HIL-22"], "L4": ["RuntimeOrchestrationPlanner", "ScopeAuthorityGate", "ActionBindingGate"]},
+      "high_impact_authority": ["PO", "security_or_finance_owner_if option B or C activates monetary handling"],
+      "no_decision_freeze_blocker": "payment対orchestration-budgetのscope分類とmoney semanticsが未決定"
+    },
+    {
+      "decision_group_id": "UWR-PO-DG-03",
+      "short_prompt": "期限・優先割込みは安全checkpoint方式でよい？",
+      "question_ids": ["UWR-Q-C-DEADLINE-01", "UWR-Q-C-DEADLINE-04", "UWR-Q-R-020", "UWR-Q-R-021"],
+      "options": [
+        {"option_id": "A", "label": "推奨default", "decision": "runtime期限はduration/absolute timestamp＋timezoneで固定し、業務日計算は明示calendarがある場合だけ使う。延長はPO/owner receipt必須。高優先taskはsafe checkpointで再配分し、atomic commit/gateを途中中断しない。"},
+        {"option_id": "B", "label": "即時preempt", "decision": "高優先taskは実行中taskを即時cancelし、復旧queueへ送る。"},
+        {"option_id": "C", "label": "非preempt", "decision": "実行中taskを完了させ、priorityは未開始queueだけに適用する。"}
+      ],
+      "recommended_default": "A",
+      "mutual_exclusion_rule": "A=safe-checkpoint preempt、B=実行中即時cancel、C=未開始queueだけ優先変更のいずれか1件",
+      "default_basis": ["HIL-FR-01", "HIL-FR-56", "HIL-NFR-03", "HIL-NFR-33", "HAC-HIL-02c"],
+      "impact": {"L1": ["HIL-FR-01", "HIL-FR-56", "HIL-NFR-03", "HIL-NFR-33"], "L3": ["HR-FR-HIL-02", "HR-FR-HIL-22"], "L4": ["RuntimeOrchestrationPlanner", "checkpoint/reallocation schedule state"]},
+      "high_impact_authority": ["PO", "TL_drafter", "action-binding authority when option B cancels an external or destructive action", "calendar owner when business-calendar semantics are activated"],
+      "no_decision_freeze_blocker": "deadline calendar、extension authority、deadline conflict、preemption boundaryが未定義"
+    },
+    {
+      "decision_group_id": "UWR-PO-DG-04",
+      "short_prompt": "個人データは既定拒否・最小権限でよい？",
+      "question_ids": ["UWR-Q-C-PERSONAL-DATA-01"],
+      "options": [
+        {"option_id": "A", "label": "推奨default", "decision": "PIIは既定で取得・agent context投入を拒否し、classification済みredacted projectionだけをpolicyで許可された最小役割が閲覧する。"},
+        {"option_id": "B", "label": "限定PII許可", "decision": "対象field、role、purpose、retention、redaction、auditを個別指定して許可する。"}
+      ],
+      "recommended_default": "A",
+      "mutual_exclusion_rule": "A=PII既定拒否、B=field/role/purpose/retentionを固定した限定許可のいずれか1件",
+      "default_basis": ["HIL-NFR-06", "HIL-NFR-17", "HR-FR-HIL-11", "ProductDataPolicyGate"],
+      "impact": {"L1": ["HIL-FR-23", "HIL-FR-24", "HIL-NFR-06", "HIL-NFR-17"], "L3": ["HR-FR-HIL-11"], "L4": ["ProductDataConnectorRegistry", "ProductDataPolicyGate", "ActionBindingGate"]},
+      "high_impact_authority": ["PO", "security_privacy_authority", "data-controller-or-legal authority when regulated PII is activated"],
+      "no_decision_freeze_blocker": "PII閲覧roleとactivation boundaryが未決定"
+    },
+    {
+      "decision_group_id": "UWR-PO-DG-05",
+      "short_prompt": "候補routingは決定論＋fail-closeでよい？",
+      "question_ids": ["UWR-Q-R-002", "UWR-Q-R-003", "UWR-Q-R-004", "UWR-Q-R-005", "UWR-Q-R-011", "UWR-Q-R-012"],
+      "options": [
+        {"option_id": "A", "label": "推奨default", "decision": "候補はversioned registryからcapability/authority/capacity/freshnessで絞り、明示priorityで一意選択する。選択不能はtask/evidenceを捨てずcheckpoint＋Issue/review dead-letterへ送る。fan-outは明示宣言とidempotencyがある場合だけ許可する。"},
+        {"option_id": "B", "label": "人手fallback", "decision": "候補選択不能または競合は常にPO/TL queueへ送り、自動fallback/fan-outしない。"},
+        {"option_id": "C", "label": "複数fan-out", "decision": "Aの一意選択priorityを使わず、eligible複数候補へのfan-outを既定として後段統合する。統合authorityと重複副作用対策を必須とする。"}
+      ],
+      "recommended_default": "A",
+      "mutual_exclusion_rule": "A=決定論的一意選択＋明示時のみfan-out、B=常に人手fallback、C=eligible setへ既定fan-outのいずれか1件",
+      "default_basis": ["HIL-BR-29", "HIL-FR-56", "HIL-NFR-33", "HIL-NFR-34", "HAC-HIL-22a..c"],
+      "impact": {"L1": ["HIL-BR-29", "HIL-FR-56", "HIL-NFR-33", "HIL-NFR-34"], "L3": ["HR-FR-HIL-22"], "L4": ["RuntimeOrchestrationPlanner", "WorkflowCompletenessGate", "runtime_switches/routes/dead-letter"]},
+      "high_impact_authority": ["PO", "TL_drafter", "action-binding authority for any external mutation route"],
+      "no_decision_freeze_blocker": "candidate set、eligibility、priority、fallback、dead-letter、fan-out policyが未定義"
+    },
+    {
+      "decision_group_id": "UWR-PO-DG-06",
+      "short_prompt": "資源不足でも処理を省かないbounded配分でよい？",
+      "question_ids": ["UWR-Q-R-014", "UWR-Q-R-016", "UWR-Q-R-017", "UWR-Q-R-022"],
+      "options": [
+        {"option_id": "A", "label": "推奨default", "decision": "concurrency/token/API/time/costはprofile別上限と観測値を持ち、到達時は必須処理を省略せずcheckpoint＋queue＋bounded fallbackへ送る。補充はprovider/configのwindow、想定値は実測receiptで更新し、priority＋agingでstarvationを防ぐ。"},
+        {"option_id": "B", "label": "固定均等枠", "decision": "全candidateへ固定均等枠を配り、未使用枠の再配分をしない。"},
+        {"option_id": "C", "label": "数値を個別指定", "decision": "Aの自動実測更新・再配分・agingを使わず、各resourceの上限、補充周期、task cost/time、fairness formulaをPOが固定値で完全指定する。"}
+      ],
+      "recommended_default": "A",
+      "mutual_exclusion_rule": "A=実測＋bounded再配分＋aging、B=固定均等枠・再配分なし、C=PO固定値・自動更新なしのいずれか1件",
+      "default_basis": ["HIL-FR-56", "HIL-NFR-03", "HIL-NFR-33", "HR-FR-HIL-22", "user directive: processing volume must not be omitted"],
+      "impact": {"L1": ["HIL-FR-56", "HIL-NFR-03", "HIL-NFR-33"], "L3": ["HR-FR-HIL-02", "HR-FR-HIL-22"], "L4": ["RuntimeOrchestrationPlanner", "runtime_resources/schedules/allocation_policies"]},
+      "high_impact_authority": ["PO", "TL_drafter", "service owner for external API quota", "finance owner when cost is activated as monetary currency"],
+      "no_decision_freeze_blocker": "resource ceiling/replenishment/cost-time/fairness policyが未定義"
+    }
+  ],
+  "question_mapping": [
+    {"queue_id":"UWR-IQ-003","question_id":"UWR-Q-C-APPROVAL-03","decision_group_id":"UWR-PO-DG-01"},
+    {"queue_id":"UWR-IQ-039","question_id":"UWR-Q-B-018","decision_group_id":"UWR-PO-DG-01"},
+    {"queue_id":"UWR-IQ-043","question_id":"UWR-Q-B-022","decision_group_id":"UWR-PO-DG-01"},
+    {"queue_id":"UWR-IQ-006","question_id":"UWR-Q-C-MONEY-01","decision_group_id":"UWR-PO-DG-02"},
+    {"queue_id":"UWR-IQ-007","question_id":"UWR-Q-C-MONEY-02","decision_group_id":"UWR-PO-DG-02"},
+    {"queue_id":"UWR-IQ-008","question_id":"UWR-Q-C-MONEY-03","decision_group_id":"UWR-PO-DG-02"},
+    {"queue_id":"UWR-IQ-009","question_id":"UWR-Q-C-MONEY-04","decision_group_id":"UWR-PO-DG-02"},
+    {"queue_id":"UWR-IQ-010","question_id":"UWR-Q-C-DEADLINE-01","decision_group_id":"UWR-PO-DG-03"},
+    {"queue_id":"UWR-IQ-013","question_id":"UWR-Q-C-DEADLINE-04","decision_group_id":"UWR-PO-DG-03"},
+    {"queue_id":"UWR-IQ-060","question_id":"UWR-Q-R-020","decision_group_id":"UWR-PO-DG-03"},
+    {"queue_id":"UWR-IQ-061","question_id":"UWR-Q-R-021","decision_group_id":"UWR-PO-DG-03"},
+    {"queue_id":"UWR-IQ-019","question_id":"UWR-Q-C-PERSONAL-DATA-01","decision_group_id":"UWR-PO-DG-04"},
+    {"queue_id":"UWR-IQ-046","question_id":"UWR-Q-R-002","decision_group_id":"UWR-PO-DG-05"},
+    {"queue_id":"UWR-IQ-047","question_id":"UWR-Q-R-003","decision_group_id":"UWR-PO-DG-05"},
+    {"queue_id":"UWR-IQ-048","question_id":"UWR-Q-R-004","decision_group_id":"UWR-PO-DG-05"},
+    {"queue_id":"UWR-IQ-049","question_id":"UWR-Q-R-005","decision_group_id":"UWR-PO-DG-05"},
+    {"queue_id":"UWR-IQ-053","question_id":"UWR-Q-R-011","decision_group_id":"UWR-PO-DG-05"},
+    {"queue_id":"UWR-IQ-054","question_id":"UWR-Q-R-012","decision_group_id":"UWR-PO-DG-05"},
+    {"queue_id":"UWR-IQ-056","question_id":"UWR-Q-R-014","decision_group_id":"UWR-PO-DG-06"},
+    {"queue_id":"UWR-IQ-058","question_id":"UWR-Q-R-016","decision_group_id":"UWR-PO-DG-06"},
+    {"queue_id":"UWR-IQ-059","question_id":"UWR-Q-R-017","decision_group_id":"UWR-PO-DG-06"},
+    {"queue_id":"UWR-IQ-062","question_id":"UWR-Q-R-022","decision_group_id":"UWR-PO-DG-06"}
+  ],
+  "summary": {
+    "source_questions": 22,
+    "mapped_questions": 22,
+    "decision_groups": 6,
+    "selected_options": 0,
+    "activated_answers": 0,
+    "freeze_blockers_before_decision": 22,
+    "freeze_blockers_after_packet_without_answer": 22,
+    "coverage_credit_true": 0
+  },
+  "invariants": [
+    "PO_authority_required source question set equals question_mapping exactly",
+    "each source question maps to exactly one decision group",
+    "every group has two or three options and exactly one recommended default",
+    "recommended default is a proposal and never an activated answer",
+    "group answer must expand to 22 per-question receipts before source blockers can close",
+    "high-impact co-authority cannot be compressed away"
+  ],
+  "replay_contract": {
+    "inputs": ["three source artifact byte digests", "PO_authority_required filter", "semantic grouping rule v1"],
+    "sort": ["decision_group_id", "source queue ordinal"],
+    "expected": {"source_questions": 22, "mapped_questions": 22, "decision_groups": 6, "duplicates": 0, "orphans": 0},
+    "activation_side_effect": "none"
+  }
+}

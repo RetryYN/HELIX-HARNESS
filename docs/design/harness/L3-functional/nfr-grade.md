@@ -221,7 +221,7 @@ NFR-01〜17 + 新規 KPI を以下 3 tier に分類:
 
 → `docs/design/nfr-classification.md` L4 起票候補、`helix doctor --nfr` 実装入力
 
-### §7.5 L12 受入テスト pair
+### §7.5 L12 運用/価値検証 pair
 
 - 全 NFR-* (15 件 + L4/Phase B carry) の AC を L12 で AT-* に変換 (孤児 NFR = 0)
 - 機械検証ルール (R4 NFR → 閾値 → AT) は L7 carry
@@ -232,6 +232,6 @@ NFR-01〜17 + 新規 KPI を以下 3 tier に分類:
 - L1 business §6.5 KPI: `docs/design/harness/L1-requirements/business-requirements.md` §6.5
 - L3 functional (FR pair): `docs/design/harness/L3-functional/functional-requirements.md`
 - L3 business-detail (BR-21 + telemetry): `docs/design/harness/L3-functional/business-detail.md`
-- L12 受入テスト: `docs/test-design/harness/L3-acceptance-test-design.md`
+- L12 運用/価値検証: `docs/test-design/harness/L3-acceptance-test-design.md`
 - IPA 非機能要求グレード 2018: https://www.ipa.go.jp/sec/softwareengineering/std/ent03-b.html (公式 sample 参考)
 - PLAN: `docs/plans/PLAN-L3-03-nfr-grade.md`

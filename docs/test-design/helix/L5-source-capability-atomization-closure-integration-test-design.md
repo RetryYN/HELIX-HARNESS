@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — source capability atomization closure"
+title: "HELIX L9 結合テスト設計 — source capability atomization closure"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -22,7 +22,7 @@ requirements:
   - HAC-HIL-09c
 ---
 
-# HELIX L8 結合テスト設計 — source capability atomization closure
+# HELIX L9 結合テスト設計 — source capability atomization closure
 
 | ID | HAC／supporting境界 | 結合scenario | 期待結果／failure token |
 |---|---|---|---|

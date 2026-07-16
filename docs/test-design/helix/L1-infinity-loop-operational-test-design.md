@@ -1,10 +1,10 @@
 ---
 title: "HELIX L1 Infinity Loop 運用テスト設計 — HIL要件 pair"
-layer: L14
+layer: L12
 kind: test_design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-07-16
 owner: PO (人間 / RetryYN)
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
@@ -14,7 +14,8 @@ pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirem
 
 ## §0 pair方針
 
-本書はHIL-BR/FR/TR/NFRのL14対である。各要件は最低1件のHOT-HIL-*へ接続し、実装未完了をpassと扱わない。
+本書はHIL-BR/FR/TR/NFRのL12運用・価値検証候補である。L3要件/ACの直接pairはL10総合検証、
+L1企画の直接pairはL12とし、各要件は最低1件のHOT-HIL-*へ接続する。実装未完了をpassと扱わない。
 
 ## §1 代表運用シナリオ
 
@@ -49,7 +50,7 @@ pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirem
 | **HOT-HIL-27** | HIL-BR-16, HIL-FR-28, HIL-NFR-15 | prejoin/postjoin/external CI失敗と別SHA green再利用を試す | 該当段で停止し順序飛越/別SHAを拒否、3段が同一causality chainへjoin |
 | **HOT-HIL-28** | HIL-BR-20, HIL-FR-29, HIL-NFR-16 | 既知failureをquarantineし同checkに新fingerprintを発生させる | exact既知だけ隔離、新failureはfail。代替gate/Issue/期限欠落ならquarantine拒否 |
 | **HOT-HIL-29** | HIL-BR-17, HIL-FR-04/08/09/10/30 | Claudeがactionable findingを生成する | finding→Issue→R0–R4→memory summary→Codex queue全joinまでclaim不可、証拠なしdrop 0 |
-| **HOT-HIL-30** | HIL-FR-05/31 | findingがL1要求変更を必要とする | L1/L14 pairをstale化し、再freeze前のclaim/Forward join/PR作成を拒否 |
+| **HOT-HIL-30** | HIL-FR-05/31 | findingがL1/L2変更を必要とする | affected L1–L12 pairをstale化し、再freeze前のclaim/Forward join/PR作成を拒否 |
 | **HOT-HIL-31** | HIL-FR-05/17..20/31 | no-UI skip済PLANへ画面scopeを追加する | skip receiptをstale化してPrototype Discoveryへ戻し、agreement前のfreezeを拒否 |
 | **HOT-HIL-32** | HIL-BR-18, HIL-FR-32, HIL-NFR-18 | agentをmusterしheartbeat停止、cancel、再起動、verify、retireする | lifecycle順序違反0、lease後write 0、checkpoint再開、verification後release、retired再claim不可 |
 | **HOT-HIL-33** | HIL-FR-32, HIL-NFR-18 | 旧agent processがlease再割当後に遅延completionを返す | fencing token不一致で拒否し現ownerのartifact/state/memoryを上書きしない |
@@ -63,15 +64,20 @@ pair_artifact: docs/design/helix/L1-requirements/infinity-loop-platform-requirem
 | **HOT-HIL-41** | HIL-BR-22, HIL-FR-41, HIL-FR-42, HIL-NFR-26 | requirement/service/objectから設計義務を生成し、見出しだけ、TBD、aggregate消込、偽N/A、orphanを投入する | 原子的な意味dischargeと双方向edgeがある義務だけをcoveredとし、未消込1件でfreeze拒否 |
 | **HOT-HIL-42** | HIL-BR-23, HIL-FR-43, HIL-FR-44, HIL-NFR-27 | Requirement Translatorへ複合要求、曖昧要求、現行templateで表現不能な要求を投入する | 原文を保持してatom/challengeへ分岐し、template gapはIssue→shadow→独立reviewを経るまでactive化しない |
 | **HOT-HIL-43** | HIL-BR-24, HIL-FR-45, HIL-NFR-28 | 要求のcapture、atom化、active化、split、merge、rename、supersede、N/Aを個別実行する | source/authority/oracle/service/template/obligation edgeと変更receiptが完全なrevisionだけをactive化し、coverage行だけ・孤児・stale・未解決ambiguityを拒否する |
-| **HOT-HIL-44** | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-NFR-29 | L0–L14 templateから章/field/table/done-when/pair obligationを抽出し各layer ledgerへ追加する | 全template atomがprovenance付きproposalまたはgap findingになり、空/TBD/抽出不能/重複/aggregate追加をfreezeへ算入しない |
+| **HOT-HIL-44** | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-NFR-29 | L1–L12 templateから章/field/table/done-when/pair obligationを抽出し各layer ledgerへ追加する | 全template atomがprovenance付きproposalまたはgap findingになり、空/TBD/抽出不能/重複/aggregate追加をfreezeへ算入しない |
 | **HOT-HIL-45** | HIL-BR-25, HIL-FR-48, HIL-NFR-29 | 隣接layer間でdownstream edge、backprop edge、revision、粒度を個別に欠落・不一致化する | 上下2方向と同一semantic revisionが揃うまで対象layerのexitを拒否する |
-| **HOT-HIL-46** | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | L0/L1/L2/L3/L4/L5/L6の各正規V-pairでdesign側、verification側、oracle、snapshotを個別に欠落・不一致化する | 左右2方向、同一oracle/snapshot、実行evidenceが揃うpairだけをgreenにする |
+| **HOT-HIL-46** | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | `L1↔L12`から`L6↔L7`までの正規6 V-pairでdesign側、verification側、oracle、snapshotを個別に欠落・不一致化する | 左右2方向、同一oracle/snapshot、実行evidenceが揃うpairだけをgreenにする |
 | **HOT-HIL-47** | HIL-BR-25, HIL-FR-50, HIL-NFR-29 | ledger重複、責務混在、semantic/name collision、孤立edgeをrefactorし、pair/behavior/public/DB差分を個別投入する | 全上下・左右pairとoracleを保存する最小変更だけDesignRefactorへ送り、意味/public変更はRedesign、永続state変更はRetrofitへ送る |
+| **HOT-HIL-48** | HIL-BR-26/27, HIL-FR-51/52/53, HIL-TR-12, HIL-NFR-30 | Universal ZIPの全entry、schema矛盾、質問回答、曖昧workflowをstrict adapterへ投入する | 全entry disposition、typed回答、current workflow modelが同一digestで再現され、raw packageのauthority bypassが0 |
+| **HOT-HIL-49** | HIL-BR-28, HIL-FR-54/55, HIL-NFR-31/32 | branch、loop、terminal、exception、permission、data欠落を一件ずつ含むworkflowを導出する | 欠落を原子的に拒否し、完全な全transitionだけがrequirement/AC/test/surfaceへexact joinする |
+| **HOT-HIL-50** | HIL-BR-29, HIL-FR-56, HIL-NFR-33/34 | candidate/resource不足、deadline、retry、fallback、dead-letterを含む実行計画を生成する | 必須task/evidenceをdropせずbounded checkpointかterminal routeへ送り、judgment-core/Node authorityを維持する |
+| **HOT-HIL-51** | HIL-BR-30, HIL-FR-57/58, HIL-NFR-35/36 | project内、登録外部service、project外、expired/revoked操作をcanonical intentへ変換して照合する | currentかつminimum scope一致だけを追加質問0で許可し、scope外・失効は拒否する |
+| **HOT-HIL-52** | HIL-BR-30, HIL-FR-59/60, HIL-TR-13, HIL-NFR-37/38 | allowed/denied/high-impact intentをplatform brokerへ重複・改変・timeout付きで投入する | allowedだけexactly-once bounded実行し、高影響gateを上書きせず全platform receiptを保持する |
 
 ## §2 量閉じ
 
-- HIL-BR-01..25: HOT-HIL-01..10/16/17/19..21/25/27..29/32/39..47で被覆。
-- HIL-FR-01..50: HOT-HIL-01..47で被覆。
-- HIL-TR-01..11: HOT-HIL-11/12/21/23..26/34で被覆。
-- HIL-NFR-01..29: HOT-HIL-03/05..09/12..16/18..29/32/33/35..47で被覆。
+- HIL-BR-01..30: HOT-HIL-01..10/16/17/19..21/25/27..29/32/39..52で被覆。
+- HIL-FR-01..60: HOT-HIL-01..52で被覆。
+- HIL-TR-01..13: HOT-HIL-11/12/21/23..26/34/48/52で被覆。
+- HIL-NFR-01..38: HOT-HIL-03/05..09/12..16/18..29/32/33/35..52で被覆。
 - 実装状態: 全件`not-implemented`または`partial`。本L1 pair作成だけで完成扱いにしない。

@@ -1,0 +1,1170 @@
+{
+  "decision": {
+    "design_freeze": "closed_by_explicit_terminal_disposition_and_digest_bound_runtime_transfer",
+    "overlap_classification": {
+      "fixture_surface": 1,
+      "mixed_authority_and_fixture": 136
+    },
+    "overlap_transfer_receipts": 137,
+    "runtime_acceptance": "open_RA-BUN-001",
+    "terminal_atom_receipts": 88,
+    "unproven_hidden": false
+  },
+  "findings": [],
+  "records": [
+    {
+      "atom_id": "BUN-ATOM-00814",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-01455",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-01456",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-01457",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-03098",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-03099",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-03100",
+      "findings": [],
+      "kind": "active_exact_route"
+    },
+    {
+      "atom_id": "BUN-ATOM-04081",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04083",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04085",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04173",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04177",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04195",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-05156",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-05157",
+      "findings": [],
+      "kind": "terminal_retirement_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-00827",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-00828",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01361",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01362",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01363",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01364",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01365",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01368",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01369",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01370",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01371",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01372",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01373",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01384",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01385",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01386",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01387",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01388",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01389",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01411",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01412",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01413",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01746",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01747",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01748",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01749",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01750",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-01751",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-03021",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-03498",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-03510",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-03513",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-03514",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-03535",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04075",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04091",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04097",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04107",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04115",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04125",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04291",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04339",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04340",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04341",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04342",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04343",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04486",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04487",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04488",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04492",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04493",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04494",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04496",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04497",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04501",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04503",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04504",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04505",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04507",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04508",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04509",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04510",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04511",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04512",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04513",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04514",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04515",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04518",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04523",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04524",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04525",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04539",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-04546",
+      "findings": [],
+      "kind": "terminal_unproven_custody_challenge"
+    },
+    {
+      "atom_id": "BUN-ATOM-00694",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00695",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00698",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00699",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00700",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00701",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00702",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00703",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00712",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00713",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00714",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00776",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00827",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-00828",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-01371",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-01387",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-01723",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-01724",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-01748",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-01749",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02279",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02280",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02285",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02286",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02291",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02292",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02301",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02302",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02319",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02320",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02335",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02336",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02950",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02971",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-02972",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03000",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03003",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03017",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03020",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03021",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03326",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03328",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03331",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03332",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03334",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03335",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03350",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03355",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03356",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03366",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03367",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03368",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03390",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03392",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03393",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03416",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03431",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03432",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03433",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03435",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03437",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03446",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03447",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03448",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03449",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03450",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03451",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03464",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03465",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03466",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03482",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03496",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03511",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03533",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03546",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03555",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03564",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03573",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03582",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03591",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03600",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03609",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03618",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03627",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03636",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03648",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03657",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03666",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03675",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03684",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03693",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03702",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03711",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03720",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03729",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03738",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-03747",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04075",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04091",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04097",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04107",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04115",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04125",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04135",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04143",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04145",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04167",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04283",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04285",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04291",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04293",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04339",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04340",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04341",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04342",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04343",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04445",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04451",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04456",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04461",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04487",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04488",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04493",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04494",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04496",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04512",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04514",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04518",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04523",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04524",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04537",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04538",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04539",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04544",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04545",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04546",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    },
+    {
+      "atom_id": "BUN-ATOM-04928",
+      "findings": [],
+      "kind": "current_bun_overlap_transfer"
+    }
+  ],
+  "safety": {
+    "coverage_credit": false,
+    "runtime": false,
+    "verified": false
+  },
+  "schema_version": "helix.df-bun-002-terminal-design-receipts-independent-review.v1",
+  "sources": {
+    "baseline_candidate_sha256": "e00c35a2beff072328cfa3cd5215778fc7be902b308e9537a0c6dcfe7d023ce8",
+    "corrected_candidate": {
+      "path": "docs/governance/generated/helix-df-bun-002-terminal-design-receipts-v1.json",
+      "sha256": "a16ae98d7ce2d470aca93658be61dfb1f2811d29efe716c1dbc3036f1e6bd865"
+    },
+    "producer_readjudication": {
+      "path": "docs/governance/generated/helix-bun-historical-retain-evidence-readjudication-v1.json",
+      "sha256": "6934c8215d70b879c9668feaafc199cc679d6514271ac66a3bd483bcaf5c349a"
+    }
+  },
+  "status": "independent_review_pass_terminal_design_closed_runtime_open",
+  "summary": {
+    "active_routes": 7,
+    "coverage_credit_true": 0,
+    "finding_count": 0,
+    "overlap_transfers": 137,
+    "records_with_findings": 0,
+    "retirement_challenges": 8,
+    "runtime_mutations": 0,
+    "unproven_custody_challenges": 73,
+    "verified_true": 0
+  }
+}

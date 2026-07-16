@@ -1,0 +1,5875 @@
+{
+  "decision": "PLAN stemとgeneric basename一致はsupersession/closed-world証拠にしない。retain/retireはalias・ID・symbol・path・generated consumerの独立replayが閉じるまでchallengeであり、共通source coverage traceはatom固有semantic traceではない。",
+  "findings": [
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00694",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 43,
+        "path": "docs/plans/PLAN-DISCOVERY-02-roster-design.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00695",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 43,
+        "path": "docs/plans/PLAN-DISCOVERY-02-roster-design.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00696",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "src/roster/spike.ts"
+      ],
+      "source": {
+        "line": 111,
+        "path": "docs/plans/PLAN-DISCOVERY-02-roster-design.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00697",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 149,
+        "path": "docs/plans/PLAN-DISCOVERY-02-roster-design.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00698",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 50,
+        "path": "docs/plans/PLAN-DISCOVERY-03-skill-design.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00699",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 50,
+        "path": "docs/plans/PLAN-DISCOVERY-03-skill-design.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00700",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 41,
+        "path": "docs/plans/PLAN-DISCOVERY-04-process-workflows.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00701",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 41,
+        "path": "docs/plans/PLAN-DISCOVERY-04-process-workflows.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00702",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 34,
+        "path": "docs/plans/PLAN-DISCOVERY-06-orchestrator-rule-parity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00703",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 34,
+        "path": "docs/plans/PLAN-DISCOVERY-06-orchestrator-rule-parity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00712",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 140,
+        "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00713",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 141,
+        "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00714",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 141,
+        "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00715",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "tests/design-elicitation.test.ts"
+      ],
+      "source": {
+        "line": 155,
+        "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00716",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "tests/design-elicitation.test.ts"
+      ],
+      "source": {
+        "line": 155,
+        "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00717",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "tests/design-elicitation.test.ts"
+      ],
+      "source": {
+        "line": 155,
+        "path": "docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00765",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "npx vitest run tests/plan-id-naming.test.ts tests/roadmap.test.ts"
+      ],
+      "source": {
+        "line": 96,
+        "path": "docs/plans/PLAN-L3-00-master.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00776",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 153,
+        "path": "docs/plans/PLAN-L3-06-helix-pillar-descent.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-00814",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "docs/99_型付きスペック・自動検出設計書.yaml"
+      ],
+      "source": {
+        "line": 87,
+        "path": "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00827",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 178,
+        "path": "docs/plans/PLAN-L4-14-ui-standard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-00828",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 178,
+        "path": "docs/plans/PLAN-L4-14-ui-standard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01361",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 88,
+        "path": "docs/plans/PLAN-L7-136-harness-db-journal-status-filter.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01362",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 89,
+        "path": "docs/plans/PLAN-L7-136-harness-db-journal-status-filter.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01363",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 90,
+        "path": "docs/plans/PLAN-L7-136-harness-db-journal-status-filter.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01364",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 91,
+        "path": "docs/plans/PLAN-L7-136-harness-db-journal-status-filter.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01365",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 92,
+        "path": "docs/plans/PLAN-L7-136-harness-db-journal-status-filter.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01368",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 90,
+        "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01369",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 91,
+        "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01370",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 92,
+        "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01371",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 93,
+        "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01372",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 94,
+        "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01373",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 95,
+        "path": "docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01384",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 126,
+        "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01385",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 127,
+        "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01386",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 128,
+        "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01387",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 129,
+        "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01388",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 130,
+        "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01389",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 131,
+        "path": "docs/plans/PLAN-L7-138-quality-branch-audit.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01411",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 99,
+        "path": "docs/plans/PLAN-L7-140-proposal-document-coverage-lint.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01412",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 100,
+        "path": "docs/plans/PLAN-L7-140-proposal-document-coverage-lint.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01413",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 101,
+        "path": "docs/plans/PLAN-L7-140-proposal-document-coverage-lint.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01454",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 126,
+        "path": "docs/plans/PLAN-L7-148-refactor-candidate-module-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-01455",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "src/state-db/refactor-candidates.ts"
+      ],
+      "source": {
+        "line": 129,
+        "path": "docs/plans/PLAN-L7-148-refactor-candidate-module-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-01456",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "src/state-db/projection-writer.ts"
+      ],
+      "source": {
+        "line": 131,
+        "path": "docs/plans/PLAN-L7-148-refactor-candidate-module-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-01457",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "docs/process/modes/refactor.md"
+      ],
+      "source": {
+        "line": 133,
+        "path": "docs/plans/PLAN-L7-148-refactor-candidate-module-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01723",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 214,
+        "path": "docs/plans/PLAN-L7-170-external-review-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01724",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 214,
+        "path": "docs/plans/PLAN-L7-170-external-review-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01746",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 84,
+        "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01747",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 85,
+        "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01748",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 86,
+        "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01749",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 87,
+        "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01750",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 88,
+        "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-01751",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 89,
+        "path": "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02277",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 90,
+        "path": "docs/plans/PLAN-L7-234-team-run-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02278",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 91,
+        "path": "docs/plans/PLAN-L7-234-team-run-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02279",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 92,
+        "path": "docs/plans/PLAN-L7-234-team-run-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02280",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 92,
+        "path": "docs/plans/PLAN-L7-234-team-run-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02283",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 92,
+        "path": "docs/plans/PLAN-L7-235-placeholder-deps-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02284",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 93,
+        "path": "docs/plans/PLAN-L7-235-placeholder-deps-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02285",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 94,
+        "path": "docs/plans/PLAN-L7-235-placeholder-deps-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02286",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 94,
+        "path": "docs/plans/PLAN-L7-235-placeholder-deps-backlog-closure.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02289",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 93,
+        "path": "docs/plans/PLAN-L7-236-ut-evidence-history-backlog-split.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02290",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 94,
+        "path": "docs/plans/PLAN-L7-236-ut-evidence-history-backlog-split.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02291",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 95,
+        "path": "docs/plans/PLAN-L7-236-ut-evidence-history-backlog-split.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02292",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 95,
+        "path": "docs/plans/PLAN-L7-236-ut-evidence-history-backlog-split.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02299",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 122,
+        "path": "docs/plans/PLAN-L7-237-ut-history-signal-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02300",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 123,
+        "path": "docs/plans/PLAN-L7-237-ut-history-signal-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02301",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 124,
+        "path": "docs/plans/PLAN-L7-237-ut-history-signal-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02302",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 124,
+        "path": "docs/plans/PLAN-L7-237-ut-history-signal-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02315",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 162,
+        "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02316",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 163,
+        "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02317",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 164,
+        "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02318",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 165,
+        "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02319",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 167,
+        "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02320",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 168,
+        "path": "docs/plans/PLAN-L7-238-ut-history-db-signal-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02331",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 145,
+        "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02332",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 146,
+        "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02333",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 147,
+        "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02334",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 148,
+        "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02335",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 150,
+        "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02336",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 151,
+        "path": "docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02949",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 115,
+        "path": "docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02950",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 117,
+        "path": "docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02951",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 118,
+        "path": "docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02952",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 120,
+        "path": "docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02968",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 89,
+        "path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02969",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 90,
+        "path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02970",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 91,
+        "path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02971",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 92,
+        "path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02972",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 93,
+        "path": "docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02998",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 137,
+        "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-02999",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 138,
+        "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03000",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 139,
+        "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03001",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 140,
+        "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03002",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 141,
+        "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03003",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 142,
+        "path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03015",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 118,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03016",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 119,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03017",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 120,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03018",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 121,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03019",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 122,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03020",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 123,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03021",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 124,
+        "path": "docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-03098",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "tests/lint-wiring.test.ts"
+      ],
+      "source": {
+        "line": 169,
+        "path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-03099",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "tests/design-language.test.ts"
+      ],
+      "source": {
+        "line": 170,
+        "path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "active_reclassify",
+      "atom_id": "BUN-ATOM-03100",
+      "coverage_credit": false,
+      "independent_disposition": "active_candidate_not_verified",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "src/doctor/index.ts"
+      ],
+      "source": {
+        "line": 171,
+        "path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03218",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 85,
+        "path": "docs/plans/PLAN-L7-330-l1-l2-consistency-lint.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03325",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 162,
+        "path": "docs/plans/PLAN-L7-343-effort-observation-full-wiring.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03326",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 163,
+        "path": "docs/plans/PLAN-L7-343-effort-observation-full-wiring.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03327",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 164,
+        "path": "docs/plans/PLAN-L7-343-effort-observation-full-wiring.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03328",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 166,
+        "path": "docs/plans/PLAN-L7-343-effort-observation-full-wiring.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03329",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 132,
+        "path": "docs/plans/PLAN-L7-344-delegation-brief-substance-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03330",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 133,
+        "path": "docs/plans/PLAN-L7-344-delegation-brief-substance-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03331",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 135,
+        "path": "docs/plans/PLAN-L7-344-delegation-brief-substance-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03332",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 136,
+        "path": "docs/plans/PLAN-L7-344-delegation-brief-substance-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03333",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 134,
+        "path": "docs/plans/PLAN-L7-345-agent-context-efficiency.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03334",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 135,
+        "path": "docs/plans/PLAN-L7-345-agent-context-efficiency.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03335",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 136,
+        "path": "docs/plans/PLAN-L7-345-agent-context-efficiency.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03350",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 156,
+        "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03353",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 191,
+        "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03354",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 193,
+        "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03355",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 195,
+        "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03356",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 199,
+        "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03357",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 200,
+        "path": "docs/plans/PLAN-L7-346-test-plan-id-remediation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03365",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 143,
+        "path": "docs/plans/PLAN-L7-347-plan-descent-gate-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03366",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 144,
+        "path": "docs/plans/PLAN-L7-347-plan-descent-gate-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03367",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 145,
+        "path": "docs/plans/PLAN-L7-347-plan-descent-gate-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03368",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 146,
+        "path": "docs/plans/PLAN-L7-347-plan-descent-gate-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03390",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 222,
+        "path": "docs/plans/PLAN-L7-348-test-performance-improvement.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03391",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 223,
+        "path": "docs/plans/PLAN-L7-348-test-performance-improvement.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03392",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 226,
+        "path": "docs/plans/PLAN-L7-348-test-performance-improvement.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03393",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 226,
+        "path": "docs/plans/PLAN-L7-348-test-performance-improvement.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03412",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 184,
+        "path": "docs/plans/PLAN-L7-349-cli-split-slice.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03413",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 185,
+        "path": "docs/plans/PLAN-L7-349-cli-split-slice.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03414",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "wc -l src/cli.ts"
+      ],
+      "source": {
+        "line": 187,
+        "path": "docs/plans/PLAN-L7-349-cli-split-slice.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03415",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "wc -l src/cli.ts"
+      ],
+      "source": {
+        "line": 187,
+        "path": "docs/plans/PLAN-L7-349-cli-split-slice.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03416",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 188,
+        "path": "docs/plans/PLAN-L7-349-cli-split-slice.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03430",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "time bun run src/cli.ts db rebuild"
+      ],
+      "source": {
+        "line": 159,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03431",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 161,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03432",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 161,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03433",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 162,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03434",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 167,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03435",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 169,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03436",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "/usr/bin/time -f 'elapsed=%e user=%U sys=%S' bun run src/cli.ts db rebuild"
+      ],
+      "source": {
+        "line": 170,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03437",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 172,
+        "path": "docs/plans/PLAN-L7-350-detection-performance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03446",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 124,
+        "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03447",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 124,
+        "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03448",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 141,
+        "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03449",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 141,
+        "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03450",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 142,
+        "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03451",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 167,
+        "path": "docs/plans/PLAN-L7-351-literal-policy-externalization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03463",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 193,
+        "path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03464",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 194,
+        "path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03465",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 194,
+        "path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03466",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 195,
+        "path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03467",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 196,
+        "path": "docs/plans/PLAN-L7-352-plan-entry-routing-impl.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03481",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03482",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03483",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx biome check src tests docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md"
+      ],
+      "source": {
+        "line": 108,
+        "path": "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03484",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 109,
+        "path": "docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03495",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-358-distribution-update-check-advisory.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03496",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-358-distribution-update-check-advisory.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03497",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx biome check src tests docs/plans/PLAN-L7-358-distribution-update-check-advisory.md"
+      ],
+      "source": {
+        "line": 108,
+        "path": "docs/plans/PLAN-L7-358-distribution-update-check-advisory.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03498",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 109,
+        "path": "docs/plans/PLAN-L7-358-distribution-update-check-advisory.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03510",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 109,
+        "path": "docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03511",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 110,
+        "path": "docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03512",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx biome check src/doctor src/cli.ts tests/doctor.test.ts tests/cli-surface.test.ts"
+      ],
+      "source": {
+        "line": 111,
+        "path": "docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03513",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 112,
+        "path": "docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03514",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 113,
+        "path": "docs/plans/PLAN-L7-359-doctor-check-registry-extraction.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03532",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 108,
+        "path": "docs/plans/PLAN-L7-360-github-ops-guard-parity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03533",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 109,
+        "path": "docs/plans/PLAN-L7-360-github-ops-guard-parity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03534",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx biome check src tests docs/plans/PLAN-L7-360-github-ops-guard-parity.md"
+      ],
+      "source": {
+        "line": 110,
+        "path": "docs/plans/PLAN-L7-360-github-ops-guard-parity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03535",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 111,
+        "path": "docs/plans/PLAN-L7-360-github-ops-guard-parity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03545",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 108,
+        "path": "docs/plans/PLAN-L7-361-agent-catalog-watch.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03546",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 109,
+        "path": "docs/plans/PLAN-L7-361-agent-catalog-watch.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03547",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 110,
+        "path": "docs/plans/PLAN-L7-361-agent-catalog-watch.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03554",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-362-runtime-capability-matrix.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03555",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-362-runtime-capability-matrix.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03556",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 108,
+        "path": "docs/plans/PLAN-L7-362-runtime-capability-matrix.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03563",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03564",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03565",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03572",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-364-agent-session-command-center.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03573",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-364-agent-session-command-center.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03574",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-364-agent-session-command-center.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03581",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-365-agent-mailbox-conflict-locks.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03582",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-365-agent-mailbox-conflict-locks.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03583",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-365-agent-mailbox-conflict-locks.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03590",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-366-autonomous-loop-run-receipts.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03591",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-366-autonomous-loop-run-receipts.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03592",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-366-autonomous-loop-run-receipts.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03599",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03600",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03601",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03608",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-368-agent-observability-provenance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03609",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-368-agent-observability-provenance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03610",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-368-agent-observability-provenance.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03617",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-369-skill-memory-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03618",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-369-skill-memory-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03619",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-369-skill-memory-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03626",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-370-security-credential-egress-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03627",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-370-security-credential-egress-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03628",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-370-security-credential-egress-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03635",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-371-tool-augmentation-registry.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03636",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-371-tool-augmentation-registry.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03637",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-371-tool-augmentation-registry.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03647",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-373-change-package-delta-archive.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03648",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-373-change-package-delta-archive.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03649",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-373-change-package-delta-archive.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03656",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-374-cross-repo-spec-store.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03657",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-374-cross-repo-spec-store.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03658",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-374-cross-repo-spec-store.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03665",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 103,
+        "path": "docs/plans/PLAN-L7-375-spec-driven-constitution-template-stack.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03666",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-375-spec-driven-constitution-template-stack.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03667",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-375-spec-driven-constitution-template-stack.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03674",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 103,
+        "path": "docs/plans/PLAN-L7-376-artifact-convergence-analyzer.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03675",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-376-artifact-convergence-analyzer.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03676",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-376-artifact-convergence-analyzer.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03683",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-377-state-machine-tool-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03684",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-377-state-machine-tool-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03685",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-377-state-machine-tool-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03692",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-378-state-machine-template-planner.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03693",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-378-state-machine-template-planner.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03694",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-378-state-machine-template-planner.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03701",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-379-extension-preset-bundle-registry.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03702",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-379-extension-preset-bundle-registry.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03703",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-379-extension-preset-bundle-registry.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03710",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-380-review-feedback-session-intake.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03711",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-380-review-feedback-session-intake.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03712",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-380-review-feedback-session-intake.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03719",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03720",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03721",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03728",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 102,
+        "path": "docs/plans/PLAN-L7-382-skill-efficacy-evaluation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03729",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 103,
+        "path": "docs/plans/PLAN-L7-382-skill-efficacy-evaluation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03730",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-382-skill-efficacy-evaluation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03737",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 104,
+        "path": "docs/plans/PLAN-L7-383-harness-taxonomy-curation-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03738",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-383-harness-taxonomy-curation-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03739",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-L7-383-harness-taxonomy-curation-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03746",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 126,
+        "path": "docs/plans/PLAN-L7-384-source-content-mirror-completeness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03747",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 127,
+        "path": "docs/plans/PLAN-L7-384-source-content-mirror-completeness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-03748",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 128,
+        "path": "docs/plans/PLAN-L7-384-source-content-mirror-completeness.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04075",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 58,
+        "path": "docs/plans/PLAN-L7-398-projection-lint-boundary-repair.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04077",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 66,
+        "path": "docs/plans/PLAN-L7-398-projection-lint-boundary-repair.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04079",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 74,
+        "path": "docs/plans/PLAN-L7-398-projection-lint-boundary-repair.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-04081",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 60,
+        "path": "docs/plans/PLAN-L7-399-runtime-verification-schema-boundary.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-04083",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 68,
+        "path": "docs/plans/PLAN-L7-399-runtime-verification-schema-boundary.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-04085",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 76,
+        "path": "docs/plans/PLAN-L7-399-runtime-verification-schema-boundary.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04091",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 52,
+        "path": "docs/plans/PLAN-L7-400-operation-scope-ledger-observation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04093",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 60,
+        "path": "docs/plans/PLAN-L7-400-operation-scope-ledger-observation.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04097",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 55,
+        "path": "docs/plans/PLAN-L7-401-operation-test-evidence-tokenization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04099",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 63,
+        "path": "docs/plans/PLAN-L7-401-operation-test-evidence-tokenization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04107",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 66,
+        "path": "docs/plans/PLAN-L7-402-class-method-contract-runtime-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04109",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 74,
+        "path": "docs/plans/PLAN-L7-402-class-method-contract-runtime-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04113",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 90,
+        "path": "docs/plans/PLAN-L7-402-class-method-contract-runtime-evidence.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04115",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 71,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04117",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 79,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04125",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 112,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04127",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 120,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04129",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 128,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04131",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 136,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04135",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 177,
+        "path": "docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04141",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 61,
+        "path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04143",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 69,
+        "path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04145",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 77,
+        "path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04147",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 85,
+        "path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04149",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 122,
+        "path": "docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04167",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 67,
+        "path": "docs/plans/PLAN-L7-408-objective-decision-count-binding.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-04173",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 105,
+        "path": "docs/plans/PLAN-L7-409-agent-guard-fable-apex.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-04177",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 129,
+        "path": "docs/plans/PLAN-L7-410-docs-secret-scan-gate.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-04195",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 124,
+        "path": "docs/plans/PLAN-L7-415-gpt56-tier-routing-adoption.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04237",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 160,
+        "path": "docs/plans/PLAN-L7-421-design-coverage-catalog.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04283",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 66,
+        "path": "docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04285",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 74,
+        "path": "docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04291",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 107,
+        "path": "docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04293",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 115,
+        "path": "docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04297",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 47,
+        "path": "docs/plans/PLAN-L7-426-development-ci-bounded-time.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04298",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 47,
+        "path": "docs/plans/PLAN-L7-426-development-ci-bounded-time.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04299",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 48,
+        "path": "docs/plans/PLAN-L7-426-development-ci-bounded-time.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04300",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 48,
+        "path": "docs/plans/PLAN-L7-426-development-ci-bounded-time.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04305",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 59,
+        "path": "docs/plans/PLAN-L7-427-active-plan-selection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04306",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 59,
+        "path": "docs/plans/PLAN-L7-427-active-plan-selection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04307",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 60,
+        "path": "docs/plans/PLAN-L7-427-active-plan-selection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04308",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 60,
+        "path": "docs/plans/PLAN-L7-427-active-plan-selection.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04311",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 72,
+        "path": "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04312",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 72,
+        "path": "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04313",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 73,
+        "path": "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04314",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 73,
+        "path": "docs/plans/PLAN-L7-428-enforcement-wiring-gap.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04321",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 55,
+        "path": "docs/plans/PLAN-L7-429-triage-decision-integrity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04322",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 55,
+        "path": "docs/plans/PLAN-L7-429-triage-decision-integrity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04327",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 64,
+        "path": "docs/plans/PLAN-L7-430-left-arm-carry-log.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04328",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 64,
+        "path": "docs/plans/PLAN-L7-430-left-arm-carry-log.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04329",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 65,
+        "path": "docs/plans/PLAN-L7-430-left-arm-carry-log.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04330",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 65,
+        "path": "docs/plans/PLAN-L7-430-left-arm-carry-log.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04339",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 73,
+        "path": "docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04340",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 73,
+        "path": "docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04341",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 74,
+        "path": "docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04342",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 132,
+        "path": "docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04343",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 224,
+        "path": "docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04346",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 56,
+        "path": "docs/plans/PLAN-L7-433-closure-auto-approval.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04347",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 56,
+        "path": "docs/plans/PLAN-L7-433-closure-auto-approval.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04348",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 57,
+        "path": "docs/plans/PLAN-L7-433-closure-auto-approval.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04349",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 57,
+        "path": "docs/plans/PLAN-L7-433-closure-auto-approval.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04356",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 75,
+        "path": "docs/plans/PLAN-L7-434-closure-evidence-materialization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04357",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 75,
+        "path": "docs/plans/PLAN-L7-434-closure-evidence-materialization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04358",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 76,
+        "path": "docs/plans/PLAN-L7-434-closure-evidence-materialization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04359",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 76,
+        "path": "docs/plans/PLAN-L7-434-closure-evidence-materialization.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04380",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 51,
+        "path": "docs/plans/PLAN-L7-437-historical-vpair-migration-authority.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04381",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 51,
+        "path": "docs/plans/PLAN-L7-437-historical-vpair-migration-authority.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04396",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx vitest run tests/hook-contract.test.ts tests/project-hook.test.ts tests/digest.test.ts"
+      ],
+      "source": {
+        "line": 85,
+        "path": "docs/plans/PLAN-L7-441-hook-contract-repair.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04439",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 65,
+        "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04441",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 67,
+        "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04442",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 69,
+        "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04443",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 70,
+        "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04444",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 71,
+        "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04445",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 72,
+        "path": "docs/plans/PLAN-L7-47-search-metrics-feedback.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04446",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 64,
+        "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04448",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 66,
+        "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04449",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 68,
+        "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04450",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 69,
+        "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04451",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 70,
+        "path": "docs/plans/PLAN-L7-48-readiness-guardrail.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04452",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 61,
+        "path": "docs/plans/PLAN-L7-49-asset-catalog.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04454",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 63,
+        "path": "docs/plans/PLAN-L7-49-asset-catalog.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04455",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 64,
+        "path": "docs/plans/PLAN-L7-49-asset-catalog.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04456",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 65,
+        "path": "docs/plans/PLAN-L7-49-asset-catalog.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04461",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 154,
+        "path": "docs/plans/PLAN-L7-53-learning-engine.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04486",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 67,
+        "path": "docs/plans/PLAN-L7-59-detector-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04487",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 68,
+        "path": "docs/plans/PLAN-L7-59-detector-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04488",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 69,
+        "path": "docs/plans/PLAN-L7-59-detector-hardening.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04492",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 60,
+        "path": "docs/plans/PLAN-L7-60-change-set-integrity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04493",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 61,
+        "path": "docs/plans/PLAN-L7-60-change-set-integrity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04494",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 62,
+        "path": "docs/plans/PLAN-L7-60-change-set-integrity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04496",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 64,
+        "path": "docs/plans/PLAN-L7-60-change-set-integrity.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04497",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 52,
+        "path": "docs/plans/PLAN-L7-61-telemetry-ingestion-metatest.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04501",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 47,
+        "path": "docs/plans/PLAN-L7-62-runtime-portability-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04503",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 57,
+        "path": "docs/plans/PLAN-L7-62-runtime-portability-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04504",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 71,
+        "path": "docs/plans/PLAN-L7-62-runtime-portability-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04505",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 72,
+        "path": "docs/plans/PLAN-L7-62-runtime-portability-guard.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04507",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 70,
+        "path": "docs/plans/PLAN-L7-63-plan-registry-fingerprint.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04508",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 60,
+        "path": "docs/plans/PLAN-L7-64-team-runner-launch.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04509",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 68,
+        "path": "docs/plans/PLAN-L7-65-deterministic-model-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04510",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 56,
+        "path": "docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04511",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 62,
+        "path": "docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04512",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 62,
+        "path": "docs/plans/PLAN-L7-67-team-launch-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04513",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 63,
+        "path": "docs/plans/PLAN-L7-67-team-launch-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04514",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 64,
+        "path": "docs/plans/PLAN-L7-67-team-launch-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04515",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 65,
+        "path": "docs/plans/PLAN-L7-67-team-launch-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04518",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 68,
+        "path": "docs/plans/PLAN-L7-67-team-launch-policy.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04521",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx vitest run tests/runtime-adapter.test.ts tests/runtime.test.ts"
+      ],
+      "source": {
+        "line": 116,
+        "path": "docs/plans/PLAN-L7-68-provider-dispatch-portability.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04522",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx vitest run tests/runtime-hook-entrypoints.test.ts tests/cli-surface.test.ts tests/provider-handover.test.ts"
+      ],
+      "source": {
+        "line": 117,
+        "path": "docs/plans/PLAN-L7-68-provider-dispatch-portability.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04523",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 118,
+        "path": "docs/plans/PLAN-L7-68-provider-dispatch-portability.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04524",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 119,
+        "path": "docs/plans/PLAN-L7-68-provider-dispatch-portability.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04525",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 120,
+        "path": "docs/plans/PLAN-L7-68-provider-dispatch-portability.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04536",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx vitest run tests/runtime-adapter.test.ts"
+      ],
+      "source": {
+        "line": 116,
+        "path": "docs/plans/PLAN-L7-73-claude-native-semver-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04537",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 117,
+        "path": "docs/plans/PLAN-L7-73-claude-native-semver-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04538",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 118,
+        "path": "docs/plans/PLAN-L7-73-claude-native-semver-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04539",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 119,
+        "path": "docs/plans/PLAN-L7-73-claude-native-semver-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04540",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 120,
+        "path": "docs/plans/PLAN-L7-73-claude-native-semver-resolution.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04543",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "bunx vitest run tests/task-classify.test.ts"
+      ],
+      "source": {
+        "line": 111,
+        "path": "docs/plans/PLAN-L7-74-task-risk-whole-word-match.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04544",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 112,
+        "path": "docs/plans/PLAN-L7-74-task-risk-whole-word-match.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04545",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 113,
+        "path": "docs/plans/PLAN-L7-74-task-risk-whole-word-match.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04546",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 114,
+        "path": "docs/plans/PLAN-L7-74-task-risk-whole-word-match.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04547",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 115,
+        "path": "docs/plans/PLAN-L7-74-task-risk-whole-word-match.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04928",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "closed_world_alias_symbol_generated_consumer_unproven",
+        "line_specific_alias_symbol_path_absent"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 106,
+        "path": "docs/plans/PLAN-M-00-verify-cutover.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "immutable_historical_retain",
+      "atom_id": "BUN-ATOM-04933",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [],
+      "meaningful_search_tokens": [
+        "FR-L1-46/47/48/49"
+      ],
+      "source": {
+        "line": 91,
+        "path": "docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-05156",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 143,
+        "path": "docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md"
+      },
+      "verified": false
+    },
+    {
+      "adjudication": "stale_orphan_retire_candidate",
+      "atom_id": "BUN-ATOM-05157",
+      "coverage_credit": false,
+      "independent_disposition": "closed_world_challenge_required",
+      "issues": [
+        "line_specific_alias_symbol_path_absent",
+        "retire_closed_world_replay_pending"
+      ],
+      "meaningful_search_tokens": [],
+      "source": {
+        "line": 143,
+        "path": "docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md"
+      },
+      "verified": false
+    }
+  ],
+  "schema_version": "helix.bun-historical-stale-adjudication-independent-review.v1",
+  "source": {
+    "path": "docs/governance/generated/helix-bun-historical-stale-adjudication-v1.json",
+    "sha256": "6394375e6106ae1de4477e41c5b256be4e854854ba457d4018c80fe4c7069c37"
+  },
+  "status": "independent_review_fail_closed_closed_world_challenges_remain",
+  "summary": {
+    "active_candidates_without_findings": 7,
+    "adjudications": {
+      "active_reclassify": 7,
+      "immutable_historical_retain": 352,
+      "stale_orphan_retire_candidate": 8
+    },
+    "coverage_credit_true": 0,
+    "issue_counts": {
+      "closed_world_alias_symbol_generated_consumer_unproven": 333,
+      "line_specific_alias_symbol_path_absent": 341,
+      "retire_closed_world_replay_pending": 8
+    },
+    "records": 367,
+    "records_with_findings": 341,
+    "runtime_mutations": 0,
+    "verified_true": 0
+  }
+}

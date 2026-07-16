@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L8-00-integration-verification-master
-title: "PLAN-L8-00: L8 結合検証 master coverage"
+title: "PLAN-L8-00: L8 結合検証 master coverage（層意味論: canonical L8=unit/detail）"
 kind: design
 layer: L8
 drive: fullstack
@@ -11,7 +11,7 @@ owner: Codex
 master_hub: true
 agent_slots:
   - role: tl
-    slot_label: "TL - L8 結合検証 coverage 境界"
+    slot_label: "TL - L8 結合検証 coverage 境界（層意味論: canonical L8=unit/detail）"
   - role: qa
     slot_label: "QA - L8 selected integration evidence review"
 generates:
@@ -54,7 +54,7 @@ review_evidence:
         output_digest: "sha256:e4dee03f96fa6468aff5ddf2b55a30d1669256e4f7e1e50c289218ef840fb710"
 ---
 
-# PLAN-L8-00: L8 結合検証 master coverage
+# PLAN-L8-00: L8 結合検証 master coverage （層意味論: canonical L8=unit/detail）
 
 ## 目的
 

@@ -1,0 +1,86 @@
+{
+  "findings": [
+    {
+      "actual": [
+        "expected_authority_head",
+        "expected_freeze_head",
+        "expected_progress_head",
+        "expected_l01_candidate_head",
+        "design_denominator_set_digest",
+        "reviewer_identity",
+        "reviewer_model",
+        "reviewer_runtime",
+        "remote_observation_digest",
+        "expires_at"
+      ],
+      "code": "v2_authority_cas_preimage_fields_missing"
+    },
+    {
+      "actual": null,
+      "code": "latest_po7_head_and_lifecycle_not_independently_recomputed"
+    },
+    {
+      "actual": null,
+      "code": "db_rows_and_ordered_write_set_not_independently_recomputed"
+    },
+    {
+      "actual": null,
+      "code": "design_task_evidence_denominator_not_independently_recomputed"
+    },
+    {
+      "actual": null,
+      "code": "critical_source_stale"
+    },
+    {
+      "actual": null,
+      "code": "review_source_stale"
+    },
+    {
+      "actual": null,
+      "code": "audit_source_stale"
+    }
+  ],
+  "projection": {
+    "design_open_rows": 0,
+    "freeze_current_claim_supported": false,
+    "idempotent_replay_observed": true,
+    "l01_counted": 0,
+    "l01_local_state": "proposed",
+    "l01_pair_state": "pending_pair",
+    "remote_creation_state": "not_created",
+    "remote_layer_tag_count": 0,
+    "remote_layer_tag_observation_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime_rows_separated": 5,
+    "write_boundaries": 9
+  },
+  "safety": {
+    "coverage_credit": false,
+    "design_freeze_transition_credit": 0,
+    "runtime_implementation_credit": 0,
+    "verified": false
+  },
+  "schema_version": "helix.post-po-design-freeze-transition-runtime-independent-audit.v1",
+  "sources": {
+    "activation_audit": {
+      "path": "docs/governance/generated/po7-activation-runtime-independent-audit-v1.json",
+      "sha256": "c5544eeabc64ee604a2d18f6d5c420e0565028907e41ea6de5005c98cb8cb502"
+    },
+    "audit": {
+      "path": "docs/governance/generated/design-freeze-critical-path-source-rebound-independent-audit-v1.json",
+      "sha256": "14b245776d69fe81d1caf4a56717c065a8f6ad86af792675bdb307b678c8f879"
+    },
+    "critical": {
+      "path": "docs/governance/generated/design-freeze-critical-path-v1.json",
+      "sha256": "28fbc2c559b56fc3ec2b437722a4ea70fb9a9a4673807caa83e8192d9df27712"
+    },
+    "receipt": {
+      "path": "docs/governance/generated/post-po-design-freeze-transition-command-receipt-v1.json",
+      "sha256": "d5b8ef3bee0e8e608c5880aa84af153b26b5efb53b238147701537577a1044cc"
+    },
+    "review": {
+      "path": "docs/governance/generated/design-freeze-critical-path-independent-review-v1.json",
+      "sha256": "48684e8607b179d9f8fb624f3b3584ab101ffb66f22d968ff9e5cbd9157fe896"
+    }
+  },
+  "status": "provisional_atomic_insert_only_authority_hardening_required"
+}

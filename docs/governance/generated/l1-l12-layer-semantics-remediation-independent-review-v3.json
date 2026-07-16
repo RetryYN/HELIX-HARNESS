@@ -1,0 +1,82 @@
+{
+  "canonical_meaning_findings": [],
+  "checks": {
+    "canonical_meaning_exact": true,
+    "central_edges_current_denominator": true,
+    "design_harness_conflation_zero": true,
+    "edge_exactness": true,
+    "historical_non_escape": true,
+    "inventory_hash_exact": true,
+    "marker_zero": true,
+    "old_cf3_119_resolved_as_116_canonical_plus_3_stable": true,
+    "open_backlog_zero": true,
+    "pre_cutover_current_denominator": true,
+    "remaining_alias_current_denominator": true,
+    "runtime_behavior_unchanged": true
+  },
+  "decision": "current denominatorを採用し、canonical実文言116とHEAD不変stable code alias 3で旧119座標を解消。Design closureのみでruntime cutover/verification/coverage creditではない。",
+  "edge_findings": [],
+  "findings": [],
+  "historical_escape_findings": [],
+  "inventory_hash_findings": [],
+  "schema_version": "helix.layer-semantics-remediation-independent-review.v3",
+  "sources": {
+    "inventory": {
+      "sha256": "4139955e67dc7f1c8f5e11b2c0f14f105412fb32cbaede55dcdeb6b126537c71"
+    },
+    "ledger": {
+      "sha256": "dabe9cb677c5d43904905c83b555cb5e20968df0c413aa3b03a05432e5bb6d73"
+    },
+    "prior_review": {
+      "canonical_failures": 119,
+      "sha256": "cf3f06dff64a9d407d0acea8afc40b809c55ed823578548781f03c0e00b1a93c"
+    }
+  },
+  "stable_runtime_alias_findings": [
+    {
+      "alias_key": "LSC-L8-LEGACY-INTEGRATION",
+      "issues": [],
+      "line": 175,
+      "line_sha256": "c910b0683f622b75a957650b6665b4e3b2374f944524916fecf3caee655be982",
+      "path": "src/lint/descent-obligation.ts"
+    },
+    {
+      "alias_key": "LSC-L9-LEGACY-SYSTEM",
+      "issues": [],
+      "line": 176,
+      "line_sha256": "0980addd8d3878a647bbc42c23b31ff3842ff8f842281ab4dac1dc33db556fd9",
+      "path": "src/lint/descent-obligation.ts"
+    },
+    {
+      "alias_key": "LSC-L12-LEGACY-DEPLOY",
+      "issues": [],
+      "line": 96,
+      "line_sha256": "1b2351f8888de74a5d00b0ab6995176e908fa03c557c9f19b185033999659dc0",
+      "path": "src/lint/g3-trace.ts"
+    }
+  ],
+  "status": "independent_review_pass_design_closed_runtime_unchanged",
+  "summary": {
+    "canonical_current_lines": 122,
+    "central_edges": 291,
+    "coverage_credit_true": 0,
+    "design_harness_conflation": 0,
+    "edge_issues": 0,
+    "historical": 28,
+    "historical_escape": 0,
+    "independent_open_backlog": 0,
+    "inventory_hash_failures": 0,
+    "markers": 0,
+    "old_failure_coordinates_resolved_canonical": 116,
+    "pre_cutover_findings": 122,
+    "pre_cutover_unique_lines": 115,
+    "producer_open_backlog": 0,
+    "remaining_alias_union": 28,
+    "remaining_id_aliases": 19,
+    "remaining_line_specific_aliases": 12,
+    "runtime_mutations": 0,
+    "stable_src_test_aliases": 3,
+    "unresolved": 0,
+    "verified_true": 0
+  }
+}

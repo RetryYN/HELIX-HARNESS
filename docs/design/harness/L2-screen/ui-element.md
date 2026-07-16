@@ -75,7 +75,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 
 ## §3 デザイントークン (light モードのみ、Q30)
 
-> dark mode は MVP scope 外 (Q30、Phase B 持ち越し)。本節は light のみ定義。具体値 (hex/px) の High-Fi 確定は L10 UX refinement へ委譲。
+> dark mode は MVP scope 外 (Q30、Phase B 持ち越し)。本節は light のみ定義。具体値 (hex/px) の High-Fi 確定は L10 system/Real UX evidence へ委譲。
 
 | トークン群 | 用途 | L2 確定方針 |
 |---|---|---|
@@ -102,5 +102,5 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 
 - 上流: L1 [screen-requirements.md §1](../L1-requirements/screen-requirements.md) (各画面 情報要素/操作要素) + §3.1 横断原則 (CC2/CC3) + §3.2 採用済み要望。
 - L2 内: [screen-list.md](./screen-list.md) (ID/URL) → [screen-flow.md](./screen-flow.md) (遷移) → 本 ui-element (部品) → [wireframe.md](./wireframe.md) (レイアウト = ③ pair)。
-- 下流: L10 UX refinement (デザイントークン High-Fi 確定 / a11y AA 実値 / High-Fi モック) → src/web 実装 (Phase B)。
+- 下流: L10 system/Real UX evidence (デザイントークン High-Fi 確定 / a11y AA 実値 / High-Fi モック) → src/web 実装 (Phase B)。
 - pair: `wireframe.md` (mock = ③ test design、L2↔L10 右腕)。

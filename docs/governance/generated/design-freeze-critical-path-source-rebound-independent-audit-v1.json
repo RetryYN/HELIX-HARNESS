@@ -1,0 +1,144 @@
+{
+  "findings": [],
+  "projection": {
+    "bun_closed": true,
+    "chat_closed_source_limited": true,
+    "design_open_rows": 0,
+    "design_rows": 8,
+    "double_count": 0,
+    "exact2_closed": true,
+    "layer_closed": true,
+    "open_ids": [],
+    "po_activated_units": 7,
+    "po_decision_units": 7,
+    "runtime_rows_separated": 5,
+    "savepoint_closed_not_executed": true,
+    "universal_closed": true
+  },
+  "safety": {
+    "authority_activation_credit": 1,
+    "coverage_credit": false,
+    "unrelated_runtime_execution_credit": 0,
+    "verified": false
+  },
+  "schema_version": "helix.design-freeze-critical-path-source-rebound-independent-audit.v1",
+  "source": {
+    "path": "docs/governance/generated/design-freeze-critical-path-v1.json",
+    "sha256": "057b41dacabb0f3f642422f4b91d4cf7316d229d81144510917971a316b734cb"
+  },
+  "source_rebound": [
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-PO-001",
+      "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-PO-002",
+      "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-BUN-001",
+      "path": "docs/governance/generated/helix-bun-plan-exact-design-route-independent-review-v1.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-BUN-002",
+      "path": "docs/governance/generated/helix-df-bun-002-terminal-design-receipts-independent-review-v1.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-UNIVERSAL-002",
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-independent-review-v1.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-EXACT2-001",
+      "path": "docs/governance/generated/exact2-semantic-normalization-independent-review-v1.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-LAYER-SEM-001",
+      "path": "docs/governance/generated/l1-l12-layer-semantics-remediation-independent-review-v3.json",
+      "status": "closed"
+    },
+    {
+      "axis": "design",
+      "digest_current": true,
+      "id": "DF-CHAT-001",
+      "path": "docs/governance/generated/chat-independent-review-receipt-v1.json",
+      "status": "closed_source_limited"
+    },
+    {
+      "axis": "runtime",
+      "digest_current": true,
+      "id": "RA-BUN-001",
+      "path": "docs/governance/generated/helix-bun-plan-replacement-reachability-review-v1.json",
+      "status": "open"
+    },
+    {
+      "axis": "runtime",
+      "digest_current": true,
+      "id": "RA-HYBRID-001",
+      "path": "docs/governance/generated/hybrid-python-disposition-semantic-review-v1.json",
+      "status": "open"
+    },
+    {
+      "axis": "runtime",
+      "digest_current": true,
+      "id": "RA-UNIVERSAL-001",
+      "path": "docs/governance/generated/universal-workflow-anchor-route-semantic-review-v1.json",
+      "status": "open"
+    },
+    {
+      "axis": "runtime",
+      "digest_current": true,
+      "id": "RA-REBASELINE-001",
+      "path": "docs/governance/generated/helix-rebaseline-v040-route51-design-ac18-review-v1.json",
+      "status": "open"
+    },
+    {
+      "axis": "runtime",
+      "digest_current": true,
+      "id": "RA-EXACT2-001",
+      "path": "docs/governance/generated/exact2-custody-replay-readiness-v1.json",
+      "status": "open"
+    },
+    {
+      "axis": "nonblocking_design",
+      "digest_current": true,
+      "id": "universal_nonpo_authority",
+      "path": "docs/governance/generated/universal-nonpo-authority-resolution-independent-review-v1.json",
+      "status": "independent_review_pass"
+    },
+    {
+      "axis": "nonblocking_design",
+      "digest_current": true,
+      "id": "savepoint_layer_tag_design",
+      "path": "docs/governance/generated/repository-savepoint-layer-tag-design-independent-review-v1.json",
+      "status": "independent_review_design_gaps_closed_not_executed"
+    },
+    {
+      "axis": "nonblocking_design",
+      "digest_current": true,
+      "id": "po7_authority_activation",
+      "path": "docs/governance/generated/po7-activation-runtime-independent-audit-v1.json",
+      "status": "independent_audit_pass_authority_activated"
+    }
+  ],
+  "status": "independent_audit_pass_design_freeze_closed_runtime_separated"
+}

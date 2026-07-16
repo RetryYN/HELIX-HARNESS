@@ -1,5 +1,5 @@
 ---
-title: "HELIX L8 結合テスト設計 — Forward Infinity orchestration"
+title: "HELIX L9 結合テスト設計 — Forward Infinity orchestration"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -23,7 +23,7 @@ requirements:
   - HAC-HIL-02c
 ---
 
-# HELIX L8 結合テスト設計 — Forward Infinity orchestration
+# HELIX L9 結合テスト設計 — Forward Infinity orchestration
 
 isolated harness.db、固定clock、HDS01 handoff fixture、fake gate/CI/PR/audit/memory portを使う。外部APIは起動しない。
 各scenarioでevent、node、edge、projection、checkpoint、closure、dispatchのbefore/after countとdigestを直接assertする。

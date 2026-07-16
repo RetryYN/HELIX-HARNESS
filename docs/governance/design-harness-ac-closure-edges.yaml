@@ -1,0 +1,193 @@
+schema: design-harness-ac-closure-edge.v1
+status: draft
+source_digest: sha256:c0d839bd65a221bd9614b9820cd08d3f5c21cad057bbde03bb9b2e532d05a812
+authority_model: HELIX-L12-V-TARGET-v1
+authority_receipt: VMAUTH-2026-07-16-01
+authority_receipt_state: pending
+execution_state: designed_not_executed
+coverage_credit: false
+constraints:
+  array_semantics: all_ids_required
+  empty_array: forbidden
+  active_green_before_authority_activation: forbidden
+edges:
+  - source_ac_id: AC-DH-01
+    closure_case_id: DHAC-L10-001
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-15, HIL-FR-25, HIL-TR-02, HIL-TR-03]
+    l3_requirement_ids: [HR-FR-HIL-09, HR-FR-HIL-10, HR-FR-HIL-12]
+    hac_ids: [HAC-HIL-09a, HAC-HIL-09b, HAC-HIL-10a, HAC-HIL-12a, HAC-HIL-12b]
+    test_ids: [HAT-HIL-09, HAT-HIL-10, HAT-HIL-12]
+    oracle: independent engine/mode/layer/authored DB count equals zero
+    failure_code: HIL_DH_NATIVE_CAPABILITY_TOPOLOGY_INVALID
+    receipt_type: dh_native_topology_receipt
+  - source_ac_id: AC-DH-02
+    closure_case_id: DHAC-L12-002
+    primary_layer: L12
+    l1_requirement_ids: [HIL-FR-21, HIL-FR-22, HIL-NFR-12]
+    l3_requirement_ids: [HR-FR-HIL-09, HR-FR-HIL-26]
+    hac_ids: [HAC-HIL-09a, HAC-HIL-09c, HAC-HIL-26a, HAC-HIL-26c]
+    test_ids: [HAT-HIL-09, HAT-HIL-26]
+    oracle: 53 source entries, archive digest, and transformation lineage are exact
+    failure_code: HIL_DH_SOURCE_CUSTODY_INCOMPLETE
+    receipt_type: dh_source_custody_receipt
+  - source_ac_id: AC-DH-03
+    closure_case_id: DHAC-L10-003
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-16, HIL-FR-21, HIL-FR-22]
+    l3_requirement_ids: [HR-FR-HIL-09, HR-FR-HIL-26]
+    hac_ids: [HAC-HIL-09b, HAC-HIL-26b]
+    test_ids: [HAT-HIL-09, HAT-HIL-26]
+    oracle: donor parity, namespace, PLAN, DB, and role are excluded from HELIX completion
+    failure_code: HIL_DH_DONOR_PARITY_FALSE_REQUIREMENT
+    receipt_type: dh_donor_honesty_receipt
+  - source_ac_id: AC-DH-04
+    closure_case_id: DHAC-L11-004
+    primary_layer: L11
+    l1_requirement_ids: [HIL-FR-61]
+    l3_requirement_ids: [HR-FR-HIL-27]
+    hac_ids: [HAC-HIL-27a, HAC-HIL-27b, HAC-HIL-27c]
+    test_ids: [HAT-HIL-27, VIS-L11-N01, VIS-L11-F02]
+    oracle: all Prototype Agreement fields, actor, revision, and digest are current
+    failure_code: HIL_DH_PROTOTYPE_AGREEMENT_INCOMPLETE
+    receipt_type: prototype_agreement_receipt
+  - source_ac_id: AC-DH-05
+    closure_case_id: DHAC-L11-005
+    primary_layer: L11
+    l1_requirement_ids: [HIL-FR-62]
+    l3_requirement_ids: [HR-FR-HIL-28]
+    hac_ids: [HAC-HIL-28a, HAC-HIL-28b, HAC-HIL-28c]
+    test_ids: [HAT-HIL-28]
+    oracle: requirement meaning is reproduced without framework, symbol, or credential binding
+    failure_code: HIL_DH_PROTOTYPE_IMPLEMENTATION_BOUND
+    receipt_type: prototype_neutrality_receipt
+  - source_ac_id: AC-DH-06
+    closure_case_id: DHAC-L10-006
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-63]
+    l3_requirement_ids: [HR-FR-HIL-29]
+    hac_ids: [HAC-HIL-29a, HAC-HIL-29b, HAC-HIL-29c]
+    test_ids: [HAT-HIL-29]
+    oracle: design and implementation lifecycles rebuild from independent events
+    failure_code: HIL_DH_LIFECYCLE_AXIS_COLLAPSED
+    receipt_type: screen_dual_lifecycle_receipt
+  - source_ac_id: AC-DH-07
+    closure_case_id: DHAC-L10-007
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-64]
+    l3_requirement_ids: [HR-FR-HIL-30]
+    hac_ids: [HAC-HIL-30a, HAC-HIL-30b, HAC-HIL-30c]
+    test_ids: [HAT-HIL-30]
+    oracle: all semantic ID edges from BR and UX through evidence are reachable with zero orphan
+    failure_code: HIL_DH_TRACE_ORPHAN
+    receipt_type: semantic_id_continuity_receipt
+  - source_ac_id: AC-DH-11
+    closure_case_id: DHAC-L08-011
+    primary_layer: L8
+    l1_requirement_ids: [HIL-FR-69]
+    l3_requirement_ids: [HR-FR-HIL-35]
+    hac_ids: [HAC-HIL-35a, HAC-HIL-35b, HAC-HIL-35c]
+    test_ids: [HAT-HIL-35]
+    oracle: UI-M0 through UI-M7 obligations and unit oracles exist before L7 starts
+    failure_code: HIL_DH_MISSION_READINESS_INCOMPLETE
+    receipt_type: ui_mission_readiness_receipt
+  - source_ac_id: AC-DH-12
+    closure_case_id: DHAC-L07-012
+    primary_layer: L7
+    l1_requirement_ids: [HIL-FR-70]
+    l3_requirement_ids: [HR-FR-HIL-36]
+    hac_ids: [HAC-HIL-36a, HAC-HIL-36b, HAC-HIL-36c]
+    test_ids: [HAT-HIL-36]
+    oracle: implemented is derived only from all current independent mission receipts
+    failure_code: HIL_DH_MISSION_RECEIPT_INCOMPLETE
+    receipt_type: ui_implementation_projection_receipt
+  - source_ac_id: AC-DH-18
+    closure_case_id: DHAC-L10-018
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-77]
+    l3_requirement_ids: [HR-FR-HIL-43]
+    hac_ids: [HAC-HIL-43a, HAC-HIL-43b, HAC-HIL-43c]
+    test_ids: [HAT-HIL-43]
+    oracle: delta authority, expiry, drive, affected pair, and terminal evidence are exact
+    failure_code: HIL_DH_UI_DELTA_ROUTE_INVALID
+    receipt_type: ui_change_delta_route_receipt
+  - source_ac_id: AC-DH-19
+    closure_case_id: DHAC-L08-019
+    primary_layer: L8
+    l1_requirement_ids: [HIL-FR-15, HIL-FR-25, HIL-TR-03]
+    l3_requirement_ids: [HR-FR-HIL-09, HR-FR-HIL-10]
+    hac_ids: [HAC-HIL-09a, HAC-HIL-09b, HAC-HIL-10a, HAC-HIL-10c]
+    test_ids: [HAT-HIL-09, HAT-HIL-10]
+    oracle: existing Python paths remain and patch/wrap parity is exact
+    failure_code: HIL_DH_PYTHON_PATCH_PARITY_FAILED
+    receipt_type: python_design_patch_parity_receipt
+  - source_ac_id: AC-DH-20
+    closure_case_id: DHAC-L10-020
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-27, HIL-TR-02, HIL-TR-03, HIL-TR-08, HIL-TR-09]
+    l3_requirement_ids: [HR-FR-HIL-10, HR-FR-HIL-12, HR-FR-HIL-42]
+    hac_ids: [HAC-HIL-10a, HAC-HIL-10b, HAC-HIL-12a, HAC-HIL-12b, HAC-HIL-12c, HAC-HIL-42a, HAC-HIL-42b]
+    test_ids: [HAT-HIL-10, HAT-HIL-12, HAT-HIL-42, VIS-L10-N01, VIS-L10-F06]
+    oracle: isolated Node browser toolchain emits digest receipts and MCP verdict count is zero
+    failure_code: HIL_DH_NODE_VISUAL_RECEIPT_INVALID
+    receipt_type: node_visual_toolchain_receipt
+  - source_ac_id: AC-DH-21
+    closure_case_id: DHAC-L10-021
+    primary_layer: L10
+    l1_requirement_ids: [HIL-TR-07, HIL-TR-09, HIL-TR-10]
+    l3_requirement_ids: [HR-FR-HIL-12]
+    hac_ids: [HAC-HIL-12b, HAC-HIL-12c]
+    test_ids: [HAT-HIL-12]
+    oracle: rebuild yields equal projection, authored writes are zero, and Node is single writer
+    failure_code: HIL_DH_PROJECTION_SOURCE_MUTATION
+    receipt_type: design_projection_rebuild_receipt
+  - source_ac_id: AC-DH-23
+    closure_case_id: DHAC-L09-023
+    primary_layer: L9
+    l1_requirement_ids: [HIL-FR-53, HIL-FR-55]
+    l3_requirement_ids: [HR-FR-HIL-20, HR-FR-HIL-21]
+    hac_ids: [HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-21a, HAC-HIL-21b, HAC-HIL-21c]
+    test_ids: [HAT-HIL-20, HAT-HIL-21]
+    oracle: screen state and action join one workflow transition graph with zero competitor
+    failure_code: HIL_DH_WORKFLOW_STATE_MACHINE_DUPLICATED
+    receipt_type: design_workflow_join_receipt
+  - source_ac_id: AC-DH-24
+    closure_case_id: DHAC-L07-024
+    primary_layer: L7
+    l1_requirement_ids: [HIL-FR-78]
+    l3_requirement_ids: [HR-FR-HIL-44]
+    hac_ids: [HAC-HIL-44a, HAC-HIL-44b, HAC-HIL-44c]
+    test_ids: [HAT-HIL-44]
+    oracle: five context digests and worker-verifier separation are checked before spawn and resume
+    failure_code: HIL_DH_CAPSULE_CONTEXT_STALE
+    receipt_type: design_capsule_freshness_receipt
+  - source_ac_id: AC-DH-25
+    closure_case_id: DHAC-L10-025
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-16, HIL-FR-21, HIL-TR-01, HIL-TR-11]
+    l3_requirement_ids: [HR-FR-HIL-09, HR-FR-HIL-13, HR-FR-HIL-26]
+    hac_ids: [HAC-HIL-09b, HAC-HIL-13b, HAC-HIL-26b]
+    test_ids: [HAT-HIL-09, HAT-HIL-13, HAT-HIL-26]
+    oracle: active artifacts contain zero UT runtime identifiers outside marked source material
+    failure_code: HIL_DH_ACTIVE_NAMESPACE_LEAK
+    receipt_type: design_namespace_sanitization_receipt
+  - source_ac_id: AC-DH-26
+    closure_case_id: DHAC-L10-026
+    primary_layer: L10
+    l1_requirement_ids: [HIL-FR-25, HIL-FR-42, HIL-FR-46]
+    l3_requirement_ids: [HR-FR-HIL-10, HR-FR-HIL-17, HR-FR-HIL-18, HR-FR-HIL-25]
+    hac_ids: [HAC-HIL-10a, HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-25a, HAC-HIL-25b]
+    test_ids: [HAT-HIL-10, HAT-HIL-17, HAT-HIL-18, HAT-HIL-25]
+    oracle: every contract family joins an existing Hybrid slot and parallel mandatory catalog count is zero
+    failure_code: HIL_DH_PARALLEL_CATALOG_CREATED
+    receipt_type: hybrid_catalog_binding_receipt
+  - source_ac_id: AC-DH-27
+    closure_case_id: DHAC-L08-027
+    primary_layer: L8
+    l1_requirement_ids: [HIL-FR-15, HIL-FR-25, HIL-FR-27, HIL-TR-03]
+    l3_requirement_ids: [HR-FR-HIL-09, HR-FR-HIL-10, HR-FR-HIL-12]
+    hac_ids: [HAC-HIL-09a, HAC-HIL-09b, HAC-HIL-10a, HAC-HIL-10b, HAC-HIL-12a, HAC-HIL-12b]
+    test_ids: [HAT-HIL-09, HAT-HIL-10, HAT-HIL-12]
+    oracle: nine responsibility families map to existing Python callables and Node owns effects only
+    failure_code: HIL_DH_PYTHON_BINDING_COVERAGE_INCOMPLETE
+    receipt_type: python_function_binding_coverage_receipt

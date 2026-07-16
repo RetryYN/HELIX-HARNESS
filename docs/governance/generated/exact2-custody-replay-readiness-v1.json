@@ -1,0 +1,301 @@
+{
+  "schema_version": "helix.exact2-custody-replay-readiness.v1",
+  "status": "candidate_evidence_audited_trusted_custody_and_behavior_replay_blocked",
+  "generated_at": "2026-07-16",
+  "sources": [
+    {
+      "path": "docs/governance/generated/git-ref-authority-candidates-exact2-v1.json",
+      "sha256": "95e2f00dc08d239cfaa1b9a4e946d0886573e7daa4330a3caff38627b2a01d2f"
+    },
+    {
+      "path": "docs/governance/generated/git-trusted-custody-promotion-contract-exact2-v1.json",
+      "sha256": "e944bf33992fcc9a8f6b9d39ca4cfe3ff030d9f4bdbca32e1053b10ca78ebf46"
+    },
+    {
+      "path": "docs/governance/generated/predecessor-pr-plan-join-71-v1.json",
+      "sha256": "bb8187cdfa28da6c906a672a51ac3f8534a5bfe311120d2e2363bf2a2013dbb6"
+    },
+    {
+      "path": "docs/governance/generated/predecessor-pr-semantic-reconciliation-71-v1.json",
+      "sha256": "ee44144100246ed19e19519d1b970438d5d0a055219f4e393763639f484ce942"
+    },
+    {
+      "path": "docs/governance/generated/predecessor-ut-pr64-semantic-join-v1.json",
+      "sha256": "403bf3b77393bfbf09c2cb2c61f6f2fa366ac1733ec30ccfc879a25868d3d92e"
+    },
+    {
+      "path": "docs/governance/generated/legacy-helix-pr-hil-candidate-mapping-7-v1.json",
+      "sha256": "9340807ce27263321243d5314df42a4f88af1f4fe83edf66db26a0fc586ca62e"
+    }
+  ],
+  "safety": {
+    "external_access": "none",
+    "external_write": false,
+    "project_external_write": false,
+    "project_owned_cas_write": false,
+    "ephemeral_bundle_read_only_inspection": true
+  },
+  "repositories": [
+    {
+      "repository_id": "predecessor-ut",
+      "fixed_denominator": {
+        "refs": 69,
+        "root_trees": 66,
+        "ref_entry_edges": 106347,
+        "unique_path_content": 3380,
+        "prs": 64,
+        "historical_check_retention_receipts": 64
+      },
+      "candidate_evidence": {
+        "advertisement_a_b_equal": true,
+        "materialized_invalid_objects": 0,
+        "strict_fsck": "pass",
+        "ephemeral_bundle": {
+          "path_class": "ephemeral-tmp",
+          "exists": true,
+          "sha256": "5243b1ae9888b2ca5ec425354300d6b8bac6dd90f31e4bdca2a169e33a54a627",
+          "bytes": 16937796,
+          "digest_match": true,
+          "byte_count_match": true,
+          "bundle_verify": true,
+          "trusted": false,
+          "coverage_credit": false
+        }
+      },
+      "local_only_policy_design": {
+        "project_relative_root": ".helix/cas/git-authority/sha256",
+        "project_root_only": true,
+        "network_write_forbidden": true,
+        "external_operations_performed": 0,
+        "contract_status": "designed-not-executed"
+      },
+      "custody_readiness": {
+        "candidate_binding": true,
+        "trusted_cas_object": false,
+        "root_tree_set_digest": false,
+        "advertisement_b_timestamp": false,
+        "fresh_until": false,
+        "trusted_bundle_receipt": false,
+        "trusted_ref_receipt": false,
+        "trusted_tree_receipt": false,
+        "trusted_edge_receipt": false,
+        "retention_access_receipt": false,
+        "independent_verifier_receipt": false,
+        "offline_manifest_receipt": false,
+        "isolated_restore_drill_receipt": false,
+        "promotion_receipt": false,
+        "trusted": false,
+        "current": false
+      },
+      "replay_chain": {
+        "ref_authority": {
+          "candidate_count": 69,
+          "trusted_count": 0
+        },
+        "ref_to_tree": {
+          "candidate_root_tree_count": 66,
+          "trusted_tree_set_digest_count": 0
+        },
+        "tree_to_entry": {
+          "candidate_edge_count": 106347,
+          "trusted_edge_count": 0
+        },
+        "entry_to_behavior_atom": {
+          "entry_denominator": 3380,
+          "classified_entry_count": 0,
+          "behavior_atom_count": 0,
+          "behavior_atom_denominator_known": false
+        },
+        "behavior_to_requirement": {
+          "pr_candidate_count": 64,
+          "hil_candidate_mapped": 64,
+          "hr_candidate_mapped": 64,
+          "test_candidate_mapped": 0,
+          "exact_hil_hr_test_join": 0
+        },
+        "historical_check_retention": {
+          "required": 64,
+          "retained": 0,
+          "current_check_observation_is_retention_proof": false
+        }
+      },
+      "blockers": [
+        "advertisement-b-observed-at-missing",
+        "behavior-atom-denominator-unknown",
+        "entry-to-behavior-classification-missing",
+        "fresh-until-missing",
+        "historical-check-retention-missing",
+        "offline-manifest-missing",
+        "restore-drill-missing",
+        "root-tree-set-digest-missing",
+        "test-exact-join-missing",
+        "trusted-cas-copy-missing",
+        "trusted-receipts-missing"
+      ],
+      "trusted_receipts": 0,
+      "behavior_replay_verified": 0,
+      "coverage_credit": false
+    },
+    {
+      "repository_id": "legacy-helix",
+      "fixed_denominator": {
+        "refs": 21,
+        "root_trees": 13,
+        "ref_entry_edges": 38929,
+        "unique_path_content": 3287,
+        "prs": 7,
+        "historical_check_retention_receipts": 7
+      },
+      "candidate_evidence": {
+        "advertisement_a_b_equal": true,
+        "materialized_invalid_objects": 0,
+        "strict_fsck": "pass",
+        "ephemeral_bundle": {
+          "path_class": "ephemeral-tmp",
+          "exists": true,
+          "sha256": "99829b062b6d6ffd364cbe4ed781faa1d2ec27d2534e5347c76ebc4a98d6d854",
+          "bytes": 13819523,
+          "digest_match": true,
+          "byte_count_match": true,
+          "bundle_verify": true,
+          "trusted": false,
+          "coverage_credit": false
+        }
+      },
+      "local_only_policy_design": {
+        "project_relative_root": ".helix/cas/git-authority/sha256",
+        "project_root_only": true,
+        "network_write_forbidden": true,
+        "external_operations_performed": 0,
+        "contract_status": "designed-not-executed"
+      },
+      "custody_readiness": {
+        "candidate_binding": true,
+        "trusted_cas_object": false,
+        "root_tree_set_digest": false,
+        "advertisement_b_timestamp": false,
+        "fresh_until": false,
+        "trusted_bundle_receipt": false,
+        "trusted_ref_receipt": false,
+        "trusted_tree_receipt": false,
+        "trusted_edge_receipt": false,
+        "retention_access_receipt": false,
+        "independent_verifier_receipt": false,
+        "offline_manifest_receipt": false,
+        "isolated_restore_drill_receipt": false,
+        "promotion_receipt": false,
+        "trusted": false,
+        "current": false
+      },
+      "replay_chain": {
+        "ref_authority": {
+          "candidate_count": 21,
+          "trusted_count": 0
+        },
+        "ref_to_tree": {
+          "candidate_root_tree_count": 13,
+          "trusted_tree_set_digest_count": 0
+        },
+        "tree_to_entry": {
+          "candidate_edge_count": 38929,
+          "trusted_edge_count": 0
+        },
+        "entry_to_behavior_atom": {
+          "entry_denominator": 3287,
+          "classified_entry_count": 0,
+          "behavior_atom_count": 0,
+          "behavior_atom_denominator_known": false
+        },
+        "behavior_to_requirement": {
+          "pr_candidate_count": 7,
+          "hil_candidate_mapped": 7,
+          "hr_candidate_mapped": 7,
+          "test_candidate_mapped": 0,
+          "exact_hil_hr_test_join": 0
+        },
+        "historical_check_retention": {
+          "required": 7,
+          "retained": 0,
+          "current_check_observation_is_retention_proof": false
+        }
+      },
+      "blockers": [
+        "advertisement-b-observed-at-missing",
+        "behavior-atom-denominator-unknown",
+        "entry-to-behavior-classification-missing",
+        "fresh-until-missing",
+        "historical-check-retention-missing",
+        "offline-manifest-missing",
+        "restore-drill-missing",
+        "root-tree-set-digest-missing",
+        "test-exact-join-missing",
+        "trusted-cas-copy-missing",
+        "trusted-receipts-missing"
+      ],
+      "trusted_receipts": 0,
+      "behavior_replay_verified": 0,
+      "coverage_credit": false
+    }
+  ],
+  "totals": {
+    "refs": 90,
+    "root_trees": 79,
+    "ref_entry_edges": 145276,
+    "unique_path_content": 6667,
+    "prs": 71,
+    "historical_check_retention_receipts": 71
+  },
+  "summary": {
+    "repositories": 2,
+    "candidate_receipts": 2,
+    "ephemeral_bundles_digest_and_verify_pass": 2,
+    "trusted_receipts": 0,
+    "current_receipts": 0,
+    "offline_manifests": 0,
+    "restore_drills": 0,
+    "behavior_atom_denominator_known": 0,
+    "behavior_replay_verified": 0,
+    "pr_hil_hr_candidate_mapping": 71,
+    "pr_test_mapping": 0,
+    "exact_hil_hr_test_join": 0,
+    "historical_check_retention": {
+      "required": 71,
+      "retained": 0
+    },
+    "coverage_credit_true": 0
+  },
+  "promotion_required_obligations": [
+    "project-owned CAS atomic copy",
+    "trusted byte digest replay",
+    "canonical ref receipt",
+    "root-tree-set digest and receipt",
+    "ref-entry-edge receipt",
+    "retention/access receipt",
+    "independent verifier receipt",
+    "advertisement-B timestamp and fresh-until",
+    "network-zero offline manifest",
+    "isolated project-owned restore drill",
+    "entry classification and atomic behavior denominator",
+    "behavior atom disposition to HIL/HR/test exact join",
+    "historical PR check/run retention receipt",
+    "single atomic promotion receipt"
+  ],
+  "verdict": {
+    "trusted_custody_ready": false,
+    "offline_replay_ready": false,
+    "behavior_replay_ready": false,
+    "freeze_credit": false
+  },
+  "invariants": [
+    "exact_two_repositories",
+    "refs_90",
+    "ref_entry_edges_145276",
+    "prs_71",
+    "ephemeral_is_not_trusted",
+    "project_external_write_zero",
+    "trusted_zero",
+    "behavior_replay_zero",
+    "historical_retention_zero",
+    "coverage_zero"
+  ]
+}

@@ -44,9 +44,9 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ## §0 位置づけ
 
-PLAN-L4-10 (Master) §2 triage の child。**FR-L1-47 (skill pack の HELIX curate)** を L4 基本設計 (architecture.md) に増分する。ADR-004 境界 (層1 skill 本文 markdown 正本 / 層2 catalog-injector TS) を前提。成果物 = architecture 増分 (skills building block) ⇔ L9 総合テスト設計ペア。
+PLAN-L4-10 (Master) §2 triage の child。**FR-L1-47 (skill pack の HELIX curate)** を L4 基本設計 (architecture.md) に増分する。ADR-004 境界 (層1 skill 本文 markdown 正本 / 層2 catalog-injector TS) を前提。成果物 = architecture 増分 (skills building block) ⇔ L9 総合テスト設計ペア。 （層意味論: canonical L9=integration）
 
-## §1 doc 化スコープ (L4 = L9 総合テスト粒度)
+## §1 doc 化スコープ (L4 = L9 総合テスト粒度) （層意味論: canonical L9=integration）
 
 1. **architecture §3 に skills building block 新設**: Level 1 building block 表に `skills` 追加 (catalog / recommender / injector)。依存方向 = schema へ一方向 (安定核維持、循環禁止)
 2. **層1/層2 分離**: skill 本文 = `docs/skills/**/*.md` (markdown 正本、curate 先) / catalog-injector = TS (層2)
@@ -59,7 +59,7 @@ PLAN-L4-10 (Master) §2 triage の child。**FR-L1-47 (skill pack の HELIX cura
 2. Step 2: skills 内部 (catalog 構築 / recommender / injector) を §3.2 Level 2 に記述、層1 .md ↔ 層2 TS 境界明示 (ADR-004)
 3. Step 3: 依存方向 (skills → schema 一方向、循環禁止) が §3 原則を壊さないことを確認・明記
 4. Step 4: curate 方針 (core-optional-drop / SKILL_MAP / helix 用語除去) を §設計根拠に記述
-5. Step 5: L9 総合テスト設計に skills system 観点追加 (書ける範囲) + 未確定 placeholder + 依存
+5. Step 5: L9 総合テスト設計に skills system 観点追加 (書ける範囲) + 未確定 placeholder + 依存 （層意味論: canonical L9=integration）
 6. Step 6: self-review
 
 ## §3 carry (PLAN-L4-10 §4/§5 由来)
@@ -76,6 +76,6 @@ PLAN-L4-10 (Master) §2 triage の child。**FR-L1-47 (skill pack の HELIX cura
 - [x] architecture §3 に skills building block 追加 (依存方向 schema 一方向、循環禁止維持)
 - [x] 層1 (.md 正本) / 層2 (catalog-injector TS) 境界を ADR-004 準拠で記述
 - [x] curate 方針 (core-optional-drop / SKILL_MAP / helix 用語除去) 記述
-- [x] L9 総合テスト設計にペア観点追加 + 未確定 placeholder + 依存明示
+- [x] L9 総合テスト設計にペア観点追加 + 未確定 placeholder + 依存明示 （層意味論: canonical L9=integration）
 - [x] 粒度段階分解 (L5→L6) を §carry に明記
 - [x] self-review 通過
