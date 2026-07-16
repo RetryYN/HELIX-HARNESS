@@ -11,3 +11,6 @@ bun.lockb binary
 *.png binary
 *.jpg binary
 *.ico binary
+
+# Repo-owned predecessor source custody; content-addressed bundles are never text-normalized.
+source-cas/git-authority/sha256/**/*.bundle binary -diff
