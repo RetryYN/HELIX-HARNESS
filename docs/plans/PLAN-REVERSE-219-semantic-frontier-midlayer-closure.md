@@ -42,11 +42,11 @@ backprop_scope:
     decision: updated
     evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
     reason: "L5 now preserves G-SF classifications across contract boundaries so first-response artifacts cannot be mistaken for revised-request descent."
-  - layer: L9-system-test-design （層意味論: canonical L9=integration）
+  - layer: "L9-system-test-design（層意味論: canonical L9=integration）"
     decision: updated
     evidence_path: docs/test-design/helix/L4-pillar-system-test-design.md
     reason: "L9 system expectations now keep frontier/parked/cutover states out of system pass."
-  - layer: L8-integration-test-design （層意味論: canonical L8=unit/detail）
+  - layer: "L8-integration-test-design（層意味論: canonical L8=unit/detail）"
     decision: updated
     evidence_path: docs/test-design/helix/L5-pillar-integration-test-design.md
     reason: "L8 integration expectations now require semantic frontier preservation across projection/evidence joins."

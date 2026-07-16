@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L9-00-system-verification-master
-title: "PLAN-L9-00: L9 総合検証 master coverage" （層意味論: canonical L9=integration）
+title: "PLAN-L9-00: L9 総合検証 master coverage（層意味論: canonical L9=integration）"
 kind: design
 layer: L9
 drive: fullstack
@@ -11,7 +11,7 @@ owner: Codex
 master_hub: true
 agent_slots:
   - role: tl
-    slot_label: "TL - L9 総合検証 coverage 境界" （層意味論: canonical L9=integration）
+    slot_label: "TL - L9 総合検証 coverage 境界（層意味論: canonical L9=integration）"
   - role: qa
     slot_label: "QA - L9 system evidence review"
 generates:
