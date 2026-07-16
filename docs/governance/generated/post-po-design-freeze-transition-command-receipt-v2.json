@@ -2,12 +2,12 @@
   "schema_version": "helix.post-po-design-freeze-transition-command-receipt.v2",
   "executed": true,
   "db_path": ".helix/harness.db",
-  "operationId": "DF-V2-TRANSITION-20260716-02",
-  "payloadDigest": "d555b0065198c957ed4e6ee8a8ced49ede32a523afb1364c264729e767de1349",
-  "freezeReceiptDigest": "e2e2816bb9ab63ddcd1faefc5ff43ead48b6bb4303bf744b188a2db1c7b80df6",
-  "candidateDigest": "5f0c76022eb87f3c98417b118aecb4fb703e95a1bdfdf4830ecc197dbcf7fff9",
-  "writeSetDigest": "df24c67d601d8292a3a12f58a73500b06334f71e2dd41acf4aaba45d847a5834",
+  "operationId": "DF-V2-TRANSITION-20260716-03",
+  "payloadDigest": "33f183c82a75bed8f0b83090640f6fefb87d7d545ac2ad1da342cbf879147ec8",
+  "freezeReceiptDigest": "d357f289d998398477e005877432b0aa2e530f8bf2a8830240da67f9b2c88676",
+  "candidateDigest": "43fc01379b417e6fd68776ac71a6a7105135635e264260a3db65625e33f8d6c5",
+  "writeSetDigest": "6dd25208f16fbb6bd28c4154c466584deea5c8702b2040453981ba352ac098e3",
   "replay": true,
   "fullRowExportPath": "docs/governance/generated/post-po-design-freeze-transition-full-row-export-v2.json",
-  "fullRowExportSha256": "b161d3405f06fe55a5d5910d5f17abfd8e025d5870daa9cec39fcbe8b62da061"
+  "fullRowExportSha256": "9e9073bf39addc23ae2fdefd2d935032afec4b31380556bce885c94bfb914d5d"
 }
