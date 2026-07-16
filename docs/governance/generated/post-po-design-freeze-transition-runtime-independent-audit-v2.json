@@ -69,27 +69,27 @@
       "design_slices": 19
     },
     "heads": {
-      "current_authority_head_digest": "174e68c2594807fe2d8d796a9f8b1459c21c5d5d6ed269b4a6f5077a8e5c2470",
-      "current_candidate_head_digest": "43afd6f5fe495e2836dcb3b5f2aa4eac94f5810987bfeb748f1f9205c9ab74ee",
-      "current_freeze_head_digest": "543498396bbad6b88e8f238e2bc0c6ea0dac8de44a3c94cf544114014528afe9",
-      "current_progress_head_digest": "dae68e5c7e718b1a2277227421416e21ed2c5a02ba38a43d0ab0c4c63d245cf8",
-      "expected_authority_head_digest": "174e68c2594807fe2d8d796a9f8b1459c21c5d5d6ed269b4a6f5077a8e5c2470",
-      "expected_candidate_head_digest": "43afd6f5fe495e2836dcb3b5f2aa4eac94f5810987bfeb748f1f9205c9ab74ee",
-      "expected_freeze_head_digest": "543498396bbad6b88e8f238e2bc0c6ea0dac8de44a3c94cf544114014528afe9",
-      "expected_progress_head_digest": "dae68e5c7e718b1a2277227421416e21ed2c5a02ba38a43d0ab0c4c63d245cf8"
+      "current_authority_head_digest": "f028e6bdd8d90a15eb3c85bcfa2047a1f320ed0cc62111c5e5ad42867b7dce15",
+      "current_candidate_head_digest": "246bc6eed43703edff0d5d4200118d490ef467094338040a8dd14ded9a32562a",
+      "current_freeze_head_digest": "c9def7954d5771c075074d2f353f5d6936a556f4c50346957d360133790e5bc2",
+      "current_progress_head_digest": "a3d3fc435dfec2d7fca89a26b705cfbce8ab530df623b39893a2f48ab5f47e8a",
+      "expected_authority_head_digest": "f028e6bdd8d90a15eb3c85bcfa2047a1f320ed0cc62111c5e5ad42867b7dce15",
+      "expected_candidate_head_digest": "246bc6eed43703edff0d5d4200118d490ef467094338040a8dd14ded9a32562a",
+      "expected_freeze_head_digest": "c9def7954d5771c075074d2f353f5d6936a556f4c50346957d360133790e5bc2",
+      "expected_progress_head_digest": "a3d3fc435dfec2d7fca89a26b705cfbce8ab530df623b39893a2f48ab5f47e8a"
     },
-    "operation_id": "DF-V2-TRANSITION-20260716-03",
+    "operation_id": "DF-V2-TRANSITION-20260716-04",
     "po7_latest": {
       "authority_epoch": 1,
       "event_digest": "f5882195d379d65066a866458978e7fa646800b566f57fee95100a00517a0088"
     },
     "repository_snapshot": {
-      "headOid": "733206f52e613ac9de8c49b45b6cd3ddf2379d8d",
+      "headOid": "ece1798af33cbbcb302bc21ba652631d88690a9c",
       "indexPolicyDigest": "f58769d0c084647f899527d599c49a0e356aee389681d505a52db79d9a7cda32",
-      "remoteObservationDigest": "5e2a43eb38ce501964339c83b296a38f7367b08b4bfd9edf0f8bcf2a0910e65c",
+      "remoteObservationDigest": "e2ff71ec56d49ab771f15b1a47ff16c35bf86cd86cbe62bfe3b0e85e4d34f7e2",
       "remoteRefs": [
         {
-          "oid": "733206f52e613ac9de8c49b45b6cd3ddf2379d8d",
+          "oid": "ece1798af33cbbcb302bc21ba652631d88690a9c",
           "ref": "refs/heads/codex/hybrid-requirements-freeze"
         },
         {
@@ -97,7 +97,7 @@
           "ref": "refs/heads/main"
         }
       ],
-      "treeOid": "437bccf3067411ede6fdaa145d422eea59e98b6d"
+      "treeOid": "22edeab5090d202151c0e75a529ca53729bd54bb"
     }
   },
   "safety": {
@@ -114,11 +114,11 @@
     },
     "full_row_export": {
       "path": "docs/governance/generated/post-po-design-freeze-transition-full-row-export-v2.json",
-      "sha256": "9e9073bf39addc23ae2fdefd2d935032afec4b31380556bce885c94bfb914d5d"
+      "sha256": "bdcc7f63a685c7e0696998272a09ebd753d9b749a3f4eab1b7dabb47ac3aca0c"
     },
     "receipt": {
       "path": "docs/governance/generated/post-po-design-freeze-transition-command-receipt-v2.json",
-      "sha256": "6434b97179fe65234281af7ca98a50cc396503832a4e20badc567c330c7593ea"
+      "sha256": "640af36aff1841fb60dced3c51cc3ef905e835a3469eea59b49b35f6b2154ee7"
     }
   },
   "status": "independent_audit_pass_post_po_design_freeze_runtime_v2"

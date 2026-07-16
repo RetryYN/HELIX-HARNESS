@@ -2,12 +2,12 @@
   "schema_version": "helix.post-po-design-freeze-transition-command-receipt.v2",
   "executed": true,
   "db_path": ".helix/harness.db",
-  "operationId": "DF-V2-TRANSITION-20260716-03",
-  "payloadDigest": "33f183c82a75bed8f0b83090640f6fefb87d7d545ac2ad1da342cbf879147ec8",
-  "freezeReceiptDigest": "d357f289d998398477e005877432b0aa2e530f8bf2a8830240da67f9b2c88676",
-  "candidateDigest": "43fc01379b417e6fd68776ac71a6a7105135635e264260a3db65625e33f8d6c5",
-  "writeSetDigest": "6dd25208f16fbb6bd28c4154c466584deea5c8702b2040453981ba352ac098e3",
+  "operationId": "DF-V2-TRANSITION-20260716-04",
+  "payloadDigest": "0f4b4688fe557eb66a8fe8a195f6cdf830c1bf9a97ce0119166239663708c4f1",
+  "freezeReceiptDigest": "6fb3305ca7c00eb2ae79342e2db38400322d121722020edffdc43502d49e87e1",
+  "candidateDigest": "02279d5e86603443b962845aec482c45bf7455e7c6ef82ad62c390fdd35c1d33",
+  "writeSetDigest": "bf8766546bacb4cf6abcd54d8e542008e69b05880c2bb8e2231067e78deb12ab",
   "replay": true,
   "fullRowExportPath": "docs/governance/generated/post-po-design-freeze-transition-full-row-export-v2.json",
-  "fullRowExportSha256": "9e9073bf39addc23ae2fdefd2d935032afec4b31380556bce885c94bfb914d5d"
+  "fullRowExportSha256": "bdcc7f63a685c7e0696998272a09ebd753d9b749a3f4eab1b7dabb47ac3aca0c"
 }

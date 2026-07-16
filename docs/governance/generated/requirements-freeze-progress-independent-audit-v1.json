@@ -1,7 +1,7 @@
 {
   "artifact_snapshot": {
     "direct_json_count": 11,
-    "manifest_sha256": "893126d56a684fe00572c0d68e6b59522a9b9670c762e7e33f573c87944b988a"
+    "manifest_sha256": "9fb49fd08c8e03fe5cd5e96b9f7ea980972b821da8788802160bd642d212f754"
   },
   "evidence_boundaries": {
     "bun_route_design_complete": 2210,
