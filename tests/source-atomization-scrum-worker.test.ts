@@ -9,6 +9,8 @@ import {
   validateSourceAtomizationScrumJsonLines,
 } from "../src/runtime/source-atomization-scrum-worker.js";
 
+// PLAN-L7-458-python-source-atomization-pure-worker
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const WORKER = join(ROOT, "workers/python/source_atomization_scrum_mode_v1/worker.py");
 const PYTHON = process.env.HELIX_TEST_PYTHON ?? "python3";
@@ -44,7 +46,7 @@ function runWorker(request: unknown) {
 }
 
 describe("source_atomization.scrum_mode.v1 proposal worker", () => {
-  it("emits deterministic strict JSONL that Node independently revalidates", () => {
+  it("U-PYATOM-001: emits deterministic strict JSONL that Node independently revalidates", () => {
     const request = fixture();
     const first = runWorker(request);
     const second = runWorker(request);
@@ -66,7 +68,7 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
     }
   });
 
-  it("rejects authority-bearing input before Python execution", () => {
+  it("U-PYATOM-002: rejects authority-bearing input before Python execution", () => {
     const request = { ...fixture(), db_path: "/tmp/harness.db" };
     expect(validateSourceAtomizationScrumJsonLines(request, "")).toEqual({
       ok: false,
@@ -78,7 +80,7 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
     expect(result.stderr).toContain("HIL_PYTHON_PLANE_BOUNDARY_INVALID");
   });
 
-  it("rejects modified proposals and incomplete terminal framing", () => {
+  it("U-PYATOM-003: rejects modified proposals and incomplete terminal framing", () => {
     const request = fixture();
     const result = runWorker(request);
     const lines = result.stdout.trimEnd().split("\n");
@@ -102,7 +104,7 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
     ).toEqual({ ok: false, code: "HIL_WORKER_JSON_INVALID" });
   });
 
-  it("installs a Python audit hook that denies network and filesystem access by default", () => {
+  it("U-PYATOM-004: installs a Python audit hook that denies network and filesystem access by default", () => {
     const probe = [
       "import importlib.util, socket",
       `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,

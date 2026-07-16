@@ -13,15 +13,16 @@ owner: Codex / TL
 irreversible_impact: none
 backprop_decision: not_required
 backprop_decision_reason: "既存L5/L6のclosed capabilityとproposal-only境界を変更せず、限定L8検証契約へ具体化する。"
-parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md
+parent_design: docs/design/helix/L6-function-design/python-source-atomization-pure-worker.md
 pair_artifact: docs/test-design/helix/L8-python-source-atomization-contracts.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md, oracle_id: U-PYATOM-001, test_path: tests/source-atomization-scrum-worker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md, oracle_id: U-PYATOM-002, test_path: tests/source-atomization-scrum-worker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md, oracle_id: U-PYATOM-003, test_path: tests/source-atomization-scrum-worker.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md, oracle_id: U-PYATOM-004, test_path: tests/source-atomization-scrum-worker.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/python-source-atomization-pure-worker.md, oracle_id: U-PYATOM-001, test_path: tests/source-atomization-scrum-worker.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/python-source-atomization-pure-worker.md, oracle_id: U-PYATOM-002, test_path: tests/source-atomization-scrum-worker.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/python-source-atomization-pure-worker.md, oracle_id: U-PYATOM-003, test_path: tests/source-atomization-scrum-worker.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/python-source-atomization-pure-worker.md, oracle_id: U-PYATOM-004, test_path: tests/source-atomization-scrum-worker.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-458-python-source-atomization-pure-worker.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/python-source-atomization-pure-worker.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-python-source-atomization-contracts.md, artifact_type: test_design }
   - { artifact_path: src/runtime/source-atomization-scrum-worker.ts, artifact_type: source_module }
   - { artifact_path: workers/python/source_atomization_scrum_mode_v1/worker.py, artifact_type: source_module }
