@@ -1,0 +1,558 @@
+import { createHash } from "node:crypto";
+
+export const HARNESS_AGENT_CONTRACT_SCHEMA = "helix-agent-contract.v1" as const;
+
+export type AgentRoleArchetype = "worker" | "verifier" | "consult";
+export type AgentContractStatus = "registered" | "eligible" | "quarantined" | "retired";
+
+export interface HarnessAgentContractV1 {
+  schema_version: typeof HARNESS_AGENT_CONTRACT_SCHEMA;
+  agent_id: string;
+  contract_version: string;
+  supersedes: string | null;
+  capability_class: string;
+  applicable_layers: string[];
+  applicable_drives: string[];
+  task_kinds: string[];
+  verification_patterns: string[];
+  role_archetype: AgentRoleArchetype;
+  provider_policy_id: string;
+  model_policy_id: string;
+  context_pack_id: string;
+  required_skills: string[];
+  required_reads: string[];
+  generates: string[];
+  forbidden_paths: string[];
+  blind_policy: "none" | "claim-blind" | "spec-blind";
+  compatibility: string[];
+  status: AgentContractStatus;
+  source_digest: string;
+}
+
+export type AgentStandardFailureCode =
+  | "HIL_AGENT_CONTRACT_INCOMPLETE"
+  | "HIL_AGENT_RETIRED_RECLAIM"
+  | "HIL_AGENT_QUARANTINE_RELEASE_UNAUTHORIZED"
+  | "HIL_MUSTER_RESOLUTION_INVALID"
+  | "HIL_AGENT_MUSTER_NO_ELIGIBLE"
+  | "HIL_AGENT_MUSTER_NONDETERMINISTIC"
+  | "HIL_AGENT_BLIND_CONTEXT_LEAK"
+  | "HIL_AGENT_VERIFIER_NOT_INDEPENDENT"
+  | "HIL_ROLE_SEPARATION_VIOLATION";
+
+export type AgentStandardResult<T> =
+  | { ok: true; value: T }
+  | { ok: false; code: AgentStandardFailureCode; findings: string[] };
+
+export interface HarnessAgentTaskV1 {
+  task_identity_digest: string;
+  plan_or_issue_id: string;
+  layer: string;
+  drive: string;
+  task_kind: string;
+  task_risk: string;
+  capability_class: string;
+  required_role: AgentRoleArchetype;
+  compatibility: string;
+}
+
+export interface AgentAvailabilityV1 {
+  provider_family: string;
+  model_family: string;
+  available: boolean;
+}
+
+export interface EligibleAgentV1 {
+  contract: HarnessAgentContractV1;
+  provider_family: string;
+  model_family: string;
+  context_digest: string;
+}
+
+export interface AgentMusterMemberV1 {
+  member_index: number;
+  agent_id: string;
+  contract_version: string;
+  role: AgentRoleArchetype;
+  provider_family: string;
+  model_family: string;
+  context_digest: string;
+  verification_pattern_digest: string;
+}
+
+export interface AgentMusterV1 {
+  schema_version: "helix-agent-muster.v1";
+  task_identity_digest: string;
+  verification_patterns: string[];
+  registry_snapshot_digest: string;
+  policy_snapshot_digest: string;
+  members: AgentMusterMemberV1[];
+  team_digest: string;
+}
+
+export interface BlindAgentPacketV1 {
+  schema_version: "helix-blind-agent-packet.v1";
+  agent_id: string;
+  frozen_input_digest: string;
+  allowed_read_paths: string[];
+  oracle_ids: string[];
+  artifact_digests: string[];
+  redacted_evidence_digests: string[];
+  author_claim_count: 0;
+  private_context_count: 0;
+  packet_digest: string;
+}
+
+export interface AgentContractRevisionApprovalV1 {
+  approval_digest: string;
+  approved_agent_id: string;
+  approved_candidate_version: string;
+}
+
+export interface AgentContractRevisionDecisionV1 {
+  current_agent_id: string;
+  current_version: string;
+  candidate_version: string;
+  supersedes: string;
+  action: "register" | "reject" | "quarantine_supersession";
+  approval_digest: string | null;
+  pass: boolean;
+  decision_digest: string;
+}
+
+export interface AgentMusterExpectationV1 {
+  normalized_input_digest: string;
+  registry_snapshot_digest: string;
+  policy_snapshot_digest: string;
+  verification_pattern_digest: string;
+  member_set_digest: string;
+  context_set_digest: string;
+  expected_team_digest: string;
+}
+
+export interface AgentMusterComparisonReceiptV1 {
+  normalized_input_digest: string;
+  expected_member_set_digest: string;
+  candidate_member_set_digest: string;
+  expected_context_set_digest: string;
+  candidate_context_set_digest: string;
+  expected_team_digest: string;
+  candidate_team_digest: string;
+  equal: true;
+  receipt_digest: string;
+}
+
+const CONTRACT_KEYS = [
+  "schema_version",
+  "agent_id",
+  "contract_version",
+  "supersedes",
+  "capability_class",
+  "applicable_layers",
+  "applicable_drives",
+  "task_kinds",
+  "verification_patterns",
+  "role_archetype",
+  "provider_policy_id",
+  "model_policy_id",
+  "context_pack_id",
+  "required_skills",
+  "required_reads",
+  "generates",
+  "forbidden_paths",
+  "blind_policy",
+  "compatibility",
+  "status",
+  "source_digest",
+] as const;
+
+const ARRAY_KEYS = [
+  "applicable_layers",
+  "applicable_drives",
+  "task_kinds",
+  "verification_patterns",
+  "required_skills",
+  "required_reads",
+  "generates",
+  "forbidden_paths",
+  "compatibility",
+] as const;
+
+function digest(value: unknown): string {
+  return createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+
+function nonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function semanticVersion(value: unknown): [number, number, number] | null {
+  if (typeof value !== "string") return null;
+  const match = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.exec(value);
+  return match ? [Number(match[1]), Number(match[2]), Number(match[3])] : null;
+}
+
+function versionIsAfter(candidate: string, current: string): boolean {
+  const left = semanticVersion(candidate);
+  const right = semanticVersion(current);
+  if (!left || !right) return false;
+  for (let index = 0; index < left.length; index += 1) {
+    if ((left[index] ?? 0) !== (right[index] ?? 0)) return (left[index] ?? 0) > (right[index] ?? 0);
+  }
+  return false;
+}
+
+function sortedUnique(values: string[]): string[] {
+  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
+}
+
+export function parseHarnessAgentContract(
+  raw: unknown,
+): AgentStandardResult<HarnessAgentContractV1> {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    return { ok: false, code: "HIL_AGENT_CONTRACT_INCOMPLETE", findings: ["contract_object"] };
+  }
+  const record = raw as Record<string, unknown>;
+  const findings: string[] = [];
+  for (const key of Object.keys(record)) {
+    if (!(CONTRACT_KEYS as readonly string[]).includes(key)) findings.push(`unknown:${key}`);
+  }
+  const stringKeys = [
+    "agent_id",
+    "contract_version",
+    "capability_class",
+    "provider_policy_id",
+    "model_policy_id",
+    "context_pack_id",
+    "source_digest",
+  ] as const;
+  for (const key of stringKeys) if (!nonEmptyString(record[key])) findings.push(`required:${key}`);
+  for (const key of ARRAY_KEYS) {
+    const value = record[key];
+    if (!Array.isArray(value) || value.some((item) => !nonEmptyString(item)))
+      findings.push(`array:${key}`);
+  }
+  if (record.schema_version !== HARNESS_AGENT_CONTRACT_SCHEMA) findings.push("schema_version");
+  if (!semanticVersion(record.contract_version)) findings.push("contract_version");
+  if (typeof record.source_digest !== "string" || !/^[0-9a-f]{64}$/.test(record.source_digest))
+    findings.push("source_digest");
+  if (record.supersedes !== null && !nonEmptyString(record.supersedes)) findings.push("supersedes");
+  if (!["worker", "verifier", "consult"].includes(String(record.role_archetype)))
+    findings.push("role_archetype");
+  if (!["none", "claim-blind", "spec-blind"].includes(String(record.blind_policy)))
+    findings.push("blind_policy");
+  if (!["registered", "eligible", "quarantined", "retired"].includes(String(record.status)))
+    findings.push("status");
+  if (findings.length > 0)
+    return { ok: false, code: "HIL_AGENT_CONTRACT_INCOMPLETE", findings: sortedUnique(findings) };
+  return { ok: true, value: raw as HarnessAgentContractV1 };
+}
+
+/** 同一agent/versionが異なるbytesを名乗るregistry equivocationを拒否する。 */
+export function parseHarnessAgentRegistry(
+  rawContracts: readonly unknown[],
+): AgentStandardResult<HarnessAgentContractV1[]> {
+  const parsed: HarnessAgentContractV1[] = [];
+  const identityDigests = new Map<string, string>();
+  const findings: string[] = [];
+  for (const raw of rawContracts) {
+    const result = parseHarnessAgentContract(raw);
+    if (!result.ok) {
+      findings.push(...result.findings);
+      continue;
+    }
+    const key = `${result.value.agent_id}@${result.value.contract_version}`;
+    const prior = identityDigests.get(key);
+    if (prior && prior !== result.value.source_digest) findings.push(`identity_conflict:${key}`);
+    else if (!prior) {
+      identityDigests.set(key, result.value.source_digest);
+      parsed.push(result.value);
+    }
+  }
+  if (findings.length > 0)
+    return { ok: false, code: "HIL_AGENT_CONTRACT_INCOMPLETE", findings: sortedUnique(findings) };
+  return {
+    ok: true,
+    value: parsed.sort((left, right) =>
+      `${left.agent_id}\0${left.contract_version}`.localeCompare(
+        `${right.agent_id}\0${right.contract_version}`,
+      ),
+    ),
+  };
+}
+
+export function resolveAgentContractSupersession(
+  current: HarnessAgentContractV1,
+  candidate: HarnessAgentContractV1,
+  approval: AgentContractRevisionApprovalV1 | null,
+): AgentStandardResult<AgentContractRevisionDecisionV1> {
+  const commonInvalid =
+    candidate.agent_id !== current.agent_id ||
+    !versionIsAfter(candidate.contract_version, current.contract_version) ||
+    candidate.supersedes !== current.contract_version;
+  if (current.status === "retired")
+    return { ok: false, code: "HIL_AGENT_RETIRED_RECLAIM", findings: ["retired_irreversible"] };
+  const needsApproval = current.status === "quarantined";
+  const approvalValid =
+    approval !== null &&
+    nonEmptyString(approval.approval_digest) &&
+    approval.approved_agent_id === candidate.agent_id &&
+    approval.approved_candidate_version === candidate.contract_version;
+  if (needsApproval && !approvalValid)
+    return {
+      ok: false,
+      code: "HIL_AGENT_QUARANTINE_RELEASE_UNAUTHORIZED",
+      findings: ["approval_missing_or_mismatched"],
+    };
+  if (commonInvalid)
+    return {
+      ok: false,
+      code: "HIL_AGENT_CONTRACT_INCOMPLETE",
+      findings: ["supersession_chain"],
+    };
+  const payload = {
+    current_agent_id: current.agent_id,
+    current_version: current.contract_version,
+    candidate_version: candidate.contract_version,
+    supersedes: current.contract_version,
+    action: needsApproval ? ("quarantine_supersession" as const) : ("register" as const),
+    approval_digest: approvalValid ? approval.approval_digest : null,
+    pass: true,
+  };
+  return { ok: true, value: { ...payload, decision_digest: digest(payload) } };
+}
+
+const VERIFICATION_PRESETS: Readonly<Record<string, Readonly<Record<string, readonly string[]>>>> =
+  {
+    "helix-verification.v1": {
+      implementation: ["artifact-contract", "independent-verifier"],
+      design: ["design-trace", "independent-verifier"],
+      audit: ["evidence-replay", "independent-verifier"],
+    },
+  };
+
+export function resolveAgentVerificationPatterns(
+  taskKind: string,
+  presetVersion: string,
+  taskRisk: string,
+): AgentStandardResult<{ pattern_ids: string[]; pattern_set_digest: string }> {
+  const preset = VERIFICATION_PRESETS[presetVersion];
+  const base = preset?.[taskKind];
+  if (!base || !nonEmptyString(taskRisk)) {
+    return {
+      ok: false,
+      code: "HIL_MUSTER_RESOLUTION_INVALID",
+      findings: ["unknown_task_or_preset"],
+    };
+  }
+  const pattern_ids = sortedUnique([
+    ...base,
+    ...(taskRisk === "high" ? ["adversarial-review"] : []),
+  ]);
+  return { ok: true, value: { pattern_ids, pattern_set_digest: digest(pattern_ids) } };
+}
+
+export function classifyAgentEligibility(
+  contract: HarnessAgentContractV1,
+  task: HarnessAgentTaskV1,
+  patterns: readonly string[],
+  availability: AgentAvailabilityV1,
+): AgentStandardResult<EligibleAgentV1> {
+  const failed: string[] = [];
+  if (contract.status !== "eligible") failed.push("status");
+  if (!contract.applicable_layers.includes(task.layer)) failed.push("layer");
+  if (!contract.applicable_drives.includes(task.drive)) failed.push("drive");
+  if (!contract.task_kinds.includes(task.task_kind)) failed.push("task_kind");
+  if (!patterns.every((pattern) => contract.verification_patterns.includes(pattern)))
+    failed.push("verification_patterns");
+  if (contract.capability_class !== task.capability_class) failed.push("capability_class");
+  if (contract.role_archetype !== task.required_role) failed.push("role");
+  if (!contract.compatibility.includes(task.compatibility)) failed.push("compatibility");
+  if (!availability.available) failed.push("provider_unavailable");
+  if (failed.length > 0)
+    return { ok: false, code: "HIL_AGENT_MUSTER_NO_ELIGIBLE", findings: failed };
+  return {
+    ok: true,
+    value: {
+      contract,
+      provider_family: availability.provider_family,
+      model_family: availability.model_family,
+      context_digest: digest([
+        contract.context_pack_id,
+        contract.required_skills,
+        contract.required_reads,
+      ]),
+    },
+  };
+}
+
+export function resolveDeterministicAgentMuster(
+  task: HarnessAgentTaskV1,
+  patterns: readonly string[],
+  eligible: readonly EligibleAgentV1[],
+  authority: { registry_snapshot_digest: string; policy_snapshot_digest: string } = {
+    registry_snapshot_digest: digest([]),
+    policy_snapshot_digest: digest([]),
+  },
+): AgentStandardResult<AgentMusterV1> {
+  const workers = eligible.filter((entry) => entry.contract.role_archetype === "worker");
+  const verifiers = eligible.filter((entry) => entry.contract.role_archetype === "verifier");
+  const rank = (left: EligibleAgentV1, right: EligibleAgentV1) =>
+    [
+      left.contract.agent_id,
+      left.contract.contract_version,
+      left.provider_family,
+      left.model_family,
+    ]
+      .join("\0")
+      .localeCompare(
+        [
+          right.contract.agent_id,
+          right.contract.contract_version,
+          right.provider_family,
+          right.model_family,
+        ].join("\0"),
+      );
+  const worker = [...workers].sort(rank)[0];
+  const verifier = [...verifiers]
+    .sort(rank)
+    .find(
+      (candidate) =>
+        candidate.provider_family !== worker?.provider_family &&
+        candidate.model_family !== worker?.model_family,
+    );
+  if (!worker || !verifier) {
+    return { ok: false, code: "HIL_AGENT_MUSTER_NO_ELIGIBLE", findings: ["worker_verifier_pair"] };
+  }
+  const verificationPatternDigest = digest(sortedUnique([...patterns]));
+  const members = [worker, verifier].map((entry, member_index) => ({
+    member_index,
+    agent_id: entry.contract.agent_id,
+    contract_version: entry.contract.contract_version,
+    role: entry.contract.role_archetype,
+    provider_family: entry.provider_family,
+    model_family: entry.model_family,
+    context_digest: entry.context_digest,
+    verification_pattern_digest: verificationPatternDigest,
+  }));
+  const verification_patterns = sortedUnique([...patterns]);
+  return {
+    ok: true,
+    value: {
+      schema_version: "helix-agent-muster.v1",
+      task_identity_digest: task.task_identity_digest,
+      verification_patterns,
+      registry_snapshot_digest: authority.registry_snapshot_digest,
+      policy_snapshot_digest: authority.policy_snapshot_digest,
+      members,
+      team_digest: digest([
+        task.task_identity_digest,
+        verification_patterns,
+        authority.registry_snapshot_digest,
+        authority.policy_snapshot_digest,
+        members,
+      ]),
+    },
+  };
+}
+
+export function compareAgentMusterRerun(
+  expected: AgentMusterExpectationV1,
+  normalizedInputDigest: string,
+  candidate: AgentMusterV1,
+): AgentStandardResult<AgentMusterComparisonReceiptV1> {
+  const memberSetDigest = digest(candidate.members);
+  const contextSetDigest = digest(candidate.members.map((member) => member.context_digest));
+  const patternDigest = digest(candidate.verification_patterns);
+  const findings: string[] = [];
+  if (expected.normalized_input_digest !== normalizedInputDigest) findings.push("normalized_input");
+  if (expected.registry_snapshot_digest !== candidate.registry_snapshot_digest)
+    findings.push("registry_snapshot");
+  if (expected.policy_snapshot_digest !== candidate.policy_snapshot_digest)
+    findings.push("policy_snapshot");
+  if (expected.verification_pattern_digest !== patternDigest) findings.push("patterns");
+  if (expected.member_set_digest !== memberSetDigest) findings.push("members");
+  if (expected.context_set_digest !== contextSetDigest) findings.push("contexts");
+  if (expected.expected_team_digest !== candidate.team_digest) findings.push("team");
+  if (findings.length > 0)
+    return {
+      ok: false,
+      code: "HIL_AGENT_MUSTER_NONDETERMINISTIC",
+      findings: sortedUnique(findings),
+    };
+  const payload = {
+    normalized_input_digest: normalizedInputDigest,
+    expected_member_set_digest: expected.member_set_digest,
+    candidate_member_set_digest: memberSetDigest,
+    expected_context_set_digest: expected.context_set_digest,
+    candidate_context_set_digest: contextSetDigest,
+    expected_team_digest: expected.expected_team_digest,
+    candidate_team_digest: candidate.team_digest,
+    equal: true as const,
+  };
+  return { ok: true, value: { ...payload, receipt_digest: digest(payload) } };
+}
+
+export function buildBlindAgentPacket(input: {
+  contract: HarnessAgentContractV1;
+  frozen_input_digest: string;
+  allowed_read_paths: string[];
+  oracle_ids: string[];
+  artifact_digests: string[];
+  redacted_evidence_digests: string[];
+  author_context?: {
+    author_claims?: string[];
+    chat_context?: string[];
+    worker_reasoning?: string[];
+  };
+}): AgentStandardResult<BlindAgentPacketV1> {
+  const context = input.author_context;
+  if (
+    input.contract.blind_policy !== "none" &&
+    ((context?.author_claims?.length ?? 0) > 0 ||
+      (context?.chat_context?.length ?? 0) > 0 ||
+      (context?.worker_reasoning?.length ?? 0) > 0)
+  ) {
+    return {
+      ok: false,
+      code: "HIL_AGENT_BLIND_CONTEXT_LEAK",
+      findings: ["author_private_context"],
+    };
+  }
+  const payload = {
+    schema_version: "helix-blind-agent-packet.v1" as const,
+    agent_id: input.contract.agent_id,
+    frozen_input_digest: input.frozen_input_digest,
+    allowed_read_paths: sortedUnique(input.allowed_read_paths),
+    oracle_ids: sortedUnique(input.oracle_ids),
+    artifact_digests: sortedUnique(input.artifact_digests),
+    redacted_evidence_digests: sortedUnique(input.redacted_evidence_digests),
+    author_claim_count: 0 as const,
+    private_context_count: 0 as const,
+  };
+  return { ok: true, value: { ...payload, packet_digest: digest(payload) } };
+}
+
+export function enforceAgentRoleSeparation(
+  worker: AgentMusterMemberV1,
+  verifier: AgentMusterMemberV1,
+): AgentStandardResult<true> {
+  if (
+    worker.role !== "worker" ||
+    verifier.role !== "verifier" ||
+    worker.agent_id === verifier.agent_id
+  ) {
+    return { ok: false, code: "HIL_ROLE_SEPARATION_VIOLATION", findings: ["role_or_identity"] };
+  }
+  if (
+    worker.provider_family === verifier.provider_family ||
+    worker.model_family === verifier.model_family
+  ) {
+    return {
+      ok: false,
+      code: "HIL_AGENT_VERIFIER_NOT_INDEPENDENT",
+      findings: ["provider_or_model_family"],
+    };
+  }
+  return { ok: true, value: true };
+}
