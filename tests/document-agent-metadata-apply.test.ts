@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   applyDocumentAgentMetadata,
   type DocumentAgentMetadataSource,
+  DocumentAgentMetadataWriteError,
   type DocumentAgentMetadataWritePort,
   planDocumentAgentMetadataApply,
   renderDocumentAgentMetadata,
@@ -109,7 +110,7 @@ describe("document agent metadata Phase B apply", () => {
     const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
     const port: DocumentAgentMetadataWritePort = {
       write: () => {
-        throw new Error("rejected");
+        throw new DocumentAgentMetadataWriteError("rejected before publish");
       },
       restore: () => ({ durable: true }),
     };
@@ -139,7 +140,58 @@ describe("document agent metadata Phase B apply", () => {
         return { durable: true };
       },
     };
-    expect(applyDocumentAgentMetadata(plan, port)).toMatchObject({ ok: false, partial: false });
-    expect(restored).toEqual([path]);
+    expect(applyDocumentAgentMetadata(plan, port)).toMatchObject({
+      ok: false,
+      partial: false,
+      ambiguous: false,
+      changes: [
+        { path, publishState: "published", rolledBack: true },
+        { path: second, publishState: "ambiguous", rolledBack: true },
+      ],
+    });
+    expect(restored).toEqual([second, path]);
+  });
+
+  it("U-AGMETA-012: publish後throwした当該changeもrollback対象に含める", () => {
+    const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
+    let content = sourceText;
+    const port: DocumentAgentMetadataWritePort = {
+      write: (change) => {
+        content = change.content;
+        throw new Error("fault after publish");
+      },
+      restore: (change) => {
+        expect(content).toBe(change.content);
+        content = change.beforeContent;
+        return { durable: true };
+      },
+    };
+
+    expect(applyDocumentAgentMetadata(plan, port)).toMatchObject({
+      ok: false,
+      partial: false,
+      ambiguous: false,
+      changes: [{ path, publishState: "ambiguous", rolledBack: true }],
+    });
+    expect(content).toBe(sourceText);
+  });
+
+  it("U-AGMETA-012: ambiguous publishのrollback失敗をpartialかつambiguousにする", () => {
+    const plan = planDocumentAgentMetadataApply({ manifest, report, selection: [path], source });
+    const port: DocumentAgentMetadataWritePort = {
+      write: () => {
+        throw new Error("unknown publish state");
+      },
+      restore: () => {
+        throw new Error("cannot establish before state");
+      },
+    };
+
+    expect(applyDocumentAgentMetadata(plan, port)).toMatchObject({
+      ok: false,
+      partial: true,
+      ambiguous: true,
+      changes: [{ path, publishState: "ambiguous", rolledBack: false }],
+    });
   });
 });

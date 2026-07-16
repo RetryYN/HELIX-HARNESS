@@ -24,9 +24,9 @@ pair_artifact: docs/design/helix/
 | U-AGMETA-008 | apply selection | 空・重複・非canonical・scope外の selection を fail-close し、manifest対象の明示 selection だけを辞書順に受理する | `tests/document-agent-metadata-apply.test.ts` |
 | U-AGMETA-009 | apply plan | report に finding がある場合、または対象文書の source snapshot が取得不能な場合、apply plan を生成しない | `tests/document-agent-metadata-apply.test.ts` |
 | U-AGMETA-010 | rendering | top-level `document_agent` だけを決定論的に upsert し、その他の frontmatter / 本文 bytes を保持する。安全に frontmatter を追加できない文書は拒否する | `tests/document-agent-metadata-apply.test.ts` |
-| U-AGMETA-011 | digest / write port | apply plan 作成後の digest drift、source root escape、symlink、port拒否では source write を 0 にする | `tests/document-agent-metadata-apply.test.ts` |
-| U-AGMETA-012 | rollback | publish途中の失敗では既更新分を逆順 rollback し、rollback失敗は partial receipt と non-green を返す | `tests/document-agent-metadata-apply.test.ts` |
+| U-AGMETA-011 | digest / write port | apply plan 作成後の digest drift、source root escape、rootからtargetまでの全ancestor symlink、port拒否では source write を 0 にする | `tests/document-agent-metadata-apply.test.ts` / `tests/document-agent-metadata-integration.test.ts` |
+| U-AGMETA-012 | rollback | write dispatch前にchangeをrollback集合へ登録し、publish後throwした当該changeも逆順 rollbackする。rollback失敗はpartialかつambiguousなnon-green receiptを返す | `tests/document-agent-metadata-apply.test.ts` |
 | IT-AGMETA-004 | CLI apply | 明示selection、digest一致、port拒否時write 0 | `tests/document-agent-metadata-integration.test.ts` |
-| IT-AGMETA-005 | publish rollback | 途中失敗の逆順rollbackとpartial receipt | `tests/document-agent-metadata-integration.test.ts` |
+| IT-AGMETA-005 | publish rollback | real write portをrename/fsync後にfault injectionし、throwした当該targetを含む逆順rollbackとpartial/ambiguous receipt | `tests/document-agent-metadata-integration.test.ts` |
 
 すべての case は pure analyzer を直接呼び、filesystem や CLI の成功だけで契約充足を主張しない。

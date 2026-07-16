@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -90,6 +90,67 @@ describe("document agent metadata integration", () => {
       expect(readFileSync(absolute, "utf8")).toBe("drift\n");
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("IT-AGMETA-005: real portのpublish後faultで当該targetを含め逆順rollbackする", () => {
+    const { root, absolute } = fixture();
+    const secondPath = "docs/design/helix/b.md";
+    const secondAbsolute = join(root, secondPath);
+    writeFileSync(secondAbsolute, "---\ntitle: second\nspec: {}\n---\n\n# 本文\n", "utf8");
+    const beforeFirst = readFileSync(absolute, "utf8");
+    const beforeSecond = readFileSync(secondAbsolute, "utf8");
+    try {
+      const plan = planDocumentAgentMetadataApply({
+        manifest: { ...manifest, documents: [path, secondPath] },
+        report: { ...report, proposed: { [path]: metadata, [secondPath]: metadata } },
+        selection: [path, secondPath],
+        source: { read: (candidate) => readFileSync(join(root, candidate), "utf8") },
+      });
+      let forwardPublishes = 0;
+      const receipt = applyDocumentAgentMetadata(
+        plan,
+        createDocumentAgentMetadataWritePort(root, {
+          afterPublish: (_change, operation) => {
+            if (operation === "write" && ++forwardPublishes === 2)
+              throw new Error("fault after real rename/fsync");
+          },
+        }),
+      );
+
+      expect(receipt).toMatchObject({ ok: false, partial: false, ambiguous: false });
+      expect(receipt.changes.map((change) => [change.path, change.rolledBack])).toEqual([
+        [path, true],
+        [secondPath, true],
+      ]);
+      expect(readFileSync(absolute, "utf8")).toBe(beforeFirst);
+      expect(readFileSync(secondAbsolute, "utf8")).toBe(beforeSecond);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-AGMETA-011: targetまでの中間ancestor symlinkを拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-agent-metadata-symlink-"));
+    const outside = mkdtempSync(join(tmpdir(), "helix-agent-metadata-outside-"));
+    try {
+      mkdirSync(join(root, "docs"));
+      symlinkSync(outside, join(root, "docs", "design"), "dir");
+      mkdirSync(join(outside, "helix"));
+      const outsideTarget = join(outside, "helix", "a.md");
+      writeFileSync(outsideTarget, "---\ntitle: outside\nspec: {}\n---\n", "utf8");
+      const change = {
+        path,
+        beforeContent: readFileSync(outsideTarget, "utf8"),
+        content: "changed\n",
+        beforeDigest: "unused",
+        afterDigest: "unused",
+      };
+      expect(() => createDocumentAgentMetadataWritePort(root).write(change)).toThrow(/symlink/);
+      expect(readFileSync(outsideTarget, "utf8")).toBe(change.beforeContent);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+      rmSync(outside, { recursive: true, force: true });
     }
   });
 });

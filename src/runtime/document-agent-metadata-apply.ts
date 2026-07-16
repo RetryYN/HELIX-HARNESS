@@ -28,15 +28,27 @@ export interface DocumentAgentMetadataWritePort {
   restore(change: DocumentAgentMetadataChange): { durable: boolean };
 }
 
+export class DocumentAgentMetadataWriteError extends Error {
+  readonly publishState: "not_published";
+
+  constructor(message: string) {
+    super(message);
+    this.name = "DocumentAgentMetadataWriteError";
+    this.publishState = "not_published";
+  }
+}
+
 export interface DocumentAgentMetadataApplyReceipt {
   ok: boolean;
   partial: boolean;
+  ambiguous: boolean;
   changes: Array<{
     path: string;
     beforeDigest: string;
     afterDigest: string;
     durable: boolean;
     rolledBack: boolean;
+    publishState: "published" | "ambiguous";
   }>;
 }
 
@@ -139,12 +151,28 @@ export function applyDocumentAgentMetadata(
   const receipts: DocumentAgentMetadataApplyReceipt["changes"] = [];
   try {
     for (const change of plan.changes) {
+      const receipt: DocumentAgentMetadataApplyReceipt["changes"][number] = {
+        path: change.path,
+        beforeDigest: change.beforeDigest,
+        afterDigest: change.afterDigest,
+        durable: false,
+        rolledBack: false,
+        publishState: "ambiguous",
+      };
+      // Register before dispatch: a throwing port may already have atomically published.
+      receipts.push(receipt);
       const result = port.write(change);
       if (!result.durable) throw new Error("document_agent_apply_not_durable");
-      receipts.push({ ...change, durable: true, rolledBack: false });
+      receipt.durable = true;
+      receipt.publishState = "published";
     }
-    return { ok: true, partial: false, changes: receipts };
-  } catch {
+    return { ok: true, partial: false, ambiguous: false, changes: receipts };
+  } catch (error) {
+    if (
+      error instanceof DocumentAgentMetadataWriteError &&
+      receipts.at(-1)?.publishState === "ambiguous"
+    )
+      receipts.pop();
     let rollbackFailed = false;
     for (const receipt of [...receipts].reverse()) {
       try {
@@ -158,6 +186,11 @@ export function applyDocumentAgentMetadata(
         rollbackFailed = true;
       }
     }
-    return { ok: false, partial: rollbackFailed, changes: receipts };
+    return {
+      ok: false,
+      partial: rollbackFailed,
+      ambiguous: rollbackFailed,
+      changes: receipts,
+    };
   }
 }

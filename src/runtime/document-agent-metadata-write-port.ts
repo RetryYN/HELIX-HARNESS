@@ -16,6 +16,7 @@ import type {
   DocumentAgentMetadataChange,
   DocumentAgentMetadataWritePort,
 } from "./document-agent-metadata-apply";
+import { DocumentAgentMetadataWriteError } from "./document-agent-metadata-apply";
 
 function digest(content: string): string {
   return `sha256:${createHash("sha256").update(content).digest("hex")}`;
@@ -32,8 +33,12 @@ function target(root: string, path: string): string {
     inside.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`)
   )
     throw new Error("document_agent_target_escapes_root");
-  if (existsSync(absolute) && lstatSync(absolute).isSymbolicLink())
-    throw new Error("document_agent_target_symlink");
+  let ancestor = root;
+  for (const segment of inside.split(/[\\/]/)) {
+    ancestor = join(ancestor, segment);
+    if (existsSync(ancestor) && lstatSync(ancestor).isSymbolicLink())
+      throw new Error("document_agent_target_symlink");
+  }
   return absolute;
 }
 
@@ -68,22 +73,38 @@ function atomicReplace(targetPath: string, content: string): void {
 /** Source-owned document transaction port. Only a digest-pinned plan may modify its targets. */
 export function createDocumentAgentMetadataWritePort(
   repoRoot: string,
+  options: {
+    afterPublish?: (change: DocumentAgentMetadataChange, operation: "write" | "restore") => void;
+  } = {},
 ): DocumentAgentMetadataWritePort {
   const root = resolve(repoRoot);
   const rootStat = lstatSync(root);
   if (!rootStat.isDirectory() || rootStat.isSymbolicLink())
     throw new Error("document_agent_root_untrusted");
-  const write = (change: DocumentAgentMetadataChange, expected: string, content: string) => {
-    const targetPath = target(root, change.path);
-    const current = readFileSync(targetPath, "utf8");
-    if (digest(current) !== expected) throw new Error("document_agent_before_digest_mismatch");
+  const write = (
+    change: DocumentAgentMetadataChange,
+    expected: string,
+    content: string,
+    operation: "write" | "restore",
+  ) => {
+    let targetPath: string;
+    try {
+      targetPath = target(root, change.path);
+      const current = readFileSync(targetPath, "utf8");
+      if (digest(current) !== expected) throw new Error("document_agent_before_digest_mismatch");
+    } catch (error) {
+      throw new DocumentAgentMetadataWriteError(
+        error instanceof Error ? error.message : "document_agent_write_preflight_failed",
+      );
+    }
     atomicReplace(targetPath, content);
     if (digest(readFileSync(targetPath, "utf8")) !== digest(content))
       throw new Error("document_agent_after_digest_mismatch");
+    options.afterPublish?.(change, operation);
     return { durable: true };
   };
   return {
-    write: (change) => write(change, change.beforeDigest, change.content),
-    restore: (change) => write(change, change.afterDigest, change.beforeContent),
+    write: (change) => write(change, change.beforeDigest, change.content, "write"),
+    restore: (change) => write(change, change.afterDigest, change.beforeContent, "restore"),
   };
 }
