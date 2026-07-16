@@ -15,9 +15,10 @@ const validDocs: RuntimePortabilityDoc[] = [
     path: "package.json",
     text: JSON.stringify({
       type: "module",
-      engines: { bun: ">=1.3" },
+      packageManager: "npm@11.12.1",
+      engines: { node: ">=24.15.0 <25", bun: ">=1.3" },
       scripts: {
-        build: "bun build src/cli.ts --compile --outfile dist/helix",
+        build: "tsx src/build/node-build-cli.ts",
         "test:node-fallback": "vitest run tests/state-db.test.ts tests/runtime-portability.test.ts",
         typecheck: "tsc --noEmit",
       },
@@ -29,22 +30,22 @@ const validDocs: RuntimePortabilityDoc[] = [
   },
   {
     path: "src/state-db/index.ts",
-    text: 'nodeRequire("bun:sqlite"); nodeRequire("node:sqlite");',
+    text: 'nodeRequire("node:sqlite");',
   },
   { path: "src/runtime/adapter.ts", text: "export const adapter = true;" },
   { path: ".claude/hooks/session-log.ts", text: "export const hook = true;" },
   {
     path: "scripts/helix",
-    text: '#!/usr/bin/env sh\nset -e\nROOT="$(pwd)"\nexec "$ROOT/dist/helix" "$@"\nexec bun run "$ROOT/src/cli.ts" "$@"\n',
+    text: '#!/usr/bin/env sh\nset -e\nROOT="$(pwd)"\nexec "$ROOT/dist/helix" "$@"\nexec node "$ROOT/node_modules/tsx/dist/cli.mjs" "$ROOT/src/cli.ts" "$@"\n',
   },
   {
     path: "scripts/helix.ps1",
-    text: '$root = "."\n& "$root\\dist\\helix.exe" @args\n& bun run (Join-Path $root "src\\cli.ts") @args\n',
+    text: '$root = "."\n& "$root\\dist\\helix.exe" @args\n& node (Join-Path $root "node_modules\\tsx\\dist\\cli.mjs") (Join-Path $root "src\\cli.ts") @args\n',
   },
 ];
 
 describe("runtime-portability lint", () => {
-  it("U-RPORT-001: accepts TS/Bun core with Node types and thin wrappers", () => {
+  it("U-RPORT-001: accepts TS/Node core with pinned npm and thin wrappers", () => {
     const result = analyzeRuntimePortability(validDocs);
 
     expect(result.ok).toBe(true);
@@ -86,13 +87,14 @@ describe("runtime-portability lint", () => {
     expect(result.violations.map((v) => v.rule)).toEqual(
       expect.arrayContaining([
         "package-missing-esm",
-        "package-missing-bun-engine",
+        "package-missing-node-engine",
+        "package-missing-npm-pin",
         "package-missing-compiled-build",
         "package-missing-node-fallback-smoke",
         "package-missing-typecheck",
         "tsconfig-not-strict",
         "tsconfig-missing-node-types",
-        "sqlite-driver-fallback-missing",
+        "sqlite-node-driver-missing",
       ]),
     );
   });
@@ -114,7 +116,9 @@ describe("runtime-portability lint", () => {
       "set -e",
     ]);
     expect(wrapper).toContain('exec "$ROOT/dist/helix" "$@"');
-    expect(wrapper).toContain('exec bun run "$ROOT/src/cli.ts" "$@"');
+    expect(wrapper).toContain(
+      'exec node "$ROOT/node_modules/tsx/dist/cli.mjs" "$ROOT/src/cli.ts" "$@"',
+    );
   });
 
   it("U-RPORT-005: scans untracked runtime files during active Windows setup work", () => {

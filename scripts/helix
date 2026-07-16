@@ -3,6 +3,6 @@
 set -e
 ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 if [ -f "$ROOT/src/cli.ts" ]; then
-  exec bun run "$ROOT/src/cli.ts" "$@"
+  exec node "$ROOT/node_modules/tsx/dist/cli.mjs" "$ROOT/src/cli.ts" "$@"
 fi
 exec "$ROOT/dist/helix" "$@"

@@ -22,6 +22,7 @@ export interface RuntimePortabilityResult {
 }
 
 const ALLOWED_SCRIPT_WRAPPERS = new Set(["scripts/helix", "scripts/helix.ps1"]);
+const AUDIT_TOOL_PREFIX = "scripts/audit/";
 const CORE_FILE_PATTERN = /\.(?:ts|gitkeep)$/;
 const HOOK_FILE_PATTERN = /\.ts$/;
 const DISALLOWED_RUNTIME_FILE_PATTERN = /\.(?:py|sh|bash|js|mjs|cjs)$/;
@@ -62,6 +63,7 @@ function packageViolations(doc: RuntimePortabilityDoc | undefined): RuntimePorta
   const pkg = jsonDoc<{
     type?: string;
     engines?: { bun?: string; node?: string };
+    packageManager?: string;
     scripts?: Record<string, string>;
   }>(doc);
   const path = doc?.path ?? "package.json";
@@ -84,20 +86,28 @@ function packageViolations(doc: RuntimePortabilityDoc | undefined): RuntimePorta
       message: "TypeScript runtime package must use ESM module semantics.",
     });
   }
-  if (!pkg.engines?.bun) {
+  if (!/>=\s*24\.15\.0/.test(pkg.engines?.node ?? "") || !/<\s*25/.test(pkg.engines?.node ?? "")) {
     violations.push({
       path,
       line: 1,
-      rule: "package-missing-bun-engine",
-      message: "ADR-001 runtime contract must declare the Bun engine.",
+      rule: "package-missing-node-engine",
+      message: "ADR-009 Node Minimum requires engines.node >=24.15.0 <25.",
     });
   }
-  if (!/\bbun\s+build\b.*--compile\b/.test(pkg.scripts?.build ?? "")) {
+  if (!/^npm@\d+\.\d+\.\d+$/.test(pkg.packageManager ?? "")) {
+    violations.push({
+      path,
+      line: 1,
+      rule: "package-missing-npm-pin",
+      message: "ADR-009 Node Minimum requires an exact packageManager npm pin.",
+    });
+  }
+  if (!/\btsx\s+src\/build\/node-build-cli\.ts\b/.test(pkg.scripts?.build ?? "")) {
     violations.push({
       path,
       line: 1,
       rule: "package-missing-compiled-build",
-      message: "Build script must produce the compiled cross-platform core binary.",
+      message: "Build script must use the Node-owned CLI build adapter.",
     });
   }
   if (!/\btsc\s+--noEmit\b/.test(pkg.scripts?.typecheck ?? "")) {
@@ -193,12 +203,16 @@ function analyzeRuntimeDoc(doc: RuntimePortabilityDoc): RuntimePortabilityViolat
       message: "Python/Bash/JS runtime files are not allowed in current core surfaces.",
     });
   }
-  if (path.startsWith("scripts/") && !ALLOWED_SCRIPT_WRAPPERS.has(path)) {
+  if (
+    path.startsWith("scripts/") &&
+    !path.startsWith(AUDIT_TOOL_PREFIX) &&
+    !ALLOWED_SCRIPT_WRAPPERS.has(path)
+  ) {
     violations.push({
       path,
       line: 1,
       rule: "script-wrapper-unapproved",
-      message: "Only the thin helix POSIX/PowerShell wrappers are allowed under scripts/.",
+      message: "Runtime scripts must be thin helix wrappers; scripts/audit is a tooling surface.",
     });
   }
   if (ALLOWED_SCRIPT_WRAPPERS.has(path)) {
@@ -262,13 +276,13 @@ function analyzeRuntimeDoc(doc: RuntimePortabilityDoc): RuntimePortabilityViolat
 function sqliteFallbackViolations(docs: RuntimePortabilityDoc[]): RuntimePortabilityViolation[] {
   const stateDb = docs.find((doc) => normalizePath(doc.path) === "src/state-db/index.ts");
   if (!stateDb) return [];
-  if (stateDb.text.includes("bun:sqlite") && stateDb.text.includes("node:sqlite")) return [];
+  if (stateDb.text.includes("node:sqlite")) return [];
   return [
     {
       path: stateDb.path,
       line: 1,
-      rule: "sqlite-driver-fallback-missing",
-      message: "SQLite adapter must keep both bun:sqlite and node:sqlite drivers visible.",
+      rule: "sqlite-node-driver-missing",
+      message: "SQLite adapter must expose the ADR-009 node:sqlite driver.",
     },
   ];
 }
