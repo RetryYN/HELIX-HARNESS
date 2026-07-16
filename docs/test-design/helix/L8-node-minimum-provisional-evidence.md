@@ -17,6 +17,12 @@ pair_artifact: docs/design/helix/L6-function-design/node-minimum-provisional-evi
 | U-NMIN-001 | exact 6 workflow | `pass`かつ`terminal:false` |
 | U-NMIN-002 | 未知workflow | `HIL_NODE_WORKFLOW_SET_INVALID` |
 | U-NMIN-003 | 重複workflow | `HIL_NODE_WORKFLOW_SET_INVALID` |
-| U-NMIN-004 | authority HEAD／toolchain／artifact drift | receipt digest不一致またはblocked |
+| U-NMIN-004 | Node/npm、lock/tree、SQLite API/version/compile options、artifactを一件ずつdrift | 各反例を`HIL_NODE_AUTHORITY_BINDING_INVALID`でblocked |
+
+HEAD/treeはcanonical expectation pathを含む現在HEADの観測値とし、6 workflow artifactとの同一性を
+`HIL_NODE_WORKFLOW_UNVERIFIED`、collect後の変化をpersist freshnessで拒否する。
+
+PASS receiptはdigest名でcreate-new保存し、同一pathの再保存・上書き・全ancestorのsymlink escape・
+collect後のHEAD/tree driftを拒否する。expectation/workflow artifactはclosed schemaで未知fieldを拒否する。
 
 active surfaceがBun authorityのまま不変であることを差分監査し、Node greenだけでcutover完了をclaimしない。

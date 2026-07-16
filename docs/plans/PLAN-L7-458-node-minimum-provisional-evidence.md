@@ -28,10 +28,15 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-node-minimum-provisional-evidence.md, artifact_type: test_design }
   - { artifact_path: src/runtime/node-minimum-provisional-evidence.ts, artifact_type: source_module }
   - { artifact_path: tests/node-minimum-provisional-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/node-minimum/<receipt_digest>.json, artifact_type: other }
 ---
 
 # Node Minimum provisional evidence
 
 ## 完了条件
 
-U-NMIN-001..004とauthority surface差分監査がgreenであること。`terminal:false`をcutover承認へ読み替えない。
+U-NMIN-001..004とauthority surface差分監査がgreenであること。実Git HEAD/tree、実toolchain、lock/tree bytes、
+`node:sqlite`実問い合わせ、artifact bytes、同一authorityへ結合したworkflow artifactをeffect port経由で再観測し、
+期待値はGit HEAD内のfrozen expectation artifactから読み、PASS receiptは保存直前のHEAD/tree freshnessを再検証して
+`.helix/evidence/node-minimum/<receipt_digest>.json`へcreate-newで保存する。
+`terminal:false`をcutover承認へ読み替えない。

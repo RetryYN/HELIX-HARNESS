@@ -1,0 +1,12 @@
+{
+  "schema_version": "helix-node-minimum-expectation.v1",
+  "runtime_id": "node",
+  "node_version": "24.15.0",
+  "npm_version": "11.12.1",
+  "lock_digest": "56664b1e12ff013f7f8f904f093c5682d5ac965e21f14aa72d10063bbf4a5a43",
+  "tree_digest": "37a8d93ae4d01c5861a64e01c8389b656774df10c2b1da8450be8abe11911c68",
+  "sqlite_api": "node:sqlite",
+  "sqlite_version": "3.51.3",
+  "sqlite_compile_options_digest": "33057387a1643743bff48e8990c4826553bb223fc75b281c28d500afaca12f06",
+  "artifact_digest": "1e35309b8f12217d9eb093e9a7dfe479b0e9615f9e946ffe1d5df9bd130f4cc3"
+}
