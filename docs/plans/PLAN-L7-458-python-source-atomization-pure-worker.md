@@ -4,12 +4,21 @@ title: "PLAN-L7-458 (impl): Python source atomization pure worker"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-16 Python proposal-only worker first slice"]
 created: 2026-07-16
 updated: 2026-07-16
 owner: Codex / TL
+review_evidence:
+  - reviewer: codex-independent-worker-review
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-16"
+    tests_green_at: "2026-07-16"
+    verdict: pass
+    scope: "strict JSONL、Node独立再検証、authority field拒否、Python audit hookによる外部I/O default denyを確認。generic broker・DB commit・publishは非対象のまま。"
+    worker_model: codex-gpt-5
+    reviewer_model: codex-gpt-5-independent
 irreversible_impact: none
 backprop_decision: not_required
 backprop_decision_reason: "既存L5/L6のclosed capabilityとproposal-only境界を変更せず、限定L8検証契約へ具体化する。"
