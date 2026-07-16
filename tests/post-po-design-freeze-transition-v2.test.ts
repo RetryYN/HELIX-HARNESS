@@ -1,12 +1,12 @@
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import { observeCanonicalDesignDenominator } from "../src/state-db/design-denominator-observer";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import {
   activatePo7Decision,
   transitionPo7Authority,
 } from "../src/state-db/po7-decision-activation";
-import { observeCanonicalDesignDenominator } from "../src/state-db/design-denominator-observer";
 import {
   commitPostPoDesignFreezeTransitionV2,
   DESIGN_FREEZE_V2_GENESIS_HEAD,

@@ -7,9 +7,7 @@ const col = (name: string, type: ColumnType = "TEXT") => ({
   notNull: true,
 });
 const digests = (names: string[]) =>
-  names.map(
-    (name) => `length(${name}) = 64 AND ${name} NOT GLOB '*[^0-9a-f]*'`,
-  );
+  names.map((name) => `length(${name}) = 64 AND ${name} NOT GLOB '*[^0-9a-f]*'`);
 const heads = () => [
   col("expected_authority_head_digest"),
   col("current_authority_head_digest"),
@@ -21,12 +19,8 @@ const heads = () => [
   col("current_candidate_head_digest"),
 ];
 const headNames = heads().map((column) => column.name);
-const lifecycle =
-  "status IN ('proposed','current','stale','revoked','superseded')";
-const denominators = [
-  "design_slice_denominator = 19",
-  "design_artifact_denominator = 76",
-];
+const lifecycle = "status IN ('proposed','current','stale','revoked','superseded')";
+const denominators = ["design_slice_denominator = 19", "design_artifact_denominator = 76"];
 
 /** v1をprovisional historyとして保持したまま導入するPost-PO Design Freeze v2境界。 */
 export const HARNESS_DB_DESIGN_FREEZE_V2_TABLES: TableDef[] = [

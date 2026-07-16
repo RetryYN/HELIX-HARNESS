@@ -36,9 +36,7 @@ export const SCHEMA_VERSION = 42;
 export const SQL_IDENTIFIER = /^[A-Za-z_][A-Za-z0-9_]*$/;
 export function assertSqlIdentifier(name: string): void {
   if (!SQL_IDENTIFIER.test(name)) {
-    throw new Error(
-      `不正な SQL 識別子 (英数字/アンダースコアのみ許可): ${name}`,
-    );
+    throw new Error(`不正な SQL 識別子 (英数字/アンダースコアのみ許可): ${name}`);
   }
 }
 
@@ -63,10 +61,7 @@ export function createIndexSql(index: IndexDef): string {
 
 /** schema 全体の DDL 文 (table → index の順、deterministic)。 */
 export function schemaDdl(): string[] {
-  return [
-    ...HARNESS_DB_TABLES.map(createTableSql),
-    ...HARNESS_DB_INDEXES.map(createIndexSql),
-  ];
+  return [...HARNESS_DB_TABLES.map(createTableSql), ...HARNESS_DB_INDEXES.map(createIndexSql)];
 }
 // registry identifiers are validated at module load so invalid DDL fails before projection writes.
 for (const table of HARNESS_DB_TABLES) {
