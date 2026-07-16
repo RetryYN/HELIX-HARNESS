@@ -93,7 +93,7 @@ spec:
 
 #### token単位remap
 
-| legacy token | canonical token | semantic disposition |
+| legacy token | canonical token | semantic disposition | （日本語の機械契約記述）
 |---|---|---|
 | L0 | L1 | charter/価値/scopeを企画へ投影 |
 | L1 | L2 | business要求を要求探索へ投影 |

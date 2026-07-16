@@ -75,7 +75,7 @@ config、snapshot、実行時刻、worker/verifier分離を必須とする。HST
 
 HAT-HIL-46/47は、16 granular failure codeの個別case、`pending_pair→current`二段階close、remote-created/DB-pending crash reconcile、roadmap task-set/denominator digest、working-tree exclusion、GitHub visibility/bypass expiry、refreeze progress四分離が全てcurrentの場合だけ受入れる。umbrella codeだけの検査は不可とする。
 
-### §1.1 PO7 activation acceptance
+### §1.1 PO7 activation acceptance （日本語の契約見出し）
 
 | ID | 対象 | 正例 | 反例 | 期待 |
 |---|---|---|---|---|

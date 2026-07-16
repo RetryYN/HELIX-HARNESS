@@ -15,7 +15,7 @@ updated: 2026-06-24
 
 # L10 UX 検証境界 — impl 後の UX 確定 / WCAG 検証
 
-> **Canonical visual verification supersession — `vmodel-l1-l12-v1`**
+> **Canonical visual verification supersession — `vmodel-l1-l12-v1`** （日本語の機械契約記述）
 > 本文の`L2↔L10 self-pair`、L10=UX polish、G10一括family、L7=implementationはlegacy runtime compatibilityである。
 > current authoring candidateでは、L5↔L8=atomic visual contract、L4↔L9=cross-screen visual integration、
 > L3↔L10=browser/data visual system、L2↔L11=human visual acceptanceへ分解する。本書のmarker/manifest存在確認は

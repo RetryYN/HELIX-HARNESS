@@ -4,7 +4,12 @@
     "payload": "c58d5c28eb2f7543c1cef66ec5582cc749cde68777e2c472a5695b35d212b613",
     "write_set": "772245a42037c25000b05fd7207e02cd63e0cbcf5ff281df0e2f604a5993a3f4"
   },
-  "findings": [],
+  "findings": [
+    {
+      "actual": null,
+      "code": "vmodel_packet_stale"
+    }
+  ],
   "projection": {
     "authority_epoch": 1,
     "decision_groups_activated": 6,
@@ -14,7 +19,7 @@
     "vmodel_authority_events": 1
   },
   "safety": {
-    "authority_activation_credit": 1,
+    "authority_activation_credit": 0,
     "coverage_credit": false,
     "unrelated_runtime_execution_credit": 0,
     "verified": false
@@ -27,7 +32,7 @@
     },
     "go_authority_event": {
       "path": "docs/governance/generated/po-go-authority-event-v1.json",
-      "sha256": "d0f1e00f79085027ba139232f5978257adecb8f41771cf291ad3814d1bf11b44"
+      "sha256": "80185baeff7bd9f378393868fe1c37b5001cbadc6f9a7ec08d86fb39085af6b0"
     },
     "universal_packet": {
       "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
@@ -35,8 +40,8 @@
     },
     "vmodel_packet": {
       "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
-      "sha256": "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333"
+      "sha256": "236c858e2d00aaa399078799d4e3ce6b31dc70ee1aa49fa10b748fc2107e1a78"
     }
   },
-  "status": "independent_audit_pass_authority_activated"
+  "status": "independent_audit_findings_open"
 }

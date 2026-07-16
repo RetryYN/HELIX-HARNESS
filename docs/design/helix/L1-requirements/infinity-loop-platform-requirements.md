@@ -274,7 +274,7 @@ HIL-FR-80/81の追加不変条件として、左側layer freezeは`pending_pair`
 16. Requirement Translatorのatom schema、challenge route、Template Gap Issueとshadow昇格loop。
 17. Requirement Definition Ledgerのstable ID/revision、split/merge/rename/supersede、typed edge、stale伝播、freeze条件。
 18. L1–L12 Layer Ledger Registry、template obligation抽出、上下隣接pair、左右V-pair、ledger-based Design Refactorのschemaとgate。
-19. Universal Workflow typed IR、elicitation dependency graph、judgment record、schedule state、package improvement lifecycle。
+19. Universal Workflow typed IR、elicitation dependency graph、judgment record、schedule state、package improvement lifecycle。 （日本語の機械契約記述）
 20. Canonical Action Intent、Standing Authorization Registry、Execution Authorization Gate、platform brokerの責務境界。
 21. Hybrid Python 29 moduleの`reuse-as-is/reuse-with-adapter/harden/redesign/reject`、静的に確認したfilesystem mutation
     15 module以上、subprocess surface 4 module以上、network connector 1 module以上のsandbox/path/command/network境界。
@@ -312,10 +312,10 @@ HIL-FR-80/81の追加不変条件として、左側layer freezeは`pending_pair`
 | statement digest | 162/162 | PASS |
 | L1/L3 coverage unique IDs | 162/162 | PASS（primary/supporting分離未完） |
 | L3 FR/AC definition | 26/26 FR、78/78 AC | PASS（HST未閉鎖） |
-| source authority current | 0/162 | FAIL |
+| source authority current | 0/162 | FAIL | （日本語の機械契約記述）
 | template applicability | 0/162 | FAIL |
-| design obligation discharge | 0/162 | FAIL |
-| active/frozen requirement | 0/162 | FAIL |
+| design obligation discharge | 0/162 | FAIL | （日本語の機械契約記述）
+| active/frozen requirement | 0/162 | FAIL | （日本語の機械契約記述）
 
 `162/162`の採番またはpointer閉鎖を要件定義freezeへ読み替えない。全blocking denominatorが0件となり、
 別runtimeの独立reviewとPOのL3承認を得た時点だけfreezeできる。

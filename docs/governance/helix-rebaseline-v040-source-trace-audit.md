@@ -19,7 +19,7 @@ source_digest: sha256:c0d839bd65a221bd9614b9820cd08d3f5c21cad057bbde03bb9b2e532d
 | exact intersection | 122 |
 | catalog field-only | 100 |
 | trace graph-only | 1 |
-| requirement exact set match | 89 |
+| requirement exact set match | 89 | （日本語の機械契約記述）
 | partial | 23 |
 | inbound source edge 0 | 51 |
 | `verified_by` requirement edge | 163/163 |
@@ -29,7 +29,7 @@ source_digest: sha256:c0d839bd65a221bd9614b9820cd08d3f5c21cad057bbde03bb9b2e532d
 source aliasは49種（CHAT 20＋非CHAT 29）だが、structured registryはCHAT 20だけである。`SRC-001..018` disposition IDと
 catalog source aliasのintersectionは0で、採否から要求へjoinできない。
 
-## §1 source edge 0 requirement（51/51）
+## §1 source edge 0 requirement（51/51） （日本語の契約見出し）
 
 Design HARNESS 19件:
 
@@ -49,7 +49,7 @@ Design HARNESS 19件:
 
 range表記は説明用であり、修復generatorはIDを展開して51個の個別edgeを作る。
 
-### §1.1 candidate exact route artifact
+### §1.1 candidate exact route artifact （日本語の契約見出し）
 
 51件は`docs/governance/generated/helix-rebaseline-v040-zero-edge-routes-51-v1.json`へ個別展開した。
 artifact SHA-256は`c67f7000d22e28dbd5b0b8e847c2df3b544162ce60628894a799f062a02cf731`、candidate routeは
@@ -66,7 +66,7 @@ source registry repairと実行receiptをfreeze blockerとして維持する。
 
 ## §2 partial 23のmissing source
 
-| requirement | missing source alias |
+| requirement | missing source alias | （日本語の機械契約記述）
 |---|---|
 | HBR-CORE-001 / 002 | `HYBRID-README` |
 | HBR-CORE-007 | `UT-ADR-001` |
@@ -87,7 +87,7 @@ source registry repairと実行receiptをfreeze blockerとして維持する。
 
 ## §3 canonical repair schemaとgate
 
-1. `source_registry(source_ref_id, kind, canonical_locator, immutable_revision_or_sha256, fragment_anchor,
+1. `source_registry(source_ref_id, kind, canonical_locator, immutable_revision_or_sha256, fragment_anchor, （日本語の機械契約記述）
    authority_role, availability)`を作る。
 2. `requirement_source_edges(requirement_id, source_ref_id, relation_type, source_anchor)`を唯一のedge正本とし、catalog fieldと
    trace graphを同じedge集合から生成する。

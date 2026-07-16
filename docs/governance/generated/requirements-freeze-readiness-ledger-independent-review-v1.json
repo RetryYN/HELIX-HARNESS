@@ -1,21 +1,28 @@
 {
   "checks": {
     "producer_stale_zero": true,
-    "section0_current": true,
+    "section0_current": false,
     "section1_current": true,
     "section2_critical_current": true,
     "section3_fixed_model_current": true,
     "section3_model_sha_current": true
   },
   "decision": "Design Freeze receiptと100/100 Designは支持する。Runtime Acceptanceは0/100の別軸で、baseline SHAまたはmodel参照がstaleなら台帳currentnessを支持しない。",
-  "findings": [],
+  "findings": [
+    {
+      "code": "section0_artifact_sha_not_current",
+      "hashes": [
+        "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333"
+      ]
+    }
+  ],
   "schema_version": "helix.requirements-freeze-readiness-ledger-independent-review.v1",
   "sources": {
     "critical_path": {
       "sha256": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8"
     },
     "ledger": {
-      "sha256": "89ca660498516c4b6c3c16da7c88e30df0202cd77642726ac5a66e3b15682766"
+      "sha256": "f9bb87b056abd1ad55c54534e85abe7fc9dcffdc96e9398201f95d7754127442"
     },
     "model_artifact": {
       "sha256": "585909049181916124741edade98508c172741be613ae8a26bacefde7f8d0bdc"
@@ -24,7 +31,7 @@
       "sha256": "58d24f9923eb32d3c12c7d894651a8c0e537467f34716a129a87110e4f73c7b0"
     }
   },
-  "status": "independent_review_pass_current",
+  "status": "independent_review_stale_findings_open",
   "summary": {
     "coverage_credit_true": 0,
     "critical_authority_activated": true,
@@ -32,11 +39,11 @@
     "critical_open_rows": 0,
     "design_gates": 40,
     "design_points_recalculated": 100.0,
-    "independent_stale_findings": 0,
+    "independent_stale_findings": 1,
     "producer_stale_claim": 0,
     "runtime_points_recalculated": 0,
     "section0_sha_references": 44,
-    "section0_stale_sha": 0,
+    "section0_stale_sha": 1,
     "section1_stale_claims": 0,
     "verified_true": 0,
     "weights": 100,

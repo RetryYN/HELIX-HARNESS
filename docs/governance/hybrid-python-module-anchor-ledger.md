@@ -17,47 +17,47 @@ function内=`nested`とする。main guardとCLI subcommandはcallableへのexpo
 effect凡例は`R=filesystem/env read`、`W=filesystem mutation`、`P=subprocess`、`N=network/external write`、
 `F=fixture-only`である。
 
-## §1 module anchor（29/29）
+## §1 module anchor（29/29） （日本語の契約見出し）
 
 | module | top/method/nested | main/subcommand | effect | 最小semantic family候補 |
 |---|---:|---:|---|---|
 | `activation.py` | 3/0/0 | 1/0 | R | scope-contained ID収集、activation分析 |
 | `agent_docs.py` | 4/0/0 | 1/0 | R,W | adopted-doc選択、digest render/output |
-| `agent_meta.py` | 5/0/0 | 1/0 | R,W | metadata derive、render-upsert、apply-check |
-| `assign.py` | 13/0/0 | 1/0 | R,W | assignment、Scrum acceptance、ledger freshness、XLSX/signal |
-| `build.py` | 26/0/5 | 1/19 | R,W,P | build、validate/detect、diagram/dependency、schedule/profile、migration、sheets、dispatch |
-| `consistency.py` | 7/0/0 | 1/0 | R | banned term、ADR consistency、unregistered term |
-| `derive_traces.py` | 11/0/1 | 1/0 | R,W | ID/trace matrix、source enrichment、spec regeneration |
-| `diagram_dsl.py` | 11/0/6 | 0/0 | R,W | flow、ER、sequence、wireframe、burnup render |
-| `diff_report.py` | 6/0/0 | 1/0 | R,W,P | Git snapshot、semantic compare、report、notes |
-| `export_sheets.py` | 1/0/0 | 0/0 | R,N | registered spreadsheet connector push |
-| `fix_names.py` | 2/0/0 | 1/0 | R,W | Unicode filename canonicalize/rename |
-| `hook_gate.py` | 1/0/0 | 1/0 | P(transitive) | payload filter、gate dispatch、fail-open path |
-| `id_utils.py` | 16/0/0 | 0/0 | R | ID parse/scan、definition extraction、contract token、rank |
-| `impact.py` | 4/0/2 | 1/0 | R | dependency closure、impact-by-ID/document |
-| `md_export.py` | 5/0/0 | 1/0 | R,W | Markdown render、design/WBS export |
-| `package.py` | 1/0/0 | 1/0 | R,W | verification、ZIP assembly/count |
-| `render.py` | 1/0/0 | 0/0 | memory | document→workbook supporting composer |
-| `review.py` | 5/0/0 | 1/0 | R,W | candidate selection、context packet、status/determinism |
-| `schedule.py` | 14/0/5 | 1/0 | R,W | WBS/RAG/coverage、assignment/Scrum、cycle、report |
-| `schema_check.py` | 1/0/0 | 1/0 | R | scoped schema validation/failure aggregation |
-| `scope.py` | 12/0/1 | 1/0 | R,W | activation、path/ID policy、scope resolve、snapshot |
-| `selftest.py` | 0/18/0 | 1/0 | W,F | production behavior 0。18 fixture-oracle methods |
-| `spec_check.py` | 12/0/1 | 1/0 | R,W | ledger/design RAG、live merge、Scrum validation、graph |
-| `spec_trace.py` | 3/0/2 | 1/0 | R | declared/ledger load、test/phase trace completeness |
-| `spec_types.py` | 3/0/0 | 1/0 | R | type map、heuristic fallback、coverage report |
-| `style.py` | 12/0/0 | 0/0 | memory | workbook style support/container |
-| `util.py` | 4/0/0 | 0/0 | R,P | dynamic loader、label、NFC、bounded subprocess port |
-| `validate.py` | 2/0/0 | 0/0 | R | scoped iteration、composed validation |
-| `verify_files.py` | 3/0/0 | 1/0 | R | tracked/ZIP completeness、verdict |
+| `agent_meta.py` | 5/0/0 | 1/0 | R,W | metadata derive、render-upsert、apply-check | （日本語の機械契約記述）
+| `assign.py` | 13/0/0 | 1/0 | R,W | assignment、Scrum acceptance、ledger freshness、XLSX/signal | （日本語の機械契約記述）
+| `build.py` | 26/0/5 | 1/19 | R,W,P | build、validate/detect、diagram/dependency、schedule/profile、migration、sheets、dispatch | （日本語の機械契約記述）
+| `consistency.py` | 7/0/0 | 1/0 | R | banned term、ADR consistency、unregistered term | （日本語の機械契約記述）
+| `derive_traces.py` | 11/0/1 | 1/0 | R,W | ID/trace matrix、source enrichment、spec regeneration | （日本語の機械契約記述）
+| `diagram_dsl.py` | 11/0/6 | 0/0 | R,W | flow、ER、sequence、wireframe、burnup render | （日本語の機械契約記述）
+| `diff_report.py` | 6/0/0 | 1/0 | R,W,P | Git snapshot、semantic compare、report、notes | （日本語の機械契約記述）
+| `export_sheets.py` | 1/0/0 | 0/0 | R,N | registered spreadsheet connector push | （日本語の機械契約記述）
+| `fix_names.py` | 2/0/0 | 1/0 | R,W | Unicode filename canonicalize/rename | （日本語の機械契約記述）
+| `hook_gate.py` | 1/0/0 | 1/0 | P(transitive) | payload filter、gate dispatch、fail-open path | （日本語の機械契約記述）
+| `id_utils.py` | 16/0/0 | 0/0 | R | ID parse/scan、definition extraction、contract token、rank | （日本語の機械契約記述）
+| `impact.py` | 4/0/2 | 1/0 | R | dependency closure、impact-by-ID/document | （日本語の機械契約記述）
+| `md_export.py` | 5/0/0 | 1/0 | R,W | Markdown render、design/WBS export | （日本語の機械契約記述）
+| `package.py` | 1/0/0 | 1/0 | R,W | verification、ZIP assembly/count | （日本語の機械契約記述）
+| `render.py` | 1/0/0 | 0/0 | memory | document→workbook supporting composer | （日本語の機械契約記述）
+| `review.py` | 5/0/0 | 1/0 | R,W | candidate selection、context packet、status/determinism | （日本語の機械契約記述）
+| `schedule.py` | 14/0/5 | 1/0 | R,W | WBS/RAG/coverage、assignment/Scrum、cycle、report | （日本語の機械契約記述）
+| `schema_check.py` | 1/0/0 | 1/0 | R | scoped schema validation/failure aggregation | （日本語の機械契約記述）
+| `scope.py` | 12/0/1 | 1/0 | R,W | activation、path/ID policy、scope resolve、snapshot | （日本語の機械契約記述）
+| `selftest.py` | 0/18/0 | 1/0 | W,F | production behavior 0。18 fixture-oracle methods | （日本語の機械契約記述）
+| `spec_check.py` | 12/0/1 | 1/0 | R,W | ledger/design RAG、live merge、Scrum validation、graph | （日本語の機械契約記述）
+| `spec_trace.py` | 3/0/2 | 1/0 | R | declared/ledger load、test/phase trace completeness | （日本語の機械契約記述）
+| `spec_types.py` | 3/0/0 | 1/0 | R | type map、heuristic fallback、coverage report | （日本語の機械契約記述）
+| `style.py` | 12/0/0 | 0/0 | memory | workbook style support/container | （日本語の機械契約記述）
+| `util.py` | 4/0/0 | 0/0 | R,P | dynamic loader、label、NFC、bounded subprocess port | （日本語の機械契約記述）
+| `validate.py` | 2/0/0 | 0/0 | R | scoped iteration、composed validation | （日本語の機械契約記述）
+| `verify_files.py` | 3/0/0 | 1/0 | R | tracked/ZIP completeness、verdict | （日本語の機械契約記述）
 | **合計** | **188/18/23 = 229** | **22/19** | W 15以上、P 4、N 1 | final atom分母ではない |
 
 ## §2 import・effect closure
 
 | metric | count | verdict |
 |---|---:|---|
-| local import occurrence / unique edge / local module | 63 / 51 / 11 | observed |
-| external top module | 23 | dependency disposition pending |
+| local import occurrence / unique edge / local module | 63 / 51 / 11 | observed | （日本語の機械契約記述）
+| external top module | 23 | dependency disposition pending | （日本語の機械契約記述）
 | direct subprocess＋transitive hook | 4 modules | adapter/redesign必須 |
 | network/external write | 1 module | default deny＋登録connector必須 |
 | clear filesystem mutation | 15 modules以上 | isolated result root＋manifest必須 |
@@ -80,16 +80,16 @@ effect凡例は`R=filesystem/env read`、`W=filesystem mutation`、`P=subprocess
 
 | metric | current | verdict |
 |---|---:|---|
-| module SHA inventory | 29/29 | PASS |
-| callable anchor inventory | 229/229 | PASS |
-| deterministic callable candidate rows | 229/229 | PASS（source/span/digest、route pending、coverage credit 0） |
-| exposure inventory | main 22、subcommand 19 | PASS |
-| static proposed primary route | 229/229 | PROPOSED（behavior 86 / container 5 / exposure-routed callable 16 / fixture 18 / support 104） |
-| verified anchor exact route | 0/229 | FAIL |
-| verified callable closure edge | 0/229 | FAIL |
+| module SHA inventory | 29/29 | PASS | （日本語の機械契約記述）
+| callable anchor inventory | 229/229 | PASS | （日本語の機械契約記述）
+| deterministic callable candidate rows | 229/229 | PASS（source/span/digest、route pending、coverage credit 0） | （日本語の機械契約記述）
+| exposure inventory | main 22、subcommand 19 | PASS | （日本語の機械契約記述）
+| static proposed primary route | 229/229 | PROPOSED（behavior 86 / container 5 / exposure-routed callable 16 / fixture 18 / support 104） | （日本語の機械契約記述）
+| verified anchor exact route | 0/229 | FAIL | （日本語の機械契約記述）
+| verified callable closure edge | 0/229 | FAIL | （日本語の機械契約記述）
 | adopted callable | 0/229 | FAIL |
-| dynamic call/effect/failure trace | 0/29 | FAIL |
-| final behavior atom denominator | unknown | FAIL |
+| dynamic call/effect/failure trace | 0/29 | FAIL | （日本語の機械契約記述）
+| final behavior atom denominator | unknown | FAIL | （日本語の機械契約記述）
 | active adoption | 0/29 | FAIL |
 
 個票artifactは`docs/governance/generated/hybrid-python-callables-semantic-229-v2.json`、契約は
@@ -131,12 +131,12 @@ capability class別に229/229照合した。
 - reviewed disposition: adopt 84 / redesign 7 / reject 18 / defer 120（candidateからの変更0、overlay 0）。
 - adopt 84のstatic edge failureは0。
 - boundary mismatch 26はredesign 7、reject 18、product-data defer 1へ既に隔離済み。
-- fixture executed 0、runtime executed 0、verified adoption 0、coverage credit 0、authority receipt 0。
+- fixture executed 0、runtime executed 0、verified adoption 0、coverage credit 0、authority receipt 0。 （日本語の機械契約記述）
 
 このreview PASSはcandidate分類の意味整合だけを示す。adopt 84をactive/verifiedへ昇格せず、各`HPY-VERIFY-*`、
 Linux/macOS/Windows、Node schema/effect再検証、timeout/cancel/idempotency、独立runtime receiptまでfreezeを維持する。
 
-## §5 static route proposal
+## §5 static route proposal （日本語の契約見出し）
 
 | module | anchors | behavior | container | exposure | fixture | support | semantic family候補 |
 |---|---:|---:|---:|---:|---:|---:|---:|

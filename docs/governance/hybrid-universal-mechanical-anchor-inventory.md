@@ -18,17 +18,17 @@ python_module_anchor_ledger: docs/governance/hybrid-python-module-anchor-ledger.
 class、CLI、schema root、template file、generated fixtureなどのcontainer/exposure/fixtureをbehaviorへ二重加算しない。
 最終freezeには、全anchorのexactly-one route、意味IR、pending 0、coverage join、独立reviewが別途必要である。
 
-## §1 Hybrid Design Document ZIP
+## §1 Hybrid Design Document ZIP （日本語の契約見出し）
 
 | anchor family | count | 判定 |
 |---|---:|---|
 | archive entry / unique blob | 703 / 701 | entry custody。exact duplicate alias 2組 |
-| Python module | 29 | tool inventory |
-| top-level function | 188 | callable candidate |
-| method / nested function | 18 / 23 | callable candidate |
+| Python module | 29 | tool inventory | （日本語の機械契約記述）
+| top-level function | 188 | callable candidate | （日本語の機械契約記述）
+| method / nested function | 18 / 23 | callable candidate | （日本語の機械契約記述）
 | callable anchor合計 | 229 | behavior候補。動的trace前 |
 | class container | 7 | weight 0 |
-| main guard module | 22 | exposure container |
+| main guard module | 22 | exposure container | （日本語の機械契約記述）
 | CLI subcommand / argument | 19 / 44 | callableへの`exposes` edge |
 | leaf CLI route上限 | 40 | behavior数へ直接加算しない |
 | local import edge | 63 occurrences / 51 unique | import closure入力 |
@@ -50,18 +50,18 @@ behavior二重算入を防ぐ。
 二重計上しない。`build/**` 427件はfixtureとして保持し、producer、input digest、generator version、consumer assertionが
 無ければorphanとする。
 
-## §2 Universal Workflow Requirements ZIP
+## §2 Universal Workflow Requirements ZIP （日本語の契約見出し）
 
 | anchor family | count | 判定 |
 |---|---:|---|
-| archive entry / unique blob | 14 / 14 | exact duplicate 0 |
-| conditional question | 27 | individual disposition candidate |
-| base question | 24 | individual disposition candidate |
-| runtime orchestration question | 25 | individual disposition candidate |
+| archive entry / unique blob | 14 / 14 | exact duplicate 0 | （日本語の機械契約記述）
+| conditional question | 27 | individual disposition candidate | （日本語の機械契約記述）
+| base question | 24 | individual disposition candidate | （日本語の機械契約記述）
+| runtime orchestration question | 25 | individual disposition candidate | （日本語の機械契約記述）
 | question合計 | 76 | primary behavior candidate |
-| conditional family / detect term occurrence | 6 / 30 | routing anchor |
+| conditional family / detect term occurrence | 6 / 30 | routing anchor | （日本語の機械契約記述）
 | derived surface occurrence / unique | 22 / 17 | derivation edge候補 |
-| JSON Schema file / recursive node | 3 / 207 | contract/constraint anchor |
+| JSON Schema file / recursive node | 3 / 207 | contract/constraint anchor | （日本語の機械契約記述）
 | property / required ref / enum value | 154 / 76 / 39 | constraint clusterへsplit予定 |
 | named fixture-case候補 | 13 | behavior weight 0、oracle/lineage入力 |
 
@@ -86,10 +86,10 @@ atomic denominatorをfreezeする。
 
 | metric | current | verdict |
 |---|---:|---|
-| Hybrid entry inventory | 703/703 | PASS |
+| Hybrid entry inventory | 703/703 | PASS | （日本語の機械契約記述）
 | Hybrid mechanical anchor extraction | 部分類型を計数済み | PARTIAL |
-| Hybrid final behavior atom denominator | unknown | FAIL |
-| Universal entry inventory | 14/14 | PASS |
+| Hybrid final behavior atom denominator | unknown | FAIL | （日本語の機械契約記述）
+| Universal entry inventory | 14/14 | PASS | （日本語の機械契約記述）
 | Universal question anchor | 76/76 observed | PASS（anchorのみ） |
-| Universal normative prose ownership | unknown | FAIL |
-| Universal final behavior atom denominator | unknown | FAIL |
+| Universal normative prose ownership | unknown | FAIL | （日本語の機械契約記述）
+| Universal final behavior atom denominator | unknown | FAIL | （日本語の機械契約記述）

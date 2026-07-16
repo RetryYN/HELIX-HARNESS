@@ -28,14 +28,14 @@ Visual primary evidenceはL8/L9/L10/L11へ層別化し、nonvisual supportはvis
 昇格時は`VIS-L8-*`、`VIS-L9-*`、`VIS-L10-*`、`VIS-L11-*`またはnonvisual gate IDへremapし、`DH-L10-*`を
 実行authorityとして残さない。
 
-## §1 exact route（29/29）
+## §1 exact route（29/29） （日本語の契約見出し）
 
-| source ID | span | semantic obligation | HIL route | L4 component | verification / gate candidate | disposition / canonical remap |
+| source ID | span | semantic obligation | HIL route | L4 component | verification / gate candidate | disposition / canonical remap | （日本語の機械契約記述）
 |---|---:|---|---|---|---|---|
 | HBR-DH-001 | 1369-1380 | Design capabilityはPython Core nativeでoverlayでない | HIL-FR-15/25、HIL-TR-02/03 | `DesignCapabilityRegistry` | DH-L10-001 topology | harden/adopt。Python data planeへ |
 | HBR-DH-002 | 1381-1392 | 53 raw assetはimmutable transformation source | HIL-FR-21/22、HIL-NFR-12 | `DesignSourcePinRegistry` | DH-L10-002 custody | harden。53はsnapshot fact、分母はreceipt由来 |
 | HBR-DH-003 | 1393-1403 | UT/PR65はdonor、parity/UT IDを完成oracleにしない | HIL-FR-16/21/22 | `DonorBoundaryValidator` | DH-L10-003 namespace | adopt-with-hardening |
-| HBR-DH-004 | 1404-1414 | L2 Prototype Agreement typed fields | HIL-FR-61 | `PrototypeAgreementService` | DH-L10-004 schema/agreement | adopt。canonical L2↔L11 |
+| HBR-DH-004 | 1404-1414 | L2 Prototype Agreement typed fields | HIL-FR-61 | `PrototypeAgreementService` | DH-L10-004 schema/agreement | adopt。canonical L2↔L11 | （日本語の機械契約記述）
 | HBR-DH-005 | 1415-1425 | prototypeはimplementation-neutral | HIL-FR-62 | `PrototypeNeutralityValidator` | DH-L10-005 forbidden binding | adopt。canonical L2 |
 | HBR-DH-006 | 1426-1436 | screen designとimplementation lifecycleは直交 | HIL-FR-63 | `ScreenLedgerLifecycleService` | DH-L10-006 cross-axis transition | adopt。design L2/L4、code L6、pair L11/L9/L7 |
 | HBR-DH-007 | 1437-1447 | screen/region/slot/action/state/binding ID continuity | HIL-FR-64 | `SemanticIdContinuityGraph` | DH-L10-007 ID closure | redesign。旧L1–L10→canonical L1–L12 pairs |
@@ -66,14 +66,14 @@ Visual primary evidenceはL8/L9/L10/L11へ層別化し、nonvisual supportはvis
 
 | metric | current | verdict |
 |---|---:|---|
-| source rows identified | 29/29 | PASS |
-| existing atomic-equivalent route | 10/29 | PROPOSED |
-| new atomic requirement candidate | 19/29 | OPEN |
+| source rows identified | 29/29 | PASS | （日本語の機械契約記述）
+| existing atomic-equivalent route | 10/29 | PROPOSED | （日本語の機械契約記述）
+| new atomic requirement candidate | 19/29 | OPEN | （日本語の機械契約記述）
 | L4 component candidate | 29/29 | PROPOSED |
-| verification/gate candidate | 29/29 | PROPOSED |
-| materialized HIL exact edge | 0/29 | FAIL |
-| materialized L4 design edge | 0/29 | FAIL |
-| materialized verification/gate edge | 0/29 | FAIL |
+| verification/gate candidate | 29/29 | PROPOSED | （日本語の機械契約記述）
+| materialized HIL exact edge | 0/29 | FAIL | （日本語の機械契約記述）
+| materialized L4 design edge | 0/29 | FAIL | （日本語の機械契約記述）
+| materialized verification/gate edge | 0/29 | FAIL | （日本語の機械契約記述）
 
 `PROPOSED`をcoverageへ算入しない。19件をL1/L3へ登録し、全29件をmachine edgeとして生成した後に独立reviewする。
 
@@ -93,14 +93,14 @@ L7=2、L8=3、L9=1、L10=9、L11=2、L12=1とする。
 machine-readable正本候補は`docs/governance/design-harness-ac-closure-edges.yaml`で、18/18 unique source ACと
 non-empty requirement/HAC/test edgeをparse検証済みである。ただし`coverage_credit=false`を維持する。
 
-| layer | closure case candidates | primary proof |
+| layer | closure case candidates | primary proof | （日本語の機械契約記述）
 |---|---|---|
 | L7 | DHAC-L07-012/024 | independent mission receipt、capsule spawn前freshness |
-| L8 | DHAC-L08-011/019/027 | mission readiness、Python patch/wrap parity、Python/Node ownership |
+| L8 | DHAC-L08-011/019/027 | mission readiness、Python patch/wrap parity、Python/Node ownership | （日本語の機械契約記述）
 | L9 | DHAC-L09-023 | UI state/actionとworkflow IRの単一join |
-| L10 | DHAC-L10-001/003/006/007/018/020/021/025/026 | topology、donor honesty、dual lifecycle、full trace、delta route、Node visual toolchain、projection、namespace、catalog |
+| L10 | DHAC-L10-001/003/006/007/018/020/021/025/026 | topology、donor honesty、dual lifecycle、full trace、delta route、Node visual toolchain、projection、namespace、catalog | （日本語の機械契約記述）
 | L11 | DHAC-L11-004/005 | Prototype Agreement全field、implementation neutrality |
-| L12 | DHAC-L12-002 | 53-entry source custody、archive digest、transformation lineage |
+| L12 | DHAC-L12-002 | 53-entry source custody、archive digest、transformation lineage | （日本語の機械契約記述）
 
 全caseはpackage/source digest、authority revision、denominator、selected/missing atom、input/output/artifact digest、producer/verifier、
 verdict、failure code、commit/tree/build、freshnessを持つ。現状は`designed/not_executed`であり、18/18のfixture、DB query、
