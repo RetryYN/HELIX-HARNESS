@@ -27,8 +27,7 @@ supersedes_scope:
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l12: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
-pair_artifact: docs/test-design/helix/L10-infinity-loop-platform-system-test-design.md
-supporting_acceptance: docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md
+pair_artifact: docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md
 spec:
   defines:
     - { id: HR-FR-VMCUT-01, kind: 正本権限, title: canonical authority precedence, layer: L3, owner: TL, status: confirmed }

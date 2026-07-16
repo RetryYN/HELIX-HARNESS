@@ -1,5 +1,5 @@
 ---
-title: "Harness L11 受入/human visual 境界"
+title: "Harness L11 総合レビュー・UAT 境界"
 layer: L11
 kind: design
 status: confirmed
@@ -11,7 +11,7 @@ retention_authority: operations-governance
 retention_mode: indefinite
 ---
 
-# Harness L11 受入/human visual 境界
+# Harness L11 総合レビュー・UAT 境界
 
 L11 は要求、要件、実装、検証証跡、運用判断をまとめて確認する層である。review evidence と completion packet は存在するが、open decisions が残る間は UAT close としない。
 

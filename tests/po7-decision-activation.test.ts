@@ -7,12 +7,13 @@ import { migrate } from "../src/state-db/migration";
 import { activatePo7Decision, transitionPo7Authority } from "../src/state-db/po7-decision-activation";
 
 const repoRoot = resolve(import.meta.dirname, "..");
+// PLAN-L7-459-design-freeze-authority-transition
 const base = (suffix = "1") => ({ repoRoot, operationId: `PO7-ACT-${suffix}`, idempotencyKey: `PO7-IDEMP-${suffix}`, expectedActivationEpoch: 0, expectedPreviousEventDigest: null });
 const count = (db: ReturnType<typeof openHarnessDb>, table: string) => Number(db.prepare(`SELECT COUNT(*) n FROM ${table}`).get()?.n);
 const tables = ["po7_activation_operations", "po7_group_option_receipts", "po7_question_answer_receipts", "po7_vmodel_authority_events", "po7_activation_projections", "po7_activation_terminal_receipts"];
 
 describe("PO7 decision activation writer", () => {
-  it("current repo authorityからA×6/22/VMAUTHをatomic activationしexact replayする", () => {
+  it("U-DFA-002: current repo authorityからA×6/22/VMAUTHをatomic activationしexact replayする", () => {
     const db = openHarnessDb(":memory:"); migrate(db);
     expect(() => db.exec("INSERT INTO po7_activation_terminal_receipts(receipt_id) VALUES (NULL)")).toThrow();
     const first = activatePo7Decision(db, base());

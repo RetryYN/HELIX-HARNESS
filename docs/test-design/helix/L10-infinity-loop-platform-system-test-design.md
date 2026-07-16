@@ -8,6 +8,10 @@ updated: 2026-07-16
 owner: QA / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 pair_artifact: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+pair_freeze_exempt: true
+pair_freeze_exempt_kind: layer_migration_staged
+pair_freeze_exempt_reason: "L3受入設計からL10総合test設計への段階移行中であり、L3の正規pairを置換しない"
+pair_freeze_exempt_target: docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md
 legacy_source: docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md
 ---
 

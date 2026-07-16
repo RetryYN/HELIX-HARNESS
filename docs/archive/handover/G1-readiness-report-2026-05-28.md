@@ -25,7 +25,7 @@ related_audit: |
 > **本 v7 で訂正**: PO 訂正 2 件反映 (「必ず外部にはならないからな」+「外部依頼の場合は要件修正が入る」)
 >   - wireframe 方針: 「PO 外部吸収方針確定」(v6) → **柔軟方針** (Low-Fi デフォルト harness 内、High-Fi はケース別判断)
 >   - 「PO 外部吸収」 → **「外部依頼」**表現に統一 (PO が外部に依頼する動詞的表現)
->   - **外部依頼時の運用フロー追加**: L2 確定 input → 外部成果物戻り → harness レビュー → 要件修正 back-propagation (L1 screen/business/functional) → G1-trace 再検証必須 → L10 UX refinement （層意味論: canonical L10=system/Real UX evidence）
+>   - **外部依頼時の運用フロー追加**: L2 確定 input → 外部成果物戻り → harness レビュー → 要件修正 back-propagation (L1 screen/business/functional) → G1-trace 再検証必須 → L10 UX refinement
 >   - 「L2 で本来やる工程をある程度確定した状態で出すんだから」(PO 指示) を運用前提として明示
 >   - ledger A-40 追加 (A-39 訂正の独立 entry)
 > **本 v6 で追加**: L2-screen フォルダ新設 + wireframe PO 外部吸収方針確定 (PO 指示「L2 のフォルダ作っておいてこっちでモック吸収する」)
@@ -144,7 +144,7 @@ related_audit: |
 
 ### Bonus 1 件 — v8 で発見・解消
 
-- ✅ **解消** — L2-screen `wireframe.md` で重複セクション 2 件 (§93-99「L10 UX refinement との関係」+ §101-105「carry / 次工程」) が §62-74 と完全重複していたため削除。v7 commit (486be21) で外部依頼運用フロー追記時に発生した重複を整理 （層意味論: canonical L10=system/Real UX evidence）
+- ✅ **解消** — L2-screen `wireframe.md` で重複セクション 2 件 (§93-99「L10 UX refinement との関係」+ §101-105「carry / 次工程」) が §62-74 と完全重複していたため削除。v7 commit (486be21) で外部依頼運用フロー追記時に発生した重複を整理
 
 ### L3 forward carry (確定済、L3 起票時に必須参照)
 

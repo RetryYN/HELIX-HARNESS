@@ -347,6 +347,7 @@ export function analyzeHandoverResurrectionShadowRepo(repoRoot: string): Resurre
       intentDigest: resurrectionPolicyDigest(),
       capturedAt: new Date().toISOString(),
       retirementPhase: "shadow_read",
+      sourceRevision: preserveAuthority.sourceRevision,
     },
   );
   const files = [

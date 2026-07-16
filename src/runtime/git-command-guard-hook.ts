@@ -100,8 +100,15 @@ export function runGitCommandGuardHook(opts: {
   if (base.decision === "pass") return { exitCode: 0, reason: base.reason };
   const markerPath = join(opts.repoRoot, ".helix", "state", "destructive-git-override");
   let markerReason: string | null = null;
+  let markerNonce: string | null = null;
   try {
     markerReason = existsSync(markerPath) ? readFileSync(markerPath, "utf8") : null;
+    if (markerReason !== null) {
+      const markerStat = statSync(markerPath);
+      markerNonce = guardOverrideDigest(
+        `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
+      );
+    }
   } catch {
     return { exitCode: 2, message: base.message };
   }
@@ -149,7 +156,7 @@ export function runGitCommandGuardHook(opts: {
       return { exitCode: 2, message: `${base.message} override=blocked_audit_failure` };
     }
   }
-  if (override.source !== "marker" || markerReason === null)
+  if (override.source !== "marker" || markerReason === null || markerNonce === null)
     return { exitCode: 2, message: base.message };
   try {
     const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
@@ -158,12 +165,8 @@ export function runGitCommandGuardHook(opts: {
     });
     try {
       if (db.userVersion() < SCHEMA_VERSION) migrate(db);
-      const markerStat = statSync(markerPath);
-      const nonce = guardOverrideDigest(
-        `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
-      );
       const result = commitOverrideUse({
-        nonce,
+        nonce: markerNonce,
         reason: override.reason,
         classification: {
           guardKind: "git",

@@ -286,9 +286,10 @@ export function collectPreserveManifest(
     intentDigest: string;
     capturedAt: string;
     retirementPhase: PreserveManifest["retirementPhase"];
+    sourceRevision?: string;
   },
 ): PreserveManifest {
-  const sourceRevision = execFileSync("git", ["rev-parse", "HEAD"], {
+  const sourceRevision = execFileSync("git", ["rev-parse", context.sourceRevision ?? "HEAD"], {
     cwd: repoRoot,
     encoding: "utf8",
   }).trim();
@@ -331,10 +332,14 @@ export function collectPreserveManifest(
     }
     let artifactRevision = sourceRevision;
     if (tracked) {
-      const revision = execFileSync("git", ["log", "-1", "--format=%H", "--", spec.path], {
-        cwd: repoRoot,
-        encoding: "utf8",
-      }).trim();
+      const revision = execFileSync(
+        "git",
+        ["log", "-1", "--format=%H", sourceRevision, "--", spec.path],
+        {
+          cwd: repoRoot,
+          encoding: "utf8",
+        },
+      ).trim();
       if (revision) artifactRevision = revision;
     }
     let createdAt = context.capturedAt;

@@ -730,6 +730,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         ".claude/settings.json",
         ".codex/hooks.json",
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
+        "docs/governance/generated/helix-bun-surface-inventory-v1.json",
         "docs/design/harness/L6-function-design/setup-solo-team.md",
         retiredSessionPointer,
       ],
@@ -749,6 +750,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.artifactPaths).not.toContain(".claude/settings.json");
     expect(plan.artifactPaths).not.toContain(".codex/hooks.json");
     expect(plan.artifactPaths).not.toContain("docs/plans/PLAN-L7-157-distribution-clean-pull.md");
+    expect(plan.artifactPaths).not.toContain(
+      "docs/governance/generated/helix-bun-surface-inventory-v1.json",
+    );
     expect(plan.artifactPaths).not.toContain(retiredSessionPointer);
     expect(plan.releaseIntegrity.artifacts).toEqual([
       "v0.1.0.tar.gz",

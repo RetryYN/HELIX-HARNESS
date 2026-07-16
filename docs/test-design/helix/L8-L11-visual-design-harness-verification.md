@@ -8,6 +8,10 @@ created: 2026-07-16
 updated: 2026-07-16
 owner: QA / UIUX / TL
 scope: visual-design-only
+pair_freeze_exempt: true
+pair_freeze_exempt_kind: cross_layer_meta
+pair_freeze_exempt_reason: "Visual Design HARNESSのL8–L11を横断するmeta検証設計であり、単一層の正規V-pairではない"
+pair_artifact: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
 requirements:
   - HIL-FR-64
   - HIL-FR-66
