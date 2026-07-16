@@ -36,6 +36,9 @@ export type AgentStandardFailureCode =
   | "HIL_MUSTER_RESOLUTION_INVALID"
   | "HIL_AGENT_MUSTER_NO_ELIGIBLE"
   | "HIL_AGENT_MUSTER_NONDETERMINISTIC"
+  | "HIL_AGENT_STATE_TRANSITION_INVALID"
+  | "HIL_AGENT_LIFECYCLE_INVALID"
+  | "HIL_AGENT_EVENT_SEQUENCE_INVALID"
   | "HIL_AGENT_BLIND_CONTEXT_LEAK"
   | "HIL_AGENT_VERIFIER_NOT_INDEPENDENT"
   | "HIL_ROLE_SEPARATION_VIOLATION";
@@ -140,6 +143,64 @@ export interface AgentMusterComparisonReceiptV1 {
   candidate_team_digest: string;
   equal: true;
   receipt_digest: string;
+}
+
+export type AgentLifecycleState =
+  | "mustered"
+  | "leased"
+  | "running"
+  | "checkpointed"
+  | "completed"
+  | "verification_pending"
+  | "verified"
+  | "released"
+  | "failed"
+  | "cancelled"
+  | "quarantined"
+  | "retired";
+
+export interface AgentLifecycleInstanceSeedV1 {
+  schema_version: "helix-agent-instance-seed.v1";
+  instance_id: string;
+  muster_id: string;
+  member_index: number;
+  contract_id: string;
+  contract_revision: number;
+  task_identity_digest: string;
+  attempt: number;
+  initial_state: "mustered";
+  seed_digest: string;
+}
+
+export interface AgentLifecycleTransitionDecisionV1 {
+  from_state: AgentLifecycleState;
+  to_state: AgentLifecycleState;
+  receipt_set_digest: string;
+  prerequisite_failures: string[];
+  allowed: boolean;
+  failure_code: "HIL_AGENT_STATE_TRANSITION_INVALID" | "HIL_AGENT_LIFECYCLE_INVALID" | null;
+  decision_digest: string;
+}
+
+export interface AgentLifecycleEventHeadV1 {
+  instance_id: string;
+  state: AgentLifecycleState;
+  sequence: number;
+  event_digest: string;
+  operation_ids: string[];
+}
+
+export interface AgentLifecycleEventV1 {
+  schema_version: "helix-agent-lifecycle-event.v1";
+  instance_id: string;
+  sequence: number;
+  operation_id: string;
+  from_state: AgentLifecycleState;
+  to_state: AgentLifecycleState;
+  fence: number;
+  previous_event_digest: string;
+  payload_digest: string;
+  event_digest: string;
 }
 
 const CONTRACT_KEYS = [
@@ -555,4 +616,134 @@ export function enforceAgentRoleSeparation(
     };
   }
   return { ok: true, value: true };
+}
+
+/** Seedは実行権限を持たず、同じmuster/member/task/attemptから同じidentityだけを導出する。 */
+export function createAgentLifecycleInstance(
+  muster: AgentMusterV1,
+  member: AgentMusterMemberV1,
+  contract: HarnessAgentContractV1,
+  task: HarnessAgentTaskV1,
+  attempt: number,
+): AgentStandardResult<AgentLifecycleInstanceSeedV1> {
+  const version = semanticVersion(contract.contract_version);
+  if (
+    !Number.isInteger(attempt) ||
+    attempt < 1 ||
+    !version ||
+    member.agent_id !== contract.agent_id ||
+    member.contract_version !== contract.contract_version ||
+    muster.task_identity_digest !== task.task_identity_digest ||
+    muster.members[member.member_index]?.agent_id !== member.agent_id
+  ) {
+    return { ok: false, code: "HIL_AGENT_LIFECYCLE_INVALID", findings: ["seed_binding"] };
+  }
+  const contractRevision = version[0] * 1_000_000 + version[1] * 1_000 + version[2];
+  const identity = [
+    muster.team_digest,
+    member.member_index,
+    contract.agent_id,
+    contractRevision,
+    task.task_identity_digest,
+    attempt,
+  ];
+  const payload = {
+    schema_version: "helix-agent-instance-seed.v1" as const,
+    instance_id: digest(identity),
+    muster_id: muster.team_digest,
+    member_index: member.member_index,
+    contract_id: contract.agent_id,
+    contract_revision: contractRevision,
+    task_identity_digest: task.task_identity_digest,
+    attempt,
+    initial_state: "mustered" as const,
+  };
+  return { ok: true, value: { ...payload, seed_digest: digest(payload) } };
+}
+
+const LIFECYCLE_EDGES: Readonly<Record<AgentLifecycleState, readonly AgentLifecycleState[]>> = {
+  mustered: ["leased", "quarantined"],
+  leased: ["running", "quarantined"],
+  running: ["checkpointed", "completed", "failed", "cancelled", "quarantined"],
+  checkpointed: ["running", "completed", "failed", "cancelled", "quarantined"],
+  completed: ["verification_pending", "quarantined"],
+  verification_pending: ["verified", "quarantined"],
+  verified: ["released", "quarantined"],
+  released: ["retired", "quarantined"],
+  failed: ["quarantined"],
+  cancelled: ["quarantined"],
+  quarantined: ["retired"],
+  retired: [],
+};
+
+export function validateAgentLifecycleTransition(
+  current: AgentLifecycleState,
+  next: AgentLifecycleState,
+  receiptSet: readonly string[],
+): AgentLifecycleTransitionDecisionV1 {
+  const receipts = sortedUnique([...receiptSet]);
+  const prerequisiteFailures: string[] = [];
+  const requiredReceipt =
+    next === "verification_pending"
+      ? "result_accepted"
+      : next === "verified"
+        ? "verification_pass"
+        : next === "released"
+          ? "release_authorized"
+          : null;
+  if (requiredReceipt && !receipts.includes(requiredReceipt))
+    prerequisiteFailures.push(requiredReceipt);
+  const legalEdge = LIFECYCLE_EDGES[current].includes(next);
+  const allowed = legalEdge && prerequisiteFailures.length === 0;
+  const failureCode = !legalEdge
+    ? ("HIL_AGENT_STATE_TRANSITION_INVALID" as const)
+    : prerequisiteFailures.length > 0
+      ? ("HIL_AGENT_LIFECYCLE_INVALID" as const)
+      : null;
+  const payload = {
+    from_state: current,
+    to_state: next,
+    receipt_set_digest: digest(receipts),
+    prerequisite_failures: prerequisiteFailures,
+    allowed,
+    failure_code: failureCode,
+  };
+  return { ...payload, decision_digest: digest(payload) };
+}
+
+export function appendAgentLifecycleEvent(
+  head: AgentLifecycleEventHeadV1,
+  operation: { operation_id: string; expected_sequence: number; payload_digest: string },
+  transition: AgentLifecycleTransitionDecisionV1,
+  fence: number,
+): AgentStandardResult<AgentLifecycleEventV1> {
+  const findings: string[] = [];
+  if (!transition.allowed || transition.from_state !== head.state) findings.push("transition");
+  if (operation.expected_sequence !== head.sequence + 1) findings.push("sequence");
+  if (
+    !nonEmptyString(operation.operation_id) ||
+    head.operation_ids.includes(operation.operation_id)
+  )
+    findings.push("operation_id");
+  if (!nonEmptyString(operation.payload_digest)) findings.push("payload_digest");
+  if (!Number.isSafeInteger(fence) || fence < 0) findings.push("fence");
+  if (!nonEmptyString(head.event_digest)) findings.push("previous_event_digest");
+  if (findings.length > 0)
+    return {
+      ok: false,
+      code: "HIL_AGENT_EVENT_SEQUENCE_INVALID",
+      findings: sortedUnique(findings),
+    };
+  const payload = {
+    schema_version: "helix-agent-lifecycle-event.v1" as const,
+    instance_id: head.instance_id,
+    sequence: operation.expected_sequence,
+    operation_id: operation.operation_id,
+    from_state: transition.from_state,
+    to_state: transition.to_state,
+    fence,
+    previous_event_digest: head.event_digest,
+    payload_digest: operation.payload_digest,
+  };
+  return { ok: true, value: { ...payload, event_digest: digest(payload) } };
 }
