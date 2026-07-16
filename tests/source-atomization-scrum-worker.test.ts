@@ -109,7 +109,7 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
       "import importlib.util, socket",
       `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
       "m=importlib.util.module_from_spec(s); s.loader.exec_module(m)",
-      "m.install_external_io_default_deny()",
+      "m.install_audited_external_io_guards()",
       "socket.socket()",
     ].join("; ");
     expect(() =>
@@ -119,13 +119,13 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
         env: { PATH: process.env.PATH ?? "", PYTHONDONTWRITEBYTECODE: "1" },
         stdio: "pipe",
       }),
-    ).toThrow(/network is disabled/);
+    ).toThrow(/audited network API is rejected; this guard is not an OS sandbox/);
 
     const fileProbe = [
       "import importlib.util",
       `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
       "m=importlib.util.module_from_spec(s); s.loader.exec_module(m)",
-      "m.install_external_io_default_deny()",
+      "m.install_audited_external_io_guards()",
       "open('/tmp/forbidden', 'w')",
     ].join("; ");
     expect(() =>
@@ -135,7 +135,9 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
         env: { PATH: process.env.PATH ?? "", PYTHONDONTWRITEBYTECODE: "1" },
         stdio: "pipe",
       }),
-    ).toThrow(/filesystem and child processes are disabled/);
+    ).toThrow(
+      /audited filesystem or child-process API is rejected; this guard is not an OS sandbox/,
+    );
 
     for (const operation of [
       "os.mkdir('forbidden-directory')",
@@ -148,7 +150,7 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
         "import importlib.util, os, subprocess",
         `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
         "m=importlib.util.module_from_spec(s); s.loader.exec_module(m)",
-        "m.install_external_io_default_deny()",
+        "m.install_audited_external_io_guards()",
         operation,
       ].join("; ");
       expect(() =>
@@ -158,14 +160,16 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
           env: { PATH: process.env.PATH ?? "", PYTHONDONTWRITEBYTECODE: "1" },
           stdio: "pipe",
         }),
-      ).toThrow(/filesystem and child processes are disabled/);
+      ).toThrow(
+        /audited filesystem or child-process API is rejected; this guard is not an OS sandbox/,
+      );
     }
 
     const nonSandboxProbe = [
       "import importlib.util, os",
       `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
       "m=importlib.util.module_from_spec(s); s.loader.exec_module(m)",
-      "m.install_external_io_default_deny()",
+      "m.install_audited_external_io_guards()",
       "assert os.getcwd()",
       "assert os.stat('.').st_mode",
     ].join("; ");

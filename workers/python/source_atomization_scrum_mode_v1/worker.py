@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Proposal-only source atomizer for Scrum-mode Markdown.
 
-The worker owns no filesystem, database, repository, state, or network authority.
+The proposal contract receives no filesystem, database, repository, state, or network authority.
 It reads exactly one bounded JSONL request from stdin and emits one proposal plus
-one completion record. Node must independently rederive every atom and digest.
+one completion record. Audited API guards are defense-in-depth, not an OS sandbox.
+Node must independently rederive every atom and digest.
 """
 
 from __future__ import annotations
@@ -34,12 +35,12 @@ class ContractError(Exception):
 
 def _deny_external_io_audit(event: str, _args: tuple[Any, ...]) -> None:
     if event.startswith("socket."):
-        raise PermissionError("network is disabled for HELIX proposal workers")
+        raise PermissionError("audited network API is rejected; this guard is not an OS sandbox")
     if event == "open" or event.startswith(("os.", "subprocess.", "_posixsubprocess.", "pty.")):
-        raise PermissionError("filesystem and child processes are disabled for this pure HELIX worker")
+        raise PermissionError("audited filesystem or child-process API is rejected; this guard is not an OS sandbox")
 
 
-def install_external_io_default_deny() -> None:
+def install_audited_external_io_guards() -> None:
     sys.addaudithook(_deny_external_io_audit)
 
 
@@ -163,7 +164,7 @@ def fail(message: str) -> NoReturn:
 def main() -> None:
     if sys.argv != [sys.argv[0]]:
         fail("arguments are forbidden")
-    install_external_io_default_deny()
+    install_audited_external_io_guards()
     raw = sys.stdin.buffer.readline(MAX_LINE_BYTES + 2)
     if sys.stdin.buffer.read(1):
         fail("exactly one request line is required")
