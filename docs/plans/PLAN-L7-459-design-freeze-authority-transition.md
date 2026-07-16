@@ -10,6 +10,14 @@ status: confirmed
 created: 2026-07-16
 updated: 2026-07-16
 owner: Codex
+agent_slots:
+  - { role: se, slot_label: "SE — authority transactionとschema trace" }
+  - { role: qa, slot_label: "QA — CAS・rollback・replay反例" }
+dependencies:
+  parent: docs/plans/PLAN-L4-05-workflow-orchestration.md
+  requires: []
+  references:
+    - docs/governance/post-po-design-freeze-transition-contract-v1.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/design-freeze-authority-transition.md, oracle_id: U-DFA-001, test_path: tests/design-denominator-observer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/design-freeze-authority-transition.md, oracle_id: U-DFA-002, test_path: tests/po7-decision-activation.test.ts }
