@@ -30,12 +30,6 @@ generates:
     artifact_type: test_design
   - artifact_path: docs/test-design/harness/L9-integration-test-design.md
     artifact_type: test_design
-  - artifact_path: src/policy/feedback-lifecycle.ts
-    artifact_type: source_module
-  - artifact_path: src/cli.ts
-    artifact_type: source_module
-  - artifact_path: tests/feedback-lifecycle.test.ts
-    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
@@ -51,6 +45,8 @@ lifecycle resolve、SQLite lock を再実行するため、計算量は O(Nrefs 
 表示後も 98秒超、CPU 109%、RSS 1.33GB を再現した。実 DB は変更していない。
 
 ## 1. 実装範囲
+
+既存source/testは本PLANが生成済みとclaimせず、copy DB 30秒観測と独立reviewが閉じるまで検証対象として扱う。
 
 - `recordFeedbackSurfaces` を lifecycle policy の batch API として追加し、入力全件を単一 lock・単一 journal
   snapshot・単一 lifecycle resolve で receipt 化する。

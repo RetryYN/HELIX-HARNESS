@@ -7,6 +7,8 @@ drive: agent
 parent_design: docs/design/helix/L6-function-design/design-freeze-authority-transition.md
 pair_artifact: docs/test-design/helix/L8-design-freeze-authority-transition.md
 status: draft
+route_mode: retrofit
+entry_signals: ["po_directive:2026-07-16 CHAT-AUTH-001の7/7 activation後、既存Design Freeze v2実装をL6/L8 Vペアへ正規収容するtrace修復"]
 created: 2026-07-16
 updated: 2026-07-16
 owner: Codex
@@ -31,25 +33,14 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-459-design-freeze-authority-transition.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/design-freeze-authority-transition.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-design-freeze-authority-transition.md, artifact_type: test_design }
-  - { artifact_path: src/cli/commands/authority.ts, artifact_type: source_module }
-  - { artifact_path: src/schema/harness-db-tables-design-freeze.ts, artifact_type: source_module }
-  - { artifact_path: src/schema/harness-db-tables-design-freeze-v2.ts, artifact_type: source_module }
-  - { artifact_path: src/schema/harness-db-tables-po7.ts, artifact_type: source_module }
-  - { artifact_path: src/shared/digest.ts, artifact_type: source_module }
-  - { artifact_path: src/state-db/design-denominator-observer.ts, artifact_type: source_module }
-  - { artifact_path: src/state-db/po7-decision-activation.ts, artifact_type: source_module }
-  - { artifact_path: src/state-db/po7-sealed-authority.ts, artifact_type: source_module }
-  - { artifact_path: src/state-db/post-po-design-freeze-transition.ts, artifact_type: source_module }
-  - { artifact_path: src/state-db/post-po-design-freeze-transition-v2.ts, artifact_type: source_module }
-  - { artifact_path: tests/design-denominator-observer.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/po7-decision-activation.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/post-po-design-freeze-transition-v2.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/state-db.test.ts, artifact_type: test_code }
 ---
 
 # Design Freeze authority transition実装
 
 ## 目的
+
+既存source/testは本PLANが生成済みとclaimせず、CLI authority設計とU-DFA-006 oracleを是正して
+独立reviewが閉じるまで検証対象として扱う。
 
 PO7 sealed authorityからDesign Freeze v2への遷移を、設計分母、Git観測、append-only DB、CLI表示まで一つの
 Vペアへ収容する。baseline追加ではなく、既存実装の全sourceを明示的に設計へ逆接続する。

@@ -4,13 +4,22 @@ title: "PLAN-L5-79 (add-design): source boundary architecture"
 kind: add-design
 layer: L5
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-13 PLAN-L7-446 QS4-BOUNDARY #11/#13/#15 inventoryでstate-db⇄vscode循環、lint effect混在、29 EMPTY boundaryを実測"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
+review_evidence:
+  - reviewer: node_evidence_audit
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-17T02:15:12+09:00"
+    tests_green_at: "2026-07-17T02:14:52+09:00"
+    verdict: pass
+    scope: "source boundary設計、V-pair、state-db/VS Code分離、headless composition、policy/effect/durability負例を独立監査。Blocker/High 0、関連63 tests・typecheck・Biome green。"
 backprop_decision: not_required
 backprop_decision_reason: "L3/L4の機能意味は変えず、既存module ownershipとeffect authorityを詳細化する。"
 pair_artifact: docs/test-design/harness/L9-source-boundary-integration.md

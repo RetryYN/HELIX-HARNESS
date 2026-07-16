@@ -27,12 +27,6 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/document-agent-metadata-contract.md, oracle_id: IT-AGMETA-005, test_path: tests/document-agent-metadata-integration.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-456-document-agent-metadata-phase-b-apply.md, artifact_type: markdown_doc }
-  - { artifact_path: src/runtime/document-agent-metadata-apply.ts, artifact_type: source_module }
-  - { artifact_path: src/runtime/document-agent-metadata-write-port.ts, artifact_type: source_module }
-  - { artifact_path: src/adapters/document-agent-metadata-fs.ts, artifact_type: source_module }
-  - { artifact_path: src/cli.ts, artifact_type: source_module }
-  - { artifact_path: tests/document-agent-metadata-apply.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/document-agent-metadata-integration.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-13-vmodel-docgen-fit.md
   requires: []
@@ -46,6 +40,9 @@ dependencies:
 # PLAN-L7-456: 文書 agent metadata の明示 apply
 
 ## 実装境界
+
+既存source/testは本PLANが生成済みとclaimせず、publish後例外rollback、ancestor symlink、IT-AGMETA-005を
+是正して独立reviewが閉じるまで検証対象として扱う。
 
 ZIP正本の `agent_meta.py apply` 相当をTS/Nodeへ再実装する。選択したmanifest内文書だけを対象に、typed declarationから
 導出済みmetadataをfrontmatterへ反映する。source writeは専用write portを通し、digest drift・path escape・symlinkを

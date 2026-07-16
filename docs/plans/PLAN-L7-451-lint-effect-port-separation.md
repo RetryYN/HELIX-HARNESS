@@ -4,12 +4,21 @@ title: "PLAN-L7-451 (refactor): lint effect port分離"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #13 analyzer effect authorityをfail-close分離"]
 created: 2026-07-13
 updated: 2026-07-14
 owner: Codex
+review_evidence:
+  - reviewer: agent_lease_cluster
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-17T02:18:00+09:00"
+    tests_green_at: "2026-07-17T02:17:45+09:00"
+    verdict: pass
+    scope: "source boundary effect/policy oracle、実repository graph、temporary direction除去、450/451 terminal依存を独立監査。Blocker/High 0、関連tests・typecheck・Biome green。"
 agent_slots:
   - { role: se, slot_label: "SE — effect intent/executor port分離" }
   - { role: qa, slot_label: "QA — authority/drift/durability負例" }
@@ -48,10 +57,10 @@ dependencies:
 analyzerをimmutable snapshotだけのpure functionに限定する。probe/materializeはcapability、authorization、snapshot、
 idempotency、CAS、durabilityを検証するexecutorへ隔離し、partial writeをacceptedにしない。
 
-## 予定出力（draft、未生成）
+## 実装出力
 
-次の source/test artifact を本PLANの実装出力とする。draft中は未生成を許容するが、closure時は
-`generates` の全artifactが実在し、各oracleが専用behavior testでgreenでなければならない。
+次の source/test artifact を本PLANの実装出力とする。`generates` の全artifactは実在し、
+各oracleを専用behavior testでgreen化した。
 
 - `src/lint/effect-intent.ts`
 - `src/runtime/lint-effect-executor.ts`

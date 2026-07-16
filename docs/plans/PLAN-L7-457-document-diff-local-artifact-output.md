@@ -21,10 +21,6 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-457-document-diff-local-artifact-output.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/document-semantic-diff.md, artifact_type: design_doc }
-  - { artifact_path: src/runtime/document-report-write-port.ts, artifact_type: source_module }
-  - { artifact_path: src/cli.ts, artifact_type: source_module }
-  - { artifact_path: tests/document-report-write-port.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-13-vmodel-docgen-fit.md
   requires: []
@@ -38,6 +34,8 @@ dependencies:
 # PLAN-L7-457: 文書semantic diffのローカルartifact出力
 
 ## 実装境界
+
+既存source/testは本PLANが生成済みとclaimせず、L6/L8 statusとgreen evidenceを閉じるまで検証対象として扱う。
 
 stdout既定を保ち、明示 `--out` のときだけ `.helix/artifacts/document-diff/` 内へ new-file-only で report を出力する。
 任意path、上書き、source docs更新、release/tag/API/DB/stateへの副作用は含めない。専用write portはpath canonicalization、
