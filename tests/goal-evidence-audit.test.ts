@@ -8,10 +8,9 @@ import {
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
-const LIVE_OUTSTANDING_COUNT = 10;
+const LIVE_OUTSTANDING_COUNT = 9;
 const NEW_OUTSTANDING_PLAN_IDS = [
   "PLAN-L1-07-infinity-loop-platform-requirements",
-  "PLAN-L7-459-design-freeze-authority-transition",
 ] as const;
 
 function auditText(): string {
