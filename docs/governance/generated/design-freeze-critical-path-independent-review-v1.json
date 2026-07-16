@@ -13,7 +13,7 @@
   "sources": [
     {
       "path": "docs/governance/generated/design-freeze-critical-path-v1.json",
-      "sha256": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8"
+      "sha256": "057b41dacabb0f3f642422f4b91d4cf7316d229d81144510917971a316b734cb"
     },
     {
       "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
@@ -21,7 +21,7 @@
     },
     {
       "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
-      "sha256": "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333"
+      "sha256": "236c858e2d00aaa399078799d4e3ce6b31dc70ee1aa49fa10b748fc2107e1a78"
     },
     {
       "path": "docs/governance/generated/helix-df-bun-002-terminal-design-receipts-v1.json",
@@ -53,7 +53,7 @@
     },
     {
       "path": "docs/governance/generated/po7-activation-runtime-independent-audit-v1.json",
-      "sha256": "c5544eeabc64ee604a2d18f6d5c420e0565028907e41ea6de5005c98cb8cb502"
+      "sha256": "3e9f6ab4428eb60ab539aad72ac3fa8598a88181081480d71f470711117fd475"
     }
   ],
   "projection": {

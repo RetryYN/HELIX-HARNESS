@@ -24,7 +24,7 @@
   "schema_version": "helix.design-freeze-critical-path-source-rebound-independent-audit.v1",
   "source": {
     "path": "docs/governance/generated/design-freeze-critical-path-v1.json",
-    "sha256": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8"
+    "sha256": "057b41dacabb0f3f642422f4b91d4cf7316d229d81144510917971a316b734cb"
   },
   "source_rebound": [
     {

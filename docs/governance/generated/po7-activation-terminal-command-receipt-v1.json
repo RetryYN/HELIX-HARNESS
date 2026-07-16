@@ -7,7 +7,7 @@
   "eventDigest": "2be2e44cfe09f3e0f1b6c8e8b413334df1360849b5bb7f329a32a3589bc260a5",
   "writeSetDigest": "fa0a52f08dfb6fc263397ef52ee1e80a56b04bc4ca2fe42a60c92bbeead6a397",
   "authorityEpoch": 1,
-  "replay": false,
+  "replay": true,
   "evidence": {
     "operation": {
       "operation_id": "PO7-ACT-20260716-I18N-RESEAL-01",
