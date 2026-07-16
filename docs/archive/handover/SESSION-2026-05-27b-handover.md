@@ -30,7 +30,7 @@
 
 - **`kind=charter` 新設** (VALID_KINDS 11→**12 種**)。L0 企画書 (背景/目的/スコープ/ROI/KGI・KPI/risk)、layer=L0、`parent_design` 不要 (root)、必須 role=`po`。
 - **新 §2.1.1「G0.5 企画突合 fail-close」**: L0 企画書 → L1 業務要求への trace + frontier-reviewer の adversarial review 必須 (単一 AI 時は §7.8.7.1 専門サブエージェント review で代替)。
-- requirements 同期: §1.3 (charter 行 + layer 旧番号 remap: impl/add-impl/refactor/retrofit/troubleshoot → **L7**、design → L1-L6、add-design → L3-L6、research → L1-L4) / §1.6 (charter×drive 行 + 列名「L5 Visual Refinement」→「**L10 UX磨き**」) / §1.8 (L0=po 必須行) / §6.1 (charter を design/* branch に相乗り、全 12 kind) / §1.10 B・用語集の "11 種"→"12 種" / §9.1 (stale `*-lint.sh` 4本 + 重複 `scripts/package.json,tsconfig` 除去、§7.1/repository-structure.md 整合)。 （層意味論: canonical L10=system/Real UX evidence）
+- requirements 同期: §1.3 (charter 行 + layer 旧番号 remap: impl/add-impl/refactor/retrofit/troubleshoot → **L7**、design → L1-L6、add-design → L3-L6、research → L1-L4) / §1.6 (charter×drive 行 + 列名「L5 Visual Refinement」→「**L10 UX磨き**」) / §1.8 (L0=po 必須行) / §6.1 (charter を design/* branch に相乗り、全 12 kind) / §1.10 B・用語集の "11 種"→"12 種" / §9.1 (stale `*-lint.sh` 4本 + 重複 `scripts/package.json,tsconfig` 除去、§7.1/repository-structure.md 整合)。
 - concept_v3.1 同期: §2.3「必須4方向」→「**必須8 directed edge**」/ §3.1.1 に charter 参照 / §4.5 forward_routing に `gap-only` / §7.3 branch prefix を §6.1 (SoT) に同期 (6→10種)。
 - ai-dev-team-operations: "対応構想書 v7" → 現行 `ai-dev-team-concept_v1.1.md` へのマッピング明記 (Reference-only)。
 

@@ -58,6 +58,7 @@ function cleanupRepo(repo: string): void {
  * table 作成 (registry-driven migration) + idempotent upsert 基盤 + DB path guard。
  * 設計 pair: docs/test-design/harness/L8-integration-test-design.md IT-DB-01。
  */
+// PLAN-L7-459-design-freeze-authority-transition
 describe("IT-DB-01: harness.db state-db foundation", () => {
   it("uses node:sqlite fallback when the test worker is running under Node", () => {
     const db = openHarnessDb(":memory:");
@@ -125,7 +126,7 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     }
   });
 
-  it("migrate が registry の全 table を作成し user_version を設定する", () => {
+  it("U-DFA-006: migrate が registry の全 table を作成し user_version を設定する", () => {
     const db = openHarnessDb(":memory:");
     const result = migrate(db);
 

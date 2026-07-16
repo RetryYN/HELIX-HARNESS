@@ -1,5 +1,5 @@
 ---
-title: "HELIX L11 受入/human visual 境界"
+title: "HELIX L11 総合レビュー・UAT 境界"
 layer: L11
 kind: design
 status: confirmed
@@ -11,7 +11,7 @@ retention_authority: operations-governance
 retention_mode: indefinite
 ---
 
-# HELIX L11 受入/human visual 境界
+# HELIX L11 総合レビュー・UAT 境界
 
 L11 は、要件・実装・テスト・運用判断をまとめて確認する層である。現在は review evidence と completion packet の仕組みはあるが、open decisions が残るため全体 UAT close ではない。
 

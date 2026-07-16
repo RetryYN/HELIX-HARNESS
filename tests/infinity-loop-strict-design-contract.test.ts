@@ -776,8 +776,20 @@ describe("Infinity Loop strict design contract", () => {
     const registryRows = sliceRegistry
       .split("\n")
       .filter((line) => /^\| HDS-HIL-[0-9]+[A-Z]? \|/.test(line));
-    expect(registryRows).toHaveLength(19);
-    expect(registryRows.filter((line) => line.includes("strict GREEN"))).toHaveLength(19);
+    const expectedRegistryIds = [
+      ...Array.from({ length: 8 }, (_, index) => `HDS-HIL-${String(index + 1).padStart(2, "0")}`),
+      "HDS-HIL-09A",
+      "HDS-HIL-09B",
+      ...Array.from({ length: 17 }, (_, index) => `HDS-HIL-${String(index + 10).padStart(2, "0")}`),
+    ];
+    const registryIds = registryRows.map((line) => line.split("|")[1]?.trim());
+    expect(registryIds).toEqual(expectedRegistryIds);
+    const expectedStrictGreenIds = expectedRegistryIds.slice(0, 19);
+    expect(
+      registryRows
+        .filter((line) => line.includes("strict GREEN"))
+        .map((line) => line.split("|")[1]?.trim()),
+    ).toEqual(expectedStrictGreenIds);
     expect(registryRows.find((line) => line.startsWith("| HDS-HIL-09A |"))).toContain(
       "all-ref authority／consumer cascade／shared lifecycle rebuild",
     );
@@ -897,19 +909,19 @@ describe("Infinity Loop strict design contract", () => {
       "docs/governance/infinity-loop-requirement-definition-ledger.md",
       "utf8",
     );
-    for (const [requirementId, lineNumber] of [
-      ["HIL-BR-14", 59],
-      ["HIL-FR-16", 91],
-      ["HIL-FR-21", 96],
+    for (const [requirementId, lineNumber, expectedReferenceCount] of [
+      ["HIL-BR-14", 90, "2"],
+      ["HIL-FR-16", 127, "3"],
+      ["HIL-FR-21", 132, "4"],
     ] as const) {
       const sourceLine = l1.split("\n")[lineNumber - 1] ?? "";
-      const text = sourceLine.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? "";
+      const text = sourceLine.match(/^\| \*\*[^|]+\*\* \| ([^|]*) \|/)?.[1]?.trim() ?? "";
       const ledgerLine = requirementLedger
         .split("\n")
         .find((line) => line.startsWith(`| ${requirementId} |`));
       const ledgerDigest = ledgerLine?.match(/`(sha256:[0-9a-f]{64})`/)?.[1];
       expect(ledgerDigest).toBe(sha256(text));
-      expect(ledgerLine?.split("|")[2]?.trim()).toBe("2");
+      expect(ledgerLine?.split("|")[2]?.trim()).toBe(expectedReferenceCount);
     }
     expect(l6).toContain("| `HST-CASE-011-03` | `commitGitRefAuthority` | `U-SCAP-031` |");
     expect(unit).toContain("| `HST-CASE-011-03` | `U-SCAP-031` |");

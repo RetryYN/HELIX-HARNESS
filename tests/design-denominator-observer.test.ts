@@ -5,11 +5,12 @@ import { afterEach, describe, expect, it } from "vitest";
 import { DESIGN_DENOMINATOR_MANIFEST, observeCanonicalDesignDenominator } from "../src/state-db/design-denominator-observer";
 
 const repoRoot = resolve(import.meta.dirname, "..");
+// PLAN-L7-459-design-freeze-authority-transition
 const temporaryRoots: string[] = [];
 afterEach(() => { for (const root of temporaryRoots.splice(0)) rmSync(root, { recursive: true, force: true }); });
 
 describe("canonical Design denominator observer", () => {
-  it("19 slice / 76 current artifactをsealed observationへ正規化する", () => {
+  it("U-DFA-001: 19 slice / 76 current artifactをsealed observationへ正規化する", () => {
     const observed = observeCanonicalDesignDenominator({ repoRoot });
     expect(observed.sliceIds).toHaveLength(19);
     expect(observed.artifactObservations).toHaveLength(76);
