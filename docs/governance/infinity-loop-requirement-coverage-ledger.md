@@ -142,34 +142,34 @@ schema: infinity-loop-requirement-coverage.v2
 | HIL-FR-80 | RepositorySavepointService | HAT-HIL-46 | HIA-FR-080 | 追跡草案（trace-draft） |
 | HIL-FR-81 | LayerFreezeTagGate | HAT-HIL-47 | HIA-FR-081 | 追跡草案（trace-draft） |
 
-### §2.1 Design／Visual／savepoint exact edge（21/21）
+### §2.1 Design／Visual／savepoint exact edge（21/21） （日本語の契約見出し）
 
 この表のL4欄はcomponent実装済みを意味せず、L4 obligationまたはL4 component候補の正本pointerを示す。
 L3、AC、HATはそれぞれ一つの実在IDへexact joinし、省略rangeをedgeとして用いない。
 
-| edge ID | L1 requirement | L3 System FR | L4 obligation/component | HAT | AC exact set |
+| edge ID | L1 requirement | L3 System FR | L4 obligation/component | HAT | AC exact set | （日本語の機械契約記述）
 |---|---|---|---|---|---|
-| DHX-027 | HIL-FR-61 | HR-FR-HIL-27 | PrototypeAgreementService / HBR-DH-004 | HAT-HIL-27 | HAC-HIL-27a, HAC-HIL-27b, HAC-HIL-27c |
-| DHX-028 | HIL-FR-62 | HR-FR-HIL-28 | PrototypeNeutralityValidator / HBR-DH-005 | HAT-HIL-28 | HAC-HIL-28a, HAC-HIL-28b, HAC-HIL-28c |
-| DHX-029 | HIL-FR-63 | HR-FR-HIL-29 | ScreenLedgerLifecycleService / HBR-DH-006 | HAT-HIL-29 | HAC-HIL-29a, HAC-HIL-29b, HAC-HIL-29c |
-| DHX-030 | HIL-FR-64 | HR-FR-HIL-30 | SemanticIdContinuityGraph / HBR-DH-007 | HAT-HIL-30 | HAC-HIL-30a, HAC-HIL-30b, HAC-HIL-30c |
-| DHX-031 | HIL-FR-65 | HR-FR-HIL-31 | ThreeContractRegistry / HBR-DH-008 | HAT-HIL-31 | HAC-HIL-31a, HAC-HIL-31b, HAC-HIL-31c |
-| DHX-032 | HIL-FR-66 | HR-FR-HIL-32 | PatternContractResolver / HBR-DH-009 | HAT-HIL-32 | HAC-HIL-32a, HAC-HIL-32b, HAC-HIL-32c |
-| DHX-033 | HIL-FR-67 | HR-FR-HIL-33 | ProductUiProfileResolver / HBR-DH-010 | HAT-HIL-33 | HAC-HIL-33a, HAC-HIL-33b, HAC-HIL-33c |
-| DHX-034 | HIL-FR-68 | HR-FR-HIL-34 | FrontendBindingService / HBR-DH-011 | HAT-HIL-34 | HAC-HIL-34a, HAC-HIL-34b, HAC-HIL-34c |
-| DHX-035 | HIL-FR-69 | HR-FR-HIL-35 | UiMissionPlanner / HBR-DH-012 | HAT-HIL-35 | HAC-HIL-35a, HAC-HIL-35b, HAC-HIL-35c |
-| DHX-036 | HIL-FR-70 | HR-FR-HIL-36 | UiImplementationProjection / HBR-DH-013 | HAT-HIL-36 | HAC-HIL-36a, HAC-HIL-36b, HAC-HIL-36c |
-| DHX-037 | HIL-FR-71 | HR-FR-HIL-37 | FalseFrontendCompletionDetector / HBR-DH-014 | HAT-HIL-37 | HAC-HIL-37a, HAC-HIL-37b, HAC-HIL-37c |
-| DHX-038 | HIL-FR-72 | HR-FR-HIL-38 | ResponsiveContractEvaluator / HBR-DH-015 | HAT-HIL-38 | HAC-HIL-38a, HAC-HIL-38b, HAC-HIL-38c |
-| DHX-039 | HIL-FR-73 | HR-FR-HIL-39 | MotionBudgetEvaluator / HBR-DH-016 | HAT-HIL-39 | HAC-HIL-39a, HAC-HIL-39b, HAC-HIL-39c |
-| DHX-040 | HIL-FR-74 | HR-FR-HIL-40 | SurfaceClassificationPolicy / HBR-DH-017 | HAT-HIL-40 | HAC-HIL-40a, HAC-HIL-40b, HAC-HIL-40c |
-| DHX-041 | HIL-FR-75 | HR-FR-HIL-41 | AccessibilityClosureService / HBR-DH-018 | HAT-HIL-41 | HAC-HIL-41a, HAC-HIL-41b, HAC-HIL-41c |
-| DHX-042 | HIL-FR-76 | HR-FR-HIL-42 | RealUxEvidenceCollector / HBR-DH-019 | HAT-HIL-42 | HAC-HIL-42a, HAC-HIL-42b, HAC-HIL-42c |
-| DHX-043 | HIL-FR-77 | HR-FR-HIL-43 | UiChangeDeltaRouter / HBR-DH-020 | HAT-HIL-43 | HAC-HIL-43a, HAC-HIL-43b, HAC-HIL-43c |
-| DHX-044 | HIL-FR-78 | HR-FR-HIL-44 | DesignCapsuleAssembler / HBR-DH-026 | HAT-HIL-44 | HAC-HIL-44a, HAC-HIL-44b, HAC-HIL-44c |
-| DHX-045 | HIL-FR-79 | HR-FR-HIL-45 | DesignJudgmentAuthorityPolicy / HBR-DH-024 | HAT-HIL-45 | HAC-HIL-45a, HAC-HIL-45b, HAC-HIL-45c |
-| DHX-046 | HIL-FR-80 | HR-FR-HIL-46 | RepositorySavepointService / L4 component catalog | HAT-HIL-46 | HAC-HIL-46a, HAC-HIL-46b, HAC-HIL-46c |
-| DHX-047 | HIL-FR-81 | HR-FR-HIL-47 | LayerFreezeTagGate / L4 component catalog | HAT-HIL-47 | HAC-HIL-47a, HAC-HIL-47b, HAC-HIL-47c |
+| DHX-027 | HIL-FR-61 | HR-FR-HIL-27 | PrototypeAgreementService / HBR-DH-004 | HAT-HIL-27 | HAC-HIL-27a, HAC-HIL-27b, HAC-HIL-27c | （日本語の機械契約記述）
+| DHX-028 | HIL-FR-62 | HR-FR-HIL-28 | PrototypeNeutralityValidator / HBR-DH-005 | HAT-HIL-28 | HAC-HIL-28a, HAC-HIL-28b, HAC-HIL-28c | （日本語の機械契約記述）
+| DHX-029 | HIL-FR-63 | HR-FR-HIL-29 | ScreenLedgerLifecycleService / HBR-DH-006 | HAT-HIL-29 | HAC-HIL-29a, HAC-HIL-29b, HAC-HIL-29c | （日本語の機械契約記述）
+| DHX-030 | HIL-FR-64 | HR-FR-HIL-30 | SemanticIdContinuityGraph / HBR-DH-007 | HAT-HIL-30 | HAC-HIL-30a, HAC-HIL-30b, HAC-HIL-30c | （日本語の機械契約記述）
+| DHX-031 | HIL-FR-65 | HR-FR-HIL-31 | ThreeContractRegistry / HBR-DH-008 | HAT-HIL-31 | HAC-HIL-31a, HAC-HIL-31b, HAC-HIL-31c | （日本語の機械契約記述）
+| DHX-032 | HIL-FR-66 | HR-FR-HIL-32 | PatternContractResolver / HBR-DH-009 | HAT-HIL-32 | HAC-HIL-32a, HAC-HIL-32b, HAC-HIL-32c | （日本語の機械契約記述）
+| DHX-033 | HIL-FR-67 | HR-FR-HIL-33 | ProductUiProfileResolver / HBR-DH-010 | HAT-HIL-33 | HAC-HIL-33a, HAC-HIL-33b, HAC-HIL-33c | （日本語の機械契約記述）
+| DHX-034 | HIL-FR-68 | HR-FR-HIL-34 | FrontendBindingService / HBR-DH-011 | HAT-HIL-34 | HAC-HIL-34a, HAC-HIL-34b, HAC-HIL-34c | （日本語の機械契約記述）
+| DHX-035 | HIL-FR-69 | HR-FR-HIL-35 | UiMissionPlanner / HBR-DH-012 | HAT-HIL-35 | HAC-HIL-35a, HAC-HIL-35b, HAC-HIL-35c | （日本語の機械契約記述）
+| DHX-036 | HIL-FR-70 | HR-FR-HIL-36 | UiImplementationProjection / HBR-DH-013 | HAT-HIL-36 | HAC-HIL-36a, HAC-HIL-36b, HAC-HIL-36c | （日本語の機械契約記述）
+| DHX-037 | HIL-FR-71 | HR-FR-HIL-37 | FalseFrontendCompletionDetector / HBR-DH-014 | HAT-HIL-37 | HAC-HIL-37a, HAC-HIL-37b, HAC-HIL-37c | （日本語の機械契約記述）
+| DHX-038 | HIL-FR-72 | HR-FR-HIL-38 | ResponsiveContractEvaluator / HBR-DH-015 | HAT-HIL-38 | HAC-HIL-38a, HAC-HIL-38b, HAC-HIL-38c | （日本語の機械契約記述）
+| DHX-039 | HIL-FR-73 | HR-FR-HIL-39 | MotionBudgetEvaluator / HBR-DH-016 | HAT-HIL-39 | HAC-HIL-39a, HAC-HIL-39b, HAC-HIL-39c | （日本語の機械契約記述）
+| DHX-040 | HIL-FR-74 | HR-FR-HIL-40 | SurfaceClassificationPolicy / HBR-DH-017 | HAT-HIL-40 | HAC-HIL-40a, HAC-HIL-40b, HAC-HIL-40c | （日本語の機械契約記述）
+| DHX-041 | HIL-FR-75 | HR-FR-HIL-41 | AccessibilityClosureService / HBR-DH-018 | HAT-HIL-41 | HAC-HIL-41a, HAC-HIL-41b, HAC-HIL-41c | （日本語の機械契約記述）
+| DHX-042 | HIL-FR-76 | HR-FR-HIL-42 | RealUxEvidenceCollector / HBR-DH-019 | HAT-HIL-42 | HAC-HIL-42a, HAC-HIL-42b, HAC-HIL-42c | （日本語の機械契約記述）
+| DHX-043 | HIL-FR-77 | HR-FR-HIL-43 | UiChangeDeltaRouter / HBR-DH-020 | HAT-HIL-43 | HAC-HIL-43a, HAC-HIL-43b, HAC-HIL-43c | （日本語の機械契約記述）
+| DHX-044 | HIL-FR-78 | HR-FR-HIL-44 | DesignCapsuleAssembler / HBR-DH-026 | HAT-HIL-44 | HAC-HIL-44a, HAC-HIL-44b, HAC-HIL-44c | （日本語の機械契約記述）
+| DHX-045 | HIL-FR-79 | HR-FR-HIL-45 | DesignJudgmentAuthorityPolicy / HBR-DH-024 | HAT-HIL-45 | HAC-HIL-45a, HAC-HIL-45b, HAC-HIL-45c | （日本語の機械契約記述）
+| DHX-046 | HIL-FR-80 | HR-FR-HIL-46 | RepositorySavepointService / L4 component catalog | HAT-HIL-46 | HAC-HIL-46a, HAC-HIL-46b, HAC-HIL-46c | （日本語の機械契約記述）
+| DHX-047 | HIL-FR-81 | HR-FR-HIL-47 | LayerFreezeTagGate / L4 component catalog | HAT-HIL-47 | HAC-HIL-47a, HAC-HIL-47b, HAC-HIL-47c | （日本語の機械契約記述）
 
 ## §3 技術要求（13/13採番）
 

@@ -69,35 +69,43 @@
       "design_slices": 19
     },
     "heads": {
-      "current_authority_head_digest": "f028e6bdd8d90a15eb3c85bcfa2047a1f320ed0cc62111c5e5ad42867b7dce15",
-      "current_candidate_head_digest": "246bc6eed43703edff0d5d4200118d490ef467094338040a8dd14ded9a32562a",
-      "current_freeze_head_digest": "c9def7954d5771c075074d2f353f5d6936a556f4c50346957d360133790e5bc2",
-      "current_progress_head_digest": "a3d3fc435dfec2d7fca89a26b705cfbce8ab530df623b39893a2f48ab5f47e8a",
-      "expected_authority_head_digest": "f028e6bdd8d90a15eb3c85bcfa2047a1f320ed0cc62111c5e5ad42867b7dce15",
-      "expected_candidate_head_digest": "246bc6eed43703edff0d5d4200118d490ef467094338040a8dd14ded9a32562a",
-      "expected_freeze_head_digest": "c9def7954d5771c075074d2f353f5d6936a556f4c50346957d360133790e5bc2",
-      "expected_progress_head_digest": "a3d3fc435dfec2d7fca89a26b705cfbce8ab530df623b39893a2f48ab5f47e8a"
+      "current_authority_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "current_candidate_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "current_freeze_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "current_progress_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "expected_authority_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "expected_candidate_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "expected_freeze_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e",
+      "expected_progress_head_digest": "aeebad4a796fcc2e15dc4c6061b45ed9b373f26adfc798ca7d2d8cc58182718e"
     },
-    "operation_id": "DF-V2-TRANSITION-20260716-04",
+    "operation_id": "DF-V2-TRANSITION-20260716-I18N-RESEAL-01",
     "po7_latest": {
       "authority_epoch": 1,
-      "event_digest": "f5882195d379d65066a866458978e7fa646800b566f57fee95100a00517a0088"
+      "event_digest": "2be2e44cfe09f3e0f1b6c8e8b413334df1360849b5bb7f329a32a3589bc260a5"
     },
     "repository_snapshot": {
-      "headOid": "ece1798af33cbbcb302bc21ba652631d88690a9c",
+      "headOid": "7f87d1eb85dd1dee1a02f41b200cbf9fed6b9f75",
       "indexPolicyDigest": "f58769d0c084647f899527d599c49a0e356aee389681d505a52db79d9a7cda32",
-      "remoteObservationDigest": "e2ff71ec56d49ab771f15b1a47ff16c35bf86cd86cbe62bfe3b0e85e4d34f7e2",
+      "remoteObservationDigest": "88347f5c060479f78de05bebdbc527bb862328c2a08a636692d8ea1f1d0957b6",
       "remoteRefs": [
         {
-          "oid": "ece1798af33cbbcb302bc21ba652631d88690a9c",
+          "oid": "7f87d1eb85dd1dee1a02f41b200cbf9fed6b9f75",
           "ref": "refs/heads/codex/hybrid-requirements-freeze"
+        },
+        {
+          "oid": "bd235b9bff2501a022b3214ebc3f4d1d4ed9cb82",
+          "ref": "refs/heads/feature/node-minimum-p01"
+        },
+        {
+          "oid": "3f37b8ca704075f27ee566e3d9a38c0c4e77a5a8",
+          "ref": "refs/heads/feature/python-source-atomization"
         },
         {
           "oid": "fcbf942835d0014e38c7e20fbd471580fd41af33",
           "ref": "refs/heads/main"
         }
       ],
-      "treeOid": "22edeab5090d202151c0e75a529ca53729bd54bb"
+      "treeOid": "302b3c1f9486463e498bfdd4710a36f6711f82d0"
     }
   },
   "safety": {
@@ -107,18 +115,18 @@
   "schema_version": "helix.post-po-design-freeze-transition-runtime-independent-audit.v2",
   "sources": {
     "current": {
-      "activation_audit": "c5544eeabc64ee604a2d18f6d5c420e0565028907e41ea6de5005c98cb8cb502",
-      "audit": "30c9fcc767917403f227bc2f4ed94df5cf647268c55a3585370b832228add285",
-      "critical": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8",
-      "review": "be2a86e5248a8b83c2fe3545354e5d57002f1e2409334ee410f4db58c9f1de47"
+      "activation_audit": "3e9f6ab4428eb60ab539aad72ac3fa8598a88181081480d71f470711117fd475",
+      "audit": "1ff06a0c7933d27eca3bcaa532eb67911d7589d242211f376014eb045866e0af",
+      "critical": "057b41dacabb0f3f642422f4b91d4cf7316d229d81144510917971a316b734cb",
+      "review": "f55b20368fd9c20565574f57270ea5fa610933d51d4136620d88c52c162b3011"
     },
     "full_row_export": {
       "path": "docs/governance/generated/post-po-design-freeze-transition-full-row-export-v2.json",
-      "sha256": "bdcc7f63a685c7e0696998272a09ebd753d9b749a3f4eab1b7dabb47ac3aca0c"
+      "sha256": "98c4a5e7e3763edbe7b0b821141a6f5e75ffa16c61829cb4bde1b35b7ef9377c"
     },
     "receipt": {
       "path": "docs/governance/generated/post-po-design-freeze-transition-command-receipt-v2.json",
-      "sha256": "640af36aff1841fb60dced3c51cc3ef905e835a3469eea59b49b35f6b2154ee7"
+      "sha256": "1b14fd5a98708213364bf09524a1b1eaac0714e1ad429b3ccd9fc988bcd6c8dd"
     }
   },
   "status": "independent_audit_pass_post_po_design_freeze_runtime_v2"

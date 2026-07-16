@@ -1,7 +1,7 @@
 {
   "artifact_snapshot": {
     "direct_json_count": 11,
-    "manifest_sha256": "9fb49fd08c8e03fe5cd5e96b9f7ea980972b821da8788802160bd642d212f754"
+    "manifest_sha256": "dd22dbaae7660d444615172a19155f75c2cb815188fee7589192f5271a05297a"
   },
   "evidence_boundaries": {
     "bun_route_design_complete": 2210,
@@ -34,7 +34,7 @@
   "schema_version": "helix.requirements-freeze-progress-independent-audit.v1",
   "source_ledger": {
     "path": "docs/governance/helix-requirements-freeze-readiness-ledger.md",
-    "sha256": "89ca660498516c4b6c3c16da7c88e30df0202cd77642726ac5a66e3b15682766"
+    "sha256": "f9bb87b056abd1ad55c54534e85abe7fc9dcffdc96e9398201f95d7754127442"
   },
   "stale_findings": [],
   "status": "independent_progress_model_current_design_freeze_receipt_runtime_zero",

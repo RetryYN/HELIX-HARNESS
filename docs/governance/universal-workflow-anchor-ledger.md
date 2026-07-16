@@ -20,17 +20,17 @@ primary routeではなくrelationであり、328外のparagraph、title、suppor
 
 ## §1 entry別primary anchor
 
-| entry | source | primary anchor | count | supporting / gap |
+| entry | source | primary anchor | count | supporting / gap | （日本語の機械契約記述）
 |---|---|---|---:|---|
 | E001 | `README.md` | transition chain、derived surface、processing step、runtime dimension | 26 | directory list 6はevidence-only |
 | E002 | `SKILL.md` | objective、mandatory rule、derived output、completeness、output order、runtime/switch/route/allocation contract | 63 | Phase-A question 8、trigger 15、vocabulary 15はsupport/alias候補 |
-| E003 | `schemas/workflow-model.schema.json` | object contract cluster | 18 | root/actor/state/transition/trigger/timeout/exception/loop/terminal/data/switch/routing/resource/task |
+| E003 | `schemas/workflow-model.schema.json` | object contract cluster | 18 | root/actor/state/transition/trigger/timeout/exception/loop/terminal/data/switch/routing/resource/task | （日本語の機械契約記述）
 | E004 | `schemas/derived-requirements.schema.json` | root contract cluster | 1 | prose/surface mappingとの整合pending |
-| E005 | `catalogs/conditional-question-catalog.yaml` | conditional question | 27 | detect term 30、derived occurrence 22/17 unique |
+| E005 | `catalogs/conditional-question-catalog.yaml` | conditional question | 27 | detect term 30、derived occurrence 22/17 unique | （日本語の機械契約記述）
 | E006 | `catalogs/base-question-catalog.md` | base question | 24 | — |
 | E007 | `catalogs/runtime-orchestration-question-catalog.md` | runtime question | 25 | — |
 | E008 | `examples/approval-workflow.example.json` | transition/loop/terminal fixture case | 5 | support fixture 14、terminal到達transition欠落 |
-| E009 | `examples/runtime-orchestration.example.json` | switch/candidate/route/destination/pool/policy fixture case | 8 | — |
+| E009 | `examples/runtime-orchestration.example.json` | switch/candidate/route/destination/pool/policy fixture case | 8 | — | （日本語の機械契約記述）
 | E010 | `contracts/workflow-to-requirement-contract.md` | generation、ID、field、GWT、loop、terminal、data、completeness | 47 | schemaとのfield/required差異 |
 | E011 | `contracts/requirement-contract.schema.json` | root/state_change contract cluster | 2 | E010と型・required差異 |
 | E012 | `contracts/derived-mapping.md` | mapping table row contract | 12 | E001/E002/E004とのalias候補 |
@@ -38,7 +38,7 @@ primary routeではなくrelationであり、328外のparagraph、title、suppor
 | E014 | `prompts/workflow-extraction-prompt.md` | processing step、prohibition、output contract | 16 | 非互換schema同時準拠finding |
 | **合計** | **14 entries** | **primary mechanical anchor** | **328** | behavior atom数ではない |
 
-## §2 canonical question ID（76/76）
+## §2 canonical question ID（76/76） （日本語の契約見出し）
 
 - conditional 27: `UWR-Q-C-<FAMILY>-<NN>`。pointerはRFC6901 `/<family>/questions/<index>`。
   - `approval=5`、`money=4`、`deadline=4`、`external_integration=5`、`personal_data=4`、`ai_decision=5`
@@ -51,22 +51,22 @@ primary routeではなくrelationであり、328外のparagraph、title、suppor
 ## §3 最小behavior family下限
 
 1. core workflow elicitation
-2. conditional trigger / drill-down
+2. conditional trigger / drill-down （日本語の機械契約記述）
 3. runtime orchestration elicitation
-4. workflow normalization / model construction
+4. workflow normalization / model construction （日本語の機械契約記述）
 5. completeness / unresolved handling
 6. requirement / AC / test derivation
 7. derived surface mapping
 8. switching / candidate selection
-9. routing / fallback / dead-letter
-10. scheduling / resource allocation / reallocation / degradation
-11. output protocol / prompt safety / package boundary
+9. routing / fallback / dead-letter （日本語の機械契約記述）
+10. scheduling / resource allocation / reallocation / degradation （日本語の機械契約記述）
+11. output protocol / prompt safety / package boundary （日本語の機械契約記述）
 
 11は独立採否可能なfamily下限であり、atomic behavior数ではない。各family内をI/O、effect authority、failure、state、oracleでsplitする。
 
 ## §4 conflict・coverage gap
 
-| finding | evidence | freeze obligation |
+| finding | evidence | freeze obligation | （日本語の機械契約記述）
 |---|---|---|
 | conditional catalog gap | SKILL trigger 15分類に対しtyped family 6。添付、通知、自動実行、複数担当、差戻し、再実行、削除、公開、課金の9分類が欠落 | 質問追加または明示N/A/reject |
 | scheduling schema gap | README/E007/E013に要求があるがE003にschedule entityがない | schema/profile改善Issue |
@@ -84,14 +84,14 @@ primary routeではなくrelationであり、328外のparagraph、title、suppor
 | primary anchor inventory | 328/328 | PASS（構造分母） |
 | canonical question ID | 76/76 | PASS |
 | deterministic individual anchor rows | 328/328 | PASS（全kind materialize、coverage credit 0） |
-| semantic duplicate disposition design | 19/19 group | PROPOSED（canonical19/alias17/composes2/specifies2、execution 0） |
+| semantic duplicate disposition design | 19/19 group | PROPOSED（canonical19/alias17/composes2/specifies2、execution 0） | （日本語の機械契約記述）
 | candidate exact route | 328/328 | PASS（primary候補 exactly one、target空0、coverage credit 0） |
-| post-resolution target hypothesis | 328/328 | PROPOSED（behavior 204 / alias 90 / container 21 / fixture 13 / conflict 0） |
-| verified anchor exact disposition | 0/328 | FAIL |
-| behavior atom denominator | unknown | FAIL |
+| post-resolution target hypothesis | 328/328 | PROPOSED（behavior 204 / alias 90 / container 21 / fixture 13 / conflict 0） | （日本語の機械契約記述）
+| verified anchor exact disposition | 0/328 | FAIL | （日本語の機械契約記述）
+| behavior atom denominator | unknown | FAIL | （日本語の機械契約記述）
 | conflict resolved | 0/5主要群 | FAIL |
-| unowned span | unknown | FAIL |
-| HIL/design/assertion/gate join | 0 | FAIL |
+| unowned span | unknown | FAIL | （日本語の機械契約記述）
+| HIL/design/assertion/gate join | 0 | FAIL | （日本語の機械契約記述）
 
 個票artifactは`docs/governance/generated/universal-workflow-anchors-328-v2.json`、抽出契約は
 `docs/governance/universal-workflow-anchor-extraction-contract.yaml`である。構造個票のmaterializeをterminal dispositionへ
@@ -120,19 +120,19 @@ candidate分母328/328が閉じたことを、verified dispositionやpost-resolu
 (3) source typed schema/catalog、(4) source contract prose、(5) SKILL/prompt/README prose、(6) fixture/exampleとする。
 上位が下位spanを消去することは禁止し、下位spanはalias、conflict、fixtureのいずれかで保持する。
 
-| family | behavior target | canonical authority |
+| family | behavior target | canonical authority | （日本語の機械契約記述）
 |---|---:|---|
 | F01 core workflow elicitation | 24 | E006、E002 Phase-Aはalias/composite |
 | F02 conditional drill-down | 27 | E005、未収録9 categoryはgap |
 | F03 runtime elicitation | 25 | E007、E013/E002はcontract/support |
 | F04 workflow normalization/model | 4 | HELIX normalized schema、E003はsource constraint |
-| F05 completeness/unresolved | 12 | normalized schema＋gate contract |
-| F06 requirement/AC/test derivation | 41 | HELIX staged output schema＋E010 semantic contract |
-| F07 derived surfaces | 12 | E012 mapping contract |
-| F08 switching | 8 | normalized runtime schema |
-| F09 routing/dead-letter | 8 | normalized runtime schema |
-| F10 scheduling/resource/allocation | 38 | redesigned HELIX runtime schema |
-| F11 output protocol/prompt safety | 5 | Node adapter policy＋staged output contract |
+| F05 completeness/unresolved | 12 | normalized schema＋gate contract | （日本語の機械契約記述）
+| F06 requirement/AC/test derivation | 41 | HELIX staged output schema＋E010 semantic contract | （日本語の機械契約記述）
+| F07 derived surfaces | 12 | E012 mapping contract | （日本語の機械契約記述）
+| F08 switching | 8 | normalized runtime schema | （日本語の機械契約記述）
+| F09 routing/dead-letter | 8 | normalized runtime schema | （日本語の機械契約記述）
+| F10 scheduling/resource/allocation | 38 | redesigned HELIX runtime schema | （日本語の機械契約記述）
+| F11 output protocol/prompt safety | 5 | Node adapter policy＋staged output contract | （日本語の機械契約記述）
 | **behavior anchor target** | **204** | atom分母ではない |
 
 残る90 anchorはcanonical behaviorへのalias、21 schema object clusterは`specifies` container、13 example caseはfixtureへ送る。
@@ -140,9 +140,9 @@ candidate分母328/328が閉じたことを、verified dispositionやpost-resolu
 該当anchorはterminal receipt前にconflict-freeとして数えない。source span digestへbindしたmachine routeと独立reviewが終わるまで
 `verified`へ昇格しない。
 
-## §7 conflict disposition proposal
+## §7 conflict disposition proposal （日本語の契約見出し）
 
-| conflict | decision | canonical replacement / negative oracle |
+| conflict | decision | canonical replacement / negative oracle | （日本語の機械契約記述）
 |---|---|---|
 | C-UWR-01 raw SKILL/prompt activation | REJECT（直接実行routeのみ） | registered descriptor→Node adapter→proposal-only。直接DB/write/commandは`HIL_UWR_RAW_ACTIVATION` |
 | C-UWR-02 incompatible single JSON | REDESIGN | `workflow_model_proposal`→completeness→`derived_requirements_proposal`のversioned staged envelope |

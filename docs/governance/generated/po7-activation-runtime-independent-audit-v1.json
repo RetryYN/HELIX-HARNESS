@@ -1,8 +1,8 @@
 {
   "digests": {
-    "event": "f5882195d379d65066a866458978e7fa646800b566f57fee95100a00517a0088",
-    "payload": "c58d5c28eb2f7543c1cef66ec5582cc749cde68777e2c472a5695b35d212b613",
-    "write_set": "772245a42037c25000b05fd7207e02cd63e0cbcf5ff281df0e2f604a5993a3f4"
+    "event": "2be2e44cfe09f3e0f1b6c8e8b413334df1360849b5bb7f329a32a3589bc260a5",
+    "payload": "65d355f71159efdbba4aaa985dfec5ffb15b6e9ca0538cc27c0c44c07f03d2ff",
+    "write_set": "fa0a52f08dfb6fc263397ef52ee1e80a56b04bc4ca2fe42a60c92bbeead6a397"
   },
   "findings": [],
   "projection": {
@@ -23,11 +23,11 @@
   "sources": {
     "activation_receipt": {
       "path": "docs/governance/generated/po7-activation-terminal-command-receipt-v1.json",
-      "sha256": "3d60dd18e2ded0b0c91be590a0775d47f5f9be229fac8fadb293d6e9b6b345fc"
+      "sha256": "ddf371f292676f6785046a2becb92bd9defeaa4187ffcc932e0fd8fb13927bbf"
     },
     "go_authority_event": {
       "path": "docs/governance/generated/po-go-authority-event-v1.json",
-      "sha256": "d0f1e00f79085027ba139232f5978257adecb8f41771cf291ad3814d1bf11b44"
+      "sha256": "80185baeff7bd9f378393868fe1c37b5001cbadc6f9a7ec08d86fb39085af6b0"
     },
     "universal_packet": {
       "path": "docs/governance/generated/universal-workflow-po-decision-packet-v1.json",
@@ -35,7 +35,7 @@
     },
     "vmodel_packet": {
       "path": "docs/governance/generated/vmodel-authority-decision-packet-v1.json",
-      "sha256": "97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333"
+      "sha256": "236c858e2d00aaa399078799d4e3ce6b31dc70ee1aa49fa10b748fc2107e1a78"
     }
   },
   "status": "independent_audit_pass_authority_activated"

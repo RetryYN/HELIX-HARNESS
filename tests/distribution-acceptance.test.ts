@@ -247,7 +247,7 @@ describe("clean distribution local acceptance smoke", () => {
         scripts?: { helix?: string };
       };
       expect(packageJson.bin?.helix).toBe("./dist/helix");
-      expect(packageJson.scripts?.helix).toBe("bun run src/cli.ts");
+      expect(packageJson.scripts?.helix).toBe("tsx src/cli.ts");
       expect(existsSync(join(cleanRoot, packageJson.bin?.helix ?? ""))).toBe(true);
 
       const packageScriptVersion = runBun(cleanRoot, ["run", "helix", "--version"], env);

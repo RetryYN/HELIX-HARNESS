@@ -28,38 +28,38 @@ schema: helix-requirements-freeze-readiness.v1
 Design Freeze後も`execution=0`は正当な開始状態である。ただしtest designのfixture/oracle/failure/expected evidenceが未定義なら
 Design Freeze不可とする。runtime証拠をDesign Freezeの代替にも、Design Freeze証拠をruntime完成の代替にも使わない。
 
-### §0.2 cross-ledger machine baseline
+### §0.2 cross-ledger machine baseline （日本語の契約見出し）
 
-| surface | machine artifact SHA-256 | denominator / status | freeze credit |
+| surface | machine artifact SHA-256 | denominator / status | freeze credit | （日本語の機械契約記述）
 |---|---|---|---:|
-| Universal route | `d07a9c150b2956fdd4685b67ad923a67ced365a4297d1f104be944af199a9d0c` | candidate 328/328、verified 0、target empty 0 | 0 |
+| Universal route | `d07a9c150b2956fdd4685b67ad923a67ced365a4297d1f104be944af199a9d0c` | candidate 328/328、verified 0、target empty 0 | 0 | （日本語の機械契約記述）
 | Universal route semantic review | `b65b8fb6600b4d6bf730e8c56dc2f992f283625c1e0bc94fc3abfd5e72444caf` | semantic review 328/328、normative defer補正180、review後adopt211/defer64、question review76、activation verified/coverage 0 | 0 |
 | Universal non-PO question Design closure | candidate `d136471e02ccd1ee6462d0defd98dd9a510b182f520e28d263ca416f532ecfe1`／authority review `e7182483cc17a70679dc42959d6326d9cf22ebdc013db43908b1aac3f2635f5e` | 非PO 54＝source-limited Design receipt 12、evidence terminal receipt 37、dependency terminal receipt 5。独立review finding 0、POは22問/6 groupのままで追加37判断なし、coverage/runtime credit 0 | Design disposition closureへ算入。Runtime 0 |
-| Universal answerability | `747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec` | 64/64＝evidence 37 / PO 22 / dependency 5 / N/A 0、activated 0 | 0 |
+| Universal answerability | `747e7408fd9decb7ddc13afe700940f12e2c5af7d2ab67aee64fb65e497c22ec` | 64/64＝evidence 37 / PO 22 / dependency 5 / N/A 0、activated 0 | 0 | （日本語の機械契約記述）
 | Universal PO decision packet | `9241f722410b369719bc3582eaf3706406bf7618dd0204fd8985e2ecea4d183c` | PO-required 22/22を6 decision groupsへexact mapping、mutual-exclusion/high-impact authority監査済み、selected 0、activated 0 | 0 |
-| Hybrid disposition | `2995c3fd76df58a748157c4a769608b01b4da528579ec68a0641476b7a5b029e` | candidate 229/229＝adopt 84 / redesign 7 / reject 18 / defer 120、verified 0 | 0 |
+| Hybrid disposition | `2995c3fd76df58a748157c4a769608b01b4da528579ec68a0641476b7a5b029e` | candidate 229/229＝adopt 84 / redesign 7 / reject 18 / defer 120、verified 0 | 0 | （日本語の機械契約記述）
 | Hybrid disposition semantic review | `23da39faf27529a08ed530b4b874a75aa4174c18586c28ae4c16dd3c33e76aa3` | 229/229 class/owner/effect/fixture/failure照合、misclassification/overlay 0、adopt static failure 0、non-adopt expected boundary mismatch 26、runtime/verified 0 | 0 |
-| Bun surface | `807ab6ca4ac2f13680cc3933b9d8e84977f17ee2a2d5db8dd2f51ac6cb5020e3` | HEAD `fcbf942` 2,029 blob、atom 7,042、blocking 6,863、verified 0、active Bun zero=false | 0 |
+| Bun surface | `807ab6ca4ac2f13680cc3933b9d8e84977f17ee2a2d5db8dd2f51ac6cb5020e3` | HEAD `fcbf942` 2,029 blob、atom 7,042、blocking 6,863、verified 0、active Bun zero=false | 0 | （日本語の機械契約記述）
 | Bun disposition | `cba4235afb7d8d07d6c75df7b6700fd397e19ff3df756c5d583d902bf3186886` | candidate 7,042/7,042、adversarial reviewで確定誤分類29、manual 0主張は撤回、verified/coverage/authority 0 | 0 |
 | Bun disposition adversarial review | `36b7de6ca734e9d33d4553e72994bbb7a8097601879698939ca16c194d55bc01` | invariant 7,042/7,042、sample 38、historical過剰19、negative fixture誤り10、overlay後historical 4,572、command-like残review 2,604 | 0 |
 | Bun non-PLAN command adjudication | `bce1c71de01229a3d2ed64f5f669ca9076e763dab9edd14abbe10e7f27132aa6` | non-PLAN 27/27＝current normative 19・active operational 3・historical evidence 5、累積historical 4,550、PLAN residual 2,577、verified 0 | 0 |
 | Bun PLAN semantic adjudication | `63b8d354a03f01137378124ee3aee262c74c77fe5246968abbdbf3ba4664da2b` | target PLAN 2,577を再構築しhistorical PLAN superset 4,472/4,472も分類、active replacement 2,210・historical evidence 359・stale orphan 8・normative transition 0、unclassified 0、verified 0 | 0 |
 | Bun corrected candidate projection | `fe4556d034896cddc055dff322fe73cdac87c4c957bc614f3446da28573031af` | base 7,042、3 overlay available、adjudicated 2,633・changed 2,261・residual PLAN/non-PLAN 0、verified/coverage/authority 0 | 0 |
-| OS portability | `192d4ff04f4bb1a8cf81577289a023630135eeae431a15528fbe005a02398de7` | HEAD `fcbf942` 2,029 blob、atom 2,281、blocking candidate 2,083、verified 0 | 0 |
-| Rebaseline zero-edge route | `c67f7000d22e28dbd5b0b8e847c2df3b544162ce60628894a799f062a02cf731` | candidate 51/51＝adopt 12 / harden 3 / redesign 4 / defer 32、verified source edge 0、residual 51 | 0 |
+| OS portability | `192d4ff04f4bb1a8cf81577289a023630135eeae431a15528fbe005a02398de7` | HEAD `fcbf942` 2,029 blob、atom 2,281、blocking candidate 2,083、verified 0 | 0 | （日本語の機械契約記述）
+| Rebaseline zero-edge route | `c67f7000d22e28dbd5b0b8e847c2df3b544162ce60628894a799f062a02cf731` | candidate 51/51＝adopt 12 / harden 3 / redesign 4 / defer 32、verified source edge 0、residual 51 | 0 | （日本語の機械契約記述）
 | Rebaseline route51／Design AC18独立review | `cd2d5ac5fedf932a371c3fff8b9d047c973e332f0f5aef0d3a9c7a71e8f0bae2` | candidate分類51/51＋closure edge 18/18、誤分類/orphan/authority混入0、executed/verified 0 | 0 |
-| Chat independent review | `21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a` | semantic 61/61、visible occurrence 44/44、quote 44/44、edge review 61/61、source limitation accepted、raw completeness unproven | 0 |
+| Chat independent review | `21b5696e5e9ae1eb7c31b4c726f34ab82d65703410bc153ff9e043181667178a` | semantic 61/61、visible occurrence 44/44、quote 44/44、edge review 61/61、source limitation accepted、raw completeness unproven | 0 | （日本語の機械契約記述）
 | V-model authority decision packet | `97482d7ef823ba6573376c0ee102ccf9cf5c7b08e49c75fe3fbd0a8f7c3d9333` | decision 19＝PO明示/精緻化8・activation待ち導出10・安全境界1、source snapshot 7/7 current、missing PO decision 1、approved=false | 0 |
 | Universal/VMAUTH decision completeness review | `cf70f31da0fc5c2c36f75702ca2a11e0bb60324e1c7a4ab79f26346af863ed31` | pre-activation packetのUniversal 22/22・6 group、VMAUTH missing 1/1。current authorityはPO7 runtime auditで7/7 activated | Design authority closureへ算入。Runtime 0 |
 | Predecessor PR/PLAN join | `bb8187cdfa28da6c906a672a51ac3f8534a5bfe311120d2e2363bf2a2013dbb6` | PR 71/71、historical PLAN candidate 62、explicit PLAN無し9、check 60/10/1、atomic decision/verified 0 | 0 |
-| Predecessor PR semantic review | `c9ce78600ee92ebda9672b55e2aa5cd98d659c717357271d28a01801d4739c04` | semantic mapping 71/71、no-plan 9/9、adopt 5 / harden 51 / redesign 8 / reject 1 / defer 6、activated/verified/coverage 0 | 0 |
-| Predecessor PR final reconciliation | `cd5ebf7d19157d27c233659158e66bfcbe671f6c7133ea5a03daddaa16f609fd` | full71＋UT64＋legacy7 exact join 71/71、conflict 41/71/70/71、final adopt 4 / harden 42 / redesign 19 / reject 4 / defer 2、verified/coverage 0 | 0 |
+| Predecessor PR semantic review | `c9ce78600ee92ebda9672b55e2aa5cd98d659c717357271d28a01801d4739c04` | semantic mapping 71/71、no-plan 9/9、adopt 5 / harden 51 / redesign 8 / reject 1 / defer 6、activated/verified/coverage 0 | 0 | （日本語の機械契約記述）
+| Predecessor PR final reconciliation | `cd5ebf7d19157d27c233659158e66bfcbe671f6c7133ea5a03daddaa16f609fd` | full71＋UT64＋legacy7 exact join 71/71、conflict 41/71/70/71、final adopt 4 / harden 42 / redesign 19 / reject 4 / defer 2、verified/coverage 0 | 0 | （日本語の機械契約記述）
 | Visual Design HARNESS semantic review | `10603a33bcfbe52097e33eec2395a5873491564d6fcd86db60443f31b2eed305` | schema 14/14、case 28/28、Design AC18 join、4 correction、全orphan 0、execution/authority/coverage 0。repo-owned generatorがcurrent input digestを再計算 | 0 |
 | Visual→Layer Freeze eligibility independent audit | `b81554761b2ac9e4ca29c871ea8ed3f6b49c3111349f48597b089e7b7969f7c2` | L8/L9/L10 exact case 6/7/8、case-set/matrix/execution/review/authority eligibilityをlayer tagへjoinし、未実行/N/A/quarantine/reuse/pendingをfreeze numerator 0へ固定。11/11 pass、旧finding2/2 Design closed | Design closureのみ。visual execution/tag/runtime/verified/coverage 0 |
-| exact2 custody／behavior replay readiness | `21aa2a608ff076da4addc3a829d5657d8f061ee6acc685492745d76ec1d606b0` | ref 90、ref-entry edge 145,276、PR 71、ephemeral bundle digest/verify 2/2、trusted/offline/restore/replay 0、historical retention 0/71 | 0 |
+| exact2 custody／behavior replay readiness | `21aa2a608ff076da4addc3a829d5657d8f061ee6acc685492745d76ec1d606b0` | ref 90、ref-entry edge 145,276、PR 71、ephemeral bundle digest/verify 2/2、trusted/offline/restore/replay 0、historical retention 0/71 | 0 | （日本語の機械契約記述）
 | PR test/oracle route／historical retention schema | candidate `158791e60da9f07f106813ab822ac5a1b60b074aaa7d00eb409620174616032c`／review `b191c4afe01abe8605e64e7d40d1602b44392dbdca08fa360f608e5e4c08031b` | PR 71/71＝exact test/oracle candidate 66、no-test route 5、gap obligation 130。retention schemaとlineage/evidence digestを独立review、retained/trusted/current/runtime/coverage 0/71 | Design route closureへ算入。Runtime 0 |
 | Infinity detector/state DB completeness | `d004117cbf593f73500a528b9a3be01dc74271ea6735e7b84e6cd5907cfd5553` | selected FR 20、relevant HAC 33、state 29、transition 32、Infinity table 20、detector/engine table 12、query 5、receipt 10、orphan/片肺 0、execution/verified 0 | 0 |
-| HARNESS-owned subagent standard readiness | `e5b10c08e55560f873ab51c0e158a43120cc211b5730e79da024d1f0e4fa5a7f` | ownership/role separation/bounded spawn/authority/lifecycle/retry/compaction/custody 8/8 design edge、execution/verified/coverage 0 | 0 |
+| HARNESS-owned subagent standard readiness | `e5b10c08e55560f873ab51c0e158a43120cc211b5730e79da024d1f0e4fa5a7f` | ownership/role separation/bounded spawn/authority/lifecycle/retry/compaction/custody 8/8 design edge、execution/verified/coverage 0 | 0 | （日本語の機械契約記述）
 | Repository/Layer savepoint design audit | producer `0ec16424222455f43839bc13eeddf81b4109ea0d9d1838b13dfc225280d40f17`／review `0a22e740dd36ca6bcd4bb9346edd00d6301a4347f34b37b63efbb8954cd3c9eb` | table 15、index 10、query 6、receipt 8、V-pair 6、failure code/case 16、umbrella case 6。bootstrap/crash/roadmap/worktree/GitHub/refreezeに加え、freeze_progress独立投影とV-pair対向atomic stale cascadeをDesign是正、open 0、implementation/execution/verified 0 | Design disposition closureへ算入。Runtime Acceptance 0 |
 | L-unit Git tag mechanical savepoint independent audit | `af25dae759dcb77a888aeb498ad2000baf57c037629700933b48328b034c85d3` | freeze_progress=count/12＋chain/denominator digest、live/pending/stale非混入、affected downstream＋V-pair counterpartのall-or-zero stale cascadeを再監査。旧finding2/2 closed、open0 | Design closed not implemented。tag/commit/runtime/verified/coverage 0 |
 | Bun PLAN replacement reachability review | `d889619f25e5e59734f8b5d509f26cbbf3d272232c556728145b679a916f5d5a` | corrected projection 2,577/2,577、active 2,210のtarget artifact/reachability 0、grammar再分類329、historical custody欠落359、stale unreachability欠落8 | 0。target design route未閉鎖 |
@@ -74,7 +74,7 @@ Design Freeze不可とする。runtime証拠をDesign Freezeの代替にも、De
 
 ## §1 objective別readiness
 
-| objective | authoritative requirement/design | required freeze evidence | current evidence | open denominator | verdict |
+| objective | authoritative requirement/design | required freeze evidence | current evidence | open denominator | verdict | （日本語の機械契約記述）
 |---|---|---|---|---:|---|
 | TS/Node control plane＋脱Bun | ADR-009、HIL-TR-01/02、HIL-FR-13、runtime surface台帳 | Bun dependency/API/command/lock/CI全atomのtarget disposition、Node artifact/cutover/rollback contract | Bun atom 7,042を個票化しresidual 0。active replacement 2,210/2,210はatom固有routeを独立review、historical/stale 367件はterminal Design receiptを独立reviewしDF-BUN-001/002 closed | Node artifact実装、verified disposition 7,042、active Bun zero、3 OS execution、terminal activation receipt | Design CLOSED / Runtime FAIL |
 | Python proposal worker | ADR-009、HIL-FR-12/15/27、L4 worker boundary | 29 module/229 callableのsource→route→fixture→failure→gate edge、closed capability registry | module 29/29、callable candidate 229/229、fixture contract 229・case 687、candidate dispositionと独立semantic review 229/229、misclassification 0、verified route/adoption 0、dynamic 0/29 | runtime fixture/Node再検証付きverified route/adoption 229、dynamic 29、final behavior atom分母 | FAIL |
@@ -97,7 +97,7 @@ Design Freeze不可とする。runtime証拠をDesign Freezeの代替にも、De
 
 ## §2 機械判定式
 
-### §2.1 Design Freeze
+### §2.1 Design Freeze （日本語の契約見出し）
 
 ```text
 authority_model_approved
@@ -116,7 +116,7 @@ AND visual_runtime_evidence_counted_as_design_freeze == 0
 AND implementation_preflight_green
 ```
 
-### §2.2 Runtime Acceptance
+### §2.2 Runtime Acceptance （日本語の契約見出し）
 
 ```text
 design_freeze_receipt_current

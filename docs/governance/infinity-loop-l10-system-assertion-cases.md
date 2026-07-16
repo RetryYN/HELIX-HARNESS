@@ -9,7 +9,7 @@ system_test_design: docs/test-design/helix/L10-infinity-loop-platform-system-tes
 assertions: docs/governance/infinity-loop-assertion-coverage-ledger.md
 ---
 
-# HELIX L10 Infinity Loop atomic system assertion cases
+# HELIX L10 Infinity Loop atomic system assertion cases （日本語の契約見出し）
 
 ## §0 Contract
 
@@ -19,7 +19,7 @@ coverageへ重複算入しない。family failureは集約verdict専用で、個
 
 ## §1 Atomic cases（66/66設計）
 
-| case ID | HST | requirement | HIA | kind | precondition | stimulus | observable | failure code | design status | execution status |
+| case ID | HST | requirement | HIA | kind | precondition | stimulus | observable | failure code | design status | execution status | （日本語の機械契約記述）
 |---|---|---|---|---|---|---|---|---|---|---|
 | HST-A-034-N01 | HST-HIL-034 | family | — | normal | current L2 agreement/no-UI、L3/L10、L4/L9、L5/L8、L6/L7 contractとslice digestがある | production Scrum sliceを正規順序で完走する | 6 pairとTDD順序の全receiptが同一sliceで閉じる | なし（正常系） | design-defined | not-implemented |
 | HST-A-034-F01 | HST-HIL-034 | HIL-BR-13 | HIA-BR-013 | negative | 画面対象PLANと画面非対象PLANがある | L3要件freezeを要求する | L2 prototype agreementまたは有効なno-UI receiptが無ければ拒否 | `HIL_SCREEN_DECISION_MISSING` | design-defined | not-implemented |
@@ -94,25 +94,25 @@ coverageへ重複算入しない。family failureは集約verdict専用で、個
 | HST-A-061-F01 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | negative | layer skip、非祖先、V-pair片肺、旧design SHA、tag移動、Sprint/release混同fixtureがある | layer freezeを要求する | 不正tagを進捗へ数えず該当層以降をfail-closeする | `HIL_LAYER_FREEZE_TAG_INVALID` | design-defined | not-implemented |
 | HST-A-061-B01 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | boundary | current layer tagとredesignでstale化したaffected layer以降のtagがある | version supersessionとprogress再投影を行う | 旧tagを保持したままstale/superseded化し、新versionの祖先鎖が閉じるまで完了率を回復しない | `HIL_LAYER_FREEZE_TAG_INVALID` | design-defined | not-implemented |
 | HST-A-060-C01 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | 不正namespace | create | write 0 | `HIL_SAVEPOINT_NAMESPACE_INVALID` | design-defined | not-implemented |
-| HST-A-060-C02 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | lightweight tag | verify | receipt 0 | `HIL_SAVEPOINT_TAG_NOT_ANNOTATED` | design-defined | not-implemented |
-| HST-A-060-C03 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | remote OID mismatch | observe | matched 0 | `HIL_SAVEPOINT_REMOTE_REF_MISMATCH` | design-defined | not-implemented |
+| HST-A-060-C02 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | lightweight tag | verify | receipt 0 | `HIL_SAVEPOINT_TAG_NOT_ANNOTATED` | design-defined | not-implemented | （日本語の機械契約記述）
+| HST-A-060-C03 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | remote OID mismatch | observe | matched 0 | `HIL_SAVEPOINT_REMOTE_REF_MISMATCH` | design-defined | not-implemented | （日本語の機械契約記述）
 | HST-A-060-C04 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | ruleset/visibility/bypass expiry欠落 | verify authority | remote_verified 0 | `HIL_SAVEPOINT_RULESET_AUTHORITY_MISSING` | design-defined | not-implemented |
-| HST-A-060-C05 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | roadmap/HEAD/index/artifact digest mismatch | bind | receipt 0 | `HIL_SAVEPOINT_BINDING_DIGEST_MISMATCH` | design-defined | not-implemented |
+| HST-A-060-C05 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | negative | roadmap/HEAD/index/artifact digest mismatch | bind | receipt 0 | `HIL_SAVEPOINT_BINDING_DIGEST_MISMATCH` | design-defined | not-implemented | （日本語の機械契約記述）
 | HST-A-060-C06 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | boundary | 同operation異payload | retry | prior receipt不変 | `HIL_SAVEPOINT_IDEMPOTENCY_CONFLICT` | design-defined | not-implemented |
-| HST-A-060-C07 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | boundary | concurrent expected-absent create | race | force 0 | `HIL_REMOTE_TAG_CONCURRENT_REF_RACE` | design-defined | not-implemented |
+| HST-A-060-C07 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | boundary | concurrent expected-absent create | race | force 0 | `HIL_REMOTE_TAG_CONCURRENT_REF_RACE` | design-defined | not-implemented | （日本語の機械契約記述）
 | HST-A-060-C08 | HST-HIL-060 | HIL-FR-80 | HIA-FR-080 | boundary | remote成功後DB crash／隔離外restore変更 | reconcile/restore | exact adoptまたはquarantine | `HIL_SAVEPOINT_RESTORE_MISMATCH` | design-defined | not-implemented |
 | HST-A-061-C01 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | negative | layer namespace不正 | create | tag 0 | `HIL_LAYER_TAG_NAMESPACE_INVALID` | design-defined | not-implemented |
 | HST-A-061-C02 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | negative | predecessor非祖先 | freeze | current 0 | `HIL_LAYER_TAG_ANCESTRY_INVALID` | design-defined | not-implemented |
 | HST-A-061-C03 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | negative | layer skip | freeze | progress加算0 | `HIL_LAYER_TAG_SKIP` | design-defined | not-implemented |
 | HST-A-061-C04 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | boundary | left pending_pair、right欠落/stale | pair close | pending維持 | `HIL_LAYER_TAG_VPAIR_ONE_SIDED` | design-defined | not-implemented |
-| HST-A-061-C05 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | negative | gate/roadmap denominator SHA mismatch | close | current 0 | `HIL_LAYER_TAG_GATE_SHA_MISMATCH` | design-defined | not-implemented |
+| HST-A-061-C05 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | negative | gate/roadmap denominator SHA mismatch | close | current 0 | `HIL_LAYER_TAG_GATE_SHA_MISMATCH` | design-defined | not-implemented | （日本語の機械契約記述）
 | HST-A-061-C06 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | boundary | refreeze旧version再利用 | supersede | tag移動0 | `HIL_LAYER_TAG_SUPERSESSION_INVALID` | design-defined | not-implemented |
 | HST-A-061-C07 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | boundary | live/in_progress/last_frozen/stale_from混同 | project | freeze加算0 | `HIL_LAYER_PROGRESS_PROJECTION_INVALID` | design-defined | not-implemented |
 | HST-A-061-C08 | HST-HIL-061 | HIL-FR-81 | HIA-FR-081 | boundary | 同operation異payload pair close | retry | prior binding不変 | `HIL_LAYER_TAG_IDEMPOTENCY_CONFLICT` | design-defined | not-implemented |
 
 ## §2 Denominator
 
-| HST | normal | requirement-negative | boundary | total |
+| HST | normal | requirement-negative | boundary | total | （日本語の機械契約記述）
 |---|---:|---:|---:|---:|
 | HST-HIL-034 | 1 | 7 | 1 | 9 |
 | HST-HIL-035 | 1 | 9 | 1 | 11 |
@@ -134,13 +134,13 @@ worker/verifier separationが揃うまでL10 passへ昇格しない。
 `HST-A-PO7`は`UniversalOptionReceiptV1` 6件、per-question answer receipt 22件、
 `VModelAuthorityActivationEventV1`、disposition/queue projection、terminal receiptを一つのtransactionへ固定する。
 
-| case | mutation/fault | expected |
+| case | mutation/fault | expected | （日本語の機械契約記述）
 |---|---|---|
 | HST-A-PO7-C01 | group内0/2/unknown option | `HIL_PO7_MUTUAL_EXCLUSION_INVALID`、write 0 |
-| HST-A-PO7-C02 | packet/source/actor authority/chat answer digest swap | `HIL_PO7_CUSTODY_INVALID`、write 0 |
-| HST-A-PO7-C03 | B/C co-authority missing/scope/expiry invalid | `HIL_PO7_CO_AUTHORITY_INVALID`、write 0 |
+| HST-A-PO7-C02 | packet/source/actor authority/chat answer digest swap | `HIL_PO7_CUSTODY_INVALID`、write 0 | （日本語の機械契約記述）
+| HST-A-PO7-C03 | B/C co-authority missing/scope/expiry invalid | `HIL_PO7_CO_AUTHORITY_INVALID`、write 0 | （日本語の機械契約記述）
 | HST-A-PO7-C04 | 6→22展開の各append直後fault | rollback後6/22/event/projection/terminal増分0 |
-| HST-A-PO7-C05 | same idempotency key＋same bytes / different bytes | same receipt / `HIL_PO7_IDEMPOTENCY_CONFLICT` |
+| HST-A-PO7-C05 | same idempotency key＋same bytes / different bytes | same receipt / `HIL_PO7_IDEMPOTENCY_CONFLICT` | （日本語の機械契約記述）
 | HST-A-PO7-C06 | expected activation epoch/event head CAS race | exactly one winner、loser増分0 |
 | HST-A-PO7-C07 | active後packet/source/chat/authority drift | stale event＋freeze blocker reopenを同transaction commit |
 | HST-A-PO7-C08 | revoke、新revision activation | append-only revoked/superseded、旧authority再利用0 |

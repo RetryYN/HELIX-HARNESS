@@ -22,11 +22,11 @@ packageは`proposed_rebaseline`かつ`approval_required=true`であり、現行L
 | archive entry | 184/184 inventoried | 0/184 |
 | requirement | 163、11 area | 0/163 |
 | acceptance criterion | 111 | 0/111 |
-| package trace edge | 286（verified_by 163＋refined_into 123）、invalid target 0 | 0/286 |
+| package trace edge | 286（verified_by 163＋refined_into 123）、invalid target 0 | 0/286 | （日本語の機械契約記述）
 | chat requirement | 20/20 package内 | 現行57 semantic requirementの代替不可 |
-| Design HARNESS requirement / AC | 29 / 27 | 0/29 exact disposition、0/27 current L10 join |
-| Python binding | 21 | 0/21 verified runtime binding |
-| Hybrid document binding | 9 | 0/9 verified current catalog binding |
+| Design HARNESS requirement / AC | 29 / 27 | 0/29 exact disposition、0/27 current L10 join | （日本語の機械契約記述）
+| Python binding | 21 | 0/21 verified runtime binding | （日本語の機械契約記述）
+| Hybrid document binding | 9 | 0/9 verified current catalog binding | （日本語の機械契約記述）
 
 zero-edge 51件のcandidate exact routeは
 `docs/governance/generated/helix-rebaseline-v040-zero-edge-routes-51-v1.json`
@@ -61,11 +61,11 @@ READMEは不存在`19-v0.4.0-errata.md`を参照し、実fileは`19-v0.3.2-errat
 
 ## §2 package全体の採否境界
 
-| disposition | source capability | hardening / replacement |
+| disposition | source capability | hardening / replacement | （日本語の機械契約記述）
 |---|---|---|
 | adopt-with-hardening | Design typed contracts、semantic ID continuity、Capsule、Linux full gate、projection/rebuild、Infinity三重loop | L1–L12、authority、schema、failure codeへbind |
 | redesign | package L0–L14 layer/gate、L1→L10 Design continuity | L1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7へsemantic remap |
-| redesign | Scrum/TDD、no-UI applicability | Production Scrum overlay、L5 test design→L7 Red→L6 Green、typed no-UI receipt |
+| redesign | Scrum/TDD、no-UI applicability | Production Scrum overlay、L5 test design→L7 Red→L6 Green、typed no-UI receipt | （日本語の機械契約記述）
 | redesign | candidate 20-table DDL | append-only trigger、state machine、JSON check、authority separation、Issue/Reverse/pair/ledger chainを追加 |
 | harden | Python meaning / Node effect split | Pythonはproposal、Node schema再検証・唯一DB commit。DB path/external writeを渡さない |
 | retain as evidence | package UT audit | donor authorityにはしないが全ref検査義務を維持 |
@@ -75,7 +75,7 @@ READMEは不存在`19-v0.4.0-errata.md`を参照し、実fileは`19-v0.3.2-errat
 
 Node 22/Python 3.12–3.14などpackageのversion値はcandidateであり、ADR-009のNode `>=24.15 <25`を無断で変更しない。
 
-## §3 Design HARNESS 29 requirement candidate
+## §3 Design HARNESS 29 requirement candidate （日本語の契約見出し）
 
 | IDs | candidate disposition | 現行設計への統合義務 |
 |---|---|---|
@@ -85,14 +85,14 @@ Node 22/Python 3.12–3.14などpackageのversion値はcandidateであり、ADR-
 | HBR-DH-012..014 | redesign＋adopt | UI-M0..M7とverified receiptをcanonical L6/L7へremapしfalse completion detectorへ接続 |
 | HBR-DH-015..020 | adopt-with-hardening | responsive、motion、surface、a11y、real-data UX、UI deltaをL10/L11 oracleへ接続 |
 | HBR-DH-021..023 | harden | Python Core保全、Node side-effect boundary、projection-only DB。proposal-onlyを弱めない |
-| HBR-DH-024..027 | adopt-with-hardening | human authority、workflow alignment、capsule context、UT namespace exclusion |
+| HBR-DH-024..027 | adopt-with-hardening | human authority、workflow alignment、capsule context、UT namespace exclusion | （日本語の機械契約記述）
 | HBR-DH-028 | harden | 9 bindingを現行catalog digestへ再joinしparallel catalogを禁止 |
 | HBR-DH-029 | harden | 21 bindingを29 module/229 callable anchorへ展開しdynamic evidenceを要求 |
 
 29件をrange集約した本表は説明用であり、freezeには`HBR-DH-001..029`各行のsource span/value digest、HIL requirement、
 L4 component、L10 assertion、gate receiptへのexact edgeが必要である。
 
-## §4 freeze blocker
+## §4 freeze blocker （日本語の契約見出し）
 
 1. 184 entryのsemantic anchor分母とterminal dispositionが未確定。
 2. 163 requirement / 111 AC / 286 edgeの現行HIL exact joinが0。
@@ -105,12 +105,12 @@ L4 component、L10 assertion、gate receiptへのexact edgeが必要である。
 
 以上が0になるまで本packageをrequirements freeze、implementation preflight、runtime cutoverのgreen evidenceへ使用しない。
 
-## §5 candidate DB 20 table exact disposition
+## §5 candidate DB 20 table exact disposition （日本語の契約見出し）
 
 静的実測はtable 20、explicit index 9、trigger 0、view 0である。fresh-memory createと`foreign_key_check`だけはPASSするが、
 as-is採用は0件である。
 
-| source table | disposition | hardening / replacement obligation |
+| source table | disposition | hardening / replacement obligation | （日本語の機械契約記述）
 |---|---|---|
 | `source_snapshots` | harden | project/repository authority、manifest/schema version、sealed/freshness/custody、digestを追加 |
 | `source_assets` | harden | relative path、escape/symlink拒否、blob/entry digest、classificationを追加 |

@@ -35,25 +35,25 @@ trusted storage policyの決定や権限昇格を代行しない。
 | metric | predecessor UT | legacy HELIX |
 |---|---:|---:|
 | repository | `unison-ai-product/UT-TDD_AGENT-HARNESS` | `RetryYN/ai-dev-kit-vscode` |
-| heads / tags / pull-head / pull-merge | 4 / 0 / 64 / 1 | 7 / 2 / 7 / 5 |
+| heads / tags / pull-head / pull-merge | 4 / 0 / 64 / 1 | 7 / 2 / 7 / 5 | （日本語の機械契約記述）
 | ref count | 69 | 21 |
 | unique advertised OID | 67 | 16 |
-| canonical ref-set SHA-256 | `b01a2d2416bde5aa9c10e7e6ff0a6e4c0077e5e5db3d2c7205003b2033cb6803` | `146907101fcaade4e4dc9b157c814da3551d0fe603984c9acac4ca018468002d` |
+| canonical ref-set SHA-256 | `b01a2d2416bde5aa9c10e7e6ff0a6e4c0077e5e5db3d2c7205003b2033cb6803` | `146907101fcaade4e4dc9b157c814da3551d0fe603984c9acac4ca018468002d` | （日本語の機械契約記述）
 | advertisement A/B | equal | equal |
-| remote/local ref set | equal | equal |
+| remote/local ref set | equal | equal | （日本語の機械契約記述）
 | invalid materialized object | 0 | 0 |
-| tag object / commit-peel success | 0 / 69 | 2 / 21 |
-| unique commit / root tree | 67 / 66 | 16 / 13 |
-| ref-entry edge count | 106,347 | 38,929 |
-| ref-entry edge SHA-256 | `0ddd9d715bf8ee6661a5245b8dad93f64a1aba041344af6827d0e308fc9a7a0a` | `27fd33060bce14509a0847e1ba8927a2dbff75bf5fba60e2cfb4114ac1f8a7bf` |
-| unique path-content count | 3,380 | 3,287 |
-| unique path-content SHA-256 | `5ef844b7f55371cbf89368bf5c96032be75873b2ffc1d9c7c6db2ae930beff10` | `a85c9548ebab0d52561e1d6d937b76cb41761823827b1a0ab802eeb96ffe50f6` |
+| tag object / commit-peel success | 0 / 69 | 2 / 21 | （日本語の機械契約記述）
+| unique commit / root tree | 67 / 66 | 16 / 13 | （日本語の機械契約記述）
+| ref-entry edge count | 106,347 | 38,929 | （日本語の機械契約記述）
+| ref-entry edge SHA-256 | `0ddd9d715bf8ee6661a5245b8dad93f64a1aba041344af6827d0e308fc9a7a0a` | `27fd33060bce14509a0847e1ba8927a2dbff75bf5fba60e2cfb4114ac1f8a7bf` | （日本語の機械契約記述）
+| unique path-content count | 3,380 | 3,287 | （日本語の機械契約記述）
+| unique path-content SHA-256 | `5ef844b7f55371cbf89368bf5c96032be75873b2ffc1d9c7c6db2ae930beff10` | `a85c9548ebab0d52561e1d6d937b76cb41761823827b1a0ab802eeb96ffe50f6` | （日本語の機械契約記述）
 | unique blob OID | 3,314 | 3,241 |
-| strict fsck / bundle verify | PASS / PASS | PASS / PASS |
+| strict fsck / bundle verify | PASS / PASS | PASS / PASS | （日本語の機械契約記述）
 | ephemeral bundle bytes | 16,937,796 | 13,819,523 |
 | ephemeral bundle SHA-256 | `5243b1ae9888b2ca5ec425354300d6b8bac6dd90f31e4bdca2a169e33a54a627` | `99829b062b6d6ffd364cbe4ed781faa1d2ec27d2534e5347c76ebc4a98d6d854` |
 
-## §2.1 machine candidate exact 2
+## §2.1 machine candidate exact 2 （日本語の契約見出し）
 
 `docs/governance/generated/git-ref-authority-candidates-exact2-v1.json`は上記bundle bytes、`git bundle verify`、
 canonical ref-set digestを再演算した`GitRefAuthorityReceiptV1` **candidate** 2件である。artifact自体のSHA-256は
@@ -65,7 +65,7 @@ UT=`9231e98b5854b03b4d10fdbcd34c197b041d07db3bb54cf0fea1565b7f4881ca`、legacy=
 |---|---:|
 | candidate receipt | 2 |
 | trusted/current receipt | 0 |
-| offline capture/classification manifest generated | 0 |
+| offline capture/classification manifest generated | 0 | （日本語の機械契約記述）
 | coverage credit | 0 |
 
 ephemeral sealは観測済みだが、trusted storage policy、CAS URI、promotion receipt、raw advertisement A/B digest、

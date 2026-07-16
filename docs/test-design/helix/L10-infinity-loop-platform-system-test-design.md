@@ -76,9 +76,9 @@ HST-HIL-060/061のatomic expansionはHST-A-060-C01..C08およびHST-A-061-C01..C
 
 HST-HIL-062は`LocalL01TagCandidateHandoffV1`のcandidate/event/operation/payload/freeze/HEAD/tree/denominator/expiryをremote request、annotation、receiptへexact bindする正例と、candidate差替え・expiry・head driftの増分0を含む。visibility queryではpending/cancelled/expired/remote未作成をfreeze分子0にする。remote作成後のPO/VMAUTH revokeでは`LayerAuthorityInvalidationBundleV1`がrefを変更せずobservation/tag receipt/V-pair/progress/visibilityを全件stale化し、各faultとunknown outcome reconcileでpartial credit 0を検証する。
 
-### §1.1 PO7 activation system contract
+### §1.1 PO7 activation system contract （日本語の契約見出し）
 
-| HST | assertion | scenario | oracle | status |
+| HST | assertion | scenario | oracle | status | （日本語の機械契約記述）
 |---|---|---|---|---|
 | HST-PO7-001 | HST-A-PO7 | 6 group receiptを22 question receiptへ展開し各append直後fault | 6/22/VMAUTH/projection/terminalが全件commitまたは全件rollback | 設計済み・未実装 |
 | HST-PO7-002 | HST-A-PO7 | unknown/複数option、packet/source/chat digest swap、actor authority欠落 | activation receipt 0、旧authority不変 | 設計済み・未実装 |

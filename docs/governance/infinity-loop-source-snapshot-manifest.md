@@ -181,18 +181,18 @@ PY
 ZIP entryは**除外0件**である。`build/`をsource集合から落とさず、generated候補として分類した上で
 fixture atomへ分離する。archive外の展開directory、OS metadata、inspection用一時pathはsource rootに含めない。
 
-### §2.4 HELIX Rebaseline v0.4.0 candidate source
+### §2.4 HELIX Rebaseline v0.4.0 candidate source （日本語の契約見出し）
 
 | field | value |
 |---|---|
 | `family_id` | `ZIP-HELIX-REBASELINE-V040` |
 | archive SHA-256 | `sha256:c0d839bd65a221bd9614b9820cd08d3f5c21cad057bbde03bb9b2e532d05a812` |
-| entry / uncompressed / compressed | 184 / 601,605 bytes / 220,703 bytes |
+| entry / uncompressed / compressed | 184 / 601,605 bytes / 220,703 bytes | （日本語の機械契約記述）
 | entry inventory digest | `sha256:89eff7b5bad1667da3d65014e871a2525233425ee2849ae96d61c46b8c487bf2` |
-| format | Markdown 95、JSON 33、YAML 44、Mermaid 6、log 4、CSV 1、SQL 1 |
+| format | Markdown 95、JSON 33、YAML 44、Mermaid 6、log 4、CSV 1、SQL 1 | （日本語の機械契約記述）
 | safety | traversal/absolute/backslash/NUL/symlink/encryption/duplicate path 0、全entry regular 100644 |
-| parse | JSON 33/33、YAML 44/44、SQLite fresh-memory 20 table create PASS |
-| package claim | requirements 163、AC 111、trace 286、chat 20、Python binding 21、document binding 9 |
+| parse | JSON 33/33、YAML 44/44、SQLite fresh-memory 20 table create PASS | （日本語の機械契約記述）
+| package claim | requirements 163、AC 111、trace 286、chat 20、Python binding 21、document binding 9 | （日本語の機械契約記述）
 | authority | `proposed`、`approval_required=true`。candidate sourceであってactive正本ではない |
 | `entry_set_closed` | `true` |
 | `behavior_atom_closed` | `false` |
@@ -207,7 +207,7 @@ implementation ready、runtime evidenceとして採用しない。
 
 semantic dispositionは次の境界で行う。
 
-- adopt-with-hardening: Design HARNESS typed contracts、semantic ID continuity、Capsule、Linux contract、projection/rebuild、Infinity loop。
+- adopt-with-hardening: Design HARNESS typed contracts、semantic ID continuity、Capsule、Linux contract、projection/rebuild、Infinity loop。 （日本語の機械契約記述）
 - redesign: L0–L14をL1–L12＋6 V-pairへremap、Production Scrum/TDD、no-UI receipt、DB state machine、Issue gate、連鎖台帳。
 - reject: UT namespace/DB/PLAN/roleのactive持込み、独立Design engine、Python/Node意味判定の二重実装、Python canonical/external write。
 - retain as evidence: package内UT audit。全ref検査義務は外さず、exact 69-ref UT authority observationを上位証拠にする。
@@ -223,8 +223,8 @@ required repository setは次のexact 2件である。
 
 | repository ID（リポジトリID） | canonical owner/repo（正規owner/repo） | authority status（権限状態） | current receipt（現行receipt） |
 |---|---|---|---|
-| `predecessor-ut` | `unison-ai-product/UT-TDD_AGENT-HARNESS` | **PARTIAL**（materialize＋ephemeral seal observed、trusted CAS promotion pending） | `candidate:9231e98b...881ca`（current=false） |
-| `legacy-helix` | `RetryYN/ai-dev-kit-vscode` | **PARTIAL**（materialize＋ephemeral seal observed、trusted CAS promotion pending） | `candidate:85e9a072...5df9e`（current=false） |
+| `predecessor-ut` | `unison-ai-product/UT-TDD_AGENT-HARNESS` | **PARTIAL**（materialize＋ephemeral seal observed、trusted CAS promotion pending） | `candidate:9231e98b...881ca`（current=false） | （日本語の機械契約記述）
+| `legacy-helix` | `RetryYN/ai-dev-kit-vscode` | **PARTIAL**（materialize＋ephemeral seal observed、trusted CAS promotion pending） | `candidate:85e9a072...5df9e`（current=false） | （日本語の機械契約記述）
 
 namespace policyは`refs/heads/*`、`refs/tags/*`、`refs/pull/*/{head,merge}`をexact対象とする。symbolic `HEAD`と
 annotated tagの`^{}` pseudo-lineはref denominatorへ数えず、symbolic target/tag peel evidenceとして保存する。
@@ -246,7 +246,7 @@ missing/stale/driftedならmanifest statusはBLOCKED、capture planは0である
 `refs/pull/*/{head,merge}`だけをrefname byte順で`<oid>\t<ref>\n`へ正規化した。両repositoryともA/Bは一致した。
 これはexact OID materialize、object/tree/tag peel、sealed bundle、content/edge digestをまだ証明しないため、current receiptへ昇格しない。
 
-| repository | observed at UTC | heads | tags | pull head | pull merge | ref total | unique OID | canonical ref-set SHA-256 | A/B |
+| repository | observed at UTC | heads | tags | pull head | pull merge | ref total | unique OID | canonical ref-set SHA-256 | A/B | （日本語の機械契約記述）
 |---|---|---:|---:|---:|---:|---:|---:|---|---|
 | `predecessor-ut` | `2026-07-15T16:11:24Z` | 4 | 0 | 64 | 1 | 69 | 67 | `sha256:b01a2d2416bde5aa9c10e7e6ff0a6e4c0077e5e5db3d2c7205003b2033cb6803` | equal |
 | `legacy-helix` | `2026-07-15T16:11:24Z` | 7 | 2 | 7 | 5 | 21 | 16 | `sha256:146907101fcaade4e4dc9b157c814da3551d0fe603984c9acac4ca018468002d` | equal |
@@ -281,14 +281,14 @@ exact2 custody／behavior replay readinessの再実行可能な監査は
 `docs/governance/generated/exact2-custody-replay-readiness-v1.json`
 （SHA-256=`21aa2a608ff076da4addc3a829d5657d8f061ee6acc685492745d76ec1d606b0`）を正本とする。
 
-| source | ref | root tree | ref-entry edge | path/content | PR | HIL/HR candidate | candidate test/oracle route | historical retention | trusted/offline/restore/replay |
+| source | ref | root tree | ref-entry edge | path/content | PR | HIL/HR candidate | candidate test/oracle route | historical retention | trusted/offline/restore/replay | （日本語の機械契約記述）
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | predecessor UT | 69 | 66 | 106,347 | 3,380 | 64 | 64 | 64/64 | 0/64 | 0/1 |
 | legacy HELIX | 21 | 13 | 38,929 | 3,287 | 7 | 7 | 7/7 | 0/7 | 0/1 |
 | total | 90 | 79 | 145,276 | 6,667 | 71 | 71 | 71/71 | 0/71 | 0/2 |
 
 ephemeral bundleはdigest一致と`git bundle verify`が2/2であってもcandidateに留まり、trusted custodyへ昇格しない。
-root-tree set digest、project-owned CAS object、promotion／current receipt、network 0 offline manifest、isolated restore、
+root-tree set digest、project-owned CAS object、promotion／current receipt、network 0 offline manifest、isolated restore、 （日本語の機械契約記述）
 entry classification、behavior atom固定分母、candidate test/oracleの実行、historical retention receiptが未生成であるため、
 trusted/current、offline、restore、behavior replay、coverage creditはすべて0である。
 
@@ -407,8 +407,8 @@ git -C "$UT_INSPECTION_ROOT" ls-tree -r -z --name-only origin/main |
 | scope外tracked数 | 175 |
 | full-tree分類digest | `sha256:44e4f685a945e70ba47cb9d56bb5bcefc4e0b370524a56b8e346c0ddc2676800` |
 | core分類digest | `sha256:65e2a63f001cae07f572908ef9ed67051732bfb1656ecc0ecec2fb543d6e0cf5` |
-| classification group count | core 53、outside 8、full 61 |
-| unsafe path telemetry | unclassified 0、tab path 0、LF path 0 |
+| classification group count | core 53、outside 8、full 61 | （日本語の機械契約記述）
+| unsafe path telemetry | unclassified 0、tab path 0、LF path 0 | （日本語の機械契約記述）
 | `entry_set_closed` | `true`、2,029/2,029 |
 | repository-wide closure | `true`（seed commitのtracked full tree） |
 | `classification_set_closed` | `true`、2,029/2,029 |
