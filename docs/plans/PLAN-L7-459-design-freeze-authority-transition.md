@@ -1,12 +1,12 @@
 ---
 plan_id: PLAN-L7-459-design-freeze-authority-transition
 title: "PLAN-L7-459: Design Freeze authority transition実装"
-kind: add-impl
+kind: retrofit
 layer: L7
 drive: agent
 parent_design: docs/design/helix/L6-function-design/design-freeze-authority-transition.md
 pair_artifact: docs/test-design/helix/L8-design-freeze-authority-transition.md
-status: confirmed
+status: draft
 created: 2026-07-16
 updated: 2026-07-16
 owner: Codex
