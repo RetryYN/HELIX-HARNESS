@@ -30,9 +30,7 @@ export interface MigrationResult {
 /** DB に存在する table 名を昇順で返す。 */
 export function tableNames(db: HarnessDb): string[] {
   const rows = db
-    .prepare(
-      "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name",
-    )
+    .prepare("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name")
     .all();
   return rows.map((r) => String(r.name));
 }
@@ -46,9 +44,7 @@ function columnNames(db: HarnessDb, table: string): Set<string> {
 function tablePrimaryKeyColumns(db: HarnessDb, table: string): Set<string> {
   assertSqlIdentifier(table);
   const rows = db.prepare(`PRAGMA table_info(${table})`).all();
-  return new Set(
-    rows.filter((r) => Number(r.pk ?? 0) > 0).map((r) => String(r.name)),
-  );
+  return new Set(rows.filter((r) => Number(r.pk ?? 0) > 0).map((r) => String(r.name)));
 }
 
 function addColumnSql(table: string, column: ColumnDef): string {
@@ -57,25 +53,16 @@ function addColumnSql(table: string, column: ColumnDef): string {
   return `ALTER TABLE ${table} ADD COLUMN ${column.name} ${column.type}`;
 }
 
-function primaryKeyCompatibilityIndexName(
-  table: string,
-  column: string,
-): string {
+function primaryKeyCompatibilityIndexName(table: string, column: string): string {
   const indexName = `idx_${table}_${column}_pk_compat`;
   assertSqlIdentifier(indexName);
   return indexName;
 }
 
-function addMissingPrimaryKeyCompatibility(
-  db: HarnessDb,
-  table: string,
-  column: ColumnDef,
-): void {
+function addMissingPrimaryKeyCompatibility(db: HarnessDb, table: string, column: ColumnDef): void {
   db.exec(addColumnSql(table, { ...column, primaryKey: false }));
   const indexName = primaryKeyCompatibilityIndexName(table, column.name);
-  db.exec(
-    `CREATE UNIQUE INDEX IF NOT EXISTS ${indexName} ON ${table} (${column.name})`,
-  );
+  db.exec(`CREATE UNIQUE INDEX IF NOT EXISTS ${indexName} ON ${table} (${column.name})`);
 }
 
 function addMissingColumns(db: HarnessDb): number {
@@ -105,20 +92,11 @@ function ensurePrimaryKeyCompatibilityIndexes(db: HarnessDb): void {
     const columns = columnNames(db, table.name);
     const actualPrimaryKeys = tablePrimaryKeyColumns(db, table.name);
     for (const column of table.columns) {
-      if (
-        !column.primaryKey ||
-        !columns.has(column.name) ||
-        actualPrimaryKeys.has(column.name)
-      ) {
+      if (!column.primaryKey || !columns.has(column.name) || actualPrimaryKeys.has(column.name)) {
         continue;
       }
-      const indexName = primaryKeyCompatibilityIndexName(
-        table.name,
-        column.name,
-      );
-      db.exec(
-        `CREATE UNIQUE INDEX IF NOT EXISTS ${indexName} ON ${table.name} (${column.name})`,
-      );
+      const indexName = primaryKeyCompatibilityIndexName(table.name, column.name);
+      db.exec(`CREATE UNIQUE INDEX IF NOT EXISTS ${indexName} ON ${table.name} (${column.name})`);
     }
   }
 }
@@ -140,9 +118,7 @@ function ensureGateRunReceiptImmutability(db: HarnessDb): void {
   ];
   if (!receiptColumns.every((column) => columns.has(column))) return;
 
-  const hadReceipt = receiptColumns
-    .map((column) => `OLD.${column} IS NOT NULL`)
-    .join(" OR ");
+  const hadReceipt = receiptColumns.map((column) => `OLD.${column} IS NOT NULL`).join(" OR ");
   const immutableColumns = [
     "gate_run_id",
     "gate_id",
@@ -277,11 +253,9 @@ function ensureDesignFreezeV2ReceiptImmutability(db: HarnessDb): void {
  */
 export function migrate(db: HarnessDb): MigrationResult {
   const fromVersion = db.userVersion();
-  if (fromVersion < 36)
-    db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
+  if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
   const ddls = schemaDdl();
-  for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE")))
-    db.exec(ddl);
+  for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
   const addedColumns = addMissingColumns(db);
   ensurePrimaryKeyCompatibilityIndexes(db);
   ensureGateRunReceiptImmutability(db);
@@ -289,8 +263,7 @@ export function migrate(db: HarnessDb): MigrationResult {
   ensurePo7ReceiptImmutability(db);
   ensureDesignFreezeReceiptImmutability(db);
   ensureDesignFreezeV2ReceiptImmutability(db);
-  for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s)))
-    db.exec(ddl);
+  for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
   if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
   const toVersion = fromVersion > SCHEMA_VERSION ? fromVersion : SCHEMA_VERSION;
   return {
@@ -304,9 +277,7 @@ export function migrate(db: HarnessDb): MigrationResult {
 /** registry が宣言する全 table が DB に存在するか検査する (status 用)。 */
 export function missingTables(db: HarnessDb): string[] {
   const present = new Set(tableNames(db));
-  return HARNESS_DB_TABLES.map((t) => t.name).filter(
-    (name) => !present.has(name),
-  );
+  return HARNESS_DB_TABLES.map((t) => t.name).filter((name) => !present.has(name));
 }
 
 /** table 名 → 行数 (status 用、registry 宣言 table のみ)。 */

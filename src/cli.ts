@@ -55,9 +55,9 @@ import {
 import { validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
+import { registerAuthorityCommands } from "./cli/commands/authority";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerRouteCommands } from "./cli/commands/route";
-import { registerAuthorityCommands } from "./cli/commands/authority";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import { runConsumerDoctor, runDoctor } from "./doctor";
