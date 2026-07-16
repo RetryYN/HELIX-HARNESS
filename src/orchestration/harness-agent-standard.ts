@@ -39,6 +39,7 @@ export type AgentStandardFailureCode =
   | "HIL_AGENT_STATE_TRANSITION_INVALID"
   | "HIL_AGENT_LIFECYCLE_INVALID"
   | "HIL_AGENT_EVENT_SEQUENCE_INVALID"
+  | "HIL_AGENT_CHECKPOINT_INVALID"
   | "HIL_AGENT_FENCING_REJECTED"
   | "HIL_AGENT_FENCING_VIOLATION"
   | "HIL_AGENT_LEASE_ALREADY_ACTIVE"
@@ -289,6 +290,85 @@ export interface FenceDecisionV1 {
   operation_fence: number;
   accepted: boolean;
   failure_code: "HIL_AGENT_FENCING_REJECTED" | "HIL_AGENT_FENCING_VIOLATION" | null;
+  decision_digest: string;
+}
+
+export interface AgentCheckpointInstanceV1 {
+  instance_id: string;
+  state: AgentLifecycleState;
+  current_fence: number;
+  checkpoint_sequence: number;
+  contract_digest: string;
+  input_digest: string;
+  context_digest: string;
+}
+
+export interface AgentCheckpointPayloadV1 {
+  schema_version: "helix-agent-checkpoint-state.v1";
+  sequence: number;
+  fence: number;
+  contract_digest: string;
+  input_digest: string;
+  context_digest: string;
+  state_digest: string;
+}
+
+export interface AgentArtifactManifestEntryV1 {
+  schema_version: "helix-agent-artifact-manifest-entry.v1";
+  relative_path: string;
+  digest: string;
+}
+
+export interface AgentCheckpointV1 {
+  schema_version: "helix-agent-checkpoint.v1";
+  payload_schema_version: "helix-agent-checkpoint-state.v1";
+  instance_id: string;
+  lease_id: string;
+  sequence: number;
+  fence: number;
+  contract_digest: string;
+  input_digest: string;
+  context_digest: string;
+  state_digest: string;
+  artifact_manifest_digest: string;
+  state: "staged" | "durable" | "invalid" | "superseded";
+  checkpoint_digest: string;
+}
+
+export type AgentCheckpointResultV1 =
+  | { ok: true; value: AgentCheckpointV1 }
+  | { ok: false; code: "HIL_AGENT_CHECKPOINT_INVALID"; findings: string[] };
+
+export type AgentResumeCheckpointDecisionV1 =
+  | { ok: true; checkpoint: AgentCheckpointV1; decision_digest: string }
+  | {
+      ok: false;
+      code: "HIL_AGENT_CHECKPOINT_INVALID" | "HIL_AGENT_FENCING_VIOLATION";
+      findings: string[];
+      requires_new_instance: boolean;
+      decision_digest: string;
+    };
+
+export interface AgentResultArtifactInputV1 {
+  schema_version: "helix-agent-result-artifact.v1";
+  relative_path: string;
+  digest: string;
+  fence: number;
+  state: "staged";
+}
+
+export interface AgentResultArtifactAdmissionDecisionV1 {
+  schema_version: "helix-agent-result-artifact-admission.v1";
+  instance_id: string;
+  relative_path: string;
+  digest: string;
+  fence: number;
+  state: "admitted" | "rejected";
+  admitted: boolean;
+  acceptance_authority: false;
+  terminal: false;
+  verification_pending: true;
+  failure_code: "HIL_AGENT_FENCING_REJECTED" | null;
   decision_digest: string;
 }
 
@@ -937,6 +1017,307 @@ export function fenceAgentOperation(
     operation_fence: operationFence,
     accepted,
     failure_code: failureCode,
+  };
+  return { ...payload, decision_digest: digest(payload) };
+}
+
+function validAgentRelativePath(value: string): boolean {
+  if (!nonEmptyString(value) || value.startsWith("/") || value.startsWith("\\")) return false;
+  const parts = value.replaceAll("\\", "/").split("/");
+  return (
+    !/^[A-Za-z]:/.test(value) && parts.every((part) => part !== "" && part !== "." && part !== "..")
+  );
+}
+
+function validEvidenceDigest(value: string): boolean {
+  return /^[0-9a-f]{64}$/.test(value);
+}
+
+function hasExactKeys(value: unknown, keys: readonly string[]): value is Record<string, unknown> {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype !== Object.prototype && prototype !== null) return false;
+  const actual = Object.keys(value).sort();
+  const expected = [...keys].sort();
+  return actual.length === expected.length && actual.every((key, index) => key === expected[index]);
+}
+
+function checkpointPreimage(checkpoint: Omit<AgentCheckpointV1, "checkpoint_digest">): unknown {
+  return checkpoint;
+}
+
+export function sealDurableAgentCheckpoint(
+  instance: AgentCheckpointInstanceV1,
+  lease: AgentLeaseV1,
+  payload: AgentCheckpointPayloadV1,
+  artifactManifest: readonly AgentArtifactManifestEntryV1[],
+): AgentCheckpointResultV1 {
+  const findings: string[] = [];
+  if (
+    ![instance.contract_digest, instance.input_digest, instance.context_digest].every(
+      validEvidenceDigest,
+    )
+  )
+    findings.push("instance_binding_digest");
+  if (
+    !hasExactKeys(payload, [
+      "schema_version",
+      "sequence",
+      "fence",
+      "contract_digest",
+      "input_digest",
+      "context_digest",
+      "state_digest",
+    ])
+  )
+    return {
+      ok: false,
+      code: "HIL_AGENT_CHECKPOINT_INVALID",
+      findings: ["payload_schema"],
+    };
+  if (
+    lease.state !== "active" ||
+    lease.instance_id !== instance.instance_id ||
+    lease.fence !== instance.current_fence
+  )
+    findings.push("lease_fence");
+  if (payload.schema_version !== "helix-agent-checkpoint-state.v1") findings.push("schema_version");
+  if (
+    !Number.isSafeInteger(payload.sequence) ||
+    payload.sequence !== instance.checkpoint_sequence + 1
+  )
+    findings.push("sequence");
+  if (payload.fence !== instance.current_fence || payload.fence !== lease.fence)
+    findings.push("fence");
+  for (const key of ["contract_digest", "input_digest", "context_digest"] as const) {
+    if (!validEvidenceDigest(payload[key]) || payload[key] !== instance[key]) findings.push(key);
+  }
+  if (!validEvidenceDigest(payload.state_digest)) findings.push("state_digest");
+  const normalizedManifest = [...artifactManifest]
+    .map((entry) => ({
+      schema_version: entry.schema_version,
+      relative_path: entry.relative_path,
+      digest: entry.digest,
+      ...Object.fromEntries(
+        Object.entries(entry).filter(
+          ([key]) => !["schema_version", "relative_path", "digest"].includes(key),
+        ),
+      ),
+    }))
+    .sort((left, right) => left.relative_path.localeCompare(right.relative_path));
+  if (
+    normalizedManifest.some(
+      (entry) =>
+        !hasExactKeys(entry, ["schema_version", "relative_path", "digest"]) ||
+        entry.schema_version !== "helix-agent-artifact-manifest-entry.v1" ||
+        !validAgentRelativePath(entry.relative_path) ||
+        !validEvidenceDigest(entry.digest),
+    ) ||
+    new Set(normalizedManifest.map((entry) => entry.relative_path)).size !==
+      normalizedManifest.length
+  )
+    findings.push("artifact_manifest");
+  if (findings.length > 0)
+    return {
+      ok: false,
+      code: "HIL_AGENT_CHECKPOINT_INVALID",
+      findings: sortedUnique(findings),
+    };
+  const sealed = {
+    schema_version: "helix-agent-checkpoint.v1" as const,
+    payload_schema_version: payload.schema_version,
+    instance_id: instance.instance_id,
+    lease_id: lease.lease_id,
+    sequence: payload.sequence,
+    fence: payload.fence,
+    contract_digest: payload.contract_digest,
+    input_digest: payload.input_digest,
+    context_digest: payload.context_digest,
+    state_digest: payload.state_digest,
+    artifact_manifest_digest: digest(normalizedManifest),
+    state: "durable" as const,
+  };
+  return {
+    ok: true,
+    value: { ...sealed, checkpoint_digest: digest(checkpointPreimage(sealed)) },
+  };
+}
+
+function checkpointHasClosedShape(checkpoint: AgentCheckpointV1): boolean {
+  const exactKeys = hasExactKeys(checkpoint, [
+    "schema_version",
+    "payload_schema_version",
+    "instance_id",
+    "lease_id",
+    "sequence",
+    "fence",
+    "contract_digest",
+    "input_digest",
+    "context_digest",
+    "state_digest",
+    "artifact_manifest_digest",
+    "state",
+    "checkpoint_digest",
+  ]);
+  return (
+    exactKeys &&
+    checkpoint.schema_version === "helix-agent-checkpoint.v1" &&
+    checkpoint.payload_schema_version === "helix-agent-checkpoint-state.v1" &&
+    nonEmptyString(checkpoint.instance_id) &&
+    nonEmptyString(checkpoint.lease_id) &&
+    Number.isSafeInteger(checkpoint.sequence) &&
+    checkpoint.sequence >= 1 &&
+    Number.isSafeInteger(checkpoint.fence) &&
+    checkpoint.fence >= 0 &&
+    ["staged", "durable", "invalid", "superseded"].includes(checkpoint.state) &&
+    [
+      checkpoint.contract_digest,
+      checkpoint.input_digest,
+      checkpoint.context_digest,
+      checkpoint.state_digest,
+      checkpoint.artifact_manifest_digest,
+      checkpoint.checkpoint_digest,
+    ].every(validEvidenceDigest)
+  );
+}
+
+function checkpointDigestIsValid(checkpoint: AgentCheckpointV1): boolean {
+  if (!checkpointHasClosedShape(checkpoint)) return false;
+  const { checkpoint_digest: checkpointDigest, ...preimage } = checkpoint;
+  return (
+    validEvidenceDigest(checkpointDigest) &&
+    digest(checkpointPreimage(preimage)) === checkpointDigest
+  );
+}
+
+export function resolveAgentResumeCheckpoint(
+  instance: AgentCheckpointInstanceV1,
+  lease: AgentLeaseV1,
+  checkpoints: readonly AgentCheckpointV1[],
+  currentInput: Pick<
+    AgentCheckpointInstanceV1,
+    "contract_digest" | "input_digest" | "context_digest"
+  >,
+): AgentResumeCheckpointDecisionV1 {
+  const fail = (
+    code: "HIL_AGENT_CHECKPOINT_INVALID" | "HIL_AGENT_FENCING_VIOLATION",
+    findings: string[],
+    requiresNewInstance = false,
+  ): AgentResumeCheckpointDecisionV1 => {
+    const payload = {
+      code,
+      findings: sortedUnique(findings),
+      requires_new_instance: requiresNewInstance,
+    };
+    return { ok: false, ...payload, decision_digest: digest(payload) };
+  };
+  if (
+    lease.state !== "active" ||
+    lease.instance_id !== instance.instance_id ||
+    lease.fence !== instance.current_fence
+  )
+    return fail("HIL_AGENT_FENCING_VIOLATION", ["current_lease_fence"]);
+  if (
+    ![instance.contract_digest, instance.input_digest, instance.context_digest].every(
+      validEvidenceDigest,
+    ) ||
+    ![currentInput.contract_digest, currentInput.input_digest, currentInput.context_digest].every(
+      validEvidenceDigest,
+    )
+  )
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["current_input_digest"], true);
+  if (
+    instance.contract_digest !== currentInput.contract_digest ||
+    instance.input_digest !== currentInput.input_digest ||
+    instance.context_digest !== currentInput.context_digest
+  )
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["instance_input_binding_drift"], true);
+  if (checkpoints.some((checkpoint) => !checkpointHasClosedShape(checkpoint)))
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["checkpoint_schema"]);
+  const durable = checkpoints.filter((checkpoint) => checkpoint.state === "durable");
+  if (
+    durable.some(
+      (checkpoint) =>
+        checkpoint.instance_id !== instance.instance_id ||
+        checkpoint.lease_id !== lease.lease_id ||
+        checkpoint.fence !== lease.fence,
+    )
+  )
+    return fail("HIL_AGENT_FENCING_VIOLATION", ["foreign_or_old_fence_checkpoint"]);
+  const currentFence = durable.filter(
+    (checkpoint) =>
+      checkpoint.instance_id === instance.instance_id &&
+      checkpoint.lease_id === lease.lease_id &&
+      checkpoint.fence === lease.fence,
+  );
+  if (currentFence.length === 0 && durable.length > 0)
+    return fail("HIL_AGENT_FENCING_VIOLATION", ["checkpoint_fence"]);
+  if (currentFence.length === 0) return fail("HIL_AGENT_CHECKPOINT_INVALID", ["durable_missing"]);
+  if (currentFence.some((checkpoint) => !checkpointDigestIsValid(checkpoint)))
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["checkpoint_digest"]);
+  const bindingDrift = currentFence.some(
+    (checkpoint) =>
+      checkpoint.contract_digest !== currentInput.contract_digest ||
+      checkpoint.input_digest !== currentInput.input_digest ||
+      checkpoint.context_digest !== currentInput.context_digest,
+  );
+  if (bindingDrift) return fail("HIL_AGENT_CHECKPOINT_INVALID", ["input_binding_drift"], true);
+  const sequences = currentFence.map((checkpoint) => checkpoint.sequence);
+  if (
+    sequences.some((sequence) => !Number.isSafeInteger(sequence) || sequence < 1) ||
+    new Set(sequences).size !== sequences.length
+  )
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["checkpoint_sequence"]);
+  const expectedSequences = Array.from(
+    { length: instance.checkpoint_sequence },
+    (_, index) => index + 1,
+  );
+  if (
+    sequences.length !== expectedSequences.length ||
+    [...sequences]
+      .sort((left, right) => left - right)
+      .some((sequence, index) => sequence !== expectedSequences[index])
+  )
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["checkpoint_sequence_gap"]);
+  const checkpoint = [...currentFence].sort((left, right) => right.sequence - left.sequence)[0];
+  if (!checkpoint) return fail("HIL_AGENT_CHECKPOINT_INVALID", ["durable_missing"]);
+  if (checkpoint.sequence !== instance.checkpoint_sequence)
+    return fail("HIL_AGENT_CHECKPOINT_INVALID", ["committed_sequence_mismatch"]);
+  const payload = {
+    checkpoint_digest: checkpoint.checkpoint_digest,
+    sequence: checkpoint.sequence,
+  };
+  return { ok: true, checkpoint, decision_digest: digest(payload) };
+}
+
+export function admitAgentResultArtifact(
+  instance: { instance_id: string; state: AgentLifecycleState; current_fence: number },
+  lease: AgentLeaseV1,
+  artifact: AgentResultArtifactInputV1,
+): AgentResultArtifactAdmissionDecisionV1 {
+  const admitted =
+    hasExactKeys(artifact, ["schema_version", "relative_path", "digest", "fence", "state"]) &&
+    artifact.schema_version === "helix-agent-result-artifact.v1" &&
+    instance.state === "completed" &&
+    lease.state === "active" &&
+    lease.instance_id === instance.instance_id &&
+    lease.fence === instance.current_fence &&
+    artifact.fence === instance.current_fence &&
+    artifact.state === "staged" &&
+    validAgentRelativePath(artifact.relative_path) &&
+    validEvidenceDigest(artifact.digest);
+  const payload = {
+    schema_version: "helix-agent-result-artifact-admission.v1" as const,
+    instance_id: instance.instance_id,
+    relative_path: artifact.relative_path,
+    digest: artifact.digest,
+    fence: artifact.fence,
+    state: admitted ? ("admitted" as const) : ("rejected" as const),
+    admitted,
+    acceptance_authority: false as const,
+    terminal: false as const,
+    verification_pending: true as const,
+    failure_code: admitted ? null : ("HIL_AGENT_FENCING_REJECTED" as const),
   };
   return { ...payload, decision_digest: digest(payload) };
 }
