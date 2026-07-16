@@ -1,0 +1,13 @@
+{
+  "schema_version": "helix.post-po-design-freeze-transition-command-receipt.v2",
+  "executed": true,
+  "db_path": ".helix/harness.db",
+  "operationId": "DF-V2-TRANSITION-20260716-02",
+  "payloadDigest": "d555b0065198c957ed4e6ee8a8ced49ede32a523afb1364c264729e767de1349",
+  "freezeReceiptDigest": "e2e2816bb9ab63ddcd1faefc5ff43ead48b6bb4303bf744b188a2db1c7b80df6",
+  "candidateDigest": "5f0c76022eb87f3c98417b118aecb4fb703e95a1bdfdf4830ecc197dbcf7fff9",
+  "writeSetDigest": "df24c67d601d8292a3a12f58a73500b06334f71e2dd41acf4aaba45d847a5834",
+  "replay": true,
+  "fullRowExportPath": "docs/governance/generated/post-po-design-freeze-transition-full-row-export-v2.json",
+  "fullRowExportSha256": "b161d3405f06fe55a5d5910d5f17abfd8e025d5870daa9cec39fcbe8b62da061"
+}

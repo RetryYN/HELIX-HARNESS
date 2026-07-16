@@ -178,15 +178,18 @@ def audit(receipt_path: Path, export_path: Path) -> tuple[dict[str, Any], int]:
                   "DFV2_CURRENT_SOURCE_DRIFT", {"expected": bound_sources, "actual": current_hashes})
 
         head = git("rev-parse", "HEAD")
-        tree = git("rev-parse", "HEAD^{tree}")
-        refs = sorted(line.strip() for line in git("branch", "-r", "--contains", head).splitlines() if line.strip())
         repository = preimage.get("repository") if isinstance(preimage, dict) else None
-        check(bool(refs), "DFV2_REPOSITORY_SNAPSHOT", "no remote-containing ref")
         if isinstance(preimage, dict):
-            check(isinstance(repository, dict) and repository.get("headOid") == head and repository.get("treeOid") == tree and isinstance(repository.get("remoteRefs"), list) and bool(repository.get("remoteRefs")),
-                  "DFV2_REPOSITORY_SNAPSHOT", repository)
-        check(freeze.get("repository_head_oid") == head and freeze.get("repository_tree_oid") == tree,
-              "DFV2_REPOSITORY_SNAPSHOT", {"head": head, "tree": tree})
+            bound_head = repository.get("headOid") if isinstance(repository, dict) else None
+            bound_tree = repository.get("treeOid") if isinstance(repository, dict) else None
+            bound_refs = sorted(line.strip() for line in git("branch", "-r", "--contains", str(bound_head)).splitlines() if line.strip()) if bound_head else []
+            ancestor = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", str(bound_head), head]).returncode == 0 if bound_head else False
+            measured_bound_tree = git("rev-parse", f"{bound_head}^{{tree}}") if bound_head else None
+            check(isinstance(repository, dict) and ancestor and measured_bound_tree == bound_tree and bool(bound_refs)
+                  and isinstance(repository.get("remoteRefs"), list) and bool(repository.get("remoteRefs")),
+                  "DFV2_REPOSITORY_SNAPSHOT", {"bound": repository, "current_head": head, "remote_containing_refs": bound_refs})
+            check(freeze.get("repository_head_oid") == bound_head and freeze.get("repository_tree_oid") == bound_tree,
+                  "DFV2_REPOSITORY_SNAPSHOT", {"bound_head": bound_head, "bound_tree": bound_tree})
 
         # All four CAS pairs must be present and identical on every exported v2 row.
         reference_heads = {name: op.get(name) for pair in HEAD_PAIRS for name in pair}

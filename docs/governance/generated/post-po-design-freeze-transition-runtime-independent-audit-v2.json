@@ -1,5 +1,5 @@
 {
-  "executed": false,
+  "executed": true,
   "findings": [],
   "negative_test_matrix": [
     {
@@ -63,13 +63,63 @@
       "mutation": "receipt summary differs from reconstructed terminal row"
     }
   ],
+  "recomputed": {
+    "denominators": {
+      "design_artifacts": 76,
+      "design_slices": 19
+    },
+    "heads": {
+      "current_authority_head_digest": "91fa4a58ea94a8bee28a51edf84ee326dc69991d9815fccc6f1f93925591cbb5",
+      "current_candidate_head_digest": "041b01478bfb2b367574c579add708897180c12e68cb00003a479553ac48175f",
+      "current_freeze_head_digest": "d0794f837cb2d4f6f9e4700e4ce61c6d44d209ee8f1f7340e9171c6b663c83d2",
+      "current_progress_head_digest": "ec9e14c4c7f7622eef0ac5b264806c56462dcad1036ed1eb08bd1e60a3748dbc",
+      "expected_authority_head_digest": "91fa4a58ea94a8bee28a51edf84ee326dc69991d9815fccc6f1f93925591cbb5",
+      "expected_candidate_head_digest": "041b01478bfb2b367574c579add708897180c12e68cb00003a479553ac48175f",
+      "expected_freeze_head_digest": "d0794f837cb2d4f6f9e4700e4ce61c6d44d209ee8f1f7340e9171c6b663c83d2",
+      "expected_progress_head_digest": "ec9e14c4c7f7622eef0ac5b264806c56462dcad1036ed1eb08bd1e60a3748dbc"
+    },
+    "operation_id": "DF-V2-TRANSITION-20260716-02",
+    "po7_latest": {
+      "authority_epoch": 1,
+      "event_digest": "f5882195d379d65066a866458978e7fa646800b566f57fee95100a00517a0088"
+    },
+    "repository_snapshot": {
+      "headOid": "800d42b368a78785d51e03a96c80d64acd088fdc",
+      "indexPolicyDigest": "f58769d0c084647f899527d599c49a0e356aee389681d505a52db79d9a7cda32",
+      "remoteObservationDigest": "da46e5dcc03afbb4ac92c0e594865b348b2ed470728b845bce535a5cf29e4e66",
+      "remoteRefs": [
+        {
+          "oid": "800d42b368a78785d51e03a96c80d64acd088fdc",
+          "ref": "refs/heads/codex/hybrid-requirements-freeze"
+        },
+        {
+          "oid": "fcbf942835d0014e38c7e20fbd471580fd41af33",
+          "ref": "refs/heads/main"
+        }
+      ],
+      "treeOid": "bc1418a4cbc561c67f6cf4294af1b39ae13995eb"
+    }
+  },
   "safety": {
-    "authority_credit": 0,
-    "freeze_credit": 0
+    "authority_credit": 1,
+    "freeze_credit": 1
   },
   "schema_version": "helix.post-po-design-freeze-transition-runtime-independent-audit.v2",
   "sources": {
-    "receipt": "docs/governance/generated/post-po-design-freeze-transition-command-receipt-v2.json"
+    "current": {
+      "activation_audit": "c5544eeabc64ee604a2d18f6d5c420e0565028907e41ea6de5005c98cb8cb502",
+      "audit": "30c9fcc767917403f227bc2f4ed94df5cf647268c55a3585370b832228add285",
+      "critical": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8",
+      "review": "be2a86e5248a8b83c2fe3545354e5d57002f1e2409334ee410f4db58c9f1de47"
+    },
+    "full_row_export": {
+      "path": "docs/governance/generated/post-po-design-freeze-transition-full-row-export-v2.json",
+      "sha256": "b161d3405f06fe55a5d5910d5f17abfd8e025d5870daa9cec39fcbe8b62da061"
+    },
+    "receipt": {
+      "path": "docs/governance/generated/post-po-design-freeze-transition-command-receipt-v2.json",
+      "sha256": "e9f540749f59390511e04ce4b90b460cbba18f8922e3ba7f5266eed45a406e29"
+    }
   },
-  "status": "not_executed"
+  "status": "independent_audit_pass_post_po_design_freeze_runtime_v2"
 }

@@ -15,13 +15,13 @@
       "sha256": "a60f758d6ef6b569614187334440cac227fb10cd8c97ce4bad7745a994a323d8"
     },
     "ledger": {
-      "sha256": "10d5eb5d2653906a8cfc29e7323dc84e0724e0c9bd649ddb4f61153cf8f84515"
+      "sha256": "89ca660498516c4b6c3c16da7c88e30df0202cd77642726ac5a66e3b15682766"
     },
     "model_artifact": {
-      "sha256": "90745b8ea51891883db52b2ef41a993507de128514cccdfb42ff7e17edf6c3a1"
+      "sha256": "e19da875426c9c88cafb0b1248db49dde52c544ab3455fa27e28787d41cdac13"
     },
     "model_script": {
-      "sha256": "871acf50a73670e9eda376015d6e04fef03e3bbff59577183f703fb484d0822b"
+      "sha256": "58d24f9923eb32d3c12c7d894651a8c0e537467f34716a129a87110e4f73c7b0"
     }
   },
   "status": "independent_review_pass_current",
