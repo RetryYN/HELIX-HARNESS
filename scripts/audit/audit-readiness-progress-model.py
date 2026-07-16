@@ -36,13 +36,13 @@ def main() -> None:
     vmodel = load("vmodel-authority-decision-packet-v1.json")
     visual = load("visual-design-harness-semantic-review-v1.json")
     po7_activation = load("po7-activation-runtime-independent-audit-v1.json")
-    freeze_transition = load("post-po-design-freeze-transition-runtime-independent-audit-v1.json")
+    freeze_transition = load("post-po-design-freeze-transition-runtime-independent-audit-v2.json")
     authority_closed = (
         po7_activation["status"] == "independent_audit_pass_authority_activated"
         and critical["summary"]["design_freeze_open_rows"] == 0
         and critical["summary"].get("po_authority_activated_units") == 7
     )
-    freeze_receipt_current = freeze_transition["status"] == "independent_audit_pass_freeze_current_l01_pending_pair_remote_tag_zero"
+    freeze_receipt_current = freeze_transition["status"] == "independent_audit_pass_post_po_design_freeze_runtime_v2"
     weights = {
         "要求・chat semantic capture": 10, "Visual Design HARNESS": 8, "HARNESS-owned subagent標準": 8,
         "Infinity Loop＋detector DB": 12, "Repository/Layer savepoint": 8, "Rebaseline extraction": 8,
@@ -92,7 +92,7 @@ def main() -> None:
         "vmodel-authority-decision-packet-v1.json",
         "visual-design-harness-semantic-review-v1.json",
         "po7-activation-runtime-independent-audit-v1.json",
-        "post-po-design-freeze-transition-runtime-independent-audit-v1.json",
+        "post-po-design-freeze-transition-runtime-independent-audit-v2.json",
     }
     direct = sorted(GEN / name for name in input_names)
     artifact = {

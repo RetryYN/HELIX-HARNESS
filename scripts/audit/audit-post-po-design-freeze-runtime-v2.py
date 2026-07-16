@@ -41,12 +41,29 @@ V2_TABLES = [
     "design_freeze_v2_transition_terminal_receipts",
 ]
 PO7_TABLES = [
+    "po7_activation_operations",
     "po7_activation_projections",
     "po7_activation_terminal_receipts",
     "po7_vmodel_authority_events",
     "po7_group_option_receipts",
     "po7_question_answer_receipts",
 ]
+PO7_QUESTION_ORDER = [
+    "UWR-Q-C-APPROVAL-03", "UWR-Q-B-018", "UWR-Q-B-022",
+    "UWR-Q-C-MONEY-01", "UWR-Q-C-MONEY-02", "UWR-Q-C-MONEY-03",
+    "UWR-Q-C-MONEY-04", "UWR-Q-C-DEADLINE-01", "UWR-Q-C-DEADLINE-04",
+    "UWR-Q-R-020", "UWR-Q-R-021", "UWR-Q-C-PERSONAL-DATA-01",
+    "UWR-Q-R-002", "UWR-Q-R-003", "UWR-Q-R-004", "UWR-Q-R-005",
+    "UWR-Q-R-011", "UWR-Q-R-012", "UWR-Q-R-014", "UWR-Q-R-016",
+    "UWR-Q-R-017", "UWR-Q-R-022",
+]
+PO7_COLUMNS = {
+    "po7_activation_operations": ["operation_id","idempotency_key","request_digest","payload_digest","authority_epoch","previous_event_digest","universal_packet_digest","universal_source_set_digest","vmodel_packet_digest","vmodel_source_set_digest","decision_table_digest","authority_event_payload_digest","actor_id","actor_authority","authority_evidence_digest","answer_event_id","answer_message_digest","normalized_answer_digest","observed_at","status"],
+    "po7_group_option_receipts": ["receipt_id","operation_id","decision_group_id","selected_option_id","option_decision_digest","packet_digest","source_revision_digest","actor_id","actor_authority","authority_evidence_digest","idempotency_key","authority_epoch","previous_receipt_digest","answer_event_id","answer_message_digest","normalized_answer_digest","issued_at","status"],
+    "po7_question_answer_receipts": ["receipt_id","operation_id","question_id","queue_id","decision_group_id","selected_option_id","answer_value","answer_value_digest","packet_digest","source_revision_digest","answer_event_id","answer_message_digest","normalized_answer_digest","authority_epoch","issued_at","status"],
+    "po7_vmodel_authority_events": ["event_id","operation_id","event_sequence","event_digest","previous_event_digest","packet_digest","source_set_digest","decision_table_digest","actor_id","actor_authority","authority_evidence_digest","co_authority_receipt_digests","idempotency_key","authority_epoch","answer_event_id","answer_message_digest","normalized_answer_digest","status","issued_at"],
+    "po7_activation_projections": ["projection_id","operation_id","authority_epoch","event_digest","group_count","question_count","disposition_set_digest","queue_set_digest","freeze_blocker_status","reason_digest","status","projected_at"],
+}
 HEAD_PAIRS = [
     ("expected_authority_head_digest", "current_authority_head_digest"),
     ("expected_freeze_head_digest", "current_freeze_head_digest"),
@@ -220,6 +237,7 @@ def audit(receipt_path: Path, export_path: Path) -> tuple[dict[str, Any], int]:
                           "DFV2_WRITE_SET_ROW_MISMATCH", item.get("table"))
 
         # Reconstruct latest sealed PO7 authority solely from exported full rows.
+        operations = rows(export, "po7_activation_operations")
         projections = rows(export, "po7_activation_projections")
         latest = max(projections, key=lambda row: int(row.get("authority_epoch", 0)), default={})
         epoch = int(latest.get("authority_epoch", 0))
@@ -229,17 +247,34 @@ def audit(receipt_path: Path, export_path: Path) -> tuple[dict[str, Any], int]:
         questions = [row for row in rows(export, "po7_question_answer_receipts") if row.get("operation_id") == po7_op and row.get("status") == "active"]
         vmodels = [row for row in rows(export, "po7_vmodel_authority_events") if row.get("operation_id") == po7_op and row.get("status") == "active"]
         terminals = [row for row in rows(export, "po7_activation_terminal_receipts") if row.get("operation_id") == po7_op and row.get("status") == "active"]
+        operation = next((row for row in operations if row.get("operation_id") == po7_op and row.get("status") == "active"), None)
         expected_groups = [f"UWR-PO-DG-{number:02d}" for number in range(1, 7)]
         po7_ok = (
             latest.get("status") == "active" and latest.get("freeze_blocker_status") == "closed"
             and latest.get("group_count") == 6 and latest.get("question_count") == 22
             and sorted(str(row.get("decision_group_id")) for row in groups) == expected_groups
-            and len(questions) == 22 and len({row.get("question_id") for row in questions}) == 22
+            and operation is not None and len(questions) == 22 and len({row.get("question_id") for row in questions}) == 22
             and len({row.get("queue_id") for row in questions}) == 22 and len(vmodels) == 1 and len(terminals) == 1
             and all(row.get("selected_option_id") == "A" and row.get("authority_epoch") == epoch for row in groups + questions)
             and vmodels[0].get("authority_epoch") == epoch and vmodels[0].get("event_digest") == event
         )
         check(po7_ok, "DFV2_PO7_LATEST", {"epoch": epoch, "event_digest": event})
+        groups_ordered = sorted(groups, key=lambda row: str(row.get("decision_group_id")))
+        question_by_id = {str(row.get("question_id")): row for row in questions}
+        questions_ordered = [question_by_id.get(question_id) for question_id in PO7_QUESTION_ORDER]
+        po7_ordered_writes = []
+        if operation is not None:
+            po7_ordered_writes.append({"table": "po7_activation_operations", "row": [operation.get(column) for column in PO7_COLUMNS["po7_activation_operations"]]})
+        po7_ordered_writes.extend({"table": "po7_group_option_receipts", "row": [row.get(column) for column in PO7_COLUMNS["po7_group_option_receipts"]]} for row in groups_ordered)
+        po7_ordered_writes.extend({"table": "po7_question_answer_receipts", "row": [row.get(column) for column in PO7_COLUMNS["po7_question_answer_receipts"]]} for row in questions_ordered if row is not None)
+        if vmodels:
+            po7_ordered_writes.append({"table": "po7_vmodel_authority_events", "row": [vmodels[0].get(column) for column in PO7_COLUMNS["po7_vmodel_authority_events"]]})
+        po7_ordered_writes.append({"table": "po7_activation_projections", "row": [latest.get(column) for column in PO7_COLUMNS["po7_activation_projections"]]})
+        check(len(terminals) == 1 and terminals[0].get("write_set_digest") == digest(po7_ordered_writes),
+              "DFV2_PO7_WRITE_SET_DIGEST", terminals[0].get("write_set_digest") if terminals else None)
+        if isinstance(preimage, dict):
+            check(preimage.get("po7", {}).get("terminal_write_set_digest") == digest(po7_ordered_writes),
+                  "DFV2_PO7_WRITE_SET_DIGEST", "preimage")
         authority_set_digest = digest(sorted([digest(row) for row in groups] + ([digest(vmodels[0])] if vmodels else [])))
         check(freeze.get("authority_receipt_set_digest") == authority_set_digest,
               "DFV2_PO7_LATEST", "authority_receipt_set_digest")
