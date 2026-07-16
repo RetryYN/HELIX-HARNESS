@@ -162,6 +162,25 @@ function semanticDiagnostics(path: string, content: string): string[] {
 }
 
 describe("Infinity Loop strict design contract", () => {
+  it("HIL-FR-16: v0.4.0とUniversal Workflowの全ZIP entry分母をsnapshot正本へ固定する", () => {
+    const sourceManifest = readFileSync(
+      "docs/governance/infinity-loop-source-snapshot-manifest.md",
+      "utf8",
+    );
+    for (const contract of [
+      "ZIP-HELIX-HYBRID-V040",
+      "sha256:c0d839bd65a221bd9614b9820cd08d3f5c21cad057bbde03bb9b2e532d05a812",
+      "184/184、184/184",
+      "ZIP-UNIVERSAL-WORKFLOW-V110",
+      "sha256:b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26",
+      "14/14、14/14",
+      "coverage creditを0とする",
+      "Universal Workflowを既存`judgment-core`へ名前の類似だけで吸収済みと判定しない",
+    ]) {
+      expect(sourceManifest).toContain(contract);
+    }
+  });
+
   const manifest = loadManifest();
   const artifacts = manifest.artifact_inventory;
   const functionDesigns = artifacts.filter((artifact) =>

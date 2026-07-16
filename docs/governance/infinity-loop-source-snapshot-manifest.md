@@ -2,7 +2,7 @@
 title: "HELIX Infinity Loop source snapshot manifest"
 status: draft
 created: 2026-07-15
-updated: 2026-07-16
+updated: 2026-07-17
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 requirements:
@@ -21,13 +21,13 @@ captured_at: 2026-07-15T16:06:58Z
 
 ## §0 目的と判定境界
 
-本書は、Infinity Loop要件で参照するZIP、前身Git repository exact 2件、現行HELIXについて、source root、
+本書は、Infinity Loop要件で参照するZIP exact 3件、前身Git repository exact 2件、現行HELIXについて、source root、
 authority receipt、entry集合、再生成command、digest、分類manifest、除外境界を固定する。全pathを本文へ転記せず、
 同じ母集団を機械的に再生成できる情報を正本とする。前身Gitはremoteの可変件数を本文へ固定せず、current
 `GitRefAuthorityReceiptV1`のref/content/edge denominatorとdigestだけをauthorityにする。
 
 本書が証明するのは**固定したentry集合の閉包**と**全entryへの構造分類の付与**までである。file、branch、
-module群をbehaviorと同一視しない。`behavior_atom_closed`は3 familyすべて`false`であり、
+module群をbehaviorと同一視しない。`behavior_atom_closed`は全familyで`false`であり、
 `docs/governance/infinity-loop-source-atomization-contract.md`が定める
 `source entry -> behavior atom -> decision -> HIL -> design -> assertion -> gate`の閉包証拠にはならない。
 
@@ -48,6 +48,8 @@ module群をbehaviorと同一視しない。`behavior_atom_closed`は3 familyす
 | family ID | source root | 主count | entry/set digest | 分類manifest digest | entry集合閉包 | behavior atom閉包 |
 |---|---|---:|---|---|---|---|
 | `ZIP-HYBRID-V1` | `repo://ハイブリッド設計ドキュメントv1-fixed.zip` | 703 entries | `sha256:77c6d07b8db1ce6b15a878ebc7ec47ee167f190e24b257ce967ebf29ee2b3fa2` | `sha256:ae0d429a339edf070f9d5ae0a790a051a7cdd140b58a5fa7a4f0fe54b993cd87` | `true` | `false` |
+| `ZIP-HELIX-HYBRID-V040` | `repo://HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.4.0.zip` | 184 entries | `sha256:0a97620113d9616f27b99bf4ebd933cc5d09aeb562fe001b0dcc3d400f06114c` | `sha256:223d0f736ffcb12c449dd42dddfe5dbdb01b7ef10d13243689e190c9c93fd63d` | `true` | `false` |
+| `ZIP-UNIVERSAL-WORKFLOW-V110` | `repo://UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip` | 14 entries | `sha256:8ae2f2c26cf9a62e853d986b5f36cf92b1a15a17073543c0e13cbe4b37d72dca` | `sha256:a78559cdcfbc05e6f3644437d3888db9d8a2a853204265b1a4d269646bff437f` | `true` | `false` |
 | `ZIP-HELIX-REBASELINE-V040` | `repo://HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.4.0.zip` | 184 entries | `sha256:89eff7b5bad1667da3d65014e871a2525233425ee2849ae96d61c46b8c487bf2`（entry TSV） | `pending:semantic-classification` | `true` | `false` |
 | `PREDECESSOR-UT-GIT` | `git+https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git` | candidate-derived 69 refs | `candidate:9231e98b...881ca` | `blocked:no-trusted-authority` | `false`（trusted/current receipt未生成） | `false` |
 | `LEGACY-HELIX-GIT` | `git+https://github.com/RetryYN/ai-dev-kit-vscode.git` | candidate-derived 21 refs | `candidate:85e9a072...5df9e` | `blocked:no-trusted-authority` | `false`（trusted/current receipt未生成） | `false` |
@@ -180,6 +182,24 @@ PY
 
 ZIP entryは**除外0件**である。`build/`をsource集合から落とさず、generated候補として分類した上で
 fixture atomへ分離する。archive外の展開directory、OS metadata、inspection用一時pathはsource rootに含めない。
+
+### §2.4 HELIX Hybrid v0.4.0 / Universal Workflow v1.1.0追加source
+
+| field | `ZIP-HELIX-HYBRID-V040` | `ZIP-UNIVERSAL-WORKFLOW-V110` |
+|---|---|---|
+| archive SHA-256 | `sha256:c0d839bd65a221bd9614b9820cd08d3f5c21cad057bbde03bb9b2e532d05a812` | `sha256:b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26` |
+| file entry count | 184 | 14 |
+| entry set digest | `sha256:0a97620113d9616f27b99bf4ebd933cc5d09aeb562fe001b0dcc3d400f06114c` | `sha256:8ae2f2c26cf9a62e853d986b5f36cf92b1a15a17073543c0e13cbe4b37d72dca` |
+| classification digest | `sha256:223d0f736ffcb12c449dd42dddfe5dbdb01b7ef10d13243689e190c9c93fd63d` | `sha256:a78559cdcfbc05e6f3644437d3888db9d8a2a853204265b1a4d269646bff437f` |
+| safety scan | duplicate/encrypted/symlink/traversal/CRC error = 0 | duplicate/encrypted/symlink/traversal/CRC error = 0 |
+| structural classes | human 95、structured contract 44、schema/fixture 33、diagram 6、historical validation 4、DB schema 1、inventory 1 | human 8、schema/fixture 5、structured contract 1 |
+| entry/classification closure | 184/184、184/184 | 14/14、14/14 |
+| behavior atom closure | `false` | `false` |
+
+分類はsuffix exact mapping（`.md` human、`.json` schema/fixture、`.yaml/.yml` structured contract、`.sql` DB schema、
+`.csv` inventory、`.mmd` diagram、`.log` historical validation）であり、採用判断ではない。両archiveはsource entryを
+全件登録しただけで、`absorbed/adopt/harden/redesign/reject/defer`、既存symbol、oracle、gate、runtime receiptへ接続するまで
+coverage creditを0とする。Universal Workflowを既存`judgment-core`へ名前の類似だけで吸収済みと判定しない。
 
 ### §2.4 HELIX Rebaseline v0.4.0 candidate source （日本語の契約見出し）
 
