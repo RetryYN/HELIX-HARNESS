@@ -35,7 +35,7 @@ class ContractError(Exception):
 def _deny_external_io_audit(event: str, _args: tuple[Any, ...]) -> None:
     if event.startswith("socket."):
         raise PermissionError("network is disabled for HELIX proposal workers")
-    if event == "open" or event.startswith(("os.listdir", "os.scandir", "subprocess.")):
+    if event == "open" or event.startswith(("os.", "subprocess.", "_posixsubprocess.", "pty.")):
         raise PermissionError("filesystem and child processes are disabled for this pure HELIX worker")
 
 

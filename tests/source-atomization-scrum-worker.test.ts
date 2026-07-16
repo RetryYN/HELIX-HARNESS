@@ -104,7 +104,7 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
     ).toEqual({ ok: false, code: "HIL_WORKER_JSON_INVALID" });
   });
 
-  it("U-PYATOM-004: installs a Python audit hook that denies network and filesystem access by default", () => {
+  it("U-PYATOM-004: rejects representative audited network, filesystem, and child-process APIs", () => {
     const probe = [
       "import importlib.util, socket",
       `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
@@ -136,5 +136,46 @@ describe("source_atomization.scrum_mode.v1 proposal worker", () => {
         stdio: "pipe",
       }),
     ).toThrow(/filesystem and child processes are disabled/);
+
+    for (const operation of [
+      "os.mkdir('forbidden-directory')",
+      "os.rename('missing-source', 'missing-target')",
+      "os.rmdir('missing-directory')",
+      "os.system('exit 91')",
+      "subprocess.run(['true'], check=True)",
+    ]) {
+      const processProbe = [
+        "import importlib.util, os, subprocess",
+        `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
+        "m=importlib.util.module_from_spec(s); s.loader.exec_module(m)",
+        "m.install_external_io_default_deny()",
+        operation,
+      ].join("; ");
+      expect(() =>
+        execFileSync(PYTHON, ["-c", processProbe], {
+          cwd: ROOT,
+          encoding: "utf8",
+          env: { PATH: process.env.PATH ?? "", PYTHONDONTWRITEBYTECODE: "1" },
+          stdio: "pipe",
+        }),
+      ).toThrow(/filesystem and child processes are disabled/);
+    }
+
+    const nonSandboxProbe = [
+      "import importlib.util, os",
+      `s=importlib.util.spec_from_file_location('worker', ${JSON.stringify(WORKER)})`,
+      "m=importlib.util.module_from_spec(s); s.loader.exec_module(m)",
+      "m.install_external_io_default_deny()",
+      "assert os.getcwd()",
+      "assert os.stat('.').st_mode",
+    ].join("; ");
+    expect(
+      execFileSync(PYTHON, ["-c", nonSandboxProbe], {
+        cwd: ROOT,
+        encoding: "utf8",
+        env: { PATH: process.env.PATH ?? "", PYTHONDONTWRITEBYTECODE: "1" },
+        stdio: "pipe",
+      }),
+    ).toBe("");
   });
 });
