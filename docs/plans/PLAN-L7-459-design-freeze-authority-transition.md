@@ -45,7 +45,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-459-design-freeze-authority-transition.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/design-freeze-authority-transition.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-design-freeze-authority-transition.md, artifact_type: test_design }
-  - { artifact_path: docs/governance/post-po-design-freeze-transition-contract-v1.md, artifact_type: governance_doc }
+  - { artifact_path: docs/governance/post-po-design-freeze-transition-contract-v1.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/commands/authority.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-tables-design-freeze.ts, artifact_type: source_module }
