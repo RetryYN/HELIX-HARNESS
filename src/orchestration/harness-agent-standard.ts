@@ -399,6 +399,10 @@ export interface AgentVerificationReceiptV1 {
   result_digest: string;
   evidence_digest: string;
   artifact_admission_decision_digest: string;
+  worker_provider_family: string;
+  worker_model_family: string;
+  verifier_provider_family: string;
+  verifier_model_family: string;
   receipt_state: "valid" | "stale" | "revoked";
   decision: "pass" | "fail" | "inconclusive";
   receipt_digest: string;
@@ -1384,12 +1388,13 @@ export function admitAgentResultArtifact(
     verification_pending: true as const,
     failure_code: admitted ? null : ("HIL_AGENT_FENCING_REJECTED" as const),
   };
-  return { ...payload, decision_digest: digest(payload) };
+  return { ...payload, decision_digest: agentEvidenceDigest(payload) };
 }
 
 export function evaluateAgentVerificationReceipt(
   worker: AgentVerificationSubjectV1,
   verifier: AgentVerificationSubjectV1,
+  admission: AgentResultArtifactAdmissionDecisionV1,
   result: AgentVerificationResultV1,
   receipt: AgentVerificationReceiptV1,
 ): AgentVerificationDecisionV1 {
@@ -1443,6 +1448,39 @@ export function evaluateAgentVerificationReceipt(
       result.evidence_digest,
       result.artifact_admission_decision_digest,
     ].every(validEvidenceDigest);
+  const admissionShape =
+    hasExactKeys(admission, [
+      "schema_version",
+      "instance_id",
+      "relative_path",
+      "digest",
+      "fence",
+      "state",
+      "admitted",
+      "acceptance_authority",
+      "terminal",
+      "verification_pending",
+      "failure_code",
+      "decision_digest",
+    ]) &&
+    admission.schema_version === "helix-agent-result-artifact-admission.v1" &&
+    nonEmptyString(admission.instance_id) &&
+    validAgentRelativePath(admission.relative_path) &&
+    validEvidenceDigest(admission.digest) &&
+    Number.isSafeInteger(admission.fence) &&
+    admission.fence >= 0 &&
+    admission.state === "admitted" &&
+    admission.admitted === true &&
+    admission.acceptance_authority === false &&
+    admission.terminal === false &&
+    admission.verification_pending === true &&
+    admission.failure_code === null &&
+    validEvidenceDigest(admission.decision_digest);
+  let admissionDigestValid = false;
+  if (admissionShape) {
+    const { decision_digest: decisionDigest, ...preimage } = admission;
+    admissionDigestValid = agentEvidenceDigest(preimage) === decisionDigest;
+  }
   const receiptShape =
     hasExactKeys(receipt, [
       "schema_version",
@@ -1453,11 +1491,19 @@ export function evaluateAgentVerificationReceipt(
       "result_digest",
       "evidence_digest",
       "artifact_admission_decision_digest",
+      "worker_provider_family",
+      "worker_model_family",
+      "verifier_provider_family",
+      "verifier_model_family",
       "receipt_state",
       "decision",
       "receipt_digest",
     ]) &&
     receipt.schema_version === "helix-agent-verification-receipt.v1" &&
+    nonEmptyString(receipt.worker_provider_family) &&
+    nonEmptyString(receipt.worker_model_family) &&
+    nonEmptyString(receipt.verifier_provider_family) &&
+    nonEmptyString(receipt.verifier_model_family) &&
     ["valid", "stale", "revoked"].includes(receipt.receipt_state) &&
     ["pass", "fail", "inconclusive"].includes(receipt.decision) &&
     [
@@ -1475,11 +1521,19 @@ export function evaluateAgentVerificationReceipt(
   const bindingValid =
     workerShape &&
     verifierShape &&
+    admissionShape &&
+    admissionDigestValid &&
     resultShape &&
     receiptShape &&
     result.worker_instance_id === worker.instance_id &&
+    admission.instance_id === worker.instance_id &&
+    result.artifact_admission_decision_digest === admission.decision_digest &&
     receipt.worker_instance_id === worker.instance_id &&
     receipt.verifier_instance_id === verifier.instance_id &&
+    receipt.worker_provider_family === worker.provider_family &&
+    receipt.worker_model_family === worker.model_family &&
+    receipt.verifier_provider_family === verifier.provider_family &&
+    receipt.verifier_model_family === verifier.model_family &&
     receipt.oracle_id === result.oracle_id &&
     receipt.input_digest === result.input_digest &&
     receipt.result_digest === result.result_digest &&

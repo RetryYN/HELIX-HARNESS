@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import {
   type AgentMusterMemberV1,
+  type AgentResultArtifactAdmissionDecisionV1,
   type AgentVerificationReceiptV1,
   type AgentVerificationResultV1,
   type AgentVerificationSubjectV1,
@@ -76,6 +77,24 @@ describe("agent verification separation", () => {
       evidence_digest: "c".repeat(64),
       artifact_admission_decision_digest: "d".repeat(64),
     };
+    const admissionPreimage = {
+      schema_version: "helix-agent-result-artifact-admission.v1" as const,
+      instance_id: workerSubject.instance_id,
+      relative_path: "results/output.json",
+      digest: "9".repeat(64),
+      fence: 4,
+      state: "admitted" as const,
+      admitted: true,
+      acceptance_authority: false as const,
+      terminal: false as const,
+      verification_pending: true as const,
+      failure_code: null,
+    };
+    const admission: AgentResultArtifactAdmissionDecisionV1 = {
+      ...admissionPreimage,
+      decision_digest: sha(admissionPreimage),
+    };
+    verificationResult.artifact_admission_decision_digest = admission.decision_digest;
     const receiptPreimage = {
       schema_version: "helix-agent-verification-receipt.v1" as const,
       worker_instance_id: workerSubject.instance_id,
@@ -85,6 +104,10 @@ describe("agent verification separation", () => {
       result_digest: verificationResult.result_digest,
       evidence_digest: verificationResult.evidence_digest,
       artifact_admission_decision_digest: verificationResult.artifact_admission_decision_digest,
+      worker_provider_family: workerSubject.provider_family,
+      worker_model_family: workerSubject.model_family,
+      verifier_provider_family: verifierSubject.provider_family,
+      verifier_model_family: verifierSubject.model_family,
       receipt_state: "valid" as const,
       decision: "pass" as const,
     };
@@ -98,6 +121,7 @@ describe("agent verification separation", () => {
     const accepted = evaluateAgentVerificationReceipt(
       workerSubject,
       verifierSubject,
+      admission,
       verificationResult,
       receipt,
     );
@@ -190,11 +214,49 @@ describe("agent verification separation", () => {
       [workerSubject, verifierSubject, verificationResult, null as never],
     ];
     for (const args of invalidCases) {
-      expect(evaluateAgentVerificationReceipt(...args)).toMatchObject({
+      expect(
+        evaluateAgentVerificationReceipt(args[0], args[1], admission, args[2], args[3]),
+      ).toMatchObject({
         accepted: false,
         release_authority: false,
         terminal: false,
       });
     }
+    expect(
+      evaluateAgentVerificationReceipt(
+        workerSubject,
+        verifierSubject,
+        { ...admission, decision_digest: "f".repeat(64) },
+        verificationResult,
+        receipt,
+      ),
+    ).toMatchObject({ accepted: false });
+    expect(
+      evaluateAgentVerificationReceipt(
+        workerSubject,
+        verifierSubject,
+        { ...admission, unknown: true } as never,
+        verificationResult,
+        receipt,
+      ),
+    ).toMatchObject({ accepted: false });
+    expect(
+      evaluateAgentVerificationReceipt(
+        workerSubject,
+        verifierSubject,
+        admission,
+        verificationResult,
+        sealReceipt({ worker_provider_family: "forged", worker_model_family: "forged" }),
+      ),
+    ).toMatchObject({ accepted: false });
+    expect(
+      evaluateAgentVerificationReceipt(
+        workerSubject,
+        verifierSubject,
+        admission,
+        verificationResult,
+        sealReceipt({ verifier_provider_family: "forged", verifier_model_family: "forged" }),
+      ),
+    ).toMatchObject({ accepted: false });
   });
 });
