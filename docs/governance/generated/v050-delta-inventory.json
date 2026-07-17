@@ -1,0 +1,32 @@
+{
+  "schema_version": "helix.v050-delta-inventory.v1",
+  "source_sha256": "a8c011502d2e9313ea9fbbad38aba45a00312dc5053468da832e3a9d8757a0e9",
+  "requirements": {
+    "v040_count": 163,
+    "v050_count": 168,
+    "added": ["HBR-ARCH-014", "HBR-AGENT-016", "HBR-AGENT-017", "HBR-AGENT-018", "HBR-INV-014"],
+    "modified": ["HBR-CORE-001", "HBR-CORE-014", "HBR-ARCH-001", "HBR-ARCH-002", "HBR-ARCH-003", "HBR-ARCH-004", "HBR-ARCH-005", "HBR-ARCH-006", "HBR-ARCH-007", "HBR-ARCH-008", "HBR-ARCH-009", "HBR-ARCH-010", "HBR-ARCH-011", "HBR-ARCH-012", "HBR-ARCH-013", "HNFR-PLAT-001", "HNFR-PLAT-006", "HBR-AGENT-002", "HBR-INF-001", "HBR-INF-002", "HBR-INF-003", "HBR-INF-004", "HBR-INF-005", "HBR-INF-006", "HBR-INF-007", "HBR-INF-008", "HBR-INF-009", "HBR-INF-010", "HBR-INF-011", "HBR-INF-012", "HBR-INF-013", "HBR-INF-014", "HBR-INF-015", "HBR-INF-016", "HBR-INV-002", "HBR-INV-010", "HBR-INV-012"],
+    "deleted": []
+  },
+  "acceptance_criteria": {
+    "v040_count": 111,
+    "v050_count": 117,
+    "added": ["AC-ARCH-07", "AC-AGENT-10", "AC-AGENT-11", "AC-INV-08", "AC-TRACE-02", "AC-SEC-PY-01"],
+    "modified": ["AC-CORE-01", "AC-ARCH-02", "AC-PLAT-01", "AC-PLAT-02", "AC-PLAT-03", "AC-DB-01", "AC-INF-01", "AC-INF-02", "AC-INF-03", "AC-INF-04", "AC-INF-05", "AC-INF-06", "AC-INF-07", "AC-INF-08", "AC-INF-09", "AC-INF-10", "AC-INV-01", "AC-INV-07", "AC-TRACE-01"],
+    "deleted": []
+  },
+  "trace_edges": {
+    "v040_count": 286,
+    "v050_count": 333,
+    "added": [
+      "CHAT-012|HNFR-PLAT-006|refined_into",
+      "ADR-009|HBR-ARCH-001|refined_into", "ADR-009|HBR-ARCH-002|refined_into", "ADR-009|HBR-ARCH-003|refined_into", "ADR-009|HBR-ARCH-004|refined_into", "ADR-009|HBR-ARCH-005|refined_into", "ADR-009|HBR-ARCH-006|refined_into", "ADR-009|HBR-ARCH-007|refined_into", "ADR-009|HBR-ARCH-008|refined_into", "ADR-009|HBR-ARCH-009|refined_into", "ADR-009|HBR-ARCH-010|refined_into", "ADR-009|HBR-ARCH-011|refined_into", "ADR-009|HBR-ARCH-012|refined_into", "ADR-009|HBR-ARCH-013|refined_into", "ADR-009|HBR-ARCH-014|refined_into",
+      "HBR-ARCH-014|AC-SEC-PY-01|verified_by", "HBR-ARCH-006|AC-ARCH-07|verified_by",
+      "CHAT-013|HBR-AGENT-016|refined_into", "CHAT-013|HBR-AGENT-017|refined_into", "CHAT-013|HBR-AGENT-018|refined_into", "CHAT-015|HBR-INV-014|refined_into",
+      "CHAT-019|HBR-DH-004|refined_into", "CHAT-019|HBR-DH-005|refined_into", "CHAT-019|HBR-DH-006|refined_into", "CHAT-019|HBR-DH-007|refined_into", "CHAT-019|HBR-DH-008|refined_into", "CHAT-019|HBR-DH-009|refined_into", "CHAT-019|HBR-DH-010|refined_into", "CHAT-019|HBR-DH-011|refined_into", "CHAT-019|HBR-DH-012|refined_into", "CHAT-019|HBR-DH-013|refined_into", "CHAT-019|HBR-DH-014|refined_into", "CHAT-019|HBR-DH-015|refined_into", "CHAT-019|HBR-DH-016|refined_into", "CHAT-019|HBR-DH-017|refined_into", "CHAT-019|HBR-DH-018|refined_into", "CHAT-019|HBR-DH-019|refined_into", "CHAT-019|HBR-DH-020|refined_into",
+      "CHAT-010|HBR-DH-021|refined_into", "CHAT-018|HBR-DH-021|refined_into", "CHAT-011|HBR-DH-022|refined_into", "CHAT-019|HBR-DH-022|refined_into", "CHAT-019|HBR-DH-023|refined_into", "CHAT-020|HBR-DH-024|refined_into", "CHAT-010|HBR-DH-028|refined_into", "CHAT-010|HBR-DH-029|refined_into", "CHAT-018|HBR-DH-029|refined_into"
+    ],
+    "modified": [],
+    "deleted": []
+  }
+}

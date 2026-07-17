@@ -187,7 +187,7 @@ ZIP がある場合は必須 source 不足を violation とする。
 
 | 差異 | ZIP | HELIX | 採用判断 |
 |------|-----|-------|----------|
-| core 実行基盤 | Python tool と Excel/Sheets 出力中心 | TS/Bun CLI、SQLite harness.db、doctor、runtime adapters | Python/Excel を core runtime に入れない。契約だけ TS/Bun に移す |
+| core 実行基盤 | Python tool と Excel/Sheets 出力中心 | TS/Node target、SQLite harness.db、doctor、runtime adapters | ADR-009のcurrent authorityではPythonをclosed capabilityのproposal workerとして採用し、Nodeがschema/digest/policyを再検証して唯一のtransaction writerになる。ADR-010候補へのauthority遷移は別Redesignで扱う |
 | 正本粒度 | YAML 文書単位の汎用テンプレート | PLAN、設計 doc、test-design、runtime evidence、DB projection | YAML 文書一覧をそのまま HELIX 層にせず、L12 coverage contract へ正規化する |
 | runtime evidence | live/check はあるが、実行証跡の provenance は薄い | test_runs、gate_runs、runtime_verification_events、guardrail_decisions を持つ | HELIX の runtime evidence を維持し、ZIP の coverage/impact を入力にする |
 | action boundary | build/validate/coverage はローカル操作が中心 | action-binding approval、destructive guard、review bundle を持つ | close/apply/migration は approval record なしで実行しない |
@@ -203,6 +203,13 @@ ZIP がある場合は必須 source 不足を violation とする。
 | HVM-ADOPT-03 | traceability/deps/impact | 設計変更の影響範囲と Reverse 対象を出せる | `design_impact`、relation graph、drive route |
 | HVM-ADOPT-04 | WBS/工程表と V レベル | 「いまどこか」を番号記憶ではなく ledger として扱える | `current-location`、roadmap band/gate、closure queue |
 | HVM-ADOPT-05 | 運用・ログ・KPI・保守・インシデント設計 | L12 運用後検証を開発管理画面と運用時可視化へ出せる | `operation_scope`、runtime verification、Project view |
+
+### §4.1 REBASELINE v0.5.0差分の追突
+
+`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.0.zip`は、本マトリクスを置換する正本ではなく差分sourceとして扱う。
+source digest、追加5 requirement、追加6 AC、追加47 trace edge及び変更集合は
+`docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md`へ投影する。package内L0–L14は
+L1–L12へremapし、Production Scrum／Discovery-PoC／完全Vのdelivery routeを欠いたままcanonicalへ昇格しない。
 
 ## §5 HELIX が補うもの
 
