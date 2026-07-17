@@ -86,7 +86,7 @@
 ## 是正状況（2026-07-17 追記）
 
 本監査の確定所見 59 件（critical 9 / major 37 / minor 13）すべてに対する是正仕様を
-[hybrid-rebaseline-v0.5.0-remediation-delta.md](../design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md)
+[hybrid-rebaseline-v0.5.0-remediation-delta.md](../migration/hybrid-rebaseline-v0.5.0-remediation-delta.md)
 として起草済み（軸別に起草→敵対的検証→改訂 1 巡、ADR-009 準拠・機械検証付き）。
 権威衝突（RB-01/02、AUTH-001/002）は ADR-009 側を正として是正した（ADR-009 を覆す選択は PO 専権のため不採用）。
 delta は draft/proposed であり、decision confirmed 化・PLAN 起票は PO 承認境界。

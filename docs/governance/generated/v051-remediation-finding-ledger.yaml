@@ -68,4 +68,3 @@ remediation:
     - 'repo側: docs/adr/ADR-009 に superseded_by（ADR-010）back-reference 追加、harness memory key harness:adr-010-runtime-authority-ruling 記録'
   notes: 適用中に AC-CORE-04 オラクルが台帳の reject 5件（fix_names/package/selftest/style/util）を検出し、
     ADR-010 準拠の rationale（実行境界責務・意味コア非該当）へ再定義のうえ baseline 保護方式で解決。
-
