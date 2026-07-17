@@ -6,7 +6,7 @@
 
 ## 観測母集団
 
-- remote heads: 8、PR head refs: 89、tags: 0。
+- remote headは8、PR head refは89、tagは0。
 - API上のclosed PR 86件中merged 85件、closed-unmerged 1件。観測時open PRは #100/#103/#105。
 - open Issue 11件、closed Issue 4件。Issue/PRを同じAPI結果から型別に分離して確認した。
 - main Ruleset `main-stage1` は deletion/non-fast-forward禁止、required `harness-check`、bypass=never。ただしstrict required checks=falseで、PR-only ruleはない。
@@ -19,7 +19,7 @@
 | UT-GH-01 | branch実物は`work/*`、docs/skillは別prefix、work禁止記述もあり三重乖離 | route-aware prefix registryを単一正本化 |
 | UT-GH-02 | mainから100超behindのstale branchやmerged済みbranchが残存 | TTL、merged後削除、stale finding |
 | UT-GH-03 | RulesetにPR-onlyなし、skillはsolo direct-main許容 | main PR-only、例外なし |
-| UT-GH-04 | required check strict=false | strict=true |
+| UT-GH-04 | required checkのstrict=false | strict=trueへ強化 |
 | UT-GH-05 | policy.yamlはadmin bypass、実物はnever。diff実装はbypass未比較 | strict/bypassをpolicy schemaとlive diffへ追加 |
 | UT-GH-06 | PR trace validatorがCIから呼ばれない | aggregate gate必須step化 |
 | UT-GH-07 | PR #104/#105はtrace subject_head後にcommitが増えてもgreen | live head/base/merge-baseとreceiptを束縛しsynchronizeでstale化 |

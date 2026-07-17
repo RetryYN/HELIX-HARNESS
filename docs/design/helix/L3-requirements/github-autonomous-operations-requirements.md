@@ -36,11 +36,11 @@ HELIX は、L3 承認後の作業を Issue / PLAN / branch / commit / PR / CI / 
 
 ## 3. 機能要件
 
-### GH-FR-001 Issue admission gate
+### GH-FR-001 Issue受付ゲート
 
 Issue は `origin_plan`、`origin_revision`、`observed_head`、`observed_state`、`evidence_path_or_digest`、`reason_code`、`drive_model`、`reentry_target`、`requirement_ids`、`acceptance_ids` を型付きで保持する。欠落時は自動走行へ admission しない。ユーザー差し込み Issue も同じ schema へ正規化し、正本を直接更新せず command candidate として扱う。
 
-### GH-FR-002 Issue taxonomy
+### GH-FR-002 Issue分類体系
 
 最低限 `forward`、`reverse`、`scrum_reverse`、`redesign`、`design_refactor`、`performance_refactor`、`retrofit`、`recovery`、`incident`、`nfr_failure`、`measurement_finding`、`discovery`、`additive_change`、`security` を区別する。ReverseはForward合流前の先行タスク、Scrum ReverseはsliceをVモデル資産へ戻すcheckpoint、Redesignは確定設計変更、Design/Performance Refactorは外部契約を保つ構造/性能改善とする。分類不能・複数分類衝突は`full_v`へfail-closeする。
 
@@ -48,7 +48,7 @@ Issue は `origin_plan`、`origin_revision`、`observed_head`、`observed_state`
 
 Issue/PR の changed scope は requirement ID と AC ID の閉包内でなければならない。要求に無い新機能、便乗 refactor、名称変更、依存更新を検出した場合は別 Issue へ分離し、元 PR を block する。ただし correctness/security の即時修正は根拠と再合流先を記録した Recovery として扱う。
 
-### GH-FR-004 route selection
+### GH-FR-004 経路選択
 
 入口で次の route を機械決定し、途中で暗黙変更しない。
 
@@ -60,51 +60,51 @@ Issue/PR の changed scope は requirement ID と AC ID の閉包内でなけれ
 
 PoC は S0–S4 の決定後にのみ Forward/Reverse へ昇格する。Production Scrum は品質工程の省略ではなく、機能slice単位でL1〜L12縮約Vを反復し、release合流時に全right-arm evidenceを満たす。
 
-### GH-FR-005 branch lifecycle
+### GH-FR-005 branchライフサイクル
 
 branch は最新 main の確認済み SHA から作り、`feat/`、`fix/`、`refactor/`、`docs/`、`test/`、`chore/`、`reverse/`、`redesign/`、`recovery/`、`incident/` の型付き prefix と PLAN/Issue ID を持つ。1 branch = 1目的を原則とし、並行 runtime は他者 branch を書き換えない。merge 後は自動削除し、長期化 branch は stale finding を発生させる。
 
-### GH-FR-006 commit integrity
+### GH-FR-006 commit完全性
 
 commit は Conventional Commits、明示 path staging、secret/PII/license scan、生成物 provenance を必須とする。`git add .` / `git add -A`、force push、履歴破壊、理由のない generated file 混載を禁止する。secret scan は現在 tree だけでなく push 対象 commit の履歴 blob も検査する。
 
-### GH-FR-007 PR trace contract
+### GH-FR-007 PR追跡契約
 
 PR は概要、PLAN/Issue、route、layer、Forward/Reverse pair、requirement/AC、変更 scope、非対象、test/evidence、risk、rollback、generated artifacts、AI runtime/role、review receipt を機械可読 block で持つ。block は CLI 生成し、validator が source ledger と照合する。通常 Forward は無理に Issue を要求しないが、Issue 起点 episode は `Closes #N` を必須とする。
 
-### GH-FR-008 cross-runtime review
+### GH-FR-008 runtime間レビュー
 
 作成 runtime と判断 runtime を分離する。Claude Code は依存・接続・外部/詳細設計・改善候補を監査し、Codex は凍結設計に基づく実行を担う。単一 runtime 時は独立 subagent receipt を代替証跡として残す。レビュー所見は severity、requirement/AC、evidence、disposition を持たなければ merge blocker にできない。
 
-### GH-FR-009 CI aggregate gate
+### GH-FR-009 CI集約ゲート
 
 main の required check は安定名 `harness-check` の集約 gate とする。Linux canonical full verification と Windows compatibility smoke を最低限含み、対象 OS 方針に応じ macOS smoke を追加する。集約 job は `always()` で全 required leg の結論を評価し、cancelled/skipped/failure を成功扱いしない。PR は全 base branch で起動し、stacked PR を取りこぼさない。
 
-### GH-FR-010 repository ruleset
+### GH-FR-010 repository ruleset要件
 
 main は PR-only、required `harness-check`、strict up-to-date、non-fast-forward 禁止、branch deletion 禁止、force push 禁止、bypass actor なしを要求する。人間 approval は solo 自己ブロックを避けるため必須にせず、代わりに cross-runtime review receipt を機械必須とする。authoring policy と GitHub 現物を read-only diff し、drift 時は fail-close する。
 
-### GH-FR-011 CI self-heal
+### GH-FR-011 CI自己修復
 
 AI が作成した PR の CI が失敗した場合、同じ episode 内で failure log を取得し、原因分類、Issue/PLANへの記録、修正、局所検証、再 push を行う。無根拠 rerun、テスト削除、閾値緩和、required leg の除外で緑化してはならない。反復上限到達時は Recovery/Incident へ遷移する。
 
-### GH-FR-012 merge and release boundary
+### GH-FR-012 merge・release境界
 
 全 gate、review receipt、trace closure が揃えば auto-merge を設定できる。main merge 後にDB投影と記憶圧縮を行い、stale continuationを残さない。layer checkpoint tag はannotated `helix/L<n>/<plan>/<snapshot>`とし、commit/tree/ledger digest、gate receipt、DB revisionを持たせる。移動・削除せず、訂正時は新tagでsupersedeする。checkpoint tagは進捗証拠であってreleaseではない。release tagはSemVerとし、全layer closure、requirements digest、CI run、DB revision、action-binding approval receiptを要求する。
 
-### GH-FR-013 Issue-to-memory learning
+### GH-FR-013 Issueからmemoryへの学習
 
 Issue、レビュー、CI失敗、再発、設計判断、chatで追加された要求を append-only event として記録し、`harness.db` へ冪等投影する。再発閾値を超えた知見は detector/gate、skill、template、設計正本の候補へ昇格し、採否と反証を残す。Issue 件数の蓄積自体を学習と見なさない。
 
-### GH-FR-014 template self-improvement
+### GH-FR-014 template自己改善
 
 要求翻訳時に既存 template で表現できない必須項目を検出した場合、成果物へ自由記述で逃がさず `template_gap` Issue を作る。template/schema/test fixtureを先に Red→Green し、その後に対象要件を再生成する。
 
-### GH-FR-015 screen applicability
+### GH-FR-015 画面適用性
 
 L2 画面/プロト工程は毎回判定し、HARNESSのような非UI対象では `not_applicable`、理由、判定者、証拠、下流影響を台帳化する。暗黙スキップは禁止する。ビジュアル Design HARNESS は UI/UX のデザイン生成・検証責務であり、L8–L10 の一般検証基盤と混同しない。
 
-### GH-FR-016 completion denominator
+### GH-FR-016 完了率の分母
 
 要件完了率は、総 requirement、AC、必須 trace edge、pair、gate evidence、未解決 finding の分母を固定して算出する。分母不明、orphan、重複ID、件数報告不一致、`proposed` decision 残存があれば100%表示を禁止する。
 

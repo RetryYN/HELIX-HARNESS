@@ -2,10 +2,10 @@
 
 ## 結論
 
-`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.0.zip`は全memberを展開・確認した。
+`docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip`は全memberを展開・確認した。
 source integrityはPASS、current HELIXへの無条件昇格はFAIL、差分sourceとしての追突採用はCONDITIONAL PASSである。
 
-## source identity
+## source識別情報
 
 - bytes: 339,140
 - SHA-256: `a8c011502d2e9313ea9fbbad38aba45a00312dc5053468da832e3a9d8757a0e9`
@@ -15,19 +15,19 @@ source integrityはPASS、current HELIXへの無条件昇格はFAIL、差分sour
 
 ## 実行したpackage検証
 
-- chat trace closure: 153 pair、missing 0
-- chat provenance: CHAT 21、provenance 21、orphan 0
-- Python capability map: 29/29 bijection
-- source freshness fixture: fresh PASS、stale FAIL
-- UT ref reconciliation: 5 ref、authority status BLOCKED
-- detection finding resolved fields: PASS
+- chat追跡閉包: 153 pair、欠落0
+- chat来歴: CHAT 21、provenance 21、orphan 0
+- Python capability写像: 29/29の全単射
+- source鮮度fixture: freshはPASS、staleはFAIL
+- UT参照突合: 5 ref、authority statusはBLOCKED
+- 検出findingのresolved field検査: PASS
 - evidence/finding roundtripとorphan rejection: PASS
 
 `verify-full-ref-adoption-status.py`は`enumeration_log_present=False`でPASSしたため、全ref採用完了の証拠には使わない。
 
 ## v0.4.0との差分
 
-| set | v0.4.0 | v0.5.0 | added | modified | deleted |
+| 集合 | v0.4.0 | v0.5.0 | 追加 | 変更 | 削除 |
 |---|---:|---:|---:|---:|---:|
 | requirement | 163 | 168 | 5 | 37 | 0 |
 | acceptance criterion | 111 | 117 | 6 | 19 | 0 |
