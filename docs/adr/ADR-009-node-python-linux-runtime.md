@@ -10,6 +10,12 @@ supersedes:
   - ADR-001 runtime/build/distribution部分
   - ADR-007 SQLite driver選択部分
   - ADR-005 Bun固有のinstall/update/server例
+superseded_by:
+  - "ADR-010（部分改定 2026-07-17）: 『Python は proposal-only worker』の位置付け・呼称、『capability class
+    分類不能は reject して TS/Node 再実装』既定、権威の非対称記述は
+    docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md が上書きする。
+    Node 24 LTS・脱 Bun・Linux full canonical gate・cutover receipt・Python への
+    network default deny / DB path・credential・.helix/ 非付与は本 ADR のまま存続。"
 related_plan: docs/plans/PLAN-L1-07-infinity-loop-platform-requirements.md
 related_design:
   - docs/design/helix/L5-detail/node-runtime-cutover.md

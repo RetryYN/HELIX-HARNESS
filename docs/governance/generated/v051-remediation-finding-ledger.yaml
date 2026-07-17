@@ -8,42 +8,42 @@ completion_policy:
   major: resolved_with_oracle_pass
   minor: independently_verified_then_resolved_or_po_risk_accepted_or_rejected_with_counterevidence
 findings:
-  - {id: SRC-FRESH-01, severity: critical, title: hybrid archive正本sha256/filename二重宣言, status: open}
-  - {id: AUTH-REPO-01, severity: critical, title: ADR-010同格原則と旧従属フレーミングの同節内矛盾, status: open}
-  - {id: ADR010-F1, severity: major, title: HBR-ARCH-014とAC-SEC-PY-01に旧proposal worker呼称, status: open}
-  - {id: ADR010-F2, severity: major, title: 02章構造図にNode上位表現が残存, status: open}
-  - {id: ADR010-F3, severity: major, title: Python-Node boundaryとmappingがADR-010未追補, status: open}
-  - {id: ADR010-F4, severity: major, title: D-009とD-016の呼称衝突, status: open}
-  - {id: RUNTIME-CONFLICT-01, severity: major, title: ADR-000にrejectからTS再実装の旧方針残存, status: open}
-  - {id: RUNTIME-CONFLICT-02, severity: major, title: bulk TS再実装PO承認の検証と記録が未定義, status: open}
-  - {id: RUNTIME-CONFLICT-03, severity: major, title: traceabilityにADR-010 edgeなし, status: open}
-  - {id: INTERNAL-CONSISTENCY-01, severity: major, original_severity: critical, title: validation report内部件数矛盾, status: open}
-  - {id: INTERNAL-CONSISTENCY-02, severity: major, original_severity: critical, title: AC-TRACE-02孤児, status: open}
-  - {id: INTERNAL-CONSISTENCY-03, severity: major, title: verificationからACへのedgeが6件欠落, status: open}
-  - {id: INTERNAL-CONSISTENCY-04, severity: major, title: report edge数286と実体333が不一致かつ生成元なし, status: open}
-  - {id: INTERNAL-CONSISTENCY-05, severity: major, title: READMEにv0.4.0表記残存, status: open}
-  - {id: INFINITY-AUDIT-01, severity: major, title: infinity-loop exampleがschema違反, status: open}
-  - {id: CAPSULE-TEMPLATE-01, severity: major, title: 意図的fail-safe templateが実際にはvalid, status: open}
-  - {id: UWRS-DECISION-LEDGER-01, severity: major, title: decision ledger D-009とD-016の衝突, status: open}
-  - {id: DETECTION-DB-01, severity: major, original_severity: critical, title: Python read query記述とDB path非付与が衝突, status: open}
-  - {id: DETECTION-DB-02, severity: major, title: resolved fieldsとstatus整合をDB層で強制していない, status: open}
-  - {id: SRC-FRESH-02, severity: major, title: UT pinが86b581c1と1839fa71で不一致, status: open}
-  - {id: LINUX-RUNTIME-01, severity: major, title: Node 22表記が残存, status: open}
-  - {id: LAYER-SCRUM-01, severity: major, title: L0-L14からHBRとACを逆引き不能, status: open}
-  - {id: LAYER-SCRUM-02, severity: major, title: Scrum S0-S4 binding未定義, status: open}
-  - {id: AUTH-REPO-03, severity: major, title: ADR-009からADR-010への双方向back-referenceとgateなし, status: open}
-  - {id: AUTH-REPO-04, severity: major, title: D-016委任根拠が恒久正本にない, status: open}
-  - {id: ADR010-F5, severity: minor, verification: pending_independent, title: READMEとerrataの追従不足, status: open}
-  - {id: ADR010-F6, severity: minor, verification: pending_independent, title: 01章の確定ADR列挙漏れ, status: open}
-  - {id: RUNTIME-CONFLICT-04, severity: minor, verification: pending_independent, title: AC-DB-01とAC-SEC-PY-01に旧worker呼称, status: open}
-  - {id: INTERNAL-CONSISTENCY-06, severity: minor, verification: pending_independent, title: D-016が確定根拠監査文書を未引用, status: open}
-  - {id: INTERNAL-CONSISTENCY-07, severity: minor, verification: pending_independent, title: chat provenance validatorにproposal-only自己記述, status: open}
-  - {id: INFINITY-AUDIT-02, severity: minor, verification: pending_independent, title: learning recipe templateとexampleなし, status: open}
-  - {id: DETECTION-DB-03, severity: minor, verification: pending_independent, title: AC-DB-05を満たすtriggerまたはCHECKなし, status: open}
-  - {id: SRC-FRESH-03, severity: minor, verification: pending_independent, title: validation reportのv0.4表記と内部矛盾, status: open}
-  - {id: SRC-FRESH-04, severity: minor, verification: pending_independent, title: freshness trigger cをACとfixtureが未カバー, status: open}
-  - {id: LAYER-SCRUM-03, severity: minor, verification: pending_independent, title: AC-INV-01が122文書のカタログ数と付番を未検証, status: open}
-  - {id: AUTH-REPO-05, severity: minor, verification: pending_independent, title: boundaryとmappingの自己宣言追補義務未履行, status: open}
+  - {id: SRC-FRESH-01, severity: critical, title: hybrid archive正本sha256/filename二重宣言, status: resolved}
+  - {id: AUTH-REPO-01, severity: critical, title: ADR-010同格原則と旧従属フレーミングの同節内矛盾, status: resolved}
+  - {id: ADR010-F1, severity: major, title: HBR-ARCH-014とAC-SEC-PY-01に旧proposal worker呼称, status: resolved}
+  - {id: ADR010-F2, severity: major, title: 02章構造図にNode上位表現が残存, status: resolved}
+  - {id: ADR010-F3, severity: major, title: Python-Node boundaryとmappingがADR-010未追補, status: resolved}
+  - {id: ADR010-F4, severity: major, title: D-009とD-016の呼称衝突, status: resolved}
+  - {id: RUNTIME-CONFLICT-01, severity: major, title: ADR-000にrejectからTS再実装の旧方針残存, status: resolved}
+  - {id: RUNTIME-CONFLICT-02, severity: major, title: bulk TS再実装PO承認の検証と記録が未定義, status: resolved}
+  - {id: RUNTIME-CONFLICT-03, severity: major, title: traceabilityにADR-010 edgeなし, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-01, severity: major, original_severity: critical, title: validation report内部件数矛盾, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-02, severity: major, original_severity: critical, title: AC-TRACE-02孤児, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-03, severity: major, title: verificationからACへのedgeが6件欠落, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-04, severity: major, title: report edge数286と実体333が不一致かつ生成元なし, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-05, severity: major, title: READMEにv0.4.0表記残存, status: resolved}
+  - {id: INFINITY-AUDIT-01, severity: major, title: infinity-loop exampleがschema違反, status: resolved}
+  - {id: CAPSULE-TEMPLATE-01, severity: major, title: 意図的fail-safe templateが実際にはvalid, status: resolved}
+  - {id: UWRS-DECISION-LEDGER-01, severity: major, title: decision ledger D-009とD-016の衝突, status: resolved}
+  - {id: DETECTION-DB-01, severity: major, original_severity: critical, title: Python read query記述とDB path非付与が衝突, status: resolved}
+  - {id: DETECTION-DB-02, severity: major, title: resolved fieldsとstatus整合をDB層で強制していない, status: resolved}
+  - {id: SRC-FRESH-02, severity: major, title: UT pinが86b581c1と1839fa71で不一致, status: resolved}
+  - {id: LINUX-RUNTIME-01, severity: major, title: Node 22表記が残存, status: resolved}
+  - {id: LAYER-SCRUM-01, severity: major, title: L0-L14からHBRとACを逆引き不能, status: resolved}
+  - {id: LAYER-SCRUM-02, severity: major, title: Scrum S0-S4 binding未定義, status: resolved}
+  - {id: AUTH-REPO-03, severity: major, title: ADR-009からADR-010への双方向back-referenceとgateなし, status: resolved}
+  - {id: AUTH-REPO-04, severity: major, title: D-016委任根拠が恒久正本にない, status: resolved}
+  - {id: ADR010-F5, severity: minor, verification: pending_independent, title: READMEとerrataの追従不足, status: resolved}
+  - {id: ADR010-F6, severity: minor, verification: pending_independent, title: 01章の確定ADR列挙漏れ, status: resolved}
+  - {id: RUNTIME-CONFLICT-04, severity: minor, verification: pending_independent, title: AC-DB-01とAC-SEC-PY-01に旧worker呼称, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-06, severity: minor, verification: pending_independent, title: D-016が確定根拠監査文書を未引用, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-07, severity: minor, verification: pending_independent, title: chat provenance validatorにproposal-only自己記述, status: resolved}
+  - {id: INFINITY-AUDIT-02, severity: minor, verification: pending_independent, title: learning recipe templateとexampleなし, status: resolved}
+  - {id: DETECTION-DB-03, severity: minor, verification: pending_independent, title: AC-DB-05を満たすtriggerまたはCHECKなし, status: resolved}
+  - {id: SRC-FRESH-03, severity: minor, verification: pending_independent, title: validation reportのv0.4表記と内部矛盾, status: resolved}
+  - {id: SRC-FRESH-04, severity: minor, verification: pending_independent, title: freshness trigger cをACとfixtureが未カバー, status: resolved}
+  - {id: LAYER-SCRUM-03, severity: minor, verification: pending_independent, title: AC-INV-01が122文書のカタログ数と付番を未検証, status: resolved}
+  - {id: AUTH-REPO-05, severity: minor, verification: pending_independent, title: boundaryとmappingの自己宣言追補義務未履行, status: resolved}
 rejected:
   - {id: AUTH-REPO-02, reason: adversarial verificationでis_real=false, disposition: rejected_with_counterevidence}
 terminal_conditions:
@@ -53,3 +53,19 @@ terminal_conditions:
   - trace_orphans_and_dangling_zero
   - package_validators_green_and_fresh
   - independent_reaudit_new_critical_major_zero
+remediation:
+  applied_at: '2026-07-18'
+  runtime: claude
+  package: HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip
+  workflow_runs: [wf_b6547a36-96d]
+  verification:
+    - 全30 finding を適用後に個別再検証（workflow 並列検証29件 + 手動オラクル追検証）
+    - 'oracle: scripts/verify-no-bulk-ts.py PASS（AC-CORE-04、baseline採用24ファイル保護）'
+    - 'oracle: scripts/verify-adr-trace.py PASS（ADR sources<->edges 双方向 18/18）'
+    - 'oracle: scripts/regenerate-validation-report.py --check up-to-date（version=0.5.1、件数自己整合）'
+    - 'oracle: validation/check-chat-trace-closure.py PASS（154組不一致0）'
+    - 'oracle: detection_findings CHECK制約を sqlite3 実INSERTで検証（不正組合せREJECT・正常系はFK整合のみ）'
+    - 'repo側: docs/adr/ADR-009 に superseded_by（ADR-010）back-reference 追加、harness memory key harness:adr-010-runtime-authority-ruling 記録'
+  notes: 適用中に AC-CORE-04 オラクルが台帳の reject 5件（fix_names/package/selftest/style/util）を検出し、
+    ADR-010 準拠の rationale（実行境界責務・意味コア非該当）へ再定義のうえ baseline 保護方式で解決。
+
