@@ -1881,9 +1881,10 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
           finding.severity === "minor" && finding.verification === "verified_independent",
       ),
     ).toHaveLength(11);
-    expect(requirements).toContain("status: proposed");
+    expect(requirements).toContain("status: confirmed");
     expect(audit).toContain("enumeration_log_present=False");
-    expect(audit).toContain("要件定義完遂または正式採用可能とは判定しない");
+    expect(audit).toContain("negative fixture: enumeration snapshot不在をexit 1で拒否");
+    expect(audit).toContain("独立再監査のnew critical/major: 0/0");
   });
 
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {

@@ -2,7 +2,7 @@
 title: "REBASELINE v0.5.1 是正要件"
 layer: L3
 kind: add-design
-status: proposed
+status: confirmed
 created: 2026-07-18
 updated: 2026-07-18
 owner: TL
@@ -11,7 +11,7 @@ pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.1-remediation-accep
 
 # REBASELINE v0.5.1 是正要件
 
-- status: proposed
+- status: confirmed
 - 入力: v0.5.0 再監査 `wf_452d88b3-fd2`
 - 分母正本: `docs/governance/generated/v051-remediation-finding-ledger.yaml`
 - 注意: 旧59件 delta は ADR-009 前提のため、そのまま正本化せず ADR-010 authority epoch で再裁定する。

@@ -3,7 +3,7 @@ title: "REBASELINE v0.5.1 是正 受入テスト設計"
 layer: L3
 executed_at_layer: L10
 artifact_type: test_design
-status: proposed
+status: confirmed
 created: 2026-07-18
 updated: 2026-07-18
 owner: QA
