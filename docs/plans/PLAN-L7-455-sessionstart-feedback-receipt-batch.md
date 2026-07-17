@@ -6,7 +6,7 @@ layer: L7
 drive: be
 status: draft
 route_mode: incident
-entry_signals: ["imp-151: copy-db profiling confirmed O(Nrefs x Njournal) receipt path"]
+entry_signals: ["po_directive:2026-07-14 /goal 全システム監査から確認された IMP-151 copy-db profiling"]
 created: 2026-07-14
 updated: 2026-07-14
 backprop_decision: not_required
