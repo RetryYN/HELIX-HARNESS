@@ -1,4 +1,9 @@
-# HELIX 要件定義書（HELIX-HARNESS harness 正本）
+# HELIX 要件定義書 v1.2（legacy compatibility reference）
+
+> **正本変更（2026-07-18）**: 工程とdelivery routeの現行正本は
+> `helix-harness-requirements_v1.3.md`（L1〜L12 Vモデル＋Scrum）である。本書のL0〜L14、L7実装、
+> 大規模Scrum等の記述は既存artifactを読むためのcompatibility referenceであり、新規authoring authorityではない。
+> 本書のうちv1.3と衝突しない安全・証跡・agent・DB・駆動モデル要件だけを継承する。
 
 - **Version**: 1.2
 - **対応構想書**: `helix-harness-concept_v3.1.md`

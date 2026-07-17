@@ -7,11 +7,12 @@ Claude Code はこのリポジトリでは以下を canonical として扱う。
 1. `CLAUDE.md`
 2. `.claude/CLAUDE.md`
 3. `docs/governance/README.md`
-4. `docs/governance/helix-harness-concept_v3.1.md`
-5. `docs/governance/helix-harness-requirements_v1.2.md`
-6. `docs/governance/helix-harness-extraction-plan_v0.1.md`
-7. `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
-8. `docs/adr/ADR-009-node-python-linux-runtime.md`
+4. `docs/governance/helix-harness-requirements_v1.3.md`（現行L1〜L12 Vモデル＋Scrum正本）
+5. `docs/governance/helix-harness-concept_v3.1.md`（旧工程表記はcompatibility説明）
+6. `docs/governance/helix-harness-requirements_v1.2.md`（legacy compatibility reference）
+7. `docs/governance/helix-harness-extraction-plan_v0.1.md`
+8. `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
+9. `docs/adr/ADR-009-node-python-linux-runtime.md`
 
 Migration snapshots と migration docs は通常 startup reads ではない。migration、gap audit、
 regression-source inspection が必要なときだけ読む。
@@ -111,8 +112,9 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 ## 正本 Docs
 
-- `docs/governance/helix-harness-concept_v3.1.md`
-- `docs/governance/helix-harness-requirements_v1.2.md`
+- `docs/governance/helix-harness-requirements_v1.3.md`
+- `docs/governance/helix-harness-concept_v3.1.md`（旧工程表記はcompatibility説明）
+- `docs/governance/helix-harness-requirements_v1.2.md`（legacy compatibility only）
 - `docs/governance/helix-harness-extraction-plan_v0.1.md`
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
 - `docs/adr/ADR-009-node-python-linux-runtime.md`

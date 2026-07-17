@@ -1,4 +1,6 @@
-> **正本化済** (PLAN-REVERSE-01 で DISCOVERY-04 dogfood 実績から正本化、2026-06-04)。docs/process は forward/modes/gates の運用正本。規範変更は concept/requirements (上位正本) 先行 → 本 dir へ反映する。
+> **legacy compatibility process**: 以下のL0〜L14記述は既存artifact読取用であり、現行工程正本ではない。
+> 現行は `docs/governance/helix-harness-requirements_v1.3.md` のL1〜L12 Vモデル＋Scrum。
+> 新規PLAN/template/projection/tagへ以下のlegacy番号を出力してはならない。
 
 # Forward ワークフロー概要 (V-model L0-L14)
 

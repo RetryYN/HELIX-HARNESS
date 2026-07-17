@@ -295,7 +295,7 @@ spec:
 |-------|-------|------|------|
 | HAC-VMFIT-01a | ZIP を HELIX へ取り込む | 採用可否台帳を検査 | 採用対象は L12 レベル定義、typed spec、impact、tailoring、工程表、spec gate の概念であり、core runtime は TS/Bun のまま |
 | HAC-VMFIT-01b | ZIP の Python tool や Excel build を core に登録しようとする | architecture/import guard を実行 | reference-only として拒否または補助出力扱いになり、HELIX core dependency に昇格しない |
-| HAC-VMFIT-02a | 現行 L0-L14 成果物がある | L12 compatibility projection を生成 | L0 は V 字成立のためのスライド調整として L1 企画側へ投影され、ZIP の設計カバレッジに従って未分類は finding になる |
+| HAC-VMFIT-02a | legacy L0〜L14成果物がある | L1〜L12 compatibility projectionを生成 | legacy L0はV字成立のためL1企画へ投影され、ZIPの設計カバレッジに従って未分類はfindingになる |
 | HAC-VMFIT-02b | 独立 L6 機能設計を廃止する | migration plan を検査 | 契約、型、テスト oracle、runtime evidence の移転先が L5 詳細設計/typed declaration/L7 closure に明示され、契約消失は fail |
 | HAC-VMFIT-02c | `layer: cross` の Discovery/Reverse/Recovery PLAN がある | artifact remap を生成 | Discovery は L3、Reverse は L5、Recovery は L12 へ再投影され、未知 cross のみ unmapped finding になる |
 | HAC-VMFIT-03a | design doc に typed declaration がある | parser を実行 | defined id、kind、layer、source path、owner、status が DB 投影可能な構造で返り、同一 section の本文定義 ID 重複は fail-close する |

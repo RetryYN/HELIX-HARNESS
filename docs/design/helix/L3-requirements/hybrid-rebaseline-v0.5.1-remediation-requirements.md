@@ -13,7 +13,7 @@
 4. minor 11件は独立検証後、`resolved`、`deferred_with_po_risk_acceptance`、`rejected_with_counterevidence`のいずれかへdispositionする。検証前に「確定」「解消」と表示しない。
 5. ADR-009↔ADR-010、Core Reads、AGENTS/CLAUDE、package、decision ledgerの権威関係を一つのauthority epochで一致させる。旧語彙はallowlist外0件とする。
 6. archive filename、sha256、bytes、member countを単一SSoTから投影し、README/MANIFEST/report/CHECKSUMSの版・REQ/AC/edge数を実体から生成する。
-7. requirementsのverification集合とtraceability edge集合を一致させ、orphan AC=0、dangling edge=0、ADR-010 edgeあり、L0–L14とS0–S4のroute bindingありとする。
+7. requirementsのverification集合とtraceability edge集合を一致させ、orphan AC=0、dangling edge=0、ADR-010 edgeあり、canonical L1〜L12とS0〜S4のroute bindingありとする。package内L0〜L14はexact compatibility mappingを別途検証する。
 8. 全example/templateをpositive/negative fixtureで検証し、意図的invalidは実際にvalidationが失敗しなければならない。
 9. resolved fields/status整合をSQLite CHECK/triggerで拒否実証する。アプリ側検査だけで合格にしない。
 10. source freshness条件(a)(b)(c)を全fixture化し、UT pinを単一観測SHAへ収束する。
