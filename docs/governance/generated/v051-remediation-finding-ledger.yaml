@@ -33,17 +33,17 @@ findings:
   - {id: LAYER-SCRUM-02, severity: major, title: Scrum S0-S4 binding未定義, status: resolved}
   - {id: AUTH-REPO-03, severity: major, title: ADR-009からADR-010への双方向back-referenceとgateなし, status: resolved}
   - {id: AUTH-REPO-04, severity: major, title: D-016委任根拠が恒久正本にない, status: resolved}
-  - {id: ADR010-F5, severity: minor, verification: pending_independent, title: READMEとerrataの追従不足, status: resolved}
-  - {id: ADR010-F6, severity: minor, verification: pending_independent, title: 01章の確定ADR列挙漏れ, status: resolved}
-  - {id: RUNTIME-CONFLICT-04, severity: minor, verification: pending_independent, title: AC-DB-01とAC-SEC-PY-01に旧worker呼称, status: resolved}
-  - {id: INTERNAL-CONSISTENCY-06, severity: minor, verification: pending_independent, title: D-016が確定根拠監査文書を未引用, status: resolved}
-  - {id: INTERNAL-CONSISTENCY-07, severity: minor, verification: pending_independent, title: chat provenance validatorにproposal-only自己記述, status: resolved}
-  - {id: INFINITY-AUDIT-02, severity: minor, verification: pending_independent, title: learning recipe templateとexampleなし, status: resolved}
-  - {id: DETECTION-DB-03, severity: minor, verification: pending_independent, title: AC-DB-05を満たすtriggerまたはCHECKなし, status: resolved}
-  - {id: SRC-FRESH-03, severity: minor, verification: pending_independent, title: validation reportのv0.4表記と内部矛盾, status: resolved}
-  - {id: SRC-FRESH-04, severity: minor, verification: pending_independent, title: freshness trigger cをACとfixtureが未カバー, status: resolved}
-  - {id: LAYER-SCRUM-03, severity: minor, verification: pending_independent, title: AC-INV-01が122文書のカタログ数と付番を未検証, status: resolved}
-  - {id: AUTH-REPO-05, severity: minor, verification: pending_independent, title: boundaryとmappingの自己宣言追補義務未履行, status: resolved}
+  - {id: ADR010-F5, severity: minor, verification: verified_independent, title: READMEとerrataの追従不足, status: resolved}
+  - {id: ADR010-F6, severity: minor, verification: verified_independent, title: 01章の確定ADR列挙漏れ, status: resolved}
+  - {id: RUNTIME-CONFLICT-04, severity: minor, verification: verified_independent, title: AC-DB-01とAC-SEC-PY-01に旧worker呼称, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-06, severity: minor, verification: verified_independent, title: D-016が確定根拠監査文書を未引用, status: resolved}
+  - {id: INTERNAL-CONSISTENCY-07, severity: minor, verification: verified_independent, title: chat provenance validatorにproposal-only自己記述, status: resolved}
+  - {id: INFINITY-AUDIT-02, severity: minor, verification: verified_independent, title: learning recipe templateとexampleなし, status: resolved}
+  - {id: DETECTION-DB-03, severity: minor, verification: verified_independent, title: AC-DB-05を満たすtriggerまたはCHECKなし, status: resolved}
+  - {id: SRC-FRESH-03, severity: minor, verification: verified_independent, title: validation reportのv0.4表記と内部矛盾, status: resolved}
+  - {id: SRC-FRESH-04, severity: minor, verification: verified_independent, title: freshness trigger cをACとfixtureが未カバー, status: resolved}
+  - {id: LAYER-SCRUM-03, severity: minor, verification: verified_independent, title: AC-INV-01が122文書のカタログ数と付番を未検証, status: resolved}
+  - {id: AUTH-REPO-05, severity: minor, verification: verified_independent, title: boundaryとmappingの自己宣言追補義務未履行, status: resolved}
 rejected:
   - {id: AUTH-REPO-02, reason: adversarial verificationでis_real=false, disposition: rejected_with_counterevidence}
 terminal_conditions:
@@ -59,7 +59,7 @@ remediation:
   package: HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip
   workflow_runs: [wf_b6547a36-96d]
   verification:
-    - 全30 finding を適用後に個別再検証（workflow 並列検証29件 + 手動オラクル追検証）
+    - 全36 findingを終端化（30 remediation actionを適用後、workflow並列検証29件 + 手動オラクル追検証）
     - 'oracle: scripts/verify-no-bulk-ts.py PASS（AC-CORE-04、baseline採用24ファイル保護）'
     - 'oracle: scripts/verify-adr-trace.py PASS（ADR sources<->edges 双方向 18/18）'
     - 'oracle: scripts/regenerate-validation-report.py --check up-to-date（version=0.5.1、件数自己整合）'

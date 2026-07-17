@@ -5,6 +5,7 @@
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { parse as parseYaml } from "yaml";
 import {
   analyzePairFreeze,
   analyzeVerificationGroups,
@@ -1837,6 +1838,52 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(acceptance).toContain(
       "test greenでもmetric missing/stale/nonrepresentative/failならcompletionがfalseになる",
     );
+  });
+
+  it("U-VPAIR-009h: v0.5.1 remediation denominator and completion claim stay fail-closed", () => {
+    const ledger = parseYaml(
+      readFileSync("docs/governance/generated/v051-remediation-finding-ledger.yaml", "utf8"),
+    ) as {
+      summary: {
+        final: {
+          critical: number;
+          major: number;
+          minor_pending_independent_verification: number;
+          rejected: number;
+          total_in_scope: number;
+        };
+      };
+      findings: Array<{ severity: string; status: string; verification?: string }>;
+      rejected: unknown[];
+    };
+    const requirements = readFileSync(
+      "docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md",
+      "utf8",
+    );
+    const audit = readFileSync(
+      "docs/governance/hybrid-rebaseline-v0.5.1-verification-audit-2026-07-18.md",
+      "utf8",
+    );
+
+    expect(ledger.summary.final).toEqual({
+      critical: 2,
+      major: 23,
+      minor_pending_independent_verification: 11,
+      rejected: 1,
+      total_in_scope: 36,
+    });
+    expect(ledger.findings).toHaveLength(36);
+    expect(ledger.rejected).toHaveLength(1);
+    expect(ledger.findings.filter((finding) => finding.status === "resolved")).toHaveLength(36);
+    expect(
+      ledger.findings.filter(
+        (finding) =>
+          finding.severity === "minor" && finding.verification === "verified_independent",
+      ),
+    ).toHaveLength(11);
+    expect(requirements).toContain("status: proposed");
+    expect(audit).toContain("enumeration_log_present=False");
+    expect(audit).toContain("要件定義完遂または正式採用可能とは判定しない");
   });
 
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {

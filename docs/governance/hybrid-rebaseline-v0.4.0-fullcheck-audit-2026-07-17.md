@@ -133,8 +133,8 @@ finder 10 + 敵対的検証 26、計 36 エージェント。全 critical/major 
 
 ## v0.5.1 是正完了（2026-07-18 追記）
 
-Codex 起票の `docs/governance/generated/v051-remediation-finding-ledger.yaml`（30 finding）を入力に、
-是正 Workflow `wf_b6547a36-96d`（9 軸直列適用 → 29 件並列再検証）＋手動追修正で **全 30 件を解消**。
+Codex 起票の `docs/governance/generated/v051-remediation-finding-ledger.yaml`（in-scope 36 finding、別枠棄却1件）を入力に、
+是正 Workflow `wf_b6547a36-96d`（30 remediation action、9軸直列適用 → 29件並列再検証）＋手動追修正でin-scope 36件を終端化。
 再検証で 10 件が未解消と判明（authority 軸の classifier 一時ブロック 4 件、MANIFEST 版数系 3 件、
 検証ロジック不足 3 件）したため個別修正し、機械オラクルで最終確認した:
 
