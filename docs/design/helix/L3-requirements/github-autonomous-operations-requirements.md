@@ -1,3 +1,14 @@
+---
+title: "GitHub 自律運用 要件定義"
+layer: L3
+kind: add-design
+status: confirmed
+created: 2026-07-18
+updated: 2026-07-18
+owner: PO / TL
+pair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md
+---
+
 # GitHub 自律運用 要件定義
 
 - 文書層: L3 要件定義

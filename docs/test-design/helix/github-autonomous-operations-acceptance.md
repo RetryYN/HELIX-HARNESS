@@ -1,3 +1,15 @@
+---
+title: "GitHub 自律運用 受入テスト設計"
+layer: L3
+executed_at_layer: L12
+artifact_type: test_design
+status: proposed
+created: 2026-07-18
+updated: 2026-07-18
+owner: QA
+pair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
+---
+
 # GitHub 自律運用 受入テスト設計
 
 - pair: `docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`

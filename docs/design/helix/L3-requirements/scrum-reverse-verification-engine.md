@@ -1,3 +1,14 @@
+---
+title: "Scrum Reverse・設計Refactor・検証計測エンジン要件"
+layer: L3
+kind: add-design
+status: confirmed
+created: 2026-07-18
+updated: 2026-07-18
+owner: PO / TL
+pair_artifact: docs/test-design/helix/scrum-reverse-verification-engine-acceptance.md
+---
+
 # Scrum Reverse・設計Refactor・検証計測エンジン要件
 
 - layer: L3
