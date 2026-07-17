@@ -38,7 +38,7 @@ Phase A の初期実装範囲は check のみである。Phase B の `apply` は
 有効化する。apply は manifest の `phase: apply` と一致する manifest、1件以上の明示 `--select`、および apply plan
 と同一 process 内の実行を要求する。role prompt 更新、DB write、subprocess spawn はいずれの phase でも範囲外である。
 
-## §2.1 Apply transaction
+## §2.1 Applyの不可分transaction
 
 `ApplyPlan` は `{ manifest_digest, selections, changes }` を持つ。各 change は canonical path、before content digest、
 rendered after content digest、proposed `document_agent` を持つ。metadata の serialization は top-level frontmatter の

@@ -36,7 +36,7 @@ ZIP正本 `tools/diff_report.py` の二時点文書比較を、TypeScript/Bunの
 - outputはstdoutのみを既定とする。`--out` は明示artifact write portと許可rootを要求し、dry-runは書込み0件である。
 - source本文・secret・provider payloadをreportへ転載しない。digestと構造化finding provenanceだけを残す。
 
-## §3.1 Local artifact output
+## §3.1 local artifactの出力
 
 `--out` は任意 filesystem path ではなく、repository root 配下の HELIX 排他管理 root
 `.helix/artifacts/document-diff/` からの canonical 相対pathだけを受け取る。絶対path、`..`、backslash、NUL、

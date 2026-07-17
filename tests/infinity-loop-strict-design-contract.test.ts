@@ -55,9 +55,7 @@ function loadManifest(): StrictDesignManifestV1 {
 }
 
 function extractTypeScriptFences(content: string): string[] {
-  return [...content.matchAll(/```ts\s*\n([\s\S]*?)```/g)].map(
-    (match) => match[1] ?? "",
-  );
+  return [...content.matchAll(/```ts\s*\n([\s\S]*?)```/g)].map((match) => match[1] ?? "");
 }
 
 function topLevelDeclarationNames(content: string): string[] {
@@ -95,16 +93,11 @@ function declarationOwnerFindings(
     }
   }
   return [...owners.entries()].flatMap(([name, paths]) =>
-    paths.length === 1 && paths[0] === canonicalOwner
-      ? []
-      : [`${name}:${paths.join(",")}`],
+    paths.length === 1 && paths[0] === canonicalOwner ? [] : [`${name}:${paths.join(",")}`],
   );
 }
 
-function exactStringUnionMembers(
-  content: string,
-  aliasName: string,
-): string[] | null {
+function exactStringUnionMembers(content: string, aliasName: string): string[] | null {
   for (const [index, fence] of extractTypeScriptFences(content).entries()) {
     const source = ts.createSourceFile(
       `union-fence-${index}.ts`,
@@ -121,10 +114,7 @@ function exactStringUnionMembers(
     }
     const members: string[] = [];
     for (const node of declaration.type.types) {
-      if (
-        !ts.isLiteralTypeNode(node) ||
-        !ts.isStringLiteral(node.literal)
-      ) {
+      if (!ts.isLiteralTypeNode(node) || !ts.isStringLiteral(node.literal)) {
         return null;
       }
       members.push(node.literal.text);
@@ -149,19 +139,13 @@ function semanticDiagnostics(path: string, content: string): string[] {
   const originalGetSourceFile = host.getSourceFile.bind(host);
   const originalReadFile = host.readFile.bind(host);
 
-  host.fileExists = (candidate) =>
-    candidate === virtualPath || originalFileExists(candidate);
+  host.fileExists = (candidate) => candidate === virtualPath || originalFileExists(candidate);
   host.readFile = (candidate) =>
     candidate === virtualPath ? content : originalReadFile(candidate);
   host.getSourceFile = (candidate, languageVersion, onError, shouldCreate) =>
     candidate === virtualPath
       ? ts.createSourceFile(candidate, content, languageVersion, true)
-      : originalGetSourceFile(
-          candidate,
-          languageVersion,
-          onError,
-          shouldCreate,
-        );
+      : originalGetSourceFile(candidate, languageVersion, onError, shouldCreate);
 
   const program = ts.createProgram([virtualPath], options, host);
   return ts
@@ -172,9 +156,7 @@ function semanticDiagnostics(path: string, content: string): string[] {
         diagnostic.file && diagnostic.start !== undefined
           ? diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start)
           : null;
-      const location = position
-        ? `${path}:${position.line + 1}:${position.character + 1}`
-        : path;
+      const location = position ? `${path}:${position.line + 1}:${position.character + 1}` : path;
       return `${location} TS${diagnostic.code} ${ts.flattenDiagnosticMessageText(diagnostic.messageText, " ")}`;
     });
 }
@@ -224,15 +206,9 @@ describe("Infinity Loop strict design contract", () => {
     expect(hstDigest).toBe(manifest.canonical_hst_set_digest);
 
     const designDigest = sha256(
-      [
-        commit,
-        tree,
-        sliceDigest,
-        artifactDigest,
-        unitDigest,
-        integrationDigest,
-        hstDigest,
-      ].join("\n"),
+      [commit, tree, sliceDigest, artifactDigest, unitDigest, integrationDigest, hstDigest].join(
+        "\n",
+      ),
     );
     expect(designDigest).toBe(manifest.snapshot_binding.design_snapshot_digest);
 
@@ -270,9 +246,7 @@ describe("Infinity Loop strict design contract", () => {
     for (const artifact of artifacts) {
       const lines = readFileSync(artifact.path, "utf8").split(/\r?\n/);
       lines.forEach((line, index) => {
-        const declaration = line.match(
-          /^(?:export\s+)?(?:interface|type)\s+([A-Za-z0-9_]+)/,
-        );
+        const declaration = line.match(/^(?:export\s+)?(?:interface|type)\s+([A-Za-z0-9_]+)/);
         if (declaration && !declaration[1]?.endsWith("V1")) {
           findings.push(`${artifact.path}:${index + 1}:${declaration[1]}`);
         }
@@ -315,12 +289,7 @@ describe("Infinity Loop strict design contract", () => {
       const fences = sliceArtifacts.flatMap((artifact) =>
         extractTypeScriptFences(readFileSync(artifact.path, "utf8")),
       );
-      findings.push(
-        ...semanticDiagnostics(
-          `strict-design/${sliceId}`,
-          fences.join("\n"),
-        ),
-      );
+      findings.push(...semanticDiagnostics(`strict-design/${sliceId}`, fences.join("\n")));
     }
     expect(findings).toEqual([]);
   }, 30_000);
@@ -342,9 +311,7 @@ describe("Infinity Loop strict design contract", () => {
     expect(names).toContain("ResolvedPythonWorkerDescriptorV1");
 
     const ownerText = sources.find((source) => source.path === owner)?.content ?? "";
-    expect(
-      exactStringUnionMembers(ownerText, "PythonWorkerCapabilityClassV1")?.sort(),
-    ).toEqual([
+    expect(exactStringUnionMembers(ownerText, "PythonWorkerCapabilityClassV1")?.sort()).toEqual([
       "analysis",
       "detector",
       "document_engine",
@@ -377,9 +344,7 @@ describe("Infinity Loop strict design contract", () => {
       "  | string;",
       "```",
     ].join("\n");
-    expect(
-      exactStringUnionMembers(widened, "PythonWorkerCapabilityClassV1"),
-    ).toBeNull();
+    expect(exactStringUnionMembers(widened, "PythonWorkerCapabilityClassV1")).toBeNull();
   });
 
   it("current quartetのoracle分母とHDS-HIL-13 cardinalityを固定する", () => {
@@ -401,21 +366,18 @@ describe("Infinity Loop strict design contract", () => {
     }
     expect(currentUnitIds.size).toBe(475);
     expect(currentIntegrationIds.size).toBe(360);
-    expect([...currentUnitIds].sort()).toEqual(
-      [...manifest.canonical_unit_ids].sort(),
-    );
+    expect([...currentUnitIds].sort()).toEqual([...manifest.canonical_unit_ids].sort());
     expect([...currentIntegrationIds].sort()).toEqual(
       [...manifest.canonical_integration_ids].sort(),
     );
 
-    const functionDesign = readFileSync(
-      "docs/design/helix/L6-function-design/node-runtime-cutover.md",
-      "utf8",
-    ).split("### §1.1", 1)[0] ?? "";
+    const functionDesign =
+      readFileSync("docs/design/helix/L6-function-design/node-runtime-cutover.md", "utf8").split(
+        "### §1.1",
+        1,
+      )[0] ?? "";
     const apiRows = [
-      ...functionDesign.matchAll(
-        /^\| `([A-Za-z][A-Za-z0-9]+)` \|.*\| `(U-NCUT-[0-9]{3})` \|$/gm,
-      ),
+      ...functionDesign.matchAll(/^\| `([A-Za-z][A-Za-z0-9]+)` \|.*\| `(U-NCUT-[0-9]{3})` \|$/gm),
     ];
     const apiNames = apiRows.map((match) => match[1]);
     expect(apiNames).toHaveLength(22);
@@ -426,37 +388,21 @@ describe("Infinity Loop strict design contract", () => {
       apiOwnerCounts.set(owner, (apiOwnerCounts.get(owner) ?? 0) + 1);
     }
     expect(
-      [...apiOwnerCounts.entries()].sort(([left], [right]) =>
-        left.localeCompare(right),
-      ),
+      [...apiOwnerCounts.entries()].sort(([left], [right]) => left.localeCompare(right)),
     ).toEqual([
-      ...Array.from({ length: 12 }, (_, index) => [
-        `U-NCUT-${String(index + 1).padStart(3, "0")}`,
-        1,
-      ] as [string, number]),
+      ...Array.from(
+        { length: 12 },
+        (_, index) => [`U-NCUT-${String(index + 1).padStart(3, "0")}`, 1] as [string, number],
+      ),
       ["U-NCUT-013", 4],
       ["U-NCUT-014", 4],
       ["U-NCUT-015", 2],
     ]);
-    expect(
-      [...currentUnitIds]
-        .filter((id) => id.startsWith("U-NCUT-"))
-        .sort(),
-    ).toEqual(
-      Array.from(
-        { length: 15 },
-        (_, index) => `U-NCUT-${String(index + 1).padStart(3, "0")}`,
-      ),
+    expect([...currentUnitIds].filter((id) => id.startsWith("U-NCUT-")).sort()).toEqual(
+      Array.from({ length: 15 }, (_, index) => `U-NCUT-${String(index + 1).padStart(3, "0")}`),
     );
-    expect(
-      [...currentIntegrationIds]
-        .filter((id) => id.startsWith("IT-NCUT-"))
-        .sort(),
-    ).toEqual(
-      Array.from(
-        { length: 13 },
-        (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`,
-      ),
+    expect([...currentIntegrationIds].filter((id) => id.startsWith("IT-NCUT-")).sort()).toEqual(
+      Array.from({ length: 13 }, (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`),
     );
 
     const fullFunctionDesign = readFileSync(
@@ -475,7 +421,7 @@ describe("Infinity Loop strict design contract", () => {
     const requiredContracts = [
       "RuntimeAuthorityStoreCapabilityV1",
       "readonly transaction_store: RuntimeAuthorityTransactionStoreV1",
-      'UNIQUE=`(operation_id,receipt_kind)`',
+      "UNIQUE=`(operation_id,receipt_kind)`",
     ];
     const missingRequiredContracts = (content: string) =>
       requiredContracts.filter((contract) => !content.includes(contract));
@@ -495,9 +441,7 @@ describe("Infinity Loop strict design contract", () => {
         'phase: "bun_active" | RuntimeCutoverOperationV1["phase"]',
         "activation_receipt_digest: string | null; terminal_receipt_digest: string | null",
       ],
-      RuntimeCutoverEventV1: [
-        '"rollback_approved" | "rollback_committed" | "rollback_reconciled"',
-      ],
+      RuntimeCutoverEventV1: ['"rollback_approved" | "rollback_committed" | "rollback_reconciled"'],
       NodeCutoverTerminalApprovalV1: ['action: "node_cutover_terminal"'],
       NodeCutoverTerminalBundleV1: [
         "terminal_writer: RuntimeWriterEpochLeaseV1",
@@ -520,9 +464,7 @@ describe("Infinity Loop strict design contract", () => {
           '"activated_monitoring" | "terminal"',
         ),
       ),
-    ).toEqual([
-      'CutoverStateV1:"activated_monitoring" | "reconcile_required" | "terminal"',
-    ]);
+    ).toEqual(['CutoverStateV1:"activated_monitoring" | "reconcile_required" | "terminal"']);
     expect(
       missingScopedContracts(
         fullFunctionDesign.replace(
@@ -530,17 +472,13 @@ describe("Infinity Loop strict design contract", () => {
           "terminal_writer_removed: unknown",
         ),
       ),
-    ).toEqual([
-      "NodeCutoverTerminalBundleV1:terminal_writer: RuntimeWriterEpochLeaseV1",
-    ]);
+    ).toEqual(["NodeCutoverTerminalBundleV1:terminal_writer: RuntimeWriterEpochLeaseV1"]);
     const unitDesign = readFileSync(
       "docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md",
       "utf8",
     );
     const unitRows = [
-      ...unitDesign.matchAll(
-        /^\| `(U-NCUT-[0-9]{3})` \| (.*?) \| .* \| `tests\//gm,
-      ),
+      ...unitDesign.matchAll(/^\| `(U-NCUT-[0-9]{3})` \| (.*?) \| .* \| `tests\//gm),
     ];
     const l7ApiOwners = unitRows.flatMap((row) => {
       const owner = row[1] ?? "";
@@ -549,20 +487,17 @@ describe("Infinity Loop strict design contract", () => {
       );
     });
     const sortedApiOwners = (entries: [string, string][]) =>
-      entries.sort(([leftApi, leftOwner], [rightApi, rightOwner]) =>
-        leftApi.localeCompare(rightApi) || leftOwner.localeCompare(rightOwner),
+      entries.sort(
+        ([leftApi, leftOwner], [rightApi, rightOwner]) =>
+          leftApi.localeCompare(rightApi) || leftOwner.localeCompare(rightOwner),
       );
     expect(sortedApiOwners(l7ApiOwners)).toEqual(
-      sortedApiOwners(
-        apiRows.map((row) => [row[1] ?? "", row[2] ?? ""]),
-      ),
+      sortedApiOwners(apiRows.map((row) => [row[1] ?? "", row[2] ?? ""])),
     );
 
     const l6TraceSection = fullFunctionDesign.split("## §5 双方向trace", 2)[1] ?? "";
     const l6TraceRows = [
-      ...l6TraceSection.matchAll(
-        /^\| (.*?) \| `(U-NCUT-[0-9]{3})` \| (.*?) \| .* \|$/gm,
-      ),
+      ...l6TraceSection.matchAll(/^\| (.*?) \| `(U-NCUT-[0-9]{3})` \| (.*?) \| .* \|$/gm),
     ];
     const l6ApiOwners = l6TraceRows.flatMap((row) =>
       [...(row[1] ?? "").matchAll(/`([A-Za-z][A-Za-z0-9]+)`/g)].map(
@@ -594,14 +529,12 @@ describe("Infinity Loop strict design contract", () => {
 
     const traceSection = unitDesign.split("## §1 逆引きtrace", 2)[1] ?? "";
     const actualUnitIntegrationTrace = Object.fromEntries(
-      [...traceSection.matchAll(/^\| `(U-NCUT-[0-9]{3})` \|.*?\| (.*?) \|/gm)].map(
-        (row) => [
-          row[1] ?? "",
-          [...(row[2] ?? "").matchAll(/`(IT-NCUT-[0-9]{3})`/g)].map(
-            (integration) => integration[1] ?? "",
-          ),
-        ],
-      ),
+      [...traceSection.matchAll(/^\| `(U-NCUT-[0-9]{3})` \|.*?\| (.*?) \|/gm)].map((row) => [
+        row[1] ?? "",
+        [...(row[2] ?? "").matchAll(/`(IT-NCUT-[0-9]{3})`/g)].map(
+          (integration) => integration[1] ?? "",
+        ),
+      ]),
     );
     expect(actualUnitIntegrationTrace).toEqual({
       "U-NCUT-001": ["IT-NCUT-009"],
@@ -614,32 +547,15 @@ describe("Infinity Loop strict design contract", () => {
       "U-NCUT-008": ["IT-NCUT-003", "IT-NCUT-006"],
       "U-NCUT-009": ["IT-NCUT-004", "IT-NCUT-008"],
       "U-NCUT-010": ["IT-NCUT-004", "IT-NCUT-008"],
-      "U-NCUT-011": [
-        "IT-NCUT-001",
-        "IT-NCUT-002",
-        "IT-NCUT-003",
-        "IT-NCUT-004",
-        "IT-NCUT-005",
-      ],
-      "U-NCUT-012": [
-        "IT-NCUT-006",
-        "IT-NCUT-007",
-        "IT-NCUT-008",
-        "IT-NCUT-009",
-        "IT-NCUT-010",
-      ],
+      "U-NCUT-011": ["IT-NCUT-001", "IT-NCUT-002", "IT-NCUT-003", "IT-NCUT-004", "IT-NCUT-005"],
+      "U-NCUT-012": ["IT-NCUT-006", "IT-NCUT-007", "IT-NCUT-008", "IT-NCUT-009", "IT-NCUT-010"],
       "U-NCUT-013": ["IT-NCUT-011"],
       "U-NCUT-014": ["IT-NCUT-012"],
       "U-NCUT-015": ["IT-NCUT-013"],
     });
     expect(l6UnitIntegrationTrace).toEqual(actualUnitIntegrationTrace);
-    expect(
-      [...new Set(Object.values(actualUnitIntegrationTrace).flat())].sort(),
-    ).toEqual(
-      Array.from(
-        { length: 13 },
-        (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`,
-      ),
+    expect([...new Set(Object.values(actualUnitIntegrationTrace).flat())].sort()).toEqual(
+      Array.from({ length: 13 }, (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`),
     );
 
     const exactTableRows = [
@@ -651,11 +567,9 @@ describe("Infinity Loop strict design contract", () => {
     ];
     const parsedTableRows = (content: string) => {
       const section = content.split("5表のexact constraintは次を正本とする。", 2)[1] ?? "";
-      return [
-        ...section.matchAll(
-          /^\| `runtime_[^`]+` \| `[^`]+` \| .* \|$/gm,
-        ),
-      ].map((match) => match[0]);
+      return [...section.matchAll(/^\| `runtime_[^`]+` \| `[^`]+` \| .* \|$/gm)].map(
+        (match) => match[0],
+      );
     };
     const missingOrExtraTableRows = (content: string) => ({
       missing: exactTableRows.filter((row) => !parsedTableRows(content).includes(row)),
@@ -663,9 +577,7 @@ describe("Infinity Loop strict design contract", () => {
     });
     expect(parsedTableRows(fullFunctionDesign)).toEqual(exactTableRows);
     expect(
-      missingOrExtraTableRows(
-        fullFunctionDesign.replace(exactTableRows[0] ?? "", ""),
-      ),
+      missingOrExtraTableRows(fullFunctionDesign.replace(exactTableRows[0] ?? "", "")),
     ).toEqual({ missing: [exactTableRows[0]], extra: [] });
     expect(
       missingOrExtraTableRows(
@@ -683,34 +595,41 @@ describe("Infinity Loop strict design contract", () => {
       "utf8",
     );
     const integrationRows = [
-      ...integrationDesign.matchAll(
-        /^\| `(IT-NCUT-[0-9]{3})` \| .* \| `tests\//gm,
-      ),
+      ...integrationDesign.matchAll(/^\| `(IT-NCUT-[0-9]{3})` \| .* \| `tests\//gm),
     ].map((row) => row[1] ?? "");
     expect(integrationRows).toEqual(
-      Array.from(
-        { length: 13 },
-        (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`,
-      ),
+      Array.from({ length: 13 }, (_, index) => `IT-NCUT-${String(index + 1).padStart(3, "0")}`),
     );
     const hstRows = (
       content: string,
       order: "api-first" | "unit-first" | "integration-first",
     ): string[][] => {
       const section = content.split("canonical assertion primary表", 2)[1] ?? "";
-      return [
-        ...section.matchAll(/^\| `(HST-CASE-013-[0-9]{2})` \| (.*?) \|$/gm),
-      ].map((row) => {
-        const cells = (row[2] ?? "").split(" | ").map((cell) =>
-          cell.replaceAll("`", ""),
-        );
+      return [...section.matchAll(/^\| `(HST-CASE-013-[0-9]{2})` \| (.*?) \|$/gm)].map((row) => {
+        const cells = (row[2] ?? "").split(" | ").map((cell) => cell.replaceAll("`", ""));
         if (order === "api-first") return [row[1] ?? "", ...cells];
         if (order === "unit-first") {
           const [unit, api, integration, pre, expected, failure] = cells;
-          return [row[1] ?? "", api ?? "", unit ?? "", integration ?? "", pre ?? "", expected ?? "", failure ?? ""];
+          return [
+            row[1] ?? "",
+            api ?? "",
+            unit ?? "",
+            integration ?? "",
+            pre ?? "",
+            expected ?? "",
+            failure ?? "",
+          ];
         }
         const [integration, unit, pre, expected, failure] = cells;
-        return [row[1] ?? "", "", unit ?? "", integration ?? "", pre ?? "", expected ?? "", failure ?? ""];
+        return [
+          row[1] ?? "",
+          "",
+          unit ?? "",
+          integration ?? "",
+          pre ?? "",
+          expected ?? "",
+          failure ?? "",
+        ];
       });
     };
     const l5DetailDesign = readFileSync(
@@ -741,12 +660,8 @@ describe("Infinity Loop strict design contract", () => {
         expected,
         failure,
       ]);
-    expect(projectWithoutApi(detailHstRows)).toEqual(
-      projectWithoutApi(canonicalHstRows),
-    );
-    expect(projectWithoutApi(integrationHstRows)).toEqual(
-      projectWithoutApi(canonicalHstRows),
-    );
+    expect(projectWithoutApi(detailHstRows)).toEqual(projectWithoutApi(canonicalHstRows));
+    expect(projectWithoutApi(integrationHstRows)).toEqual(projectWithoutApi(canonicalHstRows));
     expect(
       projectWithoutApi(
         hstRows(
@@ -766,29 +681,23 @@ describe("Infinity Loop strict design contract", () => {
         extraHstRow,
     );
     expect(hstRows(integrationWithExtraHst, "integration-first")).toHaveLength(12);
-    expect(
-      hstRows(integrationWithExtraHst, "integration-first").map((row) => row[0]),
-    ).not.toEqual(expectedHstIds);
+    expect(hstRows(integrationWithExtraHst, "integration-first").map((row) => row[0])).not.toEqual(
+      expectedHstIds,
+    );
     expect(unitDesign).toContain(
       "bootstrap adapter missing／unverified／digest tamper／write-set混入",
     );
-    expect(integrationDesign).toContain(
-      "新terminal writer epoch/lease/fenceとterminal approval",
-    );
+    expect(integrationDesign).toContain("新terminal writer epoch/lease/fenceとterminal approval");
   });
 
   it("HDS-HIL-09Aのexact-2 all-ref authority契約を固定する", () => {
-    const l1Path =
-      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md";
+    const l1Path = "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md";
     const l1 = readFileSync(l1Path, "utf8");
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
       "utf8",
     );
-    const l5 = readFileSync(
-      "docs/design/helix/L5-detail/source-capability-capture.md",
-      "utf8",
-    );
+    const l5 = readFileSync("docs/design/helix/L5-detail/source-capability-capture.md", "utf8");
     const l6 = readFileSync(
       "docs/design/helix/L6-function-design/source-capability-capture.md",
       "utf8",
@@ -823,9 +732,9 @@ describe("Infinity Loop strict design contract", () => {
     );
 
     const apiSection = l6.split("### §1.1", 1)[0] ?? "";
-    const apiNames = [
-      ...apiSection.matchAll(/^\| `([A-Za-z][A-Za-z0-9]+)` \|/gm),
-    ].map((match) => match[1] ?? "");
+    const apiNames = [...apiSection.matchAll(/^\| `([A-Za-z][A-Za-z0-9]+)` \|/gm)].map(
+      (match) => match[1] ?? "",
+    );
     expect(apiNames).toEqual([
       "canonicalizeSourceCaptureRequest",
       "deriveSourceSnapshotId",
@@ -849,16 +758,10 @@ describe("Infinity Loop strict design contract", () => {
     const exactIds = (content: string, pattern: RegExp) =>
       [...new Set([...content.matchAll(pattern)].map((match) => match[0]))].sort();
     expect(exactIds(unit, /\bU-SCAP-[0-9]{3}\b/g)).toEqual(
-      Array.from(
-        { length: 31 },
-        (_, index) => `U-SCAP-${String(index + 1).padStart(3, "0")}`,
-      ),
+      Array.from({ length: 31 }, (_, index) => `U-SCAP-${String(index + 1).padStart(3, "0")}`),
     );
     expect(exactIds(integration, /\bIT-SCAP-[0-9]{3}\b/g)).toEqual(
-      Array.from(
-        { length: 13 },
-        (_, index) => `IT-SCAP-${String(index + 1).padStart(3, "0")}`,
-      ),
+      Array.from({ length: 13 }, (_, index) => `IT-SCAP-${String(index + 1).padStart(3, "0")}`),
     );
 
     const requiredAcrossLayers = [
@@ -875,14 +778,10 @@ describe("Infinity Loop strict design contract", () => {
       .filter((line) => /^\| HDS-HIL-[0-9]+[A-Z]? \|/.test(line));
     expect(registryRows).toHaveLength(19);
     expect(registryRows.filter((line) => line.includes("strict GREEN"))).toHaveLength(19);
-    expect(
-      registryRows.find((line) => line.startsWith("| HDS-HIL-09A |")),
-    ).toContain("all-ref authority／consumer cascade／shared lifecycle rebuild");
-    for (const namespace of [
-      "refs/heads/*",
-      "refs/tags/*",
-      "refs/pull/*/{head,merge}",
-    ]) {
+    expect(registryRows.find((line) => line.startsWith("| HDS-HIL-09A |"))).toContain(
+      "all-ref authority／consumer cascade／shared lifecycle rebuild",
+    );
+    for (const namespace of ["refs/heads/*", "refs/tags/*", "refs/pull/*/{head,merge}"]) {
       expect(l1).toContain(namespace);
       expect(governance).toContain(namespace);
     }
@@ -919,17 +818,15 @@ describe("Infinity Loop strict design contract", () => {
       "unique_entry_set_digest",
       "SourceDenominatorSetV1",
       "SourceRefEntryEdgeV1",
-      'exact_denominator_match: true',
+      "exact_denominator_match: true",
       '"HSCAP_SEALED_BUNDLE_TAMPERED"',
       '"HSCAP_OFFLINE_NETWORK_ATTEMPT"',
       '"HIL_PYTHON_AUTHORITY_BYPASS"',
     ];
-    expect(requiredTypedEvidence.filter((value) => !l6.includes(value))).toEqual(
-      [],
-    );
+    expect(requiredTypedEvidence.filter((value) => !l6.includes(value))).toEqual([]);
     expect(
-      requiredTypedEvidence.filter((value) =>
-        !l6.replaceAll("GitSealReceiptV1", "GitSealReceiptRemovedV1").includes(value),
+      requiredTypedEvidence.filter(
+        (value) => !l6.replaceAll("GitSealReceiptV1", "GitSealReceiptRemovedV1").includes(value),
       ),
     ).toEqual(["GitSealReceiptV1"]);
     for (const contract of [
@@ -974,14 +871,10 @@ describe("Infinity Loop strict design contract", () => {
     ]) {
       const captureLine = l6
         .split("\n")
-        .find((line) =>
-          new RegExp(`^(?:interface|type) ${sharedDeclaration}\\b`).test(line),
-        );
+        .find((line) => new RegExp(`^(?:interface|type) ${sharedDeclaration}\\b`).test(line));
       const atomizationLine = atomizationL6
         .split("\n")
-        .find((line) =>
-          new RegExp(`^(?:interface|type) ${sharedDeclaration}\\b`).test(line),
-        );
+        .find((line) => new RegExp(`^(?:interface|type) ${sharedDeclaration}\\b`).test(line));
       expect(atomizationLine).toBe(captureLine);
     }
     for (const contract of [
@@ -1018,14 +911,8 @@ describe("Infinity Loop strict design contract", () => {
       expect(ledgerDigest).toBe(sha256(text));
       expect(ledgerLine?.split("|")[2]?.trim()).toBe("2");
     }
-    expect(l6).toContain(
-      "| `HST-CASE-011-03` | `commitGitRefAuthority` | `U-SCAP-031` |",
-    );
-    expect(unit).toContain(
-      "| `HST-CASE-011-03` | `U-SCAP-031` |",
-    );
-    expect(integration).toContain(
-      "| `HST-CASE-011-03` | `IT-SCAP-013` |",
-    );
+    expect(l6).toContain("| `HST-CASE-011-03` | `commitGitRefAuthority` | `U-SCAP-031` |");
+    expect(unit).toContain("| `HST-CASE-011-03` | `U-SCAP-031` |");
+    expect(integration).toContain("| `HST-CASE-011-03` | `IT-SCAP-013` |");
   });
 });
