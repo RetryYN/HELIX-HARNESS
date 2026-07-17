@@ -1741,7 +1741,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "35 scripts / 98 Bats",
       "existing-pillar-covered",
       "harden-via-current-cli",
-      "concept-only-ts-reimplementation",
+      "semantic-atom-curation",
       "catalog-not-bulk-import",
       "core injection",
       "guard-surface registry",

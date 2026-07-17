@@ -71,7 +71,7 @@ sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX pr
 
 **採用しなかった/保留**: self-verification 単独（HNFR-P3 が明示禁止、best practice も不支持）/ ARIA delegation graph（arxiv 段階、実用 OSS 未確認）/ Anthropic compact beta（harness handover と競合有無 未確認）。
 
-**L3 一次検証結果（PLAN-L3-06）**: Release Please / semantic-release / GitHub Rulesets / Merge Queue / OWASP LLM01・LLM06 / Firecracker / gVisor / GitHub token docs は L3 §2.5 で一次出典を固定。ACON 等の論文実装は採用済み runtime 前提にせず、必要時は後続 PLAN で TS/Bun 再実装可否を個別検証する。**ADR-001 厳守: OSS は概念採取＋TS-Bun 再実装、bulk import 禁止。**
+**L3 一次検証結果（PLAN-L3-06）**: Release Please / semantic-release / GitHub Rulesets / Merge Queue / OWASP LLM01・LLM06 / Firecracker / gVisor / GitHub token docs は L3 §2.5 で一次出典を固定。ACON 等の論文実装は採用済みruntime前提にせず、必要時は後続PLANで検証する。**ADR-001/ADR-010厳守: bulk importは禁止し、意味判断はPython意味コア、副作用はTypeScript/Node実行境界へ責務分離する。**
 
 ## §2.6 Codex runtime parity 要求（PLAN-L1-06 close 前追加、2026-06-28）
 

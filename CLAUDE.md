@@ -136,7 +136,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 ## 構成境界
 
 - `docs/`: governance 文書、requirements、ADR、PLAN、design、test design、migration、archive
-- `src/`: TypeScript/Node制御面。Python workerは別rootのversioned contractをNodeから監督する構成
+- `src/`: TypeScript/Node実行境界。別rootのPython意味コアとversioned contractで接続し、DB/Git/GitHub副作用を単一commit境界へ直列化する構成
 - `tests/`: Vitest tests
 - `scripts/`: thin OS entrypoints only
 - `.helix/`: HELIX runtime state と audit/provider evidence

@@ -110,6 +110,6 @@ interface GuardSurfaceDisposition {
 
 ## §5 carry
 
-- L7: 旧 Python/Bash を移植せず、TS/Bun module と既存 harness DB projection へ接続する。
+- L7: 旧runtimeを一括移植せず、選別したPython意味コアとTypeScript/Node実行境界をversioned contractで既存harness DB projectionへ接続する。
 - L7.5: `analyzeRunDebugTrace` は `RuntimeVerificationLogEvent` の `correlation_id` と結合する。
 - Rename: `helix` CLI / `.helix` state の機械改名は `PLAN-M-02` まで defer。prose だけを先行して HELIX へ寄せる。

@@ -56,7 +56,7 @@ related_l6: docs/design/helix/L6-function-design/legacy-helix-extension.md
 
 ## §3 非目標
 
-- この採用では Python/Bash runtime code（実行コード）を移植しない。
+- この採用では旧Python/Bash runtimeを一括起動経路として移植しない。選別済みPython意味コアはADR-010境界で採用できる。
 - この採用では現行 machine identifier（機械識別子）を rename しない。CLI/state rename は引き続き `PLAN-M-02-helix-identifier-rename.md` が govern する。
 - この採用では old HELIX catalog output を hardening なしに current truth（現行正本）として扱わない。
 - 対応する L7 implementation と verification evidence が揃うまで、legacy hook、agent、scheduler、DB/API、learning engine の runtime parity を claim しない。
