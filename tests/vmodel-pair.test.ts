@@ -1780,10 +1780,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
   });
 
   it("U-VPAIR-009g: L12 Scrum Reverse and measurement requirements stay mechanically closed", () => {
-    const governance = readFileSync(
-      "docs/governance/helix-harness-requirements_v1.3.md",
-      "utf8",
-    );
+    const governance = readFileSync("docs/governance/helix-harness-requirements_v1.3.md", "utf8");
     const design = readFileSync(
       "docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md",
       "utf8",
