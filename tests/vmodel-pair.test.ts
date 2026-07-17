@@ -1779,6 +1779,69 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     }
   });
 
+  it("U-VPAIR-009g: L12 Scrum Reverse and measurement requirements stay mechanically closed", () => {
+    const governance = readFileSync(
+      "docs/governance/helix-harness-requirements_v1.3.md",
+      "utf8",
+    );
+    const design = readFileSync(
+      "docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md",
+      "utf8",
+    );
+    const acceptance = readFileSync(
+      "docs/test-design/helix/scrum-reverse-verification-engine-acceptance.md",
+      "utf8",
+    );
+
+    for (const required of [
+      "FULL_L1_L12_V",
+      "PRODUCTION_SCRUM_REDUCED_V",
+      "DISCOVERY_POC",
+      "SR0 evidence capture",
+      "SR1 observed contract",
+      "SR2 V-layer mapping",
+      "SR3 design/refactor proposal",
+      "SR4 pair freeze and Forward reentry",
+      "REDESIGN",
+      "DESIGN_REFACTOR",
+      "PERFORMANCE_REFACTOR",
+      "RETROFIT",
+      "verification_measurement_contract",
+    ]) {
+      expect(governance).toContain(required);
+    }
+
+    const qualityAreas = [
+      "性能",
+      "信頼性",
+      "可用性",
+      "回復性",
+      "security",
+      "privacy",
+      "accessibility",
+      "互換性",
+      "運用性",
+      "保守性",
+      "cost/resource",
+      "data quality",
+      "observability",
+    ];
+    for (const area of qualityAreas) expect(design).toContain(area);
+
+    expect(uniqueMatches(design, /\b(SRV-FR-\d{3})\b/g)).toEqual(
+      Array.from({ length: 14 }, (_, index) => `SRV-FR-${String(index + 1).padStart(3, "0")}`),
+    );
+    expect(uniqueMatches(acceptance, /\b(SRV-AC-\d{3})\b/g)).toEqual(
+      Array.from({ length: 14 }, (_, index) => `SRV-AC-${String(index + 1).padStart(3, "0")}`),
+    );
+    expect(design).toContain(
+      "system_complete = functional_AC_green ∧ required_metrics_current ∧ NFR_targets_pass",
+    );
+    expect(acceptance).toContain(
+      "test greenでもmetric missing/stale/nonrepresentative/failならcompletionがfalseになる",
+    );
+  });
+
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {
     expect(pairFreezeMessages({ ok: true, orphans: [], pairs: 5 })[0]).toContain("OK");
     const msgs = pairFreezeMessages({
