@@ -22,10 +22,22 @@ spec:
       layer: L2
       owner: TL
       status: confirmed
+    - id: HVC-L3-REQUIREMENTS-FREEZE
+      kind: 要件 凍結
+      title: L3 requirements freeze coverage
+      layer: L3
+      owner: TL
+      status: confirmed
     - id: HVC-L4-BASIC-DESIGN
       kind: 基本設計 architecture
       title: L4 basic design coverage
       layer: L4
+      owner: TL
+      status: confirmed
+    - id: HVC-L5-DETAIL-TEST-CONTRACT
+      kind: 詳細設計 テスト契約
+      title: L5 detail and test contract coverage
+      layer: L5
       owner: TL
       status: confirmed
     - id: HVC-L6-IMPLEMENTATION-BINDING
@@ -33,6 +45,12 @@ spec:
       title: L6 implementation binding coverage
       layer: L6
       owner: TL
+      status: confirmed
+    - id: HVC-L7-TDD-CLOSURE
+      kind: テスト実装 TDD closure
+      title: L7 TDD closure coverage
+      layer: L7
+      owner: QA
       status: confirmed
     - id: HVC-L8-UNIT-TEST-DESIGN
       kind: 単体テスト unit test
@@ -52,6 +70,18 @@ spec:
       layer: L10
       owner: QA
       status: confirmed
+    - id: HVC-L11-ACCEPTANCE
+      kind: 受入テスト
+      title: L11 acceptance coverage
+      layer: L11
+      owner: QA
+      status: confirmed
+    - id: HVC-L12-OPERATION
+      kind: 運用テスト 改善還流
+      title: L12 operation coverage
+      layer: L12
+      owner: QA
+      status: confirmed
   refs:
     - from: HVC-L1-PLANNING-INTENT
       to: HR-FR-VMFIT-01
@@ -59,12 +89,21 @@ spec:
     - from: HVC-L2-REQUIREMENTS-SCREEN
       to: HR-FR-VMFIT-02
       kind: covers
+    - from: HVC-L3-REQUIREMENTS-FREEZE
+      to: HR-FR-VMFIT-03
+      kind: covers
     - from: HVC-L4-BASIC-DESIGN
+      to: HR-FR-VMFIT-04
+      kind: covers
+    - from: HVC-L5-DETAIL-TEST-CONTRACT
       to: HR-FR-VMFIT-04
       kind: covers
     - from: HVC-L6-IMPLEMENTATION-BINDING
       to: HR-FR-VMFIT-05
       kind: covers
+    - from: HVC-L7-TDD-CLOSURE
+      to: HAT-VMFIT-L7-CLOSURE
+      kind: verifies
     - from: HVC-L8-UNIT-TEST-DESIGN
       to: HAT-VMFIT-03
       kind: verifies
@@ -72,6 +111,12 @@ spec:
       to: HAT-VMFIT-04
       kind: verifies
     - from: HVC-L10-SYSTEM-TEST-DESIGN
+      to: HAT-VMFIT-05
+      kind: verifies
+    - from: HVC-L11-ACCEPTANCE
+      to: HAT-VMFIT-05
+      kind: verifies
+    - from: HVC-L12-OPERATION
       to: HAT-VMFIT-05
       kind: verifies
 ---
@@ -91,11 +136,16 @@ spec:
 |----|-------|----------------------|----------------|
 | HVC-L1-PLANNING-INTENT | L1 企画 | ZIP 採用境界、L0 のスライド調整、core runtime 非置換の判断 | 企画/採用境界 |
 | HVC-L2-REQUIREMENTS-SCREEN | L2 要求+画面 | 要求、画面、flow、mock から L3 要件へ締める入力 | 要求/画面 |
+| HVC-L3-REQUIREMENTS-FREEZE | L3 要件 | FR/NFR/ACとtest oracleの凍結 | 要件 |
 | HVC-L4-BASIC-DESIGN | L4 基本設計 | DB projection、Project view、drive model の方式境界 | 基本設計 |
-| HVC-L6-IMPLEMENTATION-BINDING | L6 実装 | typed declaration、projection writer、current-location、VSCode view への実装 binding | 実装契約 |
+| HVC-L5-DETAIL-TEST-CONTRACT | L5 詳細設計 | 内部設計、typed contract、edge case、先行test design | 詳細設計 |
+| HVC-L6-IMPLEMENTATION-BINDING | L6 実装 | typed declarationとproduct codeのbinding | 実装 |
+| HVC-L7-TDD-CLOSURE | L7 TDD closure | Red→Green→Refactorと実装/test双方向trace | テスト実装 |
 | HVC-L8-UNIT-TEST-DESIGN | L8 単体テスト | parser、coverage gate、drive selector の unit oracle | 単体テスト設計 |
 | HVC-L9-INTEGRATION-TEST-DESIGN | L9 結合テスト | design declarations から harness.db、read-model、Project view までの integration oracle | 結合テスト設計 |
-| HVC-L10-SYSTEM-TEST-DESIGN | L10 総合テスト | L14 claim と open L7、工程表、operation scope を合わせた system oracle | 総合テスト設計 |
+| HVC-L10-SYSTEM-TEST-DESIGN | L10 総合テスト | L3 FR/NFR/ACをsystem全体で検証 | 総合テスト設計 |
+| HVC-L11-ACCEPTANCE | L11 受入テスト | L2要求・prototypeを実利用/実データで検証 | 受入テスト |
+| HVC-L12-OPERATION | L12 運用テスト | L1価値、運用時間軸、改善還流を検証 | 運用テスト |
 
 ## §2 不変条件
 

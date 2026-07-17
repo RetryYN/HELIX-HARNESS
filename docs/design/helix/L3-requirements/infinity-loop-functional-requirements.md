@@ -41,7 +41,7 @@ secondary test coverageはL12/L9で追加できる。現時点はPO承認前のd
 | HR-FR-HIL-15 | HIL-BR-13, HIL-FR-17, HIL-FR-18, HIL-FR-19, HIL-FR-20, HIL-NFR-11 | 全PLANをprototype_required/not_applicableへ分類し、前者はprototype→walkthrough→backprop/agreement、後者は構造skipでのみL3 freezeする | scope digest/policyあり → current agreementまたはno-UI receipt | implicit/deferred、static-only、state/walkthrough欠落、stale skip / applicability、artifact、walkthrough、delta、agreement | HAC-HIL-15a, HAC-HIL-15b, HAC-HIL-15c |
 | HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | DesignRefactor候補をsemantic/consumer/oracle同等性で評価し、behavior保存はRefactor、contract変更はRedesign、state変更はRetrofitへ送る | before graph/oracle/consumer/role catalog → 最小plan、pair/oracle/rollback | lexical-only rename、根拠なし抽象化、誤route、consumer漏れ / signatures、graph、oracle、role/name、route receipt | HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c |
 | HR-FR-HIL-17 | HIL-BR-22, HIL-BR-23, HIL-BR-24, HIL-FR-41, HIL-FR-42, HIL-FR-43, HIL-FR-44, HIL-FR-45, HIL-NFR-26, HIL-NFR-27, HIL-NFR-28 | 原文をauthority付きatomic requirementへ翻訳し、design obligationとstable revision/edge/change receiptを正本化、template gapをshadow reviewへ送る | custodied source/authority、versioned template → active atomに全typed edge、未消込/ambiguity 0 | 原文消失、aggregate/TBD/偽N/A、self-promotion、stale伝播欠落 / revision、challenge、template、obligation、gap/review/change receipt | HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-17c |
-| HR-FR-HIL-18 | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-FR-48, HIL-FR-49, HIL-FR-50, HIL-NFR-29 | L0–L14 ledgerをversion管理しtemplate obligationを抽出、上下隣接pairと正規7 V-pairを同一revision/snapshot/oracleで閉じ、refactorも全pairを保存する | active registry/template/snapshot/pair map → 全atom disposition、双方向edge、実行oracle | type/抽出/TBD/aggregate、片edge、revision/oracle不一致、pair破壊 / ledger、addition、pair、execution、refactor receipt | HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c |
+| HR-FR-HIL-18 | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-FR-48, HIL-FR-49, HIL-FR-50, HIL-NFR-29 | canonical L1〜L12 ledgerをversion管理しtemplate obligationを抽出、上下隣接edgeと正規6 V-pairを同一revision/snapshot/oracleで閉じ、refactorも全pairを保存する。legacy L0〜L14はexact mapping済みcompatibility inputとしてのみ受理する | active registry/template/snapshot/pair map → 全atom disposition、双方向edge、実行oracle | type/抽出/TBD/aggregate、片edge、revision/oracle不一致、pair破壊、legacy tokenのcanonical出力混入 / ledger、addition、pair、execution、refactor receipt | HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c |
 
 ## §2 受入条件
 
@@ -64,7 +64,7 @@ secondary test coverageはL12/L9で追加できる。現時点はPO承認前のd
 | HR-FR-HIL-15 | HAC-HIL-15a: no-UI構造skipでfreeze | HAC-HIL-15b: UIはprototype/walkthrough/agreement前freeze拒否 | HAC-HIL-15c: scope変更でstale化しL2再entry |
 | HR-FR-HIL-16 | HAC-HIL-16a: semantic同等の最小改善だけRefactor | HAC-HIL-16b: lexical-only/汎用化を拒否 | HAC-HIL-16c: internal/public/DBを3 routeへ分岐 |
 | HR-FR-HIL-17 | HAC-HIL-17a: atom/challengeを決定routeし完全revisionだけactive | HAC-HIL-17b: TBD/N/A/orphan/change欠落でfreeze拒否 | HAC-HIL-17c: template gapは独立review前active 0 |
-| HR-FR-HIL-18 | HAC-HIL-18a: L0–L14抽出と全pair current | HAC-HIL-18b: 任一atom/edge/oracle欠落でexit拒否 | HAC-HIL-18c: pair保存だけRefactor、他はRedesign/Retrofit |
+| HR-FR-HIL-18 | HAC-HIL-18a: L1〜L12抽出と正規6 pair current。legacy入力はexact remap | HAC-HIL-18b: 任一atom/edge/oracle欠落またはlegacy token出力でexit拒否 | HAC-HIL-18c: pair保存だけRefactor、他はRedesign/Retrofit |
 
 ## §3 量閉じ
 

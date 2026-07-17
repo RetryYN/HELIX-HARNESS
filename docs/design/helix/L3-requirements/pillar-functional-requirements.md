@@ -158,7 +158,7 @@ supporting summary を表示する場合は `decisionEvidenceChecklist`、`outco
 | HR-FR-P9-06 | HBR-P9 / HNFR-AC | design / add-design PLAN は要件起草前 inventory evidence を構造化フィールドで持ち、既存資産、旧 HELIX repo、関連 gate/docs の照合先、照合日、採否結論、未採用理由を記録する。prose-only の「確認済み」は証跡にせず、baseline 対象外の新規 PLAN は evidence 欠落のまま confirmed に到達できない | HAC-P9-06a / HAC-P9-06b |
 | HR-NFR-P3-01 | HNFR-P3 | 合格主張は green command evidence、review tier、external-truth grounding の有無を区別し、self-verification 単独を禁止する | HAC-N3-01a / HAC-N3-01b |
 | HR-NFR-P3-02 | HNFR-P3 / HBR-P3 | 実装精度は design requirement ID、acceptance ID、code/test evidence、review finding の対応で計測し、未対応 claim を完了根拠にしない | HAC-N3-02a / HAC-N3-02b |
-| HR-NFR-P3-03 | HNFR-P3 / HBR-P9 | L0-L14 の層単位で regression fence を持ち、変更影響層の gate/test/doctor が未実行なら pass を出さない | HAC-N3-03a / HAC-N3-03b |
+| HR-NFR-P3-03 | HNFR-P3 / HBR-P9 | canonical L1〜L12の層単位でregression fenceを持ち、変更影響層のgate/test/doctorが未実行ならpassを出さない。legacy L0〜L14はcanonical層へ写像して評価する | HAC-N3-03a / HAC-N3-03b |
 | HR-NFR-P3-04 | HNFR-P3 / HBR-P3 | AI による実装作業は test-first を既定にし、Red evidence、expected failure、acceptance oracle、Green evidence、refactor safety を記録する。test-first 不適用は理由と代替 oracle を持たなければならない | HAC-N3-04a / HAC-N3-04b |
 | HR-NFR-P5-01 | HNFR-P5 | injection budget は直近逐語 / rolling summary / stable constraints の 3 層と層境界数値を持ち、可逆圧縮に必要な artifact trail と raw/evidence pointer を汎用要約から分離して保持する | HAC-N5-01a / HAC-N5-01b |
 | HR-NFR-P5-02 | HNFR-P5 | continuation checkpointはappend-only eventを先にdurable appendし、event idでDB projectionを冪等更新した後だけ公開する。append後/projection前crashからのrestart、bounded memory breadcrumbを保証する。session prose / `CURRENT.json` / handover CLIを生成せず、provider delegation evidenceは別契約として保持する | HAC-N5-02a / HAC-N5-02b |

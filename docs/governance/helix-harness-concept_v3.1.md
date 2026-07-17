@@ -1,4 +1,8 @@
-# HELIX 構想書（HELIX-HARNESS harness 正本）
+# HELIX 構想書 v3.1（legacy工程説明を含むconcept reference）
+
+> **工程正本変更（2026-07-18）**: 本書のL0〜L14/L7実装表記はlegacy compatibility説明である。
+> 現行工程正本は `helix-harness-requirements_v1.3.md` のL1〜L12 Vモデル＋Scrumと、
+> `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md` である。
 
 - **版**: 3.1
 - **位置付け**: 構想書 (L1 概念層) / 要件定義書は別ファイル

@@ -33,8 +33,9 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
 
-- `docs/governance/helix-harness-concept_v3.1.md` - 内部展開向け concept
-- `docs/governance/helix-harness-requirements_v1.2.md` - requirements と acceptance criteria
+- `docs/governance/helix-harness-requirements_v1.3.md` - 現行L1〜L12 Vモデル＋Scrum requirements/acceptance authority
+- `docs/governance/helix-harness-concept_v3.1.md` - 内部展開向け concept（旧工程表記はcompatibility説明）
+- `docs/governance/helix-harness-requirements_v1.2.md` - legacy L0〜L14 compatibility reference
 - `docs/governance/helix-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と決定史
 - `docs/adr/ADR-009-node-python-linux-runtime.md` - target runtime authority（TS/Node＋Python worker、脱Bun、Linux-primary）
@@ -53,8 +54,8 @@ Migration snapshots と inventories は Core Reads ではない。`docs/migratio
 regression-source inspection が必要なときだけ読む。HELIX runtime state や execution paths として扱わない。
 
 `docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない。verification roadmap は
-V-model freeze 境界で verification cycle を走らせるときだけ動的に読む。通常作業は L0 から L14 への
-Forward descent path に従う。
+V-model freeze 境界で verification cycle を走らせるときだけ動的に読む。通常作業はcanonical L1〜L12
+V-model＋ScrumのForward pathに従う。legacy L0〜L14はcompatibility inputであり、新規authoring outputに使わない。
 
 ADR-001のclean rebuild／TypeScript strictは拘束力を維持し、runtime、SQLite driver、build、distributionの
 Bun固有決定はADR-009がtargetとしてsupersedeする。cutover前のactive execution authorityは既存Bun経路、

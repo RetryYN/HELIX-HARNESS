@@ -7,12 +7,13 @@
 
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
-1. `helix-harness-concept_v3.1.md`
-2. `helix-harness-requirements_v1.2.md`
-3. `helix-harness-extraction-plan_v0.1.md`
-4. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
-5. `../adr/ADR-009-node-python-linux-runtime.md` (target runtime authority。terminal cutover前のactive executionは既存経路)
-6. `repository-structure.md` (リポジトリ構成ルールの正本)
+1. `helix-harness-requirements_v1.3.md`（現行L1〜L12 Vモデル＋Scrum正本）
+2. `helix-harness-concept_v3.1.md`（concept。旧工程表記はcompatibility説明）
+3. `helix-harness-requirements_v1.2.md`（legacy L0〜L14 compatibility reference）
+4. `helix-harness-extraction-plan_v0.1.md`
+5. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
+6. `../adr/ADR-009-node-python-linux-runtime.md` (target runtime authority。terminal cutover前のactive executionは既存経路)
+7. `repository-structure.md` (リポジトリ構成ルールの正本)
 
 > **ADR-001/009連動**: control planeはTypeScript/Nodeでclean rebuildする。sourceはbehavior atom単位で採否し、
 > 旧runtime／bulk code-portは禁止する。採択されたclosed capability classだけをversioned proposal-only Python workerで再実装できる。
