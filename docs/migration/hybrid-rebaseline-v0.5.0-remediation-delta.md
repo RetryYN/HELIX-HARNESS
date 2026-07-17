@@ -33,9 +33,9 @@
 1. 人が承認したHELIXのL0/L1/L2/L3要求・判断記録、および確定ADR（ADR-009-node-python-linux-runtime.md、ADR-001-helix-harness-redesign-and-language.md）
 2. TypeScript / Node runtime contract（本パッケージのHELIX-native Design HARNESS契約・schema・gateを含む。ADR-009により、schema／lineage／digest／lease-fence／policyを再検証し唯一のtransaction writerとしてcommitするcontrol planeである）
 3. HELIX Hybrid Python Coreのpinned sourceと承認済み部分修正台帳（ADR-009のclosed capability class（source_atomization／document_engine／detector／product_data／analysis）配下のproposal-only workerとしてのみ従属採用する。DB path・credential・repository・`.helix/`を付与しない）
-4. Workflow Requirements Skill v1.1 adapter contract
+4. Workflow Requirements Skill v1.1のadapter契約
 5. Detection DBのevent / evidence / projection
-6. generated docs / views / reports
+6. 自動生成するdocs / views / reports
 
 あわせて「禁止」節に以下を追記する。「Python pinned sourceまたは部分修正台帳を、ADR-009が定めるNode control plane（唯一のtransaction writer）より上位の規範として扱うこと」「ADR-009 の権威をこの資料内のprecedenceで暗黙に反転させること」。
 
@@ -509,10 +509,10 @@ v0.5.0 `13-acceptance-criteria.md` 冒頭の記述を『機械化可能な受入
 2. HELIX-HARNESS正本の『仕組み』＝Vモデル工程・gate・state DB・harnessルール（CLAUDE.md precedence、ADR-009）
 3. TypeScript / Node runtime contract（ADR-009: Node = schema・lineage・digest・lease/fence・policyを再検証する唯一のtransaction writer）
 4. 本パッケージのHELIX-native Design HARNESS契約・schema・gate
-5. Workflow Requirements Skill v1.1 adapter contract
+5. Workflow Requirements Skill v1.1のadapter契約
 6. HELIX Hybrid Python Coreのpinned sourceと承認済み部分修正台帳（proposal-only worker。ADR-009の許可capability class `source_atomization`/`document_engine`/`detector`/`product_data`/`analysis`のclosed listに限定し、harness.db・state・gate・Issue・memory・release pointerへauthoritative writeを持たない）
 7. Detection DBのevent / evidence / projection
-8. generated docs / views / reports
+8. 自動生成するdocs / views / reports
 
 旧2番『HELIX Hybrid Python Coreのpinned source…』は個別機能ソースであり、CLAUDE.mdのprecedence『仕組み＝HELIXハーネスが上、個別機能は仕組みを超えない』およびADR-009『Node側が唯一のtransaction writerとしてcommitする』に劣後させ、Node runtime contract（旧5番）より下位へ繰り下げる。あわせて『変換元と参考元』直後に次を追記する: 『Python coreはNodeにより再検証されるproposalの供給源であり、本節のいかなる順位もPythonへのauthoritative write権限を含意しない（ADR-009 §Decision）』。
 
