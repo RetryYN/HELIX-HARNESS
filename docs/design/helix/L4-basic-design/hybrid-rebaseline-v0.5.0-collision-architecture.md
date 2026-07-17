@@ -21,6 +21,6 @@ pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-accepta
 | `DeliveryRouteProjector` | system scope、risk、release mode | exactly-one route | unknown/conflictは完全V以外を選択 |
 | `V050ConsistencyGate` | package claimsと実測 | contradiction ledger | 既知矛盾又は新規不一致が1件以上 |
 
-Python processへDB path、credential、repository、`.helix/`を渡さない。Python出力はversioned proposal bytesとして
+Python processへDB path、credential、repository、`.helix/`を渡さない。Python意味コアの出力はversioned semantic result envelopeとして
 Nodeがschema、digest、authority、lease/fenceを再検証し、canonical writeはNode transaction boundaryだけが行う。
 capsule conformance失敗時はsubagent起動を拒否し、prompt-onlyへのsilent fallbackを禁止する。
