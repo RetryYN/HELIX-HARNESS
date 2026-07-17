@@ -8,6 +8,7 @@ updated: 2026-07-18
 owner: TL
 related_l3: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
 related_l10: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md
+pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md
 ---
 
 # HELIX L4基本設計 — REBASELINE v0.5.0追突architecture

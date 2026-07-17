@@ -1,3 +1,15 @@
+---
+title: "Scrum Reverse・設計Refactor・検証計測エンジン受入テスト設計"
+layer: L3
+executed_at_layer: L12
+artifact_type: test_design
+status: confirmed
+created: 2026-07-18
+updated: 2026-07-18
+owner: QA
+pair_artifact: docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md
+---
+
 # Scrum Reverse・設計Refactor・検証計測エンジン受入テスト設計
 
 - pair: `docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md`

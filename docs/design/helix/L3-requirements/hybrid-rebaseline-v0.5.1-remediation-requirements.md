@@ -1,3 +1,14 @@
+---
+title: "REBASELINE v0.5.1 是正要件"
+layer: L3
+kind: add-design
+status: proposed
+created: 2026-07-18
+updated: 2026-07-18
+owner: TL
+pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.1-remediation-acceptance.md
+---
+
 # REBASELINE v0.5.1 是正要件
 
 - status: proposed

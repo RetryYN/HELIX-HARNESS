@@ -1,3 +1,15 @@
+---
+title: "L1〜L12 Vモデル＋Scrum 再ベースライン受入テスト設計"
+layer: L3
+executed_at_layer: L12
+artifact_type: test_design
+status: confirmed
+created: 2026-07-18
+updated: 2026-07-18
+owner: QA
+pair_artifact: docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md
+---
+
 # L1〜L12 Vモデル＋Scrum 再ベースライン受入テスト設計
 
 - pair: `docs/governance/helix-harness-requirements_v1.3.md`
