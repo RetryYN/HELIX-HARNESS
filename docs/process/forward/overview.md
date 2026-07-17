@@ -2,7 +2,7 @@
 > 現行は `docs/governance/helix-harness-requirements_v1.3.md` のL1〜L12 Vモデル＋Scrum。
 > 新規PLAN/template/projection/tagへ以下のlegacy番号を出力してはならない。
 
-# Forward ワークフロー概要 (V-model L0-L14)
+# Forward ワークフロー概要（現行 L1〜L12 / 旧 L0〜L14 compatibility）
 
 出典: concept v3.1 §2.3 / §3.1 / requirements v1.2 §1.4
 
@@ -10,7 +10,7 @@
 
 ## 1. Forward とは
 
-Forward は「要件・設計・契約が確定した状態」から **L0 企画 → L14 運用検証** を V 字で進む、HELIX の中核経路。
+現行 Forward は `helix-harness-requirements_v1.3.md` に従い、**L1 企画 → L12 運用テスト・改善還流**をV字で進むHELIXの中核経路である。以下の旧L0〜L14表・gate名・path名は既存artifactを読み取るためのcompatibility projectionであり、新規authoring、DB canonical projection、進捗表示、tagへ出力してはならない。
 他のすべての mode (Scrum / Reverse / Discovery / Recovery / Refactor / Retrofit / Add-feature) は最終的に Forward に合流する。
 
 ---
@@ -124,7 +124,7 @@ L6 機能設計
 
 Forward 降下は **二層**で回す (定義正本 = concept §10.2、PLAN-RECOVERY-04)。
 
-- **工程表 (roadmap) = 人間向け全プログラム進行台帳**: 機能群 (feature-group) を**結合テスト粒度**で並べた進行順序。**全プログラム (forward 全バンド L0-L3 / L4-L6 / L7 / L8-L14 + cutover) を被覆**し、**人間が見て「ここ担当する」と自己割当**する。中央 UI (フロント) へ harness.db projection 経由で返す。master-hub PLAN の `roadmap:` block (gate+span) として機械登録し、`helix doctor` の `program-coverage` が未登録バンド = 残り frontier を surface する。
+- **工程表 (roadmap) = 人間向け全プログラム進行台帳**: 機能群 (feature-group) を**結合テスト粒度**で並べた進行順序。**現行全プログラム (L1〜L3 / L4〜L5 / L6〜L7 / L8〜L12 + cutover milestone) を被覆**し、**人間が見て「ここ担当する」と自己割当**する。中央 UI (フロント) へ harness.db projection 経由で返す。master-hub PLAN の `roadmap:` block (gate+span) として機械登録し、`helix doctor` の `program-coverage` が未登録バンド = 残り frontier を surface する。旧bandは互換入力時だけv1.3 §9で写像する。
 - **PLAN (区間 / span) = AI 開発のオーケストレーション**: 工程表の 1 区間 = 1 機能群のスプリント。依存洗い出し → 難易度分類 → agent 割当 → 並列/直列 (§工程表 Step の `[並列]/[直列]` + 直列化3条件)。leaf = 機能設計 ⇔ 単体テスト仕様書 (単体 V-pair) → 実装 + テストコード。
 
 > 人間が「何を・誰が」(工程表)、AI が「どう作るか」(PLAN) を担う。「実装どこまで?」は工程表 (doctor program-coverage) から機械的に answer する。
@@ -183,7 +183,7 @@ Forward work では dependency-cruiser、Knip、Madge、Graphviz、Mermaid、D2 
 
 ## 下位 L Reverse backprop
 
-Forward の下位 L (L4-L14) で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow rule を発見した場合、局所 carry のまま完了扱いしない。全体一貫性の原則として、該当発見は requirements v1.2 §6.8.8 の `backprop_decision` に分類する。
+Forward の下位L（現行L4〜L12）で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow ruleを発見した場合、局所carryのまま完了扱いしない。全体一貫性の原則として、該当発見はrequirements v1.3 §4.1〜§5のScrum Reverse / Reverse / Redesign / Refactorへ分類する。旧`backprop_decision`は互換入力としてのみ受理する。
 
 - `local_impl_only`: 上位要求・設計・受入条件を変えない局所補正。理由を audit に残す。
 - `requires_design_normalization`: L4-L6 / test-design の整合補正が必要。Reverse `normalization` / `design` で戻す。
