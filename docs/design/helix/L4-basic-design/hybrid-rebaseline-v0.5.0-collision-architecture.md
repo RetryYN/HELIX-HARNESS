@@ -16,7 +16,7 @@ pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-accepta
 | component | input | output | fail-close条件 |
 |---|---|---|---|
 | `V050SourceCustodian` | ZIP bytes、manifest、checksums | source receipt | digest/member/count不一致 |
-| `V050DeltaClassifier` | v0.4/v0.5 catalog、AC、edge | adopt/harden/redesign/defer/reject | unclassified、duplicate owner、orphan |
+| `V050DeltaClassifier` | v0.4/v0.5 catalog、AC、edge | 採用・強化・再設計・保留・棄却 | 未分類、owner重複、orphan |
 | `AuthorityResolver` | tracked ADR、project rules、package decision | current authority | multiple current、untracked authority昇格 |
 | `DeliveryRouteProjector` | system scope、risk、release mode | exactly-one route | unknown/conflictは完全V以外を選択 |
 | `V050ConsistencyGate` | package claimsと実測 | contradiction ledger | 既知矛盾又は新規不一致が1件以上 |

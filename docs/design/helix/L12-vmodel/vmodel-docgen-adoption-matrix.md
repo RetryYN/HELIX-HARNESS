@@ -206,7 +206,7 @@ ZIP がある場合は必須 source 不足を violation とする。
 
 ### §4.1 REBASELINE v0.5.0差分の追突
 
-`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.0.zip`は、本マトリクスを置換する正本ではなく差分sourceとして扱う。
+`docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip`は、本マトリクスを置換する正本ではなく差分sourceとして扱う。
 source digest、追加5 requirement、追加6 AC、追加47 trace edge及び変更集合は
 `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md`へ投影する。package内L0–L14は
 L1–L12へremapし、Production Scrum／Discovery-PoC／完全Vのdelivery routeを欠いたままcanonicalへ昇格しない。
