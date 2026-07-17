@@ -8,7 +8,7 @@
 
 ## 1. mode とは
 
-mode (駆動モデル) は **「入口条件」と「文脈遷移 (昇華)」だけを規定**し、**出口は必ず Forward L0-L14 (`../forward/`) に合流**する (concept §2.5)。入口を散らさず工程を一本化するための分類であり、完了先 (設計・実装・検証・運用の同一接続) を分断しない。
+mode（駆動モデル）は**入口条件と文脈遷移だけを規定**し、**出口は必ず`docs/governance/helix-harness-requirements_v1.3.md`のForward L1〜L12（`../forward/`）へ合流**する。入口を散らさず工程を一本化し、設計・実装・検証・計測・運用の接続を分断しない。旧L0〜L14 layerはcompatibility inputに限定する。
 
 Forward (本体) は `../forward/` に定義する。本 dir は **Forward 以外の駆動モデル** を 1 ファイル 1 モードで定義する。
 
@@ -80,7 +80,7 @@ Add-feature / version-up / Research であり、古い 9-mode 表記だけを根
 
 ## 5. 共通原則 (全 mode 共通)
 
-- **出口 = Forward 合流**: どの mode も最終的に L0-L14 へ戻る。mode 固有で設計・テスト・検証を完結させない。
+- **出口 = Forward合流**: どのmodeも最終的にL1〜L12へ戻る。mode固有で設計・test・検証・計測を完結させない。
 - **承認境界**: Recovery / prod Incident / config_drift Retrofit は人間サインオフ必須 (§2.6.3、承認者は本台帳列)。
 - **execution mode 参照**: cross-agent review が self-review に化けないよう判断ゲートは `helix status` の execution mode を参照する (§2.6.4 / §2.1.2.1)。
 - **mode 連鎖**: Discovery 終点 → Reverse 昇華 / Scrum increment → Reverse fullback / Incident・Add-feature の前段に Discovery (要件未確定時) or Reverse (既存逆引き時) / Retrofit の影響評価前段に Reverse (`upgrade`) / Research で「作れるか不明」→ Discovery 切替 / **Add-feature (最頻) の bottom-up build (L6/L7) → 後段 Reverse fullback で L3 要件 back-fill (常態、add-feature.md §1.1 経路 B)**。

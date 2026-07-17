@@ -4,7 +4,12 @@ import { describe, expect, it } from "vitest";
 const REQUIREMENTS = "docs/governance/helix-harness-requirements_v1.3.md";
 const AUTHORITY_DOCS = [
   "docs/governance/helix-harness-concept_v3.1.md",
+  "docs/governance/gate-design.md",
+  "docs/governance/document-system-map.md",
+  "docs/process/README.md",
   "docs/process/forward/overview.md",
+  "docs/process/modes/README.md",
+  "docs/process/modes/discovery.md",
 ] as const;
 
 const FORBIDDEN_CURRENT_CLAIMS = [
