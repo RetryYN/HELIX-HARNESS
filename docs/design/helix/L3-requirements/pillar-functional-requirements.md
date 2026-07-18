@@ -99,7 +99,7 @@ G-SF `semantic_feature_frontier_record` への写像:
 - confirmed 51 件: `classification=confirmed_current`。L3/L12 pair は本書と
   `docs/test-design/helix/L3-pillar-acceptance-test-design.md`。live `outstanding.confirmedCurrentMeaningRecords[]`
   は 12 件の意味単位で 51 件全 ID を束ね、未対応 ID がある場合は `semantic-frontier-consistency` で fail する。
-- current semantic frontier: confirmed 51 件の L3/L12 overlay は閉じており、`confirmed_overlay_frontier_count=0` として扱う。 
+- current semantic frontier: confirmed 51 件の L3/L12 overlay は閉じており、`confirmed_overlay_frontier_count=0` として扱う。
   live completion frontier は `live_semantic_frontier_count=2` であり、`completion-decision-packet decisionCount=2` と同じ
   2 件を archive で隠さず別 packet で追跡する。
   - `PLAN-L7-146`: serverless readonly share は external publish / HMAC / access-control の承認が必要な
