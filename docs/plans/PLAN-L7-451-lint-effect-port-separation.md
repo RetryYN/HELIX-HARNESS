@@ -4,12 +4,24 @@ title: "PLAN-L7-451 (refactor): lint effect port分離"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #13 analyzer effect authorityをfail-close分離"]
 created: 2026-07-13
 updated: 2026-07-14
 owner: Codex
+review_evidence:
+  - reviewer: agent_lease_cluster
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-19T01:33:00+09:00"
+    tests_green_at: "2026-07-19T01:32:00+09:00"
+    verdict: pass
+    scope: "effect/policy oracle、readonly route、durability負例を独立監査。Blocker/High 0。2026-07-19に再検証。"
+    green_commands:
+      - { kind: integration_test, command: "bun test source-boundary targeted set --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:28:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc" }
+      - { kind: integration_test, command: "bun test tests/slow/lint-readonly-route.test.ts --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:29:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:b6f23889e118797c2e1140dc2df86513ec955fe5d15d06d49eca4b736d2c809c" }
 agent_slots:
   - { role: se, slot_label: "SE — effect intent/executor port分離" }
   - { role: qa, slot_label: "QA — authority/drift/durability負例" }
@@ -48,10 +60,9 @@ dependencies:
 analyzerをimmutable snapshotだけのpure functionに限定する。probe/materializeはcapability、authorization、snapshot、
 idempotency、CAS、durabilityを検証するexecutorへ隔離し、partial writeをacceptedにしない。
 
-## 予定出力（draft、未生成）
+## 実装出力
 
-次の source/test artifact を本PLANの実装出力とする。draft中は未生成を許容するが、closure時は
-`generates` の全artifactが実在し、各oracleが専用behavior testでgreenでなければならない。
+次の source/test artifact は全て実在し、各oracleを専用behavior testでgreen化した。
 
 - `src/lint/effect-intent.ts`
 - `src/runtime/lint-effect-executor.ts`

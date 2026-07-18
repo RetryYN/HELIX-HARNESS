@@ -2,7 +2,7 @@
 title: "HELIX L6 機能設計 — 文書semantic diff"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-07-14
 updated: 2026-07-14
 owner: Codex / TL

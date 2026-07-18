@@ -4,12 +4,23 @@ title: "PLAN-L7-456 (impl): document agent metadata Phase B apply transaction"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-14 /goal『設計とテスト設計/検証設計でVペアを作る』に基づくhybrid-docgen GAP-01 apply parity"]
 created: 2026-07-14
 updated: 2026-07-14
 owner: Codex
+review_evidence:
+  - reviewer: universal_atomization
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-19T01:33:00+09:00"
+    tests_green_at: "2026-07-19T01:32:00+09:00"
+    verdict: pass
+    scope: "batch preflight、rollback、digest drift、ancestor symlink、partial/ambiguous receiptを独立監査。Blocker/High 0。2026-07-19に再検証。"
+    green_commands:
+      - { kind: integration_test, command: "bun test document metadata targeted set --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0" }
 agent_slots:
   - { role: se, slot_label: "SE — apply plan / source transaction" }
   - { role: qa, slot_label: "QA — digest / rollback mutation oracle" }
