@@ -199,9 +199,11 @@ Codex tool names は Claude と異なるため、matcher は copy ではなく m
 - `Bash`（Claude） -> `exec_command|local_shell`（Codex）: `PostToolUse` session logging 用。
 - `Bash`（Claude） -> `exec_command|local_shell`（Codex）: `PreToolUse` `git-command-guard` 用。
   明示的な one-shot override reason が記録されていない destructive git reset/restore/revert/checkout/force-push を block する。
-- `subagent-stop`（`SubagentStop`）は **Codex surface が無く** 本当に N/A。codex.exe 0.128.0 は
-  `PreToolUse` / `PostToolUse` / `SessionStart` / `Stop` / `UserPromptSubmit` hook events だけを exposed し、
-  `SubagentStop` はない。
+- Codex CLI 0.144+ は`SubagentStop`をexposeする。matcher canonical名は`Bash`、
+  `apply_patch`（`Write`／`Edit`互換）、`spawn_agent`（`Agent`互換）を使い、Stop系hookは非JSON stdoutを出さない。
+- user/project hookは`~/.codex/config.toml`の`hooks.state.trusted_hash`が現行hook hashと一致する場合だけ有効である。
+  `.codex/hooks.json`変更後はstartup reviewまたはapp-serverの`hooks/list`→`config/batchWrite`でtrustを更新し、
+  silent skipをdoctorの`codex-hook-trust`でfail-closeする。CI/read-restricted環境はtyped skip理由を残す。
 - `agent-guard`（`Agent`）は Codex `spawn_agent|spawn_agents_on_csv` へ map する。Codex `spawn_agent`
   semantics は Claude `subagent_type` と異なるため、shared guard は Codex payload を別途 normalize する。
   `agent_type` は explicit かつ allowlisted、direct model override は block、task body は必須、bulk spawn は
@@ -222,6 +224,12 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 - 全 skills を bulk-load しない。
 - `references/` は skill directory からの相対パスとして解決する。
 - Legacy-derived skill material は migration source material。HELIX skill docs は `docs/skills/` 配下に置く。
+
+## External Source Research（外部調査）
+
+- web／upstream調査前に現在日付とsourceの観測日時を固定し、更新され得る情報は最新の一次sourceで再検証する。
+- 外部結果はそのまま採用せず、HELIXのL1〜L12、authority、security、runtime境界へ適合するかinventory-firstで判定する。
+- 調査だけを「後で対応」にせず、採用・補完・棄却・保留と根拠をPLAN、要件、監査台帳のいずれかへ機械追跡可能に残す。
 
 ## Editing Rules（編集規則）
 

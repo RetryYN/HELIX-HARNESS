@@ -1,7 +1,7 @@
 # HELIX 要件定義書 v1.3 — L1〜L12 Vモデル＋Scrum正本
 
-- **Version**: 1.3.2
-- **Status**: confirmed（PO再確認 2026-07-18、Workflow／Vision Design HARNESS追補 2026-07-19）
+- **Version**: 1.3.3
+- **Status**: confirmed（PO再確認 2026-07-18、全harness memory追突 2026-07-19）
 - **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
 - **継承**: v1.2のうち、本書と衝突しない安全・証跡・駆動モデル・agent・DB・GitHub要件は継承する。
@@ -108,6 +108,70 @@ AIはprototype、profile、ledger、binding、component role、UX evidence、del
 
 ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missionはL5 test contract、旧L7 implementationはL6↔L7へ再配置する。Design HARNESSの意味判定はADR-010に従いPython意味コアを恒久正本とし、Nodeへ複製しない。Nodeはschema、authority、policy、HEAD、digestを再検証して`harness.db`／Git／GitHubへcommitする唯一のtransaction境界である。既存Python path名は実装authorityにせず、UT CLI/state/DB/PLAN/roleとBun前提は採用しない。
 
+### 4.6 ハイブリッド制御面のReverse backfill
+
+既存runtime／CLI／gateが要件IDなしで先行していた機能を、次の正規要件へbackfillする。実装が存在することだけを要件充足の証拠にせず、各IDをL3設計、test oracle、runtime evidenceへ接続する。
+
+| 要件ID | 機能要件 | 受入条件 |
+|---|---|---|
+| `HR-FR-HYB-001` | closure authorityはauthority registry、typed review receipt、evidence digest、convergence epoch、CAS、atomic rollback、terminal boundaryを管理する。`close_ready`はreview-bundle digest一致、対象test/gate green、`closure apply --dry-run`成功時だけ自走承認できる | `HR-AC-HYB-001`: 不可逆対象、実成果未完了、digest/HEAD driftをauto-approveせず、generic test evidenceだけでclosureしない |
+| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |
+| `HR-FR-HYB-003` | Discovery Scrumを`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`として定義し、S4人間判断後だけFull VまたはProduction Scrumへ昇格する | `HR-AC-HYB-003`: S4 receiptなしのproduction claimと`decideDiscoveryS4`／`routeScrumFullback`迂回を拒否する |
+| `HR-FR-HYB-004` | hybrid git laneはforeign worktree、stage、commit、HEAD、one-shot overrideを識別し、`lane status`、work-guard、git-command-guard、`guard_override_transactions`へ同一episodeを記録する | `HR-AC-HYB-004`: foreign hunk混載、未記録override、destructive gitを拒否する |
+| `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |
+| `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |
+| `HR-FR-HYB-007` | skill engineは登録だけでなくtask/drive/layerから推薦し、firing、acceptance、効果、誤推薦、stale versionを計測して改善へ戻す | `HR-AC-HYB-007`: 根拠なし推薦、未計測の有効性主張、旧versionのsilent利用を拒否する |
+| `HR-FR-HYB-008` | distributionはdevelopment正本からHELIX-HARNESS-OSへplan／sync／package／publish evidenceを作り、source digest、artifact、rollback、consumer verificationを接続する | `HR-AC-HYB-008`: publish、tag、配布先切替はaction-binding approvalなしに実行しない |
+| `HR-FR-HYB-009` | VSCode surfaceはmanifest/find/tree-view等をDB由来read modelとして提供し、CLI／DBと同じID・HEAD・redactionを使う | `HR-AC-HYB-009`: IDE独自正本、stale projection、write-capable表示経路を拒否する |
+| `HR-FR-HYB-010` | GitHub自走要件`GH-FR-001..016`をconfirmed正本とし、各FRをIssue/PR/CI/merge CLI、hook、DB table、acceptanceへtraceする | `HR-AC-HYB-010`: trace edge欠落、main直push、required check bypass、release境界越えを拒否する |
+
+### 4.7 自律Authoring Admission Transaction
+
+AIのAuthoring能力とCanonical化権限を分離する。AIは要件、設計、PLAN、Markdownを自律的に起草・修正・分割・統合・改名できるが、正本化はProposal→Candidate→Canonicalの状態遷移とAdmission Transactionを通す。
+
+| 要件ID | 要件 |
+|---|---|
+| `HIL-BR-26` | 可逆なAuthoringは自動確定できる。L1目的、安全境界、外部契約、不可逆操作、真正なtrade-offだけを人間へescalateする |
+| `HIL-FR-51` | Admission Engineはsemantic diff、authority、revision、trace、pair、impact、security、rollbackを検査し、`auto_admit`／`auto_admit_with_stale_propagation`／`repair_then_retry`／`human_decision_required`／`reject`／`conflict`のexactly oneを返す |
+| `HIL-FR-52` | Markdown、asset revision、event ledger、trace、impact、stale propagation、DB projection、Canonicalization ReceiptをCAS付き単一transactionで更新し、部分成功を残さない |
+| `HIL-FR-53` | assetはpath非依存のimmutable IDとrevisionを持ち、rename／move／split／merge／supersedeでauthority、AC、oracle、historyを失わない |
+| `HIL-NFR-30` | policy内の可逆Authoringは人間入力なしでCanonical化まで自動完走する |
+| `HIL-NFR-31` | fault injection後も正本、ledger、trace、projection、receiptの部分current状態が0件である |
+| `HIL-NFR-32` | 意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃うまでCanonical化しない |
+
+同一`command_id`＋同一digestは既存receiptを返し、異digestはconflictとする。Terminal Reviewは対象revisionとHEADへ固定し、review後の変更でstale化する。Authoring失敗時もproposalとfindingを保持し、AIが黙って要求を落とすことを禁止する。
+
+### 4.8 NFR正本台帳と測定契約
+
+`nfr-grade.md`のplaceholder projectionをNFR正本とみなさず、全NFRをtyped registryへ収束する。
+
+| 要件ID | 要件 |
+|---|---|
+| `HR-NFR-REG-001` | 各NFRはstable ID、quality characteristic、source authority、対象surface、metric、workload、environment、data、baseline、target、error budget、hard limit、window、probe、oracle、owner、evidence path、再測定triggerを持つ |
+| `HR-NFR-REG-002` | L1は能力、L3は観測可能な挙動、ADRは技術選択、policyは閾値運用、runtime profileは環境値を担い、実装方式をNFR本文へ混在させない |
+| `HR-NFR-REG-003` | 標準品質特性とAI固有特性（判断再現性、worker/verifier独立性、grounding、loop停止性、cost、provider縮退、memory汚染耐性）を分類する |
+| `HR-NFR-REG-004` | DB size、query/projection p95/p99、lock待機、busy timeout縮退、rebuild、archive/vacuum、並行runtime、長時間soakを測定する。未再現の単一障害原因を確定事実にしない |
+| `HR-NFR-REG-005` | gate、approval、cutover、projection、GitHub、memory、feedbackへfault injection、race、soak、crash recoveryを適用する |
+| `HR-NFR-REG-006` | property-based、model-based state machine、differential、mutation、fuzz、snapshot compatibilityをriskに応じて選択し、手法追加自体を完成証拠にしない |
+| `HR-NFR-REG-007` | 実測値を時系列保存し、P4 metric event、requirement、release、regression、改善episodeへjoinする |
+
+baseline未取得のNFRは`unknown`として扱い、推測値でgreenにしない。前身source authority未確定の115 draftは一括freezeせず、authority receiptとPO gate成立後に段階昇格する。
+
+### 4.9 統合Design HARNESS
+
+Design HARNESSはProduct Design、Experience Design、System Design、Design Governanceを一つのcapability registryとDesign Registryへ接続する。文書metadata／semantic diffの実装済み能力と、screen applicability／prototype／要求翻訳／design refactorの設計済み能力を同じ完成状態として表示しない。
+
+| 要件ID | 要件 |
+|---|---|
+| `HR-FR-DHR-001` | `requirement_id`、`screen_id`、`flow_id`、`interaction_id`、`state_id`、`component_id`、`design_token_id`、`content_id`、`analytics_event_id`、`service_id`、`domain_object_id`、`acceptance_id`を共通registryで結ぶ |
+| `HR-FR-DHR-002` | 全PLANをUI対象／非対象へ判定し、UI対象はexecutable prototype manifestとwalkthrough receipt、非対象はL2 N/A receiptを要求する |
+| `HR-FR-DHR-003` | screen→interaction→permission→command→API→domain event→analytics event→acceptance testを追跡する |
+| `HR-FR-DHR-004` | device、input、role、locale、data volume、network、concurrent update、destructive／undo状態をrisk-based pairwiseで選定する |
+| `HR-FR-DHR-005` | prototype↔要求、DOM/component、design token↔CSS、interaction↔E2E、content、analytics、accessibilityのdriftを検出する |
+| `HR-FR-DHR-006` | 要求原子はUser Task、Business Outcome、scenario、context、success result、decision rationaleの親グラフを保持し、過剰原子化を拒否する |
+
+runtime未実装の能力は`designed`以上へ昇格せず、implementation／test／real UX evidenceが揃うまで`implemented`または`ux_verified`を主張しない。
+
 ## 5. Forward・横軸駆動
 
 - Forwardを正方向とする。
@@ -163,6 +227,11 @@ compatibility inputには`legacy_layer`、canonical outputには`canonical_layer
 - Vision Designの三契約とsemantic IDがL1〜L12の正規6 V-pairへ閉じ、UI対象でprototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidenceの欠落を許可しない。
 - `implemented`と`ux_verified`を独立判定し、real-data、responsive、motion、accessibility、performance、continuity、人間評価のcurrent evidenceが無ければUX完成を拒否する。
 - Scrum UI sliceはSR0〜SR4でsystem visionと設計資産へbackfillされ、AI自己承認、別layer／別文書体系、無断の機能拡張を拒否する。
+- `HR-FR-HYB-001..010`が各CLI、hook、DB table、gate、acceptanceへtraceされ、野良実装が0件になる。
+- closure自走はtyped evidence条件を全て満たす可逆`close_ready`だけを対象とし、未完了成果や不可逆対象を閉じない。
+- Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。
+- 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。
+- Design HARNESSの実装済み／設計済み／UX検証済み状態を分離し、screenからacceptanceまでのtrace欠落を拒否する。
 - legacy artifactはexact mappingでき、未分類・多対多曖昧が0件になる。
 - GitHub episodeとDB closureが同一HEADへ収束する。
 - authority文書が本書を参照し、L0〜L14をcurrent canonicalと表示しない。

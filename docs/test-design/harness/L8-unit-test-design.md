@@ -299,13 +299,21 @@ projection baselineの同一差分内自己承認を禁止する。
 | `handover-retirement.md` | session/prose handover廃止、継続状態移管、復活検出の`U-HRET-*` oracle |
 | `harness-memory-compaction.md` | harness memory 圧縮の単体 oracle |
 | `memory-cross-runtime-surface.md` | memory delegation recall 注入の単体 oracle（`U-MEMX-*`） |
-| `harness-memory-structure.md` | memory v2 schema/lifecycle/fencing/compaction/delivery の14単体 oracle（`U-MEMV2-*`） |
+| `harness-memory-structure.md` | memory v2 schema/lifecycle/fencing/compaction/delivery/retire の15単体 oracle（`U-MEMV2-*`） |
 | `feedback-lifecycle.md` | feedback lifecycle状態機械・TTL・surface filter・promotion nudgeの12単体oracle（`U-FLIFE-*`） |
 | `plan-descent-specific-parent-binding.md` | PSPB 系 oracle |
 | `reverse-feedback-closure.md` | reverse feedback 閉塞の単体 oracle |
 | `closure-auto-approval.md` | close_ready機械承認と不可逆境界の`U-CAUTO-*` oracle |
 | `closure-evidence-materialization.md` | production authority registryと証跡生成transactionの`U-CMAT-*` oracle |
 | `closure-authority-backfill.md` | Vペア由来authority補完とrecoverable applyの`U-CABF-*` oracle |
+
+### 正本化済みmemory退役 oracle（PLAN-L7-458）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-MEMV2-005c | `retireMemory` | harness/projectのactive targetをbody-free receiptへ退役し、再実行は`already_consumed`かつ追記0。takeoverは別API境界に残す | `tests/memory/memory-v2.test.ts` |
+| U-MEMV2-005d | legacy reader | v2 terminal receiptを旧`listMemory`／`surfaceMemory`がactive entryとして再表示しない | `tests/memory/memory-store.test.ts` |
+| U-MEMV2-005e | 全件追突binding | 分岐間38件を台帳へexactly oneで保持し、repository memoryはactive 0、damaged 0、receipt body空へ収束する | `tests/harness-memory-reconciliation-binding.test.ts` |
 
 ### closure自走承認 oracle
 

@@ -6,6 +6,7 @@ import { listMemory, surfaceMemory, writeMemory } from "../../src/memory";
 import { fileMemoryDeps } from "../../src/memory/memory-store";
 
 describe("fileMemoryDeps", () => {
+  // Additive retirement contract: PLAN-L7-458-harness-memory-canonical-retirement.
   let root: string | null = null;
 
   afterEach(() => {
@@ -91,6 +92,39 @@ describe("fileMemoryDeps", () => {
     expect(
       readFileSync(join(rootOrThrow(), ".helix", "memory", "harness.jsonl"), "utf8"),
     ).toContain(later.id);
+  });
+
+  it("U-MEMV2-005d: does not surface memory-v2 retirement tombstones through the legacy reader", () => {
+    root = mkdtempSync(join(tmpdir(), "helix-memory-store-v2-"));
+    const deps = fileMemoryDeps({ root: rootOrThrow(), now: () => "2026-07-19T00:01:00.000Z" });
+    deps.persist({
+      id: "harness:legacy:2026-07-19T00:00:00.000Z",
+      layer: "harness",
+      key: "legacy",
+      body: "canonicalized",
+      supersedes: null,
+      createdAt: "2026-07-19T00:00:00.000Z",
+    });
+    deps.persist({
+      id: "memory-consumed:harness:legacy:2026-07-19T00:00:00.000Z",
+      layer: "harness",
+      key: "legacy",
+      body: "",
+      supersedes: "harness:legacy:2026-07-19T00:00:00.000Z",
+      createdAt: "2026-07-19T00:01:00.000Z",
+      schemaVersion: 2,
+      type: "reference",
+      provenance: { planId: null, sessionId: null, runtime: "system", origin: "legacy-v1" },
+      lifecycle: {
+        state: "consumed",
+        expiresAt: null,
+        consumedAt: "2026-07-19T00:01:00.000Z",
+        consumedBy: "requirements-reconciliation",
+      },
+      links: [],
+    } as never);
+
+    expect(deps.readActive("harness")).toEqual([]);
   });
 
   function createDeps(times: string[]) {

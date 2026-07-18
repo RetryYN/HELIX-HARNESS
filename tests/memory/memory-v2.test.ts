@@ -24,6 +24,7 @@ import {
   nodeMemoryV2Deps,
   normalizeMemoryEntry,
   resolveMemoryView,
+  retireMemory,
   surfaceMemoryV2,
   validateMemoryEntry,
   writeAllBytes,
@@ -31,6 +32,7 @@ import {
 } from "../../src/memory/memory-v2";
 
 describe("memory structure v2 (PLAN-L7-407)", () => {
+  // Additive retirement contract: PLAN-L7-458-harness-memory-canonical-retirement.
   let root: string | null = null;
 
   afterEach(() => {
@@ -405,6 +407,25 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(
       physical.filter((event) => event.id === `takeover-consumed:${written.entry.id}`),
     ).toHaveLength(1);
+  });
+
+  it("U-MEMV2-005c: canonicalized harness memory retires idempotently without using takeover consume", () => {
+    const mock = mockDeps("2026-07-11T00:00:00.000Z");
+    mock.events.harness.push(entry({ id: "harness-rule", layer: "harness" }));
+    mock.clock = "2026-07-11T00:01:00.000Z";
+    expect(
+      retireMemory({ layer: "harness", ids: ["harness-rule"], consumerId: "reconciler" }, mock),
+    ).toEqual([{ id: "harness-rule", reason: "consumed" }]);
+    expect(resolveMemoryView(mock.events.harness, mock.clock, "harness").activeEntries).toEqual([]);
+    expect(
+      retireMemory({ layer: "harness", ids: ["harness-rule"], consumerId: "reconciler" }, mock),
+    ).toEqual([{ id: "harness-rule", reason: "already_consumed" }]);
+    expect(mock.events.harness).toContainEqual(
+      expect.objectContaining({
+        id: "memory-consumed:harness-rule",
+        lifecycle: expect.objectContaining({ state: "consumed", consumedBy: "reconciler" }),
+      }),
+    );
   });
 
   it("U-MEMV2-006: group-first selection keeps minority types visible and reports exact hidden counts", () => {

@@ -155,6 +155,7 @@ import {
   type MemoryType,
   nodeMemoryV2Deps,
   resolveMemoryView,
+  retireMemory,
   sameWriteIntent,
   surfaceMemory,
   surfaceMemoryV2,
@@ -2348,6 +2349,28 @@ memory
   .action((ids: string[], opts: { consumer: string }) => {
     process.stdout.write(
       `${JSON.stringify(consumeTakeover(ids, opts.consumer, nodeMemoryV2Deps({ root: process.cwd() })))}\n`,
+    );
+  });
+
+memory
+  .command("retire <layer> <ids...>")
+  .description("retire canonicalized harness/project memory from active surfaces")
+  .requiredOption("--consumer <id>", "consumer identity")
+  .action((layer: string, ids: string[], opts: { consumer: string }) => {
+    const parsed = parseMemoryLayerV2(layer);
+    if (!parsed) return;
+    if (parsed === "takeover") {
+      process.stderr.write("memory retire: takeover uses memory consume/deliver\n");
+      process.exitCode = 1;
+      return;
+    }
+    process.stdout.write(
+      `${JSON.stringify(
+        retireMemory(
+          { layer: parsed, ids, consumerId: opts.consumer },
+          nodeMemoryV2Deps({ root: process.cwd() }),
+        ),
+      )}\n`,
     );
   });
 

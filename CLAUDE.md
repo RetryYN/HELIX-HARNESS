@@ -167,7 +167,8 @@ V-model artifacts は分離を保つ。
 - Conventional Commits を使う。
 - explicit files だけを stage する。
 - unrelated user changes を commits に含めない。
-- requested の場合、coherent PLAN / task boundary で push する。
+- coherent PLAN / task boundaryでcommitした成果は、明示依頼を待たずpush→PR→auto-merge→CI監視→self-healまで進める。
+  release publish、tag、cutover、配布先切替だけはaction-binding approvalを維持する。
 - CI は `harness-check`: typecheck、Vitest、Biome lint、doctor。
 - applicable な confirmation gates の前には review evidence を必須とする。
 

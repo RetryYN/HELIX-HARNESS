@@ -87,6 +87,12 @@ export interface SurfaceMemoryV2Input {
   now?: string;
 }
 
+export interface RetireMemoryInput {
+  layer: Exclude<MemoryLayerV2, "takeover">;
+  ids: readonly string[];
+  consumerId: string;
+}
+
 export interface SurfaceMemoryV2Result {
   lines: string[];
   selectedIds: string[];
@@ -402,6 +408,54 @@ export function consumeTakeover(
         if (!activeIds.has(id)) return { id, reason: "unknown_id" };
         deps.appendEvent(
           "takeover",
+          terminalEntry({ target: entry, state: "consumed", at: now, consumerId }),
+          fence,
+        );
+        terminalTargets.set(id, "consumed");
+        return { id, reason: "consumed" };
+      });
+    });
+  } catch {
+    return ids.map((id) => ({ id, reason: "persist_failed" }));
+  }
+}
+
+/**
+ * 正本へ追突済みの長期 memory を active SessionStart surface から退役させる。
+ * takeover の one-shot deliver/consume とは権限と用途が異なるため、harness/project だけを受け付ける。
+ */
+export function retireMemory(input: RetireMemoryInput, deps: MemoryDepsV2): ConsumeResult[] {
+  const { layer, ids, consumerId } = input;
+  try {
+    return deps.withLayerLock(layer, `retire:${consumerId}`, (fence) => {
+      const normalized = deps.readEvents(layer).flatMap((event) => {
+        const result = normalizeMemoryEntry(event);
+        return result.ok ? [result.entry] : [];
+      });
+      const byId = new Map(normalized.map((entry) => [entry.id, entry]));
+      const terminalTargets = new Map(
+        normalized.flatMap((entry) =>
+          entry.lifecycle.state !== "active" && entry.supersedes
+            ? ([[entry.supersedes, entry.lifecycle.state]] as const)
+            : [],
+        ),
+      );
+      const activeIds = new Set(
+        resolveMemoryView(deps.readEvents(layer), deps.now(), layer).activeEntries.map(
+          (entry) => entry.id,
+        ),
+      );
+      const now = deps.now();
+      return ids.map((id): ConsumeResult => {
+        const entry = byId.get(id);
+        if (!entry) return { id, reason: "unknown_id" };
+        if (entry.layer !== layer) return { id, reason: "wrong_layer" };
+        if (terminalTargets.get(id) === "expired") return { id, reason: "expired" };
+        if (terminalTargets.get(id) === "consumed") return { id, reason: "already_consumed" };
+        if (isExpired(entry, now)) return { id, reason: "expired" };
+        if (!activeIds.has(id)) return { id, reason: "unknown_id" };
+        deps.appendEvent(
+          layer,
           terminalEntry({ target: entry, state: "consumed", at: now, consumerId }),
           fence,
         );
@@ -730,7 +784,9 @@ function validV2Shape(value: Record<string, unknown>): boolean {
     if (typeof value.supersedes !== "string" || value.body !== "") return false;
     const expectedId =
       lifecycle.state === "consumed"
-        ? `takeover-consumed:${value.supersedes}`
+        ? value.layer === "takeover"
+          ? `takeover-consumed:${value.supersedes}`
+          : `memory-consumed:${value.supersedes}`
         : `memory-expired:${value.supersedes}`;
     if (value.id !== expectedId) return false;
   }
@@ -772,7 +828,12 @@ function terminalEntry(input: TerminalEntryInput): MemoryEntryV2 {
   const { target, state, at, consumerId } = input;
   return {
     ...target,
-    id: state === "consumed" ? `takeover-consumed:${target.id}` : `memory-expired:${target.id}`,
+    id:
+      state === "consumed"
+        ? target.layer === "takeover"
+          ? `takeover-consumed:${target.id}`
+          : `memory-consumed:${target.id}`
+        : `memory-expired:${target.id}`,
     body: "",
     lifecycle: {
       state,
