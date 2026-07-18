@@ -14,7 +14,7 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 entry_signals:
   - "po_directive: harness memoryを全件追突し、必要内容を要件へ取り込み、対応後はmemoryから消す"
 backprop_decision: not_required
-backprop_decision_reason: "長期harness/project memoryの退役契約は本sliceで要件とL6設計へ同時backfill済みであり、追加のReverse carryは残らない。"
+backprop_decision_reason: "実装対象は着手前から正本化済みのHR-FR-HYB-005／HR-AC-HYB-005とPLAN-L7-407の退役契約である。本sliceで追加したworker runtime要求5件は実装対象外でL3/L12設計までに留め、PLAN-DISCOVERY-12以降のForward降下へ分離したため、このL7実装からのReverse carryはない。"
 agent_slots:
   - role: se
     slot_label: "SE — fenced retire API、CLI、legacy adapter統合"
@@ -33,6 +33,16 @@ generates:
     artifact_type: test_design
   - artifact_path: config/digest-canonicalization-inventory.json
     artifact_type: config
+  - artifact_path: src/lint/semantic-frontier-consistency.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
+  - artifact_path: tests/semantic-frontier-consistency.test.ts
+    artifact_type: test_code
+  - artifact_path: docs/governance/helix-objective-evidence-audit.md
+    artifact_type: markdown_doc
+  - artifact_path: tests/goal-evidence-audit.test.ts
+    artifact_type: test_code
   - artifact_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/generated/harness-memory-retirement-authority.json

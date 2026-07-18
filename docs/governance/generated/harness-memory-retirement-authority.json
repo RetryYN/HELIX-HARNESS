@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_revision": "requirements-reconciliation-2026-07-19-v3",
-  "authority_id": "sha256:e1bf4936b6bdfc5623c01066a0d8a2da5c688de5608b54b67b24956d4829dd27",
+  "authority_id": "sha256:e3f0493cd6618d88d3e8a4649c32aa31d8ef2855d0ef37e15fdd7b0ca5d326e9",
   "consumer_id": "requirements-reconciliation-2026-07-19",
   "layer": "harness",
   "entries": [
@@ -391,7 +391,7 @@
       "targets": [
         {
           "path": "docs/research/harness-improvement-from-grok-kimi-oss-2026-07-19.md",
-          "sha256": "sha256:4387e3a86ad2de2ef232c57844e097a215c95b3a563c3dc4e34b87f25fa33388"
+          "sha256": "sha256:7e6f1cef57f2828bd04a5bfb0519d9f877bc6c50e1983c2bc956e29622098c9c"
         }
       ]
     }

@@ -115,8 +115,8 @@ const FORBIDDEN_SETUP_CLI_READY_MARKERS = [
   "ready にでき",
 ] as const;
 
-const EXPECTED_L3_REQUIREMENT_ROWS = 46;
-const EXPECTED_L12_ACCEPTANCE_ROWS = 46;
+const EXPECTED_L3_REQUIREMENT_ROWS = 51;
+const EXPECTED_L12_ACCEPTANCE_ROWS = 51;
 
 const EXPECTED_CONFIRMED_MEANINGS = [
   {
@@ -137,8 +137,26 @@ const EXPECTED_CONFIRMED_MEANINGS = [
     featureId: "pair_agent_tdd_route",
     meaningMarker: "agent/tool/runtime guardrail + pair-agent TDD route",
     l1Parents: ["HBR-P2", "HBR-P3", "HBR-P4"],
-    l3Ids: ["HR-FR-P2-01", "HR-FR-P2-02", "HR-FR-P2-03", "HR-FR-P2-04"],
-    l12Ids: ["HAT-P2-01", "HAT-P2-02", "HAT-P2-03", "HAT-P2-04"],
+    l3Ids: [
+      "HR-FR-P2-01",
+      "HR-FR-P2-02",
+      "HR-FR-P2-03",
+      "HR-FR-P2-04",
+      "HR-FR-P2-05",
+      "HR-FR-P2-06",
+      "HR-FR-P2-07",
+      "HR-FR-P2-08",
+    ],
+    l12Ids: [
+      "HAT-P2-01",
+      "HAT-P2-02",
+      "HAT-P2-03",
+      "HAT-P2-04",
+      "HAT-P2-05",
+      "HAT-P2-06",
+      "HAT-P2-07",
+      "HAT-P2-08",
+    ],
   },
   {
     featureId: "strong_verification",
@@ -165,8 +183,15 @@ const EXPECTED_CONFIRMED_MEANINGS = [
     featureId: "github_setup_release_rename",
     meaningMarker: "GitHub 自動化 / setup / release / rename",
     l1Parents: ["HBR-P6"],
-    l3Ids: ["HR-FR-P6-01", "HR-FR-P6-02", "HR-FR-P6-03", "HR-FR-P6-04", "HR-FR-P6-05"],
-    l12Ids: ["HAT-P6-01", "HAT-P6-02", "HAT-P6-03", "HAT-P6-04", "HAT-P6-05"],
+    l3Ids: [
+      "HR-FR-P6-01",
+      "HR-FR-P6-02",
+      "HR-FR-P6-03",
+      "HR-FR-P6-04",
+      "HR-FR-P6-05",
+      "HR-FR-P6-06",
+    ],
+    l12Ids: ["HAT-P6-01", "HAT-P6-02", "HAT-P6-03", "HAT-P6-04", "HAT-P6-05", "HAT-P6-06"],
   },
   {
     featureId: "shared_memory_ddd",
@@ -258,8 +283,8 @@ export function analyzeSemanticFrontierConsistency(
   if (!input.l3Text.includes("G-SF `semantic_feature_frontier_record` への写像")) {
     violations.push("L3 G-SF mapping section missing");
   }
-  if (!input.l3Text.includes("confirmed 46 件: `classification=confirmed_current`")) {
-    violations.push("L3 confirmed_current mapping for 46-item pillar overlay missing");
+  if (!input.l3Text.includes("confirmed 51 件: `classification=confirmed_current`")) {
+    violations.push("L3 confirmed_current mapping for 51-item pillar overlay missing");
   }
 
   const l3RequirementRows = extractTableIds(input.l3Text, /^HR-(?:FR|NFR)-(?:P|AC)/);

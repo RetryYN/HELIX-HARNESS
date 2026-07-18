@@ -163,10 +163,10 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 |----|----|-----|------|
 | HBR-P0 | HR-FR-P0-01 / HR-FR-P0-02 | HAT-P0-01 / HAT-P0-02 | 対応関係 |
 | HBR-P1 | HR-FR-P1-01 / HR-FR-P1-02 / HR-FR-P1-03 / HR-FR-P1-04 | HAT-P1-01 / HAT-P1-02 / HAT-P1-03 / HAT-P1-04 | 対応関係 |
-| HBR-P2 | HR-FR-P2-01 / HR-FR-P2-02 / HR-FR-P2-03 / HR-FR-P2-04 | HAT-P2-01 / HAT-P2-02 / HAT-P2-03 / HAT-P2-04 | 対応関係 |
+| HBR-P2 | HR-FR-P2-01..08 | HAT-P2-01..08 | 対応関係 |
 | HBR-P3 / HNFR-P3 | HR-FR-P3-01 / HR-FR-P3-02 / HR-NFR-P3-01 / HR-NFR-P3-02 / HR-NFR-P3-03 / HR-NFR-P3-04 | HAT-P3-01 / HAT-P3-02 / HAT-N3-01 / HAT-N3-02 / HAT-N3-03 / HAT-N3-04 | 対応関係 |
 | HBR-P4 | HR-FR-P4-01 / HR-FR-P4-02 / HR-FR-P4-03 | HAT-P4-01 / HAT-P4-02 / HAT-P4-03 | 対応関係 |
-| HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | HAT-P6-01 / HAT-P6-02 / HAT-P6-03 / HAT-P6-04 / HAT-P6-05 | 対応関係 |
+| HBR-P6 | HR-FR-P6-01..06 | HAT-P6-01..06 | 対応関係 |
 | HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 | HAT-P7-01 / HAT-P7-02 / HAT-P7-03 | 対応関係 |
 | HBR-P8 / HNFR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 / HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | HAT-P8-01 / HAT-P8-02 / HAT-P8-03 / HAT-P8-04 / HAT-N8-01 / HAT-N8-02 / HAT-N8-03 | 対応関係 |
 | HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 / HR-FR-P9-04 / HR-FR-P9-05 / HR-FR-P9-06 | HAT-P9-01 / HAT-P9-02 / HAT-P9-03 / HAT-P9-04 / HAT-P9-05 / HAT-P9-06 | 対応関係 |
