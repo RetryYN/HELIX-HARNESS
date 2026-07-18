@@ -10,13 +10,22 @@ entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #11 architecture cycleをex
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-18T16:33:00Z"
+  review_binding:
+    reviewer: node_evidence_audit
+    reviewed_at: "2026-07-18T16:33:00Z"
+    evidence_digest: "sha256:27fa7c1fad0316bb98aaf0d787c71343d377fcee7515435e9e23388de9157eed"
+  entries: []
 review_evidence:
   - reviewer: node_evidence_audit
     review_kind: intra_runtime_subagent
     worker_model: codex
     reviewer_model: gpt-5
-    reviewed_at: "2026-07-19T01:33:00+09:00"
-    tests_green_at: "2026-07-19T01:32:00+09:00"
+    reviewed_at: "2026-07-18T16:33:00Z"
+    tests_green_at: "2026-07-18T16:32:00Z"
     verdict: pass
     scope: "state-db/VS Code分離、headless composition、実repo graphを独立監査。Blocker/High 0。2026-07-19に再検証。"
     green_commands:

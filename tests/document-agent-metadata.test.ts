@@ -81,7 +81,7 @@ function report(documents: ReturnType<typeof document>[]) {
 }
 
 describe("document agent metadata (HVM-AGMETA)", () => {
-  it("IT-AGMETA-001: canonical manifest を read-only で実文書へ適用する", () => {
+  it("IT-AGMETA-001 / U-AGMETA-001 / U-AGMETA-002: canonical manifest を read-only で実文書へ適用する", () => {
     expect(loadDocumentAgentMetadataReport(process.cwd())).toMatchObject({
       ok: true,
       checked_paths: ["docs/design/helix/L3-requirements/document-agent-metadata.md"],

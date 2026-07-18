@@ -18,18 +18,18 @@ Vペア、実行可能oracle、型検査、lint、独立レビューおよび実
 | `PLAN-L7-456-document-agent-metadata-phase-b-apply` | confirmed | U-AGMETA-008..012、IT-AGMETA-004..005、既存独立レビューがgreen |
 | `PLAN-L7-457-document-diff-local-artifact-output` | confirmed | U-DOCDIFF-008、IT-DOCDIFF-003、既存独立レビューがgreen |
 
-## green commands
+## 検証コマンド
 
 | 種別 | command | 結果 | output digest |
 |---|---|---|---|
-| source boundary | `bun test <source-boundary targeted set> --timeout 300000` | 48 pass / 0 fail | `sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc` |
-| readonly route | `bun test tests/slow/lint-readonly-route.test.ts --timeout 300000` | 1 pass / 0 fail | `sha256:b6f23889e118797c2e1140dc2df86513ec955fe5d15d06d49eca4b736d2c809c` |
-| headless/adapter | `bun test tests/slow/source-boundary-headless.test.ts tests/visualization-treeview.test.ts --timeout 300000` | 14 pass / 0 fail | 実行出力を閉鎖再監査で確認 |
-| feedback batch | `bun test tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts --timeout 300000` | 17 pass / 0 fail | `sha256:047a007c0ae7d028b6530c2103a33c363511085a2cf45ca740e0283c042105bb` |
-| document engine | `bun test <document-engine targeted set> --timeout 300000` | 12 pass / 0 fail | `sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0` |
+| ソース境界 | `bun test <source-boundary targeted set> --timeout 300000` | 48件成功 / 失敗0件 | `sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc` |
+| 読取専用経路 | `bun test tests/slow/lint-readonly-route.test.ts --timeout 300000` | 1件成功 / 失敗0件 | `sha256:b6f23889e118797c2e1140dc2df86513ec955fe5d15d06d49eca4b736d2c809c` |
+| ヘッドレス・adapter | `bun test tests/slow/source-boundary-headless.test.ts tests/visualization-treeview.test.ts --timeout 300000` | 14件成功 / 失敗0件 | 実行出力を閉鎖再監査で確認 |
+| feedback一括処理 | `bun test tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts --timeout 300000` | 17件成功 / 失敗0件 | `sha256:047a007c0ae7d028b6530c2103a33c363511085a2cf45ca740e0283c042105bb` |
+| 文書エンジン | `bun test <document-engine targeted set> --timeout 300000` | 12件成功 / 失敗0件 | `sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0` |
 | document CLI | `bun test tests/cli-surface.test.ts -t 'IT-DOCDIFF-003' --timeout 300000` | 1 pass / 0 fail | `sha256:b5349ba61841aec712a981f3ac5137966137f593f4e3645b5952aaeabc8a3e8b` |
 | typecheck | `bun run typecheck` | exit 0 | `sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92` |
-| Biome | `bunx biome check <8 PLANs and generated source set>` | checked 20 files、exit 0 | `sha256:b57b4b3bd1b9b708c7386803e5423eaadd16fe70a7bebfc2897779ab7a4c39fa` |
+| Biome | `bunx biome check <8 PLANs and generated source set>` | 20ファイル検査、終了コード0 | `sha256:b57b4b3bd1b9b708c7386803e5423eaadd16fe70a7bebfc2897779ab7a4c39fa` |
 
 ## PLAN-L7-455 実データ性能証拠
 

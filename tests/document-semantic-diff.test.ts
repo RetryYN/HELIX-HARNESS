@@ -24,7 +24,7 @@ ${history}`;
 }
 
 describe("semantic document diff (U-DOCDIFF)", () => {
-  it("U-DOCDIFF-001/007: 同一内容と入力順でstable snapshotを返す", () => {
+  it("U-DOCDIFF-001 / U-DOCDIFF-007: 同一内容と入力順でstable snapshotを返す", () => {
     const first = buildSemanticDocumentSnapshot([
       { path: "docs/b.md", content: document("B-001", "本文") },
       { path: "docs/a.md", content: document("A-001", "本文") },
@@ -47,7 +47,7 @@ describe("semantic document diff (U-DOCDIFF)", () => {
     expect(semanticSnapshotDigest(first.documents)).toBe(semanticSnapshotDigest(second.documents));
   });
 
-  it("U-DOCDIFF-002/003: document/ID/section/historyの差分を分離する", () => {
+  it("U-DOCDIFF-002 / U-DOCDIFF-003: document/ID/section/historyの差分を分離する", () => {
     const base = buildSemanticDocumentSnapshot([
       { path: "docs/a.md", content: document("A-001", "旧本文") },
     ]);
@@ -63,7 +63,7 @@ describe("semantic document diff (U-DOCDIFF)", () => {
     });
   });
 
-  it("U-DOCDIFF-004/006: 記録なき変更と不正path/duplicateをfail-close可視化する", () => {
+  it("U-DOCDIFF-004 / U-DOCDIFF-006: 記録なき変更と不正path/duplicateをfail-close可視化する", () => {
     const base = buildSemanticDocumentSnapshot([
       { path: "docs/a.md", content: document("A-001", "旧本文") },
     ]);
