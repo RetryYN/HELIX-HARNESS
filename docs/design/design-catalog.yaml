@@ -75,6 +75,8 @@ items:
       - docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md
       - docs/design/helix/L3-requirements/document-agent-metadata.md
       - docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
+      - docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md
+      - docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md
   - id: basic-design
     name: 基本設計書
     category: basic

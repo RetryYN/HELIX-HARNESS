@@ -49,7 +49,7 @@
 
 **PARTIAL**。現行要件には「ビジュアルDesign HARNESSはUI/UX生成・評価であり一般検証基盤ではない」という境界だけが存在し、packageの三契約、semantic ID、typed artifact、gate sub-check、`implemented`／`ux_verified`分離、UX evidence、L1〜L12／Scrum Reverse配置は直接bindingされていなかった。
 
-### Source同一性
+### 入力正本の同一性
 
 - 正本package: SHA-256 `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd`、211 physical files。
 - workspace添付同名package: SHA-256 `04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61`、208 entries。

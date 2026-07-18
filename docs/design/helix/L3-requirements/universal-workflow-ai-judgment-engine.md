@@ -12,7 +12,7 @@ pair_artifact: docs/test-design/helix/universal-workflow-ai-judgment-engine-acce
 
 # Universal Workflow AI判断エンジン要件
 
-## 1. Source bindingと採否
+## 1. 入力正本の結合と採否
 
 - source: `UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`
 - SHA-256: `b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26`

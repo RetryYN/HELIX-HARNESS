@@ -12,7 +12,7 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 
 # AI Vision Design HARNESSエンジン要件
 
-## 1. Source bindingと裁定
+## 1. 入力正本の結合と裁定
 
 - canonical source: `docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip`
 - SHA-256: `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd`
@@ -56,36 +56,36 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 | VDH-FR-018 | delegated UI capsuleはprototype/profile/ledger/binding/mission/oracle/evidence digestとworker-verifier分離を持つ | VDH-AC-018 |
 | VDH-FR-019 | Discovery PoCはS0〜S4内でvision/prototype仮説を探索できるが、S4人間判断前に`implemented`、`ux_verified`、production-readyを主張せず、採用時はFull VまたはProduction Scrumへ昇格する | VDH-AC-019 |
 
-## 3. Source requirement全数crosswalk
+## 3. 入力要件の全数対応表
 
 | source requirement | canonical requirement | 裁定 |
 |---|---|---|
 | HBR-DH-001 | VDH-FR-016,017 | native capabilityとして統合 |
 | HBR-DH-002 | VDH-FR-001 | 53資産を変換provenanceとして保持 |
 | HBR-DH-003 | VDH-FR-001 | 旧UTは同系譜source、active authorityにはしない |
-| HBR-DH-004 | VDH-FR-004 | L2 prototype typed contract |
-| HBR-DH-005 | VDH-FR-004 | L2 implementation-neutral |
+| HBR-DH-004 | VDH-FR-004 | L2 prototypeの型付き契約 |
+| HBR-DH-005 | VDH-FR-004 | L2の実装非依存境界 |
 | HBR-DH-006 | VDH-FR-010 | design／implementation／UX verification lifecycleを分離 |
 | HBR-DH-007 | VDH-FR-003,008,015 | semantic ID continuityをL12まで延長 |
 | HBR-DH-008 | VDH-FR-002,003 | 三契約分離と結合 |
 | HBR-DH-009 | VDH-FR-005 | Pattern Contract制約生成 |
 | HBR-DH-010 | VDH-FR-005 | common／product profile隔離 |
-| HBR-DH-011 | VDH-FR-006 | Frontend Binding |
+| HBR-DH-011 | VDH-FR-006 | Frontend Bindingの閉包 |
 | HBR-DH-012 | VDH-FR-010 | 旧L6 missionを現行L5先行設計へremap |
-| HBR-DH-013 | VDH-FR-010 | receipt-derived implemented |
-| HBR-DH-014 | VDH-FR-010,012 | false completion／placeholder fence |
+| HBR-DH-013 | VDH-FR-010 | receiptからの実装済み判定 |
+| HBR-DH-014 | VDH-FR-010,012 | 虚偽完成／placeholder防止 |
 | HBR-DH-015 | VDH-FR-005,011 | responsive contractとviewport evidence |
-| HBR-DH-016 | VDH-FR-005,011 | motion budget／reduced-motion |
-| HBR-DH-017 | VDH-FR-005 | surface classification |
+| HBR-DH-016 | VDH-FR-005,011 | motion予算／reduced-motion代替 |
+| HBR-DH-017 | VDH-FR-005 | surface分類 |
 | HBR-DH-018 | VDH-FR-005,010,011,015 | a11y policy→oracle→実測 |
-| HBR-DH-019 | VDH-FR-011 | real-data UX evidence |
-| HBR-DH-020 | VDH-FR-012 | delta lifecycle／drive routing |
+| HBR-DH-019 | VDH-FR-011 | 実データUX証拠 |
+| HBR-DH-020 | VDH-FR-012 | delta lifecycle／駆動モデル振分け |
 | HBR-DH-021 | VDH-FR-017 | Python意味コアへ採用、path固定は非authority化 |
 | HBR-DH-022 | VDH-FR-017 | Node side-effect／browser tool境界 |
-| HBR-DH-023 | VDH-FR-016 | projection-only DB |
-| HBR-DH-024 | VDH-FR-013 | human judgment authority |
+| HBR-DH-023 | VDH-FR-016 | 読取投影専用DB |
+| HBR-DH-024 | VDH-FR-013 | 人間の判断authority |
 | HBR-DH-025 | VDH-FR-007 | Workflow Requirements Engine接続 |
-| HBR-DH-026 | VDH-FR-018 | capsule design context |
+| HBR-DH-026 | VDH-FR-018 | capsule設計context |
 | HBR-DH-027 | VDH-FR-001,017 | UT namespace／Bun排除 |
 | HBR-DH-028 | VDH-FR-016 | 既存document catalog binding |
 | HBR-DH-029 | VDH-FR-017 | Python function binding coverage、Node意味複製禁止 |
@@ -103,11 +103,11 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 | L7 | component/state/a11y/visual oracleとprobeをtest実装 | L6 implementation trace |
 | L8 | component、state、validation、local responsive/a11y検証 | L5 detail contract |
 | L9 | service/data/auth/navigation/event統合検証 | L4 basic design |
-| L10 | end-to-end、visual regression、responsive、motion、a11y、performance | L3 FR/NFR/AC |
+| L10 | 一気通貫、visual regression、responsive、motion、a11y、performanceの総合検証 | L3 FR/NFR/AC |
 | L11 | real user/data、操作性、理解、prototype-to-product continuity | L2 agreement |
 | L12 | telemetry、SLO、support/feedback、drift、改善効果 | L1 vision/value |
 
-## 5. ハイブリッドroute
+## 5. ハイブリッド経路
 
 - `FULL_L1_L12_V`: system全体のVision Design workstreamと全right-arm evidenceを閉じる。
 - `PRODUCTION_SCRUM_REDUCED_V`: UI sliceごとに反復し、review／release前のSR0〜SR4でsystem visionとL1〜L5へbackfillする。

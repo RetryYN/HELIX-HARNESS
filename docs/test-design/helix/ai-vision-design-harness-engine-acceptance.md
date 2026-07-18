@@ -36,8 +36,8 @@ pair_artifact: docs/design/helix/L3-requirements/ai-vision-design-harness-engine
 
 ## 実行層
 
-- L8: component、state、schema、local responsive/a11y。
+- L8: component、state、schema、local responsive/a11yの局所検証。
 - L9: service/data/auth/navigation/event境界。
-- L10: end-to-end、VRT、responsive、motion、a11y、performance。
+- L10: end-to-end、VRT、responsive、motion、a11y、performanceの総合検証。
 - L11: real-user acceptanceとprototype continuity。
 - L12: telemetry、SLO、feedback、drift、改善効果。
