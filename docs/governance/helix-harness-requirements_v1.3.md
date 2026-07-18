@@ -172,6 +172,20 @@ Design HARNESSはProduct Design、Experience Design、System Design、Design Gov
 
 runtime未実装の能力は`designed`以上へ昇格せず、implementation／test／real UX evidenceが揃うまで`implemented`または`ux_verified`を主張しない。
 
+### 4.10 外部AI worker runtimeと配布境界
+
+外部AI workerはPython semantic coreとは別のnon-authoritative capability classであり、HELIXのprecedenceとNode単一write境界を変更しない。
+
+| 要件ID | 要件 |
+|---|---|
+| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |
+| `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |
+| `HR-FR-P2-07` | repository-level permanent bypass denyはone-shot markerやprovider flagより上位で、下位機構から解除できない |
+| `HR-FR-P2-08` | worker出力はstrict schema／digest検証を既定とし、緩和には対象、理由、期限、再検証receiptを要求する |
+| `HR-FR-P6-06` | 配布packageはcanonical／generated index、first／third-party区分、provenance、license、免責、digestを持ち、publish／cutoverはPLAN-M-02承認境界を維持する |
+
+grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-12-grok-build-worktree-precedent`でbehavior atomを採取し、直接importしない。
+
 ## 5. Forward・横軸駆動
 
 - Forwardを正方向とする。

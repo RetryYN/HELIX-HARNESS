@@ -70,7 +70,7 @@ interface MemoryEntryV2 {
 | `resolveMemoryView(events, now): MemoryView` | supersede graphを解決し、`activeEntries`、latest terminal `tombstones`、damaged、unresolvedLinksを返す。cycle/未知supersedesはdamagedでfail-close。 |
 | `writeMemoryV2(input, deps): WriteMemoryV2Result` | inputはcaller生成`operationId`必須。result=`{ok:true,entry,diagnostics}`または`{ok:false,reason}`。layer lock内で同operation IDを再読し、同一intentなら追記ゼロのidempotent success、異なるintentならfail-close。append後coordination commit不明でもJSONL既存eventを回収する。lock解放後、実append成功時だけbody非包含の`memory_write` eventを記録する。 |
 | `consumeTakeover(ids, consumerId, deps): ConsumeResult[]` | active takeoverだけにdeterministic tombstoneをappend。reason=`consumed|already_consumed|unknown_id|expired|wrong_layer|persist_failed`。同じtargetへの再実行はappendしない。 |
-| `retireMemory(input, deps): ConsumeResult[]` | 正本へ追突済みのharness/project entryだけをbody-free `memory-consumed:<target-id>` receiptへ退役する。takeoverは受け付けず、layer lock内の再読とfencingにより同じtargetへの再実行を追記ゼロへ収束する。 |
+| `retireMemory(input, deps): ConsumeResult[]` | 正本へ追突済みのharness/project entryだけをbody-free `memory-consumed:<target-id>` receiptへ退役する。固定authority manifestがconsumer、layer、全ID、実在する正本targetとkeyの結合を証明しない場合は`unauthorized`。authorityはlock前後で再検証し、takeoverは受け付けず、fencingにより同じtargetへの再実行を追記ゼロへ収束する。 |
 | `expireMemory(layer, now, deps): ExpireResult[]` | cross-process lock内で再読し、期限到達active entryごとにdeterministic expired tombstoneを最大1件appendする。surface/delivery/compactionの前処理。 |
 | `surfaceMemoryV2(input, deps): SurfaceResult` | normalized viewを§5の決定論で選び、render lines、selected ids、hidden/lifecycle集計を返す純選定。consumeは行わない。 |
 | `deliverTakeover(input, deps): DeliveryResult` | `surfaceMemoryV2`→stdout writer成功→`consumeTakeover`の順。stdout失敗時はconsume禁止。consume append失敗時は`delivered_with_retry_required`としてidを返し、次回再表示を許す。 |
@@ -147,10 +147,10 @@ read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。
   SQLite coordination transaction内で「再read→既存tombstone確認→append」を行い、別processの同時consumeでも
   targetあたり1件だけ残す。lock取得/append失敗は`persist_failed`で、consume済みと主張しない。再consumeは
   `already_consumed`かつ追記ゼロ。transaction外または旧fencing tokenのappend/replaceは拒否する。
-- `retireMemory({layer,ids,consumerId})`はharness/projectだけを遷移できる。正本targetと追突台帳が成立した後に
+- `retireMemory({layer,ids,consumerId,authorityId})`はharness/projectだけを遷移できる。正本targetと追突台帳が成立し、tracked authority manifestが全IDと正本targetを機械検証できた後に
   callerが明示実行し、`memory-consumed:<target-id>`、body空、`consumedBy`付きreceiptをappendする。
   legacy readerも同receiptをactive entryとして再表示しない。takeover、未反映entry、未知id、別layer、期限切れ、
-  stale fencing tokenは理由付きで拒否し、同じtargetの再retireは`already_consumed`かつ追記ゼロとする。
+  stale fencing tokenは理由付きで拒否し、同じtargetの再retireは`already_consumed`かつ追記ゼロとする。batch途中のappend失敗は先行成功を`consumed`のまま保持し、失敗ID以降だけを`persist_failed`とする。
 - expired tombstone idは`memory-expired:<target-id>`、`supersedes=target-id`、body空、state=expired、
   expiresAt=target値とする。`expireMemory`がlayer lock内の再読後に最大1件appendする。read viewは未materializeでも
   clockからexpiredと判定するが、deliveryと`compactMemoryV2`は先に`expireMemory`を実行して物理状態を収束させる。

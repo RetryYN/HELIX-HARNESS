@@ -7,14 +7,14 @@ const AUDIT = "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md
 
 describe("harness memory reconciliation binding", () => {
   // PLAN-L7-458-harness-memory-canonical-retirement / U-MEMV2-005e.
-  it("accounts for the exact 38-entry memory union", () => {
+  it("accounts for the exact 39-entry memory union", () => {
     const audit = readFileSync(AUDIT, "utf8");
-    expect(audit).toContain("ID和集合 **38件**");
+    expect(audit).toContain("ID和集合 **39件**");
     const rows = [...audit.matchAll(/^\|\s*(\d+)\s*\| `([^`]+)` \|/gm)];
     expect(rows.map((row) => Number(row[1]))).toEqual(
-      Array.from({ length: 38 }, (_, index) => index + 1),
+      Array.from({ length: 39 }, (_, index) => index + 1),
     );
-    expect(new Set(rows.map((row) => row[2])).size).toBe(38);
+    expect(new Set(rows.map((row) => row[2])).size).toBe(39);
     expect(rows.map((row) => row[2])).toEqual(
       expect.arrayContaining([
         "system-audit-2026-07-14-goal",
@@ -26,8 +26,46 @@ describe("harness memory reconciliation binding", () => {
         "requirements-consistency-audit",
         "authoring-admission-directive",
         "l12-canonical-vmodel-direction",
+        "worker-runtime-research-2026-07-19",
       ]),
     );
+  });
+
+  it("backfills the worker-runtime research without conflating Python authority", () => {
+    const requirements = readFileSync(REQUIREMENTS, "utf8");
+    const l1 = readFileSync("docs/design/helix/L1-requirements/pillar-requirements.md", "utf8");
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    for (const id of ["HR-FR-P2-05", "HR-FR-P2-06", "HR-FR-P2-07", "HR-FR-P2-08", "HR-FR-P6-06"]) {
+      expect(requirements).toContain(id);
+      expect(l3).toContain(id);
+    }
+    expect(l1).toContain("authorityを持たない外部worker");
+    expect(requirements).toContain("Python semantic coreとは別");
+    expect(
+      readFileSync("docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md", "utf8"),
+    ).toContain("worktreeの払い出し");
+  });
+
+  it("binds every reconciled key to one retirement authority entry", () => {
+    const authority = JSON.parse(
+      readFileSync("docs/governance/generated/harness-memory-retirement-authority.json", "utf8"),
+    ) as {
+      authority_id: string;
+      entries: Array<{ memory_id: string; key: string; targets: string[] }>;
+    };
+    expect(authority.authority_id).toBe("memory-reconciliation-2026-07-19-v2");
+    expect(authority.entries).toHaveLength(39);
+    expect(new Set(authority.entries.map((entry) => entry.memory_id)).size).toBe(39);
+    expect(new Set(authority.entries.map((entry) => entry.key)).size).toBe(39);
+    for (const entry of authority.entries) {
+      expect(entry.targets.length).toBeGreaterThan(0);
+      expect(entry.targets.some((target) => readFileSync(target, "utf8").includes(entry.key))).toBe(
+        true,
+      );
+    }
   });
 
   it("U-MEMV2-005e: retires every repository harness-memory payload from active surfaces", () => {

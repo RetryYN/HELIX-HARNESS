@@ -414,11 +414,27 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     mock.events.harness.push(entry({ id: "harness-rule", layer: "harness" }));
     mock.clock = "2026-07-11T00:01:00.000Z";
     expect(
-      retireMemory({ layer: "harness", ids: ["harness-rule"], consumerId: "reconciler" }, mock),
+      retireMemory(
+        {
+          layer: "harness",
+          ids: ["harness-rule"],
+          consumerId: "reconciler",
+          authorityId: "memory-reconciliation-2026-07-19",
+        },
+        mock,
+      ),
     ).toEqual([{ id: "harness-rule", reason: "consumed" }]);
     expect(resolveMemoryView(mock.events.harness, mock.clock, "harness").activeEntries).toEqual([]);
     expect(
-      retireMemory({ layer: "harness", ids: ["harness-rule"], consumerId: "reconciler" }, mock),
+      retireMemory(
+        {
+          layer: "harness",
+          ids: ["harness-rule"],
+          consumerId: "reconciler",
+          authorityId: "memory-reconciliation-2026-07-19",
+        },
+        mock,
+      ),
     ).toEqual([{ id: "harness-rule", reason: "already_consumed" }]);
     expect(mock.events.harness).toContainEqual(
       expect.objectContaining({
@@ -426,6 +442,42 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
         lifecycle: expect.objectContaining({ state: "consumed", consumedBy: "reconciler" }),
       }),
     );
+  });
+
+  it("U-MEMV2-005f: retirement authority is fail-closed, rechecked under lock, and preserves partial results", () => {
+    const unauthorized = mockDeps("2026-07-11T00:00:00.000Z");
+    unauthorized.events.harness.push(entry({ id: "a", key: "a" }));
+    unauthorized.authorityValid = false;
+    const input = {
+      layer: "harness" as const,
+      ids: ["a"],
+      consumerId: "reconciler",
+      authorityId: "memory-reconciliation-2026-07-19",
+    };
+    expect(retireMemory(input, unauthorized)).toEqual([{ id: "a", reason: "unauthorized" }]);
+    expect(unauthorized.events.harness).toHaveLength(1);
+
+    const stale = mockDeps("2026-07-11T00:00:00.000Z");
+    stale.events.harness.push(entry({ id: "a", key: "a" }));
+    stale.verifyRetirementAuthority = () => {
+      stale.authorityChecks += 1;
+      return stale.authorityChecks === 1;
+    };
+    expect(retireMemory(input, stale)).toEqual([{ id: "a", reason: "unauthorized" }]);
+    expect(stale.events.harness).toHaveLength(1);
+
+    const partial = mockDeps("2026-07-11T00:00:00.000Z");
+    partial.events.harness.push(
+      entry({ id: "a", key: "a" }),
+      entry({ id: "b", key: "b" }),
+      entry({ id: "c", key: "c" }),
+    );
+    partial.failAppendAfter = 4;
+    expect(retireMemory({ ...input, ids: ["a", "b", "c"] }, partial)).toEqual([
+      { id: "a", reason: "consumed" },
+      { id: "b", reason: "persist_failed" },
+      { id: "c", reason: "persist_failed" },
+    ]);
   });
 
   it("U-MEMV2-006: group-first selection keeps minority types visible and reports exact hidden counts", () => {
@@ -684,6 +736,9 @@ interface MockDeps extends MemoryDepsV2 {
   failAppend: boolean;
   failSessionEvent: boolean;
   failAfterMutation: boolean;
+  authorityValid: boolean;
+  authorityChecks: number;
+  failAppendAfter: number | null;
 }
 
 function mockDeps(clock: string): MockDeps {
@@ -697,10 +752,17 @@ function mockDeps(clock: string): MockDeps {
     failAppend: false,
     failSessionEvent: false,
     failAfterMutation: false,
+    authorityValid: true,
+    authorityChecks: 0,
+    failAppendAfter: null,
     now: () => mock.clock,
     isSecret: (value) => value.includes("SECRET_MARKER"),
     stableId: (layer, key, createdAt) => `${layer}:${key}:${createdAt}`,
     readEvents: (layer) => [...mock.events[layer]],
+    verifyRetirementAuthority: () => {
+      mock.authorityChecks += 1;
+      return mock.authorityValid;
+    },
     withLayerLock: (_layer, _owner, fn) => {
       fence += 1;
       activeFence = fence;
@@ -715,6 +777,8 @@ function mockDeps(clock: string): MockDeps {
     appendEvent: (layer, value, token) => {
       if (token !== activeFence) throw new Error("stale_fencing_token");
       if (mock.failAppend) throw new Error("append_failed");
+      if (mock.failAppendAfter !== null && mock.events[layer].length >= mock.failAppendAfter)
+        throw new Error("append_failed");
       mock.events[layer].push(value);
     },
     replaceEvents: (layer, values, token) => {

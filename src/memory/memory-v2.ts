@@ -10,7 +10,7 @@ import {
   writeFileSync,
   writeSync,
 } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { isSecretLike } from "../security/secret-policy";
 import { isRecord } from "../shared/value-guards";
 import { type HarnessDb, openHarnessDb } from "../state-db";
@@ -91,6 +91,7 @@ export interface RetireMemoryInput {
   layer: Exclude<MemoryLayerV2, "takeover">;
   ids: readonly string[];
   consumerId: string;
+  authorityId: string;
 }
 
 export interface SurfaceMemoryV2Result {
@@ -108,6 +109,7 @@ export interface ConsumeResult {
     | "unknown_id"
     | "expired"
     | "wrong_layer"
+    | "unauthorized"
     | "persist_failed";
 }
 
@@ -119,6 +121,7 @@ export interface MemoryDepsV2 {
   withLayerLock<T>(layer: MemoryLayerV2, owner: string, fn: (fence: number) => T): T;
   appendEvent(layer: MemoryLayerV2, entry: MemoryEntryV2, fence: number): void;
   replaceEvents(layer: MemoryLayerV2, entries: MemoryEntryV2[], fence: number): void;
+  verifyRetirementAuthority(input: RetireMemoryInput): boolean;
   writeSessionEvent(event: {
     eventId: string;
     type: "memory_write";
@@ -426,8 +429,15 @@ export function consumeTakeover(
  */
 export function retireMemory(input: RetireMemoryInput, deps: MemoryDepsV2): ConsumeResult[] {
   const { layer, ids, consumerId } = input;
+  if (!deps.verifyRetirementAuthority(input)) {
+    return ids.map((id) => ({ id, reason: "unauthorized" }));
+  }
   try {
     return deps.withLayerLock(layer, `retire:${consumerId}`, (fence) => {
+      // authorityはlock内でも再検証し、証拠差替えとのTOCTOUをfail-closeする。
+      if (!deps.verifyRetirementAuthority(input)) {
+        return ids.map((id) => ({ id, reason: "unauthorized" }));
+      }
       const normalized = deps.readEvents(layer).flatMap((event) => {
         const result = normalizeMemoryEntry(event);
         return result.ok ? [result.entry] : [];
@@ -446,22 +456,53 @@ export function retireMemory(input: RetireMemoryInput, deps: MemoryDepsV2): Cons
         ),
       );
       const now = deps.now();
-      return ids.map((id): ConsumeResult => {
+      const results: ConsumeResult[] = [];
+      let persistenceFailed = false;
+      for (const id of ids) {
+        if (persistenceFailed) {
+          results.push({ id, reason: "persist_failed" });
+          continue;
+        }
         const entry = byId.get(id);
-        if (!entry) return { id, reason: "unknown_id" };
-        if (entry.layer !== layer) return { id, reason: "wrong_layer" };
-        if (terminalTargets.get(id) === "expired") return { id, reason: "expired" };
-        if (terminalTargets.get(id) === "consumed") return { id, reason: "already_consumed" };
-        if (isExpired(entry, now)) return { id, reason: "expired" };
-        if (!activeIds.has(id)) return { id, reason: "unknown_id" };
-        deps.appendEvent(
-          layer,
-          terminalEntry({ target: entry, state: "consumed", at: now, consumerId }),
-          fence,
-        );
+        if (!entry) {
+          results.push({ id, reason: "unknown_id" });
+          continue;
+        }
+        if (entry.layer !== layer) {
+          results.push({ id, reason: "wrong_layer" });
+          continue;
+        }
+        if (terminalTargets.get(id) === "expired") {
+          results.push({ id, reason: "expired" });
+          continue;
+        }
+        if (terminalTargets.get(id) === "consumed") {
+          results.push({ id, reason: "already_consumed" });
+          continue;
+        }
+        if (isExpired(entry, now)) {
+          results.push({ id, reason: "expired" });
+          continue;
+        }
+        if (!activeIds.has(id)) {
+          results.push({ id, reason: "unknown_id" });
+          continue;
+        }
+        try {
+          deps.appendEvent(
+            layer,
+            terminalEntry({ target: entry, state: "consumed", at: now, consumerId }),
+            fence,
+          );
+        } catch {
+          persistenceFailed = true;
+          results.push({ id, reason: "persist_failed" });
+          continue;
+        }
         terminalTargets.set(id, "consumed");
-        return { id, reason: "consumed" };
-      });
+        results.push({ id, reason: "consumed" });
+      }
+      return results;
     });
   } catch {
     return ids.map((id) => ({ id, reason: "persist_failed" }));
@@ -587,6 +628,48 @@ export function nodeMemoryV2Deps(opts: {
   const coordinationPath = join(memoryDir, "coordination.sqlite");
   const now = opts.now ?? (() => new Date().toISOString());
   const pathFor = (layer: MemoryLayerV2) => join(memoryDir, `${layer}.jsonl`);
+  const verifyRetirementAuthority = (input: RetireMemoryInput): boolean => {
+    const authorityPath = join(
+      opts.root,
+      "docs",
+      "governance",
+      "generated",
+      "harness-memory-retirement-authority.json",
+    );
+    try {
+      const raw = JSON.parse(readFileSync(authorityPath, "utf8")) as unknown;
+      if (!isRecord(raw) || raw.schema_version !== 1 || raw.authority_id !== input.authorityId)
+        return false;
+      if (
+        raw.consumer_id !== input.consumerId ||
+        raw.layer !== input.layer ||
+        !Array.isArray(raw.entries)
+      )
+        return false;
+      const entries = raw.entries.filter(isRecord);
+      const requested = new Set(input.ids);
+      if (requested.size !== input.ids.length) return false;
+      for (const id of requested) {
+        const record = entries.find((entry) => entry.memory_id === id);
+        if (!record || typeof record.key !== "string" || !Array.isArray(record.targets))
+          return false;
+        if (record.targets.length === 0) return false;
+        const key = record.key;
+        const targetOk = record.targets.some((target) => {
+          if (typeof target !== "string") return false;
+          const absolute = resolve(opts.root, target);
+          const rel = relative(resolve(opts.root), absolute);
+          if (rel.startsWith("..") || rel === "" || !existsSync(absolute)) return false;
+          const content = readFileSync(absolute, "utf8");
+          return content.includes(key) || content.includes(id);
+        });
+        if (!targetOk) return false;
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  };
   const activeLocks = new Map<MemoryLayerV2, { db: HarnessDb; fence: number }>();
   const assertFence = (layer: MemoryLayerV2, fence: number) => {
     const active = activeLocks.get(layer);
@@ -677,6 +760,7 @@ export function nodeMemoryV2Deps(opts: {
         closeSync(dirFd);
       }
     },
+    verifyRetirementAuthority,
     writeSessionEvent: opts.writeSessionEvent ?? (() => undefined),
     writeOutput: opts.writeOutput ?? (() => undefined),
   };

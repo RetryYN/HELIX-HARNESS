@@ -2356,7 +2356,8 @@ memory
   .command("retire <layer> <ids...>")
   .description("retire canonicalized harness/project memory from active surfaces")
   .requiredOption("--consumer <id>", "consumer identity")
-  .action((layer: string, ids: string[], opts: { consumer: string }) => {
+  .requiredOption("--authority <id>", "canonicalization authority receipt identity")
+  .action((layer: string, ids: string[], opts: { consumer: string; authority: string }) => {
     const parsed = parseMemoryLayerV2(layer);
     if (!parsed) return;
     if (parsed === "takeover") {
@@ -2364,14 +2365,14 @@ memory
       process.exitCode = 1;
       return;
     }
-    process.stdout.write(
-      `${JSON.stringify(
-        retireMemory(
-          { layer: parsed, ids, consumerId: opts.consumer },
-          nodeMemoryV2Deps({ root: process.cwd() }),
-        ),
-      )}\n`,
+    const result = retireMemory(
+      { layer: parsed, ids, consumerId: opts.consumer, authorityId: opts.authority },
+      nodeMemoryV2Deps({ root: process.cwd() }),
     );
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+    if (result.some((item) => !["consumed", "already_consumed"].includes(item.reason))) {
+      process.exitCode = 1;
+    }
   });
 
 memory
