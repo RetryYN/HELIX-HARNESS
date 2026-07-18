@@ -17,7 +17,9 @@ describe("AI Vision Design HARNESS requirements binding", () => {
     expect(design).toContain("1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd");
     expect(design).toContain("211 physical files");
     expect(design).toContain("04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61");
-    expect(design).toContain("主要7契約、requirements catalog、acceptance catalogの10対象は全てbyte digest一致");
+    expect(design).toContain(
+      "主要7契約、requirements catalog、acceptance catalogの10対象は全てbyte digest一致",
+    );
     expect(design).toContain("[adr-010-runtime-authority-ruling]");
     expect(audit).toContain("superseded扱い");
   });
