@@ -17,18 +17,36 @@ describe("AI Vision Design HARNESS requirements binding", () => {
     expect(design).toContain("1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd");
     expect(design).toContain("211 physical files");
     expect(design).toContain("04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61");
+    expect(design).toContain("主要7契約、requirements catalog、acceptance catalogの10対象は全てbyte digest一致");
+    expect(design).toContain("[adr-010-runtime-authority-ruling]");
     expect(audit).toContain("superseded扱い");
   });
 
-  it("keeps 18 FR and paired AC exactly closed", () => {
+  it("keeps 19 FR and paired AC exactly closed", () => {
     const design = readFileSync(DESIGN, "utf8");
     const acceptance = readFileSync(ACCEPTANCE, "utf8");
-    const expected = Array.from({ length: 18 }, (_, index) => String(index + 1).padStart(3, "0"));
+    const expected = Array.from({ length: 19 }, (_, index) => String(index + 1).padStart(3, "0"));
     expect([...new Set(ids(design, "VDH-FR"))]).toEqual(expected);
     expect([...new Set(ids(design, "VDH-AC"))]).toEqual(expected);
     expect([...new Set(ids(acceptance, "VDH-AC"))]).toEqual(expected);
     expect(design).toContain(`pair_artifact: ${ACCEPTANCE}`);
     expect(acceptance).toContain(`pair_artifact: ${DESIGN}`);
+  });
+
+  it("maps all 29 source Design HARNESS requirements without denominator loss", () => {
+    const design = readFileSync(DESIGN, "utf8");
+    const expected = Array.from({ length: 29 }, (_, index) => String(index + 1).padStart(3, "0"));
+    expect([...new Set(ids(design, "HBR-DH"))]).toEqual(expected);
+    expect(design).toContain("mapped(HBR-DH-001..029)=29/29");
+    for (const obligation of [
+      "Pattern Contract",
+      "UI-M0..M7",
+      "operational/expressive/mixed",
+      "read-model projection",
+      "Playwright/axe/Lighthouse/VRT",
+    ]) {
+      expect(design, `${obligation} missing`).toContain(obligation);
+    }
   });
 
   it("places the three-contract continuity across L1-L12 and the six V pairs", () => {
@@ -48,6 +66,8 @@ describe("AI Vision Design HARNESS requirements binding", () => {
     expect(requirements).toContain("SR4 pair-freeze");
     expect(design).toContain("新gateを作らず現行layer gateへ配置");
     expect(design).toContain("独立文書体系・独立engine・別authoring DBを作らない");
+    expect(design).toContain("`DISCOVERY_POC`");
+    expect(design).toContain("S4 human decide前はproduction evidenceへ昇格しない");
   });
 
   it("separates implementation evidence from UX verification and human authority", () => {
@@ -63,8 +83,9 @@ describe("AI Vision Design HARNESS requirements binding", () => {
     const requirements = readFileSync(REQUIREMENTS, "utf8");
     const design = readFileSync(DESIGN, "utf8");
     expect(requirements).toContain("旧L6 missionはL5 test contract");
-    expect(requirements).toContain("Python意味workerはproposal-only");
-    expect(design).toContain("Hybrid Python単独正本、既存Python path維持");
-    expect(design).toContain("reject");
+    expect(requirements).toContain("Python意味コアを恒久正本");
+    expect(requirements).toContain("唯一のtransaction境界");
+    expect(design).toContain("Nodeへの意味複製は禁止");
+    expect(design).not.toContain("proposal-only意味処理");
   });
 });

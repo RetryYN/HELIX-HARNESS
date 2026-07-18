@@ -54,10 +54,14 @@
 - 正本package: SHA-256 `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd`、211 physical files。
 - workspace添付同名package: SHA-256 `04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61`、208 entries。
 - 後者は再監査是正前の中間物としてsuperseded扱いとし、同名だけで正本へ昇格しない。
+- 両packageのDesign HARNESS主要10対象（統合章、主要契約7件、requirements／acceptance catalog）はbyte digestが全て一致し、添付版のDesign HARNESS意味内容が正本版へ保持されていることを確認した。
+- harness memoryの`helix-not-ut-harness`、`adr-010-runtime-authority-ruling`、`v051-completion-claim-correction`、`v051-final-reverification`を照合し、HELIX名称、Python意味コア恒久正本、36 finding＋別枠1件、最終package digestを採用した。
 
 ### 取込裁定
 
-三契約、semantic ID、prototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidence、delta、既存gate sub-checkを採用した。一方、package原文のL0〜L14、旧L6/L7配置、Hybrid Python単独authority、既存Python path維持、UT/Bun前提は現行L1〜L12およびADR-010へremap/rejectした。詳細は`docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`と対の受入設計を正とする。
+三契約、semantic ID、prototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidence、delta、既存gate sub-checkとPython意味コアを採用した。一方、package原文のL0〜L14と旧L6/L7配置は現行L1〜L12へremapし、既存Python pathは非authorityへ降格、UT/Bun前提はrejectした。ADR-010によりPythonを意味コア恒久正本、Nodeを単一transaction境界とする。詳細は`docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`と対の受入設計を正とする。
+
+packageのHBR-DH-001〜029はcanonical VDH-FR-001〜019へ29/29 crosswalk済みである。Pattern Contract、profile隔離、UI-M0..M7、surface分類、projection-only DB、Node browser/VRT境界を暗黙採用にせず、個別の要件・受入oracleへ固定した。
 
 ### 取込後判定
 
