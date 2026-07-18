@@ -20,16 +20,18 @@ next_pair_freeze: L3
 
 ## §0 量閉じ
 
-- 対象 L3 要件: HR-FR 33 件 + HR-NFR 13 件 = 46 件（2026-06-28 G-REQ.L1 freeze 43 件 + 2026-07-06 add-design 3 件）。
-- 対象 AC: HAC 92 件。
-- 受入テスト: HAT 46 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
-- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 46 件とは別枠で §1.1 に受入観測を持つ。
+- 対象 L3 要件: HR-FR 38 件 + HR-NFR 13 件 = 51 件（従来46件 + 2026-07-19 worker runtime／配布要求5件）。
+- 対象 AC: HAC 102 件。
+- 受入テスト: HAT 51 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
+- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 51 件とは別枠で §1.1 に受入観測を持つ。
 - 孤児: 0。詳細は §2 / §2.1 trace。
+
+新規HAT-P2-05..08／HAT-P6-06は受入設計の確定を示し、test implementationまたはruntime greenを示さない。旧46件の下流証拠と分離し、L4以降へ降下するまで`designed`を上限とする。
 
 ### §0.1 amendment frontier oracle（要求修正 frontier oracle）
 
 L1 §2.8 asset/progress visualization は 2026-06-30 の要求変更であり、2026-07-06 の PO 指示で
-S4 confirmed に戻した。本 confirmed HAT 46 件へはまだ混ぜず、downstream implementation frontier として扱う。
+S4 confirmed に戻した。本 confirmed HAT 51 件へはまだ混ぜず、downstream implementation frontier として扱う。
 acceptance 上の oracle は、read-model first response だけを VSCode View/Webview 実装完了として再混入することを
 false completion として拒否する。
 
@@ -37,7 +39,7 @@ S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 
 L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
 read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
 
-G-SF oracle: confirmed 46 件の overlay 内では `confirmed_overlay_frontier_count=0` である。現行 live frontier は
+G-SF oracle: confirmed 51 件の overlay 内では `confirmed_overlay_frontier_count=0` である。現行 live frontier は
 `live_semantic_frontier_count=2` として `completionDecisionPacket` / `objective-evidence-audit` に従う。`semantic_feature_frontier_record` は
 `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` の classification vocabulary として
 保持し、future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない。
@@ -124,7 +126,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 
 ## §1.1 Route-B back-fill acceptance（受入）
 
-`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 46 件とは別に
+`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 51 件とは別に
 受入観測を固定する。これらは L4/L5 pillar overlay へ二重採番せず、L6 `orchestration-memory.md` と
 L7 実装済み oracle を通じて trace する。
 
@@ -142,8 +144,8 @@ L7 実装済み oracle を通じて trace する。
 ## §1.2 Visualization frontier acceptance（受入、PLAN-L3-12）
 
 `docs/design/helix/L3-requirements/visualization-requirements.md`（`HR-FR-VIS-01..06`）の pair。
-§0.1 amendment frontier oracle に従い、これらは **confirmed 46 件へ混ぜない別枠の visualization frontier
-acceptance** であり、量閉じ 46 件を増やさない。正本 source は `VisualizationSnapshot`
+§0.1 amendment frontier oracle に従い、これらは **confirmed 51 件へ混ぜない別枠の visualization frontier
+acceptance** であり、量閉じ 51 件を増やさない。正本 source は `VisualizationSnapshot`
 （`src/state-db/visualization-read-model.ts`、`PLAN-L7-206`）で、UI 実装完了ではなく view 要件の受入観測を固定する。
 PO 承認前は `draft` frontier として扱い、read-model first response を VSCode View/Webview 実装完了と読み替えない。
 
@@ -183,11 +185,11 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 
 ## §2.2 Visualization frontier trace 対応（PLAN-L3-12）
 
-confirmed 46 件の trace とは別枠。`visualization-requirements.md` の `HR-FR-VIS-*` と 1:1。
+confirmed 51 件の trace とは別枠。`visualization-requirements.md` の `HR-FR-VIS-*` と 1:1。
 
 | L1 | L3 | L12 | 備考 |
 |----|----|-----|------|
-| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 / HR-FR-VIS-07 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 / HAT-VIS-07 | visualization frontier（confirmed 46 件外）。孤児 0 |
+| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 / HR-FR-VIS-07 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 / HAT-VIS-07 | visualization frontier（confirmed 51 件外）。孤児 0 | 
 
 ## §3 G-REQ.L3
 
