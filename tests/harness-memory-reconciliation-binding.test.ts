@@ -45,9 +45,14 @@ describe("harness memory reconciliation binding", () => {
     }
     expect(l1).toContain("authorityを持たない外部worker");
     expect(requirements).toContain("Python semantic coreとは別");
-    expect(
-      readFileSync("docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md", "utf8"),
-    ).toContain("worktreeの払い出し");
+    const discovery = readFileSync(
+      "docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md",
+      "utf8",
+    );
+    expect(discovery).toContain("worktreeの払い出し");
+    for (const id of ["HR-FR-P2-05", "HR-FR-P2-06", "HR-FR-P2-07", "HR-FR-P2-08", "HR-FR-P6-06"]) {
+      expect(discovery).toMatch(new RegExp(`^\\| ${id} \\| [^|]+ \\| L4 `, "m"));
+    }
   });
 
   it("binds every reconciled key to one retirement authority entry", () => {

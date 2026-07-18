@@ -101,8 +101,10 @@ dependencies:
   requires:
     - docs/governance/helix-harness-requirements_v1.3.md
     - docs/governance/harness-memory-reconciliation-audit-2026-07-19.md
+    - docs/plans/PLAN-REVERSE-458-harness-memory-retirement-contract-recovery.md
   references:
     - docs/plans/PLAN-L7-407-harness-memory-structure-v2.md
+    - docs/plans/PLAN-REVERSE-458-harness-memory-retirement-contract-recovery.md
 ---
 
 # PLAN-L7-458: 正本化済みharness memoryの証跡付き退役

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-DISCOVERY-12-grok-build-worktree-precedent
-title: "PLAN-DISCOVERY-12 (poc): grok-build worktree運用precedentのbehavior atom調査"
+title: "PLAN-DISCOVERY-12 (poc): 外部worker runtime／配布precedentのbehavior atom調査"
 kind: poc
 layer: cross
 workflow_phase: S0
@@ -29,18 +29,33 @@ dependencies:
     - docs/adr/ADR-010-python-node-runtime-authority.md
 ---
 
-# grok-build worktree運用precedentのbehavior atom調査
+# 外部worker runtime／配布precedentのbehavior atom調査
 
 ## 目的
 
-外部harnessのコードを取り込まず、worktreeの払い出し、所有権、回収、crash recovery、競合検出、衝突時停止のbehavior atomだけを採取し、`HR-FR-P2-05`／`HR-FR-P2-06`の設計入力にする。
+外部harnessのコードを取り込まず、worktreeの払い出しを含むorchestration、permanent bypass deny、worker output validation、
+distribution catalogのbehavior atomだけを採取し、`HR-FR-P2-05..08`／`HR-FR-P6-06`のL4 Forward設計入力にする。
+本PLANのownerが5要件すべての次工程routingを保持し、S4採否後に要件単位のL4 design PLANへ分割する。
 
 ## S0 backlog
 
 - 公式source revision、license、参照日を固定する。
 - allocation／lease／cleanup／recovery／conflictの状態遷移とfailure pathを列挙する。
 - HELIX既存team/worktree/fencing契約との重複、矛盾、欠落を比較する。
+- P2-07のrepository permanent denyとone-shot overrideの優先順位を反証試験する。
+- P2-08のstrict schema／digest profileと期限付き緩和receiptを比較する。
+- P6-06のcanonical/generated index、provenance、license、免責、artifact digestを比較する。
 - 採用候補、却下、追加実験を分離し、bulk importしない。
+
+## Forward owner台帳
+
+| 要件 | S0-S4 owner | S4後のrouting |
+|------|-------------|---------------|
+| HR-FR-P2-05 | PMO-Tech / TL | L4 worker allocation design |
+| HR-FR-P2-06 | PMO-Tech / TL | L4 lease／cleanup／recovery design |
+| HR-FR-P2-07 | AIM / TL | L4 bypass authority design |
+| HR-FR-P2-08 | QA / TL | L4 worker validation profile design |
+| HR-FR-P6-06 | PMO-Tech / TL | L4 distribution catalog design |
 
 ## 完了境界
 

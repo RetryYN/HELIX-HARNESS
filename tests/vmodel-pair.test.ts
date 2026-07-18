@@ -35,6 +35,18 @@ function uniqueMatches(text: string, pattern: RegExp): string[] {
   return [...new Set([...text.matchAll(pattern)].map((match) => match[1] ?? match[0]))].sort();
 }
 
+const WORKER_RUNTIME_FRONTIER_IDS = new Set([
+  "HR-FR-P2-05",
+  "HR-FR-P2-06",
+  "HR-FR-P2-07",
+  "HR-FR-P2-08",
+  "HR-FR-P6-06",
+]);
+
+function downstreamDescendedPillarRequirementIds(ids: string[]): string[] {
+  return ids.filter((id) => !WORKER_RUNTIME_FRONTIER_IDS.has(id));
+}
+
 function expandHacRefs(text: string): string[] {
   const ids = new Set<string>();
   for (const match of text.matchAll(/\b(HAC-[A-Z0-9]+-\d+)([a-z])\/([a-z])\b/g)) {
@@ -491,9 +503,9 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     const visRequirementIds = uniqueMatches(l12, /^\| HAT-VIS-[^|]+ \| (HR-FR-VIS-[^ |]+) \|/gm);
     const visAcIds = expandHacRefs(l12).filter((id) => id.startsWith("HAC-VIS-"));
 
-    expect(l3RequirementIds).toHaveLength(46);
+    expect(l3RequirementIds).toHaveLength(51);
     expect(hatRequirementIds).toEqual(l3RequirementIds);
-    expect(l3AcIds).toHaveLength(92);
+    expect(l3AcIds).toHaveLength(102);
     expect(hatAcIds).toEqual(l3AcIds);
     expect(visRequirementIds).toEqual([
       "HR-FR-VIS-01",
@@ -1204,7 +1216,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(acceptance).not.toContain("AT-FR 合計 = 58 + 21");
   });
 
-  it("U-VPAIR-007a: HELIX L3 46要件は L4 basic design に全件降下済み", () => {
+  it("U-VPAIR-007a: HELIX L3下流降下済み46要件はL4へ降下し、新規5要件はfrontierに留まる", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1214,8 +1226,8 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     const l4PillarTrace = l4.split("## §2 L3 -> L4 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
     const l4RequirementIds = uniqueMatches(l4PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
 
-    expect(l3RequirementIds).toHaveLength(46);
-    expect(l4RequirementIds).toEqual(l3RequirementIds);
+    expect(l3RequirementIds).toHaveLength(51);
+    expect(l4RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     for (const required of [
       "HB-P0 forward-convergence",
       "HB-P1 continuous-autonomy",
@@ -1260,7 +1272,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(ok.pairs).toBe(1);
   });
 
-  it("U-VPAIR-007c: HELIX L4 system test design は L3 46要件を1件も漏らさない", () => {
+  it("U-VPAIR-007c: HELIX L4 system test design は下流降下済み46要件を1件も漏らさない", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1275,7 +1287,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     );
     const l9TestIds = uniqueMatches(l9, /^\| (HST-(?!ID\b)[^ |]+) \|/gm);
 
-    expect(l9RequirementIds).toEqual(l3RequirementIds);
+    expect(l9RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     expect(l9TestIds).toHaveLength(46);
     expect(l4TestIds).toEqual(l9TestIds);
     expect(l9).toContain("L1 §2.8 asset/progress visualization amendment");
@@ -1482,7 +1494,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(ok.pairs).toBe(1);
   });
 
-  it("U-VPAIR-009c: HELIX L5 integration test design は L3 46要件を1件も漏らさない", () => {
+  it("U-VPAIR-009c: HELIX L5 integration test design は下流降下済み46要件を1件も漏らさない", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1497,7 +1509,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     );
     const l8TestIds = uniqueMatches(l8, /^\| (LIT-(?!ID\b)[^ |]+) \|/gm);
 
-    expect(l8RequirementIds).toEqual(l3RequirementIds);
+    expect(l8RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     expect(l8TestIds).toHaveLength(46);
     expect(l5TestIds).toEqual(l8TestIds);
     for (const required of [
@@ -1601,8 +1613,8 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     ]);
 
     expect(pair.ok).toBe(true);
-    expect(l6RequirementIds).toEqual(l3RequirementIds);
-    expect(l7RequirementIds).toEqual(l3RequirementIds);
+    expect(l6RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
+    expect(l7RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     expect(l7OracleIds).toHaveLength(52);
     expect(uniqueMatches(`${l5}\n${l6}\n${l7}`, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
     for (const required of [

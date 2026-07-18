@@ -1541,7 +1541,7 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(8);
+    expect(payload.outstanding.items).toHaveLength(9);
     expect(payload.outstanding.items.map((item: { planId: string }) => item.planId)).toEqual(
       expect.arrayContaining([
         "PLAN-L1-07-infinity-loop-platform-requirements",
