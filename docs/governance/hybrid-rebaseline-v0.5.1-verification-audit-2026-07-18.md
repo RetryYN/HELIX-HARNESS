@@ -42,3 +42,23 @@
 - 独立再監査のnew critical/major: 0/0。
 
 これによりAC-V051-01〜06と完了式を充足し、L3要件・受入設計を`confirmed`へ遷移した。packageは引き続きmigration sourceとして保持し、canonical HELIX要件は`helix-harness-requirements_v1.3.md`とする。
+
+## AI Vision Design HARNESS要件取込監査（2026-07-19追補）
+
+### 取込前判定
+
+**PARTIAL**。現行要件には「ビジュアルDesign HARNESSはUI/UX生成・評価であり一般検証基盤ではない」という境界だけが存在し、packageの三契約、semantic ID、typed artifact、gate sub-check、`implemented`／`ux_verified`分離、UX evidence、L1〜L12／Scrum Reverse配置は直接bindingされていなかった。
+
+### Source同一性
+
+- 正本package: SHA-256 `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd`、211 physical files。
+- workspace添付同名package: SHA-256 `04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61`、208 entries。
+- 後者は再監査是正前の中間物としてsuperseded扱いとし、同名だけで正本へ昇格しない。
+
+### 取込裁定
+
+三契約、semantic ID、prototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidence、delta、既存gate sub-checkを採用した。一方、package原文のL0〜L14、旧L6/L7配置、Hybrid Python単独authority、既存Python path維持、UT/Bun前提は現行L1〜L12およびADR-010へremap/rejectした。詳細は`docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`と対の受入設計を正とする。
+
+### 取込後判定
+
+要件bindingは **PASS**。runtime実装・engine activationの完了を意味しない。実装はL4以降の別PLAN、schema、negative fixture、evidence、gate receiptが揃うまで未着手／未完了として扱う。
