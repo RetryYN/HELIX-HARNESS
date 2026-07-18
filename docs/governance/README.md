@@ -7,18 +7,22 @@
 
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
-1. `helix-harness-concept_v3.1.md`
-2. `helix-harness-requirements_v1.2.md`
-3. `helix-harness-extraction-plan_v0.1.md`
-4. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
-5. `../adr/ADR-009-node-python-linux-runtime.md` (target runtime authority。terminal cutover前のactive executionは既存経路)
-6. `repository-structure.md` (リポジトリ構成ルールの正本)
+1. `helix-harness-requirements_v1.3.md`（現行L1〜L12 Vモデル＋Scrum正本）
+2. `helix-harness-concept_v3.1.md`（concept。旧工程表記はcompatibility説明）
+3. `helix-harness-requirements_v1.2.md`（legacy L0〜L14 compatibility reference）
+4. `helix-harness-extraction-plan_v0.1.md`
+5. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
+6. `../adr/ADR-009-node-python-linux-runtime.md` (target runtime authority。terminal cutover前のactive executionは既存経路)
+7. `../adr/ADR-010-python-semantic-core-node-commit-boundary.md` (Python意味コアとNode単一commit境界)
+8. `repository-structure.md` (リポジトリ構成ルールの正本)
 
-> **ADR-001/009連動**: control planeはTypeScript/Nodeでclean rebuildする。sourceはbehavior atom単位で採否し、
-> 旧runtime／bulk code-portは禁止する。採択されたclosed capability classだけをversioned proposal-only Python workerで再実装できる。
+> **ADR-001/009/010連動**: sourceはbehavior atom単位で採否し、旧runtimeの一括復活とbulk code-portを禁止する。
+> Pythonは要件抽出・typed spec・trace・検出・impact・review・文書生成の恒久意味コア、TypeScript/Nodeは
+> harness.db・Git/GitHub副作用の単一commit境界とする。動作済みPython意味コアのTS一括書き直しも禁止する。
 > `../migration/helix-porting-map.md`等はsource capability inventory／再設計思想の参考であり、旧runtimeのport計画として使わない。
 
-> **ADR-009 boundary**: implementationはHELIX-owned TypeScript/Node control planeとproposal-only Python workerとする。
+> **ADR-010 layered authority**: Python意味契約とNode実行契約は同格であり、NodeがPythonの意味判断を再実装しない。
+> PythonへDB path・credential・repository・`.helix/`を渡さず、Nodeだけがtransactional side effectをcommitする。
 > Migration docsとsource snapshotsはatomization／regressionのsource materialであり、旧runtime自体をexecution routeにしない。
 
 ## Reference Only（参考のみ）

@@ -248,7 +248,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(discovery).toContain("S3 evidence は `frontier_pending_decision` のまま");
     expect(addFeature).toContain("bottom-up build で機能意味が増えた場合");
     expect(reverse).toContain("実装や green command があっても意味ベース設計の完了根拠にならない");
-    expect(l3).toContain("confirmed 46 件: `classification=confirmed_current`");
+    expect(l3).toContain("confirmed 51 件: `classification=confirmed_current`");
     expect(l3).toContain("live completion frontier");
     expect(l3).toContain("version-up-activation-packet.v1");
     expect(l3).toContain("plan-only activation packet");

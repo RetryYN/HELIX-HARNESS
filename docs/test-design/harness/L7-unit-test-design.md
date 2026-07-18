@@ -1235,6 +1235,7 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | MEMV2-S4b | `deliverTakeover` | stdout成功後だけconsumeし、stdout/append失敗とcrashで情報を失わない。 |
 | MEMV2-S5a | `consumeTakeover` | 再consumeは追記ゼロ、未知/expired/他layerはreason付きno-op。 |
 | MEMV2-S5b | concurrent consume | tombstoneをtargetあたり1件にし、lease回収後の旧holderをstale fencing tokenで拒否する。 |
+| MEMV2-S5c | `retireMemory` / legacy adapter | 正本化済みharness/projectをbody-free receiptへ退役し、v2/legacy両surfaceでactive 0、再実行は追記0、takeover指定は型・CLI境界で拒否する。 |
 | MEMV2-S6 | group-first selector | 単一type100件でも別typeを残しhidden/lifecycle集計を一致させる。 |
 | MEMV2-S7a | budget validator | code point境界、breadcrumb予約、oversize skip、0 unlimited、不正値を検証する。 |
 | MEMV2-S7b | deterministic renderer | 同一入力の決定論とmaxBodyChars→maxChars precedenceを保証する。 |

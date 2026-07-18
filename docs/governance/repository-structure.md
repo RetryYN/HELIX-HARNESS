@@ -2,9 +2,9 @@
 
 - **Status**: accepted
 - **Date**: 2026-05-27
-- **正本**: 本書がリポジトリ配置の **canonical 正本**。`requirements_v1.2 §9.1`（Phase 0 存在チェック）と `CLAUDE.md` のディレクトリ節は本書を参照する。
-- **前提**: ADR-001（clean rebuild／TypeScript strict）/ ADR-009（target = Node control plane＋Python proposal worker、Linux-primary）/ ADR-005（配布 = GitHub-pull、Web UI = 中央・全 project 横断、plugin = 補助チャネル）/ V-model 4 artifact（concept v3.1 §2.3）。
-- **要件同期**: `docs/process/` (A) / `src/web/` は **requirements_v1.2 §9.1 Phase 0-A 存在チェックツリーに反映済**で実体化済み。`workers/python/`はADR-009のtarget配置だが未実体化であり、HDS-HIL-12/14 pair-freezeとForward PLAN前に作らない。既存`[予定]`は実体化済み、`[未実体化target]`は配置だけ確定済みを表す。
+- **正本**: 本書がリポジトリ配置の **canonical 正本**。`requirements_v1.3`と`CLAUDE.md`のディレクトリ節は本書を参照する。v1.2 §9.1はlegacy Phase 0 compatibility referenceである。
+- **前提**: ADR-001（clean rebuild／TypeScript strict）/ ADR-009（Node 24 LTS、脱Bun、Linux-primary）/ ADR-010（Python意味コア＋Node単一commit境界）/ ADR-005（配布 = GitHub-pull、Web UI = 中央・全project横断、plugin = 補助チャネル）/ V-model 4 artifact（concept v3.1 §2.3）。
+- **要件同期**: `docs/process/` / `src/web/` はlegacy requirements_v1.2 §9.1 Phase 0-A存在チェックから実体化済みで、現在はrequirements_v1.3へ従属する。`workers/python/`はADR-010の意味コアtarget配置だが未実体化であり、HDS-HIL-12/14 pair-freezeとForward PLAN前に作らない。
 - **本 repo の位置づけ (ADR-005)**: 本 repo は **harness engine repo（= 配布の単一真実）**。各 project は本 repo を **git dependency（tag-pin）で pull** し、`helix setup` が adapter を投影する。下記 canonical ツリーは **engine repo の構成**。consume 側 project への投影レイアウトは §9 を参照。
 
 ## 1. canonical ツリー
@@ -28,7 +28,7 @@ HELIX-HARNESS/
 ├── .gitignore
 ├── ハイブリッド設計ドキュメントv1-fixed.zip # ZIP/L12 採用の参照パッケージ (reference-only、PLAN-L3-13)
 │
-├── src/                          # ★ harness TS core (実装 = ② 実装コード)
+├── src/                          # ★ TypeScript/Node実行境界 (実装 = ② 実装コード)
 │   ├── cli.ts                    #   エントリ (commander)
 │   ├── schema/                   #   zod 単一正本 (enum / 契約。drift を型で抑止)
 │   ├── plan/                     #   plan lint / validator
@@ -36,8 +36,8 @@ HELIX-HARNESS/
 │   ├── runtime/                  #   mode 検出 (standalone/claude-only/codex-only/hybrid) / orchestration
 │   ├── doctor/                   #   統合検証 / 横断検出
 │   └── web/                      #   [予定] 中央 Web UI service (15 画面 / 全 project 横断 / GitHub backbone、ADR-005 D2。backend 詳細は L2 設計)
-├── workers/                      # ★[未実体化target] proposal-only worker（authoritative write禁止）
-│   └── python/                   #   [未実体化target] registry済みentrypoint、schema、lock、package metadata
+├── workers/                      # ★[未実体化target] Python恒久意味コア（authoritative side-effect禁止）
+│   └── python/                   #   [未実体化target] semantic contract、entrypoint、schema、lock、package metadata
 ├── tests/                        # ★ ④ テストコード (vitest、*.test.ts、src を mirror)
 ├── scripts/                      # ★ 薄い OS entrypoint のみ (core logic を置かない)
 │   ├── helix                    #   POSIX / Git Bash
@@ -48,11 +48,11 @@ HELIX-HARNESS/
 │   ├── governance/               # ★ 現行正本 (本書群)
 │   │   ├── README.md             #   正本 / 参照 / archive 境界
 │   │   ├── helix-harness-concept_v3.1.md       # 構想 (① 概念)
-│   │   ├── helix-harness-requirements_v1.2.md  # 要件 / 受入条件
+│   │   ├── helix-harness-requirements_v1.3.md  # L1〜L12 Vモデル＋Scrum要件 / 受入条件
 │   │   ├── helix-harness-extraction-plan_v0.1.md
 │   │   └── repository-structure.md                    # 本書 (構成正本)
 │   ├── adr/                      # ADR-NNN-slug.md (決定記録)
-│   ├── process/                  # ★[新設] 工程(L0-L14)定義 + 駆動モデル定義の正本 (詳細・移管方針は §2 参照)
+│   ├── process/                  # ★ canonical L1〜L12工程 + 駆動モデル定義の正本（legacy L0〜L14互換入力を含む）
 │   ├── design/                   # [予定] ① 設計 doc (D-API/D-DB 等)
 │   ├── test-design/              # [予定] ③ テスト設計 doc
 │   ├── research/                 # [予定] Research mode 成果 (research-memo。ADR は adr/、§2 参照)
@@ -92,14 +92,14 @@ HELIX-HARNESS/
 
 | 対象 | 置き場 | ルール |
 |------|--------|--------|
-| harness TS/Node control plane | `src/<domain>/` | **機能のhome**。domain別に配置し、bash／Python実装を混在させない（ADR-009） |
-| Python proposal worker | `workers/python/<capability>/` | HDS-HIL-12/14でfreezeしたdescriptor、entrypoint、schema、lockだけを置く。repository／DB／`.helix` write禁止 |
-| 工程 / 駆動モデル定義 | `docs/process/` | **工程(L0-L14)定義 + 駆動モデル(Forward/Scrum/Reverse/Recovery/Add-feature/Retrofit/Refactor/Research)正本**。「どの工程/駆動を増やすか」は要件 (L3) で決め本 dir に置く (本 session の発端 gap を解消)。既存 `docs/governance/recovery-workflow.md` は **`docs/process/modes/recovery.md` へ統合完了 (2026-06-04、IMP-060)** = recovery 正本は `docs/process/modes/recovery.md`。recovery-workflow.md は superseded (historical、冒頭 banner) |
+| TypeScript/Node実行境界 | `src/<domain>/` | DB/Git/GitHub副作用、lease/fence/audit/transactionのhome。Pythonの意味判断を重複実装しない |
+| Python意味コア | `workers/python/<capability>/` | HDS-HIL-12/14でfreezeしたsemantic contract、entrypoint、schema、lockを置く。repository／DB／`.helix` writeは禁止 |
+| 工程 / 駆動モデル定義 | `docs/process/` | **canonical L1〜L12工程 + 駆動モデル(Forward/Scrum/Scrum Reverse/Recovery/Add-feature/Retrofit/Design Refactor/Performance Refactor/Research)正本**。legacy L0〜L14はcompatibility inputに限定する |
 | 中央 Web UI service | `src/web/` | [予定] 全 project 横断の管理 UI (15 画面、GitHub backbone、ADR-005 D2)。backend 配置・通信境界は L2 設計 (ADR-003 §IMP-031 参照) |
 | テストコード | `tests/` | vitest、`*.test.ts`、src を mirror |
 | OS entrypoint | `scripts/` | **薄いwrapperのみ**。cutover前はknown-good Bun、terminal後は同じNode artifactだけを呼び、core logicを持たない |
 | enum / 契約 | `src/schema/` | **zod 単一正本**。enum を複数箇所に再定義しない (drift 防止、requirements §1.10 F) |
-| 現行正本 doc | `docs/governance/` | concept v3.1 / requirements v1.2 / README / extraction-plan / 本書 |
+| 現行正本 doc | `docs/governance/` | concept v3.1 / requirements v1.3 / README / extraction-plan / 本書 |
 | 決定記録 | `docs/adr/` | `ADR-NNN-slug.md` |
 | 実装計画 | `docs/plans/` | `PLAN-NNN-slug.md`。superseded は archive で隠さず、後継 PLAN / errata / `supersedes` trace で扱う。`status: archived` への遷移は human approval と rejection/retirement rationale がある場合に限る |
 | 移行資料 | `docs/migration/` | source capability reference。code-port 計画は ADR-001 で superseded |
@@ -133,13 +133,13 @@ HELIX-HARNESS/
 
 ## 6. 境界
 
-- **正本**: `docs/governance/*` + `docs/adr/*` + `docs/process/*` (工程/駆動モデル定義) + `src/` (TS core)。
+- **正本**: `docs/governance/*` + `docs/adr/*` + `docs/process/*` (工程/駆動モデル定義) + Python semantic contract + `src/` (Node実行境界)。
 - **generated / 非正本**: `.helix/state` `dist/` `node_modules/` legacy local state。
 - **historical**: `docs/archive/`（旧版）/ `docs/migration/`（移行資料、code-port 部は superseded）。
 
 ## 7. 禁止事項
 
-- `src/` control planeにbash／Pythonを混在させない。Pythonは`workers/python/`のproposal-only contractへ隔離する。
+- `src/`のNode実行境界にbash／Pythonを混在させない。Python意味コアは`workers/python/`へ配置し、versioned contract以外で副作用境界を迂回させない。
 - enum / 契約を `src/schema/` 以外で再定義しない。
 - `.helix/` **runtime state** (state/cache/logs/tmp/handover CURRENT/local*) を docs 目的で Git 追跡しない。**監査証跡** (`audit/*.md` / `audit/reports/*.md` / `evidence/` / `handover/provider/`) は例外として tracked (§5、A-128 F-1)。
 - source process reference を工程定義の正本として参照しない (正本 = `docs/process/`)。

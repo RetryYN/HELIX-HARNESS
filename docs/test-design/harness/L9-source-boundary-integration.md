@@ -1,7 +1,7 @@
 ---
 layer: L9
 sub_doc: integration-test-design
-status: draft
+status: confirmed
 pair_artifact: docs/design/harness/L5-detailed-design/source-boundary-architecture.md
 plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 ---

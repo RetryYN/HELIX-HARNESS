@@ -1541,12 +1541,12 @@ describe("L7 CLI surface closure", () => {
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(payload.outstanding.items).toHaveLength(16);
+    expect(payload.outstanding.items).toHaveLength(9);
     expect(payload.outstanding.items.map((item: { planId: string }) => item.planId)).toEqual(
       expect.arrayContaining([
         "PLAN-L1-07-infinity-loop-platform-requirements",
-        "PLAN-L7-456-document-agent-metadata-phase-b-apply",
-        "PLAN-L7-457-document-diff-local-artifact-output",
+        "PLAN-L7-146-serverless-readonly-share",
+        "PLAN-M-02-helix-identifier-rename",
       ]),
     );
 

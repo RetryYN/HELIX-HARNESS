@@ -7,6 +7,7 @@ created: 2026-07-18
 updated: 2026-07-18
 owner: PO / TL
 related_l3: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
+pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md
 ---
 
 # HELIX L1要求 — REBASELINE v0.5.0追突

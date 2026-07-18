@@ -41,7 +41,7 @@ config、snapshot、実行時刻、worker/verifier分離を必須とする。HST
 | HAT-HIL-15 | HR-FR-HIL-15 / HAC-HIL-15a, HAC-HIL-15b, HAC-HIL-15c | HST-HIL-012, HST-HIL-024 | no-UIまたはprototype routeを完了 | applicability、artifact/state、walkthrough/delta/agreement | implicit skip、static-only、stale receipt |
 | HAT-HIL-16 | HR-FR-HIL-16 / HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c | HST-HIL-025, HST-HIL-026 | design refactorとdomain namingをrouting | semantic signature、consumer/oracle、role/name、rollback | lexical-only、根拠なし抽象化、誤route |
 | HAT-HIL-17 | HR-FR-HIL-17 / HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-17c | HST-HIL-027, HST-HIL-028, HST-HIL-029 | requirement翻訳、template義務、revisionをactive化 | source/authority/oracle、template/obligation/change/review | aggregate/TBD/N/A、self-promotion、stale |
-| HAT-HIL-18 | HR-FR-HIL-18 / HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c | HST-HIL-030, HST-HIL-031, HST-HIL-032, HST-HIL-033 | L0–L14 ledgerの上下/左右pairとrefactorを検証 | registry、snapshot、addition/pair/oracle/refactor receipt | 片edge、stale、未実行oracle、pair破壊 |
+| HAT-HIL-18 | HR-FR-HIL-18 / HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c | HST-HIL-030, HST-HIL-031, HST-HIL-032, HST-HIL-033 | canonical L1〜L12 ledgerの上下edge/正規6 pairとrefactorを検証。legacy入力はexact remap | registry、snapshot、addition/pair/oracle/refactor receipt | 片edge、stale、未実行oracle、pair破壊、legacy token出力 |
 
 ## §2 量閉じとfreeze条件
 

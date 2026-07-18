@@ -1,4 +1,5 @@
 import { spawn, spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   appendFileSync,
   existsSync,
@@ -6,6 +7,7 @@ import {
   mkdtempSync,
   readFileSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -24,6 +26,7 @@ import {
   nodeMemoryV2Deps,
   normalizeMemoryEntry,
   resolveMemoryView,
+  retireMemory,
   surfaceMemoryV2,
   validateMemoryEntry,
   writeAllBytes,
@@ -31,6 +34,7 @@ import {
 } from "../../src/memory/memory-v2";
 
 describe("memory structure v2 (PLAN-L7-407)", () => {
+  // Additive retirement contract: PLAN-L7-458-harness-memory-canonical-retirement.
   let root: string | null = null;
 
   afterEach(() => {
@@ -407,6 +411,166 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     ).toHaveLength(1);
   });
 
+  it("U-MEMV2-005c: canonicalized harness memory retires idempotently without using takeover consume", () => {
+    const mock = mockDeps("2026-07-11T00:00:00.000Z");
+    mock.events.harness.push(entry({ id: "harness-rule", layer: "harness" }));
+    mock.clock = "2026-07-11T00:01:00.000Z";
+    expect(
+      retireMemory(
+        {
+          layer: "harness",
+          ids: ["harness-rule"],
+          consumerId: "reconciler",
+          authorityId: "memory-reconciliation-2026-07-19",
+        },
+        mock,
+      ),
+    ).toEqual([{ id: "harness-rule", reason: "consumed" }]);
+    expect(resolveMemoryView(mock.events.harness, mock.clock, "harness").activeEntries).toEqual([]);
+    expect(
+      retireMemory(
+        {
+          layer: "harness",
+          ids: ["harness-rule"],
+          consumerId: "reconciler",
+          authorityId: "memory-reconciliation-2026-07-19",
+        },
+        mock,
+      ),
+    ).toEqual([{ id: "harness-rule", reason: "already_consumed" }]);
+    expect(mock.events.harness).toContainEqual(
+      expect.objectContaining({
+        id: "memory-consumed:harness-rule",
+        lifecycle: expect.objectContaining({ state: "consumed", consumedBy: "reconciler" }),
+      }),
+    );
+    mock.events.harness = mock.events.harness.filter((item) => item.lifecycle.state !== "active");
+    expect(
+      retireMemory(
+        {
+          layer: "harness",
+          ids: ["harness-rule"],
+          consumerId: "reconciler",
+          authorityId: "memory-reconciliation-2026-07-19",
+        },
+        mock,
+      ),
+    ).toEqual([{ id: "harness-rule", reason: "already_consumed" }]);
+  });
+
+  it("U-MEMV2-005f: retirement authority is fail-closed, rechecked under lock, and preserves partial results", () => {
+    const unauthorized = mockDeps("2026-07-11T00:00:00.000Z");
+    unauthorized.events.harness.push(entry({ id: "a", key: "a" }));
+    unauthorized.authorityValid = false;
+    const input = {
+      layer: "harness" as const,
+      ids: ["a"],
+      consumerId: "reconciler",
+      authorityId: "memory-reconciliation-2026-07-19",
+    };
+    expect(retireMemory(input, unauthorized)).toEqual([{ id: "a", reason: "unauthorized" }]);
+    expect(unauthorized.events.harness).toHaveLength(1);
+
+    const stale = mockDeps("2026-07-11T00:00:00.000Z");
+    stale.events.harness.push(entry({ id: "a", key: "a" }));
+    stale.verifyRetirementAuthority = () => {
+      stale.authorityChecks += 1;
+      return stale.authorityChecks === 1;
+    };
+    expect(retireMemory(input, stale)).toEqual([{ id: "a", reason: "unauthorized" }]);
+    expect(stale.events.harness).toHaveLength(1);
+
+    const partial = mockDeps("2026-07-11T00:00:00.000Z");
+    partial.events.harness.push(
+      entry({ id: "a", key: "a" }),
+      entry({ id: "b", key: "b" }),
+      entry({ id: "c", key: "c" }),
+    );
+    partial.failAppendAfter = 4;
+    expect(retireMemory({ ...input, ids: ["a", "b", "c"] }, partial)).toEqual([
+      { id: "a", reason: "consumed" },
+      { id: "b", reason: "persist_failed" },
+      { id: "c", reason: "persist_failed" },
+    ]);
+  });
+
+  it("U-MEMV2-005g: production authority binds its digest and rejects repo-external symlink targets", () => {
+    root = mkdtempSync(join(tmpdir(), "helix-memory-authority-"));
+    const outside = mkdtempSync(join(tmpdir(), "helix-memory-authority-outside-"));
+    try {
+      const targetPath = join(root, "docs", "canonical.md");
+      const authorityDir = join(root, "docs", "governance", "generated");
+      mkdirSync(join(root, "docs"), { recursive: true });
+      mkdirSync(authorityDir, { recursive: true });
+      writeFileSync(join(outside, "canonical.md"), "authority-key\n", "utf8");
+      symlinkSync(join(outside, "canonical.md"), targetPath);
+      const entries = [
+        {
+          memory_id: "harness:authority-key:op:test",
+          key: "authority-key",
+          targets: [
+            {
+              path: "docs/canonical.md",
+              sha256: `sha256:${createHash("sha256").update("authority-key\n").digest("hex")}`,
+            },
+          ],
+        },
+      ];
+      const payload = {
+        schema_version: 1,
+        source_revision: "test-v1",
+        consumer_id: "reconciler",
+        layer: "harness",
+        entries,
+      };
+      const authorityId = `sha256:${createHash("sha256").update(JSON.stringify(payload)).digest("hex")}`;
+      writeFileSync(
+        join(authorityDir, "harness-memory-retirement-authority.json"),
+        `${JSON.stringify({
+          schema_version: 1,
+          source_revision: payload.source_revision,
+          authority_id: authorityId,
+          consumer_id: payload.consumer_id,
+          layer: payload.layer,
+          entries,
+        })}\n`,
+        "utf8",
+      );
+      const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:00:00.000Z" });
+      const written = writeMemoryV2(
+        { operationId: "test", layer: "harness", key: "authority-key", body: "body" },
+        deps,
+      );
+      expect(written.ok).toBe(true);
+      expect(
+        retireMemory(
+          {
+            layer: "harness",
+            ids: ["harness:authority-key:op:test"],
+            consumerId: "reconciler",
+            authorityId,
+          },
+          deps,
+        ),
+      ).toEqual([{ id: "harness:authority-key:op:test", reason: "unauthorized" }]);
+      rmSync(targetPath);
+      writeFileSync(targetPath, "authority-key\n", "utf8");
+      expect(
+        retireMemory(
+          {
+            layer: "harness",
+            ids: ["harness:authority-key:op:test"],
+            consumerId: "reconciler",
+            authorityId,
+          },
+          deps,
+        ),
+      ).toEqual([{ id: "harness:authority-key:op:test", reason: "consumed" }]);
+    } finally {
+      rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
   it("U-MEMV2-006: group-first selection keeps minority types visible and reports exact hidden counts", () => {
     const mock = mockDeps("2026-07-11T00:00:00.000Z");
     for (let i = 0; i < 100; i += 1) {
@@ -663,6 +827,9 @@ interface MockDeps extends MemoryDepsV2 {
   failAppend: boolean;
   failSessionEvent: boolean;
   failAfterMutation: boolean;
+  authorityValid: boolean;
+  authorityChecks: number;
+  failAppendAfter: number | null;
 }
 
 function mockDeps(clock: string): MockDeps {
@@ -676,10 +843,17 @@ function mockDeps(clock: string): MockDeps {
     failAppend: false,
     failSessionEvent: false,
     failAfterMutation: false,
+    authorityValid: true,
+    authorityChecks: 0,
+    failAppendAfter: null,
     now: () => mock.clock,
     isSecret: (value) => value.includes("SECRET_MARKER"),
     stableId: (layer, key, createdAt) => `${layer}:${key}:${createdAt}`,
     readEvents: (layer) => [...mock.events[layer]],
+    verifyRetirementAuthority: () => {
+      mock.authorityChecks += 1;
+      return mock.authorityValid;
+    },
     withLayerLock: (_layer, _owner, fn) => {
       fence += 1;
       activeFence = fence;
@@ -694,6 +868,8 @@ function mockDeps(clock: string): MockDeps {
     appendEvent: (layer, value, token) => {
       if (token !== activeFence) throw new Error("stale_fencing_token");
       if (mock.failAppend) throw new Error("append_failed");
+      if (mock.failAppendAfter !== null && mock.events[layer].length >= mock.failAppendAfter)
+        throw new Error("append_failed");
       mock.events[layer].push(value);
     },
     replaceEvents: (layer, values, token) => {

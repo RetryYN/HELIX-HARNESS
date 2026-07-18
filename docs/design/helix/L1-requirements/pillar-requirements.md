@@ -71,7 +71,7 @@ sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX pr
 
 **採用しなかった/保留**: self-verification 単独（HNFR-P3 が明示禁止、best practice も不支持）/ ARIA delegation graph（arxiv 段階、実用 OSS 未確認）/ Anthropic compact beta（harness handover と競合有無 未確認）。
 
-**L3 一次検証結果（PLAN-L3-06）**: Release Please / semantic-release / GitHub Rulesets / Merge Queue / OWASP LLM01・LLM06 / Firecracker / gVisor / GitHub token docs は L3 §2.5 で一次出典を固定。ACON 等の論文実装は採用済み runtime 前提にせず、必要時は後続 PLAN で TS/Bun 再実装可否を個別検証する。**ADR-001 厳守: OSS は概念採取＋TS-Bun 再実装、bulk import 禁止。**
+**L3 一次検証結果（PLAN-L3-06）**: Release Please / semantic-release / GitHub Rulesets / Merge Queue / OWASP LLM01・LLM06 / Firecracker / gVisor / GitHub token docs は L3 §2.5 で一次出典を固定。ACON 等の論文実装は採用済みruntime前提にせず、必要時は後続PLANで検証する。**ADR-001/ADR-010厳守: bulk importは禁止し、意味判断はPython意味コア、副作用はTypeScript/Node実行境界へ責務分離する。**
 
 ## §2.6 Codex runtime parity 要求（PLAN-L1-06 close 前追加、2026-06-28）
 
@@ -81,6 +81,7 @@ Claude 視点だけで L1 を閉じないため、P2/P7/HNFR-AC の acceptance o
 |------|---------|--------------------|
 | HBR-P2 / HNFR-AC | Codex の `apply_patch` / `write_file` / `exec_command` / `local_shell` surface は Claude の `Edit` / `Write` / `MultiEdit` / `Bash` と同じ guard intent に正規化される | `.codex/hooks.json` と `.claude/settings.json` が同じ TS entrypoint を呼ぶ。hosted API tool surface は repo hook が非強制であることを明示し、編集前 git/status preflight を要求する |
 | HBR-P2 | hybrid では Codex worker の成果を Codex 自身が承認しない。Codex-only では cross-agent を僭称せず `intra_runtime_subagent` / `cross_agent_review: unavailable` を記録する | `selectVerifier` が opposite provider を選ぶ。single-runtime fallback は明示 status/block reason を持ち、self-review を gate PASS 根拠にしない |
+| HBR-P2 / HNFR-AC | Claude/Codex以外の定額AI runtimeを、authorityを持たない外部workerとして追加できる | workerは隔離worktreeだけを受け取り、secret作業を受けず、repository-level bypass禁止を越えない。Python semantic coreとは別capability classとして登録する |
 | HBR-P7 | Claude/Codex どちらで開始しても同じ `.helix/memory` から bounded recallする。`.helix/handover/provider`はprovider delegation evidence専用で、progress/continuationへjoinしない | Claude 内蔵 memory / `.claude/agent-memory` を正本にしない。Codex SessionStart でも同じ memory surface（直近 12 件 / 240 字）を表示する |
 | HNFR-AC | Codex 固有の subagent/tool surface（例: `spawn_agent`）は、guard parity が未実装なら fail-close または明示 deferred とし、自由委譲面を作らない | `spawn_agent|spawn_agents_on_csv` は Codex hook adapter の agent-guard で `agent_type` allowlist / direct model override / task body / bulk spawn を fail-close 検証する。新 surface は tool contract registry / deferred follow-up のいずれかで機械追跡し、未ガード surface を「存在しない」扱いにしない |
 
@@ -93,6 +94,7 @@ P6/P9 の確定 GAP として明示する。
 | 対象 | L1 要求 | L3/L7 での検証観点 |
 |------|---------|--------------------|
 | HBR-P6 / HBR-P9 | 配布は GitHub tag/release pin を正本とし、現行機械識別子では `helix setup`、PLAN-M-02 の rename 後は `helix setup` 相当の 1 コマンドで full bootstrap できる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix`/`.helix` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |
+| HBR-P6 / HNFR-AC | HELIX-HARNESS-OSはcanonical indexとgenerated indexを分離し、first-party／third-partyの由来・license・免責をpackage単位で保持する | generated indexの手編集を拒否し、package digestとsource provenanceを検証する。publish／cutoverはPLAN-M-02のaction-binding approval前に実行しない |
 | HBR-P1 / HNFR-P5 | セットアップ後にDB continuation projectionとbounded memoryから迷わず再開できる。必要な next_action と未充足 gate が command output に出る | 手作業の doc 探索を前提にしない。event-first appendと冪等projectionを使い、projection成功後だけcheckpointを公開する。crash後も同一event IDから重複なく再開する |
 | HBR-P1 / HBR-P6 / HBR-P9 | セットアップ済みプロジェクトは tag bump / release pin 更新で version-up できる。更新は既存 harness state を読み、必要な migration / compatibility / rollback plan を出す | 現行 version と target tag を検出し、差分 plan・互換性 warning・rollback point・再実行 idempotency を記録する。破壊的 migration や不可逆な branch/ruleset 変更は自動適用しない |
 | HNFR-P8 / HNFR-AC | branch protection/rulesets/secrets/外部 API 設定など本番・外部影響を持つ適用は dry-run/emit-only を既定にし、実適用は action-binding approval を必須にする。setup は既存ファイルを silent overwrite / delete / reset しない | `--dry-run` が無変更、apply は対象・actor・params・expiry を audit に残す。既存ファイル衝突は stop + diff plan + backup/merge 指示にし、hosted API surface でも同じ preflight を要求する |

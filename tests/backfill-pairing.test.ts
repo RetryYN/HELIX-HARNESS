@@ -11,6 +11,7 @@ import {
   parseConditionalBackfillAuditPlanIds,
   parseGlossaryTerms,
   parsePlan,
+  parseReferences,
   parseRequires,
 } from "../src/lint/backfill-pairing";
 
@@ -20,16 +21,18 @@ function plan(over: Partial<ParsedPlan> = {}): ParsedPlan {
     plan_id: "PLAN-L7-99-x",
     kind: "add-impl",
     status: "confirmed",
+    created: "2026-06-21",
     updated: "2026-06-21",
     backpropDecision: "",
     backpropDecisionReason: "",
     requires: [],
+    references: [],
     glossaryTerms: [],
     ...over,
   };
 }
 
-describe("U-BACKFILL-001 parseRequires / parseGlossaryTerms", () => {
+describe("U-BACKFILL-001 dependency参照 / glossary parser", () => {
   it("requires の YAML list path を抽出 / 無し・[] → []", () => {
     const fm = `---
 plan_id: PLAN-REVERSE-06-x
@@ -47,6 +50,12 @@ dependencies:
     ]);
     expect(parseRequires("requires: []\n")).toEqual([]);
     expect(parseRequires("no requires here")).toEqual([]);
+  });
+
+  it("Reverse対象をreferencesから抽出する", () => {
+    expect(parseReferences("references:\n  - docs/plans/PLAN-L7-08-agent-slots.md\n")).toEqual([
+      "docs/plans/PLAN-L7-08-agent-slots.md",
+    ]);
   });
 
   it("§6 用語更新 の太字 term を抽出", () => {
@@ -97,18 +106,34 @@ describe("U-BACKFILL-003 KIND_BACKFILL matrix", () => {
 describe("U-BACKFILL-004 analyzeBackfill", () => {
   const glossary = "用語集: agent-slot は ... peak_parallel は ...";
 
-  it("required (add-impl) に Reverse requires が有る → 孤児なし", () => {
+  it("required (add-impl) をReverseが参照する → 孤児なし", () => {
     const plans = [
       plan({ plan_id: "PLAN-L7-08-agent-slots", kind: "add-impl" }),
       plan({
         plan_id: "PLAN-REVERSE-06-x",
         kind: "reverse",
-        requires: ["docs/plans/PLAN-L7-08-agent-slots.md"],
+        created: "2026-07-19",
+        updated: "2026-07-19",
+        references: ["docs/plans/PLAN-L7-08-agent-slots.md"],
       }),
     ];
     const r = analyzeBackfill(plans, glossary);
     expect(r.reverseOrphans).toEqual([]);
     expect(r.ok).toBe(true);
+  });
+
+  it("legacy Reverseはupdatedが新しくなってもcreated時点のrequires方式を維持する", () => {
+    const plans = [
+      plan({ plan_id: "PLAN-L7-08-agent-slots", kind: "add-impl" }),
+      plan({
+        plan_id: "PLAN-REVERSE-06-x",
+        kind: "reverse",
+        created: "2026-06-21",
+        updated: "2026-07-19",
+        requires: ["docs/plans/PLAN-L7-08-agent-slots.md"],
+      }),
+    ];
+    expect(analyzeBackfill(plans, glossary).reverseOrphans).toEqual([]);
   });
 
   it("required (add-impl) に Reverse が無い → reverseOrphan + ok=false", () => {
@@ -175,7 +200,9 @@ describe("U-BACKFILL-004a required backfill bidirectional pairing", () => {
       plan({
         plan_id: "PLAN-REVERSE-108-green-evidence",
         kind: "reverse",
-        requires: ["docs/plans/PLAN-L7-108-green-evidence.md"],
+        created: "2026-07-19",
+        updated: "2026-07-19",
+        references: ["docs/plans/PLAN-L7-108-green-evidence.md"],
       }),
     ];
     const r = analyzeBackfill(plans, glossary);
@@ -200,7 +227,9 @@ describe("U-BACKFILL-004a required backfill bidirectional pairing", () => {
       plan({
         plan_id: "PLAN-REVERSE-108-green-evidence",
         kind: "reverse",
-        requires: ["docs/plans/PLAN-L7-108-green-evidence.md"],
+        created: "2026-07-19",
+        updated: "2026-07-19",
+        references: ["docs/plans/PLAN-L7-108-green-evidence.md"],
       }),
     ];
     const r = analyzeBackfill(plans, glossary);

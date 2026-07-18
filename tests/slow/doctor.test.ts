@@ -3125,13 +3125,20 @@ describe("runDoctor", () => {
         "tailoring-db: table=project_tailoring_decisions detail=required/詳細/declared",
       ),
     ).toBe(true);
-    expect(
-      hasDoctorMessageWith(
-        r.messages,
-        "doctor: function-design-absorption-binding",
-        "canonical-sources=docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md,docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
-      ),
-    ).toBe(true);
+    for (const canonicalSource of [
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      "docs/design/helix/L5-detail/operation-scope.md",
+    ]) {
+      expect(
+        hasDoctorMessageWith(
+          r.messages,
+          "doctor: function-design-absorption-binding",
+          canonicalSource,
+        ),
+      ).toBe(true);
+    }
     expect(hasDoctorMessageWith(r.messages, "doctor: vmodel-fit", "current=needs_recovery")).toBe(
       true,
     );

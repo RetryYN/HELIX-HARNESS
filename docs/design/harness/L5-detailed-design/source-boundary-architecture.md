@@ -1,7 +1,7 @@
 ---
 layer: L5
 sub_doc: module-decomposition
-status: draft
+status: confirmed
 pair_artifact: docs/test-design/harness/L9-source-boundary-integration.md
 plan: docs/plans/PLAN-L5-79-source-boundary-architecture.md
 ---

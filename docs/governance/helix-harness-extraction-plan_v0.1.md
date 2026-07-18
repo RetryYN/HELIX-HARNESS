@@ -1,6 +1,6 @@
 # HELIX-HARNESS 切り出し計画 v0.1
 
-> **ADR-001 連動 (2026-05-27、一部 superseded)**: 実装方針は **「HELIX は設計概念のみ取り込み + TypeScript で全面再実装」** に更新された。本書 §初期パッケージ範囲〜§切り出し順の **旧 Python code-port 前提、および `helix-porting-map.md` / `PLAN-001..004` の code-port 計画は superseded**。HELIX snapshot は **能力インベントリ / 再設計思想の参考**としてのみ用い、コードは port せず TS で再実装する。OS ネイティブ化・`.helix/` state・mode 検出・docs 主語差し替え等の **方針 (§基本方針 / §合流の考え方 / §受入条件) は引き続き有効**。正本構想/要件は `concept_v3.1` / `requirements_v1.2`、実装言語は ADR-001 を参照。
+> **ADR-001/009/010連動（2026-07-18再基準化）**: 旧Python runtimeの無差別code-portとTypeScript全面書き直しはともにsupersededである。HELIX snapshotをbehavior atomへ分解し、意味判断・生成はPython恒久意味コア、harness.db・Git/GitHub副作用はTypeScript/Node単一commit境界へ配置する。OS native化、`.helix/` state、mode検出、docs主語差し替えの方針は引き続き有効。正本構想/要件は`concept_v3.1` / `requirements_v1.3`、runtime authorityはADR-009/010を参照する。
 
 ## 目的
 
@@ -48,17 +48,20 @@ Phase 0 の配布パッケージは以下に絞る。
 
 Reverse / Scrum / V-model 全層 DB / detailed telemetry は、初期パッケージの必須範囲から外し、設計資産として後続再実装に回す。
 
-ただし、HELIX snapshot には HELIX-HARNESS の中核へほぼ直結する設計・実装アイデアが多い。Phase 0 では **Python code port は行わず、TypeScript/Bun で再実装**する。既存資産は以下の 3 区分で扱う。
+ただし、HELIX snapshot にはHELIX-HARNESSの中核へほぼ直結する設計・実装が多い。Phase 0では旧runtimeを
+一括復活させず、ADR-010に従ってPython意味コアとTypeScript/Node実行境界へ責務分解する。既存資産は以下の4区分で扱う。
 
 | 区分 | 対象 | 方針 |
 |---|---|---|
-| **TS/Bun 再実装が必要** | `cli/lib/**`、`cli/helix-*`、hook guard / lint / runtime 判定などの実行ロジック | `src/**` と `helix` subcommand に作り直す。`.helix` state、HELIX enum、Python state、固定 model 名を除去する |
-| **TS 化せず修正転用 / curate** | `.claude/agents/*.md`、`vendor/helix-source/skills/**/SKILL.md`、`docs/commands/*.md`、plan/handover/team templates | markdown / docs / templates を HELIX-HARNESS 正本へ取り込み、role→capability class、command 名、絶対パス、HELIX 用語、Windows 前提を修正する。registry / catalog / injector / CLI 実行部は TS |
+| **実行境界へ再配置** | `cli/helix-*`、hook guard / lint / runtime判定、DB/Git/GitHub副作用 | `src/**` と `helix` subcommandのTypeScript/Node境界へ配置し、lease/fence/audit/transactionを一元化する |
+| **Python意味コアとしてcurate** | `cli/lib/**`の要件抽出、typed spec、trace、検出、impact、review、文書生成 | behavior atomとversioned semantic contractを保持する。DB path・credential・repository・`.helix/`は渡さない |
+| **文書・templateとしてcurate** | `.claude/agents/*.md`、`vendor/helix-source/skills/**/SKILL.md`、`docs/commands/*.md`、plan/team templates | HELIX-HARNESS正本へ取り込み、role、command名、絶対path、旧用語、OS前提を修正する |
 | **無修正参照可 (runtime 転用不可)** | `vendor/helix-source/**`、`docs/v2/**`、旧 PLAN / audit evidence | evidence / regression idea として参照のみ。正本要件・実行時入力にしない |
 
-**runtime として修正せず転用できるものは 0 件**。無修正で使えるのは historical evidence / reference だけである。
+旧runtime全体を無修正の実行経路として転用できるものは0件である。ただし動作済みPython意味能力は
+意味コアとして保持し、versioned contractとNode commit境界を追加して採用する。
 
-TS/Bun 再実装時の機能参照は以下を優先する。
+責務分解時の機能参照は以下を優先する。
 
 - PLAN / frontmatter / schema / lint
 - V-model lint / trace validator 機能
@@ -69,7 +72,7 @@ TS/Bun 再実装時の機能参照は以下を優先する。
 - Claude hook / agent templates
 - GitHub workflow / hook snippets 機能
 
-詳細な段階再実装順は `docs/migration/helix-source-inventory.md` の High-impact Reuse Backlog、実行単位の能力参照は `docs/migration/helix-porting-map.md` を参照する。同 map は ADR-001 により code-port 計画としては superseded であり、TS 再実装時の機能インベントリとしてのみ使う。
+詳細な段階採用順は `docs/migration/helix-source-inventory.md` のHigh-impact Reuse Backlog、実行単位の能力参照は `docs/migration/helix-porting-map.md` を参照する。同mapはcode-port計画ではなく、Python意味コア／Node実行境界を決める機能inventoryとしてのみ使う。
 
 ## 切り出し順
 
@@ -94,7 +97,7 @@ TS/Bun 再実装時の機能参照は以下を優先する。
 - `.claude/hooks/*`
 - `.helix/config.yaml`
 - `docs/governance/helix-harness-concept_v3.1.md`
-- `docs/governance/helix-harness-requirements_v1.2.md`
+- `docs/governance/helix-harness-requirements_v1.3.md`
 
 過去レビュー・監査ログ・archive は historical evidence として残す。そこに出る HELIX 名は削除対象にしない。
 

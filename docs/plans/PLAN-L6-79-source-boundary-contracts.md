@@ -4,13 +4,24 @@ title: "PLAN-L6-79 (add-design): source boundary contracts"
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-13 PLAN-L5-79のownership/effect architectureをDbCとL8 negative oracleへ具体化"
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex / TL
+review_evidence:
+  - reviewer: node_evidence_audit
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-19T01:33:00+09:00"
+    tests_green_at: "2026-07-19T01:32:00+09:00"
+    verdict: pass
+    scope: "source boundary DbC、L8 negative oracle、fail-close境界を独立監査。Blocker/High 0。2026-07-19に再検証。"
+    green_commands:
+      - { kind: integration_test, command: "bun test source-boundary targeted set --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:28:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L5-79を変更せず、公開contractとpolicy evaluatorを具体化する。"
 pair_artifact: docs/test-design/harness/L8-source-boundary-contracts.md

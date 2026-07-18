@@ -5,6 +5,7 @@
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { parse as parseYaml } from "yaml";
 import {
   analyzePairFreeze,
   analyzeVerificationGroups,
@@ -32,6 +33,18 @@ const doc = (
 
 function uniqueMatches(text: string, pattern: RegExp): string[] {
   return [...new Set([...text.matchAll(pattern)].map((match) => match[1] ?? match[0]))].sort();
+}
+
+const WORKER_RUNTIME_FRONTIER_IDS = new Set([
+  "HR-FR-P2-05",
+  "HR-FR-P2-06",
+  "HR-FR-P2-07",
+  "HR-FR-P2-08",
+  "HR-FR-P6-06",
+]);
+
+function downstreamDescendedPillarRequirementIds(ids: string[]): string[] {
+  return ids.filter((id) => !WORKER_RUNTIME_FRONTIER_IDS.has(id));
 }
 
 function expandHacRefs(text: string): string[] {
@@ -490,9 +503,9 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     const visRequirementIds = uniqueMatches(l12, /^\| HAT-VIS-[^|]+ \| (HR-FR-VIS-[^ |]+) \|/gm);
     const visAcIds = expandHacRefs(l12).filter((id) => id.startsWith("HAC-VIS-"));
 
-    expect(l3RequirementIds).toHaveLength(46);
+    expect(l3RequirementIds).toHaveLength(51);
     expect(hatRequirementIds).toEqual(l3RequirementIds);
-    expect(l3AcIds).toHaveLength(92);
+    expect(l3AcIds).toHaveLength(102);
     expect(hatAcIds).toEqual(l3AcIds);
     expect(visRequirementIds).toEqual([
       "HR-FR-VIS-01",
@@ -1203,7 +1216,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(acceptance).not.toContain("AT-FR 合計 = 58 + 21");
   });
 
-  it("U-VPAIR-007a: HELIX L3 46要件は L4 basic design に全件降下済み", () => {
+  it("U-VPAIR-007a: HELIX L3下流降下済み46要件はL4へ降下し、新規5要件はfrontierに留まる", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1213,8 +1226,8 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     const l4PillarTrace = l4.split("## §2 L3 -> L4 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
     const l4RequirementIds = uniqueMatches(l4PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
 
-    expect(l3RequirementIds).toHaveLength(46);
-    expect(l4RequirementIds).toEqual(l3RequirementIds);
+    expect(l3RequirementIds).toHaveLength(51);
+    expect(l4RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     for (const required of [
       "HB-P0 forward-convergence",
       "HB-P1 continuous-autonomy",
@@ -1259,7 +1272,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(ok.pairs).toBe(1);
   });
 
-  it("U-VPAIR-007c: HELIX L4 system test design は L3 46要件を1件も漏らさない", () => {
+  it("U-VPAIR-007c: HELIX L4 system test design は下流降下済み46要件を1件も漏らさない", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1274,7 +1287,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     );
     const l9TestIds = uniqueMatches(l9, /^\| (HST-(?!ID\b)[^ |]+) \|/gm);
 
-    expect(l9RequirementIds).toEqual(l3RequirementIds);
+    expect(l9RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     expect(l9TestIds).toHaveLength(46);
     expect(l4TestIds).toEqual(l9TestIds);
     expect(l9).toContain("L1 §2.8 asset/progress visualization amendment");
@@ -1481,7 +1494,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     expect(ok.pairs).toBe(1);
   });
 
-  it("U-VPAIR-009c: HELIX L5 integration test design は L3 46要件を1件も漏らさない", () => {
+  it("U-VPAIR-009c: HELIX L5 integration test design は下流降下済み46要件を1件も漏らさない", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1496,7 +1509,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     );
     const l8TestIds = uniqueMatches(l8, /^\| (LIT-(?!ID\b)[^ |]+) \|/gm);
 
-    expect(l8RequirementIds).toEqual(l3RequirementIds);
+    expect(l8RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     expect(l8TestIds).toHaveLength(46);
     expect(l5TestIds).toEqual(l8TestIds);
     for (const required of [
@@ -1600,8 +1613,8 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     ]);
 
     expect(pair.ok).toBe(true);
-    expect(l6RequirementIds).toEqual(l3RequirementIds);
-    expect(l7RequirementIds).toEqual(l3RequirementIds);
+    expect(l6RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
+    expect(l7RequirementIds).toEqual(downstreamDescendedPillarRequirementIds(l3RequirementIds));
     expect(l7OracleIds).toHaveLength(52);
     expect(uniqueMatches(`${l5}\n${l6}\n${l7}`, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
     for (const required of [
@@ -1741,7 +1754,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "35 scripts / 98 Bats",
       "existing-pillar-covered",
       "harden-via-current-cli",
-      "concept-only-ts-reimplementation",
+      "semantic-atom-curation",
       "catalog-not-bulk-import",
       "core injection",
       "guard-surface registry",
@@ -1777,6 +1790,113 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
     ]) {
       expect(combined).toContain(required);
     }
+  });
+
+  it("U-VPAIR-009g: L12 Scrum Reverse and measurement requirements stay mechanically closed", () => {
+    const governance = readFileSync("docs/governance/helix-harness-requirements_v1.3.md", "utf8");
+    const design = readFileSync(
+      "docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md",
+      "utf8",
+    );
+    const acceptance = readFileSync(
+      "docs/test-design/helix/scrum-reverse-verification-engine-acceptance.md",
+      "utf8",
+    );
+
+    for (const required of [
+      "FULL_L1_L12_V",
+      "PRODUCTION_SCRUM_REDUCED_V",
+      "DISCOVERY_POC",
+      "SR0 evidence capture",
+      "SR1 observed contract",
+      "SR2 V-layer mapping",
+      "SR3 design/refactor proposal",
+      "SR4 pair freeze and Forward reentry",
+      "REDESIGN",
+      "DESIGN_REFACTOR",
+      "PERFORMANCE_REFACTOR",
+      "RETROFIT",
+      "verification_measurement_contract",
+    ]) {
+      expect(governance).toContain(required);
+    }
+
+    const qualityAreas = [
+      "性能",
+      "信頼性",
+      "可用性",
+      "回復性",
+      "security",
+      "privacy",
+      "accessibility",
+      "互換性",
+      "運用性",
+      "保守性",
+      "cost/resource",
+      "data quality",
+      "observability",
+    ];
+    for (const area of qualityAreas) expect(design).toContain(area);
+
+    expect(uniqueMatches(design, /\b(SRV-FR-\d{3})\b/g)).toEqual(
+      Array.from({ length: 14 }, (_, index) => `SRV-FR-${String(index + 1).padStart(3, "0")}`),
+    );
+    expect(uniqueMatches(acceptance, /\b(SRV-AC-\d{3})\b/g)).toEqual(
+      Array.from({ length: 14 }, (_, index) => `SRV-AC-${String(index + 1).padStart(3, "0")}`),
+    );
+    expect(design).toContain(
+      "system_complete = functional_AC_green ∧ required_metrics_current ∧ NFR_targets_pass",
+    );
+    expect(acceptance).toContain(
+      "test greenでもmetric missing/stale/nonrepresentative/failならcompletionがfalseになる",
+    );
+  });
+
+  it("U-VPAIR-009h: v0.5.1 remediation denominator and completion claim stay fail-closed", () => {
+    const ledger = parseYaml(
+      readFileSync("docs/governance/generated/v051-remediation-finding-ledger.yaml", "utf8"),
+    ) as {
+      summary: {
+        final: {
+          critical: number;
+          major: number;
+          minor_pending_independent_verification: number;
+          rejected: number;
+          total_in_scope: number;
+        };
+      };
+      findings: Array<{ severity: string; status: string; verification?: string }>;
+      rejected: unknown[];
+    };
+    const requirements = readFileSync(
+      "docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md",
+      "utf8",
+    );
+    const audit = readFileSync(
+      "docs/governance/hybrid-rebaseline-v0.5.1-verification-audit-2026-07-18.md",
+      "utf8",
+    );
+
+    expect(ledger.summary.final).toEqual({
+      critical: 2,
+      major: 23,
+      minor_pending_independent_verification: 11,
+      rejected: 1,
+      total_in_scope: 36,
+    });
+    expect(ledger.findings).toHaveLength(36);
+    expect(ledger.rejected).toHaveLength(1);
+    expect(ledger.findings.filter((finding) => finding.status === "resolved")).toHaveLength(36);
+    expect(
+      ledger.findings.filter(
+        (finding) =>
+          finding.severity === "minor" && finding.verification === "verified_independent",
+      ),
+    ).toHaveLength(11);
+    expect(requirements).toContain("status: confirmed");
+    expect(audit).toContain("enumeration_log_present=False");
+    expect(audit).toContain("negative fixture: enumeration snapshot不在をexit 1で拒否");
+    expect(audit).toContain("独立再監査のnew critical/major: 0/0");
   });
 
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {

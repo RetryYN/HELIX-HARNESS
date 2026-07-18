@@ -20,6 +20,7 @@ export const KIND_BACKFILL: Record<string, BackfillReq> = {
 
 export const CONDITIONAL_BACKFILL_DECISION_ENFORCEMENT_DATE = "2026-06-22";
 export const REQUIRED_BACKFILL_BIDIRECTIONAL_ENFORCEMENT_DATE = "2026-06-23";
+export const REVERSE_TARGET_REFERENCE_ENFORCEMENT_DATE = "2026-07-19";
 
 export const LEGACY_CONDITIONAL_BACKFILL_DEBT_PLAN_IDS = new Set<string>([
   "PLAN-L7-05-biome-debt",
@@ -55,10 +56,12 @@ export interface ParsedPlan {
   plan_id: string;
   kind: string;
   status: string;
+  created: string;
   updated: string;
   backpropDecision: string;
   backpropDecisionReason: string;
   requires: string[];
+  references: string[];
   glossaryTerms: string[];
 }
 
@@ -91,6 +94,12 @@ export function parseRequires(content: string): string[] {
   return [...m[1].matchAll(/-\s+(.+?)\s*$/gm)].map((x) => x[1]).filter((s) => s && s !== "[]");
 }
 
+export function parseReferences(content: string): string[] {
+  const m = content.match(/^\s*references:\s*\n((?:\s+-\s+.+\n?)*)/m);
+  if (!m) return [];
+  return [...m[1].matchAll(/-\s+(.+?)\s*$/gm)].map((x) => x[1]).filter((s) => s && s !== "[]");
+}
+
 export function parseGlossaryTerms(content: string): string[] {
   const sec = content.match(
     /(?:^|\n)#{2,}\s*(?:§|ﾂｧ)?6\b[^\n]*(?:用語更新|逕ｨ隱樊峩譁ｰ)[^\n]*\n([\s\S]*?)(?=\n#{1,6}\s|$)/,
@@ -111,10 +120,12 @@ export function parsePlan(file: string, content: string): ParsedPlan {
     plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
     kind: fmValue(content, "kind") ?? "unknown",
     status: fmValue(content, "status") ?? "unknown",
+    created: fmValue(content, "created") ?? "",
     updated: fmValue(content, "updated") ?? fmValue(content, "created") ?? "",
     backpropDecision: fmValue(content, "backprop_decision") ?? "",
     backpropDecisionReason: fmValue(content, "backprop_decision_reason") ?? "",
     requires: parseRequires(content),
+    references: parseReferences(content),
     glossaryTerms: parseGlossaryTerms(content),
   };
 }
@@ -155,20 +166,22 @@ export function analyzeBackfill(
   auditedLegacyIds?: Set<string>,
 ): BackfillResult {
   const active = plans.filter((p) => p.status !== "archived");
-  const reverseRequires = new Set<string>();
+  const reverseTargets = new Set<string>();
   const reverseBackfillers = new Map<string, string[]>();
 
   for (const p of active) {
     if (p.kind !== "reverse") continue;
-    for (const r of p.requires) {
-      reverseRequires.add(r);
+    const targets =
+      p.created >= REVERSE_TARGET_REFERENCE_ENFORCEMENT_DATE ? p.references : p.requires;
+    for (const r of targets) {
+      reverseTargets.add(r);
       const refId = normalizedPlanRef(r);
       reverseBackfillers.set(refId, [...(reverseBackfillers.get(refId) ?? []), p.plan_id]);
     }
   }
 
   const isBackfilled = (plan: ParsedPlan): boolean =>
-    [...reverseRequires].some((r) => refMatchesPlan(r, plan));
+    [...reverseTargets].some((r) => refMatchesPlan(r, plan));
 
   const reverseOrphans: { plan_id: string; kind: string }[] = [];
   const reverseLinkMissing: { plan_id: string; reverse_plan_id: string }[] = [];

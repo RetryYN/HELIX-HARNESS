@@ -6,7 +6,7 @@ status: draft
 created: 2026-07-18
 updated: 2026-07-18
 owner: QA
-pair_artifact: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
+pair_artifact: docs/design/helix/
 ---
 
 # REBASELINE v0.5.0追突統合 受入・検証設計

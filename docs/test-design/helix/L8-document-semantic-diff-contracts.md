@@ -3,7 +3,7 @@ title: "HELIX L8 単体テスト設計 — 文書semantic diff"
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-07-14
 updated: 2026-07-14
 pair_artifact: docs/design/helix/L6-function-design/document-semantic-diff.md
