@@ -42,3 +42,15 @@
 ## 後続境界
 
 本監査の次はL4以降でschema、state transition、generator、DB projection、GitHub gate、measurement probeを実装・検証する。要件定義完了を理由に、未実装のruntime behaviorやsystem completionをgreen表示してはならない。
+
+## 2026-07-19 Universal Workflow AI判断エンジン追補
+
+`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`を追加sourceとして監査し、単なる名称参照でなく18 FR／18 ACへ原子化した。source identityはSHA-256 `b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26`とexact 14-file inventoryへbindする。
+
+- 要件分母: `UWJ-FR-001`〜`UWJ-FR-018` = 18、対応`UWJ-AC-001`〜`UWJ-AC-018` = 18、orphan 0。
+- 工程分母: L1〜L12全12層と正規6 V-pair。Full Vはsystem workflow、Production Scrumはslice delta＋SR0〜SR4 backfillを必須化。
+- authority分離: AIは提案だけを行い、requirement freeze、permission、high-impact action、gate、DB/Git/GitHub commitを自己承認しない。
+- 計測分母: quality、latency、cost、queue、failure、fallback、誤判断、human override、drift。test greenだけでcompletionを許可しない。
+- source gap: runtime orchestration専用schemaと5出力envelopeが欠け、runtime exampleは旧workflow schema単体へ不適合。このgapを明示的negative fixtureとして保持し、L5 schema compositionが閉じるまでactivationを拒否する。
+
+追補後の要件定義scopeは18/18 FR、18/18 AC、pair 18/18で100%。これはAI判断エンジンの要件freezeであり、L4以降のschema/runtime実装完了を意味しない。
