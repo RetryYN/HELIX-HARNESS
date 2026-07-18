@@ -37,12 +37,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/outstanding.ts
     artifact_type: source_module
-  - artifact_path: tests/semantic-frontier-consistency.test.ts
-    artifact_type: test_code
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
-  - artifact_path: tests/goal-evidence-audit.test.ts
-    artifact_type: test_code
   - artifact_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/generated/harness-memory-retirement-authority.json
