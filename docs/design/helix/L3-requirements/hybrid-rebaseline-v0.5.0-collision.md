@@ -19,6 +19,19 @@ spec:
     - { id: HR-FR-V050-06, kind: delivery route, title: L1-L12 and Production Scrum preservation, layer: L3, owner: TL, status: draft }
     - { id: HR-FR-V050-07, kind: validation, title: package self-consistency gate, layer: L3, owner: QA, status: draft }
     - { id: HR-FR-V050-08, kind: trace, title: exact delta trace projection, layer: L3, owner: QA, status: draft }
+    - { id: HBR-ARCH-014, kind: source requirement, title: package追加architecture要件, layer: L3, owner: TL, status: draft }
+    - { id: HBR-AGENT-016, kind: source requirement, title: package追加agent scope要件, layer: L3, owner: TL, status: draft }
+    - { id: HBR-AGENT-017, kind: source requirement, title: package追加digest要件, layer: L3, owner: TL, status: draft }
+    - { id: HBR-AGENT-018, kind: source requirement, title: package追加conformance要件, layer: L3, owner: TL, status: draft }
+    - { id: HBR-INV-014, kind: source requirement, title: package追加inventory要件, layer: L3, owner: TL, status: draft }
+    - { id: AC-ARCH-07, kind: source acceptance, title: package追加architecture受入条件, layer: L3, owner: QA, status: draft }
+    - { id: AC-AGENT-10, kind: source acceptance, title: package追加agent受入条件10, layer: L3, owner: QA, status: draft }
+    - { id: AC-AGENT-11, kind: source acceptance, title: package追加agent受入条件11, layer: L3, owner: QA, status: draft }
+    - { id: AC-INV-08, kind: source acceptance, title: package追加inventory受入条件, layer: L3, owner: QA, status: draft }
+    - { id: AC-TRACE-02, kind: source acceptance, title: package追加trace受入条件, layer: L3, owner: QA, status: draft }
+    - { id: AC-SEC-PY-01, kind: source acceptance, title: package追加Python security受入条件, layer: L3, owner: QA, status: draft }
+    - { id: D-009, kind: source decision, title: package内旧runtime authority判断, layer: L3, owner: TL, status: draft }
+    - { id: D-016, kind: source decision, title: package内新runtime authority判断, layer: L3, owner: TL, status: draft }
 ---
 
 # HELIX L3要件 — REBASELINE v0.5.0追突統合
@@ -45,12 +58,12 @@ ZIP展開時の実ファイル数202は`MANIFEST.json`と`CHECKSUMS.md`自身を
 
 ### HR-FR-V050-01 package完全受付
 
-ZIP SHA-256、200 checksum member、202 physical file、manifest member listを個別に記録する。文書内の集計値、
+ZIP SHA256、200 checksum member、202 physical file、manifest member listを個別に記録する。文書内の集計値、
 同梱validatorのgreen、過去の「59/59解消」claimだけでsource denominatorを代替しない。
 
 ### HR-FR-V050-02 catalog・AC差分保持
 
-追加要件`HBR-ARCH-014`、`HBR-AGENT-016..018`、`HBR-INV-014`、追加AC
+追加要件`HBR-ARCH-014`、`HBR-AGENT-016`、`HBR-AGENT-017`、`HBR-AGENT-018`、`HBR-INV-014`、追加AC
 `AC-ARCH-07`、`AC-AGENT-10`、`AC-AGENT-11`、`AC-INV-08`、`AC-TRACE-02`、`AC-SEC-PY-01`を
 欠落なく追跡する。37変更要件、19変更AC、47追加edgeもID単位で差分集合を保持する。
 
