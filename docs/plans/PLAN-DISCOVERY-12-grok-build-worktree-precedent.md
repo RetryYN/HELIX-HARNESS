@@ -4,9 +4,7 @@ title: "PLAN-DISCOVERY-12 (poc): grok-build worktree運用precedentのbehavior a
 kind: poc
 layer: cross
 workflow_phase: S0
-decision_outcome: pending
-scrum_type: technical-spike
-promotion_strategy: pending
+scrum_type: design-spike
 drive: fe
 status: draft
 created: 2026-07-19
@@ -14,6 +12,11 @@ updated: 2026-07-19
 owner: PMO-Tech / TL
 parent_design: docs/design/helix/L3-requirements/pillar-functional-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+agent_slots:
+  - role: aim
+    slot_label: "AIM — external precedentの採取境界とHELIX適合性を監査する"
+  - role: se
+    slot_label: "PMO-Tech — source revision、license、behavior atomを記録する"
 generates:
   - artifact_path: docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md
     artifact_type: markdown_doc

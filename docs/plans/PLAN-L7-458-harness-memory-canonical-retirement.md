@@ -30,7 +30,7 @@ generates:
   - artifact_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/generated/harness-memory-retirement-authority.json
-    artifact_type: json_artifact
+    artifact_type: config
   - artifact_path: docs/research/harness-improvement-from-grok-kimi-oss-2026-07-19.md
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md
