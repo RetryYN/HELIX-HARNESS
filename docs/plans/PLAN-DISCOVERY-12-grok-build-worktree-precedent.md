@@ -51,11 +51,11 @@ distribution catalogのbehavior atomだけを採取し、`HR-FR-P2-05..08`／`HR
 
 | 要件 | S0-S4 owner | S4後のrouting |
 |------|-------------|---------------|
-| HR-FR-P2-05 | PMO-Tech / TL | L4 worker allocation design |
-| HR-FR-P2-06 | PMO-Tech / TL | L4 lease／cleanup／recovery design |
-| HR-FR-P2-07 | AIM / TL | L4 bypass authority design |
-| HR-FR-P2-08 | QA / TL | L4 worker validation profile design |
-| HR-FR-P6-06 | PMO-Tech / TL | L4 distribution catalog design |
+| HR-FR-P2-05 | PMO-Tech / TL | L4 worker割当設計 |
+| HR-FR-P2-06 | PMO-Tech / TL | L4 lease／cleanup／recovery設計 |
+| HR-FR-P2-07 | AIM / TL | L4 bypass authority設計 |
+| HR-FR-P2-08 | QA / TL | L4 worker validation profile設計 |
+| HR-FR-P6-06 | PMO-Tech / TL | L4 distribution catalog設計 |
 
 ## 完了境界
 
