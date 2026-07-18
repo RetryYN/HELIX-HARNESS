@@ -27,6 +27,12 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L8-unit-test-design.md
     artifact_type: test_design
+  - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
+    artifact_type: test_design
+  - artifact_path: config/digest-canonicalization-inventory.json
+    artifact_type: config
   - artifact_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/generated/harness-memory-retirement-authority.json
@@ -59,6 +65,9 @@ verification_bindings:
     test_path: tests/harness-memory-reconciliation-binding.test.ts
   - parent_design: docs/design/harness/L6-function-design/harness-memory-structure.md
     oracle_id: U-MEMV2-005f
+    test_path: tests/memory/memory-v2.test.ts
+  - parent_design: docs/design/harness/L6-function-design/harness-memory-structure.md
+    oracle_id: U-MEMV2-005g
     test_path: tests/memory/memory-v2.test.ts
 dependencies:
   parent: docs/plans/PLAN-L7-407-harness-memory-structure-v2.md

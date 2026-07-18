@@ -315,6 +315,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-MEMV2-005d | legacy reader | v2 terminal receiptを旧`listMemory`／`surfaceMemory`がactive entryとして再表示しない | `tests/memory/memory-store.test.ts` |
 | U-MEMV2-005e | 全件追突binding | 分岐間39件を台帳へexactly oneで保持し、worker runtime指示6件のL1/L3降下、repository memoryのactive 0、damaged 0、receipt body空を検証する | `tests/harness-memory-reconciliation-binding.test.ts` |
 | U-MEMV2-005f | retirement authority／batch failure | consumer、layer、全ID、正本targetを束縛するauthorityをlock前後で検査し、欠落／差替えは追記0の`unauthorized`。batch途中失敗は先行成功と残件失敗を正確に返す | `tests/memory/memory-v2.test.ts` |
+| U-MEMV2-005g | authority digest／path boundary | authority IDをsource revision＋全entry＋target content digestから再計算し、repo外realpathへ解決するsymlinkを拒否する。実在repo内targetは受理する | `tests/memory/memory-v2.test.ts` |
 
 ### closure自走承認 oracle
 

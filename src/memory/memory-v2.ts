@@ -6,6 +6,7 @@ import {
   mkdirSync,
   openSync,
   readFileSync,
+  realpathSync,
   renameSync,
   writeFileSync,
   writeSync,
@@ -463,6 +464,14 @@ export function retireMemory(input: RetireMemoryInput, deps: MemoryDepsV2): Cons
           results.push({ id, reason: "persist_failed" });
           continue;
         }
+        if (terminalTargets.get(id) === "expired") {
+          results.push({ id, reason: "expired" });
+          continue;
+        }
+        if (terminalTargets.get(id) === "consumed") {
+          results.push({ id, reason: "already_consumed" });
+          continue;
+        }
         const entry = byId.get(id);
         if (!entry) {
           results.push({ id, reason: "unknown_id" });
@@ -470,14 +479,6 @@ export function retireMemory(input: RetireMemoryInput, deps: MemoryDepsV2): Cons
         }
         if (entry.layer !== layer) {
           results.push({ id, reason: "wrong_layer" });
-          continue;
-        }
-        if (terminalTargets.get(id) === "expired") {
-          results.push({ id, reason: "expired" });
-          continue;
-        }
-        if (terminalTargets.get(id) === "consumed") {
-          results.push({ id, reason: "already_consumed" });
           continue;
         }
         if (isExpired(entry, now)) {
@@ -491,7 +492,13 @@ export function retireMemory(input: RetireMemoryInput, deps: MemoryDepsV2): Cons
         try {
           deps.appendEvent(
             layer,
-            terminalEntry({ target: entry, state: "consumed", at: now, consumerId }),
+            terminalEntry({
+              target: entry,
+              state: "consumed",
+              at: now,
+              consumerId,
+              authorityId: input.authorityId,
+            }),
             fence,
           );
         } catch {
@@ -637,13 +644,33 @@ export function nodeMemoryV2Deps(opts: {
       "harness-memory-retirement-authority.json",
     );
     try {
+      const repoReal = realpathSync(opts.root);
+      const authorityReal = realpathSync(authorityPath);
+      const authorityRel = relative(repoReal, authorityReal);
+      if (authorityRel.startsWith("..") || authorityRel === "") return false;
       const raw = JSON.parse(readFileSync(authorityPath, "utf8")) as unknown;
-      if (!isRecord(raw) || raw.schema_version !== 1 || raw.authority_id !== input.authorityId)
+      if (
+        !isRecord(raw) ||
+        raw.schema_version !== 1 ||
+        typeof raw.source_revision !== "string" ||
+        !Array.isArray(raw.entries) ||
+        typeof raw.authority_id !== "string"
+      )
+        return false;
+      const authorityPayload = JSON.stringify({
+        schema_version: raw.schema_version,
+        source_revision: raw.source_revision,
+        consumer_id: raw.consumer_id,
+        layer: raw.layer,
+        entries: raw.entries,
+      });
+      const expectedAuthority = `sha256:${createHash("sha256").update(authorityPayload).digest("hex")}`;
+      if (raw.authority_id !== expectedAuthority || raw.authority_id !== input.authorityId)
         return false;
       if (
         raw.consumer_id !== input.consumerId ||
         raw.layer !== input.layer ||
-        !Array.isArray(raw.entries)
+        !raw.source_revision.trim()
       )
         return false;
       const entries = raw.entries.filter(isRecord);
@@ -656,12 +683,20 @@ export function nodeMemoryV2Deps(opts: {
         if (record.targets.length === 0) return false;
         const key = record.key;
         const targetOk = record.targets.some((target) => {
-          if (typeof target !== "string") return false;
-          const absolute = resolve(opts.root, target);
-          const rel = relative(resolve(opts.root), absolute);
-          if (rel.startsWith("..") || rel === "" || !existsSync(absolute)) return false;
-          const content = readFileSync(absolute, "utf8");
-          return content.includes(key) || content.includes(id);
+          if (
+            !isRecord(target) ||
+            typeof target.path !== "string" ||
+            typeof target.sha256 !== "string"
+          )
+            return false;
+          const absolute = resolve(opts.root, target.path);
+          if (!existsSync(absolute)) return false;
+          const targetReal = realpathSync(absolute);
+          const rel = relative(repoReal, targetReal);
+          if (rel.startsWith("..") || rel === "") return false;
+          const content = readFileSync(targetReal, "utf8");
+          const digest = `sha256:${createHash("sha256").update(content).digest("hex")}`;
+          return digest === target.sha256 && (content.includes(key) || content.includes(id));
         });
         if (!targetOk) return false;
       }
@@ -906,10 +941,11 @@ interface TerminalEntryInput {
   state: "consumed" | "expired";
   at: string;
   consumerId: string | null;
+  authorityId?: string;
 }
 
 function terminalEntry(input: TerminalEntryInput): MemoryEntryV2 {
-  const { target, state, at, consumerId } = input;
+  const { target, state, at, consumerId, authorityId } = input;
   return {
     ...target,
     id:
@@ -919,6 +955,9 @@ function terminalEntry(input: TerminalEntryInput): MemoryEntryV2 {
           : `memory-consumed:${target.id}`
         : `memory-expired:${target.id}`,
     body: "",
+    provenance: authorityId
+      ? { ...target.provenance, origin: `memory-retire:${authorityId}` }
+      : target.provenance,
     lifecycle: {
       state,
       expiresAt: target.lifecycle.expiresAt,

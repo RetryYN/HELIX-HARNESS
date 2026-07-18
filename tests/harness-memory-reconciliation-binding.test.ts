@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { resolveMemoryView } from "../src/memory/memory-v2";
@@ -54,17 +55,40 @@ describe("harness memory reconciliation binding", () => {
       readFileSync("docs/governance/generated/harness-memory-retirement-authority.json", "utf8"),
     ) as {
       authority_id: string;
-      entries: Array<{ memory_id: string; key: string; targets: string[] }>;
+      schema_version: number;
+      source_revision: string;
+      consumer_id: string;
+      layer: string;
+      entries: Array<{
+        memory_id: string;
+        key: string;
+        targets: Array<{ path: string; sha256: string }>;
+      }>;
     };
-    expect(authority.authority_id).toBe("memory-reconciliation-2026-07-19-v2");
+    const payload = JSON.stringify({
+      schema_version: authority.schema_version,
+      source_revision: authority.source_revision,
+      consumer_id: authority.consumer_id,
+      layer: authority.layer,
+      entries: authority.entries,
+    });
+    expect(authority.authority_id).toBe(
+      `sha256:${createHash("sha256").update(payload).digest("hex")}`,
+    );
     expect(authority.entries).toHaveLength(39);
     expect(new Set(authority.entries.map((entry) => entry.memory_id)).size).toBe(39);
     expect(new Set(authority.entries.map((entry) => entry.key)).size).toBe(39);
     for (const entry of authority.entries) {
       expect(entry.targets.length).toBeGreaterThan(0);
-      expect(entry.targets.some((target) => readFileSync(target, "utf8").includes(entry.key))).toBe(
-        true,
-      );
+      expect(
+        entry.targets.some((target) => {
+          const content = readFileSync(target.path, "utf8");
+          return (
+            content.includes(entry.key) &&
+            target.sha256 === `sha256:${createHash("sha256").update(content).digest("hex")}`
+          );
+        }),
+      ).toBe(true);
     }
   });
 

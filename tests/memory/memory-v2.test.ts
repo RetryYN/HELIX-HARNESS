@@ -1,4 +1,5 @@
 import { spawn, spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   appendFileSync,
   existsSync,
@@ -6,6 +7,7 @@ import {
   mkdtempSync,
   readFileSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -442,6 +444,18 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
         lifecycle: expect.objectContaining({ state: "consumed", consumedBy: "reconciler" }),
       }),
     );
+    mock.events.harness = mock.events.harness.filter((item) => item.lifecycle.state !== "active");
+    expect(
+      retireMemory(
+        {
+          layer: "harness",
+          ids: ["harness-rule"],
+          consumerId: "reconciler",
+          authorityId: "memory-reconciliation-2026-07-19",
+        },
+        mock,
+      ),
+    ).toEqual([{ id: "harness-rule", reason: "already_consumed" }]);
   });
 
   it("U-MEMV2-005f: retirement authority is fail-closed, rechecked under lock, and preserves partial results", () => {
@@ -478,6 +492,83 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
       { id: "b", reason: "persist_failed" },
       { id: "c", reason: "persist_failed" },
     ]);
+  });
+
+  it("U-MEMV2-005g: production authority binds its digest and rejects repo-external symlink targets", () => {
+    root = mkdtempSync(join(tmpdir(), "helix-memory-authority-"));
+    const outside = mkdtempSync(join(tmpdir(), "helix-memory-authority-outside-"));
+    try {
+      const targetPath = join(root, "docs", "canonical.md");
+      const authorityDir = join(root, "docs", "governance", "generated");
+      mkdirSync(join(root, "docs"), { recursive: true });
+      mkdirSync(authorityDir, { recursive: true });
+      writeFileSync(join(outside, "canonical.md"), "authority-key\n", "utf8");
+      symlinkSync(join(outside, "canonical.md"), targetPath);
+      const entries = [
+        {
+          memory_id: "harness:authority-key:op:test",
+          key: "authority-key",
+          targets: [
+            {
+              path: "docs/canonical.md",
+              sha256: `sha256:${createHash("sha256").update("authority-key\n").digest("hex")}`,
+            },
+          ],
+        },
+      ];
+      const payload = {
+        schema_version: 1,
+        source_revision: "test-v1",
+        consumer_id: "reconciler",
+        layer: "harness",
+        entries,
+      };
+      const authorityId = `sha256:${createHash("sha256").update(JSON.stringify(payload)).digest("hex")}`;
+      writeFileSync(
+        join(authorityDir, "harness-memory-retirement-authority.json"),
+        `${JSON.stringify({
+          schema_version: 1,
+          source_revision: payload.source_revision,
+          authority_id: authorityId,
+          consumer_id: payload.consumer_id,
+          layer: payload.layer,
+          entries,
+        })}\n`,
+        "utf8",
+      );
+      const deps = nodeMemoryV2Deps({ root, now: () => "2026-07-11T00:00:00.000Z" });
+      const written = writeMemoryV2(
+        { operationId: "test", layer: "harness", key: "authority-key", body: "body" },
+        deps,
+      );
+      expect(written.ok).toBe(true);
+      expect(
+        retireMemory(
+          {
+            layer: "harness",
+            ids: ["harness:authority-key:op:test"],
+            consumerId: "reconciler",
+            authorityId,
+          },
+          deps,
+        ),
+      ).toEqual([{ id: "harness:authority-key:op:test", reason: "unauthorized" }]);
+      rmSync(targetPath);
+      writeFileSync(targetPath, "authority-key\n", "utf8");
+      expect(
+        retireMemory(
+          {
+            layer: "harness",
+            ids: ["harness:authority-key:op:test"],
+            consumerId: "reconciler",
+            authorityId,
+          },
+          deps,
+        ),
+      ).toEqual([{ id: "harness:authority-key:op:test", reason: "consumed" }]);
+    } finally {
+      rmSync(outside, { recursive: true, force: true });
+    }
   });
 
   it("U-MEMV2-006: group-first selection keeps minority types visible and reports exact hidden counts", () => {

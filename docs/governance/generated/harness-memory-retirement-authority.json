@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "authority_id": "memory-reconciliation-2026-07-19-v2",
+  "source_revision": "requirements-reconciliation-2026-07-19-v3",
+  "authority_id": "sha256:e1bf4936b6bdfc5623c01066a0d8a2da5c688de5608b54b67b24956d4829dd27",
   "consumer_id": "requirements-reconciliation-2026-07-19",
   "layer": "harness",
   "entries": [
@@ -8,273 +9,390 @@
       "memory_id": "harness:adr-010-runtime-authority-ruling:op:auto-478b493ffa29e81a37320f7d",
       "key": "adr-010-runtime-authority-ruling",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:authoring-admission-directive:op:auto-8182a54bd8c7b42d3b87875b",
       "key": "authoring-admission-directive",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:background-notify-mechanism:2026-06-28T01:58:54.000Z",
       "key": "background-notify-mechanism",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:claude-standard-memory-retired:op:auto-7c611e295d5b5b2ce24245d7",
       "key": "claude-standard-memory-retired",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:closure-selfdrive-po-decision:op:auto-ca7086ba4a5dea4d19425ef4",
       "key": "closure-selfdrive-po-decision",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:codex-0144-hook-trust-gating:op:auto-5f7090b7ad877381e7ff1a25",
       "key": "codex-0144-hook-trust-gating",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:codex-assignment-l6-61-retirement-slice:op:auto-734139e928beaaf12e47c0dc",
       "key": "codex-assignment-l6-61-retirement-slice",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:compiled-binary-rootpath-gotcha:2026-06-28T00:18:54.508Z",
       "key": "compiled-binary-rootpath-gotcha",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:constraint-first-philosophy:op:auto-445c250accf0970d63dd7aae",
       "key": "constraint-first-philosophy",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:decide-record-proceed:op:auto-18494283cc33791c954f9659",
       "key": "decide-record-proceed",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:design-harness-status:op:auto-4d021ca6d9c6e13f129637e4",
       "key": "design-harness-status",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:github-autonomous-ops-default:op:auto-e742f2232256e7a6eee0981a",
       "key": "github-autonomous-ops-default",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:handover-retirement-direction:op:auto-0d11d8754f83791b9cea5a6c",
       "key": "handover-retirement-direction",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:helix-build-state:op:auto-4eab66d2f4ea5a4f41f8068e",
       "key": "helix-build-state",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:helix-not-ut-harness:op:auto-befa4da4f6f762ee4062248b",
       "key": "helix-not-ut-harness",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:hybrid-docgen-engine-audit-2026-07-14:op:auto-d7135ca45b0685ba2df1f38b",
       "key": "hybrid-docgen-engine-audit-2026-07-14",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:hybrid-docgen-gap-followup-for-codex:op:auto-76da0f92b9e7d41f3ac28c25",
       "key": "hybrid-docgen-gap-followup-for-codex",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:hybrid-engine-requirements-extraction-gaps:op:auto-a894869f789e8c1ffe31878f",
       "key": "hybrid-engine-requirements-extraction-gaps",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:hybrid-same-plan-collab:op:auto-7046daa000c23e7d6ca86999",
       "key": "hybrid-same-plan-collab",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:improvement-plans-2026-07-06-closed:op:auto-2434adee617cff64ba2e0480",
       "key": "improvement-plans-2026-07-06-closed",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:inventory-existing-first:2026-06-28T00:00:19.248Z",
       "key": "inventory-existing-first",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:judgment-core-ssot:op:auto-c60a218cb56f9260574a07d5",
       "key": "judgment-core-ssot",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:l12-canonical-vmodel-direction:op:auto-f68d2d28d8b3af36675ca4e4",
       "key": "l12-canonical-vmodel-direction",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:l6-descent-mandatory:op:auto-c7a949496c967a4e31ecf11e",
       "key": "l6-descent-mandatory",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:nfr-consolidation-improvement-audit:op:auto-47219f12127a6de771492670",
       "key": "nfr-consolidation-improvement-audit",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:no-ask-and-defer:2026-06-28T00:29:04.676Z",
       "key": "no-ask-and-defer",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:old-helix-migration-closed:op:auto-730499c4d6ff9d90adc5b5b4",
       "key": "old-helix-migration-closed",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:old-helix-source-repo:2026-06-28T01:09:22.979Z",
       "key": "old-helix-source-repo",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:orchestration-runtime-bridge-gap:op:auto-013fbb18765aae49bb2fc449",
       "key": "orchestration-runtime-bridge-gap",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:rename-timing-decision:2026-06-28T00:27:33.480Z",
       "key": "rename-timing-decision",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:requirements-consistency-audit:op:auto-b573628390bf70ed2fe0341a",
       "key": "requirements-consistency-audit",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:system-audit-2026-07-14-goal:op:auto-96790fd63fcb247a0ea606da",
       "key": "system-audit-2026-07-14-goal",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:upstream-is-po-own-work:op:auto-478f599113d32385687c2391",
       "key": "upstream-is-po-own-work",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:upstream-uttdd-reconciliation:op:auto-cac8ac9240f4ce84a4904e26",
       "key": "upstream-uttdd-reconciliation",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:v051-completion-claim-correction:op:codex-20260718",
       "key": "v051-completion-claim-correction",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:v051-final-reverification:op:codex-20260718",
       "key": "v051-final-reverification",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:v051-remediation-complete-for-codex:op:auto-318e4947680515506c1f9c1f",
       "key": "v051-remediation-complete-for-codex",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:web-research-recency:2026-06-28T00:06:10.177Z",
       "key": "web-research-recency",
       "targets": [
-        "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md"
+        {
+          "path": "docs/governance/harness-memory-reconciliation-audit-2026-07-19.md",
+          "sha256": "sha256:5b2301f62b080af199025c74e48023c2eb06b12695715679dade7c1e16297702"
+        }
       ]
     },
     {
       "memory_id": "harness:worker-runtime-research-2026-07-19:op:auto-40660a42939bd2c30031f279",
       "key": "worker-runtime-research-2026-07-19",
       "targets": [
-        "docs/research/harness-improvement-from-grok-kimi-oss-2026-07-19.md"
+        {
+          "path": "docs/research/harness-improvement-from-grok-kimi-oss-2026-07-19.md",
+          "sha256": "sha256:4387e3a86ad2de2ef232c57844e097a215c95b3a563c3dc4e34b87f25fa33388"
+        }
       ]
     }
   ]
