@@ -2,7 +2,6 @@
 
 status: research + 要件定義改善指示 / Codex 参照用
 author runtime: claude
-追跡キー: worker-runtime-research-2026-07-19
 
 ## 調査範囲
 
