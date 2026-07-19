@@ -144,7 +144,7 @@ function runWorkflowHelix(
   return runNodePackageTool(
     cwd,
     ["run", "helix", ...workflowCommand.slice(prefix.length).split(" ")],
-    env,
+    { ...env, npm_config_loglevel: "silent" },
   );
 }
 
