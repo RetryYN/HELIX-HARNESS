@@ -35,3 +35,5 @@ jobs:
         run: npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json
       - run: npm run typecheck
       - run: npm test
+        env:
+          NPM_CONFIG_PREFIX: ${{ github.workspace }}

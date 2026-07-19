@@ -31,3 +31,5 @@ jobs:
         run: npm run helix -- rename plan --json
       - run: npm run typecheck
       - run: npm test
+        env:
+          NPM_CONFIG_PREFIX: ${{ github.workspace }}
