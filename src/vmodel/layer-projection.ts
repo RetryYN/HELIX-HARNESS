@@ -25,11 +25,11 @@ export const LAYER_PROJECTION_MAP: readonly LayerProjectionEntry[] = [
   { legacy: "L5", canonical: "L5", canonicalLabel: "詳細設計+test contract" },
   { legacy: "L6", canonical: "L5", canonicalLabel: "詳細設計+test contract" },
   { legacy: "L7", canonical: "L6", canonicalLabel: "実装" },
-  { legacy: "L8", canonical: "L7", canonicalLabel: "TDD・単体" },
-  { legacy: "L9", canonical: "L8", canonicalLabel: "結合" },
-  { legacy: "L10", canonical: "L9", canonicalLabel: "総合" },
-  { legacy: "L11", canonical: "L10", canonicalLabel: "受入" },
-  { legacy: "L12", canonical: "L11", canonicalLabel: "受入/vmodel検証" },
+  { legacy: "L8", canonical: "L7", canonicalLabel: "TDD" },
+  { legacy: "L9", canonical: "L8", canonicalLabel: "単体" },
+  { legacy: "L10", canonical: "L9", canonicalLabel: "結合" },
+  { legacy: "L11", canonical: "L10", canonicalLabel: "総合" },
+  { legacy: "L12", canonical: "L11", canonicalLabel: "受入" },
   { legacy: "L13", canonical: "L12", canonicalLabel: "運用テスト・release" },
   { legacy: "L14", canonical: "L12", canonicalLabel: "運用テスト・release" },
 ];
@@ -86,18 +86,23 @@ export function analyzeDualProjection(input: DualProjectionInput): DualProjectio
 export function loadDualProjectionInput(repoRoot: string = process.cwd()): DualProjectionInput {
   const observedLayers: { token: string; source: string }[] = [];
 
-  const designRoot = join(repoRoot, "docs/design/helix");
-  for (const entry of readdirSync(designRoot, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const match = entry.name.match(/^(L\d+)-/i);
-    if (match) observedLayers.push({ token: match[1], source: `design-dir:${entry.name}` });
+  // helix / harness 両ツリーを対称に走査する (HR-FR-VMCUT-05: drift を漏らさない)
+  for (const tree of ["docs/design/helix", "docs/design/harness"]) {
+    for (const entry of readdirSync(join(repoRoot, tree), { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const match = entry.name.match(/^(L\d+)-/i);
+      if (match)
+        observedLayers.push({ token: match[1], source: `design-dir:${tree}/${entry.name}` });
+    }
   }
 
   const plansRoot = join(repoRoot, "docs/plans");
   for (const entry of readdirSync(plansRoot, { withFileTypes: true })) {
     if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
     const content = readFileSync(join(plansRoot, entry.name), "utf8");
-    const match = content.match(/^layer:\s*"?(\S+?)"?\s*$/m);
+    // frontmatter block (--- ... ---) 内の layer: だけを対象にする (本文中の例示行を誤検知しない)
+    const frontmatter = content.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? "";
+    const match = frontmatter.match(/^layer:\s*"?(\S+?)"?\s*$/m);
     if (match) observedLayers.push({ token: match[1], source: `plan:${entry.name}` });
   }
 

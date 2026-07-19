@@ -35,6 +35,40 @@ describe("L12 canonical layer projection (PLAN-L7-460-l12-dual-projection / HR-F
     }
   });
 
+  it("[PLAN-L7-460] canonical/label が L3 正本 §1 表と exact 一致する (全 15 行)", () => {
+    expect(LAYER_PROJECTION_MAP.map((e) => [e.legacy, e.canonical, e.canonicalLabel])).toEqual([
+      ["L0", "L1", "企画"],
+      ["L1", "L2", "要求・画面・flow"],
+      ["L2", "L2", "要求・画面・flow"],
+      ["L3", "L3", "要件freeze"],
+      ["L4", "L4", "基本設計"],
+      ["L5", "L5", "詳細設計+test contract"],
+      ["L6", "L5", "詳細設計+test contract"],
+      ["L7", "L6", "実装"],
+      ["L8", "L7", "TDD"],
+      ["L9", "L8", "単体"],
+      ["L10", "L9", "結合"],
+      ["L11", "L10", "総合"],
+      ["L12", "L11", "受入"],
+      ["L13", "L12", "運用テスト・release"],
+      ["L14", "L12", "運用テスト・release"],
+    ]);
+  });
+
+  it("[PLAN-L7-460] 実 repo 走査は harness/helix 両 design tree を対称に含む", () => {
+    const input = loadDualProjectionInput();
+    const sources = input.observedLayers.map((o) => o.source);
+    expect(sources.some((s) => s.startsWith("design-dir:docs/design/helix/"))).toBe(true);
+    expect(sources.some((s) => s.startsWith("design-dir:docs/design/harness/"))).toBe(true);
+  });
+
+  it("[PLAN-L7-460] doctor wrapper は走査不能時に fail-close する", async () => {
+    const { checkL12DualProjection } = await import("../src/doctor/index");
+    const r = checkL12DualProjection("/nonexistent-root-for-fail-close");
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("fail-close");
+  });
+
   it("[PLAN-L7-460] 縮退 remap (L5/旧L6→L5, L13/L14→L12, L0→L1, L7→L6) を保持する", () => {
     expect(projectLegacyLayer("L0")?.canonical).toBe("L1");
     expect(projectLegacyLayer("L5")?.canonical).toBe("L5");
