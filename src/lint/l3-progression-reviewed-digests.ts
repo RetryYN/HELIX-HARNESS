@@ -40,7 +40,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L0-charter/helix-charter_v0.1.md":
     "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8",
   "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md":
-    "af2a03cdb3ff766d7bfde267789e642de1b3f719112f55e7a765b0ac0d1c6a11",
+    "c256ca9116502fc83c98a6822c9a482cc72968b1af5e93f1ed2efbbd155bdd65",
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
@@ -106,7 +106,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/plans/PLAN-L3-11-requirements-omission-guards.md":
     "9eee56fe019d6b010b2fd9bbb7de36d748818d58d94b52527e5dfa7baa7d5133",
   "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md":
-    "7d9653c046f1da424d490ea471183237a0a80cd127b4dab0be0beecf6c36a674",
+    "e373d47f7d7d6c884829b1518d6352c852c5ea4ecdf73a1b0b5992e0dae30b84",
   "docs/process/README.md": "915979016b0d9a9c259452dce322ea9a1aab6630318761286cfaad426ab0e58f",
   "docs/process/forward/L00-L06-design-phase.md":
     "9da4a74f95b6028ef5f7fcabd99cac1f899cb2c7ac6bd57cc907749f86d6160c",
