@@ -46,8 +46,8 @@ function runNodePackageTool(cwd: string, args: string[], env: NodeJS.ProcessEnv 
   if (args[0] === "src/cli.ts") {
     return runCommand(
       cwd,
-      "npx",
-      ["--prefix", process.cwd(), "--no-install", "tsx", ...args],
+      process.execPath,
+      ["--import", import.meta.resolve("tsx"), ...args],
       env,
     );
   }
