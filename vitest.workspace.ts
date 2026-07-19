@@ -1,5 +1,9 @@
 import { configDefaults, defineWorkspace } from "vitest/config";
 
+// `--project` execution loads this workspace directly. Keep child fixture CLIs
+// bound to the repository-pinned tsx even after their cwd moves to a temp repo.
+process.env.npm_config_prefix = process.cwd();
+
 const commonTestConfig = {
   pool: "forks" as const,
   poolOptions: {
