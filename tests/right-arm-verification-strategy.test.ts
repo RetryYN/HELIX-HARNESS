@@ -152,10 +152,10 @@ describe("right-arm verification strategy", () => {
     // U-SOURCELEDGER-005
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
     const refreshed = rightArm.replace(
-      /### Verification source ledger \(checked \d{4}-\d{2}-\d{2}\)/,
-      "### Verification source ledger (checked 2026-06-15)",
+      /### Verification source ledger（checked \d{4}-\d{2}-\d{2}、検証台帳）/,
+      "### Verification source ledger（checked 2026-06-15、検証台帳）",
     );
-    expect(refreshed).toContain("### Verification source ledger (checked 2026-06-15)");
+    expect(refreshed).toContain("### Verification source ledger（checked 2026-06-15、検証台帳）");
     expect(refreshed).not.toBe(rightArm);
     const result = analyzeRightArmVerificationStrategy({
       gatesMd: text("docs/process/gates.md"),
@@ -391,12 +391,12 @@ describe("right-arm verification strategy", () => {
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
 
     for (const marker of [
-      "official URL",
-      "adopted version/date",
-      "latest official status",
-      "adoption decision",
-      "verification use",
-      "gate impact",
+      "公式 URL",
+      "採用 version/date",
+      "最新公式 status",
+      "採用判断",
+      "検証用途",
+      "gate 影響",
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd",
       "https://scrumguides.org/scrum-guide.html",

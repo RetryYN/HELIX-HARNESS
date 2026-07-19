@@ -265,7 +265,7 @@ describe("PLAN-L7-451 lint effect executor", () => {
   it("effect payload変異とdurable replay/conflictをeffect前に拒否する", () => {
     const original = probe();
     const mutated = [
-      { ...original, command: "node" },
+      { ...original, command: "python" },
       { ...original, args: ["--help"] },
       { ...original, timeoutMs: 1 },
     ] satisfies ProbeIntent[];

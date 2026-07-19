@@ -34,7 +34,7 @@
 
 ### Verification source ledger（checked 2026-07-03、検証台帳）
 
-| source | 公式URL | 採用version/date | 最新公式status | 採用判断 | 検証用途 | gate影響 |
+| source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | 検証用途 | gate 影響 |
 |---|---|---|---|---|---|---|
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | security/release証跡 | G8 / G9 / G12 |
 | Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | inspect/adapt | S3 / S4 / G11 / G12 |

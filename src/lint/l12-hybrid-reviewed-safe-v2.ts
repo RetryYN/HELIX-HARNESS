@@ -52,7 +52,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md",
-    contentDigest: "390e349b268d16645ba8dd68e4b66e34230e175b508a16537abdea606bdabf65",
+    contentDigest: "5c2d8c8b9f5d3ccaa832c303d807d3cf8243c36ac018e822ebac6665e6fc25f5",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -77,7 +77,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
-    contentDigest: "17f2c427fba7869f59c414fe1aff465e8bb32589f75d9d0ee569f08c086335c5",
+    contentDigest: "afb23070838fe8c2876e3791653f925bc64dd6217f500d7f7e539ebd84df80bc",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -172,7 +172,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/infinity-loop-requirement-authority-binding.md",
-    contentDigest: "a08a8406d2cfe82aeb871b8188cd2931b5642e1d2e9d0d0ff33a413e5d10f0d6",
+    contentDigest: "059193787c6f6041357ba6b25d894cb70e12d647a16a0862dd05e56cb6ea15c8",
     finalDisposition: "false_positive",
   },
   {
@@ -2397,12 +2397,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
-    contentDigest: "ba3a9a02f6c50637014c80989e9088be8c144d16749df2aff7ff1d84fdb10754",
+    contentDigest: "a15958da56ad69f8170d955bc68ef5f40236c175c8deb42ff28109802844503c",
     finalDisposition: "compatibility_labeled",
   },
   {
     path: "docs/governance/downstream-canonical-reuse-authority-2026-07-19.md",
-    contentDigest: "376f16fe54d2eef9e151c7bfb9dbfeb914353db1819e187882713e40b20d8419",
+    contentDigest: "1f21efbd8e44e736d5b579420b2cc9a7cc7325ee15fd2a7a9670b0bde4e5afaf",
     finalDisposition: "compatibility_labeled",
   },
 ] as const;

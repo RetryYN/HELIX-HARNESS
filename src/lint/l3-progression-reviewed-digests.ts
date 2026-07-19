@@ -40,7 +40,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L0-charter/helix-charter_v0.1.md":
     "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8",
   "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md":
-    "e2627d23ce3cfeed2e437bb73cb0c619fb66b4c0893431197412ec140b0b57cc",
+    "af2a03cdb3ff766d7bfde267789e642de1b3f719112f55e7a765b0ac0d1c6a11",
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
@@ -50,7 +50,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/coding-rules.md":
     "6487ef9c38754b7846597d35e1873bfda3716b8e8877dace342f19dfcce33637",
   "docs/governance/document-system-map.md":
-    "9b343c2014bc96a30ebce89516697ead44885387176192b9f19e5e9c1e79f3f3",
+    "ea1ee83bfe00da66381a8861ad7b39b6f638f19e0ca6c5a4f9b64e6faccb90c1",
   "docs/governance/gate-design.md":
     "d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726",
   "docs/governance/helix-harness-concept_v3.1.md":
@@ -58,7 +58,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/governance/helix-harness-extraction-plan_v0.1.md":
     "a6520403f908e5bedd214c7727b659e6e812989ad42eb03d6fb9e5b3cce0dd17",
   "docs/governance/helix-harness-requirements_v1.2.md":
-    "d08ae78654134e3e24982faa9e21eb192a7963d08d1642303abe06800a2bbe64",
+    "e99595834b31c8d1acd3bf0abb53477c7bcdb3de53a2b8b13ce86e70b872166b",
   "docs/governance/repository-structure.md":
     "77fcb847a83847135abb0b6f3d4b2394747ae87488f8f245956b020153033451",
   "docs/plans/PLAN-L0-01-helix-charter.md":
