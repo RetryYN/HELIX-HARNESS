@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
-import { extname, join } from "node:path";
+import { extname, join, relative, resolve } from "node:path";
 import { REVIEWED_SAFE_DISPOSITIONS } from "./l12-hybrid-reviewed-safe-v2";
 
 export const RECOGNITION_SIGNAL_IDS = [
@@ -175,13 +175,19 @@ export function scanL12HybridRecognitionCandidates(
     ".claude/CLAUDE.md",
     "package.json",
   ],
+  repoRoot = process.cwd(),
 ): RecognitionCandidate[] {
-  const paths = [...roots.flatMap(collectTextFiles), ...explicitFiles]
+  const paths = [
+    ...roots.flatMap((root) =>
+      collectTextFiles(resolve(repoRoot, root)).map((path) => relative(repoRoot, path)),
+    ),
+    ...explicitFiles,
+  ]
     .filter((path) => !EXCLUDED_PREFIXES.some((prefix) => path.startsWith(prefix)))
     .filter((path) => !EXCLUDED_PATHS.has(path))
     .sort();
   return paths.flatMap((path) => {
-    const body = readFileSync(path, "utf8");
+    const body = readFileSync(resolve(repoRoot, path), "utf8");
     const signals = detectL12HybridRecognitionSignals(body);
     if (signals.length === 0) return [];
     const disposition = classifyRecognitionCandidate(path);

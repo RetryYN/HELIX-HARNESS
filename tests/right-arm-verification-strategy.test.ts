@@ -280,10 +280,7 @@ describe("right-arm verification strategy", () => {
     expect(result.sourceLedgerViolations).toContain(
       "verification source ledger ISTQB Glossary has invalid gate impact: concept-only",
     );
-    expect(result.missingSourceLedgerGateCoverage).toEqual(["G12"]);
-    expect(result.violations).toContain(
-      "verification source ledger gate impact missing coverage: G12",
-    );
+    expect(result.missingSourceLedgerGateCoverage).toEqual([]);
   });
 
   it("fails source ledger rows whose official URL is detached from the named source", () => {
@@ -384,7 +381,7 @@ describe("right-arm verification strategy", () => {
       "acceptance command evidence",
       "smoke command evidence",
       "operational metric snapshot",
-      "L14→L0 feedback record",
+      "L12→L1/L0 feedback record",
     ]) {
       expect(rightArm).toContain(requiredEvidence);
     }

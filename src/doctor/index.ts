@@ -228,6 +228,11 @@ import {
 } from "../lint/left-arm-carry-log";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
 import {
+  classifyFinalRecognitionDisposition,
+  scanL12HybridRecognitionCandidates,
+} from "../lint/l12-hybrid-recognition";
+import { verifyL3ProgressionAuthority } from "../lint/l3-progression-authority";
+import {
   analyzeMemoryHandoverIsolation,
   loadMemoryHandoverIsolationInput,
   memoryHandoverIsolationMessages,
@@ -6228,6 +6233,56 @@ export function checkRightArmVerificationStrategy(repoRoot: string): {
       messages: [
         "right-arm-verification-strategy - violation: right-arm verification docs could not be read",
       ],
+      ok: false,
+    };
+  }
+}
+
+export function checkL12HybridRecognition(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const conflicts = scanL12HybridRecognitionCandidates(undefined, undefined, repoRoot).filter(
+      (candidate) => !["compatibility_labeled", "false_positive", "historical"].includes(
+        classifyFinalRecognitionDisposition(candidate),
+      ),
+    );
+    return conflicts.length === 0
+      ? { messages: ["l12-hybrid-recognition - OK"], ok: true }
+      : {
+          messages: conflicts.map(
+            (candidate) =>
+              `l12-hybrid-recognition - violation: ${candidate.path} requires reviewed disposition`,
+          ),
+          ok: false,
+        };
+  } catch {
+    return {
+      messages: ["l12-hybrid-recognition - violation: authority candidates could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkL3ProgressionAuthority(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const findings = verifyL3ProgressionAuthority(repoRoot);
+    return findings.length === 0
+      ? { messages: ["l3-progression-authority - OK"], ok: true }
+      : {
+          messages: findings.map(
+            (finding) =>
+              `l3-progression-authority - violation: ${finding.path} ${finding.reason}`,
+          ),
+          ok: false,
+        };
+  } catch {
+    return {
+      messages: ["l3-progression-authority - violation: reviewed paths could not be read"],
       ok: false,
     };
   }

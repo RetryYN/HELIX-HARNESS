@@ -62,8 +62,8 @@ Source ledger 意味レビュー証跡:
 |---|---|---|---|---|
 | G8 | L5 contract | 境界が結合する | `g8-integration-evidence-v1`、command exit 0 | hard gate |
 | G9 | L4 system contract | system behavior成立 | ST-* row、system command evidence | system workflow |
-| G10 | L3 FR/AC | 機能・UX・accessibility成立 | screenshot / render smoke / accessibility finding | UX workflow |
-| G11 | L2要求 | 人間受入とfeedback disposition | UAT decision record | 未処理feedbackを拒否 |
+| G10 | L3 FR/AC | 機能・UX・accessibility成立 | screenshot / render smoke / accessibility finding、WCAG 2.2 success-criteria mapping、Playwright trace or report | UX workflow |
+| G11 | L2要求 | 人間受入とfeedback disposition | UAT decision record、manual accessibility or inclusive-user review route | 未処理feedbackを拒否 |
 | G12 | L1事業要求 | 受入・配布・運用・価値を一体検証 | acceptance command evidence、smoke command evidence、operational metric snapshot、L12→L1/L0 feedback record | release/operation/value closure |
 
 ## compatibility evidence

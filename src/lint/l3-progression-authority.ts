@@ -66,7 +66,9 @@ export type L3ProgressionAuthorityFinding = {
   reason: "missing_reviewed_digest" | "digest_mismatch";
 };
 
-export const verifyL3ProgressionAuthority = (): L3ProgressionAuthorityFinding[] => {
+export const verifyL3ProgressionAuthority = (
+  repoRoot = process.cwd(),
+): L3ProgressionAuthorityFinding[] => {
   const findings: L3ProgressionAuthorityFinding[] = [];
   for (const path of L3_PROGRESSION_BLOCKER_PATHS) {
     const expected = (L3_PROGRESSION_REVIEWED_DIGESTS as Record<string, string>)[path];
@@ -74,7 +76,9 @@ export const verifyL3ProgressionAuthority = (): L3ProgressionAuthorityFinding[] 
       findings.push({ path, reason: "missing_reviewed_digest" });
       continue;
     }
-    const actual = createHash("sha256").update(readFileSync(path)).digest("hex");
+    const actual = createHash("sha256")
+      .update(readFileSync(resolve(repoRoot, path)))
+      .digest("hex");
     if (actual !== expected) findings.push({ path, reason: "digest_mismatch" });
   }
   return findings;
@@ -82,4 +86,5 @@ export const verifyL3ProgressionAuthority = (): L3ProgressionAuthorityFinding[] 
 
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { L3_PROGRESSION_REVIEWED_DIGESTS } from "./l3-progression-reviewed-digests";
