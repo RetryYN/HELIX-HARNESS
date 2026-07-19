@@ -78,7 +78,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
     expect(text).toContain("数量だけでなく意味");
-    expect(text).toContain("100% の数値だけを L14 / whole-program completion 証跡として扱わない");
+    expect(text).toContain("100% の数値だけを L12 / whole-program completion 証跡として扱わない");
     expect(text).toContain("objectiveProgress");
     expect(text).toContain("percent: 90");
     expect(text).toContain("completionClaimAllowed: false");
