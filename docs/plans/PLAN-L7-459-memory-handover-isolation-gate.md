@@ -9,8 +9,8 @@ route_mode: incident
 review_evidence:
   - reviewer: code-reviewer subagent (独立 5 軸レビュー、初回 FAIL→是正→再レビュー PASS)
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-19T22:25:00+09:00"
-    tests_green_at: "2026-07-19T22:20:00+09:00"
+    reviewed_at: "2026-07-19T22:45:00+09:00"
+    tests_green_at: "2026-07-19T22:38:07+09:00"
     verdict: pass
     worker_model: claude-sonnet-5
     notes: "PO 指示 (2026-07-19、Codex 遅延時の安全 merge) による単一 runtime 代替証跡。初回指摘 (全ブランチ走査の等価コミット巻き込み / detached HEAD 漏れ / remote 未設定誤検知 / 統合テスト欠如) を patch-id 等価除外・HEAD 包含・noRemote fail-close・実 git fixture 統合テスト 4 件で是正。レビュア独立再実行で vitest 10/10・typecheck・実 repo isolated=0 green を確認。"
