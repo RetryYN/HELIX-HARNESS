@@ -670,6 +670,7 @@ body`;
     const entries = extractReviewEntries(content);
     expect(entries).toEqual([
       {
+        reviewer: "frontier-reviewer",
         review_kind: "cross_agent",
         verdict: "approve",
         reviewed_at: "2026-06-05",
