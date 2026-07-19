@@ -236,11 +236,6 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "historical",
   },
   {
-    path: "docs/governance/ut-tdd-github-operations-reference-audit-2026-07-18.md",
-    contentDigest: "93740baa0ec8714e164c3c4428cba03b9978f7cecb9ab5c40effbab968a7071c",
-    finalDisposition: "compatibility_labeled",
-  },
-  {
     path: "docs/plans/PLAN-DISCOVERY-02-roster-design.md",
     contentDigest: "923ae595dce46b467a50b415b53abc00ff37da9f3a0d87521202dc688b77801e",
     finalDisposition: "false_positive",

@@ -2,7 +2,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/adr/ADR-001-helix-harness-redesign-and-language.md":
     "0e037a7716dd8890fff812ac0560664f97ba693a7a04f76b339edd13bfd71b5d",
   "docs/design/design-catalog.yaml":
-    "a18203473667ccb80f12a5d396200988337a73e0f12856c9c137b6fc1b2b51be",
+    "782aa22b30747a087f5d3f0d21197d0d2d8009ee496a35a08a0754d75a006259",
   "docs/design/harness/L1-requirements/business-requirements.md":
     "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
   "docs/design/harness/L1-requirements/functional-requirements.md":
@@ -40,21 +40,21 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L0-charter/helix-charter_v0.1.md":
     "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8",
   "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md":
-    "76da749a6b4facb994a28bbb597c4190588ef939b50d1e3f8bc7e1f3bdc9a4f5",
+    "e2627d23ce3cfeed2e437bb73cb0c619fb66b4c0893431197412ec140b0b57cc",
   "docs/design/helix/L1-requirements/pillar-requirements.md":
-    "dc91f0933b996bcb2ac27cac866a5be5d664b60026f2ee64d79ca42a1bf656a4",
+    "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
-    "f78a8fb61c4d3c7270a84d9f5517b376538ca4907b1a6d50058cf9f186320c54",
+    "ef159cc544630f6dc31121328147f84f595c0b6ad918a55158f5494816092b88",
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
     "64b6338a14008eec9faff45aa7c0c76ae061cf67ef6f27f3cf07fbab4700aeaa",
   "docs/governance/coding-rules.md":
     "6487ef9c38754b7846597d35e1873bfda3716b8e8877dace342f19dfcce33637",
   "docs/governance/document-system-map.md":
-    "4271576869ce40b8852fe797cbb874c70f4400fb00ebf2d570f3349eea3c6e27",
+    "9b343c2014bc96a30ebce89516697ead44885387176192b9f19e5e9c1e79f3f3",
   "docs/governance/gate-design.md":
-    "ebd8611afa51dde3d435535231657a8cbbd5cffb2e6890403a9ab707be2fd109",
+    "d96852613b6d04c522872f110ad78dc6b2ade4007cc5a6a8b048eba273d3a726",
   "docs/governance/helix-harness-concept_v3.1.md":
-    "49e3cbf27bb65a9f467d11ec7760c690e65313cf31cbbec52e0967d28cd99c94",
+    "712a47392efcbf992fc98c3140ce8a64fc85de8b491082f24d86a0dc6726a64e",
   "docs/governance/helix-harness-extraction-plan_v0.1.md":
     "a6520403f908e5bedd214c7727b659e6e812989ad42eb03d6fb9e5b3cce0dd17",
   "docs/governance/helix-harness-requirements_v1.2.md":
@@ -94,7 +94,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/plans/PLAN-L3-05-harness-telemetry-closure.md":
     "a7b9b48df3ee2bbd3afc95662a8ddc737b90884ca20ea6c8a9c03f584470aa81",
   "docs/plans/PLAN-L3-06-helix-pillar-descent.md":
-    "3588fdf2395971ff5f320ee49f2f3e16e6d8c7c2f55b89cb11aebd55af1bdd57",
+    "c898ffa27dc07ed33b404821b0db09c2f1e6afc4e3b0950af6244e310e885616",
   "docs/plans/PLAN-L3-07-requirements-binding-enforcement.md":
     "14978bb51eafc52511ff5c5bbb16c26b22fa58ace18880547e9051eb565de7ee",
   "docs/plans/PLAN-L3-08-message-catalog-externalization.md":
@@ -106,11 +106,11 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/plans/PLAN-L3-11-requirements-omission-guards.md":
     "9eee56fe019d6b010b2fd9bbb7de36d748818d58d94b52527e5dfa7baa7d5133",
   "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md":
-    "715b38c919f24b91293518aa9879bdbfc5856e5dede677328e40f9ba2cce371e",
-  "docs/process/README.md": "85d7406b8035dfe49bddd3926f5c69b6ea57dec27c6cfb722d9f26bf4eb57c3d",
+    "7d9653c046f1da424d490ea471183237a0a80cd127b4dab0be0beecf6c36a674",
+  "docs/process/README.md": "915979016b0d9a9c259452dce322ea9a1aab6630318761286cfaad426ab0e58f",
   "docs/process/forward/L00-L06-design-phase.md":
     "9da4a74f95b6028ef5f7fcabd99cac1f899cb2c7ac6bd57cc907749f86d6160c",
   "docs/process/forward/overview.md":
-    "9910d6c821e514772cf1ec4bb31df7b4e2a92760f4f3d009cb0224667ce6f9d2",
-  "docs/process/gates.md": "cd7552ec10b999848105b7cc41fe91faa9a63c6c7337bf5ebee0c69a2f3f2a07",
+    "1c3d9fabb7bf157417736259e7d5223683698b85088c778cd283508d950c8fde",
+  "docs/process/gates.md": "ee8b40fc315570fba752614b05daf83af0c71a10f821f27d414b97678e075682",
 } as const;

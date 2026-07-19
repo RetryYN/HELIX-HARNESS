@@ -40,6 +40,18 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/vmodel-docgen-fit-acceptance.md
     artifact_type: test_design
+  - artifact_path: src/lint/canonical-reuse-authority.ts
+    artifact_type: source_code
+  - artifact_path: src/lint/canonical-reuse-consumer-baseline.ts
+    artifact_type: source_code
+  - artifact_path: src/lint/l12-hybrid-recognition.ts
+    artifact_type: source_code
+  - artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts
+    artifact_type: source_code
+  - artifact_path: src/lint/l3-progression-authority.ts
+    artifact_type: source_code
+  - artifact_path: src/lint/l3-progression-reviewed-digests.ts
+    artifact_type: source_code
 dependencies:
   parent: docs/plans/PLAN-L3-00-master.md
   requires:

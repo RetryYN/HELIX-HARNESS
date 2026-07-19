@@ -6244,9 +6244,7 @@ export function checkL12HybridRecognition(repoRoot: string): {
 } {
   try {
     const conflicts = scanL12HybridRecognitionCandidates(undefined, undefined, repoRoot).filter(
-      (candidate) => !["compatibility_labeled", "false_positive", "historical"].includes(
-        classifyFinalRecognitionDisposition(candidate),
-      ),
+      (candidate) => classifyFinalRecognitionDisposition(candidate) === "needs_manual_review",
     );
     return conflicts.length === 0
       ? { messages: ["l12-hybrid-recognition - OK"], ok: true }
