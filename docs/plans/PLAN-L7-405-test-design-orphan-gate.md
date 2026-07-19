@@ -58,32 +58,32 @@ review_evidence:
     scope: "test-design起点の孤児検出、typed exemption kind/reason/target、nested path、exemption chain/cycle拒否、L5↔L8正本維持、L9 staged migrationとcross-layer metaの明示exemptionをseverity-firstで再レビューし、blocker/high残存なし。"
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/vmodel-pair.test.ts tests/gate-static.test.ts --testTimeout=300000"
-        runner: bun
+        command: "npx --no-install vitest run tests/vmodel-pair.test.ts tests/gate-static.test.ts --testTimeout=300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T02:48:30+09:00"
         evidence_path: tests/vmodel-pair.test.ts
         output_digest: "sha256:e9ab4fb5fac9eec9938a4f4987ed733ab89a90487f44e06e9e494d0fb4c8783c"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T02:48:30+09:00"
         evidence_path: src/vmodel/lint.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T02:48:30+09:00"
         evidence_path: src/vmodel/lint.ts
         output_digest: "sha256:960f36080820659b3dd45e2663c4fe8096fad718de4983907ac1729f006aa330"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-405-test-design-orphan-gate.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T02:48:30+09:00"
@@ -119,7 +119,7 @@ design起点だけでgreenになるpair-freezeの検出穴を塞ぎ、未参照t
 - 理由無しexemptionが`pair-exemption-invalid`になる。
 - 現行L5↔L8正本を維持し、L9 staged migrationとmeta文書だけがtyped exemptionになる。
 - live repoのpair orphanが0件になる。
-- `bun run vitest run tests/vmodel-pair.test.ts tests/gate-static.test.ts`、typecheck、lint、PLAN lintがgreenになる。
+- `npx --no-install vitest run tests/vmodel-pair.test.ts tests/gate-static.test.ts`、typecheck、lint、PLAN lintがgreenになる。
 
 ## §3 対象外
 

@@ -52,40 +52,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:04:17+09:00"
         evidence_path: tests/gate-review-tier.test.ts
         output_digest: "sha256:dcf1847da140deed0001426cc67711b82306528b12b10c5f5a7a76a30ae5fc06"
       - kind: unit_test
-        command: "bun run vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:04:17+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
         output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
       - kind: unit_test
-        command: "bun run vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:04:17+09:00"
         evidence_path: tests/proposal-document-coverage.test.ts
         output_digest: "sha256:b83eb982966a0e6fa019a4fd2bf59e2284cec83a168268f5c845e34243fb8fb1"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T19:04:52+09:00"
         evidence_path: src/gate/review-tier.ts
         output_digest: "sha256:12d3c3b2f7c44765b760db084030bb98939e1fa399dc89f0870f74009e37c666"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T19:04:43+09:00"

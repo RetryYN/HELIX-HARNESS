@@ -59,72 +59,72 @@ review_evidence:
     reviewer_model: gpt-5.5
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/setup.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/setup.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T11:40:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: unit_test
-        command: "bun run vitest run tests/cli-surface.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T11:41:00+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: unit_test
-        command: "bun run vitest run tests/runtime-portability.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/runtime-portability.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T11:42:00+09:00"
         evidence_path: tests/runtime-portability.test.ts
         output_digest: "sha256:d5760a2295325537bab5c8c43333b48628cc796f541b0ec2d22b63da850aa883"
       - kind: unit_test
-        command: "bun run vitest run tests/work-guard.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/work-guard.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T11:43:00+09:00"
         evidence_path: tests/work-guard.test.ts
         output_digest: "sha256:5ff89dd03a0e6ec91733514d7c94ee10a7bf2dbe8b148a24c73d779a0681c35b"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T11:44:00+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T11:44:10+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T11:44:20+09:00"
         evidence_path: src/lint/runtime-portability.ts
         output_digest: "sha256:3b4ed93f78c9f90bf917bc12720c0ef2df85c56017ebc57e3cd284adf2de975d"
       - kind: unit_test
-        command: "bun run vitest run tests/work-guard.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/work-guard.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T11:43:30+09:00"
         evidence_path: .claude/hooks/work-guard.ts
         output_digest: "sha256:5cd75baface268cb4cb817ee1b205a792714447361241a2ae5e6825866fe0b91"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T11:45:00+09:00"
@@ -193,7 +193,7 @@ stale 化したため、green 再実行済みの coordinated 再stamp (案A) で
 - 回帰テスト: 実 hook spawn で「1回目=許可+marker消費+audit残存 / 2回目=block(exit2)」。
 
 ### 非対応 — Biome warning 4 件 (Minor, drift 偽陽性)
-- 外部レビューの Biome 4 件は pinned biome `2.4.15` (`bun run lint` = CI 同一) では 262 ファイル
+- 外部レビューの Biome 4 件は pinned biome `2.4.15` (`npm run lint` = CI 同一) では 262 ファイル
   warning ゼロ・exit 0。別 version (`npx biome`) の drift 由来の偽陽性のため編集見送り。canonical
   toolchain が報告しない warning への投機編集は `coding ≠ substance`。
 
@@ -211,7 +211,7 @@ green 再実行済みで coordinated に再stamp した (機械改ざんでな�
   - 対象: PLAN-L7-158-refactor-detector-precision-and-policy-extraction → src/cli.ts, tests/cli-surface.test.ts
   - 対象: PLAN-L7-166-setup-template-catalog-split → tests/setup.test.ts, src/setup/index.ts (×2)
   - 対象: PLAN-REVERSE-131-plan-complete-handover → src/cli.ts
-- green 再実行: `bun run typecheck` (pass) / `bun run lint` (clean) / 全 vitest (logic 1093 pass) /
+- green 再実行: `npm run typecheck` (pass) / `npm run lint` (clean) / 全 vitest (logic 1093 pass) /
   対象 test (setup / cli-surface / runtime-portability / work-guard / runtime-hook-entrypoints) 全 green。
 - baseline: HEAD `0f46f3a` + 本 PLAN の意図変更のみ。
 - 主張は不変: 各 PLAN の verdict / scope / 主張は変えず、`output_digest` の hash と最小限のみ更新

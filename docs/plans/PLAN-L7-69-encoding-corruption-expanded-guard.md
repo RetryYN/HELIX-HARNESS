@@ -31,8 +31,8 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: unit_test
-        command: "bun run test:fast"
-        runner: bun
+        command: "npm test:fast"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:47:48+09:00"

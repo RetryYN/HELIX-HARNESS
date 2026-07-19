@@ -40,8 +40,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests\\review-green-command-projection.test.ts"
-        runner: bun
+        command: "npm test tests\\review-green-command-projection.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
@@ -67,5 +67,5 @@ harness.db から照会できるようにする。
 
 - rebuild は `PLAN-L7-108-review-green-command-evidence` の `test_runs` row を作成する。
 - projection された row は exit code 0、evidence path、SHA-256 output digest を持つ。
-- `bun test tests\review-green-command-projection.test.ts` が pass する。
-- `bun run typecheck`、`bun run lint`、`bun run src\cli.ts doctor` が pass する。
+- `npm test tests\review-green-command-projection.test.ts` が pass する。
+- `npm run typecheck`、`npm run lint`、`npx --no-install tsx src\cli.ts doctor` が pass する。

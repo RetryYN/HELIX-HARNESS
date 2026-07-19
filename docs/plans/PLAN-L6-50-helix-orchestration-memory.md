@@ -19,16 +19,16 @@ review_evidence:
     scope: "L6 function-design (9 契約) ⇔ test-design (9 oracle) の cross-runtime review。生成=Claude(Opus)、判断=Codex(別 runtime)。VERDICT PASS (Critical 0)。Important 4 件 (selectVerifier hybrid-unavailable fail-close / LoopState・loop_iterations の blockedReason 列 / writeMemory secret reject 明確化 / evaluateStop 必須フィールド欠落 fail-close) を凍結前に design+test-design へ反映済。pair-freeze 孤児 0、P8 違反なし"
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/orchestration tests/memory"
-        runner: bun
+        command: "npx --no-install vitest run tests/orchestration tests/memory"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T16:25:00+09:00"
         evidence_path: tests/orchestration/orchestration.test.ts
         output_digest: "sha256:27d21f17db9adbeac47bd7d1894214c45c679ef657d7a5ddc9e06ab55a39ab1c"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-28T16:25:00+09:00"

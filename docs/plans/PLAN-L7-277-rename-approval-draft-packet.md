@@ -52,16 +52,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/identifier-rename.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/identifier-rename.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T18:35:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:ffe3fa53f4dce03b4ee73626be1bcde6707a9d6fcb9980b3e6fd73892f27f0ef"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T18:35:00+09:00"

@@ -56,16 +56,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime-subagent
     green_commands:
       - kind: unit_test
-        command: "bun test tests/team-run.test.ts tests/agent-guard.test.ts tests/toolchain-pin.test.ts tests/quality-audit.test.ts tests/runtime-portability.test.ts tests/project-hook.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/team-run.test.ts tests/agent-guard.test.ts tests/toolchain-pin.test.ts tests/quality-audit.test.ts tests/runtime-portability.test.ts tests/project-hook.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T02:44:35+09:00"
         evidence_path: tests/team-run.test.ts
         output_digest: "sha256:186aee73e13ac285c865fc77ecf6cde964fe77a039dcf3e8286c748a17535003"
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T02:44:35+09:00"
@@ -73,15 +73,15 @@ review_evidence:
         output_digest: "sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322"
       - kind: lint
         command: "./scripts/helix plan lint docs/plans/PLAN-L7-319-upstream-adoption-small-items.md"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T02:44:35+09:00"
         evidence_path: docs/plans/PLAN-L7-319-upstream-adoption-small-items.md
         output_digest: "sha256:42de5cd663e4a97c9d9beb69651406fdad81f9426876c50adfa240a397c400fd"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T02:44:35+09:00"
@@ -89,7 +89,7 @@ review_evidence:
         output_digest: "sha256:7e6e40725ff66c596356c4d5f8aa37181555b026f91ced528226b98736a40929"
       - kind: doctor
         command: "./scripts/helix db rebuild --json >/tmp/helix-db-rebuild-plan-l7-319-final.json && ./scripts/helix doctor"
-        runner: bun
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T02:46:33+09:00"

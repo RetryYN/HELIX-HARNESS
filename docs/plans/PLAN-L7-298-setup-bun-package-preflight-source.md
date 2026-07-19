@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/cli-surface.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:36428eef7618d14fd63ecf4aa1db4367f136cb0bf66c2a96ae84307a67b72348"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"
@@ -77,7 +77,7 @@ review_evidence:
 
 - Bun `bun install` docs: `--frozen-lockfile` は lockfile の exact version を使い、lockfile を更新せず、`package.json` と `bun.lock` が不一致なら error。CI では `bun ci` と同等で、`bun.lock` commit が必要。
 - Bun lockfile docs: 現行 default は text `bun.lock`、旧 binary lockfile は `bun.lockb`。
-- Bun quickstart: `bun run <script>` は `package.json.scripts` を実行する。
+- Bun quickstart: `npm run <script>` は `package.json.scripts` を実行する。
 
 ## DoD
 

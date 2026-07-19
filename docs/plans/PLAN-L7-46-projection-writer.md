@@ -19,40 +19,40 @@ review_evidence:
     scope: "projection-writer frontmatter parsing now strips inline YAML comments outside quotes before PoC decision projection. This keeps `decision_outcome: confirmed # ...` counted as a decided PoC while preserving quoted `#` values in other projected frontmatter fields."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
-        runner: bun
+        command: "npm test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:800d7ea4a3a066193ddd49521ca53398798131ee8ffcb12ce2979d878f3a8ae4"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:fd343ed2c70719adc4889748411dfdea3937907970f9d6e2512701a3cc2cfeca"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:fd343ed2c70719adc4889748411dfdea3937907970f9d6e2512701a3cc2cfeca"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:800d7ea4a3a066193ddd49521ca53398798131ee8ffcb12ce2979d878f3a8ae4"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
@@ -68,16 +68,16 @@ review_evidence:
     scope: "projection-writer span: recordProjectionEvent/rebuildHarnessDb idempotency, source read-only projection, unresolved joins as findings, and Phase3 output projection."
     green_commands:
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-11"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:800d7ea4a3a066193ddd49521ca53398798131ee8ffcb12ce2979d878f3a8ae4"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-11"

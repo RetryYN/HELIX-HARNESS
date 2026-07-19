@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/doc-consistency.test.ts tests/doctor.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/doc-consistency.test.ts tests/doctor.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T20:19:14+09:00"
         evidence_path: tests/doc-consistency.test.ts
         output_digest: "sha256:050b745e5135455d6ba63684fc241957f859e8a03bfecdad2225f57c99b55bc0"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T20:19:14+09:00"
@@ -86,5 +86,5 @@ G-10 の人間判断待ちを越えずに、完了判断前のレビュー材料
 - [x] review-bundle doctor bridge が current live packet で green。
 - [x] review-bundle doctor bridge が stale / unscoped dedicated packet を検出。
 - [x] setup version-up dry-run target drift が doc-consistency で検出。
-- [x] `bun test tests/doc-consistency.test.ts tests/doctor.test.ts --timeout 300000` が green。
-- [x] `bun run typecheck` が green。
+- [x] `npm test tests/doc-consistency.test.ts tests/doctor.test.ts --timeout 300000` が green。
+- [x] `npm run typecheck` が green。

@@ -42,48 +42,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\plan-lint.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\plan-lint.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:24:52+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:ba64ea807951fdf6b3c3d0891e5525afe5b32e9599129db35e6870da0706826d"
       - kind: unit_test
-        command: "bun run vitest run tests\\plan-lint.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\plan-lint.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:24:52+09:00"
         evidence_path: src/plan/lint.ts
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
       - kind: unit_test
-        command: "bun run vitest run tests\\plan-lint.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\plan-lint.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:24:52+09:00"
         evidence_path: src/plan/lint-types.ts
         output_digest: "sha256:49910128a5173585aa302aec334207b42aa97ee99ca1b30c5edeed072c783e3c"
       - kind: unit_test
-        command: "bun run vitest run tests\\plan-lint.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\plan-lint.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:24:52+09:00"
         evidence_path: src/plan/lint-policy.ts
         output_digest: "sha256:ff2a6177eb10aeee0a7183ba27c2cbb6b3f9dc5c2dbf475c3d63bf57db3f64d6"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:25:03+09:00"
         evidence_path: src/plan/lint.ts
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:24:53+09:00"

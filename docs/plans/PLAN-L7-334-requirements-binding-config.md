@@ -67,32 +67,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T01:25:35+09:00"
         evidence_path: src/config/requirements-binding.ts
         output_digest: "sha256:a7c6842dd686acc57cd4431ca1bc9d2f4086f31ea374fe7e2277d1135117c35b"
       - kind: unit_test
-        command: "bun test tests/requirements-binding-config.test.ts tests/l1-l2-gap-check.test.ts tests/projection-writer.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/requirements-binding-config.test.ts tests/l1-l2-gap-check.test.ts tests/projection-writer.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T01:25:35+09:00"
         evidence_path: tests/requirements-binding-config.test.ts
         output_digest: "sha256:ace43eaf412d1811e3d58c6e43667a9172c9263f3df4dcaefd779f5d2c26417b"
       - kind: unit_test
-        command: "bun test tests/doctor.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/doctor.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T01:25:35+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:2683a5fe6ab032ea257282cea94fabe2bb9b209ecfd5b2bfe3afc53ba31f5126"
       - kind: lint
-        command: "bun src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-06T01:25:35+09:00"

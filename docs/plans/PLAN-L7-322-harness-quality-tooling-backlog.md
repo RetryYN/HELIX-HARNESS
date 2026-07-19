@@ -37,16 +37,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T01:58:46+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:58:46+09:00"
@@ -54,7 +54,7 @@ review_evidence:
         output_digest: "sha256:a2a4344d05239450eacff43b857257d3c7928cc66973b8c03092a3e40273053f"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: bun
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:58:46+09:00"

@@ -48,16 +48,16 @@ review_evidence:
     scope: "Codex-only TL tier review for L5 add-design: L4 HB 10 block / HR 43件 -> L5 detail contract / L8 integration test 43件の全件 trace、G-DESIGN.L5 span 更新。cross_agent は利用不可のため intra_runtime fallback として記録。2026-06-29 に green_commands の fake digest を安定証跡JSONの実SHA256へ補正し、同日に意味設計監査で HC-* ごとの input/projection/output/fail-close/L6 carry と旧 HELIX source read-only audit 境界を追補。"
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/vmodel-pair.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/vmodel-pair.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-29"
         evidence_path: .helix/evidence/helix-l5/20260629-l5-09-vmodel-pair.json
         output_digest: "sha256:06763bf61f3a91c4cb257a16b265843cbd702e241eb791928161e4da6641562c"
       - kind: smoke
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L5-09-helix-pillar-detail-design.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L5-09-helix-pillar-detail-design.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-29"

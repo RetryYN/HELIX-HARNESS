@@ -56,24 +56,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts tests/verifier-provider-mismatch.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts tests/verifier-provider-mismatch.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:d36d5b9d3dd69a966cbd441f10fe93555623b2ea0f5694f53fe914c6b21fbd3d"
       - kind: unit_test
-        command: "bun test tests/state-db.test.ts"
-        runner: bun
+        command: "npm test tests/state-db.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
         evidence_path: tests/state-db.test.ts
         output_digest: "sha256:ecd0ec8fca7b4ce0e55547b9388c2030f421cf1c03be11646a26e40690f96d2a"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
@@ -121,8 +121,8 @@ fallback を後段 doctor が検査できる」) が実データで機能する�
 - U-ORCH-008: worker===verifier かつ blockedReason なしの行を violation として検出し、
   `intra_runtime_fallback` 記録行と反対 provider 行は pass する
   (tests/verifier-provider-mismatch.test.ts、tests/doctor.test.ts の doctor 配線検査)。
-- 検証 command は `bun run vitest run tests/projection-writer.test.ts tests/verifier-provider-mismatch.test.ts tests/state-db.test.ts` green、
-  `bun run typecheck` green、`helix doctor` で新 gate が
+- 検証 command は `npx --no-install vitest run tests/projection-writer.test.ts tests/verifier-provider-mismatch.test.ts tests/state-db.test.ts` green、
+  `npm run typecheck` green、`helix doctor` で新 gate が
   hard gate として集約される。
 
 ## 4. carry

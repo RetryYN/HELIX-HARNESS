@@ -66,16 +66,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T15:55:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T15:53:00+09:00"
@@ -103,7 +103,7 @@ PLAN-L7-148 後に detector が出す high-confidence refactor candidate を、�
 - static detector output の high-confidence refactor candidates が 0 件になる。
 - `harness.db` rebuild が open high-confidence refactor feedback を出さない。
 - 移動した modules の targeted tests が pass する。
-- `bun run typecheck`、`bun run lint`、`bun run src\cli.ts doctor` が pass する。
+- `npm run typecheck`、`npm run lint`、`npx --no-install tsx src\cli.ts doctor` が pass する。
 
 ## 2026-07-06 現候補 triage / accepted debt
 

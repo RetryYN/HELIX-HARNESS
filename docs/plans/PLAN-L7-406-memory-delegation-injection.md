@@ -55,7 +55,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/runtime-adapter.test.ts tests/feedback-surface.test.ts tests/attempt-escalation.test.ts --project fast"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:18:54+09:00"
@@ -63,7 +63,7 @@ review_evidence:
         output_digest: "sha256:a6fd09fb2efd85b00725cd8154965c91452a326977012d3e2c0842724dfbf4ec"
       - kind: unit_test
         command: "bunx vitest run tests/runtime-adapter.test.ts tests/feedback-surface.test.ts tests/attempt-escalation.test.ts --project fast"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:23:47+09:00"

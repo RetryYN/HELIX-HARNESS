@@ -41,24 +41,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/state-db.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/state-db.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T17:33:00+09:00"
         evidence_path: tests/state-db.test.ts
         output_digest: "sha256:bfb3698fc15d79cd071c389e1b2cd1c805cd8e561526bb26eeed839bb829d587"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T17:33:00+09:00"
         evidence_path: src/state-db/migration.ts
         output_digest: "sha256:4d2e0c35434f50d7093a03e3751a001771d5cd063017ea19f34b2605ac402d50"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T17:33:00+09:00"
@@ -73,16 +73,16 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-45-harness-db-foundation.md
         output_digest: "sha256:59d5cfea06452579f20f69a3efec1d76a8abf44170e77064200f83996a1f045b"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T17:33:00+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:cda1dc0ff445464afcff33934372d20a3296fce484d85b74ed1065725291efe6"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T17:33:00+09:00"

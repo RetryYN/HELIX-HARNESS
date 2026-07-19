@@ -50,8 +50,8 @@ review_evidence:
     reviewer_model: gpt-5
     green_commands:
       - kind: unit_test
-        command: "bun test tests/l1-l2-consistency.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/l1-l2-consistency.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T00:00:00+09:00"
@@ -82,7 +82,7 @@ review_evidence:
 ## ペア（pair artifact）と test evidence
 
 - pair artifact = `tests/l1-l2-consistency.test.ts`（TDD red-first で先行作成、U-L1L2-001..005）。
-- test evidence = 同テストの green 実行（`bun test tests/l1-l2-consistency.test.ts`）+
+- test evidence = 同テストの green 実行（`npm test tests/l1-l2-consistency.test.ts`）+
   live-repo oracle（現行 15 画面が green であること）。confirmed 昇格時に green_commands として記録する。
 
 ## スコープ

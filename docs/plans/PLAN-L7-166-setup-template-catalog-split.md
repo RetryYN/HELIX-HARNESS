@@ -40,40 +40,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\setup.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\setup.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: unit_test
-        command: "bun run vitest run tests\\setup.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\setup.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: unit_test
-        command: "bun run vitest run tests\\setup.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\setup.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: src/setup/templates.ts
         output_digest: "sha256:6eeaa921a28cf0d9a2d528c0580307c23bfc1dd6ef1c914cf1953837e86749fd"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:48:53+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:48:55+09:00"

@@ -43,16 +43,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T11:52:15+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:2a50db686420b65591a416e3ebf37c63dfe787e9b4e749bddfcd59af4b4ba152"
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T11:52:15+09:00"
@@ -67,24 +67,24 @@ review_evidence:
         evidence_path: docs/design/harness/L6-function-design/setup-solo-team.md
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:52:15+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:6030fad56a7b1c4f8435677bcc4826dd1ed01d47dc16e8cb0aaf9088787cefc2"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T11:52:15+09:00"
         evidence_path: docs/plans/PLAN-L7-248-setup-version-up-trace-backfill.md
         output_digest: "sha256:9e82bb97dad33c8ed8c62ef7b70a39e22bf12a46de673b7c4215867d22a1c2e1"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:52:15+09:00"
@@ -121,6 +121,6 @@ L7 test design の一部に、古い 8 行 matrix、7 task、11 command の説�
 ## 完了条件
 
 - `rg` で setup/version-up trace に残る古い matrix/task/command 件数表現が検出されない。
-- `bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
-- `bun test tests/design-language.test.ts --timeout 180000` が green。
+- `npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
+- `npm test tests/design-language.test.ts --timeout 180000` が green。
 - `git diff --check` が green。

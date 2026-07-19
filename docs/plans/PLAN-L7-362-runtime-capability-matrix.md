@@ -49,24 +49,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:16:48+09:00"
         evidence_path: tests/runtime-capability-matrix.test.ts
         output_digest: "sha256:19104295c7cb615d72336559c5fb60a81b4d236b136068bda31db7f8e02aff28"
       - kind: smoke
-        command: "bun src/cli.ts runtime capabilities --runtime codex --requires tool_shell hooks --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts runtime capabilities --runtime codex --requires tool_shell hooks --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:14:37+09:00"
         evidence_path: src/runtime/runtime-capability-matrix.ts
         output_digest: "sha256:8071ed8e1cdfd03c2fff4a11f5e17f544cff86ce10cfae18289ce9c6eaecef8a"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T16:15:15+09:00"
@@ -103,6 +103,6 @@ tool、sandbox、hooks、MCP、browser、LSP、headless、resume、cost telemetr
 
 ## 検証予定
 
-- `bun test tests/runtime-adapter.test.ts tests/cli-surface.test.ts --timeout 180000`
-- `bun run typecheck`
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-362-runtime-capability-matrix.md`
+- `npm test tests/runtime-adapter.test.ts tests/cli-surface.test.ts --timeout 180000`
+- `npm run typecheck`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-362-runtime-capability-matrix.md`

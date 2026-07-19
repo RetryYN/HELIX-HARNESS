@@ -36,24 +36,24 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:30:55+09:00"
         evidence_path: biome.json
         output_digest: "sha256:4051fc288b8942ab5bf84cfa2410f5968e1d7e190dac9807ffc6ec588dfd73e0"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:30:55+09:00"
         evidence_path: tsconfig.json
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "bun run test:fast"
-        runner: bun
+        command: "npm test:fast"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:35:29+09:00"
@@ -98,7 +98,7 @@ FR_L1_REGEX / FR_L3_REGEX / AC_REGEX / AT_REGEX / NFR_REGEX (+ doc コメント)
 `npm run typecheck` (0) + `npx vitest run` (**113 pass 不変** = 機能変更なしの機械保証) + `npm run lint` (**biome 0**)。
 
 ### Step 4: CI に biome subjob 追加 — **PO 判断で deferred (2026-06-04)**
-`.github/workflows/harness-check.yml` に `bun run lint` step を追加する変更は実装・ローカル commit まで行ったが、**push に workflow スコープ token が必要** ([[project_github_push_workflow_scope]]) で、PO が「今はいらない」と判断したためローカル commit を破棄し **deferred** とした (§4 carry)。biome 負債解消 (Step 1-3) は完了・push 済 (`27efe75`) なので、`bun run lint` ローカル実行で品質は担保される。CI 有効化は token 入手時に follow-up。
+`.github/workflows/harness-check.yml` に `npm run lint` step を追加する変更は実装・ローカル commit まで行ったが、**push に workflow スコープ token が必要** ([[project_github_push_workflow_scope]]) で、PO が「今はいらない」と判断したためローカル commit を破棄し **deferred** とした (§4 carry)。biome 負債解消 (Step 1-3) は完了・push 済 (`27efe75`) なので、`npm run lint` ローカル実行で品質は担保される。CI 有効化は token 入手時に follow-up。
 
 ### Step 5: review (review 前置 MUST)
 `code-reviewer` で 機能不変 (113 green) / dead code 削除の妥当性 / useLiteralKeys 非競合 / CI 配線をレビュー。cross-agent 不在を evidence 記録。
@@ -123,5 +123,5 @@ FR_L1_REGEX / FR_L3_REGEX / AC_REGEX / AT_REGEX / NFR_REGEX (+ doc コメント)
 
 ## §4 carry
 
-- **CI biome subjob 有効化 (deferred)**: `harness-check.yml` に `bun run lint` step を足す変更は確定済だが、`.github/workflows` の push に workflow スコープ PAT が必要 ([[project_github_push_workflow_scope]])。PO が「今はいらない」と判断 (2026-06-04)。token 入手時に follow-up commit で有効化する (repo は既に biome CLEAN なので即 green)。
+- **CI biome subjob 有効化 (deferred)**: `harness-check.yml` に `npm run lint` step を足す変更は確定済だが、`.github/workflows` の push に workflow スコープ PAT が必要 ([[project_github_push_workflow_scope]])。PO が「今はいらない」と判断 (2026-06-04)。token 入手時に follow-up commit で有効化する (repo は既に biome CLEAN なので即 green)。
 - §6.3 の branch-type subjob (commitlint / poc-no-merge-guard / hotfix-postmortem-required) は別 PLAN (本 PLAN は biome subjob のみ)。

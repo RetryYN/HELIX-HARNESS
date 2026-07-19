@@ -75,48 +75,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\setup.test.ts tests\\cli-surface.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\setup.test.ts tests\\cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: unit_test
-        command: "bun run vitest run tests\\setup.test.ts tests\\cli-surface.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\setup.test.ts tests\\cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T18:35:12+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: smoke
-        command: "bun src\\cli.ts distribution plan --tag v0.1.0 --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts distribution plan --tag v0.1.0 --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T18:38:19+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: smoke
-        command: "bun run vitest run tests\\distribution-acceptance.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\distribution-acceptance.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T19:36:48+09:00"

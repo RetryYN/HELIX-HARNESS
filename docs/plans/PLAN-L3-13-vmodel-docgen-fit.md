@@ -65,8 +65,8 @@ review_evidence:
     scope: "ハイブリッド設計ドキュメントv1-fixed.zip の L12 V+Scrum 適合構想、採用マトリクス、solo tailoring、acceptance pair を confirmed 化する。PO は ZIP 方針の導入を承認済みで、実装変更は後続 L7 PLAN に分離する。"
     green_commands:
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:02:00+09:00"
@@ -110,7 +110,7 @@ L3 は人間承認境界のため、PO の導入承認と review evidence を確
 - L12 採用マトリクスが ZIP の共通点、差異、採用対象、HELIX 補完、非採用対象を typed declaration として持つ。
 - 個人開発向け tailoring profile が required / optional / na を区別し、機能設計廃止後の契約移転先を示す。
 - pair test-design が typed spec、impact、current-location、drive-model、Project view、ログ/運用検証の acceptance ID を持つ。
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L3-13-vmodel-docgen-fit.md` が green。
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-13-vmodel-docgen-fit.md` が green。
 - docs 変更検証として、古い runtime path を current として増やしていないことを `rg` で確認する。
 
 ## §4 対象外

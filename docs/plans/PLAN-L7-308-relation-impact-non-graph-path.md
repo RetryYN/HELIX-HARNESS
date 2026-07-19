@@ -42,24 +42,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/change-impact.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/change-impact.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T03:14:11+09:00"
         evidence_path: tests/relation-graph.test.ts
         output_digest: "sha256:f16191bca97863b5a66c2c6fe05da7b8ccc74e13b20b0868aa94ccbbca9a6bf5"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-04T03:14:11+09:00"
         evidence_path: src/lint/relation-graph.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: smoke
-        command: "bun run src/cli.ts graph impact"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts graph impact"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T03:14:11+09:00"
@@ -106,5 +106,5 @@ node 欠落のみを `missing-projection` (error) とし、定義上グラフ外
   とする (tests/relation-graph.test.ts)。
 - `git status --porcelain --untracked-files=all` を使い、未追跡 directory 配下の file を change-impact /
   relation graph impact の入力から落とさない (tests/change-impact.test.ts)。
-- `bun run vitest run tests/relation-graph.test.ts tests/relation-graph-loader.test.ts` green、
-  `bun run typecheck` green、`helix graph impact` が現行 working tree で exit 0。
+- `npx --no-install vitest run tests/relation-graph.test.ts tests/relation-graph-loader.test.ts` green、
+  `npm run typecheck` green、`helix graph impact` が現行 working tree で exit 0。

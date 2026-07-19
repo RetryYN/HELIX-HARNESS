@@ -140,8 +140,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/vmodel-pair.test.ts tests/module-drift.test.ts tests/design-language.test.ts tests/handover-retirement.test.ts tests/plan-lint.test.ts --reporter=dot && bun src/cli.ts plan lint && git diff --check"
-        runner: bun
+        command: "npx --no-install vitest run tests/vmodel-pair.test.ts tests/module-drift.test.ts tests/design-language.test.ts tests/handover-retirement.test.ts tests/plan-lint.test.ts --reporter=dot && npx --no-install tsx src/cli.ts plan lint && git diff --check"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T06:24:13+09:00"

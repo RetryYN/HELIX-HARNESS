@@ -68,56 +68,56 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/doctor.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/doctor.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T19:56:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:dcb5dbaa8059b8350946eba2976c06e656b8a3171070e8f04f6c8989c8456b41"
       - kind: smoke
-        command: "bun run src/cli.ts audit objective-external --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts audit objective-external --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T19:48:00+09:00"
         evidence_path: docs/governance/helix-objective-evidence-audit.md
         output_digest: "sha256:cc928ca3f1f7ad8a75a400d23a78fd5ad9103b03aeea1165a6a3a5127b8382f4"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T19:48:00+09:00"
         evidence_path: src/lint/objective-evidence-audit.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T19:55:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:85e5b5d1d7d7116edd572f2c2aadda8bd53ee07ef07fb48f4c696b3e30dc5717"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild --json"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T19:53:00+09:00"
         evidence_path: src/state-db/index.ts
         output_digest: "sha256:c05aade241e5a66032763c60eaa6a5dde9dd810dd4bfb01646c2abef829e68dc"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T19:57:00+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:2f0bdadafa19f55d5375abb1aaa9c7082864c329366178802bd981d1cb29c707"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T19:57:00+09:00"
@@ -141,8 +141,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/cli-surface.test.ts tests/doctor.test.ts tests/completion-decision-packet.test.ts tests/goal-evidence-audit.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/cli-surface.test.ts tests/doctor.test.ts tests/completion-decision-packet.test.ts tests/goal-evidence-audit.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T19:27:00+09:00"
@@ -158,16 +158,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/doctor.test.ts --run"
-        runner: bun
+        command: "npx --no-install vitest run tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/doctor.test.ts --run"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:10:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T09:10:00+09:00"
@@ -183,16 +183,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
-        runner: bun
+        command: "npx --no-install vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T17:06:13+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T17:06:13+09:00"
@@ -208,8 +208,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
-        runner: bun
+        command: "npx --no-install vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T11:01:00+09:00"

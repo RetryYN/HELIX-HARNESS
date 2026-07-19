@@ -58,16 +58,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts tests/semantic-frontier-consistency.test.ts tests/vmodel-pair.test.ts tests/l0-l8-design-consistency-audit.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/version-up-readiness.test.ts tests/cli-surface.test.ts tests/semantic-frontier-consistency.test.ts tests/vmodel-pair.test.ts tests/l0-l8-design-consistency-audit.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T23:50:00+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:70805eb53e8aebeef0e4305200fe570960e9198ae30e3f4a7efed5f7f13625e4"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T23:50:00+09:00"
@@ -108,5 +108,5 @@ activation packet、external rehearsal、security checklist、version dry-run ev
 - `version-up activation-bundle` が activation packet / rehearsal / security checklist / dry-run evidence /
   read-only share HTML / share manifest / activation review manifest をローカル directory に出力する。
 - manifest に `writePolicy=local-artifact-write`、`mustNotApply=true`、`activationAllowed=false` が入る。
-- `bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts` と `bun run tsc --noEmit` が green。
+- `npm test tests/version-up-readiness.test.ts tests/cli-surface.test.ts` と `npx --no-install tsc --noEmit` が green。
 - `helix doctor` の impl-plan-trace / change-set-integrity が source-plan-missing を出さない。

@@ -44,24 +44,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/handover.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/handover.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T21:36:00+09:00"
         evidence_path: tests/handover.test.ts
         output_digest: "sha256:77691011a06b97ffbeb68f64292cd3ac3b89ac169ed584e21184033f440daedb"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T21:36:00+09:00"
         evidence_path: src/handover/index.ts
         output_digest: "sha256:cc47b0731427e03c24057268f3ac73d950c8178ecbf6dce2fff243b59fb172d9"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T21:36:00+09:00"

@@ -55,48 +55,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T11:26:22+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:e3c25acec73df588fc0af2d5faf394dcda56938bcbdc2ceb8c4dfce9fb367e42"
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts tests/green-command-digest.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts tests/green-command-digest.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T11:26:22+09:00"
         evidence_path: tests/green-command-digest.test.ts
         output_digest: "sha256:7ec41694bfd51a0c778c10486849e58b215747c7e11b824100534b0ad4589ddd"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T11:26:22+09:00"
         evidence_path: src/orchestration/pair-agent.ts
         output_digest: "sha256:a5362ee9f49ad2f5de16a97ad37011aa3311284429e4ed49840c0800ad7fca48"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T11:26:22+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:c4af538d67f60f0f6650eab92ca5b8f47f6d8e33fdffe584db3ca8eae24f3d78"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T11:26:22+09:00"
         evidence_path: src/lint/green-command-digest.ts
         output_digest: "sha256:86aa20a54cb9b97c97742405d25516794e5267c8e33ce294c850586344664919"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T11:26:22+09:00"

@@ -40,16 +40,16 @@ review_evidence:
     reviewer_model: gpt-5-codex
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\change-impact.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\change-impact.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T20:22:27+09:00"
         evidence_path: tests/change-impact.test.ts
         output_digest: "sha256:f583ee4eec1487c557b21220de3732663e670b8ae6e6c6bc058a9f5e82cdb7ae"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T20:22:27+09:00"
@@ -85,8 +85,8 @@ project artifact ではないため、relation-impact evidence として表示�
 
 ## 3. 検証
 
-- `bun run vitest run tests\change-impact.test.ts`
-- `bun run tsc --noEmit`
-- `bun run src\cli.ts db rebuild --json`
-- `bun run src\cli.ts status --json`
-- `bun run src\cli.ts doctor`
+- `npx --no-install vitest run tests\change-impact.test.ts`
+- `npx --no-install tsc --noEmit`
+- `npx --no-install tsx src\cli.ts db rebuild --json`
+- `npx --no-install tsx src\cli.ts status --json`
+- `npx --no-install tsx src\cli.ts doctor`

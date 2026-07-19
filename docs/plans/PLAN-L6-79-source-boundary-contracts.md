@@ -21,7 +21,7 @@ review_evidence:
     verdict: pass
     scope: "source boundary DbC、L8 negative oracle、fail-close境界を独立監査。Blocker/High 0。2026-07-19に再検証。"
     green_commands:
-      - { kind: integration_test, command: "bun test source-boundary targeted set --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:28:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc" }
+      - { kind: integration_test, command: "npx --no-install vitest run tests/source-boundary-policy.test.ts tests/source-boundary-integration.test.ts --testTimeout 300000", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:28:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc" }
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L5-79を変更せず、公開contractとpolicy evaluatorを具体化する。"
 pair_artifact: docs/test-design/harness/L8-source-boundary-contracts.md

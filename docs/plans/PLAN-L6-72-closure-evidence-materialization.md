@@ -32,9 +32,9 @@ review_evidence:
     verdict: approve_after_fixes
     scope: "production証跡生成欠落、authority registry、argv dedupe、oracle実通過、DB/JSONL/filesystem transaction、gate receipt、local hash境界を敵対監査した。"
     green_commands:
-      - { kind: unit_test, command: "bunx vitest run tests/design-coverage.test.ts tests/design-language.test.ts tests/l6-completion.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:40:42Z", evidence_path: docs/test-design/harness/L8-unit-test-design.md, output_digest: "sha256:c2700ce04f8c3f22ca8d538d4ad1b2de3f247cff221e71a286e91f771deeb50b" }
-      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-72-closure-evidence-materialization.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:40:42Z", evidence_path: docs/plans/PLAN-L6-72-closure-evidence-materialization.md, output_digest: "sha256:6b3a05038ab49afdd92ad55897948acfc6632d2a72bf056ae227400f26b67443" }
-      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T23:40:42Z", evidence_path: docs/design/harness/L6-function-design/closure-evidence-materialization.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-coverage.test.ts tests/design-language.test.ts tests/l6-completion.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:40:42Z", evidence_path: docs/test-design/harness/L8-unit-test-design.md, output_digest: "sha256:c2700ce04f8c3f22ca8d538d4ad1b2de3f247cff221e71a286e91f771deeb50b" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-72-closure-evidence-materialization.md", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-11T23:40:42Z", evidence_path: docs/plans/PLAN-L6-72-closure-evidence-materialization.md, output_digest: "sha256:6b3a05038ab49afdd92ad55897948acfc6632d2a72bf056ae227400f26b67443" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-11T23:40:42Z", evidence_path: docs/design/harness/L6-function-design/closure-evidence-materialization.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 ---
 
 # PLAN-L6-72: closure証跡materialization

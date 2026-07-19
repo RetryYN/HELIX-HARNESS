@@ -23,8 +23,8 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: unit_test
-        command: "bun run test:fast"
-        runner: bun
+        command: "npm test:fast"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:47:48+09:00"
@@ -89,9 +89,9 @@ backlog 上で未了扱いのまま残ると、実際の残作業と人間判断
 
 ## 3. 検証
 
-- `bun test tests/placeholder-deps.test.ts tests/descent-obligation.test.ts tests/doctor.test.ts --timeout 180000`
-- `bun run src/cli.ts plan lint --gate governance`
-- `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor`
+- `npm test tests/placeholder-deps.test.ts tests/descent-obligation.test.ts tests/doctor.test.ts --timeout 180000`
+- `npx --no-install tsx src/cli.ts plan lint --gate governance`
+- `npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor`
 
 ## 4. 完了条件
 

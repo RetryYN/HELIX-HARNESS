@@ -48,16 +48,16 @@ review_evidence:
     scope: "memory v2 schema/v1互換/takeover lifecycle/surface budget/compaction不変/V-pairをseverity-firstで4巡レビュー。terminal tombstoneと旧compaction衝突、API互換、物理SSoT、副作用順序、cross-process lock、lease回収raceをcompactMemoryV2分離とfencing tokenで是正し、blocker/high残存なし。"
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/vmodel-pair.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/vmodel-pair.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:08:06+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:4854f85d8bd0d774108847749598ebbca556cbbbf6ed5384c4e31dd22c6b9f0d"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-62-harness-memory-structure.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-62-harness-memory-structure.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:08:20+09:00"
@@ -121,5 +121,5 @@ review_evidence:
 
 - L6 設計 doc が §1 の 1..5 を oracle 付きで規定し、pair test-design と 1:1。
 - 既存 memory 意味論の不変条件（supersede / secret 拒否 / compaction 観測不変）が oracle として明記。
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L6-62-harness-memory-structure.md` green。
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-62-harness-memory-structure.md` green。
 - 実装は本 PLAN の範囲外（後続 L7 PLAN）。

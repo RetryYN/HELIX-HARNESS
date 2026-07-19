@@ -40,24 +40,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\task-classify.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\task-classify.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T17:23:27+09:00"
         evidence_path: tests/task-classify.test.ts
         output_digest: "sha256:5f3b411831eaf5df7f40ac95cce1623fd7f47b85ebc2ff6012b53b5610dd519d"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:23:25+09:00"
         evidence_path: src/task/proposal-research-data.ts
         output_digest: "sha256:c028b8e6d44f65a79159a3741073753bdb1f33774976f2fcee39179e89b1ffbe"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:23:28+09:00"
@@ -83,5 +83,5 @@ proposal document-pack data と research 採用/却下 policy data を分離し�
 ## 受入条件
 
 - task classification と proposal document coverage の behavior が変わらない。
-- `bun run vitest run tests\task-classify.test.ts` が成功する。
-- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が成功する。
+- `npx --no-install vitest run tests\task-classify.test.ts` が成功する。
+- `npm run typecheck`、`npm run lint`、DB rebuild、doctor が成功する。

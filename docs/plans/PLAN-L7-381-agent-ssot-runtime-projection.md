@@ -49,24 +49,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run --project fast tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run --project fast tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:48:15+09:00"
         evidence_path: tests/agent-ssot-runtime-projection.test.ts
         output_digest: "sha256:aacd5ffe6d9d4108787c6da2eb98cb36386a624776616192928bcac709725a8b"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T17:45:41+09:00"
         evidence_path: src/runtime/agent-ssot-runtime-projection.ts
         output_digest: "sha256:71e408ef639249ee67decd22162fdbc40b9f0042b38fd78107ba80b0ea87ad35"
       - kind: lint
-        command: "bunx biome check --write src/cli.ts src/runtime/review-feedback-session-intake.ts src/runtime/agent-ssot-runtime-projection.ts src/runtime/skill-efficacy-evaluation.ts src/runtime/harness-taxonomy-curation-policy.ts src/runtime/source-content-mirror-completeness.ts tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
-        runner: bun
+        command: "npx --no-install biome check --write src/cli.ts src/runtime/review-feedback-session-intake.ts src/runtime/agent-ssot-runtime-projection.ts src/runtime/skill-efficacy-evaluation.ts src/runtime/harness-taxonomy-curation-policy.ts src/runtime/source-content-mirror-completeness.ts tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:45:41+09:00"
@@ -102,6 +102,6 @@ agent、skill、rule、hook pack を HELIX の正本 manifest から Claude / Co
 
 ## 検証予定
 
-- `bun test tests/agent-ssot-runtime-projection.test.ts --timeout 180000`
-- `bun run typecheck`
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md`
+- `npm test tests/agent-ssot-runtime-projection.test.ts --timeout 180000`
+- `npm run typecheck`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-381-agent-ssot-runtime-projection.md`

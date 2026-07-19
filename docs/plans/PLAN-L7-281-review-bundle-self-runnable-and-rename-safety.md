@@ -54,16 +54,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/cli-surface.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T20:41:35+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:b8915bd760fee53981336fdd3e071b22778dd97621e7edc08f65f090c723961f"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T20:41:35+09:00"
@@ -83,7 +83,7 @@ runnable command が JSON contract に無いと、consumer / VSCode / handover �
 
 ## DoD
 
-- [x] `completion-review-bundle.v1` が `runnableSourceCommand=bun run helix completion review-bundle --json` を返す。
+- [x] `completion-review-bundle.v1` が `runnableSourceCommand=npm run helix completion review-bundle --json` を返す。
 - [x] `analyzeCompletionReviewBundle` が `runnableSourceCommand` drift を fail-close する。
 - [x] status / handover text が `runnable-completion-review-bundle:` を出す。
 - [x] `completion review-bundle` text が source command と runnable command を同じ行に出す。

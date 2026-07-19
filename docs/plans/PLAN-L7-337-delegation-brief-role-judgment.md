@@ -67,32 +67,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts tests/coding-rules.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts tests/coding-rules.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T04:38:35+09:00"
         evidence_path: tests/role-judgment.test.ts
         output_digest: "sha256:e560ebe033b36dbb4a7a4f15240ef3d31efc1af1c2a8f4d10c81960336c87db8"
       - kind: unit_test
-        command: "bun test tests/tool-adapter.test.ts tests/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/tool-adapter.test.ts tests/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T04:38:35+09:00"
         evidence_path: tests/team-run.test.ts
         output_digest: "sha256:18a428c7ca1ada66a39bd9f216c723c2f6ea714eea4762bc32daa63f9a9caae8"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T04:38:35+09:00"
         evidence_path: src/runtime/role-judgment.ts
         output_digest: "sha256:785992838089d2748fccdd67e5f4935690a7f772b39068e9753e011a7343bd30"
       - kind: lint
-        command: "bun src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-06T04:38:35+09:00"
@@ -108,24 +108,24 @@ review_evidence:
     reviewer_model: claude-sonnet-5
     green_commands:
       - kind: unit_test
-        command: "bun test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts"
-        runner: bun
+        command: "npm test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T04:47:48+09:00"
         evidence_path: tests/role-judgment.test.ts
         output_digest: "sha256:86b1a20adbcd63d8c0ff3368d55d8edcf917e9467935ac4e84ab08b30f74ab14"
       - kind: unit_test
-        command: "bun test tests/tool-adapter.test.ts tests/orchestration/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts"
-        runner: bun
+        command: "npm test tests/tool-adapter.test.ts tests/orchestration/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T04:47:48+09:00"
         evidence_path: tests/team-run.test.ts
         output_digest: "sha256:0d8807d5e9a0befaa6bddbb482d5981902b3f1d3d23d54f0bd86551af76ef18e"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T04:47:48+09:00"
@@ -186,13 +186,13 @@ Anthropic multi-agent research system の実測知見）。PLAN-L7-335 で判断
 
 ## 受入条件
 - U-ROLEJUDG-001..007 / U-AGUARD-BRIEF-001..004 / U-ADAPTER-010 が green であること
-  （検証コマンド: `bun test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts`。
+  （検証コマンド: `npm test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts`。
   U-ROLEJUDG-007 = runtime 局所 role 表と tier-router-policy ROLE_ARCHETYPE 正本の同期 oracle）。
 - 既存 stdin 帯域外契約（U-ADAPTER-007/008）と guard 既存 oracle が green のまま
   （同上コマンドに包含、49 oracle）。
 - adapter 消費側（loop-bridge / team-run / provider-handover / tool-adapter）の回帰が green
-  （検証コマンド: `bun test tests/tool-adapter.test.ts tests/orchestration/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts`）。
-- `bun run typecheck` green、`helix doctor` exit 0。
+  （検証コマンド: `npm test tests/tool-adapter.test.ts tests/orchestration/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts`）。
+- `npm run typecheck` green、`helix doctor` exit 0。
 - review evidence + green_commands（digest 付き）を記録する。
 
 ## スケジュール

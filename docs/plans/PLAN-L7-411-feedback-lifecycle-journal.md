@@ -46,16 +46,16 @@ review_evidence:
     scope: "設計・Vペア・production call graphの敵対レビュー。Blocker/High 0。journal crash recovery、alias dedupe、TTL、damaged safe visibility、DB projection、SessionStart/feedback CLI、receipt、ack、promotion nudgeを確認しconfirm GO。"
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/memory-promotion.test.ts tests/feedback-surface.test.ts tests/session-log.test.ts tests/state-db.test.ts tests/projection-writer.test.ts tests/oracle-test-trace.test.ts tests/vmodel-pair.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/review-evidence.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/memory-promotion.test.ts tests/feedback-surface.test.ts tests/session-log.test.ts tests/state-db.test.ts tests/projection-writer.test.ts tests/oracle-test-trace.test.ts tests/vmodel-pair.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/review-evidence.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T04:48:10+09:00"
         evidence_path: tests/feedback-lifecycle.test.ts
         output_digest: "sha256:1c7f642347a7f03d52e153ab6c0a553e633ff9bb6689020685dce48d38328920"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T04:48:10+09:00"

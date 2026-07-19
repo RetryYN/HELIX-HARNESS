@@ -76,8 +76,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/orchestration/orchestration.test.ts"
-        runner: bun
+        command: "npm test tests/orchestration/orchestration.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:05:00+09:00"

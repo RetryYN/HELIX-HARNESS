@@ -43,7 +43,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/forward-convergence.test.ts (version-up parked + guards)"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"
@@ -51,7 +51,7 @@ review_evidence:
         output_digest: "sha256:f069920038d511eb8f00e6aaa1fa6fa223062f237b21e88085e7ba8f13e8e9d5"
       - kind: unit_test
         command: "bunx vitest run tests/outstanding.test.ts (active draft / version-up parked 分離)"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"

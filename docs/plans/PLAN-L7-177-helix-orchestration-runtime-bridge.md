@@ -20,8 +20,8 @@ review_evidence:
     scope: "Continuation: pair-agent light implementation can no longer close, approve, or verdict the work. `runPairAgentTddPlan` now treats lightweight output containing closure/approval/verdict markers as `light-agent-closure-claim`, preserving the smart review agent as the only local verdict authority."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
@@ -45,32 +45,32 @@ review_evidence:
     scope: "Continuation: pair-agent smart review closure now matches the meaning-level TDD pair contract. Smart review output must include an explicit VERDICT line, pending verdicts must include a concrete continuation directive for the next light fix cycle, and review findings alone no longer count as fix instructions for fail verdicts. L6 design and HU-PILLAR-P2-04 test design were aligned with the executable guard."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T06:04:15+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:04:15+09:00"
         evidence_path: src/orchestration/pair-agent.ts
         output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:04:15+09:00"
         evidence_path: src/orchestration/pair-agent.ts
         output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:04:15+09:00"
@@ -86,24 +86,24 @@ review_evidence:
     scope: "Continuation: L3/L6/L7 pair-agent contract now requires light implementation evidence or consultation. Light implementation fail-closes without changed-files, targeted-test-command, and implementation-notes evidence unless it emits a consultation question. Consultation cannot be passed as implementation; smart review must return an implementation directive/fix response on pending or fail verdict and route the next light fix cycle through the bounded transcript."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T03:31:59+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:31:59+09:00"
         evidence_path: src/orchestration/pair-agent.ts
         output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:31:59+09:00"
@@ -119,24 +119,24 @@ review_evidence:
     scope: "Continuation: pair-agent TDD loop now fail-closes evidence-free local verdicts. smart_test_author must emit Red/oracle evidence before implementation, smart_review pass must include Green evidence and review findings, and fail verdicts must include fix instructions before routing back to light implementation."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts tests/projection-writer.test.ts tests/green-command-digest.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts tests/projection-writer.test.ts tests/green-command-digest.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
         evidence_path: src/orchestration/pair-agent.ts
         output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
@@ -152,16 +152,16 @@ review_evidence:
     scope: "Continuation: pair-agent run evidence now converges into harness.db on rebuild. .helix/evidence/pair-agent/*.json projects phase agents to model_runs, pair run gate status to gate_runs, and frontier approval to guardrail_decisions; invalid pair-agent evidence is surfaced as findings instead of remaining file-only."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts tests/pair-agent.test.ts tests/green-command-digest.test.ts"
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts tests/pair-agent.test.ts tests/green-command-digest.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T04:35:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T04:35:00+09:00"
@@ -177,16 +177,16 @@ review_evidence:
     scope: "Continuation: pair-agent run can persist replayable workflow evidence with --save-evidence. The saved JSON contains schema_version, recorded_at, run_id, mode, execute, plan, result, bounded transcript, and trace fields for run/span/tool/handoff/guardrail/eval/duration/cost under .helix/evidence/pair-agent/ so pair runs are not stdout-only evidence."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T03:45:00+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:45:00+09:00"
@@ -202,16 +202,16 @@ review_evidence:
     scope: "Continuation: pair-agent executable TDD loop now carries a bounded pair transcript. Smart test/oracle output and smart review fix instructions are injected into subsequent lightweight implementation prompts, so fail cycles are actual consultation/fix loops rather than repeated static prompts."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T03:20:00+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:20:00+09:00"
@@ -227,16 +227,16 @@ review_evidence:
     scope: "Continuation: pair-agent moved from planning-only to executable TDD sequence. helix pair-agent run dry-runs by default, blocks executable T0 smart review phases without --allow-frontier, and executes smart_test_author once followed by light_implementation -> smart_review cycles until VERDICT: pass or maxFixCycles."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
@@ -252,16 +252,16 @@ review_evidence:
     scope: "Continuation: P2 runtime bridge now exposes a pair-agent TDD route. The smart review agent authors Red/oracle evidence first, the lightweight implementation agent performs the minimum implementation without closing authority, and the smart review agent tests/reviews/verdicts with fail routed back to implementation. CLI surface: helix pair-agent plan."
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T01:35:00+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T01:35:00+09:00"
@@ -277,16 +277,16 @@ review_evidence:
     scope: "P2 runtime bridge: nodeTickDeps が runWorker/runVerifier を実 adapter 実行面へ配線（worker≠verifier の provider 選択は tick の selectVerifier に委譲・再実装せず、hybrid 不在 fail-close は HR-BR-07R 継承）、helix loop run --plan/--once/--dry-run。Codex(worker) 実装、Claude(reviewer) が独立に typecheck/vitest を再実行し精読確認: 契約適合・spawn shell:false・error detail throw・adapterExecutionEnv は既存 cli.ts inline scrub の正当な共有抽出（新規ハックでない）。U-ORCH-BRIDGE-02 は実 CLI を fake provider 付きで spawn する end-to-end（純関数 oracle でなく runtime 配線を実証＝gap 解消）。8 tests green。harness.db projection は P9 carry。"
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/orchestration"
-        runner: bun
+        command: "npx --no-install vitest run tests/orchestration"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T20:00:00+09:00"
         evidence_path: tests/orchestration/loop-bridge.test.ts
         output_digest: "sha256:69325e3eedd258df92d734cdb6fbf3becad34bad25a72505673baf52d43597c0"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-28T20:00:00+09:00"

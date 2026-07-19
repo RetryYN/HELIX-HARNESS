@@ -57,24 +57,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: lint
-        command: "bun src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
         evidence_path: docs/plans/PLAN-L3-07-requirements-binding-enforcement.md
         output_digest: "sha256:e57682336839eb332ded8e343aa879b7320196f0bb9dda8e2743ef1133e4dbeb"
       - kind: unit_test
-        command: "bun test tests/requirements-binding-config.test.ts tests/l1-l2-gap-check.test.ts tests/projection-writer.test.ts tests/feedback-surface.test.ts tests/search-feedback.test.ts tests/doctor.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/requirements-binding-config.test.ts tests/l1-l2-gap-check.test.ts tests/projection-writer.test.ts tests/feedback-surface.test.ts tests/search-feedback.test.ts tests/doctor.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
         evidence_path: tests/requirements-binding-config.test.ts
         output_digest: "sha256:28a3f61d67c566d1950a17c13f5795f01fdd26170cd7c9e08c25dd96a7a85247"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
@@ -187,8 +187,8 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   Biome `complexity.noExcessiveCognitiveComplexity` は `level: error` で明示有効化し、現行 baseline 閾値
   `maxAllowedComplexity: 187` を `coding-rules.md` に記録した。`DISALLOWED_SOURCE_BOUNDARY_IMPORTS` は
   architecture §3.1 全 module を定義対象に拡張し、`module-drift` が未定義境界 0 を突合する。
-  検証: `bun run vitest run tests/coding-rules.test.ts tests/module-drift.test.ts` / `bun run typecheck` /
-  `bun run lint` / `bun run src/cli.ts doctor` は green。full Vitest / `test:local` は exec session が結果を
+  検証: `npx --no-install vitest run tests/coding-rules.test.ts tests/module-drift.test.ts` / `npm run typecheck` /
+  `npm run lint` / `npx --no-install tsx src/cli.ts doctor` は green。full Vitest / `test:local` は exec session が結果を
   返さず、実プロセス残存なしを `ps` で確認したため、取得済み green command に含めない。
 - **Step 3 前半完了**: HELIX 版 NFR グレード projection として
   `docs/design/helix/L3-requirements/nfr-grade.md` を追加した。既存 `pillar-functional-requirements.md` /

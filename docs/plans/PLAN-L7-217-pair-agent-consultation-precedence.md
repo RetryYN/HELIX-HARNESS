@@ -47,16 +47,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts --test-name-pattern \"lightweight implementation tries to close\""
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts --test-name-pattern \"lightweight implementation tries to close\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
@@ -88,32 +88,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: src/orchestration/pair-agent.ts
         output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"

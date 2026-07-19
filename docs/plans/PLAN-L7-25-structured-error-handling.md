@@ -41,16 +41,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/doctor.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/doctor.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:55:31+09:00"
         evidence_path: tests/coding-rules.test.ts
         output_digest: "sha256:6dba1c6d8889daffd8e73ba0f5151b7db303421d13f466d1a62a2b9eed9d989d"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:55:31+09:00"

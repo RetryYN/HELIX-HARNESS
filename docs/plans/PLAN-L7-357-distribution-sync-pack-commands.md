@@ -48,24 +48,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "CI=true bun run test"
-        runner: bun
+        command: "CI=true npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-08T01:08:24+09:00"
         evidence_path: tests/distribution-acceptance.test.ts
         output_digest: "sha256:ccd95547fc1dd132b06cf68d38e241485a023159af73daae5690b0ccec4c87d6"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-08T01:08:24+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:a064c5ca6f271f8e407856676e678001ff2d1d6e387aca212a2cda27aea05140"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-08T01:08:24+09:00"
@@ -103,10 +103,10 @@ review_evidence:
 
 ## 検証予定
 
-- `bun test tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000`
-- `bun run typecheck`
-- `bunx biome check src tests docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md`
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md`
+- `npm test tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000`
+- `npm run typecheck`
+- `npx --no-install biome check src tests docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md`
 
 ## 実装記録
 
@@ -122,7 +122,7 @@ review_evidence:
 
 Green commands:
 
-- `bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/cli-surface.test.ts --timeout 300000` -> 102 pass / 0 fail
-- `bun run typecheck` -> exit 0
-- `bunx biome check src/setup/index.ts src/cli.ts tests/setup.test.ts tests/cli-surface.test.ts tests/distribution-acceptance.test.ts` -> exit 0
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md` -> exit 0
+- `npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/cli-surface.test.ts --timeout 300000` -> 102 pass / 0 fail
+- `npm run typecheck` -> exit 0
+- `npx --no-install biome check src/setup/index.ts src/cli.ts tests/setup.test.ts tests/cli-surface.test.ts tests/distribution-acceptance.test.ts` -> exit 0
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-357-distribution-sync-pack-commands.md` -> exit 0

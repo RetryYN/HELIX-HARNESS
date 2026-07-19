@@ -55,56 +55,56 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts -t \"pair-agent\""
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts -t \"pair-agent\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T14:58:56+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:60849e320ddf38b2474f163ee150f0891a0c8e0be91e46c5a4e13c6d37b8f884"
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts"
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T14:58:56+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:06d5d5fdc6c8a7bb80bffe0d06bda53b068fdef616a117b9ddec39c8d885f008"
       - kind: unit_test
-        command: "bun test tests/doctor.test.ts -t \"pair-agent evidence gates\""
-        runner: bun
+        command: "npm test tests/doctor.test.ts -t \"pair-agent evidence gates\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T14:58:56+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:395e5fdd831e541d9740058e0329864989217f51aed91e5e916c5e1bd6f9eb73"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:58:56+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:d874cf70f4311748cea0093c1b8e697c58a7559afc633bda7ec9b6b9b0a0398b"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:58:56+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:432eea7839170c55d33de7dd77273c8738df1e593aa9f0f38d5f0002c92ff457"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T15:01:52+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:432eea7839170c55d33de7dd77273c8738df1e593aa9f0f38d5f0002c92ff457"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T15:01:52+09:00"
@@ -120,48 +120,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts --test-name-pattern \"pair-agent\""
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts --test-name-pattern \"pair-agent\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T13:34:22+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:1c5f57229de3e966a14d197cede7c3bb219f47348970be051c0f5903a0471913"
       - kind: unit_test
-        command: "bun test tests/review-evidence.test.ts tests/green-command-digest.test.ts"
-        runner: bun
+        command: "npm test tests/review-evidence.test.ts tests/green-command-digest.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T13:31:09+09:00"
         evidence_path: tests/review-evidence.test.ts
         output_digest: "sha256:dfbf0e3feee78280b464dbae6e28bc3b5c0a652e416c6587f14c2d90c95f6af2"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T13:31:09+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:b2085ff2a1ca704a5750aaa4e2a3230792bd39dddb703fcb8484341b04a19e00"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T13:31:09+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:b2085ff2a1ca704a5750aaa4e2a3230792bd39dddb703fcb8484341b04a19e00"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T13:31:09+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:b2085ff2a1ca704a5750aaa4e2a3230792bd39dddb703fcb8484341b04a19e00"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T13:31:09+09:00"
@@ -177,24 +177,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/pair-agent.test.ts --test-name-pattern \"persists pair-agent run evidence\""
-        runner: bun
+        command: "npm test tests/pair-agent.test.ts --test-name-pattern \"persists pair-agent run evidence\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:52:22+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts --test-name-pattern \"projects pair-agent run evidence\""
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts --test-name-pattern \"projects pair-agent run evidence\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:52:22+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T09:52:22+09:00"

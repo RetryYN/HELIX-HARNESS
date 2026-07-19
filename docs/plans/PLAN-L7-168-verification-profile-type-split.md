@@ -44,40 +44,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\verification-profile.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\verification-profile.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:07:53+09:00"
         evidence_path: tests/verification-profile.test.ts
         output_digest: "sha256:3bf8064e662b9071536985fbf4b850d478b5f7f2362e10721fd3ceeeff17324c"
       - kind: unit_test
-        command: "bun run vitest run tests\\verification-profile.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\verification-profile.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:07:53+09:00"
         evidence_path: src/lint/verification-profile.ts
         output_digest: "sha256:de1e9833b9e8ba36d7fb558c4ad711420398000db24a47f9f13d8753aa33d648"
       - kind: unit_test
-        command: "bun run vitest run tests\\verification-profile.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\verification-profile.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:07:53+09:00"
         evidence_path: src/lint/verification-profile-types.ts
         output_digest: "sha256:0078453928c4e73da41e6ec6e0386a0f2d56bea94d6b033a12c35f49e08d7602"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:08:03+09:00"
         evidence_path: src/lint/verification-profile-catalog.ts
         output_digest: "sha256:914fa6a5a96e7d94cf8fc4598410dfd8371efe80b18695e6b8c94497a1b4b80c"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:08:09+09:00"

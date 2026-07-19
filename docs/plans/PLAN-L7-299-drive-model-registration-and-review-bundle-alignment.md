@@ -51,32 +51,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/drive-db-registration.test.ts tests/projection-writer.test.ts tests/setup.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/drive-db-registration.test.ts tests/projection-writer.test.ts tests/setup.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"
         evidence_path: tests/drive-db-registration.test.ts
         output_digest: "sha256:4e3c91f3dbd591e2bd3bcba6dfbde18f33ec11c7c19b6316669948e609396698"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"
         evidence_path: docs/plans/PLAN-L7-299-drive-model-registration-and-review-bundle-alignment.md
         output_digest: "sha256:85afe75961f17879a3994fa2c5c93e5854c2ddbeba0e9b548f0dd96c947966ba"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild --json"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"
@@ -112,10 +112,10 @@ L4 正本の「Forward spine + 10 駆動モデル」を `harness.db` の `drive_
 
 ## 検証
 
-- `bun test tests/drive-db-registration.test.ts tests/projection-writer.test.ts tests/setup.test.ts --timeout 300000`
+- `npm test tests/drive-db-registration.test.ts tests/projection-writer.test.ts tests/setup.test.ts --timeout 300000`
   は 78 pass、`sha256:4e3c91f3dbd591e2bd3bcba6dfbde18f33ec11c7c19b6316669948e609396698`。
-- `bun run typecheck` は exit 0、`sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92`。
-- `bun run src/cli.ts plan lint --gate governance` は exit 0、
+- `npm run typecheck` は exit 0、`sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92`。
+- `npx --no-install tsx src/cli.ts plan lint --gate governance` は exit 0、
   `sha256:85afe75961f17879a3994fa2c5c93e5854c2ddbeba0e9b548f0dd96c947966ba`。
-- `bun run src/cli.ts db rebuild --json` は exit 0、
+- `npx --no-install tsx src/cli.ts db rebuild --json` は exit 0、
   `sha256:383a3e4546d8ef984bf3adc418622c9d5aab2cea37f0196029fbcf574db038b3`。

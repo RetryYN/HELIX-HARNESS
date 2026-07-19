@@ -42,32 +42,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T14:49:29+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T14:49:41+09:00"
         evidence_path: src/state-db/refactor-candidates.ts
         output_digest: "sha256:0e270c1572d46850fe94dd43359a38c04b75ecc7b23a62cf8bf983f74c8f601a"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T14:49:41+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
       - kind: smoke
-        command: "bun run src\\cli.ts db rebuild"
-        runner: bun
+        command: "npm run src\\cli.ts db rebuild"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T14:50:05+09:00"
@@ -98,10 +98,10 @@ Refactor を実行し、その結果を Refactor driving model へ戻す。
   cover される。
 - `harness.db` の rebuild 後も refactor candidate quality signals と promoted
   feedback events が emit される。
-- `bun run vitest run tests\projection-writer.test.ts` が pass する。
-- `bun run typecheck` が pass する。
-- `bun run lint` が pass する。
-- `bun run src\cli.ts doctor` が pass する、または既存の non-blocking warnings
+- `npx --no-install vitest run tests\projection-writer.test.ts` が pass する。
+- `npm run typecheck` が pass する。
+- `npm run lint` が pass する。
+- `npx --no-install tsx src\cli.ts doctor` が pass する、または既存の non-blocking warnings
   だけを report する。
 
 ## Refactor 不変条件
@@ -123,12 +123,12 @@ Refactor を実行し、その結果を Refactor driving model へ戻す。
 
 green commands:
 
-- `bun run vitest run tests\projection-writer.test.ts` exit 0
+- `npx --no-install vitest run tests\projection-writer.test.ts` exit 0
   (`tests/projection-writer.test.ts`,
   `sha256:c2103c58ac697008d1b532d5cb5e91f0d7950b7b480048e6b4ec4335f2e715ca`)
-- `bun run typecheck` exit 0 (`src/state-db/refactor-candidates.ts`,
+- `npm run typecheck` exit 0 (`src/state-db/refactor-candidates.ts`,
   `sha256:b69ae5d05ee9ff7029c7f290a1e2fa7b6d636d8fd141a66a7622a220946036d9`)
-- `bun run lint` exit 0 (`src/state-db/projection-writer.ts`,
+- `npm run lint` exit 0 (`src/state-db/projection-writer.ts`,
   `sha256:152268bfc67b38d7c5f3fe9c4eba7ee052fafdc934370f19ece1b6cfe4430a4e`)
-- `bun run src\cli.ts db rebuild` exit 0 (`docs/process/modes/refactor.md`,
+- `npx --no-install tsx src\cli.ts db rebuild` exit 0 (`docs/process/modes/refactor.md`,
   `sha256:fc06ec424d72496170fa17325a0041ba00112ce0fa01b519e65b3ae6c18342bf`)

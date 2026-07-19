@@ -22,8 +22,8 @@ review_evidence:
     verdict: pass
     scope: "single-lock/snapshot/resolve、全source receipt、replay/recovery、449MB DBと60MB journalの全量18.34秒を再監査。Blocker/High 0。"
     green_commands:
-      - { kind: integration_test, command: "bun test tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:047a007c0ae7d028b6530c2103a33c363511085a2cf45ca740e0283c042105bb" }
-      - { kind: smoke, command: "/usr/bin/time bun run src/cli.ts session start --session closure-audit-20260719", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:23:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:4d09709573041e17677d9f6c92f334914f9462970971fef6372ed083a871c6e0" }
+      - { kind: integration_test, command: "npx --no-install vitest run tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts --testTimeout 300000", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:047a007c0ae7d028b6530c2103a33c363511085a2cf45ca740e0283c042105bb" }
+      - { kind: smoke, command: "/usr/bin/time npx --no-install tsx src/cli.ts session start --session closure-audit-20260719", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:23:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:4d09709573041e17677d9f6c92f334914f9462970971fef6372ed083a871c6e0" }
 parent_design: docs/design/harness/L6-function-design/feedback-lifecycle.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 agent_slots:

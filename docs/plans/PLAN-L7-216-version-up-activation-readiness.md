@@ -47,24 +47,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/version-up-readiness.test.ts"
-        runner: bun
+        command: "npm test tests/version-up-readiness.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T12:35:56+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:848c78bc623fec0b0f838497f4acaf57042122ff71c5e0d10db5b0889f1e03a1"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T12:35:56+09:00"
         evidence_path: src/lint/version-up-readiness.ts
         output_digest: "sha256:197e0bb048126d3ae3593a122a2b25679204774bf1769dcb5512309a4e9575eb"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T12:35:56+09:00"
@@ -80,16 +80,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/version-up-readiness.test.ts"
-        runner: bun
+        command: "npm test tests/version-up-readiness.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:23:12+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T07:23:12+09:00"

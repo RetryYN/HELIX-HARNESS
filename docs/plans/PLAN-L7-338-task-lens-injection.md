@@ -60,16 +60,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T05:02:42+09:00"
         evidence_path: tests/task-lens.test.ts
         output_digest: "sha256:7746d6739fda86e603a98af574309b4c4c0c61f13b350a03d6455c11c7b9509d"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T05:02:42+09:00"
@@ -85,16 +85,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
         evidence_path: tests/task-lens.test.ts
         output_digest: "sha256:da9986821acaa125128230f767de3595dc29e4167ac86d85281a002abe58762a"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
@@ -110,24 +110,24 @@ review_evidence:
     reviewer_model: claude-sonnet-5
     green_commands:
       - kind: unit_test
-        command: "bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T05:16:12+09:00"
         evidence_path: tests/task-lens.test.ts
         output_digest: "sha256:5922416b2a900e63b3d595c704059992ff8473d824c2d07f36fefeb5afea4c3c"
       - kind: unit_test
-        command: "bun test tests/green-command-digest.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/green-command-digest.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T05:16:12+09:00"
         evidence_path: tests/green-command-digest.test.ts
         output_digest: "sha256:b60309bdbb4ec4b2fc27ec3805b4e1200576f5ebe72037c5821a49ed1ebabddc"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T05:16:12+09:00"
@@ -183,9 +183,9 @@ PLAN-L7-337 で「どう振る舞うか」（role 規律）は全委譲に載る
 
 ## 受入条件
 - U-TASKLENS-001..008 / U-ADAPTER-012 が green であること
-  （検証コマンド: `bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts`）。
+  （検証コマンド: `npm test tests/task-lens.test.ts tests/runtime-adapter.test.ts`）。
 - 既存契約（U-ADAPTER-007/008/010、role ブリーフ・stdin 帯域外）が green のまま（同上に包含）。
-- `bun run typecheck` green、`helix doctor` exit 0。
+- `npm run typecheck` green、`helix doctor` exit 0。
 - review evidence + green_commands（digest 付き）を記録する。
 
 ## スケジュール

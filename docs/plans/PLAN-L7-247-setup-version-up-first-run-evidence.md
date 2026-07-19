@@ -46,24 +46,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T11:34:46+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:5cc060bd00a56757ae2da009f6616ce855832623f24bf8e92c5696d62ad1b9ea"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:38:48+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T11:38:48+09:00"
@@ -78,8 +78,8 @@ review_evidence:
         evidence_path: src/setup/index.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:38:48+09:00"
@@ -118,5 +118,5 @@ HELIX 導入済み VSCode で新規 project を始める `helix setup project` �
 
 - `setup project --dry-run --json` の `doctorBaseline.baselineCommands` と `postSetupWorkflow.verificationCommands` が version-up dry-run を含む。
 - generated `.vscode/tasks.json` と `harness-check.yml` が version-up dry-run を含み、read-only / secret-free / manual task 契約を壊さない。
-- `bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
-- `bun run tsc --noEmit`、`plan lint --gate governance`、`doctor` が green。
+- `npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
+- `npx --no-install tsc --noEmit`、`plan lint --gate governance`、`doctor` が green。

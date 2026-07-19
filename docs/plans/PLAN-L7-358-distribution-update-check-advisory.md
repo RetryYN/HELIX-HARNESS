@@ -48,24 +48,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "CI=true bun run test"
-        runner: bun
+        command: "CI=true npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-08T01:08:24+09:00"
         evidence_path: tests/update-check.test.ts
         output_digest: "sha256:ccd95547fc1dd132b06cf68d38e241485a023159af73daae5690b0ccec4c87d6"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-08T01:08:24+09:00"
         evidence_path: src/setup/update-check.ts
         output_digest: "sha256:a064c5ca6f271f8e407856676e678001ff2d1d6e387aca212a2cda27aea05140"
       - kind: unit_test
-        command: "CI=true bun test tests/cli-surface.test.ts --timeout 180000"
-        runner: bun
+        command: "CI=true npm test tests/cli-surface.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-08T01:31:00+09:00"
@@ -103,10 +103,10 @@ remote 失敗・offline・cache write 失敗で status / doctor を赤にしな�
 
 ## 検証予定
 
-- `bun test tests/update-check.test.ts tests/cli-surface.test.ts --timeout 180000`
-- `bun run typecheck`
-- `bunx biome check src tests docs/plans/PLAN-L7-358-distribution-update-check-advisory.md`
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-358-distribution-update-check-advisory.md`
+- `npm test tests/update-check.test.ts tests/cli-surface.test.ts --timeout 180000`
+- `npm run typecheck`
+- `npx --no-install biome check src tests docs/plans/PLAN-L7-358-distribution-update-check-advisory.md`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-358-distribution-update-check-advisory.md`
 
 ## 実装記録
 
@@ -122,9 +122,9 @@ remote 失敗・offline・cache write 失敗で status / doctor を赤にしな�
 
 Green commands:
 
-- `bun test tests/update-check.test.ts tests/cli-surface.test.ts --timeout 180000` -> 55 pass / 0 fail
-- `bun run typecheck` -> exit 0
-- `bunx biome check src/setup/update-check.ts src/cli.ts tests/update-check.test.ts tests/cli-surface.test.ts docs/plans/PLAN-L7-358-distribution-update-check-advisory.md docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md docs/governance/helix-objective-evidence-audit.md` -> exit 0
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-358-distribution-update-check-advisory.md` -> exit 0
-- `HELIX_SKIP_UPDATE_CHECK=1 bun run src/cli.ts status --json` -> exit 0; `objectiveProgress.auditOk=true`,
+- `npm test tests/update-check.test.ts tests/cli-surface.test.ts --timeout 180000` -> 55 pass / 0 fail
+- `npm run typecheck` -> exit 0
+- `npx --no-install biome check src/setup/update-check.ts src/cli.ts tests/update-check.test.ts tests/cli-surface.test.ts docs/plans/PLAN-L7-358-distribution-update-check-advisory.md docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md docs/governance/helix-objective-evidence-audit.md` -> exit 0
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-358-distribution-update-check-advisory.md` -> exit 0
+- `HELIX_SKIP_UPDATE_CHECK=1 npx --no-install tsx src/cli.ts status --json` -> exit 0; `objectiveProgress.auditOk=true`,
   `auditViolationCount=0`, `update.checked=false`（明示 skip）

@@ -47,16 +47,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:11:48+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:227aa9fdbe8ceb942b51ab3c9dd5c1f281cd1df115889d08916880286c5df627"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:11:48+09:00"
@@ -105,7 +105,7 @@ plans に対して、`db_projection_backprop_missing` の plan-governance violat
   pass する。
 - progress color semantics を導入しない foundation DB plans については、既存の plan governance
   checks と互換である。
-- `bun test tests/plan-lint.test.ts` passes.
-- `bun run typecheck` passes.
-- `bun run lint` passes.
-- `bun run src/cli.ts doctor` を実行し、その結果を記録する。
+- `npm test tests/plan-lint.test.ts` passes.
+- `npm run typecheck` passes.
+- `npm run lint` passes.
+- `npx --no-install tsx src/cli.ts doctor` を実行し、その結果を記録する。

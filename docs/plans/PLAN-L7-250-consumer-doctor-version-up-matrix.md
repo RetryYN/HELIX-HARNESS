@@ -48,32 +48,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/doctor.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/doctor.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:4ee2c4273fad2bcb401768ce78b163f1c59859f6d80cb880284dcc8daf9e228b"
       - kind: unit_test
-        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:b8d1799995ac852d9eaf2043779652bb540b84ff943a238261178e4e8423dd8d"
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:b5b75e2f273b7255961fcbb4189ae0b09c53b791f2789e1c196af8d54540e7d9"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
@@ -96,24 +96,24 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-250-consumer-doctor-version-up-matrix.md
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
         evidence_path: docs/plans/PLAN-L7-250-consumer-doctor-version-up-matrix.md
         output_digest: "sha256:d0758b8752e38ae26f7f6c050dab708736546774e46c94d0a08a712275243f58"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:228bd37f5ca0eb57f364969a1099dcfd8cb00a6b9971195f5f6698a60d444bbf"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
@@ -154,6 +154,6 @@ fail-close 判定を version-up dry-run 付き契約へ揃える。
 
 - `runConsumerDoctor` が first-run matrix 9 行のうち `version-up-dry-run` 欠落を fail-close する。
 - wet setup 後の temp consumer repo で `helix doctor --profile consumer` が `consumer-project-setup-state - OK` を返す。
-- `bun test tests/doctor.test.ts --timeout 180000` が green。
-- `bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
-- `bun test tests/design-language.test.ts --timeout 180000`、`bun run tsc --noEmit`、`plan lint --gate governance`、`db rebuild`、`doctor` が green。
+- `npm test tests/doctor.test.ts --timeout 180000` が green。
+- `npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
+- `npm test tests/design-language.test.ts --timeout 180000`、`npx --no-install tsc --noEmit`、`plan lint --gate governance`、`db rebuild`、`doctor` が green。

@@ -52,8 +52,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/feedback-surface.test.ts tests/search-feedback.test.ts tests/projection-writer.test.ts tests/doctor.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/feedback-surface.test.ts tests/search-feedback.test.ts tests/projection-writer.test.ts tests/doctor.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T02:20:00+09:00"

@@ -43,8 +43,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts tests/toolchain-pin.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts tests/toolchain-pin.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:10:00+09:00"
@@ -52,15 +52,15 @@ review_evidence:
         output_digest: "sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322"
       - kind: lint
         command: "./scripts/helix plan lint docs/plans/PLAN-L7-323-workflow-document-parity.md"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:10:00+09:00"
         evidence_path: docs/plans/PLAN-L7-323-workflow-document-parity.md
         output_digest: "sha256:7e8c64dcde7e7b7f08e16db2f6d9064f209831f34a797158b0f105fc30c7cb4a"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:10:00+09:00"
@@ -68,7 +68,7 @@ review_evidence:
         output_digest: "sha256:a4abb8016d301001d93ba1ad9e1111d7068d9db1f227541e261f8e5335b50795"
       - kind: doctor
         command: "./scripts/helix db rebuild --json >/tmp/helix-db-rebuild-plan-l7-323-confirmed.json && ./scripts/helix doctor"
-        runner: bun
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:10:00+09:00"

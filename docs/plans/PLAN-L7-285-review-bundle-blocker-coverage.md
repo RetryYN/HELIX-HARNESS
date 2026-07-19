@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T21:22:49+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:33e4673a8c939c879178399ecbc4991b955cfa4343ffa154bf4e44dbb21f99be"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T21:22:49+09:00"

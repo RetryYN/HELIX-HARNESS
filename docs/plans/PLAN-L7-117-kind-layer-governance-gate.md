@@ -39,16 +39,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests\\plan-lint.test.ts"
-        runner: bun
+        command: "npm test tests\\plan-lint.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T12:45:00+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:ba64ea807951fdf6b3c3d0891e5525afe5b32e9599129db35e6870da0706826d"
       - kind: lint
-        command: "bun run src\\cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npm run src\\cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-06-23T12:45:00+09:00"

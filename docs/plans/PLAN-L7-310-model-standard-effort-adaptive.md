@@ -44,24 +44,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/model-effort.test.ts tests/team-model-policy.test.ts tests/agent-model-ssot.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/model-effort.test.ts tests/team-model-policy.test.ts tests/agent-model-ssot.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T03:26:49+09:00"
         evidence_path: tests/model-effort.test.ts
         output_digest: "sha256:fd6d855365575970728d378a15919bf0f98c8137f0948266c0e1105211bd6ad5"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-04T03:26:49+09:00"
         evidence_path: src/team/model-effort.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-310-model-standard-effort-adaptive.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-310-model-standard-effort-adaptive.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T03:26:49+09:00"
@@ -102,7 +102,7 @@ PO ルール (2026-07-04): モデル世代で reasoning effort の置き方が�
 - U-EFFORT-001..007: sonnet-5=medium / sonnet-4-6=high の世代差、family 既定、未知=medium、
   shallow 昇格・tooSlow 降格・境界据え置き・矛盾維持、resolveAdaptiveEffort の合成
   を検証する (tests/model-effort.test.ts)。
-- `bun run typecheck` green、`bun run vitest run tests/model-effort.test.ts` green、`helix doctor` green。
+- `npm run typecheck` green、`npx --no-install vitest run tests/model-effort.test.ts` green、`helix doctor` green。
 
 ## 4. carry (持ち越し)
 

@@ -53,16 +53,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime-subagent
     green_commands:
       - kind: unit_test
-        command: "bun test tests/runtime-adapter.test.ts tests/pair-agent.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/runtime-adapter.test.ts tests/pair-agent.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T02:57:55+09:00"
         evidence_path: tests/runtime-adapter.test.ts
         output_digest: "sha256:d4dca3f9371586392f6b08090c560a853f7f77678fb031d787562b2c16eb4b06"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T02:57:55+09:00"

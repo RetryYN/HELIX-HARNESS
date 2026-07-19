@@ -90,8 +90,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/retirement-preserve.test.ts tests/handover-retirement-runtime.test.ts tests/handover-retirement.test.ts tests/provider-handover.test.ts tests/continuation-event-first.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && bun src/cli.ts plan lint && bun run typecheck && bunx biome check src/runtime/retirement-preserve.ts tests/retirement-preserve.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/retirement-preserve.test.ts tests/handover-retirement-runtime.test.ts tests/handover-retirement.test.ts tests/provider-handover.test.ts tests/continuation-event-first.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && npx --no-install tsx src/cli.ts plan lint && npm run typecheck && npx --no-install biome check src/runtime/retirement-preserve.ts tests/retirement-preserve.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T08:08:03+09:00"
@@ -107,8 +107,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/continuation-event-first.test.ts tests/handover-retirement-runtime.test.ts tests/state-db.test.ts tests/memory/memory-v2.test.ts tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && bun src/cli.ts plan lint && bun run typecheck && bunx biome check src/runtime/continuation.ts src/state-db/index.ts src/state-db/migration.ts src/schema/harness-db.ts src/schema/harness-db-types.ts src/schema/harness-db-tables-core.ts src/schema/harness-db-indexes.ts tests/continuation-event-first.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/continuation-event-first.test.ts tests/handover-retirement-runtime.test.ts tests/state-db.test.ts tests/memory/memory-v2.test.ts tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && npx --no-install tsx src/cli.ts plan lint && npm run typecheck && npx --no-install biome check src/runtime/continuation.ts src/state-db/index.ts src/state-db/migration.ts src/schema/harness-db.ts src/schema/harness-db-types.ts src/schema/harness-db-tables-core.ts src/schema/harness-db-indexes.ts tests/continuation-event-first.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T07:31:36+09:00"
@@ -124,8 +124,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run typecheck && bunx biome check src/runtime/continuation.ts tests/handover-retirement-runtime.test.ts && bun run vitest run tests/handover-retirement-runtime.test.ts tests/handover-retirement.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && bun src/cli.ts plan lint"
-        runner: bun
+        command: "npm run typecheck && npx --no-install biome check src/runtime/continuation.ts tests/handover-retirement-runtime.test.ts && npx --no-install vitest run tests/handover-retirement-runtime.test.ts tests/handover-retirement.test.ts tests/plan-lint.test.ts tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=dot && npx --no-install tsx src/cli.ts plan lint"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T06:59:32+09:00"

@@ -45,16 +45,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/gate-review-tier.test.ts tests/cli-surface.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/gate-review-tier.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T15:38:48+09:00"
         evidence_path: tests/gate-review-tier.test.ts
         output_digest: "sha256:5cdfc61216dce8c08e7545b840f2926225ac316fddf4a86c52a93fa1c559ccaa"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T15:38:48+09:00"

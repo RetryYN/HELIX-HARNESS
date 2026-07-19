@@ -42,24 +42,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/setup.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T23:05:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:2f70ab40feedf1212ac579b796585383e02863c18e4124f2b124c7653bdb84a6"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T23:05:00+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T23:05:00+09:00"

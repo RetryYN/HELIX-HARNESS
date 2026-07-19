@@ -29,16 +29,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/plan-body-substance.test.ts tests/plan-completion-drift.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-body-substance.test.ts tests/plan-completion-drift.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:25:38+09:00"
         evidence_path: tests/plan-completion-drift.test.ts
         output_digest: "sha256:2fd68c3da792fca4752576950b7060042a414ddeb31478fbf87b273b9a5afb90"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:25:38+09:00"

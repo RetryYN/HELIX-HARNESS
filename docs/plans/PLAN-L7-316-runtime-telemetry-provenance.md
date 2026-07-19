@@ -43,24 +43,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts tests/doctor.test.ts tests/token-tracker.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts tests/doctor.test.ts tests/token-tracker.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:45:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:222e903caa49ec08e21d8d38dda0d140a50f0089cb4fb71a6bff8d65e604e980"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:45:00+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:45:00+09:00"
@@ -68,7 +68,7 @@ review_evidence:
         output_digest: "sha256:11325bc719c7513ef369c127f79f1d45a214eac2fb89c3221d6c0c2674a858b5"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: bun
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:45:00+09:00"

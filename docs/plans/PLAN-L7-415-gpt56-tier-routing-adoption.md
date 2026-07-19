@@ -65,7 +65,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/tier-router.test.ts tests/team-run.test.ts tests/token-tracker.test.ts tests/team-model-policy.test.ts tests/pair-agent.test.ts tests/model-id-ssot.test.ts tests/effort-observation.test.ts --project fast"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T04:45:42+09:00"

@@ -47,16 +47,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\workflow-contracts.test.ts -t \"implements routing\""
-        runner: bun
+        command: "npx --no-install vitest run tests\\workflow-contracts.test.ts -t \"implements routing\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T18:11:57+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T18:11:57+09:00"

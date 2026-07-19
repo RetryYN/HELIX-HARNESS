@@ -49,24 +49,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/agent-observability-provenance.test.ts tests/skill-memory-hygiene.test.ts tests/security-credential-egress-guard.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/agent-observability-provenance.test.ts tests/skill-memory-hygiene.test.ts tests/security-credential-egress-guard.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:02:40+09:00"
         evidence_path: tests/skill-memory-hygiene.test.ts
         output_digest: "sha256:a403e8543d5b720064dda39d8325bd32145f86d2e15cf7deb4bcb9b58208722e"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T17:01:05+09:00"
         evidence_path: src/runtime/skill-memory-hygiene.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bunx biome check src/runtime/agent-observability-provenance.ts src/runtime/skill-memory-hygiene.ts src/runtime/security-credential-egress-guard.ts tests/agent-observability-provenance.test.ts tests/skill-memory-hygiene.test.ts tests/security-credential-egress-guard.test.ts tests/cli-surface.test.ts src/cli.ts"
-        runner: bun
+        command: "npx --no-install biome check src/runtime/agent-observability-provenance.ts src/runtime/skill-memory-hygiene.ts src/runtime/security-credential-egress-guard.ts tests/agent-observability-provenance.test.ts tests/skill-memory-hygiene.test.ts tests/security-credential-egress-guard.test.ts tests/cli-surface.test.ts src/cli.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:01:05+09:00"
@@ -102,6 +102,6 @@ skill-optimizer / skillreaper / pi-reflect / Vestige / pi-mem 系の知見を HE
 
 ## 検証予定
 
-- `bun test tests/skill-recommend.test.ts tests/memory-compaction.test.ts tests/feedback-surface.test.ts --timeout 180000`
-- `bun run typecheck`
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-369-skill-memory-hygiene.md`
+- `npm test tests/skill-recommend.test.ts tests/memory-compaction.test.ts tests/feedback-surface.test.ts --timeout 180000`
+- `npm run typecheck`
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-369-skill-memory-hygiene.md`

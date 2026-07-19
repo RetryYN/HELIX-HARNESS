@@ -62,16 +62,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/agent-model-ssot.test.ts tests/agent-guard.test.ts tests/model-id-ssot.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/agent-model-ssot.test.ts tests/agent-guard.test.ts tests/model-id-ssot.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
         evidence_path: tests/agent-model-ssot.test.ts
         output_digest: "sha256:8ba97d4138618c3b4a5f0c7d420b71fdf2b6786357cfeea5c9973fbe3a0a2fb6"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
@@ -122,8 +122,8 @@ PO 指示 (2026-07-04): 「アドバイザー機能に Fable を追加。TL ア�
 - U-AGENTMODEL-002: 実 repo の `.claude/agents/*.md` 全件が MODEL_IDS に解決される
   (real-repo regression、pdm-* の 4-7 残存を再発防止)。
 - U-AGENTMODEL-003: advisor-fable が allowlist に載り、fable family が guard で解決される。
-- 検証 command は `bun run vitest run tests/agent-model-ssot.test.ts tests/model-id-ssot.test.ts tests/agent-guard.test.ts` green、
-  `bun run typecheck` green、`helix doctor` で
+- 検証 command は `npx --no-install vitest run tests/agent-model-ssot.test.ts tests/model-id-ssot.test.ts tests/agent-guard.test.ts` green、
+  `npm run typecheck` green、`helix doctor` で
   `agent-model-ssot` が hard gate として集約される。
 
 ## 4. carry

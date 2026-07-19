@@ -143,16 +143,16 @@ review_evidence:
     reviewer_model: codex-fresh-subagent
     green_commands:
       - kind: integration_test
-        command: "bun run test:fast -- tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T06:41:55+09:00"
         evidence_path: tests/durable-loop-process.test.ts
         output_digest: "sha256:fd5d1ae7c2294a5d7a5b75ab680d1511907938c96606b8eeba32ac9f5b1b4c87"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-13T06:41:25+09:00"
@@ -168,24 +168,24 @@ review_evidence:
     reviewer_model: codex-fresh-subagent
     green_commands:
       - kind: integration_test
-        command: "bun run test:fast -- tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T07:29:31+09:00"
         evidence_path: tests/durable-loop-process.test.ts
         output_digest: "sha256:fd5d1ae7c2294a5d7a5b75ab680d1511907938c96606b8eeba32ac9f5b1b4c87"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-13T07:29:40+09:00"
         evidence_path: tsconfig.json
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts current-location --summary-json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts current-location --summary-json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T07:28:45+09:00"

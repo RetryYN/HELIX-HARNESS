@@ -29,7 +29,7 @@ review_evidence:
     verdict: pass
     scope: "batch preflight、rollback、digest drift、ancestor symlink、partial/ambiguous receiptを独立監査。Blocker/High 0。2026-07-19に再検証。"
     green_commands:
-      - { kind: integration_test, command: "bun test document metadata targeted set --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0" }
+      - { kind: integration_test, command: "npx --no-install vitest run tests/document-agent-metadata-apply.test.ts tests/document-agent-metadata-integration.test.ts --testTimeout 300000", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0" }
 agent_slots:
   - { role: se, slot_label: "SE — apply plan / source transaction" }
   - { role: qa, slot_label: "QA — digest / rollback mutation oracle" }

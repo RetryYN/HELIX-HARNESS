@@ -72,9 +72,9 @@ review_evidence:
     verdict: approve_after_fixes
     scope: "authority registry、atomic lock、bounded worker pool、persistent physical receipt 1:N、crash recovery、Windows durability、CLI asyncを反復敵対監査し全severity 0。"
     green_commands:
-      - { kind: unit_test, command: "bun run test:fast", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T01:26:32Z", evidence_path: tests/closure-evidence-materialization.test.ts, output_digest: "sha256:9ba0fe5adf6d73326e4b814220223059c76d6bf676fd827684b1cb2b1e538538" }
-      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T01:26:32Z", evidence_path: src/state-db/closure-evidence-materialization.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
-      - { kind: typecheck, command: "bunx tsc --noEmit", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-12T01:26:32Z", evidence_path: src/state-db/closure-evidence-runner.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: unit_test, command: "npm test:fast", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-12T01:26:32Z", evidence_path: tests/closure-evidence-materialization.test.ts, output_digest: "sha256:9ba0fe5adf6d73326e4b814220223059c76d6bf676fd827684b1cb2b1e538538" }
+      - { kind: lint, command: "npm run lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-12T01:26:32Z", evidence_path: src/state-db/closure-evidence-materialization.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-12T01:26:32Z", evidence_path: src/state-db/closure-evidence-runner.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 ---
 
 # PLAN-L7-434: closure証跡materialization pipeline

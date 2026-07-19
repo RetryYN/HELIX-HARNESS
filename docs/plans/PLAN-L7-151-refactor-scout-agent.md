@@ -56,56 +56,56 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\tier-router.test.ts tests\\model-id-ssot.test.ts tests\\agent-guard.test.ts tests\\projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\tier-router.test.ts tests\\model-id-ssot.test.ts tests\\agent-guard.test.ts tests\\projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T16:48:56+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: unit_test
-        command: "bun run vitest run tests\\tier-router.test.ts tests\\model-id-ssot.test.ts tests\\agent-guard.test.ts tests\\projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\tier-router.test.ts tests\\model-id-ssot.test.ts tests\\agent-guard.test.ts tests\\projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T16:48:56+09:00"
         evidence_path: tests/tier-router.test.ts
         output_digest: "sha256:8c4f57122634806872c53d35f865fc5bf0219653ab04348ba84aee014aa27ed4"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T16:47:13+09:00"
         evidence_path: src/state-db/refactor-candidates.ts
         output_digest: "sha256:0e270c1572d46850fe94dd43359a38c04b75ecc7b23a62cf8bf983f74c8f601a"
       - kind: unit_test
-        command: "bun run vitest run tests\\relation-graph-loader.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\relation-graph-loader.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T17:00:41+09:00"
         evidence_path: tests/relation-graph-loader.test.ts
         output_digest: "sha256:61c16d3b9e3305cc2e79000f5bde9c6169b0bb1bdaaab6b25541c1ce293804ba"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T16:49:22+09:00"
         evidence_path: src/graph/loader.ts
         output_digest: "sha256:0b826984a99a3760f8e94fe3fade2d525978387788548757dff4969b61951d5b"
       - kind: smoke
-        command: "bun run src\\cli.ts db rebuild"
-        runner: bun
+        command: "npm run src\\cli.ts db rebuild"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T16:50:09+09:00"
         evidence_path: docs/process/modes/refactor.md
         output_digest: "sha256:915ec6686156b8ed12e57a18b666105a488bc3ae85c31e1d89db2c1336ac94b4"
       - kind: doctor
-        command: "bun run src\\cli.ts doctor"
-        runner: bun
+        command: "npm run src\\cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T16:51:00+09:00"

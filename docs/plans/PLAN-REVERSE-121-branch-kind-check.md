@@ -46,16 +46,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\branch-kind.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\branch-kind.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T13:45:00+09:00"
         evidence_path: tests/branch-kind.test.ts
         output_digest: "sha256:d75b67733f22630222c3ddffdc379c691ba299b22da3109b1bb76114f93c630e"
       - kind: doctor
-        command: "bun run src\\cli.ts doctor"
-        runner: bun
+        command: "npm run src\\cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T13:45:00+09:00"

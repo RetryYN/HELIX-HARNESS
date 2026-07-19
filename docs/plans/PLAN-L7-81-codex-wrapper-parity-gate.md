@@ -29,16 +29,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/plan-artifact-existence.test.ts tests/doctor.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/plan-supersession.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-artifact-existence.test.ts tests/doctor.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/plan-supersession.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:21:26+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:7589bc8dd3802e4ea9bb8badbb1be9e2a0a0deb262cef45451bee0c6915edd11"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:21:26+09:00"

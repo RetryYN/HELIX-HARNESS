@@ -49,64 +49,64 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:42:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:4a53a98607d8a48c486b198983b109c82cb905623c5f35e7bbcc9f33fe956a55"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:42:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:39:00+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:09a9cb6cc8404f83c73b86e7085298fa31039a5428bd4212de71dc043853e07c"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:40:00+09:00"
         evidence_path: docs/plans/PLAN-L7-276-rename-evidence-pack-and-vscode-cutover-source.md
         output_digest: "sha256:33c54bd512501db9c13a5c680994d915d2f0d1c9808eed35147629f7780e73d7"
       - kind: smoke
-        command: "bun run src/cli.ts rename evidence-pack --dry-run --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts rename evidence-pack --dry-run --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:39:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
         output_digest: "sha256:7ed4ee6675c9a6623bdb834334d2a90193fba9b52151f79362cfce11517a63f5"
       - kind: smoke
-        command: "bun run src/cli.ts rename evidence-pack --write --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts rename evidence-pack --write --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:42:00+09:00"
         evidence_path: .helix/evidence/rename/blast-radius-baseline.json
         output_digest: "sha256:be27f02c1d173e41f1e3fce951effb16f5a9b4ec9e82f85e525a970dd8414944"
       - kind: lint
-        command: "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npm run lint && npm run typecheck && npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:51:00+09:00"
         evidence_path: .helix/evidence/rename/static-state-gates.txt
         output_digest: "sha256:23e02d07772e8b40baa49a14fd51601a19b8de60aefd21bc471926b99c3af106"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:55:00+09:00"

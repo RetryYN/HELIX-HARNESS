@@ -25,16 +25,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/vmodel-pair.test.ts tests/review-evidence.test.ts tests/doctor.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/vmodel-pair.test.ts tests/review-evidence.test.ts tests/doctor.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:42:16+09:00"
         evidence_path: tests/vmodel-pair.test.ts
         output_digest: "sha256:758fe5e7c147d009635083894b5710e6eb6fef2acad1df9f51a3ac2b33d9c7ac"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:42:16+09:00"

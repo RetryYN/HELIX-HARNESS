@@ -49,16 +49,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests\\work-guard.test.ts tests\\project-hook.test.ts"
-        runner: bun
+        command: "npm test tests\\work-guard.test.ts tests\\project-hook.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T12:28:00+09:00"
         evidence_path: tests/work-guard.test.ts
         output_digest: "sha256:5ff89dd03a0e6ec91733514d7c94ee10a7bf2dbe8b148a24c73d779a0681c35b"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T12:29:00+09:00"

@@ -50,9 +50,9 @@ review_evidence:
     reviewer_model: gpt-5.6
     scope: "実装・敵対fixture・PLAN固有Vペア・doctor hard gate・L6 exact contractを再監査しblocker/high 0。"
     green_commands:
-      - { kind: unit_test, command: "bunx vitest run tests/triage-decision-integrity.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:21:44Z", evidence_path: tests/triage-decision-integrity.test.ts, output_digest: "sha256:33ed5bf76eb85c8cf725d63889f8173733094850ae13dcbafd604bc6664c9be4" }
-      - { kind: unit_test, command: "bunx vitest run tests/slow/doctor.test.ts -t U-TRIAGE-012", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:19:09Z", evidence_path: tests/slow/doctor.test.ts, output_digest: "sha256:d92d2265507772c9a9f85a42c19abe3467377d6366c7fd492ec565deced164d7" }
-      - { kind: lint, command: "bun run lint", runner: bun, scope: full, exit_code: 0, completed_at: "2026-07-11T20:23:00Z", evidence_path: src/lint/triage-decision-integrity.ts, output_digest: "sha256:b22b2fc1692230f659b20acc0db4af0d9894dd8c1fc6d2dbda99892c2d36236c" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/triage-decision-integrity.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:21:44Z", evidence_path: tests/triage-decision-integrity.test.ts, output_digest: "sha256:33ed5bf76eb85c8cf725d63889f8173733094850ae13dcbafd604bc6664c9be4" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/slow/doctor.test.ts -t U-TRIAGE-012", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-11T20:19:09Z", evidence_path: tests/slow/doctor.test.ts, output_digest: "sha256:d92d2265507772c9a9f85a42c19abe3467377d6366c7fd492ec565deced164d7" }
+      - { kind: lint, command: "npm run lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-07-11T20:23:00Z", evidence_path: src/lint/triage-decision-integrity.ts, output_digest: "sha256:b22b2fc1692230f659b20acc0db4af0d9894dd8c1fc6d2dbda99892c2d36236c" }
 ---
 
 # PLAN-L7-429 triage判断整合性検出器実装

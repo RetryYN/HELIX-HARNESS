@@ -48,32 +48,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/scrum-reverse.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/scrum-reverse.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:39:10+09:00"
         evidence_path: tests/scrum-reverse.test.ts
         output_digest: "sha256:972be6bc0fbd2c80275652bfc21e098fa365e9cdd3e77699c3519e745a8cea99"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T00:39:10+09:00"
         evidence_path: src/lint/scrum-reverse.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-331-reverse-fullback-ledger.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-331-reverse-fullback-ledger.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:42:29+09:00"
         evidence_path: docs/plans/PLAN-L7-331-reverse-fullback-ledger.md
         output_digest: "sha256:4c0741083bc42d2b00bd0c8267e8ee4ddba1f7102048ffd39a802c93c413c226"
       - kind: doctor
-        command: "bun run src/cli.ts doctor --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor --json"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T00:45:07+09:00"

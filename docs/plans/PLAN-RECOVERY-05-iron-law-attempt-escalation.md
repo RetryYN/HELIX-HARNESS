@@ -41,24 +41,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\attempt-escalation.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\attempt-escalation.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T15:54:00+09:00"
         evidence_path: tests/attempt-escalation.test.ts
         output_digest: "sha256:8f0c3329489e7f351ddc53dd318dc57abed9e45f3f0e355381ea4fe1916999b6"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T15:54:00+09:00"
         evidence_path: tsconfig.json
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
       - kind: lint
-        command: "bunx biome check src\\runtime\\attempt-escalation.ts tests\\attempt-escalation.test.ts"
-        runner: bun
+        command: "npx --no-install biome check src\\runtime\\attempt-escalation.ts tests\\attempt-escalation.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T15:54:00+09:00"
@@ -74,16 +74,16 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/verb-classify.test.ts tests/attempt-escalation.test.ts tests/session-log.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/verb-classify.test.ts tests/attempt-escalation.test.ts tests/session-log.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/verb-classify.test.ts
         output_digest: "sha256:ed2b16fe6249ce3fe92fd14abbb122d50ed2c4d6d39562d449dc2f7b8ece5e53"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23"
@@ -91,7 +91,7 @@ review_evidence:
         output_digest: "sha256:ee3149813ab470a5490091f41410c3df61d5e8ee47414ab98d0a898d061c94de"
       - kind: lint
         command: "npx biome check src/runtime/verb-classify.ts src/runtime/attempt-escalation.ts src/runtime/session-log.ts src/cli.ts"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
@@ -144,7 +144,7 @@ HELIX の Recovery/troubleshoot 駆動の要件から author して取り込む
 
 - `tests/attempt-escalation.test.ts` (7 ケース): 3 連続失敗で escalate / 閾値未満で非escalate /
   ok でリセット / subject 別独立 / custom threshold / 並び順 / session events 抽出。
-  実証 = `bun run vitest run tests/attempt-escalation.test.ts` → 7/7 green、`tsc --noEmit` EXIT=0。
+  実証 = `npx --no-install vitest run tests/attempt-escalation.test.ts` → 7/7 green、`tsc --noEmit` EXIT=0。
 
 ## 4. carry / 次工程 (descent / 完了の残り)
 

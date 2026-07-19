@@ -20,24 +20,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/gate-review-tier.test.ts tests/runtime.test.ts tests/cli-surface.test.ts"
-        runner: bun
+        command: "npm test tests/gate-review-tier.test.ts tests/runtime.test.ts tests/cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T12:30:00+09:00"
         evidence_path: tests/gate-review-tier.test.ts
         output_digest: "sha256:3a15c35ac6b2051c9e1558dbc9634136b54c913a7ee78047a74072e013094d06"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T12:30:00+09:00"
         evidence_path: src/gate/review-tier.ts
         output_digest: "sha256:b52900c9516bde834d18c683191db2bacc2d7f3cd1ad3c9956af17f7d99c6f2c"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T12:30:00+09:00"
@@ -54,7 +54,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "typecheck / Biome / Vitest / doctor green (legacy PLAN-L7-84 evidence)"
-        runner: bun
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-19"

@@ -45,24 +45,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/identifier-rename.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/identifier-rename.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:45:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:589113ddd0e5a9a6d88748ce8fb89859d131c8101939c208189b9ffb4a101e7a"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:45:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:45:00+09:00"

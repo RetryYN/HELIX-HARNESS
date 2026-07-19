@@ -23,8 +23,8 @@ review_evidence:
     reviewer_model: claude-opus-4-8
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/guardrail-invariant-advisory.test.ts tests/projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/guardrail-invariant-advisory.test.ts tests/projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T18:34:00+09:00"
@@ -40,8 +40,8 @@ review_evidence:
     reviewer_model: codex-gpt-5.x
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/guardrail-invariant-advisory.test.ts tests/projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/guardrail-invariant-advisory.test.ts tests/projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T18:34:00+09:00"

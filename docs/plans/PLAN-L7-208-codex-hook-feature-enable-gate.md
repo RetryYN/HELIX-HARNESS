@@ -54,48 +54,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:34:03+09:00"
         evidence_path: src/lint/codex-hook-adapter.ts
         output_digest: "sha256:90ac4dbc6ae3c9bb1ff59c7dddb4801216dd0a673be8bb8046bb8a60f2932102"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:34:44+09:00"
         evidence_path: src/lint/codex-hook-adapter.ts
         output_digest: "sha256:90ac4dbc6ae3c9bb1ff59c7dddb4801216dd0a673be8bb8046bb8a60f2932102"
       - kind: unit_test
-        command: "bun run vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T03:31:29+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
         output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
       - kind: unit_test
-        command: "bun run vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T03:35:02+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
         output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:35:22+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:36:14+09:00"

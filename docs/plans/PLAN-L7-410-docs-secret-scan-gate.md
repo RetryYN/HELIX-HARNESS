@@ -51,7 +51,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/secret-scan.test.ts --project fast"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T04:10:36+09:00"

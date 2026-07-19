@@ -55,40 +55,40 @@ review_evidence:
     scope: "class_method_contract を設計宣言だけで昇格せず、HOPS-VMFIT-CONTRACT-01 に結合した accepted runtime evidence で observed source へ接続した。単語一致だけでは昇格しない oracle を維持し、direct design ID 結合の positive oracle を追加した。"
     green_commands:
       - kind: smoke
-        command: "bun src/cli.ts run-debug log --plan PLAN-L7-402-class-method-contract-runtime-evidence --claim observed --session codex-20260709-hybrid-vmodel --correlation class-method-contract-operation-scope-20260709 --evidence-path src/state-db/current-location.ts --requirement HOPS-VMFIT-CONTRACT-01 --occurred-at 2026-07-09T20:15:00.000+09:00 --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts run-debug log --plan PLAN-L7-402-class-method-contract-runtime-evidence --claim observed --session codex-20260709-hybrid-vmodel --correlation class-method-contract-operation-scope-20260709 --evidence-path src/state-db/current-location.ts --requirement HOPS-VMFIT-CONTRACT-01 --occurred-at 2026-07-09T20:15:00.000+09:00 --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:15:00+09:00"
         evidence_path: .helix/evidence/run-debug/runtime-verification.jsonl
         output_digest: "sha256:a54cc31b1d859dce41bfe172c5d405964fb4d77908456430200feba5a57ebc0d"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T20:10:13+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
         output_digest: "sha256:b9bf0c8b3271279b9093018f851fa090139d503e934ca8af3ae2276f47f86c6c"
       - kind: unit_test
-        command: "bun run test:fast -- tests/current-location.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/current-location.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:10:13+09:00"
         evidence_path: tests/current-location.test.ts
         output_digest: "sha256:04db9b694c7d8379a6852bc83822d55d4728a4c84c722b4fcc266625077035c9"
       - kind: lint
-        command: "bunx biome check tests/current-location.test.ts docs/design/harness/L6-function-design/function-spec.md docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-402-class-method-contract-runtime-evidence.md"
-        runner: bun
+        command: "npx --no-install biome check tests/current-location.test.ts docs/design/harness/L6-function-design/function-spec.md docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-402-class-method-contract-runtime-evidence.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:10:13+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:17c22ab3b6013365360da7005fca33543e6062b55a2ef8b0c1bc7ed5fd115ca5"
       - kind: unit_test
-        command: "bun run test:slow -- tests/slow/doctor.test.ts -t \"surfaces Project current-location\""
-        runner: bun
+        command: "npm test:slow -- tests/slow/doctor.test.ts -t \"surfaces Project current-location\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:17:20+09:00"

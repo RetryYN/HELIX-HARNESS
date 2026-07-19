@@ -46,24 +46,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T11:12:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:4ef333fe533e9e4a1af5c88b2418b02a2dac0d7a58b4043fc94a9ca37520c224"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:12:00+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:b30b6233d9ac1a0b7d3ccc62ca896e6b3e9255184ecfb7e295e63914b7c85ffd"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T11:12:00+09:00"
@@ -78,16 +78,16 @@ review_evidence:
         evidence_path: docs/improvement-backlog.md
         output_digest: "sha256:466c2f308b48c7661d646fdd068fbecea974c665fe65dbf8ed508f224180ce0b"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T11:12:00+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:0dde9073a0e1dba18c96d36e94ebd37c0520d5e5e4684b4c9ed602e389448c6d"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:12:00+09:00"

@@ -57,24 +57,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/tool-contract.test.ts"
-        runner: bun
+        command: "npm test tests/tool-contract.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T06:38:00+09:00"
         evidence_path: tests/tool-contract.test.ts
         output_digest: "sha256:ce84a2c0b51b9eaeb94891cceed37251ac7145101ad4792440b9a7f3ba14ee7a"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:38:00+09:00"
         evidence_path: src/orchestration/tool-contract.ts
         output_digest: "sha256:0396a5d233794224a154a6bc5dfe5dd0561992e46e67d80201ef9a63070f8e2d"
       - kind: unit_test
-        command: "bun run vitest run tests/tool-contract.test.ts tests/doctor.test.ts --test-timeout=20000"
-        runner: bun
+        command: "npx --no-install vitest run tests/tool-contract.test.ts tests/doctor.test.ts --test-timeout=20000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T06:38:00+09:00"

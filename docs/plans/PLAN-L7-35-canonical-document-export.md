@@ -27,8 +27,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run test:fast"
-        runner: bun
+        command: "npm test:fast"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:05:58+09:00"
@@ -105,6 +105,6 @@ review evidence 前に、typecheck / lint / targeted tests / doctor が green �
 
 - [x] source implementation 前に Red test が存在する。
 - [x] U-DOCEXPORT-001..012 pass.
-- [x] `bun run vitest run tests/document-export.test.ts` passes before review.
-- [x] `bun run typecheck` と `bun run lint` が review 前に pass する。
+- [x] `npx --no-install vitest run tests/document-export.test.ts` passes before review.
+- [x] `npm run typecheck` と `npm run lint` が review 前に pass する。
 - [x] Reverse fullback により governance/backlog additions を close する。

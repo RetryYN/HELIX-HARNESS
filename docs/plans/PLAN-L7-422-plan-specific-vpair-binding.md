@@ -127,24 +127,24 @@ review_evidence:
     scope: "severity-first独立レビューを4回実施。authority事前許可、PLAN token境界、pending test、oracle regex SSoT、共有L8重複、doctor fail-close、local it/test偽装、lexical scope、var hoist反例を是正し、最終blocker 0。286 exemptionsは完了ではなく凍結legacy debtとして分離追跡する。"
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/frontmatter.test.ts tests/plan-descent-specific-parent-binding.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/frontmatter.test.ts tests/plan-descent-specific-parent-binding.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T14:56:22Z"
         evidence_path: tests/plan-descent-specific-parent-binding.test.ts
         output_digest: "sha256:ff0257214b127e714b3ca6061accfe4ada53535b1f30d1a4a28d9f8f34bef5f0"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T14:56:22Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T14:56:22Z"
@@ -160,32 +160,32 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T16:54:36Z"
         evidence_path: tests/plan-descent-specific-parent-binding.test.ts
         output_digest: "sha256:d0c29ed016ef79f2d3cffdb6613eacff1fbf2f9ff822659e99f943bed3565064"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T16:54:36Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:44220009afe0690be55eb18f2b4b35dee3d3bb863b32a1b2318af0386a4f54fe"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T16:54:36Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:fc7542244c7293612d1e5d187256514bc1ef446f931d296ea8ec26f8744d4443"
       - kind: lint
-        command: "bun src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-11T16:54:36Z"
@@ -201,32 +201,32 @@ review_evidence:
     scope: "authority v3 resolution proof実装を3系統で敵対レビュー。偽verdict/command/model/time、target欠落・型偽装、full schema、v2 downgrade、semantic hash chain、non-zero repo loader、U-PSPB-025..027の4点traceを確認しblocker/high 0。"
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/coding-rules.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/coding-rules.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: tests/plan-descent-specific-parent-binding.test.ts
         output_digest: "sha256:79d2228999080bd9ca5f450bda6afade5a320b5cdef7580a307eb37449a20cff"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:6e3acf5b9d043bd54add82ba11e8403b5eb20e29061d53d859dc1cb4ea6ea01c"
       - kind: lint
-        command: "bun src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
@@ -242,32 +242,32 @@ review_evidence:
     scope: "authority v3初回resolution migrationを3系統で敵対レビュー。initial286 identity不変、resolved1、active285、U-PSPB-020 production count regression、terminal/semantic chain、FE U001-U003を確認しblocker/high 0。"
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/fe-roster-orchestration.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/design-coverage.test.ts tests/l6-completion.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/fe-roster-orchestration.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/design-coverage.test.ts tests/l6-completion.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T18:05:34Z"
         evidence_path: tests/plan-descent-specific-parent-binding.test.ts
         output_digest: "sha256:2ae0c9479fee1a017cbc61b2f5d2ccbb1dfa99599864c474d8ecd2870738da40"
       - kind: lint
-        command: "bun src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-11T18:05:34Z"
         evidence_path: docs/plans/PLAN-L7-422-plan-specific-vpair-binding.md
         output_digest: "sha256:b5f5d17da33f4f26f190bee89170245f5ba21f9bee78b4abb82da7fb514e27f9"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:05:34Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:05:34Z"

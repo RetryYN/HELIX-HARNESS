@@ -43,24 +43,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\workflow-contracts.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\workflow-contracts.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T17:05:00+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T17:05:00+09:00"
         evidence_path: tsconfig.json
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
       - kind: doctor
-        command: "bun run src\\cli.ts doctor"
-        runner: bun
+        command: "npm run src\\cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T17:05:00+09:00"

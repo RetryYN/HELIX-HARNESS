@@ -53,16 +53,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts tests/doctor.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/doctor.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T17:45:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:a7953e6c40c6f322e255a64a4b5ab89d0b1f15b8e246c66c1f71be5c9e4d92a0"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T17:45:00+09:00"

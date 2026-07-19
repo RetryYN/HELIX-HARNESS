@@ -68,32 +68,32 @@ review_evidence:
     scope: "close_ready decision draft を recovery handoff artifact として検出し、Project view と vmodel fit の recovery handoff gate で path / generation command / closure review scope / outcome / approval lane を read-only に表示する。承認や apply は実行しない。"
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T20:51:43+09:00"
         evidence_path: src/state-db/vmodel-fit.ts
         output_digest: "sha256:44220009afe0690be55eb18f2b4b35dee3d3bb863b32a1b2318af0386a4f54fe"
       - kind: unit_test
-        command: "bun run test:fast -- tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/visualization-read-model.test.ts tests/current-location.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/visualization-read-model.test.ts tests/current-location.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:51:43+09:00"
         evidence_path: tests/visualization-treeview.test.ts
         output_digest: "sha256:bc90533aa30bf12d60253e022d129ca75a5c9bc54609e5adf25b58a61f000eb8"
       - kind: lint
-        command: "bunx biome check src/state-db/vmodel-fit.ts src/state-db/visualization-view-model.ts src/state-db/visualization-read-model.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/visualization-read-model.test.ts docs/design/harness/L6-function-design/function-spec.md docs/test-design/harness/L7-unit-test-design.md docs/test-design/harness/L8-unit-test-design.md docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
-        runner: bun
+        command: "npx --no-install biome check src/state-db/vmodel-fit.ts src/state-db/visualization-view-model.ts src/state-db/visualization-read-model.ts tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/visualization-read-model.test.ts docs/design/harness/L6-function-design/function-spec.md docs/test-design/harness/L7-unit-test-design.md docs/test-design/harness/L8-unit-test-design.md docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:52:20+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:1cc2721ab074411f0a1d41a8cf0872cb13cec2e15f700af13034c18e98b07b70"
       - kind: smoke
-        command: "bun src/cli.ts vmodel fit | rg \"recovery-handoff-gate|next-work-bucket|recovery-reentry|vmodel fit:|approval-review-gate\" && bun src/cli.ts progress tree-view --json | rg \"vmodel-fit/recovery-handoff|close_ready approval pending|approval_record_path=.helix/tmp/closure/close_ready-decision-draft.yml|handoff=approval_pending|recovery-plan/handoff-gate|approval_state=pending_human_review|current closure review scope\" && bun src/cli.ts doctor | rg \"coding-rules|change-impact|change-set-integrity|plan-governance|review-evidence|oracle-test-trace|objective-evidence-audit|visualization-tree-view-boundary|vscode-extension-dynamic-binding|operation-scope|current-location-reentry|vmodel-fit - recovery-handoff-gate|doctor:\""
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts vmodel fit | rg \"recovery-handoff-gate|next-work-bucket|recovery-reentry|vmodel fit:|approval-review-gate\" && npx --no-install tsx src/cli.ts progress tree-view --json | rg \"vmodel-fit/recovery-handoff|close_ready approval pending|approval_record_path=.helix/tmp/closure/close_ready-decision-draft.yml|handoff=approval_pending|recovery-plan/handoff-gate|approval_state=pending_human_review|current closure review scope\" && npx --no-install tsx src/cli.ts doctor | rg \"coding-rules|change-impact|change-set-integrity|plan-governance|review-evidence|oracle-test-trace|objective-evidence-audit|visualization-tree-view-boundary|vscode-extension-dynamic-binding|operation-scope|current-location-reentry|vmodel-fit - recovery-handoff-gate|doctor:\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:52:43+09:00"
@@ -109,40 +109,40 @@ review_evidence:
     scope: "close_ready decision draft を doctor の recovery handoff binding でも materialize artifact と誤判定せず、pending human review の closure review handoff として扱う。Project view / vmodel fit / doctor の正本境界を同期し、承認や apply は実行しない。"
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T21:20:37+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:fc9f6ff4ec2b31ca6292793722e01303c77d1c4cdbac0fef60dface37c5110da"
       - kind: unit_test
-        command: "bun run test:fast -- tests/cli-surface.test.ts tests/current-location.test.ts tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts tests/goal-evidence-audit.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/cli-surface.test.ts tests/current-location.test.ts tests/visualization-treeview.test.ts tests/visualization-view-model.test.ts tests/goal-evidence-audit.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:22:28+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:02bdcb4fc3d402f3fb5fe5c9c97c69959f1d49cf3b0cb77efe72087c1caaab20"
       - kind: unit_test
-        command: "bun run test:slow -- tests/slow/doctor.test.ts -t \"surfaces Project current-location\""
-        runner: bun
+        command: "npm test:slow -- tests/slow/doctor.test.ts -t \"surfaces Project current-location\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:20:27+09:00"
         evidence_path: tests/slow/doctor.test.ts
         output_digest: "sha256:7ced342eb4dc13ce9449211a8f02e7837733696af4c27628ad448dce2d7dd0c5"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:20:32+09:00"
         evidence_path: docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md
         output_digest: "sha256:54f9a1879cfcdcea3e3796742136bb8a070e97f784946ce3ee8f200fa36c5f32"
       - kind: lint
-        command: "bunx biome check src/doctor/index.ts tests/cli-surface.test.ts tests/slow/doctor.test.ts docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md docs/governance/helix-objective-evidence-audit.md"
-        runner: bun
+        command: "npx --no-install biome check src/doctor/index.ts tests/cli-surface.test.ts tests/slow/doctor.test.ts docs/plans/PLAN-L7-403-close-ready-decision-draft-view-binding.md docs/governance/helix-objective-evidence-audit.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:20:32+09:00"
@@ -174,4 +174,4 @@ read-only の handoff artifact として検出し、現在地・工程表・承�
 - `tests/visualization-treeview.test.ts` に Project view node の path / command / scope tooltip と、`vmodel-fit/recovery-handoff` / `drive/recovery-plan/handoff-gate` の approval lane oracle がある。
 - `tests/cli-surface.test.ts` と `tests/slow/doctor.test.ts` に、`close_ready-decision-draft.yml` が pending human review の handoff として投影され、
   materialize 専用 gate と誤判定されない oracle がある。
-- `bun run typecheck`、targeted visualization tests、Biome check が green。
+- `npm run typecheck`、targeted visualization tests、Biome check が green。

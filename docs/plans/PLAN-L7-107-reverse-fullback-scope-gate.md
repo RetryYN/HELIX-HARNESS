@@ -64,16 +64,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:16:23+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:e50d9080733a80eafd2463820e4d0e72d7ea2482e71459043e79b8ad2efa72ec"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:16:23+09:00"
@@ -102,7 +102,7 @@ L5 detailed design への影響分類を未記録のまま残すことを防ぐ�
 - `updated` scope が generated evidence を引用しない新規 R4 fullback は fail する。
 - requirements evidence と明示的な L4/L5 no-impact decision を持つ fullback は pass する。
 - live `docs/plans/PLAN-REVERSE-*.md` は `plan-governance` を pass する。
-- `bun test tests/plan-lint.test.ts` は pass する。
-- `bun run typecheck` は pass する。
-- `bun run lint` は pass する。
-- `bun run src\cli.ts doctor` は pass する。
+- `npm test tests/plan-lint.test.ts` は pass する。
+- `npm run typecheck` は pass する。
+- `npm run lint` は pass する。
+- `npx --no-install tsx src\cli.ts doctor` は pass する。

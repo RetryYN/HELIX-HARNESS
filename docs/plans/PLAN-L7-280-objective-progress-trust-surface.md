@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T20:32:56+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:5a3f4e74741c58468326ef34a85a84622784fc56ea6dfee75c43a1589db64f48"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T20:32:56+09:00"
@@ -91,5 +91,5 @@ review_evidence:
 - [x] live status JSON は trust fields を返す。
 - [x] live status text は trusted evidence を同じ `objective-progress:` 行に出す。
 - [x] invalid handover/status text は `objective-progress-evidence: invalid` を出す。
-- [x] `bun test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts --timeout 300000` が green。
-- [x] `bun run typecheck` が green。
+- [x] `npm test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts --timeout 300000` が green。
+- [x] `npm run typecheck` が green。

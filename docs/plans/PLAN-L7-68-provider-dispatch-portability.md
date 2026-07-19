@@ -30,8 +30,8 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: unit_test
-        command: "bun run test:fast"
-        runner: bun
+        command: "npm test:fast"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:47:48+09:00"
@@ -113,11 +113,11 @@ A-137 を close する。provider dispatch を実際に spawn 可能にし、run
 
 close 前に必須:
 
-- `bunx vitest run tests/runtime-adapter.test.ts tests/runtime.test.ts`
-- `bunx vitest run tests/runtime-hook-entrypoints.test.ts tests/cli-surface.test.ts tests/provider-handover.test.ts`
-- `bun run typecheck`
-- `bun run lint`
-- `bun run src\\cli.ts doctor`
+- `npx --no-install vitest run tests/runtime-adapter.test.ts tests/runtime.test.ts`
+- `npx --no-install vitest run tests/runtime-hook-entrypoints.test.ts tests/cli-surface.test.ts tests/provider-handover.test.ts`
+- `npm run typecheck`
+- `npm run lint`
+- `npm run src\\cli.ts doctor`
 - `rg "HELIX_CODEX_BIN|HELIX_CLAUDE_BIN|HELIX_ALLOW_RAW" src tests docs/handover .helix/handover --glob "!vendor/**"`
 
 ## 4. 現在の状態

@@ -31,8 +31,8 @@ review_evidence:
     verdict: pass
     scope: "semantic diff local artifact port、path/durability/dry-run mutation oracle、L6/L8 Vペアを独立監査。Blocker/High 0。2026-07-19に再検証。"
     green_commands:
-      - { kind: unit_test, command: "bun test tests/document-report-write-port.test.ts --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0" }
-      - { kind: integration_test, command: "bun test tests/cli-surface.test.ts -t IT-DOCDIFF-003 --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:b5349ba61841aec712a981f3ac5137966137f593f4e3645b5952aaeabc8a3e8b" }
+      - { kind: unit_test, command: "npm test tests/document-report-write-port.test.ts --timeout 300000", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0" }
+      - { kind: integration_test, command: "npx --no-install vitest run tests/cli-surface.test.ts -t IT-DOCDIFF-003 --testTimeout 300000", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:b5349ba61841aec712a981f3ac5137966137f593f4e3645b5952aaeabc8a3e8b" }
 agent_slots:
   - { role: se, slot_label: "SE — document diff artifact port / CLI" }
   - { role: qa, slot_label: "QA — path / durability / dry-run mutation oracle" }

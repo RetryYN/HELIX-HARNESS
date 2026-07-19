@@ -60,24 +60,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/agent-model-ssot.test.ts tests/team-model-policy.test.ts tests/team-run.test.ts tests/agent-guard.test.ts tests/token-tracker.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/agent-model-ssot.test.ts tests/team-model-policy.test.ts tests/team-run.test.ts tests/agent-guard.test.ts tests/token-tracker.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T03:18:50+09:00"
         evidence_path: tests/agent-model-ssot.test.ts
         output_digest: "sha256:3d3a3e19db62f2bc957dea8839b1cad55ac18c7a6104210867f99e403625fb25"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-04T03:18:50+09:00"
         evidence_path: src/team/model-policy.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-309-fe-roster-orchestration.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-309-fe-roster-orchestration.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T03:18:50+09:00"
@@ -93,24 +93,24 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/fe-roster-orchestration.test.ts -t 'U-FEROSTER-00[12]'"
-        runner: bun
+        command: "npx --no-install vitest run tests/fe-roster-orchestration.test.ts -t 'U-FEROSTER-00[12]'"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T18:00:37Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:6b056a20a588b83bfb88b33e8de180d092495f8ad72eb5b6f017998f7bb51d1d"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:00:37Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:00:37Z"
@@ -155,7 +155,7 @@ Fable アドバイザーを通す (相談。Fable 経由で実装ではない) �
   MODEL_IDS に解決される (tests/agent-model-ssot.test.ts U-AGENTMODEL-002 real-repo regression)。
 - team-model-policy / team-run / tier-router が sonnet-5 を返す (T1 worker 世代更新)。
 - fe-lead/fe-ui が allowlist に載り agent-guard が model family を解決する。
-- `bun run typecheck` green、影響対象 tests (affected tests) green、`helix doctor` green。
+- `npm run typecheck` green、影響対象 tests (affected tests) green、`helix doctor` green。
 - 専用L6/L8と`U-FEROSTER-001/002`が4点bindingで結合され、authority exemptionが
   `PLAN-L7-424-fe-roster-vpair-resolution`により解消される。
 

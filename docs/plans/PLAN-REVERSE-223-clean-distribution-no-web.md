@@ -81,16 +81,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:23:04+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: smoke
-        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
-        runner: bun
+        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:23:04+09:00"

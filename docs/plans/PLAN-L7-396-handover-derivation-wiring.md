@@ -51,32 +51,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: lint
-        command: "bunx biome check src/handover/handover-derivation.ts src/handover/index.ts src/handover/handover-types.ts src/cli.ts tests/handover-derivation-wiring.test.ts"
-        runner: bun
+        command: "npx --no-install biome check src/handover/handover-derivation.ts src/handover/index.ts src/handover/handover-types.ts src/cli.ts tests/handover-derivation-wiring.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:02:00+09:00"
         evidence_path: src/handover/index.ts
         output_digest: "sha256:a3e05cc24918454e30b00839fa58aa11da75c8be910ebfbf5f2cf36a4f263361"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:02:00+09:00"
         evidence_path: src/handover/handover-types.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "bunx vitest run --project fast tests/handover-db-derivation.test.ts tests/handover-derivation-wiring.test.ts tests/handover.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run --project fast tests/handover-db-derivation.test.ts tests/handover-derivation-wiring.test.ts tests/handover.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:02:01+09:00"
         evidence_path: tests/handover-derivation-wiring.test.ts
         output_digest: "sha256:eddc11cc7a6cea1b5039393e79158385c6c88d86ca012c0f05fd3ba24f43188a"
       - kind: unit_test
-        command: "bunx vitest run --project fast tests/cli-surface.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run --project fast tests/cli-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:03:58+09:00"

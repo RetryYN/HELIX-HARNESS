@@ -56,40 +56,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/run-debug.test.ts tests/impl-plan-trace.test.ts tests/vmodel-pair.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/run-debug.test.ts tests/impl-plan-trace.test.ts tests/vmodel-pair.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: tests/run-debug.test.ts
         output_digest: "sha256:192bd5a2bed49493d64134d64343d9f1a243fee8aa8a3933ab5b67aeeeda3ebc"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: src/runtime/run-debug.ts
         output_digest: "sha256:217764259a121913527a17c247616a3c50c4cf32bea4a3b4367dbd46a20db145"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
         output_digest: "sha256:0ac405fdb8ca550ec1b235325c300564ae50b38a8cdc6929e4d225aab862feb2"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"

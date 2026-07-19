@@ -61,40 +61,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/setup.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/setup.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T00:58:33+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:340145eb16246dc70ac3e0d8bcd3946ddd18865a73c44262f5c77e5a036d9c2e"
       - kind: integration_test
-        command: "bun test tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: bun
+        command: "npx --no-install vitest run tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T00:58:33+09:00"
         evidence_path: tests/distribution-acceptance.test.ts
         output_digest: "sha256:ad32e183c4b556ac8d052a774726dd721fcd84e191117b0712ce21b65cd5fd3c"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-04T00:58:33+09:00"
         evidence_path: package.json
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T00:58:33+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:7b857a8b67234920069a2085a9b782c1cd4775fbad167d70a644539506a62e2b"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T00:58:33+09:00"
@@ -106,7 +106,7 @@ review_evidence:
 
 ## 目的
 
-`helix setup project` を空の VS Code project に適用した直後、生成された VSCode task / CI command が `bun run helix ...` として実行可能になる状態まで閉じる。
+`helix setup project` を空の VS Code project に適用した直後、生成された VSCode task / CI command が `npm run helix ...` として実行可能になる状態まで閉じる。
 
 ## 問題
 
@@ -119,7 +119,7 @@ review_evidence:
 
 - Bun 公式 docs: `bun install --frozen-lockfile` は lockfile を更新せず、`package.json` と lockfile の不一致を error にする。CI では lockfile commit が前提。
 - Bun lockfile docs: Bun v1.2 以降の既定 (default) は text `bun.lock`。旧 project は `bun.lockb` を持ち得る。
-- Bun runtime / script docs: `bun run <script>` は `package.json.scripts` を package-local command surface として解決する。
+- Bun runtime / script docs: `npm run <script>` は `package.json.scripts` を package-local command surface として解決する。
 - VS Code 公式 docs: workspace tasks は `.vscode/tasks.json` の手動 shell task として定義できる。Workspace Trust は自動実行境界を持つため、setup は task 自動実行を有効化しない。
 - OWASP WSTG stable docs: security review source は stable guide を参照し、setup package bootstrap は auth/secret/PII/remote apply を変更しない。
 
@@ -134,9 +134,9 @@ review_evidence:
 
 ## 検証
 
-- `bun test tests/setup.test.ts --timeout 300000`
-- `bun test tests/distribution-acceptance.test.ts --timeout 300000`
-- `bun run typecheck`
-- `bun test tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000`
-- `bun run src/cli.ts plan lint --gate governance`
-- `bun run src/cli.ts doctor`
+- `npm test tests/setup.test.ts --timeout 300000`
+- `npx --no-install vitest run tests/distribution-acceptance.test.ts --timeout 300000`
+- `npm run typecheck`
+- `npm test tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000`
+- `npx --no-install tsx src/cli.ts plan lint --gate governance`
+- `npx --no-install tsx src/cli.ts doctor`

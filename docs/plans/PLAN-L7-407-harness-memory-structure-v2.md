@@ -59,32 +59,32 @@ review_evidence:
     scope: "設計対テスト対実装の最終レビュー。blocker/highなし。SQLite初回競合のbounded retry、calendar round-trip UTC検証、atomic event dedupe、real failure診断、full-intent/predecessor operation ID、x→y→x更新を確認しapprove。"
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/memory/memory-v2.test.ts tests/memory/memory.test.ts tests/memory/memory-store.test.ts tests/memory-compaction.test.ts tests/session-log.test.ts tests/runtime-adapter.test.ts tests/vmodel-pair.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/review-evidence.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/memory/memory-v2.test.ts tests/memory/memory.test.ts tests/memory/memory-store.test.ts tests/memory-compaction.test.ts tests/session-log.test.ts tests/runtime-adapter.test.ts tests/vmodel-pair.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/review-evidence.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:44:57+09:00"
         evidence_path: tests/memory/memory-v2.test.ts
         output_digest: "sha256:70d558b72c54b15e3982593d7345eb97ee69212488b8232ac4c7405c0dd662ec"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T03:44:57+09:00"
         evidence_path: tsconfig.json
         output_digest: "sha256:66b7891ce526a88565ae7a744315255c3e05c6a6cc1b7392190855c5f35271d0"
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-407-harness-memory-structure-v2.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-407-harness-memory-structure-v2.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:44:57+09:00"
         evidence_path: docs/plans/PLAN-L7-407-harness-memory-structure-v2.md
         output_digest: "sha256:e78e427122f2b573652b511302a10d22379461514df8e85248a2bebb6f1291d3"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-11T03:45:45+09:00"
@@ -116,7 +116,7 @@ provenance/lifecycle、決定論surface、情報無損失のfenced compactionを
 - 既存3引数CLIはv2既定、明示`--legacy-v1`のみ旧経路。memory_write eventはdeterministic IDでretry時も1件に収束する。
 - concurrent write/consume/compactionでentry消失とterminal tombstone重複がない。
 - secret/PII-like metadata、未知enum、矛盾lifecycle、不正linkをfail-closeする。
-- `bun run typecheck`、targeted Vitest、Biome、doctor、PLAN lintがgreen。
+- `npm run typecheck`、targeted Vitest、Biome、doctor、PLAN lintがgreen。
 
 ## §3 対象外
 

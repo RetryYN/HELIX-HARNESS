@@ -56,32 +56,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests\\review-evidence.test.ts"
-        runner: bun
+        command: "npm test tests\\review-evidence.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/review-evidence.test.ts
         output_digest: "sha256:dfbf0e3feee78280b464dbae6e28bc3b5c0a652e416c6587f14c2d90c95f6af2"
       - kind: unit_test
-        command: "bun test tests\\frontmatter.test.ts"
-        runner: bun
+        command: "npm test tests\\frontmatter.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/frontmatter.test.ts
         output_digest: "sha256:b46430994b78734df2bb5fb9181fbb3719a14ad2fde17c82df2c7e874c50fdab"
       - kind: unit_test
-        command: "bun test tests\\workflow-contracts.test.ts"
-        runner: bun
+        command: "npm test tests\\workflow-contracts.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
       - kind: doctor
-        command: "bun run src\\cli.ts doctor"
-        runner: bun
+        command: "npm run src\\cli.ts doctor"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-06-23"
@@ -114,7 +114,7 @@ review evidence は、構造化された green command evidence を持たなけ�
 - nonzero command exit code は fail する。
 - `frontmatterSchema` は valid shape を受け入れ、nonzero exits を reject する。
 - `recordTestRunEvidence` は `output_digest` を `test_runs` へ persist する。
-- `bun test tests\review-evidence.test.ts` が pass する。
-- `bun test tests\frontmatter.test.ts` が pass する。
-- `bun test tests\workflow-contracts.test.ts` が pass する。
-- `bun run typecheck`、`bun run lint`、`bun run src\cli.ts doctor` が pass する。
+- `npm test tests\review-evidence.test.ts` が pass する。
+- `npm test tests\frontmatter.test.ts` が pass する。
+- `npm test tests\workflow-contracts.test.ts` が pass する。
+- `npm run typecheck`、`npm run lint`、`npx --no-install tsx src\cli.ts doctor` が pass する。

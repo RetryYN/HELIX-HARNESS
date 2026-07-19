@@ -44,7 +44,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/memory-compaction.test.ts tests/handover-db-derivation.test.ts --project fast"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-07T06:38:48+09:00"

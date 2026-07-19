@@ -48,24 +48,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/verification-profile.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/verification-profile.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T02:28:03+09:00"
         evidence_path: tests/verification-profile.test.ts
         output_digest: "sha256:91c13afb2897fa5cf331af4832764c82f25796024663d61b3a04f9ae1f7ef6ac"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T02:29:00+09:00"
         evidence_path: src/lint/verification-profile.ts
         output_digest: "sha256:eb8d3db6abe93e485ca7b586e8e61968596212016e523f0e90e3ab2edd63ea11"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T02:29:00+09:00"
@@ -115,10 +115,10 @@ drive 別 L10 要否に意味接続していなかった gap を閉じる。doct
 ## 受入条件
 
 - catalog の profile は G8-G14 / drive metadata を持つ。
-- `bun-unit` の runner / generated MCP argv は `bun run test:local` に接続し、`bun run test` は release / cutover /
+- `bun-unit` の runner / generated MCP argv は `npm test:local` に接続し、`npm test` は release / cutover /
   activation 用の full regression evidence として分離される。
 - `fe` / `fullstack` / `agent` から全 G10 browser profile metadata を外した fixture は
   `missing-drive-g10-profile` で fail する。
 - 非 browser profile が G10 を宣言しても、drive 別 L10 browser evidence を充足しない。
 - doctor の `verification-profile` hard gate が right-arm coverage finding を含む。
-- `bun run vitest run tests/verification-profile.test.ts`、typecheck、lint、DB rebuild、doctor が通る。
+- `npx --no-install vitest run tests/verification-profile.test.ts`、typecheck、lint、DB rebuild、doctor が通る。

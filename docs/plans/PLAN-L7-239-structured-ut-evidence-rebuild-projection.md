@@ -49,24 +49,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:85f5f8aaa1c62a7ae4708f4b610661639ccf0bbfa51b36f5892c36e52bd73486"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:2b75560f97b74b5b8b4af3952a18a6b2bfbd7540d5d8b9ffee014cb5d90ee870"
       - kind: lint
-        command: "bun run src/cli.ts plan lint --gate governance"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
@@ -81,16 +81,16 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md
         output_digest: "sha256:87859462b8a4a8831edcfc14aa9fcdbfe2047d3ecf59796f1c30c1f1f451a7dd"
       - kind: smoke
-        command: "bun run src/cli.ts db rebuild"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:e608ebd21e602c0d2ac37bf9585117e8f6e06a86f57fa2adcbdff6e7052579d2"
       - kind: doctor
-        command: "bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
@@ -142,13 +142,13 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 
 ## 3. 検証予定
 
-- `bun test tests/projection-writer.test.ts --timeout 180000`
-- `bun test tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000`
-- `bun run tsc --noEmit`
-- `bun run src/cli.ts plan lint --gate governance`
+- `npm test tests/projection-writer.test.ts --timeout 180000`
+- `npm test tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000`
+- `npx --no-install tsc --noEmit`
+- `npx --no-install tsx src/cli.ts plan lint --gate governance`
 - `git diff --check`
-- `bun run src/cli.ts db rebuild`
-- `bun run src/cli.ts doctor`
+- `npx --no-install tsx src/cli.ts db rebuild`
+- `npx --no-install tsx src/cli.ts doctor`
 
 ## 4. 完了条件
 

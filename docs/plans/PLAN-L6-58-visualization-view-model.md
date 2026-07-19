@@ -45,8 +45,8 @@ review_evidence:
     scope: "5 軸レビュー verdict=approve-with-notes（Critical 0 / Important 2 / Minor 1）。Important: (1) 生 node/edge リスト非提供の gap を §2 該当行へ直接明記（honest degrade + snapshot 拡張 escalation 待ち）、(2) U-VVM-006 の growth/drill-down 混在を U-VVM-007 分離で是正。Minor: graph.latest_snapshot_* 省略表記を実 field 4 種の列挙へ置換（L3/L4/L6 横断）。全所見 fe-lead が反映済み、CSP・read-only・secret 非保持は L3/L4/L6 で一貫。"
     green_commands:
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L4-52-visualization-surface-boundary.md && bun run src/cli.ts plan lint docs/plans/PLAN-L6-58-visualization-view-model.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L4-52-visualization-surface-boundary.md && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-58-visualization-view-model.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-07T07:12:00+09:00"
@@ -90,5 +90,5 @@ Harness growth 時系列集計 field）をここで契約化する。
 ## 4. 受入条件
 
 - L6 設計 doc が §1 の 1..5 を oracle 付きで規定し、pair test-design と 1:1。
-- `bun run src/cli.ts plan lint docs/plans/PLAN-L6-58-visualization-view-model.md` green。
+- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-58-visualization-view-model.md` green。
 - レビュー evidence 記録後に confirmed（L4 以降は AI 自律、charter §3）。

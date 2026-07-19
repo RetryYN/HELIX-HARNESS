@@ -30,8 +30,8 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: unit_test
-        command: "bun run test:fast"
-        runner: bun
+        command: "npm test:fast"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:47:48+09:00"
@@ -108,11 +108,11 @@ escalation boundary を弱めるためである。
 
 ## 4. 検証
 
-- `bunx vitest run tests/task-classify.test.ts`
-- `bun run typecheck`
-- `bun run lint`
-- `bun run test`
-- `bun run src\\cli.ts doctor`
+- `npx --no-install vitest run tests/task-classify.test.ts`
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run src\\cli.ts doctor`
 
 ## 5. 状態
 

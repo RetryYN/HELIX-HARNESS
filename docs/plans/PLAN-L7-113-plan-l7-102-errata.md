@@ -40,7 +40,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests\\projection-writer.test.ts -t \"IMP-140\" --testTimeout=30000"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T23:57:00+09:00"

@@ -68,24 +68,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts --run"
-        runner: bun
+        command: "npx --no-install vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts --run"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: unit_test
-        command: "bun run test"
-        runner: bun
+        command: "npm test"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: doctor
-        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T14:21:41+09:00"
@@ -101,16 +101,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\right-arm-gate-planning.test.ts tests\\lint-wiring.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\right-arm-gate-planning.test.ts tests\\lint-wiring.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T16:30:00+09:00"
         evidence_path: tests/right-arm-gate-planning.test.ts
         output_digest: "sha256:f321df37a40bc2ea221a2a2ab9d07c36ff6c8be0e02524791c40d198e8e9fb3b"
       - kind: doctor
-        command: "bun run src\\cli.ts doctor"
-        runner: bun
+        command: "npm run src\\cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T16:30:00+09:00"

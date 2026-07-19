@@ -47,7 +47,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/design-elicitation.test.ts (10 tests: elicit×3 / detectGaps×3 / compose×2 / runBottomup×2)"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T12:48:00+09:00"
@@ -55,7 +55,7 @@ review_evidence:
         output_digest: "sha256:5daff4dcbff64a52fa22ccc89ebf42e060eb494726fb2e4889801311dca407e7"
       - kind: unit_test
         command: "bunx vitest run tests/design-elicitation.test.ts (engine 本体 elicit/detectGaps/compose/runDesignBottomup 実挙動)"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T12:48:00+09:00"

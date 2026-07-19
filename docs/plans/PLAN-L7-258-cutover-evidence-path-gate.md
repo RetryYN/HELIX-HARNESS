@@ -48,16 +48,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:48:12+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:0a5a7912110898e1fdcf533319ad9ffcc7f5744681f3691c9d7b2d54d62b3512"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T13:48:12+09:00"

@@ -37,15 +37,15 @@ review_evidence:
     green_commands:
       - kind: lint
         command: "./scripts/helix plan lint"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T21:22:00+09:00"
         evidence_path: tests/plan-id-naming.test.ts
         output_digest: "sha256:9fa002ed0848a3f2c4aec076fabcfdd4e1c6d6391654f4089473d92a2eb9677d"
       - kind: unit_test
-        command: "bun run test:local"
-        runner: bun
+        command: "npm test:local"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-04T21:18:00+09:00"

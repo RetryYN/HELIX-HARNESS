@@ -45,16 +45,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:54:46+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
         output_digest: "sha256:30ea9768456a2ad4fb6353ab890462a50188062ef6ef5607d012f8340deebb74"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T13:54:46+09:00"

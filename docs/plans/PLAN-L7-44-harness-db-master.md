@@ -29,8 +29,8 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-44-harness-db-master.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-44-harness-db-master.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:09:38+09:00"

@@ -49,16 +49,16 @@ review_evidence:
     reviewer_model: codex-hilbert
     green_commands:
       - kind: unit_test
-        command: "bun test tests/design-language.test.ts tests/readability.test.ts tests/model-override-injection.test.ts tests/runtime-adapter.test.ts tests/team-schema.test.ts tests/semantic-frontier-consistency.test.ts tests/goal-evidence-audit.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/design-language.test.ts tests/readability.test.ts tests/model-override-injection.test.ts tests/runtime-adapter.test.ts tests/team-schema.test.ts tests/semantic-frontier-consistency.test.ts tests/goal-evidence-audit.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T22:11:47+09:00"
         evidence_path: tests/model-override-injection.test.ts
         output_digest: "sha256:03255406098ffdfe467062f19a3a7dc3b5560d939d74d5c76d7994d884a9c5a6"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T22:11:47+09:00"

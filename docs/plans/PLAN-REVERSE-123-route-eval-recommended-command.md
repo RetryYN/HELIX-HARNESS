@@ -57,32 +57,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
-        runner: bun
+        command: "npm test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:28:59+09:00"
         evidence_path: docs/governance/helix-harness-concept_v3.1.md
         output_digest: "sha256:1ccc4cb9d537607641dadf71bf4e281f39fbbde6e45970543d8ee70f2c3f3244"
       - kind: unit_test
-        command: "bun test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
-        runner: bun
+        command: "npm test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:28:59+09:00"
         evidence_path: docs/governance/helix-harness-requirements_v1.2.md
         output_digest: "sha256:6654449488882155e7da27407fc44ddc81419452ddc7cc492ed214670001d8f3"
       - kind: unit_test
-        command: "bun test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
-        runner: bun
+        command: "npm test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:28:59+09:00"
         evidence_path: docs/design/harness/L4-basic-design/function.md
         output_digest: "sha256:8725842f63f6be27697b164d41f93ad4d0422f6e3fd06a1e467f78e4273b1aa7"
       - kind: unit_test
-        command: "bun test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
-        runner: bun
+        command: "npm test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:28:59+09:00"
@@ -98,16 +98,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\workflow-contracts.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\workflow-contracts.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T15:30:00+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
       - kind: doctor
-        command: "bun run src\\cli.ts doctor"
-        runner: bun
+        command: "npm run src\\cli.ts doctor"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T15:30:00+09:00"

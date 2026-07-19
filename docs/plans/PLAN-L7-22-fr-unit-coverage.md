@@ -44,16 +44,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/l6-fr-coverage.test.ts tests/l6-completion.test.ts tests/coding-rules.test.ts tests/doctor.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/l6-fr-coverage.test.ts tests/l6-completion.test.ts tests/coding-rules.test.ts tests/doctor.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:51:36+09:00"
         evidence_path: tests/l6-fr-coverage.test.ts
         output_digest: "sha256:a7d0df912edc2b7633242f5ec99897ea9edf47b5f366d056388115566851ac61"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:51:36+09:00"

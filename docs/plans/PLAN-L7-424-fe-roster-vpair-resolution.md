@@ -55,24 +55,24 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/fe-roster-orchestration.test.ts -t 'U-FEROSTER-00[12]'"
-        runner: bun
+        command: "npx --no-install vitest run tests/fe-roster-orchestration.test.ts -t 'U-FEROSTER-00[12]'"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T18:00:37Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:6b056a20a588b83bfb88b33e8de180d092495f8ad72eb5b6f017998f7bb51d1d"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:00:37Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:00:37Z"
@@ -88,32 +88,32 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/fe-roster-orchestration.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/fe-roster-orchestration.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T18:03:02Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:3d3fd17529cb05d68202ea77f371fa857befbfe1b7a5189d649c013cf163a956"
       - kind: lint
-        command: "bun src/cli.ts plan lint docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-11T18:03:02Z"
         evidence_path: docs/plans/PLAN-L7-424-fe-roster-vpair-resolution.md
         output_digest: "sha256:2e5f2172e5a0fe243543f0874a897daa1178fc353bd6b087f7fc34864d802a24"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:03:02Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T18:03:02Z"

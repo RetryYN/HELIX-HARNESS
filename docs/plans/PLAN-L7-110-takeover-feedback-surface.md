@@ -47,16 +47,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests\\feedback-surface.test.ts"
-        runner: bun
+        command: "npm test tests\\feedback-surface.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T23:42:00+09:00"
         evidence_path: tests/feedback-surface.test.ts
         output_digest: "sha256:4570446c9a5e5e03db0cf255344d7e424f451ec427f19cfe6251ab9eb636e10c"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T23:43:00+09:00"
@@ -92,8 +92,8 @@ session takeover が prose handover text や transient working-tree measurements
 - Warn/fail `quality_signals` は `feedback_events` を書かずに surface される。
 - Results は severity ordered、capped で、remainder breadcrumb を含む。
 - Empty feedback の場合は takeover noise を render しない。
-- `bun test tests\feedback-surface.test.ts` passes.
-- `bun run typecheck` passes.
+- `npm test tests\feedback-surface.test.ts` passes.
+- `npm run typecheck` passes.
 
 ## Carry
 

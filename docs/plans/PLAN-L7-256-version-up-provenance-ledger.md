@@ -50,24 +50,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/version-up-readiness.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T14:35:00+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:96ef4d1fe9b6d0477f028574ec62f62f00d8ca2a40a876d792c97704de57eec9"
       - kind: typecheck
-        command: "bun run tsc --noEmit"
-        runner: bun
+        command: "npx --no-install tsc --noEmit"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T14:35:00+09:00"
         evidence_path: src/lint/version-up-readiness.ts
         output_digest: "sha256:f2c135d2569bdb13ebf7a6bbb6c914c8cd7eaa35e5613c62a07517bb4ae24378"
       - kind: smoke
-        command: "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T14:35:00+09:00"

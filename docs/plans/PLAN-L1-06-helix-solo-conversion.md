@@ -26,16 +26,16 @@ review_evidence:
     scope: "PLAN-L1-06 close review: stale implemented claim removed, HBR/HNFR and HOT acceptance checked from Codex runtime perspective, Codex hook/tool surface + hosted API preflight + shared memory/provider handover requirements added, distribution/full-setup command end-state added, L1/L14 pair remains 1:1."
     green_commands:
       - kind: lint
-        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L1-06-helix-solo-conversion.md"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L1-06-helix-solo-conversion.md"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T21:29:00+09:00"
         evidence_path: .helix/audit/A-143-helix-l1-solo-refreeze.md
         output_digest: "sha256:94fd9fb55e9b6c654919798ba5d912cf3719a82a0387b24915f85b85a7ed3bc9"
       - kind: vmodel_lint
-        command: "bun run src/cli.ts vmodel lint"
-        runner: bun
+        command: "npx --no-install tsx src/cli.ts vmodel lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-28T21:29:00+09:00"

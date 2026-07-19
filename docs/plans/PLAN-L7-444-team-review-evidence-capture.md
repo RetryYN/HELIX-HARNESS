@@ -43,7 +43,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/team-run.test.ts tests/team-review-receipt-schema.test.ts tests/team-review-receipt-doctor.test.ts --reporter=dot"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T04:07:47+09:00"

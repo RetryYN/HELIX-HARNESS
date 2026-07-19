@@ -23,16 +23,16 @@ review_evidence:
     reviewer_model: codex-gpt-5-intra-runtime-review
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T13:00:19+09:00"
         evidence_path: src/lint/dependency-drift.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "bun run vitest run tests/dependency-drift.test.ts tests/change-impact.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/dependency-drift.test.ts tests/change-impact.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T13:00:19+09:00"
@@ -48,24 +48,24 @@ review_evidence:
     scope: "dependency-drift の import graph を runtime edge に厳格化し、`import type` / type-only named import / `export type` を module-cycle の実行時依存から除外した。これにより type-only cycle を誤検出せず、live repo の dependency findings は 19 件から 14 件へ収束し、残りは runtime value import cycle として維持される。"
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T13:00:19+09:00"
         evidence_path: src/lint/dependency-drift.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "bun run vitest run tests/dependency-drift.test.ts tests/change-impact.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/dependency-drift.test.ts tests/change-impact.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T13:00:19+09:00"
         evidence_path: tests/dependency-drift.test.ts
         output_digest: "sha256:8ac113f7275b68d3e16fae9ef018283cc8894e7752b468dce8126618eb1d3cf3"
       - kind: smoke
-        command: "bun -e 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); const messages=r.findings.map(f=>f.message); if (r.findings.length !== 14) throw new Error(`expected 14 findings, got ${r.findings.length}`); for (const gone of [\"state-db -> vscode -> state-db\", \"vmodel -> plan -> lint\"]) { if (messages.some(m=>m.includes(gone))) throw new Error(`type-only cycle still present: ${gone}`); } console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length},null,2));'"
-        runner: bun
+        command: "node --import tsx --eval 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); const messages=r.findings.map(f=>f.message); if (r.findings.length !== 14) throw new Error(`expected 14 findings, got ${r.findings.length}`); for (const gone of [\"state-db -> vscode -> state-db\", \"vmodel -> plan -> lint\"]) { if (messages.some(m=>m.includes(gone))) throw new Error(`type-only cycle still present: ${gone}`); } console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length},null,2));'"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T13:00:19+09:00"
@@ -81,24 +81,24 @@ review_evidence:
     scope: "ハイブリッド L12 適合のため、PLAN entry routing を pure lint + DB input adapter に分離し、Vモデルfit/ZIP manifest/設計宣言抽出を state-db read-model または中立 module へ再配置した。live dependency-drift は 14 件/4 error から 2 件/0 error へ収束し、残りは orchestration/team/task の既存 warn のみ。"
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T13:16:26+09:00"
         evidence_path: src/state-db/vmodel-fit.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "bun run vitest run tests/plan-entry-routing.test.ts tests/dependency-drift.test.ts tests/current-location.test.ts tests/vmodel-zip-manifest.test.ts tests/design-declarations.test.ts tests/goal-evidence-audit.test.ts tests/coding-rules.test.ts tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/projection-writer.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/plan-entry-routing.test.ts tests/dependency-drift.test.ts tests/current-location.test.ts tests/vmodel-zip-manifest.test.ts tests/design-declarations.test.ts tests/goal-evidence-audit.test.ts tests/coding-rules.test.ts tests/visualization-read-model.test.ts tests/visualization-view-model.test.ts tests/projection-writer.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T13:16:26+09:00"
         evidence_path: tests/dependency-drift.test.ts
         output_digest: "sha256:f21b53bb1a371126766a3b459467aa1351093454bd9fdd10cf92495d9edede58"
       - kind: smoke
-        command: "bun -e 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length,findings:r.findings}, null, 2));'"
-        runner: bun
+        command: "node --import tsx --eval 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length,findings:r.findings}, null, 2));'"
+        runner: node
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T13:16:26+09:00"
@@ -163,5 +163,5 @@ L7 roadmap の **G-L7.C → G-L7.D** span。`doctor` の固定文言
 
 - [x] U-DEPD-001..003 / U-REGEXP-001..002 が Red→Green。
 - [x] `doctor` が `dependency-drift` と `regression-expansion` を surface し、scaffold stub を出さない。
-- [x] `bun run vitest run tests/dependency-drift.test.ts tests/doctor.test.ts tests/vmodel-pair.test.ts` green。
+- [x] `npx --no-install vitest run tests/dependency-drift.test.ts tests/doctor.test.ts tests/vmodel-pair.test.ts` green。
 - [x] `PLAN-DISCOVERY-05` roadmap span の orphan を解消する正本 PLAN として confirmed。

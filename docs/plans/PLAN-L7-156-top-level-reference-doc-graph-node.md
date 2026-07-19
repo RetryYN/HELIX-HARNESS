@@ -38,32 +38,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\relation-graph-loader.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\relation-graph-loader.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T17:46:41+09:00"
         evidence_path: tests/relation-graph-loader.test.ts
         output_digest: "sha256:61c16d3b9e3305cc2e79000f5bde9c6169b0bb1bdaaab6b25541c1ce293804ba"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:47:06+09:00"
         evidence_path: src/graph/loader.ts
         output_digest: "sha256:0b826984a99a3760f8e94fe3fade2d525978387788548757dff4969b61951d5b"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:46:51+09:00"
         evidence_path: src/graph/loader.ts
         output_digest: "sha256:0b826984a99a3760f8e94fe3fade2d525978387788548757dff4969b61951d5b"
       - kind: smoke
-        command: "bun run src\\cli.ts db rebuild"
-        runner: bun
+        command: "npm run src\\cli.ts db rebuild"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:47:25+09:00"

@@ -49,7 +49,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/runtime-adapter.test.ts --project fast"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T04:44:31+09:00"

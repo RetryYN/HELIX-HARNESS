@@ -33,8 +33,8 @@ review_evidence:
     verdict: approve_after_fixes
     scope: "cutoff境界、timestamp spoof、pinned commit/tree/blob、immutable baseline provenance、admission保存則、promotion禁止を敵対監査した。初回B0/H2/M2/L1、再review B0/H1/M0/L0を是正し、最終B0/H0/M0/L0。"
     green_commands:
-      - { kind: unit_test, command: "bunx vitest run tests/design-coverage.test.ts tests/design-language.test.ts tests/l6-completion.test.ts tests/plan-entry-routing.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T05:23:26Z", evidence_path: docs/test-design/harness/historical-vpair-migration-authority.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
-      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-75-historical-vpair-migration-authority.md", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T05:23:26Z", evidence_path: docs/plans/PLAN-L6-75-historical-vpair-migration-authority.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/design-coverage.test.ts tests/design-language.test.ts tests/l6-completion.test.ts tests/plan-entry-routing.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T05:23:26Z", evidence_path: docs/test-design/harness/historical-vpair-migration-authority.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-75-historical-vpair-migration-authority.md", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T05:23:26Z", evidence_path: docs/plans/PLAN-L6-75-historical-vpair-migration-authority.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 ---
 
 # PLAN-L6-75: historical Vペア migration authority

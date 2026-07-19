@@ -51,16 +51,16 @@ review_evidence:
     scope: "Project/HARNESS 2 root の read-only Tree View、VSCode extension adapter、copy pointer command、Project current-location の ZIP/L12 fit 表示が実装済みで、対象テストと関連回帰で退行なしを確認した。"
     green_commands:
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-08T07:57:06+09:00"
         evidence_path: src/vscode/tree-view-provider.ts
         output_digest: "sha256:58d6182559414d8a12831ddad23bfb949d51944c5a78f49628e432870c90e0bd"
       - kind: unit_test
-        command: "bun run vitest run tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/vscode-extension-adapter.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts tests/vscode-extension-adapter.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-08T07:57:06+09:00"

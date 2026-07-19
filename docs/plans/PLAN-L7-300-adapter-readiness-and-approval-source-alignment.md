@@ -61,8 +61,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/action-binding-approval-readiness.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/handover.test.ts tests/doctor.test.ts tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000"
-        runner: bun
+        command: "npm test tests/action-binding-approval-readiness.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/handover.test.ts tests/doctor.test.ts tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T23:59:00+09:00"

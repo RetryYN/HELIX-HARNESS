@@ -88,24 +88,24 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/review-evidence.test.ts tests/ci-governance-self-heal.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/review-evidence.test.ts tests/ci-governance-self-heal.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T15:51:55Z"
         evidence_path: tests/ci-governance-self-heal.test.ts
         output_digest: "sha256:8e3d654bad8b82649cfa8b67485242d46e71b056286ec4d1bc451beba26a0c26"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T15:51:55Z"
         evidence_path: src/policy/feedback-lifecycle.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T15:51:55Z"
@@ -121,24 +121,24 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "bunx vitest run tests/ci-governance-self-heal.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests/ci-governance-self-heal.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T16:32:40Z"
         evidence_path: tests/ci-governance-self-heal.test.ts
         output_digest: "sha256:6009616059aad1da267eef07d4700378c5c2245b2e08ef0fd8d59287e900731a"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T16:32:40Z"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:44220009afe0690be55eb18f2b4b35dee3d3bb863b32a1b2318af0386a4f54fe"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T16:32:40Z"

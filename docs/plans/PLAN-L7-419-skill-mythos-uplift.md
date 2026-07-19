@@ -106,7 +106,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/skill-pack-uplift.test.ts tests/judgment-core-coverage.test.ts tests/agent-context-efficiency.test.ts tests/skill-assignment.test.ts tests/skill-recommend.test.ts tests/asset-catalog.test.ts"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T09:41:23+09:00"
@@ -123,7 +123,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/skill-pack-uplift.test.ts tests/judgment-core-coverage.test.ts tests/agent-context-efficiency.test.ts tests/skill-assignment.test.ts tests/skill-recommend.test.ts tests/asset-catalog.test.ts"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T09:41:23+09:00"

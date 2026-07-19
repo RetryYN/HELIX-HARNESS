@@ -47,16 +47,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun test tests/relation-graph-loader.test.ts tests/relation-graph.test.ts --timeout 180000"
-        runner: bun
+        command: "npm test tests/relation-graph-loader.test.ts tests/relation-graph.test.ts --timeout 180000"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T01:44:18+09:00"
         evidence_path: tests/relation-graph-loader.test.ts
         output_digest: "sha256:0517e1419846dcb8d71e6eb2b3fe4ef9f2201ce6a6914797c776747fc55aeb51"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:44:18+09:00"
@@ -64,7 +64,7 @@ review_evidence:
         output_digest: "sha256:59d40726254c5d3e1c2f82345fcb1d436148351da1951ab1d09119c046adedd8"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: bun
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:44:18+09:00"

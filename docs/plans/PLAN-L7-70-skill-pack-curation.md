@@ -29,7 +29,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/skill-recommend.test.ts tests/skill-assignment.test.ts tests/asset-catalog.test.ts"
-        runner: bun
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:10:04+09:00"

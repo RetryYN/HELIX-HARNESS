@@ -40,40 +40,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests\\workflow-contracts.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\workflow-contracts.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:11:58+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
       - kind: unit_test
-        command: "bun run vitest run tests\\workflow-contracts.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\workflow-contracts.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:11:58+09:00"
         evidence_path: src/workflow/contracts.ts
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
       - kind: unit_test
-        command: "bun run vitest run tests\\workflow-contracts.test.ts"
-        runner: bun
+        command: "npx --no-install vitest run tests\\workflow-contracts.test.ts"
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:11:58+09:00"
         evidence_path: src/workflow/contracts-policy.ts
         output_digest: "sha256:dfe68d29ecaf344bb33153dae76408dfa596172be9a98d250eb3f59c3eacfa50"
       - kind: typecheck
-        command: "bun run typecheck"
-        runner: bun
+        command: "npm run typecheck"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:15:00+09:00"
         evidence_path: src/workflow/contracts.ts
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
       - kind: lint
-        command: "bun run lint"
-        runner: bun
+        command: "npm run lint"
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:15:00+09:00"
