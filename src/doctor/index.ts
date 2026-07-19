@@ -7095,6 +7095,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const improvementBacklog = checkImprovementBacklog(deps.repoRoot);
   const rightArmGatePlanning = checkRightArmGatePlanning(deps.repoRoot);
   const rightArmVerificationStrategy = checkRightArmVerificationStrategy(deps.repoRoot);
+  const l12HybridRecognition = checkL12HybridRecognition(deps.repoRoot);
+  const l3ProgressionAuthority = checkL3ProgressionAuthority(deps.repoRoot);
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
   const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
   const g10UxWorkflow = checkG10UxWorkflow(deps.repoRoot);
@@ -7227,6 +7229,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["improvementBacklog", improvementBacklog.ok],
     ["rightArmGatePlanning", rightArmGatePlanning.ok],
     ["rightArmVerificationStrategy", rightArmVerificationStrategy.ok],
+    ["l12HybridRecognition", l12HybridRecognition.ok],
+    ["l3ProgressionAuthority", l3ProgressionAuthority.ok],
     ["g8IntegrationWorkflow", g8IntegrationWorkflow.ok],
     ["g9SystemWorkflow", g9SystemWorkflow.ok],
     ["g10UxWorkflow", g10UxWorkflow.ok],
@@ -7360,6 +7364,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       improvementBacklog.ok &&
       rightArmGatePlanning.ok &&
       rightArmVerificationStrategy.ok &&
+      l12HybridRecognition.ok &&
+      l3ProgressionAuthority.ok &&
       g8IntegrationWorkflow.ok &&
       g9SystemWorkflow.ok &&
       g10UxWorkflow.ok &&
@@ -7497,6 +7503,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...improvementBacklog.messages.map((m) => `doctor: ${m}`),
       ...rightArmGatePlanning.messages.map((m) => `doctor: ${m}`),
       ...rightArmVerificationStrategy.messages.map((m) => `doctor: ${m}`),
+      ...l12HybridRecognition.messages.map((m) => `doctor: ${m}`),
+      ...l3ProgressionAuthority.messages.map((m) => `doctor: ${m}`),
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g10UxWorkflow.messages.map((m) => `doctor: ${m}`),
