@@ -532,9 +532,14 @@ export function analyzeVerificationGroups(
   });
 }
 
-/** doctor / CLI 向けの検証発火 surface (note レベル、ok は落とさない)。 */
+/**
+ * doctor / CLI 向けの検証発火 surface。L6 設計 (vmodel-pair-freeze.md §7.4) の
+ * 「機械発火の範囲は surface まで」に従い、Forward 進行中 (未 freeze) では ok を落とさない。
+ * fail-close は構造異常 (pair 孤児) のみ。旧実装は全群 freeze 完了まで ok=false を返し、
+ * 2026-07-12 以降の harness-check を無言 exit 1 で全滅させていた (PR #43 で是正)。
+ */
 export function verificationGroupsOk(groups: GroupReadiness[]): boolean {
-  return groups.every((g) => g.frozen);
+  return groups.every((g) => !g.hasOrphan);
 }
 
 export function verificationGroupMessages(groups: GroupReadiness[]): string[] {
