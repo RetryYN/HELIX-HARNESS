@@ -228,6 +228,11 @@ import {
 } from "../lint/left-arm-carry-log";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
 import {
+  analyzeMemoryHandoverIsolation,
+  loadMemoryHandoverIsolationInput,
+  memoryHandoverIsolationMessages,
+} from "../lint/memory-handover-isolation";
+import {
   analyzeMergedPlanStatus,
   loadMergedPlanStatusInput,
   mergedPlanStatusMessages,
@@ -6311,6 +6316,29 @@ export function checkL12DualProjection(repoRoot: string): {
   }
 }
 
+/**
+ * memory-handover-isolation (fail-close, PLAN-L7-459 / MEMX-S6): remote 未到達の
+ * `.helix/memory/` 変更コミットが閾値超過で残存したら violation。git 不能時も fail-close。
+ */
+export function checkMemoryHandoverIsolation(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const r = analyzeMemoryHandoverIsolation(loadMemoryHandoverIsolationInput(repoRoot), {
+      nowEpochSeconds: Math.floor(Date.now() / 1000),
+    });
+    return { messages: memoryHandoverIsolationMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: [
+        "memory-handover-isolation - violation: git 履歴を検査できないため fail-close (remote 到達状態が未検証)",
+      ],
+      ok: false,
+    };
+  }
+}
+
 export function checkRepositoryNamePaths(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -7021,6 +7049,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
   const l12DualProjection = checkL12DualProjection(deps.repoRoot);
+  const memoryHandoverIsolation = checkMemoryHandoverIsolation(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
   // fail-close: green_command digest が evidence_path 実 hash と一致するか (fake substance 防止、PLAN-L7-132)。
@@ -7151,6 +7180,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["lintWiring", lintWiring.ok],
     ["toolchainPin", toolchainPin.ok],
     ["repositoryNamePaths", repositoryNamePaths.ok],
+    ["l12DualProjection", l12DualProjection.ok],
+    ["memoryHandoverIsolation", memoryHandoverIsolation.ok],
     ["proposalDocumentCoverage", proposalDocumentCoverage.ok],
     ["frontendDesignCoverage", frontendDesignCoverage.ok],
     ["greenCommandDigest", greenCommandDigest.ok],
@@ -7283,6 +7314,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
       l12DualProjection.ok &&
+      memoryHandoverIsolation.ok &&
       proposalDocumentCoverage.ok &&
       frontendDesignCoverage.ok &&
       greenCommandDigest.ok &&
@@ -7419,6 +7451,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),
       ...l12DualProjection.messages.map((m) => `doctor: ${m}`),
+      ...memoryHandoverIsolation.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
