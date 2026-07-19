@@ -32,7 +32,7 @@
 - LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、権限境界と不可逆操作の gate evidence が無い限り completion evidence にしない。人間承認は層外L0 anchorとL1-L3判断、不可逆cutover、本番・認証・secret・PII・license・destructive操作に限定する。
 - 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>、Rev. 1 IPD は <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> で追跡) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>) / NASA Systems Engineering Handbook Appendix (<https://www.nasa.gov/reference/system-engineering-handbook-appendix/>) / W3C WCAG 2.2 (<https://www.w3.org/TR/WCAG22/>) / Playwright Test (<https://playwright.dev/docs/intro>、visual comparisons は <https://playwright.dev/docs/test-snapshots>、accessibility testing は <https://playwright.dev/docs/accessibility-testing>) / GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>) / VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>) / Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)
 
-### Verification source ledger（検証台帳、checked 2026-07-03）
+### Verification source ledger（checked 2026-07-03、検証台帳）
 
 | source | 公式URL | 採用version/date | 最新公式status | 採用判断 | 検証用途 | gate影響 |
 |---|---|---|---|---|---|---|

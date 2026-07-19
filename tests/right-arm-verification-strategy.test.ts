@@ -345,7 +345,7 @@ describe("right-arm verification strategy", () => {
     }
 
     expect(rightArm).toContain("### 右腕 evidence profile (G8-G12)");
-    expect(rightArm).toContain("### Verification source ledger (checked 2026-07-03)");
+    expect(rightArm).toContain("### Verification source ledger（checked 2026-07-03、検証台帳）");
     expect(rightArm).toContain("NIST SSDF SP 800-218");
     expect(rightArm).toContain("Scrum Guide 2020");
     expect(rightArm).toContain("ISTQB Glossary");
