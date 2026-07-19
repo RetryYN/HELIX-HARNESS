@@ -2,7 +2,7 @@
 
 status: 要件定義改善指示（PO 指示 2026-07-19）/ Codex 参照用
 author runtime: claude
-trace key: worker-runtime-security-2026-07-19
+追跡キー: worker-runtime-security-2026-07-19
 関連: docs/research/harness-improvement-from-grok-kimi-oss-2026-07-19.md（改善指示 1 の詳細化・具体化）
 
 ## 位置づけ
@@ -43,7 +43,7 @@ trace key: worker-runtime-security-2026-07-19
 
 出典（2026-07-19 確認）: openai/codex → learn.chatgpt.com/docs/security、xai-org/grok-build
 `crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md`、MoonshotAI/kimi-cli
-README + docs site、MoonshotAI/kimi-agent-sdk README。
+の README と docs site、および MoonshotAI/kimi-agent-sdk の README を参照した。
 
 含意: headless 委譲の権限モデルの理想形は「全承認 (YOLO)」ではなく grok-build `dontAsk` 型の
 **「deny 既定 + 明示 allowlist」**である。L1-3（権限昇格の常態化禁止）の要件化では、YOLO を

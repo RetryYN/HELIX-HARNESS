@@ -75,25 +75,7 @@ L1 = エリア、L3 = FR 粒度で登録する。bulk import はしない）。
    HELIX-HARNESS-OS の配布形式を plugin-marketplace 型
    （正本 index + 生成 index + first/third-party 分離 + 免責）で定義する要求を配布エリアに追加する。
    実切替は従来どおり PLAN-M-02 の cutover 承認境界に従う。
-6. **[L1/BR + L3/FR] worker 受入ベンチと実タスク評定スコアカード（2026-07-19 追記、PO 指示）**:
-   worker runtime / モデル改版の受入判定と実タスク委譲の継続評定を、同一測定次元で行う要求を追加する。
-   - 二層構造: 人工ベンチ（受入・改版時のみの統制比較。judge 不要のスモークセット +
-     blind judge 込みフル判定）と、実タスク評定（委譲 1 回ごとの evidence を harness.db へ記録し
-     projection でモデル別スコアカード集計。`helix task classify` の分類で層別）。
-   - 測定次元（機械層）: 実装正しさ / mutation kill / 指示追従（grep 判定可能制約 +
-     negative instruction / scope 遵守）/ スキル感応（with/without A/B 差分）/ コード品質
-     （lint・複雑度・重複・diff 面積）/ 簡潔性（同一性能なら短い実装を上位）/
-     セキュリティ生成素点（Semgrep 系）/ 拡張性（後出し仕様変更の 2 回目 diff 実測。
-     静的 rubric 採点は禁止 — 抽象過多と YAGNI 違反が区別できないため）。
-   - judge 層: 日本語 / 設計 / 検証 / レビュー / ビジュアル（vision rubric: 余白配分・重心・
-     グリッド規律・視覚階層。taste の最終裁定は PO 一対比較）。
-   - 実タスク評定 第 1 段フィールド: first_pass / retry_count / proposal_diff_size /
-     lint_violation_count（既存委譲フローの副産物のみ）。実効コスト = API 換算単価 × 再試行係数。
-   - behavior atom 出所: 2026-07-19 の 8 モデル手動ベンチ scratchpad（runner / blind judge /
-     mutation 採点 / vision 検査 / headless CLI 入れ子の環境浄化手順）。
-   - 注: 本項は一度 PLAN-L7-458 として誤って L7 起票され撤回済み（要件リベースライン進行中のため、
-     L1/L3 要件反映が先。実装 PLAN 化は要件確定後）。
-7. **[調査 PLAN] grok-build worktree 並列 subagent の precedent 精読**:
+6. **[調査 PLAN] grok-build worktree 並列 subagent の precedent 精読**:
    pmo-tech-fork / pmo-tech-docs による grok-build ソース精読タスクを起票し、
    worktree 払い出し・回収・衝突処理の behavior atom を採取して上記 1〜2 の設計入力とする。
 
@@ -101,7 +83,7 @@ L1 = エリア、L3 = FR 粒度で登録する。bulk import はしない）。
 
 Codexにみるにゃ！
 
-- 本レポートを読み、上記「要件定義改善指示」1〜7 を既存 L1/L3 正本・進行中の要件リベースライン
+- 本レポートを読み、上記「要件定義改善指示」1〜6 を既存 L1/L3 正本・進行中の要件リベースライン
   （HYBRID-CORE-REQUIREMENTS）と突き合わせて、重複・矛盾がなければ FR/BR 起票または既存 PLAN の
   延長として取り込むこと。反映は inventory-first・粒度合わせ・bulk import 禁止の原則に従う。
 - 対立・疑義があれば silent 変更せず IMP 記録の上で相談すること。
