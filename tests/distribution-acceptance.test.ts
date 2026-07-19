@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
 import {
   cpSync,
   existsSync,
@@ -11,6 +12,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   buildCleanDistributionPlan,
@@ -50,7 +52,11 @@ function runNodePackageTool(cwd: string, args: string[], env: NodeJS.ProcessEnv 
     return runCommand(
       cwd,
       process.execPath,
-      ["--import", import.meta.resolve("tsx"), ...args],
+      [
+        "--import",
+        pathToFileURL(createRequire(join(process.cwd(), "package.json")).resolve("tsx")).href,
+        ...args,
+      ],
       env,
     );
   }
