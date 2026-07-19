@@ -67,7 +67,7 @@
 | `docs/design/harness/L6-function-design/agent-slots.md` | TypeScript/Bun全面再実装 |
 | `docs/design/helix/L5-detail/pillar-detail-design.md` | TypeScript/Bunを現行coreとして使用 |
 
-### P1: confirmed / active PLAN
+### P1: confirmed / active PLANの是正
 
 次のPLANはstatusにかかわらず、後続実装・受入の判断材料になるため、旧authorityを残したまま再利用してはならない。
 

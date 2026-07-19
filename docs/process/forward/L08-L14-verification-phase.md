@@ -32,18 +32,18 @@
 - LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、権限境界と不可逆操作の gate evidence が無い限り completion evidence にしない。人間承認は層外L0 anchorとL1-L3判断、不可逆cutover、本番・認証・secret・PII・license・destructive操作に限定する。
 - 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>、Rev. 1 IPD は <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> で追跡) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>) / NASA Systems Engineering Handbook Appendix (<https://www.nasa.gov/reference/system-engineering-handbook-appendix/>) / W3C WCAG 2.2 (<https://www.w3.org/TR/WCAG22/>) / Playwright Test (<https://playwright.dev/docs/intro>、visual comparisons は <https://playwright.dev/docs/test-snapshots>、accessibility testing は <https://playwright.dev/docs/accessibility-testing>) / GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>) / VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>) / Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)
 
-### Verification source ledger (checked 2026-07-03)
+### Verification source ledger（検証台帳、checked 2026-07-03）
 
-| source | official URL | adopted version/date | latest official status | adoption decision | verification use | gate impact |
+| source | 公式URL | 採用version/date | 最新公式status | 採用判断 | 検証用途 | gate影響 |
 |---|---|---|---|---|---|---|
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | security/release証跡 | G8 / G9 / G12 |
-| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | current official page | adopt-current-guide | inspect/adapt | S3 / S4 / G11 / G12 |
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 | 現行公式page | adopt-current-guide | inspect/adapt | S3 / S4 / G11 / G12 |
 | ISTQB Glossary | <https://glossary.istqb.org/> | live glossary | live official glossary | adopt-live-terms-with-ledger-date | test用語 | G8-G12 |
 | OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | current 2025 entry | adopt-2025-entry | 人間承認・権限境界・不可逆操作 | G11 / G12 |
-| NASA Systems Engineering Handbook Appendix | <https://www.nasa.gov/reference/system-engineering-handbook-appendix/> | updated 2019-05-08 | live appendix | adopt-vv-matrix-structure | V&V matrix | G8-G12 |
-| W3C WCAG 2.2 | <https://www.w3.org/TR/WCAG22/> | Recommendation 2024-12-12 | latest Recommendation | adopt-current-recommendation-for-accessibility-evidence | accessibility | G10 / G11 |
+| NASA Systems Engineering Handbook Appendix | <https://www.nasa.gov/reference/system-engineering-handbook-appendix/> | updated 2019-05-08 | 現行appendix | adopt-vv-matrix-structure | V&V matrix | G8-G12 |
+| W3C WCAG 2.2 | <https://www.w3.org/TR/WCAG22/> | Recommendation 2024-12-12 | 最新Recommendation | adopt-current-recommendation-for-accessibility-evidence | accessibility | G10 / G11 |
 | Playwright Test | <https://playwright.dev/docs/intro> / <https://playwright.dev/docs/test-snapshots> / <https://playwright.dev/docs/accessibility-testing> | live docs | live official docs | adopt-live-docs-for-browser-evidence-shape | browser証跡 | G10 / G11 |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | live official docs | adopt-live-docs-for-approval-shape | action-binding approval | G12 / action-binding approval |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | 現行公式docs | adopt-live-docs-for-approval-shape | action-binding approval | G12 / action-binding approval |
 | VS Code Webview Security | <https://code.visualstudio.com/api/extension-guides/webview#security> | live docs | live official docs | adopt-live-docs-for-webview-risk | webview境界 | G10 / G11 |
 | Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | release engineering chapter | live official book | adopt-operational-guidance | release運用 | G12 |
 
@@ -66,7 +66,7 @@ Source ledger 意味レビュー証跡:
 | G11 | L2要求 | 人間受入とfeedback disposition | UAT decision record、manual accessibility or inclusive-user review route | 未処理feedbackを拒否 |
 | G12 | L1事業要求 | 受入・配布・運用・価値を一体検証 | acceptance command evidence、smoke command evidence、operational metric snapshot、L12→L1/L0 feedback record | release/operation/value closure |
 
-## compatibility evidence
+## compatibility evidenceの扱い
 
 旧L8-L14 source ledger・G13/G14 profile・action-binding詳細はhistorical snapshotとして監査履歴からのみ参照する。本process正本にはactionable定義を置かず、旧receiptはG12 evidenceへ投影する。
 

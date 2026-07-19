@@ -3,7 +3,7 @@
 - status: current-authority
 - scope: L3要件定義へ入る前に正規化する58文書
 - V-model: L1-L12 canonical
-- runtime: Python semantic core + TypeScript/Node transactional boundary
+- runtime: Python semantic core + TypeScript/Node transactional boundaryを正とする
 - supersedes: 対象文書内のL0-L14、旧pair、Bun target、Python proposal-onlyという進行authority
 
 ## 1. L3へ入力できる判断
