@@ -40,7 +40,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L0-charter/helix-charter_v0.1.md":
     "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8",
   "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md":
-    "c256ca9116502fc83c98a6822c9a482cc72968b1af5e93f1ed2efbbd155bdd65",
+    "9b628e0a54b7052496cbb6e82e03adef01ffdb574d995baaa11cfcc61a968ac7",
   "docs/design/helix/L1-requirements/pillar-requirements.md":
     "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
