@@ -761,6 +761,8 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const conflicting = spawnSync(
       "npx",
       [
+        "--prefix",
+        process.cwd(),
         "--no-install",
         "tsx",
         join(process.cwd(), "src", "cli.ts"),

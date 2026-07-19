@@ -145,9 +145,8 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
       ...overrides,
     }).map(([relativePath, text]) => [file(relativePath), text]),
   );
-  files.set(
-    file(".claude/settings.json"),
-    JSON.stringify({
+  if (!(".claude/settings.json" in overrides)) {
+    files.set(file(".claude/settings.json"), JSON.stringify({
       hooks: {
         SessionStart: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session start' }] }],
         PostToolUse: [
@@ -158,8 +157,8 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
         ],
         Stop: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session summary' }] }],
       },
-    }),
-  );
+    }));
+  }
   return files;
 }
 
