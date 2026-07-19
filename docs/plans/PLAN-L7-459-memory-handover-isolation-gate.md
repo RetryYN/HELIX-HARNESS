@@ -14,6 +14,15 @@ review_evidence:
     verdict: pass
     worker_model: claude-sonnet-5
     notes: "PO 指示 (2026-07-19、Codex 遅延時の安全 merge) による単一 runtime 代替証跡。初回指摘 (全ブランチ走査の等価コミット巻き込み / detached HEAD 漏れ / remote 未設定誤検知 / 統合テスト欠如) を patch-id 等価除外・HEAD 包含・noRemote fail-close・実 git fixture 統合テスト 4 件で是正。レビュア独立再実行で vitest 10/10・typecheck・実 repo isolated=0 green を確認。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/memory-handover-isolation.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-19T22:38:07+09:00"
+        evidence_path: tests/memory-handover-isolation.test.ts
+        output_digest: "sha256:2e82093c871d42b48f2d66e8690cf34741370daff837d4c2a60a36a6a21851d8"
 entry_signals: ["po_directive: 2026-07-19 メモリ/GitHub 運用の優先実装指示 (issue #44。merge 済み branch 上に chore(memory) 含む未 push 18 コミットが孤立し引き継ぎ不達、PR #43 で収束した実インシデントの再発防止)"]
 created: 2026-07-19
 github_issue_id: 44
