@@ -145,11 +145,15 @@ function productionFixture(options: { humanOnly?: boolean } = {}) {
 }
 
 function run(root: string, args: string[]) {
-  return spawnSync("npx", ["--no-install", "tsx", cliPath, "closure", ...args], {
-    cwd: root,
-    encoding: "utf8",
-    env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-  });
+  return spawnSync(
+    "npx",
+    ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "closure", ...args],
+    {
+      cwd: root,
+      encoding: "utf8",
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+    },
+  );
 }
 
 function writeArtifact(root: string, path: string, value: unknown) {

@@ -67,7 +67,7 @@ function runCliIn(cwd: string, args: string[]) {
       env: process.env,
     });
   }
-  return spawnSync("npx", ["--no-install", "tsx", cliPath, ...args], {
+  return spawnSync("npx", ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, ...args], {
     cwd,
     encoding: "utf8",
     env: process.env,

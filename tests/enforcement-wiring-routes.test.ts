@@ -2,7 +2,11 @@ import { spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
 function run(args: string[]) {
-  return spawnSync("npx", ["--no-install", "tsx", "src/cli.ts", ...args], { encoding: "utf8" });
+  return spawnSync(
+    "npx",
+    ["--prefix", process.cwd(), "--no-install", "tsx", "src/cli.ts", ...args],
+    { encoding: "utf8" },
+  );
 }
 
 describe("PLAN-L7-428 enforcement routes", () => {

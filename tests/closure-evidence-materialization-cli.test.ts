@@ -83,11 +83,15 @@ describe("closure authority-materialize CLI", () => {
       },
     );
     execFileSync("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: fixture });
-    const rebuild = spawnSync("npx", ["--no-install", "tsx", cliPath, "db", "rebuild"], {
-      cwd: fixture,
-      encoding: "utf8",
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-    });
+    const rebuild = spawnSync(
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", cliPath, "db", "rebuild"],
+      {
+        cwd: fixture,
+        encoding: "utf8",
+        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+      },
+    );
     expect(rebuild.status, rebuild.stderr).toBe(0);
     const dbPath = join(fixture, ".helix", "harness.db");
     const digest = () => createHash("sha256").update(readFileSync(dbPath)).digest("hex");

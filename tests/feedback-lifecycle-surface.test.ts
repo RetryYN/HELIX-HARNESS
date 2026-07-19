@@ -353,10 +353,14 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       db.close();
     }
     try {
-      const first = spawnSync("npx", ["--no-install", "tsx", cli, "feedback", "list", "--json"], {
-        cwd: root,
-        encoding: "utf8",
-      });
+      const first = spawnSync(
+        "npx",
+        ["--prefix", process.cwd(), "--no-install", "tsx", cli, "feedback", "list", "--json"],
+        {
+          cwd: root,
+          encoding: "utf8",
+        },
+      );
       expect(first.status, first.stderr).toBe(0);
       expect(JSON.parse(first.stdout).total).toBe(1);
       const ack = spawnSync(
@@ -376,10 +380,14 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
         { cwd: root, encoding: "utf8" },
       );
       expect(ack.status, ack.stderr).toBe(0);
-      const second = spawnSync("npx", ["--no-install", "tsx", cli, "feedback", "list", "--json"], {
-        cwd: root,
-        encoding: "utf8",
-      });
+      const second = spawnSync(
+        "npx",
+        ["--prefix", process.cwd(), "--no-install", "tsx", cli, "feedback", "list", "--json"],
+        {
+          cwd: root,
+          encoding: "utf8",
+        },
+      );
       expect(second.status, second.stderr).toBe(0);
       expect(JSON.parse(second.stdout).total).toBe(0);
       const update = openHarnessDb(defaultHarnessDbPath(root), { repoRoot: root });

@@ -725,11 +725,15 @@ it("race child", async () => {
     );
     const run = () =>
       new Promise<void>((resolve, reject) => {
-        const child = spawn("npx", ["--no-install", "vitest", "run", tempTest], {
-          cwd: join(import.meta.dirname, ".."),
-          env: { ...process.env, RACE_ROOT: value.root },
-          stdio: ["ignore", "ignore", "pipe"],
-        });
+        const child = spawn(
+          "npx",
+          ["--prefix", process.cwd(), "--no-install", "vitest", "run", tempTest],
+          {
+            cwd: join(import.meta.dirname, ".."),
+            env: { ...process.env, RACE_ROOT: value.root },
+            stdio: ["ignore", "ignore", "pipe"],
+          },
+        );
         let stderr = "";
         child.stderr.on("data", (chunk: Buffer) => (stderr += chunk.toString("utf8")));
         child.once("close", (code) => (code === 0 ? resolve() : reject(new Error(stderr))));

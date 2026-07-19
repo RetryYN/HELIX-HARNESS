@@ -141,9 +141,13 @@ describe("closure materialization atomic lock", () => {
         rejectFirst = reject;
       });
       const done = new Promise<void>((resolveDone, rejectDone) => {
-        const child = spawn("npx", ["--no-install", "tsx", "-e", script, root, barrier, release], {
-          stdio: ["ignore", "pipe", "pipe"],
-        });
+        const child = spawn(
+          "npx",
+          ["--prefix", process.cwd(), "--no-install", "tsx", "-e", script, root, barrier, release],
+          {
+            stdio: ["ignore", "pipe", "pipe"],
+          },
+        );
         let stdout = "";
         let stderr = "";
         child.stdout.on("data", (chunk: Buffer) => {

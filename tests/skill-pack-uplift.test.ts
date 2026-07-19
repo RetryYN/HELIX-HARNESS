@@ -90,10 +90,14 @@ describe("skill pack uplift (PLAN-L7-419)", () => {
 
   it("U-SKUP-007: references only real helix subcommands in touched packs", () => {
     const helpFor = (args: string[]): string =>
-      execFileSync("npx", ["--no-install", "tsx", "src/cli.ts", ...args, "--help"], {
-        cwd: repoRoot,
-        encoding: "utf8",
-      });
+      execFileSync(
+        "npx",
+        ["--prefix", process.cwd(), "--no-install", "tsx", "src/cli.ts", ...args, "--help"],
+        {
+          cwd: repoRoot,
+          encoding: "utf8",
+        },
+      );
     const commandsIn = (help: string): Set<string> => {
       const idx = help.indexOf("Commands:");
       if (idx < 0) return new Set();

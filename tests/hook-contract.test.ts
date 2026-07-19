@@ -29,10 +29,14 @@ describe("hook contract (PLAN-L7-441)", () => {
     // (0 件 green の空回りを防ぐ)。
     expect(declared).toContain("work-guard");
     expect(declared.length).toBeGreaterThanOrEqual(2);
-    const help = spawnSync("npx", ["--no-install", "tsx", cli, "hook", "--help"], {
-      cwd: repoRoot,
-      encoding: "utf8",
-    });
+    const help = spawnSync(
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", cli, "hook", "--help"],
+      {
+        cwd: repoRoot,
+        encoding: "utf8",
+      },
+    );
     expect(help.status).toBe(0);
     const missing = declared.filter(
       (name) => !new RegExp(`^\\s{2}${name}(\\s|$)`, "m").test(help.stdout),
@@ -54,16 +58,20 @@ describe("hook contract (PLAN-L7-441)", () => {
       // untracked = 他ランタイムの in-flight とみなされる uncommitted ファイル。
       writeFileSync(join(dir, "foreign.txt"), "in-flight\n");
       const run = (file: string) =>
-        spawnSync("npx", ["--no-install", "tsx", cli, "hook", "work-guard"], {
-          cwd: dir,
-          encoding: "utf8",
-          env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "" },
-          input: JSON.stringify({
-            tool_name: "Edit",
-            tool_input: { file_path: join(dir, file) },
-            session_id: "hkc-test",
-          }),
-        });
+        spawnSync(
+          "npx",
+          ["--prefix", process.cwd(), "--no-install", "tsx", cli, "hook", "work-guard"],
+          {
+            cwd: dir,
+            encoding: "utf8",
+            env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "" },
+            input: JSON.stringify({
+              tool_name: "Edit",
+              tool_input: { file_path: join(dir, file) },
+              session_id: "hkc-test",
+            }),
+          },
+        );
       const blocked = run("foreign.txt");
       expect(blocked.status).toBe(2);
       expect(blocked.stderr).toContain("[helix-work-guard] BLOCK");
