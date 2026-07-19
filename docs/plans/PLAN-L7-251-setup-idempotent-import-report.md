@@ -45,32 +45,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:37:13+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:2f2eb29d657561e8ce4c7c27c0028ad3e315869661e493ce793f4bdc5c166c35"
       - kind: unit_test
-        command: "npm test tests/doctor.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/doctor.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:37:13+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:fb3faffc6acd03dcea39063bb710d31e566d6b8a34e307af591a4e7f4808a9c9"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:37:13+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:7f70ca8fcf5a203e1428719ae149b5dde8515f13e8f22e75f0f41fa06ade7605"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:37:13+09:00"
@@ -93,8 +93,8 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-251-setup-idempotent-import-report.md
         output_digest: "sha256:c31541548a310106e71e4c31e898d3087d3d74f948d751f5f2b92f720664c805"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T12:37:13+09:00"

@@ -54,23 +54,23 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/outstanding.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/outstanding.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:10:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:67780db135eb7eddbf630f2a37ad38b59116147d7f37cb537d850634ec069864"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T13:10:00+09:00"
         evidence_path: src/lint/outstanding.ts
         output_digest: "sha256:86cc444a0c16f9036e799f875c967c11190f7c76e9e1b3f3a87ef7e4d7195c1d"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts completion decision-packet --json; npx --no-install tsx src/cli.ts completion decision-packet | rg \"human-review-(bundle|item)\""
+        command: "bun run src/cli.ts completion decision-packet --json; bun run src/cli.ts completion decision-packet | rg \"human-review-(bundle|item)\""
         runner: bash
         scope: targeted
         exit_code: 0

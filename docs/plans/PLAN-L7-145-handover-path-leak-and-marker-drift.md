@@ -21,8 +21,8 @@ review_evidence:
     reviewer_model: claude-opus-4-8
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/handover.test.ts"
-        runner: node
+        command: "bun run vitest run tests/handover.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T19:20:00+09:00"
@@ -38,8 +38,8 @@ review_evidence:
     reviewer_model: codex-gpt-5.x
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/handover.test.ts"
-        runner: node
+        command: "bun run vitest run tests/handover.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T19:20:00+09:00"

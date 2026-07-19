@@ -27,8 +27,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test:fast"
-        runner: node
+        command: "bun run test:fast"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:05:58+09:00"
@@ -103,6 +103,6 @@ pure functions が green になった後、CLI dry-run と documentation back-fi
 
 - [x] source implementation 前に Red test が存在する。
 - [x] U-MCPPROFILE-001..012 pass.
-- [x] `npx --no-install vitest run tests/verification-profile.test.ts` passes before review.
-- [x] review 前に `npm run typecheck` と `npm run lint` が pass する。
+- [x] `bun run vitest run tests/verification-profile.test.ts` passes before review.
+- [x] review 前に `bun run typecheck` と `bun run lint` が pass する。
 - [x] Reverse fullback が governance/backlog additions を close する。

@@ -78,80 +78,80 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/goal-evidence-audit.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/goal-evidence-audit.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:27:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:48ded667c2b187496f038d7bce10ceecfa319e7dcab0334d0857bb30695de4db"
       - kind: unit_test
-        command: "npm test tests/doctor.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/doctor.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:23:00+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:3c62171e1acd8cc606a98976062d920961305f350ae66796021944ec27ab5f50"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:27:00+09:00"
         evidence_path: src/lint/completion-decision-packet.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts audit objective-external --json"
-        runner: node
+        command: "bun run src/cli.ts audit objective-external --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:27:00+09:00"
         evidence_path: docs/governance/helix-objective-evidence-audit.md
         output_digest: "sha256:acb06944dabde097a632158a6da91cd8ab27f19cf4abed22207b9f19e5e35c04"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:27:00+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:09a9cb6cc8404f83c73b86e7085298fa31039a5428bd4212de71dc043853e07c"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:27:00+09:00"
         evidence_path: docs/plans/PLAN-L7-275-completion-schema-and-setup-version-remote.md
         output_digest: "sha256:978fe2c1ed1a0aeccfaf0a2d685f2a623f8ec0a94cf9c40c37c1ba29906a051a"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:29:00+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:ee2a043c5123003a9dcfb878438f4d5ad26122ec6c9e3e4033f830d5ee3dbb80"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:29:00+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:5b613be1ec442bf6a09b9c8e471c73c07d9a865b74b3a3c8b1a9f6e683fe6c5f"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts completion decision-packet --json"
-        runner: node
+        command: "bun run src/cli.ts completion decision-packet --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:24:00+09:00"
         evidence_path: src/lint/outstanding.ts
         output_digest: "sha256:df6272fe59694e25304d287074f13f702cc3593e435cb5c534b93ca8f1409fc4"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts setup project --dry-run --json"
-        runner: node
+        command: "bun run src/cli.ts setup project --dry-run --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:24:00+09:00"

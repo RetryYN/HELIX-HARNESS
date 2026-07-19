@@ -40,40 +40,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\team-run.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\team-run.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:58:58+09:00"
         evidence_path: tests/team-run.test.ts
         output_digest: "sha256:0555481a666c100e151eeacd39fb081ac704791bd1ca5c2ff38bbca3d2f3dcda"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\team-run.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\team-run.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:58:58+09:00"
         evidence_path: src/team/run.ts
         output_digest: "sha256:f1e73952f85bbba8c2389e00404d31e783a5056951e5c7cc0113996fba4935bb"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\team-run.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\team-run.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:58:58+09:00"
         evidence_path: src/team/run-policy.ts
         output_digest: "sha256:abb6418997ff1639ca6a083eceb02fa51c3e4c254a26e27330eaffd6fff1c7a9"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:00:37+09:00"
         evidence_path: src/team/run.ts
         output_digest: "sha256:f1e73952f85bbba8c2389e00404d31e783a5056951e5c7cc0113996fba4935bb"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:00:37+09:00"

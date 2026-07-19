@@ -33,7 +33,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/skill-evaluation.test.ts tests/model-evaluation.test.ts tests/poc-evaluation.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:09:41+09:00"

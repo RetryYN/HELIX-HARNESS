@@ -157,7 +157,13 @@ describe("closure evidence typed subprocess runner", () => {
       spawn,
     });
     const result = runner.runTest({ testPath, oracleIds: ["U-CMAT-004"] });
-    expect(result.receipt.argv).toEqual(["--no-install", "vitest", "run", testPath, "--reporter=json"]);
+    expect(result.receipt.argv).toEqual([
+      "--no-install",
+      "vitest",
+      "run",
+      testPath,
+      "--reporter=json",
+    ]);
     expect(spawn).toHaveBeenCalledWith(
       expect.objectContaining({ executable: "npx", argv: result.receipt.argv }),
     );

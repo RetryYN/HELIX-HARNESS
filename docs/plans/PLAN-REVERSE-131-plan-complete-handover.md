@@ -58,16 +58,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\handover.test.ts -t \"marker を clear\""
-        runner: node
+        command: "bun run vitest run tests\\handover.test.ts -t \"marker を clear\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T16:10:00+09:00"
         evidence_path: tests/handover.test.ts
         output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
       - kind: doctor
-        command: "npm run src\\cli.ts doctor"
-        runner: node
+        command: "bun run src\\cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T16:10:00+09:00"

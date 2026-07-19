@@ -43,32 +43,32 @@ review_evidence:
     reviewer_model: gpt-5.5
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/version-up-readiness.test.ts"
-        runner: node
+        command: "bun run vitest run tests/version-up-readiness.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T04:40:38+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:110e8bd9e26b1e50747d8ed204df4a8b9781459676296a86c5372db699cde249"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T04:45:00+09:00"
         evidence_path: src/lint/version-up-readiness.ts
         output_digest: "sha256:bf3952366d4eac2233d6e3f017ffb7ad681b28da0f639e1660da00de1186de83"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T04:45:00+09:00"
         evidence_path: src/lint/version-up-readiness.ts
         output_digest: "sha256:d70140fb130d8a9ecba8ff31a84823cfd44b12b03d5d04b281cb4cbe94636f05"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T04:45:00+09:00"

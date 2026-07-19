@@ -27,16 +27,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/ddd-tdd-rules.test.ts tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "bun run vitest run tests/ddd-tdd-rules.test.ts tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:02:33+09:00"
         evidence_path: tests/relation-graph.test.ts
         output_digest: "sha256:bfdf4b24481071c586289c2010d03c34e4020c94a8851e8fe931d2fafc49d40e"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T16:02:33+09:00"
@@ -125,8 +125,8 @@ pure function が green になった後、CLI smoke と doc back-fill は並列�
 ## §8 DoD
 
 - [x] source implementation より前に Red test が存在する。
-- [x] `npm test tests/relation-graph.test.ts tests/verification-profile.test.ts` passes.
-- [x] `npm run typecheck`, `npm run lint`, and `npx --no-install tsx src/cli.ts doctor` pass.
+- [x] `bun run test tests/relation-graph.test.ts tests/verification-profile.test.ts` passes.
+- [x] `bun run typecheck`, `bun run lint`, and `bun run src/cli.ts doctor` pass.
 - [x] Reverse fullback により governance / backlog additions が close されている。
 
 ## §9 Discharged — `helix graph impact|export` CLI (2026-06-15、PO 指示で前倒し実装)

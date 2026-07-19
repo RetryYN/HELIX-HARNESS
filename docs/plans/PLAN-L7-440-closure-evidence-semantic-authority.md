@@ -32,7 +32,7 @@ review_evidence:
     verdict: pass
     scope: "semantic authority、時刻provenance、Vペアexact citation、append-only compensationを再reviewし、Blocker 0 / High 0。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/current-location.test.ts tests/closure-evidence-semantic-authority.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T13:17:58Z", evidence_path: tests/closure-evidence-semantic-authority.test.ts, output_digest: "sha256:06eaa79814015086d2c6563c7b34678e482bac4ad78eb894ae808cd9ae0948e2" }
+      - { kind: unit_test, command: "bunx vitest run tests/current-location.test.ts tests/closure-evidence-semantic-authority.test.ts --reporter=dot", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T13:17:58Z", evidence_path: tests/closure-evidence-semantic-authority.test.ts, output_digest: "sha256:06eaa79814015086d2c6563c7b34678e482bac4ad78eb894ae808cd9ae0948e2" }
 parent_design: docs/design/harness/L6-function-design/closure-evidence-semantic-authority.md
 pair_artifact: docs/test-design/harness/closure-evidence-semantic-authority.md
 backprop_decision: not_required

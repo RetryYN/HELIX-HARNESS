@@ -49,16 +49,16 @@ review_evidence:
     scope: "設計・Vペア・production call graphの敵対レビュー。Blocker/High 0。journal crash recovery、alias dedupe、TTL、damaged safe visibility、DB projection、SessionStart/feedback CLI、receipt、ack、promotion nudgeを確認しconfirm GO。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/memory-promotion.test.ts tests/feedback-surface.test.ts tests/session-log.test.ts tests/state-db.test.ts tests/projection-writer.test.ts tests/oracle-test-trace.test.ts tests/vmodel-pair.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/review-evidence.test.ts"
-        runner: node
+        command: "bunx vitest run tests/feedback-lifecycle.test.ts tests/feedback-lifecycle-surface.test.ts tests/memory-promotion.test.ts tests/feedback-surface.test.ts tests/session-log.test.ts tests/state-db.test.ts tests/projection-writer.test.ts tests/oracle-test-trace.test.ts tests/vmodel-pair.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/review-evidence.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T04:48:10+09:00"
         evidence_path: tests/feedback-lifecycle.test.ts
         output_digest: "sha256:1c7f642347a7f03d52e153ab6c0a553e633ff9bb6689020685dce48d38328920"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T04:48:10+09:00"
@@ -124,5 +124,5 @@ review_evidence:
 
 - L6 設計 doc が §1 の 1..5 を oracle 付きで規定し、pair test-design と 1:1。
 - 「再投影で closed が open へ戻らない」不変条件が oracle として明記される。
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-63-feedback-lifecycle.md` green。
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L6-63-feedback-lifecycle.md` green。
 - 実装は本 PLAN の範囲外（後続 L7 PLAN）。

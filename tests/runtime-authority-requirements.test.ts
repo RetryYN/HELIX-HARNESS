@@ -1,10 +1,15 @@
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const CURRENT_REQUIREMENT_DOCS = [
+  "AGENTS.md",
+  "CLAUDE.md",
+  ".claude/CLAUDE.md",
   "docs/design/helix/L0-charter/helix-charter_v0.1.md",
+  "docs/governance/helix-harness-concept_v3.1.md",
   "docs/governance/helix-harness-requirements_v1.2.md",
+  "docs/governance/coding-rules.md",
   "docs/design/harness/L1-requirements/business-requirements.md",
   "docs/design/harness/L1-requirements/functional-requirements.md",
   "docs/design/harness/L1-requirements/nfr.md",
@@ -30,6 +35,9 @@ const RETIRED_RUNTIME_DETECTOR_ALLOWLIST = new Set([
   "src/lint/l12-hybrid-recognition.ts",
   "src/lint/design-language.ts",
   "src/lint/canonical-reuse-consumer-baseline.ts",
+  "src/lint/review-evidence.ts",
+  "src/schema/green-command.ts",
+  "src/schema/frontmatter.ts",
   ".claude/CLAUDE.md",
   ".claude/settings.local.json",
 ]);
@@ -49,9 +57,11 @@ describe("Python + TypeScript/Node requirement authority", () => {
   it("current requirements never make Bun an implementation or execution target", () => {
     const violations = CURRENT_REQUIREMENT_DOCS.flatMap((path) => {
       const body = currentBody(path);
-      return body.split(/\r?\n/).flatMap((line, index) =>
-        FORBIDDEN_CURRENT_AUTHORITY.test(line) ? [`${path}:${index + 1}: ${line.trim()}`] : [],
-      );
+      return body
+        .split(/\r?\n/)
+        .flatMap((line, index) =>
+          FORBIDDEN_CURRENT_AUTHORITY.test(line) ? [`${path}:${index + 1}: ${line.trim()}`] : [],
+        );
     });
     expect(violations, violations.join("\n")).toEqual([]);
   });
@@ -61,6 +71,14 @@ describe("Python + TypeScript/Node requirement authority", () => {
     expect(body).toContain("Python semantic core");
     expect(body).toContain("TypeScript/Node transactional boundary");
     expect(body).toContain("Bunは廃止・active dependency 0");
+  });
+
+  it("accepted runtime ADR never permits Bun reactivation", () => {
+    const adr = readFileSync("docs/adr/ADR-009-node-python-linux-runtime.md", "utf8");
+    expect(adr).not.toMatch(
+      /Bun(?:経路|を).*?(?:active execution authority|一時再activation|rollback point)/i,
+    );
+    expect(adr).toContain("current／target／rollback authorityではなく");
   });
 
   it("active runtime, hooks, workflows, templates, and package have zero Bun dependency", () => {

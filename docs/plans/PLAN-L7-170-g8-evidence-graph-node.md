@@ -41,16 +41,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\relation-graph-loader.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\relation-graph-loader.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T21:05:00+09:00"
         evidence_path: tests/relation-graph-loader.test.ts
         output_digest: "sha256:61c16d3b9e3305cc2e79000f5bde9c6169b0bb1bdaaab6b25541c1ce293804ba"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\relation-graph-loader.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\relation-graph-loader.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T21:05:00+09:00"
@@ -76,6 +76,6 @@ review_evidence:
 
 - `loadRelationGraphSourceSet` は G8 evidence manifests の node source を返す。
 - G8 evidence manifest change に対して `analyzeRelationImpact` が成功する。
-- `npx --no-install vitest run tests\relation-graph-loader.test.ts` が pass する。
-- `npx --no-install tsx src\cli.ts db rebuild` が open DB feedback gate を解消する。
-- `npx --no-install tsx src\cli.ts doctor` が pass する。
+- `bun run vitest run tests\relation-graph-loader.test.ts` が pass する。
+- `bun run src\cli.ts db rebuild` が open DB feedback gate を解消する。
+- `bun run src\cli.ts doctor` が pass する。

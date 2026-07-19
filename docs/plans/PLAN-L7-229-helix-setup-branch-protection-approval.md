@@ -55,32 +55,32 @@ review_evidence:
     reviewer_model: gpt-5.5
     green_commands:
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T05:24:50+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:a9809158f2f241c7ca8a9590734efc91973bb95e86c7586dc65bd93965b5217a"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T05:17:42+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:5f14813617ad12cf42c7a54401f51c898686df675662e0873d72555867a50453"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T05:18:41+09:00"
         evidence_path: src/setup/templates.ts
         output_digest: "sha256:857cd0b45e0ba4828e2a9f18f1ce60f458a321b460be48da190f2364931c2e69"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T05:19:21+09:00"

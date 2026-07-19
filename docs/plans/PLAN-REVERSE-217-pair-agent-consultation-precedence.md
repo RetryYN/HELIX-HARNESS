@@ -64,8 +64,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/pair-agent.test.ts"
-        runner: node
+        command: "bun test tests/pair-agent.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
@@ -97,16 +97,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/pair-agent.test.ts"
-        runner: node
+        command: "bun test tests/pair-agent.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"

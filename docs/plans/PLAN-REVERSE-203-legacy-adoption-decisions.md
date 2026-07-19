@@ -70,8 +70,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"

@@ -51,16 +51,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/l1-l2-gap-check.test.ts tests/l1-l2-consistency.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/l1-l2-gap-check.test.ts tests/l1-l2-consistency.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"
         evidence_path: tests/l1-l2-gap-check.test.ts
         output_digest: "sha256:f3435b4f0c1127cf10ef330910081950421ebd31bfbf9d2510a11510570b9132"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts l1-l2 gap-check --json"
-        runner: node
+        command: "bun src/cli.ts l1-l2 gap-check --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"

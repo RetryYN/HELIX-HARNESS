@@ -49,16 +49,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/toolchain-pin.test.ts tests/lint-wiring.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/toolchain-pin.test.ts tests/lint-wiring.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T01:17:55+09:00"
         evidence_path: tests/toolchain-pin.test.ts
         output_digest: "sha256:2942bf9bcd83b40b192dab8d9d8b3c088cec6f6dd4e7e66d6e032647a81674cf"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:17:55+09:00"
@@ -66,7 +66,7 @@ review_evidence:
         output_digest: "sha256:a2a4344d05239450eacff43b857257d3c7928cc66973b8c03092a3e40273053f"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: node
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:17:55+09:00"

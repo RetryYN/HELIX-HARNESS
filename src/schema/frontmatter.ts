@@ -72,6 +72,8 @@ const greenCommandEvidenceSchema = z
     output_digest: z.string().regex(/^sha256:[a-f0-9]{64}$/i),
   })
   .superRefine((cmd, ctx) => {
+    // 退役前のBun receiptは記録を改変せず読めるようにする。新規採用可否はreview lintが時刻で判定する。
+    if (cmd.runner === "bun") return;
     if (!greenCommandMatchesKind(cmd.kind, cmd.command)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,

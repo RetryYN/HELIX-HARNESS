@@ -63,24 +63,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/workflow-contracts.test.ts tests/projection-writer.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/workflow-contracts.test.ts tests/projection-writer.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T17:16:00+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:a2efa30cfe3d93ae963e0183662e4a62bbf300615586b21f0358e5e2ae85e5fc"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T17:16:00+09:00"
         evidence_path: src/workflow/contracts.ts
         output_digest: "sha256:83a09dd5d92390095236b25814613b89ad9c9c1d8eff577b09cd2426f52b6a17"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T17:16:00+09:00"
@@ -95,16 +95,16 @@ review_evidence:
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:cbecd93062287add021f7f3dc7319637f1a18dac7d722e552bf9ee0d6389b599"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T17:16:00+09:00"
         evidence_path: docs/improvement-backlog.md
         output_digest: "sha256:b3a8e788d4b4fb470b896af151a5a385499e7961a782d50b264c467515530087"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T17:16:00+09:00"

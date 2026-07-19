@@ -1745,7 +1745,9 @@ export function buildConsumerReadinessPlan(input: {
     {
       name: "node>=24.15.0 <25",
       ok: nodeOk,
-      message: nodeOk ? `Node.js ${input.nodeVersion}` : "setup 前に Node.js 24.15.0 以上 25 未満を install する",
+      message: nodeOk
+        ? `Node.js ${input.nodeVersion}`
+        : "setup 前に Node.js 24.15.0 以上 25 未満を install する",
     },
     {
       name: "git",
@@ -2391,7 +2393,14 @@ function probeDistributionPackageSurface(
   process.env.HELIX_SETUP_SURFACE_PROBE = "1";
   let result: { status: number; stderr: string; stdout: string };
   try {
-    result = deps.runCommand(packageRoot, "npm", ["run", "helix", "--", "setup", "project", "--help"]);
+    result = deps.runCommand(packageRoot, "npm", [
+      "run",
+      "helix",
+      "--",
+      "setup",
+      "project",
+      "--help",
+    ]);
   } finally {
     if (previousProbe === undefined) delete process.env.HELIX_SETUP_SURFACE_PROBE;
     else process.env.HELIX_SETUP_SURFACE_PROBE = previousProbe;
@@ -2435,13 +2444,15 @@ function bootstrapProjectPackageLockfile(input: {
   const nodeLockFallbackPath = join(packageRoot, "package-lock.json");
   if (input.deps.readText(packageJsonPath) === null) return [];
   const hasLockfile =
-    input.deps.readText(nodeLockPath) !== null || input.deps.readText(nodeLockFallbackPath) !== null;
+    input.deps.readText(nodeLockPath) !== null ||
+    input.deps.readText(nodeLockFallbackPath) !== null;
   if (!input.packageJsonWritten && hasLockfile) {
     return [];
   }
   const result = input.deps.runCommand(packageRoot, "npm", ["install", "--package-lock-only"]);
   if (result.status !== 0) return [];
-  if (input.deps.readText(nodeLockPath) !== null) return [repoRelativePath(input.deps, nodeLockPath)];
+  if (input.deps.readText(nodeLockPath) !== null)
+    return [repoRelativePath(input.deps, nodeLockPath)];
   if (input.deps.readText(nodeLockFallbackPath) !== null)
     return [repoRelativePath(input.deps, nodeLockFallbackPath)];
   return [];

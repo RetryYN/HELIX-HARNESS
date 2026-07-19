@@ -53,31 +53,31 @@ review_evidence:
     scope: "PLAN-L7-352 plan-entry-routing gate 実装。U-PROUTE-001..012、baseline 機械生成、plan lint 配線、doctor gate 表示、性能語彙 classify を実測確認。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/plan-entry-routing.test.ts"
-        runner: node
+        command: "bun run vitest run tests/plan-entry-routing.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T16:05:38+09:00"
         evidence_path: tests/plan-entry-routing.test.ts
         output_digest: "sha256:62fa6ca5e02f3ed4604f6fbbf0c0e2235c84532ab68baca7afab7662af30020f"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T16:05:59+09:00"
         evidence_path: src/lint/plan-entry-routing.ts
         output_digest: "sha256:a925af5073bc1707aa4f0775334a8cf1cbbc81adf3793f22196e137301094058"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint"
-        runner: node
+        command: "bun run src/cli.ts plan lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T16:05:59+09:00"
         evidence_path: docs/governance/plan-entry-routing-baseline.json
         output_digest: "sha256:c823fce1991435160b544c751c8985eeb181a71ea0318b76ed913f2de18a83e0"
       - kind: doctor
-        command: "bash -lc 'npx --no-install tsx src/cli.ts doctor | rg \"doctor: plan-entry-routing - OK\"'"
+        command: "bash -lc 'bun run src/cli.ts doctor | rg \"doctor: plan-entry-routing - OK\"'"
         runner: bash
         scope: gate
         exit_code: 0
@@ -85,8 +85,8 @@ review_evidence:
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:bc617bf39e4fa9f4b5e6a3cc6d0477afc7ca61b7d75f3c7c1e94395bd525f256"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts task classify --text \"テストと doctor が遅いので性能改善したい\""
-        runner: node
+        command: "bun run src/cli.ts task classify --text \"テストと doctor が遅いので性能改善したい\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T16:05:59+09:00"
@@ -157,7 +157,7 @@ feedback source_id の実在検査は `.helix/harness.db` read-only 参照
 （doctor の prebuilt projection と plan lint 単体で共通の read-only loader を使う）。
 **DB 不在・読取不能時は unverifiable state として `entry_signal_unresolvable` を出す
 （fail-close、guard 規則「unverifiable state は fail closed」と L6 設計 §2 に従う）**。
-検証不能で誤 block になる場合の正規経路は `npx --no-install tsx src/cli.ts db rebuild` での DB 再生成。
+検証不能で誤 block になる場合の正規経路は `bun run src/cli.ts db rebuild` での DB 再生成。
 
 ### Step 3: baseline 機械生成 + 配線
 
@@ -190,10 +190,10 @@ tmp-repo パターンに合わせる。DB 依存の U-PROUTE-003 は tmp sqlite 
 
 ## 4. 受入条件（falsifiable / 検証コマンド）
 
-- `npx --no-install vitest run tests/plan-entry-routing.test.ts` green（U-PROUTE-001..012）。
-- `npm run typecheck` green、`npx --no-install tsx src/cli.ts plan lint` green（baseline 生成後、新規違反 0）。
-- `npx --no-install tsx src/cli.ts doctor` に `plan-entry-routing` gate が現れ green。
-- `npx --no-install tsx src/cli.ts task classify --text "テストと doctor が遅いので性能改善したい"` が
+- `bun run vitest run tests/plan-entry-routing.test.ts` green（U-PROUTE-001..012）。
+- `bun run typecheck` green、`bun run src/cli.ts plan lint` green（baseline 生成後、新規違反 0）。
+- `bun run src/cli.ts doctor` に `plan-entry-routing` gate が現れ green。
+- `bun run src/cli.ts task classify --text "テストと doctor が遅いので性能改善したい"` が
   kind=refactor を返す（unknown でない）。
 
 ## 5. carry（持ち越し）

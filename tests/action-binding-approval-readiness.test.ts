@@ -320,14 +320,16 @@ describe("action-binding approval readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           phase: "approval-packet-baseline",
-          command: "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           evidence: "action-binding approval packet JSON attached to the approval review",
           sourceCheckedAt: "2026-07-02",
           adoptionDecision: "adopt-current-action-binding-packet-for-approval-review",
         }),
         expect.objectContaining({
           phase: "least-privilege-binding",
-          command: "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           expected:
             "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
           sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
@@ -335,7 +337,8 @@ describe("action-binding approval readiness", () => {
         }),
         expect.objectContaining({
           phase: "snapshot-binding",
-          command: "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           expected:
             "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
           sourceUrl:
@@ -361,7 +364,8 @@ describe("action-binding approval readiness", () => {
         }),
         expect.objectContaining({
           phase: "web-security-testing-boundary",
-          command: "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          command:
+            "npx --no-install tsx src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           source: "OWASP Web Security Testing Guide",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
           adoptionDecision: "adopt-wstg-as-web-security-testing-boundary-for-action-approval",

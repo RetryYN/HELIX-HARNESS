@@ -2221,7 +2221,8 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "state-and-doctor",
-      command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+      command:
+        "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       writePolicy: "state-write",
       expected:
         "state projection and workflow gates remain green after activation rehearsal material is recorded",
@@ -2237,7 +2238,8 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "npx --no-install vitest run tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
+      command:
+        "npx --no-install vitest run tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
       writePolicy: "no-write",
       expected: "version-up packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",

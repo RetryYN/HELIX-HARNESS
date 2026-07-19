@@ -17,7 +17,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "renderGeneratedMcpConfig no longer packs the whole profile command string into a single args element. A tokenizeCommand helper splits profile.command into command head + argv tail so the executable is never re-included in args (command=\"bun\", args=[\"run\",\"test\"], not args=[\"npm test\"]). The probe-hint executable is only a fallback for the command word, never for args. Codex cross-review (claude-opus-4-8 worker, codex-gpt-5 reviewer) verdict pass: args is derived only from command tokens after the head; wrapper commands whose head differs from executable resolve correctly; the plain whitespace tokenizer matches the profile-command contract. Regression oracle U-MCPPROFILE-013 asserts the tokenized argv and that args never equals the whole command string."
+    scope: "renderGeneratedMcpConfig no longer packs the whole profile command string into a single args element. A tokenizeCommand helper splits profile.command into command head + argv tail so the executable is never re-included in args (command=\"bun\", args=[\"run\",\"test\"], not args=[\"bun run test\"]). The probe-hint executable is only a fallback for the command word, never for args. Codex cross-review (claude-opus-4-8 worker, codex-gpt-5 reviewer) verdict pass: args is derived only from command tokens after the head; wrapper commands whose head differs from executable resolve correctly; the plain whitespace tokenizer matches the profile-command contract. Regression oracle U-MCPPROFILE-013 asserts the tokenized argv and that args never equals the whole command string."
     worker_model: claude-opus-4-8
     reviewer_model: codex-gpt-5
   - reviewer: gpt-5.4-mini
@@ -46,8 +46,8 @@ review_evidence:
     reviewer_model: codex
     green_commands:
       - kind: unit_test
-        command: "npm test:fast"
-        runner: node
+        command: "bun run test:fast"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T18:47:48+09:00"
@@ -81,7 +81,7 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 
 ## 0. 目的
 
-`renderGeneratedMcpConfig` は `mcpServers.<id>` entry で `args` を `[profile.command]` とし、command string 全体を単一 argv element に詰めていた。一方で `command` は `profile.executable ?? profile.command.split(" ")[0]` だった。`bun-unit` のような profile（`command: "npm test:local"`、`executable: "bun"`）では、`command:"bun", args:["npm test:local"]` を出力し、executable を二重に含め、external MCP launcher に malformed argv を渡していた。さらに `command` head と `executable` が異なる wrapper profile（例: `mcp-inspector-smoke`、`command:"helix ..."`、`executable:"bun"`）では、`args` と一致しない `command` を出力し、実行不能になり得た。
+`renderGeneratedMcpConfig` は `mcpServers.<id>` entry で `args` を `[profile.command]` とし、command string 全体を単一 argv element に詰めていた。一方で `command` は `profile.executable ?? profile.command.split(" ")[0]` だった。`bun-unit` のような profile（`command: "bun run test:local"`、`executable: "bun"`）では、`command:"bun", args:["bun run test:local"]` を出力し、executable を二重に含め、external MCP launcher に malformed argv を渡していた。さらに `command` head と `executable` が異なる wrapper profile（例: `mcp-inspector-smoke`、`command:"helix ..."`、`executable:"bun"`）では、`args` と一致しない `command` を出力し、実行不能になり得た。
 
 ## 1. Scope
 

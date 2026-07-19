@@ -74,24 +74,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\skill-recommend.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\skill-recommend.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T18:42:32+09:00"
         evidence_path: tests/skill-recommend.test.ts
         output_digest: "sha256:5ff2a93bed92158fd45d452d57bc26f9594b9051bf00947f6f918b4aeb1f4df1"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\skill-recommend.test.ts tests\\runtime-adapter.test.ts tests\\team-run.test.ts tests\\tier-router.test.ts tests\\doctor.test.ts tests\\cli-surface.test.ts -t \"routeToAdapterPlan|codex-wrapper-parity|skill|inject|shared Claude/Codex launch plan|provider-neutral|stdin|task route\""
-        runner: node
+        command: "bun run vitest run tests\\skill-recommend.test.ts tests\\runtime-adapter.test.ts tests\\team-run.test.ts tests\\tier-router.test.ts tests\\doctor.test.ts tests\\cli-surface.test.ts -t \"routeToAdapterPlan|codex-wrapper-parity|skill|inject|shared Claude/Codex launch plan|provider-neutral|stdin|task route\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T18:42:32+09:00"
         evidence_path: tests/runtime-adapter.test.ts
         output_digest: "sha256:6d4c1257b646c3a744c0fc374bbb071ab2617deb86c63a49bcb44d69dd23681e"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T18:42:32+09:00"

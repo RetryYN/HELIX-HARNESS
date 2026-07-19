@@ -431,7 +431,8 @@ describe("S4 decision readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           phase: "decision-packet-baseline",
-          command: "npx --no-install tsx src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
+          command:
+            "npx --no-install tsx src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
           sourceCheckedAt: "2026-07-03",
           adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
         }),
@@ -497,7 +498,8 @@ describe("S4 decision readiness", () => {
           row.phase === "static-gates"
             ? {
                 ...row,
-                command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+                command:
+                  "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
               }
             : row,
         ),
@@ -1401,7 +1403,8 @@ describe("S4 decision readiness", () => {
           }),
           expect.objectContaining({
             phase: "targeted-regression",
-            command: "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+            command:
+              "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
             adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
           }),
           expect.objectContaining({
@@ -1443,9 +1446,13 @@ describe("S4 decision readiness", () => {
     const liveInput = loadS4DecisionReadinessInput();
     const expectedPackets = buildS4DecisionPackets(liveInput);
 
-    const raw = execFileSync("npx", ["--no-install", "tsx", "src/cli.ts", "s4", "decision-packet", "--json"], {
-      encoding: "utf8",
-    });
+    const raw = execFileSync(
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "s4", "decision-packet", "--json"],
+      {
+        encoding: "utf8",
+      },
+    );
     const cliPackets = JSON.parse(raw);
     expect(Array.isArray(cliPackets)).toBe(true);
     expect(cliPackets.map((packet: { planId: string }) => packet.planId)).toEqual(
@@ -1464,9 +1471,13 @@ describe("S4 decision readiness", () => {
       expect(s4DecisionVerificationCommandViolations(packet)).toEqual([]);
     }
 
-    const text = execFileSync("npx", ["--no-install", "tsx", "src/cli.ts", "s4", "decision-packet"], {
-      encoding: "utf8",
-    });
+    const text = execFileSync(
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "s4", "decision-packet"],
+      {
+        encoding: "utf8",
+      },
+    );
     for (const packet of expectedPackets) {
       expect(text).toContain(packet.planId);
       expect(text).toContain(`evidence-checks=${packet.decisionEvidenceChecklist.length}`);

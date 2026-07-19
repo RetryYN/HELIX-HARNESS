@@ -52,16 +52,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
-        runner: node
+        command: "bun run vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:16:23+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:e50d9080733a80eafd2463820e4d0e72d7ea2482e71459043e79b8ad2efa72ec"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:16:23+09:00"
@@ -98,7 +98,7 @@ PLAN の `generates` entry が、design、test-design、PLAN の各 artifacts �
   引き続き pass する。
 - 既存の `PLAN-L7-56` / `PLAN-REVERSE-56` の design backprop entries は
   `design_doc` として分類される。
-- `npm test tests/plan-lint.test.ts` が pass する。
-- `npm run typecheck` が pass する。
-- `npm run lint` が pass する。
-- `npx --no-install tsx src\cli.ts doctor` が pass する。
+- `bun test tests/plan-lint.test.ts` が pass する。
+- `bun run typecheck` が pass する。
+- `bun run lint` が pass する。
+- `bun run src\cli.ts doctor` が pass する。

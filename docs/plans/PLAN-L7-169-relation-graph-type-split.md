@@ -44,48 +44,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\relation-graph.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\relation-graph.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:16:39+09:00"
         evidence_path: tests/relation-graph.test.ts
         output_digest: "sha256:8fc2b804d2261a292e8088835576e390f1e01ad14d1729b1131d78b1efe7b0c8"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\relation-graph-loader.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\relation-graph-loader.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:16:43+09:00"
         evidence_path: tests/relation-graph-loader.test.ts
         output_digest: "sha256:61c16d3b9e3305cc2e79000f5bde9c6169b0bb1bdaaab6b25541c1ce293804ba"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\relation-graph.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\relation-graph.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:16:39+09:00"
         evidence_path: src/lint/relation-graph.ts
         output_digest: "sha256:50db752915d778c7e590d6748fde1eaa73b2ddb22a80aa2e80c4ab6db356dca1"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\relation-graph.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\relation-graph.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:16:39+09:00"
         evidence_path: src/lint/relation-graph-types.ts
         output_digest: "sha256:ec29890a2d01897c2bf3a05bbc7290783cfdf2342f998ade0da5a7fcc98975e7"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:17:10+09:00"
         evidence_path: src/lint/relation-graph-evidence.ts
         output_digest: "sha256:727e8a25d9373fa69dff910467c5699dfcfd761795b4fdb06c82e6e069f16570"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:17:02+09:00"

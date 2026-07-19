@@ -51,24 +51,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bunx vitest run --project fast tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:48:15+09:00"
         evidence_path: tests/source-content-mirror-completeness.test.ts
         output_digest: "sha256:aacd5ffe6d9d4108787c6da2eb98cb36386a624776616192928bcac709725a8b"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T17:45:41+09:00"
         evidence_path: src/runtime/source-content-mirror-completeness.ts
         output_digest: "sha256:71e408ef639249ee67decd22162fdbc40b9f0042b38fd78107ba80b0ea87ad35"
       - kind: lint
-        command: "npx --no-install biome check --write src/cli.ts src/runtime/review-feedback-session-intake.ts src/runtime/agent-ssot-runtime-projection.ts src/runtime/skill-efficacy-evaluation.ts src/runtime/harness-taxonomy-curation-policy.ts src/runtime/source-content-mirror-completeness.ts tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bunx biome check --write src/cli.ts src/runtime/review-feedback-session-intake.ts src/runtime/agent-ssot-runtime-projection.ts src/runtime/skill-efficacy-evaluation.ts src/runtime/harness-taxonomy-curation-policy.ts src/runtime/source-content-mirror-completeness.ts tests/review-feedback-session-intake.test.ts tests/agent-ssot-runtime-projection.test.ts tests/skill-efficacy-evaluation.test.ts tests/harness-taxonomy-curation-policy.test.ts tests/source-content-mirror-completeness.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:45:41+09:00"
@@ -123,6 +123,6 @@ default branch full blob content digest と、437 repo すべての all-ref blob
 
 ## 検証予定
 
-- `npm test tests/source-content-mirror-completeness.test.ts --timeout 180000`
-- `npm run typecheck`
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-384-source-content-mirror-completeness.md`
+- `bun test tests/source-content-mirror-completeness.test.ts --timeout 180000`
+- `bun run typecheck`
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-384-source-content-mirror-completeness.md`

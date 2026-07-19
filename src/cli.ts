@@ -92,8 +92,8 @@ import {
   loadBranchKindInput,
   loadPlanDoc,
 } from "./lint/branch-kind";
-import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import { assertCanonicalReuseAllowed } from "./lint/canonical-reuse-authority";
+import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
   analyzeCommitSubjects,
   analyzePrContext,
@@ -10298,7 +10298,10 @@ program
       mode: opts.dryRun ? "dry-run" : "requires-human-approval",
       from,
       to: opts.to,
-      checks: ["npx --no-install tsx src/cli.ts doctor", "npx --no-install tsx src/cli.ts db status --json"],
+      checks: [
+        "npx --no-install tsx src/cli.ts doctor",
+        "npx --no-install tsx src/cli.ts db status --json",
+      ],
       rollback:
         from === "unknown"
           ? "record source ref before applying cutover"
@@ -13405,12 +13408,16 @@ distribution
       : null;
     const previousProbe = process.env.HELIX_SETUP_SURFACE_PROBE;
     process.env.HELIX_SETUP_SURFACE_PROBE = "1";
-    const packageSurfaceProbe = spawnSync("npm", ["run", "helix", "--", "setup", "project", "--help"], {
-      cwd: packageRoot,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-      timeout: 30_000,
-    });
+    const packageSurfaceProbe = spawnSync(
+      "npm",
+      ["run", "helix", "--", "setup", "project", "--help"],
+      {
+        cwd: packageRoot,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+        timeout: 30_000,
+      },
+    );
     if (previousProbe === undefined) delete process.env.HELIX_SETUP_SURFACE_PROBE;
     else process.env.HELIX_SETUP_SURFACE_PROBE = previousProbe;
     const packageSurfaceOutput =
@@ -13428,7 +13435,8 @@ distribution
       hasTypecheckPackageScript: packageJsonDeclaresScript(packageJsonText, "typecheck"),
       hasTestPackageScript: packageJsonDeclaresScript(packageJsonText, "test"),
       hasNodeLockfile:
-        existsSync(join(packageRoot, "package-lock.json")) || existsSync(join(packageRoot, "package-lock.json")),
+        existsSync(join(packageRoot, "package-lock.json")) ||
+        existsSync(join(packageRoot, "package-lock.json")),
       hasClaude: detection.claude,
       hasCodex: detection.codex,
       repoRoot,

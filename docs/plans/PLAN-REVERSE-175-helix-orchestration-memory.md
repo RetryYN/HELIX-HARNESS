@@ -23,8 +23,8 @@ review_evidence:
     scope: "PLAN-L7-175 純粋契約コアの実体から L3 要件 (HR-BR-07 loop-eng / HR-BR-12 2層メモリ / HR-NFR-03 hybrid 自己評価禁止) を back-fill。実装と受入 oracle (U-ORCH-001/002/003/005 + U-MEM-001/002/003) に 1:1 対応。DB 連動部は scope 外明示で follow-up へ carry。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/orchestration tests/memory"
-        runner: node
+        command: "bun run vitest run tests/orchestration tests/memory"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T16:58:00+09:00"

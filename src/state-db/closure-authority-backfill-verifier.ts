@@ -325,7 +325,8 @@ export function verifyCollectedVitestAssertions(
     allMarkers[0] !== marker ||
     matches.length !== 1 ||
     matches[0]?.status !== "passed" ||
-    (matches[0]?.fullName as string).split(marker).length !== 2
+    typeof matches[0]?.fullName !== "string" ||
+    matches[0].fullName.split(marker).length !== 2
   )
     throw new Error(`persistent Vitest oracle exact join failed: ${marker}`);
   const match = matches[0];

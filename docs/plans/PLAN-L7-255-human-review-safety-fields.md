@@ -54,23 +54,23 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/outstanding.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/outstanding.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:20:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:69add338df0009825e84b119cb3331943cfeff28aa3bc964c9106910fbe25c21"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T13:20:00+09:00"
         evidence_path: src/lint/outstanding.ts
         output_digest: "sha256:4807c6ce17062a009aeb82df4f2744321c9cab9ef64b2b609c0031fe8739faee"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts completion decision-packet --json; npx --no-install tsx src/cli.ts completion decision-packet | rg \"safety-fields\""
+        command: "bun run src/cli.ts completion decision-packet --json; bun run src/cli.ts completion decision-packet | rg \"safety-fields\""
         runner: bash
         scope: targeted
         exit_code: 0

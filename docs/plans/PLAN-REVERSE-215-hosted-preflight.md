@@ -76,8 +76,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/hosted-preflight.test.ts tests/work-guard.test.ts tests/codex-hook-adapter.test.ts"
-        runner: node
+        command: "bun test tests/hosted-preflight.test.ts tests/work-guard.test.ts tests/codex-hook-adapter.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:20:00+09:00"

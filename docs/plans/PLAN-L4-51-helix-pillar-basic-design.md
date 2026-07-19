@@ -60,32 +60,32 @@ review_evidence:
     scope: "Codex-only TL tier review for L4 add-design: L3 HR-FR/HR-NFR 43件 -> L4 design/test-design 43件の全件 trace、superseded PLAN-L4-50 の historical record 扱い、G-DESIGN.L4 span 更新。cross_agent は利用不可のため intra_runtime fallback として記録。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/vmodel-pair.test.ts"
-        runner: node
+        command: "bun run vitest run tests/vmodel-pair.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tests/vmodel-pair.test.ts
         output_digest: "sha256:e09dec550cb920ef2998eb286243542bf8a2043b5db5045d88ea049c1e65c272"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L4-51-helix-pillar-basic-design.md"
-        runner: node
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L4-51-helix-pillar-basic-design.md"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: .helix/evidence/green-command/20260630-plan-lint-l4-51.json
         output_digest: "sha256:c087e8f29733864a6b7627dd4cc0be3ffee886f479181599316203c8103711d2"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tsconfig.json
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28"

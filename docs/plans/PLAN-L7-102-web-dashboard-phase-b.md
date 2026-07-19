@@ -47,8 +47,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/web.test.ts tests/projection-writer.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/web.test.ts tests/projection-writer.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T06:55:00+09:00"

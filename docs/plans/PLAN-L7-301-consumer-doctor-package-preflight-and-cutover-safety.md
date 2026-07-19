@@ -49,16 +49,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/doctor.test.ts -t \"runConsumerDoctor\" --timeout 300000"
-        runner: node
+        command: "bun test tests/doctor.test.ts -t \"runConsumerDoctor\" --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T00:30:00+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:a3a70dc521bb4c9cb956993bbcc508e42c1179f4325acb45400eee8d847ed34d"
       - kind: unit_test
-        command: "npm test tests/completion-decision-packet.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/completion-decision-packet.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T00:30:00+09:00"
@@ -86,8 +86,8 @@ HELIX consumer setup と PLAN-M-02 cutover review の「green に見えるが意
 
 ## 検証
 
-- `npm test tests/doctor.test.ts -t "runConsumerDoctor" --timeout 300000`
-- `npm test tests/completion-decision-packet.test.ts --timeout 300000`
-- `npm test tests/distribution-acceptance.test.ts --timeout 300000`
-- `npm run typecheck`
-- `npx --no-install tsx src/cli.ts doctor`
+- `bun test tests/doctor.test.ts -t "runConsumerDoctor" --timeout 300000`
+- `bun test tests/completion-decision-packet.test.ts --timeout 300000`
+- `bun test tests/distribution-acceptance.test.ts --timeout 300000`
+- `bun run typecheck`
+- `bun run src/cli.ts doctor`

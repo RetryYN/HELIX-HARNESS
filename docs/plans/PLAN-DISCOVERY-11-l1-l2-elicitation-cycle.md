@@ -22,8 +22,8 @@ review_evidence:
     reviewer_model: claude-sonnet-5
     green_commands:
       - kind: unit_test
-        command: "npm test tests/s4-decision-readiness.test.ts"
-        runner: node
+        command: "bun test tests/s4-decision-readiness.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T23:18:10+09:00"

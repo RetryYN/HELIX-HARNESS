@@ -52,16 +52,16 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "npm test tests/design-coverage.test.ts"
-        runner: node
+        command: "bun test tests/design-coverage.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T21:40:19+09:00"
         evidence_path: tests/design-coverage.test.ts
         output_digest: "sha256:85f9226307cebbb2583e8953ab72a7d9bf25d803af66791f0c214d1cde503f1c"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bunx tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T21:40:19+09:00"
@@ -77,8 +77,8 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/design-coverage.test.ts"
-        runner: node
+        command: "bunx vitest run --project fast tests/design-coverage.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T21:52:18+09:00"
@@ -157,5 +157,5 @@ ZIP に実装済みの仕組みを**設計ソース（正本）として移植**
 
 ### green_commands（検証コマンド）
 
-- `npm test tests/design-coverage.test.ts` — 13 pass / 0 fail
-- `npx --no-install tsc --noEmit` — exit 0
+- `bun test tests/design-coverage.test.ts` — 13 pass / 0 fail
+- `bunx tsc --noEmit` — exit 0

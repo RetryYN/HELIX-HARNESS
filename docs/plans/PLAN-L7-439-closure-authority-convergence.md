@@ -21,7 +21,7 @@ review_evidence:
     verdict: pass
     scope: "authority/closure二epoch、typed AUTO/H/X partition、tracked terminal ledger、sealed target manifest/CAS、finalizer exact join、H receipt/X recensus authorityを5回独立reviewし、Blocker 0 / High 0。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/closure-authority-convergence.test.ts tests/closure-authority-convergence-production.test.ts tests/closure-authority-convergence-epoch.test.ts tests/closure-terminal-boundaries.test.ts --reporter=dot", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T11:42:31Z", evidence_path: tests/closure-authority-convergence-epoch.test.ts, output_digest: "sha256:264b6985490449845d9c3a8479057bcc423d7556ad23e840938ac856d4c840d4" }
+      - { kind: unit_test, command: "bunx vitest run tests/closure-authority-convergence.test.ts tests/closure-authority-convergence-production.test.ts tests/closure-authority-convergence-epoch.test.ts tests/closure-terminal-boundaries.test.ts --reporter=dot", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T11:42:31Z", evidence_path: tests/closure-authority-convergence-epoch.test.ts, output_digest: "sha256:264b6985490449845d9c3a8479057bcc423d7556ad23e840938ac856d4c840d4" }
 parent_design: docs/design/harness/L6-function-design/closure-authority-convergence.md
 pair_artifact: docs/test-design/harness/closure-authority-convergence.md
 backprop_decision: not_required

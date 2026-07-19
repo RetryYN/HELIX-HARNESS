@@ -52,16 +52,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/cli-surface.test.ts tests/handover.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/cli-surface.test.ts tests/handover.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T21:09:02+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:83122c5766347ee43ef5a76ea27ac8f89eaba723580e0f779b04df96f47adfa8"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T21:09:02+09:00"

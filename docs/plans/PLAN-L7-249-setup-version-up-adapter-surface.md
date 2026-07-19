@@ -66,24 +66,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:b1493e7ccd03bff499d5c75e92b9dfc3d522de77d7d7695413a610d9f1ba32bf"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:3b22606b563b24b57ceb002899176d4e4e5162c765c034b5b8f0a4f7563018cc"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
@@ -98,24 +98,24 @@ review_evidence:
         evidence_path: src/setup/templates.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
         evidence_path: docs/plans/PLAN-L7-249-setup-version-up-adapter-surface.md
         output_digest: "sha256:7b58271b3209a62959faa17b88453abc17078aa4a1a982a5994bd9e83ffb1041"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:6a1e9336ca187ed6bd63be89f53ae1935f0cffde710afdff6215f5c87cf9ff62"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
@@ -162,6 +162,6 @@ version-up dry-run を必須 baseline として fail-close していなかった
 - 配布 adapter doc / Claude subagent / Claude slash-command の built-in fallback と実テンプレートが
   `helix version-up dry-run --current v0.1.0 --target v0.1.3 --json` を含む。
 - consumer doctor の artifact readiness が version-up dry-run 欠落を fail-close する。
-- `npm test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
-- `npm test tests/design-language.test.ts --timeout 180000` が green。
-- `npx --no-install tsc --noEmit`、`git diff --check`、`plan lint --gate governance`、`doctor` が green。
+- `bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
+- `bun test tests/design-language.test.ts --timeout 180000` が green。
+- `bun run tsc --noEmit`、`git diff --check`、`plan lint --gate governance`、`doctor` が green。

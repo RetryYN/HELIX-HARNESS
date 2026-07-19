@@ -52,32 +52,32 @@ review_evidence:
     scope: "operation_test の evidence matcher を operation/ops/運用 + test/テスト の分離語彙へ拡張し、既存 passed test evidence を observed source として結合した。operation だけでは誤昇格しない oracle を追加した。"
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T20:01:24+09:00"
         evidence_path: src/state-db/current-location.ts
         output_digest: "sha256:451667c39428a59334a6a179ba64f1a683f444c37375819fff339973f6b11615"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:01:24+09:00"
         evidence_path: tests/current-location.test.ts
         output_digest: "sha256:080f2f9edf7ca61339be01035070a28915e4e0f5a4a59b2b44df6110091d26e7"
       - kind: lint
-        command: "npx --no-install biome check src/state-db/current-location.ts tests/current-location.test.ts docs/design/harness/L6-function-design/function-spec.md docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-401-operation-test-evidence-tokenization.md"
-        runner: node
+        command: "bunx biome check src/state-db/current-location.ts tests/current-location.test.ts docs/design/harness/L6-function-design/function-spec.md docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-401-operation-test-evidence-tokenization.md"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T20:01:24+09:00"
         evidence_path: docs/plans/PLAN-L7-401-operation-test-evidence-tokenization.md
         output_digest: "sha256:bdb05e01ee06c1e6cc52e9222bc43b8616e8c178589fe8954f75f9f9655509e6"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts vmodel fit | rg \"operation-scope|vmodel fit:|regression-guard: operation-scope\""
-        runner: node
+        command: "bun src/cli.ts vmodel fit | rg \"operation-scope|vmodel fit:|regression-guard: operation-scope\""
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T20:01:24+09:00"

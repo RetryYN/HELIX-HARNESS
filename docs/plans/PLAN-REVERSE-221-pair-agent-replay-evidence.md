@@ -64,8 +64,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/projection-writer.test.ts --test-name-pattern \"projects pair-agent run evidence\""
-        runner: node
+        command: "bun test tests/projection-writer.test.ts --test-name-pattern \"projects pair-agent run evidence\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:52:22+09:00"

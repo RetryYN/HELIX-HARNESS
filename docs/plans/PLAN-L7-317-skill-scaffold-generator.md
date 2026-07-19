@@ -44,24 +44,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/skill-scaffold.test.ts tests/skill-scaffold-cli.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/skill-scaffold.test.ts tests/skill-scaffold-cli.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T01:54:49+09:00"
         evidence_path: tests/skill-scaffold.test.ts
         output_digest: "sha256:cea81a8b214cb43aa3eddc37aa69386803c74265de66d506470d7519e52a1022"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T01:54:49+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:54:49+09:00"
@@ -69,7 +69,7 @@ review_evidence:
         output_digest: "sha256:df57819223d2b7596334f7fca65885dbd75aadf2e1a98026b04cb1c89a16b538"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: node
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:54:49+09:00"

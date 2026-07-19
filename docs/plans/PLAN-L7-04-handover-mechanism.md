@@ -43,16 +43,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/cli-surface.test.ts tests/outstanding.test.ts tests/handover.test.ts"
-        runner: node
+        command: "bun run vitest run tests/cli-surface.test.ts tests/outstanding.test.ts tests/handover.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
@@ -68,16 +68,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/cli-surface.test.ts tests/handover.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/cli-surface.test.ts tests/handover.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T17:32:00+09:00"
@@ -130,7 +130,7 @@ review_evidence:
 claude-only のため `code-reviewer` (TL/QA 代替) で DbC 充足 / 循環 import 回避の妥当性 / dry-run 非破壊 / sanitize defense-in-depth / 既存 session-log 非回帰をレビュー。cross-agent 不在を evidence 記録。
 
 ### Step 5: 全回帰 + CLI スモーク
-`npx vitest run` (既存 92 + U-HOVER) + `npx --no-install tsx src/cli.ts handover --dry-run` / `npx --no-install tsx src/cli.ts plan use <id>` スモーク。
+`npx vitest run` (既存 92 + U-HOVER) + `bun src/cli.ts handover --dry-run` / `bun src/cli.ts plan use <id>` スモーク。
 
 ## §実装計画
 

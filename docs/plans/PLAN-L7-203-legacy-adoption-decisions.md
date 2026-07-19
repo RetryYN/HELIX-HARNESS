@@ -49,32 +49,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/legacy-adoption.test.ts tests/vmodel-pair.test.ts"
-        runner: node
+        command: "bun run vitest run tests/legacy-adoption.test.ts tests/vmodel-pair.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
         evidence_path: tests/legacy-adoption.test.ts
         output_digest: "sha256:c5b300b1fc82a220b8ccc11d3e4d0f14c9b8817654c1ad046c2b1525e976ece5"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
         evidence_path: src/runtime/legacy-adoption.ts
         output_digest: "sha256:dc68d604d6fe36db8727e8f427622ccea283d2bcf88ff96030eaa3026783078e"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
         evidence_path: src/runtime/legacy-adoption.ts
         output_digest: "sha256:dc68d604d6fe36db8727e8f427622ccea283d2bcf88ff96030eaa3026783078e"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"

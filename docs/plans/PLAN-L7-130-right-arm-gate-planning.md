@@ -49,40 +49,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/right-arm-verification-strategy.test.ts"
-        runner: node
+        command: "bun test tests/right-arm-verification-strategy.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T01:32:10+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:28f463388a08d9c964b98d9b3d16a5e2cc8f01d590769838e36d4a679ce8c325"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:32:10+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
         output_digest: "sha256:9c9e42720d346296e1ca35a4ecef8559d6980261d076c3d6e91c07b198c2798c"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:32:10+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
         output_digest: "sha256:b46250174bd3896ca3859ab790545f78da712f0e90514d0abde184e0dbf5d6b9"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:32:10+09:00"
         evidence_path: docs/process/forward/L08-L14-verification-phase.md
         output_digest: "sha256:42af11edc5b7c2a378376c165741bd6d85e4160ad7f6f565780d3504079c5469"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:32:10+09:00"
@@ -106,40 +106,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
-        runner: node
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
         output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
         output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: docs/process/gates.md
         output_digest: "sha256:3b19226ee2809a7537604f8924f09336724689b9348696b95dbcdc3150465d85"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
@@ -155,16 +155,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T16:55:32+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T16:55:32+09:00"
@@ -180,24 +180,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
         output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T14:21:41+09:00"
@@ -213,16 +213,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\right-arm-gate-planning.test.ts tests\\lint-wiring.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\right-arm-gate-planning.test.ts tests\\lint-wiring.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T16:30:00+09:00"
         evidence_path: tests/right-arm-gate-planning.test.ts
         output_digest: "sha256:f321df37a40bc2ea221a2a2ab9d07c36ff6c8be0e02524791c40d198e8e9fb3b"
       - kind: doctor
-        command: "npm run src\\cli.ts doctor"
-        runner: node
+        command: "bun run src\\cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T16:30:00+09:00"

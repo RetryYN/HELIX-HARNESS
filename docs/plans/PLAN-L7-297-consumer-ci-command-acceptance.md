@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T23:26:00+09:00"
         evidence_path: tests/distribution-acceptance.test.ts
         output_digest: "sha256:2591188a0e6c2d93ebb4cb05727d189acfcdf0eb737c4ad6508fe12780719526"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T23:26:00+09:00"
@@ -69,9 +69,9 @@ review_evidence:
 
 ## 目的
 
-`harness-check.yml` は `CONSUMER_CI_RUN_COMMANDS` として `bun install --frozen-lockfile`、version-up dry-run、`npm run typecheck`、`npm test` まで要求していた。
+`harness-check.yml` は `CONSUMER_CI_RUN_COMMANDS` として `bun install --frozen-lockfile`、version-up dry-run、`bun run typecheck`、`bun run test` まで要求していた。
 
-一方で distribution acceptance は手書きの `npm run helix ...` サブセットだけを実行しており、生成 CI と受入検証が同じ command set だと証明できていなかった。
+一方で distribution acceptance は手書きの `bun run helix ...` サブセットだけを実行しており、生成 CI と受入検証が同じ command set だと証明できていなかった。
 
 この PLAN では、生成 workflow の `run:`、`consumerReadiness.ci.requires`、`CONSUMER_CI_RUN_COMMANDS` を exact に揃え、consumer fixture 上で全 command を実行する。`code --profile HELIX .` は manual-local のまま自動実行しない。
 
@@ -80,6 +80,6 @@ review_evidence:
 - [x] `buildConsumerReadinessPlan()` は `bun.lock` / `bun.lockb`、`scripts.typecheck`、`scripts.test` 欠落を blocking readiness check にする。
 - [x] `distribution plan` は packageRoot の lockfile と package scripts を readiness に渡す。
 - [x] distribution acceptance は generated workflow の `run:` を `CONSUMER_CI_RUN_COMMANDS` と exact 比較する。
-- [x] distribution acceptance は `bun install --frozen-lockfile`、version-up dry-run、`npm run typecheck`、`npm test` を含む全 command を consumer repo 上で実行する。
+- [x] distribution acceptance は `bun install --frozen-lockfile`、version-up dry-run、`bun run typecheck`、`bun run test` を含む全 command を consumer repo 上で実行する。
 - [x] `postSetupWorkflow.verificationCommands` / `manualVerificationCommands` / `dryRunVerificationCommands` / `postApplyVerificationCommands` を exact 検証する。
 - [x] 外部 network に依存しないよう、version-up dry-run の remote tag 検査は test-local fake git で固定する。

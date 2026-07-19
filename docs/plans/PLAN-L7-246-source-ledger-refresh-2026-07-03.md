@@ -71,24 +71,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/s4-decision-readiness.test.ts tests/right-arm-verification-strategy.test.ts tests/completion-decision-packet.test.ts tests/cutover-readiness.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/s4-decision-readiness.test.ts tests/right-arm-verification-strategy.test.ts tests/completion-decision-packet.test.ts tests/cutover-readiness.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T11:22:59+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
         output_digest: "sha256:8e67bb9053bafd65129120c16fd900fcc8173c41a4bb803c3cf6b87b4c32094b"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:22:59+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
         output_digest: "sha256:b30b6233d9ac1a0b7d3ccc62ca896e6b3e9255184ecfb7e295e63914b7c85ffd"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T11:22:59+09:00"
@@ -103,16 +103,16 @@ review_evidence:
         evidence_path: docs/process/modes/discovery.md
         output_digest: "sha256:466c2f308b48c7661d646fdd068fbecea974c665fe65dbf8ed508f224180ce0b"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T11:22:59+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:0dde9073a0e1dba18c96d36e94ebd37c0520d5e5e4684b4c9ed602e389448c6d"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T11:22:59+09:00"

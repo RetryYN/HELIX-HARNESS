@@ -1009,7 +1009,8 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+      command:
+        "npx --no-install vitest run tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
       expected: "S4 packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
       source: "HELIX S4 regression oracle",

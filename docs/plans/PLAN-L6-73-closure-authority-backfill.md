@@ -32,7 +32,7 @@ review_evidence:
     verdict: approve_after_fixes
     scope: "authority非推測、Vペアjoin、review receipt、process lock、crash recovery、cycle ledgerを敵対監査し、初回HIGH 3/MEDIUM 3/LOW 1と再review LOW 2を全件是正した。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/design-coverage.test.ts tests/design-language.test.ts tests/l6-completion.test.ts tests/plan-entry-routing.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T02:04:49Z", evidence_path: docs/design/harness/L6-function-design/closure-authority-backfill.md, output_digest: "sha256:8809b3aa9222011650e0ea2cb838befcfb46ff4917f9af4468d4b44b1329a951" }
+      - { kind: unit_test, command: "bunx vitest run tests/design-coverage.test.ts tests/design-language.test.ts tests/l6-completion.test.ts tests/plan-entry-routing.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T02:04:49Z", evidence_path: docs/design/harness/L6-function-design/closure-authority-backfill.md, output_digest: "sha256:8809b3aa9222011650e0ea2cb838befcfb46ff4917f9af4468d4b44b1329a951" }
 ---
 
 # PLAN-L6-73: closure authority backfill（authority補完）

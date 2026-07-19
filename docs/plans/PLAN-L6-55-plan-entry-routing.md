@@ -16,8 +16,8 @@ review_evidence:
     scope: "2 巡レビュー。初回 reject（signal→kind 整合経路欠落 / reason enum 不整合 / スコープ未定義 / test-design 逆参照欠落）→ 全所見反映（signal 種別確定アルゴリズム、MODE_ALLOWED_KINDS SSoT、reason 5 種、U-PROUTE-001..012、除外スコープ、refactor_candidate token 追加、SIGNAL_KIND_ROUTING 二重表削除）→ 再判定 approve-with-notes、残 notes 2 件も反映済み。実装は PLAN-L7-352 へ降下する。"
     green_commands:
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-55-plan-entry-routing.md"
-        runner: node
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-55-plan-entry-routing.md"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T16:15:45+09:00"
@@ -77,7 +77,7 @@ grandfather baseline + ratchet）/ classify lexicon の perf 系追加。oracle:
   oracle ID（U-PROUTE-001..012）が実装 PLAN（PLAN-L7-352）のテストと 1:1 対応する。
 - `docs/test-design/harness/L7-unit-test-design.md` の「L6 追加設計 reverse reference」表へ
   `plan-entry-routing.md | U-PROUTE-001..012` 行を追加する（`l6-completion` gate の凍結入力）。
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-55-plan-entry-routing.md` green。
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L6-55-plan-entry-routing.md` green。
 - 実装は本 PLAN では行わない（実装・baseline 生成・schema 追加・配線は PLAN-L7-352 が担う）。
 
 ## 2. スケジュール（schedule steps）

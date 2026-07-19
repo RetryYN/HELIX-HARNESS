@@ -52,16 +52,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
-        runner: node
+        command: "bun run vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:11:48+09:00"
         evidence_path: tests/backfill-pairing.test.ts
         output_digest: "sha256:227aa9fdbe8ceb942b51ab3c9dd5c1f281cd1df115889d08916880286c5df627"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:11:48+09:00"
@@ -88,7 +88,7 @@ test-design の意味が変わったときに Reverse back-fill が黙って省�
 - Reverse または no-backprop 判断がない新規 conditional-kind PLAN は fail する。
 - `backprop_decision: not_required` と具体的な reason を持つ conditional-kind PLAN は pass する。
 - 既存の conditional debt が `conditional-backfill-decision-audit-2026-06-22.md` で可視化される。
-- `npm test tests/backfill-pairing.test.ts` が pass する。
-- `npm run typecheck` が pass する。
-- `npm run lint` が pass する。
-- `npx --no-install tsx src\cli.ts doctor` が pass する。
+- `bun test tests/backfill-pairing.test.ts` が pass する。
+- `bun run typecheck` が pass する。
+- `bun run lint` が pass する。
+- `bun run src\cli.ts doctor` が pass する。

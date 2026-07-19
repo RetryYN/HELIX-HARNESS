@@ -42,8 +42,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/agent-guard-brief-substance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/agent-guard-brief-substance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-07T00:20:00+09:00"
@@ -67,7 +67,7 @@ oracle: U-BRIEF-001..005）。
 
 - L6 設計 doc が §1 範囲 / §2 contract / §3 runtime 挙動 / §4 test oracle を備え、
   oracle ID（U-BRIEF-001..005）が PLAN-L7-344 のテストと 1:1 対応する。
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-52-delegation-brief-substance.md` green。
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L6-52-delegation-brief-substance.md` green。
 - 実装は本 PLAN では行わない（実装・検証は PLAN-L7-344 が担う）。
 
 ## 2. スケジュール（schedule steps）

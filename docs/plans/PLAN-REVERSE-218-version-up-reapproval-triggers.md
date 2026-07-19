@@ -66,16 +66,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/version-up-readiness.test.ts"
-        runner: node
+        command: "bun test tests/version-up-readiness.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:50:58+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T07:50:58+09:00"

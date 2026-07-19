@@ -53,24 +53,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/test-report-parser.test.ts tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/test-report-parser.test.ts tests/projection-writer.test.ts tests/workflow-contracts.test.ts tests/review-green-command-projection.test.ts tests/db-projection-ingestion.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:43:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:e21be7cb77522b3a284426473f916de658a715be6b706b58441ba62fae2216b0"
       - kind: unit_test
-        command: "npm test tests/test-report-parser.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/test-report-parser.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:43:00+09:00"
         evidence_path: tests/test-report-parser.test.ts
         output_digest: "sha256:2d64fd9e2b2da86ab065c34b7ebe4cd9ee9585dc8b788c8c3738d25c23a3c0df"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:43:00+09:00"
@@ -85,16 +85,16 @@ review_evidence:
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:98c393e869014932a2498c6d432ff30480850549068009007dd24615168dd4da"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T16:43:00+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
         output_digest: "sha256:c6406b052c3ec605afa95cd85251c1eeacaa7b4b6b55fc181338613db0bed2a5"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:43:00+09:00"

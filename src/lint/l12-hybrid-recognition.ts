@@ -1,5 +1,5 @@
-import { readdirSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { readdirSync, readFileSync } from "node:fs";
 import { extname, join } from "node:path";
 import { REVIEWED_SAFE_DISPOSITIONS } from "./l12-hybrid-reviewed-safe-v2";
 
@@ -40,10 +40,7 @@ export type RecognitionDisposition =
   | "historical_context_review"
   | "compatibility_authority_review";
 
-export type RecognitionReviewStatus =
-  | "unresolved"
-  | "context_labeled"
-  | "historical_labeled";
+export type RecognitionReviewStatus = "unresolved" | "context_labeled" | "historical_labeled";
 
 export type RecognitionAuditDisposition =
   | "needs_manual_review"
@@ -172,7 +169,12 @@ function collectTextFiles(root: string): string[] {
 
 export function scanL12HybridRecognitionCandidates(
   roots: readonly string[] = ["docs", ".github"],
-  explicitFiles: readonly string[] = ["AGENTS.md", "CLAUDE.md", ".claude/CLAUDE.md", "package.json"],
+  explicitFiles: readonly string[] = [
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/CLAUDE.md",
+    "package.json",
+  ],
 ): RecognitionCandidate[] {
   const paths = [...roots.flatMap(collectTextFiles), ...explicitFiles]
     .filter((path) => !EXCLUDED_PREFIXES.some((prefix) => path.startsWith(prefix)))

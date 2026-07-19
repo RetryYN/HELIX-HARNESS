@@ -51,16 +51,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/projection-writer.test.ts tests/db-projection-coverage.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/projection-writer.test.ts tests/db-projection-coverage.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T01:36:57+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:3d753ea3517f1165d196c7d65cc9497fed6cec0f24ec07bf8fbd6900d909ea25"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:36:57+09:00"
@@ -68,7 +68,7 @@ review_evidence:
         output_digest: "sha256:7ca4e34d15343e71be75dea9d40ab95dde926ac07b5504bdff8ba07135a86887"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: node
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T01:36:57+09:00"

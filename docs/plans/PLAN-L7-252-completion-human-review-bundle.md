@@ -75,32 +75,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T23:31:22+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T23:31:22+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:edebd74360d304431569ddd2ca3a096daffa2eee50b1ee9031207725c38f0ea5"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/cli-surface.test.ts -t \"Project view current-location\""
-        runner: node
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"Project view current-location\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:31:52+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:c5235ff94c443a267d48950624f1f53e4f65759fb6467b93af5c8269663a420e"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:31:22+09:00"
@@ -116,32 +116,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T23:21:01+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T23:21:01+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:66a7968bb5f6b8e128df6e850ea96b03da9cc4d18aca5d138e90ac35959957ff"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/cli-surface.test.ts tests/visualization-treeview.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/cli-surface.test.ts tests/visualization-treeview.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:22:54+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:c05edff8e339a272f865cb9e05462956b20f75534441184548a02d47bd7510a9"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:21:01+09:00"
@@ -157,32 +157,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T23:07:53+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/cli-surface.test.ts -t \"completion decision packet\""
-        runner: node
+        command: "bun run test:fast -- tests/cli-surface.test.ts -t \"completion decision packet\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:07:59+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:6528150d490044d1ff5deb20d81d813883dfe7a38c9195b3a86b4920caa02a17"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/summary-surface-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:07:59+09:00"
         evidence_path: tests/summary-surface-audit.test.ts
         output_digest: "sha256:912f786412b7a18859798af965de6761eab82389f720582e56abe3a90a9c59cb"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts completion decision-packet --summary-json"
-        runner: node
+        command: "bun src/cli.ts completion decision-packet --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T23:07:59+09:00"
@@ -198,24 +198,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:58:50+09:00"
         evidence_path: src/state-db/visualization-view-model.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/visualization-view-model.test.ts tests/visualization-treeview.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:58:50+09:00"
         evidence_path: tests/visualization-treeview.test.ts
         output_digest: "sha256:d7e4290165ef09cefa591bce70c0e4428584d1494e28dd7eef419d3df804f92e"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:58:50+09:00"
@@ -231,32 +231,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:46:08+09:00"
         evidence_path: src/state-db/current-location.ts
         output_digest: "sha256:c1327c6e55ea8b992d0d55f6b82008e70645ee7d92018a90ad9268fd0f75e66b"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:49:02+09:00"
         evidence_path: tests/current-location.test.ts
         output_digest: "sha256:59ad700bc9c4f377a122e4909e406744047dc8d0d6fd36ff1cb7f9f9f5de6dc9"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:46:08+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:812ffc120eb7aab9f9145b000a7c11856048b823c2c9910256f18c066bf8f8b1"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:49:02+09:00"
@@ -272,32 +272,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:38:25+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:d9f3cecc467901adec08b808eb43edbd541abd571f222f24a620ab35a46babaf"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:40:55+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:4a9e3969dcf2ed22787d5ed8a2133218a1637f61a248779663cc738edc2a0d02"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure decision-draft --action close_ready --limit 20 --offset 340 --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure decision-draft --action close_ready --limit 20 --offset 340 --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:38:25+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:73ed025b7332a6a04549322ea54e931ed7e6698cd60c6cfea8ea64aadf3c3c4c"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:40:55+09:00"
@@ -313,32 +313,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:31:49+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:17e275da54d333f410be75456ac3e6553bf49386cb6bbb2e9501f25df4ea77cd"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:34:22+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:cb6fffc76ac1d140881e09e5f243e0ee2a768fd421048ac367d6f7c8ae14dae6"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:31:49+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:b8b92453e79445226f6975ecc6a3e023415506b5a0cdf7ef80dea95fbe635904"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:34:22+09:00"
@@ -354,32 +354,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:24:02+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:dfa16cddd7347e28a75c87e22bfef736749fcf0dece84ae1a2f044e79149fda9"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:26:01+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:47daa66076ec0deba0f5d68e62099ef7ae714dc0c47d412141dfcf6273f27982"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:23:39+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
         output_digest: "sha256:4eaa8ca829282ceb308c9f8e70de5f6ddf7cfb23d7c4f45c50db46e7ded13fb1"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:23:40+09:00"
@@ -395,24 +395,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:15:08+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:31baba1442ee7617affba8b163bb29196afcd5e63046e89e4717176d23d74d4b"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:17:04+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:d58d87363f68489b888d055d476fc6dc3ee4177536282ab95cb11fb7b1ee87d4"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:13:54+09:00"
@@ -428,32 +428,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T22:00:59+09:00"
         evidence_path: src/state-db/current-location.ts
         output_digest: "sha256:8ecf37cc6185a2657d6d4c75e449e20c4d8b24cd7d4a7ee53da243cdd57d6e81"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:04:33+09:00"
         evidence_path: tests/current-location.test.ts
         output_digest: "sha256:d58d87363f68489b888d055d476fc6dc3ee4177536282ab95cb11fb7b1ee87d4"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure review-bundle --action close_ready --limit 20 --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:01:35+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:1fbc4f9acceb4d11cf3efa2d5d96581f00cef7dcff4f71c8075ec5da1a3c873b"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T22:02:38+09:00"
@@ -469,40 +469,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T21:54:45+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:4a31005cb47391212444856a19b7f7f7e8334ca9c82986d7df6da7ee2d841126"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/summary-surface-audit.test.ts tests/cli-surface.test.ts tests/current-location.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/cli-surface.test.ts tests/current-location.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:57:15+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:0b6de2430683ef12c9747e531721b7f3681e504c17c8fd34652403a908bb15e7"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure review-bundle --action close_ready --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure review-bundle --action close_ready --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:54:45+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:34c9b7e8090382aea91c333190bdca5536399290773f34e2d090e7a173a6936e"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts closure transition-plan --action close_ready --decision approve_closure_claim --summary-json"
-        runner: node
+        command: "bun src/cli.ts closure transition-plan --action close_ready --decision approve_closure_claim --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:54:45+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:566b303b5db7474c4f5d7d165e08787cdb63a113e458587f917507dbe2c553ab"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:55:20+09:00"
@@ -518,32 +518,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T21:39:30+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:04e1dd1df3c3fd78fd687ccbd2a2581b341dfd5aba1d59d023df7f330d073baf"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/summary-surface-audit.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/summary-surface-audit.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:42:44+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:e3598db81c7d5e4e42dee2f9e3af817ef3f294932cde09c7fddab7b59972c082"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts progress tree-view --summary-json"
-        runner: node
+        command: "bun src/cli.ts progress tree-view --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:39:58+09:00"
         evidence_path: src/runtime/summary-surface-audit.ts
         output_digest: "sha256:9637af00b915e0e49d04d45d8d4748b7eccc22228067875cc1ac734034712b9d"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun src/cli.ts doctor"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:42:44+09:00"
@@ -559,39 +559,39 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:50:43+09:00"
         evidence_path: src/lint/outstanding.ts
         output_digest: "sha256:44220009afe0690be55eb18f2b4b35dee3d3bb863b32a1b2318af0386a4f54fe"
       - kind: unit_test
-        command: "npm test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:50:43+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
         output_digest: "sha256:0b7ad7003b9e95c2fe9f640978f4a530ec1bec91f79e4a7658ef0f294c2fe8b2"
       - kind: unit_test
-        command: "npm test tests/outstanding.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/outstanding.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:50:43+09:00"
         evidence_path: tests/outstanding.test.ts
         output_digest: "sha256:8952aea665ace8faf2645786b2b4f5b77bbb5536c49a4291f8128c2db424cb20"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T12:50:43+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:439d8fa3ee727a5bae416fab2cc0d132f1e14d170a49472ed5935e2f4361416d"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts completion decision-packet --json; npx --no-install tsx src/cli.ts completion decision-packet | rg \"human-review-(bundle|item)\""
+        command: "bun run src/cli.ts completion decision-packet --json; bun run src/cli.ts completion decision-packet | rg \"human-review-(bundle|item)\""
         runner: bash
         scope: targeted
         exit_code: 0
@@ -607,24 +607,24 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-252-completion-human-review-bundle.md
         output_digest: "sha256:c31541548a310106e71e4c31e898d3087d3d74f948d751f5f2b92f720664c805"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T12:51:39+09:00"
         evidence_path: docs/plans/PLAN-L7-252-completion-human-review-bundle.md
         output_digest: "sha256:36ba37e8416820656d23a59bcfa1191a4187fe932c78ea3ee1cf8bfd225ea0d9"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:53:01+09:00"
         evidence_path: .helix/harness.db
         output_digest: "sha256:1d83b7bbb83238047a73534989ac249752f117cea802e2f3fd15e27acf8a52f5"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:53:01+09:00"
@@ -640,40 +640,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T21:30:39+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:7f65c03a377b3444fd84fd9e794eb7daa36cd9dd9c117f66b1deb0ea5e4e4807"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts completion decision-packet --summary-json"
-        runner: node
+        command: "bun src/cli.ts completion decision-packet --summary-json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:30:34+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:197366e0bd82d78462d34c47ccd04c7cf5d0c74efe37d78c0a95bc3ea4b12dc7"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:32:49+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:1dbc970c064e9fc746bb3ccf8ba3f4f0061cfde102318ffcabaa26fd71847ea6"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-252-completion-human-review-bundle.md && npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-252-completion-human-review-bundle.md && bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:30:56+09:00"
         evidence_path: docs/plans/PLAN-L7-252-completion-human-review-bundle.md
         output_digest: "sha256:96720d44cc5e071284f958232582418e400d270c37578e1e77e934ea415abd6c"
       - kind: lint
-        command: "npx --no-install biome check src/cli.ts tests/cli-surface.test.ts docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-252-completion-human-review-bundle.md"
-        runner: node
+        command: "bunx biome check src/cli.ts tests/cli-surface.test.ts docs/test-design/harness/L7-unit-test-design.md docs/plans/PLAN-L7-252-completion-human-review-bundle.md"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T21:30:56+09:00"

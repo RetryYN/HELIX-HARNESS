@@ -373,5 +373,5 @@ export const CANONICAL_REUSE_CONSUMER_BASELINE = [
   "docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md::docs/test-design/helix/L3-pillar-acceptance-test-design.md",
   "docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md::docs/test-design/helix/L6-pillar-unit-test-design.md",
   "docs/plans/PLAN-REVERSE-42-regression-dependency-drift.md::docs/test-design/harness/L7-unit-test-design.md",
-  "docs/plans/PLAN-REVERSE-43-implementation-verification-group.md::docs/test-design/harness/L7-unit-test-design.md"
+  "docs/plans/PLAN-REVERSE-43-implementation-verification-group.md::docs/test-design/harness/L7-unit-test-design.md",
 ] as const;

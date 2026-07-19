@@ -49,16 +49,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts tests/goal-evidence-audit.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts tests/goal-evidence-audit.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T00:00:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:c1d818fc3f7bd7e8e316c046d8ec6e853114a4fb130674629ae2bf9467ea7c72"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T00:00:00+09:00"
@@ -74,40 +74,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T00:46:38+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:3cb93e1c877e016cae3536dae183a4b60a710636897a72af842d5820a532c130"
       - kind: unit_test
-        command: "npm test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts"
-        runner: node
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T00:46:38+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:18924688db59f233bfbd67cad97702f3731b407ddcad1f68cbd8602361531497"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T00:46:38+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:fc5d4c4b7239b82545dc61fb1282175a2c59ec4375abf1559c74e2561d1f6350"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T00:46:38+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:c8a0a72017a65dbb7e780a59b70556ce11c340e32c81bc6d7741fa7f95931d20"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T00:46:38+09:00"
@@ -123,40 +123,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
@@ -172,40 +172,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
@@ -221,32 +221,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
@@ -262,24 +262,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
@@ -295,24 +295,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
@@ -330,7 +330,7 @@ review_evidence:
 
 2026-07-03 continuation: `consumerReadiness.ci` の read-only / secret 不要 / package-local smoke 宣言を
 実テンプレ `harness-check.yml` の artifact readiness と接続する。`permissions: contents: read`、`push` /
-`pull_request`、`pull_request_target` 不使用、secret 参照なし、`npm run helix ...` command 群を満たさない
+`pull_request`、`pull_request_target` 不使用、secret 参照なし、`bun run helix ...` command 群を満たさない
 配布 workflow は `fix_consumer_readiness` へ戻し、GitHub secure-use 境界を JSON 宣言だけで green にしない。
 同 continuation は `contents: read` が残っていても `write-all` または `pull-requests: write` 等の任意 write
 permission が混在する workflow を read-only CI evidence として扱わない。

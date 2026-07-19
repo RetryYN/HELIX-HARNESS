@@ -39,16 +39,16 @@ review_evidence:
     reviewer_model: claude-sonnet-4-6
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/green-command-digest.test.ts"
-        runner: node
+        command: "bun run vitest run tests/green-command-digest.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/green-command-digest.test.ts
         output_digest: "sha256:0c2c2dd640f1908504899dd88b0f863377c4f94c743bd258b667862c3d606ff6"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23"
@@ -64,16 +64,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/green-command-digest.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/green-command-digest.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
         evidence_path: tests/green-command-digest.test.ts
         output_digest: "sha256:7d6e23a1794edd7288d506b0646c3011893e725e1bd0aaa043383f63a366d704"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T06:45:00+09:00"
@@ -126,7 +126,7 @@ cleanup 完了後の現在形は **hard gate**。`output_digest` が `evidence_p
 
 - `tests/green-command-digest.test.ts` (7 ケース): 実 hash 一致=pass / fake=digest-invalid /
   repeated-hex placeholder=digest-placeholder / file 不在=file-missing / 空 skip / message 整形 / repo root 不可読時 fail-close。実証 =
-  `npx --no-install vitest run` green（成功）、`tsc` EXIT=0。
+  `bun run vitest run` green（成功）、`tsc` EXIT=0。
 - 実 repo で 90 件検出 (§1) = prose でなく機械事実。
 - `tests/doctor.test.ts` が `greenCommandDigest.ok` を hard-gate aggregation に含むことを検証する。
 

@@ -44,24 +44,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/cutover-readiness.test.ts tests/identifier-rename.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/cutover-readiness.test.ts tests/identifier-rename.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T15:59:00+09:00"
         evidence_path: tests/cutover-readiness.test.ts
         output_digest: "sha256:fdc1acf48c6566d59c742f7f09da87cc2bae8eb0a5f5e758449963dda80e79c8"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T15:59:00+09:00"
         evidence_path: src/lint/cutover-source-ledger.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T15:59:00+09:00"

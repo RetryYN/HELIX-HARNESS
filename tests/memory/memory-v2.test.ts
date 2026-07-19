@@ -326,10 +326,14 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
       { cwd: root, encoding: "utf8" },
     );
     expect(write.status, write.stderr).toBe(0);
-    const deliver = spawnSync("npx", ["--no-install", "tsx", cliPath, "memory", "deliver", "--consumer", "test"], {
-      cwd: root,
-      encoding: "utf8",
-    });
+    const deliver = spawnSync(
+      "npx",
+      ["--no-install", "tsx", cliPath, "memory", "deliver", "--consumer", "test"],
+      {
+        cwd: root,
+        encoding: "utf8",
+      },
+    );
     expect(deliver.status, deliver.stderr).toBe(0);
     expect(deliver.stdout).toContain('"status":"delivered"');
     const surface = spawnSync(
@@ -787,10 +791,14 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     mkdirSync(join(root, ".helix", "logs"), { recursive: true });
     writeFileSync(join(root, ".helix", "logs", "session"), "not-a-directory", "utf8");
     const cliPath = join(process.cwd(), "src", "cli.ts");
-    const failedLog = spawnSync("npx", ["--no-install", "tsx", cliPath, "memory", "write", "harness", "failure", "body"], {
-      cwd: root,
-      encoding: "utf8",
-    });
+    const failedLog = spawnSync(
+      "npx",
+      ["--no-install", "tsx", cliPath, "memory", "write", "harness", "failure", "body"],
+      {
+        cwd: root,
+        encoding: "utf8",
+      },
+    );
     expect(failedLog.status, failedLog.stderr).toBe(0);
     expect(JSON.parse(failedLog.stdout)).toMatchObject({
       ok: true,

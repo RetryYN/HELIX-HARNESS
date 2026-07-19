@@ -43,24 +43,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\vmodel-injection.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\vmodel-injection.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T17:35:00+09:00"
         evidence_path: tests/vmodel-injection.test.ts
         output_digest: "sha256:2f96c00b1a8110ee1717e291a594c68faa1eb0a9d6fe711ee5b157b3b88ff920"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T17:35:00+09:00"
         evidence_path: tsconfig.json
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
       - kind: doctor
-        command: "npm run src\\cli.ts doctor"
-        runner: node
+        command: "bun run src\\cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T17:35:00+09:00"

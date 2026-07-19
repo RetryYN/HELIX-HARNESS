@@ -20,24 +20,24 @@ review_evidence:
     scope: "継続実装: rename cutover packet は structured stateBackupManifest、freezePolicy、provenanceRequirements を出し、PLAN-M-02 approval を明示的な backup、freeze、再承認、audit-evidence field から判断できるようにした。surface は plan-only のままで、旧 state path -> .helix は適用しない。"
     green_commands:
       - kind: unit_test
-        command: "npm test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/action-binding-approval-readiness.test.ts"
-        runner: node
+        command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/action-binding-approval-readiness.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:8c8598876aa94494870652cd6bd4df8775168081117f30aab6d48c379785a710"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: src/lint/identifier-rename.ts
         output_digest: "sha256:5177176695fd8b66e44f0e51e8aede2fdd39478e8b74d4d47129c7b6e0b0d75e"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
@@ -53,16 +53,16 @@ review_evidence:
     scope: "PLAN-M-02 Step 1 support: helix、.helix、area=helix 向けに non-destructive な identifier rename blast-radius audit と cutover packet を追加した。cutover_decision_record と action_binding_approval_record が concrete approval value を持つまでは audit は blocked_pending_cutover_approval を返す。rename plan は dry-run / rollback / monitoring / approval-gate material を出すが、不可逆な 旧 state path -> .helix state move は実行しない。"
     green_commands:
       - kind: unit_test
-        command: "npm test tests/identifier-rename.test.ts"
-        runner: node
+        command: "bun test tests/identifier-rename.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:8c8598876aa94494870652cd6bd4df8775168081117f30aab6d48c379785a710"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"

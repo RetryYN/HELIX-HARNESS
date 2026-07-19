@@ -57,40 +57,40 @@ review_evidence:
     scope: "実行時検証の純粋契約を schema/runtime-verification.ts に抽出し、run-debug は追記 I/O 端点、projection-writer は schema SSoT 参照に整理した。dependency-drift の runtime -> state-db -> runtime 循環エラーは解消し、残りは既存 grandfather warn のみ。"
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T19:28:00+09:00"
         evidence_path: src/schema/runtime-verification.ts
         output_digest: "sha256:a11c4e797dd4e4357204ad9af2ab092e195afd1d0405b1e3e8bcfd1ff5319fc6"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/run-debug.test.ts tests/projection-writer.test.ts tests/dependency-drift.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/run-debug.test.ts tests/projection-writer.test.ts tests/dependency-drift.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T19:26:54+09:00"
         evidence_path: tests/dependency-drift.test.ts
         output_digest: "sha256:da266c8dc94a14dfbfda5f8993d837725ef61e1aff585be42412ad02b4026057"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/cli-surface.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T19:31:40+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:83d69b05cf59c017d48fcaef5509793a40209864410ecf216c1dc253e958a67b"
       - kind: lint
-        command: "npx --no-install biome check tests/cli-surface.test.ts src/schema/runtime-verification.ts src/runtime/run-debug.ts src/state-db/projection-writer.ts"
-        runner: node
+        command: "bunx biome check tests/cli-surface.test.ts src/schema/runtime-verification.ts src/runtime/run-debug.ts src/state-db/projection-writer.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T19:29:47+09:00"
         evidence_path: src/runtime/run-debug.ts
         output_digest: "sha256:6e602a7d74d2fe0376a8caf9165a2e80285f6b43a2b5482b88a2b282a947a3ba"
       - kind: smoke
-        command: "node --import tsx --eval 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length,findings:r.findings.map(f=>({severity:f.severity,message:f.message}))}, null, 2));'"
-        runner: node
+        command: "bun -e 'import { analyzeDependencyDrift, loadDependencyDriftInput } from \"./src/lint/dependency-drift\"; const r=analyzeDependencyDrift(loadDependencyDriftInput(process.cwd())); console.log(JSON.stringify({ok:r.ok,count:r.findings.length,errors:r.findings.filter(f=>f.severity===\"error\").length,warnings:r.findings.filter(f=>f.severity===\"warn\").length,findings:r.findings.map(f=>({severity:f.severity,message:f.message}))}, null, 2));'"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-09T19:28:00+09:00"

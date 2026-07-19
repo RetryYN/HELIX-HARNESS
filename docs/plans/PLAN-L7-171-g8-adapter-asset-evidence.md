@@ -43,8 +43,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\g8-integration-workflow.test.ts tests\\runtime-adapter.test.ts tests\\skill-recommend.test.ts tests\\asset-drift.test.ts tests\\asset-catalog.test.ts tests\\placeholder-deps.test.ts tests\\agent-guard.test.ts tests\\agent-slots.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\g8-integration-workflow.test.ts tests\\runtime-adapter.test.ts tests\\skill-recommend.test.ts tests\\asset-drift.test.ts tests\\asset-catalog.test.ts tests\\placeholder-deps.test.ts tests\\agent-guard.test.ts tests\\agent-slots.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T21:16:51+09:00"
@@ -81,12 +81,12 @@ required-family checks を per-manifest validation から aggregate workflow val
 
 ## 検証
 
-- `npx --no-install vitest run tests\runtime-adapter.test.ts tests\skill-recommend.test.ts tests\asset-drift.test.ts tests\asset-catalog.test.ts tests\placeholder-deps.test.ts tests\agent-guard.test.ts tests\agent-slots.test.ts`
-- `npx --no-install vitest run tests\g8-integration-workflow.test.ts tests\runtime-adapter.test.ts tests\skill-recommend.test.ts tests\asset-drift.test.ts tests\asset-catalog.test.ts tests\placeholder-deps.test.ts tests\agent-guard.test.ts tests\agent-slots.test.ts`
-- `npm run typecheck`
-- `npm run lint`
-- `npx --no-install tsx src\cli.ts db rebuild`
-- `npx --no-install tsx src\cli.ts doctor`
+- `bun run vitest run tests\runtime-adapter.test.ts tests\skill-recommend.test.ts tests\asset-drift.test.ts tests\asset-catalog.test.ts tests\placeholder-deps.test.ts tests\agent-guard.test.ts tests\agent-slots.test.ts`
+- `bun run vitest run tests\g8-integration-workflow.test.ts tests\runtime-adapter.test.ts tests\skill-recommend.test.ts tests\asset-drift.test.ts tests\asset-catalog.test.ts tests\placeholder-deps.test.ts tests\agent-guard.test.ts tests\agent-slots.test.ts`
+- `bun run typecheck`
+- `bun run lint`
+- `bun run src\cli.ts db rebuild`
+- `bun run src\cli.ts doctor`
 
 ## 残存する部分 coverage
 

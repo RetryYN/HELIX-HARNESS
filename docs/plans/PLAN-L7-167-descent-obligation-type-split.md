@@ -40,40 +40,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\descent-obligation.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\descent-obligation.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:56:09+09:00"
         evidence_path: tests/descent-obligation.test.ts
         output_digest: "sha256:01822bfe073715aab45d69f562d86884b2aa3497585b1031cb088dbf7c9eb589"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\descent-obligation.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\descent-obligation.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:56:09+09:00"
         evidence_path: src/lint/descent-obligation.ts
         output_digest: "sha256:9e10ed6bb1e78391761787647ee1c1a8896f59fc32aa6d7db0d253129096b4c4"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\descent-obligation.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\descent-obligation.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:56:09+09:00"
         evidence_path: src/lint/descent-obligation-types.ts
         output_digest: "sha256:ab277901716f72cd3da7ab0f4c75777b72a8482d51abfd76495e354a9e4452a5"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:57:30+09:00"
         evidence_path: src/lint/descent-obligation.ts
         output_digest: "sha256:9e10ed6bb1e78391761787647ee1c1a8896f59fc32aa6d7db0d253129096b4c4"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:57:33+09:00"

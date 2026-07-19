@@ -23,8 +23,8 @@ review_evidence:
     scope: "PLAN-L7-177 bridge 実体から L3 要件 HR-BR-13R/14R を back-fill。受入 U-ORCH-BRIDGE-01/02 に 1:1。tick の selectVerifier 委譲・loop entrypoint・harness.db projection は P9 carry 明示。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/orchestration"
-        runner: node
+        command: "bun run vitest run tests/orchestration"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T20:00:00+09:00"

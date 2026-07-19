@@ -40,24 +40,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\projection-writer.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\projection-writer.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T17:14:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:14:20+09:00"
         evidence_path: src/state-db/artifact-progress-decision.ts
         output_digest: "sha256:94649018e5c8e51acb161ddc371df0237e0014499d2ae378cf061d3ac3eb06eb"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:14:05+09:00"
@@ -83,4 +83,4 @@ pure な artifact progress decision policy を専用 module へ移し、
 
 - Artifact progress decision behavior は変えない。
 - 既存の `projection-writer` rebuild tests は引き続き pass する。
-- `npm run typecheck`、`npm run lint`、DB rebuild、doctor が pass する。
+- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が pass する。

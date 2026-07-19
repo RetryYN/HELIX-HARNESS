@@ -2172,7 +2172,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       deps,
     );
 
-    expect(result.consumerReadiness.ok, JSON.stringify({checks: result.consumerReadiness.checks.filter((check) => !check.ok), artifacts: result.consumerReadiness.artifactReadiness.checks.filter((check) => !check.ok)})).toBe(true);
+    expect(
+      result.consumerReadiness.ok,
+      JSON.stringify({
+        checks: result.consumerReadiness.checks.filter((check) => !check.ok),
+        artifacts: result.consumerReadiness.artifactReadiness.checks.filter((check) => !check.ok),
+      }),
+    ).toBe(true);
     expect(result.postSetupWorkflow).toMatchObject({
       nextRoute: "ready",
       readinessOk: true,

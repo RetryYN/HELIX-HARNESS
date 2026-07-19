@@ -40,40 +40,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\task-classify.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\task-classify.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:37:29+09:00"
         evidence_path: tests/task-classify.test.ts
         output_digest: "sha256:5f3b411831eaf5df7f40ac95cce1623fd7f47b85ebc2ff6012b53b5610dd519d"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\task-classify.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\task-classify.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:37:29+09:00"
         evidence_path: src/task/classify.ts
         output_digest: "sha256:33574ac2f312fdc154f7aef077c47a89d433e9093b077f8e9dc93ff45502f10f"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\task-classify.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\task-classify.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:37:29+09:00"
         evidence_path: src/task/classify-policy.ts
         output_digest: "sha256:7781c8d712eab28fa8cffc2ade45c855c1600c921175d175b7efd67ec4900587"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T19:39:00+09:00"
         evidence_path: src/task/classify.ts
         output_digest: "sha256:33574ac2f312fdc154f7aef077c47a89d433e9093b077f8e9dc93ff45502f10f"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T19:39:00+09:00"

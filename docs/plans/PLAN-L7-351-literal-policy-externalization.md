@@ -50,32 +50,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/setup.test.ts"
-        runner: node
+        command: "bun run vitest run tests/setup.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T16:00:22+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:c90354be8b471aab663eabc1a3f633d550a4657cddaa3f54d8b810e698f7e45e"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/requirements-binding-config.test.ts tests/projection-writer.test.ts"
-        runner: node
+        command: "bun run vitest run tests/requirements-binding-config.test.ts tests/projection-writer.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T16:00:50+09:00"
         evidence_path: tests/requirements-binding-config.test.ts
         output_digest: "sha256:ef2e9299001c630ccc195510d39828671fcba8a7069e8e5301476553853b6a55"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T16:01:34+09:00"
         evidence_path: src/config/requirements-binding.ts
         output_digest: "sha256:9c0b1515efef406881aeebdcea6c65af22d4ea6568b059d9e76628733ba4fbb4"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T16:02:02+09:00"
@@ -121,7 +121,7 @@ review_evidence:
 
 ### Step 3: 検証
 
-1. `npx --no-install tsx src/cli.ts db rebuild` 後、`npx --no-install tsx src/cli.ts feedback list --emit` で対象
+1. `bun run src/cli.ts db rebuild` 後、`bun src/cli.ts feedback list --emit` で対象
    externalize 候補 3 件が actionable から消える（または台帳 resolved と整合する）ことを確認。
 
 ## 2. 対象外
@@ -138,8 +138,8 @@ review_evidence:
 ## 4. 受入条件（falsifiable / 検証コマンド）
 
 - 配布 template バイト列不変（改善前後の sha256 全一致を本文に記録）。
-- `npx --no-install vitest run tests/setup.test.ts` green、`npm run typecheck` green。
-- `npx --no-install tsx src/cli.ts doctor` に本 PLAN 起因の新規 fail なし。
+- `bun run vitest run tests/setup.test.ts` green、`bun run typecheck` green。
+- `bun run src/cli.ts doctor` に本 PLAN 起因の新規 fail なし。
 - 実装着手時に `generates:` へ新設 module / test を追記（draft 時点は本 PLAN md のみ）。
 
 ## 5. carry（持ち越し）
@@ -164,8 +164,8 @@ review_evidence:
   - `adapter/AGENTS.md`: `sha256:61beb2e0a281fa655666e82c197e4d6ebbdc5b40551d1671d10a2b210bc672e9`
   - `adapter/.claude/settings.json`: `sha256:ff280e9812d758fe346d56728092b295462e56c25e03c89c1b3c3127e31703d8`
   - `adapter/.codex/hooks.json`: `sha256:65b9904b19d7402937d8bf701f89319555dd9ba698be11ab46cdea05b3ee38d6`
-- `npx --no-install tsx src/cli.ts db rebuild`: exit 0、projection ok、rows 54194。
-- `npx --no-install tsx src/cli.ts feedback list --emit`: 起点 3 件
+- `bun run src/cli.ts db rebuild`: exit 0、projection ok、rows 54194。
+- `bun src/cli.ts feedback list --emit`: 起点 3 件
   `refactor_candidate:externalize-literal`（`src/setup/templates.ts` high 2 件）と
   `refactor_candidate:externalize-policy`（`src/config/requirements-binding.ts` high 1 件）は actionable から消失。
   残存 actionable は `split-module` と、並行 PLAN の `src/lint/plan-entry-routing.ts` 由来

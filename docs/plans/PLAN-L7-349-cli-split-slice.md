@@ -42,56 +42,56 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "/usr/bin/time -p npx --no-install vitest run"
-        runner: node
+        command: "/usr/bin/time -p bun run vitest run"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T17:53:38+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:c58005e3b2bb5ef07a6f63e148c1db3181a21ea38b67ee5b96dac68e66bd166e"
       - kind: unit_test
-        command: "/usr/bin/time -p npx --no-install vitest run --project fast tests/cli-surface.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "/usr/bin/time -p bun run vitest run --project fast tests/cli-surface.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T17:49:39+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:fee6984f78bc3f5a9956073fbd23bf591122eaf2d4b7114952972bb29ee377e1"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T17:27:59+09:00"
         evidence_path: package.json
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "npx --no-install biome check src"
-        runner: node
+        command: "bunx biome check src"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T17:29:24+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:ad327730485797f034e29a8f6173e5b2dabfdf526247610c1d63472c9fc9a036"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts --help"
-        runner: node
+        command: "bun run src/cli.ts --help"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T17:29:24+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:329a9994bad76dfa183a0a038bb2c204ab78aa686bed49051d451fd1150a8887"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts route eval --format json --signal 'pair-agent TDD route'"
-        runner: node
+        command: "bun run src/cli.ts route eval --format json --signal 'pair-agent TDD route'"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T17:29:24+09:00"
         evidence_path: src/cli/commands/route.ts
         output_digest: "sha256:1b7a5c18cc4013c1545f1195f610d3f349126fe510c0795494093092d54f7ae6"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T17:57:40+09:00"
@@ -141,8 +141,8 @@ dependencies:
 1. `src/cli/commands/rename.ts` ← `rename` グループ（依存が rename-audit 系 lib に閉じる）。
 2. `src/cli/commands/handover.ts` ← `handover`（`handover provider` / `handover db` 含む）。
 3. `src/cli/commands/web.ts` ← `web`。
-4. fence: `npm run typecheck` / `npx --no-install tsx src/cli.ts --help` の subcommand 一覧が分割前と一致 /
-   `npx --no-install vitest run tests/cli-surface.test.ts` の pass 集合が分割前と同一。
+4. fence: `bun run typecheck` / `bun run src/cli.ts --help` の subcommand 一覧が分割前と一致 /
+   `bun run vitest run tests/cli-surface.test.ts` の pass 集合が分割前と同一。
 
 #### Step 1 実施記録（2026-07-06）
 
@@ -157,7 +157,7 @@ dependencies:
 ### Step 2: 大物 2 グループ
 
 1. `src/cli/commands/route.ts` ← `route`（provider dynamic subcommand 生成が複雑なため、
-   移動前に `npx --no-install tsx src/cli.ts route --help` 出力を記録し、移動後に diff ゼロを確認）。
+   移動前に `bun run src/cli.ts route --help` 出力を記録し、移動後に diff ゼロを確認）。
 2. `src/cli/commands/team.ts` ← `team`。
 
 ### Step 3: 残余グループの集約
@@ -181,11 +181,11 @@ dependencies:
 
 ## 4. 受入条件（falsifiable / 検証コマンド）
 
-- `npx --no-install tsx src/cli.ts --help` の subcommand 一覧が分割前後で一致（diff 記録）。
-- `npx --no-install vitest run tests/cli-surface.test.ts` の pass/fail 集合が分割前と同一
+- `bun run src/cli.ts --help` の subcommand 一覧が分割前後で一致（diff 記録）。
+- `bun run vitest run tests/cli-surface.test.ts` の pass/fail 集合が分割前と同一
   （分割前に fail しているテストの是正は本 PLAN の責務外。新規 fail ゼロ）。
-- `npm run typecheck` / `npx --no-install biome check` green、`wc -l src/cli.ts` < 2000。
-- `npx --no-install tsx src/cli.ts doctor` に本 PLAN 起因の新規 fail なし。
+- `bun run typecheck` / `bunx biome check` green、`wc -l src/cli.ts` < 2000。
+- `bun run src/cli.ts doctor` に本 PLAN 起因の新規 fail なし。
 - 実装着手時に `generates:` へ新設 module と test を追記する（draft 時点では本 PLAN md のみ。
   merged-plan-status gate の draft + 既存 deliverable fail-close 回避）。
 

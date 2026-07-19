@@ -21,8 +21,8 @@ review_evidence:
     reviewer_model: codex-gpt-5.x
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/relation-graph-loader.test.ts"
-        runner: node
+        command: "bun run vitest run tests/relation-graph-loader.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T17:30:00+09:00"

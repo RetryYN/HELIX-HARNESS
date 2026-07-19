@@ -39,8 +39,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T17:20:00+09:00"

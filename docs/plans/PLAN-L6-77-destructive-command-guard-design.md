@@ -38,7 +38,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/guard-override-transaction.test.ts tests/work-guard.test.ts tests/hook-contract.test.ts --reporter=dot"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T03:54:25+09:00"

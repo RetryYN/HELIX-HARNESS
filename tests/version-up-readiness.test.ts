@@ -472,7 +472,8 @@ describe("version-up-readiness", () => {
       ]),
     );
     expect(packet.versionDryRunEvidence).toMatchObject({
-      command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+      command:
+        "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
       planCommand: "helix version-up dry-run --current 0.1.0 --target future --json",
       digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       ok: false,
@@ -546,7 +547,8 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          command:
+            "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           writePolicy: "no-write",
           expected: expect.stringContaining("concrete SemVer tag"),
           evidence: expect.stringContaining("target is not SemVer"),
@@ -580,7 +582,8 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "state-and-doctor",
-          command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+          command:
+            "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
           writePolicy: "state-write",
         }),
         expect.objectContaining({
@@ -762,7 +765,11 @@ describe("version-up-readiness", () => {
         activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
           (row) =>
             row.phase === "external-rehearsal"
-              ? { ...row, command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor" }
+              ? {
+                  ...row,
+                  command:
+                    "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+                }
               : row,
         ),
       }),
@@ -1178,7 +1185,8 @@ describe("version-up-readiness", () => {
     )[0];
 
     expect(target010.versionDryRunEvidence).toMatchObject({
-      command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target v0.1.0 --json",
+      command:
+        "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target v0.1.0 --json",
       semverChange: "same",
       blockedReasons: [
         "target version must differ from current version",
@@ -1186,7 +1194,8 @@ describe("version-up-readiness", () => {
       ],
     });
     expect(target020.versionDryRunEvidence).toMatchObject({
-      command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target v0.2.0 --json",
+      command:
+        "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target v0.2.0 --json",
       semverChange: "minor",
       blockedReasons: ["target release tag must exist before activation"],
     });
@@ -2656,7 +2665,8 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command: "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          command:
+            "npx --no-install tsx src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           expected: expect.stringContaining("concrete SemVer tag"),
           evidence: expect.stringContaining("target is not SemVer"),
         }),
@@ -2672,7 +2682,8 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "state-and-doctor",
-          command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+          command:
+            "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
           sourceCheckedAt: "2026-07-03",
           sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
           adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",

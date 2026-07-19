@@ -57,32 +57,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/agent-guard.test.ts tests/codex-hook-adapter.test.ts tests/setup.test.ts"
-        runner: node
+        command: "bun test tests/agent-guard.test.ts tests/codex-hook-adapter.test.ts tests/setup.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T06:18:00+09:00"
         evidence_path: tests/agent-guard.test.ts
         output_digest: "sha256:2e77132180a05f588c6225cc5f6af92bdc87624b59445edb8e71a3a158f7bac2"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:18:00+09:00"
         evidence_path: src/runtime/agent-guard.ts
         output_digest: "sha256:8bc4662d6ad9f7af6a243a60833905bdc0c4cb674e36a079f25ab26a6db569e2"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:18:00+09:00"
         evidence_path: src/lint/codex-hook-adapter.ts
         output_digest: "sha256:90ac4dbc6ae3c9bb1ff59c7dddb4801216dd0a673be8bb8046bb8a60f2932102"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T06:20:45+09:00"
@@ -98,24 +98,24 @@ review_evidence:
     reviewer_model: claude-opus-4-8
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-24T12:17:00+09:00"
         evidence_path: src/runtime/work-guard.ts
         output_digest: "sha256:ad589a73486d347838c5b913d7746df7b8037a50c2e97baa29790b2c22b8c81b"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/work-guard.test.ts"
-        runner: node
+        command: "bun run vitest run tests/work-guard.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T12:17:00+09:00"
         evidence_path: tests/work-guard.test.ts
         output_digest: "sha256:5ff89dd03a0e6ec91733514d7c94ee10a7bf2dbe8b148a24c73d779a0681c35b"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/codex-hook-adapter.test.ts"
-        runner: node
+        command: "bun run vitest run tests/codex-hook-adapter.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T12:17:00+09:00"
@@ -156,7 +156,7 @@ Claude-compatible hook system（`hooks.json`、`PreToolUse`/`PostToolUse`/`Sessi
 
 - **`.codex/hooks.json`**: Claude guards を mirrored する Codex hook adapter。
   同一 TypeScript entrypoints（`.claude/hooks/work-guard.ts`、
-  `.claude/hooks/agent-guard.ts`、`npx --no-install tsx src/cli.ts session ...`）を再利用し、logic fork
+  `.claude/hooks/agent-guard.ts`、`bun src/cli.ts session ...`）を再利用し、logic fork
   は作らない。repo-relative であり、global `~/.codex/` には書かない。
 - **`.codex/config.toml`**: `[features].hooks = true` により project-local hooks を
   明示的に有効化する。Codex は trusted projects でのみ project `.codex/` layers を読む。

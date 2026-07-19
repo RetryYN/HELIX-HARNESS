@@ -65,40 +65,40 @@ review_evidence:
     scope: "HELIX pillar L3 降下に対する G-REQ.L3 人間承認。証跡: vmodel-pair、plan lint、typecheck、lint、db rebuild、および G-REQ.L3 reached を示す doctor roadmap。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/vmodel-pair.test.ts"
-        runner: node
+        command: "bun run vitest run tests/vmodel-pair.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tests/vmodel-pair.test.ts
         output_digest: "sha256:e09dec550cb920ef2998eb286243542bf8a2043b5db5045d88ea049c1e65c272"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md"
-        runner: node
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: .helix/evidence/green-command/20260630-plan-lint-l3-06.json
         output_digest: "sha256:7b263818ea5dd2b32b83d8a02fc37657830327f37aba05556670b4bb1b2ec9f4"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tsconfig.json
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: biome.json
         output_digest: "sha256:b70d2d1403c671399680ca5c783e86591fde85e10dc57c45be2c8806f0549cf7"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts db rebuild"
-        runner: node
+        command: "bun run src/cli.ts db rebuild"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28"
@@ -156,7 +156,7 @@ HNFR-P5/P8/AC の net-new GAP が L3 FR/AC として未降下だった。
 ### Step 4: [直列] 機械検証
 
 - 直列理由: 定量 green の後に G-REQ.L3 判断を行う。
-- コマンド: `npx --no-install tsx src/cli.ts doctor`、必要に応じて targeted `rg` trace。
+- コマンド: `bun run src/cli.ts doctor`、必要に応じて targeted `rg` trace。
 - 進捗: 部分完了。`vmodel` loader を HELIX docs も読むよう拡張し、`tests/vmodel-pair.test.ts`
   / `typecheck` は green。さらに U-VPAIR-005b/005c で L1 HBR/HNFR -> L3 FR/NFR/HAC -> L12 HAT
   の全件被覆を regression guard 化し、U-VPAIR-005j で Route-B back-fill L3 要件 8 件 -> L12 HAT
@@ -237,11 +237,11 @@ status 昇格を行う。
 
 承認後に再実行するコマンド:
 
-- `npx --no-install vitest run tests/vmodel-pair.test.ts`
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md`
-- `npm run typecheck`
-- `npm run lint`
-- `npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor`
+- `bun run vitest run tests/vmodel-pair.test.ts`
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md`
+- `bun run typecheck`
+- `bun run lint`
+- `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor`
 
 承認後の期待状態:
 
@@ -252,10 +252,10 @@ status 昇格を行う。
 
 機械検証の期待状態:
 
-- `npx --no-install vitest run tests/vmodel-pair.test.ts` は `U-VPAIR-005b/005c/005d/005j` を含めて green。
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md` は green。
-- `npm run typecheck` / `npm run lint` / `npm test` は green。
-- `npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor` は構造系 OK。承認後は `G-REQ.L3 reached`
+- `bun run vitest run tests/vmodel-pair.test.ts` は `U-VPAIR-005b/005c/005d/005j` を含めて green。
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md` は green。
+- `bun run typecheck` / `bun run lint` / `bun run test` は green。
+- `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor` は構造系 OK。承認後は `G-REQ.L3 reached`
   を確認する。L6 など別層 draft が残る場合、full doctor green は別 PLAN の frontier として扱う。
 
 ## §DoD

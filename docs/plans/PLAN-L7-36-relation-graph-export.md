@@ -27,16 +27,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/ddd-tdd-rules.test.ts tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "bun run vitest run tests/ddd-tdd-rules.test.ts tests/relation-graph.test.ts tests/relation-graph-loader.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:02:33+09:00"
         evidence_path: tests/relation-graph.test.ts
         output_digest: "sha256:bfdf4b24481071c586289c2010d03c34e4020c94a8851e8fe931d2fafc49d40e"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T16:02:33+09:00"
@@ -105,5 +105,5 @@ DISCOVERY-05 §4.4 D3 (粒度 = 1〜3 機能) に従い、L7-32 (relation-graph 
 ## §8 完了条件
 
 - [x] U-RELGRAPH-007..010 は `tests/relation-graph.test.ts` で `it.todo` から green の `it` に昇格済み。
-- [x] review 前に `npm run typecheck`、`npm run lint`、targeted `npx --no-install vitest run tests/relation-graph.test.ts` が green。
+- [x] review 前に `bun run typecheck`、`bun run lint`、targeted `bun run vitest run tests/relation-graph.test.ts` が green。
 - [x] PLAN-REVERSE-32 (relation graph fullback) に L7-36 merge declaration がある。

@@ -20,24 +20,24 @@ review_evidence:
     scope: "P2/P7 runtime: tick (hybrid 自己評価 fail-close)/job-queue (BEGIN IMMEDIATE 二重 claim 回避)/loop-store (json I/O)/memory-store (jsonl 2 層永続, isSecretLike reject)/cli memory。Codex(worker) 実装、Claude(reviewer) が job-queue 排他・tick fail-close・secret reject・active/superseded 算出を精読確認。U-ORCH-004/006 + memory-store Red→Green、9 oracle 全 Green。harness.db 分析投影/observability doctor gate/asset-drift silo 除去は P9 carry。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/orchestration tests/memory"
-        runner: node
+        command: "bun run vitest run tests/orchestration tests/memory"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T17:55:00+09:00"
         evidence_path: tests/orchestration/orchestration.test.ts
         output_digest: "sha256:27d21f17db9adbeac47bd7d1894214c45c679ef657d7a5ddc9e06ab55a39ab1c"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/memory"
-        runner: node
+        command: "bun run vitest run tests/memory"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T17:55:00+09:00"
         evidence_path: tests/memory/memory-store.test.ts
         output_digest: "sha256:bb7378891f56252325adb44a34ed2e36aa0cbc9aae1a7d11bbcfab0796edb868"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28T17:55:00+09:00"

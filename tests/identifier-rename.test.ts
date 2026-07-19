@@ -673,7 +673,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "targeted-regression",
-            command: "npx --no-install vitest run tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+            command:
+              "npx --no-install vitest run tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
             writePolicy: "no-write",
             sourceCheckedAt: "2026-07-02",
             adoptionDecision: "adopt-targeted-regression-before-cutover-approval-review",
@@ -687,14 +688,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
-            command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
             writePolicy: "no-write",
             adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
             workflowRouteImpact: expect.stringContaining("does not authorize apply"),
           }),
           expect.objectContaining({
             phase: "post-cutover-consumer-setup-smoke",
-            command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
             writePolicy: "no-write",
             expected: expect.stringContaining("helix setup project dry-run smoke"),
             evidence: expect.stringContaining("postCutoverConsumerSetupPreview"),
@@ -744,7 +747,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             row.phase === "current-dist-smoke"
               ? {
                   ...row,
-                  command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+                  command:
+                    "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
                 }
               : row,
           ),
@@ -863,7 +867,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             id: "cutover-rb-03",
             phase: "state-backup-restore-drill",
-            command: "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
           }),
           expect.objectContaining({
             id: "cutover-rb-02a",
@@ -875,7 +880,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             id: "cutover-rb-05",
-            command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
             passCriteria: expect.stringContaining("post-cutover consumer setup smoke"),
           }),
           expect.objectContaining({
@@ -958,7 +964,9 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.objectContaining({
             phase: "doctor-status-completion",
-            currentNoWriteProxyCommand: expect.stringContaining("npx --no-install tsx src/cli.ts doctor --json"),
+            currentNoWriteProxyCommand: expect.stringContaining(
+              "npx --no-install tsx src/cli.ts doctor --json",
+            ),
             rollbackTrigger: expect.stringContaining("doctor red"),
           }),
           expect.objectContaining({
@@ -1407,7 +1415,9 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.objectContaining({
             phase: "doctor-status-completion",
-            currentNoWriteProxyCommand: expect.stringContaining("npx --no-install tsx src/cli.ts doctor --json"),
+            currentNoWriteProxyCommand: expect.stringContaining(
+              "npx --no-install tsx src/cli.ts doctor --json",
+            ),
             rollbackTrigger: expect.stringContaining("doctor red"),
           }),
         ]),
@@ -2046,7 +2056,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
-            command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
             writePolicy: "no-write",
             adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
           }),
@@ -2149,13 +2160,15 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.objectContaining({
             phase: "codemod-preview",
-            command: "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
             description: expect.stringContaining("preview legacy identifier residuals"),
             writesRepo: false,
           }),
           expect.objectContaining({
             phase: "renamed-binary-smoke-preview",
-            command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+            command:
+              "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
             description: expect.stringContaining("after approval"),
             writesRepo: false,
           }),
@@ -2213,8 +2226,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         },
         renamedBinaryPreview: {
           path: "dist/helix",
-          smokeCommandAfterApproval:
-            "npm run build && node dist/helix.js doctor",
+          smokeCommandAfterApproval: "npm run build && node dist/helix.js doctor",
         },
         postCutoverConsumerSetupPreview: {
           commandAfterApproval:
@@ -2222,7 +2234,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expected:
             "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
           evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json",
-          currentNoWriteProxyCommand: "npx --no-install tsx src/cli.ts setup project --dry-run --json",
+          currentNoWriteProxyCommand:
+            "npx --no-install tsx src/cli.ts setup project --dry-run --json",
         },
       });
       expect(distSmokePayload.blockedUntil).toEqual(
@@ -2415,7 +2428,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         postCutoverConsumerSetupPreview: {
           commandAfterApproval:
             "npm run build && node dist/helix.js setup project --dry-run --json",
-          currentNoWriteProxyCommand: "npx --no-install tsx src/cli.ts setup project --dry-run --json",
+          currentNoWriteProxyCommand:
+            "npx --no-install tsx src/cli.ts setup project --dry-run --json",
         },
       });
     } finally {

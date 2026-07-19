@@ -59,24 +59,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/projection-writer.test.ts tests/db-projection-coverage.test.ts tests/impl-plan-trace.test.ts"
-        runner: node
+        command: "bun run vitest run tests/projection-writer.test.ts tests/db-projection-coverage.test.ts tests/impl-plan-trace.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T02:53:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T02:53:00+09:00"
         evidence_path: src/state-db/projection-writer.ts
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T02:53:00+09:00"

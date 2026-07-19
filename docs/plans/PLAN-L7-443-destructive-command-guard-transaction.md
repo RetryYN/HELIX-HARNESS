@@ -46,7 +46,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/guard-override-transaction.test.ts tests/work-guard.test.ts tests/hook-contract.test.ts --reporter=dot"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T03:54:25+09:00"
@@ -63,7 +63,7 @@ review_evidence:
     green_commands:
       - kind: integration_test
         command: "for i in $(seq 1 30); do bunx vitest run tests/git-command-guard.test.ts -t 'allows at most one of two competing processes' >/dev/null || exit 1; done; echo CAS_STRESS_GREEN=30"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T03:12:00+09:00"

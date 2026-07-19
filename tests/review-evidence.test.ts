@@ -33,6 +33,58 @@ const technicalCommand = {
 };
 
 describe("green command evidence (IMP-108)", () => {
+  it("U-GREENDEF-000: retirement前のBun receiptは不変保持し、retirement後の新規Bun evidenceは拒否する", () => {
+    const historical = analyzeReviewEvidence([
+      plan({
+        updated: "2026-07-18",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "approve",
+            reviewed_at: "2026-07-18T12:00:00Z",
+            tests_green_at: "2026-07-18T12:00:00Z",
+            green_commands: [
+              {
+                ...technicalCommand,
+                command: "bun test tests/review-evidence.test.ts",
+                runner: "bun",
+                completed_at: "2026-07-18T12:00:00Z",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+    expect(historical.greenCommandViolations).toEqual([]);
+
+    const newEvidence = analyzeReviewEvidence([
+      plan({
+        updated: "2026-07-19",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            verdict: "approve",
+            reviewed_at: "2026-07-19T12:00:00+09:00",
+            tests_green_at: "2026-07-19T12:00:00+09:00",
+            green_commands: [
+              {
+                ...technicalCommand,
+                command: "bun test tests/review-evidence.test.ts",
+                runner: "bun",
+                completed_at: "2026-07-19T12:00:00+09:00",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+    expect(newEvidence.greenCommandViolations).toEqual([
+      { plan_id: "PLAN-X", reason: "retired_bun_runner" },
+    ]);
+  });
+
   it("U-GREENDEF-001: legacy timestamp-only review evidence remains valid before enforcement", () => {
     const r = analyzeReviewEvidence([
       plan({

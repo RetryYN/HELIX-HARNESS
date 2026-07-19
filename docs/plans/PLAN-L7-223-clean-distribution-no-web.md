@@ -55,32 +55,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:23:04+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: smoke
-        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:23:04+09:00"
         evidence_path: tests/distribution-acceptance.test.ts
         output_digest: "sha256:3c11dda19ff144068769244a9dd28f02ff0c06328a98a1b9a354d5879b80ae5c"
       - kind: smoke
-        command: "npm test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts tests/web.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:23:04+09:00"
         evidence_path: tests/web.test.ts
         output_digest: "sha256:5a3fd2544c6bfa21ea4f0b57c63e9601e9d53dc4b5162b32e97bda1e248a5352"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T10:23:04+09:00"

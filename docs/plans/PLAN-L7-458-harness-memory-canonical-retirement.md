@@ -34,8 +34,8 @@ review_evidence:
     verdict: pass
     scope: "harness memory 39件の正本化・退役authority・worker runtime 6件の要求追突・Bun/Node cutover境界を独立再監査。Blocker/High 0。Git HEAD/blobとのauthority結合は将来改善のMedium。"
     green_commands:
-      - { kind: unit_test, command: "npm test tests/digest.test.ts tests/design-language.test.ts tests/memory/memory-v2.test.ts tests/memory/memory-store.test.ts tests/harness-memory-reconciliation-binding.test.ts tests/semantic-frontier-consistency.test.ts tests/goal-evidence-audit.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-18T19:12:00Z", evidence_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md, output_digest: "sha256:f4e2bc7486ed9ef6d5fa7115661b3a23295482574ca108ddff2a0e9290511c51" }
-      - { kind: typecheck, command: "npx --no-install tsc --noEmit", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-18T19:12:00Z", evidence_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
+      - { kind: unit_test, command: "bun test tests/digest.test.ts tests/design-language.test.ts tests/memory/memory-v2.test.ts tests/memory/memory-store.test.ts tests/harness-memory-reconciliation-binding.test.ts tests/semantic-frontier-consistency.test.ts tests/goal-evidence-audit.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-18T19:12:00Z", evidence_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md, output_digest: "sha256:f4e2bc7486ed9ef6d5fa7115661b3a23295482574ca108ddff2a0e9290511c51" }
+      - { kind: typecheck, command: "bun run tsc --noEmit", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-18T19:12:00Z", evidence_path: docs/governance/harness-memory-reconciliation-audit-2026-07-19.md, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
 agent_slots:
   - role: se
     slot_label: "SE — fenced retire API、CLI、legacy adapter統合"

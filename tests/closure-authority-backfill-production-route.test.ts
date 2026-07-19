@@ -122,7 +122,9 @@ function productionFixture() {
     head,
     "npx",
     JSON.stringify(["--no-install", "vitest", "run", testPath, "--reporter=json"]),
-    digest(`closure-command.v1\0${head}\0test\0npx\0--no-install\0vitest\0run\0${testPath}\0--reporter=json`),
+    digest(
+      `closure-command.v1\0${head}\0test\0npx\0--no-install\0vitest\0run\0${testPath}\0--reporter=json`,
+    ),
     0,
     null,
     0,
@@ -404,11 +406,15 @@ describe("closure authority production route", () => {
 
   it("U-CABF-016: [PLAN-L7-436-closure-authority-production-route/U-CABF-016] CLI必須optionと単一JSON契約を登録する", () => {
     const fixture = productionFixture();
-    const missing = spawnSync("npx", ["--no-install", "tsx", cliPath, "closure", "authority-backfill", "--dry-run"], {
-      cwd: fixture.root,
-      encoding: "utf8",
-      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-    });
+    const missing = spawnSync(
+      "npx",
+      ["--no-install", "tsx", cliPath, "closure", "authority-backfill", "--dry-run"],
+      {
+        cwd: fixture.root,
+        encoding: "utf8",
+        env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+      },
+    );
     expect(missing).toMatchObject({ status: 2, stdout: "" });
     expect(missing.stderr).toContain("are required");
 

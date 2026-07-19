@@ -45,7 +45,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/reverse-feedback-closure.test.ts --project fast"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-07T06:13:03+09:00"

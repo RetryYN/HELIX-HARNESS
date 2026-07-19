@@ -50,72 +50,72 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: tests/state-db.test.ts
         output_digest: "sha256:bfb3698fc15d79cd071c389e1b2cd1c805cd8e561526bb26eeed839bb829d587"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: tests/db-projection-ingestion.test.ts
         output_digest: "sha256:f8473f1164e98f02ca1d0e825386dae7504dd29580edd87fed3a86d17c2df15b"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: src/schema/harness-db-catalog.ts
         output_digest: "sha256:81f4c66394128721249f900d053d0c6e377289f91069bde588f812224b69ff2c"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: src/schema/harness-db-tables-core.ts
         output_digest: "sha256:04157ef889e9c9acd14c57f26dfb8101347f8198eb2625f35a02b24a70c6c1c5"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: src/schema/harness-db-tables-graph.ts
         output_digest: "sha256:bf52681a3595d148483c2778a79bb20aabd9b95b7c14d1983ce830a4d2828937"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: src/schema/harness-db-tables-evaluation.ts
         output_digest: "sha256:6a7998736d30a0ccbc43cb997655d357d4a177096f63be2a16e822f18c4149c7"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\state-db.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T21:53:34+09:00"
         evidence_path: src/schema/harness-db-indexes.ts
         output_digest: "sha256:3a3cd34a0ed9e64491d936054634d2a1992d814cc37f650714709cc0837a93a9"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:53:33+09:00"
         evidence_path: src/schema/harness-db-table-builders.ts
         output_digest: "sha256:b84c3c8c379c25828716c8749efae34a7614f1405dd1305077377b30bc17d6d2"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T21:53:22+09:00"

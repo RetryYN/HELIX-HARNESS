@@ -57,16 +57,16 @@ review_evidence:
     scope: "DISCOVERY-08 (forward-convergence) / DISCOVERY-09 (version-up) の confirmed poc → Forward/governance 正本 back-merge fullback (IMP-064)。設計は別 runtime (Codex gpt-5.5, role=tl) が APPROVE-WITH-CHANGES (証跡 .helix/review/cross-review-versionup-and-s4-failclose.md、Critical 反映済)。back-merge 後 doctor exit 0 (readability/rule-drift/doc-consistency/scrum-reverse/forward-convergence/forward-convergence-audit 全 green)。"
     green_commands:
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor (S4 back-merge 後: readability/rule-drift/doc-consistency/scrum-reverse/forward-convergence green)"
-        runner: node
+        command: "bun src/cli.ts doctor (S4 back-merge 後: readability/rule-drift/doc-consistency/scrum-reverse/forward-convergence green)"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"
         evidence_path: docs/process/modes/version-up.md
         output_digest: "sha256:a2be76547fa5120719aafcbd12f5acb6c7e250fa0f3ae88a1a3693fb87ecc5a2"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/forward-convergence.test.ts (version-up parked + fail-close + legacy audit)"
-        runner: node
+        command: "bunx vitest run tests/forward-convergence.test.ts (version-up parked + fail-close + legacy audit)"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"

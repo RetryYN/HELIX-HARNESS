@@ -1069,7 +1069,10 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "noPullRequestTarget=false")).toBe(true);
     expect(hasDoctorMessage(result.messages, "tokenWrite=true")).toBe(true);
     expect(
-      hasDoctorMessage(result.messages, "missingRuns=npm run helix -- setup project --dry-run --json"),
+      hasDoctorMessage(
+        result.messages,
+        "missingRuns=npm run helix -- setup project --dry-run --json",
+      ),
     ).toBe(true);
   });
 

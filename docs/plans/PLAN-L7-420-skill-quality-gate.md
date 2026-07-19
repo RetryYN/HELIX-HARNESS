@@ -56,16 +56,16 @@ review_evidence:
     reviewer_model: gpt-5.6
     green_commands:
       - kind: unit_test
-        command: "npm test tests/skill-quality.test.ts tests/skill-scaffold.test.ts tests/skill-scaffold-cli.test.ts"
-        runner: node
+        command: "bun test tests/skill-quality.test.ts tests/skill-scaffold.test.ts tests/skill-scaffold-cli.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T21:38:43+09:00"
         evidence_path: tests/skill-quality.test.ts
         output_digest: "sha256:9091d36e22a565e720dc624e43d02e34ed3d0d4766a13326304b1a97471e510c"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bunx tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T21:38:43+09:00"

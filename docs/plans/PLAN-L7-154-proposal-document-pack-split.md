@@ -44,24 +44,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\task-classify.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\task-classify.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T17:28:43+09:00"
         evidence_path: tests/task-classify.test.ts
         output_digest: "sha256:5f3b411831eaf5df7f40ac95cce1623fd7f47b85ebc2ff6012b53b5610dd519d"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:28:43+09:00"
         evidence_path: src/task/proposal-document-pack-types.ts
         output_digest: "sha256:e2c59a540a7b3a5e9cb4ebff4c670d15890c5e47438c6e39712ce8d0c556ce03"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T17:29:00+09:00"
@@ -89,5 +89,5 @@ document pack の type/helper 定義を 2 つの document pack catalog group か
 ## 受入条件
 
 - Proposal document coverage behavior は変更しない。
-- `npx --no-install vitest run tests\task-classify.test.ts` が pass する。
-- `npm run typecheck`、`npm run lint`、DB rebuild、doctor が pass する。
+- `bun run vitest run tests\task-classify.test.ts` が pass する。
+- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が pass する。

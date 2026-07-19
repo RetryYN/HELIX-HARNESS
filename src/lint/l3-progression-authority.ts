@@ -58,7 +58,7 @@ export const L3_PROGRESSION_BLOCKER_PATHS = [
   "docs/process/README.md",
   "docs/process/forward/L00-L06-design-phase.md",
   "docs/process/forward/overview.md",
-  "docs/process/gates.md"
+  "docs/process/gates.md",
 ] as const;
 
 export type L3ProgressionAuthorityFinding = {
@@ -79,6 +79,7 @@ export const verifyL3ProgressionAuthority = (): L3ProgressionAuthorityFinding[] 
   }
   return findings;
 };
+
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { L3_PROGRESSION_REVIEWED_DIGESTS } from "./l3-progression-reviewed-digests";

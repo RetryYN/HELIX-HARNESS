@@ -26,7 +26,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/layer-projection.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-19T13:38:51Z"

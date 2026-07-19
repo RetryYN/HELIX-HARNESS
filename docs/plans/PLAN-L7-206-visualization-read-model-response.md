@@ -57,16 +57,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/visualization-read-model.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun run vitest run tests/visualization-read-model.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T03:20:00+09:00"
         evidence_path: tests/visualization-read-model.test.ts
         output_digest: "sha256:d8250da81a45567b00e32b8a41a71c30d0cede427ed1726d156db17cf2232516"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:20:00+09:00"

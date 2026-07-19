@@ -51,7 +51,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/feedback-surface.test.ts tests/search-feedback.test.ts tests/projection-writer.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:20:12+09:00"

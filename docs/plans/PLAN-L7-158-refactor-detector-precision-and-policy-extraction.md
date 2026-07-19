@@ -52,64 +52,64 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\projection-writer.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\projection-writer.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T18:23:38+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\cli.test.ts tests\\agent-guard.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\cli.test.ts tests\\agent-guard.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T18:43:35+09:00"
         evidence_path: tests/cli.test.ts
         output_digest: "sha256:30f2d9a937ea941b48a55d82cc9a03120a96a23c66df5c3644b206901f209b13"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\cli.test.ts tests\\agent-guard.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\cli.test.ts tests\\agent-guard.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T18:43:35+09:00"
         evidence_path: tests/agent-guard.test.ts
         output_digest: "sha256:2e77132180a05f588c6225cc5f6af92bdc87624b59445edb8e71a3a158f7bac2"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T18:23:31+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T18:23:31+09:00"
         evidence_path: tests/agent-guard.test.ts
         output_digest: "sha256:2e77132180a05f588c6225cc5f6af92bdc87624b59445edb8e71a3a158f7bac2"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T18:23:31+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T18:24:17+09:00"
         evidence_path: src/state-db/refactor-candidates.ts
         output_digest: "sha256:0e270c1572d46850fe94dd43359a38c04b75ecc7b23a62cf8bf983f74c8f601a"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T18:24:02+09:00"

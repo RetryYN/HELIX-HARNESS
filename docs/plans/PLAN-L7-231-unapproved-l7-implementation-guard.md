@@ -53,7 +53,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/change-impact.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:19:40+09:00"

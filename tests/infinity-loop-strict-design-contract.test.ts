@@ -898,9 +898,8 @@ describe("Infinity Loop strict design contract", () => {
       "utf8",
     );
     for (const requirementId of ["HIL-BR-14", "HIL-FR-16", "HIL-FR-21"] as const) {
-      const sourceLine = l1
-        .split("\n")
-        .find((line) => line.startsWith(`| **${requirementId}** |`)) ?? "";
+      const sourceLine =
+        l1.split("\n").find((line) => line.startsWith(`| **${requirementId}** |`)) ?? "";
       const text = sourceLine.match(/^\| \*\*[^|]+\*\* \| (.*) \|$/)?.[1] ?? "";
       const ledgerLine = requirementLedger
         .split("\n")
@@ -917,14 +916,18 @@ describe("Infinity Loop strict design contract", () => {
 
 describe("Infinity Loop requirement-set consistency", () => {
   const ids = (path: string) =>
-    [...readFileSync(path, "utf8").matchAll(/^\| \*\*(HIL-(?:BR|FR|TR|NFR)-\d{2})\*\* \|/gm)]
-      .map((match) => match[1]);
+    [...readFileSync(path, "utf8").matchAll(/^\| \*\*(HIL-(?:BR|FR|TR|NFR)-\d{2})\*\* \|/gm)].map(
+      (match) => match[1],
+    );
   const ledgerIds = (path: string) =>
-    [...readFileSync(path, "utf8").matchAll(/^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|/gm)]
-      .map((match) => match[1]);
+    [...readFileSync(path, "utf8").matchAll(/^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|/gm)].map(
+      (match) => match[1],
+    );
 
   it("keeps all current ledgers equal to the 153-ID L1 set", () => {
-    const expected = ids("docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md").sort();
+    const expected = ids(
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    ).sort();
     expect(expected).toHaveLength(153);
     expect(new Set(expected).size).toBe(153);
     for (const path of [
@@ -948,16 +951,22 @@ describe("Infinity Loop requirement-set consistency", () => {
       "docs/governance/infinity-loop-requirement-definition-ledger.md",
       "utf8",
     );
-    const rows = [...definition.matchAll(
-      /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| \d+ \| `[^`]+:(\d+)` \| `sha256:([0-9a-f]{64})`/gm,
-    )];
+    const rows = [
+      ...definition.matchAll(
+        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| \d+ \| `[^`]+:(\d+)` \| `sha256:([0-9a-f]{64})`/gm,
+      ),
+    ];
     expect(rows).toHaveLength(153);
     for (const row of rows) {
       const source = current.get(row[1]);
       expect(source, row[1]).toBeDefined();
       expect(Number(row[2]), `${row[1]} line`).toBe(source?.line);
-      expect(createHash("sha256").update(source?.statement ?? "").digest("hex"), `${row[1]} digest`)
-        .toBe(row[3]);
+      expect(
+        createHash("sha256")
+          .update(source?.statement ?? "")
+          .digest("hex"),
+        `${row[1]} digest`,
+      ).toBe(row[3]);
     }
   });
 
@@ -975,19 +984,23 @@ describe("Infinity Loop requirement-set consistency", () => {
       "utf8",
     );
     const definitionComponents = new Map(
-      [...definition.matchAll(
-        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| \d+ \|[^\n]*?\| (HIA-(?:BR|FR|TR|NFR)-\d{3}) \| ([^|]+?) \| (?:business|functional|technical|nonfunctional)-requirement\.v1 \|/gm,
-      )].map((match) => [match[1], `${match[2]}|${match[3].trim()}`]),
+      [
+        ...definition.matchAll(
+          /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| \d+ \|[^\n]*?\| (HIA-(?:BR|FR|TR|NFR)-\d{3}) \| ([^|]+?) \| (?:business|functional|technical|nonfunctional)-requirement\.v1 \|/gm,
+        ),
+      ].map((match) => [match[1], `${match[2]}|${match[3].trim()}`]),
     );
     const assertionComponents = new Map(
-      [...assertions.matchAll(
-        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| (HIA-(?:BR|FR|TR|NFR)-\d{3}) \|[^\n]*?\| ([^|]+?) \| draft-defined \|/gm,
-      )].map((match) => [match[1], `${match[2]}|${match[3].trim()}`]),
+      [
+        ...assertions.matchAll(
+          /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| (HIA-(?:BR|FR|TR|NFR)-\d{3}) \|[^\n]*?\| ([^|]+?) \| draft-defined \|/gm,
+        ),
+      ].map((match) => [match[1], `${match[2]}|${match[3].trim()}`]),
     );
     const coverageComponents = new Map(
-      [...coverage.matchAll(
-        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| ([^|]+?) \| HOT-HIL-/gm,
-      )].map((match) => [match[1], match[2].trim()]),
+      [...coverage.matchAll(/^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \| ([^|]+?) \| HOT-HIL-/gm)].map(
+        (match) => [match[1], match[2].trim()],
+      ),
     );
     expect(definitionComponents.size).toBe(153);
     expect(assertionComponents.size).toBe(153);
@@ -1078,12 +1091,14 @@ describe("Infinity Loop requirement-set consistency", () => {
       "docs/governance/infinity-loop-requirement-authority-binding.md",
       "utf8",
     );
-    const bindings = [...definition.matchAll(
-      /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|[^\n]*?\| current:(RAS-HIL-\d{2}) \|/gm,
-    )];
-    const sets = [...authority.matchAll(
-      /^\| (RAS-HIL-\d{2}) \| HR-FR-HIL-\d{2} \|[^\n]*\| current \|$/gm,
-    )].map((match) => match[1]);
+    const bindings = [
+      ...definition.matchAll(
+        /^\| (HIL-(?:BR|FR|TR|NFR)-\d{2}) \|[^\n]*?\| current:(RAS-HIL-\d{2}) \|/gm,
+      ),
+    ];
+    const sets = [
+      ...authority.matchAll(/^\| (RAS-HIL-\d{2}) \| HR-FR-HIL-\d{2} \|[^\n]*\| current \|$/gm),
+    ].map((match) => match[1]);
     expect(bindings).toHaveLength(153);
     expect(new Set(bindings.map((match) => match[1])).size).toBe(153);
     expect(sets).toHaveLength(24);
@@ -1092,7 +1107,10 @@ describe("Infinity Loop requirement-set consistency", () => {
   });
 
   it("preserves reserved Authoring IDs and the memory-derived worker policy", () => {
-    const l1 = readFileSync("docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md", "utf8");
+    const l1 = readFileSync(
+      "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "utf8",
+    );
     expect(l1).toMatch(/HIL-BR-26.*Authoring Admission Transaction/);
     expect(l1).toMatch(/HIL-FR-51.*Authoring Admission Engine/);
     expect(l1).toMatch(/HIL-FR-52.*Atomic Canonicalization Transaction/);
@@ -1122,9 +1140,12 @@ describe("Infinity Loop requirement-set consistency", () => {
     expect(definition).toMatch(/source authority current \| 153\/153/);
     expect(definition).toMatch(/active definition \| 153\/153/);
     expect(definition).toMatch(/frozen definition \| 0\/153/);
-    expect([...definition.matchAll(/定義active・freeze待ち（active-freeze-pending）/g)])
-      .toHaveLength(153);
-    expect(definition).toMatch(/independent_review: docs\/governance\/infinity-loop-requirements-definition-review-2026-07-19\.md/);
+    expect([
+      ...definition.matchAll(/定義active・freeze待ち（active-freeze-pending）/g),
+    ]).toHaveLength(153);
+    expect(definition).toMatch(
+      /independent_review: docs\/governance\/infinity-loop-requirements-definition-review-2026-07-19\.md/,
+    );
     expect(operational).toMatch(/HIL-BR-01\.\.33/);
     expect(operational).toMatch(/HIL-FR-01\.\.69/);
     expect(operational).toMatch(/HIL-NFR-01\.\.40/);

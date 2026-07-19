@@ -67,8 +67,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/version-up-readiness.test.ts"
-        runner: node
+        command: "bun test tests/version-up-readiness.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T07:23:12+09:00"

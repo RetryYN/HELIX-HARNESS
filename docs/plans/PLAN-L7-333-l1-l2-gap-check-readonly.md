@@ -54,40 +54,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/l1-l2-gap-check.test.ts tests/l1-l2-consistency.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/l1-l2-gap-check.test.ts tests/l1-l2-consistency.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"
         evidence_path: tests/l1-l2-gap-check.test.ts
         output_digest: "sha256:f3435b4f0c1127cf10ef330910081950421ebd31bfbf9d2510a11510570b9132"
       - kind: unit_test
-        command: "npm test tests/cli-surface.test.ts -t \"U-L1L2-009\" --timeout 300000"
-        runner: node
+        command: "bun test tests/cli-surface.test.ts -t \"U-L1L2-009\" --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:2a1bea12ee17126c4d9fd5886cf2119332c43f373ecd2cad09adc8bd63cbd23d"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"
         evidence_path: src/lint/l1-l2-gap-check.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts l1-l2 gap-check --json"
-        runner: node
+        command: "bun src/cli.ts l1-l2 gap-check --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:52465f53377f16e84bcf3b3f3f7dc9d58e94f6f593dcd29a10d733ae53bee1de"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-333-l1-l2-gap-check-readonly.md --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint docs/plans/PLAN-L7-333-l1-l2-gap-check-readonly.md --gate governance"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T00:50:55+09:00"

@@ -131,16 +131,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/allowlist-sync.test.ts tests/judgment-core-coverage.test.ts tests/doctor.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/allowlist-sync.test.ts tests/judgment-core-coverage.test.ts tests/doctor.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T01:25:35+09:00"
         evidence_path: tests/judgment-core-coverage.test.ts
         output_digest: "sha256:2683a5fe6ab032ea257282cea94fabe2bb9b209ecfd5b2bfe3afc53ba31f5126"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-06T01:25:35+09:00"
@@ -156,24 +156,24 @@ review_evidence:
     reviewer_model: claude-sonnet-5
     green_commands:
       - kind: unit_test
-        command: "npm test tests/judgment-core-coverage.test.ts tests/allowlist-sync.test.ts"
-        runner: node
+        command: "bun test tests/judgment-core-coverage.test.ts tests/allowlist-sync.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T01:53:42+09:00"
         evidence_path: tests/judgment-core-coverage.test.ts
         output_digest: "sha256:0b828d5dfd4b4f366b39d46c790e8f07949f34c0ada3786c9edc3de0e49fcb0e"
       - kind: unit_test
-        command: "npm test tests/plan-artifact-existence.test.ts tests/plan-completion-drift.test.ts tests/merged-plan-status.test.ts"
-        runner: node
+        command: "bun test tests/plan-artifact-existence.test.ts tests/plan-completion-drift.test.ts tests/merged-plan-status.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T01:53:42+09:00"
         evidence_path: tests/plan-artifact-existence.test.ts
         output_digest: "sha256:5658843d7bd804a6244efef40fee7602c9bad283bf300faebbdbaf7bb527355f"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T01:53:42+09:00"
@@ -249,12 +249,12 @@ fail-close する。SSoT の内容は 2026-07 時点の一次情報（Anthropic 
 
 ## 受入条件
 - U-JUDG-001..005 / U-ALSYNC-001..006 が green であること
-  （検証コマンド: `npm test tests/judgment-core-coverage.test.ts tests/allowlist-sync.test.ts`）。
+  （検証コマンド: `bun test tests/judgment-core-coverage.test.ts tests/allowlist-sync.test.ts`）。
   実 repo 同期は U-JUDG-005 / U-ALSYNC-006 の real-repo regression で立証する
   （prose claim ではなく gate run）。
 - 共通化の behavior-invariant を既存 net（40 oracle green）で立証すること
-  （検証コマンド: `npm test tests/plan-artifact-existence.test.ts tests/plan-completion-drift.test.ts tests/merged-plan-status.test.ts`）。
-- `npm run typecheck` green。
+  （検証コマンド: `bun test tests/plan-artifact-existence.test.ts tests/plan-completion-drift.test.ts tests/merged-plan-status.test.ts`）。
+- `bun run typecheck` green。
 - `helix doctor` が `judgment-core-coverage - OK` / `allowlist-sync - OK` を表示し exit 0。
 - confirmed 昇格前に review evidence + green_commands（digest 付き）記録。
 

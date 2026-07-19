@@ -53,16 +53,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
-        runner: node
+        command: "bun run vitest run tests/plan-lint.test.ts tests/backfill-pairing.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:11:48+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:227aa9fdbe8ceb942b51ab3c9dd5c1f281cd1df115889d08916880286c5df627"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:11:48+09:00"
@@ -91,7 +91,7 @@ review_evidence:
 - design/governance/test-design artifact を `generates` に持つ新規 R4 fullback PLAN は通過する。
 - 2026-06-22 より前の legacy fullback debt は
   `reverse-fullback-backprop-audit-2026-06-22.md` に可視化されたまま、現行 doctor を壊さない。
-- `npm test tests/plan-lint.test.ts` が通過する。
-- `npm run typecheck` が通過する。
-- `npm run lint` が通過する。
-- `npx --no-install tsx src\cli.ts doctor` が通過する。
+- `bun test tests/plan-lint.test.ts` が通過する。
+- `bun run typecheck` が通過する。
+- `bun run lint` が通過する。
+- `bun run src\cli.ts doctor` が通過する。

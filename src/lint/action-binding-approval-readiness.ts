@@ -656,7 +656,8 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "npx --no-install vitest run tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
+      command:
+        "npx --no-install vitest run tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
       expected: "action-binding packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
       source: "HELIX action-binding regression oracle",

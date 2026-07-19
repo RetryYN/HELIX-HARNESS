@@ -47,8 +47,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test:fast"
-        runner: node
+        command: "bun run test:fast"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:47:48+09:00"

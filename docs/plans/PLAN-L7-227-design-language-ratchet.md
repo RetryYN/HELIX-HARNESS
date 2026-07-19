@@ -22,24 +22,24 @@ review_evidence:
     reviewer_model: gpt-5.5
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/design-language.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts"
-        runner: node
+        command: "bun run vitest run tests/design-language.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T04:40:00+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:f3e049ff2041c48c7c97ebba3018e589d99ead0139ab8e61cb92fe5db31a79fd"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T04:40:00+09:00"
         evidence_path: src/lint/design-language.ts
         output_digest: "sha256:bf3952366d4eac2233d6e3f017ffb7ad681b28da0f639e1660da00de1186de83"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T04:40:00+09:00"

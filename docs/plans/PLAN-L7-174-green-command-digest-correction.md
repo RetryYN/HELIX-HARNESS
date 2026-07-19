@@ -40,24 +40,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\green-command-digest.test.ts --reporter=dot"
-        runner: node
+        command: "bun run vitest run tests\\green-command-digest.test.ts --reporter=dot"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T22:34:00+09:00"
         evidence_path: tests/green-command-digest.test.ts
         output_digest: "sha256:0c2c2dd640f1908504899dd88b0f863377c4f94c743bd258b667862c3d606ff6"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T22:34:13+09:00"
         evidence_path: src/lint/green-command-digest.ts
         output_digest: "sha256:9e68209eead46fab25457e4ffee97d362a81d2c457120ebc3a88d301c97317d3"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T22:34:00+09:00"

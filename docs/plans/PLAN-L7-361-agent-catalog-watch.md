@@ -51,24 +51,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
-        runner: node
+        command: "bun run vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:16:48+09:00"
         evidence_path: tests/agent-catalog-watch.test.ts
         output_digest: "sha256:19104295c7cb615d72336559c5fb60a81b4d236b136068bda31db7f8e02aff28"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts audit agent-catalog --json"
-        runner: node
+        command: "bun src/cli.ts audit agent-catalog --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:14:37+09:00"
         evidence_path: src/runtime/agent-catalog-watch.ts
         output_digest: "sha256:f9a8225da9445b90e96ddf0dde846b4b4fc7c0689d9b11f74be553f89b7c1928"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T16:15:15+09:00"
@@ -105,6 +105,6 @@ capability と検証可能性だけを採用判断に使う。
 
 ## 検証予定
 
-- `npm test tests/cli-surface.test.ts --timeout 180000`
-- `npm run typecheck`
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-361-agent-catalog-watch.md`
+- `bun test tests/cli-surface.test.ts --timeout 180000`
+- `bun run typecheck`
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-361-agent-catalog-watch.md`

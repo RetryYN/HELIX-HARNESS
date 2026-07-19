@@ -20,24 +20,24 @@ review_evidence:
     scope: "純粋契約コア (canResume/evaluateStop/selectVerifier/classifyRecovery + writeMemory/listMemory/surfaceMemory) を Codex(worker) が実装、Claude(reviewer) が契約適合を独立レビュー(生成≠判断)。fail-close・自己評価禁止・secret reject(body 非 echo)・supersede・harness-only surface を確認。U-ORCH-001/002/003/005 + U-MEM-001/002/003 Red→Green。U-ORCH-004(tick)/U-ORCH-006(job-queue) は follow-up add-impl へ carry (it.todo 維持)。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/orchestration tests/memory"
-        runner: node
+        command: "bun run vitest run tests/orchestration tests/memory"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T16:58:00+09:00"
         evidence_path: tests/orchestration/orchestration.test.ts
         output_digest: "sha256:27d21f17db9adbeac47bd7d1894214c45c679ef657d7a5ddc9e06ab55a39ab1c"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/memory"
-        runner: node
+        command: "bun run vitest run tests/memory"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T16:58:00+09:00"
         evidence_path: tests/memory/memory.test.ts
         output_digest: "sha256:90f4a45ff76f85c33db90d1d022c6bcc7257ca001e1b0f14cb5c4080e6b00e5e"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-28T16:58:00+09:00"
@@ -118,7 +118,7 @@ Claude を cross-runtime reviewer**（生成≠判断、hybrid 分散で main bu
 
 - [x] 7 module 実装、U-ORCH-001/002/003/005 + U-MEM-001/002/003 が Red→Green。
 - [x] fail-close（未知 reason・欠落フィールド）/ 自己評価禁止（hybrid worker≠verifier）/ secret reject（body 非 echo）を契約どおり実装。
-- [x] `npx --no-install vitest run tests/orchestration tests/memory` / `typecheck` / `biome` green、cross-runtime review 証跡（green_commands + 実 digest）。
+- [x] `bun run vitest run tests/orchestration tests/memory` / `typecheck` / `biome` green、cross-runtime review 証跡（green_commands + 実 digest）。
 - [x] Reverse(PLAN-REVERSE-175) の L3 要件 back-fill (HR-BR-07/HR-BR-12/HR-NFR-03) と両 confirm（pair-freeze 完了、IMP-043）。
 
 ## §4 carry（follow-up add-impl PLAN-L7-176 予定）

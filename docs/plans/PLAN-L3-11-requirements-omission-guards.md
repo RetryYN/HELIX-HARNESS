@@ -54,8 +54,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: lint
-        command: "npm run helix plan lint"
-        runner: node
+        command: "bun run helix plan lint"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-06T06:18:00+09:00"

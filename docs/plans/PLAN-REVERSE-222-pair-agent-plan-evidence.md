@@ -64,16 +64,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/pair-agent.test.ts --test-name-pattern \"persists pair-agent plan evidence|adapter plans in text\""
-        runner: node
+        command: "bun test tests/pair-agent.test.ts --test-name-pattern \"persists pair-agent plan evidence|adapter plans in text\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:08:25+09:00"
         evidence_path: tests/pair-agent.test.ts
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: unit_test
-        command: "npm test tests/projection-writer.test.ts --test-name-pattern \"projects pair-agent plan evidence\""
-        runner: node
+        command: "bun test tests/projection-writer.test.ts --test-name-pattern \"projects pair-agent plan evidence\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T10:08:25+09:00"

@@ -53,8 +53,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/vmodel-pair.test.ts tests/design-language.test.ts tests/plan-lint.test.ts tests/review-evidence.test.ts --reporter=dot && npx --no-install tsx src/cli.ts plan lint && git diff --check"
-        runner: node
+        command: "bun run vitest run tests/vmodel-pair.test.ts tests/design-language.test.ts tests/plan-lint.test.ts tests/review-evidence.test.ts --reporter=dot && bun src/cli.ts plan lint && git diff --check"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T06:30:58+09:00"
@@ -123,7 +123,7 @@ review_evidence:
 
 - L6 設計 doc が §1 の 1..6 を撤去 slice 単位の oracle 付きで規定し、pair test-design と 1:1。
 - rule-drift gate が設計した変更セット適用後も green であることを oracle として明記。
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-61-handover-retirement.md` green。
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L6-61-handover-retirement.md` green。
 - 撤去実行は本 PLAN の範囲外（後続 L7 PLAN + PO 承認後）。
 - Reverse-344、L6-62/63/64がterminal statusかつ各green evidence digestを持ち、本L6 pairのR4 freezeが
   greenである場合だけ後続L7 PLANを起票できる。自然文scheduleやfile存在だけでprecondition充足にしない。

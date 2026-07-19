@@ -48,24 +48,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/tool-augmentation-registry.test.ts tests/change-package-delta-archive.test.ts tests/cross-repo-spec-store.test.ts tests/cli-surface.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/tool-augmentation-registry.test.ts tests/change-package-delta-archive.test.ts tests/cross-repo-spec-store.test.ts tests/cli-surface.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:15:55+09:00"
         evidence_path: tests/change-package-delta-archive.test.ts
         output_digest: "sha256:1b70ff4740b9706fb5deab3ae6d87dbd7922efa69c19d62d122c7bf0d6206b69"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T17:14:05+09:00"
         evidence_path: src/runtime/change-package-delta-archive.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "npx --no-install biome check src/runtime/tool-augmentation-registry.ts src/runtime/change-package-delta-archive.ts src/runtime/cross-repo-spec-store.ts tests/tool-augmentation-registry.test.ts tests/change-package-delta-archive.test.ts tests/cross-repo-spec-store.test.ts tests/cli-surface.test.ts src/cli.ts"
-        runner: node
+        command: "bunx biome check src/runtime/tool-augmentation-registry.ts src/runtime/change-package-delta-archive.ts src/runtime/cross-repo-spec-store.ts tests/tool-augmentation-registry.test.ts tests/change-package-delta-archive.test.ts tests/cross-repo-spec-store.test.ts tests/cli-surface.test.ts src/cli.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T17:14:05+09:00"
@@ -101,6 +101,6 @@ trace freeze、archive policy に従う change package validator へ変換する
 
 ## 検証予定
 
-- `npm test tests/change-package-delta-archive.test.ts --timeout 180000`
-- `npm run typecheck`
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-373-change-package-delta-archive.md`
+- `bun test tests/change-package-delta-archive.test.ts --timeout 180000`
+- `bun run typecheck`
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-373-change-package-delta-archive.md`

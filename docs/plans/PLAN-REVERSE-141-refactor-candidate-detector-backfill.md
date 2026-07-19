@@ -69,24 +69,24 @@ review_evidence:
     scope: "IMP-146 legacy debt 解消の disposition (L7-147 = Forward 集約 via Reverse back-fill) を別 runtime (Codex gpt-5.5, role=tl) が desk review。verdict=AGREE with minor corrections (証跡 .helix/review/cross-review-imp146-legacy-convergence.md): detector は L6/L7 descent 欠落の真陽性で local_impl_only でなく Forward 集約が正しい、back-fill 先は function-spec.md + L7-unit-test-design.md が適切、と支持。本 PLAN が L6 function-spec へ analyzeRefactorCandidates contract を descent + L7-147 を requires 参照 = forward-convergence converged。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/projection-writer.test.ts (refactor candidate detector 4 kind projection)"
-        runner: node
+        command: "bunx vitest run tests/projection-writer.test.ts (refactor candidate detector 4 kind projection)"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T16:15:00+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/forward-convergence.test.ts (L7-147 converged + allowlist 空化 + grandfather 機構注入)"
-        runner: node
+        command: "bunx vitest run tests/forward-convergence.test.ts (L7-147 converged + allowlist 空化 + grandfather 機構注入)"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T16:15:00+09:00"
         evidence_path: tests/forward-convergence.test.ts
         output_digest: "sha256:f069920038d511eb8f00e6aaa1fa6fa223062f237b21e88085e7ba8f13e8e9d5"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor (forward-convergence/forward-convergence-audit/plan-governance 含む full gate)"
-        runner: node
+        command: "bun src/cli.ts doctor (forward-convergence/forward-convergence-audit/plan-governance 含む full gate)"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-26T16:15:00+09:00"

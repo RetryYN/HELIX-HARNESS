@@ -20,7 +20,7 @@ review_evidence:
     verdict: pass
     scope: "typed digest contract、意味差inventory、L6/L8 Vペアのfreezeを独立reviewした。"
     green_commands:
-      - { kind: lint, command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-76-digest-canonicalization-authority.md", runner: node, scope: gate, exit_code: 0, completed_at: "2026-07-12T08:40:00Z", evidence_path: docs/plans/PLAN-L6-76-digest-canonicalization-authority.md, output_digest: "sha256:0d67734358b76c1f5016ec08b0babc3863baffb887f5fef7db5f1cbd97ea8285" }
+      - { kind: lint, command: "bun run src/cli.ts plan lint docs/plans/PLAN-L6-76-digest-canonicalization-authority.md", runner: bun, scope: gate, exit_code: 0, completed_at: "2026-07-12T08:40:00Z", evidence_path: docs/plans/PLAN-L6-76-digest-canonicalization-authority.md, output_digest: "sha256:0d67734358b76c1f5016ec08b0babc3863baffb887f5fef7db5f1cbd97ea8285" }
 parent_design: docs/design/harness/L5-detailed-design/internal-processing.md
 pair_artifact: docs/test-design/harness/digest-canonicalization-authority.md
 agent_slots: [{ role: se, slot_label: "SE - digest contract design" }, { role: qa, slot_label: "QA - V-pair review" }]

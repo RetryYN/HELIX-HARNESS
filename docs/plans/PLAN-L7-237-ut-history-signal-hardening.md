@@ -49,24 +49,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/workflow-contracts.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/workflow-contracts.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T09:45:13+09:00"
         evidence_path: tests/workflow-contracts.test.ts
         output_digest: "sha256:f40a16a765d4652dbce490bb137b04cb641561a4b2882f39e2228de3a4c71a7c"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T09:45:13+09:00"
         evidence_path: src/workflow/contracts.ts
         output_digest: "sha256:5ea59f0b32b7fbec6d400bd8f2bdc2a7fe0be70d73c3645c662c8de79f9d849c"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T09:45:13+09:00"
@@ -119,9 +119,9 @@ surface する。
 
 ## 3. 検証
 
-- `npm test tests/workflow-contracts.test.ts --timeout 180000`
-- `npx --no-install tsx src/cli.ts plan lint --gate governance`
-- `npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor`
+- `bun test tests/workflow-contracts.test.ts --timeout 180000`
+- `bun run src/cli.ts plan lint --gate governance`
+- `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor`
 
 ## 4. 完了条件
 

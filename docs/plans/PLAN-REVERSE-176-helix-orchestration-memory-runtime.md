@@ -23,8 +23,8 @@ review_evidence:
     scope: "PLAN-L7-176 runtime (tick/job-queue/memory file 永続+CLI) の実体から L3 要件 HR-BR-07R/HR-BR-12R/HR-NFR-03R を back-fill。受入 U-ORCH-004/006 + memory-store に 1:1。harness.db 投影は P9 carry 明示。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/orchestration tests/memory"
-        runner: node
+        command: "bun run vitest run tests/orchestration tests/memory"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28T17:55:00+09:00"

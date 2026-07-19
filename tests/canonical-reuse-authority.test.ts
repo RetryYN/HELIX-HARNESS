@@ -17,7 +17,11 @@ describe("downstream canonical reuse authority", () => {
     expect(() =>
       assertCanonicalReuseAllowed(`/workspace/HELIX-HARNESS/${CANONICAL_REUSE_BLOCKED_PATHS[0]}`),
     ).toThrow(/authority delta/);
-    expect(() => assertCanonicalReuseAllowed("docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md")).not.toThrow();
+    expect(() =>
+      assertCanonicalReuseAllowed(
+        "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      ),
+    ).not.toThrow();
   });
 
   it("pins the only release mapping to L1-L12 and the hybrid runtime", () => {
@@ -26,7 +30,9 @@ describe("downstream canonical reuse authority", () => {
       expect(authority).toContain(mapping);
     }
     expect(authority).toContain("Python semantic core + TypeScript/Node transactional boundary");
-    expect(authority).toContain("単なるstatus=confirmed/completed、旧テストgreen、marker追記だけでは解除しない");
+    expect(authority).toContain(
+      "単なるstatus=confirmed/completed、旧テストgreen、marker追記だけでは解除しない",
+    );
   });
 
   it("blocks targeted PLAN lint before an old active PLAN can be reused", () => {

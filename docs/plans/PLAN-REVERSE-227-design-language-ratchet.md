@@ -23,16 +23,16 @@ review_evidence:
     reviewer_model: gpt-5.5
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/design-language.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts"
-        runner: node
+        command: "bun run vitest run tests/design-language.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T04:40:00+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:f3e049ff2041c48c7c97ebba3018e589d99ead0139ab8e61cb92fe5db31a79fd"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T04:40:00+09:00"

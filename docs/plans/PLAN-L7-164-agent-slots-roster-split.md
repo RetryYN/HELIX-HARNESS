@@ -40,32 +40,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\agent-slots.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\agent-slots.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:26:25+09:00"
         evidence_path: tests/agent-slots.test.ts
         output_digest: "sha256:2c90f1df8bda38848baf626da364b9c5a4891e99834f56134c8ed6f452cef977"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\agent-slots.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\agent-slots.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:26:25+09:00"
         evidence_path: src/runtime/agent-slots.ts
         output_digest: "sha256:d1f4edb6684c79b5dcce88d2f6ba14c315b9575e448b9b599fbd04abf8c54172"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\agent-slots.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\agent-slots.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T20:26:25+09:00"
         evidence_path: src/runtime/agent-slots-roster.ts
         output_digest: "sha256:2ed9b18fb43b81f4b551db6e694a517bc46367a154b027b8487a7cf1165eee4e"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T20:26:37+09:00"

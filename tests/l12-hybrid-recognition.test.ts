@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
-  classifyRecognitionCandidate,
-  classifyRecognitionAuditDisposition,
   classifyFinalRecognitionDisposition,
+  classifyRecognitionAuditDisposition,
+  classifyRecognitionCandidate,
   classifyRecognitionReviewStatus,
   detectL12HybridRecognitionSignals,
   scanL12HybridRecognitionCandidates,
@@ -53,9 +53,12 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(186);
-    expect(plans.every((candidate) => candidate.documentStatus && candidate.documentStatus !== "missing"))
-      .toBe(true);
+    expect(plans).toHaveLength(571);
+    expect(
+      plans.every(
+        (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
+      ),
+    ).toBe(true);
   });
 
   it("separates explicitly labeled compatibility context from unresolved wording", () => {
@@ -67,7 +70,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(classifyRecognitionReviewStatus("current_authority_review", unresolved)).toBe(
       "unresolved",
     );
-    expect(classifyRecognitionReviewStatus("historical_context_review", unresolved)).toBe("unresolved");
+    expect(classifyRecognitionReviewStatus("historical_context_review", unresolved)).toBe(
+      "unresolved",
+    );
   });
 
   it("never upgrades path/status heuristics into a final semantic disposition", () => {
@@ -82,18 +87,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(414);
+    ).toHaveLength(469);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
       ),
-    ).toHaveLength(23);
+    ).toHaveLength(353);
   });
 
   it("treats only Bun-only PLAN command evidence as a false positive", () => {
-    const commandSignals = detectL12HybridRecognitionSignals(
-      "green command: bun test",
-    );
+    const commandSignals = detectL12HybridRecognitionSignals("green command: bun test");
     const targetSignals = detectL12HybridRecognitionSignals("target runtime is Bun core");
     expect(classifyRecognitionAuditDisposition("plan_review", commandSignals)).toBe(
       "false_positive_execution_command",
@@ -103,18 +106,18 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 443 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 828 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(443);
+    expect(candidates).toHaveLength(828);
     expect(counts).toEqual({
-      conflict: 337,
+      conflict: 346,
       compatibility_labeled: 22,
-      false_positive: 68,
+      false_positive: 444,
       historical: 16,
     });
   });
@@ -158,13 +161,14 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(106);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(482);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
     const cross = candidates.reduce<Record<string, Record<string, number>>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
-      const row = (acc[candidate.disposition] ??= {});
+      acc[candidate.disposition] ??= {};
+      const row = acc[candidate.disposition];
       row[finalDisposition] = (row[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
@@ -183,7 +187,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
         historical: 9,
       },
       compatibility_authority_review: { compatibility_labeled: 6 },
-      plan_review: { conflict: 152, false_positive: 34 },
+      plan_review: { conflict: 161, false_positive: 410 },
     });
   });
 });

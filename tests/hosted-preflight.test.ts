@@ -149,10 +149,14 @@ describe("HC-AC hosted/API preflight", () => {
   });
 
   it("HU-PILLAR-P2-03: guard preflight CLI exposes hosted preflight evidence in JSON", () => {
-    const result = spawnSync("npx", ["--no-install", "tsx", "src/cli.ts", "guard", "preflight", "--json"], {
-      cwd: process.cwd(),
-      encoding: "utf8",
-    });
+    const result = spawnSync(
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "guard", "preflight", "--json"],
+      {
+        cwd: process.cwd(),
+        encoding: "utf8",
+      },
+    );
     expect(result.status).toBe(0);
     const parsed = JSON.parse(result.stdout) as {
       adapterParity?: { kind?: string; hookCovered?: boolean; preflightRequired?: boolean };

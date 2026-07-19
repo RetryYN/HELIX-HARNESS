@@ -49,24 +49,24 @@ review_evidence:
     scope: "closure next-action ledger を incident_recovery_route の observed source に結合し、運用後スコープの未使用 evidence table を実際の read-model 判定へ接続した。"
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T19:49:05+09:00"
         evidence_path: src/state-db/current-location.ts
         output_digest: "sha256:c6bb331661969f4e9b2434caa396aa3c624291d64096d098f9470d5e430fe1fa"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/current-location.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/current-location.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T19:50:07+09:00"
         evidence_path: tests/current-location.test.ts
         output_digest: "sha256:2414e0ff5e5caaa4da6461084b62a67f749ee5fe29fc8c0647a3a912bde064c8"
       - kind: lint
-        command: "npx --no-install biome check src/state-db/current-location.ts tests/current-location.test.ts docs/design/harness/L6-function-design/function-spec.md docs/plans/PLAN-L7-400-operation-scope-ledger-observation.md"
-        runner: node
+        command: "bunx biome check src/state-db/current-location.ts tests/current-location.test.ts docs/design/harness/L6-function-design/function-spec.md docs/plans/PLAN-L7-400-operation-scope-ledger-observation.md"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T19:50:07+09:00"

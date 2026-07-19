@@ -52,16 +52,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
-        runner: node
+        command: "bun run vitest run tests/plan-lint.test.ts tests/improvement-backlog.test.ts tests/gate-confirm.test.ts tests/merged-plan-status.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:16:23+09:00"
         evidence_path: tests/improvement-backlog.test.ts
         output_digest: "sha256:e50d9080733a80eafd2463820e4d0e72d7ea2482e71459043e79b8ad2efa72ec"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:16:23+09:00"
@@ -89,7 +89,7 @@ improvement backlog に残り続けることを防ぐ。
 - classification fields を持たない lower-layer/backprop backlog row は fail する。
 - 6 つの fields をすべて持つ lower-layer/backprop backlog row は pass する。
 - 現行の `docs/improvement-backlog.md` に missing backprop classifications が 0 件である。
-- `npm test tests/improvement-backlog.test.ts` が pass する。
-- `npm run typecheck` が pass する。
-- `npm run lint` が pass する。
-- `npx --no-install tsx src\cli.ts doctor` が pass する。
+- `bun test tests/improvement-backlog.test.ts` が pass する。
+- `bun run typecheck` が pass する。
+- `bun run lint` が pass する。
+- `bun run src\cli.ts doctor` が pass する。

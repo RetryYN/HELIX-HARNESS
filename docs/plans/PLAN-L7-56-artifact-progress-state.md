@@ -65,16 +65,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\projection-writer.test.ts tests\\db-projection-ingestion.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\projection-writer.test.ts tests\\db-projection-ingestion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-23T19:44:07+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-23T19:44:07+09:00"
@@ -109,17 +109,17 @@ color contract は次の通り。
 
 ## 受入条件
 
-- `npm test tests/projection-writer.test.ts tests/db-projection-ingestion.test.ts` passes.
-- `npm run typecheck` passes.
-- `npm run lint` passes.
-- `npx --no-install tsx src/cli.ts db rebuild --json` populates `artifact_progress`.
-- `npx --no-install tsx src/cli.ts progress artifacts --json` returns rows with `red` / `yellow` / `green`,
+- `bun test tests/projection-writer.test.ts tests/db-projection-ingestion.test.ts` passes.
+- `bun run typecheck` passes.
+- `bun run lint` passes.
+- `bun run src/cli.ts db rebuild --json` populates `artifact_progress`.
+- `bun run src/cli.ts progress artifacts --json` returns rows with `red` / `yellow` / `green`,
   `passed_test_run_ids`, `dependency_check_run_id`, and `recovery_plan_ids` compatible fields.
 - FR-L1-51 が L1 functional requirements、screen trace、L3 carry、L4 function building block に存在する。
 - FR-L1-51 が L6 `function-spec.md` と `fr-unit-coverage.md` に存在する。
 - `physical-data.md` は color invariant を定義する。red は missing dependency/back-propagation、yellow は
   implemented/recovery/unverified、green は linked passing test run + dependency clear を示す。
-- `npx --no-install tsx src/cli.ts doctor` passes.
+- `bun run src/cli.ts doctor` passes.
 
 ## 備考
 

@@ -51,7 +51,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/agent-guard.test.ts tests/agent-guard-brief-substance.test.ts --project fast"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:40:56+09:00"

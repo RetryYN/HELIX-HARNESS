@@ -49,32 +49,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/routing-contracts.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/routing-contracts.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:05:00+09:00"
         evidence_path: tests/routing-contracts.test.ts
         output_digest: "sha256:9c6f94dea7c3e00b108336df915f25640df362fdb700e86abad7b7ad592dd66d"
       - kind: unit_test
-        command: "npm test tests/routing-contracts.test.ts tests/g8-integration-workflow.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/routing-contracts.test.ts tests/g8-integration-workflow.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:05:00+09:00"
         evidence_path: tests/g8-integration-workflow.test.ts
         output_digest: "sha256:2eab00f92a5bda76ff43a4b215d4620c117939e3221f808603492b5c7ed77d91"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:05:00+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:05:00+09:00"
@@ -82,7 +82,7 @@ review_evidence:
         output_digest: "sha256:fb80bb5f96694126a42ea3c8ad2febce1f3d682571edf5fbf332a1bd24b3d333"
       - kind: lint
         command: "./scripts/helix plan lint docs/plans/PLAN-L7-312-d-contract-dsl.md"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T03:05:00+09:00"
@@ -90,7 +90,7 @@ review_evidence:
         output_digest: "sha256:bdfa400429a1aa27075ee6f61c682a1922df6c8a78bd10aedf34918141ec19ab"
       - kind: doctor
         command: "./scripts/helix doctor"
-        runner: node
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T03:05:00+09:00"

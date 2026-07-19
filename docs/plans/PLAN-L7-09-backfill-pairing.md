@@ -46,16 +46,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/backfill-pairing.test.ts tests/scrum-reverse.test.ts tests/propagation.test.ts tests/vmodel-pair.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "bun run vitest run tests/backfill-pairing.test.ts tests/scrum-reverse.test.ts tests/propagation.test.ts tests/vmodel-pair.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:38:46+09:00"
         evidence_path: tests/backfill-pairing.test.ts
         output_digest: "sha256:18c2cccef2c8175a3e8c033415184b05ec2e0a21bd9c599c3eef9765c75f7528"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:38:46+09:00"

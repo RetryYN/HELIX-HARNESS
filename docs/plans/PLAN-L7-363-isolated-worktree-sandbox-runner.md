@@ -49,24 +49,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
-        runner: node
+        command: "bun run vitest run tests/agent-catalog-watch.test.ts tests/runtime-capability-matrix.test.ts tests/isolated-worktree-sandbox-runner.test.ts tests/cli-surface.test.ts tests/runtime-adapter.test.ts tests/git-command-guard.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:16:48+09:00"
         evidence_path: tests/isolated-worktree-sandbox-runner.test.ts
         output_digest: "sha256:19104295c7cb615d72336559c5fb60a81b4d236b136068bda31db7f8e02aff28"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts run isolate --dry-run --allow-dirty --json"
-        runner: node
+        command: "bun src/cli.ts run isolate --dry-run --allow-dirty --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T16:14:37+09:00"
         evidence_path: src/runtime/isolated-worktree-sandbox-runner.ts
         output_digest: "sha256:a4597fc58b5a30618371f56441c7bb6b0a36c6f7fb525396b4b05a963c5d5c7a"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T16:15:15+09:00"
@@ -102,6 +102,6 @@ isolated worktree / optional container / network policy / checkpoint を持つ r
 
 ## 検証予定
 
-- `npm test tests/git-command-guard.test.ts tests/cli-surface.test.ts --timeout 180000`
-- `npm run typecheck`
-- `npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md`
+- `bun test tests/git-command-guard.test.ts tests/cli-surface.test.ts --timeout 180000`
+- `bun run typecheck`
+- `bun run src/cli.ts plan lint docs/plans/PLAN-L7-363-isolated-worktree-sandbox-runner.md`

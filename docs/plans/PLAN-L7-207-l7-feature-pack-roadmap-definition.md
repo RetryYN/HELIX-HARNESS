@@ -132,24 +132,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: src/schema/roadmap.ts
         output_digest: "sha256:7eb65629607daa5cc660d46759a995cd453f3dc784121a491a7a53f077403a19"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: src/lint/roadmap-registry.ts
         output_digest: "sha256:6310194b804201518a3e6048fd91b81e564ae36335025a3e0fcb896260496136"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/roadmap.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
-        runner: node
+        command: "bun run vitest run tests/roadmap.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"

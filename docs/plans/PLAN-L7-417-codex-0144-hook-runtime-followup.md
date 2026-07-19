@@ -61,7 +61,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/codex-hook-adapter.test.ts tests/setup.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         evidence_path: tests/codex-hook-adapter.test.ts
@@ -77,7 +77,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/cli-surface.test.ts tests/summary-surface-audit.test.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T15:20:54Z"

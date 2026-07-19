@@ -87,6 +87,8 @@ export interface ReviewEvidenceResult {
 }
 
 const GREEN_COMMAND_ENFORCEMENT_DATE = "2026-06-23";
+/** Bun retirement前に採取済みのreceiptは改変せず保持する。これ以後のBun evidenceは拒否する。 */
+const BUN_HISTORICAL_EVIDENCE_CUTOFF = Date.parse("2026-07-19T00:00:00+09:00");
 const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
 const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
 const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
@@ -181,8 +183,17 @@ export function greenCommandViolationReason(entry: ReviewEntry): string | null {
   for (const command of commands) {
     if (!GREEN_COMMAND_KIND_SET.has(command.kind)) return "invalid_kind";
     if (!command.command.trim()) return "missing_command";
-    if (!greenCommandMatchesKind(command.kind, command.command)) return "command_kind_mismatch";
     if (!GREEN_COMMAND_RUNNER_SET.has(command.runner)) return "invalid_runner";
+    const isHistoricalBunReceipt =
+      command.runner === "bun" &&
+      Boolean(command.completed_at) &&
+      Date.parse(command.completed_at ?? "") < BUN_HISTORICAL_EVIDENCE_CUTOFF;
+    if (command.runner === "bun" && !isHistoricalBunReceipt) {
+      return "retired_bun_runner";
+    }
+    if (!isHistoricalBunReceipt && !greenCommandMatchesKind(command.kind, command.command)) {
+      return "command_kind_mismatch";
+    }
     if (!GREEN_COMMAND_SCOPE_SET.has(command.scope)) return "invalid_scope";
     if (command.exit_code !== 0) return "nonzero_exit_code";
     if (!command.evidence_path.trim()) return "missing_evidence_path";

@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
-import { parse } from "yaml";
 import { describe, expect, it } from "vitest";
+import { parse } from "yaml";
 import {
   L3_PROGRESSION_AUTHORITY_MARKER,
   L3_PROGRESSION_BLOCKER_PATHS,
@@ -8,8 +8,7 @@ import {
 } from "../src/lint/l3-progression-authority";
 import { L3_PROGRESSION_REVIEWED_DIGESTS } from "../src/lint/l3-progression-reviewed-digests";
 
-const AUTHORITY_PATH =
-  "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md";
+const AUTHORITY_PATH = "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md";
 
 describe("L3 progression authority rebaseline", () => {
   it("binds all 58 blocking inputs to one L12/hybrid authority", () => {
@@ -32,7 +31,9 @@ describe("L3 progression authority rebaseline", () => {
       expect(authority).toContain(pair);
     }
     expect(authority).toContain("Python semantic core + TypeScript/Node transactional boundary");
-    expect(authority).toContain("Bunはpre-cutover既存実行証跡またはrollback以外のauthorityにしない");
+    expect(authority).toContain(
+      "Bunはpre-cutover既存実行証跡またはrollback以外のauthorityにしない",
+    );
   });
 
   it("adds canonical metadata to every legacy physical L0-L3 frontmatter artifact", () => {

@@ -50,8 +50,8 @@ review_evidence:
     scope: "PLAN固有4点binding、immutable initial authority + resolved hash-chain tombstone、eligible L8 table、TypeScript AST case title、canonical path/symlink、ownership、PLAN-L7-419固有L6/U-SKUP補修経路を3 round独立レビューし、blocker/Important 0を確認。"
     green_commands:
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L6-65-plan-specific-vpair-binding.md && npx --no-install vitest run tests/design-coverage.test.ts"
-        runner: node
+        command: "bun src/cli.ts plan lint docs/plans/PLAN-L6-65-plan-specific-vpair-binding.md && bun run vitest run tests/design-coverage.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T23:16:38+09:00"
@@ -67,32 +67,32 @@ review_evidence:
     scope: "authority v3 resolution proof設計を3系統で敵対レビュー。completed typed resolution PLAN、target/resolution両Vペア、full frontmatter schema、canonical review/green command、valid instant順序、semantic hash chain、non-zero loader統合、U-PSPB-025..027を確認しblocker/high 0。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/coding-rules.test.ts"
-        runner: node
+        command: "bunx vitest run tests/plan-descent-specific-parent-binding.test.ts tests/frontmatter.test.ts tests/review-evidence.test.ts tests/coding-rules.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: tests/plan-descent-specific-parent-binding.test.ts
         output_digest: "sha256:79d2228999080bd9ca5f450bda6afade5a320b5cdef7580a307eb37449a20cff"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"
         evidence_path: src/lint/plan-specific-vpair-binding.ts
         output_digest: "sha256:6e3acf5b9d043bd54add82ba11e8403b5eb20e29061d53d859dc1cb4ea6ea01c"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-11T17:29:31Z"

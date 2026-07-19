@@ -42,39 +42,39 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\handover.test.ts --reporter=dot"
-        runner: node
+        command: "bun run vitest run tests\\handover.test.ts --reporter=dot"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T22:10:36+09:00"
         evidence_path: tests/handover.test.ts
         output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\handover-completion-wording.test.ts --reporter=dot"
-        runner: node
+        command: "bun run vitest run tests\\handover-completion-wording.test.ts --reporter=dot"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T22:10:56+09:00"
         evidence_path: tests/handover-completion-wording.test.ts
         output_digest: "sha256:87d7e25d5201fdb018cc1109490f22c81e44aaa06c8eec2ec14ee6a4d41ba3b9"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T22:16:58+09:00"
         evidence_path: src/handover/index.ts
         output_digest: "sha256:c4bec147cbd94eeca526cfc46a081822846c5ec4054f2653cc5639d93e053581"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T22:16:49+09:00"
         evidence_path: src/handover/handover-types.ts
         output_digest: "sha256:012fc748fc8deadc8a362165cf82d3682e41042b3d1d206ac637b3e8e3b9f282"
     notes:
-      - "npx --no-install vitest run tests\\doctor.test.ts timed out before test output in this environment; retained as residual verification risk and covered by subsequent doctor CLI gate."
+      - "bun run vitest run tests\\doctor.test.ts timed out before test output in this environment; retained as residual verification risk and covered by subsequent doctor CLI gate."
 ---
 
 # PLAN-L7-173: handover type and constant split（型・定数分割）

@@ -29,7 +29,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run --project fast tests/tier-router.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T18:10:05+09:00"

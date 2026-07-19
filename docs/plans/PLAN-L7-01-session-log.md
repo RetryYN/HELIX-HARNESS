@@ -25,16 +25,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/sub-doc-catalog-drift.test.ts tests/session-log.test.ts tests/forced-stop.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "bun run vitest run tests/sub-doc-catalog-drift.test.ts tests/session-log.test.ts tests/forced-stop.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:32:33+09:00"
         evidence_path: tests/session-log.test.ts
         output_digest: "sha256:fa1bfea6a93aa1503184b3c6567ce7ea34d28b5cfa4617c0cff8c8cb262f5438"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:32:33+09:00"

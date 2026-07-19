@@ -61,8 +61,8 @@ review_evidence:
     reviewer_model: codex-gpt-5
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/proposal-document-coverage.test.ts tests/lint-wiring.test.ts tests/task-classify.test.ts tests/dependency-drift.test.ts"
-        runner: node
+        command: "bun run vitest run tests/proposal-document-coverage.test.ts tests/lint-wiring.test.ts tests/task-classify.test.ts tests/dependency-drift.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-24T12:06:05+09:00"
@@ -96,6 +96,6 @@ proposal-to-document coverage routing に mechanical regression fence を追加�
 
 ## 4. Verification
 
-- `npx --no-install vitest run tests/proposal-document-coverage.test.ts`
-- `npx --no-install vitest run tests/lint-wiring.test.ts`
-- `npx --no-install vitest run tests/task-classify.test.ts`
+- `bun run vitest run tests/proposal-document-coverage.test.ts`
+- `bun run vitest run tests/lint-wiring.test.ts`
+- `bun run vitest run tests/task-classify.test.ts`

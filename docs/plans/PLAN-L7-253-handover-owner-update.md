@@ -51,32 +51,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/handover.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/handover.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:00:00+09:00"
         evidence_path: tests/handover.test.ts
         output_digest: "sha256:636d1fd265e01015d6e88b07accff7828a405f345a479aa664590950c1a31556"
       - kind: unit_test
-        command: "npm test tests/cli-surface.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/cli-surface.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:00:00+09:00"
         evidence_path: tests/cli-surface.test.ts
         output_digest: "sha256:c73056d423ea43603e2ee4c03ba24da4615ce5b4d42908656ffd301b65915779"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T13:00:00+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:f7e063e82de3240a6fd46ac8bd6d1ae231b8b49d971097d3e8b69c274228a66c"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts handover update --owner codex --json; npx --no-install tsx src/cli.ts handover status --json"
-        runner: node
+        command: "bun run src/cli.ts handover update --owner codex --json; bun run src/cli.ts handover status --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T13:00:00+09:00"

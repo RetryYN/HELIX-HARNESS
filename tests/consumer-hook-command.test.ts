@@ -49,7 +49,9 @@ describe("PLAN-L7-433 C1 consumer hook command", () => {
     ]
       .flatMap((text) => [...text.matchAll(/"command":\s*"helix hook ([a-z-]+)(?: [^"]*)?"/g)])
       .map((match) => match[1]);
-    const help = spawnSync("npx", ["--no-install", "tsx", cli, "hook", "--help"], { encoding: "utf8" });
+    const help = spawnSync("npx", ["--no-install", "tsx", cli, "hook", "--help"], {
+      encoding: "utf8",
+    });
     expect(help.status).toBe(0);
     for (const command of new Set(commands)) expect(help.stdout).toContain(command);
     expect(commands).toContain("work-guard");

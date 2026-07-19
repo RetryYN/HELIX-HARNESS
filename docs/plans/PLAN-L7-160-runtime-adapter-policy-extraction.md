@@ -44,56 +44,56 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\runtime-adapter.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\runtime-adapter.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:16:59+09:00"
         evidence_path: tests/runtime-adapter.test.ts
         output_digest: "sha256:6d4c1257b646c3a744c0fc374bbb071ab2617deb86c63a49bcb44d69dd23681e"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\runtime-adapter.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\runtime-adapter.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:16:59+09:00"
         evidence_path: src/runtime/adapter.ts
         output_digest: "sha256:eb35c437e2188f32e5725b86e884e0b831ac721dc4f335279817934ca20a1c08"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\runtime-adapter.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\runtime-adapter.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:16:59+09:00"
         evidence_path: src/runtime/adapter-policy.ts
         output_digest: "sha256:7cd477f7854bd54ff62bdafb323a7459e1d107f0ae892a863a0ae7c394d459b7"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\doctor.test.ts -t \"U-ADAPTER-009\""
-        runner: node
+        command: "bun run vitest run tests\\doctor.test.ts -t \"U-ADAPTER-009\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:30:24+09:00"
         evidence_path: tests/doctor.test.ts
         output_digest: "sha256:7ed7860b34c01fc2b864f5396880a87d7d71d63367424b190efe87bd5041af86"
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\doctor.test.ts -t \"U-ADAPTER-009\""
-        runner: node
+        command: "bun run vitest run tests\\doctor.test.ts -t \"U-ADAPTER-009\""
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T19:30:24+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:4b05fe6be6b15f71728b2f363f092f27c79bd207dadc65b8ad4b478618403464"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T19:32:10+09:00"
         evidence_path: src/runtime/adapter.ts
         output_digest: "sha256:eb35c437e2188f32e5725b86e884e0b831ac721dc4f335279817934ca20a1c08"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T19:32:10+09:00"

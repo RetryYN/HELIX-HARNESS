@@ -96,40 +96,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/identifier-rename.test.ts"
-        runner: node
+        command: "bun test tests/identifier-rename.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T20:01:44+09:00"
         evidence_path: tests/identifier-rename.test.ts
         output_digest: "sha256:05142ae258f784c014277e79f8afa1fbc573f7147cbe95e450edf7a73f46ea5d"
       - kind: unit_test
-        command: "npm test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts"
-        runner: node
+        command: "bun test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T20:01:44+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:18dbd32f611230bbb7e24cad39f651672b88e2b8cdd09ee9af67a0dc2c7c3d54"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T20:01:44+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T20:01:44+09:00"
         evidence_path: docs/plans/PLAN-L7-328-github-preflight-and-audit-hardening.md
         output_digest: "sha256:11325bc719c7513ef369c127f79f1d45a214eac2fb89c3221d6c0c2674a858b5"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T20:04:34+09:00"
@@ -145,16 +145,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts tests/state-db.test.ts tests/cli-surface.test.ts tests/distribution-acceptance.test.ts tests/repository-name-paths.test.ts tests/identifier-rename.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/setup.test.ts tests/state-db.test.ts tests/cli-surface.test.ts tests/distribution-acceptance.test.ts tests/repository-name-paths.test.ts tests/identifier-rename.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T20:15:08+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:3d1ab5bc34812c474e93086f68d1591e56e39bc6f9ca62d71205baa13ffb9ace"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T20:15:08+09:00"

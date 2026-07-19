@@ -10,11 +10,15 @@ const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 
 function run(args: string[], cwd = repoRoot) {
-  return spawnSync("npx", ["--no-install", "tsx", cliPath, "closure", "authority-materialize", ...args], {
-    cwd,
-    encoding: "utf8",
-    env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
-  });
+  return spawnSync(
+    "npx",
+    ["--no-install", "tsx", cliPath, "closure", "authority-materialize", ...args],
+    {
+      cwd,
+      encoding: "utf8",
+      env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
+    },
+  );
 }
 
 describe("closure authority-materialize CLI", () => {

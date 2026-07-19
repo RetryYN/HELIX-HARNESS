@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/handover.test.ts tests/agent-slots.test.ts tests/team-schema.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "bun run vitest run tests/handover.test.ts tests/agent-slots.test.ts tests/team-schema.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:35:40+09:00"
         evidence_path: tests/agent-slots.test.ts
         output_digest: "sha256:7eb5dd84152dbe59abdea2f9604ab9d2fed6ddf712c387fccbd6223fe2d00e66"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:35:40+09:00"

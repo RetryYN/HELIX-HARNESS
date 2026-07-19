@@ -51,40 +51,40 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:13:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:a93e01b9830f2a1701e1cb1548bfe93efa6de24262b67a71e6ea448db02ffc84"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts audit objective-external --json"
-        runner: node
+        command: "bun run src/cli.ts audit objective-external --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:13:00+09:00"
         evidence_path: docs/governance/helix-objective-evidence-audit.md
         output_digest: "sha256:103188b4c1e8ac260c5a7552e83ff932dc84224bb714226f430d31c6591437b5"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T16:13:00+09:00"
         evidence_path: src/lint/objective-evidence-audit.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:13:00+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:08a7f438f5c38096e7c6108299387286d5bdcf4181d02013718c8e06b261b474"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:13:00+09:00"

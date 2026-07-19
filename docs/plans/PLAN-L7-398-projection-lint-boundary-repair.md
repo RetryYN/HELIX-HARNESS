@@ -55,24 +55,24 @@ review_evidence:
     scope: "DB projection ingestion lint が Vモデル ZIP manifest 実装 constant を直接 import しないようにし、current-location の Scrum operation helper を input object 化して source max params を解消した。U-CODE-011 に lint -> vmodel 禁止 import の oracle を追加した。"
     green_commands:
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T04:21:25+09:00"
         evidence_path: src/state-db/current-location.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/change-impact.test.ts tests/plan-entry-routing.test.ts tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/db-projection-ingestion.test.ts tests/current-location.test.ts"
-        runner: node
+        command: "bun run vitest run tests/change-impact.test.ts tests/plan-entry-routing.test.ts tests/coding-rules.test.ts tests/ddd-tdd-rules.test.ts tests/db-projection-ingestion.test.ts tests/current-location.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T04:21:25+09:00"
         evidence_path: tests/coding-rules.test.ts
         output_digest: "sha256:6fdc72b74e5ab0b8f957c2eb596d5495e8b6d4df083f26a2f87e58de51e67e73"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/tracked-canonical.test.ts"
-        runner: node
+        command: "bun run vitest run tests/tracked-canonical.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T04:39:12+09:00"

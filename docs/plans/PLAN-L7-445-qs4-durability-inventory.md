@@ -44,8 +44,8 @@ review_evidence:
     reviewer_model: codex-fresh-subagent
     green_commands:
       - kind: integration_test
-        command: "npx --no-install vitest run tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
-        runner: node
+        command: "bun run test:fast -- tests/doctor-cause-digest.test.ts tests/doctor-cause-digest-contract.test.ts tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/durable-loop-store.test.ts tests/durable-loop-process.test.ts tests/autonomous-loop-run-receipts.test.ts tests/orchestration/loop-bridge.test.ts tests/harness-check-workflow.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-13T06:41:55+09:00"

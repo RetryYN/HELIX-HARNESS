@@ -38,24 +38,24 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\projection-writer.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\projection-writer.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-25T14:05:55+09:00"
         evidence_path: tests/projection-writer.test.ts
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T14:05:55+09:00"
         evidence_path: src/state-db/refactor-candidates.ts
         output_digest: "sha256:0e270c1572d46850fe94dd43359a38c04b75ecc7b23a62cf8bf983f74c8f601a"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-25T14:05:55+09:00"
@@ -90,5 +90,5 @@ prose handover だけでなく `harness.db` から発見できるようにする
 - pure detector test が 4 種類すべての candidate kind を covered にする。
 - rebuild projection が candidate row を `quality_signals` へ書き込む。
 - 既存 feedback projection が candidate を `feedback_events` row として公開する。
-- `npx --no-install vitest run tests\projection-writer.test.ts` passes.
-- `npm run typecheck` passes.
+- `bun run vitest run tests\projection-writer.test.ts` passes.
+- `bun run typecheck` passes.

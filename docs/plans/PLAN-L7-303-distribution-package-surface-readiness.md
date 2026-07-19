@@ -47,32 +47,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/setup.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/setup.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T00:00:00+09:00"
         evidence_path: tests/setup.test.ts
         output_digest: "sha256:f2471e488c93f7413ebf3f5d0c301116fd99c3ea4bcc1cda0822bb242524c89f"
       - kind: integration_test
-        command: "npx --no-install vitest run tests/distribution-acceptance.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T00:00:00+09:00"
         evidence_path: tests/distribution-acceptance.test.ts
         output_digest: "sha256:a2de39ac328fbffccd1c42dd26a177ef4618363bf49833dd884ee8557549ded7"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-04T00:00:00+09:00"
         evidence_path: package.json
         output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T00:00:00+09:00"
@@ -84,11 +84,11 @@ review_evidence:
 
 ## 目的
 
-HELIX project setup が生成する consumer CI / VSCode task の command surface を、公開配布 tag の install 成功だけで green にしない。`npm run helix setup project --dry-run --json` など、生成された package-local command が実際に動く証跡を readiness gate にする。
+HELIX project setup が生成する consumer CI / VSCode task の command surface を、公開配布 tag の install 成功だけで green にしない。`bun run helix setup project --dry-run --json` など、生成された package-local command が実際に動く証跡を readiness gate にする。
 
 ## 問題
 
-- 生成 `harness-check.yml` は package-local `npm run helix ...` command を要求する。
+- 生成 `harness-check.yml` は package-local `bun run helix ...` command を要求する。
 - 公開配布 tag の `v0.1.0` / `v0.1.4` は 2026-07-04 実測で `setup project --dry-run --json` が `unknown option '--json'` になった。
 - これを `consumerReadiness.ok` に反映しないと、package.json / lockfile / VSCode task が揃っただけで first-run ready と誤認する。
 
@@ -96,7 +96,7 @@ HELIX project setup が生成する consumer CI / VSCode task の command surfac
 
 - `ConsumerReadinessPlan.ci.distributionPackageSurface` を追加する。
 - `distribution-package-surface` check を blocking にし、probe 未実行または失敗時は `consumerReadiness.ok=false` にする。
-- `runHelixProjectSetup` と `distribution plan` は `npm run helix setup project --help` を packageRoot で probe し、`--dry-run` と `--json` の公開を package-local command surface 証跡にする。
+- `runHelixProjectSetup` と `distribution plan` は `bun run helix setup project --help` を packageRoot で probe し、`--dry-run` と `--json` の公開を package-local command surface 証跡にする。
 - 実行 smoke は clean distribution acceptance が linked bin で `helix setup project --dry-run --json` を実行して固定する。
 - 公開配布 tag が stale の場合は、current clean artifact link smoke または version-up activation 後の配布 tag smoke まで `fix_consumer_readiness` に戻す。
 
@@ -115,10 +115,10 @@ HELIX project setup が生成する consumer CI / VSCode task の command surfac
 
 ## 検証予定
 
-- `npm test tests/setup.test.ts --timeout 300000`
-- `npx --no-install vitest run tests/distribution-acceptance.test.ts --timeout 300000`
-- `npm run typecheck`
-- `npm test tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000`
-- `npx --no-install tsx src/cli.ts plan lint --gate governance`
-- `npx --no-install tsx src/cli.ts db rebuild`
-- `npx --no-install tsx src/cli.ts doctor`
+- `bun test tests/setup.test.ts --timeout 300000`
+- `bun test tests/distribution-acceptance.test.ts --timeout 300000`
+- `bun run typecheck`
+- `bun test tests/design-language.test.ts tests/rule-drift.test.ts --timeout 300000`
+- `bun run src/cli.ts plan lint --gate governance`
+- `bun run src/cli.ts db rebuild`
+- `bun run src/cli.ts doctor`

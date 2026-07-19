@@ -38,32 +38,32 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
-        runner: node
+        command: "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts --timeout 180000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:06:00+09:00"
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:98d7fcef3fdbf7cf2944e00f21f8a033b1b3c00dba950649e390f175a103e010"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:06:00+09:00"
         evidence_path: docs/plans/PLAN-L7-273-operational-test-status-reconciliation.md
         output_digest: "sha256:b19c93887653729a9dc0bc522a092ab23e16c2b1d0cd82853109a3538244bc4b"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts setup project --dry-run --json"
-        runner: node
+        command: "bun run src/cli.ts setup project --dry-run --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:06:00+09:00"
         evidence_path: src/setup/index.ts
         output_digest: "sha256:105cb8899aa27a7e04babf22dd6d338523c6752ecabd7eedbca59d4011483dd0"
       - kind: smoke
-        command: "npx --no-install tsx src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json"
-        runner: node
+        command: "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T16:06:00+09:00"

@@ -2,7 +2,6 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { analyzeSnapshot } from "../lint/effect-intent";
 import {
   assertCanonicalReuseAllowed,
   CANONICAL_REUSE_BLOCKED_PATHS,
@@ -10,6 +9,7 @@ import {
   normalizeCanonicalAuthorityPath,
 } from "../lint/canonical-reuse-authority";
 import { CANONICAL_REUSE_CONSUMER_BASELINE } from "../lint/canonical-reuse-consumer-baseline";
+import { analyzeSnapshot } from "../lint/effect-intent";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
 import {

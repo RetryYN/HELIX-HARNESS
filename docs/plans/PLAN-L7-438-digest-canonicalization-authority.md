@@ -20,8 +20,8 @@ review_evidence:
     verdict: pass
     scope: "AST scanner、exact hit inventory、typed disposition、public digest byte compatibility、純lint境界を独立reviewし、blocker/high/medium/low所見なし。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run tests/digest.test.ts tests/digest-consumer-compatibility.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-07-12T08:40:00Z", evidence_path: tests/digest.test.ts, output_digest: "sha256:4d257a10927bbc8225f0826165059e1beaa43ed6b1515a17962d05c442c83ba9" }
-      - { kind: lint, command: "npx --no-install biome check .", runner: node, scope: gate, exit_code: 0, completed_at: "2026-07-12T08:45:00Z", evidence_path: src/runtime/digest.ts, output_digest: "sha256:6a61690addbbfa1b538a741821f42e3f7365ba2562a245f844aefc2e36067e4e" }
+      - { kind: unit_test, command: "bunx vitest run tests/digest.test.ts tests/digest-consumer-compatibility.test.ts", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-12T08:40:00Z", evidence_path: tests/digest.test.ts, output_digest: "sha256:4d257a10927bbc8225f0826165059e1beaa43ed6b1515a17962d05c442c83ba9" }
+      - { kind: lint, command: "bunx biome check .", runner: bun, scope: gate, exit_code: 0, completed_at: "2026-07-12T08:45:00Z", evidence_path: src/runtime/digest.ts, output_digest: "sha256:6a61690addbbfa1b538a741821f42e3f7365ba2562a245f844aefc2e36067e4e" }
 parent_design: docs/design/harness/L6-function-design/digest-canonicalization-authority.md
 pair_artifact: docs/test-design/harness/digest-canonicalization-authority.md
 agent_slots: [{ role: se, slot_label: "SE - typed digest migration" }, { role: qa, slot_label: "QA - byte compatibility review" }]

@@ -51,16 +51,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/review-evidence.test.ts tests/plan-lint.test.ts tests/g1-trace.test.ts tests/gate-static.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/session-log.test.ts tests/doctor.test.ts"
-        runner: node
+        command: "bun run vitest run tests/review-evidence.test.ts tests/plan-lint.test.ts tests/g1-trace.test.ts tests/gate-static.test.ts tests/runtime-hook-entrypoints.test.ts tests/runtime-adapter.test.ts tests/session-log.test.ts tests/doctor.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-09T15:48:30+09:00"
         evidence_path: tests/plan-lint.test.ts
         output_digest: "sha256:42b5abf78d614ed444d71293375df0343e2c27add5712c97bc5f02504612e806"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-09T15:48:30+09:00"

@@ -393,10 +393,14 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       } finally {
         update.close();
       }
-      const fallback = spawnSync("npx", ["--no-install", "tsx", cli, "feedback", "list", "--json"], {
-        cwd: root,
-        encoding: "utf8",
-      });
+      const fallback = spawnSync(
+        "npx",
+        ["--no-install", "tsx", cli, "feedback", "list", "--json"],
+        {
+          cwd: root,
+          encoding: "utf8",
+        },
+      );
       expect(fallback.status, fallback.stderr).toBe(0);
       expect(JSON.parse(fallback.stdout).total).toBe(1);
     } finally {

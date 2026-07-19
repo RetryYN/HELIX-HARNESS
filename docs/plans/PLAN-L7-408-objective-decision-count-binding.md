@@ -56,24 +56,24 @@ review_evidence:
     scope: "decisionCountのlive items bindingをseverity-firstレビュー。substringで70を7と誤認する穴、正値+stale値併記、二重snapshot、将来count=0 fixtureを是正し、blocker/high残存なし。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/goal-evidence-audit.test.ts tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/l0-l8-design-consistency-audit.test.ts"
-        runner: node
+        command: "bunx vitest run tests/goal-evidence-audit.test.ts tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/l0-l8-design-consistency-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:12:03+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
         output_digest: "sha256:9e5961ded3b17116d3457085b076499a41cee8d5c2272442f9d98c002e332e41"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T03:12:10+09:00"
         evidence_path: src/lint/objective-evidence-audit.ts
         output_digest: "sha256:2a492cc4599b27e801dc1227fb948243f1efa93868c7b3de64304762682b3258"
       - kind: lint
-        command: "npx --no-install biome check src/lint/objective-evidence-audit.ts tests/goal-evidence-audit.test.ts"
-        runner: node
+        command: "bunx biome check src/lint/objective-evidence-audit.ts tests/goal-evidence-audit.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T03:12:20+09:00"

@@ -50,16 +50,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/state-db.test.ts"
-        runner: node
+        command: "bun test tests/state-db.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
         evidence_path: tests/state-db.test.ts
         output_digest: "sha256:ecd0ec8fca7b4ce0e55547b9388c2030f421cf1c03be11646a26e40690f96d2a"
       - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
         scope: gate
         exit_code: 0
         completed_at: "2026-07-04T02:20:21+09:00"
@@ -107,4 +107,4 @@ PLAN-L7-305 以降で扱う。
 - `loop_iterations` table は `plan_id`、`iteration`、`worker_provider`、`verifier_provider`、
   `verdict`、`stop_reason`、`blocked_reason`、`cost_usd`、`evidence_path`、`recorded_at` を持つ。
 - `idx_loop_iterations_plan` は `loop_iterations(plan_id, iteration)` を指す。
-- `npm test tests/state-db.test.ts` と `npx --no-install tsx src/cli.ts doctor` が green になる。
+- `bun test tests/state-db.test.ts` と `bun run src/cli.ts doctor` が green になる。

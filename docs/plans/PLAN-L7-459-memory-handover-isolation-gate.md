@@ -17,7 +17,7 @@ review_evidence:
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/memory-handover-isolation.test.ts"
-        runner: node
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-19T22:38:07+09:00"

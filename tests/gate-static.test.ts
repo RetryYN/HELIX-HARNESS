@@ -16,7 +16,10 @@ function runCli(args: string[]) {
       encoding: "utf8",
     });
   }
-  return spawnSync("npx", ["--no-install", "tsx", cliPath, ...args], { cwd: process.cwd(), encoding: "utf8" });
+  return spawnSync("npx", ["--no-install", "tsx", cliPath, ...args], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+  });
 }
 
 const doc = (

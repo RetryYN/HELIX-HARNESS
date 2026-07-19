@@ -96,9 +96,7 @@ describe("L1-L12 canonical authority drift gate", () => {
       .filter((path) => oldAuthority.test(read(path)))
       .sort();
     const inventory = read(inventoryPath);
-    const inventoried = [...inventory.matchAll(/^- `([^`]+)`$/gm)]
-      .map((match) => match[1])
-      .sort();
+    const inventoried = [...inventory.matchAll(/^- `([^`]+)`$/gm)].map((match) => match[1]).sort();
 
     expect(new Set(inventoried).size).toBe(inventoried.length);
     expect(inventoried).toEqual(candidates);

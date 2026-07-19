@@ -57,16 +57,16 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/version-up-readiness.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts --timeout 300000"
-        runner: node
+        command: "bun test tests/version-up-readiness.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts --timeout 300000"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-03T14:53:00+09:00"
         evidence_path: tests/version-up-readiness.test.ts
         output_digest: "sha256:db5b0f0811037c69086063b9bda57d737637cdeaacfcfd26a47f348391f78775"
       - kind: typecheck
-        command: "npx --no-install tsc --noEmit"
-        runner: node
+        command: "bun run tsc --noEmit"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T14:53:00+09:00"

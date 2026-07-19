@@ -51,18 +51,41 @@ function validCodexHooks(): Record<string, unknown> {
         },
       ],
       SessionStart: [
-        { hooks: [{ type: "command", command: "npx --no-install tsx src/cli.ts session start", timeout: 90 }] },
+        {
+          hooks: [
+            {
+              type: "command",
+              command: "npx --no-install tsx src/cli.ts session start",
+              timeout: 90,
+            },
+          ],
+        },
       ],
       PostToolUse: [
         {
           matcher: "apply_patch|Write|Edit|Bash",
-          hooks: [{ type: "command", command: "npx --no-install tsx src/cli.ts hook post-tool-use" }],
+          hooks: [
+            { type: "command", command: "npx --no-install tsx src/cli.ts hook post-tool-use" },
+          ],
         },
       ],
       SubagentStop: [
-        { hooks: [{ type: "command", command: "npx --no-install tsx src/cli.ts hook subagent-stop --quiet" }] },
+        {
+          hooks: [
+            {
+              type: "command",
+              command: "npx --no-install tsx src/cli.ts hook subagent-stop --quiet",
+            },
+          ],
+        },
       ],
-      Stop: [{ hooks: [{ type: "command", command: "npx --no-install tsx src/cli.ts session summary --quiet" }] }],
+      Stop: [
+        {
+          hooks: [
+            { type: "command", command: "npx --no-install tsx src/cli.ts session summary --quiet" },
+          ],
+        },
+      ],
     },
   };
 }
@@ -303,7 +326,8 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     const subagentBroken = validCodexHooks() as {
       hooks: { SubagentStop: { hooks: { command: string }[] }[] };
     };
-    subagentBroken.hooks.SubagentStop[0].hooks[0].command = "npx --no-install tsx src/cli.ts hook subagent-stop";
+    subagentBroken.hooks.SubagentStop[0].hooks[0].command =
+      "npx --no-install tsx src/cli.ts hook subagent-stop";
     const subagentResult = analyzeCodexHookAdapter({ codexHooksJson: json(subagentBroken) });
     expect(subagentResult.ok).toBe(false);
     expect(

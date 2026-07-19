@@ -49,24 +49,24 @@ review_evidence:
     scope: "FE topology/model generation L6契約、DbC、shared/runtime allowlist、MODEL_IDS/TIER_TABLE/selectTeamModel/pricing別正本、U001/U002 green、U003 todo route分離を敵対レビューしblocker/high 0。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/fe-roster-orchestration.test.ts tests/design-coverage.test.ts tests/l6-completion.test.ts"
-        runner: node
+        command: "bunx vitest run tests/fe-roster-orchestration.test.ts tests/design-coverage.test.ts tests/l6-completion.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-11T17:57:31Z"
         evidence_path: tests/fe-roster-orchestration.test.ts
         output_digest: "sha256:22ea76f7169d5aae53b2b2cd43d97946193c545dc1b2aaa0beea60f2363e3cb5"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T17:57:31Z"
         evidence_path: docs/design/harness/L6-function-design/fe-roster-orchestration.md
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-11T17:57:31Z"

@@ -2058,7 +2058,8 @@ describe("L7 CLI surface closure", () => {
         reviewPacketCount: 4,
         runnableSourceCommand: "npm run helix -- completion review-bundle --json",
         completionDecisionPacketCommand: "helix completion decision-packet --json",
-        runnableCompletionDecisionPacketCommand: "npm run helix -- completion decision-packet --json",
+        runnableCompletionDecisionPacketCommand:
+          "npm run helix -- completion decision-packet --json",
         reviewCoveredBlockers: [
           "human_approval_pending",
           "irreversible_migration_pending",

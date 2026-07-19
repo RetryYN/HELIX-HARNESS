@@ -74,56 +74,56 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npm test tests/semantic-frontier-consistency.test.ts"
-        runner: node
+        command: "bun test tests/semantic-frontier-consistency.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: tests/semantic-frontier-consistency.test.ts
         output_digest: "sha256:002aa5c1f1637fb58589a2fa808983b5484ce2d2ab0fe87b5e9f52cc175f1628"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
         output_digest: "sha256:ac7fc7499f292d0d0801fa7aa6797618449c851b0a1def0cbb4d11609731e3cc"
       - kind: lint
-        command: "npm run lint"
-        runner: node
+        command: "bun run lint"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: src/lint/semantic-frontier-consistency.ts
         output_digest: "sha256:9d0e706d34897eb6a899fa2f297195ac7008cb5cacc8f83d729f4f15de35b7b0"
       - kind: typecheck
-        command: "npm run typecheck"
-        runner: node
+        command: "bun run typecheck"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:5689cc301bb339b645de5b96c72cbd8689769970006689ab8df136c384f53507"
       - kind: doctor
-        command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor"
-        runner: node
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
         output_digest: "sha256:721c9439392ec648d88a59ebad5a38ec86a872fb3fd2651761a2df424cb4b849"
       - kind: unit_test
-        command: "npx --no-install vitest run tests/doctor.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/doctor.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
         output_digest: "sha256:d3a6f8ec5ab4283c26dcd70e0d97778ef7c33aa56ec45435579fa1afc72584b7"
       - kind: unit_test
-        command: "npm test"
-        runner: node
+        command: "bun run test"
+        runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
@@ -139,8 +139,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T04:49:14+09:00"
@@ -156,8 +156,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/l0-l8-design-consistency-audit.test.ts tests/vmodel-pair.test.ts --run"
-        runner: node
+        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts tests/vmodel-pair.test.ts --run"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-30T12:29:00+09:00"

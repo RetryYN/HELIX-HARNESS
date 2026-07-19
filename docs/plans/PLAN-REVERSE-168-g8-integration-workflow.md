@@ -74,8 +74,8 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests\\g8-integration-workflow.test.ts tests\\lint-wiring.test.ts"
-        runner: node
+        command: "bun run vitest run tests\\g8-integration-workflow.test.ts tests\\lint-wiring.test.ts"
+        runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-26T20:30:00+09:00"

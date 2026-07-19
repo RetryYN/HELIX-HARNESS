@@ -1241,7 +1241,8 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "targeted-regression",
-      command: "npx --no-install vitest run tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+      command:
+        "npx --no-install vitest run tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
       writePolicy: "no-write",
       expected:
         "rename packet, approval, snapshot, category checklist, and cutover readiness regressions stay green",
@@ -1273,7 +1274,8 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "state-and-doctor",
-      command: "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
+      command:
+        "npx --no-install tsx src/cli.ts db rebuild && npx --no-install tsx src/cli.ts doctor",
       writePolicy: "state-write",
       expected: "state projection rebuild and workflow gates pass against the renamed rehearsal",
       evidence: "db rebuild and doctor output",
@@ -1414,7 +1416,8 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-03",
       phase: "state-backup-restore-drill",
-      command: "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
+      command:
+        "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
       writePolicy: "no-write",
       evidencePath: ".helix/evidence/rename/state-backup-restore-drill.json",
       passCriteria: "DB, memory, state, logs, handover, and hook configs have restorable backups",
@@ -1588,7 +1591,8 @@ export function buildIdentifierRenameRehearsalPlan(
     previewCommands: [
       {
         phase: "codemod-preview",
-        command: "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
+        command:
+          "npx --no-install tsx src/cli.ts rename rehearsal --no-write --target helix --json",
         description:
           "preview legacy identifier residuals -> helix/.helix/area=helix token changes without applying them",
         writesRepo: false,
@@ -1596,7 +1600,8 @@ export function buildIdentifierRenameRehearsalPlan(
       },
       {
         phase: "renamed-binary-smoke-preview",
-        command: "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
+        command:
+          "npx --no-install tsx src/cli.ts rename dist-smoke --no-write --target helix --json",
         description:
           "after approval, build the renamed binary on a non-destructive branch and run helix doctor before alias enablement",
         writesRepo: false,
@@ -1659,12 +1664,10 @@ export function buildIdentifierRenameDistSmokeDryRun(
     renamedBinaryPreview: {
       path: "dist/helix",
       exists: existsSync(join(root, "dist", "helix")),
-      smokeCommandAfterApproval:
-        "npm run build && node dist/helix.js doctor",
+      smokeCommandAfterApproval: "npm run build && node dist/helix.js doctor",
     },
     postCutoverConsumerSetupPreview: {
-      commandAfterApproval:
-        "npm run build && node dist/helix.js setup project --dry-run --json",
+      commandAfterApproval: "npm run build && node dist/helix.js setup project --dry-run --json",
       expected:
         "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
       evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json",
@@ -1765,7 +1768,8 @@ export function buildIdentifierRenameEvidencePack(
     ...backupDryRun.restoreChecks.map((check) => ({
       path: check.restoreEvidencePath,
       source: "stateBackupManifest" as const,
-      generatorCommand: "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
+      generatorCommand:
+        "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
     })),
   ].sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`));
 
@@ -1803,7 +1807,8 @@ export function buildIdentifierRenameEvidencePack(
       .map((entry) => ({
         path: entry.restoreEvidencePath,
         source: "stateBackupManifest" as const,
-        requiredCommand: "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
+        requiredCommand:
+          "npx --no-install tsx src/cli.ts rename state-backup --dry-run --restore-drill --json",
         reason: "state backup restore evidence が未生成",
       })),
   ].sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`));
