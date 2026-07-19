@@ -1,7 +1,7 @@
 ---
 layer: L8
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/source-boundary-contracts.md
 plan: docs/plans/PLAN-L6-79-source-boundary-contracts.md
 ---

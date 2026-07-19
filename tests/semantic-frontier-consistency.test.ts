@@ -33,6 +33,10 @@ const L3_IDS = [
   "HR-FR-P2-02",
   "HR-FR-P2-03",
   "HR-FR-P2-04",
+  "HR-FR-P2-05",
+  "HR-FR-P2-06",
+  "HR-FR-P2-07",
+  "HR-FR-P2-08",
   "HR-FR-P3-01",
   "HR-FR-P3-02",
   "HR-FR-P4-01",
@@ -43,6 +47,7 @@ const L3_IDS = [
   "HR-FR-P6-03",
   "HR-FR-P6-04",
   "HR-FR-P6-05",
+  "HR-FR-P6-06",
   "HR-FR-P7-01",
   "HR-FR-P7-02",
   "HR-FR-P7-03",
@@ -82,6 +87,10 @@ const L12_IDS = [
   "HAT-P2-02",
   "HAT-P2-03",
   "HAT-P2-04",
+  "HAT-P2-05",
+  "HAT-P2-06",
+  "HAT-P2-07",
+  "HAT-P2-08",
   "HAT-P3-01",
   "HAT-P3-02",
   "HAT-P4-01",
@@ -92,6 +101,7 @@ const L12_IDS = [
   "HAT-P6-03",
   "HAT-P6-04",
   "HAT-P6-05",
+  "HAT-P6-06",
   "HAT-P7-01",
   "HAT-P7-02",
   "HAT-P7-03",
@@ -139,8 +149,26 @@ const CONFIRMED_MEANINGS = [
     featureId: "pair_agent_tdd_route",
     meaning: "agent/tool/runtime guardrail + pair-agent TDD route",
     l1Parents: ["HBR-P2", "HBR-P3", "HBR-P4"],
-    l3RequirementIds: ["HR-FR-P2-01", "HR-FR-P2-02", "HR-FR-P2-03", "HR-FR-P2-04"],
-    l12AcceptanceIds: ["HAT-P2-01", "HAT-P2-02", "HAT-P2-03", "HAT-P2-04"],
+    l3RequirementIds: [
+      "HR-FR-P2-01",
+      "HR-FR-P2-02",
+      "HR-FR-P2-03",
+      "HR-FR-P2-04",
+      "HR-FR-P2-05",
+      "HR-FR-P2-06",
+      "HR-FR-P2-07",
+      "HR-FR-P2-08",
+    ],
+    l12AcceptanceIds: [
+      "HAT-P2-01",
+      "HAT-P2-02",
+      "HAT-P2-03",
+      "HAT-P2-04",
+      "HAT-P2-05",
+      "HAT-P2-06",
+      "HAT-P2-07",
+      "HAT-P2-08",
+    ],
   },
   {
     featureId: "strong_verification",
@@ -174,8 +202,22 @@ const CONFIRMED_MEANINGS = [
     featureId: "github_setup_release_rename",
     meaning: "GitHub 自動化 / setup / release / rename",
     l1Parents: ["HBR-P6"],
-    l3RequirementIds: ["HR-FR-P6-01", "HR-FR-P6-02", "HR-FR-P6-03", "HR-FR-P6-04", "HR-FR-P6-05"],
-    l12AcceptanceIds: ["HAT-P6-01", "HAT-P6-02", "HAT-P6-03", "HAT-P6-04", "HAT-P6-05"],
+    l3RequirementIds: [
+      "HR-FR-P6-01",
+      "HR-FR-P6-02",
+      "HR-FR-P6-03",
+      "HR-FR-P6-04",
+      "HR-FR-P6-05",
+      "HR-FR-P6-06",
+    ],
+    l12AcceptanceIds: [
+      "HAT-P6-01",
+      "HAT-P6-02",
+      "HAT-P6-03",
+      "HAT-P6-04",
+      "HAT-P6-05",
+      "HAT-P6-06",
+    ],
   },
   {
     featureId: "shared_memory_ddd",
@@ -269,7 +311,7 @@ function baseInput(): SemanticFrontierConsistencyInput {
   const l3Text = [
     "§0.2 意味ベース機能一覧と要求修正境界",
     "G-SF `semantic_feature_frontier_record` への写像",
-    "confirmed 46 件: `classification=confirmed_current`",
+    "confirmed 51 件: `classification=confirmed_current`",
     "逸脱受け止めと Forward 収束",
     "連続自律走行 / Scrum 分割 / version-up",
     "agent/tool/runtime guardrail + pair-agent TDD route",
@@ -338,8 +380,8 @@ describe("semantic frontier consistency", () => {
 
     expect(result.ok).toBe(true);
     expect(result.expectedConfirmedCount).toBe(11);
-    expect(result.l3RequirementRowCount).toBe(46);
-    expect(result.l12AcceptanceRowCount).toBe(46);
+    expect(result.l3RequirementRowCount).toBe(51);
+    expect(result.l12AcceptanceRowCount).toBe(51);
     expect(semanticFrontierConsistencyMessages(result)).toEqual([
       "semantic-frontier-consistency - OK (frontier=0/0, confirmed=11/11)",
     ]);

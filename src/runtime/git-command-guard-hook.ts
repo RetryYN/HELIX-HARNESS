@@ -109,6 +109,17 @@ export function runGitCommandGuardHook(opts: {
     env: (opts.env ?? process.env).HELIX_ALLOW_DESTRUCTIVE_GIT,
     markerReason,
   });
+  let markerNonce: string | null = null;
+  if (override.source === "marker" && markerReason !== null) {
+    try {
+      const markerStat = statSync(markerPath);
+      markerNonce = guardOverrideDigest(
+        `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
+      );
+    } catch {
+      return { exitCode: 2, message: base.message };
+    }
+  }
   const barrierDir = (opts.env ?? process.env).HELIX_GUARD_TEST_BARRIER_DIR;
   if ((opts.env ?? process.env).NODE_ENV === "test" && barrierDir) {
     mkdirSync(barrierDir, { recursive: true });
@@ -149,7 +160,7 @@ export function runGitCommandGuardHook(opts: {
       return { exitCode: 2, message: `${base.message} override=blocked_audit_failure` };
     }
   }
-  if (override.source !== "marker" || markerReason === null)
+  if (override.source !== "marker" || markerReason === null || markerNonce === null)
     return { exitCode: 2, message: base.message };
   try {
     const db = openHarnessDb(defaultHarnessDbPath(opts.repoRoot), {
@@ -158,12 +169,8 @@ export function runGitCommandGuardHook(opts: {
     });
     try {
       if (db.userVersion() < SCHEMA_VERSION) migrate(db);
-      const markerStat = statSync(markerPath);
-      const nonce = guardOverrideDigest(
-        `${markerStat.dev}:${markerStat.ino}:${markerStat.mtimeMs}:${markerReason}`,
-      );
       const result = commitOverrideUse({
-        nonce,
+        nonce: markerNonce,
         reason: override.reason,
         classification: {
           guardKind: "git",

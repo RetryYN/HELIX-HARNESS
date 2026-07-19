@@ -4,12 +4,35 @@ title: "PLAN-L7-457 (impl): document semantic diff local artifact output"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-14 /goal『設計を正としてテストや検出基はそれに追従』に基づくHVM-GAP-02 --out契約実装"]
 created: 2026-07-14
 updated: 2026-07-14
 owner: Codex
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-18T16:33:00Z"
+  review_binding:
+    reviewer: cluster_c_independent_review
+    reviewed_at: "2026-07-18T16:33:00Z"
+    evidence_digest: "sha256:1a0d9fd80f456c4e2f54fa954d979d9a5c54abdfd228d294bb8993b9c3380908"
+  entries: []
+backprop_decision: not_required
+backprop_decision_reason: "既存L6 semantic diff契約の明示local artifact出力であり、上位要求の意味を変更しない。"
+review_evidence:
+  - reviewer: cluster_c_independent_review
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-18T16:33:00Z"
+    tests_green_at: "2026-07-18T16:32:00Z"
+    verdict: pass
+    scope: "semantic diff local artifact port、path/durability/dry-run mutation oracle、L6/L8 Vペアを独立監査。Blocker/High 0。2026-07-19に再検証。"
+    green_commands:
+      - { kind: unit_test, command: "bun test tests/document-report-write-port.test.ts --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:92b072ab44b3d129bd3908c15117eee2f86032a5f1e83b9097a33d6896668bb0" }
+      - { kind: integration_test, command: "bun test tests/cli-surface.test.ts -t IT-DOCDIFF-003 --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:30:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:b5349ba61841aec712a981f3ac5137966137f593f4e3645b5952aaeabc8a3e8b" }
 agent_slots:
   - { role: se, slot_label: "SE — document diff artifact port / CLI" }
   - { role: qa, slot_label: "QA — path / durability / dry-run mutation oracle" }

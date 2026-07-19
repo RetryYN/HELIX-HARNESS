@@ -3,9 +3,8 @@
 status: recorded
 kind: governance-audit
 author: claude (pmo-sonnet 3 レーン並列監査の統合)
-scope: docs/design/helix/L1-requirements/ 4 本、docs/design/helix/L3-requirements/ 17 本、
-  docs/governance/helix-harness-requirements_v1.2.md、L0 charter、ADR-001/009/010、
-  infinity-loop requirement coverage/definition ledger
+scope: L1要件4本、L3要件17本、要件正本v1.2、L0 charter、ADR-001/009/010、
+  infinity-loop要件coverage/definition台帳
 
 ## 監査方法
 

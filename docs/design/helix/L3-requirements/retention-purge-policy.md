@@ -64,6 +64,6 @@ PO が L1 正本へ追記する場合の候補文は以下に留める。
 
 ## §5 後続実装境界
 
-- L7 実装が必要な候補: archive manifest schema、compaction dry-run、projection rebuild stale check、doctor gate。
+- canonical L6実装/L7 TDD closureが必要な候補: archive manifest schema、compaction dry-run、projection rebuild stale check、doctor gate。
 - すぐに実装しないこと: source event の自動物理削除、期限付き purge daemon、approval 無しの archive pruning。
 - PLAN-M-02 の identifier cutover とは独立である。`.helix` state path の移動や CLI 名変更を本書で許可しない。

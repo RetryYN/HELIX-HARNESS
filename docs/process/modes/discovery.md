@@ -8,7 +8,7 @@
 
 ## 1. 概要
 
-Discovery は **要件・成功条件が未確定、または実現性が不透明な状態**を、仮説 → PoC → 検証 → 判定で潰す探索・検証モード。**確証が持てない「設計」**(仮実装→検証→確定) も Discovery で扱う (PLAN-DISCOVERY-01 §1.1)。Forward L0-L14 に入る前の不確実性を潰す前段であり、S4 `decision_outcome=confirmed` で昇格後に Reverse 昇華を経て正本化する。S3 verify pass は検証証跡の成立であって、terminal status ではない。
+Discoveryは**要件・成功条件が未確定、または実現性が不透明な状態**を、仮説→PoC→検証→判定で潰す探索・検証modeである。確証を持てない設計も仮実装→検証→確定として扱う。`docs/governance/helix-harness-requirements_v1.3.md`のForward L1〜L12へ入る前の不確実性を潰し、S4 `decision_outcome=confirmed`後にReverseで設計資産へ昇華して正本化する。S3 verify pass は検証証跡の成立であって、terminal status ではない。
 
 ### frontmatter 早見表 (README 台帳より)
 

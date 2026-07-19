@@ -4,12 +4,32 @@ title: "PLAN-L7-450 (refactor): state-db / VS Code ownership分離"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals: ["po_directive:2026-07-13 PLAN-L7-446 #11 architecture cycleをexact Vペアで解消"]
 created: 2026-07-13
 updated: 2026-07-13
 owner: Codex
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-18T16:33:00Z"
+  review_binding:
+    reviewer: node_evidence_audit
+    reviewed_at: "2026-07-18T16:33:00Z"
+    evidence_digest: "sha256:27fa7c1fad0316bb98aaf0d787c71343d377fcee7515435e9e23388de9157eed"
+  entries: []
+review_evidence:
+  - reviewer: node_evidence_audit
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: gpt-5
+    reviewed_at: "2026-07-18T16:33:00Z"
+    tests_green_at: "2026-07-18T16:32:00Z"
+    verdict: pass
+    scope: "state-db/VS Code分離、headless composition、実repo graphを独立監査。Blocker/High 0。2026-07-19に再検証。"
+    green_commands:
+      - { kind: integration_test, command: "bun test source-boundary targeted set --timeout 300000", runner: bun, scope: targeted, exit_code: 0, completed_at: "2026-07-19T01:28:00+09:00", evidence_path: docs/governance/merged-plan-closure-audit-2026-07-19.md, output_digest: "sha256:cadaacbff7c7843c07095c03e15d9f44b7822c00b147e1ccd203d1f24e1ce3dc" }
 agent_slots:
   - { role: se, slot_label: "SE — contract/projector/evidence owner分離" }
   - { role: qa, slot_label: "QA — cycle/headless adapter oracle" }
@@ -47,10 +67,10 @@ dependencies:
 共有DTO、pure projector、state-db evidence、VS Code decorationを物理分離し、`src/composition/`のcomposition rootだけで接続する。
 既存symbolを新ownerへ移した後、state-dbとVS Code間のdirect/type-only edgeを0にする。
 
-## 実装済み出力（draft、closure前）
+## 実装済み出力
 
 次の source artifact は本PLANの実装出力であり、frontmatterの`generates`に登録済みである。
-ただしstate-dbのcomposition反転、L9 integration oracle、independent reviewを終えるまでPLANはdraftのままとする。
+state-dbのcomposition反転、L9 integration oracle、independent reviewは閉鎖監査でgreenを再確認した。
 
 - `src/schema/visualization-contract.ts`
 - `src/vmodel/visualization-tree-projector.ts`

@@ -20,16 +20,18 @@ next_pair_freeze: L3
 
 ## §0 量閉じ
 
-- 対象 L3 要件: HR-FR 33 件 + HR-NFR 13 件 = 46 件（2026-06-28 G-REQ.L1 freeze 43 件 + 2026-07-06 add-design 3 件）。
-- 対象 AC: HAC 92 件。
-- 受入テスト: HAT 46 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
-- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 46 件とは別枠で §1.1 に受入観測を持つ。
+- 対象 L3 要件: HR-FR 38 件 + HR-NFR 13 件 = 51 件（従来46件 + 2026-07-19 worker runtime／配布要求5件）。
+- 対象 AC: HAC 102 件。
+- 受入テスト: HAT 51 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
+- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 51 件とは別枠で §1.1 に受入観測を持つ。
 - 孤児: 0。詳細は §2 / §2.1 trace。
+
+新規HAT-P2-05..08／HAT-P6-06は受入設計の確定を示し、test implementationまたはruntime greenを示さない。旧46件の下流証拠と分離し、L4以降へ降下するまで`designed`を上限とする。
 
 ### §0.1 amendment frontier oracle（要求修正 frontier oracle）
 
 L1 §2.8 asset/progress visualization は 2026-06-30 の要求変更であり、2026-07-06 の PO 指示で
-S4 confirmed に戻した。本 confirmed HAT 46 件へはまだ混ぜず、downstream implementation frontier として扱う。
+S4 confirmed に戻した。本 confirmed HAT 51 件へはまだ混ぜず、downstream implementation frontier として扱う。
 acceptance 上の oracle は、read-model first response だけを VSCode View/Webview 実装完了として再混入することを
 false completion として拒否する。
 
@@ -37,7 +39,7 @@ S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 
 L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
 read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
 
-G-SF oracle: confirmed 46 件の overlay 内では `confirmed_overlay_frontier_count=0` である。現行 live frontier は
+G-SF oracle: confirmed 51 件の overlay 内では `confirmed_overlay_frontier_count=0` である。現行 live frontier は
 `live_semantic_frontier_count=2` として `completionDecisionPacket` / `objective-evidence-audit` に従う。`semantic_feature_frontier_record` は
 `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` の classification vocabulary として
 保持し、future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない。
@@ -80,6 +82,10 @@ projection であり、新しい閾値の正本ではない。受入観測では
 | HAT-P2-02 | HR-FR-P2-02 | HAC-P2-02a/b | loop effort/budget 超過で自己継続しない | `tests/orchestration/orchestration.test.ts` HU-PILLAR-P2-02 / `tickLoopEffortBudget` |
 | HAT-P2-03 | HR-FR-P2-03 | HAC-P2-03a/b | Codex `apply_patch` / `write_file` / `exec_command` / `local_shell` adapter map、direct hook parity、hosted API preflight が区別される | `tests/codex-hook-adapter.test.ts` / `tests/hosted-preflight.test.ts` / `helix guard preflight --json` |
 | HAT-P2-04 | HR-FR-P2-04 | HAC-P2-04a/b | API/SDK 呼び出し前提ではなく PLAN 駆動で、simple workflow 既定、multi-agent 昇格理由、harness DB loop trace span、eval outcome が残る。pair-agent TDD route は consultation question を含む light output を pending consultation として扱い、smart directive / fix response 無しに pass しない。light output が完了/承認 marker を出す場合は light agent の closing authority 越えとして fail-close する。task difficulty と `maxFixCyclesSource` を plan/run evidence に残し、未指定 max cycle は difficulty policy (`trivial/simple=1`, `standard=2`, `complex=3`, `critical=4`) から導出する。max cycle 到達は `max-fix-cycles-exhausted` finding として監査可能に残る。`pair-agent plan --save-evidence` は adapter plan / prompt digest / frontier guardrail を残し、`pair-agent run --save-evidence` は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` を残す。DB rebuild は保存済み `phase_spans` が `smart_test_author` から始まり `light_implementation` / `smart_review` が交互に続くことを検査し、違反時は `pair-agent-run-evidence` gate blocked と finding に投影する。plan/run phase agent は `model_runs`、gate は `gate_runs`、frontier approval は `guardrail_decisions`、phase/smart/light/review/consultation/pending consultation/failed review/fix cycle count は `quality_signals` へ投影する | agent-loop tracing / eval tests / `tests/pair-agent.test.ts` / `tests/projection-writer.test.ts` |
+| HAT-P2-05 | HR-FR-P2-05 | HAC-P2-05a/b | 外部AI worker descriptorが隔離worktree／non-authorityを必須化し、secret taskと未登録runtimeを起動前にdenyする | worker runtime admission設計test（未実装はdesignedとして追跡） |
+| HAT-P2-06 | HR-FR-P2-06 | HAC-P2-06a/b | typed wire eventだけをNode control planeが受理し、未登録event／直接write要求を実行しない | delegation wire adapter設計test（未実装はdesignedとして追跡） |
+| HAT-P2-07 | HR-FR-P2-07 | HAC-P2-07a/b | permanent bypass denyがone-shot marker／provider flagより優先し、無権限変更を拒否する | repository bypass policy設計test（未実装はdesignedとして追跡） |
+| HAT-P2-08 | HR-FR-P2-08 | HAC-P2-08a/b | strict既定のschema／digest検証と、期限付き緩和profileのfail-closeを検査する | worker output validation設計test（未実装はdesignedとして追跡） |
 | HAT-P3-01 | HR-FR-P3-01 | HAC-P3-01a/b | pair 欠落と coverage-only 完了主張を拒否する | pair-freeze / review-evidence tests |
 | HAT-P3-02 | HR-FR-P3-02 | HAC-P3-02a/b | 外部 claim は source attribution + 別 verifier を要求する | external-grounding tests |
 | HAT-P4-01 | HR-FR-P4-01 | HAC-P4-01a/b | detector event が repair candidate へ変換され、高リスクは approval 待ちになる | repair-routing tests |
@@ -90,6 +96,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 | HAT-P6-03 | HR-FR-P6-03 | HAC-P6-03a/b | fresh/brownfield setup が `.helix` / `.helix` state、consumer doctor baseline、baseline plan、import report、`skip_sub_doc` を非破壊に出す。導入先では `helix doctor --profile consumer` が dogfood design/plans 無しで通り、配布済み `.helix/teams/default-hybrid.yaml` を使った `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` dry-run が Codex worker / Claude reviewer 分離を検証する。`consumerReadiness.artifactReadiness` は AGENTS / VSCode task / `.helix` baseline / default-hybrid team の意味契約を検査し、artifact が欠けるか導線と worker/reviewer 分離が崩れた場合は環境 CLI が解決済みでも `fix_consumer_readiness` に戻す。projected hook / agent が呼ぶ bare `helix` の PATH 解決だけを `helix-cli` green 条件にし、`package.json.scripts.helix` / `bun run helix` は `helix-package-script` fallback 証跡に限定する。package script のみなら `cliResolution.strategy=package-script`、`bareCommandResolved=false`、`packageScriptAvailable=true`、`ok=false`、`postSetupWorkflow.nextRoute=fix_consumer_readiness` を観測し、VSCode task / CI / package-local smoke の成功を hook 自走性や setup ready に読み替えない。consumer doctor は `.helix/state/project-setup.json` の `completionClaimAllowed=false` と completion packet / consumer doctor verification command も検査し、setup ready を whole-program completion ready に読み替えない | setup/distribution tests |
 | HAT-P6-04 | HR-FR-P6-04 | HAC-P6-04a/b | tag bump が migration/rollback/idempotency plan を出し破壊的 apply を止める。rename/cutover は未承認のまま audit/cutover packet を出し、status / completion decision packet / continuation read model の summary に cutover snapshot digest、snapshot review、runbook write policy、backup/restore evidence、freeze policy、approval gate の具体 field を出す | version-up dry-run tests / identifier-rename tests |
 | HAT-P6-05 | HR-FR-P6-05 | HAC-P6-05a/b | release automation が一次出典つき ADR で選ばれ、CI auto-fix repush が confidence 0.75 と iteration cap を守る | release ADR / CI auto-fix tests |
+| HAT-P6-06 | HR-FR-P6-06 | HAC-P6-06a/b | canonical indexからgenerated indexを再現し、first/third-party provenance／license／免責／digestを保持し、手編集と未承認cutoverを拒否する | distribution package contract設計test（未実装はdesignedとして追跡） |
 | HAT-P7-01 | HR-FR-P7-01 | HAC-P7-01a/b | Claude/Codexが同じ共有memoryをbounded recallし、provider delegation evidenceとoperations transitionをrecall/continuation sourceにしない。retirement前後のcount・原本digest・provenance・schema・query/export可用性・retention metadata不変を確認する | memory surface / session-start / preserve evidence boundary and integrity tests |
 | HAT-P7-02 | HR-FR-P7-02 | HAC-P7-02a/b | Glossary SSoT が用語 rename/synonym drift を検出する | glossary lint tests |
 | HAT-P7-03 | HR-FR-P7-03 | HAC-P7-03a/b | DDD context map が bounded context、ubiquitous language、owner、published language、anti-corruption boundary を検査する | context-map / relation-graph tests |
@@ -119,7 +126,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 
 ## §1.1 Route-B back-fill acceptance（受入）
 
-`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 46 件とは別に
+`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 51 件とは別に
 受入観測を固定する。これらは L4/L5 pillar overlay へ二重採番せず、L6 `orchestration-memory.md` と
 L7 実装済み oracle を通じて trace する。
 
@@ -137,8 +144,8 @@ L7 実装済み oracle を通じて trace する。
 ## §1.2 Visualization frontier acceptance（受入、PLAN-L3-12）
 
 `docs/design/helix/L3-requirements/visualization-requirements.md`（`HR-FR-VIS-01..06`）の pair。
-§0.1 amendment frontier oracle に従い、これらは **confirmed 46 件へ混ぜない別枠の visualization frontier
-acceptance** であり、量閉じ 46 件を増やさない。正本 source は `VisualizationSnapshot`
+§0.1 amendment frontier oracle に従い、これらは **confirmed 51 件へ混ぜない別枠の visualization frontier
+acceptance** であり、量閉じ 51 件を増やさない。正本 source は `VisualizationSnapshot`
 （`src/state-db/visualization-read-model.ts`、`PLAN-L7-206`）で、UI 実装完了ではなく view 要件の受入観測を固定する。
 PO 承認前は `draft` frontier として扱い、read-model first response を VSCode View/Webview 実装完了と読み替えない。
 
@@ -158,10 +165,10 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 |----|----|-----|------|
 | HBR-P0 | HR-FR-P0-01 / HR-FR-P0-02 | HAT-P0-01 / HAT-P0-02 | 対応関係 |
 | HBR-P1 | HR-FR-P1-01 / HR-FR-P1-02 / HR-FR-P1-03 / HR-FR-P1-04 | HAT-P1-01 / HAT-P1-02 / HAT-P1-03 / HAT-P1-04 | 対応関係 |
-| HBR-P2 | HR-FR-P2-01 / HR-FR-P2-02 / HR-FR-P2-03 / HR-FR-P2-04 | HAT-P2-01 / HAT-P2-02 / HAT-P2-03 / HAT-P2-04 | 対応関係 |
+| HBR-P2 | HR-FR-P2-01..08 | HAT-P2-01..08 | 対応関係 |
 | HBR-P3 / HNFR-P3 | HR-FR-P3-01 / HR-FR-P3-02 / HR-NFR-P3-01 / HR-NFR-P3-02 / HR-NFR-P3-03 / HR-NFR-P3-04 | HAT-P3-01 / HAT-P3-02 / HAT-N3-01 / HAT-N3-02 / HAT-N3-03 / HAT-N3-04 | 対応関係 |
 | HBR-P4 | HR-FR-P4-01 / HR-FR-P4-02 / HR-FR-P4-03 | HAT-P4-01 / HAT-P4-02 / HAT-P4-03 | 対応関係 |
-| HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | HAT-P6-01 / HAT-P6-02 / HAT-P6-03 / HAT-P6-04 / HAT-P6-05 | 対応関係 |
+| HBR-P6 | HR-FR-P6-01..06 | HAT-P6-01..06 | 対応関係 |
 | HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 | HAT-P7-01 / HAT-P7-02 / HAT-P7-03 | 対応関係 |
 | HBR-P8 / HNFR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 / HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | HAT-P8-01 / HAT-P8-02 / HAT-P8-03 / HAT-P8-04 / HAT-N8-01 / HAT-N8-02 / HAT-N8-03 | 対応関係 |
 | HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 / HR-FR-P9-04 / HR-FR-P9-05 / HR-FR-P9-06 | HAT-P9-01 / HAT-P9-02 / HAT-P9-03 / HAT-P9-04 / HAT-P9-05 / HAT-P9-06 | 対応関係 |
@@ -178,11 +185,11 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 
 ## §2.2 Visualization frontier trace 対応（PLAN-L3-12）
 
-confirmed 46 件の trace とは別枠。`visualization-requirements.md` の `HR-FR-VIS-*` と 1:1。
+confirmed 51 件の trace とは別枠。`visualization-requirements.md` の `HR-FR-VIS-*` と 1:1。
 
 | L1 | L3 | L12 | 備考 |
 |----|----|-----|------|
-| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 / HR-FR-VIS-07 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 / HAT-VIS-07 | visualization frontier（confirmed 46 件外）。孤児 0 |
+| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 / HR-FR-VIS-07 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 / HAT-VIS-07 | visualization frontier（confirmed 51 件外）。孤児 0 |
 
 ## §3 G-REQ.L3
 
