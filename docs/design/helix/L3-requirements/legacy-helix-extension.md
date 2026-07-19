@@ -59,7 +59,7 @@ Python semantic core＋TypeScript/Node transactional boundary、PLAN、現行sta
 | HLX-FR-04 | recommender catalog は skill / code / command 候補を task、layer、phase、agent role、references に紐づけ、bulk import ではなく候補提示と採用証跡に限定する | HLX-AC-04a / HLX-AC-04b |
 | HLX-FR-05 | RUN & Debug trace は、実行ログを action / command / adapter surface / expected keyword / missing action に分解し、L7.5 verification evidence と改善候補へ接続する | HLX-AC-05a / HLX-AC-05b |
 | HLX-FR-06 | core injection / runtime adapter distribution は、旧 `HELIX_CORE.md` と Claude/Codex adapter を repo-local 正本へ射影し、個人 absolute path や global file 欠落を current truth と混同しない | HLX-AC-06a / HLX-AC-06b |
-| HLX-FR-07 | hook / guard suite は、AskUserQuestion だけでなく agent guard、fire/stop guard、context bundle、plan auto-register、skill catalog rebuild を guard-surface registry へ分類し、wired/deferred/rejected を証跡化する | HLX-AC-07a / HLX-AC-07b |
+| HLX-FR-07 | hook / guard suite は、AskUserQuestion だけでなく agent guard、fire/stop guard、context bundle、plan auto-register、skill catalog rebuild を `semantic-atom-curation` で分解して guard-surface registry へ分類し、wired/deferred/rejected を証跡化する | HLX-AC-07a / HLX-AC-07b |
 | HLX-FR-08 | agent / role / model roster は、旧 persona file と role config を typed roster、slot policy、model-family constraint に変換し、過剰権限 role や自己評価 delegation を fail-close する | HLX-AC-08a / HLX-AC-08b |
 | HLX-FR-09 | workflow process inventory は、49 workflow docs を HELIX pillar / workflow mode / gate へ意味分類し、未知 workflow を自動実行せず existing-pillar-covered または new-plan-required に分ける | HLX-AC-09a / HLX-AC-09b |
 | HLX-FR-10 | DB / registry / telemetry / HTTP API surface は、旧 `helix_db.py`、registry、catalog、HTTP route を harness.db projection / read-model / provenance boundary へ翻案し、raw state import を禁止する | HLX-AC-10a / HLX-AC-10b |

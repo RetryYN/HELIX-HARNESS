@@ -1,5 +1,6 @@
 <!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
 > **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+> **層正本**: `docs/governance/helix-harness-requirements_v1.3.md` の L1-L12 canonical contract に従う。
 
 # HELIX-HARNESS — ゲート設計 + 自動追加型クロスチェックエンジン
 

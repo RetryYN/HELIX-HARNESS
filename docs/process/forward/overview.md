@@ -1,5 +1,6 @@
 <!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->
 > **L3進行authority**: 層・pair・runtime判断は docs/governance/l3-progression-authority-rebaseline-2026-07-19.md を正とする。本文の旧layer/runtime表現はdomain contentだけを保持するcompatibility debtであり、L3 freeze条件へ使用しない。
+> **層正本**: `docs/governance/helix-harness-requirements_v1.3.md` の L1-L12 canonical contract に従う。
 
 > **現行authority（2026-07-19）**: canonical ForwardはL1-L12。正規pairはL1↔L12 / L2↔L11 / L3↔L10 / L4↔L9 / L5↔L8 / L6↔L7。L0-L14記述はcompatibility projectionである。
 

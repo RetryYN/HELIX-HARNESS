@@ -1,4 +1,5 @@
 > **現行authority（2026-07-19）**: modeの合流先はForward L1-L12。L0-L14表記はcompatibility projectionに限定する。
+> **層正本**: `docs/governance/helix-harness-requirements_v1.3.md` の L1-L12 canonical contract に従う。
 
 # 駆動モデル (mode) 定義 — index + 正本台帳
 

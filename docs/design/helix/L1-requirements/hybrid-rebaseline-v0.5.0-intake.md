@@ -6,6 +6,7 @@ status: draft
 created: 2026-07-18
 updated: 2026-07-18
 owner: PO / TL
+pair_artifact: docs/test-design/helix/hybrid-rebaseline-v0.5.0-intake-acceptance.md
 related_l3: docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md
 related_delta: docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md
 ---
