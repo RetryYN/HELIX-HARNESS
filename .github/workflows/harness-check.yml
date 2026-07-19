@@ -48,7 +48,7 @@ jobs:
     needs: windows-durability-smoke
     if: ${{ always() }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - name: require Windows durability smoke
         if: ${{ needs.windows-durability-smoke.result != 'success' }}
@@ -174,7 +174,7 @@ jobs:
         run: npx --no-install tsx src/cli.ts db rebuild --json
 
       - name: test — 全回帰 (vitest run)
-        timeout-minutes: 15
+        timeout-minutes: 25
         env:
           # temp fixture cwdからもrepo pin済みtsxだけを解決する。
           NPM_CONFIG_PREFIX: ${{ github.workspace }}

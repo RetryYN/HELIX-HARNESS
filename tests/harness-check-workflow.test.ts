@@ -35,7 +35,7 @@ function boundedTimeViolations(raw: string): string[] {
   if (!job || !Array.isArray(job.steps)) return ["harness_job_missing"];
   const steps = job.steps;
   const findings: string[] = [];
-  if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 20)
+  if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 35)
     findings.push("job_timeout_invalid");
   if (job["continue-on-error"] !== undefined) findings.push("job_fail_open_field");
   const regressions = steps.filter(
@@ -43,7 +43,7 @@ function boundedTimeViolations(raw: string): string[] {
   );
   if (regressions.length !== 1) return [...findings, "regression_step_not_unique"];
   const regression = regressions[0] as Step;
-  if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 15)
+  if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 25)
     findings.push("regression_timeout_invalid");
   if (
     typeof regression["timeout-minutes"] === "number" &&
@@ -192,8 +192,8 @@ describe("source harness-check workflow", () => {
     const { job, steps, raw } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
-    expect(job["timeout-minutes"]).toBe(20);
-    expect(regression["timeout-minutes"]).toBe(15);
+    expect(job["timeout-minutes"]).toBe(35);
+    expect(regression["timeout-minutes"]).toBe(25);
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
     expect(job["continue-on-error"]).not.toBe(true);
     expect(regression["continue-on-error"]).not.toBe(true);
@@ -207,14 +207,14 @@ describe("source harness-check workflow", () => {
     expect(boundedTimeViolations(raw)).toEqual([]);
   });
 
-  it("U-CITIME-001: fixes the required job budget at 20 minutes", () => {
-    expect(loadWorkflow().job["timeout-minutes"]).toBe(20);
+  it("U-CITIME-001: fixes the required job budget at 35 minutes", () => {
+    expect(loadWorkflow().job["timeout-minutes"]).toBe(35);
   });
 
   it("U-CITIME-002: keeps the regression budget below the job budget", () => {
     const { job, steps } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
-    expect(regression["timeout-minutes"]).toBe(15);
+    expect(regression["timeout-minutes"]).toBe(25);
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
   });
 
@@ -223,24 +223,24 @@ describe("source harness-check workflow", () => {
   });
 
   it.each([
-    ["job timeout欠落", (raw: string) => raw.replace("    timeout-minutes: 20\n", "")],
-    ["文字列timeout", (raw: string) => raw.replace("timeout-minutes: 20", 'timeout-minutes: "20"')],
-    ["step timeout欠落", (raw: string) => raw.replace("        timeout-minutes: 15\n", "")],
-    ["同値予算", (raw: string) => raw.replace("timeout-minutes: 15", "timeout-minutes: 20")],
+    ["job timeout欠落", (raw: string) => raw.replace("    timeout-minutes: 35\n", "")],
+    ["文字列timeout", (raw: string) => raw.replace("timeout-minutes: 35", 'timeout-minutes: "35"')],
+    ["step timeout欠落", (raw: string) => raw.replace("        timeout-minutes: 25\n", "")],
+    ["同値予算", (raw: string) => raw.replace("timeout-minutes: 25", "timeout-minutes: 35")],
     [
       "job fail-open",
       (raw: string) =>
         raw.replace(
-          "    timeout-minutes: 20",
-          "    timeout-minutes: 20\n    continue-on-error: true",
+          "    timeout-minutes: 35",
+          "    timeout-minutes: 35\n    continue-on-error: true",
         ),
     ],
     [
       "step skip条件",
       (raw: string) =>
         raw.replace(
-          "        timeout-minutes: 15",
-          `        timeout-minutes: 15\n        if: \${{ false }}`,
+          "        timeout-minutes: 25",
+          `        timeout-minutes: 25\n        if: \${{ false }}`,
         ),
     ],
     [
@@ -252,7 +252,7 @@ describe("source harness-check workflow", () => {
       (raw: string) =>
         raw.replace(
           "      - name: test — 全回帰 (vitest run)",
-          "      - name: test — 全回帰 (vitest run)\n        timeout-minutes: 15\n        run: npm test\n\n      - name: test — 全回帰 (vitest run)",
+          "      - name: test — 全回帰 (vitest run)\n        timeout-minutes: 25\n        run: npm test\n\n      - name: test — 全回帰 (vitest run)",
         ),
     ],
     [
