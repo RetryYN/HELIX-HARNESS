@@ -147,3 +147,22 @@ kindは`legacy_shim` / `layer_migration_staged` / `cross_layer_meta`だけを許
 ### §7.4 「機械発火」の範囲
 
 surface まで (doctor が「層群 X freeze 完了 → 検証サイクル発火可」を機械的に告げる)。**検証 PLAN の起票は人間トリガー** (concept §2.6 signal→mode と同じく、機械は提示・人間が起票)。検証サイクルの自動起票は後続 carry。
+
+## §8 L12 canonical 二重投影 (`layer projection`、PLAN-L7-460)
+
+HR-FR-VMCUT-02/05 (`docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md` §1-§2) の
+Forward 降下。legacy L0-L14 → canonical L1-L12 の exact remap を機械 SSoT
+(`src/vmodel/layer-projection.ts`) として保持し、doctor `l12-dual-projection` が
+design 層ディレクトリと PLAN frontmatter layer の二重表示 summary を出す。
+HR-FR-VMCUT-03 に従い本節は既存 L6 成果物への吸収であり、新規の独立 L6 成果物を生成しない。
+一括 rename・schema enum 切替は行わない (二重表示 green 実績後の後続スライス、PLAN-M-02 境界と分離)。
+
+| 関数 (`Function`) | 署名 (`Signature`) | 事前条件 (`pre`) | 事後条件 (`post`) | 不変条件 (`invariant`) | oracle |
+|---|---|---|---|---|---|
+| `analyzeDualProjection` | analyzeDualProjection(input: DualProjectionInput) => DualProjectionResult | 走査済み layer token (出所付き) が入力される。非 L-token は対象外。 | legacy→canonical の二重表示 rows と unmapped を返し、unmapped 0 のときだけ ok。 | remap SSoT は legacy L0-L14 の全 15 layer を被覆し、map に無い legacy L-token を fail-close で報告する (HR-FR-VMCUT-05)。 | U-VMCUT-001 |
+
+### §8.1 単体 oracle (`U-VMCUT-*`)
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-VMCUT-001 | HR-FR-VMCUT-02 remap SSoT と二重投影 | remap に無い legacy L-token (例 L99) が観測される → unmapped として fail-close violation。全 15 layer 被覆・縮退 remap (L5/旧L6→L5, L13/L14→L12)・非 L-token 無視・実 repo unmapped 0 が崩れたら fail | `tests/layer-projection.test.ts` |
