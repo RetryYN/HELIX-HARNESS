@@ -38,6 +38,7 @@ export const STATUS_REVIEW_REQUIRED = new Set<string>(["confirmed", "completed"]
 
 /** review_evidence の 1 entry (cross-review semantic IMP-076 + test→review 順序 IMP-077 検査に必要な部分)。 */
 export interface ReviewEntry {
+  reviewer?: string;
   review_kind: string;
   verdict?: string;
   reviewed_at?: string;
@@ -130,6 +131,7 @@ export function extractReviewEntries(content: string): ReviewEntry[] {
         const entry: ReviewEntry = {
           review_kind: typeof e.review_kind === "string" ? e.review_kind : "",
         };
+        if (typeof e.reviewer === "string") entry.reviewer = e.reviewer;
         if (typeof e.verdict === "string") entry.verdict = e.verdict;
         if (typeof e.reviewed_at === "string") entry.reviewed_at = e.reviewed_at;
         if (typeof e.tests_green_at === "string") entry.tests_green_at = e.tests_green_at;
@@ -214,19 +216,27 @@ export function greenCommandViolationReason(entry: ReviewEntry): string | null {
 
 export function bunHistoricalReceiptInventoryDigest(plans: ParsedReviewPlan[]): string {
   const receipts = plans.flatMap((plan) =>
-    (plan.crossEntries ?? []).flatMap((entry) =>
-      (entry.green_commands ?? [])
-        .filter((command) => command.runner === "bun")
-        .map((command) => ({
+    (plan.crossEntries ?? []).flatMap((entry, entryIndex) =>
+      (entry.green_commands ?? []).flatMap((command, commandIndex) =>
+        command.runner === "bun"
+          ? [{
+          file: plan.file,
           plan_id: plan.plan_id,
-          kind: command.kind,
-          command: command.command,
-          scope: command.scope,
-          exit_code: command.exit_code,
-          completed_at: command.completed_at ?? "",
-          evidence_path: command.evidence_path,
-          output_digest: command.output_digest,
-        })),
+          entry_index: entryIndex,
+          command_index: commandIndex,
+          review_envelope: {
+            reviewer: entry.reviewer ?? "",
+            review_kind: entry.review_kind,
+            verdict: entry.verdict ?? "",
+            reviewed_at: entry.reviewed_at ?? "",
+            tests_green_at: entry.tests_green_at ?? "",
+            worker_model: entry.worker_model ?? "",
+            reviewer_model: entry.reviewer_model ?? "",
+            green_commands: entry.green_commands ?? [],
+          },
+        }]
+          : [],
+      ),
     ),
   );
   return createHash("sha256")
