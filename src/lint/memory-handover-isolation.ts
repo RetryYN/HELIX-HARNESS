@@ -5,7 +5,11 @@ import { execFileSync } from "node:child_process";
  * hybrid 運用の引き継ぎ基準点は commit/push 済み HEAD ただ一つ (CLAUDE.md)。
  * `.helix/memory/` を触るコミットがどの remote branch にも到達しないまま残ると、
  * 相手ランタイムへ memory 引き継ぎが届かない (2026-07-19 の孤立 18 コミット実インシデント)。
- * 本 lint はその孤立を機械検出する。git 情報が取れない場合は fail-close。
+ *
+ * 走査は全 local branch + HEAD (detached 含む) を対象にする。実インシデントは非 checkout
+ * branch 上で起きたため HEAD 限定では検出できない。無関係 branch の巻き込み (rebase 済み
+ * 等価コミット) は patch-id 等価判定で除外し、真に未到達な内容だけを報告する。
+ * remote 未設定・git 情報取得不能は fail-close。
  */
 
 export const MEMORY_HANDOVER_PATH_PREFIX = ".helix/memory/";
@@ -19,32 +23,67 @@ export interface MemoryHandoverCommit {
 }
 
 export interface MemoryHandoverIsolationInput {
-  /** remote branch に未到達な local コミットのうち `.helix/memory/` を触るもの */
+  /** remote 未到達かつ patch-id 等価でも remote に無い `.helix/memory/` 変更コミット */
   unreachedMemoryCommits: MemoryHandoverCommit[];
+  /** remote が 1 つも設定されていない (検証不能 → fail-close) */
+  noRemote: boolean;
 }
 
 export interface MemoryHandoverIsolationResult {
   ok: boolean;
+  /** remote 未設定で検証不能 (fail-close) */
+  noRemote: boolean;
   /** 閾値超過で violation となった孤立コミット */
   isolated: MemoryHandoverCommit[];
   /** 閾値内の未 push コミット (violation にせず件数 surface のみ) */
   stale: MemoryHandoverCommit[];
 }
 
-export function loadMemoryHandoverIsolationInput(
-  repoRoot: string = process.cwd(),
-): MemoryHandoverIsolationInput {
-  const gitLines = (args: string[]): string[] =>
+function gitLinesFactory(repoRoot: string) {
+  return (args: string[]): string[] =>
     execFileSync("git", ["-C", repoRoot, ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     })
       .split("\n")
       .filter(Boolean);
+}
 
-  // どの remote branch にも含まれない local commit (全 local branch 起点)
-  const unreached = gitLines(["log", "--branches", "--not", "--remotes", "--format=%H %ct %s"]);
-  const commits: MemoryHandoverCommit[] = [];
+/** commit の patch-id (等価 diff 判定用)。空 diff (merge 等) は null。 */
+function patchIdOf(repoRoot: string, hash: string): string | null {
+  const patch = execFileSync("git", ["-C", repoRoot, "show", "--format=", hash], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (patch.trim() === "") return null;
+  const out = execFileSync("git", ["-C", repoRoot, "patch-id", "--stable"], {
+    encoding: "utf8",
+    input: patch,
+    stdio: ["pipe", "pipe", "ignore"],
+  });
+  return out.split(" ")[0] || null;
+}
+
+export function loadMemoryHandoverIsolationInput(
+  repoRoot: string = process.cwd(),
+): MemoryHandoverIsolationInput {
+  const gitLines = gitLinesFactory(repoRoot);
+
+  if (gitLines(["remote"]).length === 0) {
+    return { unreachedMemoryCommits: [], noRemote: true };
+  }
+
+  // 全 local branch + HEAD (detached HEAD の取りこぼし防止) から remote 未到達 commit を列挙
+  const unreached = gitLines([
+    "log",
+    "--branches",
+    "HEAD",
+    "--not",
+    "--remotes",
+    "--format=%H %ct %s",
+  ]);
+  const candidates: MemoryHandoverCommit[] = [];
   for (const line of unreached) {
     const match = line.match(/^([0-9a-f]{40}) (\d+) (.*)$/);
     if (!match) continue;
@@ -59,20 +98,42 @@ export function loadMemoryHandoverIsolationInput(
       MEMORY_HANDOVER_PATH_PREFIX,
     ]);
     if (memoryPaths.length === 0) continue;
-    commits.push({
+    candidates.push({
       hash,
       subject,
       committedAtEpochSeconds: Number(epoch),
       memoryPaths,
     });
   }
-  return { unreachedMemoryCommits: commits };
+  if (candidates.length === 0) return { unreachedMemoryCommits: [], noRemote: false };
+
+  // rebase/merge 済み等価コミットの除外: remote 側の `.helix/memory/` 変更 commit と patch-id 突合
+  const remotePatchIds = new Set<string>();
+  const remoteMemoryCommits = gitLines([
+    "log",
+    "--remotes",
+    "--format=%H",
+    "--",
+    MEMORY_HANDOVER_PATH_PREFIX,
+  ]);
+  for (const hash of remoteMemoryCommits) {
+    const id = patchIdOf(repoRoot, hash);
+    if (id) remotePatchIds.add(id);
+  }
+  const unreachedMemoryCommits = candidates.filter((commit) => {
+    const id = patchIdOf(repoRoot, commit.hash);
+    return id === null || !remotePatchIds.has(id);
+  });
+  return { unreachedMemoryCommits, noRemote: false };
 }
 
 export function analyzeMemoryHandoverIsolation(
   input: MemoryHandoverIsolationInput,
   options: { nowEpochSeconds: number; thresholdHours?: number },
 ): MemoryHandoverIsolationResult {
+  if (input.noRemote) {
+    return { ok: false, noRemote: true, isolated: [], stale: [] };
+  }
   const thresholdSeconds = (options.thresholdHours ?? MEMORY_HANDOVER_STALE_THRESHOLD_HOURS) * 3600;
   const isolated: MemoryHandoverCommit[] = [];
   const stale: MemoryHandoverCommit[] = [];
@@ -84,10 +145,15 @@ export function analyzeMemoryHandoverIsolation(
       stale.push(commit);
     }
   }
-  return { ok: isolated.length === 0, isolated, stale };
+  return { ok: isolated.length === 0, noRemote: false, isolated, stale };
 }
 
 export function memoryHandoverIsolationMessages(result: MemoryHandoverIsolationResult): string[] {
+  if (result.noRemote) {
+    return [
+      "memory-handover-isolation - violation: remote が未設定のため引き継ぎ到達を検証できない (fail-close)",
+    ];
+  }
   if (result.ok && result.stale.length === 0) {
     return ["memory-handover-isolation - OK (remote 未到達の memory 引き継ぎコミット 0)"];
   }

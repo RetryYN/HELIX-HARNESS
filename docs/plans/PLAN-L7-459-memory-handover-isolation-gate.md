@@ -51,19 +51,27 @@ CLAUDE.md の hybrid 協調規則は「引き継ぎと検証の基準点 = commi
 
 ## 1. 実装範囲
 
-- `src/lint/memory-handover-isolation.ts` を新設する。どの remote branch にも含まれない local
-  コミットのうち `.helix/memory/` 配下を触るものを列挙し、コミット時刻が閾値（既定 24h）を
+- `src/lint/memory-handover-isolation.ts` を新設する。全 local branch + HEAD（detached 含む）
+  起点で remote 未到達の `.helix/memory/` 変更コミットを列挙し、コミット時刻が閾値（既定 24h）を
   超えたものを violation とする。閾値内は warn 相当のカウントとして surface する。
-- git 情報が取得できない場合は fail-close（violation として明示）とし、silent skip しない。
+  実インシデントが非 checkout branch 上で起きたため HEAD 限定にはしない。無関係 branch の
+  巻き込み（rebase/cherry-pick 済み等価コミット）は remote 側 memory 変更コミットとの
+  patch-id 突合で除外する。
+- git 情報が取得できない場合・remote が未設定の場合は fail-close（violation として明示）とし、
+  silent skip しない。
 - `src/doctor/index.ts` へ `memory-handover-isolation` check として配線し、doctor の ok 判定と
   message 出力に含める。
 
 ## 2. 受入条件
 
 - [ ] 孤立コミット fixture（閾値超過）で violation、閾値内で stale count 表示、remote 到達済みで OK。
+- [ ] 実 git repo fixture の統合テストで、非 checkout branch の孤立検出・push 後の解消・
+      rebase/cherry-pick 済み patch-id 等価の除外・detached HEAD の検出・remote 未設定の
+      fail-close を検証する。
 - [ ] git 実行不能を模した入力で fail-close violation を返す。
 - [ ] `bunx vitest run tests/memory-handover-isolation.test.ts`、typecheck、Biome を green にする。
-- [ ] 実 repo で `helix doctor` 出力に `memory-handover-isolation` 行が現れる。
+- [ ] 実 repo で `helix doctor` の `memory-handover-isolation` 行が **green（等価除外後の
+      真の孤立 0）** で出力される（gate 新設と同時に doctor 全体を赤くしない）。
 
 ## 3. 範囲外
 
