@@ -14,7 +14,7 @@ review_evidence:
     review_kind: intra_runtime_subagent
     worker_model: codex-gpt-5.6-terra
     reviewer_model: codex-gpt-5-intra-runtime-review
-    reviewed_at: "2026-07-20T08:45:00+09:00"
+    reviewed_at: "2026-07-20T08:54:00+09:00"
     tests_green_at: "2026-07-20T08:50:00+09:00"
     verdict: pass
     scope: "parent existence ratchet、legacy grandfather、非 add-* の drive 非適用、全686 PLAN lintを独立レビュー。"
@@ -32,7 +32,7 @@ agent_slots:
   - role: se
     slot_label: "SE — dependencies.parent 実在チェックを kind 非限定 (plan_id 形式全般) へ拡張"
   - role: qa
-    slot_label: "QA — 674 PLAN 全数での回帰確認 + 欠落 parent の fail-close 回帰テスト"
+    slot_label: "QA — 686 PLAN 全数での回帰確認 + 欠落 parent の fail-close 回帰テスト"
 generates:
   - artifact_path: docs/plans/PLAN-L7-454-plan-parent-existence-gate-coverage.md
     artifact_type: markdown_doc

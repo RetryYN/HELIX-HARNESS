@@ -14,7 +14,7 @@ review_evidence:
     review_kind: intra_runtime_subagent
     worker_model: codex-gpt-5.6-terra
     reviewer_model: codex-gpt-5-intra-runtime-review
-    reviewed_at: "2026-07-20T08:45:00+09:00"
+    reviewed_at: "2026-07-20T08:54:00+09:00"
     tests_green_at: "2026-07-20T08:50:00+09:00"
     verdict: pass
     scope: "技術用語 allowlist、正当な未宣言 ID 検出、DB rebuild 後の doc-path 別 drift を独立レビュー。"
