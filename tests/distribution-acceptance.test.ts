@@ -765,7 +765,7 @@ describe("clean distribution local acceptance smoke", () => {
               relinkCurrentCleanArtifact.stderr || relinkCurrentCleanArtifact.stdout,
             ).toBe(0);
           } else if (command === "npm run typecheck" || command === "npm test") {
-            expect(run.stderr).toContain('node -e "process.exit(0)"');
+            expect(`${run.stdout}\n${run.stderr}`).toContain('node -e "process.exit(0)"');
           } else {
             expect(JSON.parse(run.stdout)).toBeTruthy();
           }
