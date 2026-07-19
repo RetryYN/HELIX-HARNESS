@@ -42,21 +42,17 @@ function walkCandidatePaths(root: string): string[] {
   return out.sort();
 }
 
-function runBun(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
-  const bunArgs =
-    args[0] === "install"
-      ? [args[0], "--cache-dir", join(cwd, ".bun-cache"), ...args.slice(1)]
-      : args;
-  if (process.platform === "win32") {
-    const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "node", ...bunArgs], {
-      cwd,
-      encoding: "utf8",
-      env,
-      timeout: 120_000,
-    });
+function runNodePackageTool(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
+  if (args[0] === "src/cli.ts") {
+    return runCommand(cwd, "npx", ["--no-install", "tsx", ...args], env);
   }
-  return spawnSync("node", bunArgs, { cwd, encoding: "utf8", env, timeout: 120_000 });
+  const npmArgs =
+    args[0] === "install" && args.includes("--frozen-lockfile")
+      ? ["ci", ...args.slice(1).filter((arg) => arg !== "--frozen-lockfile")]
+      : args[0] === "run" && args.length > 2
+        ? [args[0], args[1] ?? "", "--", ...args.slice(2)]
+        : args;
+  return runCommand(cwd, "npm", npmArgs, env);
 }
 
 function runCommand(
@@ -140,7 +136,11 @@ function runWorkflowHelix(
 ) {
   const prefix = "npm run helix -- ";
   expect(workflowCommand.startsWith(prefix)).toBe(true);
-  return runBun(cwd, ["run", "helix", ...workflowCommand.slice(prefix.length).split(" ")], env);
+  return runNodePackageTool(
+    cwd,
+    ["run", "helix", ...workflowCommand.slice(prefix.length).split(" ")],
+    env,
+  );
 }
 
 function runWorkflowCommand(
@@ -149,13 +149,13 @@ function runWorkflowCommand(
   env: NodeJS.ProcessEnv = process.env,
 ) {
   if (workflowCommand === "npm ci") {
-    return runBun(cwd, ["install", "--frozen-lockfile"], env);
+    return runNodePackageTool(cwd, ["install", "--frozen-lockfile"], env);
   }
   if (workflowCommand === "npm run typecheck") {
-    return runBun(cwd, ["run", "typecheck"], env);
+    return runNodePackageTool(cwd, ["run", "typecheck"], env);
   }
   if (workflowCommand === "npm test") {
-    return runBun(cwd, ["run", "test"], env);
+    return runNodePackageTool(cwd, ["run", "test"], env);
   }
   if (workflowCommand === CONSUMER_VERSION_UP_DRY_RUN_NODE_COMMAND) {
     const fakeGitBin = writeFakeRemoteTagGit(cwd, "v0.1.4");
@@ -192,35 +192,39 @@ describe("clean distribution local acceptance smoke", () => {
 
       const fakeCodex = writeFakeCommand(cleanRoot, "codex", "codex 0.0.0");
       const fakeBin = dirname(fakeCodex);
-      const bunInstall = join(cleanRoot, ".bun-install");
+      const nodeInstall = join(cleanRoot, ".npm-global");
       const env = {
         ...process.env,
-        NODE_INSTALL: bunInstall,
-        PATH: pathWith(join(bunInstall, "bin"), fakeBin, process.env.PATH ?? ""),
+        npm_config_prefix: nodeInstall,
+        PATH: pathWith(join(nodeInstall, "bin"), fakeBin, process.env.PATH ?? ""),
         HELIX_CODEX_BIN: fakeCodex,
       };
 
-      const install = runBun(cleanRoot, ["install", "--frozen-lockfile"], env);
+      const install = runNodePackageTool(cleanRoot, ["install", "--frozen-lockfile"], env);
       expect(install.status, install.stderr || install.stdout).toBe(0);
 
-      const build = runBun(cleanRoot, ["run", "build"], env);
+      const build = runNodePackageTool(cleanRoot, ["run", "build"], env);
       expect(build.status, build.stderr || build.stdout).toBe(0);
       const packageJson = JSON.parse(readFileSync(join(cleanRoot, "package.json"), "utf8")) as {
         bin?: { helix?: string };
         scripts?: { helix?: string };
       };
-      expect(packageJson.bin?.helix).toBe("./dist/helix");
-      expect(packageJson.scripts?.helix).toBe("bun run src/cli.ts");
+      expect(packageJson.bin?.helix).toBe("./dist/helix.js");
+      expect(packageJson.scripts?.helix).toBe("tsx src/cli.ts");
       expect(existsSync(join(cleanRoot, packageJson.bin?.helix ?? ""))).toBe(true);
 
-      const packageScriptVersion = runBun(cleanRoot, ["run", "helix", "--version"], env);
+      const packageScriptVersion = runNodePackageTool(
+        cleanRoot,
+        ["run", "helix", "--version"],
+        env,
+      );
       expect(
         packageScriptVersion.status,
         packageScriptVersion.stderr || packageScriptVersion.stdout,
       ).toBe(0);
-      expect(packageScriptVersion.stdout.trim()).toBe("0.1.0");
+      expect(packageScriptVersion.stdout.trim().split("\n").at(-1)).toBe("0.1.0");
 
-      const registerLink = runBun(cleanRoot, ["link"], env);
+      const registerLink = runNodePackageTool(cleanRoot, ["link"], env);
       expect(registerLink.status, registerLink.stderr || registerLink.stdout).toBe(0);
 
       const linkedS4Packet = runCommand(
@@ -289,12 +293,12 @@ describe("clean distribution local acceptance smoke", () => {
         "Usage: helix action-binding approval-packet",
       );
 
-      const status = runBun(cleanRoot, ["src/cli.ts", "status", "--json"], env);
+      const status = runNodePackageTool(cleanRoot, ["src/cli.ts", "status", "--json"], env);
       expect(status.status, status.stderr || status.stdout).toBe(0);
       const statusJson = JSON.parse(status.stdout);
       expect(statusJson.availableRuntimes).toContain("codex");
 
-      const distribution = runBun(
+      const distribution = runNodePackageTool(
         cleanRoot,
         ["src/cli.ts", "distribution", "plan", "--tag", "v0.1.0", "--json"],
         env,
@@ -339,7 +343,7 @@ describe("clean distribution local acceptance smoke", () => {
       );
       expect(distributionJson.actualCutRequiresPoApproval).toBe(true);
 
-      const typecheck = runBun(cleanRoot, ["run", "typecheck"], env);
+      const typecheck = runNodePackageTool(cleanRoot, ["run", "typecheck"], env);
       expect(typecheck.status, typecheck.stderr || typecheck.stdout).toBe(0);
 
       const consumerRoot = mkdtempSync(join(tmpdir(), "helix-consumer-"));
@@ -359,8 +363,8 @@ describe("clean distribution local acceptance smoke", () => {
               },
               scripts: {
                 helix: "helix",
-                typecheck: 'bun -e "process.exit(0)"',
-                test: 'bun -e "process.exit(0)"',
+                typecheck: 'node -e "process.exit(0)"',
+                test: 'node -e "process.exit(0)"',
               },
             },
             null,
@@ -368,10 +372,10 @@ describe("clean distribution local acceptance smoke", () => {
           )}\n`,
           "utf8",
         );
-        const consumerInstall = runBun(consumerRoot, ["install"], env);
+        const consumerInstall = runNodePackageTool(consumerRoot, ["install"], env);
         expect(consumerInstall.status, consumerInstall.stderr || consumerInstall.stdout).toBe(0);
 
-        const linkConsumer = runBun(consumerRoot, ["link", "helix", "--no-save"], env);
+        const linkConsumer = runNodePackageTool(consumerRoot, ["link", "helix", "--no-save"], env);
         expect(linkConsumer.status, linkConsumer.stderr || linkConsumer.stdout).toBe(0);
         const linkedEnv = {
           ...env,
@@ -746,7 +750,7 @@ describe("clean distribution local acceptance smoke", () => {
             expect(readFileSync(join(consumerRoot, "package-lock.json"), "utf8")).toContain(
               "lockfileVersion",
             );
-            const relinkCurrentCleanArtifact = runBun(
+            const relinkCurrentCleanArtifact = runNodePackageTool(
               consumerRoot,
               ["link", "helix", "--no-save"],
               env,
@@ -756,7 +760,7 @@ describe("clean distribution local acceptance smoke", () => {
               relinkCurrentCleanArtifact.stderr || relinkCurrentCleanArtifact.stdout,
             ).toBe(0);
           } else if (command === "npm run typecheck" || command === "npm test") {
-            expect(run.stderr).toContain('bun -e "process.exit(0)"');
+            expect(run.stderr).toContain('node -e "process.exit(0)"');
           } else {
             expect(JSON.parse(run.stdout)).toBeTruthy();
           }
@@ -810,7 +814,11 @@ describe("clean distribution local acceptance smoke", () => {
         expect(readFileSync(join(freshConsumerRoot, "package-lock.json"), "utf8")).toContain(
           "lockfileVersion",
         );
-        const linkFreshConsumer = runBun(freshConsumerRoot, ["link", "helix", "--no-save"], env);
+        const linkFreshConsumer = runNodePackageTool(
+          freshConsumerRoot,
+          ["link", "helix", "--no-save"],
+          env,
+        );
         expect(linkFreshConsumer.status, linkFreshConsumer.stderr || linkFreshConsumer.stdout).toBe(
           0,
         );
@@ -819,7 +827,7 @@ describe("clean distribution local acceptance smoke", () => {
           ["run", "typecheck"],
           ["run", "test"],
         ]) {
-          const run = runBun(freshConsumerRoot, args, freshLinkedEnv);
+          const run = runNodePackageTool(freshConsumerRoot, args, freshLinkedEnv);
           expect(run.status, run.stderr || run.stdout).toBe(0);
         }
         const freshDoctor = runCommand(
@@ -848,7 +856,7 @@ describe("clean distribution local acceptance smoke", () => {
           "utf8",
         );
 
-        const firstBrownfieldSetup = runBun(
+        const firstBrownfieldSetup = runNodePackageTool(
           brownfieldRoot,
           [join(cleanRoot, "src", "cli.ts"), "setup", "project", "--json"],
           env,
@@ -886,7 +894,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(firstBrownfieldJson.written).toContain("AGENTS.md");
         expect(firstBrownfieldJson.written).not.toContain(".vscode/tasks.json");
 
-        const secondBrownfieldSetup = runBun(
+        const secondBrownfieldSetup = runNodePackageTool(
           brownfieldRoot,
           [join(cleanRoot, "src", "cli.ts"), "setup", "project", "--json"],
           env,

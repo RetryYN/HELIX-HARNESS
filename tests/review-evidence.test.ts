@@ -66,14 +66,14 @@ describe("green command evidence (IMP-108)", () => {
           {
             review_kind: "intra_runtime_subagent",
             verdict: "approve",
-            reviewed_at: "2026-07-19T12:00:00+09:00",
-            tests_green_at: "2026-07-19T12:00:00+09:00",
+            reviewed_at: "2026-07-20T12:00:00+09:00",
+            tests_green_at: "2026-07-20T12:00:00+09:00",
             green_commands: [
               {
                 ...technicalCommand,
                 command: "bun test tests/review-evidence.test.ts",
                 runner: "bun",
-                completed_at: "2026-07-19T12:00:00+09:00",
+                completed_at: "2026-07-20T12:00:00+09:00",
               },
             ],
           },

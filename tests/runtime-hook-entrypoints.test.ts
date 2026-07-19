@@ -107,13 +107,13 @@ describe("runtime hook entrypoints", () => {
     const hooks = settings.hooks;
 
     expect(hooks.SessionStart[0].hooks[0].command).toBe(
-      'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
+      'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
     );
     expect(hooks.PostToolUse[0].hooks[0].command).toBe(
-      'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
+      'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
     );
     expect(hooks.Stop[0].hooks[0].command).toBe(
-      'bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+      'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
     );
   });
 

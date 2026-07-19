@@ -6,6 +6,7 @@ import { readLoopEpochFromFs } from "../src/orchestration/durable-loop-epoch-nod
 
 const PLAN = "PLAN-L7-449-durability-boundary-implementation";
 const fixture = join(process.cwd(), "tests", "fixtures", "durable-loop-process-child.ts");
+const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
 const roots: string[] = [];
 const root = () => {
   const value = mkdtempSync(join(tmpdir(), "helix-loop-process-"));
@@ -25,7 +26,7 @@ async function waitUntil(predicate: () => boolean): Promise<void> {
 }
 
 function child(repo: string, mode: string, id: string) {
-  const process = spawn("node", [fixture, repo, mode, id], { stdio: "pipe" });
+  const process = spawn("node", [tsxCli, fixture, repo, mode, id], { stdio: "pipe" });
   const exited = new Promise<number | null>((resolve) => process.once("exit", resolve));
   return { process, exited };
 }

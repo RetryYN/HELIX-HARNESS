@@ -13,6 +13,9 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
+
 import {
   evaluateGitCommandGuard,
   extractShellCommand,
@@ -338,7 +341,7 @@ describe("git-command-guard", () => {
       });
       const barrierDir = join(cwd, ".helix", "tmp", "guard-cas-barrier");
       const startWorker = () => {
-        const child = spawn("node", [cliPath, "hook", "git-command-guard"], {
+        const child = spawn("node", [tsxCli, cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "pipe"],
           env: {
@@ -436,7 +439,7 @@ describe("git-command-guard", () => {
           session_id: "s-real-crash",
           tool_input: { command: "git clean -f" },
         });
-        const child = spawn("node", [cliPath, "hook", "git-command-guard"], {
+        const child = spawn("node", [tsxCli, cliPath, "hook", "git-command-guard"], {
           cwd,
           stdio: ["pipe", "ignore", "ignore"],
           env: {

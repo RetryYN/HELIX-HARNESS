@@ -360,8 +360,19 @@ describe("feedback lifecycle surface (PLAN-L7-412)", () => {
       expect(first.status, first.stderr).toBe(0);
       expect(JSON.parse(first.stdout).total).toBe(1);
       const ack = spawnSync(
-        "node",
-        [cli, "feedback", "ack", "findings", "finding-cli", "1.1", "--reason", "reviewed"],
+        "npx",
+        [
+          "--no-install",
+          "tsx",
+          cli,
+          "feedback",
+          "ack",
+          "findings",
+          "finding-cli",
+          "1.1",
+          "--reason",
+          "reviewed",
+        ],
         { cwd: root, encoding: "utf8" },
       );
       expect(ack.status, ack.stderr).toBe(0);

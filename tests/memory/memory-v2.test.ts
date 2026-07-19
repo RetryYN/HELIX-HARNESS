@@ -634,8 +634,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
 
     root = mkdtempSync(join(tmpdir(), "helix-memv2-cli-"));
     const cli = spawnSync(
-      "node",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -651,8 +653,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     const firstPayload = JSON.parse(cli.stdout) as { entry: MemoryEntryV2 };
     expect(firstPayload).toMatchObject({ ok: true, entry: { layer: "harness" } });
     const replay = spawnSync(
-      "node",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -685,8 +689,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     ).toHaveLength(1);
 
     const update = spawnSync(
-      "node",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -701,8 +707,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(update.status, update.stderr).toBe(0);
     const updatePayload = JSON.parse(update.stdout) as { entry: MemoryEntryV2 };
     const restore = spawnSync(
-      "node",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",
@@ -720,8 +728,10 @@ describe("memory structure v2 (PLAN-L7-407)", () => {
     expect(restorePayload.entry.supersedes).toBe(updatePayload.entry.id);
 
     const conflicting = spawnSync(
-      "node",
+      "npx",
       [
+        "--no-install",
+        "tsx",
         join(process.cwd(), "src", "cli.ts"),
         "memory",
         "write",

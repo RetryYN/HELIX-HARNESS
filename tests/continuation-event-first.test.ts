@@ -3,6 +3,9 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+
+const tsxCli = join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
+
 import { validateMemoryEntry } from "../src/memory/memory-v2";
 import {
   appendContinuationEventFile,
@@ -31,7 +34,7 @@ import { migrate } from "../src/state-db/migration";
 const dbs: HarnessDb[] = [];
 function runBun(script: string, env: Record<string, string>): Promise<string> {
   return new Promise((resolve, reject) => {
-    const child = spawn("node", ["-e", script], {
+    const child = spawn("node", [tsxCli, "-e", script], {
       cwd: process.cwd(),
       env: { ...process.env, ...env },
       stdio: ["ignore", "pipe", "pipe"],
