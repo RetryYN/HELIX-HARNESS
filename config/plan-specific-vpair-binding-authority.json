@@ -1239,7 +1239,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md",
-      "plan_semantic_digest": "sha256:5efeb1c97abde0ffd757d507e0973780a3dd007231d161003c7fcd2b8a8baefc"
+      "plan_semantic_digest": "sha256:5794e56268b6e37f31c1119b198ee79cd293d0c092fcad4df5871334c4b746ca"
     },
     {
       "fingerprint": "sha256:8bbd4993ed29a307cf7179068fcfd37030dabda7dc685405ebce3387be7067be",
