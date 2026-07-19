@@ -151,15 +151,36 @@ function codexWrapperParityFiles(root: string, overrides: Record<string, string>
       JSON.stringify({
         hooks: {
           SessionStart: [
-            { hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session start' }] },
+            {
+              hooks: [
+                {
+                  command: 'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
+                },
+              ],
+            },
           ],
           PostToolUse: [
-            { hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" hook post-tool-use' }] },
+            {
+              hooks: [
+                {
+                  command:
+                    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
+                },
+              ],
+            },
           ],
           SubagentStop: [
             { hooks: [{ type: "command", command: "helix hook subagent-stop --quiet" }] },
           ],
-          Stop: [{ hooks: [{ command: 'npx --no-install tsx "/src/cli.ts" session summary' }] }],
+          Stop: [
+            {
+              hooks: [
+                {
+                  command: 'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
+                },
+              ],
+            },
+          ],
         },
       }),
     );

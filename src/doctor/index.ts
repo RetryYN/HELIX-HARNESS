@@ -4887,9 +4887,9 @@ export function checkCodexWrapperParity(deps: DoctorDeps): {
   }
 
   const claudeHookCommands = [
-    'npx --no-install tsx "/src/cli.ts" session start',
-    'npx --no-install tsx "/src/cli.ts" hook post-tool-use',
-    'npx --no-install tsx "/src/cli.ts" session summary',
+    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session start',
+    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" hook post-tool-use',
+    'npx --no-install tsx "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary',
   ];
   for (const command of claudeHookCommands) {
     if (!settingStrings.includes(command)) {
