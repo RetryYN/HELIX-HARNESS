@@ -514,6 +514,11 @@ import { buildVmodelFitReport } from "../state-db/vmodel-fit";
 import { classifyProposalDocumentCoverage } from "../task/classify";
 import { buildTeamRunPlan } from "../team/run";
 import {
+  analyzeDualProjection,
+  dualProjectionMessages,
+  loadDualProjectionInput,
+} from "../vmodel/layer-projection";
+import {
   analyzePairFreeze,
   analyzeVerificationGroups,
   loadPairDocs,
@@ -6291,6 +6296,27 @@ export function checkToolchainPin(repoRoot: string): {
 }
 
 /**
+ * l12-dual-projection (fail-close, PLAN-L7-460 / HR-FR-VMCUT-02/05): legacy L0-L14 と
+ * canonical L1-L12 の二重表示 projection。remap に無い legacy L-token は violation。
+ */
+export function checkL12DualProjection(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const r = analyzeDualProjection(loadDualProjectionInput(repoRoot));
+    return { messages: dualProjectionMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: [
+        "l12-dual-projection - violation: layer 走査に失敗したため fail-close (remap 被覆が未検証)",
+      ],
+      ok: false,
+    };
+  }
+}
+
+/**
  * memory-handover-isolation (fail-close, PLAN-L7-459 / MEMX-S6): remote 未到達の
  * `.helix/memory/` 変更コミットが閾値超過で残存したら violation。git 不能時も fail-close。
  */
@@ -7022,6 +7048,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const lintWiring = checkLintWiring(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
+  const l12DualProjection = checkL12DualProjection(deps.repoRoot);
   const memoryHandoverIsolation = checkMemoryHandoverIsolation(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
@@ -7153,6 +7180,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["lintWiring", lintWiring.ok],
     ["toolchainPin", toolchainPin.ok],
     ["repositoryNamePaths", repositoryNamePaths.ok],
+    ["l12DualProjection", l12DualProjection.ok],
+    ["memoryHandoverIsolation", memoryHandoverIsolation.ok],
     ["proposalDocumentCoverage", proposalDocumentCoverage.ok],
     ["frontendDesignCoverage", frontendDesignCoverage.ok],
     ["greenCommandDigest", greenCommandDigest.ok],
@@ -7284,6 +7313,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       lintWiring.ok &&
       toolchainPin.ok &&
       repositoryNamePaths.ok &&
+      l12DualProjection.ok &&
       memoryHandoverIsolation.ok &&
       proposalDocumentCoverage.ok &&
       frontendDesignCoverage.ok &&
@@ -7420,6 +7450,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),
+      ...l12DualProjection.messages.map((m) => `doctor: ${m}`),
       ...memoryHandoverIsolation.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
