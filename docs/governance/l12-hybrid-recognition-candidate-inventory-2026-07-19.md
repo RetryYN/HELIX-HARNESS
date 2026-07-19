@@ -2,16 +2,16 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は167文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は174文書。
 
-この167件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは808 files（current authority review 205 / executable surface review 14 / historical context review 25 / compatibility authority review 6 / PLAN review 558）で、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
+この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは828 files（current authority review 213 / executable surface review 8 / historical context review 30 / compatibility authority review 6 / PLAN review 571）で、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
 ```bash
-bun scripts/audit-l12-hybrid-recognition.ts
-bun scripts/audit-l12-hybrid-recognition.ts --summary
-bun scripts/audit-l12-hybrid-recognition.ts --status unresolved --disposition current_authority_review --paths
-bun scripts/audit-l12-hybrid-recognition.ts --status unresolved --disposition executable_surface_review --paths
-bun scripts/audit-l12-hybrid-recognition.ts --disposition plan_review --document-status confirmed --paths
+npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts
+npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts --summary
+npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts --status unresolved --disposition current_authority_review --paths
+npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts --status unresolved --disposition executable_surface_review --paths
+npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts --disposition plan_review --document-status confirmed --paths
 ```
 
 このinventoryへの掲載は「誤り確定」ではなく「現行判断に使う場合はdispositionが必要」を意味する。分類は次の通り。
@@ -46,16 +46,20 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/governance/forward-convergence-legacy-debt-audit.md`
 - `docs/governance/gate-design.md`
 - `docs/governance/handover-retirement-memory-audit-2026-07-11.md`
+- `docs/governance/harness-memory-reconciliation-audit-2026-07-19.md`
 - `docs/governance/helix-awesome-agent-catalog-reconciliation-audit-2026-07-07.md`
 - `docs/governance/helix-harness-concept_v3.1.md`
 - `docs/governance/helix-harness-extraction-plan_v0.1.md`
 - `docs/governance/helix-harness-requirements_v1.2.md`
+- `docs/governance/helix-harness-requirements_v1.3.md`
 - `docs/governance/helix-l0-l8-design-consistency-audit.md`
 - `docs/governance/helix-objective-evidence-audit.md`
 - `docs/governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md`
+- `docs/governance/hybrid-rebaseline-v0.5.1-verification-audit-2026-07-18.md`
 - `docs/governance/infinity-loop-design-progress-ledger.md`
 - `docs/governance/infinity-loop-requirements-definition-review-2026-07-19.md`
 - `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`
+- `docs/governance/l12-scrum-requirements-completion-audit-2026-07-18.md`
 - `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`
 - `docs/governance/requirements-consistency-audit-2026-07-19.md`
 - `docs/governance/runtime-parity-l0-l3-design-audit-2026-06-02.md`
@@ -70,7 +74,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/process/forward/overview.md`
 - `docs/process/modes/README.md`
 - `docs/process/modes/add-feature.md`
-- `docs/process/modes/discovery.md`
 - `docs/process/modes/incident.md`
 - `docs/process/modes/recovery.md`
 - `docs/process/modes/reverse.md`
@@ -104,19 +107,17 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/harness/L6-function-design/handover-retirement.md`
 - `docs/design/harness/L6-function-design/module-drift.md`
 - `docs/design/harness/L6-function-design/vmodel-pair-freeze.md`
-- `docs/design/helix/L0-charter/helix-charter_v0.1.md`
 - `docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md`
 - `docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md`
 - `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md`
-- `docs/design/helix/L1-requirements/pillar-requirements.md`
 - `docs/design/helix/L12-acceptance/acceptance-evidence-index.md`
 - `docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md`
 - `docs/design/helix/L2-screen/screen-mock-boundary.md`
-- `docs/design/helix/L3-requirements/document-agent-metadata.md`
+- `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`
 - `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md`
-- `docs/design/helix/L3-requirements/legacy-helix-extension.md`
+- `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.1-remediation-requirements.md`
+- `docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md`
 - `docs/design/helix/L3-requirements/pillar-functional-requirements.md`
-- `docs/design/helix/L3-requirements/visualization-requirements.md`
 - `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md`
 - `docs/design/helix/L3-requirements/vmodel-docgen-fit.md`
 - `docs/design/helix/L4-basic-design/pillar-basic-design.md`
@@ -138,6 +139,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/test-design/harness/L3-acceptance-test-design.md`
 - `docs/test-design/harness/L7-unit-test-design.md`
 - `docs/test-design/harness/L8-integration-test-design.md`
+- `docs/test-design/harness/L8-unit-test-design.md`
 - `docs/test-design/harness/L9-system-test-design.md`
 - `docs/test-design/harness/proposal-document-coverage-routing.md`
 - `docs/test-design/helix/L1-pillar-operational-test-design.md`
@@ -147,6 +149,8 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md`
 - `docs/test-design/helix/L6-universal-reverse-redesign-unit-test-design.md`
 - `docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md`
+- `docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md`
+- `docs/test-design/helix/l12-scrum-rebaseline-acceptance.md`
 - `docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md`
 - `docs/test-design/helix/vmodel-docgen-fit-acceptance.md`
 
@@ -201,6 +205,8 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L7-410-docs-secret-scan-gate.md`
 - `docs/plans/PLAN-L7-419-skill-mythos-uplift.md`
 - `docs/plans/PLAN-L7-421-design-coverage-catalog.md`
+- `docs/plans/PLAN-L7-458-harness-memory-canonical-retirement.md`
+- `docs/plans/PLAN-L7-460-l12-dual-projection.md`
 - `docs/plans/PLAN-L7-62-runtime-portability-guard.md`
 - `docs/plans/PLAN-L7-70-skill-pack-curation.md`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
@@ -210,6 +216,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-REVERSE-02-session-log.md`
 - `docs/plans/PLAN-REVERSE-10-vmodel-pair-lint.md`
 - `docs/plans/PLAN-REVERSE-220-l14-source-ledger-completion-hardening.md`
+- `docs/plans/PLAN-REVERSE-458-harness-memory-retirement-contract-recovery.md`
 
 PLANはcompleted/confirmedでも後続PLANのcopy sourceになり得る。本文を無言で改変せず、`superseded_by`、authority delta、または明示的compatibility注記のいずれかを要求する。
 
@@ -251,7 +258,7 @@ skillは実行時に読まれるため`context-review`。旧layerを例として
 
 ## 9. seed集合の閉包条件
 
-167件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
+174件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
 
 1. canonicalへ本文改訂済み
 2. compatibility sectionへ隔離済み

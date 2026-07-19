@@ -2,17 +2,17 @@
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     "path": ".claude/CLAUDE.md",
-    "contentDigest": "e4dcfcc97ff7f87aea64fcf5eb44f54a2c2592d8cbfbd65638be33f308e1fb23",
+    "contentDigest": "0b5565160a0b8b80fadde00fff9cba98d274c7527aa214b98f341b4eb9a6de41",
     "finalDisposition": "compatibility_labeled"
   },
   {
     "path": "AGENTS.md",
-    "contentDigest": "566c28036b0e66d329225a718f5163424c96be09c1a9e58145e82e9a360ca68c",
+    "contentDigest": "0df2fd657e4e8c980376b53c15bb856d65a8fc2a2869cab47cb4ab4daf1b3d0d",
     "finalDisposition": "compatibility_labeled"
   },
   {
     "path": "CLAUDE.md",
-    "contentDigest": "6eed55f8653e8880d773714979c9e8b326d8449f90958e561a6bf019828ec654",
+    "contentDigest": "f3df0817b4ec83796d54035ca8e612af17341830ebda00bfdf6e596a942f85b1",
     "finalDisposition": "compatibility_labeled"
   },
   {
@@ -42,12 +42,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/design/helix/L3-requirements/document-agent-metadata.md",
-    "contentDigest": "2cfa2825ef4c35bf648fd8f579038de8ee1972816e79144281292cd2b5c5a671",
+    "contentDigest": "878a89841797f5eccda57c51fcdab6329126433ae6e2a4fc4ab6cc0296902129",
     "finalDisposition": "false_positive"
   },
   {
     "path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
-    "contentDigest": "0ef114b82ae6dce4bf2138ed9e2b7402d8f4d081db4cf6dbb40c93cc368e5ee1",
+    "contentDigest": "65d41dc2431338bece6f27f2ce9c17d896eb46748539e0a2257296002c832b49",
     "finalDisposition": "false_positive"
   },
   {
@@ -62,12 +62,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/design/helix/L3-requirements/legacy-helix-extension.md",
-    "contentDigest": "d5466e8e9c8ae67cad54ccb3f1701a7fe53d213a89b69ba60ec475db46af0ea6",
+    "contentDigest": "6de9a3526b32ea2475158cf77f254bbc2bee5d61475607a4ecccfa5addee1b5a",
     "finalDisposition": "false_positive"
   },
   {
     "path": "docs/design/helix/L3-requirements/visualization-requirements.md",
-    "contentDigest": "6a997e0f8ae3130db25911212b4cf35c86b478bdb51a788530dd06f574670875",
+    "contentDigest": "a4830dfcd93b1fd1a805c4cf74bfb2923305fb5da5ab663fb5a5005c0ed404f6",
     "finalDisposition": "false_positive"
   },
   {
@@ -107,7 +107,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/design/helix/L6-function-design/document-semantic-diff.md",
-    "contentDigest": "49c4cedc9f0c51b0cbb777715814a889d7103d31578cd4e3c3113a38029e19ac",
+    "contentDigest": "bfd428b9977649e3c3f76018591cf9cd78897d0f06b16014b415a3088107baff",
     "finalDisposition": "false_positive"
   },
   {
@@ -147,12 +147,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md",
-    "contentDigest": "067b9eefc046a7cef6b3e2ffda854300a363c4d089a90e0095606b96ca73b456",
+    "contentDigest": "7667184793b439065c43f7461e443a24eec9670289909caf5993fed52aca80f6",
     "finalDisposition": "historical"
   },
   {
     "path": "docs/governance/hybrid-rebaseline-v0.5.0-intake-audit-2026-07-18.md",
-    "contentDigest": "52d9044198cf7adbaa5ed46007ebe542923775d49af9a3a273bb3fdcba4c3c91",
+    "contentDigest": "90ef610613a91d19ca58345903654b169cf4057f37d0dda6ac8604a69153779f",
     "finalDisposition": "historical"
   },
   {
@@ -202,7 +202,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
-    "contentDigest": "cbaaf1d1b52e01a3c43ef1a073040431a404d30d5ef9588209ddea81ee5e450a",
+    "contentDigest": "69adc741009492b27c23b9f8636f5f0b067ade9a2fb1a70c1c4cbf4ebdadcf0a",
     "finalDisposition": "compatibility_labeled"
   },
   {
@@ -2382,12 +2382,12 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/test-design/helix/hybrid-rebaseline-v0.5.0-collision-acceptance.md",
-    "contentDigest": "aaf1b576949da894d6ae23ec6a5b5a928711563c03782cb4088622146cf79624",
+    "contentDigest": "309e2b972a7ca3ebbfbb4aa1b43a79399b22b2e3a8a32c0b32c3efe4220ee292",
     "finalDisposition": "compatibility_labeled"
   },
   {
     "path": "docs/test-design/helix/legacy-helix-extension.md",
-    "contentDigest": "9942e977207f791d538a944112cc8cebbbdef7687188eff1e688a335096e1b2c",
+    "contentDigest": "5954a35bb64132cb6e8d4728895af3a5df6bee698b1f6099cded589e4aee86d4",
     "finalDisposition": "false_positive"
   },
   {
@@ -2402,7 +2402,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     "path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
-    "contentDigest": "086e69c24299d781a190cdb99f1deefb4488ac4fc6732a98c40156339b6ec7b1",
+    "contentDigest": "ba3a9a02f6c50637014c80989e9088be8c144d16749df2aff7ff1d84fdb10754",
     "finalDisposition": "compatibility_labeled"
   },
   {
