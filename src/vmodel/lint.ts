@@ -539,7 +539,8 @@ export function analyzeVerificationGroups(
  * 2026-07-12 以降の harness-check を無言 exit 1 で全滅させていた (PR #43 で是正)。
  */
 export function verificationGroupsOk(groups: GroupReadiness[]): boolean {
-  return groups.every((g) => !g.hasOrphan);
+  // total=0 は「design doc を読めていない/存在しない」であり、検証不能として fail-close を保つ。
+  return groups.every((g) => !g.hasOrphan && g.total > 0);
 }
 
 export function verificationGroupMessages(groups: GroupReadiness[]): string[] {

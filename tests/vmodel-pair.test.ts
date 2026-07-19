@@ -2112,4 +2112,10 @@ describe("verificationGroupsOk surface 契約 (PR #43 CI 無言 fail 是正)", (
     const { verificationGroupsOk } = await import("../src/vmodel/lint");
     expect(verificationGroupsOk([{ ...base, hasOrphan: true } as never])).toBe(false);
   });
+  it("design doc を読めない群 (total=0) は検証不能として fail-close する", async () => {
+    const { verificationGroupsOk } = await import("../src/vmodel/lint");
+    expect(verificationGroupsOk([{ ...base, total: 0, confirmed: 0, draft: 0 } as never])).toBe(
+      false,
+    );
+  });
 });
