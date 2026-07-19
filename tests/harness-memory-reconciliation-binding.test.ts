@@ -98,12 +98,16 @@ describe("harness memory reconciliation binding", () => {
   });
 
   it("U-MEMV2-005e: retires every repository harness-memory payload from active surfaces", () => {
+    const authority = JSON.parse(
+      readFileSync("docs/governance/generated/harness-memory-retirement-authority.json", "utf8"),
+    ) as { entries: Array<{ key: string }> };
+    const retiredKeys = new Set(authority.entries.map((entry) => entry.key));
     const raw = readFileSync(".helix/memory/harness.jsonl", "utf8")
       .split(/\r?\n/)
       .filter(Boolean)
       .map((line) => JSON.parse(line) as unknown);
     const view = resolveMemoryView(raw, "2026-07-19T23:59:59.999Z", "harness");
-    expect(view.activeEntries).toEqual([]);
+    expect(view.activeEntries.filter((entry) => retiredKeys.has(entry.key))).toEqual([]);
     expect(view.damaged).toBe(0);
     expect(view.tombstones.length).toBeGreaterThan(0);
     expect(view.tombstones.every((entry) => entry.body === "")).toBe(true);

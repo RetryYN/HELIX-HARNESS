@@ -184,6 +184,8 @@ V-model artifacts は分離を保つ。
 
 ### GitHub 自走運用（PO 決定 2026-07-11、PLAN-L7-418）
 
+通常のGitHub laneは明示依頼を待たずpush→PR→auto-merge→CI監視→self-healまで継続する。release／tag／cutoverはaction-binding approval境界を維持する。
+
 - main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、
   **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム
   review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。

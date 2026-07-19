@@ -225,6 +225,9 @@ Scope boundary（適用境界）: `.codex/hooks.json` が guard するのは dir
 repo hooks は機械的に intercept できない。この surface では Codex は hook を non-enforcing と扱い、編集前に明示的な
 git/status preflight を行う。API tool calls について mechanical hook coverage を主張しない。
 
+Codex CLI 0.144+ではrepo-local hook trustを`hooks.state.trusted_hash`へ束縛し、hash drift時は再確認までfail-closeする。
+External Source Researchは一次ソース、確認日、採否、workflow影響を記録し、日付だけの更新を証跡にしない。
+
 ## Skills（スキル）
 
 - matching triggers に該当する relevant `SKILL.md` だけを読む。
