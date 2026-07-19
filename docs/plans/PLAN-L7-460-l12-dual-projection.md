@@ -6,11 +6,20 @@ layer: L7
 drive: be
 status: confirmed
 route_mode: forward
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-07-19T13:45:00Z"
+  review_binding:
+    reviewer: code-reviewer subagent (独立 5 軸レビュー、初回 FAIL→是正→再レビュー PASS)
+    reviewed_at: "2026-07-19T13:45:00Z"
+    evidence_digest: "sha256:00160218a3a82ad7c9a926f21a6628f773ff2a621cebf19362927753cae8a9c8"
+  entries: []
 review_evidence:
   - reviewer: code-reviewer subagent (独立 5 軸レビュー、初回 FAIL→是正→再レビュー PASS)
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-19T22:45:00+09:00"
-    tests_green_at: "2026-07-19T22:38:51+09:00"
+    reviewed_at: "2026-07-19T13:45:00Z"
+    tests_green_at: "2026-07-19T13:38:51Z"
     verdict: pass
     worker_model: claude-sonnet-5
     notes: "PO 指示 (2026-07-19、Codex 遅延時の安全 merge) による単一 runtime 代替証跡。初回指摘 (canonicalLabel 正本不一致 / harness tree 未走査 / frontmatter 誤検知 / fail-close 未テスト) を全て是正し、レビュア独立再実行で vitest 8/8・typecheck green を確認。"
@@ -20,7 +29,7 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-19T22:38:51+09:00"
+        completed_at: "2026-07-19T13:38:51Z"
         evidence_path: tests/layer-projection.test.ts
         output_digest: "sha256:fc6a80c33eeec4d8751a31a409888bb74223c2e0295849c04fc4749f1ffb67b1"
 entry_signals: ["po_directive: 2026-07-19 L12 体制がいつまでも閉じない構造 (L3 confirmed のまま L4 以降降下 0) の是正指示 (issue #46)"]
