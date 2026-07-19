@@ -55,6 +55,36 @@ bwrap テンプレート必須 + 将来 agent-sdk 移行、と adapter ごとの
 受入条件に含める（単一実装の強制はしない）。共通下層としての ACP 採用可否は改善指示 2 の
 wire protocol 化と同一論点で扱う。
 
+## grok-build ソース監査結果（2026-07-19、pmo-tech-fork 2 ラウンド実施）
+
+Grok worker の条件付き導入判断（PO 方針: ①ソース監査 → ②FR5/FR11 実装 → ③購読・実機）の
+①として、xai-org/grok-build（Rust、main）の egress 経路を監査した。要点:
+
+- **repo 全体 bundle 送信コードは現行ソースに不存在**: `git_bundle` / `codebase_upload` /
+  `disable_codebase_upload` / bucket 名 `grok-code-session-traces` は code search 0 件
+  （事故後削除 or closed 部分の可能性あり。不存在の証明ではない）。
+- **privacy トグルの無効性はソースと整合**: `extensions/privacy.rs` はサーバへの opt-out 通知のみで、
+  upload 実行コード側がこのフラグを参照する箇所なし。
+- **現役 egress は 4 系統**（ターントレース / `memory.tar.gz` / 権限ログ / 検索インデックス GCS 同期）。
+  各系統にローカル無効化ゲートあり（`--local`、`trace_upload=false`、`session_registry_enabled=false` 等）。
+- **致命的留保 1 — trace_upload の権威未確定**: `session_registry_enabled` は local-wins をコメントで
+  確認できた一方、`trace_upload_enabled` の解決関数本体は未発見で、同コードベースに
+  「env > remote > local」という remote-wins パターンの実例もある。**リモートフラグがローカル明示
+  false を上書きする可能性を排除できない**（"無効化したつもりが有効" リスク）。
+- **致命的留保 2 — ホスト分離が不完全**: GCS 送信は `storage.googleapis.com`（別ホスト、allowlist で
+  機械的遮断可）だが、リモート設定取得（`GET /v1/settings`）は **推論 API と同一ホスト
+  （cli-chat-proxy / proxy.grok.com 系）を共用**するため、「推論のみ許可」のホスト allowlist では
+  設定 push 系が素通りする。遮断にはパス単位フィルタ（forward proxy）が必要。
+- **feature flag による upload 除去ビルドは不可**（workspace に該当 features なし）。除去するなら
+  fork + ソースパッチで、アップストリーム追従コストが発生する。
+- `max_upload_untracked_bytes`（非 git ファイル捕捉の疑い）は **RemoteSettings 上の宣言のみで
+  消費コード未発見**（未配線の可能性が高いが断定不可）。
+
+**③（購読・実機トライアル）へ進む追加条件**: FR5/FR11 に加えて、(i) egress 遮断は
+ホスト allowlist + **パス単位フィルタ**で構成し `storage.googleapis.com` を deny すること、
+(ii) trace_upload local-wins が新バージョンのソースまたは実測（egress 計測）で確認できるまで
+「送信は有効」前提の分類（公開可能コードのみ委譲）で扱うこと。
+
 ## 要求（L1）への差し込み指示
 
 1. **[L1/BR] worker runtime 隔離実行エリア（改善指示 1 の確定版）**:
