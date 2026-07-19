@@ -70,6 +70,30 @@ Source ledger 意味レビュー証跡:
 
 旧L8-L14 source ledger・G13/G14 profile・action-binding詳細はhistorical snapshotとして監査履歴からのみ参照する。本process正本にはactionable定義を置かず、旧receiptはG12 evidenceへ投影する。
 
+<!-- Cutover source ledger (checked 2026-07-03) -->
+### G12へ投影するcutover source ledger（互換証跡）
+
+この台帳は不可逆cutoverの承認材料を再検証するためのsource evidenceであり、L13/L14またはG13/G14を
+現行authorityとして復活させない。判断と実行許可はG12およびaction-binding approval境界で行う。
+
+| source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | cutover用途 | 必須fieldへの影響 |
+|---|---|---|---|---|---|---|
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity / archive / protection traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | live official docs | adopt-live-docs-for-approval-shape | action-binding approval pattern | `decision_owner`, `allowed_outcome`, `approval_scope`, `review_approval_evidence`, `expires_at_or_trigger` |
+| GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live docs | live official docs | adopt-live-docs-for-single-cutover-window | frozen window外・並行applyの防止 | `execution_window_or_freeze_policy` |
+| GitHub repository rename | <https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository> | live docs | live official docs | adopt-live-docs-for-repository-rename-redirect-review | repository/package/docs参照とremote更新の審査 | `blast_radius_baseline`, `rollback_plan`, `post_cutover_monitoring`, `legacy_alias_policy` |
+| VS Code Tasks and Workspace Trust automatic task execution | <https://code.visualstudio.com/docs/debugtest/tasks> / <https://code.visualstudio.com/docs/editing/workspaces/workspace-trust> | live docs | live official docs | adopt-live-docs-for-consumer-task-execution-boundary | consumer task自動実行境界の審査 | `blast_radius_baseline`, `approval_scope`, `post_cutover_monitoring`, `legacy_alias_policy` |
+| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | release engineering chapter | live official book | adopt-operational-guidance | rollback / release process | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
+| Google SRE Canarying Releases | <https://sre.google/workbook/canarying-releases/> | canarying chapter | live official workbook | adopt-canary-risk-reduction-for-staged-cutover-review | staged exposure / health comparison / rollback trigger | `dry_run_plan`, `post_cutover_monitoring`, `rollback_plan` |
+| Microsoft Safe Deployment Practices | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments> | live guidance | live official guidance | adopt-safe-deployment-risk-controls | progressive exposure / health model / blast-radius reduction | `execution_window_or_freeze_policy`, `post_cutover_monitoring`, `rollback_plan` |
+| Microsoft Testing Strategy | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/testing> | live guidance | live official guidance | adopt-testing-strategy-for-cutover-evidence | state move前のsecurity/regression/load evidence | `dry_run_plan`, `audit_record`, `blast_radius_baseline` |
+| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | current 2025 entry | adopt-2025-entry | 不可逆agent actionの権限制約とhuman oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
+| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | v1.2 | current specification | adopt-v1.2-for-cutover-artifact-provenance | artifact / command / builder / material provenance | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
+
+<!-- Cutover source ledger meaning review -->
+`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact`を確認し、date-only refreshは
+承認根拠にしない。checked dateが90日を超えた場合はG12 cutover evidenceをstaleとしてfail-closeする。
+
 ## 各層定義
 
 ### L8 結合テスト

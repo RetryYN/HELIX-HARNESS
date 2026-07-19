@@ -1749,7 +1749,7 @@ describe("runConsumerDoctor", () => {
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
     ).toContain(
-      "legacy_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.claude/settings.json",
+      "legacy_alias=.github/workflows/harness-check.yml,.claude/settings.json",
     );
   });
 

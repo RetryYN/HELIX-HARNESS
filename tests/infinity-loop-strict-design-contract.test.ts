@@ -1097,7 +1097,9 @@ describe("Infinity Loop requirement-set consistency", () => {
       ),
     ];
     const sets = [
-      ...authority.matchAll(/^\| (RAS-HIL-\d{2}) \| HR-FR-HIL-\d{2} \|[^\n]*\| current \|$/gm),
+      ...authority.matchAll(
+        /^\| (RAS-HIL-\d{2}) \| HR-FR-HIL-\d{2} \|[^\n]*\| (?:current|現行) \|$/gm,
+      ),
     ].map((match) => match[1]);
     expect(bindings).toHaveLength(153);
     expect(new Set(bindings.map((match) => match[1])).size).toBe(153);
