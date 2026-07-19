@@ -13,6 +13,7 @@ G8-G12の計画routeはPLAN-L7-130-right-arm-gate-planning /
 PLAN-REVERSE-130-right-arm-gate-planning。旧G13/G14 evidenceはcanonical G12の
 価値・運用品質検証へ投影し、独立した現行gateとして判定しない。
 <!-- doctor marker: G8 has an executable workflow gate; G9-G12 have defined evidence profiles -->
+<!-- doctor marker: PLAN-L7-130-right-arm-gate-planning / IMP-052** は implemented -->
 
 G8-WORKFLOW minimum mechanization (PLAN-L8 ascent): G8 は IT-* row の存在だけでは close しない。
 passing G8 slice には integration evidence manifest、selected IT-* coverage、executable test procedure、

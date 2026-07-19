@@ -11,7 +11,7 @@ function text(path: string): string {
 }
 
 describe("right-arm verification strategy", () => {
-  it("fails stale concept-only gate wording and missing L14 feedback evidence", () => {
+  it("fails stale concept-only gate wording and missing L12 feedback evidence", () => {
     const result = analyzeRightArmVerificationStrategy({
       gatesMd:
         "G8-G14 の機械検証条件は概念定義に留まる。G8-G14 機械化 PLAN は**未起票のまま** = carry。",
@@ -21,8 +21,8 @@ describe("right-arm verification strategy", () => {
 
     expect(result.ok).toBe(false);
     expect(result.forbiddenGateMarkers).toContain("G8-G14 の機械検証条件は概念定義に留まる");
-    expect(result.missingGateRows).toContain("G14");
-    expect(result.missingRightArmMarkers).toContain("L14→L0 feedback record");
+    expect(result.missingGateRows).toContain("G12");
+    expect(result.missingRightArmMarkers).toContain("L12→L1/L0 feedback record");
     expect(result.missingSourceLedgerRows).toContain("NIST SSDF SP 800-218");
     expect(rightArmVerificationStrategyMessages(result)[0]).toContain("violation");
   });
@@ -205,8 +205,8 @@ describe("right-arm verification strategy", () => {
 
   it("fails source ledger meaning reviews that omit version-up from workflow route impact", () => {
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md").replace(
-      "- `workflow_route_impact`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / version-up / action-binding / cutover / completion の route 変更なし。",
-      "- `workflow_route_impact`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
+      "- `workflow_route_impact`: 2026-07-03 none。上記10 sourceの再確認によりG8-G12 / S4 / version-up / action-binding / cutover / completionのroute変更なし。",
+      "- `workflow_route_impact`: 2026-07-03 none。上記10 sourceの再確認によりG8-G12 / S4 / action-binding / cutover / completionのroute変更なし。",
     );
     expect(rightArm).not.toBe(text("docs/process/forward/L08-L14-verification-phase.md"));
 
@@ -222,7 +222,7 @@ describe("right-arm verification strategy", () => {
     );
   });
 
-  it("fails source ledgers whose gate impact does not cover the G8-G14 verification band", () => {
+  it("fails source ledgers whose gate impact does not cover the G8-G12 verification band", () => {
     const gatesMd = [
       "G8 has an executable workflow gate",
       "G9-G14 have defined evidence profiles",
@@ -280,9 +280,9 @@ describe("right-arm verification strategy", () => {
     expect(result.sourceLedgerViolations).toContain(
       "verification source ledger ISTQB Glossary has invalid gate impact: concept-only",
     );
-    expect(result.missingSourceLedgerGateCoverage).toEqual(["G14"]);
+    expect(result.missingSourceLedgerGateCoverage).toEqual(["G12"]);
     expect(result.violations).toContain(
-      "verification source ledger gate impact missing coverage: G14",
+      "verification source ledger gate impact missing coverage: G12",
     );
   });
 
@@ -306,14 +306,14 @@ describe("right-arm verification strategy", () => {
     );
   });
 
-  it("keeps G8-G14 gates aligned with evidence profiles instead of concept-only claims", () => {
+  it("keeps G8-G12 gates aligned with evidence profiles instead of concept-only claims", () => {
     const gates = text("docs/process/gates.md");
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
 
     expect(gates).not.toContain("G8-G14 の機械検証条件は概念定義に留まる");
     expect(gates).not.toContain("G8-G14 機械化 PLAN は**未起票のまま**");
     expect(gates).toContain("G8 has an executable workflow gate");
-    expect(gates).toMatch(/G9-G14 have defined\s+evidence profiles/);
+    expect(gates).toMatch(/G9-G12 have defined\s+evidence profiles/);
     expect(gates).toContain("PLAN-L7-130-right-arm-gate-planning");
     expect(gates).toContain("IMP-052** は implemented");
 
@@ -347,7 +347,7 @@ describe("right-arm verification strategy", () => {
       expect(gates).toContain(marker);
     }
 
-    expect(rightArm).toContain("### 右腕 evidence profile (G8-G14)");
+    expect(rightArm).toContain("### 右腕 evidence profile (G8-G12)");
     expect(rightArm).toContain("### Verification source ledger (checked 2026-07-03)");
     expect(rightArm).toContain("NIST SSDF SP 800-218");
     expect(rightArm).toContain("Scrum Guide 2020");
@@ -366,10 +366,10 @@ describe("right-arm verification strategy", () => {
     expect(rightArm).toContain("date-only refresh");
   });
 
-  it("defines required evidence for every right-arm gate through L14 feedback", () => {
+  it("defines required evidence for every canonical right-arm gate through L12 feedback", () => {
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
 
-    for (const gate of ["G8", "G9", "G10", "G11", "G12", "G13", "G14"]) {
+    for (const gate of ["G8", "G9", "G10", "G11", "G12"]) {
       expect(rightArm).toContain(`| ${gate} |`);
     }
 

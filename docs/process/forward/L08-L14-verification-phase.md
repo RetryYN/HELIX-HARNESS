@@ -49,6 +49,8 @@
 
 Ledgerの`checked`は公式sourceを再確認した日であり、90日を超えた場合はstaleとする。Source ledger meaning reviewではdate-only refreshをgate evidenceにせず、次の意味差分を記録する。
 
+Source ledger 意味レビュー証跡:
+
 - `source_ledger_freshness`: checked 2026-07-03、90日以内。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineeringを公式URLで再確認。
 - `source_status_delta`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineeringのstatus/version/dateに採用判断を変える差分なし。
 - `adoption_decision_delta`: 2026-07-03 none。上記10 sourceのadoption decisionに変更なし。
