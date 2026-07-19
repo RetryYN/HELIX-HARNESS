@@ -127,7 +127,9 @@ describe("verification profile recommendation", () => {
     expect(result.ok).toBe(true);
     expect(result.coverage.gates.G8).toEqual(expect.arrayContaining(["msw", "testcontainers"]));
     expect(result.coverage.gates.G10).toEqual(["playwright-mcp", "vitest-browser-playwright"]);
-    expect(result.coverage.gates.G14).toEqual(["doctor", "github-mcp-readonly"]);
+    expect(result.coverage.gates.G12).toEqual(
+      expect.arrayContaining(["doctor", "github-mcp-readonly"]),
+    );
     expect(mustProfile("playwright-mcp").sourceLedgerSources).toEqual([
       "Playwright Test",
       "W3C WCAG 2.2",

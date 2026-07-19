@@ -126,7 +126,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L5-detail/python-worker-runtime.md`
 - `docs/design/helix/L6-function-design/document-semantic-diff.md`
 - `docs/design/helix/L6-function-design/layer-ledger-pair-gate.md`
-- `docs/design/helix/L6-function-design/legacy-helix-extension.md`
 - `docs/design/helix/L6-function-design/orchestration-memory.md`
 - `docs/design/helix/L6-function-design/pillar-function-design.md`
 - `docs/design/helix/L6-function-design/universal-reverse-redesign.md`

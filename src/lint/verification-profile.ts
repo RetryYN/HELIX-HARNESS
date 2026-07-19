@@ -345,7 +345,7 @@ export function inspectMcpProfile(
   };
 }
 
-const RIGHT_ARM_GATES: VerificationGate[] = ["G8", "G9", "G10", "G11", "G12", "G13", "G14"];
+const RIGHT_ARM_GATES: VerificationGate[] = ["G8", "G9", "G10", "G11", "G12"];
 
 const L10_REQUIRED_ALWAYS_DRIVES: VerificationDrive[] = ["agent", "fe", "fullstack"];
 

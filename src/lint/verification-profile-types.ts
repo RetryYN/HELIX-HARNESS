@@ -19,7 +19,7 @@ type VerificationSignal =
   | "workflow_policy"
   | "doc_backprop";
 
-type VerificationGate = "G8" | "G9" | "G10" | "G11" | "G12" | "G13" | "G14";
+type VerificationGate = "G8" | "G9" | "G10" | "G11" | "G12";
 
 type VerificationDrive = "be" | "fe" | "fullstack" | "db" | "agent";
 

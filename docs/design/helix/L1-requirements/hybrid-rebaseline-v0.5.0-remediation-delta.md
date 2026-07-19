@@ -47,6 +47,12 @@ authority_epoch:
 
 ## 軸: 脱Bun・TS/Node+Python境界 (`runtime-boundary`)
 
+> **ADR-010 supersession note:** この proposed delta にある「内部 Python = proposal-only」および
+> 「分類不能なら TS/Node 再実装」という旧 ADR-009 単独方針は superseded である。現行は恒久
+> Python semantic core が意味評価を担い、Node は control / transaction commit boundary を担う。
+> proposal-only は外部 Kimi 等の worker に限る。以下の旧修正文案を current requirement として
+> 昇格・再利用してはならない。
+
 ### RB-01 [critical] パッケージの権威順序がADR-009のNode優位/Python従属関係を逆転させている
 - 是正種別: 権威順序修正 / status: 検証合格
 - 対象: `01-authority-and-source-order.md#規範precedence`
