@@ -81,6 +81,16 @@ Source ledger 意味レビュー証跡:
 `post_cutover_monitoring`、`legacy_alias_policy`を保持する。これは旧層の再activationではなく、G12が
 既存receiptを検証するためのfield vocabularyである。
 
+G12の不可逆操作では、`Action-binding approval decision record`として
+`action_binding_approval_record`を使用する。recordは`allowed_outcome`、
+`approval_policy_or_named_approver`、`approval_scope`、`approved_actor`、
+`approved_tool`、`approved_target`、`approved_params`、`review_approval_evidence`、
+`reviewed_snapshot_binding`、`expires_at_or_trigger`、`audit_record`を固定する。
+事前確認packetは`action-binding-approval-packet.v1`であり、
+`planOnly=true`、`mustNotApprove=true`、`approvalCommandAvailable=false`、
+`approvalAllowed=false`、`approvalBindingChecks`、`approvalVerificationCommandMatrix`を
+必須とする。これはG12のaction-binding境界であり、旧G13/G14の再導入ではない。
+
 | source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | cutover use | required field impact |
 |---|---|---|---|---|---|---|
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | 最終版1.1（2022-02-04） | Rev. 1初期公開draft v1.2 | 最終版1.1を採用しdraftは追跡のみ | release完全性・archive・保護traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |

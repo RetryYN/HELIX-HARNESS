@@ -44,7 +44,12 @@ function walkCandidatePaths(root: string): string[] {
 
 function runNodePackageTool(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
   if (args[0] === "src/cli.ts") {
-    return runCommand(cwd, "npx", ["--no-install", "tsx", ...args], env);
+    return runCommand(
+      cwd,
+      "npx",
+      ["--prefix", process.cwd(), "--no-install", "tsx", ...args],
+      env,
+    );
   }
   const npmArgs =
     args[0] === "install" && args.includes("--frozen-lockfile")

@@ -175,9 +175,6 @@ jobs:
 
       - name: test — 全回帰 (vitest run)
         timeout-minutes: 25
-        env:
-          # temp fixture cwdからもrepo pin済みtsxだけを解決する。
-          NPM_CONFIG_PREFIX: ${{ github.workspace }}
         run: npm test
 
       - name: lint (biome)

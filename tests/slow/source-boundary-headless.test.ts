@@ -38,7 +38,7 @@ describe("PLAN-L7-450 headless DB composition", () => {
     ].join("\n");
 
     try {
-      const result = spawnSync("node", ["--preload", preloadPath, "--eval", child], {
+      const result = spawnSync("node", ["--require", preloadPath, "--eval", child], {
         cwd: process.cwd(),
         env: { ...process.env, HELIX_SKIP_UPDATE_CHECK: "1" },
         encoding: "utf8",
