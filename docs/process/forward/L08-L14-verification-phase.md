@@ -75,6 +75,11 @@ Source ledger 意味レビュー証跡:
 
 この台帳は不可逆cutoverの承認材料を再検証するためのsource evidenceであり、L13/L14またはG13/G14を
 現行authorityとして復活させない。判断と実行許可はG12およびaction-binding approval境界で行う。
+互換証跡schemaは`cutover_decision_record`を単位とし、`allowed_outcome`、`decision_owner`、
+`cutover_snapshot_id`、`trigger_condition`、`blast_radius_baseline`、`dry_run_plan`、`rollback_plan`、
+`state_backup_plan`、`execution_window_or_freeze_policy`、`approval_scope`、`audit_record`、
+`post_cutover_monitoring`、`legacy_alias_policy`を保持する。これは旧層の再activationではなく、G12が
+既存receiptを検証するためのfield vocabularyである。
 
 | source | 公式 URL | 採用 version/date | 最新公式 status | 採用判断 | cutover use | required field impact |
 |---|---|---|---|---|---|---|
@@ -91,7 +96,7 @@ Source ledger 意味レビュー証跡:
 | SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | v1.2 | current specification | adopt-v1.2-for-cutover-artifact-provenance | artifact / command / builder / material provenance | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
 
 <!-- Cutover source ledger meaning review -->
-`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact`を確認し、date-only refreshは
+`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact`を確認し、Date-only refreshは
 承認根拠にしない。checked dateが90日を超えた場合はG12 cutover evidenceをstaleとしてfail-closeする。
 
 ## 各層定義
